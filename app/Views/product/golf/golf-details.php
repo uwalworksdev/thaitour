@@ -4,14 +4,39 @@
 
 <script>
 $(document).ready(function() {
-    var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-    console.log('홀- '+dataTabValue);
-    console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
+			console.log('홀- '+dataTabValue);
+			console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			
+			if($("#caddie_fee_sel").val() == "Y") {
+			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
+			   $("#vehicle_5").prop('disabled', true);
+			}   
+
+			if($("#o_caddy_due").val() == "Y") {
+			   $('#vehicle_5').prop('disabled', true);
+			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            } 	
+				
+			
+			if($("#o_cart_cont").val() == "Y") {
+			   $("#cart_no").show();	
+			   $("#cart_yes").hide();	
+			} else {   
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			}
 	
-	if($("#caddie_fee_sel").val() == "Y") {
-       $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-	   $("#vehicle_5").prop('disabled', true);
-	}   
 });
 </script>
     <form>
@@ -27,7 +52,7 @@ $(document).ready(function() {
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
-                <input type="hidden" name="o_cart_cont" id="o_cart_cont" value="<?=$golf_price['o_cart_cont']?>">
+                <input type="hiddem" name="o_cart_cont" id="o_cart_cont" value="<?=$golf_price['o_cart_cont']?>">
                 <input type="hidden" name="o_caddy_cont" id="o_caddy_cont" value="<?=$golf_price['o_caddy_cont']?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
 
@@ -531,8 +556,8 @@ $(document).ready(function() {
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
 					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -547,8 +572,8 @@ $(document).ready(function() {
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
 					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_2"  data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -565,8 +590,8 @@ $(document).ready(function() {
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_3"  data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -578,12 +603,10 @@ $(document).ready(function() {
 				</select>
                 </div>
 
-               <?php if($golf_price['o_cart_cont'] == "Y") { ?>
-			   <div class="item-select" id="cart_no">
+			   <div class="item-select" id="cart_no" style="display:none">
 			      <p>카트비는 그린피에 포함입니다.</p>	   
 			   </div>
-			   <?php } else { ?>
-			   <div class="item-select" id="cart_yes">
+			   <div class="item-select" id="cart_yes" style="display:none">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -595,14 +618,11 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
-			   <?php } ?>
 				   
-               <?php if($golf_price['o_caddy_cont'] == "Y") { ?>
-			   <div class="item-select" id="caddy_no">
+			   <div class="item-select" id="caddy_no" style="display:none">
 			      <p>캐디피는 그린피에 포함입니다.</p>	   
 			   </div>
-			   <?php } else { ?>
-            	<div class="item-select" id="caddy_yes">
+               <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -619,7 +639,6 @@ $(document).ready(function() {
 								<option value="10">10명</option>
 						</select>
                </div>
-			   <?php } ?>
 			   
         </div>
 		
@@ -1136,6 +1155,31 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
+
+			if($("#o_caddy_due").val() == "Y") {
+			   $('#vehicle_5').prop('disabled', true);
+			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            }	
+				
+			if($("#o_cart_cont").val() == "Y") {
+			   $("#vehicle_4").val('0');
+			   $("#cart_no").show();	
+			   $("#cart_yes").hide();	
+			} else {   
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			}
+			
             const vehiclePrice = setListVehicle();
 
             const optionPrice = setOptionArea();

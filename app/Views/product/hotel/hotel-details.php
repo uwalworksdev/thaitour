@@ -735,147 +735,11 @@
                 </button>
             </div>
         </div>
-		
-        <div class="section1">
-            <h2 class="title-sec2">
-                호텔소개
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['product_notes']) ?>
-            </div>
-        </div>
-
-        <div class="section1">
-            <h2 class="title-sec2">
-                객실 안내
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['room_guides']) ?>
-            </div>
-        </div>
-
-        <!-- <div class="section1">
-            <h2 class="title-sec2">
-                중요 사항
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['important_notes']) ?>
-            </div>
-        </div> -->
-			
-        <?php if ($hotel['product_video'] != ""): ?>
-            <div class="section2">
-                <h2 class="title-sec2">
-                    동영상
-                </h2>
-                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
-                    id="productVideo">
-
-                </div>
-            </div>
-            <script>
-                function generateIframe(youtubeLink) {
-                    let videoId = youtubeLink.split("v=")[1];
-                    let iframe = `<iframe width="100%" height="100%"
-                                src="https://www.youtube.com/embed/${videoId}"
-                                title="<?= $hotel['product_name'] ?>"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                        </iframe>`;
-
-                    $('#productVideo').empty().append(iframe);
-                }
-
-                generateIframe('<?= $hotel['product_video'] ?>');
-            </script>
-        <?php endif; ?>
-
-        <?php if ($hotel['latitude'] != "" && $hotel['longitude'] != ""): ?>
-            <div class="section4">
-                <h2 class="title-sec4">
-                    위치안내
-                </h2>
-
-                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
-
-                </div>
-            </div>
-            <script>
-                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
-                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
-
-                function initMap() {
-                    const location = {
-                        lat: latitude,
-                        lng: longitude
-                    };
-                    const map = new google.maps.Map(document.getElementById("section4_map"), {
-                        zoom: 16,
-                        center: location,
-                    });
-
-                    new google.maps.Marker({
-                        position: location,
-                        map: map,
-                    });
-                }
-
-                window.onload = initMap;
-            </script>
-        <?php endif; ?>
-
-        <div class="section2" id="section2">
-            <h2 class="title-sec2">
-                숙소개요
-            </h2>
-            <h3 class="sub-title-sec2">
-                추천 포인트
-            </h3>
-            <p class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['product_info']) ?>
-            </p>
-            <div class="tag-list-icon mt-20">
-                <?php foreach ($fresult4 as $row) : ?>
-                    <div class="item-tag">
-                        <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
-                        <span><?= $row['code_name'] ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <h2 class="sub-title-sec2">
-                인기 시설 및 서비스
-            </h2>
-            <div class="tag_list_done">
-                <?php foreach ($bresult4 as $row) : ?>
-                    <div class="item_done">
-                        <img src="/uploads/icons/done_icon.png" alt="done_icon">
-                        <span><?= $row['code_name'] ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <h2 class="sub-title-sec2">
-                호텔주변 추천명소
-            </h2>
-            <div class="post-list-sec2">
-                <?php foreach ($places as $row) : ?>
-                    <div class="">
-                        <a class="" href="<?= $row['url'] ?>" target="_blank">
-                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
-                        </a>
-                        <a class="" href="<?= $row['url'] ?>" target="_blank">
-                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
-                        </a>
-                        <p>(<?= $row['distance'] ?>)</p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
 
         <section class="sub_top_visual" id="sub_top_visual">
             <div class="main_visual_content_">
                 <div class="form_search">
-                    <div class="form_element_">
+                    <div class="form_element_" style="margin-top: 0">
                         <!--div class="form_input_">
                                         <label for="input_keyword_">여행지</label>
                                         <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
@@ -1789,6 +1653,143 @@
 			<?php endforeach; ?>
         </div>
         </div>
+		
+        <div class="section1">
+            <h2 class="title-sec2">
+                호텔소개
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['product_notes']) ?>
+            </div>
+        </div>
+
+        <div class="section1">
+            <h2 class="title-sec2">
+                객실 안내
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['room_guides']) ?>
+            </div>
+        </div>
+
+        <!-- <div class="section1">
+            <h2 class="title-sec2">
+                중요 사항
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['important_notes']) ?>
+            </div>
+        </div> -->
+			
+        <?php if ($hotel['product_video'] != ""): ?>
+            <div class="section2">
+                <h2 class="title-sec2">
+                    동영상
+                </h2>
+                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
+                    id="productVideo">
+
+                </div>
+            </div>
+            <script>
+                function generateIframe(youtubeLink) {
+                    let videoId = youtubeLink.split("v=")[1];
+                    let iframe = `<iframe width="100%" height="100%"
+                                src="https://www.youtube.com/embed/${videoId}"
+                                title="<?= $hotel['product_name'] ?>"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>`;
+
+                    $('#productVideo').empty().append(iframe);
+                }
+
+                generateIframe('<?= $hotel['product_video'] ?>');
+            </script>
+        <?php endif; ?>
+
+        <?php if ($hotel['latitude'] != "" && $hotel['longitude'] != ""): ?>
+            <div class="section4">
+                <h2 class="title-sec4">
+                    위치안내
+                </h2>
+
+                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
+
+                </div>
+            </div>
+            <script>
+                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
+                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
+
+                function initMap() {
+                    const location = {
+                        lat: latitude,
+                        lng: longitude
+                    };
+                    const map = new google.maps.Map(document.getElementById("section4_map"), {
+                        zoom: 16,
+                        center: location,
+                    });
+
+                    new google.maps.Marker({
+                        position: location,
+                        map: map,
+                    });
+                }
+
+                window.onload = initMap;
+            </script>
+        <?php endif; ?>
+
+        <div class="section2" id="section2">
+            <h2 class="title-sec2">
+                숙소개요
+            </h2>
+            <h3 class="sub-title-sec2">
+                추천 포인트
+            </h3>
+            <p class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['product_info']) ?>
+            </p>
+            <div class="tag-list-icon mt-20">
+                <?php foreach ($fresult4 as $row) : ?>
+                    <div class="item-tag">
+                        <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
+                        <span><?= $row['code_name'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <h2 class="sub-title-sec2">
+                인기 시설 및 서비스
+            </h2>
+            <div class="tag_list_done">
+                <?php foreach ($bresult4 as $row) : ?>
+                    <div class="item_done">
+                        <img src="/uploads/icons/done_icon.png" alt="done_icon">
+                        <span><?= $row['code_name'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <h2 class="sub-title-sec2">
+                호텔주변 추천명소
+            </h2>
+            <div class="post-list-sec2">
+                <?php foreach ($places as $row) : ?>
+                    <div class="">
+                        <a class="" href="<?= $row['url'] ?>" target="_blank">
+                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
+                        </a>
+                        <a class="" href="<?= $row['url'] ?>" target="_blank">
+                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                        </a>
+                        <p>(<?= $row['distance'] ?>)</p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
             <div class="list-tag-sec4">
