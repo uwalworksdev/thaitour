@@ -2125,7 +2125,7 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate( $option_idx, $hole_cnt, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
+    private function golfPriceCalculate( $option_idx, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
@@ -2139,7 +2139,6 @@ class Product extends BaseController
 		               LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx 
 					   WHERE 
 					   b.idx        = '". $option_idx ."' AND 
-					   b.goods_name = '". $hole_cnt   ."' AND 
 					   a.goods_date = '". $order_date ."'";
 					   
         write_log("golfPriceCalculate- ". $sql);														   
@@ -2210,7 +2209,7 @@ class Product extends BaseController
 							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle += $value;
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "2") { 
