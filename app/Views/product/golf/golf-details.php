@@ -1374,6 +1374,12 @@ $(document).ready(function() {
 					alert(res.caddie_fee_ba); 
 					alert(res.caddie_fee); 
 					*/
+
+					// 요소 선택
+					$("#o_cart_due").val(res.o_cart_due), 	
+					$("#o_caddy_due").val(res.o_caddy_due), 	
+					$("#o_cart_cont").val(res.o_cart_cont), 	
+					$("#o_caddy_cont").val(res.o_caddy_cont), 			 
 					
 					// 요소 선택
 					var $selectElement = $('#vehicle_1');
