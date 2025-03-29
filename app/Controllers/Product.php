@@ -2341,7 +2341,6 @@ class Product extends BaseController
 
         $data['final_date'] = $formattedDate;
         $data['product'] = $this->productModel->find($data['product_idx']);
-        $data['hole_cnt']         = "99홀";
 
 		$priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
