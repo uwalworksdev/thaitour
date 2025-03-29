@@ -612,12 +612,10 @@ $(document).ready(function() {
                     </select>
                 </div>
 				   
-               <?php if($golf_price['o_caddy_cont'] == "Y") { ?>
-			   <div class="item-select" id="caddy_no">
+			   <div class="item-select" id="caddy_no" style="display:none">
 			      <p>캐디피는 그린피에 포함입니다.</p>	   
 			   </div>
-			   <?php } else { ?>
-            	<div class="item-select" id="caddy_yes">
+               <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -634,7 +632,6 @@ $(document).ready(function() {
 								<option value="10">10명</option>
 						</select>
                </div>
-			   <?php } ?>
 			   
         </div>
 		
