@@ -65,18 +65,6 @@
             <div id="contents">
                 <div class="listBottom">
 				
-				
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                        <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-
-                        <tr height="45">
-                            <th>상품명</th>
-                            <td><?=$product_name?></td>
-                        </tr>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -90,7 +78,7 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        제품정보
+                                        제품정보<?=$product_name?>
                                     </td>
                                 </tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
@@ -144,7 +132,18 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>						
+                            </table>				
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                        <colgroup>
+                            <col width="10%"/>
+                            <col width="90%"/>
+                        </colgroup>
+                        <tbody>
+
+                        <tr height="45">
+                            <th>상품명</th>
+                            <td><?=$product_name?></td>
+                        </tr>
                         <tr height="45">
                             <th>홀선택</th>
                             <td>
