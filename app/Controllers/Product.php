@@ -2367,7 +2367,6 @@ class Product extends BaseController
 
 		$priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
-			$data['hole_cnt'],
             $data['hour'],
             $data['trip_type1'],
             $data['trip_type2'],
