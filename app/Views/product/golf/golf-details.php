@@ -15,7 +15,16 @@ $(document).ready(function() {
 
 			if($("#o_caddy_due").val() == "Y") {
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
-			}   
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            }	
+				
 			
 			if($("#o_cart_cont").val() == "Y") {
 			   $("#cart_no").show();	
@@ -23,14 +32,6 @@ $(document).ready(function() {
 			} else {   
 			   $("#cart_yes").show();	
 			   $("#cart_no").hide();	
-			}
-	
-			if($("#o_caddy_cont").val() == "Y") {
-			   $("#caddy_no").show();	
-			   $("#caddy_yes").hide();	
-			} else {   
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
 			}
 	
 });
@@ -1154,7 +1155,15 @@ $(document).ready(function() {
 
 			if($("#o_caddy_due").val() == "Y") {
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
-			}   
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            }	
 				
 			if($("#o_cart_cont").val() == "Y") {
 			   $("#vehicle_4").val('0');
@@ -1163,15 +1172,6 @@ $(document).ready(function() {
 			} else {   
 			   $("#cart_yes").show();	
 			   $("#cart_no").hide();	
-			}
-			
-			if($("#o_caddy_cont").val() == "Y") {
-			   $("#vehicle_5").val('0');
-			   $("#caddy_no").show();	
-			   $("#caddy_yes").hide();	
-			} else {   
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
 			}
 			
             const vehiclePrice = setListVehicle();
