@@ -2176,8 +2176,7 @@ class Product extends BaseController
         $data['minute'] = $minute;
         $data['total_price_baht'] = $option_price * $people_adult_cnt;
         $price = (int)($option_price * ($this->setting['baht_thai'] ?? 0));
-		write_log($price ." - ". $people_adult_cnt ." - ". $data['total_price_baht']);
-        $data['total_price'] = (int)($data['total_price_baht'] * $people_adult_cnt * ($this->setting['baht_thai'] ?? 0));
+        $data['total_price'] = (int)($data['total_price_baht'] * ($this->setting['baht_thai'] ?? 0));
 
         $total_vehicle_price = 0;
         $total_vehicle_price_baht = 0;
