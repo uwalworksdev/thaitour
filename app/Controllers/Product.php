@@ -2437,7 +2437,7 @@ class Product extends BaseController
                 $data['opt_cnt'],
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
-				$data['golf_date'],
+				$data['golf_date']
             );
 			
             $data['order_price']              = $priceCalculate['final_price'];
