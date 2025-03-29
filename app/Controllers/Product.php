@@ -2048,7 +2048,7 @@ class Product extends BaseController
         $selPrice = "";
 		$today    = date("Y-m-d");
         $sql_p = "SELECT goods_name, goods_date, price FROM tbl_golf_price
-                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' AND goods_date > '". $today."'  
+                         WHERE goods_name = (SELECT MIN(goods_name) FROM tbl_golf_price) AND product_idx = '" . $product_idx . "' AND use_yn != 'N' AND goods_date >= '". $today."'  
 		                 ORDER BY goods_name, goods_date ASC ";
 		write_log("sql_p- ". $sql_p);				 
         $query_p  = $this->db->query($sql_p);
