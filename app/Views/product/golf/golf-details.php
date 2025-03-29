@@ -28,6 +28,7 @@ $(document).ready(function() {
 			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
+				   $("#vehicle_5").val('0');
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
 				} else {   
