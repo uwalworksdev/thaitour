@@ -2131,8 +2131,15 @@ class Product extends BaseController
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 		
         $data = [];
-        $sql = "SELECT a.*, b.o_day_price, b.o_afternoon_price, b.o_night_price FROM tbl_golf_price a
-		                                                                        LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "' AND a.goods_date = '". $order_date ."'";
+        $sql = "SELECT a.*, 
+		               b.o_day_price, 
+					   b.o_afternoon_price, 
+					   b.o_night_price FROM tbl_golf_price a
+		                               LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx 
+									   WHERE 
+									   b.goods_name = '". $hour ."' AND 
+									   b.idx        = '". $option_idx ."' AND 
+									   a.goods_date = '". $order_date ."'";
         write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
@@ -2317,7 +2324,7 @@ class Product extends BaseController
         $data['order_date']       = $this->request->getVar('order_date');
         $data['hole_cnt']         = $this->request->getVar('hole_cnt');
 		write_log("hole- ". $data['hole_cnt']);
-        $data['hour']             = $this->request->getVar('hour');
+        $data['hour']             = $this->request->getVar('hole_cnt');
         $data['opt_idx']          = $this->request->getVar('opt_idx');
         $data['option_cnt']       = $this->request->getVar('option_cnt');
         $data['option_idx']       = $this->request->getVar('option_idx');
