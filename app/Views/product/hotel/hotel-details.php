@@ -739,7 +739,7 @@
         <section class="sub_top_visual" id="sub_top_visual">
             <div class="main_visual_content_">
                 <div class="form_search">
-                    <div class="form_element_">
+                    <div class="form_element_" style="margin-top: 0">
                         <!--div class="form_input_">
                                         <label for="input_keyword_">여행지</label>
                                         <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
