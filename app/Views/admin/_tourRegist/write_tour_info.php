@@ -28,7 +28,7 @@
 					<li><a href="/AdmMaster/_tourRegist/list_tours" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 					<?php if (!empty($productTourInfo)) { ?>	
 						<a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-						<?php } else { ?>
+					<?php } else { ?>
 							<a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
 					<?php } ?>
 				</ul>

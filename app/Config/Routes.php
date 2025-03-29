@@ -146,6 +146,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("write_spas", "TourRegistController::write_spas");
+        $routes->get("write_spas_info", "TourRegistController::write_spas_info");
         $routes->get("write_spas_price", "TourRegistController::write_spas_price");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("write_tours_price", "TourRegistController::write_tours_price");
@@ -328,6 +329,13 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'spa_'
         $routes->group("spa_", function ($routes) {
             $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
+            $routes->post("write_info_ok", "Admin\AdminSpaController::write_info_ok", ['as' => "admin.api.spa_.write_info_ok"]);
+            $routes->post("copy_last_spa", "Admin\AdminSpaController::copy_last_spa", ['as' => "admin.api.spa_.copy_last_spa"]);
+            $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
+            $routes->post("del_spa_option", "Admin\AdminSpaController::del_spa_option", ['as' => "admin.api.spa_.del_spa_option"]);
+            $routes->post("del_main_option", "Admin\AdminSpaController::del_main_option", ['as' => "admin.api.spa_.del_main_option"]);
+            $routes->post("del_sub_option", "Admin\AdminSpaController::del_sub_option", ['as' => "admin.api.spa_.del_sub_option"]);
+            $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
             $routes->post("prod_update", "Admin\AdminSpaController::prod_update", ['as' => "admin.api.spa_.prod_update"]);
             $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
             $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
