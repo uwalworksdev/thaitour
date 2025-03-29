@@ -12,7 +12,15 @@ $(document).ready(function() {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
 			   $("#vehicle_5").prop('disabled', true);
 			}   
+	
+});
+</script>
 
+<script>
+$(document).ready(function() {
+    // 페이지 어디든 클릭 시 실행
+    $(document).on('click', function(event) {
+		
 			if($("#o_caddy_due").val() == "Y") {
 			   $('#vehicle_5').prop('disabled', true);
 			   $("#vehicle_5").val($("#people_adult_cnt").val());
@@ -28,22 +36,20 @@ $(document).ready(function() {
 				}
             } 	
 			
-			if($("#o_cart_cont").val() == "Y") {
-			   $("#cart_no").show();	
-			   $("#cart_yes").hide();	
-			} else {   
+			if($("#o_cart_due").val() == "Y") {
 			   $("#cart_yes").show();	
 			   $("#cart_no").hide();	
-			}
-	
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    // 페이지 어디든 클릭 시 실행
-    $(document).on('click', function(event) {
-        alert("페이지를 클릭했습니다!");
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+				   $("#cart_yes").show();	
+				   $("#cart_no").hide();	
+				}
+            }
+			
+            calculatePrice();			
     });
 });
 </script>
@@ -565,8 +571,8 @@ $(document).ready(function() {
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
 					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -581,8 +587,8 @@ $(document).ready(function() {
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
 					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_2"  data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -599,8 +605,8 @@ $(document).ready(function() {
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
 					</select>
                     <select id="vehicle_3"  data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -1165,30 +1171,6 @@ $(document).ready(function() {
 
         function calculatePrice() {
 
-			if($("#o_caddy_due").val() == "Y") {
-			   $('#vehicle_5').prop('disabled', true);
-			   $("#vehicle_5").val($("#people_adult_cnt").val());
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
-			} else {
-				if($("#o_caddy_cont").val() == "Y") {
-				   $("#caddy_no").show();	
-				   $("#caddy_yes").hide();	
-				} else {   
-				   $("#caddy_yes").show();	
-				   $("#caddy_no").hide();	
-				}
-            }	
-				
-			if($("#o_cart_cont").val() == "Y") {
-			   $("#vehicle_4").val('0');
-			   $("#cart_no").show();	
-			   $("#cart_yes").hide();	
-			} else {   
-			   $("#cart_yes").show();	
-			   $("#cart_no").hide();	
-			}
-			
             const vehiclePrice = setListVehicle();
 
             const optionPrice = setOptionArea();
