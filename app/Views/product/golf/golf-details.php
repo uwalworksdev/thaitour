@@ -42,6 +42,7 @@ $(document).ready(function() {
 			   $("#cart_no").hide();	
 			} else {	
 				if($("#o_cart_cont").val() == "Y") {
+    			   $("#vehicle_4").val('0');
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
 				} else {   
