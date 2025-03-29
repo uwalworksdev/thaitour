@@ -2203,7 +2203,7 @@ class Product extends BaseController
 							}   
 							$info['price_baht_total'] = $info['price_baht'] * $value;
 							$info['price']            = (int)($info['price_baht'] * $baht_thai);
-							$info['price_total']      = (int)($info['price_baht']  * $baht_thai * $value);
+							$info['price_total']      = (int)($info['price_baht'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
@@ -2296,8 +2296,8 @@ class Product extends BaseController
                 $info['cnt'] = $value;
                 $info['price_baht'] = $info['goods_price1'];
                 $info['price_baht_total'] = $info['goods_price1'] * $value;
-                $info['price'] = round((float)$info['goods_price1'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = round((float)$info['price'] * $value);
+                $info['price'] = (int)($info['goods_price1'] * ($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = (int)($info['price'] * $value);
                 $option_arr[] = $info;
 
                 $total_option_price += $info['price'] * $value;
@@ -2307,7 +2307,7 @@ class Product extends BaseController
             }
         }
 
-        $data['option_arr'] = $option_arr;
+        $data['option_arr']   = $option_arr;
         $data['total_option'] = $total_option;
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
@@ -2316,10 +2316,10 @@ class Product extends BaseController
             if ($coupon['dc_type'] == "P") {
                 $price = $total_vehicle_price + $data['total_price'];
                 $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
-                $data['discount_baht'] = round((float)$data['discount'] * (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount_baht'] = (int)($data['discount'] * ($this->setting['baht_thai'] ?? 0));
             } else if ($coupon['dc_type'] == "D") {
                 $data['discount'] = $coupon['coupon_price'];
-                $data['discount_baht'] = round((float)$coupon['coupon_price'] * (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount_baht'] = (int)($coupon['coupon_price'] * $this->setting['baht_thai'] ?? 0));
             }
         }
 
