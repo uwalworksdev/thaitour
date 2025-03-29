@@ -364,7 +364,7 @@
                                                     <?php } else { ?>
                                                         <input type='hidden' name='o_cart_cont[]' class='o_cart_cont' value=''>
                                                     <?php } ?>
-                                                    <label for='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>&nbsp;&nbsp;
+                                                    <label for='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>카트포함</label>&nbsp;&nbsp;
 													<!-- 카트포함 E: -->
 													
 													<!-- 캐디포함 S: -->
@@ -379,7 +379,7 @@
                                                     <?php } else { ?>
                                                         <input type='hidden' name='o_caddy_cont[]' class='o_caddy_cont' value=''>
                                                     <?php } ?>
-                                                    <label for='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무캐디</label>&nbsp;&nbsp;
+                                                    <label for='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>캐디포함</label>&nbsp;&nbsp;
 													<!-- 캐디포함 E: -->
 													
                                                 </td>
