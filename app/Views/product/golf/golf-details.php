@@ -76,7 +76,7 @@ $(document).ready(function() {
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <input type="hidden" name="hole_cnt" id="hole_cnt" value="">
+                <input type="text" name="hole_cnt" id="hole_cnt" value="">
                 <input type="hidden" name="hour" id="hour" value="">  <!-- 주간, 오후, 야갼 -->
                 <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="">
                 <input type="hidden" name="teeoff_min" id="teeoff_min" value="">
