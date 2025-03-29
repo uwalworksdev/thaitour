@@ -2125,7 +2125,7 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate( $option_idx, $hour, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
+    private function golfPriceCalculate( $option_idx, $hole_cnt, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
@@ -2134,8 +2134,14 @@ class Product extends BaseController
         $sql = "SELECT a.*, 
 		               b.o_day_price, 
 					   b.o_afternoon_price, 
-					   b.o_night_price FROM tbl_golf_price a
-		                                                    LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx WHERE b.idx = '" . $option_idx . "' AND a.goods_date = '". $order_date ."'";
+					   b.o_night_price 
+					   FROM tbl_golf_price a
+		               LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx 
+					   WHERE 
+					   b.idx        = '". $option_idx ."' AND 
+					   b.goods_name = '". $hole_cnt   ."' AND 
+					   a.goods_date = '". $order_date ."'";
+					   
         write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
@@ -2170,7 +2176,7 @@ class Product extends BaseController
         $data['hour'] = $hour;
         $data['minute'] = $minute;
         $data['total_price_baht'] = $option_price * $people_adult_cnt;
-        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
+        $price = (int)($option_price * ($this->setting['baht_thai'] ?? 0));
         $data['total_price'] = $price * $people_adult_cnt;
 
         $total_vehicle_price = 0;
@@ -2191,13 +2197,17 @@ class Product extends BaseController
 						$info['cnt'] = $value;
 						if($vehicle_idx[$key] == "1") { 
 							$info['code_name'] = "승용차";
-							$info['price_baht'] = $info['vehicle_price1'];
-							$info['price_baht_total'] = $info['vehicle_price1'] * $value;
-							$info['price'] = round((float)$info['vehicle_price1'] * $baht_thai);
-							$info['price_total'] = round((float)$info['vehicle_price1']  * $baht_thai * $value);
-							$vehicle_arr[] = $info;
+							if($trip_type1 == "0") {
+							   $info['price_baht'] = $info['vehicle_price1'];
+							} else {  
+							   $info['price_baht'] = $info['vehicle_o_price1'];
+							}   
+							$info['price_baht_total'] = $info['price_baht'] * $value;
+							$info['price']            = (int)($info['price_baht'] * $baht_thai);
+							$info['price_total']      = (iny)($info['price_baht']  * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
 							$total_vehicle += $value;
@@ -2205,13 +2215,17 @@ class Product extends BaseController
 				
 						if($vehicle_idx[$key] == "2") { 
 							$info['code_name'] = "밴(승합차)";
-							$info['price_baht'] = $info['vehicle_price2'];
-							$info['price_baht_total'] = $info['vehicle_price2'] * $value;
-							$info['price'] = round((float)$info['vehicle_price2'] * $baht_thai);
-							$info['price_total'] = round((float)$info['vehicle_price2']  * $baht_thai * $value);
-							$vehicle_arr[] = $info;
+							if($trip_type2 == "0") {
+							   $info['price_baht'] = $info['vehicle_price2'];
+							} else {  
+							   $info['price_baht'] = $info['vehicle_o_price2'];
+							}   
+							$info['price_baht_total'] = $info['price_baht'] * $value;
+							$info['price']            = (int)($info['price_baht'] * $baht_thai);
+							$info['price_total']      = (int)($info['price_baht'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
 							$total_vehicle += $value;
@@ -2219,44 +2233,48 @@ class Product extends BaseController
 				
 						if($vehicle_idx[$key] == "3") { 
 							$info['code_name'] = "SUV";
-							$info['price_baht'] = $info['vehicle_price3'];
-							$info['price_baht_total'] = $info['vehicle_price3'] * $value;
-							$info['price'] = round((float)$info['vehicle_price3'] * $baht_thai);
-							$info['price_total'] = round((float)$info['vehicle_price3']  * $baht_thai * $value);
+							if($trip_type3 == "0") {
+							   $info['price_baht'] = $info['vehicle_price3'];
+							} else {  
+							   $info['price_baht'] = $info['vehicle_o_price3'];
+							}   
+							$info['price_baht_total'] = $info['price_baht'] * $value;
+							$info['price']            = (int)($info['price_baht'] * $baht_thai);
+							$info['price_total']      = (int)($info['price_baht'] * $baht_thai * $value);
 							$vehicle_arr[] = $info;
 
-							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle += $value;
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "4") { 
-							$info['code_name'] = "카트";
-							$info['price_baht'] = $info['cart_price'];
+							$info['code_name']        = "카트";
+							$info['price_baht']       = $info['cart_price'];
 							$info['price_baht_total'] = $info['cart_price'] * $value;
-							$info['price'] = round((float)$info['cart_price'] * $baht_thai);
-							$info['price_total'] = round((float)$info['cart_price']  * $baht_thai * $value);
-							$vehicle_arr[] = $info;
+							$info['price']            = (int)($info['cart_price'] * $baht_thai);
+							$info['price_total']      = (int)($info['cart_price'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle += $value;
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "5") { 
-							$info['code_name'] = "캐디피";
-							$info['price_baht'] = $info['caddie_fee'];
+							$info['code_name']        = "캐디피";
+							$info['price_baht']       = $info['caddie_fee'];
 							$info['price_baht_total'] = $info['caddie_fee'] * $value;
-							$info['price'] = round((float)$info['caddie_fee'] * $baht_thai);
-							$info['price_total'] = round((float)$info['caddie_fee']  * $baht_thai * $value);
+							$info['price']            = (int)($info['caddie_fee'] * $baht_thai);
+							$info['price_total']      = (int)(info['caddie_fee']  * $baht_thai * $value);
 							$vehicle_arr[] = $info;
 
-							$total_vehicle_price += $info['price'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle += $value;
+							$total_vehicle            += $value;
 						}		
 				
 				}
@@ -2264,7 +2282,7 @@ class Product extends BaseController
 			}	
         }
 
-        $data['vehicle_arr'] = $vehicle_arr;
+        $data['vehicle_arr']   = $vehicle_arr;
         $data['total_vehicle'] = $total_vehicle;
 
         // 추가옵션 부분처리
@@ -2350,7 +2368,11 @@ class Product extends BaseController
 
 		$priceCalculate  = $this->golfPriceCalculate(
             $data['option_idx'],
+			$data['hole_cnt'],
             $data['hour'],
+            $data['trip_type1'],
+            $data['trip_type2'],
+            $data['trip_type3'],
             $data['people_adult_cnt'],
             $data['vehicle_cnt'],
             $data['vehicle_idx'],
@@ -2388,6 +2410,9 @@ class Product extends BaseController
             $golf_date                = $data['order_date'];  // 라운딩 일자
 			$hole                     = $data['hole_cnt'];    // 라운딩 홀 수
             $hour                     = $data['hour'];        // 주간/오후/야간
+		    $trip_type1               = $data['trip_type1'];
+		    $trip_type2               = $data['trip_type2'];
+		    $trip_type3               = $data['trip_type3'];
             $teeoff_hour              = $data['teeoff_hour']; // 티오프 시
             $teeoff_min               = $data['teeoff_min'];  // 티오프 분			
 			
