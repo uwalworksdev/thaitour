@@ -103,13 +103,8 @@ class AjaxController extends BaseController {
 	             $vehicle_price3_ba = $row['vehicle_price3'];	
 	             $cart_price_ba     = $row['cart_price'];
 	             $caddie_fee_ba     = $row['caddie_fee']; 
-
-	             $o_cart_due	    = $row['o_cart_due']; 	
-	             $o_caddy_due	    = $row['o_caddy_due']; 	
-	             $o_cart_cont	    = $row['o_cart_cont']; 	
-	             $o_caddy_cont	    = $row['o_caddy_cont']; 			 
-                 
-				 $vehicle_price1    = $row['vehicle_price1'] * $baht_thai;	
+				 
+                 $vehicle_price1    = $row['vehicle_price1'] * $baht_thai;	
 	             $vehicle_price2    = $row['vehicle_price2'] * $baht_thai; 	
 	             $vehicle_price3    = $row['vehicle_price3'] * $baht_thai; 	
 	             $cart_price        = $row['cart_price']     * $baht_thai;
@@ -122,11 +117,6 @@ class AjaxController extends BaseController {
 					"vehicle_price3"     => $vehicle_price3,
 					"cart_price"         => $cart_price,
 					"caddie_fee"         => $caddie_fee, 
-					"o_cart_due"	     => $o_cart_due, 	
-					"o_caddy_due"	     => $o_caddy_due, 	
-					"o_cart_cont"	     => $o_cart_cont, 	
-					"o_caddy_cont"	     => $o_caddy_cont, 			 
-			
 					"vehicle_price1_ba"  => $vehicle_price1_ba,
 					"vehicle_price2_ba"  => $vehicle_price2_ba,
 					"vehicle_price3_ba"  => $vehicle_price3_ba,
