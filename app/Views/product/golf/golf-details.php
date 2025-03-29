@@ -12,6 +12,16 @@ $(document).ready(function() {
        $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
 	   $("#vehicle_5").prop('disabled', true);
 	}   
+	
+	alert('o_cart_cont - '+$("#o_cart_cont").val());
+	if($("#o_cart_cont").val() == "Y") {
+	   $("#cart_yes").show();	
+	   $("#cart_no").hide();	
+	} else {   
+	   $("#cart_no").show();	
+	   $("#cart_yes").hide();	
+	}
+	
 });
 </script>
     <form>
@@ -578,12 +588,10 @@ $(document).ready(function() {
 				</select>
                 </div>
 
-               <?php if($golf_price['o_cart_cont'] == "Y") { ?>
-			   <div class="item-select" id="cart_no">
+			   <div class="item-select" id="cart_no" style="display:none">
 			      <p>카트비는 그린피에 포함입니다.</p>	   
 			   </div>
-			   <?php } else { ?>
-			   <div class="item-select" id="cart_yes">
+			   <div class="item-select" id="cart_yes" style="display:none">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -595,7 +603,6 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
-			   <?php } ?>
 				   
                <?php if($golf_price['o_caddy_cont'] == "Y") { ?>
 			   <div class="item-select" id="caddy_no">
@@ -1136,14 +1143,6 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
-			alert('o_cart_cont - '+$("#o_cart_cont").val());
-			if($("#o_cart_cont").val() == "Y") {
-			   $("#cart_yes").show();	
-			   $("#cart_no").hide();	
-			} else {   
-			   $("#cart_no").show();	
-			   $("#cart_yes").hide();	
-			}
 			
             const vehiclePrice = setListVehicle();
 
