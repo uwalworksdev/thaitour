@@ -98,6 +98,7 @@ class AjaxController extends BaseController {
 
 		foreach ($rows as $row) {
 				 
+                 $option_idx        = $row['idx'];	
                  $vehicle_price1_ba = $row['vehicle_price1'];	
 	             $vehicle_price2_ba = $row['vehicle_price2'];	
 	             $vehicle_price3_ba = $row['vehicle_price3'];	
@@ -117,6 +118,7 @@ class AjaxController extends BaseController {
 		}
 
         $output = [
+					"option_idx"         => $option_idx,
 					"vehicle_price1"     => $vehicle_price1,
 					"vehicle_price2"     => $vehicle_price2,
 					"vehicle_price3"     => $vehicle_price3,
