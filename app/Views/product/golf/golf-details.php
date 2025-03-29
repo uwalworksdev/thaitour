@@ -578,6 +578,11 @@ $(document).ready(function() {
 				</select>
                 </div>
 
+               <?php if($golf_price['o_cart_cont'] == "Y") { ?>
+			   <div class="item-select">
+			      <p>카트비는 그린피에 포함입니다.</p>	   
+			   </div>
+			   <?php } else { ?>
 			   <div class="item-select">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
@@ -590,6 +595,8 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
+			   <?php } ?>
+				   
             	<div class="item-select">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
