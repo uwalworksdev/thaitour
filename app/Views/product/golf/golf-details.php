@@ -1149,6 +1149,7 @@ $(document).ready(function() {
         function calculatePrice() {
 
 			if($("#o_cart_cont").val() == "Y") {
+			   $("#vehicle_4").val('0');
 			   $("#cart_no").show();	
 			   $("#cart_yes").hide();	
 			} else {   
@@ -1157,6 +1158,7 @@ $(document).ready(function() {
 			}
 			
 			if($("#o_caddy_cont").val() == "Y") {
+			   $("#vehicle_5").val('0');
 			   $("#caddy_no").show();	
 			   $("#caddy_yes").hide();	
 			} else {   
