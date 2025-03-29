@@ -1284,6 +1284,8 @@ $(document).ready(function() {
 
 
         function handleSubmit() {
+			
+			alert('11111111');
             <?php
             if (empty(session()->get("member")["id"])) {
             ?>
