@@ -1136,6 +1136,15 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
+			
+			if($("#o_cart_cont").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {   
+			   $("#cart_no").show();	
+			   $("#cart_yes").hide();	
+			}
+			
             const vehiclePrice = setListVehicle();
 
             const optionPrice = setOptionArea();
