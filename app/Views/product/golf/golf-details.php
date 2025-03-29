@@ -83,7 +83,7 @@ $(document).ready(function() {
                 <?php foreach ($golf_price as $price) { ?>
                     <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
                     <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
-                    <input type="hidden" name="afternoon_yn" id="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
+                    <input type="hidden" name="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
                     <input type="hidden" name="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
 
