@@ -78,7 +78,7 @@
                                 <tbody>
 								<tr height="45">
 									<th colspan="4">상품명</th>
-									<td><?=$product_name?></td>
+									<td><?=$product['product_name']?></td>
 								</tr>								
                                 <tr>
                                     <td colspan="4">
