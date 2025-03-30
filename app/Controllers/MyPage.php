@@ -739,10 +739,8 @@ class MyPage extends BaseController
         echo "정보수정되었습니다.";
     }
 	
-	public function orderHotel()
+	public function orderHotel($order_idx)
 	{
-		// GET 방식으로 order_idx 값 받기
-		$order_idx = $this->request->getGet('order_idx');
 
 		// order_idx가 없으면 리다이렉트
 		if (!$order_idx) {
@@ -760,7 +758,7 @@ class MyPage extends BaseController
 
 		// View에 데이터 전달
 		
-		return view('mypage/order_hotel', $data);
+		return view('mypage/order_hotel', ['order' => $data]);
 	}
 
 
