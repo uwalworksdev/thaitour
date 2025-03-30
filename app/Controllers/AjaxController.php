@@ -2945,7 +2945,7 @@ $result = $db->query($sql);
 								->setJSON(['status' => 'error', 'message' => '잘못된 차량 선택']);
 					}
 
-					$price_won = (int)($price_bath * $baht_thai); // 원화 환산
+					$price_won = (int) round($price_bath * $baht_thai); // 원화 환산
 				}
 
 				return $this->response
