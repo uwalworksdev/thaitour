@@ -2269,8 +2269,8 @@ class Product extends BaseController
 							$info['price_baht']       = $info['caddie_fee'];
 							$info['price_baht_total'] = $info['caddie_fee'] * $value;
 							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
-							$info['price_total']      = (int) round(info['caddie_fee']  * $baht_thai * $value);
-							$vehicle_arr[] = $info;
+							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
 							$total_vehicle_price_baht += $info['price_baht'] * $value;
