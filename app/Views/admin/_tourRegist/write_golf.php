@@ -653,10 +653,22 @@
 										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
                                     </td>
-                                    <th>장비렌탈1</th>
+                                    <th>판매상태</th>
                                     <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
-                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
+                                            </option>
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
+                                            </option>
+                                        </select>
                                     </td>
                                 </tr>
 									
