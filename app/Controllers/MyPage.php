@@ -742,7 +742,7 @@ class MyPage extends BaseController
 	public function orderHotel($order_idx)
 	{
 		// SQL 쿼리 실행
-		$sql_order = "SELECT * FROM tbl_order_option WHERE order_idx = ?";
+		$sql_order = "SELECT * FROM tbl_order_mst WHERE order_idx = ?";
 		$data = $this->db->query($sql_order, [$order_idx])->getRowArray();
 
 		// 주문 정보가 없는 경우 처리
