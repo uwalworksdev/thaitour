@@ -742,6 +742,7 @@ class MyPage extends BaseController
 	public function orderHotel($order_idx)
 	{
 		// SQL 쿼리 실행 (바인딩 방식 사용)
+		/*
 		$sql_order = " select * from tbl_order_mst where order_idx = '" . $order_idx . "' ";
         $data      = $this->db->query($sql_order)->getRowArray();
 
@@ -749,7 +750,7 @@ class MyPage extends BaseController
 		if (!$data) {
 			return redirect()->to('/mypage')->with('error', '주문을 찾을 수 없습니다.');
 		}
-
+        */
 		// View에 데이터 전달
 		return view('mypage/order_hotel', ['order' => $data]);
 	}
