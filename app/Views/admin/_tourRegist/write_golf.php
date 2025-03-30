@@ -302,6 +302,65 @@
                                     </td>
                                 </tr>
 
+                              <tr>
+                                    <th>MBTI</th>
+									
+                                    <!-- <td colspan="3" style="display: none">
+									 <input type="checkbox" id="all_code_mbti" class="all_input" name="_code_mbti" value=""/>
+                                        <label for="all_code_mbti">
+                                            모두 선택 >
+                                        </label> &ensp;
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        foreach ($mcodes as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                   name="_code_mbti" class="code_mbti"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_mbti<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </td> -->
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $mbti);
+                                        $total = count($mcodes);
+                                        $half = ceil($total / 2); 
+                                        ?>
+                                        
+                                        <div style="display: block;">
+                                            <?php for ($group = 0; $group < 2; $group++) : ?>
+                                                <div style="display: flex">
+                                                    <?php if ($group * $half < $total) : ?>
+                                                        <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
+                                                            onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
+                                                        <label for="all_code_mbti_<?= $group + 1 ?>">모두 선택 ></label> &ensp;
+                                                        <br>
+                                                        <?php
+                                                        for ($i = $group * $half; $i < min(($group + 1) * $half, $total); $i++) :
+                                                            $row_r = $mcodes[$i];
+                                                            $checked = in_array($row_r['code_no'], $_arr) ? "checked" : "";
+                                                            ?>
+                                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                                name="_code_mbti" class="code_mbti group_mbti_<?= $group + 1 ?>"
+                                                                value="<?= $row_r['code_no'] ?>" <?= $checked ?> />
+                                                            <label for="code_mbti<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                                            <br>
+                                                        <?php endfor; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </td>
+                                </tr>
+								
                                 <tr>
                                     <th>
                                         MBTI
