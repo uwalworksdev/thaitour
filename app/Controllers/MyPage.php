@@ -759,7 +759,8 @@ class MyPage extends BaseController
 		}
 
 		// View에 데이터 전달
-		return view('mypage/order_hotel', ['order' => $data]);
+		
+		return view('mypage/order_hotel', $data);
 	}
 
 
