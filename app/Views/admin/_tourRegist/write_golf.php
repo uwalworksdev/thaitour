@@ -409,22 +409,30 @@
                                         <?php endforeach; ?>
                                     </td>  -->
                                     
-                                    <th>판매상태</th>
+                                    <th>상품담당자</th>
                                     <td>
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                                echo "selected";
-                                            } ?>>판매중
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                                echo "selected";
-                                            } ?>>예약중지
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                                echo "selected";
-                                            } ?>>판매중지
-                                            </option>
+                                        <input id="product_manager" name="product_manager" class="input_txt" type="text"
+                                               value="<?=$product['product_manager']?>" style="width:100px" readonly/>
+                                        /<input id="phone" name="phone" class="input_txt" type="text"
+                                                value="<?=$product['phone']?>" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="<?=$product['email']?>" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
+                                                onchange="change_manager(this.value)">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>>
+                                                    <?= $row_member["user_name"] ?>
+                                                </option>
+                                            <?php endforeach; ?>
                                         </select>
+                                        <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
                                     <th>골프장 담당자</th>
                                     <td>
@@ -504,34 +512,10 @@
                                 </tr>
 
                                 <tr>
-                                    <th>상품담당자</th>
-                                    <td>
-                                        <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?=$product['product_manager']?>" style="width:100px" readonly/>
-                                        /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?=$product['phone']?>" readonly
-                                                style="width:200px"/>
-                                        /<input id="email" name="email" class="input_txt"
-                                                type="text" value="<?=$product['email']?>" readonly
-                                                style="width:200px"/>
-                                        <select name="product_manager_id" id="product_manager_sel"
-                                                onchange="change_manager(this.value)">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($member_list as $row_member) :
-                                                ?>
-                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
-                                                    echo "selected";
-                                                } ?>>
-                                                    <?= $row_member["user_name"] ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
-                                    </td>
+                                    
 
                                     <th>검색키워드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
                                                value="<?= $keyword ?>"
                                                style="width:90%"/><br/>
@@ -653,10 +637,22 @@
 										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
                                     </td>
-                                    <th>장비렌탈1</th>
+                                    <th>판매상태</th>
                                     <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
-                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
+                                            </option>
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                                echo "selected";
+                                            } ?>>예약중지
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
+                                            </option>
+                                        </select>
                                     </td>
                                 </tr>
 									
