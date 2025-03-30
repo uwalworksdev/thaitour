@@ -285,7 +285,7 @@
                                 </tr>
                                 <tr>
                                     <th>더투어랩 평가 등급</th>
-                                    <td colspan="3">
+                                    <td>
                                         <select id="star_level" name="star_level" class="input_select">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
