@@ -741,6 +741,8 @@ class MyPage extends BaseController
 	
 	public function orderHotel($order_idx)
 	{
+		$order_idx = $_POST['order_idx'];
+		
 		// SQL 쿼리 실행 (바인딩 방식 사용)
 		$sql_order = "SELECT * FROM tbl_order_mst WHERE order_idx = ?";
 		$data = $this->db->query($sql_order, [$order_idx])->getRowArray();
