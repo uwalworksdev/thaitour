@@ -582,7 +582,240 @@
 										* 캐디피는 골프 인원선택되면 똑같이 인원에 맞게 캐디가 포함됩니다.
                                     </td>
                                 </tr-->
-								
+
+							
+							
+							<!-- mbti 스크립트 -->
+							<script>
+
+                                $(document).ready(function () {
+                                    $("[id^=all_code_mbti_]").on("change", function () {
+                                        let groupNum = $(this).attr("id").split("_")[3]; 
+                                        $(".group_mbti_" + groupNum).prop("checked", $(this).is(":checked"));
+                                    });
+
+                                    $(".code_mbti").on("change", function () {
+                                        let groupNum = $(this).attr("class").match(/group_mbti_(\d+)/)[1];
+                                        checkMbtiGroup(groupNum);
+                                    });
+
+                                    $("[id^=all_code_mbti_]").each(function () {
+                                        let groupNum = $(this).attr("id").split("_")[3];
+                                        checkMbtiGroup(groupNum);
+                                    });
+                                });
+
+                                function checkMbtiGroup(groupNum) {
+                                    let total = $(".group_mbti_" + groupNum).length;
+                                    let checked = $(".group_mbti_" + groupNum + ":checked").length;
+
+                                    $("#all_code_mbti_" + groupNum).prop("checked", total > 0 && total === checked);
+                                }
+
+                                function check_mbti() {
+                                    let count_mbti = 0;
+
+                                    $(".code_mbti").each(function () {
+                                        if ($(this).is(":checked")) {
+                                            count_mbti++;
+                                        }
+                                    });
+
+                                    if (count_mbti == $(".code_mbti").length) {
+                                        $("#all_code_mbti").prop("checked", true);
+                                    } else {
+                                        $("#all_code_mbti").prop("checked", false);
+                                    }
+                                }
+
+                                // function check_service() {
+                                //     let count_service = 0;
+
+                                //     $(".code_service").each(function () {
+                                //         if ($(this).is(":checked")) {
+                                //             count_service++;
+                                //         }
+                                //     });
+                                //     if (count_service == $(".code_service").length) {
+                                //         $("#all_code_service").prop("checked", true);
+                                //     } else {
+                                //         $("#all_code_service").prop("checked", false);
+                                //     }
+                                // }
+
+                                function toggleGroup(groupClass, checkbox) {
+                                    $("." + groupClass).prop("checked", $(checkbox).is(":checked"));
+                                }
+
+                                $(document).ready(function () {
+                                    $(".code_service").on("change", function () {
+                                        let classList = $(this).attr("class");
+
+                                        let groupClass = classList.split(" ").find(cls => cls.startsWith("group_"));
+
+                                        check_service(groupClass);
+                                    });
+
+                                    $("[id^=all_code_service_]").each(function () {
+                                        let groupIndex = $(this).attr("id").split("_")[3]; 
+                                        check_service("group_" + groupIndex);
+                                    });
+
+                                    $("#all_code_utility").on("change", function () {
+                                        $(".code_utilities").prop("checked", $(this).is(":checked"));
+                                    });
+
+                                    $("#all_code_best_utilities").on("change", function () {
+                                        $(".code_best_utilities").prop("checked", $(this).is(":checked"));
+                                    });
+
+                                    $(".code_utilities").on("change", function () {
+                                        checkAllSelected("code_utilities", "all_code_utility");
+                                    });
+
+                                    $(".code_best_utilities").on("change", function () {
+                                        checkAllSelected("code_best_utilities", "all_code_best_utilities");
+                                    });
+
+                                    checkAllSelected("code_utilities", "all_code_utility");
+                                    checkAllSelected("code_best_utilities", "all_code_best_utilities");
+
+                                });
+                                
+                                function checkAllSelected(childClass, allId) {
+                                    let totalCheckboxes = $("." + childClass).length;
+                                    let checkedCheckboxes = $("." + childClass + ":checked").length;
+
+                                    $("#" + allId).prop("checked", totalCheckboxes > 0 && totalCheckboxes === checkedCheckboxes);
+                                }
+
+                                function check_service(groupClass) {
+
+                                    let parts = groupClass.split("_");
+
+
+                                    let groupIndex = parts[1];
+
+                                    let totalCheckboxes = $("." + groupClass).length;
+                                    let checkedCheckboxes = $("." + groupClass + ":checked").length;
+
+                                    let allCheckbox = $("#all_code_service_" + groupIndex);
+
+                                    if (totalCheckboxes === checkedCheckboxes) {
+                                        allCheckbox.prop("checked", true);
+                                    } else {
+                                        allCheckbox.prop("checked", false);
+                                    }
+                                }
+
+
+
+                                function check_best_utilities() {
+                                    let count_best_utilities = 0;
+
+                                    $(".code_best_utilities").each(function () {
+                                        if ($(this).is(":checked")) {
+                                            count_best_utilities++;
+                                        }
+                                    });
+                                    if (count_best_utilities == $(".code_best_utilities").length) {
+                                        $("#all_code_best_utilities").prop("checked", true);
+                                    } else {
+                                        $("#all_code_best_utilities").prop("checked", false);
+                                    }
+                                }
+
+                                function check_utility() {
+                                    let count_utility = 0;
+
+                                    $(".code_utilities").each(function () {
+                                        if ($(this).is(":checked")) {
+                                            count_utility++;
+                                        }
+                                    });
+                                    if (count_utility == $(".code_utilities").length) {
+                                        $("#all_code_utility").prop("checked", true);
+                                    } else {
+                                        $("#all_code_utility").prop("checked", false);
+                                    }
+                                }
+
+                                check_mbti();
+                                check_service();
+                                check_best_utilities();
+                                check_utility();
+
+                                $('#all_code_populars').change(function () {
+                                    if ($('#all_code_populars').is(':checked')) {
+                                        $('.code_populars').prop('checked', true)
+                                    } else {
+                                        $('.code_populars').prop('checked', false)
+                                    }
+                                });
+
+                                $(".code_mbti").on("change", function () {
+                                    check_mbti();
+                                });
+
+                                $(".code_service").on("change", function () {
+                                    check_service();
+                                });
+
+                                $(".code_best_utilities").on("change", function () {
+                                    check_best_utilities();
+                                });
+
+                                $(".code_utilities").on("change", function () {
+                                    check_utility();
+                                });
+
+                                $('#all_code_mbti').change(function () {
+                                    if ($('#all_code_mbti').is(':checked')) {
+                                        $('.code_mbti').prop('checked', true)
+                                    } else {
+                                        $('.code_mbti').prop('checked', false)
+                                    }
+                                });
+
+                                $(document).ready(function () {										
+									// 전체 선택 체크박스 클릭 이벤트
+									$("#all_code_service").on("click", function () {
+										$(".code_service").prop("checked", $(this).prop("checked"));
+									});
+
+									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+									$(".code_service").on("click", function () {
+										$("#all_code_service").prop("checked", $(".code_service:checked").length === $(".code_service").length);
+									});										
+                                })
+
+                                $(document).ready(function () {										
+									// 전체 선택 체크박스 클릭 이벤트
+									$("#all_code_best_utilities").on("click", function () {
+										$(".code_best_utilities").prop("checked", $(this).prop("checked"));
+									});
+
+									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+									$(".code_best_utilities").on("click", function () {
+										$("#all_code_best_utilities").prop("checked", $(".code_best_utilities:checked").length === $(".code_best_utilities").length);
+									});										
+                                })
+
+								$(document).ready(function () {										
+									// 전체 선택 체크박스 클릭 이벤트
+									$("#all_code_utility").on("click", function () {
+										$(".code_utilities").prop("checked", $(this).prop("checked"));
+									});
+
+									// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+									$(".code_utilities").on("click", function () {
+										$("#all_code_utility").prop("checked", $(".code_utilities:checked").length === $(".code_utilities").length);
+									});										
+                                })
+                            </script>
+							
+							<!-- mbti 스크립트 -->
+							
                                 <script>
                                     $('#all_code_mbti').change(function () {
                                         if ($('#all_code_mbti').is(':checked')) {
