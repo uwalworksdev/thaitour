@@ -705,7 +705,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->post("info_change_ok", "MyPage::info_change_ok");
     $routes->post("contactDel", "MyPage::contactDel");
     $routes->post("qnaDel", "MyPage::qnaDel");
-    $routes->get('order_hotel/(:num)', 'Mypage::orderHotel/$1');
+    $routes->get('order_hotel/(:any)', 'Mypage::orderHotel/$1');
 });
 
 $routes->group("comment", static function ($routes) {
