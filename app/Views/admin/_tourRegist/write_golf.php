@@ -361,7 +361,7 @@
                                     </td>
                                 </tr>
 								
-                                <tr>
+                                <!--tr>
                                     <th>
                                         MBTI
                                         <input type="checkbox" id="all_code_mbti" class="all_input"
@@ -389,7 +389,7 @@
                                             </label>
                                         <?php endforeach; ?>
                                     </td>
-                                </tr>
+                                </tr-->
                                 <tr>
                                     <!--th>총홀수</th>
                                     <td>
