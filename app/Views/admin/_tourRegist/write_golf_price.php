@@ -81,7 +81,7 @@
 									<td><?=$product_name?></td>
 								</tr>
 								<tr height="45">
-									<th><th>최소/최대 라운딩인원</th></th>
+									<th>최소/최대 라운딩인원</th>
 									<td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt" type="text" value="1" style="width:20%">명&nbsp;&nbsp;&nbsp;
                                         <input id="total_people_cnt" name="total_people_cnt" class="input_txt" type="text" value="8" style="width:20%">명
