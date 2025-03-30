@@ -739,9 +739,9 @@ class MyPage extends BaseController
         echo "정보수정되었습니다.";
     }
 	
-	public function orderHotel($order_idx)
+	public function orderHotel()
 	{
-		$order_idx = $_POST['order_idx'];
+		$order_idx = $_GET['order_idx'];
 		
 		// SQL 쿼리 실행 (바인딩 방식 사용)
 		$sql_order = "SELECT * FROM tbl_order_mst WHERE order_idx = ?";
