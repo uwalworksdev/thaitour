@@ -163,8 +163,7 @@
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="table-layout:fixed">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"  style="table-layout:fixed">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -181,8 +180,7 @@
                                             <p>기본정보</p>
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
-                                                   href="/product-golf/golf-detail/<?= $product_idx ?>"
-                                                   target="_blank">
+                                                   href="/product-golf/golf-detail/<?= $product_idx ?>" target="_blank">
                                                     상품 상세보기
                                                 </a>
                                             <?php endif; ?>
@@ -357,7 +355,7 @@
                                         <input id="num_of_players" name="num_of_players" class="input_txt" type="text"
                                                value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>시내 거리 및 이동시간</th>
+                                    <th>시내거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_center'] ?>"
@@ -366,7 +364,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>공항에서 거리 및 이동시간</th>
+                                    <th>공항거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_airport" name="distance_from_airport" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_airport'] ?>"
@@ -397,54 +395,6 @@
                                     
                                 </tr>
                                
-                                <tr>
-                                   <!-- <th>베스트여부</th>
-                                    <td>
-                                        <?php foreach ($mresult2 as $row_m) : ?>
-                                                <input type="checkbox" name="product_best"
-                                                       id="product_best"
-                                                       value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
-                                        echo "checked";
-                                    } ?>/>
-                                        <?php endforeach; ?>
-                                    </td>  -->
-                                    
-                                    <th>상품담당자</th>
-                                    <td>
-                                        <input id="product_manager" name="product_manager" class="input_txt" type="text"
-                                               value="<?=$product['product_manager']?>" style="width:100px" readonly/>
-                                        /<input id="phone" name="phone" class="input_txt" type="text"
-                                                value="<?=$product['phone']?>" readonly
-                                                style="width:200px"/>
-                                        /<input id="email" name="email" class="input_txt"
-                                                type="text" value="<?=$product['email']?>" readonly
-                                                style="width:200px"/>
-                                        <select name="product_manager_id" id="product_manager_sel"
-                                                onchange="change_manager(this.value)">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($member_list as $row_member) :
-                                                ?>
-                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
-                                                    echo "selected";
-                                                } ?>>
-                                                    <?= $row_member["user_name"] ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
-                                    </td>
-                                    <th>골프장 담당자</th>
-                                    <td>
-                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
-                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    
-
-                                </tr>
                                 <tr>
                                     <th>구분</th>
                                     <td>
@@ -479,7 +429,7 @@
                                         </label>
                                     </td>
                                     <th>픽업차량</th>
-                                    <td colspan="3">
+                                    <td>
                                         <?php foreach ($vehicles as $vehicle) :
                                             $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
                                             ?>
@@ -655,7 +605,53 @@
                                         </select>
                                     </td>
                                 </tr>
-									
+								<tr>
+                                    
+                                    <th>상품담당자</th>
+                                    <td>
+                                        <input id="product_manager" name="product_manager" class="input_txt" type="text"
+                                               value="<?=$product['product_manager']?>" style="width:100px" readonly/>
+                                        /<input id="phone" name="phone" class="input_txt" type="text"
+                                                value="<?=$product['phone']?>" readonly
+                                                style="width:200px"/>
+                                        /<input id="email" name="email" class="input_txt"
+                                                type="text" value="<?=$product['email']?>" readonly
+                                                style="width:200px"/>
+                                        <select name="product_manager_id" id="product_manager_sel"
+                                                onchange="change_manager(this.value)">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($member_list as $row_member) :
+                                                ?>
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
+                                                    echo "selected";
+                                                } ?>>
+                                                    <?= $row_member["user_name"] ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
+                                    </td>
+                                    <th>골프장 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="" style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>상세정보</p>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-golf/golf-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>대표이미지(600X400)</th>
