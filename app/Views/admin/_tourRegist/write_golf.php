@@ -478,18 +478,18 @@
                                             핫딜추천
                                         </label>
                                     </td>
-                                    <th>캐디피</th>
-                                    <td>
-                                        <select name="caddie_fee_sel" id="caddie_fee_sel">
-                                            <option value="Y" <?php if ($caddie_fee_sel == "Y") {
-                                                echo "selected";
-                                            } ?>>필수
-                                            </option>
-                                            <option value="" <?php if ($caddie_fee_sel != "Y") {
-                                                echo "selected";
-                                            } ?>>선택
-                                            </option>
-                                        </select>
+                                    <th>픽업차량</th>
+                                    <td colspan="3">
+                                        <?php foreach ($vehicles as $vehicle) :
+                                            $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
+                                            ?>
+                                            <span>
+                                                <input type="checkbox" name="vehicle_arr[]"
+                                                       id="vehicle_<?= $vehicle["code_idx"] ?>"
+                                                       value="<?= $vehicle["code_no"] ?>" <?= $checked ?>/>
+                                                <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
+                                            </span>
+                                        <?php endforeach; ?>
                                     </td>									
                                 </tr>
                                 <tr>
@@ -519,7 +519,7 @@
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
                                                value="<?= $keyword ?>"
                                                style="width:90%"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)골프,골프장,</span>
                                     </td>
                                 </tr>
 
@@ -743,21 +743,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>픽업차량</th>
-                                    <td colspan="3">
-                                        <?php foreach ($vehicles as $vehicle) :
-                                            $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
-                                            ?>
-                                            <span>
-                                                <input type="checkbox" name="vehicle_arr[]"
-                                                       id="vehicle_<?= $vehicle["code_idx"] ?>"
-                                                       value="<?= $vehicle["code_no"] ?>" <?= $checked ?>/>
-                                                <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
-                                            </span>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <th>골프장 정보</th>
                                     <td colspan="3">
