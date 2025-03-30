@@ -514,8 +514,8 @@
                                 <tr>
                                     
 
-                                    <th colspan="3">검색키워드</th>
-                                    <td>
+                                    <th>검색키워드</th>
+                                    <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
                                                value="<?= $keyword ?>"
                                                style="width:90%"/><br/>
