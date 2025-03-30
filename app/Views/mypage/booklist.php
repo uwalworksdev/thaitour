@@ -404,7 +404,7 @@ endforeach;
                                         <p>견적서</p>
                                     </div>
 
-                                    <div class="info_reservation btn_info flex__c box">
+                                    <div class="info_reservation btn_info flex__c box" data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
                                 </div>
@@ -592,6 +592,37 @@ $(document).on('click', '.info_estimate', function () {
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
 		// $('.confirm_depart').show();
+});
+
+$(document).on('click', '.info_reservation', function () {
+
+		var idx   = $(this).data('idx');  
+        /*
+		if(idx){
+			$.ajax({
+
+				url: "/ajax/ajax_booking_delete",
+				type: "POST",
+				data: {
+
+					"idx": idx 
+
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+        }
+		*/
+        location.href='/mypage/order_hotel/'+idx;
 });
 
 $(document).on('click', '.order_del', function () {

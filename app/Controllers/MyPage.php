@@ -727,10 +727,10 @@ class MyPage extends BaseController
 
         $data = [];
 
-        $data['id'] = $member['user_id'];
-        $data['idx'] = $member['m_idx'];
-        $data["mIdx"] = $member['m_idx'];
-        $data['name'] = $member['user_name'];
+        $data['id']    = $member['user_id'];
+        $data['idx']   = $member['m_idx'];
+        $data["mIdx"]  = $member['m_idx'];
+        $data['name']  = $member['user_name'];
         $data['email'] = $member['user_email'];
         $data['level'] = $member['user_level'];
         $data['phone'] = $member['user_mobile'];
@@ -738,4 +738,16 @@ class MyPage extends BaseController
         session()->set("member", $data);
         echo "정보수정되었습니다.";
     }
+	
+    public function orderHotel($order_idx)
+    {
+		$sql_order = "SELECT * FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' ";
+		$data      = $this->db->query($sql_order)->getRowArray();
+
+        if (!$data['order']) {
+            return redirect()->to('/mypage')->with('error', '주문을 찾을 수 없습니다.');
+        }
+
+        return view('mypage/order_hotel', $data);
+    }	
 }
