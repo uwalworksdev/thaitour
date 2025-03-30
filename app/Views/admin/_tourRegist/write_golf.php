@@ -357,7 +357,7 @@
                                         <input id="num_of_players" name="num_of_players" class="input_txt" type="text"
                                                value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>시내 거리 및 이동시간</th>
+                                    <th>시내거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_center'] ?>"
@@ -366,7 +366,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>공항에서 거리 및 이동시간</th>
+                                    <th>공항거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_airport" name="distance_from_airport" class="input_txt"
                                                type="text" value="<?= $golf_info['distance_from_airport'] ?>"
@@ -656,6 +656,21 @@
                                     </td>
                                 </tr>
 									
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class=""
+                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                            <p>기본정보</p>
+                                            <?php if ($product_idx): ?>
+                                                <a class="btn btn-default"
+                                                   href="/product-golf/golf-detail/<?= $product_idx ?>"
+                                                   target="_blank">
+                                                    상품 상세보기
+                                                </a>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>대표이미지(600X400)</th>
