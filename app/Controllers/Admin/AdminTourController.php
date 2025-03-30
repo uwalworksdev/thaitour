@@ -1396,7 +1396,7 @@ class AdminTourController extends BaseController
                 AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
 
         // 쿼리 실행 전에 로그 출력 (디버깅용)
-        write_log("dow_val- ". $dow_val ." - ". $sql);
+        //write_log("dow_val- ". $dow_val ." - ". $sql);
 
         // 쿼리 실행
         $result = $db->query($sql);
