@@ -397,7 +397,7 @@
                                
                                 <tr>
                                     <th>구분</th>
-                                    <td>
+                                    <td colspan="3">
                                         <label for="is_best_value">
                                             <input type="checkbox" name="is_best_value" id="is_best_value" value="Y"
                                                 <?php if ($row["is_best_value"] == "Y") {
@@ -428,7 +428,7 @@
                                             핫딜추천
                                         </label>
                                     </td>
-                                    <th>픽업차량</th>
+                                    <!--th>픽업차량</th>
                                     <td>
                                         <?php foreach ($vehicles as $vehicle) :
                                             $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
@@ -440,7 +440,7 @@
                                                 <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
                                             </span>
                                         <?php endforeach; ?>
-                                    </td>									
+                                    </td-->									
                                 </tr>
                                 <tr>
                                     <th>주소</th>
