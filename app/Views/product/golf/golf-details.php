@@ -1175,8 +1175,8 @@ $(document).ready(function() {
         function calculatePrice() {
 
             const vehiclePrice = setListVehicle();
-
-            const optionPrice = setOptionArea();
+alert('vehiclePrice- '+vehiclePrice);
+            const optionPrice  = setOptionArea();
             const optionPrice1 = setGolfOption();
 
             let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
