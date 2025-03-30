@@ -5,8 +5,10 @@
 <?php echo view("/product/inc/spa_ticket_restaurant/booking.php"); ?>
 
     <script>
-        function completeOrder() {
+        function completeOrder(status) {
             $("#ajax_loader").removeClass("display-none");
+
+            $("#order_status").val(status);
 
             let formData = new FormData($('#formOrder')[0]);
 
@@ -23,7 +25,12 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    window.location.href = "/product-restaurant/completed-order";
+					
+					if($("#order_status").val() == "W") {
+                       window.location.href = "/product-restaurant/completed-order";
+					} else {   
+                       window.location.href = "/product-restaurant/completed-cart";
+					}   
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
@@ -38,7 +45,7 @@
 
 		$("#order_status").val(status);
 
-		if(status == "B") {
+		if(status == "W") {
 				if ($("#order_user_name").val() === "") {
 					alert("한국이름을 입력해주세요.");
 					$("#order_user_name").focus();

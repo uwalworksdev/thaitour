@@ -6,14 +6,14 @@ use CodeIgniter\Model;
 
 class ProductCharge extends Model
 {
-    protected $table = 'tbl_product_charge';
-    protected $primaryKey = 'charge_idx';
+    protected $table            = 'tbl_product_charge';
+    protected $primaryKey       = 'charge_idx';
     protected $useAutoIncrement = true;
-    protected $returnType = 'array';
-    protected $useSoftDeletes = false;
-    protected $protectFields = true;
-    protected $allowedFields = [
-        'seq', 'product_idx', 'yoil_idx', 's_station', 'tour_price',
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = false;
+    protected $protectFields    = true;
+    protected $allowedFields    = [
+        'seq', 'product_idx', 'yoil_idx', 's_station', 's_station_eng', 'tour_price',
         'tour_price_kids', 'tour_price_senior', 'r_date', 'u_date', 'sale', 'deadline_date',
     ];
 
@@ -21,10 +21,10 @@ class ProductCharge extends Model
 
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 
     // Validation
     protected $validationRules = [];

@@ -37,6 +37,8 @@ class MyPage extends BaseController
     private $ReviewModel;
     private $Bbs;
 
+    protected $policyCancel;
+
     public function __construct()
     {
         helper(['html']);
@@ -54,6 +56,7 @@ class MyPage extends BaseController
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
         $this->ReviewModel = model("ReviewModel");
+        $this->policyCancel = model("PolicyCancel");
         $this->Bbs = model("Bbs");
 
         $this->sessionLib = new SessionChk();
@@ -71,13 +74,73 @@ class MyPage extends BaseController
         $this->guideSupOptionModel = new GuideSupOptions();
     }
 
+    public function booklist() {
+
+        $dateType     = $this->request->getGet("dateType");           // 날짜기준
+		$procType     = $this->request->getGet("procType");           // 진행상태
+        $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
+        $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
+		
+		//write_log("booklist()- ". $checkInDate ." - ". $checkOutDate);
+        $payType      = $this->request->getGet("payType");           // 결제상태
+        $prodType     = $this->request->getGet("prodType");          // 상품종류
+        $searchType   = $this->request->getGet("searchType");        // 검색구분
+        $search_word  = trim($this->request->getGet('search_word')); // 검색어
+		
+        $pg           = $this->request->getGet("pg");
+        $g_list_rows  = 10;
+        if ($pg == "") {
+            $pg = 1;
+        }
+
+		$result      = $this->ordersModel->getOrdersGroup($pg, $g_list_rows,  $dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
+		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
+		
+		$data = [
+					'nTotalCount'      => $result['nTotalCount'],
+					'nPage'            => $result['nPage'],
+					'g_list_rows'      => $g_list_rows,
+					'pg'               => $pg,
+					'num'              => $result['num'],
+					'order_list'       => $result['order_list'],
+					'groupCounts'      => $groupCounts,   
+					'dateType'         => $dateType, 
+			        'procType'         => $procType,
+					'checkInDate'      => $checkInDate,       
+					'checkOutDate'     => $checkOutDate,       
+					'payType'          => $payType,           
+					'prodType'         => $prodType,          
+					'searchType'       => $searchType,       
+					'search_word'      => $search_word,  
+		        ];
+		
+        return view('mypage/booklist', $data);
+    }
+
+    public function getPolicyContents($product_idx)
+        {
+            $policy = $this->policyCancel->where('product_idx', $product_idx)->first();
+
+            if ($policy) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'policy_contents' => viewSQ($policy['policy_contents'])
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => ''
+                ]);
+            }
+        }
+
     public function details()
     {
         $clientIP = $this->request->getIPAddress();
         $is_allow_payment = $clientIP == "220.86.61.165" || $clientIP == "113.160.96.156" || $clientIP == "58.150.52.107" || $clientIP == "14.137.74.11";
-        $pg = $this->request->getVar("pg");
-        $search_word = trim($this->request->getVar('search_word'));
-        $s_status = $this->request->getVar('s_status');
+        $pg = $this->request->getGet("pg");
+        $search_word = trim($this->request->getGet('search_word'));
+        $s_status = $this->request->getGet('s_status');
         $g_list_rows = 10;
         if ($pg == "") {
             $pg = 1;
@@ -383,7 +446,7 @@ class MyPage extends BaseController
 				,status				= 'O'
 				where m_idx = '" . $_SESSION["member"]["mIdx"] . "'
 			";
-            write_log("탈퇴신청:" . $sql);
+            //write_log("탈퇴신청:" . $sql);
             $result = $this->db->query($sql);
             $_SESSION["member"]["userId"] = "";
             $_SESSION["member"]["mIdx"] = "";
@@ -496,7 +559,7 @@ class MyPage extends BaseController
         if ($row['additional_request']) {
             $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
 //        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum asc, code_idx desc";
-            write_log($sql);
+            //write_log($sql);
             $fcodes = $this->db->query($sql)->getResultArray();
         }
 
@@ -530,7 +593,7 @@ class MyPage extends BaseController
             if ($gubun == "tour") {
 
                 $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
-                write_log($sql_tour);
+                //write_log($sql_tour);
                 $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
                 $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
                 $optionsIdx = $data['tour_orders']['options_idx'];

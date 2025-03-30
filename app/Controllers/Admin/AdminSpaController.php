@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
+use DateTime;
+use Exception;
 
 class AdminSpaController extends BaseController
 {
@@ -16,7 +18,11 @@ class AdminSpaController extends BaseController
     protected $toursMoption;
     protected $toursOption;
     protected $productImg;
-
+    protected $productSpas;
+    protected $productSpasInfo;
+    protected $spasMoption;
+    protected $spasOption;
+    protected $spasPrice;
 
     public function __construct()
     {
@@ -30,6 +36,11 @@ class AdminSpaController extends BaseController
         $this->toursMoption = model("ToursMoption");
         $this->toursOption = model("ToursOption");
         $this->productImg = model("ProductImg");
+        $this->productSpas = model("ProductSpasModel");
+        $this->productSpasInfo = model("SpasInfoModel");
+        $this->spasMoption = model("SpasMoptionModel");
+        $this->spasOption = model("SpasOptionModel");
+        $this->spasPrice = model("SpasPrice");
     }
 
     public function write_new()
@@ -352,6 +363,8 @@ class AdminSpaController extends BaseController
             $product_code_list = $product_code_1 . '|' . $product_code_2 . '|' . $product_code_3 . '|' . $product_code_4;
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+            $files = $this->request->getFileMultiple('ufile');
 
             if ($product_idx) {
                 $row = $this->productModel->getById($product_idx);
@@ -454,28 +467,46 @@ class AdminSpaController extends BaseController
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
                 $data['direct_payment'] = $_POST["direct"];
 
-                $this->productModel->updateData($product_idx, $data);
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                $data['worker_id']   = session()->get('member')['id'];
+                $data['worker_name'] = session()->get('member')['name'];
 
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                $this->productModel->updateData($product_idx, $data);
+
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+   
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
+
+                        if (!empty($i_idx)) {
+                            $this->productImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
-
-                        
-                            if(!empty($value)){
-                                $this->productImg->updateData($value, [
+                
+                            if (!empty($i_idx)) {
+                                $this->productImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
-                            }else{
+                            } else {
                                 $this->productImg->insertData([
                                     "product_idx" => $product_idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -590,9 +621,16 @@ class AdminSpaController extends BaseController
 
                 $insertId = $this->productModel->insert($data);
 
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
@@ -603,6 +641,7 @@ class AdminSpaController extends BaseController
                                 "product_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                             ]);
                         }
@@ -631,6 +670,212 @@ class AdminSpaController extends BaseController
                     'message' => $e->getMessage()
                 ]);
         }
+    }
+
+    public function write_info_ok()
+    {
+        $productIdx        = $this->request->getPost('product_idx');
+        $o_sdate           = $this->request->getPost('o_sdate');
+        $o_edate           = $this->request->getPost('o_edate');
+        $spas_subject     = $this->request->getPost('spas_subject');
+        $spas_subject_eng = $this->request->getPost('spas_subject_eng') ?? [];
+        $spas_price        = $this->request->getPost('spas_price') ?? [];
+        $spas_price_kids   = $this->request->getPost('spas_price_kids') ?? [];
+        $spas_price_baby   = $this->request->getPost('spas_price_baby') ?? [];
+        $status            = $this->request->getPost('status');
+        $spas_idx         = $this->request->getPost('spas_idx');
+        $info_idx          = $this->request->getPost('info_idx');
+        $spas_info_price   = $this->request->getPost('spas_info_price');
+        $moption_name      = $this->request->getPost('moption_name');
+        $o_name            = $this->request->getPost('o_name');
+        $o_name_eng        = $this->request->getPost('o_name_eng');
+        $o_price           = $this->request->getPost('o_price');
+        $use_yn            = $this->request->getPost('use_yn');
+        $o_num             = $this->request->getPost('o_num');
+        $op_spa_idx       = $this->request->getPost('op_spa_idx');
+        $moption_idx       = $this->request->getPost('moption_idx');
+
+		$setting      = homeSetInfo();
+        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+
+        $arr_week = ['일', '월', '화', '수', '목', '금', '토'];
+
+        foreach ($spas_price as &$price) {
+            $price = str_replace(",", "", $price);
+        }
+        foreach ($spas_price_kids as &$price) {
+            $price = str_replace(",", "", $price);
+        }
+        foreach ($spas_price_baby as &$price) {
+            $price = str_replace(",", "", $price);
+        }
+
+        $yoil_0 = $this->request->getPost('yoil_0');
+        $yoil_1 = $this->request->getPost('yoil_1');
+        $yoil_2 = $this->request->getPost('yoil_2');
+        $yoil_3 = $this->request->getPost('yoil_3');
+        $yoil_4 = $this->request->getPost('yoil_4');
+        $yoil_5 = $this->request->getPost('yoil_5');
+        $yoil_6 = $this->request->getPost('yoil_6');
+        $info_ids = [];
+
+        foreach ($o_sdate as $key => $start_date) {
+            $info_id = isset($info_idx[$key]) ? $info_idx[$key] : null;
+            $end_date = isset($o_edate[$key]) ? $o_edate[$key] : null;
+
+            if ($info_id) {
+                $infoIndex = $this->productSpasInfo->find($info_id);
+            } else {
+                $infoIndex = $this->productSpasInfo->where('product_idx', $productIdx)
+                    ->where('o_sdate', $start_date)
+                    ->where('o_edate', $end_date)
+                    ->first();
+            }
+
+            $infoData = [
+                'product_idx' => $productIdx,
+                'o_sdate' => $start_date,
+                'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
+                'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
+                'yoil_1' => isset($yoil_1[$key]) ? 'Y' : 'N',
+                'yoil_2' => isset($yoil_2[$key]) ? 'Y' : 'N',
+                'yoil_3' => isset($yoil_3[$key]) ? 'Y' : 'N',
+                'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
+                'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
+                'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
+                'spas_info_price' => isset($spas_info_price[$key]) ? $spas_info_price[$key] : null,
+                'r_date' => date('Y-m-d H:i:s')
+            ];
+
+            if ($infoIndex) {
+                if ($infoIndex['o_sdate'] !== $start_date) {
+                    $infoData['o_sdate'] = $start_date;
+                }
+                $this->productSpasInfo->update($infoIndex['info_idx'], $infoData);
+                $info_ids[$key] = $infoIndex['info_idx'];
+            } else {
+                $this->productSpasInfo->insert($infoData);
+                $info_ids[$key] = $this->productSpasInfo->insertID();
+            }
+        }
+
+        foreach ($info_ids as $index => $infoId) {
+            if (isset($spas_subject[$index])) {
+                foreach ($spas_subject[$index] as $i => $subject) {
+                    if (!empty($subject)) {
+                        $spaIdx = $spas_idx[$index][$i] ?? 'new';
+
+                        $data = [
+                            'product_idx'       => $productIdx,
+                            'spas_subject'     => $subject,
+                            'spas_subject_eng' => isset($spas_subject_eng[$index][$i]) ? $spas_subject_eng[$index][$i] : '',
+                            'spas_price'        => isset($spas_price[$index][$i]) ? $spas_price[$index][$i] : '',
+                            'spas_price_kids'   => isset($spas_price_kids[$index][$i]) ? $spas_price_kids[$index][$i] : '',
+                            'spas_price_baby'   => isset($spas_price_baby[$index][$i]) ? $spas_price_baby[$index][$i] : '',
+                            'status'            => isset($status[$index][$i]) ? $status[$index][$i] : '',
+                            'info_idx'          => $infoId,
+                            'r_date'            => date('Y-m-d H:i:s')
+                        ];
+
+                        if ($spaIdx == 'new' || empty($spaIdx)) {
+                            $this->productSpas->insert($data);
+                        } else {
+                            $this->productSpas->update($spaIdx, $data);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach ($info_ids as $key => $infoId) {
+            $s_date = $o_sdate[$key];
+            $e_date = $o_edate[$key];
+            if(!empty($s_date) && !empty($e_date)){
+                $start = new DateTime($s_date);
+                $end   = new DateTime($e_date);
+                $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+                // 날짜 반복
+                while ($start < $end) 
+                {
+                    $currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+                    $dayOfWeek = $start->format('w');
+                    $yoilKey = "yoil_" . $dayOfWeek;
+
+                    if(isset(${$yoilKey}[$key])){
+                        $spas_option = $this->productSpas->where("info_idx", $infoId)->orderBy("spas_idx", "asc")->findAll();
+                        foreach($spas_option as $option){
+                            $count_op = $this->spasPrice->where("product_idx", $productIdx)
+                                                         ->where("info_idx", $infoId)
+                                                         ->where("spas_idx", $option["spas_idx"])
+                                                         ->where("goods_date", $currentDate)->countAllResults();
+                            
+                            if($count_op <= 0){
+                                $data_price = [
+                                    'product_idx'   => $productIdx,
+                                    'info_idx'      => $infoId,
+                                    'spas_idx'      => $option["spas_idx"],
+                                    'goods_date'    => $currentDate,
+                                    'dow'           => $arr_week[$dayOfWeek],
+                                    'baht_thai'     => $baht_thai,
+                                    'goods_price1'  => $option["tour_price"],
+                                    'goods_price2'  => $option["tour_price_kids"],
+                                    'goods_price3'  => $option["tour_price_baby"],
+                                    'use_yn'        => 'Y',
+                                    'reg_date'      => date('Y-m-d H:i:s')
+                                ];
+
+                                $this->spasPrice->insertData($data_price);
+                            }
+                        }
+                    }
+
+
+                    $start->modify('+1 day'); // 다음 날짜로 이동
+                }
+            }
+        }
+
+        foreach($info_ids as $index => $infoId){
+            foreach ($moption_idx[$index] as $m_index => $code_idx) {
+                $data_op = [
+                    'moption_name' => $moption_name[$index][$m_index] ?? '',
+                    'use_yn' => 'Y'
+                ];
+
+                if(!empty($code_idx)){
+                    $this->spasMoption->update($code_idx, $data_op);
+                    $mop_idx = $code_idx;
+                }else{
+                    $data_op["product_idx"] = $productIdx;
+                    $data_op["info_idx"] = $infoId;
+                    $data_op["rdate"] = date('Y-m-d H:i:s');
+                    $mop_idx = $this->spasMoption->insert($data_op);
+                }
+
+                foreach ($op_spa_idx[$index][$m_index] as $i => $idx) {
+                    $data = [
+                        'option_name'     => $o_name[$index][$m_index][$i],
+                        'option_name_eng' => $o_name_eng[$index][$m_index][$i],
+                        'option_price'    => $o_price[$index][$m_index][$i],
+                        'use_yn'          => isset($use_yn[$index][$m_index][$i]) ? $use_yn[$index][$m_index][$i] : 'N',
+                        'onum'            => $o_num[$index][$m_index][$i]
+                    ];
+
+
+                    if(!empty($idx)){
+                        $this->spasOption->update($idx, $data);
+                    }else{
+                        $data["code_idx"] = $mop_idx;
+                        $data["product_idx"] = $productIdx;
+                        $data["rdate"] = date('Y-m-d H:i:s');
+                        $this->spasOption->insert($data);
+                    }
+                }
+            }
+        }
+
+        return redirect()->to('AdmMaster/_tourRegist/write_spas_info?product_idx=' . $productIdx);
     }
 
     public function get_code()
@@ -718,7 +963,7 @@ class AdminSpaController extends BaseController
             $connect = $this->connect;
             $product_idx = $_POST['product_idx'];
             for ($i = 0; $i < count($product_idx); $i++) {
-                $this->productModel->delete($product_idx[$i]);
+                $db1 = $this->productModel->delete($product_idx[$i]);
 
                 if (!$db1) {
                     return $this->response
@@ -1113,16 +1358,18 @@ class AdminSpaController extends BaseController
                 $message = "등록되었습니다.";
             }
 
-            $charge_idx = $_POST['charge_idx'] ?? [];
-            $s_station = $_POST['s_station'] ?? [];
-            $tour_price = $_POST['tour_price'] ?? [];
-            $tour_price_kids = $_POST['tour_price_kids'] ?? [];
+            $charge_idx        = $_POST['charge_idx'] ?? [];
+            $s_station         = $_POST['s_station'] ?? [];
+            $s_station_eng     = $_POST['s_station_eng'] ?? [];
+            $tour_price        = $_POST['tour_price'] ?? [];
+            $tour_price_kids   = $_POST['tour_price_kids'] ?? [];
             $tour_price_senior = $_POST['tour_price_senior'] ?? [];
 
             $length = count($charge_idx);
 
             for ($i = 0; $i < $length; $i++) {
                 $item_s_station = $s_station[$i];
+                $item_s_station_eng = $s_station_eng[$i];
                 $item_tour_price = str_replace(',', '', $tour_price[$i]);
                 $item_tour_price_kids = str_replace(',', '', $tour_price_kids[$i]);
                 $item_tour_price_senior = str_replace(',', '', $tour_price_senior[$i]);
@@ -1130,6 +1377,7 @@ class AdminSpaController extends BaseController
 
                 $data = [
                     's_station' => $item_s_station,
+                    's_station_eng' => $item_s_station_eng,
                     'tour_price' => $item_tour_price,
                     'tour_price_kids' => $item_tour_price_kids,
                     'tour_price_senior' => $item_tour_price_senior,
@@ -1137,6 +1385,7 @@ class AdminSpaController extends BaseController
                 ];
 
                 $this->productChargeModel->updateData($item_charge_idx, $data);
+				
             }
 
             return $this->response
@@ -1372,5 +1621,199 @@ class AdminSpaController extends BaseController
                     ]
                 );
         }
+    }
+
+    public function del_spas()
+    {
+        $info_idx = $this->request->getPost('info_idx');
+        $spas_idx = $this->request->getPost('spas_idx');
+        $db = $this->connect;
+        $db->transStart();
+        $infoDeleted = $this->productSpasInfo->where('info_idx', $info_idx)->delete();
+        $spasDeleted = true;
+        foreach ($spas_idx as $spa_idx) {
+            if (!$this->productSpas->where('spas_idx', $spa_idx)->delete()) {
+                $spasDeleted = false;
+                break;
+            }
+        }
+
+        $moption = $this->spasMoption->where('info_idx', $info_idx)->findAll();
+
+        foreach ($moption as $row) {
+            $this->spasOption->where('code_idx', $row['code_idx'])->delete();
+        }
+
+        $this->spasMoption->where('info_idx', $info_idx)->delete();
+
+        $this->spasPrice->where("info_idx", $info_idx)->delete();
+
+        $db->transComplete();
+        try {
+
+            if ($db->transStatus() === FALSE || !$infoDeleted || !$spasDeleted) {
+                $msg = "삭제 오류";
+            } else {
+                $msg = "삭제 완료";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function del_spa_option()
+    {
+        $spas_idx = $this->request->getPost('spas_idx');
+        $info_idx = $this->request->getPost('info_idx');
+        $product_idx = $this->request->getPost('product_idx');
+
+        if ($spas_idx) {
+            $result = $this->productSpas->deleteTour($spas_idx);
+            $this->productSpas->where('product_idx', $product_idx)
+                             ->where('info_idx', $info_idx)
+                             ->where('spas_idx', $spas_idx)
+                             ->delete();
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
+        }
+
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    public function del_main_option()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+
+        if ($code_idx) {
+
+            $this->spasOption->where('code_idx', $code_idx)->delete();
+            $result = $this->spasMoption->delete($code_idx);
+
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
+        }
+
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    public function del_sub_option()
+    {
+        $idx = $this->request->getPost('idx');
+
+        if ($idx) {
+
+            $result = $this->spasOption->delete($idx);
+
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
+        }
+
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    function copy_last_spa()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+
+        if ($product_idx) {
+            $spa_info = $this->productSpasInfo
+                                ->from("tbl_product_spas_info a")
+                                ->join("tbl_product_spas b", "a.info_idx = b.info_idx", "left")
+                                ->where("b.info_idx IS NOT NULL")
+                                ->where("a.product_idx", $product_idx)
+                                ->orderBy("a.info_idx", "desc") 
+                                ->first();
+            if(!empty($spa_info)){
+                $new_spa_info = array_merge([], $spa_info);
+                $info_idx = $new_spa_info['info_idx'];
+                unset($new_spa_info['info_idx']);
+                $new_spa_info['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                $spa_id = $this->productSpasInfo->insert($new_spa_info);
+
+                if($spa_id) {
+                    $spas_product = $this->productSpas->where("info_idx", $info_idx)->orderBy("spas_idx", "asc")->findAll();
+                    if(!empty($spas_product)) {
+                        $new_spas_product = array_merge([], $spas_product);
+                        foreach ($new_spas_product as $spa) {
+                            unset($spa['spas_idx']);
+                            $spa['info_idx'] = $spa_id;
+                            $spa['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->productSpas->insert($spa);
+                        }
+                    }
+
+                    $spas_moption = $this->spasMoption->where("info_idx", $info_idx)->findAll();
+                    if(!empty($spas_moption)) {
+                        $new_spas_moption = array_merge([], $spas_moption);
+                        foreach ($new_spas_moption as $moption) {
+                            $code_idx = $moption['code_idx'];
+                            unset($moption['code_idx']);
+                            $moption['info_idx'] = $spa_id;
+                            $moption['rdate'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $insert_idx = $this->spasMoption->insert($moption);
+
+                            if($insert_idx){
+                                $spas_option = $this->spasOption->where("code_idx", $code_idx)->findAll();
+                                if(!empty($spas_option)) {
+                                    $new_spas_option = $spas_option;
+                                    foreach ($new_spas_option as $option) {
+                                        unset($option['idx']);
+                                        $option['code_idx'] = $insert_idx;
+                                        $option['rdate'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                        $this->spasOption->insert($option);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    $spas_price = $this->spasPrice->where("product_idx", $product_idx)
+                                                    ->where("info_idx", $info_idx)
+                                                    ->groupBy("goods_date")
+                                                    ->orderBy("goods_date", "asc")
+                                                    ->findAll();
+                    $new_spas_option = $this->productSpas->where("info_idx", $spa_id)->findAll();
+                    if(!empty($spas_price)) {
+                        $new_spas_price = array_merge([], $spas_price);
+                        foreach ($new_spas_price as $price) {
+                            foreach ($new_spas_option as $new_option) {
+                                unset($price['idx']);
+                                unset($price['upd_date']);
+                                $price['info_idx'] = $spa_id;
+                                $price['spas_idx'] = $new_option['spas_idx'];
+                                $price['reg_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                $this->spasPrice->insert($price);
+                            }
+                        }
+                    }
+                }else{
+                    return $this->response->setJSON([
+                        'result'    => false,
+                        'message'   => "복사한 제품이 실패했습니다."
+                    ]);
+                }
+            }
+
+            return $this->response->setJSON([
+                'result'    => true,
+                'message'   => "제품이 성공적으로 복사되었습니다."
+            ]);
+
+        }
+        
     }
 }

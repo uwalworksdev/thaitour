@@ -391,33 +391,37 @@
                     }
                 </script>
 
-                <div class="listWrap">
-                    <!-- 안내 문구 필요시 구성 //-->
 
+                    <form name="frm" id="frm" method="GET">
+                        <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="left">
+                                <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                            </div>
 
-                    <div class="listTop">
-                        <div class="left">
-                            <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                            <div class="right">
+                                <select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+                                    <option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+                                    <option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+                                    <option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+                                    <option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+                                </select>
+                            </div>
+
                         </div>
-
-                    </div><!-- // listTop -->
-
-
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
                                 <colgroup>
                                     <col width="60px"/>
-                                    <col width="150px"/>
-									<col width="60px"/>
+                                    <col width="140px"/>
+									<col width="140px"/>
                                     <col width="100px"/>
 									<col width="100px"/>
                                     <col width="*"/>
                                     <col width="150px"/>
                                     <col width="80px"/>
                                     <col width="100px"/>
-                                    <col width="120px"/>
+                                    <col width="130px"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
                                     <col width="80px"/>
@@ -426,8 +430,8 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
+                                    <th>그룹번호</th>
                                     <th>예약번호</th>
-                                    <th>Device</th>
 									<th>상태</th>
 									<th>상품구분</th>
                                     <th>상품명</th>
@@ -446,7 +450,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=13 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=14 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -455,9 +459,12 @@
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
+                                            <?= $row["group_no"] ?>
+                                        </td>
+                                        <td class="tac">
                                             <?= $row["order_no"] ?>
                                         </td>
-										<td class="tac">
+										<!--td class="tac">
                                            
                                             <?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
@@ -465,7 +472,7 @@
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?>
-                                        </td>
+                                        </td-->
                                         <td class="tac">
                                             <?php if ($row["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
@@ -530,7 +537,7 @@
                         </div><!-- // listBottom -->
                     </form>
  
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
 
                     <div id="headerContainer">
@@ -597,6 +604,12 @@
                 }
             });
 
+        }
+    </script>
+
+    <script>
+        function submitForm() {
+            document.getElementById("frm").submit();
         }
     </script>
 

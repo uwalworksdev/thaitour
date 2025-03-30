@@ -43,7 +43,7 @@ if (empty(session()->get("member")["mIdx"])) {
             echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_1" => "on"]);
             ?>
             <div class="content">
-                <h1 class="ttl_table">예약내역.</h1>
+                <h1 class="ttl_table">예약내역</h1>
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="<?= $s_status ?>">
                     <input type="hidden" name="pg" value="<?= $pg ?>">
@@ -51,9 +51,12 @@ if (empty(session()->get("member")["mIdx"])) {
                         <select name="" class="details_filter_selection only_mo">
                             <option value="">전체</option>
                             <option value="W">예약 준비중</option>
-                            <option value="G">예약금</option>
+                            <option value="Y">결제완료</option>
+                            <option value="W">예약확정</option>
+                            <!--option value="G">예약금</option>
                             <option value="R">중도금</option>
-                            <option value="Y">후기쓰기</option>
+                            <option value="Y">후기쓰기</option-->
+                            <option value="Y">예약취소</option>
                         </select>
                         <input type="text" name="search_word" value="<?= $search_word ?>">
                         <button class="search_button" type="button" onclick="search_it()">검색</button>
@@ -63,30 +66,15 @@ if (empty(session()->get("member")["mIdx"])) {
                     <div class="details_wrap flex_b_c">
                         <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                         <div class="details_filter">
-                            <a href="/mypage/details?s_status=&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if (empty($s_status)) {
-                                echo "active";
-                            } ?>"><i></i>전체</a>
-                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if ($s_status == "W") {
-                                echo "active";
-                            } ?>"><i></i>예약 준비중</a>
-                            <a href="/mypage/details?s_status=G&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if ($s_status == "G") {
-                                echo "active";
-                            } ?>"><i></i>예약금</a>
-                            <a href="/mypage/details?s_status=R&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if ($s_status == "R") {
-                                echo "active";
-                            } ?>"><i></i>중도금</a>
-                            <a href="/mypage/details?s_status=Y&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if ($s_status == "Y") {
-                                echo "active";
-                            } ?>"><i></i>후기쓰기</a>
-                            <a href="/mypage/details?s_status=C&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c
-                                <?php if ($s_status == "C") {
-                                echo "active";
-                            } ?>"><i></i>예약취소</a>
+                            <a href="/mypage/details?s_status=&search_word=<?= $search_word ?>&pg=<?= $pg ?>"  class="filter_btn flex__c <?php if (empty($s_status)) echo "active";?> "><i></i>전체</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "W") echo "active";?>"><i></i>예약 준비중</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Y") echo "active";?>"><i></i>결제완료</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Z") echo "active";?>"><i></i>예약확정</a>
+							
+                            <!--a href="/mypage/details?s_status=G&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "G") echo "active";?>"><i></i>예약금</a>
+                            <a href="/mypage/details?s_status=R&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "R") echo "active";?>"><i></i>중도금</a>
+                            <a href="/mypage/details?s_status=Y&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "Y") echo "active";?>"><i></i>후기쓰기</a-->
+                            <a href="/mypage/details?s_status=C&search_word=<?= $search_word ?>&pg=<?= $pg ?>" class="filter_btn flex__c <?php if ($s_status == "C") echo "active";?>"><i></i>예약취소</a>
                         </div>
                     </div>
                     <table class="details_table">

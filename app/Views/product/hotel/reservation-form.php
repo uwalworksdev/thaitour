@@ -449,6 +449,8 @@
 				<input type="hidden" name="room_type"  id="room_type"  value="<?=$room_type?>">
 				<input type="hidden" name="rooms_idx"  id="rooms_idx"  value="<?=$rooms_idx?>">
 				<input type="hidden" name="date_price" id="date_price" value="<?=$date_price?>">				
+				<input type="hidden" name="extra_won"  id="extra_won"  value="<?=$extra_won?>">				
+				<input type="hidden" name="extra_bath" id="extra_bath" value="<?=$extra_bath?>">				
 				<input type="hidden" name="breakfast"  id="breakfast"  value="<?=$breakfast?>">				
 				<input type="hidden" name="adult"      id="adult"      value="<?=$adult?>">				
 				<input type="hidden" name="kids"       id="kids"       value="<?=$kids?>">	
@@ -634,7 +636,7 @@
                                     <tr>
                                         <th>객실수/총인원</th>
                                         <td>
-                                            <?=$number_room?> 룸 / 성인 <?= $room_['adult']?>명 아동 <?= $room_['kids']?>명
+                                            <?=$number_room?> 룸 / 성인 <?= $adult?>명 아동 <?= $kids?>명
                                         </td>
                                     </tr>
                                     <tr>
@@ -654,6 +656,16 @@
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span-->
                                         </td>
                                     </tr>
+									
+									<?php if($extra_won > 0) { ?>
+                                    <tr>
+                                        <th>Extra 베드</th>
+                                        <td class="info_ra">
+                                            <?=$extra_won?>원 (<?=$extra_bath?>바트)
+                                        </td>
+                                    </tr>
+									<?php } ?>
+											
                                     <tr>
                                         <th>중요안내</th>
                                         <td class="info_ra">
@@ -862,11 +874,12 @@
                                 <?php
                                     }else{
                                 ?>
-                                    <span class="font-bold"><?= number_format($last_price) ?> 원</span>
+                                    <span class="font-bold"><?= number_format($price_won) ?> 원</span>
                                 <?php
                                     }
                                 ?>
                             </div>
+							<!--
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
                                 <?php
@@ -881,6 +894,14 @@
                                     }
                                 ?>
                             </div>
+							-->
+							<?php if($extra_won > 0) { ?>
+                            <div class="item-info-r item-info-r-border-b">
+                                <span>Extra 베드</span>
+                                <span class="font-bold"><?= number_format($extra_won) ?> 원</span>
+                            </div>
+							<?php } ?>
+								
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
                                 <?php
@@ -898,7 +919,7 @@
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
                             <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                            <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
+                            <p class="summary-tb2" id="policy_show" data-product-idx="<?= $hotel['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
@@ -955,7 +976,8 @@
                         </div>
                     </div>
                     <div class="popup_place__body">
-                        <?= viewSQ(getPolicy(19)) ?>
+                        <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                        <div id="policyContent"></div>
                     </div>
                 </div>
             </div>
@@ -1341,43 +1363,43 @@
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 
+                if(order_status == "W") {
+						if ($("#order_user_name").val() === "") {
+							alert("한글명을 입력해주세요!");
+							$("#order_user_name").focus();
+							return false;
+						}
 
-                if ($("#order_user_name").val() === "") {
-                    alert("한글명을 입력해주세요!");
-					$("#order_user_name").focus();
-                    return false;
-                }
+						if ($("#order_user_first_name_en").val() === "") {
+							alert("영문명을 입력해주세요!");
+							$("#order_user_first_name_en").focus()
+							return false;
+						}
+						
+						if ($("#order_user_last_name_en").val() === "") {
+							alert("영문명을 입력해주세요!");
+							$("#order_user_last_name_en").focus()
+							return false;
+						}
 
-                if ($("#order_user_first_name_en").val() === "") {
-                    alert("영문명을 입력해주세요!");
-					$("#order_user_first_name_en").focus()
-                    return false;
-                }
-				
-                if ($("#order_user_last_name_en").val() === "") {
-                    alert("영문명을 입력해주세요!");
-					$("#order_user_last_name_en").focus()
-                    return false;
-                }
+						if ($("#order_passport_number").val() === "") {
+							alert("여권번호를 입력해주세요!");
+							$("#order_passport_number").focus();
+							return false;
+						}
 
-                if ($("#order_passport_number").val() === "") {
-                    alert("여권번호를 입력해주세요!");
-					$("#order_passport_number").focus();
-                    return false;
-                }
+						if ($("#order_passport_expiry_date").val() === "") {
+							alert("여권만기일을 입력해주세요!");
+							$("#order_passport_expiry_date").focus();
+							return false;
+						}
 
-                if ($("#order_passport_expiry_date").val() === "") {
-                    alert("여권만기일을 입력해주세요!");
-					$("#order_passport_expiry_date").focus();
-                    return false;
+						if ($("#order_birth_date").val() === "") {
+							alert("생년월일을 입력해주세요!");
+							$("#order_birth_date").focus()
+							return false;
+						}
                 }
-
-                if ($("#order_birth_date").val() === "") {
-                    alert("생년월일을 입력해주세요!");
-					$("#order_birth_date").focus()
-                    return false;
-                }
-
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();
@@ -1427,7 +1449,11 @@
                     success: function (response, status, request) {
                         if (response.result == true) {
                             alert(response.message);
-                            window.location.href = '/product/completed-order';
+							if($("#order_status").val() == "W") {
+                               window.location.href = '/product/completed-order';
+							} else {   
+                               window.location.href = '/product/completed-cart';
+							}   
                         } else {
                             alert(response.message);
                         }
@@ -1474,8 +1500,30 @@
             $(".dim").hide();
         }
 
-        $("#policy_show").on("click", function () {
-            $(".policy_pop, .policy_pop .dim").show();
+        // $("#policy_show").on("click", function () {
+        //     $(".policy_pop, .policy_pop .dim").show();
+        // });
+
+        $("#policy_show").on("click", function() {
+            let productIdx = $(this).data("product-idx");
+
+            $.ajax({
+                url: "/mypage/getPolicyContents/" + productIdx,
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        $("#policyContent").html(response.policy_contents);
+                        $(".policy_pop, .policy_pop .dim").show();
+                    } else {
+                        $("#policyContent").html("<p>" + response.message + "</p>");
+                        $(".policy_pop, .policy_pop .dim").show();
+                    }
+                },
+                error: function() {
+                    $(".policy_pop, .policy_pop .dim").show();
+                }
+            });
         });
     </script>
 <?php $this->endSection(); ?>

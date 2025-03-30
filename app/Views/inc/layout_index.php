@@ -118,6 +118,8 @@ try {
         $time_sale_list = getTimeSale()->findAll();
 
         $currentDateTime = new DateTime();
+		
+		session()->set('redirect_url', current_url());
     ?>
 
     <div class="main_sale_banner flex__c">

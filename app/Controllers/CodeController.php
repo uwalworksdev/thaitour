@@ -190,7 +190,7 @@ class CodeController extends BaseController
                 }
             }
 
-            write_log("코드수정: " . json_encode($data));
+            //write_log("코드수정: " . json_encode($data));
         } else {
             if ($parent_code_no == "0") {
                 $existingCode = $this->CodeModel->where('code_gubun', $code_gubun)->first();
@@ -230,7 +230,7 @@ class CodeController extends BaseController
                 }
             }
             
-            write_log("코드등록: " . json_encode($data));
+            //write_log("코드등록: " . json_encode($data));
         }
 
         if (isset($file) && $file->isValid() && !$file->hasMoved()) {

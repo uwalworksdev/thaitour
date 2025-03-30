@@ -25,7 +25,11 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    window.location.href = "/ticket/completed-order";
+					if(status == "W") {
+                       window.location.href = "/ticket/completed-order";
+					} else {   
+                       window.location.href = "/ticket/completed-cart";
+					}   
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);

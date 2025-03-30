@@ -46,7 +46,7 @@
                 <h2>골프 요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="write_golf_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($product_idx) { ?>
@@ -118,6 +118,7 @@
                                         </div>
 
                                         <div style="text-align:left;">
+											<input type="checkbox" class="end_all" value="" >전체
 											<input type="checkbox" class="end_yn" value="일" >일
 											<input type="checkbox" class="end_yn" value="월" >월
 											<input type="checkbox" class="end_yn" value="화" >화
@@ -138,6 +139,7 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
+											<input type="checkbox" class="priceAll" value="" >전체
 											<input type="checkbox" class="priceDow" value="일" >일
 											<input type="checkbox" class="priceDow" value="월" >월
 											<input type="checkbox" class="priceDow" value="화" >화
@@ -183,7 +185,6 @@
 											</td>
 											<td style="text-align:center">
 												정찰가격(원)
-												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<!--td style="text-align:center">
 												주간가격(원)
@@ -193,6 +194,7 @@
 											</td-->
 											<td style="text-align:center">
 												마감
+												<input type="checkbox" name="" id="use_all">전체 
 											</td>
 											<td style="text-align:center">
 												등록일
@@ -239,6 +241,56 @@
 			        </div>
                     <!-- // listBottom -->
 
+                    <script>
+					$(document).ready(function () {
+						// 전체 선택 체크박스 클릭
+						$(".end_all").click(function () {
+							// 전체 선택 체크박스가 선택되었으면
+							if ($(this).prop("checked")) {
+								// 모든 요일 체크박스를 선택
+								$(".end_yn").prop("checked", true);
+							} else {
+								// 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
+								$(".end_yn").prop("checked", false);
+							}
+						});
+
+						// 개별 요일 선택 체크박스 클릭
+						$(".end_yn").click(function () {
+							// 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
+							if ($(".end_yn:checked").length === $(".end_yn").length) {
+								$(".end_all").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
+							} else {
+								$(".end_all").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
+							}
+						});
+					});
+										
+					$(document).ready(function () {
+						// 전체 선택 체크박스 클릭
+						$(".priceAll").click(function () {
+							// 전체 선택 체크박스가 선택되었으면
+							if ($(this).prop("checked")) {
+								// 모든 요일 체크박스를 선택
+								$(".priceDow").prop("checked", true);
+							} else {
+								// 전체 선택 체크박스가 해제되면 모든 요일 체크박스를 해제
+								$(".priceDow").prop("checked", false);
+							}
+						});
+
+						// 개별 요일 선택 체크박스 클릭
+						$(".priceDow").click(function () {
+							// 개별 요일 체크박스 중 하나라도 선택되지 않으면 전체 선택 체크박스를 해제
+							if ($(".priceDow:checked").length === $(".priceDow").length) {
+								$(".priceAll").prop("checked", true); // 모든 요일이 선택되면 전체 선택 체크박스를 체크
+							} else {
+								$(".priceAll").prop("checked", false); // 하나라도 해제되면 전체 선택 체크박스를 해제
+							}
+						});
+					});
+					</script>
+					
 					<script>
 						$("#inqCharge").one("click", function () {
 							$("#in_s_date").val($("#s_date").val());
@@ -253,6 +305,10 @@
 							} else {
 								location.reload();
                             }
+						});
+
+						$('#use_all').on('click', function() {
+								$(".use_yn").prop("checked", $(this).prop("checked"));
 						});
 
 						$('#price1_all').on('click', function() {
@@ -499,7 +555,7 @@
                             <li class="left"></li>
                             <li class="right_sub">
 
-                                <a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                                <a href="write_golf_price?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                                 <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span

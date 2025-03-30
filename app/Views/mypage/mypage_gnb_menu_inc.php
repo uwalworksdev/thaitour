@@ -17,7 +17,7 @@
     </button>
     <ul class="gnb_menu_list flex">
         <li class="<?= $tab_1 ?>">
-            <div class="menu_level_1 flex_b_c"><a href="../mypage/details">예약내역</a></div>
+            <div class="menu_level_1 flex_b_c"><a href="../mypage/booklist">예약내역</a></div>
         </li>
         <li class="<?= $tab_6 ?>">
             <div class="menu_level_1 has_submenu flex_b_c">

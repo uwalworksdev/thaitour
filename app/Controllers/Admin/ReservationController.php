@@ -70,7 +70,7 @@ class ReservationController extends BaseController
         $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
         $arrays_paging   = "";
-        $strSql          = "";
+        $strSql          = " and payment_status != '' ";
 
         $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
         $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
@@ -95,7 +95,7 @@ class ReservationController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if (sizeof($state_chkerx) > 0) {
+        if (is_array($state_chkerx) && sizeof($state_chkerx) > 0) {
 
             $strSql = $strSql . " and a.order_status in (";
             $_tmp_cnt = 0;
@@ -124,7 +124,7 @@ class ReservationController extends BaseController
             if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(order_c_date) <= '" . $e_date . "')";
         }
 
-        $g_list_rows = 30;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
         if ($search_name) {
             if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
                 $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
@@ -246,21 +246,21 @@ class ReservationController extends BaseController
     {
         $private_key = private_key();
 
-        $product_code_1 = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
-        $product_code_2 = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
-        $product_code_3 = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
-        $pg = !empty($_GET["pg"]) ? $_GET['pg'] : "";
-        $isDelete = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
-        $s_date = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
-        $e_date = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
-        $date_chker = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
-        $search_name = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
+        $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
+        $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
+        $product_code_3  = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
+        $pg              = !empty($_GET["pg"]) ? $_GET['pg'] : "";
+        $isDelete        = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
+        $s_date          = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
+        $e_date          = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
+        $date_chker      = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
+        $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
-        $arrays_paging = "";
-        $strSql = "";
+        $arrays_paging   = "";
+        $strSql          = "";
 
-        $payment_chker = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
-        $state_chker = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
+        $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
+        $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
 
         if (sizeof($payment_chker) > 0) {
 
@@ -271,7 +271,7 @@ class ReservationController extends BaseController
                     $strSql = $strSql . ",";
                 }
 
-                if ($vals == "CARD") $vals = "신용카드";
+                if ($vals == "CARD")  $vals = "신용카드";
                 if ($vals == "Dbank") $vals = "무통장입금";
 
                 $strSql = $strSql . " '" . $vals . "' ";
@@ -311,7 +311,8 @@ class ReservationController extends BaseController
             if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(order_c_date) <= '" . $e_date . "')";
         }
 
-        $g_list_rows = 30;
+        // $g_list_rows = 30;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
         if ($search_name) {
             if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
                 $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
@@ -319,7 +320,7 @@ class ReservationController extends BaseController
                 $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
             }
         }
-        $strSql = $strSql . " and a.order_status != 'D' ";
+        $strSql = $strSql . " and a.order_status NOT IN ('B', 'D') ";
 
         $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
@@ -355,7 +356,7 @@ class ReservationController extends BaseController
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $sql = $total_sql . " order by order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
+        $sql = $total_sql . " order by group_no desc, order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
 
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();

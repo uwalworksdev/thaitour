@@ -39,6 +39,9 @@
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
         <input type="hidden" name="hole_cnt" id="hour" value="<?= $hole_cnt ?>">
         <input type="hidden" name="hour" id="hour" value="<?= $game_hour ?>">
+		<input type="hidden" name="trip_type1" id="trip_type1" value="<?= $trip_type1 ?>">
+		<input type="hidden" name="trip_type2" id="trip_type2" value="<?= $trip_type2 ?>">
+		<input type="hidden" name="trip_type3" id="trip_type3" value="<?= $trip_type3 ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
         <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="<?= $teeoff_hour ?>">
@@ -358,7 +361,7 @@
                             <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간)
                                 이전
                             </p>
-                            <span class="cus-label-r">본 예약건 취소규정</span>
+                            <span class="cus-label-r info_link" data-product-idx="<?= $product['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check-first item-clause-all">
                                 <span>전체동의</span>
@@ -391,7 +394,7 @@
 							<?php } else { ?>
                             <button class="btn-order" type="button" onclick="handleSubmit('W')">예약하기</button>
 							<?php } ?>
-                            <button class="btn-order" type="button" onclick="handleSubmit('B')">장바구니</button>
+                            <button class="btn-default cart btn-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
                         </div>
                     </div>
                 </div>
@@ -401,9 +404,57 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
 	
     <form action="/checkout/confirm" name="payment_frm" id="payment_frm" method="post">
-		<input type="text" name="payment_no" id="payment_no" value="" >
-		<input type="text" name="dataValue"  id="dataValue"  value="" >		
+		<input type="hidden" name="payment_no" id="payment_no" value="" >
+		<input type="hidden" name="dataValue"  id="dataValue"  value="" >		
 	</form>
+
+    <div class="popup_wrap place_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>취소 규정</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim" style="justify-content: space-between;"></div>
+    </div>
+
+    <script>
+            $(".info_link").on("click", function() {
+                let productIdx = $(this).data("product-idx");
+
+                $.ajax({
+                    url: "/mypage/getPolicyContents/" + productIdx,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $("#policyContent").html(response.policy_contents);
+                            $(".policy_pop, .policy_pop .dim").show();
+                        } else {
+                            $("#policyContent").html("<p>" + response.message + "</p>");
+                            $(".policy_pop, .policy_pop .dim").show();
+                        }
+                    },
+                    error: function() {
+                        $(".policy_pop, .policy_pop .dim").show();
+                    }
+                });
+            });
+
+            function closePopup() {
+                $(".popup_wrap").hide();
+                $(".dim").hide();
+            }
+    </script>
 	
     <script>
         $(document).ready(function () {
@@ -541,42 +592,44 @@
     <script>
         function handleSubmit(status) {
 
-			if ($("#order_user_name_kor").val() === "") {
-				alert("한글명을 입력해주세요!");
-				$("#order_user_name_kor").focus();
-				return false;
-			}
+            if(status == "W") {
+					if ($("#order_user_name_kor").val() === "") {
+						alert("한글명을 입력해주세요!");
+						$("#order_user_name_kor").focus();
+						return false;
+					}
 
-			if ($("#order_user_first_name_en").val() === "") {
-				alert("영문명을 입력해주세요!");
-				$("#order_user_first_name_en").focus()
-				return false;
+					if ($("#order_user_first_name_en").val() === "") {
+						alert("영문명을 입력해주세요!");
+						$("#order_user_first_name_en").focus()
+						return false;
+					}
+					
+					if ($("#order_user_last_name_en").val() === "") {
+						alert("영문명을 입력해주세요!");
+						$("#order_user_last_name_en").focus()
+						return false;
+					}
+
+					if ($("#order_passport_number").val() === "") {
+						alert("여권번호를 입력해주세요!");
+						$("#order_passport_number").focus();
+						return false;
+					}
+
+					if ($("#order_passport_expiry_date").val() === "") {
+						alert("여권만기일을 입력해주세요!");
+						$("#order_passport_expiry_date").focus();
+						return false;
+					}
+
+					if ($("#order_birth_date").val() === "") {
+						alert("생년월일을 입력해주세요!");
+						$("#order_birth_date").focus()
+						return false;
+					}
 			}
 			
-			if ($("#order_user_last_name_en").val() === "") {
-				alert("영문명을 입력해주세요!");
-				$("#order_user_last_name_en").focus()
-				return false;
-			}
-
-			if ($("#order_passport_number").val() === "") {
-				alert("여권번호를 입력해주세요!");
-				$("#order_passport_number").focus();
-				return false;
-			}
-
-			if ($("#order_passport_expiry_date").val() === "") {
-				alert("여권만기일을 입력해주세요!");
-				$("#order_passport_expiry_date").focus();
-				return false;
-			}
-
-			if ($("#order_birth_date").val() === "") {
-				alert("생년월일을 입력해주세요!");
-				$("#order_birth_date").focus()
-				return false;
-			}
-				
 			$("#order_status").val(status);
             const frm = document.order_frm;
             let flag = true;

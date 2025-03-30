@@ -56,7 +56,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			<?= $order_r_date ?>
 		</p>
 		<!-- 웹 -->
-		<div class="invoice_table invoice_table_new">
+		<div class="invoice_table invoice_table_new only_web">
 			<h2>예약 정보</h2>
 			<table>
 				<colgroup>
@@ -120,7 +120,77 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
-		<div class="invoice_table invoice_table_new">
+		<div class="invoice_table invoice_table_new only_mo">
+            <h2>예약 정보</h2>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="subject">예약번호</td>
+                    <td class="content">
+							<span>
+								<?= $order_no ?>
+							</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">인원</td>
+                    <td class="content">
+                        <span><?= $people_adult_cnt ?>인</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">티오프시간</td>
+
+                    <td class="content">
+                        <p>
+							<?= $option['option_name'] ?>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">상품 예약금액</td>
+
+                    <td class="content">
+					<p><strong><span id="price_tot">
+									<?= number_format($order_price) ?>
+								</span></strong> 원</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">쿠폰</td>
+
+                    <td class="content">
+						<?php if ($used_coupon_money > 0) { ?>
+							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
+										<?= number_format($used_coupon_money) ?> 원
+									</span></strong></p>
+						<?php } ?>
+
+						<?php if ($used_mileage_money > 0) { ?>
+							<p><strong style="color:red">포인트 <span id="point_amt">
+										<?= number_format($used_mileage_money) ?> 원
+									</span></strong></p>
+						<?php } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">실예약금액</td>
+
+                    <td class="content">
+						<p><strong><span id="price_tot">
+								<?= number_format($order_price - $used_mileage_money) ?></strong>
+						</span> 원</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+		<div class="invoice_table invoice_table_new only_web">
 			<h2>옵션 정보</h2>
 			<table>
 				<colgroup>
@@ -170,9 +240,62 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
+		<div class="invoice_table invoice_table_new only_mo">
+            <h2>옵션 정보</h2>
+			<?php foreach ($vehicle as $item) { ?>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="subject">옵션내역</td>
+                    <td class="content">
+						<span>
+							<?php if($item['option_type'] == "main") { ?>
+							그린피: <?= $item['option_name'] ?>
+							<?php } else { ?>
+							<?= $item['option_name'] ?>
+							<?php } ?>
+						</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">옵션수량</td>
+                    <td class="content">
+						<span><?= $item['option_cnt'] ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">옵션단가(원)</td>
+
+                    <td class="content">
+						<?php if($item['option_price'] < 1) { ?>
+						<span>-</span>
+						<?php } else { ?>
+						<span><?= number_format($item['option_price']) ?></span>
+						<?php } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">금액(원)</td>
+
+                    <td class="content">
+						<p>
+							<?= number_format($item['option_tot']) ?>
+						</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+			<?php } ?>
+
+        </div>
+
 		<!-- 예약정보 모바일 -->
 
-		<div class="invoice_table invoice_table_new reservation">
+		<div class="invoice_table invoice_table_new reservation only_web">
 			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
@@ -382,6 +505,278 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
+
+        <div class="invoice_table invoice_table_new only_mo">
+            <h2>예약금액 결제</h2>
+            <table>
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <?php if ($row["order_status"] == "W") { ?>
+                    <tr>
+                        <td class="content" colspan="2">예약 준비중</td>
+                    </tr>
+                <?php } ?>
+
+                <?php if ($row["order_status"] == "C") { ?>
+                    <tr>
+                        <td class="content" colspan="2">예약 취소</td>
+                    </tr>
+                <?php } ?>
+                <?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
+                    <tr>
+                        <td class="subject">예약상태</td>
+                        <td class="content">
+                            <span>
+                            	결제금액
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제상태</td>
+                        <td class="content">
+							<?php 
+								if($row["order_status"] == "G") {
+								   echo "결제대기";
+								} else {
+								   echo "입금대기";
+								}   
+							?>	
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+
+                        <td class="content">
+							<?= $deposit_method ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제금액</td>
+
+                        <td class="content">
+							<?= number_format($order_price) ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제</td>
+
+                        <td class="content">
+							<?php if ($row["order_status"] == "G") { ?>
+								<button type="button" id="deposit" class="btn my-button" value="<?= $row["order_no"] ?>">결제하기</button>
+							<?php } ?>
+                        </td>
+                    </tr>
+                <?php }?>
+                <?php if ($row["order_status"] == "R") { ?>
+                    <tr>
+                        <td class="subject">예약상태</td>
+                        <td class="content">
+                            <span>
+							선금
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제상태</td>
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								결제완료
+							<?php } else { ?>
+								<?= $ResultMsg_1 ?>
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								<?= $deposit_method ?>
+							<?php } else { ?>
+								신용카드
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제금액</td>
+
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								<?= number_format($deposit_price) ?> 원
+							<?php } else { ?>
+								<?= number_format($deposit_price) ?> 원
+							<?php }
+							?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제</td>
+
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								<?= $deposit_date ?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">예약상태</td>
+                        <td class="content">
+                            <span>
+                            잔금
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제상태</td>
+                        <td class="content">
+							잔금 입금 대기
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+                        <td class="content">
+							<?= $confirm_method ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+
+                        <td class="content">
+							<?= number_format($order_confirm_price) ?> 원
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제</td>
+
+                        <td class="content">
+                        </td>
+                    </tr>
+                <?php }?>
+                <?php if ($row["order_status"] == "Y") { ?>
+                    <tr>
+                        <td class="subject">예약상태</td>
+                        <td class="content">
+                            <span>
+                            선금
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제상태</td>
+                        <td class="content">
+							결제완료
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								결제완료
+							<?php } else { ?>
+								신용카드
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제금액</td>
+
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								<?= number_format($deposit_price) ?> 원
+							<?php } else { ?>
+								<!-- <?= number_format($Amt_1) ?>원 -->
+								<?= number_format($order_price) ?> 원
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제</td>
+
+                        <td class="content">
+						<?php if ($deposit_method == "무통장입금") { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제일</td>
+
+                        <td class="content">
+                            <?php if ($row['deposit_method'] == "무통장입금") { ?>
+                                <?= date($row['order_confirm_date']); ?>
+                            <?php } else { ?>
+                                <?= date($row['order_confirm_date']); ?>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">예약상태</td>
+                        <td class="content">
+                            <span>
+                            잔금
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제상태</td>
+                        <td class="content">
+							잔금입금완료
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+                        <td class="content">
+							<?php if ($deposit_method == "무통장입금") { ?>
+								<?= $deposit_method ?>
+							<?php } else { ?>
+								신용카드
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제방법</td>
+
+                        <td class="content">
+							<?php if ($confirm_method == "무통장입금") { ?>
+								<?= number_format($order_confirm_price) ?> 원
+							<?php } else { ?>
+								<!-- <?= number_format($Amt_2) ?>원 -->
+								<?= number_format($order_confirm_price) ?> 원
+							<?php } ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="subject">결제</td>
+
+                        <td class="content">
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="subject">결제일</td>
+
+                        <td class="content">
+							<?php if ($confirm_method == "무통장입금") { ?>
+								<?= date($order_c_date); ?>
+							<?php } else { ?>
+								<?= date($order_c_date); ?>
+							<?php } ?>
+                        </td>
+                    </tr>
+                <?php }?>
+                </tbody>
+            </table>
+        </div>
+
 		<section class="earn_pops my_pops" style="display:none;">
 			<div class="pay_pops_inner pay_count02" style="display:none;">
 				<div class="pay_h">
@@ -444,50 +839,55 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
-		<!-- 예약자 정보 모바일 -->
-
 		<div class="invoice_table invoice_table_new only_mo">
-			<h2>예약자 정보</h2>
-			<table>
-				<colgroup>
-					<col width="10%">
-					<col width="*">
-				</colgroup>
-				<tbody>
+            <h2>예약자 정보</h2>
+            <table>
+                <colgroup>
+                    <col width="10%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
 
-					<tr>
-						<td class="subject">이름</td>
-						<td class="content">
-							<?= $user_name ?>
-						</td>
-					</tr>
+                <tr>
+                    <td class="subject">한국이름</td>
+                    <td class="content">
+						<?= $order_user_name ?>
+                    </td>
+                </tr>
 
-					<tr>
-						<td class="subject">생년월일</td>
+                <tr>
+                    <td class="subject">영문이름</td>
 
-						<td class="content">
-							<?= $birthday ?>
-						</td>
-					</tr>
+                    <td class="content">
+						<?= $order_user_first_name_en ?> <?= $order_user_last_name_en ?>
+                    </td>
+                </tr>
 
-					<tr>
-						<td class="subject">휴대번호</td>
-						<td class="content">
-							<?= $order_user_mobile ?>
-						</td>
-					</tr>
+                <tr>
+                    <td class="subject">휴대번호</td>
+                    <td class="content">
+						<?= $order_user_mobile ?>
+                    </td>
+                </tr>
 
-					<tr>
-						<td class="subject">이메일</td>
-						<td class="content">
-							<?= $order_user_email ?>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+                <tr>
+                    <td class="subject">해외 전화번호 </td>
+                    <td class="content">
+						<?= $local_phone ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="subject">이메일</td>
+                    <td class="content">
+						<?= $order_user_email ?>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-		<div class="invoice_table invoice_table_new only_web">
+
+		<div class="invoice_table invoice_table_new">
 			<h2>
 				여행정보
 			</h2>
@@ -524,6 +924,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</tbody>
 			</table>
 		</div>
+
 		<div class="invoice_table">
 			<h2>요청사항</h2>
 			<table>

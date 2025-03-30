@@ -171,9 +171,9 @@
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
-                                                class="txt">완전삭제</span></a></li>
+                                                class="txt">완전삭제</span></a></li-->
                                 <script>
                                     function prod_copy(idx) {
                                         if (!confirm("선택한 상품을 복사 하시겠습니까?"))
@@ -864,7 +864,7 @@
                                         <span style="margin-right:20px;"></span>
                                     </td>
                                 </tr> -->
-                                <tr>
+                                <!-- <tr>
                                     <th>
                                         투어 사진
                                         <button type="button" class="btn_01" onclick="add_sub_tour_image();">추가</button>
@@ -897,7 +897,7 @@
                                             ?>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>대표이미지(600X400)</th>
@@ -934,6 +934,7 @@
                                     <th>
                                         서브이미지(600X400)
                                         <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
@@ -964,7 +965,8 @@
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                     <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>"
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple
                                                             onchange="productImageMainPreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                     <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
@@ -1300,10 +1302,10 @@
             <!-- // listBottom -->
 
             <div id="contents">
-                <div class="tail_menu">
+                <div class="tail_menu" style="margin-top: 0;">
                     <ul>
                         <li class="left"></li>
-                        <li class="right_sub" style="display: none">
+                        <li class="right_sub">
 
                             <a href="list_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
@@ -1314,15 +1316,15 @@
                             <?php } else { ?>
                                 <a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                                <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                             <?php } ?>
                         </li>
                     </ul>
                 </div>
 
-                <?php if ($product_idx): ?>
-                    <div class="listBottom" style="padding: 15px;">
+                <!-- <?php if ($product_idx): ?>
+                    <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
                             </caption>
@@ -1360,21 +1362,23 @@
                                 <tbody>
                                 <tr height="45">
                                     <th colspan="5">
-                                        옵션 <input type='text' name='moption_name'
-                                                  id='moption_name_<?= $row_option['code_idx'] ?>'
-                                                  value="<?= $row_option['moption_name'] ?>" style="width:550px"/>
-                                        <button type="button" class="btn_01"
-                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
-                                        </button>
-                                        <button type="button" class="btn_01"
-                                                onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
-                                        </button>
+                                        <div class="flex__c" style="gap: 5px;">
+                                            옵션 <input type='text' name='moption_name'
+                                                      id='moption_name_<?= $row_option['code_idx'] ?>'
+                                                      value="<?= $row_option['moption_name'] ?>" style="width:550px"/>
+                                            <button type="button" class="btn_01"
+                                                    onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
+                                            </button>
+                                            <button type="button" class="btn_01"
+                                                    onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
+                                            </button>
+                                        </div>
                                     </th>
                                 </tr>
                                 <tr height="45">
                                     <th>
                                         추가 옵션등록
-                                        <p style="display:block;margin-top:10px;">
+                                        <div class="flex" style="margin-top:10px; gap: 5px;">
                                             <button type="button" id="btn_add_option"
                                                     onclick="add_option('<?= $row_option['code_idx'] ?>');"
                                                     class="btn_01">추가
@@ -1383,7 +1387,7 @@
                                                     onclick="upd_option('<?= $row_option['code_idx'] ?>');"
                                                     class="btn_01">등록
                                             </button>
-                                        </p>
+                                        </div>
                                     </th>
                                     <td>
                                         <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
@@ -1391,14 +1395,14 @@
                                             <table>
                                                 <colgroup>
                                                     <col width="*"></col>
-                                                    <col width="25%"></col>
+                                                    <col width="10%"></col>
                                                     <col width="5%"></col>
                                                     <col width="5%"></col>
                                                     <col width="12%"></col>
                                                 </colgroup>
                                                 <thead>
                                                 <tr>
-                                                    <th>옵션명</th>
+                                                    <th>옵션명 한글/영문</th>
                                                     <th>가격(단위: 바트)</th>
                                                     <th>적용</th>
                                                     <th>순서</th>
@@ -1409,9 +1413,8 @@
                                                 <?php foreach ($row_option['additional_options'] as $option): ?>
                                                     <tr>
                                                         <td>
-                                                            <input type='text' name='o_name[]'
-                                                                   id='o_name_<?= $option['idx'] ?>'
-                                                                   value="<?= $option['option_name'] ?>" size="70"/>
+                                                            <input type='text' name='o_name[]'     id='o_name_<?= $option['idx'] ?>'     value="<?= $option['option_name'] ?>"     style="width:48%;" />
+                                                            <input type='text' name='o_name_eng[]' id='o_name_eng_<?= $option['idx'] ?>' value="<?= $option['option_name_eng'] ?>" style="width:48%;" />
                                                         </td>
                                                         <td>
                                                             <input type='text' class='onlynum' style="text-align:right;"
@@ -1452,13 +1455,13 @@
                             </table>
                         </form>
                     </div>
-                <?php endforeach; ?>
+                <?php endforeach; ?> -->
 
 
-                <?php if ($product_idx): ?>
+                <!-- <?php if ($product_idx): ?>
                     <div class="tail_menu">
                         <ul>
-                            <li class="left">■ 가격리스트</li>
+                            <li class="left">■ 가격리스트</li> -->
 							<!--div class="listBottom">
 								<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 									<caption></caption>
@@ -1510,7 +1513,7 @@
 								</table>
 							</div-->	
 							
-                            <?php
+                            <!-- <?php
                             $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null;
                             if ($info_idx):
                                 ?>
@@ -1529,11 +1532,11 @@
                                         <span class="txt">가격등록</span>
                                     </a>
                                 </li>
-                            <?php endif ?>
-                        </ul>
-                    </div>
+                            <?php endif ?> -->
+                        <!-- </ul>
+                    </div> -->
 
-                    <div class="listBottom">
+                    <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
@@ -1641,7 +1644,7 @@
 
 
                         </table>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
@@ -1670,60 +1673,7 @@
                         </table>
                     </div> -->
 
-                    <div class="tail_menu">
-                        <ul>
-                            <li class="left">■ 일정내역</li>
-                            <li class="right_sub" style="padding-bottom:10px"></li>
-                        </ul>
-                    </div>
 
-                    <div class="listBottom">
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                            <colgroup>
-                                <col width="70px"/>
-                                <col width="*"/>
-                                <col width="260px"/>
-                                <col width="260px"/>
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th></th>
-                                <th>일차</th>
-                                <th>관리</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php if ($fTotalresult4 > 0): ?>
-                                <?php $i = 1; ?>
-                                <?php foreach ($fresult4 as $frow): ?>
-                                    <tr style="height:50px">
-                                        <td><?= $i++ ?></td>
-                                        <td class="tac"><?= $frow["code_name"] ?></td>
-                                        <td class="tac"><?= $frow["cnt"] ?>일차</td>
-                                        <td>
-                                            <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
-                                               class="btn btn-default">상세내역관리</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr style="height:50px">
-                                    <td><?= $i++ ?></td>
-                                    <td class="tac">미등록</td>
-                                    <td class="tac">미등록</td>
-                                    <td>
-                                        <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
-                                           class="btn btn-default">상세내역관리</a>
-                                        <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <!-- <button type="button">Tải lên lịch trình</button> -->
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
                 <?php endif; ?>
             </div>
 
@@ -1960,7 +1910,8 @@
             addOption += "		<input type='hidden' name='o_idx[]'  value='' />	  ";
             addOption += "		<input type='hidden' name='option_type[]'  value='M' />	  ";
             addOption += "		<input type='file' name='a_file[]'  value='' style='display:none;' />					  ";
-            addOption += "		<input type='text' name='o_name[]'  value='' size='70' />	  ";
+            addOption += "		<input type='text' name='o_name[]'  value='' size='70' style='width:48%' />	  ";
+            addOption += "		<input type='text' name='o_name_eng[]'  value='' size='70' style='width:48%' />	  ";
             addOption += "	</td>																  ";
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price[]'  value='' />	  ";
@@ -2125,11 +2076,12 @@
                 url: "/AdmMaster/_tourRegist/write_tours/updOption",
                 type: "POST",
                 data: {
-                    "idx": idx,
-                    "option_name": $("#o_name_" + idx).val(),
-                    "option_price": $("#o_price_" + idx).val(),
-                    "use_yn": $("#use_yn_" + idx).val(),
-                    "onum": $("#o_num_" + idx).val()
+                    "idx"              : idx,
+                    "option_name"      : $("#o_name_" + idx).val(),
+                    "option_name_eng"  : $("#o_name_eng_" + idx).val(),
+                    "option_price"     : $("#o_price_" + idx).val(),
+                    "use_yn"           : $("#use_yn_" + idx).val(),
+                    "onum"             : $("#o_num_" + idx).val()
                 },
                 dataType: "json",
                 async: false,
@@ -2280,79 +2232,161 @@
             let i = Date.now();
 
             let html = `
-                <div class="file_input">
-                    <input type="hidden" name="i_idx[]" value="">
-                    <input type="file" name='ufile[]' id="ufile${i}"
-                            onchange="productImageMainPreview(this, '${i}')">
-                    <label for="ufile${i}"></label>
-                    <input type="hidden" name="checkImg_${i}" class="checkImg">
-                    <button type="button" class="remove_btn"
-                            onclick="productImageMainPreviewRemove(this)"></button>
-
+                <div class="file_input_wrap">
+                    <div class="file_input">
+                        <input type="hidden" name="i_idx[]" value="">
+                        <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                        <input type="file" name='ufile[]' id="ufile${i}" multiple
+                                onchange="productImageMainPreview(this, '${i}')">
+                        <label for="ufile${i}"></label>
+                        <input type="hidden" name="checkImg_${i}" class="checkImg">
+                        <button type="button" class="remove_btn"
+                                onclick="productImageMainPreviewRemove(this)"></button>
+                    </div>
                 </div>
             `;
 
             $(".img_add_group").append(html);
         }
 
-        function productImageMainPreview(inputFile, onum) {
-            if (!sizeAndExtCheck(inputFile)) {
-                $(inputFile).val("");
+        function delete_all_image() {
+            if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                 return false;
             }
 
-            let imageTag = $('label[for="ufile' + onum + '"]');
+            let arr_img = [];
 
-            if (inputFile.files.length > 0) {
+            $(".img_add_group .file_input").each(function() {
+                let id = $(this).find("input[name='i_idx[]']").val();
+                if(id){
+                    arr_img.push({
+                        i_idx: id,
+                    });
+                }
+            });
+
+            if(arr_img.length > 0){
+                $.ajax({
+                    url: "/AdmMaster/_hotel/del_all_image",
+                    type: "POST",
+                    data: JSON.stringify({ arr_img: arr_img }),
+                    contentType: "application/json",
+                    success: function(response) {
+                        alert(response.message);
+                        if(response.result == true){
+                            $(".img_add_group").html("");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("error:", error);
+                    }
+                });
+            }else{
+                $(".img_add_group").html("");
+            }
+        }
+
+        function productImageMainPreview(inputFile, onum) {
+            if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
+            
+                $(inputFile).closest('.file_input').addClass('applied');
+                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+                let lastElement = $(inputFile).closest('.file_input_wrap');
+                let files = Array.from(inputFile.files);
+
                 let imageReader = new FileReader();
-
                 imageReader.onload = function () {
-                    imageTag.css("background-image", "url(" + imageReader.result + ")");
-                    $(inputFile).closest('.file_input').addClass('applied');
-                    $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+                    $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
                 };
-                
-                imageReader.readAsDataURL(inputFile.files[0]);
+                imageReader.readAsDataURL(files[0]);
+
+                if (files.length > 1) {
+                    files.slice(1).forEach((file, index) => {
+                        let newReader = new FileReader();
+                        let i = Date.now();
+
+                        newReader.onload = function () {
+                            let imagePreview = `
+                                <div class="file_input_wrap">
+                                    <div class="file_input applied">
+                                        <input type="hidden" name="i_idx[]" value="">
+                                        <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                        <input type="file" id="ufile${i}_${index}" 
+                                            onchange="productImageMainPreview(this, '${i}_${index}')" disabled>
+                                        <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                        <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                        <button type="button" class="remove_btn" onclick="productImageMainPreviewRemove(this)"></button>
+                                    </div>
+                                </div>`;
+
+                            lastElement.after(imagePreview);
+                            lastElement = lastElement.next();
+                        };
+
+                        newReader.readAsDataURL(file);
+                    });
+                }
+            }else{
+                alert('40개 이미지로 제한이 있습니다.');
             }
         }
 
         function productImageMainPreviewRemove(element) {
-            let parent = $(element).closest('.file_input');
-            let inputFile = parent.find('input[type="file"]');
-            let labelImg = parent.find('label');
-            let i_idx = parent.find('input[name="i_idx[]"]').val();
-            
-            if(parent.find('input[name="i_idx[]"]').length > 0){
-                if(i_idx){
-                    if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+            let parent = $(element).closest('.file_input_wrap');
+            if(parent.find('input[name="ufile[]"]').length > 0){
+                let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                                || parent.prevAll().find('input[type="file"][multiple]')[0];
+                let labelImg = parent.find('label');
+                let i_idx = parent.find('input[name="i_idx[]"]').val();
+        
+                let dt = new DataTransfer();
+                let fileArray = Array.from(inputFile.files);
+                let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+                
+                fileArray.forEach((file) => {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (e.target.result !== imageUrl) {      
+                            dt.items.add(file);
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                });
+        
+                setTimeout(() => {
+                    inputFile.files = dt.files;
+                    if(parent.find('input[type="file"][multiple]')[0]){
+                        parent.css("display", "none");
+                    }else{
+                        parent.remove();
+                    }
+                }, 100);
+        
+                if (i_idx) {
+                    if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                         return false;
                     }
-
+        
                     $.ajax({
-            
                         url: "/AdmMaster/_hotel/del_image",
                         type: "POST",
-                        data: {
-                                "i_idx"   : i_idx,
-                        },
-                        success: function (data, textStatus) {
-                            message = data.message;
-                            alert(message);
-                            if(data.result){
-                                parent.closest('.file_input_wrap').remove();
+                        data: { "i_idx": i_idx },
+                        success: function (data) {
+                            alert(data.message);
+                            if (data.result) {
+                                parent.css("display", "none");
                             }
                         },
                         error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                         }
                     });
-                }else{
-                    parent.remove();
                 }
-            }else{
-                inputFile.val("");
-                labelImg.css("background-image", "");
-                parent.removeClass('applied');
+            }else{            
+                parent.find('input[type="file"]').val("");
+                parent.find('label').css("background-image", "");
+                parent.find('.file_input').removeClass('applied');
                 parent.find('.checkImg').val('N');
                 parent.find('.imgpop').attr("href", "");
                 parent.find('.imgpop').remove();
@@ -2487,6 +2521,14 @@
             })
 
             $("#mbti").val(_code_mbtis);
+
+            $(".img_add_group .file_input").each(function (index) { 
+                $(this).find(".onum_img").val(index + 1);        
+            });
+
+            $(".img_add_group .file_input").each(function (index) { 
+                $(this).find(".onum_img").val(index + 1);        
+            });
 
             $("#ajax_loader").removeClass("display-none");
 

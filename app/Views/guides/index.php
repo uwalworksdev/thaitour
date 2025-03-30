@@ -1,199 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+<link rel="stylesheet" href="/css/tour/guides.css">
     <style>
-        .swiper-container-ticket {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .swiper-button-next,
-        .swiper-button-prev {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        .swiper-button-next-ticket {
-            z-index: 999;
-            right: 0px;
-            position: absolute;
-            top: 40%;
-        }
-
-        .swiper-button-prev-ticket {
-            z-index: 999;
-            position: absolute;
-            top: 40%;
-            left: 0px;
-        }
-
-        .cursor-pointer-con img {
-            cursor: pointer;
-        }
-
-        .btn-gr-ticket {
-            max-width: 81%;
-            overflow: hidden;
-            height: 55px;
-        }
-
-        .btn-gr-ticket.full_ {
-            flex-wrap: wrap;
-            height: auto;
-        }
-
-        .select_tool {
-            padding: 8px 16px 8px 16px;
-            border: 1px solid #dbdbdb;
-            border-radius: 32px;
-        }
-
-        .btnShowAll {
-            padding-right: 32px;
-        }
-
-        .btnShowAll {
-            background: url(/images/ico/down_icon.png) no-repeat right 50% #fff;
-            background-size: 16px 8px;
-        }
-
-        .btnShowAll.open_ {
-            background: url(/images/ico/up_icon.png) no-repeat right 50% #fff;
-            background-size: 16px 8px;
-        }
-
-        .guide-employee-page .list-text-item {
-            column-gap: unset;
-            width: 100%;
-        }
-
-        .guide-employee-page .list-text-item span {
-            width: calc(50%);
-            padding-right: 20px;
-        }
-
-        .guide-employee-page .list-pic {
-            height: auto;
-            max-height: 562px;
-            overflow: hidden;
-        }
-
-        .guide-employee-page .list-pic.full_ {
-            height: auto;
-            overflow: unset;
-            max-height: unset;
-            margin-bottom: 100px;
-        }
-
-        .car_intro {
-            margin-top: 90px;
-            border: 1px solid #e2e2e2;
-            border-top: none;
-        }
-
-        .tbl_guide th, .tbl_guide td {
-            padding: 20px 2%;
-            border-top: 1px solid #e2e2e2;
-        }
-
-        .tbl_guide th {
-            font-weight: 400;
-            background: #f7f7f7;
-            text-align: left;
-            font-size: 18px;
-            line-height: 24px;
-        }
-
-        .tbl_guide td {
-            background: #fff;
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 24px;
-        }
-
-        .item_list_area {
-            margin-top: 90px;
-        }
-
-        .item_list_area .item_list_hotel li {
-            padding: 20px 0 20px 15px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-        }
-
-        .item_list_area .item_list_hotel li > .thm {
-            width: 31%;
-            position: relative;
-        }
-
-        .item_list_area .item_list_hotel .thm img {
-            width: 100%;
-            max-width: 350px;
-            height: 250px;
-            border-radius: 1rem;
-            object-fit: cover;
-        }
-
-        .item_list_area .item_list_hotel .cont {
-            width: 68%;
-        }
-
-        .item_list_area .item_list_hotel .tit_head {
-            overflow: hidden;
-            display: flex;
-            padding-bottom: 15px;
-            font-size: 28px;
-        }
-
-        .item_list_area .item_list_hotel .etc {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            font-size: 18px;
-            color: #999;
-            min-height: 50px;
-        }
-
-        .item_list_area .item_list_hotel .exp {
-            background-color: #fafafa;
-            padding: 20px;
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            color: #888;
-            align-items: center;
-            margin-bottom: 20px;
-            border-radius: .5rem;
-            font-size: 16px;
-            line-height: 22px;
-        }
-
-        .item_list_area .item_list_hotel .truncate_txt_ {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .item_list_area .item_list_hotel .price_all {
-            font-size: 18px;
-            line-height: 22px;
-            color: #757575;
-        }
-
-        .item_list_area .item_list_hotel .price_all strong {
-            font-size: 24px;
-            font-weight: bold;
-            color: #17469E;
-        }
+        
     </style>
     <section>
         <?php $len = count($products); ?>
@@ -451,6 +261,71 @@
             margin-bottom: 30px;
             display: flex;
             justify-content: flex-end;
+        }
+
+        @media screen and (max-width: 850px) {
+            .popup_content_ {
+            z-index: 100;
+            margin-top: 0;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background: white;
+            padding: 5rem 3rem 0.1rem 3rem;
+            box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 68rem;
+            height: auto;
+            max-height: 68rem;
+            min-height: 15rem;
+            overflow: hidden;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .popup_content_.show_ {
+            display: block;
+        }
+
+        .popup_content_::-webkit-scrollbar {
+            width: 0.4rem;
+            background-color: #F5F5F5;
+        }
+
+        .popup_content_::-webkit-scrollbar-thumb {
+            background-color: #cccccc;
+        }
+
+        .popup_content_ .popup_close_btn_ {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            cursor: pointer;
+        }
+
+        .popup_content_ .title_pc_ {
+            font-size: 2.8rem;
+            line-height: 1.222;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgb(37, 37, 37);
+        }
+
+        .popup_content_ .des_pc_ {
+            font-size: 2.6rem;
+            color: rgb(69, 69, 69);
+            line-height: 1.875;
+            padding-top: 3rem;
+            border-top: 1px solid rgb(219, 219, 219);
+        }
+
+        .popup_content_ .last_des_pc_ {
+            font-size: 2.6rem;
+            line-height: 1.875;
+            color: rgb(117, 117, 117);
+            margin-top: 1.6rem;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: flex-end;
+        }
         }
     </style>
     <script>

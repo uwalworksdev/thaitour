@@ -44,6 +44,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("member_order", "Member::memberOrder");
         $routes->get("member_coupon", "Member::memberCoupon");
         $routes->get("member_reserve", "Member::memberReserve");
+        $routes->post("deleteReserve", "Member::deleteReserve");
+        $routes->post("deleteCoupon", "Member::deleteCoupon");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
@@ -67,6 +69,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
+    });
+
+    $routes->group("_settlement", static function ($routes) {
+        $routes->get("list", "Admin\SettlementController::list");
+        $routes->get("write", "Admin\SettlementController::write/$1");
+        $routes->post("write_ok/(:segment)", "Admin\SettlementController::write_ok/$1");
+        $routes->post("delete", "Admin\SettlementController::delete");
     });
 
     $routes->group("_reservationCar", static function ($routes) {
@@ -131,12 +140,18 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_golf", "TourRegistController::write_golf");
         $routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
         $routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
+        $routes->get("write_golf_price", "TourRegistController::write_golf_price");
+        $routes->post("write_golf_price_ok", "TourRegistController::write_golf_price_ok", ['as' => "admin._tourRegist.write_golf_price_ok"]);
         $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("write_spas", "TourRegistController::write_spas");
+        $routes->get("write_spas_info", "TourRegistController::write_spas_info");
+        $routes->get("write_spas_price", "TourRegistController::write_spas_price");
         $routes->get("write_tours", "TourRegistController::write_tours");
+        $routes->get("write_tours_price", "TourRegistController::write_tours_price");
         $routes->get("write_tour_info", "TourRegistController::write_tour_info");
+        $routes->get("list_tours_price", "TourRegistController::list_tours_price");
         $routes->post("write_tours/addMoption", "TourRegistController::addMoption");
         $routes->post("write_tours/updMoption", "TourRegistController::updMoption");
         $routes->post("write_tours/delMoption", "TourRegistController::delMoption");
@@ -146,12 +161,12 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("_tourStay", "TourRegistController::list");
         $routes->post("prod_copy", "TourRegistController::copyProduct");
         $routes->group('golf_vehicles', function ($routes) {
-            $routes->get('/', 'GolfVehicleController::list');
-            $routes->get('write', 'GolfVehicleController::write');
-            $routes->get('write/(:num)', 'GolfVehicleController::write/$1');
-            $routes->post("write_ok", "GolfVehicleController::write_ok");
-            $routes->post('del', 'GolfVehicleController::del');
-            $routes->post("change", "GolfVehicleController::change_ajax");
+		$routes->get('/', 'GolfVehicleController::list');
+		$routes->get('write', 'GolfVehicleController::write');
+		$routes->get('write/(:num)', 'GolfVehicleController::write/$1');
+		$routes->post("write_ok", "GolfVehicleController::write_ok");
+		$routes->post('del', 'GolfVehicleController::del');
+		$routes->post("change", "GolfVehicleController::change_ajax");
         });
     });
 
@@ -167,6 +182,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
         $routes->get("write_price", "Admin\AdminHotelController::write_price");
+        $routes->post("update_room_order", "Admin\AdminHotelController::update_room_order");
         $routes->get("write_options", "Admin\AdminHotelController::write_options");
         $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
@@ -177,6 +193,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
         $routes->post("del_image", "Admin\AdminHotelController::del_image", ['as' => "admin._hotel.del_image"]);
+        $routes->post("del_all_image", "Admin\AdminHotelController::del_all_image", ['as' => "admin._hotel.del_all_image"]);
     });
 
     $routes->group("_cars", static function ($routes) {
@@ -209,7 +226,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
         $routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
+        $routes->post("copy_last_tour", "Admin\AdminTourController::copy_last_tour", ['as' => "admin._tours.copy_last_tour"]);
+        $routes->post("tours_price_add", "Admin\AdminTourController::tours_price_add", ['as' => "admin._tours.tours_price_add"]);
+        $routes->post("tour_price_update", "Admin\AdminTourController::tour_price_update", ['as' => "admin._tours.tour_price_update"]);
+        $routes->post("tours_all_update", "Admin\AdminTourController::tours_all_update", ['as' => "admin._tours.tours_all_update"]);
+        $routes->post("update_all_price", "Admin\AdminTourController::update_all_price", ['as' => "admin._tours.update_all_price"]);
         $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
+        $routes->post("del_main_option", "Admin\AdminTourController::del_main_option", ['as' => "admin._tours.del_main_option"]);
+        $routes->post("del_sub_option", "Admin\AdminTourController::del_sub_option", ['as' => "admin._tours.del_sub_option"]);
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
     });
 
@@ -269,8 +293,10 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("write_room_ok", "Api\AdminProductApi::write_room_ok", ['as' => "admin.api.hotel_.write_room_ok"]);
             $routes->get("detail_room", "Api\AdminProductApi::selectRoomById", ['as' => "admin.api.hotel_.detail_room"]);
             $routes->post("copy_room", "Api\AdminProductApi::copyRoom", ['as' => "admin.api.hotel_.copy_room"]);
+            $routes->post("update_content", "Api\AdminProductApi::updateContent", ['as' => "admin.api.hotel_.update_content"]);
             $routes->post("delete_room", "Api\AdminProductApi::deleteRoomById", ['as' => "admin.api.hotel_.delete_room"]);
             $routes->post("delete_room_img", "Api\AdminProductApi::deleteRoomImgById", ['as' => "admin.api.hotel_.delete_room_img"]);
+            $routes->post("delete_all_room_img", "Api\AdminProductApi::deleteAllRoomImg", ['as' => "admin.api.hotel_.delete_all_room_img"]);
         });
 
         // Nested group for 'bbs_'
@@ -303,6 +329,13 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'spa_'
         $routes->group("spa_", function ($routes) {
             $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
+            $routes->post("write_info_ok", "Admin\AdminSpaController::write_info_ok", ['as' => "admin.api.spa_.write_info_ok"]);
+            $routes->post("copy_last_spa", "Admin\AdminSpaController::copy_last_spa", ['as' => "admin.api.spa_.copy_last_spa"]);
+            $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
+            $routes->post("del_spa_option", "Admin\AdminSpaController::del_spa_option", ['as' => "admin.api.spa_.del_spa_option"]);
+            $routes->post("del_main_option", "Admin\AdminSpaController::del_main_option", ['as' => "admin.api.spa_.del_main_option"]);
+            $routes->post("del_sub_option", "Admin\AdminSpaController::del_sub_option", ['as' => "admin.api.spa_.del_sub_option"]);
+            $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
             $routes->post("prod_update", "Admin\AdminSpaController::prod_update", ['as' => "admin.api.spa_.prod_update"]);
             $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
             $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
@@ -353,6 +386,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("main_update", "TourSuggestionController::main_update");
         $routes->post("seq_upd1", "TourSuggestionController::seq_upd1");
         $routes->post("goods_alldel", "TourSuggestionController::goods_alldel");
+        $routes->post("updateStatus", "TourSuggestionController::updateStatus");
     });
 
     $routes->group("_tourSuggestionSub", static function ($routes) {
@@ -364,6 +398,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("main_update", "TourSuggestionSubController::main_update");
         $routes->post("seq_upd1", "TourSuggestionSubController::seq_upd1");
         $routes->post("goods_alldel", "TourSuggestionSubController::goods_alldel");
+        $routes->post("updateStatus", "TourSuggestionController::updateStatus");
     });
 
     $routes->group("_tourLevel", static function ($routes) {
@@ -387,6 +422,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
         $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
         $routes->post("del_image", "Admin\AdminCouponController::del_image", ['as' => "admin.coupon.del_image"]);
+        $routes->post("del_all_image", "Admin\AdminCouponController::del_all_image", ['as' => "admin.coupon.del_all_image"]);
     });
 
     $routes->group("_operator", static function ($routes) {
@@ -431,6 +467,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
+        $routes->get("policy_cancel_list", "Admin\AdminCmsController::policy_cancel_list");
+        $routes->get("policy_cancel_write", "Admin\AdminCmsController::policy_cancel_write");
+        $routes->post("policy_cancel_ok", "Admin\AdminCmsController::policy_cancel_ok");
+        $routes->post("check_product_exists", "Admin\AdminCmsController::check_product_exists");
+        $routes->post("delete", "Admin\AdminCmsController::del");
     });
 
     $routes->group("_statistics", static function ($routes) {
@@ -452,6 +493,7 @@ $routes->group("AdmMaster", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
         $routes->post("update", "Setting::writeUpdate");
+        $routes->post("password_update", "Setting::passwordUpdate");
 
         $routes->get("policy", "Policy::WriteView");
 
@@ -515,6 +557,9 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("hotel_room_allupdate", "AjaxController::hotel_room_allupdate");
     $routes->post("hotel_room_search", "AjaxController::hotel_room_search");
     $routes->post("hotel_price_add", "AjaxController::hotel_price_add");
+    $routes->post("hotel_price_pageupdate", "AjaxController::hotel_price_pageupdate");
+    $routes->post("hotel_allUpdRoom_price", "AjaxController::hotel_allUpdRoom_price");
+	
     $routes->post("golf_price_add", "AjaxController::golf_price_add");
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
@@ -545,8 +590,21 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
     $routes->post("ajax_incoiceHotel_send", "AjaxController::ajax_incoiceHotel_send");
     $routes->post("ajax_voucherHotel_send", "AjaxController::ajax_voucherHotel_send");
-	
-
+    $routes->post("ajax_open_yoil", "AjaxController::ajax_open_yoil");
+    $routes->post("ajax_close_yoil", "AjaxController::ajax_close_yoil");
+	$routes->post("ajax_set_status", "AjaxController::ajax_set_status");
+    $routes->post("ajax_bank_deposit", "AjaxController::ajax_bank_deposit");
+	$routes->post("ajax_booking_delete", "AjaxController::ajax_booking_delete");
+	$routes->post("ajax_room_add", "AjaxController::ajax_room_add");
+	$routes->post("ajax_bed_rank", "AjaxController::ajax_bed_rank");
+	$routes->post("ajax_bed_add", "AjaxController::ajax_bed_add");
+	$routes->post("ajax_bed_delete", "AjaxController::ajax_bed_delete");
+	$routes->post("ajax_bedPrice_insert", "AjaxController::ajax_bedPrice_insert");
+	$routes->post("update_upd_yn", "AjaxController::update_upd_yn");
+	$routes->post("all_price_update", "AjaxController::all_price_update");
+	$routes->post("update_upd_y", "AjaxController::update_upd_y");
+	$routes->post("ajax_check_end", "AjaxController::ajax_check_end");
+	$routes->post("ajax_trip_change", "AjaxController::ajax_trip_change");
 });
 
 $routes->group("api", static function ($routes) {
@@ -621,6 +679,9 @@ $routes->group("member", static function ($routes) {
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
+    $routes->get("booklist", "MyPage::booklist");
+    $routes->get("getPolicyContents/(:num)", "MyPage::getPolicyContents/$1");
+    $routes->get("pop_estimate", "MyPage::pop_estimate");
     $routes->get("custom_travel", "MyPage::custom_travel");
     $routes->get("custom_travel_view", "MyPage::custom_travel_view");
     $routes->get("contact", "MyPage::contact");
@@ -682,7 +743,9 @@ $routes->group("cart", static function ($routes) {
 });
 $routes->group("checkout", static function ($routes) {
     $routes->post("show", "CheckoutController::show");
+    $routes->post("payment", "CheckoutController::payment");
     $routes->post("confirm", "CheckoutController::confirm");
+    $routes->post("reservation_request", "CheckoutController::reservation_request");
     $routes->get("bank", "CheckoutController::bank");
     $routes->get("confirm_order", "CheckoutController::confirm_order");
     $routes->post('deposit_result', 'CheckoutController::deposit_result');
@@ -780,6 +843,7 @@ $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('product_search', 'Product::productSearch');
 $routes->get('mice-page', 'Product::micePage');
 $routes->get('ticket/completed-order', 'Product::ticketCompleted');
+$routes->get('ticket/completed-cart', 'Product::ticketCarted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
@@ -797,6 +861,7 @@ $routes->post('product-hotel/custhotel-payment-ok', 'Product::custHotelPaymentOk
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');
+$routes->get('product/completed-cart', 'Product::completedCart/$1');
 $routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
@@ -821,11 +886,13 @@ $routes->get('product-tours/confirm-info', 'Product::confirmInfo');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking', 'Product::productBooking');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
+$routes->get('product-spa/completed-cart', 'Product::spaCompletedCart');
 $routes->post('product-spa/spa-payment-ok', 'SpaController::handlePayment');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
+$routes->get('product-restaurant/completed-cart', 'Product::restaurantCarted');
 $routes->get('product-restaurant/restaurant-booking', 'Product::restaurantBooking');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
 $routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
@@ -877,7 +944,7 @@ $routes->get('travel-tips', 'Point::TravelTips');
 $routes->get("api/update_data", "Admin\AdminHotelController::updateData");
 
 $routes->get('/naver/login', 'NaverLogin::login');
-$routes->get('/naver/callback', 'NaverLogin::callback');
+$routes->get('/naver/callback', 'NaverLogin::callback');     
 
 $routes->get('/birthdaychecker', 'BirthdayChecker::index');
 ?>

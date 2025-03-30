@@ -111,8 +111,9 @@
             success: function (response) {
                 console.log(response);
                 alert(response.message);
-                $("#ajax_loader").addClass("display-none");
-                listRoom();
+				location.reload();
+                //$("#ajax_loader").addClass("display-none");
+                //listRoom();
             },
             error: function (request, status, error) {
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -225,7 +226,8 @@
         let img_add = `<div class="file_input_wrap">`;
 		img_add += `<div class="file_input ${ img.ufile ? "applied" : "" }">`;
 		img_add += `<input type="hidden" name="i_idx[]" value="${ img.i_idx }">`;
-		img_add += `<input type="file" name="ufile[]" id="ufile${idx}" onchange="productImagePreview(this, '${idx}')" style="display: none;">`;
+		img_add += `<input type="hidden" class="onum_img" name="onum_img[]" value="${ img.onum }">`;
+		img_add += `<input type="file" name="ufile[]" id="ufile${idx}" multiple onchange="productImagePreview(this, '${idx}')" style="display: none;">`;
 		img_add += `<label for="ufile${idx}" style="background-image: url('${imgUrl}');"></label>`;
 		img_add += `<input type="hidden" name="checkImg_${idx}" class="checkImg">`;
 		img_add += `<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)" style="display: block;"></button>`;

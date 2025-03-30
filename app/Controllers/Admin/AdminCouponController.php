@@ -125,30 +125,48 @@ class AdminCouponController extends BaseController
             }
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+
+            $files = $this->request->getFileMultiple('ufile');
 
             if ($idx) {
                 $result = $this->couponMst->updateData($idx, $data);
 
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+   
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
 
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                        if (!empty($i_idx)) {
+                            $this->couponImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($uploadPath, $ufile);
-
-                            if(!empty($value)){
-                                $this->couponImg->updateData($value, [
+                
+                            if (!empty($i_idx)) {
+                                $this->couponImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
-                            }else{
+                            } else {
                                 $this->couponImg->insertData([
                                     "c_idx" => $idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -188,9 +206,16 @@ class AdminCouponController extends BaseController
                 $data["regdate"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $insertId = $this->couponMst->insertData($data);
                 if(!empty($insertId)){
-                    if (isset($files['ufile'])) {
-                        foreach ($arr_i_idx as $key => $value) {
-                            $file = $files['ufile'][$key] ?? null;
+                    if (count($files) > 40) {
+                        $message = "40개 이미지로 제한이 있습니다.";
+                        return "<script>
+                            alert('$message');
+                            parent.location.reload();
+                            </script>";
+                    }
+    
+                    if (isset($files)) {
+                        foreach ($files as $key => $file) {
     
                             if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                                 $rfile = $file->getClientName();
@@ -201,6 +226,7 @@ class AdminCouponController extends BaseController
                                     "c_idx" => $insertId,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
@@ -291,6 +317,44 @@ class AdminCouponController extends BaseController
                     'message' => '이미지 삭제 실패'
                 ];
                 return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_all_image()
+    {
+        try {
+            $request = service('request');
+            $imgData = $request->getJSON();
+    
+            if (!empty($imgData->arr_img)) {
+                foreach ($imgData->arr_img as $item) {
+                    $i_idx = $item->i_idx;
+
+                    $result = $this->couponImg->updateData($i_idx, [
+                        'ufile' => '',
+                        'rfile' => ''
+                    ]);
+                    if (!$result) {
+                        $data = [
+                            'result' => false,
+                            'message' => '이미지 삭제 실패'
+                        ];
+                        return $this->response->setJSON($data, 400);
+                    }
+        
+                }
             }
 
             $data = [

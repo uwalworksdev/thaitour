@@ -60,7 +60,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>날짜</th>
-                            <td>2024-12-20(금)</td>
+                            <td><?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>)</td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_name?></td>
                         </tr>
@@ -72,13 +72,13 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약 선택상품</th>
-                            <td colspan="3"><?=$option->option_name?> | 예약인원 : 성인(5명)/아동(3명)</td>
+                            <td colspan="3"><?=$option->option_name?></td>
                         </tr>
                         <tr>
                             <th>예약시간</th>
-                            <td>08:00~16:30</td>
+                            <td><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
                             <th>총인원</th>
-                            <td>성인 : 8명 / 아동 : 3명</td>
+                            <td>성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
                         <tr>
                             <th>픽업포함여부</th>
@@ -97,26 +97,34 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
+					    <?php 
+						      $person_cnt = 0;
+						      $order_amt  = 0;
+						      foreach ($row->options as $option) 
+							  { 
+						?>
                         <tr>
                             <th>1인당 금액</th>
-                            <td colspan="3">성인400바트</td>
-                            
+                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3">3,200바트 (성인400바트X8명)</td>
-                            
+                            <td colspan = "3"><?=number_format($option->option_tot)?>바트 (<?=$option->option_qty?>명)</td>
                         </tr>
-                        <tr>
+                        <?php 
+							  } 
+						?>
+                        
+						<tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td>3,200바트</td>
+                            <td><?= number_format($row->order_price * $row->baht_thai) ?>원 <?= number_format($row->order_price) ?>바트</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span>954,284원</span> (24,400바트)</p>
+                    <p>총 견적서 금액 : <span><?= number_format($row->order_price * $row->baht_thai) ?>원</span> (<?= number_format($row->order_price) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>

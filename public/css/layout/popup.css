@@ -170,6 +170,10 @@
     z-index: 1;
 }
 
+.popup_wrap.promotion_pop .pop_box {
+    top: 60%;
+}
+
 .popup_wrap.popup_view_room .pop_box {
     max-width: 1000px;
     padding: 2%;
@@ -253,6 +257,8 @@
 
 .popup_wrap.promotion_pop .pop_box .popup_contents {
     margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .popup_wrap.promotion_pop .pop_box .popup_contents .text_blue {
@@ -780,7 +786,7 @@ textarea::placeholder {
 
     .popup_wrap .pop_box .close {
         position: absolute;
-        top: 0.7692rem;
+        top: 1.7692rem;
         right: 0.7692rem;
         width: 1.5385rem;
         height: 1.5385rem;
@@ -811,7 +817,7 @@ textarea::placeholder {
     }
 
     .popup_wrap .pop_box .padding {
-        padding-bottom: 45px;
+        padding-bottom: 4.5rem;
     }
 
     .popup_wrap .pop_box input {
@@ -926,5 +932,125 @@ textarea::placeholder {
     .popup_wrap .wrong_alert {
         font-size: 1rem;
         margin-top: 0.2rem;
+    }
+
+    .popup_place__head {
+        border-bottom: 1px solid #222222;
+        padding-bottom: 2.5rem;
+        padding-top: 5.5rem;
+    }
+
+    .popup_place__head__ttl {
+        font-size: 3.6rem;
+        font-weight: 700;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .popup_contents {
+        margin-top: 2rem;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .popup_contents .text_blue {
+        font-size: 2.8rem;
+        font-weight: 500;
+        color: #3c95c2;
+        margin-bottom: 2.2rem;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .popup_contents .promotion_list {
+        overflow-y: auto;
+        max-height: 35rem;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .popup_contents .promotion_wrap input {
+        background-color: #ebf1f6;
+        width: 100%;
+        border-radius: 1.2rem;
+        border: unset;
+        height: 6.2143rem;
+        font-size: 2rem;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .popup_contents .promotion_wrap + .promotion_wrap {
+        margin-top: 2rem;
+    }
+
+    .popup_wrap.promotion_pop .pop_box .close {
+        position: absolute;
+        top: 1.7692rem;
+        right: 2.7692rem;
+        width: 2.5385rem;
+        height: 2.5385rem;
+        background-size: 1.5385rem;
+        background: url(/images/ico/close_icon_popup.png) no-repeat center;
+    }
+
+    .popup_view_room .pop_body {
+        flex-direction: column;
+    }
+
+    .popup_view_room .list_room_img {
+        width: 100%;
+    }
+    
+    .popup_view_room .room_content {
+        width: 100%;
+        margin-top: 2rem;
+    }
+    
+    .popup_view_room .room_content .room_name {
+        margin: 0;
+        font-size: 3rem;
+        color: #333;
+        padding-bottom: 3rem;
+    }
+    
+    .popup_view_room .room_content .room_info {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+    
+    .popup_view_room .room_content .room_info .info_tit {
+        color: gray;
+        padding-bottom: 1.5rem;
+        font-size: 2.3rem;
+    }
+    
+    .popup_view_room .room_content .room_info .info_txt p {
+        color: #333;
+        font-size: 2.4rem;
+        line-height: 1.4;
+    }
+    
+    .popup_view_room .room_content .room_info .info_detail {
+        color: gray;
+        line-height: 1.4;
+        font-size: 2.4rem;
+        text-align: justify;
+    }
+    
+    .popup_view_room p.ptxt01 {
+        border-top: 1px solid #ddd;
+        padding-top: 1rem;
+        color: #2ab6ad;
+        font-size: 2.3rem;
+        text-align: unset;
+        line-height: 1.4;
+    }
+
+    .popup_wrap.popup_view_room .pop_box {
+        padding: 6rem 0.5rem 4rem;
+        padding-left: 1.5rem;
+        border-radius: 2rem;
+        height: 70rem;
+        width: calc(100% - 3rem);
+        max-width: 100%;
+    }
+
+    .popup_wrap.popup_view_room .pop_box .close {
+        width: 2.5385rem;
+        height: 2.5385rem;
+        background-size: 2.5385rem;
+
     }
 }

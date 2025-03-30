@@ -153,11 +153,19 @@
             <?php
                 if(empty(session()->get("member")["id"])) {
             ?>  
-                alert("로그인해주세요");
-                return;      
+                // alert("로그인해주세요");
+                // return;
+                showOrHideLoginItem();
+                return false;      
             <?php
                 }
             ?>
+
+            if(!title){
+                alert("상품에 대해 궁금한 점을 입력해 주세요!");
+                return false;
+            }
+
             $.ajax({
                 url: "/product_qna/insert",
                 type: "POST",

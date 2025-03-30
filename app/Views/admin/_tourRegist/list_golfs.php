@@ -126,6 +126,32 @@
                     </tr>
 
                     <tr>
+                        <td class="label">구분</td>
+                        <td class="inbox">
+                            <p>
+                                <input type="hidden" name="is_best_value" value="N">
+                                <input name="is_best_value" class="type_chker" id="is_best_value" type="checkbox"
+                                    value="Y" <?= ($is_best_value == "Y") ? 'checked' : ''; ?>> 
+                                <label for="is_best_value">가성비추천</label>
+                            </p>
+
+                            <p>
+                                <input type="hidden" name="special_price" value="N">
+                                <input name="special_price" class="type_chker" id="special_price" type="checkbox"
+                                    value="Y" <?= ($special_price == "Y") ? 'checked' : ''; ?>> 
+                                <label for="special_price">특가여부</label>
+                            </p>
+
+                            <p>
+                                <input type="hidden" name="hot_deal_yn" value="N">
+                                <input name="hot_deal_yn" class="type_chker" id="hot_deal_yn" type="checkbox"
+                                    value="Y" <?= ($hot_deal_yn == "Y") ? 'checked' : ''; ?>> 
+                                <label for="hot_deal_yn">핫딜추천</label>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td class="label">검색어</td>
                         <td class="inbox">
                             <div class="r_box">
@@ -282,6 +308,7 @@
 
             </script>
 
+            <form name="frm" id="frm">
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
                 <div class="listTop flex_b_c">
@@ -298,10 +325,17 @@
                         <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
                                     src="/images/admin/common/filter.png" alt="">예약순
                         </button>
+						
+						<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+						</select>
+						
                     </div>
 
                 </div><!-- // listTop -->
-                <form name="frm" id="frm">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
@@ -313,6 +347,7 @@
                                 <col width="*"/>
                                 <col width="130px"/>
                                 <col width="80px"/>
+                                <col width="100px"/>
                                 <!-- <col width="80px"/> -->
                                 <col width="80px"/>
                                 <!-- <col width="80px"/> -->
@@ -328,6 +363,7 @@
                                 <th>타이틀</th>
                                 <th>상품담당자</th>
                                 <th>판매상태결정</th>
+                                <th>가격수정</th>
                                 <!-- <th>베스트</th> -->
                                 <!-- <th>특가여부</th>-->
                                 <th>순위</th>
@@ -398,6 +434,15 @@
                                             </option>
                                         </select>
                                     </td>
+                                    <td class="tac">
+                                        <div style="display: flex; align-items: center; justify-content: center">
+                                            <a href="write_golf_price?product_idx=<?= $row["product_idx"] ?>"
+                                               class=""
+                                               style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
+                                                <span class="txt">수정</span>
+                                            </a>
+                                        </div>
+                                    </td>
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
                                                value="<?= $row['onum'] ?>" style="width:66px;">
@@ -438,7 +483,7 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf') . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
 
 
                 <div id="headerContainer">
@@ -465,6 +510,12 @@
         </div><!-- // contents -->
     </div><!-- 인쇄 영역 끝 //-->
 </div><!-- // container -->
+
+<script>
+	function submitForm() {
+		document.getElementById("frm").submit();
+	}
+</script>
 
 <script>
     function check_best(idx) {

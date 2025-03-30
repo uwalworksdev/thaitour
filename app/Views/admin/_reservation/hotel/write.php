@@ -199,7 +199,14 @@
                                     <th>체크인/체크아웃</th>
                                     <td>
                                           <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) / <?= $order_day_cnt ?>일
-										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)
+										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<br>
+										  <?php
+										        $arr = explode("|", $date_price);
+												for($i=0;$i<count($arr);$i++)
+												{
+												    echo $arr[$i] ."<br>"; 
+												}		
+										  ?>
                                     </td>
                                     <th>객실수/총인원</th>
                                     <td>
@@ -240,6 +247,13 @@
                                                   style="width:90%;height:80px"><?php echo $custom_req ? $custom_req : $order_memo ?></textarea>
                                     </td>
                                 </tr>
+                                <tr style="height:100px">
+                                    <th>별도 요청(영문입력)</th>
+                                    <td colspan="3">
+                                        <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
+                                                  style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea>
+                                    </td>
+                                </tr>
 								<tr style="height:100px">
                                     <th>중요안내</th>
                                     <td colspan="3">
@@ -274,41 +288,21 @@
                                     <th>예약현황</th>
                                     <td>
                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                        <select name="order_status" class="select_txt">
+                                        <select name="order_status" id="order_status" class="select_txt">
                                             <option value="">결제현황</option>
-                                            <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약접수
-                                            </option>
-											 <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약가능
-                                            </option>
-                                            <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>예약불가능
-                                            </option>
-											 <option value="W" <?php if ($order_status == "W") {
-                                                echo "selected";
-                                            } ?>>결제대기
-                                            </option>
-                                            <option value="G" <?php if ($order_status == "G") {
-                                                echo "selected";
-                                            } ?>>결제완료
-                                            </option>
-                                            <option value="Y" <?php if ($order_status == "Y") {
-                                                echo "selected";
-                                            } ?>>예약확정
-                                            </option>
-                                            <option value="C" <?php if ($order_status == "C") {
-                                                echo "selected";
-                                            } ?>>예약취소
-                                            </option>
+											<?php
+												$_deli_type = get_deli_type();
+												foreach ($_deli_type as $key => $value) 
+												{
+											?>
+                                                  <option value="<?= $key ?>" <?php if ($key == $order_status) echo "selected"; ?> > <?= $value ?></option>
+											<?php
+												} 
+											?>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										&emsp;2025-02-08 00:00
-										
+										&emsp;<?=$order_r_date?>
                                     </td>
                                     <th>상품금액</th>
                                     <td>
@@ -510,7 +504,36 @@
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				}
 			});		
-	}	
+	}
+	
+	
+	function set_status(idx)
+	{
+		if (!confirm('예약현황을 변경 하시겠습니까?'))
+			return false;
+
+		var message = "";
+		$.ajax({
+			url: "/ajax/ajax_set_status",
+			type: "POST",
+			data: {
+				"order_idx"    : idx,
+				"order_status" : $("#order_status").val()
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				message = data.message;
+				alert(message);
+				location.reload();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+		
+	}		
 	</script>
 	
 	<script>

@@ -134,9 +134,20 @@ class SpaController extends BaseController
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
-            $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+            // $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            // $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
 
+            $adultQtyArray = array_map('intval', explode(',', $postData['adultQty'] ?? ''));
+            $childrenQtyArray = array_map('intval', explode(',', $postData['childrenQty'] ?? ''));
+
+            $adultPriceArray = array_map('intval', explode(',', $postData['adultPrice'] ?? ''));
+            $childrenPriceArray = array_map('intval', explode(',', $postData['childrenPrice'] ?? ''));
+
+            $adultPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $adultQtyArray, $adultPriceArray));
+
+            $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
+            $baht_thai        = $this->setting['baht_thai'];
+			
             $phone_1 = updateSQ($this->request->getPost('phone_1'));
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
             $phone_3 = updateSQ($this->request->getPost('phone_3'));
@@ -157,7 +168,7 @@ class SpaController extends BaseController
                 'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
                 'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
 				
-			    "order_passport_number"         => $postData['order_passport_number'],
+			    "order_passport_number"         => encryptField($postData['order_passport_number'], 'encode'),
 			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'],
 			    "order_birth_date"              => $postData['order_birth_date'],
 				
@@ -185,6 +196,8 @@ class SpaController extends BaseController
                 'order_no'                      => $this->orderModel->makeOrderNo(),
                 'order_status'                  => $orderStatus,
                 'ip'                            => $this->request->getIPAddress(),
+				"device_type"                   =>  get_device(),
+				"baht_thai"	                    => $baht_thai,
                 'time_line'                     => $time_line,
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
@@ -304,8 +317,18 @@ class SpaController extends BaseController
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
-            $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
-            $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+            // $adultPriceSum    = array_sum(array_map('intval', explode(',', $postData['adultPrice'] ?? '')));
+            // $childrenPriceSum = array_sum(array_map('intval', explode(',', $postData['childrenPrice'] ?? '')));
+
+            $adultQtyArray = array_map('intval', explode(',', $postData['adultQty'] ?? ''));
+            $childrenQtyArray = array_map('intval', explode(',', $postData['childrenQty'] ?? ''));
+
+            $adultPriceArray = array_map('intval', explode(',', $postData['adultPrice'] ?? ''));
+            $childrenPriceArray = array_map('intval', explode(',', $postData['childrenPrice'] ?? ''));
+
+            $adultPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $adultQtyArray, $adultPriceArray));
+
+            $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
 
             $phone_1 = updateSQ($this->request->getPost('phone_1'));
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
@@ -444,7 +467,7 @@ class SpaController extends BaseController
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 				
                                                            ,device_type                = '". $device_type ."'" ;					
-			        rite_log($sql);
+			        rite_log("handlePayment - ". $sql);
 					$result = $db->query($sql);
 			}
 

@@ -93,6 +93,7 @@
                                             <col style="width: 80px">
                                             <col style="width: auto">
                                             <col style="width: 160px">
+                                            <col style="width: 160px">
                                             <col style="width: 100px">
                                             <col style="width: 100px">
 
@@ -102,6 +103,7 @@
                                         <tr>
                                             <th></th>
                                             <th>상품명</th>
+                                            <th>판매상태결정</th>
                                             <th>상품코드</th>
                                             <th>우선순위</th>
                                             <th>삭제</th>
@@ -186,6 +188,26 @@
                             </script>
 
                             <script>
+                                function updateStatus(productId, status) {
+                                    $.ajax({
+                                        url: './updateStatus',
+                                        type: 'POST',
+                                        data: { product_idx: productId, product_status: status },
+                                        dataType: 'json',  
+                                        success: function(response) {
+                                            if (response.status === 'success') { 
+                                                alert('상태가 성공적으로 업데이트되었습니다!');
+                                                location.reload();
+                                            } else {
+                                                alert('업데이트 실패. 다시 시도해 주세요.');
+                                            }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert('오류가 발생했습니다. 다시 확인해 주세요!');
+                                            location.reload();
+                                        }
+                                    });
+                                }
                                 function positionUP(code, id, flag) {
 
                                     if (code == "") return false;

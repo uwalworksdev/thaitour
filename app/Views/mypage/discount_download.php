@@ -23,7 +23,7 @@
         margin-top: 4rem;
     }
     .paging ul.page {
-        transform: scale(2);
+        /* transform: scale(2); */
         transform-origin: unset;
         width: unset;
     }

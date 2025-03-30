@@ -179,14 +179,14 @@
                                         <table style="width:100%" id="chargeTable">
                                             <colgroup>
                                                 <col width="*">
-                                                <col width="20%">
-                                                <col width="20%">
+                                                <col width="15%">
+                                                <col width="15%">
                                                 <col width="15%">
                                             </colgroup>
                                             <tbody id="charge">
                                             <tr style="height:40px">
                                                 <td style="text-align:center">
-                                                    구분
+                                                    구분(국문/영문)
                                                 </td>
                                                 <td style="text-align:center">
                                                     대인가격(바트)
@@ -223,10 +223,8 @@
                                                                class="charge_idx" value="<?= $frow2["charge_idx"] ?>">
 
                                                         <div class="" style="display: flex; gap: 10px">
-                                                            <input type="text" name="s_station[]"
-                                                                   id="s_station_<?= $frow2["charge_idx"] ?>"
-                                                                   value="<?= $frow2["s_station"] ?>"
-                                                                   class="s_station input_txt" style="width:80%"/>
+                                                            <input type="text" name="s_station[]" id="s_station_<?= $frow2["charge_idx"] ?>" value="<?= $frow2["s_station"] ?>" class="s_station input_txt" style="width:80%"/>
+                                                            <input type="text" name="s_station_eng[]" id="s_station_eng_<?= $frow2["charge_idx"] ?>" value="<?= $frow2["s_station_eng"] ?>" class="s_station input_txt" style="width:80%"/>
                                                             <a href="#!"
                                                                 <?php if ($i !== 0) {
                                                                     echo 'onclick="return positionUP(' . $frow2["charge_idx"] . ',\'U\')"';

@@ -421,8 +421,18 @@
 
     .evaluate_write_section .evaluate_table .travel_box .travel_box_child {
         flex-wrap: wrap;
-        gap: 0.5769rem;
+        gap: 0.5769rem !important;
     }
+
+    .evaluate_write_section .evaluate_table .travel_box .travel_box_child input:nth-of-type(1),
+    .evaluate_write_section .evaluate_table .travel_box .travel_box_child input:nth-of-type(2) {
+        width: 49.5% !important;
+    }
+
+    .evaluate_write_section .evaluate_table .travel_box .travel_box_child input:last-of-type {
+        width: 100% !important;
+    }
+
 
     .evaluate_write_section .evaluate_table .m_input_box {
         display: block;
@@ -597,7 +607,7 @@
 
     .evaluate_write_section .evaluate_table .file_box .file_name input {
         background-color: rgb(243, 243, 243);
-        font-size: 0.9231rem;
+        font-size: 2.4rem;
         font-family: "Noto Sans KR";
         color: #454545;
         text-align: center;
@@ -660,11 +670,12 @@
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label,
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label {
         position: relative;
-        padding-left: 2.6923rem;
+        padding-left: 4.6923rem;
         cursor: pointer;
-        line-height: 20px;
+        line-height: 4rem;
         display: inline-block;
         color: #666;
+        font-size: 2.6rem;
     }
 
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:before,
@@ -672,9 +683,9 @@
         content: '';
         position: absolute;
         left: 0;
-        top: -0.2308rem;
-        width: 1.9231rem;
-        height: 1.9231rem;
+        top: 0;
+        width: 4rem;
+        height: 4rem;
         border: 2px solid #ddd;
         border-radius: 100%;
         background: #fff;
@@ -683,12 +694,12 @@
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:checked + label:after,
     .evaluate_write_section .evaluate_table .wrap_check .check_box input[type="checkbox"]:not(:checked) + label:after {
         content: '';
-        width: 1.0769rem;
-        height: 1.0769rem;
+        width: 2rem;
+        height: 2rem;
         background: #2e3e92;
         position: absolute;
-        top: 0.1923rem;
-        left: 0.4231rem;
+        top: 1rem;
+        left: 1rem;
         transform: translate(-50%, -50%);
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;

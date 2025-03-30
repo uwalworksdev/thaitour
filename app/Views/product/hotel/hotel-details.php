@@ -1,6 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
+
+<?php include_once APPPATH . 'Common/hotelPrice.php'; ?>
+
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
@@ -207,63 +209,6 @@
         object-fit: cover;
     }
 
-    @media screen and (max-width: 850px) {
-        .text_truncate_ {
-            margin-top: 2rem;
-        }
-
-        .sub_tour_section5_item {
-            width: calc((100% - 2rem) / 2);
-        }
-
-        .thailand_hotel_ .prd_keywords {
-            flex-wrap: nowrap;
-        }
-
-        .prd_keywords .prd_keywords_cus_span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            white-space: nowrap;
-        }
-
-        .prd_keywords .prd_keywords_cus_span:last-child {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            margin-left: 0.3846rem;
-        }
-
-        .form_gr_ {
-            width: unset;
-            gap: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: none;
-            border-radius: 6px;
-        }
-
-        .main_page_01 .main_visual_content_ label {
-            top: 1rem;
-        }
-
-        .main_page_01 .sub_tour_section7_product_list {
-            margin-bottom: 2rem;
-        }
-
-        .content-sub-hotel-detail .room-table td:nth-child(1) {
-            padding-bottom: 27rem;
-        }
-
-        .price_bath {
-            color: #888;
-            font-size: 3rem;
-            font-weight: 500;
-        }
-
-    }
-
     .hotel_popup_ {
         display: none;
         position: absolute;
@@ -457,7 +402,7 @@
         position: relative
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label::before {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]+label::before {
         content: "";
         position: absolute;
         width: 16px;
@@ -470,12 +415,12 @@
         border: 1px solid #dbdbdb;
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input:checked+label::before {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::before {
         border: 1px solid #0075ff;
 
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input:checked+label::after {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::after {
         content: "";
         position: absolute;
         width: 10px;
@@ -485,6 +430,30 @@
         left: 3px;
         transform: translateY(-50%);
         border-radius: 50%;
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]+label::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 1px solid #0075ff;
+        background-color: #fff;
+        border-radius: 3px;
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
+        content: "✔";
+        position: absolute;
+        left: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #0075ff;
+        font-weight: bold;
     }
 
     .wrap_sec3_title {
@@ -515,6 +484,136 @@
     .content-sub-hotel-detail .section1 .description-sec2 span {
         line-height: 30px
     }
+
+    @media screen and (max-width: 850px) {
+        .text_truncate_ {
+            margin-top: 2rem;
+        }
+
+        .sub_tour_section5_item {
+            width: calc((100% - 2rem) / 2);
+        }
+
+        .thailand_hotel_ .prd_keywords {
+            flex-wrap: nowrap;
+        }
+
+        .prd_keywords .prd_keywords_cus_span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .prd_keywords .prd_keywords_cus_span:last-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            margin-left: 0.3846rem;
+        }
+
+        .form_gr_ {
+            width: unset;
+            gap: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .main_page_01 .main_visual_content_ label {
+            top: 1rem;
+        }
+
+        .main_page_01 .sub_tour_section7_product_list {
+            margin-bottom: 2rem;
+        }
+
+        .content-sub-hotel-detail .room-table td:nth-child(1) {
+            padding-bottom: 27rem;
+        }
+
+        .price_bath {
+            color: #888;
+            font-size: 3rem;
+            font-weight: 500;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dbdbdb;
+            border-radius: 0.6rem;
+            padding: 0 1.8rem;
+            height: 7.5rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty span {
+            margin-right: 1.5rem;
+            font-weight: 600;
+            font-size: 2.4rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty .room_activity {
+            margin-right: 2rem;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty button {
+            background-color: #fff;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            line-height: 1.3;
+            text-align: center;
+            padding: 2.4rem;
+            width: 4rem;
+            height: 5rem;
+            margin-left: 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 0;
+            padding: 0;
+            color: #000;
+        }
+
+        .content-sub-hotel-detail ._wrap_qty input.room_qty {
+            width: 7.2rem;
+            height: 5rem;
+            border: 1px solid #dbdbdb;
+            border-radius: 0;
+            padding: 0;
+            font-size: 2.6rem;
+        }
+
+        .main_section_notice .swiper {
+            height: 100%;
+        } 
+
+        .content-sub-hotel-detail ._wrap_qty input.day_qty {
+            width: 6rem;
+            height: 4rem;
+            font-size: 2.6rem;
+        }
+		
+		.wrap_check {
+           overflow: visible;
+        }
+		
+		input[type="checkbox"] {
+			display: inline-block !important;
+			visibility: visible !important;
+		}
+
+        /* .swiper {
+             height: 40rem;
+         } */
+ 
+         .mySwiper .swiper-slide {
+             width: 9.4rem;
+         }
+
+    }
+
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
@@ -636,147 +735,11 @@
                 </button>
             </div>
         </div>
-		
-        <div class="section1">
-            <h2 class="title-sec2">
-                호텔소개
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['product_notes']) ?>
-            </div>
-        </div>
-
-        <div class="section1">
-            <h2 class="title-sec2">
-                객실 안내
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['room_guides']) ?>
-            </div>
-        </div>
-
-        <!-- <div class="section1">
-            <h2 class="title-sec2">
-                중요 사항
-            </h2>
-            <div class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['important_notes']) ?>
-            </div>
-        </div> -->
-			
-        <?php if ($hotel['product_video'] != ""): ?>
-            <div class="section2">
-                <h2 class="title-sec2">
-                    동영상
-                </h2>
-                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
-                    id="productVideo">
-
-                </div>
-            </div>
-            <script>
-                function generateIframe(youtubeLink) {
-                    let videoId = youtubeLink.split("v=")[1];
-                    let iframe = `<iframe width="100%" height="100%"
-                                src="https://www.youtube.com/embed/${videoId}"
-                                title="<?= $hotel['product_name'] ?>"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                        </iframe>`;
-
-                    $('#productVideo').empty().append(iframe);
-                }
-
-                generateIframe('<?= $hotel['product_video'] ?>');
-            </script>
-        <?php endif; ?>
-
-        <?php if ($hotel['latitude'] != "" && $hotel['longitude'] != ""): ?>
-            <div class="section4">
-                <h2 class="title-sec4">
-                    위치안내
-                </h2>
-
-                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
-
-                </div>
-            </div>
-            <script>
-                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
-                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
-
-                function initMap() {
-                    const location = {
-                        lat: latitude,
-                        lng: longitude
-                    };
-                    const map = new google.maps.Map(document.getElementById("section4_map"), {
-                        zoom: 16,
-                        center: location,
-                    });
-
-                    new google.maps.Marker({
-                        position: location,
-                        map: map,
-                    });
-                }
-
-                window.onload = initMap;
-            </script>
-        <?php endif; ?>
-
-        <div class="section2" id="section2">
-            <h2 class="title-sec2">
-                숙소개요
-            </h2>
-            <h3 class="sub-title-sec2">
-                추천 포인트
-            </h3>
-            <p class="description-sec2" style="letter-spacing: 1px">
-                <?= viewSQ($hotel['product_info']) ?>
-            </p>
-            <div class="tag-list-icon mt-20">
-                <?php foreach ($fresult4 as $row) : ?>
-                    <div class="item-tag">
-                        <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
-                        <span><?= $row['code_name'] ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <h2 class="sub-title-sec2">
-                인기 시설 및 서비스
-            </h2>
-            <div class="tag_list_done">
-                <?php foreach ($bresult4 as $row) : ?>
-                    <div class="item_done">
-                        <img src="/uploads/icons/done_icon.png" alt="done_icon">
-                        <span><?= $row['code_name'] ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <h2 class="sub-title-sec2">
-                호텔주변 추천명소
-            </h2>
-            <div class="post-list-sec2">
-                <?php foreach ($places as $row) : ?>
-                    <div class="">
-                        <a class="" href="<?= $row['url'] ?>" target="_blank">
-                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
-                        </a>
-                        <a class="" href="<?= $row['url'] ?>" target="_blank">
-                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
-                        </a>
-                        <p>(<?= $row['distance'] ?>)</p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
 
         <section class="sub_top_visual" id="sub_top_visual">
             <div class="main_visual_content_">
                 <div class="form_search">
-                    <div class="form_element_">
+                    <div class="form_element_" style="margin-top: 0">
                         <!--div class="form_input_">
                                         <label for="input_keyword_">여행지</label>
                                         <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
@@ -892,6 +855,9 @@
 								$("#room_main").html(message);
 								$("input[type=radio]").prop("disabled", false);
 								$("#searchOk").val('Y');
+								$("#extra_won").val('0');
+								$("#extra_bath").val('0');
+								$("#total_last_price").val('0');
 							},
 							error: function (request, status, error) {
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -899,14 +865,23 @@
 						});						
 			    });
 				
-                $(document).on('click', 'input[name="bed_type_"]', function() {					
+                $(document).on('click', 'input[name="bed_type_"]', function() {		
 					let selectedValue = $('input[name="bed_type_"]:checked').val();
+                    let id = $(this).data('id');
+
+					$(".reservation").prop('disabled', true);
+      			    $('input[name="extra_"]').prop('checked', false);
+					$("#reserv_"+selectedValue).prop('disabled', false);
+					$(".extra").hide();
+					$("#chk_"+id).show();
+
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
-					var total_last_price = price * room_qty;
+					var extra_won     = parseInt($("#extra_won").val());
+					var total_last_price = (price + extra_won) * room_qty;
 
 					var data_won      = $(this).data('won'); 
 					var data_bath     = $(this).data('bath'); 
@@ -919,7 +894,7 @@
 					var adult         = $(this).data('adult');
 					var kids          = $(this).data('kids');
 					
-					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx+'-'+room_name);
+					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx);
 					
 					$("#bed_type").val(bed_type);
 					$("#price").val(data_bath);
@@ -936,7 +911,39 @@
 					$("#total_last_price").val(total_last_price);
 					//$(".reservation").prop('disabled', true);
 					//$("#reserv_"+selectedValue).prop('disabled', false);
-				});				
+				});	
+				
+				$(document).on('click', 'input[name="extra_"]', function() {					
+					let selectedValue = $('input[name="extra_"]:checked').val() || "";  // 체크된 값이 없으면 빈 문자열
+					let id            = $(this).data('id');
+					let price_won     = $("#bed_type_"+id).data('won');
+					let price_bath    = $("#bed_type_"+id).data('bath');
+					//$(".reservation").prop('disabled', true); // 모든 예약 버튼 비활성화
+
+					//if (selectedValue !== "") { // 선택된 값이 있을 때만 활성화
+					//	let reservBtn = $("#reserv_" + selectedValue);
+					//	if (reservBtn.length) { // 해당 요소가 존재하는지 확인
+					//		reservBtn.prop('disabled', false);
+					//	}
+					//}
+                    var total_last_price = price_won;
+					
+                    if(selectedValue) {
+						var extra_won  = $(this).data('won')  || 0;  // 값이 없을 경우 기본값 0
+						var extra_bath = $(this).data('bath') || 0;
+						var extra_name = $(this).data('name') || "";
+					} else {	
+						var extra_won  = 0;
+						var extra_bath = 0;
+						var extra_name = "";
+                    }
+					
+					$("#extra_won").val(extra_won);
+					$("#extra_bath").val(extra_bath);
+					total_last_price = parseInt( (total_last_price*1) + (extra_won*1) );
+					$("#total_last_price").val(total_last_price);
+				});
+			
 				
 			});
 		</script>
@@ -1274,7 +1281,8 @@
                             </div>
                         </div>
                         <div class="grid2_2_1_m only_mo">
-                            <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
+                            <!-- <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1"> -->
+                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1">
                         </div>
 
                         <div class="wrap_btn_detail">
@@ -1421,11 +1429,24 @@
                                 </td>
 								
 								<?php
-								       $basic_won  =  (int)($room['goods_price1'] * $room['baht_thai']);
+									   $result    = mainPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
+								
+								       $price     = explode("|", $result); 
+									   //echo $result;
+								       $room['goods_price1'] = $price[0];
+								       $room['goods_price2'] = $price[1];
+								       $room['goods_price3'] = $price[2];
+									   $room['goods_price4'] = $price[3];
+									   $room['goods_price5'] = $price[4];
+									   
+								       $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
 								       $basic_bath =  $room['goods_price1'];
 									   
 								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
 								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
+									   
+								       $extra_won  =  (int)($room['goods_price5']* $room['baht_thai']);
+								       $extra_bath =  $room['goods_price5'];
 									   
 								?>
                                 <td>
@@ -1469,14 +1490,17 @@
                                                     <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
                                                 </div>
                                                 <?php } ?>
+												
                                             </div>
                                         <?php
                                             }
                                         ?>
                                         <div class="wrap_btn_book">
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" class="reservation book-button book_btn_217">
-                                                예약하기
-                                            </button>
+										    <?php if($price_won > 0) { ?>
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
+											<?php } else { ?>
+                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button book_btn_217">문의하기</button>
+											<?php } ?>
                                             <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                         </div>
                                     </div>
@@ -1494,32 +1518,60 @@
                                                 <?php
                                                     }
                                                 ?>
+												
                                             </div>
                                         </div>
-										
+																						   
                                         <div class="wrap_input_radio">
 											<?php
-                                                  $bed_type  = explode(",", $room['bed_type']);											
-                                                  $bed_price = explode(",", $room['bed_price']);											
 											
+												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
+												  
+												  $result    = roomPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
+												  
+											      //echo "room - ". $result ."<br>";
+											      $arr       = explode("|", $result);
+                                                  $bed_type  = explode(",", $arr[0]);											
+                                                  $bed_price = explode(",", $arr[1]);											
+                                                  $extra_bed = explode(",", $arr[2]);											
 											?>
 											
 											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-											<?php $real_won   = (int)($price_won  + ((int)$bed_price[$i]*(int)$room['baht_thai'])); ?>
-									        <?php $real_bath  = (int)$price_bath + (int)$bed_price[$i];?>
+												<?php $real_won   = (int)($bed_price[$i]*$room['baht_thai']); ?>
+												<?php $real_bath  = $bed_price[$i];?>
 
-                                            <div class="wrap_input">
-                                                <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-												 data-name="<?=$room['room_name']?>" data-won="<?=$real_won?>" data-bath="<?=$real_bath?>" data-type="<?=$bed_type[$i]?>" value="<?=$room['rooms_idx']?>" >
-                                                <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
-                                                    <?php if($room['secret_price'] == "Y"){?>
-                                                        <span>비밀특가</span>
-                                                    <?php }else{ ?>
-                                                        <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
-                                                    <?php } ?>
-                                                </label>
-                                            </div>
+												<?php $extra_won   = (int)($extra_bed[$i]*$room['baht_thai']); ?>
+												<?php $extra_bath  = $extra_bed[$i];?>
+
+												<div class="wrap_input" style="margin-bottom: 10px;">
+													<input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+														   data-name="<?=$room['room_name']?>" 
+														   data-won="<?=$real_won?>" 
+														   data-bath="<?=$real_bath?>" 
+														   data-type="<?=$bed_type[$i]?>" 
+														   value="<?=$room['rooms_idx']?>" >
+													<label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
+														<?php if($room['secret_price'] == "Y"){?>
+															<span>비밀특가</span>
+														<?php }else{ ?>
+															<span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
+														<?php } ?>
+													</label>
+												</div>
+												<?php if($extra_bed) { ?>
+												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">
+													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+													       data-name="Extra베드" 
+														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+														   data-won="<?=$extra_won?>" 
+														   data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
+													<label for="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
+												</div>
+												<?php } ?>
 											<?php } ?>
+
+												
 												
                                             <!--div class="wrap_input">
                                                 <input type="radio" name="bed_type" id="bed_type_2">
@@ -1601,6 +1653,143 @@
 			<?php endforeach; ?>
         </div>
         </div>
+		
+        <div class="section1">
+            <h2 class="title-sec2">
+                호텔소개
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['product_notes']) ?>
+            </div>
+        </div>
+
+        <div class="section1">
+            <h2 class="title-sec2">
+                객실 안내
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['room_guides']) ?>
+            </div>
+        </div>
+
+        <!-- <div class="section1">
+            <h2 class="title-sec2">
+                중요 사항
+            </h2>
+            <div class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['important_notes']) ?>
+            </div>
+        </div> -->
+			
+        <?php if ($hotel['product_video'] != ""): ?>
+            <div class="section2">
+                <h2 class="title-sec2">
+                    동영상
+                </h2>
+                <div class="content-container-sec5" style="margin: 20px 0; width: 100%; height: 500px"
+                    id="productVideo">
+
+                </div>
+            </div>
+            <script>
+                function generateIframe(youtubeLink) {
+                    let videoId = youtubeLink.split("v=")[1];
+                    let iframe = `<iframe width="100%" height="100%"
+                                src="https://www.youtube.com/embed/${videoId}"
+                                title="<?= $hotel['product_name'] ?>"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>`;
+
+                    $('#productVideo').empty().append(iframe);
+                }
+
+                generateIframe('<?= $hotel['product_video'] ?>');
+            </script>
+        <?php endif; ?>
+
+        <?php if ($hotel['latitude'] != "" && $hotel['longitude'] != ""): ?>
+            <div class="section4">
+                <h2 class="title-sec4">
+                    위치안내
+                </h2>
+
+                <div class="section4_map" id="section4_map" style="width: 100%; height: 500px;">
+
+                </div>
+            </div>
+            <script>
+                const latitude = Number(`<?= $product_stay['latitude'] ?>`);
+                const longitude = Number(`<?= $product_stay['longitude'] ?>`);
+
+                function initMap() {
+                    const location = {
+                        lat: latitude,
+                        lng: longitude
+                    };
+                    const map = new google.maps.Map(document.getElementById("section4_map"), {
+                        zoom: 16,
+                        center: location,
+                    });
+
+                    new google.maps.Marker({
+                        position: location,
+                        map: map,
+                    });
+                }
+
+                window.onload = initMap;
+            </script>
+        <?php endif; ?>
+
+        <div class="section2" id="section2">
+            <h2 class="title-sec2">
+                숙소개요
+            </h2>
+            <h3 class="sub-title-sec2">
+                추천 포인트
+            </h3>
+            <p class="description-sec2" style="letter-spacing: 1px">
+                <?= viewSQ($hotel['product_info']) ?>
+            </p>
+            <div class="tag-list-icon mt-20">
+                <?php foreach ($fresult4 as $row) : ?>
+                    <div class="item-tag">
+                        <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
+                        <span><?= $row['code_name'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <h2 class="sub-title-sec2">
+                인기 시설 및 서비스
+            </h2>
+            <div class="tag_list_done">
+                <?php foreach ($bresult4 as $row) : ?>
+                    <div class="item_done">
+                        <img src="/uploads/icons/done_icon.png" alt="done_icon">
+                        <span><?= $row['code_name'] ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <h2 class="sub-title-sec2">
+                호텔주변 추천명소
+            </h2>
+            <div class="post-list-sec2">
+                <?php foreach ($places as $row) : ?>
+                    <div class="">
+                        <a class="" href="<?= $row['url'] ?>" target="_blank">
+                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
+                        </a>
+                        <a class="" href="<?= $row['url'] ?>" target="_blank">
+                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                        </a>
+                        <p>(<?= $row['distance'] ?>)</p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
             <div class="list-tag-sec4">
@@ -1778,6 +1967,8 @@
 		<input type="hidden" name="bed_type" id="bed_type" value="">
 		<input type="hidden" name="price" id="price" value="">
 		<input type="hidden" name="price_won" id="price_won" value="">
+		<input type="hidden" name="extra_won" id="extra_won" value="">
+		<input type="hidden" name="extra_bath" id="extra_bath" value="">
 		<input type="hidden" name="room"      id="room" value="">
 		<input type="hidden" name="room_type" id="room_type" value="">
 		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
@@ -1876,7 +2067,10 @@
 		$('input[name="bed_type_"]').on('click', function() {
 			let selectedValue = $('input[name="bed_type_"]:checked').val();
 			$(".reservation").prop('disabled', true);
+			$('input[name="extra_"]').prop('checked', false);
 			$("#reserv_"+selectedValue).prop('disabled', false);
+			$(this).closest(".wrap_input").css("margin-bottom", "0px");
+			$(this).closest(".wrap_input").css("margin-top", "10px");
 			
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
@@ -1890,6 +2084,20 @@
 			$("#rooms_idx").val(rooms_idx);
 			$("#room_name").val(room_name);
 		 	
+		});
+
+		$('input[name="extra_"]').on('click', function() {
+			let selectedValue = $('input[name="extra_"]:checked').val();
+			//$(".reservation").prop('disabled', true);
+			//$("#reserv_"+selectedValue).prop('disabled', false);
+			
+			var extra_won  = $(this).data('won');
+			var extra_bath = $(this).data('bath');
+			var extra_name = $(this).data('name');
+
+			$("#extra_won").val(extra_won);
+			$("#extra_bath").val(extra_bath);
+			
 		});
 		</script>
 
@@ -2362,7 +2570,11 @@
             <?php
             }
             ?>
-
+            
+			if($(this).data('yes') == "N") {
+                return false;
+            }
+				
             let date_check_in  = $("#input_day_start_").val();
             let date_check_out = $("#input_day_end_").val();
 
@@ -2409,6 +2621,9 @@
 			let adult           = $("#adult").val();
 			let kids            = $("#kids").val();
 
+			let extra_won       = $("#extra_won").val();
+			let extra_bath      = $("#extra_bath").val();
+
             let room_op_price_sale = 0;
 
             if ($(this).closest(".room_op_").find(".room_price_day_sale").length > 0) {
@@ -2443,7 +2658,8 @@
 				adult             : adult,	
 				kids              : kids,	
 				total_last_price  : total_last_price,	
-					
+				extra_won         : extra_won,
+			    extra_bath        : extra_bath,
                 ho_idx            : ho_idx,
                 optype            : optype,
                 use_coupon_idx    : use_coupon_idx,

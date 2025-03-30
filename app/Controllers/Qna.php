@@ -103,13 +103,13 @@ class Qna extends BaseController
         $private_key = private_key();
         $member_Id = session('member.idx');
 
-        if (!$member_Id) {
-            echo "<script>
-                        alert('로그인 필요합니다.');
-                        location.href = '/member/login';
-                    </script>";
-            die();
-        }
+        // if (!$member_Id) {
+        //     echo "<script>
+        //                 alert('로그인 필요합니다.');
+        //                 location.href = '/member/login';
+        //             </script>";
+        //     die();
+        // }
 
         $sql_m = "SELECT     birthday
                     , AES_DECRYPT(UNHEX(user_name),   '$private_key') AS user_name

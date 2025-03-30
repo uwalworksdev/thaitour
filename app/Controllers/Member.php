@@ -220,37 +220,37 @@ class Member extends BaseController
             die("Error: The field 'SMS'.");
         }
 
-        $user_id = updateSQ($this->request->getPost("user_id"));
-        $user_pw = updateSQ($this->request->getPost("user_pw"));
-        $user_name = updateSQ($this->request->getPost("user_name"));
-        $user_email = updateSQ($this->request->getPost("user_email"));
-        $user_mobile = updateSQ($this->request->getPost("user_mobile"));
-        $gubun = updateSQ($this->request->getPost("gubun"));
-        $sns_key = updateSQ($this->request->getPost("sns_key"));
+        $user_id       = updateSQ($this->request->getPost("user_id"));
+        $user_pw       = updateSQ($this->request->getPost("user_pw"));
+        $user_name     = updateSQ($this->request->getPost("user_name"));
+        $user_email    = updateSQ($this->request->getPost("user_email"));
+        $user_mobile   = updateSQ($this->request->getPost("user_mobile"));
+        $gubun         = updateSQ($this->request->getPost("gubun"));
+        $sns_key       = updateSQ($this->request->getPost("sns_key"));
 
-        $mbti = updateSQ($this->request->getPost("mbti"));
+        $mbti          = updateSQ($this->request->getPost("mbti"));
 
-        $sms_yn = updateSQ($this->request->getPost("sms_yn"));
+        $sms_yn        = updateSQ($this->request->getPost("sms_yn"));
         $user_email_yn = updateSQ($this->request->getPost("user_email_yn"));
-        $birthday = updateSQ($this->request->getPost("birth_day"));
+        $birthday      = updateSQ($this->request->getPost("birth_day"));
 
-        $zip = updateSQ($this->request->getPost("zip"));
-        $addr1 = updateSQ($this->request->getPost("addr1"));
-        $addr2 = updateSQ($this->request->getPost("addr2"));
-        $visit_route = updateSQ($this->request->getPost("visit_route"));
-        $recommender = updateSQ($this->request->getPost("recommender"));
+        $zip           = updateSQ($this->request->getPost("zip"));
+        $addr1         = updateSQ($this->request->getPost("addr1"));
+        $addr2         = updateSQ($this->request->getPost("addr2"));
+        $visit_route   = updateSQ($this->request->getPost("visit_route"));
+        $recommender   = updateSQ($this->request->getPost("recommender"));
 
         if ($gubun == "") {
             $fields = [
-                'user_id' => $user_id,
-                'user_pw' => $user_pw,
-                'user_name' => $user_name,
-                'user_email' => $user_email,
+                'user_id'     => $user_id,
+                'user_pw'     => $user_pw,
+                'user_name'   => $user_name,
+                'user_email'  => $user_email,
                 'user_mobile' => $user_mobile,
-                'birth_day' => $birthday,
-                'mbti' => $mbti,
+                'birth_day'   => $birthday,
+                'mbti'        => $mbti,
             ];
-            for ($idx = 0; $idx < count($fields); $idx++) {
+            for ($idx  = 0; $idx < count($fields); $idx++) {
                 $field = array_keys($fields)[$idx];
                 $value = array_values($fields)[$idx];
                 if (empty($value)) {
@@ -262,11 +262,11 @@ class Member extends BaseController
         $cnt = $this->member->getMemberCount("where user_id = '" . $user_id . "'");
         if ($cnt > 0) {
             $member = $this->member->getMembers("where user_id = '" . $user_id . "'", $private_key, 0, 1)[0];
-            $data['id'] = $user_id;
-            $data['shop'] = $user_id;
-            $data['idx'] = $member['m_idx'];
-            $data["mIdx"] = $member['m_idx'];
-            $data['name'] = $member['user_name'];
+            $data['id']    = $user_id;
+            $data['shop']  = $user_id;
+            $data['idx']   = $member['m_idx'];
+            $data["mIdx"]  = $member['m_idx'];
+            $data['name']  = $member['user_name'];
             $data['email'] = $member['user_email'];
             $data['level'] = 10;
             $data['gubun'] = $member['gubun'];
@@ -274,44 +274,44 @@ class Member extends BaseController
             return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
 
-        if ($gubun == "kakao")
+        if ($gubun  == "kakao")
             $user_id = "kakao_" . $sns_key;
-        if ($gubun == "google")
+        if ($gubun  == "google")
             $user_id = "google_" . $sns_key;
-        if ($gubun == "naver")
+        if ($gubun  == "naver")
             $user_id = "naver_" . $sns_key;
 
         if ($gubun != "") {
             $this->member->insertMember([
-                'user_id' => $user_id,
-                'user_name' => $user_name,
-                'user_email' => $user_email,
-                'user_mobile' => $user_mobile,
-                'gubun' => $gubun,
-                'sns_key' => $sns_key,
+					'user_id'     => $user_id,
+					'user_name'   => $user_name,
+					'user_email'  => $user_email,
+					'user_mobile' => $user_mobile,
+					'gubun'       => $gubun,
+					'sns_key'     => $sns_key,
             ]);
         } else {
             $this->member->insertMember([
-                'user_id' => $user_id,
-                'user_pw' => $user_pw,
-                'user_name' => $user_name,
-                'birthday' => $birthday,
-                'user_email' => $user_email,
-                'user_email_yn' => $user_email_yn,
-                'user_mobile' => $user_mobile,
-                'sms_yn' => $sms_yn,
-                'gubun' => "",
-                'sns_key' => "",
-                'zip' => $zip,
-                'addr1' => $addr1,
-                'addr2' => $addr2,
-                'visit_route' => $visit_route ?? "",
-                'recommender' => $recommender ?? "",
-                'mbti' => $mbti,
+					'user_id'       => $user_id,
+					'user_pw'       => $user_pw,
+					'user_name'     => $user_name,
+					'birthday'      => $birthday,
+					'user_email'    => $user_email,
+					'user_email_yn' => $user_email_yn,
+					'user_mobile'   => $user_mobile,
+					'sms_yn'        => $sms_yn,
+					'gubun'         => "",
+					'sns_key'       => "",
+					'zip'           => $zip,
+					'addr1'         => $addr1,
+					'addr2'         => $addr2,
+					'visit_route'   => $visit_route ?? "",
+					'recommender'   => $recommender ?? "",
+					'mbti'          => $mbti,
             ]);
         }
 
-        write_log("회원가입 : " . $user_id);
+        //write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
 
         //point
@@ -322,11 +322,11 @@ class Member extends BaseController
         ]);
 
         $this->orderMileage->insert([
-            "mi_title" => $message,
-            "order_mileage" => $point,
-            "m_idx" => $m_idx,
-            "order_gubun" => $message,
-            "mi_r_date" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+            "mi_title"          => $message,
+            "order_mileage"     => $point,
+            "m_idx"             => $m_idx,
+            "order_gubun"       => $message,
+            "mi_r_date"         => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
             "remaining_mileage" => $point
         ]);
 
@@ -354,14 +354,14 @@ class Member extends BaseController
                     $last_idx = createLastIdx();
         
                     $this->coupon->insertData([
-                        "coupon_num" => $_couponNum,
-                        "coupon_mst_idx" => $coupon_m['idx'],
-                        "types" => "N",
-                        "user_id" => $user_id,
-                        "status" => "N",
-                        "last_idx" => $last_idx,
-                        "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-                        "enddate" => date("Y-m-d", strtotime($coupon_m["exp_end_day"]))
+							"coupon_num"     => $_couponNum,
+							"coupon_mst_idx" => $coupon_m['idx'],
+							"types"          => "N",
+							"user_id"        => $user_id,
+							"status"         => "N",
+							"last_idx"       => $last_idx,
+							"regdate"        => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+							"enddate"        => date("Y-m-d", strtotime($coupon_m["exp_end_day"]))
                     ]);
                 }
             }
@@ -370,14 +370,14 @@ class Member extends BaseController
         $code = "A01";
         $user_mail = $user_email;
         $_tmp_fir_array = [
-            'name' => $user_name,
-            'point_value' => $point,
+            'name'         => $user_name,
+            'point_value'  => $point,
             'coupon_value' => $coupon_value
         ];
         autoEmail($code, $user_mail, $_tmp_fir_array);
 
         if ($user_mobile) {
-            $code = "S04";
+            $code     = "S04";
             $to_phone = $user_mobile;
             $_tmp_fir_array = [
                 'MEMBER_NAME' => $user_name
@@ -393,7 +393,7 @@ class Member extends BaseController
         }
 
 
-        write_log("회원로그인 : " . $user_id);
+        //write_log("회원로그인 : " . $user_id);
 
         $data = [];
 
@@ -554,7 +554,7 @@ class Member extends BaseController
                 'phone1' => $phone1,
                 'phone2' => $phone2,
                 'phone3' => $phone3,
-                'total' => $total,
+                // 'total' => $total,
                 'visit_route' => $member['visit_route'],
                 'recommender' => $member['recommender'],
             ]);
@@ -596,7 +596,7 @@ class Member extends BaseController
                 'user_pw' => password_hash($data['user_pw'], PASSWORD_BCRYPT)
             ];
             $this->member->update($m_idx, $passwordSql);
-            write_log("password update: " . json_encode($passwordSql));
+            //write_log("password update: " . json_encode($passwordSql));
         }
 
         $updateData = [
@@ -622,7 +622,7 @@ class Member extends BaseController
         ];
 
         $this->member->update($m_idx, $updateData, false);
-        write_log("Update member: " . json_encode($updateData));
+        //write_log("Update member: " . json_encode($updateData));
 
         return $this->response->setBody("<script>
                 function success() {
@@ -1136,11 +1136,125 @@ class Member extends BaseController
 
     public function memberCoupon()
     {
-        return view('admin/_member/member_coupon');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+        $m_idx = $this->request->getGet('m_idx');
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $member = $this->member->find($m_idx);
+
+        $private_key = private_key();
+
+        if ($member['encode'] == 'Y') {
+            $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
+            $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
+            $member['user_phone'] = $this->decrypt($member['user_phone'], $private_key);
+            $member['user_mobile'] = $this->decrypt($member['user_mobile'], $private_key);
+            $member['zip'] = $this->decrypt($member['zip'], $private_key);
+            $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
+            $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+        }
+        $coupon = $this->coupon->getUseCouponMemberPop($m_idx,$s_date, $e_date, $pg, 100);
+
+        $data = [
+                "c_nTotalCount" => $c_nTotalCount,
+                "member" => $member,
+                "coupon_list" => $coupon["coupon_list"],
+                "nTotalCount" => $coupon["nTotalCount"],
+                "pg" => $pg,
+                "nPage" => $coupon["nPage"],
+                "g_list_rows" => $coupon["g_list_rows"],
+                "num" => $coupon["num"],
+                "s_date" => $s_date,
+                "e_date" => $e_date,
+                "m_idx"  => $m_idx
+            ];
+        return view('admin/_member/member_coupon', $data);
+    }
+
+    public function deleteCoupon()
+    {
+        $c_idx = $this->request->getVar('c_idx');
+    
+        if (!$c_idx) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '잘못된 데이터입니다.']); 
+        }
+    
+        $couponData = $this->coupon->where('c_idx', $c_idx)->first();
+        if (!$couponData) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '마일리지 기록을 찾을 수 없습니다.']);
+        }    
+        $this->coupon->where('c_idx', $c_idx)->delete();
+    
+    
+        return $this->response->setJSON(['status' => 'success', 'message' => '삭제가 완료되었습니다.']); 
     }
 
     public function memberReserve()
     {
-        return view('admin/_member/member_reserve');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+        $m_idx = $this->request->getGet('m_idx');
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $member = $this->member->find($m_idx);
+
+        $private_key = private_key();
+
+        if ($member['encode'] == 'Y') {
+            $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
+            $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
+            $member['user_phone'] = $this->decrypt($member['user_phone'], $private_key);
+            $member['user_mobile'] = $this->decrypt($member['user_mobile'], $private_key);
+            $member['zip'] = $this->decrypt($member['zip'], $private_key);
+            $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
+            $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+        }
+        $point = $this->orderMileage->getPointMem($m_idx,$s_date, $e_date, $pg, 100);
+
+        $data = [
+                "c_nTotalCount" => $c_nTotalCount,
+                "members" => $member,
+                "point_list" => $point["point_list"],
+                "nTotalCount" => $point["nTotalCount"],
+                "pg" => $pg,
+                "nPage" => $point["nPage"],
+                "g_list_rows" => $point["g_list_rows"],
+                "num" => $point["num"],
+                "s_date" => $s_date,
+                "e_date" => $e_date,
+                "m_idx"  => $m_idx
+            ];
+        return view('admin/_member/member_reserve', $data);
     }
+
+    public function deleteReserve()
+    {
+        $mi_idx = $this->request->getVar('mi_idx');
+        $m_idx = $this->request->getVar('m_idx');
+    
+        if (!$mi_idx || !$m_idx) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '잘못된 데이터입니다.']); 
+        }
+    
+        $mileageData = $this->orderMileage->where('mi_idx', $mi_idx)->first();
+        if (!$mileageData) {
+            return $this->response->setJSON(['status' => 'error', 'message' => '마일리지 기록을 찾을 수 없습니다.']);
+        }
+    
+        $order_mileage = $mileageData['order_mileage'];
+    
+        $this->orderMileage->where('mi_idx', $mi_idx)->delete();
+    
+        $memberData = $this->member->find($m_idx);
+        if ($memberData) {
+            $updatedMileage = max(0, $memberData['mileage'] - $order_mileage);
+            $this->member->update($m_idx, ['mileage' => $updatedMileage]);
+        }
+    
+        return $this->response->setJSON(['status' => 'success', 'message' => '삭제가 완료되었습니다.']); 
+    }
+    
 }

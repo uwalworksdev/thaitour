@@ -84,45 +84,53 @@
 <div class="body_container tour-main-page">
     <section class="sub_top_visual">
         <div class="body_inner">
-            <div class="sub_tour">
-                <div class="sub_tour_left">
-                    <div class="sub_tour_left__top">
-                        <svg width="110" height="37" viewBox="0 0 110 37" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M96 28H28C0.774 27.973 0 37 0 37V14C0 6.268 6.268 0 14 0H96C103.732 0 110 6.268 110 14C110 21.732 103.732 28 96 28Z"
-                                fill="#4B4B4B" />
-                        </svg>
-                        <h4 class="sub_tour_left__top__text">주목! 이 상품</h4>
-                    </div>
-                    <div class="sub_tour_left__ttl">
-                        끄라비 엘리펀트 <br> 생추어리 체험 + 호텔투어 <br> 7박 8일
-                    </div>
-                    <div class="sub_tour__left__more">
-                        자세히 보기 >
-                    </div>
-                    <div class="sub_tour__left__bottom">
-                        <div class="sub_tour__slide__scroll"></div>
-                        <div class="sub_tour__slide__paging">
-                            <img class="sub_tour__slide__paging__prev" src="/images/ico/ico_prev_slide_1.svg"
-                                alt="">
-                            <span class="sub_tour__slide__paging__divider"></span>
-                            <img class="sub_tour__slide__paging__next" src="/images/ico/ico_next_slide_1.svg"
-                                alt="">
-                        </div>
+            <div style="position: relative">
+                <div class="sub_tour__left__bottom">
+                    <div class="sub_tour__slide__scroll"></div>
+                    <div class="sub_tour__slide__paging">
+                        <img class="sub_tour__slide__paging__prev" src="/images/ico/ico_prev_slide_1.svg"
+                            alt="">
+                        <span class="sub_tour__slide__paging__divider"></span>
+                        <img class="sub_tour__slide__paging__next" src="/images/ico/ico_next_slide_1.svg"
+                            alt="">
                     </div>
                 </div>
-                <div class="sub_tour_right">
-                    <div class="swiper sub_swiper1">
-                        <div class="swiper-wrapper">
-                            <?php foreach ($bannerTop as $banner) : ?>
-                                <div class="swiper-slide">
-                                    <div class="img_box img_box_9">
-                                        <img src="/data/cate_banner/<?= $banner['ufile1'] ?>" alt="main">
+                <div class="swiper sub_swiper1">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($bannerTop as $banner) : ?>
+                            <div class="swiper-slide">
+                                <div class="sub_tour">
+                                    <div class="sub_tour_left">
+                                        <div class="sub_tour_left__top">
+                                            <svg width="110" height="37" viewBox="0 0 110 37" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M96 28H28C0.774 27.973 0 37 0 37V14C0 6.268 6.268 0 14 0H96C103.732 0 110 6.268 110 14C110 21.732 103.732 28 96 28Z"
+                                                    fill="#4B4B4B" />
+                                            </svg>
+                                            <h4 class="sub_tour_left__top__text">주목! 이 상품</h4>
+                                        </div>
+                                        <div class="sub_tour_left__ttl">
+                                                <?= $banner['title'] ?>
+                                        </div>
+                                        <a href="<?= $banner['url'] ?>" class="sub_tour__left__more">
+                                            자세히 보기 >
+                                        </a>
+                                    </div>
+                                    <div class="sub_tour_right">
+                                        <div class="swiper sub_swiper1">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <div class="img_box img_box_9">
+                                                        <img src="/data/cate_banner/<?= $banner['ufile1'] ?>" alt="main">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -723,20 +731,66 @@
 </script>
 <script>
     $(document).ready(function() {
-        const swiper1 = new Swiper(".sub_swiper1", {
-            loop: true,
-            slidesPerView: 1,
-            spaceBetween: 20,
-            autoplay: true,
-            navigation: {
-                nextEl: ".sub_tour__slide__paging__next",
-                prevEl: ".sub_tour__slide__paging__prev",
-            },
-            scrollbar: {
-                el: '.sub_tour__slide__scroll',
-                draggable: true,
-            },
-        });
+
+        let swiper1; 
+
+        function initSwiper() {
+            swiper1 = new Swiper(".sub_swiper1", {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".sub_tour__slide__paging__next",
+                    prevEl: ".sub_tour__slide__paging__prev",
+                },
+                scrollbar: {
+                    el: ".sub_tour__slide__scroll",
+                    draggable: true,
+                },
+                on: {
+                    init: function () {
+                        updateScrollbarWidth();
+                    },
+                    slideChange: function () {
+                        updateScrollbarWidth();
+                    }
+                }
+            });
+        }
+
+        function updateScrollbarWidth() {
+            if (!swiper1 || !swiper1.realIndex) return;
+            
+            let realSlides = document.querySelectorAll(".sub_top_visual .sub_swiper1 .swiper-wrapper > .swiper-slide").length;
+            let scrollbar = document.querySelector(".sub_top_visual .sub_tour__slide__scroll .swiper-scrollbar-drag"); 
+
+            if (scrollbar) {
+                let activeIndex = swiper1.realIndex; 
+                let percentage = ((activeIndex + 1) / realSlides) * 100; 
+                scrollbar.style.width = `${percentage}%`; 
+            }
+        }
+
+        initSwiper();
+
+        window.addEventListener("resize", updateScrollbarWidth);
+
+
+
+
+        // $(window).resize(function() {
+        //     if (swiper1.navigation && swiper1.navigation.update) {
+        //         swiper1.navigation.update();
+        //     }
+        //     if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
+        //         swiper1.scrollbar.updateSize();
+        //     }
+        //     updateScrollbarWidth();
+        // });
         const swiper12 = new Swiper(".sub_swiper2", {
             loop: false,
             slidesPerView: 3,
@@ -801,14 +855,14 @@
         }
 
         initSwiper13();
-        $(window).resize(function() {
-            if (swiper1.navigation && swiper1.navigation.update) {
-                swiper1.navigation.update();
-            }
-            if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
-                swiper1.scrollbar.updateSize();
-            }
-        });
+        // $(window).resize(function() {
+        //     if (swiper1.navigation && swiper1.navigation.update) {
+        //         swiper1.navigation.update();
+        //     }
+        //     if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
+        //         swiper1.scrollbar.updateSize();
+        //     }
+        // });
         $('.tour__head__tabs1__tab').click(function(event) {
             event.preventDefault();
 

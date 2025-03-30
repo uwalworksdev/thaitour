@@ -46,7 +46,7 @@ class InvoiceController extends BaseController
 			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
 		");		
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
-        write_log("last query- ". $db->getLastQuery());
+        //write_log("last query- ". $db->getLastQuery());
 
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
        
@@ -76,7 +76,7 @@ class InvoiceController extends BaseController
 					AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
 				");
 				$query = $builder->where('order_idx', $idx)->get();
-				write_log("last query- " . $db->getLastQuery());
+				//write_log("last query- " . $db->getLastQuery());
 				$orderResult = $query->getResult(); // 주문 데이터 (객체 배열)
 
 				// 옵션 정보 가져오기
@@ -123,7 +123,7 @@ class InvoiceController extends BaseController
 					AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
 				");
 				$query = $builder->where('order_idx', $idx)->get();
-				write_log("last query- " . $db->getLastQuery());
+				//write_log("last query- " . $db->getLastQuery());
 				$orderResult = $query->getResult(); // 주문 데이터 (객체 배열)
 
 				// 옵션 정보 가져오기

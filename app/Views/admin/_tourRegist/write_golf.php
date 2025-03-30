@@ -123,9 +123,9 @@
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
-                                                class="txt">완전삭제</span></a></li>
+                                                class="txt">완전삭제</span></a></li-->
                             <?php } else { ?>
 
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -149,10 +149,10 @@
                 <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
-                <input type=hidden name="afternoon_y" id="afternoon_y" value="">
+                <!-- <input type=hidden name="afternoon_y" id="afternoon_y" value="">
                 <input type=hidden name="afternoon_n" id="afternoon_n" value="">
                 <input type=hidden name="night_y" id="night_y" value="">
-                <input type=hidden name="night_n" id="night_n" value="">
+                <input type=hidden name="night_n" id="night_n" value=""> -->
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate"
                        value='<?= isset($tours_cate) ? $tours_cate : "" ?>'>
@@ -279,7 +279,7 @@
                                     <th>상품명(영문)</th>
                                     <td>
                                         <input type="text" id="product_name_en" name="product_name_en"
-                                               value=""
+                                               value="<?= $product_name_en ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
@@ -327,15 +327,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>총홀수</th>
+                                    <!--th>총홀수</th>
                                     <td>
                                         <input id="holes_number" name="holes_number" class="input_txt" type="text"
                                                value="<?= $golf_info['holes_number'] ?>" style="width:100%" readonly/>
-                                    </td>
+                                    </td-->
                                     <th>휴무일</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="holidays" name="holidays" class="input_txt" type="text"
-                                               value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
+                                               value="<?= $golf_info['holidays'] ?>" style="width:50%"/>
                                     </td>
                                 </tr>
 
@@ -368,12 +368,15 @@
                                 </tr>
 
                                 <tr>
-                                    <!--th>최소출발인원(성인)</th>
+                                    <th>최소/최대 라운딩인원</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
-                                    </td-->
+                                               value="<?= $minium_people_cnt ?>" style="width:20%"/>명&nbsp;&nbsp;&nbsp;
+                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $total_people_cnt ?>" style="width:20%"/>명
+                                    </td>
                                     <th>갤러리피</th>
                                     <td>
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
@@ -661,18 +664,20 @@
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
-													<?php if(${"ufile" . $i}) { ?>		                                                   
-                                                        <a class="img_txt imgpop" href="<?= $img ?>"
-                                                            id="text_ufile<?= $i ?>">미리보기</a>
-                                                    <?php } ?>   
-
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                               onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                                onclick="productImagePreviewRemove(this)"></button>
+                                                        <?php if(${"ufile" . $i}) { ?>		                                                   
+                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>   
+    
+                                                    </div>
                                                 </div>
                                             <?php
                                             endfor;
@@ -686,6 +691,7 @@
                                     <th>
                                         서브이미지(600X400)
                                         <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
@@ -716,7 +722,8 @@
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                     <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>"
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple
                                                             onchange="productImagePreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                     <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
@@ -749,19 +756,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>상품정보</th>
+                                    <th>골프장 정보</th>
                                     <td colspan="3">
 
 								    <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                               style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors14 = [];
+                                            var oEditors1 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors14,
+                                                oAppRef: oEditors1,
                                                 elPlaceHolder: "tour_info",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
@@ -785,20 +792,227 @@
                                 </tr>
 
                                 <tr>
-                                    <th>유의사항</th>
+                                    <th>코스정보</th>
                                     <td colspan="3">
 
-								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
-                                              style="width:100%; height:400px; display:none;"><?= viewSQ($note_news) ?></textarea>
+								    <textarea name="tour_detail" id="tour_detail" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($tour_detail) ?></textarea>
                                         <script type="text/javascript">
-                                            var oEditors15 = [];
+                                            var oEditors2 = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                             nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors15,
+                                                oAppRef: oEditors2,
+                                                elPlaceHolder: "tour_detail",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                </tr>
+                              
+                                <tr>
+                                    <th>시설정보</th>
+                                    <td>
+
+								    <textarea name="information" id="information" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($information) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors3 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors3,
+                                                elPlaceHolder: "information",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>티오프 시간</th>
+                                    <td>
+
+								    <textarea name="meeting_guide" id="meeting_guide" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($meeting_guide) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors4 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors4,
+                                                elPlaceHolder: "meeting_guide",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr>    
+								
+                              
+                                <tr>
+                                    <th>안내사항</th>
+                                    <td>
+
+								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($code_services) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors5 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors5,
+                                                elPlaceHolder: "code_services",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>골프텔 정보</th>
+                                    <td>
+
+								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($product_more) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors6 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors6,
+                                                elPlaceHolder: "product_more",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr>  								
+                                <tr>
+                                    <th>유의사항</th>
+                                    <td>
+
+								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($note_news) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors7 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors7,
                                                 elPlaceHolder: "note_news",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>더투어랩 이용방법</th>
+                                    <td>
+
+								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($departure_area) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors8 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors8,
+                                                elPlaceHolder: "departure_area",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -821,7 +1035,7 @@
                                 </tr>
                               
                               
-                                        <?php
+                               <?php
                                 $deadline_date = explode(",", $golf_info["deadline_date"]);
                                 $deadline_date = array_filter($deadline_date);
 
@@ -831,7 +1045,7 @@
                                             <input type="text" name="deadline_date[]" data-start_date="<?= $date_array[0] ?>" data-end_date="<?= $date_array[1] ?>" class="deadline_date" value="<?= $deadline_date ?>" style="width: 200px;" readonly >
                                         <?php }
                                 ?>
-                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
+                                        <!--button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+.........</button-->
                                         <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                 <!--/td>
                             </tr-->
@@ -902,6 +1116,7 @@
                                     border: 1px solid rgba(255, 0, 0, 0.8);
                                 }
                             </style>
+							<!--
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -957,7 +1172,7 @@
                                                         </div>
                                                     <?php } ?>
                                                 <?php } ?>
-                                            </div> -->
+                                            </div> 
                                             <?php foreach ($filter['children'] as $item) { ?>
                                                 <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
                                                         value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
@@ -969,11 +1184,11 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>
+                            </table-->
                         </div>
                     </div>
 
-                    <div class="listBottom">
+                    <!-- <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                style="margin-top:10px;">
                             <caption>
@@ -993,7 +1208,6 @@
                                             <option value="<?= $hole ?>"><?= $hole ?>홀</option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
                                 </td>
                             </tr>
                             <th>
@@ -1090,7 +1304,6 @@
                                                                value='<?= $frow3['goods_price7'] ?>'>
                                                     </td>
                                                     <td rowspan="2">
-                                                        <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
                                                         <button type="button"
                                                                 onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                         </button>
@@ -1221,7 +1434,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
+                    </div> -->
             </form>
 
             <!-- // listBottom -->
@@ -1238,8 +1451,8 @@
                         <?php } else { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                            <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                            <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                         <?php } ?>
                     </li>
                 </ul>
@@ -1582,15 +1795,17 @@
                 let i = Date.now();
 
                 let html = `
-                    <div class="file_input">
-                        <input type="hidden" name="i_idx[]" value="">
-                        <input type="file" name='ufile[]' id="ufile${i}"
-                                onchange="productImagePreview(this, '${i}')">
-                        <label for="ufile${i}"></label>
-                        <input type="hidden" name="checkImg_${i}" class="checkImg">
-                        <button type="button" class="remove_btn"
-                                onclick="productImagePreviewRemove(this)"></button>
-
+                    <div class="file_input_wrap">
+                        <div class="file_input">
+                            <input type="hidden" name="i_idx[]" value="">
+                            <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                            <input type="file" name='ufile[]' id="ufile${i}" multiple
+                                    onchange="productImagePreview(this, '${i}')">
+                            <label for="ufile${i}"></label>
+                            <input type="hidden" name="checkImg_${i}" class="checkImg">
+                            <button type="button" class="remove_btn"
+                                    onclick="productImagePreviewRemove(this)"></button>
+                        </div>
                     </div>
                 `;
 
@@ -1598,69 +1813,214 @@
 
             }
 
-            function productImagePreview(inputFile, onum) {
-                if (!sizeAndExtCheck(inputFile)) {
-                    $(inputFile).val("");
+            function delete_all_image() {
+                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                     return false;
                 }
 
-                let imageTag = $('label[for="ufile' + onum + '"]');
+                let arr_img = [];
 
-                if (inputFile.files.length > 0) {
-                    let imageReader = new FileReader();
+                $(".img_add_group .file_input").each(function() {
+                    let id = $(this).find("input[name='i_idx[]']").val();
+                    if(id){
+                        arr_img.push({
+                            i_idx: id,
+                        });
+                    }
+                });
 
-                    imageReader.onload = function () {
-                        imageTag.css("background-image", "url(" + imageReader.result + ")");
-                        $(inputFile).closest('.file_input').addClass('applied');
-                        $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-                    };
-                    
-                    imageReader.readAsDataURL(inputFile.files[0]);
+                if(arr_img.length > 0){
+                    $.ajax({
+                        url: "/AdmMaster/_hotel/del_all_image",
+                        type: "POST",
+                        data: JSON.stringify({ arr_img: arr_img }),
+                        contentType: "application/json",
+                        success: function(response) {
+                            alert(response.message);
+                            if(response.result == true){
+                                $(".img_add_group").html("");
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("error:", error);
+                        }
+                    });
+                }else{
+                    $(".img_add_group").html("");
                 }
             }
+
+            // function productImagePreview(inputFile, onum) {
+            //     if (!sizeAndExtCheck(inputFile)) {
+            //         $(inputFile).val("");
+            //         return false;
+            //     }
+
+            //     let imageTag = $('label[for="ufile' + onum + '"]');
+
+            //     if (inputFile.files.length > 0) {
+            //         let imageReader = new FileReader();
+
+            //         imageReader.onload = function () {
+            //             imageTag.css("background-image", "url(" + imageReader.result + ")");
+            //             $(inputFile).closest('.file_input').addClass('applied');
+            //             $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+            //         };
+                    
+            //         imageReader.readAsDataURL(inputFile.files[0]);
+            //     }
+            // }
+
+            function productImagePreview(inputFile, onum) {
+                if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
+                    
+                    $(inputFile).closest('.file_input').addClass('applied');
+                    $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+                    let lastElement = $(inputFile).closest('.file_input_wrap');
+                    let files = Array.from(inputFile.files);
+
+                    let imageReader = new FileReader();
+                    imageReader.onload = function () {
+                        $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+                    };
+                    imageReader.readAsDataURL(files[0]);
+
+                    if (files.length > 1) {
+                        files.slice(1).forEach((file, index) => {
+                            let newReader = new FileReader();
+                            let i = Date.now();
+
+                            newReader.onload = function () {
+                                let imagePreview = `
+                                    <div class="file_input_wrap">
+                                        <div class="file_input applied">
+                                            <input type="hidden" name="i_idx[]" value="">
+                                            <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                            <input type="file" id="ufile${i}_${index}" 
+                                                onchange="productImagePreview(this, '${i}_${index}')" disabled>
+                                            <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                            <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                            <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                        </div>
+                                    </div>`;
+
+                                lastElement.after(imagePreview);
+                                lastElement = lastElement.next();
+                            };
+
+                            newReader.readAsDataURL(file);
+                        });
+                    }
+                }else{
+                    alert('40개 이미지로 제한이 있습니다.');
+                }
+            }
+
 
             /**
              * 상품 이미지 삭제
              * @param {element} button
              */
-            function productImagePreviewRemove(element) {
-                let parent = $(element).closest('.file_input');
-                let inputFile = parent.find('input[type="file"]');
-                let labelImg = parent.find('label');
-                let i_idx = parent.find('input[name="i_idx[]"]').val();
+            // function productImagePreviewRemove(element) {
+            //     let parent = $(element).closest('.file_input');
+            //     let inputFile = parent.find('input[type="file"]');
+            //     let labelImg = parent.find('label');
+            //     let i_idx = parent.find('input[name="i_idx[]"]').val();
                 
-                if(parent.find('input[name="i_idx[]"]').length > 0){
-                    if(i_idx){
+            //     if(parent.find('input[name="i_idx[]"]').length > 0){
+            //         if(i_idx){
 
-                        if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+            //             if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+            //                 return false;
+            //             }
+
+            //             $.ajax({
+                
+            //                 url: "/AdmMaster/_hotel/del_image",
+            //                 type: "POST",
+            //                 data: {
+            //                     "i_idx"   : i_idx,
+            //                 },
+            //                 success: function (data, textStatus) {
+            //                     message = data.message;
+            //                     alert(message);
+            //                     if(data.result){
+            //                         parent.closest('.file_input_wrap').remove();
+            //                     }
+            //                 },
+            //                 error: function (request, status, error) {
+            //                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            //                 }
+            //             });
+            //         }else{
+            //             parent.remove();
+            //         }
+            //     }else{
+            //         inputFile.val("");
+            //         labelImg.css("background-image", "");
+            //         parent.removeClass('applied');
+            //         parent.find('.checkImg').val('N');
+            //         parent.find('.imgpop').attr("href", "");
+            //         parent.find('.imgpop').remove();
+            //     }
+            // }
+
+            function productImagePreviewRemove(element) {
+                let parent = $(element).closest('.file_input_wrap');
+                if(parent.find('input[name="ufile[]"]').length > 0){
+                    let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                                    || parent.prevAll().find('input[type="file"][multiple]')[0];
+                    let labelImg = parent.find('label');
+                    let i_idx = parent.find('input[name="i_idx[]"]').val();
+            
+                    let dt = new DataTransfer();
+                    let fileArray = Array.from(inputFile.files);
+                    let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+                    
+                    fileArray.forEach((file) => {
+                        let reader = new FileReader();
+                        reader.onload = function (e) {
+                            if (e.target.result !== imageUrl) {      
+                                dt.items.add(file);
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    });
+            
+                    setTimeout(() => {
+                        inputFile.files = dt.files;
+                        if(parent.find('input[type="file"][multiple]')[0]){
+                            parent.css("display", "none");
+                        }else{
+                            parent.remove();
+                        }
+                    }, 100);
+            
+                    if (i_idx) {
+                        if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                             return false;
                         }
-
+            
                         $.ajax({
-                
                             url: "/AdmMaster/_hotel/del_image",
                             type: "POST",
-                            data: {
-                                "i_idx"   : i_idx,
-                            },
-                            success: function (data, textStatus) {
-                                message = data.message;
-                                alert(message);
-                                if(data.result){
-                                    parent.closest('.file_input_wrap').remove();
+                            data: { "i_idx": i_idx },
+                            success: function (data) {
+                                alert(data.message);
+                                if (data.result) {
+                                    parent.css("display", "none");
                                 }
                             },
                             error: function (request, status, error) {
-                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                             }
                         });
-                    }else{
-                        parent.remove();
                     }
-                }else{
-                    inputFile.val("");
-                    labelImg.css("background-image", "");
-                    parent.removeClass('applied');
+                }else{            
+                    parent.find('input[type="file"]').val("");
+                    parent.find('label').css("background-image", "");
+                    parent.find('.file_input').removeClass('applied');
                     parent.find('.checkImg').val('N');
                     parent.find('.imgpop').attr("href", "");
                     parent.find('.imgpop').remove();
@@ -1979,8 +2339,14 @@
 
             function send_it() {
                 var frm = document.frm;
-                oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors15.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors1.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors2.getById["tour_detail"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors3.getById["information"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors4.getById["meeting_guide"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors5.getById["code_services"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors6.getById["product_more"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors7.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors8.getById["departure_area"].exec("UPDATE_CONTENTS_FIELD", []);
 
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {
@@ -2087,25 +2453,25 @@
                     return false;
                 }
 
-                var checkedValues = $('.afternoon_yn:checked').map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#afternoon_y").val(checkedValues);
+                // var checkedValues = $('.afternoon_yn:checked').map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#afternoon_y").val(checkedValues);
 
-                let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#afternoon_n").val(uncheckedValues);
+                // let uncheckedValues = $(".afternoon_yn:not(:checked)").map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#afternoon_n").val(uncheckedValues);
 
-                var checkedValues = $('.night_yn:checked').map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#night_y").val(checkedValues);
+                // var checkedValues = $('.night_yn:checked').map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#night_y").val(checkedValues);
 
-                uncheckedValues = $(".night_yn:not(:checked)").map(function () {
-                    return $(this).data('idx');
-                }).get();
-                $("#night_n").val(uncheckedValues);
+                // uncheckedValues = $(".night_yn:not(:checked)").map(function () {
+                //     return $(this).data('idx');
+                // }).get();
+                // $("#night_n").val(uncheckedValues);
 
                 var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
@@ -2125,6 +2491,10 @@
                 $("#tours_cate").val(tours_cate);
 
                 // formSubmitted = true;
+
+                $(".img_add_group .file_input").each(function (index) { 
+                    $(this).find(".onum_img").val(index + 1);        
+                });
 
                 $("#ajax_loader").removeClass("display-none");
 

@@ -8,7 +8,7 @@ class OptionTourModel extends Model
 
     protected $primaryKey = 'idx';
 
-    protected $allowedFields = ['code_idx' , 'product_idx', 'option_name', 'option_price', 'option_cnt', 'use_yn', 'afile', 'bfile', 'option_type', 'onum', 'rdate'];
+    protected $allowedFields = ['code_idx' , 'product_idx', 'option_name', 'option_name_eng', 'option_price', 'option_cnt', 'use_yn', 'afile', 'bfile', 'option_type', 'onum', 'rdate'];
 
     public function findOptionIdx($idx)
     {

@@ -43,8 +43,8 @@ class Comment extends BaseController
     
     public function addComment()
     {
-        $r_idx = updateSQ($this->request->getPost('r_idx'));
-        $r_code = $this->request->getPost('r_code');
+        $r_idx = updateSQ($this->request->getPost('r_idx') ?? '0');
+        $r_code = $this->request->getPost('r_code' ?? '0');
         $r_content = updateSQ($this->request->getPost('comment'));
         $user_id = session('member.id');
         $r_m_idx = session('member.idx');

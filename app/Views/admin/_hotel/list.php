@@ -33,6 +33,7 @@
                 <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                 <input type="hidden" name="product_idx" id="product_idx" value="">
+                <input type="hidden" name="special_price" id="special_price" value="<?= $special_price ?>">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>
@@ -130,6 +131,28 @@
                     </tr>
 
                     <tr>
+                        <td class="label">핫한 특가</td>
+                        <td class="inbox">
+                            <p>
+                                <input type="radio" name="special_price" id="special_price_all" value=""
+                                    <?= empty($special_price) ? 'checked' : '' ?>> 
+                                <label for="special_price_all">전체</label>
+                            </p>
+                            <p>
+                                <input type="radio" name="special_price" id="special_price_y" value="Y"
+                                    <?= ($special_price === "Y") ? 'checked' : '' ?>> 
+                                <label for="special_price_y">사용</label>
+                            </p>
+                            <p>
+                                <input type="radio" name="special_price" id="special_price_n" value="N"
+                                    <?= ($special_price === "N") ? 'checked' : '' ?>> 
+                                <label for="special_price_n">사용안함</label>
+                            </p>
+                        </td>
+
+                    </tr>
+
+                    <tr>
                         <td class="label">검색어</td>
                         <td class="inbox">
                             <div class="r_box">
@@ -169,120 +192,6 @@
                 </table>
             </form>
 
-            <script>
-                function search_it() {
-                    var frm = document.search;
-                    if (frm.search_txt.value == "검색어 입력") {
-                        frm.search_txt.value = "";
-                    }
-                    frm.submit();
-                }
-
-                $(function () {
-                    $.datepicker.regional['ko'] = {
-                        showButtonPanel: true,
-                        beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        },
-                        closeText: '닫기',
-                        prevText: '이전',
-                        nextText: '다음',
-                        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                        monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                        weekHeader: 'Wk',
-                        dateFormat: 'yy-mm-dd',
-                        firstDay: 0,
-                        isRTL: false,
-                        showMonthAfterYear: true,
-                        changeMonth: true,
-                        changeYear: true,
-                        showMonthAfterYear: true,
-                        closeText: '닫기',  // 닫기 버튼 패널
-                        yearSuffix: ''
-                    };
-                    $.datepicker.setDefaults($.datepicker.regional['ko']);
-
-                    $(".date_form").datepicker({
-                        showButtonPanel: true
-                        , beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        }
-                        , dateFormat: 'yy-mm-dd'
-                        , showOn: "both"
-                        , yearRange: "c-100:c+10"
-                        , buttonImage: "/images/admin/common/date.png"
-                        , buttonImageOnly: true
-                        , closeText: '닫기'
-                        , prevText: '이전'
-                        , nextText: '다음'
-
-                    });
-                });
-                $(".contact_btn_box .contact_btn").click(function () {
-                    resetClass();
-                    $(this).addClass("active");
-
-
-                    var date1 = $(this).attr("rel");
-                    var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-                    $("#s_date").val(date1);
-                    $("#e_date").val(date2);
-
-                });
-
-                function resetClass() {
-                    $(".contact_btn_box .contact_btn").each(function () {
-                        $(this).removeClass("active");
-                    });
-                }
-            </script>
-
-            <script>
-                function change_it() {
-                    let f = document.frm;
-
-                    let url = '<?= route_to("admin._hotel.change") ?>'
-                    let prod_data = $(f).serialize();
-                    $.ajax({
-                        type: "POST",
-                        data: prod_data,
-                        url: url,
-                        cache: false,
-                        async: false,
-                        success: function (data, textStatus) {
-                            let message = data.message;
-                            alert(message);
-                            window.location.reload();
-                        },
-                        error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                        }
-                    });
-                }
-
-            </script>
 
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
@@ -290,6 +199,17 @@
                     <div class="left">
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
+			        <form name="frm" id="frm">
+		               <!--input type="hidden" name="product_code_1"  value="<?=$product_code_1?>" >
+                       <input type="hidden" name="product_code_2"  value="<?=$product_code_2?>" >
+                       <input type="hidden" name="product_code_3"  value="<?=$product_code_3?>" >
+                       <input type="hidden" name="special_price"   value="<?=$special_price?>" >
+                       <input type="hidden" name="s_status"        value="<?=$s_status?>" >
+                       <input type="hidden" name="search_category" value="<?=$search_category?>" >
+	                   <input type="hidden" name="product_name"    value="<?=$product_name?>" >
+		               <input type="hidden" name="g_list_rows"     value="<?=$g_list_rows?>" >
+                       <input type="hidden" name="search_name"     value="<?=$search_name?>" >
+                       <input type="hidden" name="pg"              value="<?=$pg?>" -->				
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
                                     src="/images/admin/common/filter.png" alt="">순위순
@@ -300,10 +220,17 @@
                         <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
                                     src="/images/admin/common/filter.png" alt="">예약순
                         </button>
-                    </div>
+
+						<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+						</select>
+					</div>
+                    </form>
 
                 </div><!-- // listTop -->
-                <form name="frm" id="frm">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
@@ -460,9 +387,8 @@
                             </tbody>
                         </table>
                     </div><!-- // listBottom -->
-                </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list    ') . "?pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list') . "?product_code_1=$product_code_1&product_code_2=$product_code_2&product_code_3=$product_code_3&special_price=$special_price&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
 
                 <div id="headerContainer">
 
@@ -492,8 +418,140 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div><!-- // container -->
 
-<script>
 
+	<script>
+		function search_it() {
+			var frm = document.search;
+			if (frm.search_txt.value == "검색어 입력") {
+				frm.search_txt.value = "";
+			}
+			frm.submit();
+		}
+
+		$(function () {
+			$.datepicker.regional['ko'] = {
+				showButtonPanel: true,
+				beforeShow: function (input) {
+					setTimeout(function () {
+						var buttonPane = $(input)
+							.datepicker("widget")
+							.find(".ui-datepicker-buttonpane");
+						var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+						btn.unbind("click").bind("click", function () {
+							$.datepicker._clearDate(input);
+						});
+						btn.appendTo(buttonPane);
+					}, 1);
+				},
+				closeText: '닫기',
+				prevText: '이전',
+				nextText: '다음',
+				monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+				dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+				dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				weekHeader: 'Wk',
+				dateFormat: 'yy-mm-dd',
+				firstDay: 0,
+				isRTL: false,
+				showMonthAfterYear: true,
+				changeMonth: true,
+				changeYear: true,
+				showMonthAfterYear: true,
+				closeText: '닫기',  // 닫기 버튼 패널
+				yearSuffix: ''
+			};
+			$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+			$(".date_form").datepicker({
+				showButtonPanel: true
+				, beforeShow: function (input) {
+					setTimeout(function () {
+						var buttonPane = $(input)
+							.datepicker("widget")
+							.find(".ui-datepicker-buttonpane");
+						var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+						btn.unbind("click").bind("click", function () {
+							$.datepicker._clearDate(input);
+						});
+						btn.appendTo(buttonPane);
+					}, 1);
+				}
+				, dateFormat: 'yy-mm-dd'
+				, showOn: "both"
+				, yearRange: "c-100:c+10"
+				, buttonImage: "/images/admin/common/date.png"
+				, buttonImageOnly: true
+				, closeText: '닫기'
+				, prevText: '이전'
+				, nextText: '다음'
+
+			});
+		});
+		$(".contact_btn_box .contact_btn").click(function () {
+			resetClass();
+			$(this).addClass("active");
+
+
+			var date1 = $(this).attr("rel");
+			var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+			$("#s_date").val(date1);
+			$("#e_date").val(date2);
+
+		});
+
+		function resetClass() {
+			$(".contact_btn_box .contact_btn").each(function () {
+				$(this).removeClass("active");
+			});
+		}
+	</script>
+
+	<script>
+		function change_it() {
+			let f = document.frm;
+
+			let url = '<?= route_to("admin._hotel.change") ?>'
+			let prod_data = $(f).serialize();
+			$.ajax({
+				type: "POST",
+				data: prod_data,
+				url: url,
+				cache: false,
+				async: false,
+				success: function (data, textStatus) {
+					let message = data.message;
+					alert(message);
+					window.location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+		}
+
+	</script>
+			
+<script>
+	function submitForm() {
+		//document.getElementById("frm").submit();
+		var product_code_1  = '<?=$product_code_1?>';
+        var product_code_2  = '<?=$product_code_2?>';
+        var product_code_3  = '<?=$product_code_3?>';
+        var special_price   = '<?=$special_price?>';
+        var s_status        = '<?=$s_status?>';
+        var search_category = '<?=$search_category?>';
+	    var product_name    = '<?=$product_name?>';
+		var g_list_rows     =  $("#g_list_rows").val();
+        var search_name     = '<?=$search_name?>';
+        var pg              = '<?=$pg?>';
+		location.href='/AdmMaster/_hotel/list?product_code_1='+product_code_1+'&product_code_2='+product_code_2+'&product_code_3='+product_code_3+'&special_price='+special_price+'&s_status='+s_status+'&search_category='+search_category+'&product_name='+product_name+'&g_list_rows='+g_list_rows+'&search_name='+search_name+'&pg='+pg;
+	}
+</script>
+
+<script>
     function check_best(idx) {
         if ($("#product_best_best_" + idx).is(":checked")) {
             $("#product_best_" + idx).val('Y');

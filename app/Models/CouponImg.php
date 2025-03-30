@@ -11,7 +11,7 @@ class CouponImg extends Model
     protected $primaryKey = 'i_idx';
 
     protected $allowedFields = [
-        "c_idx", "ufile", "rfile", "m_date", "r_date"
+        "c_idx", "ufile", "rfile", "onum", "m_date", "r_date"
     ];
 
     protected function initialize()
@@ -22,6 +22,7 @@ class CouponImg extends Model
     {
 		return $this->where('c_idx', $c_idx)
                     ->where('ufile !=', '') // ufile이 공란이 아닌 경우
+                    ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")
                     ->findAll();
     }

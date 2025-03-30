@@ -187,10 +187,10 @@ $page = $_GET['pg'];
                         <tr>
                             <td class="no"><span><?= $num ?></span></td>
                             <td class="num">
-                                <p style="text-wrap: nowrap">
+                                <span style="text-wrap: nowrap">
                                     <?= $frow['travel_type'] == '1324' ? $frow['travel_type_name2'] : $frow['travel_type_name'] ?>
                                     (<?= $frow['number_stars'] ?> <img style="object-fit: cover" src="/img/ico/star_yellow_full.png" alt="">)
-                                </p>
+                                </span>
                             </td>
                             <td class="des">
                                 <a href="/review/review_detail?idx=<?= $frow['idx'] ?>">

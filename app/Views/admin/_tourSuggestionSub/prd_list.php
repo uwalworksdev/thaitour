@@ -9,6 +9,22 @@ foreach ($result3 as $row) {
             <?= $row['product_name'] ?>
         </td>
         <td style="text-align:center;">
+            <select name="product_status" id="product_status_<?= $row["product_idx"] ?>"  onchange="updateStatus('<?= $row['product_idx'] ?>', this.value)">
+                <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
+                    echo "selected";
+                } ?>>판매중
+                </option>
+                <option value="plan" <?php if (isset($row["product_status"]) && $row["product_status"] === "plan") {
+                    echo "selected";
+                } ?>>예약중지
+                </option>
+                <option value="stop" <?php if (isset($row["product_status"]) && $row["product_status"] === "stop") {
+                    echo "selected";
+                } ?>>판매중지
+                </option>
+            </select>
+        </td>
+        <td style="text-align:center;">
             <?= $row['product_code'] ?>
         </td>
         <td style="text-align:center;">

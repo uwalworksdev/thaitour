@@ -96,11 +96,15 @@ function getPolicy($p_idx)
 function get_deli_type()
 {
     $_deli_type['W'] = "예약접수";
+    $_deli_type['X'] = "예약확인";
     $_deli_type['Y'] = "결제완료";
+    $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
     $_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "입금대기";
     $_deli_type['C'] = "예약취소";
+    $_deli_type['N'] = "예약불가";
+    $_deli_type['E'] = "이용완료";
     return $_deli_type;
 }
 
@@ -942,8 +946,8 @@ function get_rand_num($size)
 function img_link($code)
 {
 	if($code == "1303") $link = "product";
-	if($code == "1325") $link = "hotel";
-	if($code == "1317") $link = "hotel";
+	if($code == "1325") $link = "product";
+	if($code == "1317") $link = "product";
 	if($code == "1320") $link = "hotel";
 	if($code == "1301") $link = "product";
 	if($code == "1302") $link = "product";
@@ -1070,30 +1074,17 @@ function product_price($idx)
 	     $setting   = homeSetInfo();
          $baht_thai = (float)($setting['baht_thai'] ?? 0);
 		 $connect   = db_connect();
+         $today     = date('Y-m-d');
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
          $com_price = 999999;
-		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $tomorrow ."' ";
-		 //write_log("tbl_room_price seq - ". $sql);
+		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $today ."' AND  goods_price2 > 0 ";
+		 write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
 		 foreach ($result as $row) {
 			      
-				  //write_log("tbl_room_price- ". $idx ." : ". $row['goods_price2'] ." - ". $row['goods_price3']);
-    		      $price   = $row['goods_price2'] + $row['goods_price3'];
-				  $sql1    = "SELECT * FROM tbl_hotel_rooms WHERE goods_code = '". $idx ."' AND g_idx = '". $row['g_idx'] ."' ";
-				  //write_log("tbl_hotel_rooms seq - ". $sql1);
-                  $result1 = $connect->query($sql1)->getResultArray();
-     		      foreach ($result1 as $row1) {
-					       $arr = explode(",", $row1['bed_price']);
-						   for($i=0;$i<count($arr);$i++)
-					       {
-                                $arr[$i] = (float) trim($arr[$i]);
-							   $prod_price = $price + $arr[$i];
-							   if($com_price > $prod_price) $com_price = $prod_price;
-							   //write_log("tbl_hotel_rooms - ". $idx ." : ". $g_idx ." ". $prod_price);   
-						   }	   
-						   
-				  }	  
+    		      $prod_price   = $row['goods_price2'] + $row['goods_price3'];;
+			      if($com_price > $prod_price) $com_price = $prod_price;
 		 }
 		 //write_log("last price- ". $com_price);
 		 
@@ -1411,7 +1402,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 		{"button":[{"name":"버튼명","linkType":"WL","linkP":"https://www.링크주소.com/?example=12345", "linkM": "https://www.링크주소.com/?example=12345"}, {"name":"버튼명","linkType":"DS"}]}
 
 		*/
-        write_log("템플릿 변수 매핑: " . json_encode($message_data, JSON_UNESCAPED_UNICODE));
+        //write_log("템플릿 변수 매핑: " . json_encode($message_data, JSON_UNESCAPED_UNICODE));
 
 		$oCurl = curl_init();
 		curl_setopt($oCurl, CURLOPT_PORT, $_port);
@@ -1542,5 +1533,344 @@ function alimTalk_depisit_send($order_no)
 	}
 	
 }
+
+
+function getCartItemList() {
+        $db     = \Config\Database::connect(); // 데이터베이스 연결
+		$m_idx  = session("member.idx");
+        
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'hotel');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$hotel_result  = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt'); 
+
+		$builder->where('order_gubun', 'hotel');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$hotel_cnt  = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+        
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'golf');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$golf_result   = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'golf');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$golf_cnt   = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');  
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'tour');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$tours_result  = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'tour');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$tours_cnt  = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+        
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'spa');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$spa_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+		$builder->where('order_gubun', 'spa');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray();
+		$spa_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'ticket');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$ticket_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'ticket');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$ticket_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'vehicle');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$car_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt');
+
+		$builder->where('order_gubun', 'vehicle');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$car_cnt    = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+
+		$builder->where('a.order_gubun', 'guide');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
+
+		$builder->groupBy('a.order_no');
+
+		$query         = $builder->get();
+		$guides_result = $query->getResultArray();
+
+		$builder = $db->table('tbl_order_mst');
+
+		$builder->selectCount('*', 'order_cnt'); 
+		$builder->where('order_gubun', 'guide');
+		$builder->where('m_idx', $m_idx);
+		$builder->where('order_status', 'B');
+
+		$query      = $builder->get();
+		$row        = $query->getRowArray(); 
+		$guides_cnt = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
+
+
+        return $data = [
+
+            'hotel_result'  => $hotel_result,
+            'hotel_cnt'     => $hotel_cnt,
+
+            'golf_result'   => $golf_result,
+            'golf_cnt'      => $golf_cnt,
+
+            'tours_result'  => $tours_result,
+            'tours_cnt'     => $tours_cnt,
+
+            'spa_result'    => $spa_result,
+            'spa_cnt'       => $spa_cnt,
+
+            'ticket_result' => $ticket_result,
+            'ticket_cnt'    => $ticket_cnt,
+
+            'car_result'    => $car_result,
+            'car_cnt'       => $car_cnt, 
+
+            'guides_result' => $guides_result,
+            'guides_cnt'    => $guides_cnt,
+            
+            'm_idx'         => $m_idx
+        
+		];
+}
+/*
+function bedPrice_insert($rooms_idx)
+{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
+			$setting    = homeSetInfo();
+			$baht_thai  = (float)($setting['baht_thai'] ?? 0);
+	
+            $rooms_idx  = $this->request->getPost('rooms_idx');
+
+			$sql        = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = ?";
+			$query      =  $db->query($sql, [$rooms_idx]);
+			$row        =  $query->getRow(); // 객체 형태로 반환
+
+		    $g_idx	    =  $row->g_idx;
+		    $goods_code	=  $row->goods_code;		
+			$o_sdate    =  $row->o_sdate;
+			$o_edate    =  $row->o_edate;
+
+			$builder    = $db->table('tbl_room_price');
+			$result     = $builder->delete(['rooms_idx' => $rooms_idx]);
+				
+			$sql   = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ? ORDER BY bed_seq";
+			$query = $db->query($sql, [$rooms_idx]);
+			$rows  = $query->getResultArray(); // 연관 배열 반환
+			foreach ($rows as $row) {
+
+					// 시작일과 종료일 설정
+					$startDate = $o_sdate;   // 시작일
+					$endDate   = $o_edate;   // 종료일
+
+					// DateTime 객체 생성
+					$start = new DateTime($startDate);
+					$end   = new DateTime($endDate);
+					$end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+					// 날짜 반복
+					while ($start < $end) 
+					{
+						$currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+						
+						$sql = "INSERT INTO  tbl_room_price SET 
+															 product_idx  = '". $goods_code."'
+															,g_idx        = '". $g_idx."'	
+															,rooms_idx    = '". $rooms_idx."' 	
+															,bed_idx      = '". $row['bed_idx']."'
+															,goods_date   = '". $currentDate."'
+															,dow	      = '". dateToYoil($currentDate)."'
+															,baht_thai    = '". $baht_thai."'
+															,goods_price1 = '0'
+															,goods_price2 = '0'
+															,goods_price3 = '0'
+															,goods_price4 = '0'
+															,use_yn	      = '0'
+															,reg_date     =     now() ";	
+
+						write_log($sql);
+						$result  = $db->query($sql);
+						$start->modify('+1 day'); // 다음 날짜로 이동
+					}
+			
+			}	
+			
+			if ($result) {
+				$msg    = "생성 OK";
+			} else {
+				$msg    = "생성 실패";
+			}
+			
+			return $result
+}
+*/
+
+function maskNaverId($userId) {
+    if (strpos($userId, 'naver_') === 0 || strpos($userId, 'google_') === 0) {
+        return substr($userId, 0, 16) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    }
+    return $userId;
+}
+
+function golfCategory($txt) {
+	
+    $connect = db_connect(); // DB 연결
+    $arr = explode("|", $txt); // 입력 문자열을 | 기준으로 배열화
+    $var = "";
+
+	for ($i = 0; $i < count($arr); $i++) {    
+         $sql = "SELECT * FROM tbl_code WHERE code_no = '". $arr[$i] ."' ";
+		 $row = $connect->query($sql)->getRowArray();
+		
+         if ($row['code_name']) { // 데이터가 존재할 경우만 추가
+            if ($var == "") {
+                $var = $row['code_name'];
+            } else {
+                $var .= ", " . $row['code_name'];    
+            }
+         }
+    } 
+
+	return $var; // 세미콜론 추가
+	
+}
+
 
 ?>

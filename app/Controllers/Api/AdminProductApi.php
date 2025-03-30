@@ -114,7 +114,7 @@ class AdminProductApi extends BaseController
                                         ,op_won_bath	= '" . $op_won_bath . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
-                        write_log("1- " . $sql_su);
+                       // write_log("1- " . $sql_su);
                         $this->connect->query($sql_su);
 
                         $sql_opt = "SELECT LAST_INSERT_ID() AS last_id";
@@ -143,7 +143,7 @@ class AdminProductApi extends BaseController
 																	 ,o_sdate 	   = '" . $item_sdate . "'
 																	 ,o_edate      = '" . $item_edate . "'
 																	 ,reg_date     = now() ";
-                            write_log("가격정보-1 : " . $sql_c);
+                           // write_log("가격정보-1 : " . $sql_c);
                             $this->connect->query($sql_c);
                         }
                     } else {
@@ -191,7 +191,7 @@ class AdminProductApi extends BaseController
                                                                          ,o_sdate 	   = '" . $item_sdate . "'
                                                                          ,o_edate      = '" . $item_edate . "'
                                                                          ,reg_date     = now() ";
-                                write_log("가격정보-1 : " . $sql_c);
+                               // write_log("가격정보-1 : " . $sql_c);
                                 $this->connect->query($sql_c);
                             }
 
@@ -308,6 +308,8 @@ class AdminProductApi extends BaseController
 
     public function write_room_ok()
     {
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
         try {
             $files = $this->request->getFiles();
             $product_idx = updateSQ($_POST["product_idx"]);
@@ -366,6 +368,11 @@ class AdminProductApi extends BaseController
 
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
 
+            $arr_onum = $this->request->getPost("onum_img") ?? [];
+
+            $files = $this->request->getFileMultiple('ufile');
+
+
             if ($g_idx) {
                 $sql = "update tbl_room SET
                              hotel_code			= '" . $product_idx . "'
@@ -384,33 +391,48 @@ class AdminProductApi extends BaseController
                     ";
                 $db = $this->connect->query($sql);
 
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+   
+                if (isset($files) && count($files) > 0) {
+                    foreach ($files as $key => $file) {
+                        $i_idx = $arr_i_idx[$key] ?? null;
 
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                        if (!empty($i_idx)) {
+                            $this->roomImg->updateData($i_idx, [
+                                "onum" => $arr_onum[$key],
+                            ]);
+                        }
+
+                        if ($file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
                             $ufile = $file->getRandomName();
                             $file->move($publicPath, $ufile);
-
-                        
-                            if(!empty($value)){
-                                $this->roomImg->updateData($value, [
+                
+                            if (!empty($i_idx)) {
+                                $this->roomImg->updateData($i_idx, [
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
-                            }else{
+                            } else {
                                 $this->roomImg->insertData([
                                     "room_idx" => $g_idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
+                                    "onum" => $arr_onum[$key],
                                     "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                                 ]);
                             }
                         }
                     }
                 }
+
             } else {
                 $sql = "insert into tbl_room SET
                              hotel_code				= '" . $product_idx . "'
@@ -429,9 +451,16 @@ class AdminProductApi extends BaseController
                 $db = $this->connect->query($sql);
                 $g_idx = $this->connect->insertID();
 				
-                if (isset($files['ufile'])) {
-                    foreach ($arr_i_idx as $key => $value) {
-                        $file = $files['ufile'][$key] ?? null;
+                if (count($files) > 40) {
+                    $message = "40개 이미지로 제한이 있습니다.";
+                    return "<script>
+                        alert('$message');
+                        parent.location.reload();
+                        </script>";
+                }
+
+                if (isset($files)) {
+                    foreach ($files as $key => $file) {
 
                         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                             $rfile = $file->getClientName();
@@ -442,6 +471,7 @@ class AdminProductApi extends BaseController
                                 "room_idx" => $g_idx,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
+                                "onum" => $arr_onum[$key],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
                             ]);
                         }
@@ -451,6 +481,24 @@ class AdminProductApi extends BaseController
                 $sql_room = "INSERT INTO tbl_hotel_rooms SET g_idx       = '". $g_idx ."'
 				                                             ,goods_code = '". $product_idx ."' "; 				
                 $db = $this->connect->query($sql_room);
+				
+				// 마지막 삽입된 룸의 ID 가져오기
+                $rooms_idx = $this->connect->insertID();
+
+				// 베드 추가
+				/*
+				$sql_bed = "INSERT INTO tbl_room_beds SET  
+						                          rooms_idx = '$rooms_idx', 
+												  bed_type  = '침대타입', 
+												  goods_price1 = '0', 
+												  goods_price2 = '0', 
+												  goods_price3 = '0', 
+												  goods_price4 = '0', 
+												  goods_price5 = '0', 
+												  bed_seq      = '0', 
+												  reg_date     = now() ";
+                $db = $this->connect->query($sql_bed);
+				*/
             }
 
             $product_idx = $this->request->getPost("product_idx");
@@ -474,7 +522,7 @@ class AdminProductApi extends BaseController
             $this->connect->query($updateQuery, [$list__room_list, $stay_idx]);
 
             if ($g_idx) {
-                $message = "수정되었습니다.";
+                $message = "등록되었습니다.";
             } else {
                 $message = "정상적인 등록되었습니다.";
             }
@@ -725,6 +773,44 @@ class AdminProductApi extends BaseController
         }
     }
 
+    public function deleteAllRoomImg()
+    {
+        try {
+            $request = service('request');
+            $imgData = $request->getJSON();
+    
+            if (!empty($imgData->arr_img)) {
+                foreach ($imgData->arr_img as $item) {
+                    $i_idx = $item->i_idx;
+
+                    $result = $this->roomImg->updateData($i_idx, [
+                        'ufile' => '',
+                        'rfile' => ''
+                    ]);
+                    if (!$result) {
+                        $data = [
+                            'result' => false,
+                            'message' => '이미지 삭제 실패'
+                        ];
+                        return $this->response->setJSON($data, 400);
+                    }
+        
+                }
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function copyRoom()
     {
         try {
@@ -743,6 +829,13 @@ class AdminProductApi extends BaseController
             $room   = $this->connect->query($sql);
             $room   = $room->getRowArray();
 
+            $sql_room_bed = "SELECT * FROM tbl_room_beds WHERE rooms_idx = ?";
+            $room_bed = $this->connect->query($sql_room_bed, [$rooms_idx])->getResultArray();
+
+            //$sql_room_price = "SELECT * FROM tbl_room_price WHERE rooms_idx = ?";
+            //$room_price = $this->connect->query($sql_room_price, [$rooms_idx])->getResultArray();
+
+            $room["room_name"] = $room["room_name"] ."(복사)";
             $sql = " INSERT INTO tbl_hotel_rooms SET g_idx    = '$g_idx'
                                                 ,goods_code   = '". $room["goods_code"] ."'
                                                 ,room_name    = '". $room["room_name"] ."'
@@ -750,6 +843,7 @@ class AdminProductApi extends BaseController
                                                 ,goods_price1 = '". $room["goods_price1"] ."'
                                                 ,goods_price2 = '". $room["goods_price2"] ."'
                                                 ,goods_price3 = '". $room["goods_price3"] ."'
+                                                ,goods_price4 = '". $room["goods_price4"] ."'
                                                 ,secret_price = '". $room["secret_price"] ."'
                                                 ,special_discount = '". $room["special_discount"] ."'
                                                 ,discount_rate    = '". $room["discount_rate"] ."'
@@ -761,16 +855,37 @@ class AdminProductApi extends BaseController
                                                 ,bed_price    = '". $room["bed_price"] ."'
                                                 ,option_val   = '". $room["option_val"] ."'
                                                 ,price_secret = '". $room["price_secret"] ."'
-                                                ,o_sdate      = '". $room["o_sdate"] ."'
-                                                ,o_edate      = '". $room["o_edate"] ."'
+                                                ,o_sdate      = ''
+                                                ,o_edate      = ''
                                                 ,is_view_promotion = '". $room["is_view_promotion"] ."'
                                                 ,r_contents1  = '". $room["r_contents1"] ."'
                                                 ,r_contents2  = '". $room["r_contents2"] ."'
                                                 ,r_contents3  = '". $room["r_contents3"] ."'
+                                                ,copy_row     = 'Y'
                                                 ,reg_date     = now() ";
 				 
 			$result = $this->connect->query($sql);
           
+            $insertID = $this->connect->insertID();
+
+            if (!empty($room_bed)) {
+                foreach ($room_bed as $row) {
+                    unset($row['bed_idx']);
+                    $row['rooms_idx'] = $insertID;
+            
+                    $this->connect->table('tbl_room_beds')->insert($row);
+                }                
+            } 
+
+            if (!empty($room_price)) {
+                foreach ($room_price as $row) {
+                    unset($row['idx']);
+                    $row['rooms_idx'] = $insertID;
+            
+                    $this->connect->table('tbl_room_price')->insert($row);
+                }                
+            } 
+
             if (!$result) {
                 $data = [
                     'result' => false,
@@ -782,6 +897,54 @@ class AdminProductApi extends BaseController
             $data = [
                 'result' => true,
                 'message' => '성공적으로 복사되었습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function updateContent()
+    {
+        try {
+            $rooms_idx = $this->request->getPost("rooms_idx");
+            $content = $this->request->getPost("content");
+            $type = $this->request->getPost("type");
+
+            if (!isset($rooms_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            if($type == 1){
+                $col = "r_contents1";
+            }else if($type == 2){
+                $col = "r_contents2";
+            }else{
+                $col = "r_contents3";
+            }
+
+            $sql = " UPDATE tbl_hotel_rooms SET $col = '$content' WHERE rooms_idx = '$rooms_idx' ";
+				 
+			$result = $this->connect->query($sql);
+          
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '업데이트 실패!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '성공적으로 업데이트되었습니다.'
             ];
             return $this->response->setJSON($data);
         } catch (\Exception $e) {

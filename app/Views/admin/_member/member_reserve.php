@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <table width="100%" cellpadding="6" cellspacing="0">
     <tbody>
         <tr>
@@ -6,7 +8,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="2">
                     <tbody>
                         <tr>
-                            <td class="tit_sub"><img src="../image/ics_tit.gif"> 김평진(lifeess) 님의 적립금</td>
+                            <td class="tit_sub"><img src="../image/ics_tit.gif"> <?= esc($members['user_id']) ?> 님의 적립금</td>
                         </tr>
                     </tbody>
                 </table>
@@ -26,27 +28,30 @@
                         <tr>
                             <td class="t_rd" colspan="20"></td>
                         </tr>
+                        <?php 
+                            $index = 0;
+                            
+                            foreach ($point_list as $row) {
+                                $index++;
+                                $order_gubun = get_mileage_name($row["order_gubun"]);
+                                $order_mileage_str = "";
+                                if ($row["order_mileage"] < 0) {
+                                    $order_mileage_str = "사용";
+                                } else {
+                                    $order_mileage_str = "적립";
+                                }
+
+                        ?>
                         <tr bgcolor="ffffff" align="center">
-                            <td height="30">2024-05-16 12:20:44</td>
-                            <td>주문취소로 적립금 반환<a href="javascript:orderView('240516120217916');">(240516120217916)</a></td>
-                            <td>0원</td>
+                            <td height="30"><?= date("Y.m.d", strtotime($row["mi_r_date"])) ?></td>
+                            <td><?= $row["mi_title"] ?></td>
+                            <td><?= $row["order_mileage"] ?></td>
                             <td>
                                 <!--  <a href=javascript:orderView('240516120217916');>[주문보기]</a> -->
-                                <a href="javascript:deleteReserve('711','lifeess');" class="AW-btn-s del">삭제</a>
+                                <a href="javascript:deleteReserve('<?= $row['m_idx']?>', '<?= $row['mi_idx']?>');" class="AW-btn-s del">삭제</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="20" class="t_line"></td>
-                        </tr>
-                        <tr bgcolor="ffffff" align="center">
-                            <td height="30">2024-05-16 11:44:15</td>
-                            <td>회원가입 적립금</td>
-                            <td>1,500원</td>
-                            <td>
-                                <!--   -->
-                                <a href="javascript:deleteReserve('705','lifeess');" class="AW-btn-s del">삭제</a>
-                            </td>
-                        </tr>
+                        <?php }?>
                         <tr>
                             <td colspan="20" class="t_line"></td>
                         </tr>
@@ -62,10 +67,10 @@
                                         <tr>
                                             <td width="33%"></td>
                                             <td width="33%">
-                                                <div class="AW-pagenum"> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-first.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-prev.jpg"></a></strong> <b><em>1</em> </b> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-next.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-last.jpg"></a></strong> </div>
+                                                <!-- <div class="AW-pagenum"> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-first.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-prev.jpg"></a></strong> <b><em>1</em> </b> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-next.jpg"></a></strong> <strong><a href="?page=1&amp;&amp;id=lifeess"><img src="/img/ico/page-last.jpg"></a></strong> </div> -->
                                             </td>
                                             <td width="33%" align="right">
-                                                <font color="red"><b>총 적립금 : 1,500P</b></font>&nbsp; &nbsp;
+                                                <font color="red"><b>총 적립금 : <?= $members['mileage'] ?>P</b></font>&nbsp; &nbsp;
                                             </td>
                                         </tr>
                                     </tbody>
@@ -226,3 +231,26 @@ tbody tr {
     background: #dcd8d6;
 }
 </style>
+<script>
+    function deleteReserve(m_idx, mi_idx) {
+        if (!confirm("정말 삭제하시겠습니까?")) return;
+    
+        $.ajax({
+            url: "/AdmMaster/_member/deleteReserve",
+            type: "POST",
+            data: { m_idx: m_idx, mi_idx: mi_idx },
+            dataType: "json",
+            success: function(response) {
+                if (response.status === "success") {
+                    alert("삭제가 완료되었습니다.");
+                    location.reload();
+                } else {
+                    alert("오류 발생: " + response.message);
+                }
+            },
+            error: function() {
+                alert("오류가 발생했습니다. 다시 시도해 주세요."); 
+            }
+        });
+    }
+</script>

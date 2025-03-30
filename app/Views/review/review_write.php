@@ -62,7 +62,19 @@
 
 
         @media screen and (max-width: 850px) {
+            .input_checkbox {
+                height: 3rem !important;
+                width: 3rem !important;
+            }
 
+            .evaluate_write_section .evaluate_table .input_box .wrapper_label {
+                display: inline-flex;
+                gap: 1rem;
+            }
+
+            .evaluate_write_section .evaluate_table .input_box .wrapper_label label {
+                font-size: 2.4rem;
+            }
         }
 
     </style>
@@ -329,8 +341,12 @@
                     </tr>
                     <tr>
                         <td class="subject">개인정보처리방침</td>
-                        <td class="input_box wrap_check">
-                            <div class="privacy" name="security"><?= viewSQ($privacy['policy_contents']) ?></div>
+                        <td class="input_box wrap_check" style="position: relative;">
+                            <div class="privacy" name="security">
+                                <div>
+                                    <?= viewSQ($privacy['policy_contents']) ?>
+                                </div>
+                            </div></div>
                             <!-- <textarea style="resize:none" name="security"></textarea> -->
                             <div class="check_box">
                                 <input type="checkbox" name="checkbox_sec" class="security" id="checkbox_1" checked>
@@ -340,7 +356,7 @@
                     </tr>
                     <tr>
                         <td class="subject">개인정보 제3자 제공</td>
-                        <td class="input_box wrap_check">
+                        <td class="input_box wrap_check" style="position: relative;">
                             <div class="privacy" name="info"><?= viewSQ($third_paties['policy_contents']) ?></div>
                             <div class="check_box">
                                 <input type="checkbox" name="checkbox_info" class="info" id="checkbox_2" checked>

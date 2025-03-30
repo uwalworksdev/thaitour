@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\Admin\AdminHotelController;
+include_once APPPATH . 'Common/hotelPrice.php';
 
 ?>
 
@@ -325,14 +326,17 @@ $links = "list";
 							<tr>
 								<th>룸타입 등록</th>
 								<td colspan="3">
-								
-								<?php foreach ($rresult as $row) : ?>
-									<div class="item_" style="margin-bottom: 10px;">
-										<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
-										<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px; background-color: #4f728a; color : #fff;">삭제</button>
-										<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;">수정</button>
-									</div>
-								<?php endforeach; ?>
+								<div class="room_list">
+									<?php foreach ($rresult as $row) : ?>
+										<div class="item_" data-id="<?=$row['g_idx']?>" style="margin-bottom: 10px;">
+											<input readonly="" type="text" value="<?=$row['roomName']?>" style="width:50%">
+											<button class="btn_del" onclick="removeRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 100px; background-color: #d03a3e; color : #fff;">룸타입 삭제</button>
+											<button class="btn_set" onclick="updateRoomSelect(this, <?=$row['g_idx']?>)" type="button" style="width: 50px ; background-color: #4f728a; color : #fff;">수정</button>
+											<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+											<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+										</div>
+									<?php endforeach; ?>
+								</div>
 								
 								</td>
 							</tr>
@@ -386,43 +390,70 @@ $links = "list";
 													<tr>
 														<input type="hidden" name="product_idx[<?=$roomIdx?>]"  value="<?=$product_idx?>" /> 
 														<input type="hidden" name="g_idx[<?=$roomIdx?>]"        value="<?=$type['g_idx']?>" /> 
-														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]"    value="<?=$row['rooms_idx']?>" /> 
+														<input type="hidden" name="rooms_idx[<?=$roomIdx?>]" class="rooms_idx" value="<?=$row['rooms_idx']?>" /> 
 														<input type="hidden" class="r_contents1" name="r_contents1[<?=$roomIdx?>]"    value="<?=$row['r_contents1']?>" /> 
 														<input type="hidden" class="r_contents2" name="r_contents2[<?=$roomIdx?>]"    value="<?=$row['r_contents2']?>" /> 
 														<input type="hidden" class="r_contents3" name="r_contents3[<?=$roomIdx?>]"    value="<?=$row['r_contents3']?>" /> 
 
 														<td style="background-color: #eee;">
-															<span>룸 명칭</span>
-															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>">
-															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" value="<?=$row['o_sdate']?>" id="" class="s_date datepicker">
+															<span>프로모션 명칭</span>
+															<input style="width: 30%;" type="text" name="room_name[<?=$roomIdx?>]" value="<?=$row['room_name']?>" id="room_name_<?=$row['rooms_idx']?>" >
+															<input style="width: 10%;" type="text" name="o_sdate[<?=$roomIdx?>]" id="o_sdate_<?=$row['rooms_idx']?>" value="<?=$row['o_sdate']?>" class="s_date datepicker" >
 															<span>~</span> 
-															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" value="<?=$row['o_edate']?>" id="" class="s_date datepicker">
+															<input style="width: 10%;" type="text" name="o_edate[<?=$roomIdx?>]" id="o_edate_<?=$row['rooms_idx']?>" value="<?=$row['o_edate']?>" class="s_date datepicker">
+															
+															<?php if($row['o_sdate'] && $row['o_edate']) { ?>
 															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="updRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">일자별 수정</button>
+															<?php } ?>
+															
+															<?php if($row['o_sdate'] == "" || $row['o_edate'] == "" ) { ?>
+															   <?php if($row['copy_row'] == "Y") { ?>	
+															   <button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="cpyDatePrice" value="<?=$row['rooms_idx']?>" >일자별 생성</button>
+															   <?php } else { ?>
+															   <button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="creDatePrice" value="<?=$row['rooms_idx']?>" >일자별 생성</button>
+															   <?php } ?>
+															<?php } ?>
+															
 															<!--input type="checkbox">사용-->
-															<input type="checkbox">마감
+															<!--input type="checkbox" id="use_yn_<?=$row['rooms_idx']?>" value="N">마감-->
 															<div class="btns_setting">
 																<!--button style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">저장</button-->
-																<button type="button" style="width: 80px ;background-color: #4f728a; color : #fff;" class="btn_copy room_copy" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">제품복사</button>
-																<button type="button" style="width: 50px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">삭제</button>
+																<button type="button" style="width: 80px ; background-color: #4f728a; color : #fff;" class="btn_copy room_copy"  data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">복사생성</button>
+																<button type="button" style="width: 70px ; background-color: #d03a3e; color : #fff;" class="btn_del room_delete" data-idx="<?=$type['g_idx']?>" value="<?=$row['rooms_idx']?>">룸 삭제</button>
 															</div>
 														</td>
 													</tr>
 													
-													<?php $goods_price = $row['goods_price2'] + $row['goods_price3']; ?>
+													<?php $goods_price = $row['goods_price2'] + $row['goods_price3'];?>
 													<tr class="product-row">
 														<td>
+														<!--
 															<span>기본가</span>
-															<input style="width: 100px;" type="text" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
+															<input style="width: 100px;" type="text" id="goods_price1_<?=$row['rooms_idx']?>" name="goods_price1[<?=$roomIdx?>]" value="<?=$row['goods_price1']?>" class="numberOnly">
 															<span>컨택가</span>
-															<input style="width: 100px;" type="text" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
+															<input style="width: 100px;" type="text" id="goods_price2_<?=$row['rooms_idx']?>" name="goods_price2[<?=$roomIdx?>]" value="<?=$row['goods_price2']?>" class="numberOnly cost">
 															<span>+수익</span>
-															<input style="width: 100px;" type="text" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
-															<span>=상품가</span>
+															<input style="width: 100px;" type="text" id="goods_price3_<?=$row['rooms_idx']?>" name="goods_price3[<?=$roomIdx?>]" value="<?=$row['goods_price3']?>" class="numberOnly profit">
+															<span>=판매가</span>
 															<input style="width: 100px;text-align:right" type="text" name="goods_price[<?=$roomIdx?>]"  class="price" value="<?=number_format($goods_price)?>" readonly>
+															<span>Extra 베드</span>
+															<input style="width: 100px;" type="text" id="goods_price4_<?=$row['rooms_idx']?>" name="goods_price4[<?=$roomIdx?>]" value="<?=$row['goods_price4']?>" class="numberOnly">
+															<button type="button" style="width: 100px; background-color : #4f728a; color : #fff;" class="btn_edit" onclick="allUpdRoom('<?=$type['g_idx']?>','<?=$row['rooms_idx']?>',this)">가격 일괄수정</button>
 															<!--select>
 																<option value="">현재 가격</option>
 																<option value="">현재 가격</option>
 															</select-->
+															<input type="radio" name="breakfast[<?=$roomIdx?>]" value=""  <?php if($row['breakfast'] != "N") echo "checked";?> >
+															<span>조식 포함</span>
+															<input type="radio" name="breakfast[<?=$roomIdx?>]" value="N" <?php if($row['breakfast'] == "N") echo "checked";?> >
+															<span>조식 미포함</span>
+															<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
+															<span style="margin-left:50px;">숙박인원 성인</span>
+															<input style="width: 50px;" type="text" name="adult[<?=$roomIdx?>]" value="<?=$row['adult']?>" class="numberOnly" id="adult_<?=$row['rooms_idx']?>" >명
+															<span style="margin-left:30px;">아동</span>
+															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly" id="kids_<?=$row['rooms_idx']?>">명
+															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 90px; background-color: #4f728a; color : #fff;" class="btn_set">프로모션 내용</button>
+															
 															<label style="margin-left: 20px;" for="check_bx_001">비밀특가</label>
 															<input id="check_bx_001" name="secret_price[<?=$roomIdx?>]" value="Y" <?php if($row['secret_price'] == "Y") echo "checked"; ?> type="checkbox">
 															
@@ -443,7 +474,7 @@ $links = "list";
 														</td>
 													</tr>
 													
-													<tr>
+													<!--tr>
 														<td>
 															<input type="radio" name="breakfast[<?=$roomIdx?>]" value=""  <?php if($row['breakfast'] != "N") echo "checked";?> >
 															<span>조식 포함</span>
@@ -456,36 +487,59 @@ $links = "list";
 															<input style="width: 50px;" type="text" name="kids[<?=$roomIdx?>]" value="<?=$row['kids']?>"   class="numberOnly">명
 															&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 														</td>
-													</tr>
-													
+													</tr-->
+													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
+														<td>
+															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (침대명/금액))
+															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
+															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$row['rooms_idx']?>" style="width: 100px; background-color: #4f728a; color : #fff;" >침대타입추가</button>
+															</p>
+                                                        </td>
+													</tr>													
 													<?php 
 														 $bedType_arr  = explode(",", $row['bed_type']);
 														 $bedPrice_arr = explode(",", $row['bed_price']);
+														 $i = 0;
+														 
+														 $rooms_idx = $row['rooms_idx'];
 													?>	
-													
-													<?php for($i=0;$i<count($bedType_arr);$i++) { ?>
-													<tr class="bed_child_<?=$roomIdx?>">
+													<?php foreach ($allBeds[$rooms_idx] as $bed) { ?>
+													<?php $i++;?>
+													<tr class="bed_child_<?=$roomIdx?>" data-bed-idx="<?=$bed['bed_idx']?>" data-bed-seq="<?=$bed['bed_seq']?>" >
 														<td>
-															<?php if($i==0) { ?>
+															<?php if($i==9999) { ?>
 															<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
+															   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">설명</button>
+															   <button type="button" class="bedAddBtn" data-product-idx="<?=$product_idx?>" data-g-idx="<?=$type['g_idx']?>" data-rooms-idx="<?=$rooms_idx?>" style="width: 50px; background-color: #4f728a; color : #fff;" >추가</button>
 															</p>
 															<?php } ?>
 															<!--input style="width: 18%;" type="text">
 															<input style="width: 8%;" type="text">
 															<input style="width: 18%; margin-left: 20px;" type="text">
 															<input style="width: 8%;" type="text"-->
-															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bedType_arr[$i]?>" >
-															<input style="width: 8%;" type="text" name="bed_price[<?=$roomIdx?>][]" value="<?=$bedPrice_arr[$i]?>" class="numberOnly">
+															
+															<input type="hidden" name="bed_num[<?=$roomIdx?>][]"  value="<?=$i?>" >
+															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
+															<input style="width:18%;" type="text" name="bed_type[<?=$roomIdx?>][]"  value="<?=$bed['bed_type']?>" >
+
+															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
+															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
+															수익     <input style="width:10%;text-align:right;" type="text" name="price3[<?=$roomIdx?>][]" value="<?=$bed['goods_price3']?>" class="numberOnly">=
+															판매가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
+															Extra베드<input style="width:10%;text-align:right;" type="text" name="price5[<?=$roomIdx?>][]" value="<?=$bed['goods_price5']?>" class="numberOnly">
 																
 															<?php if($i==0) { ?>
 															<button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
 															<?php } else { ?>
-															<button type="button" style="width: 31px; height: 31px;" class="removeBedBtn">-</button>																
+															<button type="button" style="width: 31px; height: 31px;" class="deleteBedBtn" data-idx="<?=$row['rooms_idx']?>" value="<?=$bed['bed_idx']?>">-</button>																
 															<?php } ?>
-														</td>
+															<input style="width: 50px;" type="hidden" name="bed_seq[<?=$roomIdx?>][]" value="<?=$bed['bed_seq']?>" class="numberOnly">
+															<button class="btn_move btn-up"   type="button" style="width: 30px; height: 30px;">▲</button>															
+															<button class="btn_move btn-down" type="button" style="width: 30px; height: 30px;">▼</button>
+                                                        </td>
 													</tr>
 													<?php } ?>
+
 
 													<?php 
 														 $option_arr  = explode(",", $row['option_val']);
@@ -611,7 +665,10 @@ $links = "list";
 						</tr>
 
 						<tr>
-							<th>객실 타입</th>
+							<th>
+								<label for="all_room_category">모두 선택</label>
+								<input type="checkbox" id="all_room_category" class="all_input" onclick="toggleRoomCategory()">
+							</th>
 							<td colspan="3">
 								<?php
 								$_arr = explode("|", $category);
@@ -623,7 +680,7 @@ $links = "list";
 										}
 									}
 									?>
-									<input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
+									<input type="checkbox" class="room_category" id="room_category_<?= $row_r['code_no'] ?>"
 										   name="_room_category"
 										   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
 									<label for="room_category_<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
@@ -740,6 +797,7 @@ $links = "list";
 							<th>
 								서브이미지(600X400)
 								<button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+								<button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
 							</th>
 							<td colspan="3">
 								<div class="img_add img_add_group" id="img_add">
@@ -779,6 +837,67 @@ $links = "list";
 	</div>
 </div>
 
+			<style>
+				#loading {
+					display: none; /* 처음에는 숨김 */
+					position: fixed;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: 20px;
+					color: white;
+					padding: 10px;
+					border-radius: 5px;
+					background-color: rgba(0, 0, 0, 0.7);
+					text-align: center;
+				}
+
+				.spinner {
+					display: inline-block;
+					width: 20px;
+					height: 20px;
+					border: 3px solid rgba(255, 255, 255, 0.3);
+					border-radius: 50%;
+					border-top-color: #fff;
+					animation: spin 1s linear infinite; /* 회전 애니메이션 */
+				}
+
+				@keyframes spin {
+					0% {
+						transform: rotate(0deg);
+					}
+					100% {
+						transform: rotate(360deg);
+					}
+				}
+			</style>
+
+			<div id="loading">
+				<div class="spinner"></div> <!-- 로딩 스피너 -->
+				<div>Loading...</div>
+			</div>
+<script>
+$(document).ready(function () {
+    $("#all_room_category").on("change", function () {
+        $(".room_category").prop("checked", $(this).is(":checked"));
+    });
+
+    $(".room_category").on("change", function () {
+        checkRoomCategory();
+    });
+
+    checkRoomCategory();
+});
+
+function checkRoomCategory() {
+    let total = $(".room_category").length;
+    let checked = $(".room_category:checked").length;
+
+    $("#all_room_category").prop("checked", total > 0 && total === checked);
+}
+
+
+</script>
 <script>
 	function TogglePopup() {
         // resetRoom();
@@ -817,7 +936,7 @@ $links = "list";
 		let table = $(`table[data-roomId='${roomId}']`);
 		let type = $("#popupDesc_").attr("data-type");
 		let content = $("#popupDesc_").find(".text_desc").val();
-
+		let rooms_idx = table.find(".rooms_idx").val();
 		if(type == 1){
 			table.find(".r_contents1").val(content);
 		}else if(type == 2){
@@ -826,20 +945,153 @@ $links = "list";
 			table.find(".r_contents3").val(content);
 		}
 
-		$("#popupDesc_").removeClass("show_");
+		$.ajax({
+			url: '<?= route_to('admin.api.hotel_.update_content') ?>',
+			type: "POST",
+			data: {
+				"rooms_idx" : rooms_idx,
+				"content" 	: content,
+				"type" 		: type
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				message = data.message;
+				alert(message);
+				if(data.result == true){
+					$("#popupDesc_").removeClass("show_");			
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+
 	}
 	
 </script>
 
 <script>
+$(document).ready(function () {
+    // price2 또는 price3 입력 시 자동 계산
+    $("input[name^='price2']").add("input[name^='price3']").on("input", function () {
+        // 현재 행(row)을 찾기
+        let row = $(this).closest("tr");
+        
+        // price2, price3 값 가져오기
+        let price2 = parseFloat(row.find("input[name^='price2']").val().replace(/,/g, "")) || 0;
+        let price3 = parseFloat(row.find("input[name^='price3']").val().replace(/,/g, "")) || 0;
+
+        // price2 + price3 계산
+        let total = price2 + price3;
+
+        // 계산된 값 price4에 표시
+        row.find("input[name^='price4']").val(total.toLocaleString());
+    });
+});
+</script>
+
+<script>
     $(document).ready(function(){
-        $('.product-row').on('input', '.cost, .profit', function() {
+        $('.product-row').on('input', '.cost, .profit, .bed', function() {
             let row = $(this).closest('.product-row'); // 현재 입력된 행(row) 찾기
             let cost = Number(row.find('.cost').val()) || 0;
             let profit = Number(row.find('.profit').val()) || 0;
-            row.find('.price').val(cost + profit); // 판매가 자동 계산
+            let bed = Number(row.find('.bed').val()) || 0;
+            row.find('.price').val(cost + profit + bed); // 판매가 자동 계산
         });
     });
+</script>
+
+<script>
+	$(document).ready(function(){
+		$(".cpyDatePrice").click(function(){
+
+			if (confirm("일자별 생성은 상품가격이 초기화 되므로\n복구가 불가능합니다.\n반드시 침대타입 생성 후 처리해 주세요.") == false) {
+				return;
+			}
+
+		    let rooms_idx = $(this).val();
+			let	from_date = $("#o_sdate_"+rooms_idx).val();
+			let	to_date   = $("#o_edate_"+rooms_idx).val();		
+
+			if(from_date == "") {
+			   alert('가격적용 기간을 입력하세요.');
+			   $("#o_sdate_"+rooms_idx).val();
+			   return false;
+			}   
+				   
+			if(to_date == "") {
+			   alert('가격적용 기간을 입력하세요.');
+			   $("#o_edate_"+rooms_idx).val();
+			   return false;
+			}   
+ 				   
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_bedPrice_insert",
+				type: "POST",
+				data: {
+					"rooms_idx"  : rooms_idx,
+					"from_date"  : $("#o_sdate_"+rooms_idx).val(),
+					"to_date"    : $("#o_edate_"+rooms_idx).val()
+						
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	
+ 			
+     	});
+	});
+</script>
+
+<script>
+	$(document).ready(function(){
+		$(".creDatePrice").click(function(){
+
+			if (confirm("일자별 생성은 상품가격이 초기화 되므로\n복구가 불가능합니다.\n반드시 침대타입 생성 후 처리해 주세요.") == false) {
+				return;
+			}
+		
+		    allUpdate();
+/*			
+		    let rooms_idx = $(this).val();
+			
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_bedPrice_insert",
+				type: "POST",
+				data: {
+					"rooms_idx"  : rooms_idx,
+					"from_date"  : $("#o_sdate_"+rooms_idx).val(),
+					"to_date"    : $("#o_edate_"+rooms_idx).val()
+						
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	
+*/			
+     	});
+	});
 </script>
 
 <script>
@@ -904,34 +1156,185 @@ $links = "list";
 </script>
 
 <script>
+$(document).ready(function () {
+    $(document).ajaxStart(function () {
+        $("body").css("cursor", "wait"); // 모래시계 커서 적용
+    });
+
+    $(document).ajaxStop(function () {
+        $("body").css("cursor", "default"); // 원래 커서로 복귀
+    });
+});
+</script>
+
+<script>
 	function updRoom(g_idx,roomIdx) {
 		location.href = '/AdmMaster/_tourRegist/list_room_price?g_idx=' + g_idx + '&roomIdx=' + roomIdx +'&product_idx=' + $("#product_idx").val();
 	}
 </script>
-	
+
+<script>
+	function allUpdRoom(g_idx, rooms_idx)
+	{
+		
+		if (confirm("가격을 일괄 수정하시겠습니까?\n수정후에는 기간동안 동일한 가격으로 업데이트 됩니다.") == false) {
+			return;
+		}
+
+		//$('#loading').show();
+		$("#ajax_loader").removeClass("display-none");
+		setTimeout(function () {
+			let url = '/ajax/hotel_allUpdRoom_price'
+			$.ajax({
+				type: "POST",
+				data: {
+					    "product_idx"  :  $("#product_idx").val(),
+						"g_idx"        :  g_idx,
+						"rooms_idx"    :  rooms_idx,
+						"o_sdate"      :  $("#o_sdate_"+rooms_idx).val(), 
+						"o_edate"      :  $("#o_edate_"+rooms_idx).val(), 
+						"goods_price1" :  $("#goods_price1_"+rooms_idx).val(), 
+						"goods_price2" :  $("#goods_price2_"+rooms_idx).val(), 
+						"goods_price3" :  $("#goods_price3_"+rooms_idx).val(),
+						"goods_price4" :  $("#goods_price4_"+rooms_idx).val(),  
+					},
+				url: url,
+				cache: false,
+				async: true,
+				success: function (data, textStatus) {
+					let message = data.message;
+					$("#ajax_loader").addClass("display-none");
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					$("#ajax_loader").addClass("display-none");
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				} 
+					
+			});
+		}, 50);				
+	}	
+</script>
+
 <script>
 	function allUpdate()
 	{
 		let f = document.frm;
 
-		let url = '/ajax/hotel_room_allupdate'
-		let prod_data = $(f).serialize();
+		$("#ajax_loader").removeClass("display-none");
+		setTimeout(function () {
+			let url = '/ajax/hotel_room_allupdate'
+			let prod_data = $(f).serialize();
+			$.ajax({
+				type: "POST",
+				data: prod_data,
+				url: url,
+				cache: false,
+				async: true,
+				success: function (data, textStatus) {
+					let message = data.message;
+					$("#ajax_loader").addClass("display-none");
+					//alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					$("#ajax_loader").addClass("display-none");
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+		}, 50);
+	} 	
+</script>
+
+<script>
+$(document).ready(function () {
+    $(".bedAddBtn").click(function () {
+        		
+        var product_idx = $(this).data('product-idx');
+        var g_idx       = $(this).data('g-idx');
+        var rooms_idx   = $(this).data('rooms-idx');
+        var room_name   = $("#room_name_"+rooms_idx).val();
+		var o_sdate     = $("#o_sdate_"+rooms_idx).val();
+		var o_edate     = $("#o_edate_"+rooms_idx).val();
+        var adult       = $("#adult_"+rooms_idx).val();
+        var kids        = $("#kids_"+rooms_idx).val();
+
+		if(o_sdate == "" || o_edate == "") {
+		   alert('침대 타입을 추가하시려면 적용 기간을 등록하셔야 합니다.');
+		   return false;
+		}
+		
+		allUpdate();
+		
 		$.ajax({
+			url: "/ajax/ajax_bed_add",
 			type: "POST",
-			data: prod_data,
-			url: url,
-			cache: false,
-			async: false,
-			success: function (data, textStatus) {
-				let message = data.message;
-				alert(message);
+			data: {
+				room_name   : room_name,
+				o_sdate     : o_sdate,	
+				o_edate     : o_edate,	
+				adult       : adult,
+				kids        : kids,
+                product_idx : product_idx,
+                g_idx       : g_idx,
+				rooms_idx   : rooms_idx
+			},
+			dataType: "json",
+			success: function(res) {
+				var message = res.message;
+				//alert(message);
 				location.reload();
 			},
-			error: function (request, status, error) {
-				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			error: function(xhr, status, error) {
+				console.error(xhr.responseText); // 서버 응답 내용 확인
+				alert('Error: ' + error);
 			}
-		});
-	} 	
+		});	
+ 		
+    });
+
+    // 추가된 침대를 삭제하는 이벤트 (동적 요소 이벤트 바인딩)
+    $(document).on("click", ".removeBedBtn", function () {
+        $(this).closest("tr").remove();
+    });
+	
+    $(document).on("click", ".deleteBedBtn", function () {
+			let bed_idx   = $(this).val();
+            var rooms_idx = $(this).data('idx'); 
+			var room_name = $("#room_name_"+rooms_idx).val();
+			var o_sdate   = $("#o_sdate_"+rooms_idx).val();
+			var o_edate   = $("#o_edate_"+rooms_idx).val();
+			var adult     = $("#adult_"+rooms_idx).val();
+			var kids      = $("#kids_"+rooms_idx).val();
+		
+			$.ajax({
+                url: "/ajax/ajax_bed_delete",
+                type: "POST",
+                data: {
+                    bed_idx   : bed_idx,
+					rooms_idx : rooms_idx,
+					room_name : room_name,
+					o_sdate   : o_sdate,	
+					o_edate   : o_edate,	
+					adult     : adult,
+					kids      : kids
+                },
+                dataType: "json",
+                success: function(res) {
+                    var message = res.message;
+                    //alert(message);
+					location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });			
+    });
+	
+	
+});
 </script>
 
 <script>
@@ -982,6 +1385,11 @@ let room_Idx = '<?=$roomIdx?>';
 <script>
 function saveValueRoom(e) {
 	e.preventDefault();
+
+	$(".img_add_group .file_input").each(function (index) { 
+        $(this).find(".onum_img").val(index + 1);        
+    });
+
 	let formData = new FormData($('#formRoom')[0]);
 
 	let room_facil = $("input[name=_room_facil]:checked").map(function () {
@@ -995,6 +1403,8 @@ function saveValueRoom(e) {
 	formData.append("room_category", room_category);
 
 	let apiUrl = `<?= route_to('admin.api.hotel_.write_room_ok') ?>`;
+
+
 
 	$("#ajax_loader").removeClass("display-none");
 
@@ -1019,10 +1429,41 @@ function saveValueRoom(e) {
 </script>
 
 <script>
+$(".addTableBtn").on("click", function () {
+
+			if (!confirm("룸을 추가 하시겠습니까?"))
+			return false;
+
+			var prod_idx = $(this).data('prod');
+			var g_idx    = $(this).data('roomtype');
+			
+            $.ajax({
+                url: "/ajax/ajax_room_add",
+                type: "POST",
+                data: {
+                    prod_idx : prod_idx,
+                    g_idx    : g_idx
+                },
+                dataType: "json",
+                success: function(res) {
+                    var message = res.message;
+                    alert(message);
+					location.reload();
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });			
+	
+});
+</script>
+
+<script>
 	$(document).ready(function () {
 
 		// 클릭 이벤트 핸들러
-		$(".addTableBtn").on("click", function () {
+		$(".addTableBtnx").on("click", function () {
 			// 새로운 테이블 HTML 생성
 			var mainIdx  = $(this).val();
 			var prod_idx = $(this).data('prod');
@@ -1067,8 +1508,10 @@ function saveValueRoom(e) {
 								<input style="width: 100px;" type="text" name="goods_price2[${room_Idx}]" class="numberOnly cost">
 								<span>+수익</span>
 								<input style="width: 100px;" type="text" name="goods_price3[${room_Idx}]" class="numberOnly profit">
-								<span>=상품가</span>
+								<span>=판매가</span>
 								<input style="width: 100px;" type="text" name="goods_price[${room_Idx}]"  class="numberOnly price" readonly>
+								<span>Extra 베드</span>
+								<input style="width: 100px;" type="text" name="goods_price4[${room_Idx}]" class="numberOnly bed">
 								<!--select>
 									<option value="">현재 가격</option>
 									<option value="">현재 가격</option>
@@ -1098,19 +1541,16 @@ function saveValueRoom(e) {
 								<span>조식 포함</span>
 								<input type="radio" name="breakfast[${room_Idx}]" value="N" >
 								<span>조식 미포함</span>
-								<button type="button" onclick="InitTypePopup(this, 1)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								<span style="margin-left:50px;">성인</span>
 								<input style="width: 50px;" type="text" name="adult[${room_Idx}]" value="1" class="numberOnly" onkeyup="chkNum(this)">명
 								<span style="margin-left:30px;">아동</span>
 								<input style="width: 50px;" type="text" name="kids[${room_Idx}]" value="0"   class="numberOnly" onkeyup="chkNum(this)">명
-								&ensp;<button type="button" onclick="InitTypePopup(this, 2)" style="width: 80px; background-color: #4f728a; color : #fff;" class="btn_set">혜택보기</button>
 							</td>
 						</tr>
 						
 						<tr class="bed_child_${room_Idx}"> 
 							<td>
 								<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
-								   <button type="button" onclick="InitTypePopup(this, 3)" style="width: 50px; background-color: #4f728a; color : #fff;" class="btn_set">참고</button>
 								</p>
 								<input style="width: 18%;" type="text" name="bed_type[${room_Idx}][]">
 								<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
@@ -1128,11 +1568,12 @@ function saveValueRoom(e) {
 				</table>`;
 
 			// 입력값이 변경될 때 판매가 자동 계산 (이벤트 위임)
-			$(document).on('input', '.cost, .profit', function() {
+			$(document).on('input', '.cost, .profit, .bed', function() {
 				let row = $(this).closest('.product-row'); // 현재 행 찾기
 				let cost = Number(row.find('.cost').val()) || 0;
 				let profit = Number(row.find('.profit').val()) || 0;
-				row.find('.price').val(cost + profit); // 판매가 자동 계산
+				let bed = Number(row.find('.bed').val()) || 0;
+				row.find('.price').val(cost + profit + bed); // 판매가 자동 계산
 			});			
 
 			// 새 테이블을 .table-container에 추가
@@ -1228,85 +1669,167 @@ $(document).ready(function () {
 		let i = Date.now();
 
 		let html = `
-			<div class="file_input">
-				<input type="hidden" name="i_idx[]" value="">
-				<input type="file" name='ufile[]' id="ufile${i}"
-						onchange="productImagePreview(this, '${i}')">
-				<label for="ufile${i}"></label>
-				<input type="hidden" name="checkImg_${i}" class="checkImg">
-				<button type="button" class="remove_btn"
-						onclick="productImagePreviewRemove(this)"></button>
-
-			</div>
+			<div class="file_input_wrap">
+                <div class="file_input">
+                    <input type="hidden" name="i_idx[]" value="">
+                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                    <input type="file" name='ufile[]' id="ufile${i}" multiple
+                            onchange="productImagePreview(this, '${i}')">
+                    <label for="ufile${i}"></label>
+                    <input type="hidden" name="checkImg_${i}" class="checkImg">
+                    <button type="button" class="remove_btn"
+                            onclick="productImagePreviewRemove(this)"></button>
+                </div>
+            </div>
 		`;
 
 		$(".img_add_group").append(html);
 
 	}
 
+	function delete_all_image() {
+        if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+            return false;
+        }
+
+        let arr_img = [];
+
+		$(".img_add_group .file_input").each(function() {
+            let id = $(this).find("input[name='i_idx[]']").val();
+            if(id){
+                arr_img.push({
+                    i_idx: id,
+                });
+            }
+		});
+
+        if(arr_img.length > 0){
+            $.ajax({
+                url: "<?= route_to('admin.api.hotel_.delete_all_room_img') ?>",
+                type: "POST",
+                data: JSON.stringify({ arr_img: arr_img }),
+                contentType: "application/json",
+                success: function(response) {
+                    alert(response.message);
+                    if(response.result == true){
+                        $(".img_add_group").html("");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("error:", error);
+                }
+            });
+        }else{
+            $(".img_add_group").html("");
+        }
+    }
+
 	function productImagePreview(inputFile, onum) {
-		if (!sizeAndExtCheck(inputFile)) {
-			$(inputFile).val("");
-			return false;
-		}
+        if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
+            
+            $(inputFile).closest('.file_input').addClass('applied');
+            $(inputFile).closest('.file_input').find('.checkImg').val('Y');
 
-		let imageTag = $('label[for="ufile' + onum + '"]');
+            let lastElement = $(inputFile).closest('.file_input_wrap');
+            let files = Array.from(inputFile.files);
 
-		if (inputFile.files.length > 0) {
-			let imageReader = new FileReader();
+            let imageReader = new FileReader();
+            imageReader.onload = function () {
+                $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+            };
+            imageReader.readAsDataURL(files[0]);
 
-			imageReader.onload = function () {
-				imageTag.css("background-image", "url(" + imageReader.result + ")");
-				$(inputFile).closest('.file_input').addClass('applied');
-				$(inputFile).closest('.file_input').find('.checkImg').val('Y');
-			};
-			
-			imageReader.readAsDataURL(inputFile.files[0]);
-		}
-	}
+            if (files.length > 1) {
+                files.slice(1).forEach((file, index) => {
+                    let newReader = new FileReader();
+                    let i = Date.now();
+
+                    newReader.onload = function () {
+                        let imagePreview = `
+                            <div class="file_input_wrap">
+                                <div class="file_input applied">
+                                    <input type="hidden" name="i_idx[]" value="">
+                                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                    <input type="file" id="ufile${i}_${index}" 
+                                        onchange="productImagePreview(this, '${i}_${index}')" disabled>
+                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                    <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                </div>
+                            </div>`;
+
+                        lastElement.after(imagePreview);
+                        lastElement = lastElement.next();
+                    };
+
+                    newReader.readAsDataURL(file);
+                });
+            }
+        }else{
+            alert('40개 이미지로 제한이 있습니다.');
+        }
+    }
 
 	function productImagePreviewRemove(element) {
-		let parent = $(element).closest('.file_input');
-		let inputFile = parent.find('input[type="file"]');
-		let labelImg = parent.find('label');
-		let i_idx = parent.find('input[name="i_idx[]"]').val();
-
-		if(parent.find('input[name="i_idx[]"]').length > 0){
-			if(i_idx){
-				if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+        let parent = $(element).closest('.file_input_wrap');
+        if(parent.find('input[name="ufile[]"]').length > 0){
+            let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                            || parent.prevAll().find('input[type="file"][multiple]')[0];
+            let labelImg = parent.find('label');
+            let i_idx = parent.find('input[name="i_idx[]"]').val();
+    
+            let dt = new DataTransfer();
+            let fileArray = Array.from(inputFile.files);
+            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            
+            fileArray.forEach((file) => {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    if (e.target.result !== imageUrl) {      
+                        dt.items.add(file);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+    
+            setTimeout(() => {
+                inputFile.files = dt.files;
+                if(parent.find('input[type="file"][multiple]')[0]){
+                    parent.css("display", "none");
+                }else{
+                    parent.remove();
+                }
+            }, 100);
+    
+            if (i_idx) {
+                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                     return false;
                 }
-
-				$.ajax({
-
-					url: "<?= route_to('admin.api.hotel_.delete_room_img') ?>",
-					type: "POST",
-					data: {
-						"i_idx"   : i_idx,
-					},
-					success: function (data, textStatus) {
-						message = data.message;
-						alert(message);
-						if(data.result){
-							parent.closest('.file_input_wrap').remove();
-						}
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});
-			}else{
-				parent.remove();
-			}
-		}else{
-			inputFile.val("");
-			labelImg.css("background-image", "");
-			parent.removeClass('applied');
-			parent.find('.checkImg').val('N');
-			parent.find('.imgpop').attr("href", "");
-			parent.find('.imgpop').remove();
-		}
-	}
+    
+                $.ajax({
+                    url: "<?= route_to('admin.api.hotel_.delete_room_img') ?>",
+                    type: "POST",
+                    data: { "i_idx": i_idx },
+                    success: function (data) {
+                        alert(data.message);
+                        if (data.result) {
+                            parent.css("display", "none");
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                    }
+                });
+            }
+        }else{            
+            parent.find('input[type="file"]').val("");
+            parent.find('label').css("background-image", "");
+            parent.find('.file_input').removeClass('applied');
+            parent.find('.checkImg').val('N');
+            parent.find('.imgpop').attr("href", "");
+            parent.find('.imgpop').remove();
+        }
+    }
 
 	function sizeAndExtCheck(input) {
 		let fileSize = input.files[0].size;
@@ -1333,5 +1856,96 @@ $(document).ready(function () {
 		return true;
 	}
 </script>
+
+<script>
+	function moveUpRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let prev = current.prev(".item_");
+
+		if (prev.length) {
+			current.insertBefore(prev);
+			saveNewOrder();
+		}
+	}
+
+	function moveDownRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let next = current.next(".item_");
+
+		if (next.length) {
+			current.insertAfter(next);
+			saveNewOrder();
+		}
+	}
+
+	function saveNewOrder() {
+		let items = document.querySelectorAll(".room_list .item_");
+		let order = [];
+
+		$(".room_list .item_").each(function(index) {
+			order.push({
+				g_idx: $(this).data("id"),
+				position: index + 1
+			});
+		});
+
+		$.ajax({
+			url: "update_room_order",
+			type: "POST",
+			data: JSON.stringify({ order: order }),
+			contentType: "application/json",
+			success: function(response) {
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.error("error:", error);
+			}
+		});
+	}
+</script>
+
+<script>
+$(document).ready(function () {
+    $(".btn-up, .btn-down").click(function () {
+        let row     = $(this).closest("tr"); // 현재 클릭한 행
+        let moveUp  = $(this).hasClass("btn-up"); // ▲ 버튼인지 ▼ 버튼인지 확인
+        let swapRow = moveUp ? row.prev() : row.next(); // 변경 대상 행
+
+        if (swapRow.length === 0) return; // 더 이상 이동할 수 없으면 종료
+
+        let currentBedIdx = row.attr("data-bed-idx");
+        let swapBedIdx    = swapRow.attr("data-bed-idx");
+        let currentBedSeq = row.attr("data-bed-seq");
+        let swapBedSeq    = swapRow.attr("data-bed-seq");
+
+        //alert(currentBedIdx+'-'+currentBedSeq+'-'+swapBedIdx+'-'+swapBedSeq);
+        if (typeof swapBedIdx === "undefined" || typeof swapBedSeq === "undefined") return; // 더 이상 이동할 수 없으면 종료
+
+		// Ajax 요청
+        $.ajax({
+            url: "/ajax/ajax_bed_rank",
+            type: "POST",
+            data: {
+					current_bed_idx : currentBedIdx,
+					swap_bed_idx    : swapBedIdx,
+					current_bed_seq : currentBedSeq,
+					swap_bed_seq    : swapBedSeq
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                var message = data.message;
+                //alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });		
+    });
+});
+</script>
+
 <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>

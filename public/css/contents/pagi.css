@@ -193,7 +193,7 @@
     }
     /* ================================= paging */
     .paging_wrap {
-      margin-top: 2.5rem;
+      margin-top: 6.5rem;
       position: relative;
     }
   
@@ -211,31 +211,32 @@
     }
   
     .paging ul li {
-      margin: 0 0.1538rem;
+      margin: 0 0.4rem;
     }
   
     .paging ul li.preview {
-      margin-right: 0.5769rem;
+      margin-right: 1.5rem;
     }
   
     .paging ul li.next {
-      margin-left: 0.5769rem;
+      margin-left: 1.5rem;
     }
   
     .paging .page li a {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 3.0769rem;
-      height: 3.0769rem;
-      line-height: 3.0769rem;
+      width: 8rem;
+      height: 8rem;
+      line-height: 8rem;
       font-weight: 500;
-      border: 0.0769rem solid transparent;
+      border: 0.2rem solid transparent;
       color: #666666;
       background-position: center center;
       background-repeat: no-repeat;
       border-radius: 50%;
       box-sizing: border-box;
+      font-size: 2.6rem;
     }
   
     .paging ul li.double a {
@@ -244,7 +245,23 @@
   
     .paging ul li.one a {
       background-image: url(../img/ico/ico_paging_m.png);
-      background-size: 0.6923rem 1.1538rem;
+      background-size: 1.8rem 3rem;
+    }
+
+    li.skip.backward a {
+      background-size: 2.15rem 2.15rem;
+    }
+
+
+    .paging .page li.preview a {
+      background-size: 2.15rem 2.15rem;
+    }
+    .paging .page li.next a {
+        background-size: 2.15rem 2.15rem;
+    }
+
+    li.skip.forward a {
+      background-size: 2.15rem 2.15rem;
     }
   }
   

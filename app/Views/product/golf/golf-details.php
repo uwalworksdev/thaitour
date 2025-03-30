@@ -4,45 +4,94 @@
 
 <script>
 $(document).ready(function() {
-    var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-    console.log('홀- '+dataTabValue);
-    console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
+			console.log('홀- '+dataTabValue);
+			console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			
+			if($("#caddie_fee_sel").val() == "Y") {
+			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
+			   $("#vehicle_5").prop('disabled', true);
+			}   
 	
-	if($("#caddie_fee_sel").val() == "Y") {
-       $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-	   $("#vehicle_5").prop('disabled', true);
-	}   
 });
 </script>
+
+<script>
+$(document).ready(function() {
+    // 페이지 어디든 클릭 시 실행
+    $(document).on('click', function(event) {
+
+			if($("#o_caddy_due").val() == "Y") {
+			   $('#vehicle_5').prop('disabled', true);
+			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#vehicle_5").val('0');
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            } 	
+			
+			if($("#o_cart_due").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+    			   $("#vehicle_4").val('0');
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+				   $("#cart_yes").show();	
+				   $("#cart_no").hide();	
+				}
+            }
+			
+            calculatePrice();			
+    });
+});
+</script>
+
+    <form>
+		<input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
+		<input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
+    </form>
     <div class="content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
-                <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+                <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
+                <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
+                <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
+                <input type="hidden" name="o_cart_cont" id="o_cart_cont" value="<?=$golf_price['o_cart_cont']?>">
+                <input type="hidden" name="o_caddy_cont" id="o_caddy_cont" value="<?=$golf_price['o_caddy_cont']?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
 
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
-                <input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
                 <input type="hidden" name="hole_cnt" id="hole_cnt" value="">
                 <input type="hidden" name="hour" id="hour" value="">  <!-- 주간, 오후, 야갼 -->
                 <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="">
                 <input type="hidden" name="teeoff_min" id="teeoff_min" value="">
 
-
+                <!--
                 <?php foreach ($golf_price as $price) { ?>
-                    <input type="hidden" id="firstDate"  value="<?= $price['goods_date'] ?>">
-                    <input type="hidden" id="firstPrice" value="<?= $price['price'] ?>">
-                    <input type="hidden" name="afternoon_yn" id="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
-                    <input type="hidden" name="night_yn" id="night_yn" value="<?= $price['o_night_yn'] ?>">
+                    <input type="hidden" name="firstDate"  value="<?= $price['goods_date'] ?>">
+                    <input type="hidden" name="firstPrice" value="<?= $price['price'] ?>">
+                    <input type="hidden" name="afternoon_yn" value="<?= $price['o_afternoon_yn'] ?>">
+                    <input type="hidden" name="night_yn" value="<?= $price['o_night_yn'] ?>">
                 <?php } ?>
-
+                -->
+				
                 <div class="title-container">
-                    <h2><?= viewSQ($product['product_name']) ?></h2>
+                    <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
@@ -191,24 +240,28 @@ $(document).ready(function() {
                         <td>장비렌탈</td>
                         <td colspan="5"><?= $info['equipment_rent'] ?></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>스포츠데이</td>
                         <td colspan="5"><?= $info['sports_day'] ?></td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
-                        <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                             class="only_web">
-                        <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                             class="only_mo">
+                        <div class="btn_year_new">
+                            <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                                 class="only_web">
+                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                                 class="only_mo">
+                        </div>
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
-                        <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
-                             class="only_web">
-                        <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
-                             class="only_mo">
+                        <div class="btn_year_new">
+                            <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
+                                 class="only_web">
+                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
+                                 class="only_mo">
+                        </div>
                     </div>
                     <div class="dates">
                         <div class="swiper-button-next swiper-button swiper-button-custom">
@@ -520,6 +573,10 @@ $(document).ready(function() {
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
+					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
+					</select>
                     <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
@@ -532,6 +589,10 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
+					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
+					</select>
                     <select id="vehicle_2"  data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1대</option>
@@ -546,6 +607,10 @@ $(document).ready(function() {
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
+					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
+					    <option value="0">왕복<option>
+					    <option value="1">편도<option>
+					</select>
                     <select id="vehicle_3"  data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
@@ -556,7 +621,10 @@ $(document).ready(function() {
 				</select>
                 </div>
 
-			   <div class="item-select">
+			   <div class="item-select" id="cart_no" style="display:none">
+			      <p>카트비는 그린피에 포함입니다.</p>	   
+			   </div>
+			   <div class="item-select" id="cart_yes" style="display:none">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -568,7 +636,11 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
-            	<div class="item-select">
+				   
+			   <div class="item-select" id="caddy_no" style="display:none">
+			      <p>캐디피는 그린피에 포함입니다.</p>	   
+			   </div>
+               <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
@@ -584,7 +656,8 @@ $(document).ready(function() {
 								<option value="9">9명</option>
 								<option value="10">10명</option>
 						</select>
-                </div>
+               </div>
+			   
         </div>
 		
         <div class="section2-sub">
@@ -820,6 +893,53 @@ $(document).ready(function() {
         </div>
     </div>
     
+	<script>
+	function trip_change(selectElement) {
+		var type        = selectElement.value; // 선택된 값 (0=왕복, 1=편도)
+		var car         = selectElement.dataset.car; // data-car 값 가져오기 (dataset API 사용)
+		var product_idx = document.getElementById("product_idx").value; // 상품 ID 가져오기
+		var goods_name  = document.querySelector(".tag-js.active")?.dataset.tab || ""; // 선택된 홀 개수 가져오기
+
+		console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
+
+		$.ajax({
+			url: "/ajax/ajax_trip_change",
+			type: "POST",
+			data: {
+				"type"       : type,
+				"car"        : car,
+				"product_idx": product_idx,
+				"goods_name" : goods_name
+			},
+			dataType: "json",
+			async: true, // 비동기 요청으로 변경
+			cache: false,
+			success: function (data) {
+				console.log("AJAX 응답:", data);
+				if (data.status === "success") {
+					
+					// #vehicle_2 요소에 data-price와 data-price_baht 값 업데이트
+					$('#vehicle_'+car).data('price', data.price_won);
+					$('#vehicle_'+car).data('price_baht', data.price_bath);
+					
+					// 필요하면, HTML 속성 업데이트도 할 수 있음
+					$('#vehicle_'+car).attr('data-price', data.price_won);
+					$('#vehicle_'+car).attr('data-price_baht', data.price_bath);
+					setListVehicle();
+		
+				} else {
+					alert("데이터를 불러오는 데 실패했습니다.");
+				}
+			},
+			error: function (request, status, error) {
+				console.error("AJAX 요청 실패:", request, status, error);
+				alert("서버 오류가 발생했습니다. 관리자에게 문의하세요.");
+			}
+		});
+	}
+	</script>
+
+	
     <script>
         $(".qa-item .qa-wrap").on("click", function () {
             if($(this).closest(".qa-item").find(".additional-info").length > 0){
@@ -836,11 +956,19 @@ $(document).ready(function() {
             <?php
                 if(empty(session()->get("member")["id"])) {
             ?>  
-                alert("로그인해주세요");
-                return;      
+                // alert("로그인해주세요");
+                // return;      
+                showOrHideLoginItem();
+                return false;
             <?php
                 }
             ?>
+
+            if(!title){
+                alert("상품에 대해 궁금한 점을 입력해 주세요!");
+                return false;
+            }
+
             $.ajax({
                 url: "/product_qna/insert",
                 type: "POST",
@@ -954,7 +1082,7 @@ $(document).ready(function() {
 
             let total_vehicle_price_baht = 0;
             let html = `<div class="item-right">
-                            <p><span class="text-gray"></span>[name] x [cnt]대</p>
+                            <p><span class="text-gray"></span>[name] x [cnt](EA)</p>
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
@@ -963,8 +1091,8 @@ $(document).ready(function() {
             }).map(function () {
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
-                const price = Math.round($(this).attr('data-price') * cnt);
-                const price_baht = Math.round($(this).attr('data-price_baht') * cnt);
+                const price = parseInt($(this).attr('data-price') * cnt);
+                const price_baht = parseInt($(this).attr('data-price_baht') * cnt);
                 total_vehicle_price += price;
                 total_vehicle_price_baht += price_baht;
                 return html.replace("[name]", p_name)
@@ -987,8 +1115,8 @@ $(document).ready(function() {
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
             const price_baht = optionActive.data("option_price_baht") || 0;
             const people_cnt = $("#people_adult_cnt").val() || 0;
-            const final_price = Math.round(price * people_cnt);
-            const final_price_baht = Math.round(price_baht * people_cnt);
+            const final_price = parseInt(price * people_cnt);
+            const final_price_baht = parseInt(price_baht * people_cnt);
             const minute = optionActive.data("minute") || "00";
 
             //$("#option_idx").val(optionActive.data("idx"));
@@ -1045,9 +1173,10 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
+
             const vehiclePrice = setListVehicle();
 
-            const optionPrice = setOptionArea();
+            const optionPrice  = setOptionArea();
             const optionPrice1 = setGolfOption();
 
             let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
@@ -1156,6 +1285,7 @@ $(document).ready(function() {
 
 
         function handleSubmit() {
+			
             <?php
             if (empty(session()->get("member")["id"])) {
             ?>
@@ -1176,7 +1306,13 @@ $(document).ready(function() {
                 return false;
             }
 
-            $("#frm").submit();
+			if($("#o_cart_due").val() == "Y" && ($("#vehicle_4").val() == null || $("#vehicle_4").val() == "" || $("#vehicle_4").val() == "0")) {
+                alert('본홀은 카트의무예약 홀입니다 카트를 선택해주세요.');
+                $("#vehicle_4").focus();
+                return false;
+            }
+
+			$("#frm").submit();
         }
 
         $(".vehicle_select").change(function () {
@@ -1291,6 +1427,13 @@ $(document).ready(function() {
 					alert(res.caddie_fee_ba); 
 					alert(res.caddie_fee); 
 					*/
+
+					// 요소 선택
+					$("#option_idx").val(res.option_idx);
+					$("#o_cart_due").val(res.o_cart_due); 	
+					$("#o_caddy_due").val(res.o_caddy_due);	
+					$("#o_cart_cont").val(res.o_cart_cont); 	
+					$("#o_caddy_cont").val(res.o_caddy_cont); 			 
 					
 					// 요소 선택
 					var $selectElement = $('#vehicle_1');
@@ -1387,7 +1530,7 @@ $(document).ready(function() {
 
         //var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
         var sel_Date = $("#selDate").val();
-        console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
+        //console.log('sel_Date:', sel_Date); // 단순 메시지 출력(sel_Date); 마감일자 확인
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?= round($product['product_price_won'] / 10000, 1) ?>');
 
@@ -1456,6 +1599,9 @@ $(document).ready(function() {
 
             daysInCurrentMonth.forEach(e => {
 
+                var selPrice = $("#selPrice").val();
+				//alert(selPrice);
+				var Price = selPrice.split("|");
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
@@ -1467,7 +1613,7 @@ $(document).ready(function() {
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
-                    var selAmt = arrPrice[idx] + '만';
+                    var selAmt = parseInt(Price[idx]/10000) + '만';
                 }
 
                 const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";

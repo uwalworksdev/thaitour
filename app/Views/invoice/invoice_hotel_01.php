@@ -33,7 +33,7 @@ $setting = homeSetInfo();
 
                         ?> 
                         <tr>
-                            <th>예약번호()</th>
+                            <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=$weekday?>)</td>
@@ -114,22 +114,48 @@ $setting = homeSetInfo();
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>
-                                객실당 단가</th>
-                            <td><?=$row->date_price?></td>
+							<th>객실당 단가</th>
+							<td>
+								<?php
+									$roomTot = 0;
+
+									// $row->date_price가 존재하는지 확인
+									if (!empty($row->date_price)) {
+										$datePrice = explode("|", $row->date_price);
+
+										foreach ($datePrice as $priceData) {
+											$dayTot = 0;
+											$price = explode(",", $priceData);
+
+											// 배열 요소가 충분한지 확인 후 값 할당
+											$p1 = isset($price[1]) ? (int)$price[1] : 0;
+											$p2 = isset($price[2]) ? (int)$price[2] : 0;
+											$p3 = isset($price[3]) ? (int)$price[3] : 0;
+
+											$dayTot = $p1 + $p2 + $p3;
+											$roomTot += $dayTot;
+
+											if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
+										}
+									} else {
+										echo "가격 정보 없음";
+									}
+								?>
+							</td>
+
                             <th>객실 금액</th>
-                            <td>24,400바트(6,100바트 Χ 2박 Χ 2룸)</td>
+                            <td><?= number_format($roomTot * $row->order_room_cnt) ?>바트 (<?=number_format($roomTot)?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($row->order_price) ?>원</td>
+                            <td><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span><?= number_format($row->order_price) ?>원</span> (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>

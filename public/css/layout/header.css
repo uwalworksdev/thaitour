@@ -1023,10 +1023,14 @@
     }
 
     #mobile_menu .gnb_menu_item .menu_level_2 {
+        display: none;
+    }
+
+    #mobile_menu .gnb_menu_item .menu_level_2 a {
         padding: 3rem 7rem;
         background-color: #f4f5f6;
         border-bottom: 1px solid #fff;
-        display: none;
+        display: block;
     }
     
     #mobile_menu .gnb_menu_item .menu_level_1 img {
@@ -1049,7 +1053,7 @@
         overflow-y: scroll;
     }
 
-    #mobile_menu .gnb_menu_item a {
+    #mobile_menu .gnb_menu_item a p {
         font-size: 3rem;
         font-weight: 600;
     }

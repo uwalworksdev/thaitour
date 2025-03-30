@@ -58,9 +58,9 @@
 </style>
 <div class="section6" id="section6">
     <div class="header_review">
-        <h2 class="title-sec6"><span>생생리뷰</span>(<?= $product['total_review'] ?? 0 ?>)</h2>
+        <h2 class="title-sec6"><span>여행후기</span>(<?= $product['total_review'] ?? 0 ?>)</h2>
         <div class="write_new_review">
-            <p class="desc_">생생리뷰를 작성해 주시면 200 포인트를 드립니다. 포인트는 이 상품을 예약했을 경우에만 적립됩니다.</p>
+            <p class="desc_">2000 포인트 (최소 500자 이상+ 사진 1장) - 포인트는 예약 건이 있는 경우에만 적립됩니다.</p>
             <a class="btnGoReviewPage" href="/review/review_write?product_idx=<?= $product['product_idx'] ?>">쓰기</a>
         </div>
     </div>
@@ -83,7 +83,7 @@
             </div>
         <?php endforeach; ?>
     </div>
-    <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
+    <h2 class="sub-title-sec6">BEST 여행후기</h2>
     <div class="card-list-flex">
         <div class="card-list-recommemded">
             <?php $i = 0;

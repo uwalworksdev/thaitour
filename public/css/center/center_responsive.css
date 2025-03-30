@@ -171,6 +171,18 @@ and (orientation : landscape)
 { 
 
 }
+
+@media screen and (max-width: 850px) {
+	.insurance table, .tourterms .content_wrap, .terms .content_wrap, .privacy .content_wrap {
+		font-size: 2.6rem;
+		line-height: 155%;
+	}
+
+	.insurance table, .tourterms .content_wrap, .terms .content_wrap, .privacy .content_wrap .tbl_spe_ad {
+		width: 100%;
+		overflow-x: auto;
+	}
+}
 /* phone (landscape) END  */
 
 /*/////////////////////////////// 스마트폰 종료 ///////////////////////////////*/

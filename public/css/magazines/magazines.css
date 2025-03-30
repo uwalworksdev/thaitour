@@ -538,4 +538,192 @@
         margin: 0 0.5rem;
         border-radius: 0.5rem;
     }
+
+    .time_sale_list {
+        margin-top: 3rem;
+        display: flex;
+        gap: 5rem 2rem;
+        flex-wrap: wrap;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid #eeeeee;
+    }
+    
+    .time_sale_list .time_sale_child {
+        width: calc(100% / 2 - 4rem / 3);
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img {
+        width: 100%;
+        height: 28.4rem;
+        position: relative;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .coating {
+        background-color: #000000;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .time_status {
+        position: absolute;
+        top: 1.8rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.3rem;
+        width: 26rem;
+        height: 5.2rem;
+        border-radius: 2.1rem;
+        background-color: #000000;
+        font-family: "Pretendard";
+        z-index: 2;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .time_status span {
+        font-weight: 500;
+        font-size: 2.8rem;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .time_status.expired i {
+        width: 1.2rem;
+        height: 1.2rem;
+        background: url("/images/time_sale/time_expired_ico.png") no-repeat center/cover;
+        background-size: 1.2rem 1.2rem;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .time_status.live i {
+        width: 2.6rem;
+        height: 1.8rem;
+        background: url("/images/time_sale/time_live_ico.png") no-repeat center/cover;
+        background-size: 2.6rem 1.8rem;
+    }
+    
+    .time_sale_list .time_sale_child .time_sale_img .time_status.progress i {
+        width: 1.2rem;
+        height: 1.2rem;
+        background: url("/images/time_sale/time_progress_ico.png") no-repeat center/cover;
+        background-size: 1.2rem 1.2rem;
+    }
+
+    
+    .time_sale_list .time_sale_child .time_sale_img img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .time_sale_list .time_sale_child .ttl {
+        font-size: 2.8rem;
+        line-height: 1.3;
+        margin-top: 3rem;
+        font-family: "Pretendard";
+    }
+    
+    .time_sale_list .time_sale_child .tools {
+        padding-right: 2.5rem;
+    }
+    
+    .time_sale_list .time_sale_child .tools .date {
+        opacity: 0.6;
+        font-size: 2.6rem;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+    
+    .time_sale_list .tools {
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .tools_list {
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .tools_list .tools_el {
+        gap: 1rem;
+    }
+
+    .tools_list .tools_el.like i {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: url(/images/time_sale/ico_like.png) no-repeat center / cover;
+        background-size: 2.5rem 2.5rem;
+    }
+
+    .tools_list .tools_el span {
+        opacity: 0.600;
+        font-size: 2.6rem;
+        color: #252525;
+        font-family: "Pretendard";
+    }
+
+    .tools_list .tools_el.comment i {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: url(/images/time_sale/ico_mess.png) no-repeat center / cover;
+        background-size: 2.5rem 2.5rem;
+    }
+
+    .tools_list .tools_el.view i {
+        width: 3.6rem;
+        height: 2.4rem;
+        background: url(/images/time_sale/ico_eye.png) no-repeat center / cover;
+        background-size: 3.6rem 2.4rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .icon_search_ {
+        position: absolute;
+        top: 50%;
+        right: 2.5rem;
+        transform: translate(50%, -50%);
+        width: 2.6rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .select_sort_ {
+        width: 16rem;
+        height: 7rem;
+        border-radius: 0.6rem;
+        background-color: #ffffff;
+        border: 1px solid #dbdbdb;
+        padding-left: 1.8rem;
+        background: #fff url(/images/ico/select_ico.png) right 2rem center no-repeat;
+        background-size: 2rem;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_detail_ {
+        padding: 5rem 2rem 14rem;
+        border-radius: 0.6rem;
+        background-color: #ffffff;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_detail__title_ {
+        font-size: 3.4rem;
+        letter-spacing: -1px;
+        line-height: 1.3;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_detail__desc_ {
+        margin-top: 2rem;
+        gap: 2rem;
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_detail__content_ {
+        margin-top: 4rem;
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+        line-height: 1.3;
+    }
+
+    .magazines_page_ .magazines_area_ .magazines_detail__content_ p {
+        margin-top: 2rem;
+    }
 }

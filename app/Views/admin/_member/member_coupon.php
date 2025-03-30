@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <table width="100%" cellpadding="6" cellspacing="0">
     <tbody>
         <tr>
@@ -6,7 +7,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="2">
                     <tbody>
                         <tr>
-                            <td class="tit_sub"><img src="../image/ics_tit.gif"> 김평진(lifeess) 님의 쿠폰내역</td>
+                            <td class="tit_sub"><img src="../image/ics_tit.gif"> <?= esc($member['user_id']) ?> 님의 쿠폰내역</td>
                         </tr>
                     </tbody>
                 </table>
@@ -26,9 +27,42 @@
                         <tr>
                             <td class="t_rd" colspan="20"></td>
                         </tr>
+                        <?php
+
+                            $index = 1;
+
+                            if ($nTotalCount == 0) {
+                        ?>
                         <tr bgcolor="ffffff" align="center">
                             <td height="35" colspan="7">발급내역이 없습니다.</td>
                         </tr>
+                        <?php } ?>
+                        <?php
+                            foreach ($coupon_list as $row) {
+                        ?>
+                        <tr bgcolor="ffffff" align="center" class="spe">
+                            <td><?= $index;?></td>
+                            <td><?= $row['coupon_name'] ?></td>
+                            <td><?= $row['enddate'] ?></td>
+                            <td><?= $row['regdate'] ?></td>
+                            <td>
+                                <?php                                 
+                                if ($row["status"] == "D") {
+                                    echo "대기";
+                                } elseif ($row["status"] == "N") {
+                                    echo "발급";
+                                } elseif ($row["status"] == "E") {
+                                    echo "사용";
+                                } elseif ($row["status"] == "C") {
+                                    echo "취소";
+                                }
+                                ?>
+                            </td>
+                            <td><a href="javascript:deleteCoupon('<?= $row['c_idx']?>');" class="AW-btn-s del">삭제</a></td>
+                        </tr>
+                        <?php
+                            $index++;
+                            } ?>
                         <tr>
                             <td colspan="20" class="t_line"></td>
                         </tr>
@@ -86,6 +120,34 @@
         background: #6f7684;
     }
 
+    tr.spe td {
+        padding: 10px 0;
+    }
+
+    .AW-btn-s.del {
+    border: 1px solid #777;
+    background: #888;
+    }
+
+    .AW-btn-s {
+        font-family: "돋움", 'Dotum';
+        display: inline-block;
+        height: 19px;
+        line-height: 21px;
+        font-size: 11px;
+        letter-spacing: -0.8px;
+        font-weight: normal;
+        padding: 0 6px;
+        vertical-align: middle;
+        border-radius: 3px;
+        color: #fff !important;
+        border: 1px solid #222;
+        background: #444;
+        box-sizing: border-box;
+        cursor: pointer;
+        text-decoration: unset;
+    }
+
     .AW-btn-wrap {
         text-align: center;
         font-size: 16px;
@@ -129,3 +191,26 @@
         font-size: 13px;
     }
 </style>
+<script>
+    function deleteCoupon(c_idx) {
+        if (!confirm("정말 삭제하시겠습니까?")) return;
+    
+        $.ajax({
+            url: "/AdmMaster/_member/deleteCoupon",
+            type: "POST",
+            data: { c_idx: c_idx},
+            dataType: "json",
+            success: function(response) {
+                if (response.status === "success") {
+                    alert("삭제가 완료되었습니다.");
+                    location.reload();
+                } else {
+                    alert("오류 발생: " + response.message);
+                }
+            },
+            error: function() {
+                alert("오류가 발생했습니다. 다시 시도해 주세요."); 
+            }
+        });
+    }
+</script>

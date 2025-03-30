@@ -45,6 +45,20 @@
         margin-bottom: 4px;
     }
 
+    @media screen and (max-width: 850px) {
+        .answer_box_wrap .author {
+            position: absolute;
+            top: 2rem;
+            left: 0;
+        }
+
+        .answer_box_wrap .author p {
+            color: #757575;
+            font-size: 2.2rem !important;
+            margin-bottom: 0.4rem;
+        }
+    }
+
 
 </style>
 <div id="container" class="sub contact">

@@ -1,6 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+<style>
+    @media screen and (max-width: 850px) {
+        .popup__content {
+            top: 65.5%;
+        }
+    }
+</style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
             <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1303, "code_name" => $code_name, "code_no" => $code_no]); ?>
@@ -279,7 +287,7 @@
                                 검색
                             </button>
                             <div class="only_mo category-mo-cus">
-                                <span class="title-cate">방콕</span>
+                                <span class="title-cate"><?= $code_name ?></span>
                                 <div class="img-div">
                                     <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
                                 </div>
@@ -296,7 +304,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                                <button type="button" class="btn_search_" id="filter_products" onclick="search_it()">
                                     검색
                                 </button>
                                 <button type="button" id="delete_all">전체삭제</button>
@@ -723,6 +731,14 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="category-left-item">
+                            <div class="category_btn_pop flex_c_c">
+                                <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                                    검색
+                                </button>
+                                <button type="button" id="delete_all_mo">전체삭제</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1083,7 +1099,7 @@
 
         });
 
-        $('#delete_all').click(function () {
+        $('#delete_all, #delete_all_mo').click(function () {
             $('.list-tag .tag-item').remove();
             $('.tab_box_js, .tab_box_mo_js').removeClass('tab_active_');
 
@@ -1135,9 +1151,11 @@
 
         $(".img-div").click(function () {
             $(".popup").show();
+            $("body").css("overflow","hidden");
         });
         $(".close_popup").click(function () {
             $(".popup").hide();
+            $("body").css("overflow","unset");
         });
 
         $(document).ready(function () {

@@ -1,6 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-
 <script src="/js/cms.js" type="text/javascript"></script>
 <div id="container" class="sub view_container">
 
@@ -110,8 +109,8 @@
                             <span id="comment_count">(0)</span>
                         </div>
                         <form name="com_form" id="com_form" method="post" onsubmit="return false">
-                            <input type="hidden" name="code" id="code" value="<?= $code ?>">
-                            <input type="hidden" name="bbs_idx" id="bbs_idx" value="<?= $bbs_idx ?>">
+                            <input type="hidden" name="r_code" id="r_code" value="<?= $event['code'] ?>">
+                            <input type="hidden" name="r_idx" id="r_idx" value="<?= $event['bbs_idx'] ?>">
                             <input type="hidden" name="tbc_idx" id="tbc_idx" value="">
                             <div class="comment_box-input flex">
                                 <textarea style="resize:none" name="comment" class="bs-input" id="contents"
@@ -138,10 +137,11 @@
 
 <script>
     function go_list() {
-        location.href = '/event/event03.php';
+        // location.href = '/event/winning_list';
+        history.back();
     }
     const r_code = "event";
-    const r_idx = '<?= $bbs_idx ?>';
+    const r_idx = '<?= $event['bbs_idx'] ?>';
     
 </script>
 

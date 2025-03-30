@@ -5,14 +5,14 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2><?= $data_['product_name'] ?></h2>
-                <div class="only_web">
+                <h2><?= $data_['product_name'] ?><span style="margin-left: 15px;"><?= viewSQ($data_['product_name_en']) ?></span></h2>
+                <!-- <div class="only_web"> -->
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon">
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
             <div class="location-container">
                 <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
@@ -49,11 +49,11 @@
 
                     <span>추천 MBTI: <?= implode(', ', $code_n0) ?></span>
                 </div>
-                <div class="list-icon only_mo">
+                <!-- <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
-                </div>
+                </div> -->
             </div>
             <?php
                 if(!empty($data_['ufile1'])) {
@@ -438,11 +438,19 @@
         <?php
             if(empty(session()->get("member")["id"])) {
         ?>  
-            alert("로그인해주세요");
-            return;      
+            // alert("로그인해주세요");
+            // return;
+            showOrHideLoginItem();
+            return false;          
         <?php
             }
         ?>
+
+        if(!title){
+            alert("상품에 대해 궁금한 점을 입력해 주세요!");
+            return false;
+        }
+
         $.ajax({
             url: "/product_qna/insert",
             type: "POST",
@@ -656,7 +664,7 @@
 
         if (rs.length === 0) {
             html = `<tr>
-                                <td colspan="6">
+                                <td colspan="3">
                                     날짜 선택해주세요!
                                 </td>
                             </tr>`;

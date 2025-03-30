@@ -177,9 +177,9 @@
         }
 
         .section_5 p {
-            line-height: 24px;
+            /* line-height: 24px;
             margin-bottom: 40px;
-            color: #757575;
+            color: #757575; */
         }
 
         .section_5 .post {
@@ -270,6 +270,43 @@
 
         .main_sale_banner {
             top: 85%;
+        }
+
+        .section_5 .meeting_wrap {
+            margin-top: 25px;
+        }
+
+        .section_5 .meeting_wrap .meeting_list {
+            display: flex;
+            gap: 40px;
+            padding: 30px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .section_5 .meeting_wrap .meeting_list img {
+            width: 540px;
+            height: 320px;
+        }
+
+        .section_5 .meeting_wrap .meeting_list .content {
+            margin-top: 20px;
+        }
+
+        .section_5 .meeting_wrap .meeting_list .content .ttl {
+            font-size: 24px;
+            font-weight: bold;
+            color: #252525;
+        }
+
+        .section_5 .meeting_wrap .meeting_list .content .ttl.two {
+            margin-top: 25px;
+        }
+
+        .section_5 .meeting_wrap .meeting_list .content .desc {
+            font-size: 18px;
+            line-height: 30px;
+            color: #757575;
+            margin-top: 15px;
         }
 
         @media screen and (min-width: 1921px) {
@@ -517,7 +554,7 @@
                 font-size: 2.6rem;
                 line-height: 1.3;
                 margin-bottom: 5.192rem;
-                text-align: center;
+                /* text-align: center; */
             }
 
             .section_5 .contact {
@@ -562,6 +599,46 @@
                 font-weight: 500;
                 font-size: 3.077rem;
                 line-height: 1.2;
+            }
+
+            .section_5 .meeting_wrap {
+              margin-top: 0;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0;
+                padding: 6.923rem 0;
+                border-bottom: 0.231rem solid #eeeeee;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list img {
+                width: 100%;
+                height: 45rem;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list .content {
+                margin-top: 0;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list .content .ttl {
+                font-size: 3.923rem;
+                font-weight: bold;
+                color: #252525;
+                margin-bottom: 0;
+                margin-top: 4.039rem;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list .content .ttl.two {
+                margin-top: 4.039rem;
+            }
+            
+            .section_5 .meeting_wrap .meeting_list .content .desc {
+                font-size: 3.231rem;
+                line-height: 4.615rem;
+                color: #757575;
+                margin-top: 3.461rem;
             }
         }
     </style>
@@ -748,9 +825,90 @@
         <section class="section_5">
             <div class="inner">
                 <h1>기업/비즈니스/출장</h1>
-                <p>기업 혹은 단체에서 방문 혹은 시찰을 위해 더투어랩 방문하시는 경우에 차량, 통역, 숙박, 요청일정 등 필요한 현지 서비스를 제공합니다.<br class="only_web">
+                <!-- <p>기업 혹은 단체에서 방문 혹은 시찰을 위해 더투어랩 방문하시는 경우에 차량, 통역, 숙박, 요청일정 등 필요한 현지 서비스를 제공합니다.<br class="only_web">
                     전체일정을 요청하시거나 부분적으로 필요한 부분만 요청해주셔도 목적에 맞는 더투어랩 방문이 최우선이 될 수 있도록 안내를 제공합니다.</p>
-                <img src="/img/sub/group_section_5_post_image.png" alt="">
+                <img src="/img/sub/group_section_5_post_image.png" alt=""> -->
+                <div class="meeting_wrap">
+                    <div class="meeting_list">
+                        <div class="img_wrap">
+                            <img src="/images/sub/mice_meeting_1.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="ttl">Meeting</h4>
+                            <p class="desc">
+                                - 국제회의, 정부회의, 기업/협회회의 <br>
+                                - 회의기획, 준비 및 집행 <br>
+                                - 예산관리, 스폰서 교섭 및 선정 <br>
+                                - 행사장 섭외, 예상참가자 DB구축
+                            </p>
+                            <h4 class="ttl two">주요행사</h4>
+                            <p class="desc">
+                                - 연간 미팅 <br>
+                                - IR 행사
+                            </p>
+                        </div>
+                    </div>
+                    <div class="meeting_list">
+                        <div class="img_wrap">
+                            <img src="/images/sub/mice_meeting_2.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="ttl">Incentive</h4>
+                            <p class="desc">
+                                - 포상관광 프로그램 기획 및 진행 <br>
+                                - 행사지 분석 및 여행 컨설팅 <br>
+                                - 각종 액티비티 및 팀빌딩 프로그램 <br>
+                                - 국내 항공, 숙박등 토탈 여행서비스
+                            </p>
+                            <h4 class="ttl two">주요행사</h4>
+                            <p class="desc">
+                                - 기업체 및 그룹 세일즈 인센티브 투어 <br>
+                                - VIP 스페셜 투어 <br>
+                                - 포상여행 <br>
+                                - 고객감사 여행 프로그램
+                            </p>
+                        </div>
+                    </div>
+                    <div class="meeting_list">
+                        <div class="img_wrap">
+                            <img src="/images/sub/mice_meeting_3.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="ttl">Convention</h4>
+                            <p class="desc">
+                                - 국제 학술전 및 세계 총회 유치 <br>
+                                - 행사 프로그램 편성, 관리 <br>
+                                - 공식 및 사교행사 기획 및 진행 <br>
+                                - 부대 행사 기획 및 운영
+                            </p>
+                            <h4 class="ttl two">주요행사</h4>
+                            <p class="desc">
+                                - 해외 의학회 <br>
+                                - 컨퍼런스 및 컨벤션 개최/참가 여행
+                            </p>
+                        </div>
+                    </div>
+                    <div class="meeting_list">
+                        <div class="img_wrap">
+                            <img src="/images/sub/mice_meeting_4.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="ttl">Event & Exhibition</h4>
+                            <p class="desc">
+                                - 전시기획 및 운영 <br>
+                                - 사내 워크샵 기획 및 진행 <br>
+                                - 팀 빌딩 추천 프로그램 제시 <br>
+                                - 행사 홍보 및 마케팅
+                            </p>
+                            <h4 class="ttl two">주요행사</h4>
+                            <p class="desc">
+                                - 팀빌딩 및 팀워크 프로그램 <br>
+                                - 각종 테마파티 및 만찬 <br>
+                                - 각종 시상식 및 연도상 개최
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <!-- <div class="post flex">
                   <div class="post_detail">
                     <div class="post_image">

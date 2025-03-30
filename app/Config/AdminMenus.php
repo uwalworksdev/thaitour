@@ -33,25 +33,25 @@ class AdminMenus extends BaseConfig
                     'name' => '호텔 상품관리',
                     'code' => 'B2',
                     'url' => '/AdmMaster/_hotel/list',
-                    'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options',  'AdminHotelController::write_price']
+                    'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options',  'AdminHotelController::write_price', 'TourRegistController::list_room_price']
                 ],
                 [
                     'name' => '골프 상품관리',
                     'code' => 'B5',
                     'url' => '/AdmMaster/_tourRegist/list_golf',
-                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf']
+                    'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf', 'TourRegistController::write_golf_price', 'TourRegistController::list_golf_price']
                 ],
                 [
                     'name' => '투어 상품관리',
                     'code' => 'B4',
                     'url' => '/AdmMaster/_tourRegist/list_tours',
-                    'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours']
+                    'alias' => ['TourRegistController::list_tours', 'TourRegistController::write_tours', 'TourRegistController::write_tours_price', 'TourRegistController::write_tour_info', 'TourRegistController::list_tours_price']
                 ],
                 [
                     'name' => '스파/쇼·입장권/레스토',
                     'code' => 'B3',
                     'url' => '/AdmMaster/_tourRegist/list_spas',
-                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas']
+                    'alias' => ['TourRegistController::list_spas', 'TourRegistController::write_spas', 'TourRegistController::write_spas_price', 'Admin\AdminSpaController::write_new', 'TourRegistController::write_spas_info']
                 ],
                 [
                     'name' => '차량 상품관리',
@@ -189,7 +189,7 @@ class AdminMenus extends BaseConfig
                     'name' => '상품결제내역',
                     'code' => 'E6',
                     'url' => '/AdmMaster/_reservation/list_payment',
-                    'alias' => ['ReservationController::list_payment', 'ReservationController::write']
+                    'alias' => ['ReservationController::list_payment', 'ReservationController::write_payment']
                 ],
                 [
                     'name' => '여행상품예약',
@@ -203,6 +203,12 @@ class AdminMenus extends BaseConfig
                 //     'url' => '/AdmMaster/_reservationCar/list',
                 //     'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
                 // ],
+                [
+                    'name' => '정산관리',
+                    'code' => 'E10',
+                    'url' => '/AdmMaster/_settlement/list',
+                    'alias' => ['SettlementController::list', 'SettlementController::write']
+                ],
                 [
                     'name' => '상품 Q&A',
                     'code' => 'E2',
@@ -221,12 +227,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_contact/list',
                     'alias' => ['ContactController::list', 'ContactController::write']
                 ],
-                [
-                    'name' => '맞춤문의',
-                    'code' => 'E5',
-                    'url' => '/AdmMaster/_inquiry/list',
-                    'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
-                ],
+                // [
+                //     'name' => '맞춤문의',
+                //     'code' => 'E5',
+                //     'url' => '/AdmMaster/_inquiry/list',
+                //     'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
+                // ],
                 // [
                 //     'name' => '쿠폰생성관리',
                 //     'code' => 'E7',
@@ -346,7 +352,7 @@ class AdminMenus extends BaseConfig
                     'name' => '약관및정책관리',
                     'code' => 'H8',
                     'url' => '/AdmMaster/_cms/policy_list?r_code=info',
-                    'alias' => ['AdminCmsController::policy_list', 'AdminCmsController::policy_write']
+                    'alias' => ['AdminCmsController::policy_list', 'AdminCmsController::policy_write', 'AdminCmsController::policy_cancel_list', 'AdminCmsController::policy_cancel_write']
                 ],
                 [
                     'name' => '환경설정',

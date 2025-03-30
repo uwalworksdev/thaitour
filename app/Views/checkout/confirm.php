@@ -834,6 +834,28 @@ function reqPG()
 function depositBtn()
 {
 		$("#paymentNo").val($("#payment_no").val());
+    
+			let order_method = $("input[name='inp_radio']:checked").val();
+    
+		$.ajax({
+            url: "/ajax/ajax_bank_deposit",
+            type: "POST",
+            data: {
+                "order_no"      : $("#dataValue").val(),
+				"order_method"  : order_method	
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(data, textStatus) {
+                message = data.message;
+				alert(message);
+            },
+            error: function(request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+		
 		$("#depositForm").submit();
 }
 

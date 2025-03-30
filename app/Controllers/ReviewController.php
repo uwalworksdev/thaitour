@@ -8,9 +8,12 @@ use Config\CustomConstants as ConfigCustomConstants;
 class ReviewController extends BaseController
 {
     private $ReviewModel;
+    private $member;
+    private $milane;
     private $Bbs;
     private $db;
     protected $codeModel;
+    protected $policy;
 
     public function __construct()
     {
@@ -20,6 +23,9 @@ class ReviewController extends BaseController
         $this->codeModel = new Code();
         helper('my_helper');
         helper('alert_helper');
+        $this->member = model("Member");
+        $this->milane = model("Mileage");
+        $this->policy = model("PolicyModel");
         $constants = new ConfigCustomConstants();
     }
 
@@ -283,11 +289,14 @@ class ReviewController extends BaseController
             </script>
         ";
         }
-        $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";
-        $privacy = $this->db->query($sql)->getRowArray();
+        // $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";
+        // $privacy = $this->db->query($sql)->getRowArray();
 
-        $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'third_paties'";
-        $third_paties = $this->db->query($sql)->getRowArray();
+        // $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'third_paties'";
+        // $third_paties = $this->db->query($sql)->getRowArray();
+
+        $privacy = $this->policy->getByCode("privacy");
+        $third_paties = $this->policy->getByCode("third_paties");
 
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no=13 AND depth = '2' ORDER BY onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
@@ -534,7 +543,33 @@ class ReviewController extends BaseController
         }
 
         $this->ReviewModel->insert($dataToInsert);
+        $insertedId = $this->ReviewModel->insertID(); 
         $this->calcReview($product_idx, $travel_type_2);
+        $m_idx = $session->get('member.idx');
+        if ($m_idx && $insertedId) {
+            $reviewData = $this->ReviewModel->find($insertedId);
+        
+            if (( !empty($reviewData['ufile1'])) && mb_strlen($reviewData['contents'], 'UTF-8') > 500) {
+                $memberData = $this->member->find($m_idx);
+                $currentMileage = $memberData['mileage'] ?? 0;
+                $newMileage = $currentMileage + 2000;
+        
+                $this->member->update($m_idx, ['mileage' => $newMileage]);
+
+                $currentRemaining = $memberData['mileage'] ?? 0;
+                $newRemaining = $currentRemaining + 2000;
+                $this->milane->insert([
+                    'm_idx'             => $m_idx,
+                    'mi_title'          => '여행후기',
+                    'order_gubun'       => '여행후기 작성',
+                    'order_idx'         => 0,
+                    'order_mileage'     => 2000,
+                    'mi_r_date'         => date('Y-m-d H:i:s'),
+                    'product_idx'       => 0,
+                    'remaining_mileage' => $newRemaining,
+                ]);
+            }
+        }
         return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
     }
 

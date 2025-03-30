@@ -28,6 +28,7 @@
                     <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                     <input type="hidden" name="product_idx" id="product_idx" value="">
+                    <input type="hidden" name="product_type" id="product_type" value="<?= implode(',', (array)$product_type) ?>">
 
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
@@ -121,6 +122,28 @@
                                 <p><input name="best" class="type_chker" id="best" type="checkbox"
                                           value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                             for="state_chker_3">베스트</label></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">단품 메인노출</td>
+                            <td class="inbox">
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_md" type="checkbox"
+                                        value="MD 추천" <?= (in_array("MD 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_md">MD 추천</label>
+                                </p>
+
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_hotdeal" type="checkbox"
+                                        value="핫딜 추천" <?= (in_array("핫딜 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_hotdeal">핫딜 추천</label>
+                                </p>
+
+                                <p>
+                                    <input name="product_type[]" class="type_chker" id="product_value" type="checkbox"
+                                        value="가성비 추천" <?= (in_array("가성비 추천", (array)$product_type)) ? 'checked' : ''; ?>> 
+                                    <label for="product_value">가성비 추천</label>
+                                </p>
                             </td>
                         </tr>
                         <tr>
@@ -283,6 +306,7 @@
 
                 </script>
 
+                <form name="frm" id="frm">
                 <div class="listWrap">
                     <!-- 안내 문구 필요시 구성 //-->
 
@@ -300,11 +324,18 @@
                             <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
                                         src="/images/admin/common/filter.png" alt="">예약순
                             </button>
+							
+							<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+								<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+								<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+								<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+								<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+							</select>
+							
                         </div>
 
                     </div><!-- // listTop -->
 
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
@@ -315,6 +346,7 @@
                                     <col width="120px"/>
                                     <col width="*"/>
 
+                                    <col width="100px"/>
                                     <col width="100px"/>
                                     <col width="100px"/>
                                     <!-- <col width="80px"/> -->
@@ -334,6 +366,7 @@
 
                                     <th>상품담당자</th>
                                     <th>판매상태결정</th>
+                                    <th>가격수정</th>
                                     <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
@@ -394,6 +427,7 @@
 
                                         </td>
                                         <td class="tac"><?= $row["product_manager"] ?></td>
+                                        
                                         <td class="tac">
                                             <select name="product_status[]" id="product_status_<?= $row["product_idx"] ?>">
                                                 <option value="sale" <?php if (isset($row["product_status"]) && $row["product_status"] === "sale") {
@@ -409,6 +443,15 @@
                                                 } ?>>판매중지
                                                 </option>
                                             </select>
+                                        </td>
+                                        <td class="tac">
+                                            <div style="display: flex; align-items: center; justify-content: center">
+                                                <a href="write_spas_info?product_idx=<?= $row["product_idx"] ?>"
+                                                class=""
+                                                style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
+                                                    <span class="txt">수정</span>
+                                                </a>
+                                            </div>
                                         </td>
                                         <!-- <td class="tac">
                                             <input name="is_best" name="product_best_best" class="type_chker"
@@ -461,7 +504,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_spas') . $search_val . "&pg=") ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_spas') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
 
                     <div id="headerContainer">
 
@@ -488,6 +531,12 @@
 
         </div><!-- 인쇄 영역 끝 //-->
     </div><!-- // container -->
+
+	<script>
+		function submitForm() {
+			document.getElementById("frm").submit();
+		}
+	</script>
 
     <script>
         function check_best(idx) {

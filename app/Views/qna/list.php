@@ -144,6 +144,23 @@ $r_code = "qna";
 </section>
 
 <script>
+
+    
+    $(".contact_btn").on("click", function () {
+        event.preventDefault();
+
+        <?php if(empty(session()->get("member")["id"])) { ?>
+            showOrHideLoginItem().then(() => { 
+                location.href = '/qna/write'; 
+            }).catch(error => {
+                console.error("fail:", error);
+            });
+
+            return false;
+        <?php } ?>
+
+        location.href = '/qna/write';
+    })
     function showCheckPass(idx) {
         $("#view_inquiry_frm").attr("action", `./inquiry_view?idx=${idx}`)
         $('.edit_input_pop').show();

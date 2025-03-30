@@ -1463,3 +1463,639 @@ input[type="checkbox"]:checked+label {
     padding-bottom: 100px;
     padding-inline: 12px;
 }
+
+/** booklist **/
+.booklist_wrap {
+    width: 100%;
+}
+.booklist_wrap .book_big_ttl h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #252525;
+    line-height: 1.3;
+    margin-bottom: 15px;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.booklist_wrap .book_big_ttl p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #777;
+}
+
+.booklist_wrap .book_num_order {
+    border: 1px solid #eee;
+    border-top: 1px solid #999;
+    margin-bottom: 55px;
+}
+
+.booklist_wrap .book_num_order .top {
+    padding: 20px 0;
+    gap: 45px;
+}
+
+.booklist_wrap .book_num_order .top .num_order {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.booklist_wrap .book_num_order .top .num_order .titles {
+    font-size: 18px;
+    font-weight: 500;
+    color: #777;
+    line-height: 1.3;
+}
+
+.booklist_wrap .book_num_order .top .num_order .desc {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.booklist_wrap .book_num_order .top .num_order .desc p {
+    font-size: 30px;
+    color: #ff6300;
+    font-weight: 600;
+}
+
+.booklist_wrap .book_num_order .top .num_order .desc p span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #454545;
+}
+
+.booklist_wrap .book_num_order .process {
+    padding: 15px 0;
+    gap: 35px;
+    background-color: #f7f7f7;
+}
+
+.booklist_wrap .book_num_order .process p {
+    font-size: 16px;
+    color: #757575;
+    font-weight: 500;
+}
+
+.booklist_wrap .book_num_order .process span {
+    font-size: 16px;
+    color: #ff6300;
+    font-weight: 500;
+    padding: 0 2px;
+}
+
+.booklist_wrap .result_book {
+    gap: 25px;
+    padding-bottom: 25px;
+}
+
+.booklist_wrap .result_book .total {
+    font-size: 16px;
+    color: #252525;
+    font-weight: 500;
+}
+
+.booklist_wrap .result_book .total span {
+    color: red;
+}
+
+.booklist_wrap .result_book .tab_box ul li {
+    padding: 12px 20px;
+    border: 1px solid #eee;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: #777;
+    line-height: 1.3;
+    border-bottom: 1px solid #999;
+}
+
+.booklist_wrap .result_book .tab_box ul li.on {
+    border: 1px solid #999;
+    color: #454545;
+}
+
+.booklist_wrap .search_form {
+    gap: 25px;
+}
+
+.booklist_wrap .select_search_wrap {
+    gap: 5px;
+}
+
+.booklist_wrap .select_search_wrap select {
+    width: 120px;
+    height: 32px;
+    border: 1px solid #eee;
+    background: #fff url(/images/ico/select_ico.png) right 5px center no-repeat;
+    font-size: 14px;
+}
+
+.booklist_wrap .datepick .ui-datepicker-trigger {
+    right: 10px;
+}
+
+.booklist_wrap .select_search_wrap .input-row {
+    gap: 5px;
+}
+
+.booklist_wrap .input-row>*+* {
+    margin-top: 0;
+}
+
+.booklist_wrap .select_search_wrap .input-row input {
+    width: 120px;
+    height: 32px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    padding: 10px 5px;
+}
+
+.booklist_wrap .details_search {
+    gap: 10px;
+}
+
+.booklist_wrap .details_search input {
+    width: 130px;
+    height: 32px;
+}
+
+.booklist_wrap .details_search button {
+    width: 60px;
+    height: 32px;
+    border: 1px solid #2e3e92;
+    color: #2e3e92;
+    border-radius: 3px;
+}
+
+.booklist_wrap .booking_product {
+    margin-top: 12px;
+}
+
+.booklist_wrap .booking_product .product_box + .product_box {
+    margin-top: 20px;
+}
+
+.booklist_wrap .booking_product .product_detail + .product_detail {
+    border-top: 1px dashed #eee;
+}
+
+.booklist_wrap .booking_product .product_box .book_group_wrap {
+    padding: 10px;
+    background-color: #f4f6ff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.booklist_wrap .booking_product .product_box .book_group_wrap .group_r {
+    gap: 15px;
+}
+
+.booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total p {
+    font-size: 14px;
+    color: #252525;
+}
+
+.booklist_wrap .booking_product .product_box .book_group_wrap .group_r .group_print {
+    gap: 3px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #999;
+    font-size: 14px;
+    color: #252525;
+    cursor: pointer;
+}
+
+.booklist_wrap .booking_product .product_detail {
+    padding: 15px 10px;
+    display: flex;
+    gap: 30px;
+}
+
+.booklist_wrap .booking_product .product_detail .info_product {
+    width: 60%;
+}
+
+.booklist_wrap .booking_product .product_detail .product_tit {
+    font-size: 18px;
+    font-weight: 700;
+    color: #252525;
+    line-height: 1.3;
+    margin: 10px 0;
+    display: block;
+}
+
+.booklist_wrap .booking_product .product_detail .info_payment {
+    gap: 10px;
+}
+
+.booklist_wrap .booking_product .product_detail .bs-input-check input[type="radio"]+label, 
+.booklist_wrap .booking_product .product_detail .bs-input-check input[type="checkbox"]+label {
+    font-size: 14px;
+}
+
+.booklist_wrap .booking_product .product_detail .info_payment .tag {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ff6300;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff6300;
+}
+
+.booklist_wrap .booking_product .product_detail .info_payment .tag.gray {
+    background-color: #c3c3c3;
+    color: #fff;
+    border: unset;
+}
+
+.booklist_wrap .booking_product .product_detail .info_payment span {
+    font-size: 14px;
+    color: #454545;
+}
+
+.booklist_wrap .booking_product .product_detail .info_user {
+    margin: 5px 0 10px;
+}
+
+.booklist_wrap .booking_product .product_detail .info_user p {
+    font-size: 14px;
+    color: #454545;
+    padding-right: 10px;
+    position: relative;
+}
+
+.booklist_wrap .booking_product .product_detail .info_user p + p {
+    padding-left: 10px;
+}
+
+.booklist_wrap .booking_product .product_detail .info_user p::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 1px;
+    height: 80%;
+    background-color: #454545;
+    opacity: 0.5;
+}
+
+.booklist_wrap .booking_product .product_detail .info_user p:last-of-type:after {
+    display: none;
+}
+
+.booklist_wrap .booking_product .product_detail .info_name p {
+    font-size: 14px;
+    color: #757575;
+    line-height: 1.3;
+}
+
+.booklist_wrap .booking_product .product_detail .note {
+    margin: 10px 0 12px;
+    gap: 3px;
+}
+
+.booklist_wrap .booking_product .product_detail .note p {
+    font-size: 14px;
+    color: #454545;
+    line-height: 1.3;
+    padding-right: 20px;
+}
+
+.booklist_wrap .booking_product .product_detail .note p span {
+    color: red;
+}
+
+.booklist_wrap .booking_product .product_detail .info_link {
+    color: #2e3e92;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.booklist_wrap .booking_product .info_price {
+    width: 40%;
+    gap: 45px;
+    justify-content: flex-end;
+}
+
+.booklist_wrap .booking_product .info_price .info_total_price {
+    gap: 8px;
+    flex-direction: column;
+}
+
+.booklist_wrap .booking_product .info_price .info_total_price .pri_won {
+    color: #ff6300;
+    font-size: 14px;
+    text-wrap: nowrap;
+}
+
+.booklist_wrap .booking_product .info_price .info_total_price .pri_bath {
+    color: #454545;
+    font-size: 14px;
+    text-wrap: nowrap;
+}
+
+.booklist_wrap .booking_product .info_price .info_total_price .btn_payment {
+    padding: 8px 4px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
+
+.booklist_wrap .booking_product .info_price .info_total_price .btn_payment p {
+    font-size: 14px;
+    color: #2e3e92;
+    font-weight: 600;
+}
+
+.booklist_wrap .booking_product .info_price .estimate_wrap {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.booklist_wrap .booking_product .info_price .info_reservation.btn_info {
+    min-width: 108px;
+}
+
+.booklist_wrap .booking_product .info_price .btn_info {
+    padding: 10px 25px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    gap: 5px;
+    font-size: 14px;
+    color: #2e3e92;
+    font-weight: 600;
+    width: fit-content;
+    height: fit-content;
+}
+
+.booklist_wrap .customer-center-page .pagination {
+    margin: 70px 0 60px 0 !important;
+}
+
+.booklist_wrap .p_box {
+    border: 2px solid #000;
+    position: fixed;
+    background: #373c4f;
+    bottom: 0;
+    padding: 15px 20px 15px 60px;
+    border-bottom: none;
+    width: 100%;
+    max-width: 975px;
+    z-index: 2000;
+    display: flex;
+    justify-content: space-between;
+}
+
+.booklist_wrap .p_box .ord_info {
+    padding-top: 6px;
+    align-items: center;
+}
+
+.booklist_wrap .p_box .count_total {
+    padding-left: 0;
+    color: #fff;
+    padding-right: 20px;
+    border-right: 1px solid #666;
+    margin-right: 20px;
+    font-size: 15px;
+}
+
+.booklist_wrap .f_nilegreen {
+    color: #2ab6ad !important;
+}
+
+.booklist_wrap .price_total {
+    font-size: 15px;
+    padding-right: 40px;
+}
+
+.booklist_wrap .p_box .price_total {
+    color: #fff;
+    margin-top: -10px;
+}
+
+.booklist_wrap .f_orange {
+    color: #fb7622 !important;
+}
+
+.booklist_wrap .price_total span {
+    font-size: 13px;
+}
+
+.booklist_wrap .price_total strong {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.booklist_wrap .custom_btn2 {
+    display: inline-block !important;
+    outline: none !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    line-height: normal !important;
+    vertical-align: middle !important;
+    border: 0;
+    overflow: visible;
+    font-size: 16px;
+}
+
+.booklist_wrap .b_orange {
+    color: #fff !important;
+    border: solid 1px #d86619;
+    background: #fb7622;
+}
+
+.booklist_wrap .b_p1040 {
+    padding: 10px 40px;
+}
+
+.booklist_wrap .popup_filter {
+    display: none;
+}
+
+
+
+.estimate_popup_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99999;
+    display: none;
+}
+
+.estimate_popup_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 740px;
+    height: 780px;
+    padding: 34px;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.estimate_popup_content  .btn_close_popup {
+    position: absolute;
+    top : 0;
+    right: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.estimate_popup_wrap h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px
+}
+
+.estimate_popup_wrap .sec1 {
+    display: flex;
+    /* gap: 30px; */
+    justify-content: space-between;
+}
+
+.estimate_popup_wrap .sec1 .left {
+    position: relative;
+    width: 294px;
+}
+
+.estimate_popup_wrap .sec1 .left .img_stem {
+    position: absolute;
+    top: 12px;
+    right: 5px;
+    width: 60px;
+}
+
+.estimate_popup_wrap .sec1 .ttl {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #353535;
+    font-weight: 600;
+}
+
+.estimate_popup_wrap .sec1 .left>span {
+    font-size: 14px;
+    color: #757575;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.estimate_popup_wrap .sec1 .left .day,
+.estimate_popup_wrap .sec1 .left .name {
+    font-size: 14px;
+    color: #252525;
+    padding: 10px 0;
+    border-bottom: 1px solid #999
+}
+
+.estimate_popup_wrap table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.estimate_popup_wrap td,
+.estimate_popup_wrap th {
+    border: 1px solid #dbdbdb;
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+    color: #252525
+}
+
+.estimate_popup_wrap th {
+    background-color: #fafafa
+}
+
+.estimate_popup_wrap tr .total {
+    color: rgb(250, 17, 17)
+}
+
+.estimate_popup_wrap .sec2 {
+    margin-top: 40px
+}
+
+.estimate_popup_wrap .sec2 .time {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 4px;
+
+}
+
+.estimate_popup_wrap .sec2 .time+p {
+    text-align: left;
+    color: #757575;
+    font-size: 12px
+}
+
+.estimate_popup_wrap .sec2 td {
+    padding: 12px
+}
+
+.estimate_popup_wrap .list_desc {
+    margin-top: 20px;
+    margin-bottom: 34px;
+}
+
+.estimate_popup_wrap .list_desc p {
+    font-size: 13px;
+    color: #656565;
+    line-height: 1.4;
+}
+
+.estimate_popup_wrap .send_mail {
+    display: flex;
+    align-items: center;
+    gap : 8px;
+    padding-top: 35px;
+    border-top: 1px solid #dbdbdb;
+}
+
+.estimate_popup_wrap .send_mail input {
+    flex: 1;
+    padding: 0 10px;
+    border: 1px solid #dbdbdb;
+    outline: none;
+    height: 45px;
+    font-size: 14px;
+    color : #555
+}
+
+.estimate_popup_wrap .send_mail button {
+    font-size: 14px;
+    font-weight: 700;
+    color: #666;
+    border: 1px solid #dbdbdb;
+    height: 45px;
+    padding: 10px 20px;
+}
+
+.estimate_popup_wrap .btns_download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap : 4px;
+    margin-top: 35px
+}
+
+.estimate_popup_wrap .btns_download button {
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 36px;
+    background-color: #17469e;
+    color: #fff;
+    border: none;
+
+}

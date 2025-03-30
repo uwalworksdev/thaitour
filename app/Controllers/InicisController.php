@@ -327,7 +327,7 @@ class InicisController extends BaseController
 			
 			
 					$response = curl_exec($ch);
-					write_log($response);
+					//write_log($response);
 					curl_close($ch);
 
 					parse_str($response, $out);

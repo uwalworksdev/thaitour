@@ -15,10 +15,9 @@ class ProductModel extends Model
         "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1", "product_notes_m",
         "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6",
         "rfile7", "ufile7", "rfile8", "ufile8", "rfile9", "ufile9", "rfile10", "ufile10", "rfile11", "ufile11", "rfile12", "ufile12",   
-        "rfile13", "ufile13", "rfile14", "ufile14", "rfile15", "ufile15", "rfile16", "ufile16",   
         "product_name",  "product_name_en", "product_air", "product_info", "product_intro", "product_schedule", "product_country", "mbti",
         "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", "review_average",
-        "max_price", "keyword", "product_price", "vehicle_price1", "vehicle_price2", "vehicle_price3", "prod_from". "prod_to",
+        "max_price", "keyword", "product_price", "vehicle_price1", "vehicle_price2", "vehicle_price3",
 	    "price_min", "product_best", "special_price", "product_option", "product_level",
         "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", "product_video",
         "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m",
@@ -34,7 +33,7 @@ class ProductModel extends Model
         'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date", "product_important_notice",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
-        "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_won_bath", "room_guides", "important_notes", "note_news"
+        "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_won_bath", "room_guides", "important_notes", "note_news", "worker_id", "worker_name"
     ];
 
     protected function initialize()
@@ -1837,7 +1836,8 @@ class ProductModel extends Model
         unset($info['product_idx']);
         $info['r_date'] = date("Y-m-d H:i:s");
         $info['product_name'] .= "(COPY)";
-        $info['product_code'] .= "_COPY";
+        //$info['product_code'] .= "_COPY";
+		$info['product_code'] = $this->createProductCode("G");  // 모델 내부 메서드 직접 호출
         $insert_id = $this->insert($info);
 
         return [
@@ -1848,6 +1848,7 @@ class ProductModel extends Model
 
     public function createProductCode($type)
     {
+		write_log("createProductCode- ". $type); 
         $prefixLength = strlen($type);
         $todayOrder = $this->select()->where('date(r_date)', date('Y-m-d'))
             ->where("LEFT(product_code, $prefixLength) =", $type)

@@ -131,6 +131,7 @@ class TourSuggestionController extends BaseController
                         a.product_idx, 
                         a.product_code, 
                         a.is_view,
+                        a.product_status,
                         b.onum,
                         b.code_idx
                         from tbl_product_mst a, tbl_main_disp b
@@ -155,9 +156,10 @@ class TourSuggestionController extends BaseController
     }
 
     public function item_allfind() {
-        $code_no                = $this->request->getVar('code');
+        // $code_no                = $this->request->getVar('code');
+        $code_no                = (int) $this->request->getVar('code');
         $whereArr               = $this->request->getVar();
-        $whereArr['is_view']    = "Y";
+        // $whereArr['is_view']    = "Y";
         $list = $this->productModel->findProductPaging($whereArr)['items'];
 
         foreach ($list as $key => $value) {
@@ -207,5 +209,17 @@ class TourSuggestionController extends BaseController
             // write_log("UPDATE tbl_main_disp SET onum = '" . $num . "' WHERE code_no = '$code' and code_idx = '" . $item['code_idx'] . "'");
         }
         return $this->response->setJSON(['result' => 'OK', 'message' => 'OK']);
+    }
+
+    public function updateStatus()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $product_status = $this->request->getPost('product_status');
+
+        if ($this->productModel->update($product_idx, ['product_status' => $product_status])) {
+            return $this->response->setJSON(['status' => 'success']);
+        } else {
+            return $this->response->setJSON(['status' => 'error']);
+        }
     }
 }

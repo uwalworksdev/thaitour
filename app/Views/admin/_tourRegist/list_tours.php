@@ -105,6 +105,7 @@
                     <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
                     <input type="hidden" name="product_idx" id="product_idx" value="">
+                    <input type="hidden" name="special_price" id="special_price" value="<?= $special_price ?>">
 
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
@@ -199,6 +200,27 @@
                                           value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                             for="state_chker_3">베스트</label></p>
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="label">특가여부</td>
+                            <td class="inbox">
+                                <p>
+                                    <input type="radio" name="special_price" id="special_price_all" value=""
+                                        <?= empty($special_price) ? 'checked' : '' ?>> 
+                                    <label for="special_price_all">전체</label>
+                                </p>
+                                <p>
+                                    <input type="radio" name="special_price" id="special_price_y" value="Y"
+                                        <?= ($special_price === "Y") ? 'checked' : '' ?>> 
+                                    <label for="special_price_y">사용</label>
+                                </p>
+                                <p>
+                                    <input type="radio" name="special_price" id="special_price_n" value="N"
+                                        <?= ($special_price === "N") ? 'checked' : '' ?>> 
+                                    <label for="special_price_n">사용안함</label>
+                                </p>
+                            </td>
+
                         </tr>
                         <tr>
                             <td class="label">검색어</td>
@@ -356,6 +378,7 @@
 
                 </script>
 
+                <form name="frm" id="frm">
                 <div class="listWrap">
                     <!-- 안내 문구 필요시 구성 //-->
 
@@ -373,11 +396,18 @@
                             <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
                                         src="/images/admin/common/filter.png" alt="">예약순
                             </button>
+							
+							<select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+								<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+								<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+								<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+								<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+							</select>
+							
                         </div>
 
                     </div><!-- // listTop -->
 
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
@@ -388,6 +418,7 @@
                                     <col width="120px"/>
                                     <col width="*"/>
 
+                                    <col width="100px"/>
                                     <col width="100px"/>
                                     <col width="100px"/>
                                     <!-- <col width="80px"/> -->
@@ -407,6 +438,7 @@
 
                                     <th>상품담당자</th>
                                     <th>판매상태결정</th>
+                                    <th>가격수정</th>
                                     <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
@@ -481,6 +513,16 @@
                                                 </option>
                                             </select>
                                         </td>
+                                        <td class="tac">
+                                            <div style="display: flex; align-items: center; justify-content: center">
+                                                <a href="write_tour_info?product_idx=<?= $row["product_idx"] ?>"
+                                                class=""
+                                                style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
+                                                    <span class="txt">수정</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        
                                         <!-- <td class="tac">
                                             <input name="is_best" name="product_best_best" class="type_chker"
                                                    id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
@@ -532,7 +574,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_tours') . $search_val . "&pg=") ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_tours') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
 
                     <div id="headerContainer">
 
@@ -559,6 +601,12 @@
 
         </div><!-- 인쇄 영역 끝 //-->
     </div><!-- // container -->
+
+	<script>
+		function submitForm() {
+			document.getElementById("frm").submit();
+		}
+	</script>
 
     <script>
         function check_best(idx) {

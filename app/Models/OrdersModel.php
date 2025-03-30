@@ -16,7 +16,7 @@ class OrdersModel extends Model
         , "order_memo", "admin_memo", "manager_name", "manager_phone", "manager_email", "start_date", "end_date"
         , "product_period", "tour_period", "people_adult_cnt", "people_adult_price", "people_kids_cnt", "people_kids_price"
         , "people_baby_cnt", "people_baby_price", "oil_price", "inital_price", "order_price", "option_amt", "extra_cost", "order_confirm_price"
-	    , "price", "price_won", "room", "room_type", "bed_type", "date_price", "adult", "kids", "last_price" 				
+	    , "price", "price_won", "extra_won", "extra_bath","room", "room_type", "bed_type", "date_price", "adult", "kids", "last_price" 				
         , "order_confirm_date", "confirm_method", "deposit_price", "deposit_date", "deposit_method", "order_method", "used_op_type", "room_op_price_sale"
         , "used_coupon_idx", "used_coupon_no", "used_coupon_point", "used_coupon_money", "product_mileage", "used_mileage_money"
         , "order_mileage", "order_status", "order_m_date", "order_r_date", "order_d_date", "order_c_date", "is_modify"
@@ -30,7 +30,7 @@ class OrdersModel extends Model
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_user_gender", "order_gender_list"
         , "order_passport_number", "order_passport_expiry_date", "order_birth_date"
         , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
-        , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast"
+        , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast", "group_no"
     ];
     protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
 
@@ -129,6 +129,167 @@ class OrdersModel extends Model
         ];
     }
 
+	public function getOrdersGroup($pg = 1, $g_list_rows = 10, $dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	{
+		$private_key = private_key();
+		
+		// 기본 쿼리
+		$builder = $this->db->table('tbl_order_mst')
+			->select("
+				tbl_order_mst.*, 
+				(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
+				AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+				AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+				AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
+				AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+				AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
+				AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
+				AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
+				AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+				AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+				AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
+			");
+
+		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+        $builder->whereNotIn('order_status', ['B', 'D']);
+
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+
+		// 결제 상태 필터
+		$payStatusMap = [
+			"1" => ['W', 'Y', 'G', 'R', 'J'],
+			"2" => ['Z'],
+			"3" => ['E'],
+			"4" => ['C'],
+			"5" => ['N'],
+		];
+		if (!empty($procType) && isset($payStatusMap[$procType])) {
+			$builder->whereIn('order_status', $payStatusMap[$procType]);
+		}
+
+		// 상품 유형 필터
+		if (!empty($prodType)) {
+			$builder->where('order_gubun', $prodType);
+		}
+
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
+		}
+
+		// 🔹 총 개수 조회용 클론
+		$countBuilder = clone $builder;
+		$nTotalCount  = $countBuilder->countAllResults();
+
+		// 🔹 페이징 계산
+		$nPage = ceil($nTotalCount / $g_list_rows);
+		$pg    = max(1, $pg); // 최소 페이지 1
+		$nFrom = ($pg - 1) * $g_list_rows;
+
+		// 🔹 정렬 및 페이징 적용
+		$builder->orderBy('group_no', 'DESC')
+				->orderBy('order_idx', 'DESC')
+				->limit($g_list_rows, $nFrom);
+
+		// 🔹 최종 데이터 조회
+		$order_list = $builder->get()->getResultArray();
+		write_log("last query getOrdersGroup - ". $this->db->getLastQuery());
+		$num = $nTotalCount - $nFrom;
+
+		return [
+			'order_list'  => $order_list,
+			'nTotalCount' => $nTotalCount,
+			'pg'          => $pg,
+			'nPage'       => $nPage,
+			'g_list_rows' => $g_list_rows,
+			'num'         => $num,
+		];
+	}
+
+	public function getGroupCounts($dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word)
+	{
+		$private_key = private_key(); // 🔹 private_key() 호출하여 키 가져오기
+
+		$builder = $this->db->table('tbl_order_mst')
+			->select('group_no, SUM(order_price) as order_price, COUNT(*) as group_count');
+
+		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+        $builder->whereNotIn('order_status', ['B', 'D']);
+
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+
+		// 결제 상태 필터
+		$payStatusMap = [
+			"1" => ['W', 'Y', 'G', 'R', 'J'],
+			"2" => ['Z'],
+			"3" => ['E'],
+			"4" => ['C'],
+			"5" => ['N'],
+		];
+		if (!empty($procType) && isset($payStatusMap[$procType])) {
+			$builder->whereIn('order_status', $payStatusMap[$procType]);
+		}
+
+		// 상품 유형 필터
+		if (!empty($prodType)) {
+			$builder->where('order_gubun', $prodType);
+		}
+
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
+		}
+
+		// 그룹 및 정렬 적용
+		$builder->groupBy('group_no')
+				->orderBy('group_no', 'DESC');
+		
+        $result = $builder->get()->getResultArray();
+		write_log("last query getGroupCounts - ". $this->db->getLastQuery());
+	
+		return $result;
+	}
+
+
+	
     public function makeOrderNo()
     {
 //        $todayOrder = $this->select()->where('order_r_date', date('Y-m-d'))->get()->getResultArray();

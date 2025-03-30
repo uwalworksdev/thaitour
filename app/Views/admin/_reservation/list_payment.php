@@ -395,15 +395,22 @@
                     <!-- 안내 문구 필요시 구성 //-->
 
 
-                    <div class="listTop">
-                        <div class="left">
-                            <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                    <form name="frm" id="frm" method="GET">
+                        <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="left">
+                                <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 예약이 있습니다.</p>
+                            </div>
+
+                            <div class="right">
+                                <select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+                                    <option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+                                    <option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
+                                    <option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+                                    <option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+                                </select>
+                            </div>
+
                         </div>
-
-                    </div><!-- // listTop -->
-
-
-                    <form name="frm" id="frm">
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
@@ -444,6 +451,8 @@
                                 </thead>
                                 <tbody>
                                 <?php
+								
+								
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
@@ -451,15 +460,12 @@
                                     </tr>
                                     <?php
                                 }
+									
+								$_deli_type = get_deli_type();
                                 foreach ($result as $row) {
 									
-									     if($row['payment_status'] == "Y") {
-											$status = "결제완료"; 
-										 } else if($row['payment_status'] == "R") {	
-											$status = "가상계좌 발급"; 
-										 } else {	
-											$status = ""; 
-										 }	
+									     $status = $_deli_type[$row['payment_status']];
+										 
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
@@ -478,7 +484,7 @@
                                             <?php } ?></td>
 										<td class="tac"><?=$status?></td>
                                         <td class="tal">
-										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>
 												</a>
 										</td>
@@ -505,8 +511,8 @@
                             </table>
                         </div><!-- // listBottom -->
                     </form>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list_payment') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list_payment') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
  
 
                     <div id="headerContainer">
@@ -573,6 +579,12 @@
                 }
             });
 
+        }
+    </script>
+
+    <script>
+        function submitForm() {
+            document.getElementById("frm").submit();
         }
     </script>
 

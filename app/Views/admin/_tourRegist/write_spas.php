@@ -67,9 +67,9 @@
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
-                                                class="txt">완전삭제</span></a></li>
+                                                class="txt">완전삭제</span></a></li-->
                                 <script>
                                     function prod_copy(idx) {
                                         if (!confirm("선택한 상품을 복사 하시겠습니까?"))
@@ -286,10 +286,16 @@
                                 </tr>
                                 <tr>
                                     <th>우선순위</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                    </td>
+                                    <th>골프장 담당자</th>
+                                    <td>
+                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
                                     </td>
                                 </tr>
 
@@ -641,19 +647,22 @@
                                                 $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                 // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                    <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                           onchange="productImagePreview(this, '<?= $i ?>')">
-                                                    <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                    <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                    <button type="button" class="remove_btn"
-                                                            onclick="productImagePreviewRemove(this)"></button>
-													<?php if(${"ufile" . $i}) { ?>		
-                                                    
-                                                    <a class="img_txt imgpop" href="<?= $img ?>"
-                                                       id="text_ufile<?= $i ?>">미리보기</a>
-                                                    <?php } ?>   
+                                                <div class="file_input_wrap">
+                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                        <button type="button" class="remove_btn"
+                                                                onclick="productImagePreviewRemove(this)"></button>
+                                                        <?php if(${"ufile" . $i}) { ?>		
+                                                        
+                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                        id="text_ufile<?= $i ?>">미리보기</a>
+                                                        <?php } ?>   
+                                                    </div>
                                                 </div>
+
                                             <?php
                                             endfor;
                                             ?>
@@ -666,6 +675,7 @@
                                     <th>
                                         서브이미지(600X400)
                                         <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
+                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
                                     </th>
                                     <td colspan="3">
                                         <div class="img_add img_add_group">
@@ -696,7 +706,8 @@
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
                                                     <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>"
+                                                    <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
+                                                    <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple
                                                             onchange="productImagePreview(this, '<?= $i ?>')">
                                                     <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
                                                     <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
@@ -1036,7 +1047,7 @@
                                 }
                             </script>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption></caption>
                                 <colgroup>
@@ -1189,8 +1200,11 @@
                                             <a href="/AdmMaster/_productPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>&product_idx=<?= $product_idx ?>"
                                                class="btn btn-default">가격수정</a>
 
-                                            <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');"
-                                               class="btn btn-default">마감처리</a>
+                                            <?php if($row['sale'] == "N") { ?>
+                                            <a href="javascript:open_yoil('<?= $row['p_idx'] ?>');" class="btn btn-default">마감해제</a>
+											<?php } else { ?>
+                                            <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');" class="btn btn-default">마감처리</a>
+											<?php } ?>
 
                                             <a href="javascript:del_yoil('<?= $row['p_idx'] ?>');"
                                                class="btn btn-default">삭제하기</a>
@@ -1199,7 +1213,7 @@
                                 <?php } ?>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                     </div>
                 </div>
@@ -1220,8 +1234,8 @@
                         <?php } else { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                            <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                            <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                         <?php } ?>
                     </li>
                 </ul>
@@ -1255,15 +1269,17 @@
             let i = Date.now();
 
             let html = `
-                <div class="file_input">
-                    <input type="hidden" name="i_idx[]" value="">
-                    <input type="file" name='ufile[]' id="ufile${i}"
-                            onchange="productImagePreview(this, '${i}')">
-                    <label for="ufile${i}"></label>
-                    <input type="hidden" name="checkImg_${i}" class="checkImg">
-                    <button type="button" class="remove_btn"
-                            onclick="productImagePreviewRemove(this)"></button>
-
+                <div class="file_input_wrap">
+                    <div class="file_input">
+                        <input type="hidden" name="i_idx[]" value="">
+                        <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                        <input type="file" name='ufile[]' id="ufile${i}" multiple
+                                onchange="productImagePreview(this, '${i}')">
+                        <label for="ufile${i}"></label>
+                        <input type="hidden" name="checkImg_${i}" class="checkImg">
+                        <button type="button" class="remove_btn"
+                                onclick="productImagePreviewRemove(this)"></button>
+                    </div>
                 </div>
             `;
 
@@ -1271,24 +1287,86 @@
 
         }
 
-        function productImagePreview(inputFile, onum) {
-            if (!sizeAndExtCheck(inputFile)) {
-                $(inputFile).val("");
+        function delete_all_image() {
+            if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                 return false;
             }
 
-            let imageTag = $('label[for="ufile' + onum + '"]');
+            let arr_img = [];
 
-            if (inputFile.files.length > 0) {
-                let imageReader = new FileReader();
+            $(".img_add_group .file_input").each(function() {
+                let id = $(this).find("input[name='i_idx[]']").val();
+                if(id){
+                    arr_img.push({
+                        i_idx: id,
+                    });
+                }
+            });
 
-                imageReader.onload = function () {
-                    imageTag.css("background-image", "url(" + imageReader.result + ")");
-                    $(inputFile).closest('.file_input').addClass('applied');
-                    $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-                };
+            if(arr_img.length > 0){
+                $.ajax({
+                    url: "/AdmMaster/_hotel/del_all_image",
+                    type: "POST",
+                    data: JSON.stringify({ arr_img: arr_img }),
+                    contentType: "application/json",
+                    success: function(response) {
+                        alert(response.message);
+                        if(response.result == true){
+                            $(".img_add_group").html("");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("error:", error);
+                    }
+                });
+            }else{
+                $(".img_add_group").html("");
+            }
+        }
+
+        function productImagePreview(inputFile, onum) {
+            if (inputFile.files.length <= 40 && inputFile.files.length > 0) {
                 
-                imageReader.readAsDataURL(inputFile.files[0]);
+                $(inputFile).closest('.file_input').addClass('applied');
+                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
+
+                let lastElement = $(inputFile).closest('.file_input_wrap');
+                let files = Array.from(inputFile.files);
+
+                let imageReader = new FileReader();
+                imageReader.onload = function () {
+                    $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+                };
+                imageReader.readAsDataURL(files[0]);
+
+                if (files.length > 1) {
+                    files.slice(1).forEach((file, index) => {
+                        let newReader = new FileReader();
+                        let i = Date.now();
+
+                        newReader.onload = function () {
+                            let imagePreview = `
+                                <div class="file_input_wrap">
+                                    <div class="file_input applied">
+                                        <input type="hidden" name="i_idx[]" value="">
+                                        <input type="hidden" class="onum_img" name="onum_img[]" value="">
+                                        <input type="file" id="ufile${i}_${index}" 
+                                            onchange="productImagePreview(this, '${i}_${index}')" disabled>
+                                        <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
+                                        <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
+                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                    </div>
+                                </div>`;
+
+                            lastElement.after(imagePreview);
+                            lastElement = lastElement.next();
+                        };
+
+                        newReader.readAsDataURL(file);
+                    });
+                }
+            }else{
+                alert('40개 이미지로 제한이 있습니다.');
             }
         }
 
@@ -1297,43 +1375,60 @@
          * @param {element} button
          */
         function productImagePreviewRemove(element) {
-            let parent = $(element).closest('.file_input');
-            let inputFile = parent.find('input[type="file"]');
-            let labelImg = parent.find('label');
-            let i_idx = parent.find('input[name="i_idx[]"]').val();
-            
-            if(parent.find('input[name="i_idx[]"]').length > 0){
-                if(i_idx){
-
-                    if(!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")){
+            let parent = $(element).closest('.file_input_wrap');
+            if(parent.find('input[name="ufile[]"]').length > 0){
+                let inputFile = parent.find('input[type="file"][multiple]')[0] 
+                                || parent.prevAll().find('input[type="file"][multiple]')[0];
+                let labelImg = parent.find('label');
+                let i_idx = parent.find('input[name="i_idx[]"]').val();
+        
+                let dt = new DataTransfer();
+                let fileArray = Array.from(inputFile.files);
+                let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+                
+                fileArray.forEach((file) => {
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        if (e.target.result !== imageUrl) {      
+                            dt.items.add(file);
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                });
+        
+                setTimeout(() => {
+                    inputFile.files = dt.files;
+                    if(parent.find('input[type="file"][multiple]')[0]){
+                        parent.css("display", "none");
+                    }else{
+                        parent.remove();
+                    }
+                }, 100);
+        
+                if (i_idx) {
+                    if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                         return false;
                     }
-
+        
                     $.ajax({
-            
                         url: "/AdmMaster/_hotel/del_image",
                         type: "POST",
-                        data: {
-                                "i_idx"   : i_idx,
-                        },
-                        success: function (data, textStatus) {
-                            message = data.message;
-                            alert(message);
-                            if(data.result){
-                                parent.closest('.file_input_wrap').remove();
+                        data: { "i_idx": i_idx },
+                        success: function (data) {
+                            alert(data.message);
+                            if (data.result) {
+                                parent.css("display", "none");
                             }
                         },
                         error: function (request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                         }
                     });
-                }else{
-                    parent.remove();
                 }
-            }else{
-                inputFile.val("");
-                labelImg.css("background-image", "");
-                parent.removeClass('applied');
+            }else{            
+                parent.find('input[type="file"]').val("");
+                parent.find('label').css("background-image", "");
+                parent.find('.file_input').removeClass('applied');
                 parent.find('.checkImg').val('N');
                 parent.find('.imgpop').attr("href", "");
                 parent.find('.imgpop').remove();
@@ -1369,6 +1464,60 @@
             upd_price('');
         }
 
+        function open_yoil(p_idx)
+		{
+            if (!confirm("선택한 기간의 마감을 해제하시겠습니까?"))
+                return false;
+
+            let message = "";
+            $.ajax({
+
+                url: "/ajax/ajax_open_yoil",
+                type: "POST",
+                data: {
+                    "p_idx": p_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });				 
+			
+		}	
+        function close_yoil(p_idx) 
+		{
+            if (!confirm("선택한 기간을 마감하시겠습니까?"))
+                return false;
+
+            let message = "";
+            $.ajax({
+
+                url: "/ajax/ajax_close_yoil",
+                type: "POST",
+                data: {
+                    "p_idx": p_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });				 
+        }
+		
         function del_yoil(p_idx) {
             $("#ajax_loader").removeClass("display-none");
             if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n")){
@@ -1908,6 +2057,10 @@
 
             $('#available_period').val(_available_period)
             $('#deadline_time').val(_deadline_time)
+
+            $(".img_add_group .file_input").each(function (index) { 
+                $(this).find(".onum_img").val(index + 1);        
+            });
 
             $("#ajax_loader").removeClass("display-none");
 
