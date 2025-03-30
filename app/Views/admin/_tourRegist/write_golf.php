@@ -339,7 +339,7 @@
                                         <input id="holes_number" name="holes_number" class="input_txt" type="text"
                                                value="<?= $golf_info['holes_number'] ?>" style="width:100%" readonly/>
                                     </td-->
-                                    <th >휴무일</th>
+                                    <th>휴무일</th>
                                     <td>
                                         <input id="holidays" name="holidays" class="input_txt" type="text"
                                                value="<?= $golf_info['holidays'] ?>" style="width:50%"/>
