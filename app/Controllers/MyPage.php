@@ -739,15 +739,19 @@ class MyPage extends BaseController
         echo "정보수정되었습니다.";
     }
 	
-    public function orderHotel($order_idx)
-    {
-		$sql_order = "SELECT * FROM tbl_order_option WHERE order_idx = '" . $order_idx . "' ";
-		$data      = $this->db->query($sql_order)->getRowArray();
+	public function orderHotel($order_idx)
+	{
+		// SQL 쿼리 실행
+		$sql_order = "SELECT * FROM tbl_order_option WHERE order_idx = ?";
+		$data = $this->db->query($sql_order, [$order_idx])->getRowArray();
 
-        if (!$data['order']) {
-            return redirect()->to('/mypage')->with('error', '주문을 찾을 수 없습니다.');
-        }
+		// 주문 정보가 없는 경우 처리
+		if (!$data) {
+			return redirect()->to('/mypage')->with('error', '주문을 찾을 수 없습니다.');
+		}
 
-        return view('mypage/order_hotel', $data);
-    }	
+		// View에 데이터 전달
+		return view('mypage/order_hotel', ['order' => $data]);
+	}
+	
 }
