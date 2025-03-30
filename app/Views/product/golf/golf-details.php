@@ -22,8 +22,7 @@ $(document).ready(function() {
     $(document).on('click', function(event) {
 
 			if($("#o_caddy_due").val() == "Y") {
-			   $('#vehicle_5').prop('disabled', true);
-			   $("#vehicle_5").val($("#people_adult_cnt").val());
+			   $('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
 			} else {
