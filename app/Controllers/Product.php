@@ -2591,6 +2591,7 @@ class Product extends BaseController
 							}		
 					
 							if($data['vehicle_idx'][$key] == "5") { 
+							   write_log('vvvvvvvvvvvvvvv');	
 							   $option_tot = $option_tot + ($vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
 							   $this->orderOptionModel->insert([
 									'option_type'  => 'vehicle',
