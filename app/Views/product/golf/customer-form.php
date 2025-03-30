@@ -315,7 +315,7 @@
 
                             <?php foreach ($vehicle_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
-                                    <span>픽업차량 및 캐디피<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
+                                    <span><?= $value['code_name'] ?> x <?= $value['cnt'] ?>(EA)</span>
                                     <span><?= number_format($value['price_total']) ?> 원 (<?= number_format($value['price_baht_total']) ?>바트)</span>
 									
 									<?php

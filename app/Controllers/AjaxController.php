@@ -93,8 +93,11 @@ class AjaxController extends BaseController {
         $db           = \Config\Database::connect();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
-        $sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
-        $rows = $db->query($sql)->getResultArray();
+		$rows = $db->table('tbl_golf_option')
+			->where('product_idx', $product_idx)
+			->where('goods_name',  $goods_name)
+			->get()
+			->getResultArray();
 
 		foreach ($rows as $row) {
 				 
@@ -2942,7 +2945,7 @@ $result = $db->query($sql);
 								->setJSON(['status' => 'error', 'message' => '잘못된 차량 선택']);
 					}
 
-					$price_won = (int)($price_bath * $baht_thai); // 원화 환산
+					$price_won = (int) round($price_bath * $baht_thai); // 원화 환산
 				}
 
 				return $this->response
