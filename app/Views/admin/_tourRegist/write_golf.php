@@ -254,16 +254,7 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
-                                    <th>상품명</th>
-                                    <td>
-                                        <input type="text" id="product_name" name="product_name"
-                                               value="<?= $product_name ?>"
-                                               class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr>
-                               
-                                <tr>
-                                    <th>상품코드</th>
+                                    <th>상품코드1/th>
                                     <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
@@ -275,6 +266,16 @@
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
                                         <?php } ?>
 
+                                    </td>
+                                    
+                                </tr>
+                               
+                                <tr>
+                                <th>상품명(국문)</th>
+                                    <td>
+                                        <input type="text" id="product_name" name="product_name"
+                                               value="<?= $product_name ?>"
+                                               class="input_txt" style="width:90%"/>
                                     </td>
                                     <th>상품명(영문)</th>
                                     <td>
@@ -338,10 +339,15 @@
                                         <input id="holes_number" name="holes_number" class="input_txt" type="text"
                                                value="<?= $golf_info['holes_number'] ?>" style="width:100%" readonly/>
                                     </td-->
-                                    <th>휴무일</th>
-                                    <td colspan="3">
+                                    <th >휴무일</th>
+                                    <td>
                                         <input id="holidays" name="holidays" class="input_txt" type="text"
                                                value="<?= $golf_info['holidays'] ?>" style="width:50%"/>
+                                    </td>
+                                    <th>장비렌탈</th>
+                                    <td>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
+                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
 
@@ -647,7 +653,7 @@
 										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
                                     </td>
-                                    <th>장비렌탈</th>
+                                    <th>장비렌탈1</th>
                                     <td>
                                         <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
                                                value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
