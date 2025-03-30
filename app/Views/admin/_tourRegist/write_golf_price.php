@@ -83,8 +83,8 @@
 								<tr height="45">
 									<th>최소/최대 라운딩인원</th>
 									<td>
-                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt" type="text" value="1" style="width:20%">명&nbsp;&nbsp;&nbsp;
-                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt" type="text" value="8" style="width:20%">명
+                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt" type="text" value="<?= $minium_people_cnt ?>" style="width:20%">명&nbsp;&nbsp;&nbsp;
+                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt" type="text" value="<?= $total_people_cnt ?>" style="width:20%">명
                                     </td>
 								</tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
