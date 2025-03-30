@@ -388,11 +388,7 @@
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
                                                value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
-                                    <th>장비렌탈</th>
-                                    <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
-                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
-                                    </td>
+                                    
                                 </tr>
                                
                                 <tr>
@@ -651,11 +647,10 @@
 										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
                                     </td>
-                                    <th>우선순위</th>
+                                    <th>장비렌탈</th>
                                     <td>
-                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
-                                               style="width:80px"/> <span
-                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text"
+                                               value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
 									
