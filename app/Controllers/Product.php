@@ -2222,8 +2222,8 @@ class Product extends BaseController
 							   $info['price_baht'] = $info['vehicle_o_price2'];
 							}   
 							$info['price_baht_total'] = $info['price_baht'] * $value;
-							$info['price']            = (int)($info['price_baht'] * $baht_thai);
-							$info['price_total']      = (int)($info['price_baht'] * $baht_thai * $value);
+							$info['price']            = (int) round($info['price_baht'] * $baht_thai);
+							$info['price_total']      = (int) round($info['price_baht'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
@@ -2240,8 +2240,8 @@ class Product extends BaseController
 							   $info['price_baht'] = $info['vehicle_o_price3'];
 							}   
 							$info['price_baht_total'] = $info['price_baht'] * $value;
-							$info['price']            = (int)($info['price_baht'] * $baht_thai);
-							$info['price_total']      = (int)($info['price_baht'] * $baht_thai * $value);
+							$info['price']            = (int) round($info['price_baht'] * $baht_thai);
+							$info['price_total']      = (int) round($info['price_baht'] * $baht_thai * $value);
 							$vehicle_arr[] = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
@@ -2254,8 +2254,8 @@ class Product extends BaseController
 							$info['code_name']        = "카트";
 							$info['price_baht']       = $info['cart_price'];
 							$info['price_baht_total'] = $info['cart_price'] * $value;
-							$info['price']            = (int)($info['cart_price'] * $baht_thai);
-							$info['price_total']      = (int)($info['cart_price'] * $baht_thai * $value);
+							$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
@@ -2268,8 +2268,8 @@ class Product extends BaseController
 							$info['code_name']        = "캐디피";
 							$info['price_baht']       = $info['caddie_fee'];
 							$info['price_baht_total'] = $info['caddie_fee'] * $value;
-							$info['price']            = (int)($info['caddie_fee'] * $baht_thai);
-							$info['price_total']      = (int)(info['caddie_fee']  * $baht_thai * $value);
+							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
+							$info['price_total']      = (int) round(info['caddie_fee']  * $baht_thai * $value);
 							$vehicle_arr[] = $info;
 
 							$total_vehicle_price      += $info['price'] * $value;
