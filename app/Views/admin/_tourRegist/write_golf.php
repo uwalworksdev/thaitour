@@ -163,8 +163,7 @@
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="table-layout:fixed">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"  style="table-layout:fixed">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -181,8 +180,7 @@
                                             <p>기본정보</p>
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
-                                                   href="/product-golf/golf-detail/<?= $product_idx ?>"
-                                                   target="_blank">
+                                                   href="/product-golf/golf-detail/<?= $product_idx ?>" target="_blank">
                                                     상품 상세보기
                                                 </a>
                                             <?php endif; ?>
@@ -479,7 +477,7 @@
                                         </label>
                                     </td>
                                     <th>픽업차량</th>
-                                    <td colspan="3">
+                                    <td>
                                         <?php foreach ($vehicles as $vehicle) :
                                             $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
                                             ?>
