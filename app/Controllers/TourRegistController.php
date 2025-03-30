@@ -785,6 +785,8 @@ class TourRegistController extends BaseController
     {
         $data = $this->request->getPost();
         $product_idx    = $data['product_idx'];
+        $minium_people_cnt = $data['minium_people_cnt'];
+        $total_people_cnt  = $data['total_people_cnt'];
         $o_name         = $data['o_name'];
         $o_price1       = $data['o_price1'];
         $o_price2       = $data['o_price2'];
@@ -817,6 +819,9 @@ class TourRegistController extends BaseController
         $option_type    = $data['option_type'];
         $o_soldout      = $data['o_soldout'];
  
+		$sql = "UPDATE  tbl_product_mst  SET minium_people_cnt = '". $minium_people_cnt ."', total_people_cnt = '". $total_people_cnt ."' WHERE product_idx = '". $product_idx ."' ";
+		$result = $this->connect->query($sql);
+				
         $data1['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
         $data1['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
         $data1['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
