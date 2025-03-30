@@ -1173,7 +1173,7 @@ $(document).ready(function() {
         }
 
         function calculatePrice() {
-/*
+
             const vehiclePrice = setListVehicle();
 
             const optionPrice  = setOptionArea();
@@ -1194,7 +1194,6 @@ $(document).ready(function() {
 
             $("#last_price").text(number_format(last_price));
             $("#last_price_baht").text(number_format(last_price_baht));
-*/			
         }
 
         function selectOption(obj) {
