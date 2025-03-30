@@ -254,8 +254,7 @@
                                             <p>기본정보</p>
                                             <?php if ($product_idx): ?>
                                                 <a class="btn btn-default"
-                                                   href="/product-tours/item_view/<?= $product_idx ?>"
-                                                   target="_blank">
+                                                   href="/product-tours/item_view/<?= $product_idx ?>"  target="_blank">
                                                     상품 상세보기
                                                 </a>
                                             <?php endif; ?>
