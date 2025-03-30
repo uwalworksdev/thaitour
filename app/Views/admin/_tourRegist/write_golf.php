@@ -438,14 +438,14 @@
 
                                 <!--tr>
                                     <th>최소/최대 라운딩인원</th>
-                                    <td>
+                                    <td-->
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
-                                               type="text"
+                                               type="hidden"
                                                value="<?= $minium_people_cnt ?>" style="width:20%"/>명&nbsp;&nbsp;&nbsp;
                                         <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
-                                               type="text"
+                                               type="hidden"
                                                value="<?= $total_people_cnt ?>" style="width:20%"/>명
-                                    </td>
+                                    <!--/td>
                                     <th>갤러리피</th>
                                     <td>
                                         <input id="caddy" name="caddy" class="input_txt" type="text"
