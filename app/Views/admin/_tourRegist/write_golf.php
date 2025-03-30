@@ -436,7 +436,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!--tr>
                                     <th>최소/최대 라운딩인원</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
@@ -452,11 +452,11 @@
                                                value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
                                     
-                                </tr>
+                                </tr-->
                                
                                 <tr>
                                     <th>구분</th>
-                                    <td colspan="3">
+                                    <td>
                                         <label for="is_best_value">
                                             <input type="checkbox" name="is_best_value" id="is_best_value" value="Y"
                                                 <?php if ($row["is_best_value"] == "Y") {
@@ -487,6 +487,12 @@
                                             핫딜추천
                                         </label>
                                     </td>
+                                    <th>갤러리피</th>
+                                    <td>
+                                        <input id="caddy" name="caddy" class="input_txt" type="text"
+                                               value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
+                                    </td>
+									
                                     <!--th>픽업차량</th>
                                     <td>
                                         <?php foreach ($vehicles as $vehicle) :
