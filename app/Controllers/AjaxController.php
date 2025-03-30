@@ -93,9 +93,14 @@ class AjaxController extends BaseController {
         $db           = \Config\Database::connect();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
-        $sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
-		write_log("get_golf_option- ". $sql);
-        $rows = $db->query($sql)->getResultArray();
+        //$sql  = "SELECT * FROM tbl_golf_option WHERE product_idx = '$product_idx' AND goods_name = '$goods_name' ";
+        //$rows = $db->query($sql)->getResultArray();
+
+		$rows = $db->table('tbl_golf_option')
+			->where('product_idx', $product_idx)
+			->where('goods_name',  $goods_name)
+			->get()
+			->getResultArray();
 
 		foreach ($rows as $row) {
 				 
