@@ -285,7 +285,7 @@
                                 </tr>
                                 <tr>
                                     <th>더투어랩 평가 등급</th>
-                                    <td colspan="3">
+                                    <td colspan="4">
                                         <select id="star_level" name="star_level" class="input_select">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
@@ -294,6 +294,12 @@
                                                 </option>
                                             <?php } ?>
                                         </select>
+                                    </td>
+                                    <th>우선순위</th>
+                                    <td>
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                               style="width:80px"/> <span
+                                                style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
                                 </tr>
 
