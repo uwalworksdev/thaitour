@@ -273,8 +273,8 @@ $deli_types = get_deli_type();
 				<tbody>
 					<tr>
 						<td class="subject">일자</td>
-						<td class="subject">숙박금액(바트)</td>
-						<td class="subject">Extra 베드(바트)</td>
+						<td class="subject">숙박금액(원)</td>
+						<td class="subject">Extra 베드(원)</td>
 					</tr>
 					<?php
 						$arr = explode("|", $date_price);
@@ -287,8 +287,8 @@ $deli_types = get_deli_type();
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
 								<td class="content"><?=$arr1[0]?>(<?=dateToYoil($arr1[0])?>)</td>
-								<td class="content"><?=number_format($amt1)?></td>
-								<td class="content"><?=number_format($amt2)?></td>
+								<td class="content"><?=number_format($amt1 * $baht_thai)?></td>
+								<td class="content"><?=number_format($amt2 * $baht_thai)?></td>
 							</tr>
 					<?php } ?>		
 					<?php
