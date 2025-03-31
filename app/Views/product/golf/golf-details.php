@@ -1728,7 +1728,7 @@ $(document).ready(function() {
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
-        const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        let initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
 		if (typeof initDate === 'undefined') initDate = "";
         //const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
