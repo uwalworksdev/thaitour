@@ -250,7 +250,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>차량및 캐디피 예약금액</h2>
+			<h2>쇼.입장권 예약금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
@@ -267,18 +267,16 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					</tr>
 					
 					<?php
-					    foreach ($vehicle as $row)  
+					    foreach ($option_order as $row)  
 						{
 							 if($row['option_type'] == "main") {
-								$option_name  = "그린피";
 								$option_price = $row['option_tot'] / $row['option_cnt'];
 							 } else	{
-								$option_name  = $row['option_name'];
 								$option_price = $row['option_price'];
 							 }	
 					?>		
 							<tr>
-								<td class="content"><?=$option_name?></td>
+								<td class="content"><?=$row['option_name']?></td>
 								<td class="content"><?=number_format($option_price)?></td>
 								<td class="content"><?=number_format($row['option_cnt'])?></td>
 								<td class="content"><?=number_format($row['option_tot'])?></td>
