@@ -274,14 +274,12 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$option_name = $row['option_name'];
 							 }	
 					?>		
-					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
 								<td class="content"><?=$option_name?></td>
 								<td class="content"><?=number_format($row['option_price'])?></td>
 								<td class="content"><?=number_format($row['option_qty'])?></td>
 								<td class="content"><?=number_format($row['option_tot'])?></td>
 							</tr>
-					<?php } ?>		
 					<?php
 						}
 					?>
