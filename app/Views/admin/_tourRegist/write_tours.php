@@ -701,13 +701,13 @@
                                     <th>
                                         MBTI
 
-                                        <input type="checkbox" id="all_code_mbti" class="all_input"
+                                        <!-- <input type="checkbox" id="all_code_mbti" class="all_input"
                                                name="_code_mbti" value=""/>
                                         <label for="all_code_mbti">
                                             모두 선택
-                                        </label>
+                                        </label> -->
                                     </th>
-                                    <td colspan="3">
+                                    <!-- <td colspan="3">
                                         <?php
                                         $_arr = explode("|", $mbti);
                                         foreach ($mcodes as $row_r) :
@@ -725,6 +725,37 @@
                                                 <?= $row_r['code_name'] ?>
                                             </label>
                                         <?php endforeach; ?>
+                                    </td> -->
+                                    <td colspan="3">
+                                        <?php
+                                            $_arr = explode("|", $mbti);
+                                            $total = count($mcodes);
+                                            $half = ceil($total / 2); 
+                                        ?>
+                                        
+                                        <div style="display: block;">
+                                            <?php for ($group = 0; $group < 2; $group++) : ?>
+                                                <div style="display: flex">
+                                                    <?php if ($group * $half < $total) : ?>
+                                                        <input type="checkbox" id="all_code_mbti_<?= $group + 1 ?>" class="all_input"
+                                                            onclick="toggleMbtiGroup(<?= $group + 1 ?>)">
+                                                        <label for="all_code_mbti_<?= $group + 1 ?>">모두 선택 ></label> &ensp;
+                                                        <br>
+                                                        <?php
+                                                        for ($i = $group * $half; $i < min(($group + 1) * $half, $total); $i++) :
+                                                            $row_r = $mcodes[$i];
+                                                            $checked = in_array($row_r['code_no'], $_arr) ? "checked" : "";
+                                                            ?>
+                                                            <input type="checkbox" id="code_mbti<?= $row_r['code_no'] ?>"
+                                                                name="_code_mbti" class="code_mbti group_mbti_<?= $group + 1 ?>"
+                                                                value="<?= $row_r['code_no'] ?>" <?= $checked ?> />
+                                                            <label for="code_mbti<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
+                                                            <br>
+                                                        <?php endfor; ?>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -1691,6 +1722,32 @@
             </div>
         </div>
     </div>
+
+    <script>    
+        $(document).ready(function () {
+            $("[id^=all_code_mbti_]").on("change", function () {
+                let groupNum = $(this).attr("id").split("_")[3]; 
+                $(".group_mbti_" + groupNum).prop("checked", $(this).is(":checked"));
+            });
+
+            $(".code_mbti").on("change", function () {
+                let groupNum = $(this).attr("class").match(/group_mbti_(\d+)/)[1];
+                checkMbtiGroup(groupNum);
+            });
+
+            $("[id^=all_code_mbti_]").each(function () {
+                let groupNum = $(this).attr("id").split("_")[3];
+                checkMbtiGroup(groupNum);
+            });
+        });
+
+        function checkMbtiGroup(groupNum) {
+            let total = $(".group_mbti_" + groupNum).length;
+            let checked = $(".group_mbti_" + groupNum + ":checked").length;
+
+            $("#all_code_mbti_" + groupNum).prop("checked", total > 0 && total === checked);
+        }
+    </script>
 
     <script>
         $(function () {
