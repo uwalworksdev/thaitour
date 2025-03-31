@@ -262,7 +262,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">예약구분</td>
 						<td class="subject">단가(원)</td>
-						<td class="subject">대수(명)</td>
+						<td class="subject">건수</td>
 						<td class="subject">에약금액(원)</td>
 					</tr>
 					
