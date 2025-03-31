@@ -709,15 +709,15 @@ class MyPage extends BaseController
 
         $data['row'] = $row;
 
-        $data['tour_period'] = $tour_period;
-        $data['order_memo'] = $order_memo;
+        $data['tour_period']      = $tour_period;
+        $data['order_memo']       = $order_memo;
         $data['home_depart_date'] = $home_depart_date;
         $data['away_arrive_date'] = $away_arrive_date;
         $data['away_depart_date'] = $away_depart_date;
         $data['home_arrive_date'] = $home_arrive_date;
-        $data['start_date'] = $start_date;
-        $data['row_d'] = $row_d;
-        $data['local_phone'] = $row['local_phone'];
+        $data['start_date']       = $start_date;
+        $data['row_d']            = $row_d;
+        $data['local_phone']      = $row['local_phone'];
 
         $data['pg'] = $pg;
 
@@ -736,11 +736,12 @@ class MyPage extends BaseController
         }
 
         $data['fcodes'] = $fcodes;
-
+        $gubun          = $row['order_gubun'];
+		
         if (!empty($gubun)) {
 
             if ($gubun == "hotel") {
-                $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+                $sql_  = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
                 $room_ = $this->db->query($sql_)->getRowArray();
                 $data['price_secret'] = $room_["secret_price"];
 
