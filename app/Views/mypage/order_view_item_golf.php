@@ -267,7 +267,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					</tr>
 					
 					<?php
-					    foreach ($vehicle as $row) {
+					    foreach ($vehicle as $row)  
 						{
 							 if($row['option_type'] == "main") {
 								$option_name = "그린피";
