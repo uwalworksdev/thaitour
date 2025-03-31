@@ -212,6 +212,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<?php } ?>
 
 					</div>
+					<!--
 					<?php
 						$arr = explode("|", $date_price);
 						for($i=0;$i<count($arr);$i++)
@@ -230,6 +231,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<?php
 						}
 					?>
+					-->
 				</div>
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
