@@ -265,6 +265,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">대수(명)</td>
 						<td class="subject">에약금액(원)</td>
 					</tr>
+					<!--
 					<?php
 					    foreach ($option as $row) {
 						{
@@ -283,6 +284,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<?php
 						}
 					?>
+					-->
 				</tbody>
 			</table>
 		</div>
