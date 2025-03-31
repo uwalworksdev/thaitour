@@ -9,26 +9,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	exit();
 }
 
-$sql = "select * from tbl_order_mst a
-	                           left join tbl_member b on a.m_idx = b.m_idx 
-							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($sql)->getRowArray();
-
-$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
-
-$row_d = $connect->query($sql_d)->getRowArray();
-
-$row['local_phone'] = $row_d['local_phone'];
-
-$tour_period = $row["tour_period"];
-$custom_req = $row['custom_req'];
-
-$home_depart_date = $row['home_depart_date'];
-$away_arrive_date = $row['away_arrive_date'];
-$away_depart_date = $row['away_depart_date'];
-$home_arrive_date = $row['home_arrive_date'];
-
-$start_date = $row['start_date'];
 
 ?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css" />
