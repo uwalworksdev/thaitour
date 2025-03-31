@@ -63,18 +63,18 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			<h2>예약 정보(쇼.입장권)</h2>
 			<table>
 				<colgroup>
-					<col width="15%">
+					<col width="20%">
 					<col width="*">
 					<col width="15%">
 					<col width="20%">
-					<col width="40%">
+					<col width="30%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
 						<td class="subject">예약일자</td>
 						<td class="subject">예약인원</td>
-						<td class="subject">라운딩 일자</td>
+						<td class="subject">참관일자</td>
 						<td class="subject">예약정보</td>
 					</tr>
 					<tr>
