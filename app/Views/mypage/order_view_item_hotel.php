@@ -502,7 +502,7 @@ $start_date = $row['start_date'];
 						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
+						<td col width="15%" class="subject">여권번호</td>
 
 					</tr>
 					<tr>
@@ -529,10 +529,7 @@ $start_date = $row['start_date'];
 
 
 						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
+							<?=$order_passport_number ?>
 						</td>
 
 
