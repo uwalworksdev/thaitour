@@ -560,8 +560,8 @@ endforeach;
               <button>메일보내기 </button>
           </div>
           <div class="btns_download">
-              <button>다운로드</button>
-              <button>엑셀다운로드</button>
+              <button>프린트</button>
+              <button> PDF다운로드</button>
           </div>
       </div>
   </div>
