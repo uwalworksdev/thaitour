@@ -818,9 +818,9 @@ class AdminSpaController extends BaseController
                                     'goods_date'    => $currentDate,
                                     'dow'           => $arr_week[$dayOfWeek],
                                     'baht_thai'     => $baht_thai,
-                                    'goods_price1'  => $option["tour_price"],
-                                    'goods_price2'  => $option["tour_price_kids"],
-                                    'goods_price3'  => $option["tour_price_baby"],
+                                    'goods_price1'  => $option["spas_price"],
+                                    'goods_price2'  => $option["spas_price_kids"],
+                                    'goods_price3'  => $option["spas_price_baby"],
                                     'use_yn'        => 'Y',
                                     'reg_date'      => date('Y-m-d H:i:s')
                                 ];
@@ -1814,6 +1814,226 @@ class AdminSpaController extends BaseController
             ]);
 
         }
-        
     }
+
+    public function spas_price_add()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $info_idx    = $this->request->getPost('info_idx');
+        $days        = $this->request->getPost('days');
+
+        // 방 정보를 가져옵니다.
+        $spas_product = $this->productSpas->where("info_idx", $info_idx)
+                                            ->where("product_idx", $product_idx)
+                                            ->orderBy("spas_idx", "asc")
+                                            ->findAll();
+
+        if (count($spas_product) == 0) {
+            return $this->response->setJSON([
+                'status' => 'fail',
+                'message' => '정보를 찾을 수 없습니다'
+            ]);
+        }
+
+        // 공통 함수 호출
+        $baht_thai = $this->setting['baht_thai'];
+
+        $row = $this->spasPrice->where("product_idx", $product_idx)
+                                        ->where("info_idx", $info_idx)
+                                        ->orderBy("goods_date", "desc")
+                                        ->limit(1)
+                                        ->get()
+                                        ->getRow();
+        $from_date = $row->goods_date;
+
+        $from_date    = day_after($from_date, 1);
+        $to_date      = day_after($from_date, $days - 1);
+        
+        $startDate = $from_date; // 시작일
+        $endDate   = $to_date;   // 종료일
+
+        // DateTime 객체 생성
+        $start = new DateTime($startDate);
+        $end   = new DateTime($endDate);
+        $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+        // 날짜 반복
+        while ($start < $end) {
+            $currentDate = $start->format("Y-m-d"); // 현재 날짜 (형식: YYYY-MM-DD)
+
+            foreach ($spas_product as $row) {
+                $data = [
+                    'product_idx'   => $product_idx,
+                    'info_idx'      => $info_idx,
+                    'spas_idx'      => $row['spas_idx'],
+                    'goods_date'    => $currentDate,
+                    'dow'           => dateToYoil($currentDate),
+                    'baht_thai'     => $baht_thai,
+                    'goods_price1'  => 0,
+                    'goods_price2'  => 0,
+                    'goods_price3'  => 0,
+                    'use_yn'        => 'Y',
+                    'reg_date'      => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
+                ];
+
+                $this->spasPrice->insert($data);
+            }
+        
+            // 다음 날짜로 이동
+            $start->modify('+1 day');
+        }
+
+        //시작일
+        $row = $this->spasPrice->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->orderBy("goods_date", "asc")
+                                ->limit(1)
+                                ->get()
+                                ->getRow();
+        $s_date  = $row->goods_date; 
+
+        //종료일
+        $row = $this->spasPrice->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->orderBy("goods_date", "desc")
+                                ->limit(1)
+                                ->get()
+                                ->getRow();
+        $e_date  = $row->goods_date; 
+        
+        $result = $this->productSpasInfo->update($info_idx, [
+            'o_sdate' => $s_date,
+            'o_edate' => $e_date
+        ]);
+
+        if ($result) {
+            $msg = "호텔 객실일자 추가완료";
+        } else {
+            $msg = "호텔 객실일자 추가오류";
+        }
+
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
+                'status'  => 'success',
+                'message' => $msg,
+                's_date'  => $from_date,
+                'e_date'  => $to_date
+            ]);
+    }
+
+    public function update_all_price()   
+    {
+        $db = \Config\Database::connect();
+
+        // POST 데이터 받아오기
+        $s_date        = $_POST['s_date'];
+        $e_date        = $_POST['e_date'];  
+        $spa_option    = $_POST['spa_option'];
+        $dow_val       = $_POST['dow_val'];
+        $product_idx   = $_POST['product_idx'];
+        $info_idx      = $_POST['info_idx'];
+        $goods_price1  = $_POST['goods_price1'];
+        $goods_price2  = $_POST['goods_price2'];
+        $goods_price3  = $_POST['goods_price3'];
+
+        $spa_idx_condition = '';
+        if (!empty($spa_option)) {
+            $spa_idx_condition = "AND spas_idx IN (". $spa_option .") ";
+        }
+
+        // SQL 쿼리 작성
+        $sql = "UPDATE tbl_spas_price
+                SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
+                    goods_price2 = '" . $db->escapeString($goods_price2) . "',
+                    goods_price3 = '" . $db->escapeString($goods_price3) . "',
+                    upd_date = NOW()
+                WHERE dow IN ($dow_val)
+                $spa_idx_condition
+                AND product_idx = '" . $db->escapeString($product_idx) . "'
+                AND info_idx = '" . $db->escapeString($info_idx) . "'
+                AND upd_yn != 'Y'
+                AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
+
+        $result = $db->query($sql);
+
+        if($result) {
+            $msg = "수정 완료";
+        } else {
+            $msg = "수정 오류";	
+        }   
+
+        return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON([
+                        'status'  => 'success',
+                        'message' => $msg
+                    ]);
+    }
+
+    public function spa_price_update()   
+    {
+        $idx          = $this->request->getPost('idx');
+        $goods_price1 = str_replace(',', '', $this->request->getPost('goods_price1'));
+        $goods_price2 = str_replace(',', '', $this->request->getPost('goods_price2'));
+        $goods_price3 = str_replace(',', '', $this->request->getPost('goods_price3'));
+        $use_yn       = $this->request->getPost('use_yn');	
+
+        $result = $this->spasPrice->update($idx, [
+            "goods_price1" => $goods_price1,
+            "goods_price2" => $goods_price2,
+            "goods_price3" => $goods_price3,
+            "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            "use_yn"       => $use_yn
+        ]);
+
+        if ($result) {
+            $msg = "가격 수정완료";
+        } else {
+            $msg = "가격 수정오류";
+        }
+
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
+                'status' => 'success',
+                'message' => $msg
+            ]);
+    }
+
+    public function spas_all_update()
+	{
+        $rows     = $this->request->getPost('rows');
+        $errors   = [];
+
+        try {
+            foreach ($rows as $row) {
+                $idx = (int) $row['idx'];
+                $goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
+                $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
+                $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
+                $use_yn       = $row['use_yn'];
+
+                $result = $this->spasPrice->update($idx, [
+                    "goods_price1" => $goods_price1,
+                    "goods_price2" => $goods_price2,
+                    "goods_price3" => $goods_price3,
+                    "use_yn"       => $use_yn,
+                    "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ]);
+
+                if (!$result) {
+                    $errors[] = "Update failed: " . $this->connect->error();
+                }
+            }
+
+            if (empty($errors)) {
+                return $this->response->setJSON(["status" => "success"]);
+            } else {
+                return $this->response->setJSON(["status" => "error", "message" => implode(", ", $errors)]);
+            }
+        } catch (Exception $e) {
+            return $this->response->setJSON(["status" => "error", "message" => $e->getMessage()]);
+        }
+	}
 }
