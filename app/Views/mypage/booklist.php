@@ -404,7 +404,7 @@ endforeach;
                                         <p>견적서</p>
                                     </div>
 
-                                    <div class="info_reservation btn_info flex__c box" data-idx="<?=$order['order_idx']?>">
+                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
                                 </div>
@@ -596,6 +596,7 @@ $(document).on('click', '.info_estimate', function () {
 
 $(document).on('click', '.info_reservation', function () {
 
+		var gubun = $("this").data('gubun');  
 		var idx   = $(this).data('idx');  
         /*
 		if(idx){
@@ -622,7 +623,7 @@ $(document).on('click', '.info_reservation', function () {
 			});
         }
 		*/
-        location.href='/mypage/golf/order_view_item?order_idx='+idx+'&pg=1#!';
+        location.href='/mypage/'+gubun+'/order_view_item?order_idx='+idx+'&pg=1#!';
 });
 
 $(document).on('click', '.order_del', function () {
