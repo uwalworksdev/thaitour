@@ -227,6 +227,9 @@ $start_date = $row['start_date'];
 							<p><strong>성인 <span id="adult_amt">
 										<?= number_format(($row['people_adult_price'] + $row['oil_price']) * $row['people_adult_cnt']) ?>
 									</span></strong> 원</p>
+							<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
+								<span class="text_defen">(유류포함)</span>
+							<?php } ?>
 						</div>
 						<?php if ($row['product_code_1'] != "1320") { ?>
 							<p>/</p>
@@ -234,12 +237,18 @@ $start_date = $row['start_date'];
 								<p><strong>소아 <span id="kids_amt">
 											<?= number_format(($row['people_kids_price'] + $row['oil_price']) * $row['people_kids_cnt']) ?>
 										</span></strong> 원</p>
+								<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
+									<span class="text_defen">(유류포함)</span>
+								<?php } ?>
 							</div>
 							<p>/</p>
 							<div class="defen_ttl">
 								<p><strong>유아 <span id="baby_amt">
 											<?= number_format($row['people_baby_price'] * $row['people_baby_cnt']) ?>
 										</span></strong> 원</p>
+								<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
+									<span class="text_defen">(유류미포함)</span>
+								<?php } ?>
 							</div>
 						<?php } ?>
 						<?php if ($row['used_coupon_money'] > 0) { ?>
@@ -261,6 +270,9 @@ $start_date = $row['start_date'];
 						<p><strong><span id="price_tot">
 									<?= number_format($row['order_price']) ?>
 								</span></strong> 원</p>
+						<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
+							<span class="text_defen">(유류포함)</span>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -279,13 +291,16 @@ $start_date = $row['start_date'];
 						<p><strong><span id="price_tot">
 									<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
 							</span> 원</p>
+						<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
+							<span class="text_defen">(유류포함)</span>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<div class="invoice_table invoice_table_new reservation">
-			<h2>예약금액 결제</h2>
+			<h2>예약금액 결제..</h2>
 			<table>
 				<colgroup>
 					<col width="8%">
