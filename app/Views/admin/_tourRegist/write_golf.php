@@ -441,10 +441,10 @@
                                     <td-->
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="hidden"
-                                               value="<?= $minium_people_cnt ?>" style="width:20%"/>명&nbsp;&nbsp;&nbsp;
+                                               value="<?= $minium_people_cnt ?>" style="width:20%"/>
                                         <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
                                                type="hidden"
-                                               value="<?= $total_people_cnt ?>" style="width:20%"/>명
+                                               value="<?= $total_people_cnt ?>" style="width:20%"/>
                                     <!--/td>
                                     <th>갤러리피</th>
                                     <td>
