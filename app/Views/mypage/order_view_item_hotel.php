@@ -195,15 +195,18 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
+							<p><strong style="color:red">객실수 <span id="coupon_amt">
+										<?= $order_room_cnt ?> Room
+									</span></strong></p>
                     <!-- 
-                                          (객실수 : <?= $order_room_cnt ?> Room)<br>
-										  <?php
-										        $arr = explode("|", $date_price);
-												for($i=0;$i<count($arr);$i++)
-												{
-												    echo $arr[$i] ."<br>"; 
-												}		
-										  ?>
+					  (객실수 : <?= $order_room_cnt ?> Room)<br>
+					    <?php
+							$arr = explode("|", $date_price);
+							for($i=0;$i<count($arr);$i++)
+							{
+								echo $arr[$i] ."<br>"; 
+							}		
+					    ?>
                      -->
 						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
