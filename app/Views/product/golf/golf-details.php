@@ -724,10 +724,7 @@ $(document).ready(function() {
             <div class="content-item">
                 <span class="label">코스정보</span>
                 <div class="description">
-                    <p>총 홀수 : 18홀<br>
-                    그린 스피드 : 빠름<br>
-                    잔디타입 :  백연드 테이블, 파쿠시빌, 백연드 419
-                    </p>
+                    <?= viewSQ($product['tour_detail']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -735,9 +732,7 @@ $(document).ready(function() {
                     시설정보
                 </span>
                 <div class="description">
-                    <p>골프 카트, 퍼팅 그린, 치핑 그린, 프로샵
-                    라운딩 중 짐 보관은 락커에 가능하며, 락커 내 보관 어려울 경우 클럽하우스에서 보관해 드립니다.
-                    다만, 클럽하우스 보관 시 분실이나 파손 등 발생하는 문제에는 몽키트래블&로얄방파인 책임이 없는 점 안내드립니다.</p>
+                    <?= viewSQ($product['information']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -745,9 +740,7 @@ $(document).ready(function() {
                     안내사항
                 </span>
                 <div class="description">
-                    <p>- 라운드 티, 착용 유니폼, 보드셔츠, 청바지 계열, 짧은 반바지는 입장이 불가능합니다.</p>
-                    <p>- 한국에서 골프웨어로 나온 차이나 바지나 카라티 입장이 가능한 곳이므로 되도록 일반 피켓(카라티)를 착용하는 것이 좋습니다.</p>
-                    <p>- 무료 길이 반바지는 허용되고 있습니다.</p>
+                    <?= viewSQ($product['code_services']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -755,8 +748,7 @@ $(document).ready(function() {
                     티오프 시간
                 </span>
                 <div class="description">
-                    <p>- 주중: 1부, 2부 06:30 ~ 13:40</p>
-                    <p>- 주말: 1부 06:40 ~ 08:20 / 2부 12:00 ~ 13:40</p>
+                    <?= viewSQ($product['meeting_guide']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -764,8 +756,7 @@ $(document).ready(function() {
                     골프텔 정보
                 </span>
                 <div class="description">
-                    <p> 인터내셔널, 태국식</p>
-                    <p> 운영시간: 06:00 ~ 19:00</p>
+                    <?= viewSQ($product['product_more']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -773,8 +764,7 @@ $(document).ready(function() {
                     더투어랩 이용방법
                 </span>
                 <div class="description">
-                    <p> 방콕 시내에서 약 60킬로 미터 정도 떨어진 라차캄 지역에 위치해 있으며, 새로 생긴 고속도로를 따라 약 45분~1시간 정도면 골프장에 도착할 수 있습니다. </p>
-                    <p>돈무앙 공항에서 20분 정도면 도착할 수 있으며, 수완나품 공항에서는 약 1시간 정도 소요됩니다. </p>
+                    <?= viewSQ($product['departure_area']) ?>
                 </div>
             </div>
         </div>
