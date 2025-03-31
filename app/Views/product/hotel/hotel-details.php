@@ -3003,8 +3003,8 @@
         name: "<?= addslashes($hotel['product_name']) ?>",
         link: "<?= '/product-hotel/hotel-detail/' . $hotel['product_idx'] ?>",
         image: "<?= '/data/product/' . $hotel['ufile1'] ?>",
-        ...(<?= isset($hotel['ufile2']) && $hotel['ufile2'] ? 'true' : 'false' ?> && {
-            image2: "<?= '/data/product/' . $hotel['ufile2'] ?>"
+        ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && {
+            image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>"
         })
     };
 
