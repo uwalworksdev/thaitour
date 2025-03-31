@@ -929,31 +929,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	</div>
 	<div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
 </div>
-<?php
 
-$_paymod = "nicepay";    // ini  ,  lg
-
-
-if ($_paymod == "lg") {
-	if (device_chk() == "MO") {
-		$urlStr = "travel_cash.m.inc_bak_LG.php";
-	} else {
-		$urlStr = "travel_cash.inc_bak_LG.php";
-	}
-} else if ($_paymod == "nicepay") {
-	if (device_chk() == "MO") {
-		$urlStr = "travel_cash.m.inc_nicepay.php";
-	} else {
-		$urlStr = "travel_cash.inc_nicepay.php";
-	}
-} else if ($_paymod == "ini") {
-	if (device_chk() == "MO") {
-		$urlStr = "travel_cash.m.inc.php";
-	} else {
-		$urlStr = "travel_cash.inc.php";
-	}
-}
-?>
 
 <script type="text/javascript">
 	function handlleShowPassport(img) {
