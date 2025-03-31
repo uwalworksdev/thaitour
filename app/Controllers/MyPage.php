@@ -815,6 +815,7 @@ class MyPage extends BaseController
                 $data['sup_options'] = $sup_options;
             }
 
+            $gubun = "golf";  
             return view("mypage/order_view_item_{$gubun}", $data);
         }
 
