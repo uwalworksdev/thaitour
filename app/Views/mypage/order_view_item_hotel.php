@@ -271,8 +271,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">일자</td>
-						<td class="subject">숙박금액(원)</td>
-						<td class="subject">Extra 베드(원)</td>
+						<td class="subject">숙박금액(바트)</td>
+						<td class="subject">Extra 베드(바트)</td>
 					</tr>
 					<?php
 						$arr = explode("|", $date_price);
