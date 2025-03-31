@@ -261,8 +261,8 @@ $start_date = $row['start_date'];
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($row['order_price']) ?>
-								</span></strong> 원</p>
+									<?= number_format($price_won) ?></span></strong> 원(<?=number_format($price)?>바트)
+								</p>
 					</div>
 				</div>
 			</div>
