@@ -67,7 +67,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<col width="*">
 					<col width="15%">
 					<col width="20%">
-					<col width="30%">
+					<col width="40%">
 				</colgroup>
 				<tbody>
 					<tr>
