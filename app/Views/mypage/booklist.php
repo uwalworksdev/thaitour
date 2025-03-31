@@ -596,7 +596,7 @@ $(document).on('click', '.info_estimate', function () {
 
 $(document).on('click', '.info_reservation', function () {
 
-		var gubun = $("this").data('gubun');  
+		var gubun = $(this).data('gubun');  
 		var idx   = $(this).data('idx');  
         /*
 		if(idx){
