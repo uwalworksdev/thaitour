@@ -194,13 +194,13 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <h3 class="title-size-24" id="product_info">상품 정보</h3>
-                <table class="golf-table">
+                <table class="golf-table" style="table-layout: fixed;">
                     <colgroup>
-                        <col width="10%">
+                        <col width="16%">
                         <col width="*">
-                        <col width="10%">
+                        <col width="16%">
                         <col width="*">
-                        <col width="10%">
+                        <col width="16%">
                         <col width="*">
                     </colgroup>
                     <thead>
