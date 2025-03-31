@@ -86,6 +86,8 @@ $start_date = $row['start_date'];
 				<colgroup>
 					<col width="15%">
 					<col width="*">
+					<col width="20%">
+					<col width="20%">
 				</colgroup>
 				<tbody>
 					<tr>
