@@ -331,6 +331,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->group("spa_", function ($routes) {
             $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
             $routes->post("write_info_ok", "Admin\AdminSpaController::write_info_ok", ['as' => "admin.api.spa_.write_info_ok"]);
+            $routes->post("spas_price_add", "Admin\AdminSpaController::spas_price_add", ['as' => "admin.api.spa_.spas_price_add"]);
+            $routes->post("update_all_price", "Admin\AdminSpaController::update_all_price", ['as' => "admin.api.spa_.update_all_price"]);
+            $routes->post("spa_price_update", "Admin\AdminSpaController::spa_price_update", ['as' => "admin.api.spa_.spa_price_update"]);
+            $routes->post("spas_all_update", "Admin\AdminSpaController::spas_all_update", ['as' => "admin.api.spa_.spas_all_update"]);
             $routes->post("copy_last_spa", "Admin\AdminSpaController::copy_last_spa", ['as' => "admin.api.spa_.copy_last_spa"]);
             $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
             $routes->post("del_spa_option", "Admin\AdminSpaController::del_spa_option", ['as' => "admin.api.spa_.del_spa_option"]);

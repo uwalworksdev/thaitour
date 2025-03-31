@@ -417,7 +417,7 @@
                             var days        = $("#days").val();
                             
                             $.ajax({
-                                url: "/AdmMaster/_tours/tours_price_add",
+                                url: "<?= route_to('admin.api.spa_.spas_price_add') ?>",
                                 type: "POST",
                                 data: {
                                     "product_idx" : product_idx,
@@ -526,12 +526,12 @@
 
                                 $.ajax({
 
-                                    url: "/AdmMaster/_tours/update_all_price",
+                                    url: "<?= route_to('admin.api.spa_.update_all_price') ?>",
                                     type: "POST",
                                     data: {
                                             "s_date"       : $("#s_date").val(),
                                             "e_date"       : $("#e_date").val(),	
-                                            "spa_option"  : spa_option,
+                                            "spa_option"   : spa_option,
                                             "dow_val"      : dow_val,
                                             "product_idx"  : $("#product_idx").val(),
                                             "info_idx"     : $("#info_idx").val(),
@@ -686,7 +686,7 @@
 
             $.ajax({
 
-                url: "/AdmMaster/_tours/tour_price_update",
+                url: "<?= route_to('admin.api.spa_.spa_price_update') ?>",
                 type: "POST",
                 data: {
                     "idx"           : idx,
@@ -777,7 +777,7 @@
 
         if (rows.length > 0) {
             $.ajax({
-                url: "/AdmMaster/_tours/tours_all_update", // 실제 업데이트할 API URL
+                url: "<?= route_to('admin.api.spa_.spas_all_update') ?>", // 실제 업데이트할 API URL
                 type: "POST",
                 data: { 
                     rows : rows 

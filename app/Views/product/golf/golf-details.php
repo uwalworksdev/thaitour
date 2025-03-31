@@ -194,7 +194,15 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <h3 class="title-size-24" id="product_info">상품 정보</h3>
-                <table class="golf-table">
+                <table class="golf-table" style="table-layout: fixed;">
+                    <colgroup>
+                        <col width="16%">
+                        <col width="*">
+                        <col width="16%">
+                        <col width="*">
+                        <col width="16%">
+                        <col width="*">
+                    </colgroup>
                     <thead>
                     <tr>
                         <th>더투어랩 평가 등급</th>
@@ -1798,7 +1806,7 @@ $(document).ready(function() {
             name: "<?= addslashes($product['product_name']) ?>",
             link: "<?= '/product-golf/golf-detail/' . $product['product_idx']?>",
             image: "<?= '/data/product/' . $product['ufile1'] ?>",
-            ...(<?= isset($product['ufile2']) && $product['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $product['ufile2'] ?>" })
+            ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>" })
         };
 
         let viewedProducts = getCookie('viewedProducts');

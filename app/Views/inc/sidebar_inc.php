@@ -427,14 +427,16 @@
             return null;
         }
 
-        const viewedProducts = getCookie('viewedProducts');
+        const viewedProducts = getCookie('viewedProducts');        
+
         if (viewedProducts) {
             try {
                 const products = JSON.parse(viewedProducts);
                 const container = document.querySelector('.side-bar-above .swiper-wrapper');
 
                 if (products.length > 0) {
-                    products.forEach(product => {
+                    for (let i = products.length - 1; i >= 0; i--) {
+                        const product = products[i];
                         const slide = document.createElement('div');
                         slide.classList.add('swiper-slide');
                         slide.innerHTML = `
@@ -444,7 +446,7 @@
                             </a>
                         `;
                         container.appendChild(slide);
-                    });
+                    }
 
                     document.querySelector('.pagination_sidebar').style.display = "flex";
                     updatePagination(0, products.length);

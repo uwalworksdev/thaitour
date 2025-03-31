@@ -29,7 +29,7 @@
             name: "<?= addslashes($data_['product_name']) ?>",
             link: "<?= '/product-restaurant/restaurant-detail/' . $data_['product_idx']?>",
             image: "<?= '/data/product/' . $data_['ufile1'] ?>",
-            ...(<?= isset($data_['ufile2']) && $data_['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $data_['ufile2'] ?>" })
+            ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>" })
         };
 
         let viewedProducts = getCookie('viewedProducts');
