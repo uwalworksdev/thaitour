@@ -272,7 +272,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">일자</td>
 						<td class="subject">숙박금액(원)</td>
-						<td class="subject">Extra 베드</td>
+						<td class="subject">Extra 베드(원)</td>
 					</tr>
 					<?php
 						$arr = explode("|", $date_price);
@@ -282,7 +282,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							$amt1 = $arr1[2] + $arr1[3];
 							$amt2 = $arr1[4];
 					?>		
-					<?php if($arr1[0] != "") { ?>
+					<?php if($arr1[0] != "" && $arr1[0] != "Extra") { ?>
 							<tr>
 								<td class="content"><?=$arr1[0]?></td>
 								<td class="content"><?=number_format($amt1)?></td>
