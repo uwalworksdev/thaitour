@@ -678,7 +678,7 @@ class MyPage extends BaseController
 							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
 
         $row = $connect->query($sql)->getRowArray();
-
+        write_log("order_view_item- ". $order_idx."-".$row['order_gubun']);
         $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
 
         $row_d = $connect->query($sql_d)->getRowArray();
