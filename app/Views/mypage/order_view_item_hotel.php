@@ -198,15 +198,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							<p><strong>객실수 <span id="coupon_amt">
 										<?= $order_room_cnt ?> Room
 									</span></strong></p>
-					    <?php
-							$arr = explode("|", $date_price);
-							for($i=0;$i<count($arr);$i++)
-							{
-						?>		
-										일자별 <?= $arr[$i] ?><br>
-						<?php		
-							}		
-					    ?>
+									
 						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($used_coupon_money) ?>원
@@ -220,6 +212,24 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<?php } ?>
 
 					</div>
+					<?php
+						$arr = explode("|", $date_price);
+						for($i=0;$i<count($arr);$i++)
+						{
+					?>		
+					<div>
+								<p>
+									<strong>
+										일자별 
+										<span id="coupon_amt">
+											<?= $arr[$i] ?>
+										</span>
+									</strong>
+								</p>
+					</div>
+					<?php
+						}
+					?>
 				</div>
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
