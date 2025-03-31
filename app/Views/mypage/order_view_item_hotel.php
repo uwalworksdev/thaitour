@@ -281,11 +281,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							$arr1 = explode(",", $arr[$i]);
 							$amt1 = $arr1[2] + $arr1[3];
 					?>		
-					<tr>
-						<td class="content"><?=$arr1[0]?></td>
-						<td class="content"><?=number_format($amt1)?></td>
-						<td class="content">예약 준비중</td>
-					</tr>
+					<?php if($amt1[0] != "" && $amt1[0] != "Extra") { ?>
+							<tr>
+								<td class="content"><?=$arr1[0]?></td>
+								<td class="content"><?=number_format($amt1)?></td>
+								<td class="content">예약 준비중</td>
+							</tr>
+					<?php } ?>		
 					<?php
 						}
 					?>
