@@ -66,26 +66,26 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<col width="15%">
 					<col width="*">
 					<col width="15%">
-					<col width="25%">
 					<col width="20%">
+					<col width="30%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">예약일자</td>
-						<td col width="15%" class="subject">예약인원</td>
-						<td col width="15%" class="subject">라운딩 일자</td>
-						<td col width="30%" class="subject">예약정보</td>
+						<td class="subject">예약일자</td>
+						<td class="subject">예약인원</td>
+						<td class="subject">라운딩 일자</td>
+						<td class="subject">예약정보</td>
 					</tr>
 					<tr>
 
-						<td col width="15%" class="content">
+						<td class="content">
 							<span>
 								<?= $order_no ?>
 							</span>
 						</td>
 
-						<td col width="15%" class="content">
+						<td class="content">
 							<span>
 								<?= $order_date ?>
 							</span>
