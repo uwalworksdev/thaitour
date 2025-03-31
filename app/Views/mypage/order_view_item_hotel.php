@@ -105,8 +105,8 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<span>성인: <span><?= $adult_cnt ?></span></span>명  
-							<span>소아: <span><?= $kids_cnt ?></span></span>명 
+							<span>성인: <span><?= $adult ?></span></span>명  
+							<span>소아: <span><?= $kids ?></span></span>명 
 						</td>
 
 						<td class="content">
