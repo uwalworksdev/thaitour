@@ -205,12 +205,12 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						?>		
 								<p>
 									<strong>
-										일자별<br> 
+										일자별 
 										<span id="coupon_amt">
 											<?= $arr[$i] ?>
 										</span>
 									</strong>
-								</p>
+								</p><br>
 						<?php		
 							}		
 					    ?>
