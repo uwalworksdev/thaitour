@@ -195,7 +195,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-
+                    <!-- 
                                           (객실수 : <?= $order_room_cnt ?> Room)<br>
 										  <?php
 										        $arr = explode("|", $date_price);
@@ -204,16 +204,16 @@ if ($_SESSION["member"]["mIdx"] == "") {
 												    echo $arr[$i] ."<br>"; 
 												}		
 										  ?>
-
-						<?php if ($row['used_coupon_money'] > 0) { ?>
+                     -->
+						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-										<?= number_format($row['used_coupon_money']) ?>원
+										<?= number_format($used_coupon_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
-						<?php if ($row['used_mileage_money'] > 0) { ?>
+						<?php if ($used_mileage_money > 0) { ?>
 							<p><strong style="color:red">포인트 <span id="point_amt">
-										<?= number_format($row['used_mileage_money']) ?>원
+										<?= number_format($used_mileage_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
