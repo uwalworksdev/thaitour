@@ -708,8 +708,6 @@ $routes->group("mypage", static function ($routes) {
     $routes->post("qnaDel", "MyPage::qnaDel");
 });
 
-$routes->get('mypage/order-hotel/(:num)', 'Mypage::orderHotel/$1');
-
 $routes->group("comment", static function ($routes) {
     $routes->get("comment_list", "Comment::listComment");
     $routes->post("comment", "Comment::addComment");
