@@ -439,12 +439,8 @@
                                 <!--tr>
                                     <th>최소/최대 라운딩인원</th>
                                     <td-->
-                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
-                                               type="hidden"
-                                               value="<?= $minium_people_cnt ?>" style="width:20%"/>
-                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
-                                               type="hidden"
-                                               value="<?= $total_people_cnt ?>" style="width:20%"/>
+                                        <input id="minium_people_cnt" name="minium_people_cnt" type="hidden" value="<?= $minium_people_cnt ?>" />
+                                        <input id="total_people_cnt"  name="total_people_cnt"  type="hidden" value="<?= $total_people_cnt ?>" />
                                     <!--/td>
                                     <th>갤러리피</th>
                                     <td>
