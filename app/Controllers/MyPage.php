@@ -699,9 +699,10 @@ class MyPage extends BaseController
                         , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
                         , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
                         , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
+						, AES_DECRYPT(UNHEX('{order_passport_number']}'),    '$private_key') AS order_passport_number 
                         , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),  '$private_key') AS order_user_phone 
-                        , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		'$private_key') AS local_phone 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),   '$private_key') AS order_user_phone 
+                        , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		 '$private_key') AS local_phone 
                         , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
                         , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
                         , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
