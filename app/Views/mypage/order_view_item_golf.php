@@ -81,7 +81,7 @@ $start_date = $row['start_date'];
 		</p>
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약 정보</h2>
+			<h2>예약 정보(골프)</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
