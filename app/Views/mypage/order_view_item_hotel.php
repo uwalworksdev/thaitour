@@ -513,16 +513,6 @@ $start_date = $row['start_date'];
 			</div><!-- pay_pops_inner  --> <!-- 무통장입금 팝업 종료 -->
 		</section>
 
-		<!-- 예약자 정보 웹 -->
-		<?php
-		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
-									   , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
-									   , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
-									   , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
-									   , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
-									   , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
-		$row_d = $connect->query($sql_d)->getRowArray();
-		?>
 		<div class="invoice_table invoice_table_new only_web">
 			<h2>예약자 정보</h2>
 			<table>
@@ -543,7 +533,7 @@ $start_date = $row['start_date'];
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
