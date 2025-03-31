@@ -9,6 +9,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	exit();
 }
 
+$deli_types = get_deli_type();
+
 ?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css" />
 <link href="/css/invoice/invoice_responsive.css" rel="stylesheet" type="text/css" />
@@ -49,10 +51,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	<div class="inner">
 		<div class="ttl_box">
 			<h1>
-				<?= (html_entity_decode($row['product_name'])) ?>
+				<?= (html_entity_decode($product_name)) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_status_name($row["order_status"]) ?>
+				<?= $deli_types[$order_status] ?>
 			</span>
 		</div>
 		<p class="ttl_date">
