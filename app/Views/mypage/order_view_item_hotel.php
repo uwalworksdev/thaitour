@@ -261,7 +261,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>일자별 숙박금액</h2>
+			<h2>일자별 숙박금액<?=$date_price?></h2>
 			<table>
 				<colgroup>
 					<col width="*">
