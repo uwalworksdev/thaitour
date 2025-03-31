@@ -196,6 +196,16 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
 
+                                          <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) / <?= $order_day_cnt ?>일
+										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<br>
+										  <?php
+										        $arr = explode("|", $date_price);
+												for($i=0;$i<count($arr);$i++)
+												{
+												    echo $arr[$i] ."<br>"; 
+												}		
+										  ?>
+
 						<?php if ($row['used_coupon_money'] > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($row['used_coupon_money']) ?>원
