@@ -265,7 +265,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">대수(명)</td>
 						<td class="subject">에약금액(원)</td>
 					</tr>
-					<!--
+					
 					<?php
 					    foreach ($option as $row) {
 						{
@@ -284,7 +284,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<?php
 						}
 					?>
-					-->
 				</tbody>
 			</table>
 		</div>
@@ -627,33 +626,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
-
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
-
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
 			<!-- 여행자 웹 -->
 			<div class="invoice_table invoice_table_new only_web">
 				<h2>여행자
@@ -776,37 +748,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</table>
 			</div>
 
-
-			<?php
-		}
-		?>
-
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
-
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
 			<!-- 여행자 2 웹 -->
 			<div class="invoice_table invoice_table_new only_web">
 				<h2>여행자
@@ -921,9 +862,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					</tbody>
 				</table>
 			</div>
-			<?php
-		}
-		?>
 
 		<div class="invoice_table">
 			<h2>요청사항</h2>
