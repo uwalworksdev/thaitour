@@ -187,8 +187,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-							<p><strong>객실수 <span id="coupon_amt">
-										<?= $order_room_cnt ?> Room
+							<p><strong><span id="coupon_amt">
+										원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / 	$baht_thai) ?> 바트
 									</span></strong></p>
 									
 						<?php if ($used_coupon_money > 0) { ?>
