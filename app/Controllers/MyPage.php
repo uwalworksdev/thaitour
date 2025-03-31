@@ -744,7 +744,7 @@ class MyPage extends BaseController
 
 		// order_idx가 없으면 리다이렉트
 		if (!$order_idx) {
-			return redirect()->to('/mypage')->with('error', '주문 번호가 필요합니다.');
+			return redirect()->to('/mypage/booklist')->with('error', '주문 번호가 필요합니다.');
 		}
 
 		// SQL 쿼리 실행 (바인딩 방식 사용)
