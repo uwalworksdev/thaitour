@@ -94,7 +94,7 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">여행인원</td>
 						<td col width="15%" class="subject">숙박기간</td>
-						<td col width="30%" class="subject">항공일정</td>
+						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
 					<tr>
 
@@ -125,20 +125,8 @@ $start_date = $row['start_date'];
 						</td>
 						<td class="content">
 							<p>
-								<span>한국출발
-									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $away_arrive_date . "(" . dowYoil($away_arrive_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= $away_depart_date . "(" . dowYoil($away_depart_date) . ")" ?>
-								</span>
-								<span>한국도착
-									<?= $home_arrive_date . "(" . dowYoil($home_arrive_date) . ")" ?>
-								</span>
+								<span><?=$room?></span>
+								<span><?=$room_type?></span>
 							</p>
 						</td>
 					</tr>
