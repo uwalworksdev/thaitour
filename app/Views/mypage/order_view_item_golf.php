@@ -270,15 +270,17 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					    foreach ($vehicle as $row)  
 						{
 							 if($row['option_type'] == "main") {
-								$option_name = "그린피";
+								$option_name  = "그린피";
+								$option_price = $row['option_tot'] / $row['option_cnt'];
 							 } else	{
-								$option_name = $row['option_name'];
+								$option_name  = $row['option_name'];
+								$option_price = $row['option_price'];
 							 }	
 					?>		
 							<tr>
 								<td class="content"><?=$option_name?></td>
-								<td class="content"><?=number_format($row['option_price'])?></td>
-								<td class="content"><?=number_format($row['option_qty'])?></td>
+								<td class="content"><?=number_format($option_price)?></td>
+								<td class="content"><?=number_format($row['option_cnt'])?></td>
 								<td class="content"><?=number_format($row['option_tot'])?></td>
 							</tr>
 					<?php
