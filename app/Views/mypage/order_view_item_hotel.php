@@ -205,7 +205,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						?>		
 							<p><strong style="color:red">일자별 <span id="coupon_amt">
 										<?= $arr[$i] ?>
-									</span></strong></p>
+									</span></strong></p><br>
 						<?php		
 							}		
 					    ?>
