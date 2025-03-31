@@ -252,7 +252,7 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
-                                    <th>상품코드1/th>
+                                    <th>상품코드
                                     <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code_no ?? "" ?>"
