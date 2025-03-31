@@ -499,7 +499,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>원
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">

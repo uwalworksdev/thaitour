@@ -686,7 +686,7 @@ class MyPage extends BaseController
         $row['local_phone'] = $row_d['local_phone'];
 
         $tour_period = $row["tour_period"];
-        $order_memo = $row['order_memo'];
+        $order_memo  = $row['order_memo'];
 
         $home_depart_date = $row['home_depart_date'];
         $away_arrive_date = $row['away_arrive_date'];
