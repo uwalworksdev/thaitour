@@ -1656,7 +1656,7 @@ class AdminSpaController extends BaseController
             } else {
                 $msg = "삭제 완료";
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $msg = "삭제 오류: " . $e->getMessage();
         }
 
@@ -1670,7 +1670,7 @@ class AdminSpaController extends BaseController
         $product_idx = $this->request->getPost('product_idx');
 
         if ($spas_idx) {
-            $result = $this->productSpas->deleteTour($spas_idx);
+            $result = $this->productSpas->deleteSpa($spas_idx);
             $this->productSpas->where('product_idx', $product_idx)
                              ->where('info_idx', $info_idx)
                              ->where('spas_idx', $spas_idx)

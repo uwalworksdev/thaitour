@@ -207,7 +207,7 @@
 																			<?php $j = 0;?>
 																			<?php foreach ($info['options'] as $moption): ?>
 																				<div class="option_area">
-																					<input type="hidden" name="moption_idx[<?=$i?>][]" class="moption_idx" value="<?=$moption["code_idx"]?>">
+																					<input type="hidden" name="moption_idx[<?=$i?>][<?=$j?>]" class="moption_idx" value="<?=$moption["code_idx"]?>">
 																					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 																						<colgroup>
 																							<col width="10%">
@@ -217,7 +217,7 @@
 																						<tr height="45">
 																							<th colspan="5">
 																								<div class="flex__c" style="gap: 5px;">
-																									옵션 <input type='text' name='moption_name[<?=$i?>][]' class="moption_name"
+																									옵션 <input type='text' name='moption_name[<?=$i?>][<?=$j?>]' class="moption_name"
 																												value="<?=$moption["moption_name"]?>" style="width:550px"/>
 																									<!-- <button type="button" class="btn btn-primary"
 																											onclick="upd_main_option('');">수정
@@ -439,7 +439,7 @@
 																	<td>
 																		<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
 																		<div class="option_area">
-																			<input type="hidden" name="moption_idx[0][]" class="moption_idx" value="">
+																			<input type="hidden" name="moption_idx[0][0]" class="moption_idx" value="">
 																			<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 																				<colgroup>
 																					<col width="10%">
@@ -449,7 +449,7 @@
 																				<tr height="45">
 																					<th colspan="5">
 																						<div class="flex__c" style="gap: 5px;">
-																							옵션 <input type='text' name='moption_name[0][]'
+																							옵션 <input type='text' name='moption_name[0][0]'
 																										value="" style="width:550px"/>
 																							<!-- <button type="button" class="btn btn-primary"
 																									onclick="upd_main_option('');">수정
@@ -700,7 +700,7 @@
 											<td>
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
 												<div class="option_area">
-													<input type="hidden" name="moption_idx[${tableCount}][]" class="moption_idx" value="">
+													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
 													<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 														<colgroup>
 															<col width="10%">
@@ -710,7 +710,7 @@
 														<tr height="45">
 															<th colspan="5">
 																<div class="flex__c" style="gap: 5px;">
-																	옵션 <input type='text' name='moption_name[${tableCount}][]'
+																	옵션 <input type='text' name='moption_name[${tableCount}][0]'
 																				value="" style="width:550px"/>
 																	<button type="button" class="btn btn-danger"
 																			onclick="del_main_option('', this);">삭제
@@ -960,17 +960,17 @@
 
 	function add_main_option(button, idx) {
 
-		let count = $(button).closest("td").find(".count_moption").val() ?? 0;
+		let count_moption = Number($(button).closest("td").find(".count_moption").val() ?? 0)
+		let count = count_moption > 0 ? (count_moption - 1) : 0;
 		
-		if(!arr_count[idx]){
-			arr_count[idx] = count;
-		}else{
-			arr_count[idx]++;
+		if(!arr_count[idx] && arr_count[idx] != 0){
+			arr_count[idx] = count;			
 		}
+		arr_count[idx]++;
 
 		let html = `
 			<div class="option_area">
-				<input type="hidden" name="moption_idx[${idx}][]" class="moption_idx" value="">
+				<input type="hidden" name="moption_idx[${idx}][${arr_count[idx]}]" class="moption_idx" value="">
 				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					<colgroup>
 						<col width="10%">
@@ -980,7 +980,7 @@
 					<tr height="45">
 						<th colspan="5">
 							<div class="flex__c" style="gap: 5px;">
-								옵션 <input type='text' name='moption_name[${idx}][]'
+								옵션 <input type='text' name='moption_name[${idx}][${arr_count[idx]}]'
 											value="" style="width:550px"/>
 								<button type="button" class="btn btn-danger"
 										onclick="del_main_option('', this);">삭제
