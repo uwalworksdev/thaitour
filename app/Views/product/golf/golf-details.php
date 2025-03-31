@@ -195,6 +195,14 @@ $(document).ready(function() {
                 </div>
                 <h3 class="title-size-24" id="product_info">상품 정보</h3>
                 <table class="golf-table">
+                    <colgroup>
+                        <col width  = "20%">
+                        <col width  = "15%">
+                        <col width  = "20%">
+                        <col width  = "15%">
+                        <col width  = "20%">
+                        <col width  = "*">
+                    </colgroup>
                     <thead>
                     <tr>
                         <th>더투어랩 평가 등급</th>

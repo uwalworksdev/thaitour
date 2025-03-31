@@ -9,27 +9,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	exit();
 }
 
-$sql = "select * from tbl_order_mst a
-	                           left join tbl_member b on a.m_idx = b.m_idx 
-							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($sql)->getRowArray();
-
-$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
-
-$row_d = $connect->query($sql_d)->getRowArray();
-
-$row['local_phone'] = $row_d['local_phone'];
-
-$tour_period = $row["tour_period"];
-$custom_req = $row['custom_req'];
-
-$home_depart_date = $row['home_depart_date'];
-$away_arrive_date = $row['away_arrive_date'];
-$away_depart_date = $row['away_depart_date'];
-$home_arrive_date = $row['home_arrive_date'];
-
-$start_date = $row['start_date'];
-
 ?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css" />
 <link href="/css/invoice/invoice_responsive.css" rel="stylesheet" type="text/css" />
@@ -86,13 +65,15 @@ $start_date = $row['start_date'];
 				<colgroup>
 					<col width="15%">
 					<col width="*">
-					<col width="20%">
+					<col width="15%">
+					<col width="25%">
 					<col width="20%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">여행인원</td>
+						<td col width="15%" class="subject">예약일자</td>
+						<td col width="15%" class="subject">숙박인원</td>
 						<td col width="15%" class="subject">숙박기간</td>
 						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
@@ -100,7 +81,13 @@ $start_date = $row['start_date'];
 
 						<td col width="15%" class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
+							</span>
+						</td>
+
+						<td col width="15%" class="content">
+							<span>
+								<?= $order_date ?>
 							</span>
 						</td>
 
@@ -121,7 +108,7 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p>
 								<span><?=$room?></span> /
-								<span><?=$room_type?></span>
+								<span><?=$room_type?><br>[침대타입: <?=$bed_type?>]</span>
 							</p>
 						</td>
 					</tr>
@@ -494,7 +481,7 @@ $start_date = $row['start_date'];
 						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
+						<td col width="15%" class="subject">여권번호</td>
 
 					</tr>
 					<tr>
@@ -512,7 +499,7 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>원
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">
@@ -521,10 +508,7 @@ $start_date = $row['start_date'];
 
 
 						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
+							<?=$order_passport_number ?>
 						</td>
 
 
