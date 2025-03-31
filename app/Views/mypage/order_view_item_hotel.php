@@ -208,25 +208,7 @@ $start_date = $row['start_date'];
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-						<div class="defen_ttl">
-							<p><strong>성인 <span id="adult_amt">
-										<?= number_format(($row['people_adult_price'] + $row['oil_price']) * $row['people_adult_cnt']) ?>
-									</span></strong> 원</p>
-						</div>
-						<?php if ($row['product_code_1'] != "1320") { ?>
-							<p>/</p>
-							<div class="defen_ttl">
-								<p><strong>소아 <span id="kids_amt">
-											<?= number_format(($row['people_kids_price'] + $row['oil_price']) * $row['people_kids_cnt']) ?>
-										</span></strong> 원</p>
-							</div>
-							<p>/</p>
-							<div class="defen_ttl">
-								<p><strong>유아 <span id="baby_amt">
-											<?= number_format($row['people_baby_price'] * $row['people_baby_cnt']) ?>
-										</span></strong> 원</p>
-							</div>
-						<?php } ?>
+
 						<?php if ($row['used_coupon_money'] > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($row['used_coupon_money']) ?>원
