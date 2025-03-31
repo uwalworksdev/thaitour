@@ -282,7 +282,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							$amt1 = $arr1[2] + $arr1[3];
 							$amt2 = $arr1[4];
 					?>		
-					<?php if($arr1[0] != "" && $arr[0] != "Extra") { ?>
+					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
 								<td class="content"><?=$arr1[0]?></td>
 								<td class="content"><?=number_format($amt1)?></td>
