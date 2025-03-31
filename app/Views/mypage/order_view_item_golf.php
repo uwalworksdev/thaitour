@@ -73,7 +73,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">예약일자</td>
-						<td col width="15%" class="subject">숙박인원</td>
+						<td col width="15%" class="subject">예약인원</td>
 						<td col width="15%" class="subject">숙박기간</td>
 						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
@@ -92,8 +92,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-							<span>성인: <span><?= $adult ?></span></span>명  
-							<span>소아: <span><?= $kids ?></span></span>명 
+							<span><?= $people_adult_cnt ?></span>명  
 						</td>
 
 						<td class="content">
