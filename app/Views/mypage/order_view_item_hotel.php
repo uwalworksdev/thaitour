@@ -260,7 +260,37 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</div>
 			</div>
 		</section-->
-
+        <div class="invoice_table invoice_table_new reservation">
+			<h2>일자별 숙박금액</h2>
+			<table>
+				<colgroup>
+					<col width="*">
+					<col width="30%">
+					<col width="30%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">일자</td>
+						<td class="subject">숙박금액</td>
+						<td class="subject">Extra 베드</td>
+					</tr>
+					<?php
+						$arr = explode("|", $date_price);
+						for($i=0;$i<count($arr);$i++)
+						{
+					?>		
+					<tr>
+						<td class="content">예약 준비중</td>
+						<td class="content">예약 준비중</td>
+						<td class="content">예약 준비중</td>
+					</tr>
+					<?php
+						}
+					?>
+				</tbody>
+			</table>
+		</div>
+		
 		<div class="invoice_table invoice_table_new reservation">
 			<h2>예약금액 결제</h2>
 			<table>
