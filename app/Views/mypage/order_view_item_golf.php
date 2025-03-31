@@ -74,7 +74,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">예약일자</td>
 						<td col width="15%" class="subject">예약인원</td>
-						<td col width="15%" class="subject">숙박기간</td>
+						<td col width="15%" class="subject">라운딩 일자</td>
 						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
 					<tr>
@@ -96,13 +96,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-							<p>
-								<?= $start_date . "(" . dateToYoil($start_date) . ") ~ " . $end_date . "(" . dateToYoil($end_date) . ")"; ?>
-								<em>
-									<?= $order_day_cnt ?>박
-								</em>
-								</span>
-							</p>
+							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
 						</td>
 						<td class="content">
 							<p>
