@@ -203,14 +203,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							for($i=0;$i<count($arr);$i++)
 							{
 						?>		
-								<p>
-									<strong>
-										일자별 
-										<span id="coupon_amt">
-											<?= $arr[$i] ?>
-										</span>
-									</strong>
-								</p><br>
+										일자별 <?= $arr[$i] ?><br>
 						<?php		
 							}		
 					    ?>
