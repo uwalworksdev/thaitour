@@ -278,9 +278,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						$arr = explode("|", $date_price);
 						for($i=0;$i<count($arr);$i++)
 						{
+							$arr1 = explode(":", $arr[$i]);
 					?>		
 					<tr>
-						<td class="content">예약 준비중</td>
+						<td class="content"><?=$arr1[0]?></td>
 						<td class="content">예약 준비중</td>
 						<td class="content">예약 준비중</td>
 					</tr>
