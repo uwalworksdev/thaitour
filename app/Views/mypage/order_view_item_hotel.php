@@ -129,7 +129,7 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p>
 								<span><?=$room?></span> /
-								<span><?=$room_type?></span>
+								<span><?=$room_type?>[침대타입: <?=$bed_type?>]</span>
 							</p>
 						</td>
 					</tr>
