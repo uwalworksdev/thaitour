@@ -195,14 +195,6 @@ $(document).ready(function() {
                 </div>
                 <h3 class="title-size-24" id="product_info">상품 정보</h3>
                 <table class="golf-table">
-                    <colgroup>
-                        <col width  = "20%">
-                        <col width  = "15%">
-                        <col width  = "20%">
-                        <col width  = "15%">
-                        <col width  = "20%">
-                        <col width  = "*">
-                    </colgroup>
                     <thead>
                     <tr>
                         <th>더투어랩 평가 등급</th>
@@ -259,14 +251,14 @@ $(document).ready(function() {
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icons"
+                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
                                  class="only_mo">
                         </div>
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icons"
+                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
                                  class="only_mo">
                         </div>
                     </div>
@@ -581,8 +573,8 @@ $(document).ready(function() {
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
 					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -597,8 +589,8 @@ $(document).ready(function() {
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
 					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_2"  data-name="밴 (승합차) " data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
@@ -615,8 +607,8 @@ $(document).ready(function() {
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
-					    <option value="0">왕복<option>
-					    <option value="1">편도<option>
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
 					</select>
                     <select id="vehicle_3"  data-name="SUV" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
