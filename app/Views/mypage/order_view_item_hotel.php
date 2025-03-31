@@ -267,7 +267,7 @@ $start_date = $row['start_date'];
 				</div>
 			</div>
 		</section>
-		<section class="ord_total_sec reservation">
+		<!--section class="ord_total_sec reservation">
 			<div class="flex_b_c">
 				<div class="left flex">
 					<strong class="label red">실예약금액</strong>
@@ -284,7 +284,7 @@ $start_date = $row['start_date'];
 					</div>
 				</div>
 			</div>
-		</section>
+		</section-->
 
 		<div class="invoice_table invoice_table_new reservation">
 			<h2>예약금액 결제</h2>
