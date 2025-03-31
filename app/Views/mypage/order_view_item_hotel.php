@@ -88,11 +88,13 @@ $start_date = $row['start_date'];
 					<col width="*">
 					<col width="20%">
 					<col width="20%">
+					<col width="20%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">여행인원</td>
+						<td col width="15%" class="subject">예약일자</td>
+						<td col width="15%" class="subject">숙박인원</td>
 						<td col width="15%" class="subject">숙박기간</td>
 						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
@@ -100,7 +102,13 @@ $start_date = $row['start_date'];
 
 						<td col width="15%" class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
+							</span>
+						</td>
+
+						<td col width="15%" class="content">
+							<span>
+								<?= $order_date ?>
 							</span>
 						</td>
 
