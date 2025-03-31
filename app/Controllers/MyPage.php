@@ -650,6 +650,179 @@ class MyPage extends BaseController
 
     }
 
+    public function order_view_item($gubun)
+    {
+
+        $data = $this->request->getVar();
+        $order_idx = $data["order_idx"];
+
+        $info = $this->ordersModel->getOrderInfo($order_idx);
+
+        $data = array_merge($data, $info);
+
+        $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
+
+        $connect = db_connect();
+        $private_key = private_key();
+
+        if ($_SESSION["member"]["mIdx"] == "") {
+            alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+            exit();
+        }
+
+        $order_idx = updateSQ($_GET["order_idx"]);
+        $pg = updateSQ($_GET["pg"]);
+
+        $sql = "select * from  tbl_order_mst a
+	                           left join tbl_member b on a.m_idx = b.m_idx 
+							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+
+        $row = $connect->query($sql)->getRowArray();
+
+        $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
+
+        $row_d = $connect->query($sql_d)->getRowArray();
+
+        $row['local_phone'] = $row_d['local_phone'];
+
+        $tour_period = $row["tour_period"];
+        $order_memo = $row['order_memo'];
+
+        $home_depart_date = $row['home_depart_date'];
+        $away_arrive_date = $row['away_arrive_date'];
+        $away_depart_date = $row['away_depart_date'];
+        $home_arrive_date = $row['home_arrive_date'];
+
+        $start_date = $row['start_date'];
+
+        $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
+                        , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),  '$private_key') AS order_user_phone 
+                        , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		'$private_key') AS local_phone 
+                        , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
+                        , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
+                        , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
+        $row_d = $connect->query($sql_d)->getRowArray();
+
+        $data['row'] = $row;
+
+        $data['tour_period'] = $tour_period;
+        $data['order_memo'] = $order_memo;
+        $data['home_depart_date'] = $home_depart_date;
+        $data['away_arrive_date'] = $away_arrive_date;
+        $data['away_depart_date'] = $away_depart_date;
+        $data['home_arrive_date'] = $home_arrive_date;
+        $data['start_date'] = $start_date;
+        $data['row_d'] = $row_d;
+        $data['local_phone'] = $row['local_phone'];
+
+        $data['pg'] = $pg;
+
+        $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
+
+        $additional_request = $row['additional_request'];
+        $_arr_additional_request = explode("|", $additional_request);
+        $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
+
+        $fcodes = [];
+        if ($row['additional_request']) {
+            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
+//        $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y'  order by onum asc, code_idx desc";
+            //write_log($sql);
+            $fcodes = $this->db->query($sql)->getResultArray();
+        }
+
+        $data['fcodes'] = $fcodes;
+
+        if (!empty($gubun)) {
+
+            if ($gubun == "hotel") {
+                $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+                $room_ = $this->db->query($sql_)->getRowArray();
+                $data['price_secret'] = $room_["secret_price"];
+
+            }
+
+            if ($gubun == "golf") {
+                //$option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
+                //$data['option'] = $this->golfOptionModel->getByIdx($option_idx);
+
+                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type = 'main' ";
+                $data['option'] = $this->db->query($sql_golf)->getRowArray();
+
+                $sql_golf = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('main', 'vehicle', 'option') order by  option_type asc ";
+                $data['vehicle'] = $this->db->query($sql_golf)->getResultArray();
+
+            }
+
+            if ($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
+                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, "spa");
+            }
+
+            if ($gubun == "tour") {
+
+                $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
+                //write_log($sql_tour);
+                $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
+                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+                $optionsIdx = $data['tour_orders']['options_idx'];
+
+                $options_idx = explode(',', $optionsIdx);
+
+                $data['tour_option'] = [];
+                $data['total_price'] = 0;
+                foreach ($options_idx as $idx) {
+                    $optionDetail = $this->optionTours->find($idx);
+                    if ($optionDetail) {
+                        $data['tour_option'][] = $optionDetail;
+                        $data['total_price'] += $optionDetail['option_price'];
+                    }
+                }
+                $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
+                $result_cou = $connect->query($sql_cou);
+                $row_cou = $result_cou->getRowArray();
+                $data['row_cou'] = $row_cou;
+            }
+
+            if ($gubun == 'vehicle') {
+                $departure_area = $row["departure_area"] ?? 0;
+                $destination_area = $row["destination_area"] ?? 0;
+                $cp_idx = $row["cp_idx"] ?? 0;
+                $ca_depth_idx = $row["ca_depth_idx"] ?? 0;
+                $ca_last_idx = $this->carsPrice->find($cp_idx)["ca_idx"] ?? "0";
+                $order_idx = $row["order_idx"] ?? 0;
+
+                $data['departure_name'] = $this->carsCategory->getById($departure_area)["code_name"];
+                $data['destination_name'] = $this->carsCategory->getById($destination_area)["code_name"];
+                $data['code_no_first'] = $this->carsCategory->getById($ca_depth_idx)["code_no"];
+                $data['category_arr'] = $this->carsCategory->getCategoryTree($ca_last_idx);
+                $data['order_cars_detail'] = $this->ordersCars->getByOrder($order_idx);
+            }
+
+            if ($gubun == 'guide') {
+                $order_idx = $row["order_idx"] ?? 0;
+                $o_idx = $row["yoil_idx"] ?? 0;
+                $order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+                $data['order_subs'] = $order_subs;
+
+                $option = $this->guideOptionModel->getById($o_idx);
+                $sup_options = $this->guideSupOptionModel->getListByOptionId($o_idx);
+
+                $data['option'] = $option;
+                $data['sup_options'] = $sup_options;
+            }
+
+            return view("mypage/order_view_item_{$gubun}", $data);
+        }
+
+        return view('mypage/order_view_item');
+
+    }
+
+
     public function info_option_ok()
     {
         $user_id = updateSQ($_POST["user_id"]);
@@ -738,29 +911,5 @@ class MyPage extends BaseController
         session()->set("member", $data);
         echo "정보수정되었습니다.";
     }
-	
-	public function orderHotel($order_idx)
-	{
-
-		// order_idx가 없으면 리다이렉트
-		if (!$order_idx) {
-			return redirect()->to('/mypage')->with('error', '주문 번호가 필요합니다.');
-		}
-
-		// SQL 쿼리 실행 (바인딩 방식 사용)
-		$sql_order = "SELECT * FROM tbl_order_mst WHERE order_idx = ?";
-		$data = $this->db->query($sql_order, [$order_idx])->getRowArray();
-
-		// 주문 정보가 없으면 리다이렉트
-		if (!$data) {
-			return redirect()->to('/mypage')->with('error', '주문을 찾을 수 없습니다.');
-		}
-
-		// View에 데이터 전달
-		
-		return view('mypage/order-hotel', ['order' => $data]);
-	}
-
-
 	
 }

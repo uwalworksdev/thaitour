@@ -700,13 +700,13 @@ $routes->group("mypage", static function ($routes) {
     $routes->post("user_mange_ok", "MyPage::user_mange_ok");
     $routes->get("money", "MyPage::money");
     $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
+    $routes->get("(:segment)/order_view_item", "MyPage::order_view_item/$1");
     $routes->post("money_ok", "MyPage::money_ok");
     $routes->get("member_out", "MyPage::member_out");
     $routes->post("info_option_ok", "MyPage::info_option_ok");
     $routes->post("info_change_ok", "MyPage::info_change_ok");
     $routes->post("contactDel", "MyPage::contactDel");
     $routes->post("qnaDel", "MyPage::qnaDel");
-    $routes->get('order-hotel/(:num)', 'Mypage::orderHotel/$1');
 });
 
 $routes->group("comment", static function ($routes) {
