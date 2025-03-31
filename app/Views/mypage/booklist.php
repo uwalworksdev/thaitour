@@ -320,13 +320,24 @@ endforeach;
                                 <div class="total">
                                     <p>그룹 총금액 <span><?= esc(number_format($group['order_price']))?>원</span></p>
                                 </div>
-                                <div class="group_print flex__c">
+                                <div onclick="openNewWindow()" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
                             </div>
                         </div>
+
+
+                        <script>
+                                  function openNewWindow() {
+                                      $(".estimate_popup_wrap").show();
+                                      $(".estimate_popup_content .btn_close_popup").click(function() {
+                                          $(".estimate_popup_wrap").hide();
+                                      })
+                                      // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
+                                  }
+                              </script>
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
@@ -442,6 +453,118 @@ endforeach;
         </div>
     </div>
 </section>
+<div class="estimate_popup_wrap">
+      <div class="estimate_popup_content">
+         <div class="btn_close_popup">
+              <img src="/img/btn/btn_close_black_20x20.png" alt="">
+          </div>
+          <h1>더투어랩 여행견적서 </h1>
+          <div class="sec1">
+              <div class="left">
+                  <p class="ttl">TOTO Booking Co., Ltd. </p>
+                  <span>Sukhumvit 101 Bangjak </span>
+                  <span>Prakhanong Bangkok 10260 </span>
+                  <span>서비스/여행업 No. 101-86-79949 </span>
+                  <p class="day">견적일 : 2025년 03월 14일 </p>
+                  <p class="name">고객명 : 김평진 님 귀하 </p>
+                  <img src="/images/mypage/stem.jpg" class="img_stem">
+              </div>
+              <div class="right">
+                  <table>
+                      <colgroup>
+                          <col width="110px">
+                          <col width="110px">
+                          <col width="110px">
+                      </colgroup>
+                      <tbody>
+                          <tr>
+                              <th>호텔 </th>
+                              <td>0건 </td>
+                              <td>0원 </td>
+                          </tr>
+                          <tr>
+                              <th>골프 </th>
+                              <td>1건 </td>
+                              <td>303,175원 </td>
+                          </tr>
+                          <tr>
+                              <th>투어 </th>
+                              <td>1건 </td>
+                              <td>39,000원 </td>
+                          </tr>
+                          <tr>
+                              <th>차량 </th>
+                              <td>0건 </td>
+                              <td>0원 </td>
+                          </tr>
+                          <tr>
+                              <th>가이드 </th>
+                              <td>0건 </td>
+                              <td>0원 </td>
+                          </tr>
+                          <tr>
+                              <th class="total">합계 </th>
+                              <td class="total">2건 </td>
+                              <td class="total">342,175원 </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <div class="sec2">
+              <table>
+                  <colgroup>
+                      <col width="70px">
+                      <col width="*">
+                      <col width="110px">
+                  </colgroup>
+                  <tbody>
+                      <tr>
+                          <th>품목</th>
+                          <th>상세</th>
+                          <th>금액</th>
+                      </tr>
+                      <tr>
+                          <td>골프 </td>
+                          <td>
+                              <p class="time">2025-03-28(금) | 로얄 방파인 골프 클럽 </p>
+                              <p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p>
+                          </td>
+                          <td>
+                              <p>303,175원 </p>
+                              <p>(6,700바트) </p>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>투어 </td>
+                          <td>
+                              <p class="time">2025-03-28(금) | (아속출발) 아유타야 선셋 리버크루즈 반일 투어 </p>
+                              <p>[프로모션] 아유타야 오후 | 성인 1명 | 39,000원 X 1명 </p>
+                          </td>
+                          <td>
+                              <p>39,000원 </p>
+                          </td>
+                      </tr>
+  
+              </table>
+          </div>
+  
+          <div class="list_desc">
+              <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다. </p>
+              <p>- 견적서상 내용은 확정 예약시 상품의 예약가능여부/환을 등에 따라 금액 및 내용에 변동이 있을 수 있습니다. </p>
+              <p>- 한국 : 국민은행 636101-01-301315 (주) 토토부킹 </p>
+              <p>- 태국: Kasikorn Bank 895-2-19850-6 (Totobooking) </p>
+          </div>
+          <div class="send_mail">
+              <input type="text" value="lifeess@naver.com ">
+              <button>메일보내기 </button>
+          </div>
+          <div class="btns_download">
+              <button>다운로드</button>
+              <button>엑셀다운로드</button>
+          </div>
+      </div>
+  </div>
 <div class="popup_wrap place_pop policy_pop">
     <div class="pop_box">
         <button type="button" class="close" onclick="closePopup()"></button>
