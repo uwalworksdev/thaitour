@@ -240,20 +240,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								</p>
 					</div>
 				</div>
-				<div class="total_money tar">
-					<div class="defen_ttl flex">
-						<p><strong><span id="price_tot">
-									<?= number_format($price_won) ?></span></strong> 원(<?=number_format($price)?>바트)
-								</p>
-					</div>
-				</div>
-				<div class="total_money tar">
-					<div class="defen_ttl flex">
-						<p><strong><span id="price_tot">
-									<?= number_format($price_won) ?></span></strong> 원(<?=number_format($price)?>바트)
-								</p>
-					</div>
-				</div>
 			</div>
 		</section>
 		<!--section class="ord_total_sec reservation">
