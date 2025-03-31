@@ -60,55 +60,47 @@ if ($_SESSION["member"]["mIdx"] == "") {
 		</p>
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약 정보(호텔)</h2>
+			<h2>예약 정보(골프)</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
 					<col width="*">
 					<col width="15%">
-					<col width="25%">
 					<col width="20%">
+					<col width="40%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">예약일자</td>
-						<td col width="15%" class="subject">숙박인원</td>
-						<td col width="15%" class="subject">숙박기간</td>
-						<td col width="30%" class="subject">룸타입/프로모션</td>
+						<td class="subject">예약일자</td>
+						<td class="subject">예약인원</td>
+						<td class="subject">라운딩 일자</td>
+						<td class="subject">예약정보</td>
 					</tr>
 					<tr>
 
-						<td col width="15%" class="content">
+						<td class="content">
 							<span>
 								<?= $order_no ?>
 							</span>
 						</td>
 
-						<td col width="15%" class="content">
+						<td class="content">
 							<span>
 								<?= $order_date ?>
 							</span>
 						</td>
 
 						<td class="content">
-							<span>성인: <span><?= $adult ?></span></span>명  
-							<span>소아: <span><?= $kids ?></span></span>명 
+							<span><?= $people_adult_cnt ?></span>명  
 						</td>
 
 						<td class="content">
-							<p>
-								<?= $start_date . "(" . dateToYoil($start_date) . ") ~ " . $end_date . "(" . dateToYoil($end_date) . ")"; ?>
-								<em>
-									<?= $order_day_cnt ?>박
-								</em>
-								</span>
-							</p>
+							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
 						</td>
 						<td class="content">
 							<p>
-								<span><?=$room?></span> /
-								<span><?=$room_type?><br>[침대타입: <?=$bed_type?>]</span>
+								<span><?=$option['option_name']?></span> 
 							</p>
 						</td>
 					</tr>
