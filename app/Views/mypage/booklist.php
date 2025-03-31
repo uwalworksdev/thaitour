@@ -622,7 +622,7 @@ $(document).on('click', '.info_reservation', function () {
 			});
         }
 		*/
-        location.href='/mypage/order-hotel/'+idx;
+        location.href='/mypage/order_view_item?order_idx='+idx;
 });
 
 $(document).on('click', '.order_del', function () {
