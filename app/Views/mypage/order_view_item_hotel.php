@@ -91,7 +91,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">여행인원</td>
-						<td col width="15%" class="subject">여행기간</td>
+						<td col width="15%" class="subject">숙박기간</td>
 						<td col width="30%" class="subject">항공일정</td>
 					</tr>
 					<tr>
@@ -114,7 +114,7 @@ $start_date = $row['start_date'];
 
 						<td class="content">
 							<p>
-								<?= $row['start_date'] . "(" . dowYoil($row['start_date']) . ") ~ " . $row['end_date'] . "(" . dowYoil($row['end_date']) . ")"; ?>
+								<?= $start_date . "(" . dateToYoil($start_date) . ") ~ " . $end_date . "(" . dateToYoil($end_date) . ")"; ?>
 								<em>
 									<?= $product_period ?>
 								</em>
@@ -525,7 +525,7 @@ $start_date = $row['start_date'];
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">호주/해외 전화번호 </td>
+						<td col width="12%" class="subject">전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<td col width="15%" class="subject">주소</td>
 
@@ -537,11 +537,11 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 
 						<td class="content">
@@ -549,7 +549,7 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 
 
