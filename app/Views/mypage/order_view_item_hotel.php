@@ -281,7 +281,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							$arr1 = explode(",", $arr[$i]);
 							$amt1 = $arr1[2] + $arr1[3];
 					?>		
-					<?php if($amt1[0] != "" && $amt1[0] != "Extra") { ?>
+					<?php if($amt1[0] != "") { ?>
 							<tr>
 								<td class="content"><?=$arr1[0]?></td>
 								<td class="content"><?=number_format($amt1)?></td>
