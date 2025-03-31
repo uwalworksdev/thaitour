@@ -49,10 +49,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	<div class="inner">
 		<div class="ttl_box">
 			<h1>
-				<?= (html_entity_decode($row['product_name'])) ?>
+				<?= (html_entity_decode($product_name)) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_status_name($row["order_status"]) ?>
+				<?= get_status_name($order_status) ?>
 			</span>
 		</div>
 		<p class="ttl_date">
