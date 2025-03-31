@@ -266,24 +266,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">에약금액(원)</td>
 					</tr>
 					
-					<?php
-					    foreach ($option as $row) {
-						{
-							 if($row['option_type'] == "main") {
-								$option_name = "그린피";
-							 } else	{
-								$option_name = $row['option_name'];
-							 }	
-					?>		
-							<tr>
-								<td class="content"><?=$option_name?></td>
-								<td class="content"><?=number_format($row['option_price'])?></td>
-								<td class="content"><?=number_format($row['option_qty'])?></td>
-								<td class="content"><?=number_format($row['option_tot'])?></td>
-							</tr>
-					<?php
-						}
-					?>
+
 				</tbody>
 			</table>
 		</div>
