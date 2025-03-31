@@ -286,7 +286,7 @@ $deli_types = get_deli_type();
 					?>		
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
-								<td class="content"><?=$arr1[0]?></td>
+								<td class="content"><?=$arr1[0]?>(<?=dateToYoil($arr1[0])?>)</td>
 								<td class="content"><?=number_format($amt1)?></td>
 								<td class="content"><?=number_format($amt2)?></td>
 							</tr>
