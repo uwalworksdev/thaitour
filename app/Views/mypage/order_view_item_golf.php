@@ -250,32 +250,36 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>일자별 숙박금액</h2>
+			<h2>차량및 캐디피 예약금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
-					<col width="30%">
-					<col width="30%">
+					<col width="25%">
+					<col width="25%">
+					<col width="25%">
 				</colgroup>
 				<tbody>
 					<tr>
-						<td class="subject">일자</td>
-						<td class="subject">숙박금액(바트)</td>
-						<td class="subject">Extra 베드(바트)</td>
+						<td class="subject">예약구분</td>
+						<td class="subject">단가(원)</td>
+						<td class="subject">대수(명)</td>
+						<td class="subject">에약금액(원)</td>
 					</tr>
 					<?php
-						$arr = explode("|", $date_price);
-						for($i=0;$i<count($arr);$i++)
+					    foreach ($option as $row) {
 						{
-							$arr1 = explode(",", $arr[$i]);
-							$amt1 = $arr1[2] + $arr1[3];
-							$amt2 = $arr1[4];
+							 if($row['option_type'] == "main") {
+								$option_name = "그린피";
+							 } else	{
+								$option_name = $row['option_name'];
+							 }	
 					?>		
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
-								<td class="content"><?=$arr1[0]?></td>
-								<td class="content"><?=number_format($amt1)?></td>
-								<td class="content"><?=number_format($amt2)?></td>
+								<td class="content"><?=$option_name?></td>
+								<td class="content"><?=number_format($row['option_price'])?></td>
+								<td class="content"><?=number_format($row['option_qty'])?></td>
+								<td class="content"><?=number_format($row['option_tot'])?></td>
 							</tr>
 					<?php } ?>		
 					<?php
