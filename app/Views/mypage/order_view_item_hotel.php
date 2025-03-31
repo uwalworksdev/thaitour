@@ -116,7 +116,7 @@ $start_date = $row['start_date'];
 							<p>
 								<?= $start_date . "(" . dateToYoil($start_date) . ") ~ " . $end_date . "(" . dateToYoil($end_date) . ")"; ?>
 								<em>
-									<?= $product_period ?>
+									<?= $order_day_cnt ?>박
 								</em>
 								</span>
 							</p>
