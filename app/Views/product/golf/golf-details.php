@@ -1806,7 +1806,7 @@ $(document).ready(function() {
             name: "<?= addslashes($product['product_name']) ?>",
             link: "<?= '/product-golf/golf-detail/' . $product['product_idx']?>",
             image: "<?= '/data/product/' . $product['ufile1'] ?>",
-            ...(<?= isset($product['ufile2']) && $product['ufile2'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $product['ufile2'] ?>" })
+            ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>" })
         };
 
         let viewedProducts = getCookie('viewedProducts');

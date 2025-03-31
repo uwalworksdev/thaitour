@@ -427,7 +427,8 @@
             return null;
         }
 
-        const viewedProducts = getCookie('viewedProducts');
+        const viewedProducts = getCookie('viewedProducts');        
+
         if (viewedProducts) {
             try {
                 const products = JSON.parse(viewedProducts);
