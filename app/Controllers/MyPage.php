@@ -708,7 +708,7 @@ class MyPage extends BaseController
                         , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
         $row_d = $connect->query($sql_d)->getRowArray();
 
-        $data['row'] = $row;
+        $data['row'] = $row_d;
 
         $data['tour_period']      = $tour_period;
         $data['order_memo']       = $order_memo;
