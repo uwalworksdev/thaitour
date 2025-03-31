@@ -60,47 +60,55 @@ if ($_SESSION["member"]["mIdx"] == "") {
 		</p>
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약 정보(골프)</h2>
+			<h2>예약 정보(호텔)</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
 					<col width="*">
 					<col width="15%">
+					<col width="25%">
 					<col width="20%">
-					<col width="40%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td class="subject">예약일자</td>
-						<td class="subject">예약인원</td>
-						<td class="subject">라운딩 일자</td>
-						<td class="subject">예약정보</td>
+						<td col width="15%" class="subject">예약일자</td>
+						<td col width="15%" class="subject">숙박인원</td>
+						<td col width="15%" class="subject">숙박기간</td>
+						<td col width="30%" class="subject">룸타입/프로모션</td>
 					</tr>
 					<tr>
 
-						<td class="content">
+						<td col width="15%" class="content">
 							<span>
 								<?= $order_no ?>
 							</span>
 						</td>
 
-						<td class="content">
+						<td col width="15%" class="content">
 							<span>
 								<?= $order_date ?>
 							</span>
 						</td>
 
 						<td class="content">
-							<span><?= $people_adult_cnt ?></span>명  
+							<span>성인: <span><?= $adult ?></span></span>명  
+							<span>소아: <span><?= $kids ?></span></span>명 
 						</td>
 
 						<td class="content">
-							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
+							<p>
+								<?= $start_date . "(" . dateToYoil($start_date) . ") ~ " . $end_date . "(" . dateToYoil($end_date) . ")"; ?>
+								<em>
+									<?= $order_day_cnt ?>박
+								</em>
+								</span>
+							</p>
 						</td>
 						<td class="content">
 							<p>
-								<span><?=$option['option_name']?></span> 
+								<span><?=$room?></span> /
+								<span><?=$room_type?><br>[침대타입: <?=$bed_type?>]</span>
 							</p>
 						</td>
 					</tr>
@@ -187,6 +195,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
+							<p><strong>객실수 <span id="coupon_amt">
+										<?= $order_room_cnt ?> Room
+									</span></strong></p>
 									
 						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
@@ -225,7 +236,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / 	$baht_thai)?>바트)
+									<?= number_format($price_won) ?></span></strong> 원(<?=number_format($price)?>바트)
 								</p>
 					</div>
 				</div>
@@ -250,37 +261,34 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>차량및 캐디피 예약금액</h2>
+			<h2>일자별 숙박금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
-					<col width="25%">
-					<col width="25%">
-					<col width="25%">
+					<col width="30%">
+					<col width="30%">
 				</colgroup>
 				<tbody>
 					<tr>
-						<td class="subject">예약구분</td>
-						<td class="subject">단가(원)</td>
-						<td class="subject">대수(명)</td>
-						<td class="subject">에약금액(원)</td>
+						<td class="subject">일자</td>
+						<td class="subject">숙박금액(바트)</td>
+						<td class="subject">Extra 베드(바트)</td>
 					</tr>
-					
 					<?php
-					    foreach ($option as $row) {
+						$arr = explode("|", $date_price);
+						for($i=0;$i<count($arr);$i++)
 						{
-							 if($row['option_type'] == "main") {
-								$option_name = "그린피";
-							 } else	{
-								$option_name = $row['option_name'];
-							 }	
+							$arr1 = explode(",", $arr[$i]);
+							$amt1 = $arr1[2] + $arr1[3];
+							$amt2 = $arr1[4];
 					?>		
+					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
-								<td class="content"><?=$option_name?></td>
-								<td class="content"><?=number_format($row['option_price'])?></td>
-								<td class="content"><?=number_format($row['option_qty'])?></td>
-								<td class="content"><?=number_format($row['option_tot'])?></td>
+								<td class="content"><?=$arr1[0]?></td>
+								<td class="content"><?=number_format($amt1)?></td>
+								<td class="content"><?=number_format($amt2)?></td>
 							</tr>
+					<?php } ?>		
 					<?php
 						}
 					?>
@@ -626,6 +634,33 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
+
+		<?php
+		$seq = 0;
+		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
+		$result = $connect->query($sql)->getResultArray();
+		foreach ($result as $row) {
+			$seq++;
+
+			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
+
+
+			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+			$row_d = $connect->query($sql_d)->getRowArray();
+
+			$row['order_name_kor'] = $row_d['order_name_kor'];
+			$row['order_first_name'] = $row_d['order_first_name'];
+			$row['order_last_name'] = $row_d['order_last_name'];
+			$row['passport_num'] = $row_d['passport_num'];
+			$row['order_mobile'] = $row_d['order_mobile'];
+			$row['order_email'] = $row_d['order_email'];
+
+			?>
 			<!-- 여행자 웹 -->
 			<div class="invoice_table invoice_table_new only_web">
 				<h2>여행자
@@ -748,6 +783,37 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</table>
 			</div>
 
+
+			<?php
+		}
+		?>
+
+		<?php
+		$seq = 0;
+		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
+		$result = $connect->query($sql)->getResultArray();
+		foreach ($result as $row) {
+			$seq++;
+
+			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
+
+
+			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+			$row_d = $connect->query($sql_d)->getRowArray();
+
+			$row['order_name_kor'] = $row_d['order_name_kor'];
+			$row['order_first_name'] = $row_d['order_first_name'];
+			$row['order_last_name'] = $row_d['order_last_name'];
+			$row['passport_num'] = $row_d['passport_num'];
+			$row['order_mobile'] = $row_d['order_mobile'];
+			$row['order_email'] = $row_d['order_email'];
+
+			?>
 			<!-- 여행자 2 웹 -->
 			<div class="invoice_table invoice_table_new only_web">
 				<h2>여행자
@@ -862,6 +928,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					</tbody>
 				</table>
 			</div>
+			<?php
+		}
+		?>
 
 		<div class="invoice_table">
 			<h2>요청사항</h2>
@@ -929,7 +998,31 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	</div>
 	<div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
 </div>
+<?php
 
+$_paymod = "nicepay";    // ini  ,  lg
+
+
+if ($_paymod == "lg") {
+	if (device_chk() == "MO") {
+		$urlStr = "travel_cash.m.inc_bak_LG.php";
+	} else {
+		$urlStr = "travel_cash.inc_bak_LG.php";
+	}
+} else if ($_paymod == "nicepay") {
+	if (device_chk() == "MO") {
+		$urlStr = "travel_cash.m.inc_nicepay.php";
+	} else {
+		$urlStr = "travel_cash.inc_nicepay.php";
+	}
+} else if ($_paymod == "ini") {
+	if (device_chk() == "MO") {
+		$urlStr = "travel_cash.m.inc.php";
+	} else {
+		$urlStr = "travel_cash.inc.php";
+	}
+}
+?>
 
 <script type="text/javascript">
 	function handlleShowPassport(img) {
