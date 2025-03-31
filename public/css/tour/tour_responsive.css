@@ -2821,6 +2821,41 @@
     gap: 1.2rem;
   }
 
+  .content-custom-table .title-sec5 {
+    font-size: 3.4rem;
+  }
+
+  .content-custom-table .content-item .label {
+    font-size: 2.8rem;
+  }
+
+  .content-custom-table .content-item .description {
+    font-size: 2.6rem;
+  }
+
+  .content-custom-table .content-container-sec5 {
+    border-width: 0.21rem;
+    padding: 0 2rem;
+  }
+
+  .content-custom-table .content-item {
+    gap: unset;
+  }
+
+  .content-custom-table .content-item .label,
+  .content-custom-table .content-item .description {
+    line-height: 3.3rem;
+  }
+
+  .content-custom-table .content-item .label {
+    min-width: 20rem;
+  }
+
+  .content-custom-table {
+    border-width: 0.21rem;
+    padding: 0 2rem;
+}
+
   .custom-golf-detail .text-parent span {
     font-size: 2.6rem;
   }
