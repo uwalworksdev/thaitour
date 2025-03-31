@@ -251,14 +251,14 @@ $(document).ready(function() {
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icons"
                                  class="only_mo">
                         </div>
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
+                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icons"
                                  class="only_mo">
                         </div>
                     </div>

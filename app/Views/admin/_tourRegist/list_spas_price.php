@@ -847,7 +847,7 @@
     }
 </script>
 
-<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_tours_price">
+<form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_spas_price">
     <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
     <input type="hidden" name="info_idx"     value="<?=$info_idx?>" >
     <input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
