@@ -15,6 +15,7 @@ class ProductApi extends BaseController
     private $roomOptionsModel;
     private $roomsModel;
     private $roomImg;
+    private $toursPrice;
 
     public function __construct()
     {
@@ -26,6 +27,8 @@ class ProductApi extends BaseController
         $this->hotelPriceModel = new \App\Models\HotelPriceModel();
         $this->roomOptionsModel = new \App\Models\RoomOptions();
         $this->roomsModel = new \App\Models\Rooms();
+        $this->toursPrice = model("ToursPrice");
+
         helper('my_helper');
         helper('alert_helper');
     }
@@ -535,5 +538,31 @@ class ProductApi extends BaseController
 
         $ranges[] = $start . "||" . $end;
         return $ranges;
+    }
+
+    public function get_tours_price()
+    {
+        $baht_thai = $this->setting['baht_thai'] ?? 0;
+
+        $product_idx = $this->request->getVar('product_idx');
+        $info_idx = $this->request->getVar('info_idx');
+        $tours_idx = $this->request->getVar('tours_idx');
+        $month = str_pad($this->request->getVar('month'), 2, "0", STR_PAD_LEFT);
+        $year = $this->request->getVar('year');
+        $date_pattern = "$year-$month-%";
+
+        $days_list = $this->toursPrice->where("product_idx", $product_idx)
+                                ->where("info_idx", $info_idx)
+                                ->where("tours_idx", $tours_idx)
+                                ->like("goods_date", $date_pattern, "after")
+                                ->get()
+                                ->getResultArray();
+        foreach($days_list as $key => $day) {
+            $days_list[$key]['goods_price1_won'] = round($day['goods_price1'] * $baht_thai);
+            $days_list[$key]['goods_price2_won'] = round($day['goods_price2'] * $baht_thai);
+            $days_list[$key]['goods_price3_won'] = round($day['goods_price3'] * $baht_thai);
+        }
+
+        return $this->response->setJSON($days_list);
     }
 }

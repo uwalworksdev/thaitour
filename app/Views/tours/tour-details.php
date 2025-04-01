@@ -159,14 +159,14 @@
                             $validDays[] = 6;
                         }
                 ?>
-                    <h2 class="sec2-date-main" id="tour-date-<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
+                    <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                         data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                         data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
                         <?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>
                     </h2>
                     <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
                     <?php foreach ($info['tours'] as $tour): ?>
-                        <div class="sec2-item-card" data-tour-index="<?= $tour['tours_idx'] ?>">
+                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?></h3>
                                 <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="text-content-3">
-                                <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -230,91 +230,97 @@
                                 인원 선택
                             </h3>
                             <?php foreach ($productTourInfo as $infoIndex => $info): ?>
-                                    <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
-                                        <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
-                                            <div class="quantity-container adult">
-                                                <div class="quantity-info-con">
-                                                    <span class="des">성인, Adult (키 120cm 이상1)</span>
-                                                    <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won'] ?>"><?= number_format($tour['price_won']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>바트</span>
-                                                    </div>
-                                                </div>
-                                                <div class="quantity-selector">
-                                                    <button type="button" class="decrease" disabled>-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="increase">+</button>
+                                <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
+                                    <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
+                                        <div class="quantity-container adult">
+                                            <div class="quantity-info-con">
+                                                <span class="des">성인, Adult (키 120cm 이상1)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['price_won'] ?>"><?= number_format($tour['price_won']) ?>원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>바트</span>
                                                 </div>
                                             </div>
-                                            <div class="quantity-container child">
-                                                <div class="quantity-info-con">
-                                                    <span class="des">아동, Child (키 91~119cm)</span>
-                                                    <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won_kids'] ?>"><?= number_format($tour['price_won_kids']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
-                                                    </div>
-                                                </div>
-                                                <div class="quantity-selector">
-                                                    <button type="button" class="decrease" disabled>-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="increase">+</button>
-                                                </div>
-                                            </div>
-                                            <div class="quantity-container baby">
-                                                <div class="quantity-info-con">
-                                                    <span class="des">유아, baby (키 90cm 이하)</span>
-                                                    <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won_baby'] ?>"><?= number_format($tour['price_won_baby']) ?> 원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트 </span>
-                                                    </div>
-                                                </div>
-                                                <div class="quantity-selector">
-                                                    <button type="button" class="decrease" disabled>-</button>
-                                                    <span class="quantity">0</span>
-                                                    <button type="button" class="increase">+</button>
-                                                </div>
+                                            <div class="quantity-selector">
+                                                <button type="button" class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button type="button" class="increase">+</button>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
+                                        <div class="quantity-container child">
+                                            <div class="quantity-info-con">
+                                                <span class="des">아동, Child (키 91~119cm)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['price_won_kids'] ?>"><?= number_format($tour['price_won_kids']) ?>원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
+                                                </div>
+                                            </div>
+                                            <div class="quantity-selector">
+                                                <button type="button" class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button type="button" class="increase">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="quantity-container baby">
+                                            <div class="quantity-info-con">
+                                                <span class="des">유아, baby (키 90cm 이하)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['price_won_baby'] ?>"><?= number_format($tour['price_won_baby']) ?> 원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트 </span>
+                                                </div>
+                                            </div>
+                                            <div class="quantity-selector">
+                                                <button type="button" class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button type="button" class="increase">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             <?php endforeach; ?>
 
                             <h3 class="title-second">선택옵션</h3>
                             <form>
-                                    <!-- <div class="form-group">
-                                        <div class="above">
-                                            <input type="checkbox" id="<?=$option['idx']?>">
-                                            <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
-                                        </div>
-                                        <div class="quantity-info">
-                                            <span class="price"><?=$option['option_price']?>원</span>
-                                            <span class="currency"><?= $price_baht_option?>바트</span>
-                                        </div>
-                                    </div> -->
-                                    <div class="form-group">
-                                        <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                <!-- <div class="form-group">
+                                    <div class="above">
+                                        <input type="checkbox" id="<?=$option['idx']?>">
+                                        <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
+                                    </div>
+                                    <div class="quantity-info">
+                                        <span class="price"><?=$option['option_price']?>원</span>
+                                        <span class="currency"><?= $price_baht_option?>바트</span>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <?php
+                                        $count_t = 0;
+                                    ?>
+                                    <?php foreach ($productTourInfo as $infoIndex => $info): ?>
+                                        <select name="moption" class="moption" id="moption_<?=$infoIndex?>" onchange="sel_moption(this.value);" data-info-index="<?= $infoIndex ?>" style="<?= $count_t === 0 ? 'display: block;' : 'display: none;' ?>">
                                             <option value="">옵션선택</option>
-                                                <?php foreach ($options as $row_option): ?>
+                                                <?php foreach ($info['options'] as $option): ?>
                                                     <?php 
                                                     // foreach ($row_option['additional_options'] as $option): 
                                                     //                 $baht_thai = (float)($setting['baht_thai'] ?? 0);
                                                     //                 $option_price = (float)$option['option_price'];
                                                     //                 $price_baht_option = round($option_price / $baht_thai);
                                                     ?>
-                                                    <option value="<?=$row_option['code_idx']?>">
-                                                        <?=$row_option['moption_name'] ?>
+                                                    <option value="<?=$option['code_idx']?>">
+                                                        <?=$option['moption_name'] ?>
                                                     </option>
-                                                    <?php endforeach; ?>
+                                                <?php endforeach; ?>
                                                 <?php 
                                                     // endforeach; 
                                                 ?>
                                         </select>
-                                        <div class="opt_select disabled sel_option" id="sel_option">
-                                            <select name="option" id="option" onchange="sel_option(this.value);">";
-                                                <option value="">옵션 선택</option>
-                                            </select>
-                                        </div>
+                                        <?php $count_t++; ?>
+                                    <?php endforeach; ?>
+                                    <div class="opt_select disabled sel_option" id="sel_option">
+                                        <select name="option" id="option" onchange="sel_option(this.value);">";
+                                            <option value="">옵션 선택</option>
+                                        </select>
+                                    </div>
                                     <div class="list_schedule_" id="option_list_">
-                                        <?php
+                                    <?php
                                         if (isset($data['option_idx'])) {
                                             $num = count($data['option_idx']);
                                             for ($i = 0; $i < $num; $i++) {
@@ -352,7 +358,7 @@
                                                 <?php
                                             }
                                         }
-                                        ?>
+                                    ?>
                                     </div>
                                 </div>
                             </form>
@@ -700,944 +706,1037 @@
                 </div>
             </div>
         </div>
-        <script>
-            $('.item_check_term_').click(function () {
-                $(this).toggleClass('checked_');
-                let input = $(this).find('input');
-                input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+<script>
+    $('.item_check_term_').click(function () {
+        $(this).toggleClass('checked_');
+        let input = $(this).find('input');
+        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
 
-                checkOrUncheckAll();
-            });
+        checkOrUncheckAll();
+    });
 
-            function checkOrUncheckAll() {
-                let allChecked = true;
+    function checkOrUncheckAll() {
+        let allChecked = true;
 
-                $('.item_check_term_').each(function () {
-                    let input = $(this).find('input');
-                    if (input.val() !== 'Y') {
-                        allChecked = false;
-                        return false;
-                    }
-                });
-
-                let allCheckbox = $('.item_check_term_all_');
-                let allInput = allCheckbox.find('input');
-                allCheckbox.toggleClass('checked_', allChecked);
-                allInput.val(allChecked ? 'Y' : 'N');
+        $('.item_check_term_').each(function () {
+            let input = $(this).find('input');
+            if (input.val() !== 'Y') {
+                allChecked = false;
+                return false;
             }
-
-            $('.item_check_term_all_').click(function () {
-                $(this).toggleClass('checked_');
-                let allChecked = $(this).hasClass('checked_');
-                let value = allChecked ? 'Y' : 'N';
-                $(this).find('input').val(value);
-
-                $('.item_check_term_').each(function () {
-                    $(this).toggleClass('checked_', allChecked);
-                    $(this).find('input').val(value);
-                });
-            });
-        </script>
-        <script>
-            function closePopup() {
-                $(".popup_wrap").hide();
-                $(".dim").hide();
-            }
-
-            $("#policy_show").on("click", function() {
-                $(".policy_pop, .policy_pop .dim").show();
-            });
-        </script>
-        <script>
-            let swiper = new Swiper(".swiper_product_list_", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                pagination: {
-                    el: ".swiper_product_list_pagination_",
-                    clickable: true,
-                },
-                breakpoints: {
-                    850: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    }
-                }
-            });
-
-            $('.list-icon img[alt="heart_icon"]').click(function() {
-                if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-                    $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-                } else {
-                    $(this).attr('src', '/uploads/icons/heart_icon.png');
-                }
-            });
-
-            const swiper_content = new Swiper(".swiper-container_tour_content", {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 100,
-                pagination: {
-                    el: ".swiper-tour_content-pagination",
-                },
-            });
-
-                function sel_moption(code_idx) {
-                        let url = `<?= route_to('api.product.sel_moption') ?>`;
-
-                        $.ajax({
-                            url: url,
-                            type: "POST",
-                            data: {
-                                "product_idx": '<?= $product['product_idx'] ?>',
-                                "code_idx": code_idx
-                            },
-                            async: false,
-                            cache: false,
-                            success: function (data, textStatus) {
-                                $("#sel_option").html(data);
-                            },
-                            error: function (request, status, error) {
-                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                            }
-                        });
-                    }
-
-                    function sel_option(code_idx) {
-                            let url = `<?= route_to('api.product.sel_option') ?>`;
-                            let idx = code_idx.split("|")[0];
-
-                            let moption = $("#moption").val();
-
-                            $.ajax({
-                                url: url,
-                                type: "POST",
-                                data: {
-                                    "idx": idx,
-                                    "moption": moption
-                                },
-                                async: false,
-                                cache: false,
-                                success: function (data, textStatus) {
-                                    let parent_name = data.parent_name;
-
-                                    let option_name = data.option_name;
-                                    let option_price = data.option_price;
-                                    
-                                    let option_price_won = data.option_price_won;
-                                    let idx = data.idx;
-                                    let option_tot = data.option_tot ?? 0;
-                                    let option_cnt = data.option_cnt;
-
-                                    let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
-                                                        <div class="wrap-text">
-                                                            <span>${parent_name}</span>
-                                                            <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
-                                                        </div>
-                                                        <div class="wrap-btn opt_count_box count_box flex__c">
-                                                            <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                                            <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
-                                                                        name="option_qty[]" id="input_qty" value="1">
-                                                            <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
-                                                        </div>
-                                                    </div>
-
-                                                <div class="" style="display: none">
-                                                        <input type="hidden" name="option_name[]" value="${option_name}">
-                                                        <input type="hidden" name="option_idx[]" value="${idx}">
-                                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                                        <input type="hidden" name="option_price[]" value="${option_price}">
-                                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                                                </div>
-                                            </li>`;
-
-                                    let sel_option_ = $('#schedule_' + idx);
-                                    if (!sel_option_.length > 0) {
-                                        $("#option_list_").append(htm_);
-                                    }
-                                },
-                                error: function (request, status, error) {
-                                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                }
-                            });
-                            updateProductOption();
-                        }
-
-                    function minusQty(el) {
-                        let inp = $(el).parent().find('input.input_qty');
-                        let num = inp.val();
-                        if (Number(num) > 1) {
-                            num = Number(num) - 1;
-                            inp.val(num);
-                        } else {
-                            if (confirm('선택 항목을 지우시겠습니까?')) {
-                                $(el).closest('.schedule').remove();
-                            }
-                        }
-                        updateProductOption(); 
-                    }
-
-                    function plusQty(el) {
-                        let inp = $(el).parent().find('input.input_qty');
-                        let num = inp.val();
-                        num = Number(num) + 1;
-                        inp.val(num);
-                        updateProductOption();
-                    }
-
-                    var selectedOption = [];
-                    var selectedTourIds = [];
-                    var totalCost = 0;
-                    var totalCostWon = 0;
-                    var selectedTourQuantities = {};
-                    function updateProductOption() {
-                        
-                        selectedOption = [];
-                        totalCost = 0;
-                        totalCostWon = 0;
-                        selectedTourQuantities = {};
-                        $('input.input_qty').each(function() {
-                            let qty = parseInt($(this).val());                            
-
-                            let price = parseFloat($(this).data('price')); 
-                            let price_won = parseFloat($(this).data('price_won')); 
-                            let optionName = $(this).closest('.schedule').find('p').text(); 
-                            let idx = $(this).closest('.schedule').data('idx');
-                            
-                            if (qty > 0) {
-                                let totalPrice = qty * price;
-                                let totalPriceWon = qty * price_won
-                                totalCost += totalPrice;
-                                totalCostWon += totalPriceWon;
-                                if (!selectedTourIds.includes(idx)) {
-                                    selectedTourIds.push(idx);
-                                }
-                                selectedTourQuantities[idx] = qty;
-                                selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}원</p></div>`);
-                            }
-                        });
-
-                        let total_all_price = adultTotalPrice + childTotalPrice + babyTotalPrice;
-                        total_all_price = total_all_price + totalCostWon;
-                        $(".total_all_price").text(total_all_price.toLocaleString('ko-KR'));
-
-                        if (selectedOption.length > 0) {
-                            $('#product_options').html(
-                                selectedOption.join('<br>')
-                            );
-                        } else {
-                            $('#product_options').html("선택된 옵션이 없습니다.");
-                        }
-                    }
-
-
-                    let currentToursIdx = null;
-                    const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
-                    const sec2Items = document.querySelectorAll('.sec2-item-card');
-                    
-                    allContainers.forEach(container => {
-                        container.style.display = 'none';
-                    });
-
-                    const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
-                    if (firstContainer) {
-                        const dataTourIndex = firstContainer.getAttribute('data-tour-index');
-                        if (dataTourIndex) { 
-                            firstContainer.style.display = 'block';
-                            currentToursIdx = dataTourIndex;
-                        }
-                    }
-
-                    if (sec2Items.length > 0) {
-                        sec2Items[0].classList.add('active');
-                    }
-
-                    document.querySelectorAll('.btn-ct-3').forEach((button) => {
-                        button.addEventListener('click', function() {
-                            const tourIndex = this.getAttribute('data-tour-index');
-
-                            sec2Items.forEach(sec2Item => {
-                                sec2Item.classList.remove('active');
-                            });
-
-                            const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
-                            if (selectedSec2Item) {
-                                selectedSec2Item.classList.add('active');
-                            }
-
-
-                            document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
-                                container.style.display = 'none';
-                            });
-
-                            const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
-                            if (selectedContainer) {
-                                selectedContainer.style.display = 'block';
-                                currentToursIdx = selectedContainer.getAttribute('data-tour-index');
-                            }
-
-                            
-                        });
-                    });
-                    
-                    var adultQuantity = 1;
-                    var childQuantity = 0;
-                    var babyQuantity = 0;
-
-                    var adultTotalPrice = 0;
-                    var childTotalPrice = 0;
-                    var babyTotalPrice = 0;
-
-                    function updateTotalPeopleDisplay() {
-                        var totalPeople = adultQuantity + childQuantity + babyQuantity;                        
-
-                        var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
-                        $('.num_people').text(numText);
-                    }
-
-                    $('.quantity-container').each(function() {
-                        var $container = $(this);
-                        var $quantityDisplay = $container.find('.quantity');
-                        var $increaseBtn = $container.find('.increase');
-                        var $decreaseBtn = $container.find('.decrease');
-                        var pricePerUnit = parseFloat($container.find('.price').data('price'));
-                        var priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
-
-                        var quantity = parseInt($quantityDisplay.text());
-                        var $price = $container.find('.price');
-                        var $currency = $container.find('.currency');
-
-                        if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                            quantity = 1; 
-                            adultQuantity = quantity;
-                            adultTotalPrice = adultQuantity * pricePerUnit;
-                            
-                            $quantityDisplay.text(quantity);
-                            $decreaseBtn.removeAttr('disabled');
-                        }
-
-                        updatePrice();
-
-                        $increaseBtn.click(function() {
-                            quantity++;
-                            $quantityDisplay.text(quantity);
-                            $decreaseBtn.removeAttr('disabled');
-                            updateQuantity($container, quantity);
-                            updatePrice();
-                        });
-
-                        $decreaseBtn.click(function() {
-                            if (quantity > 0) {
-                                quantity--;
-                                $quantityDisplay.text(quantity);
-                            }
-                            if (quantity === 0) {
-                                $decreaseBtn.attr('disabled', true);
-                            }
-                            updateQuantity($container, quantity);
-                            updatePrice();
-                        });
-
-                        function updateQuantity($container, quantity) {
-                            if ($container.find('.des').text().includes('성인')) {
-                                adultQuantity = quantity;
-                                adultTotalPrice = adultQuantity * pricePerUnit;
-                            } else if ($container.find('.des').text().includes('아동')) {
-                                childQuantity = quantity;
-                                childTotalPrice = childQuantity * pricePerUnit;
-                            } else if ($container.find('.des').text().includes('유아')) {
-                                babyQuantity = quantity;
-                                babyTotalPrice = babyQuantity * pricePerUnit;
-                            }
-                            
-                            let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
-                            $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-
-                            updateTotalPeopleDisplay();
-                        }
-
-                        function updatePrice() {
-                            var totalPrice = quantity * pricePerUnit;
-                            var totalPriceBaht = quantity * priceBahtPerUnit;                            
-
-                            $price.text(number_format(totalPrice) + '원');
-                            $currency.text(number_format(totalPriceBaht) + ' 바트');
-                        }
-                    });
-
-                    function number_format(number) {
-                        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    }                    
-                    
-                    updateTotalPeopleDisplay();
-                    
-                    // var selectedTourIds = [];
-                    // $('input[type="checkbox"]').change(function() {
-                    //     updateOptionText();
-                    // });
-
-                    // selectedPrice = [];
-
-                    // function updateOptionText() {
-                    //     var selectedOptions = [];
-                    //     selectedTourIds = [];
-                    //     selectedPrice = [];
-
-                    //     $('input[type="checkbox"]:checked').each(function() {
-                    //         var optionContainer = $(this).closest('.form-group');
-                    //         var optionName = optionContainer.find('label').text();
-                    //         var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
-                    //         var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
-
-                    //         var tourIdx = $(this).attr('id');
-                            
-                    //         selectedTourIds.push(tourIdx); 
-                    //         selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
-                    //         selectedPrice.push(optionPrice);
-                    //     });
-
-                    //     var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
-                    //     $('td.option').text(optionText);
-                        
-                    // }
-
-                    function number_format(number) {
-                        return number.toLocaleString('ko-KR');
-                    }
-
-                    const $calendarDays = $('.calendar-days');
-                    const $monthYear = $('#month-year');
-                    const $prevMonthBtn = $('#prev-month');
-                    const $nextMonthBtn = $('#next-month');
-                    const $selectedDayElement = $('.days');
-                    
-                    let s_date = null;
-                    let e_date = null;
-                    let productPrice = null;
-                    let productPriceBaht = null;
-                    const currentDate = new Date();
-                    currentDate.setHours(0, 0, 0, 0);
-                    let selectedDate = null;
-                    let validDays = []
-
-                    const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam) => {
-                        s_date = new Date(startDate);
-                        e_date = new Date(endDate);
-                        productPrice = price;
-                        productPriceBaht = priceBaht;
-                        validDays = validDaysParam; 
-                        renderCalendar(validDays); 
-                    };
-
-                    const initializeDefaultTour = () => {
-                        const firstTourDateElement = $('.sec2-date-main').first();
-                        const tourStartDate = firstTourDateElement.data('start-date');
-                        const tourEndDate = firstTourDateElement.data('end-date');
-                        
-                        const firstTourCard = $('.sec2-item-card').first();
-                        const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
-                        adultTotalPrice = parseFloat(tourPriceText);
-                        const tourPrices = parseFloat(tourPriceText) / 10000;
-                        const tourPrice = parseFloat(tourPrices.toFixed(1));
-
-                        const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
-                        const tourPriceBaht = parseFloat(tourPriceTextBath);
-
-                        const validDays = firstTourCard.find('.btn-ct-3').data('valid-days').split(',').map(Number);
-                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
-                    };
-
-                    const renderCalendar = (validDays) => {
-                        $calendarDays.empty();
-
-                        const month = currentDate.getMonth();
-                        const year = currentDate.getFullYear();
-
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0); 
-
-                        const currentMonthDate = new Date(year, month, today.getDate());
-                        currentMonthDate.setHours(0, 0, 0, 0);
-
-                        const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
-                        $monthYear.text(`${year}년 ${monthNames[month]}`);
-
-                        const firstDay = new Date(year, month, 1).getDay();
-                        const lastDate = new Date(year, month + 1, 0).getDate();
-
-                        for (let i = 0; i < firstDay; i++) {
-                            $('<div/>').appendTo($calendarDays);
-                        }
-
-                        for (let day = 1; day <= lastDate; day++) {
-                            const dayString = day.toString().padStart(2, '0');
-                            const $dayDiv = $('<div/>').text(dayString).addClass('day');
-                            let date = new Date(year, month, day);
-
-                            date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-
-                            const isWithinDateRange = date >= s_date && date <= e_date;
-                            const isValidDay = validDays.includes(date.getDay());
-                            const isPastDate = date < today; 
-
-                            if (isPastDate) {
-                                $dayDiv.addClass('disabled').append(`<p>예약마감</p>`);
-                            } else if (!isWithinDateRange || !isValidDay) {
-                                $dayDiv.addClass('disabled').append("<p>예약마감</p>");
-                            } else {
-                                $dayDiv.addClass('selectable').html(`
-                                    <p class="selectable-day">
-                                        ${dayString}
-                                        <p class="price1">${number_format(productPrice)}만원</p>
-                                        <p class="price2">(${number_format(productPriceBaht)}바트)</p>
-                                    </p>
-                                `);
-
-                                $dayDiv.click(() => {
-                                    $('.day').removeClass('active');
-                                    $dayDiv.addClass('active');
-                                    selectedDate = date;
-
-                                    const formattedDate = formatSelectedDate(date);
-                                    $('.days_choose').text(formattedDate);
-                                    $('.calendar_txt').text(formattedDate);
-                                    $('#order_date').val(formattedDate);
-                                });
-                            }
-
-                            $dayDiv.appendTo($calendarDays);
-                        }
-                    };
-
-                    function formatSelectedDate(date) {
-                        const year = date.getFullYear();
-                        const month = String(date.getMonth() + 1).padStart(2, '0');
-                        const day = String(date.getDate()).padStart(2, '0');
-                        const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
-                        return `${year}.${month}.${day}(${dayOfWeek})`;
-                    }
-
-                    $('.btn-ct-3').click(function() {
-                        const tourCard = $(this).closest('.sec2-item-card');
-                        const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
-                        const tourStartDate = tourDateElement.data('start-date');
-                        const tourEndDate = tourDateElement.data('end-date');
-
-                        const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
-                        adultTotalPrice = parseFloat(tourPriceText);
-                        const tourPrices = parseFloat(tourPriceText) / 10000;
-                        const tourPrice = parseFloat(tourPrices.toFixed(1));
-
-                        const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
-                        const tourPriceBaht = parseFloat(tourPriceTextBaht);
-
-                        let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCostWon;
-                        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-                        
-                        const validDaysParam = $(this).data('valid-days').split(',').map(Number);
-                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam);
-                        $('html, body').animate({
-                            scrollTop: $('#tour_calendar').offset().top
-                        }, 500);
-                    });
-
-                    $prevMonthBtn.click(() => {
-                        currentDate.setMonth(currentDate.getMonth() - 1);
-                        currentDate.setDate(1); 
-                        renderCalendar(validDays);
-                    });
-
-                    $nextMonthBtn.click(() => {
-                        currentDate.setMonth(currentDate.getMonth() + 1);
-                        currentDate.setDate(1); 
-                        renderCalendar(validDays);
-                    });
-
-                    const getValidDaysForMonth = (date) => {
-
-                        return validDays; 
-                    };
-
-                    function checkDateSelected() {
-                        if (!selectedDate) {
-                            alert('달력 선택해주세요!');
-                            return false;
-                        }
-                        return true;
-                    }
-
-                    // $('.primary-btn-calendar.tour').click(function() {
-                    //     if (checkDateSelected()) {
-                    //         $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').hide();
-                    //         $('.section1').hide();
-                    //         $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').show();
-
-                    //         var selectedDateText = $('#days_choose').text();
-                    //         var dateParts = selectedDateText.split('(')[0].trim();
-                    //         var formattedDate = dateParts.replace(/\./g, '-');
-                    //         var adultCnt = adultQuantity;
-                    //         var childCnt = childQuantity;
-                    //         var babyCnt = babyQuantity;
-                    //         var adultTotalPrices = adultTotalPrice;
-                    //         var childTotalPrices = childTotalPrice;
-                    //         var babyTotalPrices = babyTotalPrice;
-                    //         var priceOptionTotal = totalCost;
-                    //         var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-                    //         var selectedTime = $('.select-time-c').val();
-                    //         if (!selectedTime) {
-                    //             selectedTime = $('.select-time-c option:first').val();
-                    //         }
-                    //         const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
-
-
-                    //     }
-                    // });
-
-                    function handleSubmit() {
-                        const frm = document.frm;
-
-                        <?php
-                        if (empty(session()->get("member")["id"])) {
-                        ?>
-                        showOrHideLoginItem();
-                        return false;
-                        <?php
-                        }
-                        ?>
-
-                        if (checkDateSelected()) {
-                            var selectedDateText = $('#days_choose').text();
-                            var dateParts = selectedDateText.split('(')[0].trim();
-                            var formattedDate = dateParts.replace(/\./g, '-');
-                            var adultCnt = adultQuantity;
-                            var childCnt = childQuantity;
-                            var babyCnt = babyQuantity;
-                            var adultTotalPrices = adultTotalPrice;
-                            var childTotalPrices = childTotalPrice;
-                            var babyTotalPrices = babyTotalPrice;
-                            const selectedTourCard = $('.sec2-item-card.active');
-                            var priceOptionTotal = totalCost;
-                            var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-                            var selectedTime = $('.select-time-c').val();
-                            if (!selectedTime) {
-                                selectedTime = $('.select-time-c option:first').val();
-                            }
-                            const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
-
-                            let fullagreement = $("#fullagreement").val().trim();
-                            let terms = $("#terms").val().trim();
-                            let policy = $("#policy").val().trim();
-                            let information = $("#information").val().trim();
-                            let guidelines = $("#guidelines").val().trim();
-
-                            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                                alert("모든 약관에 동의해야 합니다.");
-                                return false;
-                            }
-
-                            //$('#order_date').val(formattedDate);
-                            $('#people_adult_cnt').val(adultCnt);
-                            $('#people_kids_cnt').val(childCnt);
-                            $('#people_baby_cnt').val(babyCnt);
-                            $('#people_adult_price').val(adultTotalPrices);
-                            $('#people_kids_price').val(childTotalPrices);
-                            $('#people_baby_price').val(babyTotalPrices);
-                            $('#tours_idx').val(currentToursIdx);
-                            $('#idx').val(idxWithQuantities);
-                            $('#time_line').val(selectedTime);
-                            $('.time_lines').text(selectedTime);
-                            $("#total_price_popup").text(number_format(last_price) + " 바트");
-                            $("#total_price").val(last_price);
-                            $("#total_pay").text(number_format(last_price) + " 바트");
-                            console.log(selectedTourIds.join(','));
-                            console.log(currentToursIdx);
-                            console.log(adultTotalPrices);
-                            console.log(selectedTime);
-                            console.log(priceOptionTotal);
-                            var productIdx = document.querySelector('input[name="product_idx"]').value;
-                            $("#frm").submit();
-                        }
-                    }
-                    function setCouponArea(isAcceptBtn = false) {
-                        const couponActive = $(".item-price-popup.active");
-                        let total_price = $("#total_price").val() || 0;
-                        let total_price_baht = $("#total_price_baht").val() || 0;
-                        const idx = couponActive.data("idx") || 0;
-                        const discount = couponActive.data("discount") || 0;
-                        let discount_baht = couponActive.data("discount_baht") || 0;
-                        const type = couponActive.data("type") || 0;
-
-                        let discount_price = 0;
-                        let discount_price_baht = 0;
-                        if (type === "D") {
-                            discount_price = discount;
-                            discount_price_baht = discount_baht;
-                        } else if (type === "P") {
-                            discount_price = Math.round(total_price * discount / 100);
-                            discount_price_baht = Math.round(total_price_baht * discount / 100);
-                        }
-
-                        total_price -= discount_price;
-                        total_price_baht -= discount_price_baht;
-
-                        $(".discount").text(number_format(discount_price) + "원");
-                        $("#last_price_popup").text(number_format(total_price));
-
-                        if (isAcceptBtn) {
-                            $("#final_discount").val(discount_price);
-                            $(".final_discount").val(number_format(discount_price));
-                            $("#final_discount_baht").text(number_format(discount_price_baht));
-                            $("#use_coupon_idx").val(idx);
-                        }
-
-                        return {
-                            discount_price,
-                            discount_price_baht
-                        };
-                    }
-
-                    function calculatePrice() {
-                        var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-
-                        
-                        const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
-                        const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
-
-                        last_price -= discount_price;
-
-                        $("#last_price").text(number_format(last_price));
-                    }                    
-
-                    function caculateTotalPrice() {
-                        let tour_idx = $(".sec2-item-card.active").attr("data-tour-index");
-
-                        let selectCalendar = $(".quantity-container-fa[data-tour-index='" + tour_idx + "']");
-
-                        let adult_cnt = Number(selectCalendar.find(".quantity-container.adult").find(".quantity").text().trim()) ?? 0;
-                        let adult_price = Number(selectCalendar.find(".quantity-container.adult").find(".price").data("price")) ?? 0;
-
-                        let child_cnt = Number(selectCalendar.find(".quantity-container.child").find(".quantity").text().trim()) ?? 0;
-                        let child_price = Number(selectCalendar.find(".quantity-container.child").find(".price").data("price")) ?? 0;
-
-                        let baby_cnt = Number(selectCalendar.find(".quantity-container.baby").find(".quantity").text().trim()) ?? 0;
-                        let baby_price = Number(selectCalendar.find(".quantity-container.baby").find(".price").data("price")) ?? 0;
-
-                        let total_price = adult_cnt *  adult_price + child_cnt * child_price + baby_cnt * baby_price + totalCostWon;
-                        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-                    }
-                    caculateTotalPrice();
-                    
-
-                    $(".item-price-popup").click(function () {
-                        $(this).addClass("active").siblings().removeClass("active");
-                        setCouponArea();
-                    })
-
-                    $(".btn_accept_coupon").click(function () {
-                        setCouponArea(true);
-                        calculatePrice();
-                        $("#popup_coupon").css('display', 'none');
-                    });
-
-
-                    initializeDefaultTour();
-
-                function showCouponPop() {
-                    $("#popup_coupon").css('display', 'flex');
-                }
-
-                const $closePopupBtn = $('.close-btn');
-                $closePopupBtn.on('click', function() {
-                    $("#popup_coupon").css('display', 'none');
-                });
-
-
-            $('.btn_back').click(function() {
-                $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').show();
-                $('.section1').show();
-                $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').hide();
-            });
-
-        </script>
-        <script>
-            jQuery(document).ready(function () {
-        
-                
-                var dim = $('#dim');
-                var popup = $('#popupRoom');
-                var closedBtn = $('#popupRoom .closed_btn');
-
-                var popup2 = $('#popup_img');
-                var closedBtn2 = $('#popup_img .closed_btn');
-
-                /* closed btn*/
-                closedBtn.click(function () {
-                    popup.hide();
-                    dim.fadeOut();
-                    $('.multiple-items').slick('unslick'); // slick 삭제
-                    return false;
-                });
-
-                closedBtn2.click(function () {
-                    popup2.hide();
-                    dim.fadeOut();
-                    $('.multiple-items').slick('unslick'); // slick 삭제
-                    return false;
-                });
-
-                // $(".short_link").on('click', function(evt) {
-                //     evt.preventDefault();
-                //     var target = $(this).data('target');
-                //     // $(window).scrollTop($('#' + target).offset().top - 100, 300);
-                //     $('html, body').animate({
-                //         scrollTop: $('#' + target).offset().top - 100
-                //     }, 'slow');
-                //     return false;
-                // });
-
-            });
-
-            function img_pops(idx) {
-            var dim = $('#dim');
-            var popup = $('#popup_img');
-
-            popup.show();
-                    dim.fadeIn();
-
-                    $('.multiple-items').slick({
-                        slidesToShow: 1,
-                        initialSlide: 0,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        dots: true,
-                        focusOnSelect: true
-                    });
-            }
-        </script>
-        <script>
-             $(".phone").on("input", function () {
-                $(this).val($(this).val().replace(/[^0-9]/g, ""));
-            });
-
-            $("input[name='radio_phone'").change(function () {
-                if ($(this).val() == 'kor') {
-                    $(".phone_kor").attr("disabled", false).eq(0).focus();
-                    $(".phone_thai").attr("disabled", true);
-                } else {
-                    $(".phone_thai").attr("disabled", false).focus();
-                    $(".phone_kor").attr("disabled", true);
-                }
-            })
-
-            function handleEmail(email) {
-            if (email == '1') {
-                $("#email_2").val('').prop('readonly', false).focus();
-            } else {
-                $("#email_2").val(email).prop('readonly', true);
+        });
+
+        let allCheckbox = $('.item_check_term_all_');
+        let allInput = allCheckbox.find('input');
+        allCheckbox.toggleClass('checked_', allChecked);
+        allInput.val(allChecked ? 'Y' : 'N');
+    }
+
+    $('.item_check_term_all_').click(function () {
+        $(this).toggleClass('checked_');
+        let allChecked = $(this).hasClass('checked_');
+        let value = allChecked ? 'Y' : 'N';
+        $(this).find('input').val(value);
+
+        $('.item_check_term_').each(function () {
+            $(this).toggleClass('checked_', allChecked);
+            $(this).find('input').val(value);
+        });
+    });
+</script>
+
+<script>
+    function closePopup() {
+        $(".popup_wrap").hide();
+        $(".dim").hide();
+    }
+
+    $("#policy_show").on("click", function() {
+        $(".policy_pop, .policy_pop .dim").show();
+    });
+
+    let swiper = new Swiper(".swiper_product_list_", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper_product_list_pagination_",
+            clickable: true,
+        },
+        breakpoints: {
+            850: {
+                slidesPerView: 4,
+                spaceBetween: 10,
             }
         }
-            // document.addEventListener('DOMContentLoaded', function() {
-            //     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
-            //     const sec2Items = document.querySelectorAll('.sec2-item-card');
-                
-            //     allContainers.forEach(container => {
-            //         container.style.display = 'none';
-            //     });
+    });
 
-            //     const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
-            //     if (firstContainer) {
-            //         firstContainer.style.display = 'block';
-            //         const initialToursIdx = firstContainer.getAttribute('data-tour-index');
-            //         console.log("Initial tours_idx:", initialToursIdx);
-            //     }
-
-            //     if (sec2Items.length > 0) {
-            //         sec2Items[0].classList.add('active');
-            //     }
-
-            //     document.querySelectorAll('.btn-ct-3').forEach((button) => {
-            //         button.addEventListener('click', function() {
-            //             const tourIndex = this.getAttribute('data-tour-index');
-
-            //             sec2Items.forEach(sec2Item => {
-            //                 sec2Item.classList.remove('active');
-            //             });
-
-            //             const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
-            //             if (selectedSec2Item) {
-            //                 selectedSec2Item.classList.add('active');
-            //             }
-
-
-            //             document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
-            //                 container.style.display = 'none';
-            //             });
-
-            //             const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
-            //             if (selectedContainer) {
-            //                 selectedContainer.style.display = 'block';
-            //                 const toursIdx = selectedContainer.getAttribute('data-tour-index');
-            //                 console.log("tours_idx:", toursIdx);
-            //             }
-            //         });
-            //     });
-            // });
-
-            document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.short_link');
-
-                links.forEach(link => {
-                    link.addEventListener('click', function() {
-                        links.forEach(link => link.classList.remove('active'));
-                        this.classList.add('active');
-                    });
-                });
-            });
-        </script>
-            <script>
-        function getCookie(name) {
-            let cookies = document.cookie.split('; ');
-            for (let i = 0; i < cookies.length; i++) {
-                let parts = cookies[i].split('=');
-                if (parts[0] === name) {
-                    return decodeURIComponent(parts[1]);
-                }
-            }
-            return null;
-        }
-
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + (value || "") + expires + "; path=/";
-        }
-
-        const product = {
-            name: "<?= addslashes($product['product_name']) ?>",
-            link: "<?= '/product-tours/item_view/' . $product['product_idx']?>",
-            image: "<?= '/data/product/' . $product['ufile1'] ?>",
-            ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>" })
-        };
-
-        let viewedProducts = getCookie('viewedProducts');
-        if (viewedProducts) {
-            viewedProducts = JSON.parse(viewedProducts);
+    $('.list-icon img[alt="heart_icon"]').click(function() {
+        if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+            $(this).attr('src', '/uploads/icons/heart_on_icon.png');
         } else {
-            viewedProducts = [];
+            $(this).attr('src', '/uploads/icons/heart_icon.png');
         }
+    });
 
-        if (!viewedProducts.some(p => p.name === product.name)) {
-            viewedProducts.push(product);
-            if (viewedProducts.length > 10) {
-                viewedProducts.shift();
+    const swiper_content = new Swiper(".swiper-container_tour_content", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 100,
+        pagination: {
+            el: ".swiper-tour_content-pagination",
+        },
+    });
+</script>
+
+<script>
+    function sel_moption(code_idx) {
+        let url = `<?= route_to('api.product.sel_moption') ?>`;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "product_idx": '<?= $product['product_idx'] ?>',
+                "code_idx": code_idx
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                $("#sel_option").html(data);
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
-            setCookie('viewedProducts', JSON.stringify(viewedProducts), 1);
-        }
-    </script>
+        });
+    }
 
-        <?php $this->endSection(); ?>
+    function sel_option(code_idx) {
+        let url = `<?= route_to('api.product.sel_option') ?>`;
+        let idx = code_idx.split("|")[0];
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "idx": idx,
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                let parent_name = data.parent_name;
+
+                let option_name = data.option_name;
+                let option_price = data.option_price;
+                
+                let option_price_won = data.option_price_won;
+                let idx = data.idx;
+                let option_tot = data.option_tot ?? 0;
+                let option_cnt = data.option_cnt;
+
+                let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
+                                    <div class="wrap-text">
+                                        <span>${parent_name}</span>
+                                        <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
+                                    </div>
+                                    <div class="wrap-btn opt_count_box count_box flex__c">
+                                        <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
+                                        <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                    name="option_qty[]" id="input_qty" value="1">
+                                        <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                    </div>
+                                </div>
+
+                            <div class="" style="display: none">
+                                    <input type="hidden" name="option_name[]" value="${option_name}">
+                                    <input type="hidden" name="option_idx[]" value="${idx}">
+                                    <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                    <input type="hidden" name="option_price[]" value="${option_price}">
+                                    <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                            </div>
+                        </li>`;
+
+                let sel_option_ = $('#schedule_' + idx);
+                if (!sel_option_.length > 0) {
+                    $("#option_list_").append(htm_);
+                }
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+        updateProductOption();
+    }
+
+    function minusQty(el) {
+        let inp = $(el).parent().find('input.input_qty');
+        let num = inp.val();
+        if (Number(num) > 1) {
+            num = Number(num) - 1;
+            inp.val(num);
+        } else {
+            if (confirm('선택 항목을 지우시겠습니까?')) {
+                $(el).closest('.schedule').remove();
+            }
+        }
+        updateProductOption(); 
+    }
+
+    function plusQty(el) {
+        let inp = $(el).parent().find('input.input_qty');
+        let num = inp.val();
+        num = Number(num) + 1;
+        inp.val(num);
+        updateProductOption();
+    }
+
+    var selectedOption = [];
+    var selectedTourIds = [];
+    var totalCost = 0;
+    var totalCostWon = 0;
+    var selectedTourQuantities = {};
+
+    function updateProductOption() {
+        
+        selectedOption = [];
+        totalCost = 0;
+        totalCostWon = 0;
+        selectedTourQuantities = {};
+        $('input.input_qty').each(function() {
+            let qty = parseInt($(this).val());                            
+
+            let price = parseFloat($(this).data('price')); 
+            let price_won = parseFloat($(this).data('price_won')); 
+            let optionName = $(this).closest('.schedule').find('p').text(); 
+            let idx = $(this).closest('.schedule').data('idx');
+            
+            if (qty > 0) {
+                let totalPrice = qty * price;
+                let totalPriceWon = qty * price_won
+                totalCost += totalPrice;
+                totalCostWon += totalPriceWon;
+                if (!selectedTourIds.includes(idx)) {
+                    selectedTourIds.push(idx);
+                }
+                selectedTourQuantities[idx] = qty;
+                selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}원</p></div>`);
+            }
+        });
+
+        let total_all_price = adultTotalPrice + childTotalPrice + babyTotalPrice;
+        total_all_price = total_all_price + totalCostWon;
+        $(".total_all_price").text(total_all_price.toLocaleString('ko-KR'));
+
+        if (selectedOption.length > 0) {
+            $('#product_options').html(
+                selectedOption.join('<br>')
+            );
+        } else {
+            $('#product_options').html("선택된 옵션이 없습니다.");
+        }
+    }
+
+
+    let currentToursIdx = null;
+    const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
+    const sec2Items = document.querySelectorAll('.sec2-item-card');
+    const secMoption = document.querySelectorAll('.moption');
+    
+    allContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
+    const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
+    if (firstContainer) {
+        const dataTourIndex = firstContainer.getAttribute('data-tour-index');
+        if (dataTourIndex) { 
+            firstContainer.style.display = 'block';
+            currentToursIdx = dataTourIndex;
+        }
+    }
+
+    secMoption.forEach(sec => {
+        sec.style.display = 'none';
+    });
+
+    const firstMoption = document.querySelector('.moption');
+    if (firstMoption) {
+        const dataInfoIndex = firstMoption.getAttribute('data-info-index');
+        if (dataInfoIndex) { 
+            firstMoption.style.display = 'block';
+        }
+    }
+
+    if (sec2Items.length > 0) {
+        sec2Items[0].classList.add('active');
+    }
+
+    document.querySelectorAll('.btn-ct-3').forEach((button) => {
+        button.addEventListener('click', function() {
+            const tourIndex = this.getAttribute('data-tour-index');
+            const infoIndex = this.getAttribute('data-info-index');            
+
+            sec2Items.forEach(sec2Item => {
+                sec2Item.classList.remove('active');
+            });
+
+            const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
+            if (selectedSec2Item) {
+                selectedSec2Item.classList.add('active');
+            }
+
+            document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
+                container.style.display = 'none';
+            });
+
+            const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
+            if (selectedContainer) {
+                selectedContainer.style.display = 'block';
+                currentToursIdx = selectedContainer.getAttribute('data-tour-index');
+            }
+
+            document.querySelectorAll('.moption').forEach(container => {
+                container.style.display = 'none';
+            });
+
+            const selectedMoption = document.querySelector(`.moption[data-info-index="${infoIndex}"]`);
+            if (selectedMoption) {
+                selectedMoption.style.display = 'block';
+            }
+            
+        });
+    });
+            
+    var adultQuantity = 1;
+    var childQuantity = 0;
+    var babyQuantity = 0;
+
+    var adultTotalPrice = 0;
+    var childTotalPrice = 0;
+    var babyTotalPrice = 0;
+
+    function updateTotalPeopleDisplay() {
+        var totalPeople = adultQuantity + childQuantity + babyQuantity;                        
+
+        var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
+        $('.num_people').text(numText);
+    }
+
+    $('.quantity-container').each(function() {
+        let $container = $(this);
+        let $quantityDisplay = $container.find('.quantity');
+        let $increaseBtn = $container.find('.increase');
+        let $decreaseBtn = $container.find('.decrease');
+        let pricePerUnit = parseFloat($container.find('.price').data('price'));
+        let priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
+
+        let quantity = parseInt($quantityDisplay.text());
+        let $price = $container.find('.price');
+        let $currency = $container.find('.currency');
+
+        if ($container.find('.des').text().includes('성인') && quantity === 0) {
+            quantity = 1; 
+            adultQuantity = quantity;
+            adultTotalPrice = adultQuantity * pricePerUnit;
+            
+            $quantityDisplay.text(quantity);
+            $decreaseBtn.removeAttr('disabled');
+        }
+
+        updatePrice();
+
+        $increaseBtn.click(function() {
+            quantity++;
+            $quantityDisplay.text(quantity);
+            $decreaseBtn.removeAttr('disabled');
+            updateQuantity($container, quantity);            
+
+            updatePrice();
+        });
+
+        $decreaseBtn.click(function() {
+            if (quantity > 0) {
+                quantity--;
+                $quantityDisplay.text(quantity);
+            }
+            if (quantity === 0) {
+                $decreaseBtn.attr('disabled', true);
+            }
+            updateQuantity($container, quantity);
+            updatePrice();
+        });
+
+        function updateQuantity($container, quantity) {
+            if ($container.find('.des').text().includes('성인')) {
+                adultQuantity = quantity;
+                adultTotalPrice = adultQuantity * pricePerUnit;
+            } else if ($container.find('.des').text().includes('아동')) {
+                childQuantity = quantity;
+                childTotalPrice = childQuantity * pricePerUnit;
+            } else if ($container.find('.des').text().includes('유아')) {
+                babyQuantity = quantity;
+                babyTotalPrice = babyQuantity * pricePerUnit;
+            }
+            
+            let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
+            $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+
+            updateTotalPeopleDisplay();
+        }
+
+        function updatePrice() {
+            var totalPrice = quantity * pricePerUnit;
+            var totalPriceBaht = quantity * priceBahtPerUnit;                            
+
+            $price.text(number_format(totalPrice) + '원');
+            $currency.text(number_format(totalPriceBaht) + ' 바트');
+        }
+    });
+
+    function number_format(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }                    
+            
+    updateTotalPeopleDisplay();
+    
+    // var selectedTourIds = [];
+    // $('input[type="checkbox"]').change(function() {
+    //     updateOptionText();
+    // });
+
+    // selectedPrice = [];
+
+    // function updateOptionText() {
+    //     var selectedOptions = [];
+    //     selectedTourIds = [];
+    //     selectedPrice = [];
+
+    //     $('input[type="checkbox"]:checked').each(function() {
+    //         var optionContainer = $(this).closest('.form-group');
+    //         var optionName = optionContainer.find('label').text();
+    //         var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
+    //         var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
+
+    //         var tourIdx = $(this).attr('id');
+            
+    //         selectedTourIds.push(tourIdx); 
+    //         selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
+    //         selectedPrice.push(optionPrice);
+    //     });
+
+    //     var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
+    //     $('td.option').text(optionText);
+        
+    // }
+
+    function number_format(number) {
+        return number.toLocaleString('ko-KR');
+    }
+
+    const $calendarDays = $('.calendar-days');
+    const $monthYear = $('#month-year');
+    const $prevMonthBtn = $('#prev-month');
+    const $nextMonthBtn = $('#next-month');
+    const $selectedDayElement = $('.days');
+    
+    let s_date = null;
+    let e_date = null;
+    let productPrice = null;
+    let productPriceBaht = null;
+    let t_info_idx = null;
+    let t_tours_idx = null;
+
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    let selectedDate = null;
+    let validDays = []
+
+    const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
+        s_date = new Date(startDate);
+        e_date = new Date(endDate);
+        productPrice = price;
+        productPriceBaht = priceBaht;
+        t_info_idx = info_idx;
+        t_tours_idx = tours_idx;
+        validDays = validDaysParam; 
+        renderCalendar(validDays); 
+    };
+
+    const initializeDefaultTour = () => {
+        const firstTourDateElement = $('.sec2-date-main').first();
+        const tourStartDate = firstTourDateElement.data('start-date');
+        const tourEndDate = firstTourDateElement.data('end-date');
+        
+        const firstTourCard = $('.sec2-item-card').first();
+        const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
+        adultTotalPrice = parseFloat(tourPriceText);
+        const tourPrices = parseFloat(tourPriceText) / 10000;
+        const tourPrice = parseFloat(tourPrices.toFixed(1));
+
+        const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
+        const tourPriceBaht = parseFloat(tourPriceTextBath);
+
+        const validDays = firstTourCard.find('.btn-ct-3').data('valid-days').split(',').map(Number);
+
+        const info_idx = firstTourCard.attr('data-info-index');
+
+        const tours_idx = firstTourCard.attr('data-tour-index');
+        
+        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays, info_idx, tours_idx);
+    };
+
+    const renderCalendar = (validDays) => {
+
+        $calendarDays.empty();
+
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+
+        $.ajax({
+            url: '<?= route_to('api.product.get_tours_price') ?>',
+            type: "GET",
+            data: {
+                "product_idx": '<?= $product['product_idx'] ?>',
+                "info_idx": t_info_idx,
+                "tours_idx": t_tours_idx,
+                "month": (month + 1),
+                "year": year
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); 
+
+                const currentMonthDate = new Date(year, month, today.getDate());
+                currentMonthDate.setHours(0, 0, 0, 0);
+
+                const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+                $monthYear.text(`${year}년 ${monthNames[month]}`);
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const lastDate = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDay; i++) {
+                    $('<div/>').appendTo($calendarDays);
+                }
+
+                for (let day = 1; day <= lastDate; day++) {
+                    const dayString = day.toString().padStart(2, '0');
+                    const $dayDiv = $('<div/>').text(dayString).addClass('day');
+                    let date = new Date(year, month, day);
+                    
+                    date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+                    const formatDate = date.toLocaleDateString('en-CA');
+
+                    const isWithinDateRange = date >= s_date && date <= e_date;
+                    const isValidDay = validDays.includes(date.getDay());
+                    const isPastDate = date < today;                     
+
+                    const dayData = data.find(d => d.goods_date === formatDate);                        
+
+                    if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
+                        $dayDiv.addClass('disabled').append("<p>예약마감</p>");
+                    } else {    
+                        const is_use_yn = dayData.use_yn === 'Y' || dayData.use_yn === '';
+                        
+                        if(!is_use_yn){                        
+                            $dayDiv.addClass('disabled').append("<p>예약마감</p>");
+                        }else{
+                            const goods_price1_won = parseFloat(dayData.goods_price1_won) / 10000;
+                            let price = parseFloat(goods_price1_won.toFixed(1));
+                            const priceBaht = Number(dayData.goods_price1);
+                            
+                            $dayDiv.addClass('selectable').html(`
+                                <p class="selectable-day">
+                                    ${dayString}
+                                    <p class="price1">${number_format(price)}만원</p>
+                                    <p class="price2">(${number_format(priceBaht)}바트)</p>
+                                </p>
+                            `);
+
+                            $dayDiv.click(() => {
+                                $('.day').removeClass('active');
+                                $dayDiv.addClass('active');
+                                selectedDate = date;
+                                let quantityContainer = $(".quantity-container-fa[data-tour-index="+ t_tours_idx +"]");
+                                //adult
+                                quantityContainer.find(".quantity-container.adult").find(".price").text(number_format(Number(dayData.goods_price1_won)) + "원");
+                                quantityContainer.find(".quantity-container.adult").find(".price").attr("data-price", Number(dayData.goods_price1_won));
+                                quantityContainer.find(".quantity-container.adult").find(".currency").text(number_format(Number(dayData.goods_price1)) + " 바트");
+                                quantityContainer.find(".quantity-container.adult").find(".currency").attr("data-price-baht", Number(dayData.goods_price1));
+
+                                //child
+                                quantityContainer.find(".quantity-container.child").find(".price").text("0원");
+                                quantityContainer.find(".quantity-container.child").find(".price").attr("data-price", Number(dayData.goods_price2_won));
+                                quantityContainer.find(".quantity-container.child").find(".currency").text("0 바트");
+                                quantityContainer.find(".quantity-container.child").find(".currency").attr("data-price-baht", Number(dayData.goods_price2));
+
+                                //baby
+                                quantityContainer.find(".quantity-container.baby").find(".price").text("0원");
+                                quantityContainer.find(".quantity-container.baby").find(".price").attr("data-price", Number(dayData.goods_price3_won));
+                                quantityContainer.find(".quantity-container.baby").find(".currency").text("0 바트");
+                                quantityContainer.find(".quantity-container.baby").find(".currency").attr("data-price-baht", Number(dayData.goods_price3));
+
+                                const formattedDate = formatSelectedDate(date);
+                                $('.days_choose').text(formattedDate);
+                                $('.calendar_txt').text(formattedDate);
+                                $('#order_date').val(formattedDate);
+                            });
+                        }
+                        
+                    }
+
+                    $dayDiv.appendTo($calendarDays);
+                }
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+
+        
+    };
+
+    function formatSelectedDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
+        return `${year}.${month}.${day}(${dayOfWeek})`;
+    }
+
+    $('.btn-ct-3').click(function() {
+        const tourCard = $(this).closest('.sec2-item-card');
+        const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
+        const tourStartDate = tourDateElement.data('start-date');
+        const tourEndDate = tourDateElement.data('end-date');
+
+        const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
+        adultTotalPrice = parseFloat(tourPriceText);
+        const tourPrices = parseFloat(tourPriceText) / 10000;
+        const tourPrice = parseFloat(tourPrices.toFixed(1));
+
+        const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
+        const tourPriceBaht = parseFloat(tourPriceTextBaht);
+
+        let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCostWon;
+        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+        
+        const validDaysParam = $(this).data('valid-days').split(',').map(Number);
+
+        const info_idx = tourCard.attr('data-info-index');
+
+        const tours_idx = tourCard.attr('data-tour-index');
+
+        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam, info_idx, tours_idx);
+        $('html, body').animate({
+            scrollTop: $('#tour_calendar').offset().top
+        }, 500);
+    });
+
+    $prevMonthBtn.click(() => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        currentDate.setDate(1); 
+        renderCalendar(validDays);
+    });
+
+    $nextMonthBtn.click(() => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        currentDate.setDate(1); 
+        renderCalendar(validDays);
+    });
+
+    const getValidDaysForMonth = (date) => {
+
+        return validDays; 
+    };
+
+    function checkDateSelected() {
+        if (!selectedDate) {
+            alert('달력 선택해주세요!');
+            return false;
+        }
+        return true;
+    }
+
+    // $('.primary-btn-calendar.tour').click(function() {
+    //     if (checkDateSelected()) {
+    //         $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').hide();
+    //         $('.section1').hide();
+    //         $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').show();
+
+    //         var selectedDateText = $('#days_choose').text();
+    //         var dateParts = selectedDateText.split('(')[0].trim();
+    //         var formattedDate = dateParts.replace(/\./g, '-');
+    //         var adultCnt = adultQuantity;
+    //         var childCnt = childQuantity;
+    //         var babyCnt = babyQuantity;
+    //         var adultTotalPrices = adultTotalPrice;
+    //         var childTotalPrices = childTotalPrice;
+    //         var babyTotalPrices = babyTotalPrice;
+    //         var priceOptionTotal = totalCost;
+    //         var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+    //         var selectedTime = $('.select-time-c').val();
+    //         if (!selectedTime) {
+    //             selectedTime = $('.select-time-c option:first').val();
+    //         }
+    //         const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
+
+
+    //     }
+    // });
+
+    function handleSubmit() {
+        const frm = document.frm;
+
+        <?php
+        if (empty(session()->get("member")["id"])) {
+        ?>
+        showOrHideLoginItem();
+        return false;
+        <?php
+        }
+        ?>
+
+        if (checkDateSelected()) {
+            var selectedDateText = $('#days_choose').text();
+            var dateParts = selectedDateText.split('(')[0].trim();
+            var formattedDate = dateParts.replace(/\./g, '-');
+            var adultCnt = adultQuantity;
+            var childCnt = childQuantity;
+            var babyCnt = babyQuantity;
+            var adultTotalPrices = adultTotalPrice;
+            var childTotalPrices = childTotalPrice;
+            var babyTotalPrices = babyTotalPrice;
+            const selectedTourCard = $('.sec2-item-card.active');
+            var priceOptionTotal = totalCost;
+            var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+            var selectedTime = $('.select-time-c').val();
+            if (!selectedTime) {
+                selectedTime = $('.select-time-c option:first').val();
+            }
+            const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
+
+            let fullagreement = $("#fullagreement").val().trim();
+            let terms = $("#terms").val().trim();
+            let policy = $("#policy").val().trim();
+            let information = $("#information").val().trim();
+            let guidelines = $("#guidelines").val().trim();
+
+            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                alert("모든 약관에 동의해야 합니다.");
+                return false;
+            }
+
+            //$('#order_date').val(formattedDate);
+            $('#people_adult_cnt').val(adultCnt);
+            $('#people_kids_cnt').val(childCnt);
+            $('#people_baby_cnt').val(babyCnt);
+            $('#people_adult_price').val(adultTotalPrices);
+            $('#people_kids_price').val(childTotalPrices);
+            $('#people_baby_price').val(babyTotalPrices);
+            $('#tours_idx').val(currentToursIdx);
+            $('#idx').val(idxWithQuantities);
+            $('#time_line').val(selectedTime);
+            $('.time_lines').text(selectedTime);
+            $("#total_price_popup").text(number_format(last_price) + " 바트");
+            $("#total_price").val(last_price);
+            $("#total_pay").text(number_format(last_price) + " 바트");
+            console.log(selectedTourIds.join(','));
+            console.log(currentToursIdx);
+            console.log(adultTotalPrices);
+            console.log(selectedTime);
+            console.log(priceOptionTotal);
+            var productIdx = document.querySelector('input[name="product_idx"]').value;
+            $("#frm").submit();
+        }
+    }
+
+    function setCouponArea(isAcceptBtn = false) {
+        const couponActive = $(".item-price-popup.active");
+        let total_price = $("#total_price").val() || 0;
+        let total_price_baht = $("#total_price_baht").val() || 0;
+        const idx = couponActive.data("idx") || 0;
+        const discount = couponActive.data("discount") || 0;
+        let discount_baht = couponActive.data("discount_baht") || 0;
+        const type = couponActive.data("type") || 0;
+
+        let discount_price = 0;
+        let discount_price_baht = 0;
+        if (type === "D") {
+            discount_price = discount;
+            discount_price_baht = discount_baht;
+        } else if (type === "P") {
+            discount_price = Math.round(total_price * discount / 100);
+            discount_price_baht = Math.round(total_price_baht * discount / 100);
+        }
+
+        total_price -= discount_price;
+        total_price_baht -= discount_price_baht;
+
+        $(".discount").text(number_format(discount_price) + "원");
+        $("#last_price_popup").text(number_format(total_price));
+
+        if (isAcceptBtn) {
+            $("#final_discount").val(discount_price);
+            $(".final_discount").val(number_format(discount_price));
+            $("#final_discount_baht").text(number_format(discount_price_baht));
+            $("#use_coupon_idx").val(idx);
+        }
+
+        return {
+            discount_price,
+            discount_price_baht
+        };
+    }
+
+    function calculatePrice() {
+        var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+
+        
+        const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
+        const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
+
+        last_price -= discount_price;
+
+        $("#last_price").text(number_format(last_price));
+    }                    
+
+    function caculateTotalPrice() {
+        let tour_idx = $(".sec2-item-card.active").attr("data-tour-index");
+
+        let selectCalendar = $(".quantity-container-fa[data-tour-index='" + tour_idx + "']");
+
+        let adult_cnt = Number(selectCalendar.find(".quantity-container.adult").find(".quantity").text().trim()) ?? 0;
+        let adult_price = Number(selectCalendar.find(".quantity-container.adult").find(".price").data("price")) ?? 0;
+
+        let child_cnt = Number(selectCalendar.find(".quantity-container.child").find(".quantity").text().trim()) ?? 0;
+        let child_price = Number(selectCalendar.find(".quantity-container.child").find(".price").data("price")) ?? 0;
+
+        let baby_cnt = Number(selectCalendar.find(".quantity-container.baby").find(".quantity").text().trim()) ?? 0;
+        let baby_price = Number(selectCalendar.find(".quantity-container.baby").find(".price").data("price")) ?? 0;
+
+        let total_price = adult_cnt *  adult_price + child_cnt * child_price + baby_cnt * baby_price + totalCostWon;
+        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+    }
+    caculateTotalPrice();
+            
+
+    $(".item-price-popup").click(function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        setCouponArea();
+    })
+
+    $(".btn_accept_coupon").click(function () {
+        setCouponArea(true);
+        calculatePrice();
+        $("#popup_coupon").css('display', 'none');
+    });
+
+
+    initializeDefaultTour();
+
+    function showCouponPop() {
+        $("#popup_coupon").css('display', 'flex');
+    }
+
+    const $closePopupBtn = $('.close-btn');
+    $closePopupBtn.on('click', function() {
+        $("#popup_coupon").css('display', 'none');
+    });
+
+
+    $('.btn_back').click(function() {
+        $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').show();
+        $('.section1').show();
+        $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').hide();
+    });
+
+</script>
+
+<script>
+    jQuery(document).ready(function () {
+
+        var dim = $('#dim');
+        var popup = $('#popupRoom');
+        var closedBtn = $('#popupRoom .closed_btn');
+
+        var popup2 = $('#popup_img');
+        var closedBtn2 = $('#popup_img .closed_btn');
+
+        /* closed btn*/
+        closedBtn.click(function () {
+            popup.hide();
+            dim.fadeOut();
+            $('.multiple-items').slick('unslick'); // slick 삭제
+            return false;
+        });
+
+        closedBtn2.click(function () {
+            popup2.hide();
+            dim.fadeOut();
+            $('.multiple-items').slick('unslick'); // slick 삭제
+            return false;
+        });
+
+        // $(".short_link").on('click', function(evt) {
+        //     evt.preventDefault();
+        //     var target = $(this).data('target');
+        //     // $(window).scrollTop($('#' + target).offset().top - 100, 300);
+        //     $('html, body').animate({
+        //         scrollTop: $('#' + target).offset().top - 100
+        //     }, 'slow');
+        //     return false;
+        // });
+
+    });
+
+    function img_pops(idx) {
+        var dim = $('#dim');
+        var popup = $('#popup_img');
+
+        popup.show();
+        dim.fadeIn();
+
+        $('.multiple-items').slick({
+            slidesToShow: 1,
+            initialSlide: 0,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+            focusOnSelect: true
+        });
+    }
+</script>
+
+<script>
+    $(".phone").on("input", function () {
+        $(this).val($(this).val().replace(/[^0-9]/g, ""));
+    });
+
+    $("input[name='radio_phone'").change(function () {
+        if ($(this).val() == 'kor') {
+            $(".phone_kor").attr("disabled", false).eq(0).focus();
+            $(".phone_thai").attr("disabled", true);
+        } else {
+            $(".phone_thai").attr("disabled", false).focus();
+            $(".phone_kor").attr("disabled", true);
+        }
+    })
+
+    function handleEmail(email) {
+        if (email == '1') {
+            $("#email_2").val('').prop('readonly', false).focus();
+        } else {
+            $("#email_2").val(email).prop('readonly', true);
+        }
+    }
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
+    //     const sec2Items = document.querySelectorAll('.sec2-item-card');
+        
+    //     allContainers.forEach(container => {
+    //         container.style.display = 'none';
+    //     });
+
+    //     const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
+    //     if (firstContainer) {
+    //         firstContainer.style.display = 'block';
+    //         const initialToursIdx = firstContainer.getAttribute('data-tour-index');
+    //         console.log("Initial tours_idx:", initialToursIdx);
+    //     }
+
+    //     if (sec2Items.length > 0) {
+    //         sec2Items[0].classList.add('active');
+    //     }
+
+    //     document.querySelectorAll('.btn-ct-3').forEach((button) => {
+    //         button.addEventListener('click', function() {
+    //             const tourIndex = this.getAttribute('data-tour-index');
+
+    //             sec2Items.forEach(sec2Item => {
+    //                 sec2Item.classList.remove('active');
+    //             });
+
+    //             const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
+    //             if (selectedSec2Item) {
+    //                 selectedSec2Item.classList.add('active');
+    //             }
+
+
+    //             document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
+    //                 container.style.display = 'none';
+    //             });
+
+    //             const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
+    //             if (selectedContainer) {
+    //                 selectedContainer.style.display = 'block';
+    //                 const toursIdx = selectedContainer.getAttribute('data-tour-index');
+    //                 console.log("tours_idx:", toursIdx);
+    //             }
+    //         });
+    //     });
+    // });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.short_link');
+
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
+
+<script>
+    function getCookie(name) {
+        let cookies = document.cookie.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+            let parts = cookies[i].split('=');
+            if (parts[0] === name) {
+                return decodeURIComponent(parts[1]);
+            }
+        }
+        return null;
+    }
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    const product = {
+        name: "<?= addslashes($product['product_name']) ?>",
+        link: "<?= '/product-tours/item_view/' . $product['product_idx']?>",
+        image: "<?= '/data/product/' . $product['ufile1'] ?>",
+        ...(<?= isset($img_list[0]['ufile']) && $img_list[0]['ufile'] ? 'true' : 'false' ?> && { image2: "<?= '/data/product/' . $img_list[0]['ufile'] ?>" })
+    };
+
+    let viewedProducts = getCookie('viewedProducts');
+    if (viewedProducts) {
+        viewedProducts = JSON.parse(viewedProducts);
+    } else {
+        viewedProducts = [];
+    }
+
+    if (!viewedProducts.some(p => p.name === product.name)) {
+        viewedProducts.push(product);
+        if (viewedProducts.length > 10) {
+            viewedProducts.shift();
+        }
+        setCookie('viewedProducts', JSON.stringify(viewedProducts), 1);
+    }
+</script>
+
+<?php $this->endSection(); ?>

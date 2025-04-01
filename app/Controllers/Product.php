@@ -3093,9 +3093,23 @@ class Product extends BaseController
                 'price_won_kids' => $price_won_kids,
                 'price_won_baby' => $price_won_baby,
             ];
+
+            $builder = $this->db->table('tbl_tours_moption');
+            $builder->where('product_idx', $product_idx);
+            $builder->where('info_idx', $infoIndex);
+            $builder->where('use_yn', 'Y');
+            $builder->orderBy('onum', 'desc');
+            $builder->orderBy('code_idx', 'asc');
+            $query = $builder->get();
+            $options = $query->getResultArray();
+
+            $groupedData[$infoIndex]['options'] = $options;
         }
 
         $data['productTourInfo'] = $groupedData;
+
+        // var_dump($data['productTourInfo']);
+        // die();
 
         $airCode = $this->request->getGet('air_code') ?? '0000';
 
@@ -3136,23 +3150,23 @@ class Product extends BaseController
         $data['schedules'] = $schedules;
         $data['totalDays'] = $totalDays;
 
-        $builder = $this->db->table('tbl_tours_moption');
-        $builder->where('product_idx', $product_idx);
-        $builder->where('use_yn', 'Y');
-        $builder->orderBy('onum', 'desc');
-        $query = $builder->get();
-        $options = $query->getResultArray();
+        // $builder = $this->db->table('tbl_tours_moption');
+        // $builder->where('product_idx', $product_idx);
+        // $builder->where('use_yn', 'Y');
+        // $builder->orderBy('onum', 'desc');
+        // $query = $builder->get();
+        // $options = $query->getResultArray();
 
-        foreach ($options as &$option) {
-            $optionBuilder = $this->db->table('tbl_tours_option');
-            $optionBuilder->where('product_idx', $product_idx);
-            $optionBuilder->where('code_idx', $option['code_idx']);
-            $optionBuilder->orderBy('onum', 'desc');
-            $optionQuery = $optionBuilder->get();
-            $option['additional_options'] = $optionQuery->getResultArray();
-        }
+        // foreach ($options as &$option) {
+        //     $optionBuilder = $this->db->table('tbl_tours_option');
+        //     $optionBuilder->where('product_idx', $product_idx);
+        //     $optionBuilder->where('code_idx', $option['code_idx']);
+        //     $optionBuilder->orderBy('onum', 'desc');
+        //     $optionQuery = $optionBuilder->get();
+        //     $option['additional_options'] = $optionQuery->getResultArray();
+        // }
 
-        $data['options'] = $options;
+        // $data['options'] = $options;
 
         $productReview = $this->reviewModel->getProductReview($product_idx);
 
@@ -4032,14 +4046,10 @@ class Product extends BaseController
     {
         try {
             $idx = $_POST['idx'];
-            $moption = $_POST['moption'];
 
-            $sql = "SELECT * FROM tbl_tours_moption WHERE code_idx = '$moption' ";
-            $result2 = $this->db->query($sql)->getRowArray();
-
-            $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
+            $sql = "SELECT a.*, b.moption_name as parent_name FROM tbl_tours_option a LEFT JOIN tbl_tours_moption b ON a.code_idx = b.code_idx WHERE a.idx = '$idx' ";
             $result = $this->db->query($sql)->getRowArray();
-            $result['parent_name'] = $result2['moption_name'];
+     
             $result['option_price_won'] = round($result['option_price'] * $this->setting['baht_thai']);
 
             return $this->response->setJSON($result, 200);
