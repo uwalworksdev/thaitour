@@ -1373,8 +1373,14 @@ class AjaxController extends BaseController {
 
 		    $product_idx = $_POST['product_idx'];
 		    $o_idx       = $_POST['o_idx'];
-		    $days        = $_POST['days'];
+		    $to_date     = $_POST['a_date'];
 
+			$query       = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
+									   FROM tbl_golf_price 
+									   WHERE o_idx = '" . $o_idx . "'");
+			$row         = $query->getRow();
+			$from_dfate  = $row->next_date;
+/*		
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
@@ -1384,10 +1390,10 @@ class AjaxController extends BaseController {
 					  $goods_name  = $row['goods_name'];  
 					  $from_date   = $row['goods_date'];  
 		    }
-
+*/
 			// 결과 출력
-            $from_date   = day_after($from_date, 1);
-            $to_date     = day_after($from_date, $days-1);
+            //$from_date   = day_after($from_date, 1);
+            //$to_date     = day_after($from_date, $days-1);
 			$dateRange   = getDateRange($from_date, $to_date);
 
 			$ii = -1;
