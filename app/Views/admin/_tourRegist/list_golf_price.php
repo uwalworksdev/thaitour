@@ -436,7 +436,13 @@
 								     dow_val = checkedValues.join(', ');
                                 }
 
-                                if(dow_val == "") {
+                                if($("#s_date").val() == "" || $("#e_date").val() == "") {
+								     alert('적용할 일자를 선택하세요.');
+									 $("#s_date").focus();
+									 return false;
+                                }
+
+								if(dow_val == "") {
 								     alert('적용할 요일을 선택하세요.');
 									 return false;
                                 }
