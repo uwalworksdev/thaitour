@@ -247,7 +247,7 @@ $deli_types = get_deli_type();
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>스파 에약내역</h2>
+			<h2>레스토랑 예약내역</h2>
 			<table>
 				<colgroup>
 					<col width="*">
