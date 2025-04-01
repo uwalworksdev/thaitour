@@ -102,8 +102,8 @@ $deli_types = get_deli_type();
 						</td>
 						<td class="content">
 							<p>
-							<span>성인: <?= $people_adult_cnt ?></span>명<br>  
-							<span>아동: <?= $people_kids_cnt ?></span>명<br>  
+							<span>성인: <?= $people_adult_cnt ?></span>명, 
+							<span>아동: <?= $people_kids_cnt ?></span>명,  
 							<span>유아: <?= $people_baby_cnt?></span>명  
 							</p>
 						</td>
