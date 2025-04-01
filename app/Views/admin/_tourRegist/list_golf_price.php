@@ -540,7 +540,7 @@
 						$.ajax({
 							url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
 							type: 'GET',
-							data: { "o_idx" : $("#o_idx").val() }
+							data: { "o_idx" : $("#o_idx").val() },
 
 							dataType: 'json',
 							success: function (response) {
