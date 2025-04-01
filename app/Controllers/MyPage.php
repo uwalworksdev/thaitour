@@ -773,7 +773,7 @@ class MyPage extends BaseController
                 $optionsIdx = $data['tour_orders']['options_idx'];
 
                 $options_idx = explode(',', $optionsIdx);
-
+/*
                 $data['tour_option'] = [];
                 $data['total_price'] = 0;
                 foreach ($options_idx as $idx) {
@@ -783,6 +783,7 @@ class MyPage extends BaseController
                         $data['total_price'] += $optionDetail['option_price'];
                     }
                 }
+*/				
                 $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
                 $result_cou = $connect->query($sql_cou);
                 $row_cou = $result_cou->getRowArray();
