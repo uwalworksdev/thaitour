@@ -1250,12 +1250,8 @@ class AjaxController extends BaseController {
 				$builder->where('goods_date <=', $e_date);
 			}
 
-			// 실행하기 전에 쿼리 확인
-			$query = $builder->getCompiledUpdate();  // Compile the update query (without executing it)
-			write_log('Last Query: ' . $query);  // Log the query to check
-	
-			//$result = $builder->update($data);
-
+			$result = $builder->update($data);
+write_log("golf_dow_charge - " . $db->getLastQuery());
 			// 결과 처리
 			if ($result) {
 				$msg = "수정 완료";
