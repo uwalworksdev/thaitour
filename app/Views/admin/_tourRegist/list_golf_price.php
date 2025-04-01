@@ -231,7 +231,7 @@
 													<td style="text-align:center;"><?=$item['upd_date']?></td> 
 													<td style="text-align:center;">
 														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
-														<button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button>
+														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
 													</td> 
 												</tr>
 					                    <?php endforeach; ?>
