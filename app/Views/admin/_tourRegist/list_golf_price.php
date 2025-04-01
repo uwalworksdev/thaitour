@@ -531,37 +531,21 @@
                                 , minDate: new Date() 
                                 , maxDate: "+99Y"
                             });
+$("#a_date").datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: new Date(2025, 3, 1),  // 2025-04-01 이후만 선택 가능
+    maxDate: "+99Y",
+    showButtonPanel: true,
+    closeText: '닫기',
+    currentText: '오늘',
+    prevText: '이전',
+    nextText: '다음',
+    showOn: "both",
+    yearRange: "c:c+30",
+    buttonImage: "/images/admin/common/date.png",
+    buttonImageOnly: true
+});
 
-                            $("#a_date").datepicker({
-                                showButtonPanel: true
-                                , onClose: function (selectedDate) {
-                                    // To 날짜 선택기의 최소 날짜를 설정
-                                    $("#a_date").datepicker("option", "maxDate", selectedDate);
-                                }
-                                , beforeShow: function (input) {
-                                    setTimeout(function () {
-                                        var buttonPane = $(input)
-                                            .datepicker("widget")
-                                            .find(".ui-datepicker-buttonpane");
-                                        //var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                        btn.unbind("click").bind("click", function () {
-                                            $.datepicker._clearDate(input);
-                                        });
-                                        btn.appendTo(buttonPane);
-                                    }, 1);
-                                }
-                                , dateFormat: 'yy-mm-dd'
-                                , showOn: "both"
-                                , yearRange: "c:c+30"
-                                , buttonImage: "/images/admin/common/date.png"
-                                , buttonImageOnly: true
-                                , closeText: '닫기'
-                                , currentText: '오늘' // 오늘 버튼 텍스트 설정
-                                , prevText: '이전'
-                                , nextText: '다음'
-                                , minDate: new Date() 
-                                , maxDate: "+99Y"
-                            });
                         });
                         
                     </script>
