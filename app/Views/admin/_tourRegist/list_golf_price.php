@@ -348,7 +348,7 @@
 								   return false;
 								}
 								
-								var days = $("#days").val();
+								//var days = $("#days").val();
 								$.ajax({
 
 									url: "/ajax/golf_price_add",
@@ -356,8 +356,8 @@
 									data: {
 
 											"product_idx" : $("#product_idx").val(), 
-											"o_idx"       : $("#o_idx").val(), 
-											"days"        : days 
+											"a_date"      : $("#a_date").val(), 
+											"o_idx"       : $("#o_idx").val()
 									      },
 									dataType: "json",
 									async: false,
