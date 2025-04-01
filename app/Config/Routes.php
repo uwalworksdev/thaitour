@@ -955,4 +955,7 @@ $routes->get('/naver/login', 'NaverLogin::login');
 $routes->get('/naver/callback', 'NaverLogin::callback');     
 
 $routes->get('/birthdaychecker', 'BirthdayChecker::index');
+
+$routes->get('/pdf/quotation', 'PdfController::generateQuotation');
+
 ?>
