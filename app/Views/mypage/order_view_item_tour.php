@@ -89,7 +89,7 @@ $deli_types = get_deli_type();
 
 						<td class="content">
 							<span>
-								<?= $order_date ?>
+								<?= $order_r_date ?>
 							</span>
 						</td>
 
@@ -98,7 +98,7 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
+							<span><?= $order_date ?></span>
 						</td>
 						<td class="content">
 							<p>
