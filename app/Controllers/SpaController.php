@@ -162,6 +162,12 @@ class SpaController extends BaseController
 
             $time_line      = $postData['time_line'] ?? '';
 
+            if($orderStatus == "W") {
+                $group_no  = date('YmdHis'); 
+			} else {
+                $group_no  = ""; 
+            }
+			
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -199,6 +205,7 @@ class SpaController extends BaseController
 				"device_type"                   =>  get_device(),
 				"baht_thai"	                    => $baht_thai,
                 'time_line'                     => $time_line,
+				'group_no'                      => $group_no,	
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
 
