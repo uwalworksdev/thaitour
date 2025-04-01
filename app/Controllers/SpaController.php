@@ -247,16 +247,20 @@ class SpaController extends BaseController
 					$option_price =	 $_val[2];
 					$option_qty   =  $_val[5];
 
-					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
-															, order_idx    =  '$order_idx' 
-															, product_idx  =  '$product_idx' 
-															, option_name  =  '$option_name' 
-															, option_tot   =  '$option_tot' 
-															, option_cnt   =  '$option_cnt' 
-															, option_date  =  '$option_date' 
-															, option_price =  '$option_price' 
-															, option_qty   =  '$option_qty' ";
-					$this->connect->query($sql);
+					$data = [
+						'option_type'  => $option_type,
+						'order_idx'    => $order_idx,
+						'product_idx'  => $product_idx,
+						'option_name'  => $option_name,
+						'option_tot'   => $option_tot,
+						'option_cnt'   => $option_cnt,
+						'option_date'  => $option_date,
+						'option_price' => $option_price,
+						'option_qty'   => $option_qty,
+					];
+
+					$this->db->table('tbl_order_option')->insert($data);
+					
 
             }
 
