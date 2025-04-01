@@ -546,9 +546,9 @@
 							async: false,
 							cache: false,
 								
-							success: function (response) {
-								if (response.status === 'success') {
-									var minDate = response.min_date;  // DB에서 가져온 날짜
+							success: function (data, textStatus) {
+								if (data.status === 'success') {
+									var minDate = new Date(data.min_date);  // DB에서 가져온 날짜
 									alert(minDate);
 									$("#a_date").datepicker({
 										dateFormat: 'yy-mm-dd',
