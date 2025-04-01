@@ -1228,8 +1228,8 @@ class AjaxController extends BaseController {
 			$dow_val  = $this->request->getPost('dow_val');
 			$price    = $this->request->getPost('price');
 
-			// 배열로 변환 (SQL 인젝션 방지)
-			$dowArray = explode(',', $dow_val);
+			// 배열로 변환 (쉼표로 구분된 문자열을 배열로 변환)
+			$dowArray = explode(',', str_replace(["'", '"'], '', $dow_val));
 
 			$builder = $db->table('tbl_golf_price');
 
@@ -1251,7 +1251,7 @@ class AjaxController extends BaseController {
 			}
 
 			$result = $builder->update($data);
-write_log("golf_dow_charge- ". $db->showLastQuery());
+
 			// 결과 처리
 			if ($result) {
 				$msg = "수정 완료";
@@ -1265,6 +1265,7 @@ write_log("golf_dow_charge- ". $db->showLastQuery());
 					'status'  => 'success',
 					'message' => $msg
 				]);
+
 
     }
 
