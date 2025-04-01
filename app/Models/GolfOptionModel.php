@@ -60,7 +60,8 @@ class GolfOptionModel extends Model
             $options = $options->where("goods_name", $goods_name);
         }
 
-        return $options->findAll();
+        //return $options->findAll();
+		return $options->orderBy('goods_name', 'ASC')->findAll();
 /*
 		// 예약가능한 일자 및 금액 데이터 조회
 
