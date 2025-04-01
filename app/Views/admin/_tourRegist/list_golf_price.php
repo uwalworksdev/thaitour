@@ -341,7 +341,13 @@
 						$("#addCharge").one("click", function () {
 								if (!confirm("일정을 추가 하시겠습니까?"))
 									return false;
-
+                                
+								if($("#a_date").val() == ""_ { 
+								   alert(추가할 일자를 선택하세요.);	
+								   $("#a_date").focus();
+								   return false;
+								}
+								
 								var days = $("#days").val();
 								$.ajax({
 
