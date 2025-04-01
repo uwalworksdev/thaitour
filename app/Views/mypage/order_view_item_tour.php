@@ -535,7 +535,7 @@ $deli_types = get_deli_type();
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">전화번호 </td>
+						<td col width="12%" class="subject">현지전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<td col width="15%" class="subject">여권번호</td>
 
