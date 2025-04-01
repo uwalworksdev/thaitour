@@ -1220,7 +1220,7 @@ class AjaxController extends BaseController {
 
 	public function golf_dow_charge()   
     {
-			$db = \Config\Database::connect();
+            $db    = \Config\Database::connect();
 
 			$s_date   = $this->request->getPost('s_date');
 			$e_date   = $this->request->getPost('e_date');
@@ -1228,36 +1228,20 @@ class AjaxController extends BaseController {
 			$dow_val  = $this->request->getPost('dow_val');
 			$price    = $this->request->getPost('price');
 
-			// 배열로 변환 (쉼표로 구분된 문자열을 배열로 변환)
-			$dowArray = explode(',', str_replace(["'", '"'], '', $dow_val));
+		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  
+			            WHERE dow in($dow_val) 
+						AND o_idx       = '$o_idx'  
+						AND goods_date >= '". $s_date ."'
+						AND goods_date <= '". $e_date ."' ";
+			
+			write_log("golf_dow_charge- ". $sql);
+			$result = $db->query($sql);
 
-			$builder = $db->table('tbl_golf_price');
-
-			// 공통 업데이트 데이터
-			$data = [
-				'price' => $price,
-			];
-
-			// 조건 추가 (o_idx)
-			$builder->where('o_idx', $o_idx);
-
-			// 조건 추가 (dow)
-			$builder->whereIn('dow', $dowArray);
-
-			// 날짜 조건 추가 (s_date와 e_date가 있는 경우)
-			if ($s_date && $e_date) {
-				$builder->where('goods_date >=', $s_date);
-				$builder->where('goods_date <=', $e_date);
-			}
-
-			$result = $builder->update($data);
-write_log("golf_dow_charge - " . $db->getLastQuery());
-			// 결과 처리
-			if ($result) {
-				$msg = "수정 완료";
+			if($result) {
+			   $msg = "수정 완료";
 			} else {
-				$msg = "수정 오류";
-			}
+			   $msg = "수정 오류";	
+			}   
 
 			return $this->response
 				->setStatusCode(200)
@@ -1265,8 +1249,6 @@ write_log("golf_dow_charge - " . $db->getLastQuery());
 					'status'  => 'success',
 					'message' => $msg
 				]);
-
-
     }
 
     public function hotel_price_pageupdate()
