@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div style="text-align:left;">
-											<input type="text" name="a_date" id="a_date" value="" style="text-align: center;background: white; width: 100px;" readonly>일 까지
+											<input type="text" name="a_date" id="a_date" value="" style="text-align: center;background: white; width: 120px;" readonly>일 까지
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
