@@ -247,7 +247,7 @@ class SpaController extends BaseController
 					$option_price =	 $_val[2];
 					$option_qty   =  $_val[5];
 
-					$data = [
+					$orderOption = [
 						'option_type'  => $option_type,
 						'order_idx'    => $order_idx,
 						'product_idx'  => $product_idx,
@@ -259,7 +259,7 @@ class SpaController extends BaseController
 						'option_qty'   => $option_qty,
 					];
 
-					$this->db->table('tbl_order_option')->insert($data);
+                    $this->orderOptionModel->insert($orderOption);
 					
 
             }
