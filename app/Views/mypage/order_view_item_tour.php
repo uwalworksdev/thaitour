@@ -205,26 +205,18 @@ $deli_types = get_deli_type();
 						<?php } ?>
 
 					</div>
-					<!--
-					<?php
-						$arr = explode("|", $date_price);
-						for($i=0;$i<count($arr);$i++)
-						{
-					?>		
-					<div>
-								<p>
-									<strong>
-										일자별 
-										<span id="coupon_amt">
-											<?= $arr[$i] ?>
-										</span>
-									</strong>
+				</div>
+				<div class="total_money tar">
+					<div class="defen_ttl flex">
+						<p><strong><span id="price_tot">
+									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / 	$baht_thai)?>바트)
 								</p>
 					</div>
-					<?php
-						}
-					?>
-					-->
+				</div>
+				<div class="left flex">
+					<strong class="label">옵션금액</strong>
+					<div class="detail_money tar flex_e_c">
+									
 				</div>
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
