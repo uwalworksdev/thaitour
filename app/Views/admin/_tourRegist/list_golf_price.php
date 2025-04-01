@@ -531,25 +531,46 @@
                                 , minDate: new Date() 
                                 , maxDate: "+99Y"
                             });
-$("#a_date").datepicker({
-    dateFormat: 'yy-mm-dd',
-    minDate: new Date(2025, 3, 1),  // 2025-04-01 이후만 선택 가능
-    maxDate: "+99Y",
-    showButtonPanel: true,
-    closeText: '닫기',
-    currentText: '오늘',
-    prevText: '이전',
-    nextText: '다음',
-    showOn: "both",
-    yearRange: "c:c+30",
-    buttonImage: "/images/admin/common/date.png",
-    buttonImageOnly: true
-});
 
                         });
-                        
                     </script>
 
+                    <script>
+					$(document).ready(function () {
+						$.ajax({
+							url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
+							type: 'GET',
+							data: { "o_idx" : $("#o_idx").val() }
+
+							dataType: 'json',
+							success: function (response) {
+								if (response.status === 'success') {
+									var minDate = new Date(response.min_date);  // DB에서 가져온 날짜
+									$("#a_date").datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: minDate,  // 동적으로 설정된 최소 날짜
+										maxDate: "+99Y",
+										showButtonPanel: true,
+										closeText: '닫기',
+										currentText: '오늘',
+										prevText: '이전',
+										nextText: '다음',
+										showOn: "both",
+										yearRange: "c:c+30",
+										buttonImage: "/images/admin/common/date.png",
+										buttonImageOnly: true
+									});
+								} else {
+									alert('날짜를 불러오는 데 실패했습니다.');
+								}
+							},
+							error: function () {
+								alert('서버와의 통신 오류');
+							}
+						});
+					});
+                    </script>
+					
                     <script>
                         // 동적으로 추가된 input 요소에 콤마 적용 - 이벤트 위임 사용
                         $(document).on('input', '.input_txt', function () {

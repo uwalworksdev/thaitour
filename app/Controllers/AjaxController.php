@@ -2978,5 +2978,24 @@ $result = $db->query($sql);
 					->setJSON(['status' => 'success', 'price_won' => $price_won, 'price_bath' => $price_bath]);
 	}
 
-	
+	public function ajax_getMinDate()
+	{
+        $db = \Config\Database::connect();
+		
+		$o_idx = $this->request->getPost('o_idx');
+        $query = $db->query("SELECT MAX(goods_date) AS last_date FROM tbl_golf_price WHERE o_idx = '". $o_idx ."' ");
+        $row   = $query->getRow();
+
+        if ($row) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'min_date' => $row->last_date,
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => '날짜를 불러올 수 없습니다.'
+        ]);		
+	}	
 }	
