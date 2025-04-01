@@ -1380,7 +1380,7 @@ class AjaxController extends BaseController {
 									   WHERE o_idx = '" . $o_idx . "'");
 			$row         = $query->getRow();
 			$from_dfate  = $row->next_date;
-/*		
+ 		
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
@@ -1388,9 +1388,8 @@ class AjaxController extends BaseController {
 				      //write_log($row['o_idx'] ." - ". $row['goods_date']); 
 					  $o_idx       = $row['o_idx'];
 					  $goods_name  = $row['goods_name'];  
-					  $from_date   = $row['goods_date'];  
 		    }
-*/
+ 
 			// 결과 출력
             //$from_date   = day_after($from_date, 1);
             //$to_date     = day_after($from_date, $days-1);
