@@ -192,6 +192,12 @@ $deli_types = get_deli_type();
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
 									
+						<?php if ($option_amt > 0) { ?>
+							<p><strong style="color:red">옵샨금액 <span id="option_amt">
+										<?= number_format($option_amt) ?>원
+									</span></strong></p>
+						<?php } ?>
+
 						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($used_coupon_money) ?>원
