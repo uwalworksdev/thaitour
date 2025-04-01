@@ -539,10 +539,13 @@
 					$(document).ready(function () {
 						$.ajax({
 							url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
-							type: 'GET',
+							type: 'POST',
 							data: { "o_idx" : $("#o_idx").val() },
 
 							dataType: 'json',
+							async: false,
+							cache: false,
+								
 							success: function (response) {
 								if (response.status === 'success') {
 									var minDate = new Date(response.min_date);  // DB에서 가져온 날짜
