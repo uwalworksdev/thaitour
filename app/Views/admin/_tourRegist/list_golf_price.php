@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div style="text-align:left;">
-											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 70px;">일
+											<input type="text" name="a_date" id="a_date" value="" style="text-align: center;background: white; width: 120px;" readonly>일 까지
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
@@ -173,7 +173,7 @@
 									<col width="10%">
 									<col width="10%">
 									<col width="10%">
-									<col width="10%">
+									<col width="20%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
@@ -341,8 +341,14 @@
 						$("#addCharge").one("click", function () {
 								if (!confirm("일정을 추가 하시겠습니까?"))
 									return false;
-
-								var days = $("#days").val();
+                                
+								if($("#a_date").val()  == "") { 
+								   alert('추가할 일자를 선택하세요.');	
+								   $("#a_date").focus();
+								   return false;
+								}
+								
+								//var days = $("#days").val();
 								$.ajax({
 
 									url: "/ajax/golf_price_add",
@@ -350,8 +356,8 @@
 									data: {
 
 											"product_idx" : $("#product_idx").val(), 
-											"o_idx"       : $("#o_idx").val(), 
-											"days"        : days 
+											"a_date"      : $("#a_date").val(), 
+											"o_idx"       : $("#o_idx").val()
 									      },
 									dataType: "json",
 									async: false,
@@ -361,7 +367,9 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val()+'&s_date='+s_date+'&e_date='+e_date;
+										//location.reload();
+										//https://thetourlab.com/AdmMaster/_tourRegist/list_golf_price?o_idx=156&product_idx=2096
+										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val();
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -429,7 +437,13 @@
 								     dow_val = checkedValues.join(', ');
                                 }
 
-                                if(dow_val == "") {
+                                if($("#s_date").val() == "" || $("#e_date").val() == "") {
+								     alert('적용할 일자를 선택하세요.');
+									 $("#s_date").focus();
+									 return false;
+                                }
+
+								if(dow_val == "") {
 								     alert('적용할 요일을 선택하세요.');
 									 return false;
                                 }
@@ -445,6 +459,8 @@
 									url: "/ajax/golf_dow_charge",
 									type: "POST",
 									data: {
+										    "s_date"  : $("#s_date").val(),
+											"e_date"  : $("#e_date").val(),
 											"o_idx"   : $("#o_idx").val(),
 											"dow_val" : dow_val, 
 											"price"   : $("#dowPrice").val()
@@ -529,10 +545,49 @@
                                 , minDate: new Date() 
                                 , maxDate: "+99Y"
                             });
+
                         });
-                        
                     </script>
 
+                    <script>
+					$(document).ready(function () {
+						$.ajax({
+							url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
+							type: 'POST',
+							data: { "o_idx" : $("#o_idx").val() },
+
+							dataType: 'json',
+							async: false,
+							cache: false,
+								
+							success: function (data, textStatus) {
+								if (data.status === 'success') {
+									var minDate = new Date(data.min_date);  // DB에서 가져온 날짜
+									$("#a_date").datepicker({
+										dateFormat: 'yy-mm-dd',
+										minDate: minDate,  // 동적으로 설정된 최소 날짜
+										maxDate: "+99Y",
+										showButtonPanel: true,
+										closeText: '닫기',
+										currentText: '오늘',
+										prevText: '이전',
+										nextText: '다음',
+										showOn: "both",
+										yearRange: "c:c+30",
+										buttonImage: "/images/admin/common/date.png",
+										buttonImageOnly: true
+									});
+								} else {
+									alert('날짜를 불러오는 데 실패했습니다.');
+								}
+							},
+							error: function () {
+								alert('서버와의 통신 오류');
+							}
+						});
+					});
+                    </script>
+					
                     <script>
                         // 동적으로 추가된 input 요소에 콤마 적용 - 이벤트 위임 사용
                         $(document).on('input', '.input_txt', function () {

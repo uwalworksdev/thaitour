@@ -162,6 +162,12 @@ class SpaController extends BaseController
 
             $time_line      = $postData['time_line'] ?? '';
 
+            if($orderStatus == "W") {
+                $group_no  = date('YmdHis'); 
+			} else {
+                $group_no  = ""; 
+            }
+			
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -199,6 +205,7 @@ class SpaController extends BaseController
 				"device_type"                   =>  get_device(),
 				"baht_thai"	                    => $baht_thai,
                 'time_line'                     => $time_line,
+				'group_no'                      => $group_no,	
                 'order_gubun'                   => $postData['order_gubun'] ?? 'spa',
             ];
 
@@ -240,16 +247,20 @@ class SpaController extends BaseController
 					$option_price =	 $_val[2];
 					$option_qty   =  $_val[5];
 
-					$sql = "INSERT INTO tbl_order_option SET  option_type  =  '$option_type' 
-															, order_idx    =  '$order_idx' 
-															, product_idx  =  '$product_idx' 
-															, option_name  =  '$option_name' 
-															, option_tot   =  '$option_tot' 
-															, option_cnt   =  '$option_cnt' 
-															, option_date  =  '$option_date' 
-															, option_price =  '$option_price' 
-															, option_qty   =  '$option_qty' ";
-					$this->connect->query($sql);
+					$orderOption = [
+						'option_type'  => $option_type,
+						'order_idx'    => $order_idx,
+						'product_idx'  => $product_idx,
+						'option_name'  => $option_name,
+						'option_tot'   => $option_tot,
+						'option_cnt'   => $option_cnt,
+						'option_date'  => $option_date,
+						'option_price' => $option_price,
+						'option_qty'   => $option_qty,
+					];
+
+                    $this->orderOptionModel->insert($orderOption);
+					
 
             }
 

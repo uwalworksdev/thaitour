@@ -1222,12 +1222,19 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
-			$o_idx    = $_POST['o_idx'];
-			$dow_val  = $_POST['dow_val'];
-			$price    = $_POST['price'];
+			$s_date   = $this->request->getPost('s_date');
+			$e_date   = $this->request->getPost('e_date');
+			$o_idx    = $this->request->getPost('o_idx');
+			$dow_val  = $this->request->getPost('dow_val');
+			$price    = $this->request->getPost('price');
 
-		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
-			//write_log("dow_val- ". $dow_val);
+		    $sql    = " UPDATE tbl_golf_price SET price = '". $price ."'  
+			            WHERE dow in($dow_val) 
+						AND o_idx       = '$o_idx'  
+						AND goods_date >= '". $s_date ."'
+						AND goods_date <= '". $e_date ."' ";
+			
+			write_log("golf_dow_charge- ". $sql);
 			$result = $db->query($sql);
 
 			if($result) {
@@ -1348,8 +1355,14 @@ class AjaxController extends BaseController {
 
 		    $product_idx = $_POST['product_idx'];
 		    $o_idx       = $_POST['o_idx'];
-		    $days        = $_POST['days'];
+		    $to_date     = $_POST['a_date'];
 
+			$query       = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
+									   FROM tbl_golf_price 
+									   WHERE o_idx = '" . $o_idx . "'");
+			$row         = $query->getRow();
+			$from_date   = $row->next_date;
+ 		
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
@@ -1357,12 +1370,11 @@ class AjaxController extends BaseController {
 				      //write_log($row['o_idx'] ." - ". $row['goods_date']); 
 					  $o_idx       = $row['o_idx'];
 					  $goods_name  = $row['goods_name'];  
-					  $from_date   = $row['goods_date'];  
 		    }
-
+ 
 			// 결과 출력
-            $from_date   = day_after($from_date, 1);
-            $to_date     = day_after($from_date, $days-1);
+            //$from_date   = day_after($from_date, 1);
+            //$to_date     = day_after($from_date, $days-1);
 			$dateRange   = getDateRange($from_date, $to_date);
 
 			$ii = -1;
@@ -1388,9 +1400,10 @@ class AjaxController extends BaseController {
 													 ,caddy_fee    = ''
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
+                write_log($sql_p); 													 
 				$result = $db->query($sql_p);
 			} 
-
+ 
 			// 골프가격 시작일
 			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
 			$result  = $db->query($sql);
@@ -1413,7 +1426,7 @@ class AjaxController extends BaseController {
 										  	    , o_edate = '". $e_date ."' WHERE idx = '". $o_idx ."' "; 
             //write_log($sql_o);											   
 			$result = $db->query($sql_o);
-
+ 
 			if (isset($result) && $result) {
 				$msg = "일정 추가완료";
 			} else {
@@ -2953,5 +2966,27 @@ $result = $db->query($sql);
 					->setJSON(['status' => 'success', 'price_won' => $price_won, 'price_bath' => $price_bath]);
 	}
 
-	
+	public function ajax_getMinDate()
+	{
+        $db = \Config\Database::connect();
+		
+		$o_idx     = $this->request->getPost('o_idx');
+		
+		$query     = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
+							     FROM tbl_golf_price 
+							     WHERE o_idx = '" . $o_idx . "'");
+		$row       = $query->getRow();
+		$next_date = $row->next_date;
+
+		if ($row) {
+			return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'min_date' => $next_date]);
+        }
+
+        return $this->response->setJSON([
+            'status'  => 'error',
+            'message' => '날짜를 불러올 수 없습니다.'
+        ]);		
+	}	
 }	

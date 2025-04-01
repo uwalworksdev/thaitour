@@ -2833,13 +2833,15 @@ class Product extends BaseController
             $data['people_baby_price'] = $data['people_baby_price'];
             $data['order_price'] = $data['total_price'];
             $data['total_price_baht'] = $data['total_price_baht'];
-            $data['order_date'] = $data['order_date'];
+            $data['order_day']        = $data['order_date'];
+            $data['order_date']       = date('Y-m-d H:i:s');
 
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
 			$data['device_type']              = get_device();
+            $data['baht_thai']                = $this->setting['baht_thai'];
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];

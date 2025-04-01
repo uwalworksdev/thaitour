@@ -69,7 +69,9 @@ $deli_types = get_deli_type();
 					<col width="*">
 					<col width="15%">
 					<col width="20%">
-					<col width="30%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
 				</colgroup>
 				<tbody>
 					<tr>
@@ -77,7 +79,9 @@ $deli_types = get_deli_type();
 						<td class="subject">예약일자</td>
 						<td class="subject">예약인원</td>
 						<td class="subject">투어일자</td>
-						<td class="subject">예약정보</td>
+						<td class="subject">성인</td>
+						<td class="subject">아동</td>
+						<td class="subject">유아</td>
 					</tr>
 					<tr>
 
@@ -89,20 +93,30 @@ $deli_types = get_deli_type();
 
 						<td class="content">
 							<span>
-								<?= $order_r_date ?>
+								<?= $order_date ?>
 							</span>
 						</td>
 
 						<td class="content">
-							<span><?= $people_adult_cnt ?></span>명  
+							<span><?= $people_adult_cnt + $people_kids_cnt + $people_baby_cnt?></span>명  
 						</td>
 
 						<td class="content">
-							<span><?= $order_date ?></span>
+							<span><?= $order_day ?></span>
 						</td>
 						<td class="content">
 							<p>
-								<span><?=$option['option_name']?></span> 
+							<span><?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원</span><br>
+							</p>
+						</td>
+						<td class="content">
+							<p>
+							<span><?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원</span><br>  
+							</p>
+						</td>
+						<td class="content">
+							<p>
+							<span><?= $people_baby_cnt?>명 <?=number_format($people_baby_price)?>원</span> 
 							</p>
 						</td>
 					</tr>
@@ -132,11 +146,13 @@ $deli_types = get_deli_type();
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
+									<?= $row["people_adult_cnt"] ?>명 <?=number_format($people_adult_price)?>원<br>
+								</span></span> 
+							<span>아동: <span>
+									<?= $row["people_kids_cnt"] ?>명 <?=number_format($people_kids_price)?>원<br>
+								</span></span> 
+							<span>유아: <span>
+									<?= $row["people_baby_cnt"] ?>명 <?=number_format($people_baby_price)?>원
 								</span></span>
 						</td>
 					</tr>
@@ -190,6 +206,12 @@ $deli_types = get_deli_type();
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
 									
+						<?php if ($option_amt > 0) { ?>
+							<p><strong>옵션금액 <span id="option_amt">
+										<?= number_format($option_amt) ?>원
+									</span></strong></p>
+						<?php } ?>
+
 						<?php if ($used_coupon_money > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($used_coupon_money) ?>원
@@ -203,26 +225,6 @@ $deli_types = get_deli_type();
 						<?php } ?>
 
 					</div>
-					<!--
-					<?php
-						$arr = explode("|", $date_price);
-						for($i=0;$i<count($arr);$i++)
-						{
-					?>		
-					<div>
-								<p>
-									<strong>
-										일자별 
-										<span id="coupon_amt">
-											<?= $arr[$i] ?>
-										</span>
-									</strong>
-								</p>
-					</div>
-					<?php
-						}
-					?>
-					-->
 				</div>
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
@@ -252,7 +254,7 @@ $deli_types = get_deli_type();
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>쇼.입장권 예약금액</h2>
+			<h2>투어 옵션금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
@@ -262,20 +264,22 @@ $deli_types = get_deli_type();
 				</colgroup>
 				<tbody>
 					<tr>
-						<td class="subject">예약구분</td>
+						<td class="subject">옵션구분</td>
 						<td class="subject">단가(원)</td>
 						<td class="subject">건수</td>
-						<td class="subject">에약금액(원)</td>
+						<td class="subject">옵션금액(원)</td>
 					</tr>
 					
 					<?php
-					    foreach ($option_order as $row)  
+					    foreach ($tour_option as $row)  
 						{
 							 if($row['option_type'] == "main") {
 								$option_price = $row['option_tot'] / $row['option_cnt'];
 							 } else	{
 								$option_price = $row['option_price'];
 							 }	
+							 
+							 $option_price = $option_price * $baht_thai;
 					?>		
 							<tr>
 								<td class="content"><?=$row['option_name']?></td>
@@ -531,7 +535,7 @@ $deli_types = get_deli_type();
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">전화번호 </td>
+						<td col width="12%" class="subject">현지전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<td col width="15%" class="subject">여권번호</td>
 
