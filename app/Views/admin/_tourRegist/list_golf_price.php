@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div style="text-align:left;">
-											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 70px;">일
+											<input type="text" name="a_date" id="a_date" value="" style="text-align: center;background: white; width: 120px;" readonly>일 까지
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
@@ -506,6 +506,37 @@
                                 , onClose: function (selectedDate) {
                                     // To 날짜 선택기의 최소 날짜를 설정
                                     $("#s_date").datepicker("option", "maxDate", selectedDate);
+                                }
+                                , beforeShow: function (input) {
+                                    setTimeout(function () {
+                                        var buttonPane = $(input)
+                                            .datepicker("widget")
+                                            .find(".ui-datepicker-buttonpane");
+                                        //var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+                                        btn.unbind("click").bind("click", function () {
+                                            $.datepicker._clearDate(input);
+                                        });
+                                        btn.appendTo(buttonPane);
+                                    }, 1);
+                                }
+                                , dateFormat: 'yy-mm-dd'
+                                , showOn: "both"
+                                , yearRange: "c:c+30"
+                                , buttonImage: "/images/admin/common/date.png"
+                                , buttonImageOnly: true
+                                , closeText: '닫기'
+                                , currentText: '오늘' // 오늘 버튼 텍스트 설정
+                                , prevText: '이전'
+                                , nextText: '다음'
+                                , minDate: new Date() 
+                                , maxDate: "+99Y"
+                            });
+
+                            $("#a_date").datepicker({
+                                showButtonPanel: true
+                                , onClose: function (selectedDate) {
+                                    // To 날짜 선택기의 최소 날짜를 설정
+                                    $("#a_date").datepicker("option", "maxDate", selectedDate);
                                 }
                                 , beforeShow: function (input) {
                                     setTimeout(function () {
