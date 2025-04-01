@@ -1250,7 +1250,11 @@ class AjaxController extends BaseController {
 				$builder->where('goods_date <=', $e_date);
 			}
 
-			$result = $builder->update($data);
+			// 실행하기 전에 쿼리 확인
+			$query = $builder->getCompiledUpdate();  // Compile the update query (without executing it)
+			write_log('Last Query: ' . $query);  // Log the query to check
+	
+			//$result = $builder->update($data);
 
 			// 결과 처리
 			if ($result) {
@@ -3002,7 +3006,7 @@ $result = $db->query($sql);
         }
 
         return $this->response->setJSON([
-            'status' => 'error',
+            'status'  => 'error',
             'message' => '날짜를 불러올 수 없습니다.'
         ]);		
 	}	
