@@ -69,7 +69,9 @@ $deli_types = get_deli_type();
 					<col width="*">
 					<col width="15%">
 					<col width="20%">
-					<col width="30%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
 				</colgroup>
 				<tbody>
 					<tr>
@@ -77,7 +79,9 @@ $deli_types = get_deli_type();
 						<td class="subject">예약일자</td>
 						<td class="subject">예약인원</td>
 						<td class="subject">투어일자</td>
-						<td class="subject">예약정보</td>
+						<td class="subject">성인</td>
+						<td class="subject">아동</td>
+						<td class="subject">유아</td>
 					</tr>
 					<tr>
 
@@ -102,9 +106,17 @@ $deli_types = get_deli_type();
 						</td>
 						<td class="content">
 							<p>
-							<span>성인: <?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원</span><br>
-							<span>아동: <?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원</span><br>  
-							<span>유아: <?= $people_baby_cnt?>명 <?=number_format($people_baby_price)?>원</span> 
+							<span><?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원</span><br>
+							</p>
+						</td>
+						<td class="content">
+							<p>
+							<span><?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원</span><br>  
+							</p>
+						</td>
+						<td class="content">
+							<p>
+							<span><?= $people_baby_cnt?>명 <?=number_format($people_baby_price)?>원</span> 
 							</p>
 						</td>
 					</tr>
