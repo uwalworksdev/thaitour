@@ -2833,7 +2833,8 @@ class Product extends BaseController
             $data['people_baby_price'] = $data['people_baby_price'];
             $data['order_price'] = $data['total_price'];
             $data['total_price_baht'] = $data['total_price_baht'];
-            $data['order_date'] = $data['order_date'];
+            $data['order_day']        = $data['order_date'];
+            $data['order_date']       = date('Y-m-d H:i:s');
 
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
