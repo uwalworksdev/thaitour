@@ -276,8 +276,8 @@ $deli_types = get_deli_type();
 							<tr>
 								<td class="content"><?=$row['option_name']?></td>
 								<td class="content"><?=number_format($option_price)?></td>
-								<td class="content"><?=number_format($row['option_cnt'])?></td>
-								<td class="content"><?=number_format($row['option_tot'])?></td>
+								<td class="content">1</td>
+								<td class="content"><?=number_format($row['option_price'])?></td>
 							</tr>
 					<?php
 						}
