@@ -252,7 +252,7 @@ $deli_types = get_deli_type();
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>쇼.입장권 예약금액</h2>
+			<h2>투어 예약금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
