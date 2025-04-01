@@ -367,8 +367,9 @@
 										var s_date  = data.s_date;
 										var e_date  = data.e_date;
 										alert(message);
-										location.reload();
-										//location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val()+'&s_date='+s_date+'&e_date='+e_date;
+										//location.reload();
+										//https://thetourlab.com/AdmMaster/_tourRegist/list_golf_price?o_idx=156&product_idx=2096
+										location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val()+'&o_idx='+$("#o_idx").val();
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
