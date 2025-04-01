@@ -343,7 +343,7 @@
 									return false;
                                 
 								if($("#a_date").val()  == "") { 
-								   alert(추가할 일자를 선택하세요.);	
+								   alert('추가할 일자를 선택하세요.');	
 								   $("#a_date").focus();
 								   return false;
 								}
