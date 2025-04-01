@@ -267,7 +267,7 @@ $deli_types = get_deli_type();
 						<td class="subject">옵션구분</td>
 						<td class="subject">단가(원)</td>
 						<td class="subject">건수</td>
-						<td class="subject">에약금액(원)</td>
+						<td class="subject">금액(원)</td>
 					</tr>
 					
 					<?php
