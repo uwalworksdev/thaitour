@@ -1251,7 +1251,7 @@ class AjaxController extends BaseController {
 			}
 
 			$result = $builder->update($data);
-write_log("golf_dow_charge- ". $db->showLastQuery(););
+write_log("golf_dow_charge- ". $db->showLastQuery());
 			// 결과 처리
 			if ($result) {
 				$msg = "수정 완료";
