@@ -1178,7 +1178,7 @@
 								
                               
                                 <tr>
-                                    <th>안내사항</th>
+                                    <th>위치정보</th>
                                     <td>
 
 								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
@@ -1211,7 +1211,7 @@
                                         </script>
 
                                     </td>
-                                    <th>골프텔 정보</th>
+                                    <th>복장규정</th>
                                     <td>
 
 								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
@@ -1246,7 +1246,7 @@
                                     </td>									
                                 </tr>  								
                                 <tr>
-                                    <th>유의사항</th>
+                                    <th>캐디팁</th>
                                     <td>
 
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
@@ -1279,7 +1279,7 @@
                                         </script>
 
                                     </td>
-                                    <th>더투어랩 이용방법</th>
+                                    <th>레인체크 규정</th>
                                     <td>
 
 								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
