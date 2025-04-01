@@ -2987,7 +2987,7 @@ $result = $db->query($sql);
 							     WHERE o_idx = '" . $o_idx . "'");
 		$row       = $query->getRow();
 		$next_date = $row->next_date;
-
+write_log("next_date- ". $next_date);
         if ($row) {
 			return $this->response
 					->setStatusCode(200)
