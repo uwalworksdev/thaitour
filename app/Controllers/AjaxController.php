@@ -1401,9 +1401,9 @@ class AjaxController extends BaseController {
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
                 write_log($sql_p); 													 
-				//$result = $db->query($sql_p);
+				$result = $db->query($sql_p);
 			} 
-/*
+ 
 			// 골프가격 시작일
 			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND o_idx = '". $o_idx ."' ORDER BY goods_date ASC LIMIT 0,1";
 			$result  = $db->query($sql);
@@ -1426,7 +1426,7 @@ class AjaxController extends BaseController {
 										  	    , o_edate = '". $e_date ."' WHERE idx = '". $o_idx ."' "; 
             //write_log($sql_o);											   
 			$result = $db->query($sql_o);
-*/
+ 
 			if (isset($result) && $result) {
 				$msg = "일정 추가완료";
 			} else {
