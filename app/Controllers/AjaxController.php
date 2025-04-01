@@ -1361,7 +1361,7 @@ class AjaxController extends BaseController {
 									   FROM tbl_golf_price 
 									   WHERE o_idx = '" . $o_idx . "'");
 			$row         = $query->getRow();
-			$from_dfate  = $row->next_date;
+			$from_date   = $row->next_date;
  		
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND o_idx = '$o_idx' ORDER BY goods_date desc limit 0,1 ";
 			$result = $db->query($sql)->getResultArray();
