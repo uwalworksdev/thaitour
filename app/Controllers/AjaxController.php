@@ -2982,14 +2982,16 @@ $result = $db->query($sql);
 	{
         $db = \Config\Database::connect();
 		
-		$o_idx = $this->request->getPost('o_idx');
-        $query = $db->query("SELECT MAX(goods_date) AS last_date FROM tbl_golf_price WHERE o_idx = '". $o_idx ."' ");
-        $row   = $query->getRow();
+		$query     = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
+							     FROM tbl_golf_price 
+							     WHERE o_idx = '" . $o_idx . "'");
+		$row       = $query->getRow();
+		$next_date = $row->next_date;
 
         if ($row) {
             return $this->response->setJSON([
-                'status' => 'success',
-                'min_date' => $row->last_date,
+                'status'   => 'success',
+                'min_date' => $next_date,
             ]);
         }
 
