@@ -254,7 +254,7 @@ $deli_types = get_deli_type();
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation">
-			<h2>투어 예약금액</h2>
+			<h2>투어 옵션금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
@@ -264,7 +264,7 @@ $deli_types = get_deli_type();
 				</colgroup>
 				<tbody>
 					<tr>
-						<td class="subject">예약구분</td>
+						<td class="subject">옵션구분</td>
 						<td class="subject">단가(원)</td>
 						<td class="subject">건수</td>
 						<td class="subject">에약금액(원)</td>
@@ -278,6 +278,8 @@ $deli_types = get_deli_type();
 							 } else	{
 								$option_price = $row['option_price'];
 							 }	
+							 
+							 $option_price = $option_price * $baht_thai;
 					?>		
 							<tr>
 								<td class="content"><?=$row['option_name']?></td>
