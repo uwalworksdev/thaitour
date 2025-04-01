@@ -2989,10 +2989,9 @@ $result = $db->query($sql);
 		$next_date = $row->next_date;
 
         if ($row) {
-            return $this->response->setJSON([
-                'status'   => 'success',
-                'min_date' => $next_date,
-            ]);
+			return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'min_date' => $next_date]);
         }
 
         return $this->response->setJSON([
