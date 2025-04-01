@@ -548,7 +548,8 @@
 								
 							success: function (response) {
 								if (response.status === 'success') {
-									var minDate = new Date(response.min_date);  // DB에서 가져온 날짜
+									var minDate = response.min_date;  // DB에서 가져온 날짜
+									alert(minDate);
 									$("#a_date").datepicker({
 										dateFormat: 'yy-mm-dd',
 										minDate: minDate,  // 동적으로 설정된 최소 날짜

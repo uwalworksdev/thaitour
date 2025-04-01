@@ -2982,7 +2982,7 @@ $result = $db->query($sql);
 	{
         $db = \Config\Database::connect();
 		
-		$query     = $db->query("SELECT MAX(goods_date) AS next_date 
+		$query     = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
 							     FROM tbl_golf_price 
 							     WHERE o_idx = '" . $o_idx . "'");
 		$row       = $query->getRow();
