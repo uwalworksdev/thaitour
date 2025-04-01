@@ -271,7 +271,7 @@ $deli_types = get_deli_type();
 					</tr>
 					
 					<?php
-					    foreach ($option_order as $row)  
+					    foreach ($tour_option as $row)  
 						{
 							 if($row['option_type'] == "main") {
 								$option_price = $row['option_tot'] / $row['option_cnt'];
