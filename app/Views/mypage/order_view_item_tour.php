@@ -213,18 +213,6 @@ $deli_types = get_deli_type();
 								</p>
 					</div>
 				</div>
-				<div class="left flex">
-					<strong class="label">옵션금액</strong>
-					<div class="detail_money tar flex_e_c">
-									
-				</div>
-				<div class="total_money tar">
-					<div class="defen_ttl flex">
-						<p><strong><span id="price_tot">
-									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / 	$baht_thai)?>바트)
-								</p>
-					</div>
-				</div>
 			</div>
 		</section>
 		<!--section class="ord_total_sec reservation">
