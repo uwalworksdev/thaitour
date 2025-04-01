@@ -557,7 +557,7 @@ $deli_types = get_deli_type();
 
 
 						<td class="content">
-							<?=$order_passport_number ?>
+							<?=$row_d['order_passport_number'] ?>
 						</td>
 
 
