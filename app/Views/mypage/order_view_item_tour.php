@@ -89,7 +89,7 @@ $deli_types = get_deli_type();
 
 						<td class="content">
 							<span>
-								<?= $order_r_date ?>
+								<?= $order_date ?>
 							</span>
 						</td>
 
@@ -98,7 +98,7 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<span><?= $order_date ?></span>
+							<span><?= $order_day ?></span>
 						</td>
 						<td class="content">
 							<p>
