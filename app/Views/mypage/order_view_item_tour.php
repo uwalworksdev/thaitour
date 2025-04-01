@@ -76,7 +76,7 @@ $deli_types = get_deli_type();
 						<td class="subject">예약번호</td>
 						<td class="subject">예약일자</td>
 						<td class="subject">예약인원</td>
-						<td class="subject">참관일자</td>
+						<td class="subject">투어일자</td>
 						<td class="subject">예약정보</td>
 					</tr>
 					<tr>
