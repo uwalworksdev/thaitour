@@ -102,9 +102,9 @@ $deli_types = get_deli_type();
 						</td>
 						<td class="content">
 							<p>
-							<span>성인: <?= $people_adult_cnt ?></span>명, 
-							<span>아동: <?= $people_kids_cnt ?></span>명,  
-							<span>유아: <?= $people_baby_cnt?></span>명  
+							<span>성인: <?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원</span><br>
+							<span>아동: <?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원</span><br>  
+							<span>유아: <?= $people_baby_cnt?>명 <?=number_format($people_baby_price)?>원</span> 
 							</p>
 						</td>
 					</tr>
@@ -135,9 +135,11 @@ $deli_types = get_deli_type();
 						<td class="content">
 							<span>성인: <span>
 									<?= $row["people_adult_cnt"] ?>명 <?=number_format($people_adult_price)?>원<br>
-								</span></span> <span>소아: <span>
+								</span></span> 
+							<span>아동: <span>
 									<?= $row["people_kids_cnt"] ?>명 <?=number_format($people_kids_price)?>원<br>
-								</span></span> <span>유아: <span>
+								</span></span> 
+							<span>유아: <span>
 									<?= $row["people_baby_cnt"] ?>명 <?=number_format($people_baby_price)?>원
 								</span></span>
 						</td>
