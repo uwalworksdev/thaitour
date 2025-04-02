@@ -3056,7 +3056,7 @@ class Product extends BaseController
             SELECT pt.*, pti.*
             FROM tbl_product_tours pt
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
-            WHERE pt.product_idx = ? AND status = 'Y' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
+            WHERE pt.product_idx = ? AND pt.status = 'Y' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
         ";
 
         $query_info = $this->db->query($sql_info, [$product_idx]);
@@ -3085,6 +3085,7 @@ class Product extends BaseController
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx' => $row['tours_idx'],
                 'tours_subject' => $row['tours_subject'],
+                'tours_subject_eng' => $row['tours_subject_eng'],
                 'tour_price' => $row['tour_price'],
                 'tour_price_kids' => $row['tour_price_kids'],
                 'tour_price_baby' => $row['tour_price_baby'],

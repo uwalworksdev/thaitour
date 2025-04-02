@@ -168,7 +168,7 @@
                     <?php foreach ($info['tours'] as $tour): ?>
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
-                                <h3><?= $tour['tours_subject'] ?></h3>
+                                <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
                                 <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
                             </div>
                             <div class="text-content-2">
@@ -806,56 +806,58 @@
         let url = `<?= route_to('api.product.sel_option') ?>`;
         let idx = code_idx.split("|")[0];
 
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: {
-                "idx": idx,
-            },
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                let parent_name = data.parent_name;
-
-                let option_name = data.option_name;
-                let option_price = data.option_price;
-                
-                let option_price_won = data.option_price_won;
-                let idx = data.idx;
-                let option_tot = data.option_tot ?? 0;
-                let option_cnt = data.option_cnt;
-
-                let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
-                                    <div class="wrap-text">
-                                        <span>${parent_name}</span>
-                                        <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
+        if(idx){
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    "idx": idx,
+                },
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    let parent_name = data.parent_name;
+    
+                    let option_name = data.option_name;
+                    let option_price = data.option_price;
+                    
+                    let option_price_won = data.option_price_won;
+                    let idx = data.idx;
+                    let option_tot = data.option_tot ?? 0;
+                    let option_cnt = data.option_cnt;
+    
+                    let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
+                                        <div class="wrap-text">
+                                            <span>${parent_name}</span>
+                                            <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
+                                        </div>
+                                        <div class="wrap-btn opt_count_box count_box flex__c">
+                                            <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
+                                            <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                        name="option_qty[]" id="input_qty" value="1">
+                                            <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                        </div>
                                     </div>
-                                    <div class="wrap-btn opt_count_box count_box flex__c">
-                                        <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                        <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
-                                                    name="option_qty[]" id="input_qty" value="1">
-                                        <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
-                                    </div>
+    
+                                <div class="" style="display: none">
+                                        <input type="hidden" name="option_name[]" value="${option_name}">
+                                        <input type="hidden" name="option_idx[]" value="${idx}">
+                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                        <input type="hidden" name="option_price[]" value="${option_price}">
+                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
                                 </div>
-
-                            <div class="" style="display: none">
-                                    <input type="hidden" name="option_name[]" value="${option_name}">
-                                    <input type="hidden" name="option_idx[]" value="${idx}">
-                                    <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                    <input type="hidden" name="option_price[]" value="${option_price}">
-                                    <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                            </div>
-                        </li>`;
-
-                let sel_option_ = $('#schedule_' + idx);
-                if (!sel_option_.length > 0) {
-                    $("#option_list_").append(htm_);
+                            </li>`;
+    
+                    let sel_option_ = $('#schedule_' + idx);
+                    if (!sel_option_.length > 0) {
+                        $("#option_list_").append(htm_);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 }
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
+            });
+        }
         updateProductOption();
     }
 
@@ -868,6 +870,7 @@
         } else {
             if (confirm('선택 항목을 지우시겠습니까?')) {
                 $(el).closest('.schedule').remove();
+                $("#option").val('');
             }
         }
         updateProductOption(); 
@@ -893,6 +896,9 @@
         totalCost = 0;
         totalCostWon = 0;
         selectedTourQuantities = {};
+
+        
+
         $('input.input_qty').each(function() {
             let qty = parseInt($(this).val());                            
 
@@ -916,6 +922,7 @@
 
         let total_all_price = adultTotalPrice + childTotalPrice + babyTotalPrice;
         total_all_price = total_all_price + totalCostWon;
+
         $(".total_all_price").text(total_all_price.toLocaleString('ko-KR'));
 
         if (selectedOption.length > 0) {
@@ -1376,6 +1383,12 @@
 
         const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
         const tourPriceBaht = parseFloat(tourPriceTextBaht);
+
+        totalCostWon = 0;
+
+        $("#option").empty();
+        $("#option").append(`<option value="">옵션 선택</option>`);
+        $("#option_list_").empty();
 
         let total_price = adultTotalPrice + childQuantity + babyQuantity + totalCostWon;
         $(".total_all_price").text(total_price.toLocaleString('ko-KR'));

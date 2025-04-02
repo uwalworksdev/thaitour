@@ -542,7 +542,7 @@
                                                 echo "selected";
                                             } ?>>예약중지
                                             </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                            <option value="stop" <?php if ((isset($product_status) && $product_status === "stop") || empty($product_idx)) {
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>

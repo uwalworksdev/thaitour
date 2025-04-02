@@ -144,16 +144,16 @@
 																		<td style="width:*;text-align:center">
 																			상품타입(국문/영문)
 																		</td>
-																		<td style="width:15%;text-align:center">
+																		<td style="width:10%;text-align:center">
 																			성인가격(단위: 바트)
 																		</td>
-																		<td style="width:15%;text-align:center">
+																		<td style="width:10%;text-align:center">
 																			소아가격(단위: 바트)
 																		</td>
-																		<td style="width:15%;text-align:center">
+																		<td style="width:10%;text-align:center">
 																			유아가격(단위: 바트)
 																		</td>
-																		<td style="width:15%;text-align:center">
+																		<td style="width:10%;text-align:center">
 																			판매상태
 																		</td>
 																	</tr>
@@ -162,9 +162,11 @@
                                                                     <?php foreach ($info['tours'] as $tour): ?>
                                                                         <tr class="air_list_1" style="height:40px">
                                                                             <td>
-																			<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
-                                                                                <input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="국문글씨 입력해주세요" class="tours_subject input_txt" style="width:100%" />
-                                                                                <input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="tours_subject input_txt" style="width:100%; margin-top: 10px;" />
+																				<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
+																				<div class="flex" style="gap: 5px;">
+																					<input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="국문글씨 입력해주세요" class="tours_subject input_txt" style="width:50%" />
+																					<input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="tours_subject input_txt" style="width:50%;" />
+																				</div>
                                                                             </td>
                                                                             <td>
                                                                                 <input type="text" name="tour_price[<?=$i?>][]" value="<?= number_format($tour['tour_price']) ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -381,16 +383,16 @@
 																	<td style="width:*;text-align:center">
 																		상품타입
 																	</td>
-																	<td style="width:15%;text-align:center">
+																	<td style="width:10%;text-align:center">
 																		성인가격(단위: 바트)
 																	</td>
-																	<td style="width:15%;text-align:center">
+																	<td style="width:10%;text-align:center">
 																		소아가격(단위: 바트)
 																	</td>
-																	<td style="width:15%;text-align:center">
+																	<td style="width:10%;text-align:center">
 																		유아가격(단위: 바트)
 																	</td>
-																	<td style="width:15%;text-align:center">
+																	<td style="width:10%;text-align:center">
 																		판매상태
 																	</td>
 																</tr>
@@ -399,8 +401,10 @@
 																<tr class="air_list_1" style="height:40px" >
 																	<td style="width:100px;text-align:center">
 																		<input type="hidden" name="tours_idx[0][]" class="tours_idx" value="">
-																		<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-																		<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:100%; margin-top: 10px;" />
+																		<div class="flex" style="gap: 5px;">
+																			<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+																			<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
+																		</div>
 																	</td>
 																	<td style="text-align:center">
 																		<input type="text" name="tour_price[0][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -650,18 +654,20 @@
 									<thead>
 										<tr style="height:40px">
 											<td style="width:*;text-align:center">상품타입</td>
-											<td style="width:15%;text-align:center">성인가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">소아가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">유아가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">판매상태</td>
+											<td style="width:10%;text-align:center">성인가격(단위: 바트)</td>
+											<td style="width:10%;text-align:center">소아가격(단위: 바트)</td>
+											<td style="width:10%;text-align:center">유아가격(단위: 바트)</td>
+											<td style="width:10%;text-align:center">판매상태</td>
 										</tr>
 									</thead>
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
-												<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 100%" />
-												<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+												<div class="flex" style="gap: 5px;">
+													<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 50%" />
+													<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />				
+												</div>
 											</td>
 											<td style="text-align:center">
 												<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -884,8 +890,10 @@
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
-					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-					<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+					<div class="flex" style="gap: 5px;">
+						<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+					</div>	
 				</td>
 				<td style="text-align:center">
 					<input type="text" name="tour_price[${tableListIndex}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
@@ -930,8 +938,10 @@
 			<tr class="air_list_1" style="height:40px">
 				<td>
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
-					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-					<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+					<div class="flex" style="gap: 5px;">
+						<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+					</div>
 				</td>
 				<td>
 					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
