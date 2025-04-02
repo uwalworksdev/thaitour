@@ -18,7 +18,7 @@ class PdfTestController extends BaseController
 
         // Nội dung HTML muốn xuất ra PDF
         $html = '
-            <h1 style="text-align: center;">Chào mừng đến với CodeIgniter 4</h1>
+            <h1 style="text-align: center;">Chào mừng đến với CodeIgniter 4fsdafsad</h1>
             <p style="color: blue;">Đây là file PDF được tạo bởi Dompdf.</p>
         ';
 
