@@ -44,7 +44,7 @@
                     <div class="location_conts">
                         <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon" class="ic_green">
                         <a href="https://www.google.com/maps/search/?api=1&query=<?=urlencode($product['addrs'])?>" target="_blank" class="">
-                            지도에서 보기
+                            지도에서 보기12
                         </a>
                     </div>
                 </div>
