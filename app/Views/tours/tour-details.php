@@ -48,7 +48,7 @@
                         </a>
                     </div>
                 </div>
-                gfss
+                
                 <div class="above-cus-content">
                     <div class="rating-container">
                         <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
