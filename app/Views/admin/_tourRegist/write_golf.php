@@ -1178,7 +1178,7 @@
 								
                               
                                 <tr>
-                                    <th>안내사항</th>
+                                    <th>위치정보</th>
                                     <td>
 
 								    <textarea name="code_services" id="code_services" rows="10" cols="100" class="input_txt"
@@ -1211,7 +1211,7 @@
                                         </script>
 
                                     </td>
-                                    <th>골프텔 정보</th>
+                                    <th>복장규정</th>
                                     <td>
 
 								    <textarea name="product_more" id="product_more" rows="10" cols="100" class="input_txt"
@@ -1246,7 +1246,7 @@
                                     </td>									
                                 </tr>  								
                                 <tr>
-                                    <th>유의사항</th>
+                                    <th>캐디팁</th>
                                     <td>
 
 								    <textarea name="note_news" id="note_news" rows="10" cols="100" class="input_txt"
@@ -1279,7 +1279,7 @@
                                         </script>
 
                                     </td>
-                                    <th>더투어랩 이용방법</th>
+                                    <th>레인체크 규정</th>
                                     <td>
 
 								    <textarea name="departure_area" id="departure_area" rows="10" cols="100" class="input_txt"
@@ -1313,7 +1313,144 @@
 
                                     </td>
                                 </tr>
-                              
+
+                                  <tr>
+                                    <th>1~2인 라운드 규정</th>
+                                    <td>
+
+								    <textarea name="product_contents" id="product_contents" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($product_contents) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors9 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors9,
+                                                elPlaceHolder: "product_contents",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>어린이 정책</th>
+                                    <td>
+
+								    <textarea name="product_confirm" id="product_confirm" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors10 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors10,
+                                                elPlaceHolder: "product_confirm",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr>  
+								
+                                <tr>
+                                    <th>골프텔 정보</th>
+                                    <td>
+
+								    <textarea name="product_able" id="product_able" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($product_able) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors11 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors11,
+                                                elPlaceHolder: "product_able",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>중요 공지사항</th>
+                                    <td>
+
+								    <textarea name="notice_comment" id="notice_comment" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors12 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors12,
+                                                elPlaceHolder: "notice_comment",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr> 							  
                               
                                <?php
                                 $deadline_date = explode(",", $golf_info["deadline_date"]);
@@ -2627,7 +2764,10 @@
                 oEditors6.getById["product_more"].exec("UPDATE_CONTENTS_FIELD", []);
                 oEditors7.getById["note_news"].exec("UPDATE_CONTENTS_FIELD", []);
                 oEditors8.getById["departure_area"].exec("UPDATE_CONTENTS_FIELD", []);
-
+                oEditors9.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []); //  1~2인 라운드 규정
+                oEditors10.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);  // 어린이 정책
+                oEditors11.getById["product_able"].exec("UPDATE_CONTENTS_FIELD", []);     // 골프텔 정보
+                oEditors12.getById["notice_comment"].exec("UPDATE_CONTENTS_FIELD", []);   // 중요 공지사항
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {
                     _code_mbtis += $(this).val() + '|';
