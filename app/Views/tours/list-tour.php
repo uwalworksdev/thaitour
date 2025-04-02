@@ -224,7 +224,7 @@
                                         <div class="item-info">
                                             <div class="item-price-info">
                                                 <span class="main"><?= number_format($product['tour_price_won']) ?></span class="text-gray"> 원
-                                                ~fsa
+                                                ~
                                                 <span class="sub text-gray"><?= number_format($product['tour_price']) ?>바트~</span>
                                             </div>
                                         </div>
