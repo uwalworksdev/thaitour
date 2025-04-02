@@ -223,9 +223,9 @@
                                         </div>
                                         <div class="item-info">
                                             <div class="item-price-info">
-                                                <span class="main"><?= number_format($product['product_price_won']) ?></span class="text-gray"> 원
+                                                <span class="main"><?= number_format($product['tour_price_won']) ?></span class="text-gray"> 원
                                                 ~
-                                                <span class="sub text-gray"><?= number_format($product['product_price']) ?>바트~</span>
+                                                <span class="sub text-gray"><?= number_format($product['tour_price']) ?>바트~</span>
                                             </div>
                                         </div>
                                     </div>

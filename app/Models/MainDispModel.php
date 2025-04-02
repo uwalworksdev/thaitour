@@ -21,6 +21,7 @@ class MainDispModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table($this->table);
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
@@ -47,9 +48,21 @@ class MainDispModel extends Model
 
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
-            $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_won = $product_price * $baht_thai;
             $items[$key]['product_price_won'] = $product_price_won;
+        }
+
+        $today = date("Y-m-d");
+
+        foreach ($items as $key => $value) {
+            $row_tour_price = $this->db->table('tbl_tours_price')
+                                    ->where("product_idx", $value['product_idx'])
+                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+                                    ->limit(1)->get()->getRowArray();
+            $tour_price = (float)$row_tour_price['goods_price1'] ?? 0;
+            $tour_price_won = $tour_price * $baht_thai;
+            $items[$key]['tour_price'] = $tour_price;
+            $items[$key]['tour_price_won'] = $tour_price_won;
         }
 
         $data = [
