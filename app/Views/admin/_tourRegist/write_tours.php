@@ -593,8 +593,7 @@
                                     </td>
                                 </tr>
 
-
-                                <tr>
+                                <!-- <tr>
                                     <th>기존상품가(단위: 바트)</th>
                                     <td>
                                         <input id="original_price" name="original_price" class="input_txt price"
@@ -608,7 +607,7 @@
                                                class="input_txt price" type="text" style="width:90%"/><br/>
                                         <span style="color: gray;">* ex) 상품페이지에 보여질 상품가격(할인가)</span>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <script>
                                     function select_add_it() {
