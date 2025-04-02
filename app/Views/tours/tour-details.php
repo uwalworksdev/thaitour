@@ -298,19 +298,10 @@
                                         <select name="moption" class="moption" id="moption_<?=$infoIndex?>" onchange="sel_moption(this.value);" data-info-index="<?= $infoIndex ?>" style="<?= $count_t === 0 ? 'display: block;' : 'display: none;' ?>">
                                             <option value="">옵션선택</option>
                                                 <?php foreach ($info['options'] as $option): ?>
-                                                    <?php 
-                                                    // foreach ($row_option['additional_options'] as $option): 
-                                                    //                 $baht_thai = (float)($setting['baht_thai'] ?? 0);
-                                                    //                 $option_price = (float)$option['option_price'];
-                                                    //                 $price_baht_option = round($option_price / $baht_thai);
-                                                    ?>
                                                     <option value="<?=$option['code_idx']?>">
                                                         <?=$option['moption_name'] ?>
                                                     </option>
                                                 <?php endforeach; ?>
-                                                <?php 
-                                                    // endforeach; 
-                                                ?>
                                         </select>
                                         <?php $count_t++; ?>
                                     <?php endforeach; ?>
@@ -1284,52 +1275,6 @@
                                 quantityContainer.find(".quantity-container.baby").find(".currency").text("0 바트");
                                 quantityContainer.find(".quantity-container.baby").find(".currency").attr("data-price-baht", Number(dayData.goods_price3));
 
-                                //adult 
-                                // $containerAdult = quantityContainer.find(".quantity-container.adult");
-                                
-                                // var $quantityDisplayAdult = $containerAdult.find('.quantity');
-                                // var $increaseBtnAdult = $containerAdult.find('.increase');
-                                // var $decreaseBtnAdult = $containerAdult.find('.decrease');
-                                // var pricePerUnitAdult = parseFloat(quantityContainer.find(".quantity-container.adult").find(".price").attr("data-price"));
-                                
-                                // var priceBahtPerUnitAdult = parseFloat(quantityContainer.find(".quantity-container.adult").find('.currency').data('price-baht'));
-
-                                // var quantityAdult = parseInt($quantityDisplayAdult.text());
-                                // var $priceAdult = $containerAdult.find('.price');
-                                // var $currencyAdult = $containerAdult.find('.currency');
-
-                                // if ($containerAdult.find('.des').text().includes('성인') && quantityAdult === 0) {
-                                //     quantityAdult = 1; 
-                                //     adultQuantity = quantityAdult;
-                                //     adultTotalPrice = adultQuantity * pricePerUnitAdult;
-                                    
-                                //     $quantityDisplayAdult.text(quantityAdult);
-                                //     $decreaseBtnAdult.removeAttr('disabled');
-                                // }
-
-                                // updatePrice(quantityAdult, pricePerUnitAdult, priceBahtPerUnitAdult, $priceAdult, $currencyAdult)
-
-                                // $increaseBtnAdult.click(function() {
-                                //     quantityAdult++;
-                                //     $quantityDisplayAdult.text(quantityAdult);
-                                //     $decreaseBtnAdult.removeAttr('disabled');
-                                //     updateQuantity($containerAdult, quantityAdult, pricePerUnitAdult);            
-
-                                //     updatePrice(quantityAdult, pricePerUnitAdult, priceBahtPerUnitAdult, $priceAdult, $currencyAdult)
-                                // });
-
-                                // $decreaseBtnAdult.click(function() {
-                                //     if (quantityAdult > 0) {
-                                //         quantityAdult--;
-                                //         $quantityDisplayAdult.text(quantityAdult);
-                                //     }
-                                //     if (quantityAdult === 0) {
-                                //         $decreaseBtnAdult.attr('disabled', true);
-                                //     }
-                                //     updateQuantity($containerAdult, quantityAdult, pricePerUnitAdult);
-                                //     updatePrice(quantityAdult, pricePerUnitAdult, priceBahtPerUnitAdult, $priceAdult, $currencyAdult)
-                                // });
-
                                 adultQuantity = 1;
                                 childQuantity = 0;
                                 babyQuantity = 0;
@@ -1383,10 +1328,7 @@
                                         updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
                                     });
                                 });
-
-                                console.log(adultTotalPrice);
                                 
-
                                 let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
 
                                 $(".total_all_price").text(total_price.toLocaleString('ko-KR'));

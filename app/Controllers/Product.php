@@ -3108,9 +3108,6 @@ class Product extends BaseController
 
         $data['productTourInfo'] = $groupedData;
 
-        // var_dump($data['productTourInfo']);
-        // die();
-
         $airCode = $this->request->getGet('air_code') ?? '0000';
 
         $productDetail = $this->dayModel->getProductDetail($product_idx, $airCode);

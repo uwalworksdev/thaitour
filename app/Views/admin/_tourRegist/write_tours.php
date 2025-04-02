@@ -1487,7 +1487,6 @@
                     </div>
                 <?php endforeach; ?> -->
 
-
                 <!-- <?php if ($product_idx): ?>
                     <div class="tail_menu">
                         <ul>
@@ -1704,11 +1703,12 @@
                     </div> -->
 
 
-                <?php endif; ?>
+                <!-- <?php endif; ?> -->
             </div>
 
         </div>
     </div>
+    <?php echo "fafafa";?>
     <div class="pick_item_pop02" id="popup_location">
         <div>
             <h2>메인노출상품 등록</h2>
@@ -1724,6 +1724,7 @@
     </div>
 
     <script>    
+
         $(document).ready(function () {
             $("[id^=all_code_mbti_]").on("change", function () {
                 let groupNum = $(this).attr("id").split("_")[3]; 
@@ -2187,6 +2188,7 @@
     </script>
 
     <script>
+
         $(".tour_imgpop").each(function () {
             if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
                 $(this).colorbox({
@@ -2476,6 +2478,8 @@
     </script>
 
     <script type="text/javascript">
+        
+
         function del_yoil(yoil_idx) {
             if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
                 hiddenFrame.location.href = "/AdmMaster/_tourRegist/yoil_del.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&yoil_idx=" + yoil_idx;
@@ -2617,7 +2621,7 @@
             });
         }
 
-        function get_code(strs, depth) {
+        function get_code(strs, depth) {            
             $.ajax({
                 type: "GET"
                 , url: "/AdmMaster/api/get_code"
