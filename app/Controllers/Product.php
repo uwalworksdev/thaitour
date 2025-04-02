@@ -3053,10 +3053,10 @@ class Product extends BaseController
 
 
         $sql_info = "
-        SELECT pt.*, pti.*
-        FROM tbl_product_tours pt
-        LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
-        WHERE pt.product_idx = ? ORDER BY pt.info_idx ASC, pt.tours_idx ASC
+            SELECT pt.*, pti.*
+            FROM tbl_product_tours pt
+            LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
+            WHERE pt.product_idx = ? AND status = 'Y' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
         ";
 
         $query_info = $this->db->query($sql_info, [$product_idx]);
