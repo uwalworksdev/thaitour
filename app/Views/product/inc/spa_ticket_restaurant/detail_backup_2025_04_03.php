@@ -1,11 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/tour/spa.css">
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
         async defer></script>
-<style>
-    .content-sub-hotel-detail .section3 {
-        margin-top: 0px;
-    }
-</style>
 <div class="content-sub-hotel-detail tours-detail spa-detail">
     <div class="body_inner">
         <div class="section1">
@@ -592,8 +587,8 @@
     }
 
     function loadDay(day_) {
-
-        let url = `<?= route_to('api.spa_.get_spa_options') ?>?product_idx=<?= $data_['product_idx'] ?>&date=${day_}`;
+        let yoil = getYoil(day_);
+        let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}&yoil=${yoil}`;
         $.ajax({
             url: url,
             type: "GET",
@@ -602,56 +597,77 @@
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 LoadingPage();
             },
-            success: function (data, status, request) {              
-                renderData(data);
+            success: function (response, status, request) {
+                let day = response.data.day;
+                renderData(response.data);
                 LoadingPage();
             }
         });
     }
 
-    function renderData(data) {
+    function renderData(rs) {
         let html = ``;
-        for (let i = 0; i < data.length; i++) {
-            let item_ = data[i];
+        for (let i = 0; i < rs.length; i++) {
+            let data = rs[i].data;
 
-            html += 
-                `<tr>
-                    <td>${item_.spas_subject}</td>
+            let full_ = data.full_;
+
+            for (let i = 0; i < data.length; i++) {
+                let item_ = data[i];
+
+                let txt = '매일'
+                if (full_ && full_ == false) {
+                    txt = '';
+                }
+
+                html += `<tr>
+                    <td>${item_.s_station}</td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
-                            <div class="price" style="display: flex; justify-content: start; align-items: start; flex-direction: column; gap: 5px;">
-                                <span class="text_primary">${convertNum(item_.goods_price1_won)} 원</span>
-                                <span style="">(${convertNum(item_.goods_price1)} 바트)</span>
+                            <div class="price" style="    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+}">
+                                <span class="text_primary">${convertNum(item_.tour_price_baht)} 원</span>
+                                <span style="">(${convertNum(item_.tour_price)} 바트)</span>
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
-                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.goods_price1_won}" class="price_in qty_adults_select_" size="4"
-                                        data-idx="${item_.idx}" data-s_station="${item_.spas_subject}" data-type="adults" onkeyup="chkNum(this)">
+                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_baht}" class="price_in qty_adults_select_" size="4"
+                                       data-idx="${item_.charge_idx}" data-s_station="${item_.s_station}" data-type="adults" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
                     </td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
-                            <div class="price" style="display: flex; justify-content: start; align-items: start; flex-direction: column; gap: 5px;">
-                                <span class="text_primary">${convertNum(item_.goods_price2_won)} 원</span>
-                                <span style="">(${convertNum(item_.goods_price2)} 바트)</span>
+                            <div class="price" style="    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+}">
+                                <span class="text_primary">${convertNum(item_.tour_price_kids_baht)} 원</span>
+                                <span style="">(${convertNum(item_.tour_price_kids)} 바트)</span>
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
-                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.goods_price2_won}" class="price_in qty_children_select_" size="4"
-                                        data-idx="${item_.idx}" data-s_station="${item_.spas_subject}" data-type="kids" onkeyup="chkNum(this)">
+                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids_baht}" class="price_in qty_children_select_" size="4"
+                                       data-idx="${item_.charge_idx}" data-s_station="${item_.s_station}" data-type="kids" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
                     </td>
                 </tr>`;
+            }
         }
 
-        if (data.length === 0) {
+        if (rs.length === 0) {
             html = `<tr>
-                        <td colspan="3">
-                            날짜 선택해주세요!
-                        </td>
-                    </tr>`;
+                                <td colspan="3">
+                                    날짜 선택해주세요!
+                                </td>
+                            </tr>`;
         }
 
         $('#price_body_').html(html);

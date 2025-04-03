@@ -16,6 +16,8 @@ class ProductApi extends BaseController
     private $roomsModel;
     private $roomImg;
     private $toursPrice;
+    private $spasPrice;
+
 
     public function __construct()
     {
@@ -28,6 +30,7 @@ class ProductApi extends BaseController
         $this->roomOptionsModel = new \App\Models\RoomOptions();
         $this->roomsModel = new \App\Models\Rooms();
         $this->toursPrice = model("ToursPrice");
+        $this->spasPrice = model("SpasPrice");
 
         helper('my_helper');
         helper('alert_helper');
@@ -561,6 +564,25 @@ class ProductApi extends BaseController
             $days_list[$key]['goods_price1_won'] = round($day['goods_price1'] * $baht_thai);
             $days_list[$key]['goods_price2_won'] = round($day['goods_price2'] * $baht_thai);
             $days_list[$key]['goods_price3_won'] = round($day['goods_price3'] * $baht_thai);
+        }
+
+        return $this->response->setJSON($days_list);
+    }
+
+    public function get_spas_price()
+    {
+        $product_idx = $this->request->getVar('product_idx');
+        $month = str_pad($this->request->getVar('month'), 2, "0", STR_PAD_LEFT);
+        $year = $this->request->getVar('year');
+        $date_pattern = "$year-$month-%";
+
+        $days_list = $this->spasPrice->where("product_idx", $product_idx)
+                                ->like("goods_date", $date_pattern, "after")
+                                ->groupBy("goods_date")
+                                ->get()
+                                ->getResultArray();
+        foreach($days_list as $key => $day) {
+
         }
 
         return $this->response->setJSON($days_list);

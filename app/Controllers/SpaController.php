@@ -18,6 +18,8 @@ class SpaController extends BaseController
     protected $orderSubModel;
     private $coupon;
     private $couponHistory;
+    private $spasPrice;
+
 
     public function __construct()
     {
@@ -33,6 +35,8 @@ class SpaController extends BaseController
         $this->orderSubModel = model("OrderSubModel");
         $this->coupon = model("Coupon");
         $this->couponHistory = model("CouponHistory");
+        $this->spasPrice = model("SpasPrice");
+
     }
 
     public function charge_list()
@@ -585,5 +589,30 @@ class SpaController extends BaseController
             'ch_r_date'         => Time::now('Asia/Seoul', 'en_US'),
             'm_idx'             => $memberIdx,
         ]);
+    }
+
+    public function get_spa_options() {
+        $db         = \Config\Database::connect();
+        $baht_thai = $this->setting['baht_thai'] ?? 0;
+
+        $product_idx = $this->request->getVar('product_idx');
+        $date = $this->request->getVar('date');
+
+        $builder = $db->table('tbl_spas_price p');
+
+        $builder->select('p.*, s.spas_subject');
+        $builder->join('tbl_product_spas s', 'p.spas_idx = s.spas_idx', 'left');
+        $builder->where("p.product_idx =", $product_idx);
+        $builder->where("p.goods_date =", $date);
+        $builder->where("s.status !=", 'N');
+        $builder->where("p.use_yn !=", 'N');
+        $options_list = $builder->get()->getResultArray();
+
+        foreach($options_list as $key => $day) {
+            $options_list[$key]['goods_price1_won'] = round($day['goods_price1'] * $baht_thai);
+            $options_list[$key]['goods_price2_won'] = round($day['goods_price2'] * $baht_thai);
+        }
+
+        return $this->response->setJSON($options_list);
     }
 }
