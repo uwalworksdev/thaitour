@@ -1933,9 +1933,8 @@ class AdminSpaController extends BaseController
         $dow_val       = $_POST['dow_val'];
         $product_idx   = $_POST['product_idx'];
         $info_idx      = $_POST['info_idx'];
-        $goods_price1  = $_POST['goods_price1'];
-        $goods_price2  = $_POST['goods_price2'];
-        $goods_price3  = $_POST['goods_price3'];
+        $goods_price1  = $_POST['goods_price1'] ?? 0;
+        $goods_price2  = $_POST['goods_price2'] ?? 0;
 
         $spa_idx_condition = '';
         if (!empty($spa_option)) {
@@ -1946,7 +1945,6 @@ class AdminSpaController extends BaseController
         $sql = "UPDATE tbl_spas_price
                 SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
                     goods_price2 = '" . $db->escapeString($goods_price2) . "',
-                    goods_price3 = '" . $db->escapeString($goods_price3) . "',
                     upd_date = NOW()
                 WHERE dow IN ($dow_val)
                 $spa_idx_condition
@@ -1976,13 +1974,11 @@ class AdminSpaController extends BaseController
         $idx          = $this->request->getPost('idx');
         $goods_price1 = str_replace(',', '', $this->request->getPost('goods_price1'));
         $goods_price2 = str_replace(',', '', $this->request->getPost('goods_price2'));
-        $goods_price3 = str_replace(',', '', $this->request->getPost('goods_price3'));
         $use_yn       = $this->request->getPost('use_yn');	
 
         $result = $this->spasPrice->update($idx, [
             "goods_price1" => $goods_price1,
             "goods_price2" => $goods_price2,
-            "goods_price3" => $goods_price3,
             "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
             "use_yn"       => $use_yn
         ]);
@@ -2011,13 +2007,11 @@ class AdminSpaController extends BaseController
                 $idx = (int) $row['idx'];
                 $goods_price1 = (float) str_replace(',', '', $row['goods_price1']);
                 $goods_price2 = (float) str_replace(',', '', $row['goods_price2']);
-                $goods_price3 = (float) str_replace(',', '', $row['goods_price3']);
                 $use_yn       = $row['use_yn'];
 
                 $result = $this->spasPrice->update($idx, [
                     "goods_price1" => $goods_price1,
                     "goods_price2" => $goods_price2,
-                    "goods_price3" => $goods_price3,
                     "use_yn"       => $use_yn,
                     "upd_date"     => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
                 ]);

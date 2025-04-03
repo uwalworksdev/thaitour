@@ -509,11 +509,11 @@
                                     return false;
                                 }
 
-                                if($("#dowPrice3").val() < "1") {
-                                    alert('수익가를 입력하세요.');
-                                    $("#dowPrice3").focus();
-                                    return false;
-                                }
+                                // if($("#dowPrice3").val() < "1") {
+                                //     alert('수익가를 입력하세요.');
+                                //     $("#dowPrice3").focus();
+                                //     return false;
+                                // }
 
                                 $.ajax({
 
@@ -528,7 +528,6 @@
                                             "info_idx"     : $("#info_idx").val(),
                                             "goods_price1" : $("#dowPrice1").val(),
                                             "goods_price2" : $("#dowPrice2").val(),
-                                            "goods_price3" : $("#dowPrice3").val(),
                                         },
                                     dataType: "json",
                                     async: false,
@@ -683,7 +682,6 @@
                     "idx"           : idx,
                     "goods_price1"  : $("#price1_"+idx).val(),
                     "goods_price2"  : $("#price2_"+idx).val(),
-                    "goods_price3"  : $("#price3_"+idx).val(),
                     "use_yn"        : use_yn 
                 },
                 dataType: "json",
@@ -760,7 +758,6 @@
                 idx: $(this).find(".upd_chk").data("idx"),
                 goods_price1: $(this).find("[name='goods_price1[]']").val().replace(/,/g, ""),
                 goods_price2: $(this).find("[name='goods_price2[]']").val().replace(/,/g, ""),
-                goods_price3: $(this).find("[name='goods_price3[]']").val().replace(/,/g, ""),
                 use_yn: $(this).find(".use_yn").is(":checked") ? "N" : "Y" // 체크되었으면 "N", 해제되었으면 "Y"			
             };
             rows.push(row);

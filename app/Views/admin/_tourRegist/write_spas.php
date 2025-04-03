@@ -1,43 +1,61 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
-    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-    <style>
-        .tab_title {
-            font-size: 16px;
-            color: #333333;
-            font-weight: bold;
-            height: 28px;
-            line-height: 28px;
-            background: url('/img/ico/deco_tab_title.png') left center no-repeat;
-            padding-left: 43px;
-            margin-left: 7px;
-            margin-bottom: 26px;
-        }
 
-        #input_file_ko {
-            display: inline-block;
-            width: 500px;
-        }
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
-        .img_add #input_file_ko {
-            display: none;
-        }
+<style>
+    .tab_title {
+        font-size: 16px;
+        color: #333333;
+        font-weight: bold;
+        height: 28px;
+        line-height: 28px;
+        background: url('/img/ico/deco_tab_title.png') left center no-repeat;
+        padding-left: 43px;
+        margin-left: 7px;
+        margin-bottom: 26px;
+    }
 
-        .img_add.img_add_group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    #input_file_ko {
+        display: inline-block;
+        width: 500px;
+    }
 
-        .img_add .file_input + .file_input {
-            margin-left: 0;
-        }
-    </style>
-<?php $back_url = "write"; ?>
+    .img_add #input_file_ko {
+        display: none;
+    }
+
+    .img_add.img_add_group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .img_add .file_input + .file_input {
+        margin-left: 0;
+    }
+
+    .al {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        margin: 30px 0;
+        gap: 20px;
+    }
+
+    .al input {
+        width: 15%
+    }
+
+    .btn_al_plus_ {
+        width: 50px !important;
+    }
+</style>
+
     <script type="text/javascript">
         function checkForNumber(str) {
             let key = event.keyCode;
@@ -498,14 +516,14 @@
                                                 echo "checked=checked"; ?>> 
                                     </td>								
 								</tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>예약시간</th>
                                     <td colspan="3">
                                         <input id="time_line" name="time_line" class="input_txt" type="text"
                                                value="<?= $time_line ?>" style="width:100%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
                                     </td>								
-								</tr>
+								</tr> -->
                                 </tbody>
                             </table>
 
@@ -531,11 +549,9 @@
                                 });
                             </script>
                             <style>
-                                .btn_al_plus_ {
-                                    width: 50px !important;
-                                }
+                                
                             </style>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -552,19 +568,7 @@
                                     </td>
                                 </tr>
 
-                                <style>
-                                    .al {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: start;
-                                        margin: 30px 0;
-                                        gap: 20px;
-                                    }
-
-                                    .al input {
-                                        width: 15%
-                                    }
-                                </style>
+                                
 
                                 <?php
 
@@ -607,12 +611,11 @@
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range"
                                                 style="width: auto;height: auto">+
                                         </button>
-                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                             <script>
                                 $('.deadline_date').each(function () {
                                     $(this).daterangepicker({
