@@ -159,9 +159,11 @@
                                                                         <?php foreach ($info['spas'] as $spa): ?>
                                                                             <tr class="air_list_1" style="height:40px">
                                                                                 <td>
-                                                                                <input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
-                                                                                    <input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="국문글씨 입력해주세요" class="spas_subject input_txt" style="width:100%" />
-                                                                                    <input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:100%; margin-top: 10px;" />
+                                                                                	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
+																					<div style="display: flex; gap: 5px;">
+																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
+																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																					</div>
                                                                                 </td>
                                                                                 <td>
                                                                                     <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['spas_price']) ?>" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
@@ -381,8 +383,10 @@
                                                                     <tr class="air_list_1" style="height:40px" >
                                                                         <td style="width:100px;text-align:center">
                                                                             <input type="hidden" name="spas_idx[0][]" class="spas_idx" value="">
-                                                                            <input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-                                                                            <input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:100%; margin-top: 10px;" />
+																			<div style="display: flex; gap: 5px;">
+																				<input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
+																			</div>
                                                                         </td>
                                                                         <td style="text-align:center">
                                                                             <input type="text" name="spas_price[0][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
@@ -631,8 +635,10 @@
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
-												<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 100%" />
-												<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+												<div style="display: flex; gap: 5px;">
+													<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 50%" />
+													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+												</div>
 											</td>
 											<td style="text-align:center">
 												<input type="text" name="spas_price[${tableCount}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
@@ -849,8 +855,10 @@
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
 					<input type="hidden" name="spas_idx[${tableListIndex}][]" class="spas_idx" value="">
-					<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-					<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+					<div style="display: flex; gap: 5px;">
+						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+					</div>
 				</td>
 				<td style="text-align:center">
 					<input type="text" name="spas_price[${tableListIndex}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
@@ -892,8 +900,10 @@
 			<tr class="air_list_1" style="height:40px">
 				<td>
 					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
-					<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:100%" />
-					<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 100%; margin-top: 10px;" />
+					<div style="display: flex; gap: 5px;">
+						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+					</div>
 				</td>
 				<td>
 					<input type="text" name="spas_price[${infoIdx}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
