@@ -159,7 +159,9 @@
                         </tr>
                         <th>
                             홀등록
+                            <p style="display:block;margin-top:10px;">
                                 <button type="button" id="btn_add_prod" class="btn_01">추가</button>
+                            </p>
                         </th>
 
                         <td>
