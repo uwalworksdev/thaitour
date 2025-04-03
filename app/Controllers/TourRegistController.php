@@ -1483,7 +1483,7 @@ class TourRegistController extends BaseController
         ];
 
         $conditions = [
-            "parent_code_no" => '55',
+            "parent_code_no" => '57',
         ];
         $product_themes = $this->codeModel->getCodesByConditions($conditions);
 

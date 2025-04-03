@@ -3255,7 +3255,7 @@ class Product extends BaseController
             $perPage = 5;
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-            $product_theme = $this->codeModel->getByParentAndDepth(55, 2)->getResultArray();
+            $product_theme = $this->codeModel->getByParentAndDepth(57, 2)->getResultArray();
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];

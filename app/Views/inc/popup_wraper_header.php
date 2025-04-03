@@ -359,7 +359,7 @@
     $code_first_tour = $codes_tour[0] ?? [];
 
     $keyWordAll = $productModel->getKeyWordAll(1301);
-    $product_theme = $codeModel->getByParentAndDepth(55, 2)->getResultArray();
+    $product_theme = $codeModel->getByParentAndDepth(57, 2)->getResultArray();
 ?>
 
 <div class="popup_wraper">
@@ -601,7 +601,7 @@
                         <tr>
                             <th>그린피</th>
                             <td>
-                                <div class="list_area list_green_peas">
+                                <!-- <div class="list_area list_green_peas">
                                     <p data-code="all">전체</p>
                                     <?php
                                         foreach($green_peas_arr as $code){
@@ -610,6 +610,24 @@
                                     <?php
                                         }
                                     ?>
+                                </div> -->
+                                <div class="tab_price_area">
+                                    <div class="tab-currency filter_price_wrap">
+                                        <div class="filter">
+                                            <button type="button" class="btn_fil_price active" data-type="W">원</button>
+                                            <button type="button" class="btn_fil_price" data-type="B">바트</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="slider-container only_web">
+                                        <div class="slider-background"></div>
+                                        <div class="slider-track" id="slider-track" style="left: 0%; width: 0%;"></div>
+                                        <input type="range" min="0" max="500000" value="0" name="price_min" class="slider" id="slider-min">
+                                        <input type="range" min="0" max="500000" value="0" name="price_max" class="slider" id="slider-max">
+                                    </div>
+                                    <span class="price_range">
+                                        <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
+                                    </span>
                                 </div>
                             </td>
                         </tr>

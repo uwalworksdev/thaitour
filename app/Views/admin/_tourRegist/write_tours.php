@@ -654,9 +654,14 @@
                                 </tr>
                                 <tr>
                                     <th>직접결제</th>
-                                    <td colspan="3">
+                                    <td>
 										<input type="checkbox" name="direct_payment" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
+                                    </td>
+                                    <th>총 시간</th>
+                                    <td>
+                                        <input id="tours_hour" name="tours_hour" class="input_txt" type="text"
+                                               value="<?= $tours_hour ?>" style="width:20%">
                                     </td>
                                 </tr>
 
@@ -672,9 +677,10 @@
                                             <?php endforeach; ?>
                                         </div>
                                     </td> -->
+                                    
                                 </tr>
                                 <tr>
-                                    <th>투어메인</th>
+                                    <!-- <th>투어메인</th>
                                     <td>
                                         <input type="checkbox" name="tours_guide" value="Y"
                                                class="yoil" <?php if (isset($tours_guide) && $tours_guide == "Y") echo "checked"; ?> >
@@ -688,12 +694,8 @@
                                         <input type="checkbox" name="tours_total_hour" value="Y"
                                                class="yoil" <?php if (isset($tours_total_hour) && $tours_total_hour == "Y") echo "checked"; ?> >
                                         총 시간&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                    <th>총 시간</th>
-                                    <td>
-                                        <input id="tours_hour" name="tours_hour" class="input_txt" type="text"
-                                               value="<?= $tours_hour ?>" style="width:20%">
-                                    </td>
+                                    </td> -->
+
                                 </tr>
 
                                 <tr>

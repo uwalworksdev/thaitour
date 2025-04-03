@@ -1780,7 +1780,7 @@ class ProductModel extends Model
             $keyWords = $keyWords->where("product_code_1", $code_no);
         }
 
-        $keyWords = $keyWords->where("is_view", "Y")->where("product_status !=", "D")->get()->getResultArray();
+        $keyWords = $keyWords->where("product_status !=", "D")->get()->getResultArray();
         $keyWordsArray = [];
         foreach ($keyWords as $keyWord) {
             $keyWordStr = $keyWord['keyword'];
