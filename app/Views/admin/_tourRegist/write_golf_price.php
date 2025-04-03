@@ -152,7 +152,7 @@
 									<td>
                                         <button type="button" class="btn_01" onclick="prodAdd()">추가</button>    									
 									</td>
-								</tr>
+								</tr>  
 							</table>	
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
