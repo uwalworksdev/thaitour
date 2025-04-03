@@ -159,7 +159,6 @@
                                         <div style="margin:10px;text-align:left;" class="product-row">
                                             성인가격: <input type="text" name="dowPrice1" id="dowPrice1" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
 											소아가격: <input type="text" name="dowPrice2" id="dowPrice2" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
-											유아가격: <input type="text" name="dowPrice3" id="dowPrice3" value="0" numberonly="true" style="text-align:right;background: white; width: 130px;">
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">날짜별 일괄 적용</a>  
@@ -192,7 +191,6 @@
                                 <col width="9%">
                                 <col width="9%">
                                 <col width="8%">
-                                <col width="8%">
                                 <col width="10%">
                                 <col width="10%">
                                 <col width="6%">
@@ -216,10 +214,6 @@
                                     <td style="text-align:center">
                                         소아가격
                                         <input type="checkbox" name="" id="price2_all">전체
-                                    </td>
-                                    <td style="text-align:center">
-                                        유아가격
-                                        <input type="checkbox" name="" id="price3_all">전체
                                     </td>
                                     <td style="text-align:center">
                                         마감
@@ -251,9 +245,6 @@
                                         </td>
                                         <td style="text-align:center">
                                             <input type="text" name="goods_price2[]" id="price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price price2 goods_price input_txt" numberonly="true" style="text-align:right;">
-                                        </td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="goods_price3[]" id="price3_<?=$item['idx']?>" value="<?=number_format($item['goods_price3'])?>" class="price price3 goods_price input_txt" numberonly="true" style="text-align:right;">
                                         </td>
                                         <td style="text-align:center;">
                                             <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="Y" <?php if($item['use_yn'] == "N") echo "checked";?>>

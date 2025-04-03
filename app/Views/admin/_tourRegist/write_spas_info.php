@@ -151,9 +151,6 @@
                                                                                 소아가격(단위: 바트)
                                                                             </td>
                                                                             <td style="width:15%;text-align:center">
-                                                                                유아가격(단위: 바트)
-                                                                            </td>
-                                                                            <td style="width:15%;text-align:center">
                                                                                 판매상태
                                                                             </td>
                                                                         </tr>
@@ -172,9 +169,7 @@
                                                                                 <td>
                                                                                     <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['spas_price_kids']) ?>" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                                 </td>
-                                                                                <td>
-                                                                                    <input type="text" name="spas_price_baby[<?=$i?>][]" value="<?= number_format($spa['spas_price_baby']) ?>" class="price spas_price_baby input_txt" style="width:90%" numberOnly=true/>
-                                                                                </td>
+         
                                                                                 <td>
                                                                                     <div style="display: flex; gap: 10px; align-items: center; justify-content: center">
                                                                                         <select name="status[<?=$i?>][]">
@@ -397,9 +392,6 @@
                                                                         </td>
                                                                         <td style="text-align:center">
                                                                             <input type="text" name="spas_price_kids[0][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
-                                                                        </td>
-                                                                        <td style="text-align:center">
-                                                                            <input type="text" name="spas_price_baby[0][]" value="" class="price spas_price_baby input_txt" style="width:90%" numberOnly=true/>
                                                                         </td>
                                                                         <td>
                                                                             <div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -635,7 +627,6 @@
 											<td style="width:*;text-align:center">상품타입</td>
 											<td style="width:15%;text-align:center">성인가격(단위: 바트)</td>
 											<td style="width:15%;text-align:center">소아가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">유아가격(단위: 바트)</td>
 											<td style="width:15%;text-align:center">판매상태</td>
 										</tr>
 									</thead>
@@ -651,9 +642,6 @@
 											</td>
 											<td style="text-align:center">
 												<input type="text" name="spas_price_kids[${tableCount}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="spas_price_baby[${tableCount}][]" value="" class="price spas_price_baby input_txt" style="width:90%" numberOnly=true/>
 											</td>
 											<td>
 												<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -873,9 +861,6 @@
 				<td style="text-align:center">
 					<input type="text" name="spas_price_kids[${tableListIndex}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
-				<td style="text-align:center">
-					<input type="text" name="spas_price_baby[${tableListIndex}][]" value="" class="price spas_price_baby input_txt" style="width:90%" numberOnly=true/>
-				</td>
 				<td>
 					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
 						<select name="status[${tableListIndex}][]">
@@ -918,9 +903,6 @@
 				</td>
 				<td>
 					<input type="text" name="spas_price_kids[${infoIdx}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
-				</td>
-				<td>
-					<input type="text" name="spas_price_baby[${infoIdx}][]" value="" class="price spas_price_baby input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
 					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -1253,12 +1235,12 @@
 				return;
 			}
 			
-			if ($(".spas_price_baby:eq("+i+")").val() == "")
-			{
-				$(".spas_price_baby:eq("+i+")").focus();
-				alert("가격을 입력해주셔야 합니다.");
-				return;
-			}
+			// if ($(".spas_price_baby:eq("+i+")").val() == "")
+			// {
+			// 	$(".spas_price_baby:eq("+i+")").focus();
+			// 	alert("가격을 입력해주셔야 합니다.");
+			// 	return;
+			// }
 
 		}
 		frm.submit();

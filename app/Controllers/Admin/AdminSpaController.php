@@ -1671,7 +1671,7 @@ class AdminSpaController extends BaseController
 
         if ($spas_idx) {
             $result = $this->productSpas->deleteSpa($spas_idx);
-            $this->productSpas->where('product_idx', $product_idx)
+            $this->spasPrice->where('product_idx', $product_idx)
                              ->where('info_idx', $info_idx)
                              ->where('spas_idx', $spas_idx)
                              ->delete();
