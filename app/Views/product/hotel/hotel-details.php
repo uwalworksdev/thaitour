@@ -617,7 +617,7 @@
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
-<div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
+<div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail 123">
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
