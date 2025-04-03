@@ -304,9 +304,9 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko prd_price_ko_m">
-                                <span class="prd_price"><?= number_format($product['product_price_won']) ?></span> <span
+                                <span class="prd_price"><?= number_format($product['spa_price_won']) ?></span> <span
                                         class="ko_m_price y_price">원</span>
-                                <span class="prd_price_thai ko_m_price">(<?= number_format($product['product_price']) ?> <span
+                                <span class="prd_price_thai ko_m_price">(<?= number_format($product['spa_price']) ?> <span
                                             class="ko_m_price">바트)</span></span>
                             </div>
                         </a>

@@ -135,7 +135,7 @@
                             <th colspan="3">적용일자 : <span id="day_select_">...</span></th>
                         </tr>
                         <tr>
-                            <th>선택옵션</th>
+                            <th>상품타입</th>
                             <th>성인(만 13세이상)</th>
                             <th>아동(만 5세~12세)</th>
                         </tr>
