@@ -148,7 +148,7 @@
                                 </colgroup>
                                 <tbody>
 								<tr height="45">
-									<th>골프요금추가</th>
+									<th>골프요금추가</th> 
 									<td>
                                         <button type="button" class="btn_01" onclick="prodAdd()">추가</button>    									
 									</td>
