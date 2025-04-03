@@ -138,22 +138,7 @@
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>	
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="100%"/>
-                                </colgroup>
-                                <tbody>
-								<tr height="45">
-									<th>골프요금추가</th>
-									<td>
-                                        <button type="button" class="btn_01" onclick="updOption('131',this)">수정                            </button>									
-									</td>
-								</tr>
-							</table>	
+                            </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
                             <col width="10%"/>
