@@ -163,7 +163,7 @@
                         <tr height="45">
                             <th>홀선택</th>
                             <td>
-                                <select id="golf_code" name="golf_code" class="input_select">
+                                <select id="golf_code" name="golf_code" class="input_select">    
                                     <option value="">선택</option>
                                     <?php foreach (GOLF_HOLES as $hole) : ?>
                                         <option value="<?= $hole ?>"><?= $hole ?>홀</option>
