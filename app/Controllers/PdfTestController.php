@@ -16,8 +16,8 @@ class PdfTestController extends BaseController
         $dompdf = new Dompdf($options);
 
         $html = '
-            <h1 style="text-align: center;">Welcome to CodeIgniter 4242</h1>
-            <p style="color: blue;">This is a PDF file1</p>
+            <h1 style="text-align: center;">Welcome to CodeIgniter 4</h1>
+            <p style="color: blue;">This is a PDF file</p>
         ';
 
         $dompdf->loadHtml($html);
