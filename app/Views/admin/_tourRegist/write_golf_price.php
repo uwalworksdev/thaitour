@@ -149,7 +149,9 @@
                                 <tbody>
 								<tr height="45">
 									<th>골프요금추가</th>
-									<td><button>추가</button></td>
+									<td>
+                                        <button type="button" class="btn_01" onclick="prodAdd()">추가</button>									
+									</td>
 								</tr>
 							</table>	
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
