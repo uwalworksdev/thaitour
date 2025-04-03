@@ -229,7 +229,7 @@
 
             <style>
                 .list-ticket-grid {
-                    height: 842px;
+                    height: 940px;
                     overflow: hidden;
                     margin-bottom: 50px;
                 }
