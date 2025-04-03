@@ -373,9 +373,6 @@
                                                                             소아가격(단위: 바트)
                                                                         </td>
                                                                         <td style="width:15%;text-align:center">
-                                                                            유아가격(단위: 바트)
-                                                                        </td>
-                                                                        <td style="width:15%;text-align:center">
                                                                             판매상태
                                                                         </td>
                                                                     </tr>
