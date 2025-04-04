@@ -179,7 +179,8 @@
                                     <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
                                 </div>
                             </div>
-                            <div class="text-content-3">
+                            <div class="text-content-3" style="justify-content: space-between;">
+                                <p><?=$info['info']['info_name']?></p>
                                 <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
                             </div>
                         </div>

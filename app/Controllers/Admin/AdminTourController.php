@@ -599,6 +599,7 @@ class AdminTourController extends BaseController
     public function write_info_ok()
     {
         $productIdx        = $this->request->getPost('product_idx');
+        $info_name         = $this->request->getPost('info_name');
         $o_sdate           = $this->request->getPost('o_sdate');
         $o_edate           = $this->request->getPost('o_edate');
         $tours_subject     = $this->request->getPost('tours_subject');
@@ -663,6 +664,7 @@ class AdminTourController extends BaseController
 
             $infoData = [
                 'product_idx' => $productIdx,
+                'info_name' => isset($info_name[$key]) ? $info_name[$key] : null,
                 'o_sdate' => $start_date,
                 'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
                 'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
