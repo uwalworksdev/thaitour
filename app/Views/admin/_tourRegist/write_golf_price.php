@@ -570,15 +570,59 @@ $(document).ready(function () {
 			  return false;
 		   }	  
 		   
-           if($("#a_sdate").val() > $("#a_edate").val()) {
-			  alert('시작자를 확인하세요.');
-			  $("#a_sdate").focus();
-			  return false;
-		   }	  
-		   
 	});
 });
 </script>
+
+<script>
+$(function() {
+    // 공통 옵션 (원하는 포맷으로 조절)
+    var dateFormat = "yy-mm-dd";
+
+    // 시작일 선택
+    $("#a_sdate").datepicker({
+        dateFormat: dateFormat,
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            $("#a_edate").datepicker("option", "minDate", startDate);
+        }
+    });
+
+    // 종료일 선택
+    $("#a_edate").datepicker({
+        dateFormat: dateFormat
+    });
+});
+</script>
+
+<script>
+$(function() {
+    var dateFormat = "yy-mm-dd";
+
+    // 시작일
+    $("#a_sdate").datepicker({
+        dateFormat: dateFormat,
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            var endDate = $("#a_edate").datepicker('getDate');
+
+            // 종료일보다 시작일이 뒤면 종료일 비움
+            if (endDate && startDate > endDate) {
+                $("#a_edate").val('');
+            }
+
+            // 종료일 선택 가능 시작 날짜 설정
+            $("#a_edate").datepicker("option", "minDate", startDate);
+        }
+    });
+
+    // 종료일
+    $("#a_edate").datepicker({
+        dateFormat: dateFormat
+    });
+});
+</script>
+
 
 <script>
 $(document).ready(function () {
