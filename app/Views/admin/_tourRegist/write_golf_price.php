@@ -162,6 +162,7 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
+								<button type="button" id="btn_add_option" class="btn_01">추가</button>
                             </td>
                         </tr>
                         <th>
