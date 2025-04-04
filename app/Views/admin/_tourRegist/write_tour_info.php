@@ -74,8 +74,8 @@
                                         <div class="table_list" data-info-idx="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
                                             <table style="width: 100%">
 												<colgroup>
+													<col width="20%">
 													<col width="*">
-													<col width="35%">
 													<col width="15%">
 												</colgroup>
 												<!-- <thead>
@@ -95,6 +95,11 @@
 																	<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
 																	<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																</div>
+															</div>
+                                                        </td>
+                                                        <td>
+															<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 																	<input type="hidden" name="o_onum[<?=$i?>]" class="o_onum" value="<?=$info['info']['o_onum']?>">
 																	<input type="text" readonly class="datepicker s_date" placeholder="시작기간" name="o_sdate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
@@ -104,34 +109,32 @@
 																
 																	<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
 																</div>
-															</div>
-                                                        </td>
-                                                        <td>
-															<?php
-																$count_yoil = 0;
-																for($_y = 0; $_y <= 6; $_y++) {
-																	if($info['info']['yoil_'.$_y] == 'Y') {
-																		$count_yoil++;
+																<?php
+																	$count_yoil = 0;
+																	for($_y = 0; $_y <= 6; $_y++) {
+																		if($info['info']['yoil_'.$_y] == 'Y') {
+																			$count_yoil++;
+																		}
 																	}
-																}
 
-															?>
-															<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
-															전체&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+																?>
+																<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
+																전체&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
+																	<?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+															</div>
                                                         </td>
 														<td>
 															<div style="display: flex; gap: 5px;">
@@ -312,8 +315,10 @@
 																													</select>
 																												</td>
 																												<td>
-																													<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																													<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													<div style="display: flex; align-items: center">
+																														<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																														<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													</div>
 																												</td>
 																												<td>
 																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -351,8 +356,8 @@
 									<div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
 										<table style="width: 100%">
 											<colgroup>
+												<col width="20%">
 												<col width="*">
-												<col width="35%">
 												<col width="15%">
 											</colgroup>
 								
@@ -366,29 +371,32 @@
 															<a href="javascript:add_tours(0);" class="btn btn-primary">추가</a>
 															<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
 														</div>
-														<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-															<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
-															<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
-														</div>
+														
 													</div>
 													</td>
 													<td>
-														<input type="checkbox" class="all_yoil">
-														전체&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
-														일요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
-														월요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
-														화요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
-														수요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
-														목요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
-														금요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
-														토요일&nbsp;&nbsp;
+														<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+															<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+																<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
+															</div>
+															<input type="checkbox" class="all_yoil">
+															전체&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
+															일요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
+															월요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
+															화요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
+															수요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
+															목요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
+															금요일&nbsp;&nbsp;
+															<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
+															토요일&nbsp;&nbsp;
+														</div>
 													</td>
 													<td>
 														<div style="display: flex; gap: 5px;">
@@ -532,8 +540,10 @@
 																										</select>
 																									</td>
 																									<td>
+																									<div style="display: flex; align-items: center">
 																										<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																										<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																									</div>
 																									</td>
 																									<td>
 																										<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -686,8 +696,8 @@
 			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
 				<table style="width: 100%">
 					<colgroup>
+						<col width="20%">
 						<col width="*">
-						<col width="35%">
 						<col width="15%">
 					</colgroup>
 					<tbody>
@@ -700,21 +710,24 @@
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
+									
+								</div>
+							</td>
+							<td>
+								<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
 									<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 									</div>
+									<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+									<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 								</div>
-							</td>
-							<td>
-								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
@@ -853,8 +866,10 @@
 																				</select>
 																			</td>
 																			<td>
-																				<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																				<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				<div style="display: flex; align-items: center">
+																					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				</div>
 																			</td>
 																			<td>
 																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1133,8 +1148,11 @@
 											</select>
 										</td>
 										<td>
-											<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-											<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											<div class="flex" style="margin-top:10px; gap: 5px;">
+												<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											</div
+
 										</td>
 										<td>
 											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
