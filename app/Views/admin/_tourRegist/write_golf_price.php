@@ -166,13 +166,13 @@
                             </td>
                         </tr>
                         
-							<th>
+							<!--th>
 								홀등록
 								<p style="display:block;margin-top:10px;">
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
 								</p>
 							</th>
-                        </tr>
+                        </tr-->
                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					   <tr>
                         <td>
