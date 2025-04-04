@@ -185,15 +185,15 @@
                                     <?php if ($frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
-                                                <col width="5%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
                                                 <col width="*"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <!--col width="*"></col-->
                                             </colgroup>
                                             <thead>
                                             <tr>
@@ -205,7 +205,7 @@
                                                 <th>금</th>
                                                 <th>토</th>
                                                 <th>일</th>
-                                                <th>삭제</th>
+                                                <!--th>삭제</th-->
                                             </tr>
                                             </thead>
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
@@ -272,12 +272,12 @@
                                                             id="goods_price1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price1'] ?>'>
                                                 </td>
-                                                <td rowspan="2">
+                                                <!--td rowspan="2">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-                                                    <button type="button" class="btn_01"
+                                                    <!--button type="button" class="btn_01"
                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                     </button>
-                                                </td>
+                                                </td-->
                                             </tr>
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="3">
