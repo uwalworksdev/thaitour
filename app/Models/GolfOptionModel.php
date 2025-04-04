@@ -12,6 +12,7 @@ class GolfOptionModel extends Model
     protected $allowedFields = [
 
 		'product_idx',	
+		'group_idx',	
 		'goods_name',	
 		'goods_price1',	
 		'goods_price2',	
