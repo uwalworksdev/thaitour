@@ -148,8 +148,15 @@
                             </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
+                                                <col width="*"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="12%"></col>
+                                                <col width="5%"></col>
                         </colgroup>
                         <tbody>
                         <tr height="45">
@@ -173,7 +180,6 @@
 								</p>
 							</th>
                         </tr-->
-                       <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					   <tr>
                         <td>
                             <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. </span>
