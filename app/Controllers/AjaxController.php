@@ -2989,4 +2989,41 @@ $result = $db->query($sql);
             'message' => '날짜를 불러올 수 없습니다.'
         ]);		
 	}	
+	
+	public function ajax_golfPrice_add()
+	{
+			$db = \Config\Database::connect();
+			$builder = $db->table('tbl_golf_group');
+
+			// POST 데이터 수신
+			$product_idx = $this->request->getPost('product_idx');
+			$sdate       = $this->request->getPost('sdate');
+			$edate       = $this->request->getPost('edate');
+
+			// insert용 데이터 배열 구성
+			$data = [
+				'product_idx' => $product_idx,
+				'sdate'       => $sdate,
+				'edate'       => $edate,
+				'reg_date'    => date('Y-m-d H:i:s') // DB now() 대신 PHP 처리
+			];
+
+			// 로그 출력
+			write_log("골프가격정보-1 : " . json_encode($data, JSON_UNESCAPED_UNICODE));
+
+			// insert 실행
+			$result = $builder->insert($data);
+
+			if ($result) {
+				return $this->response
+							->setStatusCode(200)
+							->setJSON(['status' => 'success', 'message' => '가격 등록완료']);
+			} else {
+				return $this->response
+							->setStatusCode(500)
+							->setJSON(['status' => 'error', 'message' => '가격 등록오류']);
+			}
+
+	}	
+	
 }	

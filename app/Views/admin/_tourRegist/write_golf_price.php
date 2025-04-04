@@ -149,7 +149,9 @@
 
 						</tbody>
 					</table>
-							
+					
+					
+					<!-- 기간별 골프 가격 S: -->		
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr>
                         <td>
@@ -470,6 +472,8 @@
                         </td>
                         </tr>
                         </table>
+				        <!-- 기간별 골프 가격 E: -->		
+
 						
                         <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr height="45">
@@ -558,17 +562,40 @@
 $(document).ready(function () {
     $("#btn_add_fee").on("click", function () {
            
-           if($("#a_sdate").val() == "") {
-			  alert('시작일자를 입력하세요.');
-			  $("#a_sdate").focus();
-			  return false;
-		   }	  
+            if($("#a_sdate").val() == "") {
+			   alert('시작일자를 입력하세요.');
+			   $("#a_sdate").focus();
+			   return false;
+		    }	  
            
-           if($("#a_edate").val() == "") {
-			  alert('종료일자를 입력하세요.');
-			  $("#a_edate").focus();
-			  return false;
-		   }	  
+            if($("#a_edate").val() == "") {
+			   alert('종료일자를 입력하세요.');
+			   $("#a_edate").focus();
+			   return false;
+		    }
+		   
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfPrice_add",
+				type: "POST",
+				data: {
+						"product_idx" : $("#product_idx").val(),
+						"sdate"       : $("#a_sdate").val(),
+						"edate"       : $("#a_edate").val()
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});			   
 		   
 	});
 });
