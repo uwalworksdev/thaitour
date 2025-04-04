@@ -339,7 +339,7 @@
                                                     밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_o_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
                                                 </td>    
-                                                <td>
+                                                <td rowspan="2">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
                                                     <button type="button" class="btn_01"
                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
@@ -347,7 +347,7 @@
                                                 </td>
 											</tr>	
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="7">
+                                                <td colspan="6">
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>&nbsp;&nbsp;
 													
