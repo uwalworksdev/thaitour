@@ -556,6 +556,14 @@
 
 <script>
 $(document).ready(function () {
+    $("#btn_add_fee").on("click", function () {
+           alert('btn_add_fee');
+	});
+});
+</script>
+
+<script>
+$(document).ready(function () {
     $(".all_input").on("click", function () {
         let targetClass = $(this).attr("id").replace("all_", "code_"); // 해당 그룹 클래스명 추출
         $("." + targetClass).prop("checked", $(this).prop("checked"));
