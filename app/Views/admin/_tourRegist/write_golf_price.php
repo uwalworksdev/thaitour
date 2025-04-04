@@ -173,8 +173,8 @@
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
-									적용기간: <input type='text' readonly class='datepickerX ' name='o_sdate[]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
-											 <input type='text' readonly class='datepickerX ' name='o_edate[]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+									적용기간: <input type='text' readonly class='datepickerX ' name='options[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
+											 <input type='text' readonly class='datepickerX ' name='options[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
 									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
