@@ -216,109 +216,109 @@
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
                                             <tr id="option_<?= $frow3['idx'] ?>">
 
-                                                <input type='hidden' name='options[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>'/>
-                                                <input type='hidden' name='options[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>'/>
-                                                <input type='hidden' name='options[<?=$i?>][o_idx]'        value='<?= $frow3['idx'] ?>'/>
-                                                <input type='hidden' name='options[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
-                                                <input type='hidden' name='options[<?=$i?>][o_golf]' id='' value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
-                                                <input type='hidden' name='options[<?=$i?>][o_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_idx]'        value='<?= $frow3['idx'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_golf]' id='' value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price2_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price2_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_2]"
                                                             style="text-align:right;;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price2_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_3]"
                                                             style="text-align:right;;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price3_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price3_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price3_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price3_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price3_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price3_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price3_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price3_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price3_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price3_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price3_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price3_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price4_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price4_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price4_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price4_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price4_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price4_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price4_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price4_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price4_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price4_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price4_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price4_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price5_1["
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price5_1["
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price5_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price5_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price5_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price5_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price5_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price5_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price5_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price6_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price6_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price6_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price6_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price6_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price6_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price6_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price6_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price6_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price6_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price6_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price6_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price7_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price7_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price7_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price7_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price7_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price7_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price1_1]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price1_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price1_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price1_2]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price1_2]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price1_2'] ?>'>
-                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price1_3]"
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price1_3]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price1_3'] ?>'>
@@ -381,14 +381,14 @@
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="6"><span class="badge">왕복</span>&nbsp;
-                                                    승용차:      <input type='text' name='options[<?=$i?>][vehicle_price1]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
-                                                    밴 (승합차): <input type='text' name='options[<?=$i?>][vehicle_price2]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
-                                                    SUV:        <input type='text' name='options[<?=$i?>][vehicle_price3]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp; 
+                                                    승용차:      <input type='text' name='optGolf[<?=$i?>][vehicle_price1]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
+                                                    밴 (승합차): <input type='text' name='optGolf[<?=$i?>][vehicle_price2]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
+                                                    SUV:        <input type='text' name='optGolf[<?=$i?>][vehicle_price3]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp; 
                                                     
 													<span class="badge">편도</span>&nbsp;
-                                                    승용차:      <input type='text' name='options[<?=$i?>][vehicle_o_price1]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
-                                                    밴 (승합차): <input type='text' name='options[<?=$i?>][vehicle_o_price2]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
-                                                    SUV:        <input type='text' name='options[<?=$i?>][vehicle_o_price3]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
+                                                    승용차:      <input type='text' name='optGolf[<?=$i?>][vehicle_o_price1]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
+                                                    밴 (승합차): <input type='text' name='optGolf[<?=$i?>][vehicle_o_price2]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
+                                                    SUV:        <input type='text' name='optGolf[<?=$i?>][vehicle_o_price3]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
                                                 </td>    
                                                 <td rowspan="2" style="text-align: center; vertical-align: middle;">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
@@ -397,35 +397,35 @@
 											</tr>	
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="6">
-                                                    카트:       <input type='text' name='options[<?=$i?>][cart_price]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
-                                                    캐디피:      <input type='text' name='options[<?=$i?>][caddie_fee]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>&nbsp;&nbsp;
+                                                    카트:       <input type='text' name='optGolf[<?=$i?>][cart_price]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
+                                                    캐디피:      <input type='text' name='optGolf[<?=$i?>][caddie_fee]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>&nbsp;&nbsp;
 													
 													<!-- 의무카트 S: -->
                                                     <?php if ($frow3['o_cart_due'] == "Y") { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][cart_due]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][cart_due]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][cart_due]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][cart_due]' class='cart_due' id='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
 													<?php } ?>
 													
 													<?php if ($frow3['o_cart_due'] == "Y") { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_cart_due]' class='o_cart_due' value='Y'>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_cart_due]' class='o_cart_due' value='Y'>
                                                     <?php } else { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_cart_due]' class='o_cart_due' value=''>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_cart_due]' class='o_cart_due' value=''>
                                                     <?php } ?>
                                                     <label for='cart_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무카트</label>&nbsp;&nbsp;
 													<!-- 의무카트 E: -->
 													
 													<!-- 의무캐디 S: -->
                                                     <?php if ($frow3['o_caddy_due'] == "Y") { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][caddy_due]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][caddy_due]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][caddy_due]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][caddy_due]' class='caddy_due' id='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
 													<?php } ?>
                                                     
 													<?php if ($frow3['o_caddy_due'] == "Y") { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_caddy_due]' class='o_caddy_due' value='Y'>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_caddy_due]' class='o_caddy_due' value='Y'>
                                                     <?php } else { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_caddy_due]' class='o_caddy_due' value=''>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_caddy_due]' class='o_caddy_due' value=''>
                                                     <?php } ?>
                                                     <label for='caddy_due_<?= $frow3['o_golf'] ?>_<?= $i ?>'>의무캐디</label>&nbsp;&nbsp;
 													<!-- 의무캐디 E: -->
@@ -433,30 +433,30 @@
 													
 													<!-- 카트포함 S: -->
                                                     <?php if ($frow3['o_cart_cont'] == "Y") { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][cart_cont]' class='cart_cont' id='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][cart_cont]' class='cart_cont' id='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][cart_cont]' class='cart_cont' id='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][cart_cont]' class='cart_cont' id='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
 													<?php } ?>
 													
 													<?php if ($frow3['o_cart_cont'] == "Y") { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_cart_cont]' class='o_cart_cont' value='Y'>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_cart_cont]' class='o_cart_cont' value='Y'>
                                                     <?php } else { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_cart_cont]' class='o_cart_cont' value=''>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_cart_cont]' class='o_cart_cont' value=''>
                                                     <?php } ?>
                                                     <label for='cart_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>카트포함</label>&nbsp;&nbsp;
 													<!-- 카트포함 E: -->
 													
 													<!-- 캐디포함 S: -->
                                                     <?php if ($frow3['o_caddy_cont'] == "Y") { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][caddy_cont]' class='caddy_cont' id='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][caddy_cont]' class='caddy_cont' id='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' checked >
 													<?php } else { ?>
-                                                         <input type='checkbox' name='options[<?=$i?>][caddy_cont]' class='caddy_cont' id='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
+                                                         <input type='checkbox' name='optGolf[<?=$i?>][caddy_cont]' class='caddy_cont' id='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>' data-idx="<?= $frow3['idx'] ?>" value='Y' >
 													<?php } ?>
                                                     
 													<?php if ($frow3['o_caddy_cont'] == "Y") { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_caddy_cont]' class='o_caddy_cont' value='Y'>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_caddy_cont]' class='o_caddy_cont' value='Y'>
                                                     <?php } else { ?>
-                                                        <input type='hidden' name='options[<?=$i?>][o_caddy_cont]' class='o_caddy_cont' value=''>
+                                                        <input type='hidden' name='optGolf[<?=$i?>][o_caddy_cont]' class='o_caddy_cont' value=''>
                                                     <?php } ?>
                                                     <label for='caddy_cont_<?= $frow3['o_golf'] ?>_<?= $i ?>'>캐디포함</label>&nbsp;&nbsp;
 													<!-- 캐디포함 E: -->
