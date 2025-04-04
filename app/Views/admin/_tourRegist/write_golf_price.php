@@ -151,8 +151,10 @@
 					</table>
 					
 					
-					<!-- 기간별 골프 가격 S: -->		
+					<!-- 기간별 골프 가격 S: -->
+					<?php $i = -1; ?>
 					<?php foreach ($groups as $row) { ?>
+					<?php $i++; ?>
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr>
                         <td>
@@ -215,23 +217,19 @@
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
                                             <tr id="option_<?= $frow3['idx'] ?>">
 
-                                                <input type='hidden' name='o_idx[]'
-                                                        value='<?= $frow3['idx'] ?>'/>
-                                                <input type='hidden' name='option_type[]'
-                                                        value='<?= $frow3['option_type'] ?>'/>
-                                                <input type='hidden' name='o_golf[]' id=''
-                                                        value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
-                                                <input type='hidden' name='o_name[]' id=''
-                                                        value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                <input type='hidden' name='options[<?=$i?>][o_idx]'        value='<?= $frow3['idx'] ?>'/>
+                                                <input type='hidden' name='options[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
+                                                <input type='hidden' name='options[<?=$i?>][o_golf]' id='' value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
+                                                <input type='hidden' name='options[<?=$i?>][o_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price2_1[]"
+                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price2_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2_1'] ?>'>
-                                                    <input type="text" numberonly="true" name="o_price2_2[]"
+                                                    <input type="text" numberonly="true" name="options[<?=$i?>][o_price2_2]"
                                                             style="text-align:right;;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2_2'] ?>'>
