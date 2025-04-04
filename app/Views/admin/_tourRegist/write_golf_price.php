@@ -77,7 +77,7 @@
                                 </colgroup>
                                 <tbody>
 								<tr height="45">
-									<th>상품명</th>
+									<th>상품명...</th>
 									<td><?=$product_name?></td>
 								</tr>
 								<tr height="45">
