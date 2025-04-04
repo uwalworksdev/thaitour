@@ -168,6 +168,9 @@
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
+									적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:20%" value='<?= $frow3['o_sdate'] ?>'/> ~
+											 <input type='text' readonly class='datepicker ' name='o_edate[]' style="width:20%" value='<?= $frow3['o_edate'] ?>'/>
+									
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
