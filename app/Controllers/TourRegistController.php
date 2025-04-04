@@ -753,12 +753,14 @@ class TourRegistController extends BaseController
         $data        = $this->getWrite('', '', '', '1302', '', "G");
         $db          = $this->connect;
 
-		$sql     = "SELECT * FROM tbl_golf_group WHERE product_idx = ?";
+		$sql     = "SELECT * FROM tbl_golf_group WHERE product_idx = ? ORDER BY group_idx ASC ";
 		$query   = $db->query($sql, [$product_idx]);
 		$groups  = $query->getResultArray();
-		
-        $options = $this->golfOptionModel->getOptions($product_idx);
 
+		$sql     = "SELECT * FROM tbl_golf_option WHERE product_idx = ? ORDER BY group_idx ASC, goods_name ASC";
+		$query   = $db->query($sql, [$product_idx]);
+		$options = $query->getResultArray();
+		
         $sql     = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
         $query   = $db->query($sql);
         $product = $query->getRowArray();
