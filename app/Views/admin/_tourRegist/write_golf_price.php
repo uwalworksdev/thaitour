@@ -570,6 +570,12 @@ $(document).ready(function () {
 			  return false;
 		   }	  
 		   
+           if($("#a_sdate").val() > $("#a_edate").val()) {
+			  alert('시작자를 확인하세요.');
+			  $("#a_sdate").focus();
+			  return false;
+		   }	  
+		   
 	});
 });
 </script>
