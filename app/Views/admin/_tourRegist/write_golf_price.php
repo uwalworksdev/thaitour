@@ -140,8 +140,8 @@
                         <tr height="45">
                             <th>골프요금 추가</th>
                             <td>
-                                적용기간: <input type='text' readonly class='datepicker ' name='a_sdate' style="width:20%" value=''/> ~
-                                         <input type='text' readonly class='datepicker ' name='a_edate' style="width:20%" value=''/>
+                                적용기간: <input type='text' readonly class='datepicker ' name='a_sdate' id='a_sdate' style="width:20%" value=''/> ~
+                                         <input type='text' readonly class='datepicker ' name='a_edate' id='a_edate' style="width:20%" value=''/>
 
 								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
                             </td>
@@ -557,7 +557,19 @@
 <script>
 $(document).ready(function () {
     $("#btn_add_fee").on("click", function () {
-           alert('btn_add_fee');
+           
+           if($("#a_sdate").val() == "") {
+			  alert('시작일자를 입력하세요.');
+			  $("#a_sdate").focus();
+			  return false;
+		   }	  
+           
+           if($("#a_edate").val() == "") {
+			  alert('종료일자를 입력하세요.');
+			  $("#a_edate").focus();
+			  return false;
+		   }	  
+		   
 	});
 });
 </script>
