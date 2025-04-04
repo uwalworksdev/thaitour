@@ -139,7 +139,7 @@
                                 <?php } ?>
                                 </tbody>
                             </table>				
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                    <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <colgroup>
                             <col width="10%"/>
                             <col width="90%"/>
