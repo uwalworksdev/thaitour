@@ -269,7 +269,7 @@
                                                             value='<?= $frow3['goods_price4_3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price5_1["
+                                                    <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price5_1]"
                                                             style="text-align:right;width:32%;"
                                                             id="goods_price5_1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5_1'] ?>'>
