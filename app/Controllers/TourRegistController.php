@@ -804,9 +804,9 @@ class TourRegistController extends BaseController
         foreach ($options as $option) {
 	
 				$o_idx             = $option['o_idx'];
-				write_log("o_idx- ". $o_idx);
                 $option_type       = $option['option_type'];
 				$o_name            = $option['o_name'];
+				write_log("o_name- ". $o_name);
                 $o_sdate           = $option['o_sdate'];				
                 $o_edate           = $option['o_edate'];				
 				$o_price1_1        = $option['o_price1_1'];
