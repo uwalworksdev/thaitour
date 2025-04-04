@@ -177,15 +177,15 @@
                                     <?php if ($frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
+                                                <col width="5%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
                                                 <col width="*"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="13%"></col>
-                                                <col width="2%"></col>
                                             </colgroup>
                                             <thead>
                                             <tr>
