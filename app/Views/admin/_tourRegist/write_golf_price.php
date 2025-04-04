@@ -165,7 +165,6 @@
                         </th>
 
                         <td>
-                            <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. </span>
                             <div id="mainGolf">
                                 <?php foreach ($options as $frow3): ?>
                                     <?php if ($frow3['option_type'] == "M") { ?>
