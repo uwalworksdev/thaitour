@@ -186,7 +186,7 @@
                             <div id="mainGolf">
 								<?php $i = -1; ?>
                                 <?php foreach ($options as $frow3): ?>
-								<?php $i++; ?>	
+								<?php $i = $i+1; ?>	
                                     <?php if ($frow3['group_idx'] == $row['group_idx'] && $frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
