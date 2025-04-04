@@ -389,9 +389,11 @@
 														토요일&nbsp;&nbsp;
 													</td>
 													<td>
-														<input type="text" name="tour_info_price[0]" numberOnly=true>
-														<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-														<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+														<div style="display: flex; gap: 5px;">
+															<input type="text" name="tour_info_price[0]" numberOnly=true>
+															<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+															<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+														</div>
 													</td>
 												</tr>
 												<tr>
@@ -454,6 +456,7 @@
 																		<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
 																		<div class="option_area">
 																			<input type="hidden" name="moption_idx[0][0]" class="moption_idx" value="">
+																			<input type="hidden" name="moption_onum[0][0]" class="moption_onum" value="">
 																			<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 																				<colgroup>
 																					<col width="10%">
@@ -505,6 +508,7 @@
 																									<td>
 																										<div style="display: flex; gap: 5px;">
 																											<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
+																											<input type="hidden" name="op_tour_onum[0][0][]" class="op_tour_onum" value="">
 																											<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요" style="width:48%;" />
 																											<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
 																										</div>
@@ -622,6 +626,7 @@
 							<td>
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
+										<input type="hidden" name="o_onum[${tableCount}]" value="">
 										<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
@@ -643,9 +648,11 @@
 								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 							</td>
 							<td>
-								<input type="text" name="tour_info_price[${tableCount}]" numberOnly=true>
-								<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-								<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								<div style="display: flex; gap: 5px;">
+									<input type="text" name="tour_info_price[${tableCount}]" numberOnly=true>
+									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								</div>
 							</td>
 
 						</tr>
@@ -663,6 +670,7 @@
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
+												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
 												<div class="flex" style="gap: 5px;">
 													<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -708,6 +716,7 @@
 											<td>
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
 												<div class="option_area">
+													<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
 													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
 													<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 														<colgroup>
@@ -752,6 +761,7 @@
 																		<tr>
 																			<td>
 																				<div style="display: flex; gap: 5px;">
+																					<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
 																					<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
 																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
 																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />	
@@ -888,6 +898,8 @@
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
+					<input type="hidden" name="tour_onum[${tableListIndex}][]" class="tour_onum" value="">
+
 					<div class="flex" style="gap: 5px;">
 						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -937,6 +949,7 @@
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
 				<td>
+					<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
 					<div class="flex" style="gap: 5px;">
 						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -983,6 +996,8 @@
 		let html = `
 			<div class="option_area">
 				<input type="hidden" name="moption_idx[${idx}][${arr_count[idx]}]" class="moption_idx" value="">
+				<input type="hidden" name="moption_onum[${idx}][${arr_count[idx]}]" class="moption_onum" value="">
+
 				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					<colgroup>
 						<col width="10%">
@@ -1026,6 +1041,7 @@
 									<tr>
 										<td>
 											<div style="display: flex; gap: 5px;">
+												<input type="hidden" name="op_tour_onum[${idx}][${arr_count[idx]}][]" class="op_tour_onum" value="">
 												<input type="hidden" name="op_tour_idx[${idx}][${arr_count[idx]}][]" class="op_tour_idx" value="">
 												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
 												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
@@ -1033,7 +1049,7 @@
 										</td>
 										<td>
 											<input type='text'
-													name='o_price[${idx}][${arr_count[idx]}][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
+													name='o_price[${idx}][${arr_count[idx]}][]' placeholder="가격(단위: 바트)" numberOnly=true/>
 										</td>
 										<td>
 											<select name="use_yn[${idx}][${arr_count[idx]}][]" style="width:100%">
@@ -1074,6 +1090,7 @@
 			<tr>
 				<td>
 					<div style="display: flex; gap: 5px;">
+						<input type="hidden" name="op_tour_onum[${info_idx}][${op_idx}][]" class="op_tour_onum" value="">
 						<input type="hidden" name="op_tour_idx[${info_idx}][${op_idx}][]" class="op_tour_idx" value="">
 						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
 						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
@@ -1081,7 +1098,7 @@
 				</td>
 				<td>
 					<input type='text'
-							name='o_price[${info_idx}][${op_idx}][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
+							name='o_price[${info_idx}][${op_idx}][]' placeholder="가격(단위: 바트)" numberOnly=true/>
 				</td>
 				<td>
 					<select name="use_yn[${info_idx}][${op_idx}][]" style="width:100%">
