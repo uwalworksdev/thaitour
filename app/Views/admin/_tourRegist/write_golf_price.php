@@ -154,13 +154,14 @@
                                         <option value="<?= $hole ?>"><?= $hole ?>홀</option>
                                     <?php endforeach; ?>
                                 </select>
+								<button type="button" id="btn_add_option" class="btn_01">추가</button>
                                 <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
                             </td>
                         </tr>
                         <th>
                             홀등록
                             <p style="display:block;margin-top:10px;">
-                                <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                <!--button type="button" id="btn_add_option" class="btn_01">추가</button-->
                             </p>
                         </th>
 
