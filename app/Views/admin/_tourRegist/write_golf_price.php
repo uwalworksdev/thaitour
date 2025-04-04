@@ -147,6 +147,12 @@
                         </colgroup>
                         <tbody>
                         <tr height="45">
+                            <th>골프요금 추가</th>
+                            <td>
+								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
+                            </td>
+                        </tr>						
+                        <tr height="45">
                             <th>홀선택</th>
                             <td>
                                 <select id="golf_code" name="golf_code" class="input_select">
