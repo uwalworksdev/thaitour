@@ -110,12 +110,12 @@
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
                                         </div>
 
-                                        <div style="text-align:left;">
+                                        <!--div style="text-align:left;">
 											<input type="text" name="a_date" id="a_date" value="" style="text-align: center;background: white; width: 120px;" readonly>일 까지
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="addCharge" class="btn btn-primary">추가</a>  
-                                        </div>
+                                        </div-->
 
                                         <div style="text-align:left;">
 											<input type="checkbox" class="end_all" value="" >전체

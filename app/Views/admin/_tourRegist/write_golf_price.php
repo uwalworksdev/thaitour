@@ -65,133 +65,148 @@
             <div id="contents">
                 <div class="listBottom">
 				
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="12%"/>
-                                    <col width="*%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-								<tr height="45">
-									<th>상품명</th>
-									<td><?=$product_name?></td>
-								</tr>
-								<tr height="45">
-									<th>최소/최대 라운딩인원</th>
-									<td>
-                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt" type="text" value="<?= $minium_people_cnt ?>" style="width:20%">명&nbsp;&nbsp;&nbsp;
-                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt" type="text" value="<?= $total_people_cnt ?>" style="width:20%">명
-                                    </td>
-								</tr>
-                                <?php foreach ($filters as $key => $filter) { ?>
-                                    <tr>
-                                        <th>
-                                            <?= $filter['code_name'] ?>
-                                            <input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
-                                            <label for="all_<?=$filter['filter_name']?>">
-                                                모두 선택
-                                            </label>
-                                        </th>
-                                        <td colspan="3">
-                                            <!--select name="filter_<?= $filter['code_no'] ?>"
-                                                    id="filter_<?= $filter['code_no'] ?>"
-                                                    class="from-select select_filter"
-                                                    data-code_no="<?= $filter['code_no'] ?>"
-                                                    data-filter_name="<?= $filter['filter_name'] ?>">
-                                                <option value="">선택하다</option>
-                                                <?php foreach ($filter['children'] as $item) { ?>
-                                                    <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <div class="list_value_ list_value_<?= $filter['code_no'] ?>">
-                                                <?php
-                                                $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
-                                                $filter_arr = array_filter($filter_arr);
+					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+						   style="margin-top:50px;">
+						<caption>
+						</caption>
+						<colgroup>
+							<col width="12%"/>
+							<col width="*%"/>
+							<col width="10%"/>
+							<col width="40%"/>
+						</colgroup>
+						<tbody>
+						<tr height="45">
+							<th>상품명</th>
+							<td><?=$product_name?></td>
+						</tr>
+						<tr height="45">
+							<th>최소/최대 라운딩인원</th>
+							<td>
+								<input id="minium_people_cnt" name="minium_people_cnt" class="input_txt" type="text" value="<?= $minium_people_cnt ?>" style="width:20%">명&nbsp;&nbsp;&nbsp;
+								<input id="total_people_cnt" name="total_people_cnt" class="input_txt" type="text" value="<?= $total_people_cnt ?>" style="width:20%">명
+							</td>
+						</tr>
+						<?php foreach ($filters as $key => $filter) { ?>
+							<tr>
+								<th>
+									<?= $filter['code_name'] ?>
+									<input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
+									<label for="all_<?=$filter['filter_name']?>">
+										모두 선택
+									</label>
+								</th>
+								<td colspan="3">
+									<!--select name="filter_<?= $filter['code_no'] ?>"
+											id="filter_<?= $filter['code_no'] ?>"
+											class="from-select select_filter"
+											data-code_no="<?= $filter['code_no'] ?>"
+											data-filter_name="<?= $filter['filter_name'] ?>">
+										<option value="">선택하다</option>
+										<?php foreach ($filter['children'] as $item) { ?>
+											<option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
+										<?php } ?>
+									</select>
+									<div class="list_value_ list_value_<?= $filter['code_no'] ?>">
+										<?php
+										$filter_arr = explode("|", $golf_info[$filter['filter_name']]);
+										$filter_arr = array_filter($filter_arr);
 
-                                                ?>
-                                                <?php foreach ($filter['children'] as $item) { ?>
-                                                    <?php if (in_array($item['code_no'], $filter_arr)) { ?>
-                                                        <div class="item_">
-                                                            <span><?= $item['code_name'] ?></span>
-                                                            <input type="hidden" class="item_<?= $filter['code_no'] ?>"
-                                                                   name="<?= $filter['filter_name'] ?>[]"
-                                                                   value="<?= $item['code_no'] ?>">
-                                                            <div class="remove" onclick="removeData(this)">
-                                                                x
-                                                            </div>
-                                                        </div>
-                                                    <?php } ?>
-                                                <?php } ?>
-                                            </div--> 
-                                            <?php foreach ($filter['children'] as $item) { ?>
-                                                <input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
-                                                        value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
-                                                <label for="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>">
-                                                    <?= $item['code_name'] ?>
-                                                </label>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>				
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                        <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
+										?>
+										<?php foreach ($filter['children'] as $item) { ?>
+											<?php if (in_array($item['code_no'], $filter_arr)) { ?>
+												<div class="item_">
+													<span><?= $item['code_name'] ?></span>
+													<input type="hidden" class="item_<?= $filter['code_no'] ?>"
+														   name="<?= $filter['filter_name'] ?>[]"
+														   value="<?= $item['code_no'] ?>">
+													<div class="remove" onclick="removeData(this)">
+														x
+													</div>
+												</div>
+											<?php } ?>
+										<?php } ?>
+									</div--> 
+									<?php foreach ($filter['children'] as $item) { ?>
+										<input type="checkbox" class="code_<?= $filter['filter_name'] ?>" id="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>" name="<?= $filter['filter_name'] ?>[]"
+												value="<?= $item['code_no'] ?>" <?php if (in_array($item['code_no'], $filter_arr)) { echo "checked"; } ?> <?php if($filter['filter_name'] == "golf_course_odd_numbers" || $filter['filter_name'] == "green_peas") echo "disabled";?> />
+										<label for="<?= $filter['filter_name'] ?>_<?= $item['code_no'] ?>">
+											<?= $item['code_name'] ?>
+										</label>
+									<?php } ?>
+								</td>
+							</tr>
+						<?php } ?>
                         <tr height="45">
-                            <th>홀선택</th>
+                            <th>골프요금 추가</th>
                             <td>
-                                <select id="golf_code" name="golf_code" class="input_select">
-                                    <option value="">선택</option>
-                                    <?php foreach (GOLF_HOLES as $hole) : ?>
-                                        <option value="<?= $hole ?>"><?= $hole ?>홀</option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
-                            </td>
-                        </tr>
-                        <th>
-                            홀등록
-                            <p style="display:block;margin-top:10px;">
-                                <button type="button" id="btn_add_option" class="btn_01">추가</button>
-                            </p>
-                        </th>
+                                적용기간: <input type='text' readonly class='datepicker ' name='a_sdate' id='a_sdate' style="width:20%" value=''/> ~
+                                         <input type='text' readonly class='datepicker ' name='a_edate' id='a_edate' style="width:20%" value=''/>
 
+								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
+                            </td>
+                        </tr>						
+
+						</tbody>
+					</table>
+							
+                    <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                        <tr>
                         <td>
-                            <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. </span>
+                            <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr height="45">
+                                <th>홀선택</th>
+                                <td>
+									<select id="golf_code" name="golf_code" class="input_select">
+										<option value="">선택</option>
+										<?php foreach (GOLF_HOLES as $hole) : ?>
+											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
+										<?php endforeach; ?>
+									</select>
+									적용기간: <input type='text' readonly class='datepickerX ' name='o_sdate[]' style="width:10%" value='<?= $frow3['o_sdate'] ?>' readonly/> ~
+											 <input type='text' readonly class='datepickerX ' name='o_edate[]' style="width:10%" value='<?= $frow3['o_edate'] ?>' readonly/>
+									
+									<button type="button" id="btn_add_option" class="btn_01">추가</button>
+									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
+									<button type="button" id="btn_delete_option" class="btn_02">삭제</button>
+									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
+									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
+								</td>
+                            </tr>
+					        </table>
+					    <tr>
+					    <td>
                             <div id="mainGolf">
                                 <?php foreach ($options as $frow3): ?>
                                     <?php if ($frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
                                                 <col width="*"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="5%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <col width="14%"></col>
+                                                <!--col width="*"></col-->
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>홀수</th>
-                                                <th>일</th>
                                                 <th>월</th>
                                                 <th>화</th>
                                                 <th>수</th>
                                                 <th>목</th>
                                                 <th>금</th>
                                                 <th>토</th>
-                                                <th>삭제</th>
+                                                <th>일</th>
+                                                <!--th>삭제</th-->
                                             </tr>
                                             </thead>
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
@@ -209,63 +224,119 @@
                                                     <?= $frow3['goods_name'] ?>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price1[]"
-                                                            style="text-align:right;"
-                                                            id="goods_price1_<?= $frow3['idx'] ?>"
-                                                            value='<?= $frow3['goods_price1'] ?>'>
-                                                </td>
-                                                <td>
-                                                    <input type="text" numberonly="true" name="o_price2[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price2_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price2_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price2'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price2_2[]"
+                                                            style="text-align:right;;width:32%;"
+                                                            id="goods_price2_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price2'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price2_3[]"
+                                                            style="text-align:right;;width:32%;"
                                                             id="goods_price2_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price2'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price3[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price3_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price3_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price3'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price3_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price3_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price3'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price3_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price3_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price4[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price4_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price4_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price4'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price4_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price4_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price4'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price4_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price4_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price4'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price5[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price5_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price5_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price5'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price5_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price5_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price5'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price5_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price5_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price6[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price6_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price6_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price6'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price6_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price6_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price6'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price6_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price6_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price6'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price7[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price7_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price7_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price7'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price7_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price7_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price7'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price7_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7'] ?>'>
                                                 </td>
-                                                <td rowspan="2">
+                                                <td>
+                                                    <input type="text" numberonly="true" name="o_price1_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price1_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price1_3[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
+                                                </td>
+                                                <!--td rowspan="2">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-                                                    <button type="button" class="btn_01"
+                                                    <!--button type="button" class="btn_01"
                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                     </button>
-                                                </td>
+                                                </td-->
                                             </tr>
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="3">
-                                                    적용기간: <input type='text' readonly class='datepicker '
+                                                    적용기간: <input type='text' readonly class='datepickerX '
                                                                     name='o_sdate[]' style="width:30%"
                                                                     value='<?= $frow3['o_sdate'] ?>'/> ~
-                                                    <input type='text' readonly class='datepicker ' name='o_edate[]'
+                                                    <input type='text' readonly class='datepickerX ' name='o_edate[]'
                                                             style="width:30%" value='<?= $frow3['o_edate'] ?>'/>
                                                     <button type="button" class="btn_01"
-                                                            onclick="updOption('<?= $frow3['idx'] ?>',this)">수정
+                                                            onclick="updOption('<?= $frow3['idx'] ?>',this)">일자별수정
                                                     </button>
                                                 </td>
                                                 <td colspan="4">
@@ -307,7 +378,7 @@
                                             </tr>
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8"><span class="badge">왕복</span>&nbsp;
+                                                <td colspan="6"><span class="badge">왕복</span>&nbsp;
                                                     승용차:      <input type='text' name='vehicle_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp; 
@@ -316,9 +387,14 @@
                                                     승용차:      <input type='text' name='vehicle_o_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_o_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
-                                                </td>                                            
+                                                </td>    
+                                                <td rowspan="2" style="text-align: center; vertical-align: middle;">
+                                                    <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+                                                    <button type="button" class="btn_02" onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제</button>
+                                                </td>
+											</tr>	
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8">
+                                                <td colspan="6">
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
                                                     캐디피:      <input type='text' name='caddie_fee[]' style="width:6%;text-align:right;" value='<?= $frow3['caddie_fee'] ?>'/>&nbsp;&nbsp;
 													
@@ -393,7 +469,9 @@
                             </div>
                         </td>
                         </tr>
-
+                        </table>
+						
+                        <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr height="45">
                             <th>
                                 추가옵션등록
@@ -475,6 +553,76 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function () {
+    $("#btn_add_fee").on("click", function () {
+           
+           if($("#a_sdate").val() == "") {
+			  alert('시작일자를 입력하세요.');
+			  $("#a_sdate").focus();
+			  return false;
+		   }	  
+           
+           if($("#a_edate").val() == "") {
+			  alert('종료일자를 입력하세요.');
+			  $("#a_edate").focus();
+			  return false;
+		   }	  
+		   
+	});
+});
+</script>
+
+<script>
+$(function() {
+    // 공통 옵션 (원하는 포맷으로 조절)
+    var dateFormat = "yy-mm-dd";
+
+    // 시작일 선택
+    $("#a_sdate").datepicker({
+        dateFormat: dateFormat,
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            $("#a_edate").datepicker("option", "minDate", startDate);
+        }
+    });
+
+    // 종료일 선택
+    $("#a_edate").datepicker({
+        dateFormat: dateFormat
+    });
+});
+</script>
+
+<script>
+$(function() {
+    var dateFormat = "yy-mm-dd";
+
+    // 시작일
+    $("#a_sdate").datepicker({
+        dateFormat: dateFormat,
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            var endDate = $("#a_edate").datepicker('getDate');
+
+            // 종료일보다 시작일이 뒤면 종료일 비움
+            if (endDate && startDate > endDate) {
+                $("#a_edate").val('');
+            }
+
+            // 종료일 선택 가능 시작 날짜 설정
+            $("#a_edate").datepicker("option", "minDate", startDate);
+        }
+    });
+
+    // 종료일
+    $("#a_edate").datepicker({
+        dateFormat: dateFormat
+    });
+});
+</script>
+
 
 <script>
 $(document).ready(function () {
@@ -1054,30 +1202,6 @@ $(document).ready(function () {
             }
         });
 
-    }
-
-    function upd_option(code_idx) {
-        var option_data = jQuery("#optionForm_" + code_idx).serialize();
-        var save_result = "";
-
-        $.ajax({
-            type: "POST",
-            data: option_data,
-            url: "/ajax/ajax.add_option.php",
-            cache: false,
-            async: false,
-            success: function (data, textStatus) {
-                save_result = data;
-                //alert('save_result- '+save_result);
-                var obj = jQuery.parseJSON(save_result);
-                var message = obj.message;
-                alert(message);
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
     }
 </script>
 
