@@ -801,7 +801,7 @@ class TourRegistController extends BaseController
         $total_people_cnt  = $data['total_people_cnt'];
 
 		$options           = $data['optGolf']; // 다차원 배열로 받음		
-        foreach ($options as $option) {
+        foreach ($options as $index => $option) {) {
 	
 				$o_idx             = $option['o_optidx'];
 				$group_idx         = $option['group_idx'];
