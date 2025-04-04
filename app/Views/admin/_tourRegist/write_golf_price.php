@@ -185,7 +185,7 @@
                                                 <col width="13%"></col>
                                                 <col width="13%"></col>
                                                 <col width="13%"></col>
-                                                <col width="5%"></col>
+                                                <col width="3%"></col>
                                             </colgroup>
                                             <thead>
                                             <tr>
