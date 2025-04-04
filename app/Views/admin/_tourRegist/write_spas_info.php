@@ -901,7 +901,7 @@
 				<td>
 					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
 					<div style="display: flex; gap: 5px;">
-						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject 1 input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
