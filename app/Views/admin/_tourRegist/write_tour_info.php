@@ -318,7 +318,7 @@
 																													</select>
 																												</td>
 																												<td>
-																													<div style="display: flex; align-items: center">
+																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
 																														<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																														<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																													</div>
@@ -545,7 +545,7 @@
 																										</select>
 																									</td>
 																									<td>
-																									<div style="display: flex; align-items: center">
+																									<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
 																										<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																										<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																									</div>
@@ -873,7 +873,7 @@
 																				</select>
 																			</td>
 																			<td>
-																				<div style="display: flex; align-items: center">
+																				<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 																					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				</div>
@@ -1155,7 +1155,7 @@
 											</select>
 										</td>
 										<td>
-											<div class="flex" style="margin-top:10px; gap: 5px;">
+											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
 												<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 											</div
@@ -1207,8 +1207,10 @@
 					</select>
 				</td>
 				<td>
-					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+						<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					</div>
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
