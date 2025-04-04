@@ -615,7 +615,6 @@ class AdminTourController extends BaseController
         $o_name_eng        = $this->request->getPost('o_name_eng');
         $o_price           = $this->request->getPost('o_price');
         $use_yn            = $this->request->getPost('use_yn');
-        $o_num             = $this->request->getPost('o_num');
         $op_tour_idx       = $this->request->getPost('op_tour_idx');
         $moption_idx       = $this->request->getPost('moption_idx');
 
@@ -808,7 +807,6 @@ class AdminTourController extends BaseController
                         'option_name_eng' => $o_name_eng[$index][$m_index][$i],
                         'option_price'    => $o_price[$index][$m_index][$i],
                         'use_yn'          => isset($use_yn[$index][$m_index][$i]) ? $use_yn[$index][$m_index][$i] : 'N',
-                        'onum'            => $o_num[$index][$m_index][$i]
                     ];
 
 

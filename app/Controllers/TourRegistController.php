@@ -2155,6 +2155,7 @@ class TourRegistController extends BaseController
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $db = $this->connect;
+        $product_name = $this->productModel->getById($product_idx)["product_name"];
 
         $sql_info = "
             SELECT pt.*, pti.* 
@@ -2208,6 +2209,7 @@ class TourRegistController extends BaseController
 
         $data = [
             'product_idx'     => $product_idx,
+            'product_name'    => $product_name,
             'productTourInfo' => $groupedData,
             'infoIndex'       => $infoIndex,
             'groupedData'     => $groupedData,
