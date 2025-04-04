@@ -152,9 +152,7 @@
 					
 					
 					<!-- 기간별 골프 가격 S: -->
-					<?php $i = -1; ?>
 					<?php foreach ($groups as $row) { ?>
-					<?php $i++; ?>
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr>
                         <td>
@@ -173,8 +171,8 @@
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
-									적용기간: <input type='text' readonly class='datepickerX ' name='options[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
-											 <input type='text' readonly class='datepickerX ' name='options[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
+											 <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
 									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
@@ -187,7 +185,9 @@
 					    <tr>
 					    <td>
                             <div id="mainGolf">
+								<?php $i = -1; ?>
                                 <?php foreach ($options as $frow3): ?>
+								<?php $i++; ?>	
                                     <?php if ($frow3['group_idx'] == $row['group_idx'] && $frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
@@ -217,6 +217,8 @@
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
                                             <tr id="option_<?= $frow3['idx'] ?>">
 
+                                                <input type='hidden' name='options[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>'/>
+                                                <input type='hidden' name='options[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>'/>
                                                 <input type='hidden' name='options[<?=$i?>][o_idx]'        value='<?= $frow3['idx'] ?>'/>
                                                 <input type='hidden' name='options[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
                                                 <input type='hidden' name='options[<?=$i?>][o_golf]' id='' value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
