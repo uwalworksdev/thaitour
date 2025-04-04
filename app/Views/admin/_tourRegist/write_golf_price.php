@@ -137,6 +137,13 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
+
+                                    <tr>
+                                        <th>
+                                            골프요금 추가
+                                        </th>
+                                        <td colspan="3"><button type="button" id="btn_add_option" class="btn_01">추가</button></td>
+									</tr>	
                                 </tbody>
                             </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
