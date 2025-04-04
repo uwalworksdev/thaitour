@@ -237,8 +237,16 @@
                                                             value='<?= $frow3['goods_price2'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price3[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price3_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price3_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price3'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price3_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price3_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price3'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price3_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price3_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price3'] ?>'>
                                                 </td>
