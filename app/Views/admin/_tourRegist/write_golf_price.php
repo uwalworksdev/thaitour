@@ -147,18 +147,6 @@
                                 </tbody>
                             </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                        <colgroup>
-                                                <col width="*"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="5%"></col>
-                        </colgroup>
-                        <tbody>
                         <tr height="45">
                             <th>홀선택</th>
                             <td colspan="8">
