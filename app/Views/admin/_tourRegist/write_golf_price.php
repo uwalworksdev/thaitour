@@ -166,12 +166,12 @@
                             </td>
                         </tr>
                         
-						<!--th>
+						<th>
                             홀등록
                             <p style="display:block;margin-top:10px;">
                                 <button type="button" id="btn_add_option" class="btn_01">추가</button>
                             </p>
-                        </th-->
+                        </th>
 
                         <td>
                             <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. </span>
