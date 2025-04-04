@@ -220,6 +220,7 @@
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_optidx]'     value='<?= $frow3['idx'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][group_idx]'    value='<?= $frow3['group_idx'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_golf]' id='' value="<?= $frow3['o_golf'] ?>" size="70" class="hole_cnt"/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
