@@ -140,6 +140,9 @@
                         <tr height="45">
                             <th>골프요금 추가</th>
                             <td>
+                                적용기간: <input type='text' readonly class='datepicker ' name='o_sdate[]' style="width:30%" value='<?= $frow3['o_sdate'] ?>'/> ~
+                                         <input type='text' readonly class='datepicker ' name='o_edate[]' style="width:30%" value='<?= $frow3['o_edate'] ?>'/>
+
 								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
                             </td>
                         </tr>						
@@ -265,10 +268,10 @@
                                             </tr>
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="3">
-                                                    적용기간: <input type='text' readonly class='datepicker '
+                                                    적용기간: <input type='text' readonly class='datepickerX '
                                                                     name='o_sdate[]' style="width:30%"
                                                                     value='<?= $frow3['o_sdate'] ?>'/> ~
-                                                    <input type='text' readonly class='datepicker ' name='o_edate[]'
+                                                    <input type='text' readonly class='datepickerX ' name='o_edate[]'
                                                             style="width:30%" value='<?= $frow3['o_edate'] ?>'/>
                                                     <button type="button" class="btn_01"
                                                             onclick="updOption('<?= $frow3['idx'] ?>',this)">일자별수정
