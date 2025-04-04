@@ -910,7 +910,7 @@ class TourRegistController extends BaseController
 														,option_type	= '" . $option_type . "'
 														,o_soldout		= '" . $o_soldout . "'
 													WHERE idx	        = '" . $o_idx . "' ";
-				   // write_log("tbl_golf_option -  " . $sql);
+				    write_log("tbl_golf_option -  " . $sql);
 					$result = $this->connect->query($sql);
 				} else {
 					$sql = "INSERT INTO tbl_golf_option SET 
@@ -956,7 +956,7 @@ class TourRegistController extends BaseController
 														,o_golf			= '" . $o_golf . "'
 														,option_type	= '" . $option_type . "'
 														,o_soldout		= '" . $o_soldout . "' ";
-				   // write_log("tbl_golf_option -  " . $sql);
+				    write_log("tbl_golf_option -  " . $sql);
 					$result = $this->connect->query($sql);
 				}
         }
