@@ -1203,30 +1203,6 @@ $(document).ready(function () {
         });
 
     }
-
-    function upd_option(code_idx) {
-        var option_data = jQuery("#optionForm_" + code_idx).serialize();
-        var save_result = "";
-
-        $.ajax({
-            type: "POST",
-            data: option_data,
-            url: "/ajax/ajax.add_option.php",
-            cache: false,
-            async: false,
-            success: function (data, textStatus) {
-                save_result = data;
-                //alert('save_result- '+save_result);
-                var obj = jQuery.parseJSON(save_result);
-                var message = obj.message;
-                alert(message);
-                location.reload();
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-    }
 </script>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
