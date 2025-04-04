@@ -29,7 +29,7 @@
     <div id="print_this"><!-- 인쇄영역 시작 //-->
         <header id="headerContainer">
             <div class="inner">
-                <h2>골프 상품관리 정보입력12</h2>
+                <h2>골프 상품관리 정보입력1242</h2>
                 <div class="menus">
                     <ul>
                         <li>
