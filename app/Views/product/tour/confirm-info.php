@@ -520,7 +520,7 @@
             상품설명
         </h2>
         <?php if ($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') { ?>
-            <h3 class="title-sec2">
+            <!-- <h3 class="title-sec2">
                 상품 포인트
             </h3>
             <div class="list-tag-item">
@@ -556,7 +556,7 @@
                         <span class="label-tag">총 <?= $product['tours_hour'] ?>시간</span>
                     </div>
                 <?php } ?>
-            </div>
+            </div> -->
         <?php } ?>
         <?php if ($product['tour_info']) { ?>
             <div class="des-type">
