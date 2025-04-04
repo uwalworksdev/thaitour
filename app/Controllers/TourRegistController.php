@@ -803,7 +803,8 @@ class TourRegistController extends BaseController
 		$options           = $data['optGolf']; // 다차원 배열로 받음		
         foreach ($options as $option) {
 	
-				$o_idx             = $option['o_idx'];
+				$o_idx             = $option['o_optidx'];
+				write_log("o_idx- ". $o_idx);
                 $option_type       = $option['option_type'];
 				$o_name            = $option['o_name'];
 				write_log("o_name- ". $o_name);
