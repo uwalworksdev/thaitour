@@ -118,22 +118,25 @@
 																	}
 
 																?>
-																<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
-																전체&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
-																<input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
-																	<?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+																<div style="display: flex; align-items: center; gap: 5px;">
+																	<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
+																	전체&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+
+																</div>
 															</div>
                                                         </td>
 														<td>
@@ -380,22 +383,24 @@
 																<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 																<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 															</div>
-															<input type="checkbox" class="all_yoil">
-															전체&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
-															일요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
-															월요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
-															화요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
-															수요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
-															목요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
-															금요일&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
-															토요일&nbsp;&nbsp;
+															<div style="display: flex; align-items: center; gap: 5px;">
+																<input type="checkbox" class="all_yoil">
+																전체&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
+																일요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
+																월요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
+																화요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
+																수요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
+																목요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
+																금요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
+																토요일&nbsp;&nbsp;
+															</div>
 														</div>
 													</td>
 													<td>
@@ -719,14 +724,16 @@
 										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 									</div>
-									<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+									<div style="display: flex; align-items: center; gap: 5px;">
+										<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+									</div>
 								</div>
 							</td>
 							<td>
