@@ -615,7 +615,7 @@
             let item_ = data[i];
 
             html += 
-                `<tr>
+                `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
                     <td>${item_.spas_subject}</td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
@@ -625,7 +625,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.goods_price1_won}" class="price_in qty_adults_select_" size="4"
-                                        data-idx="${item_.idx}" data-s_station="${item_.spas_subject}" data-type="adults" onkeyup="chkNum(this)">
+                                        data-type="adults" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -638,7 +638,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.goods_price2_won}" class="price_in qty_children_select_" size="4"
-                                        data-idx="${item_.idx}" data-s_station="${item_.spas_subject}" data-type="kids" onkeyup="chkNum(this)">
+                                        data-type="kids" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -671,93 +671,113 @@
         renderItemPrice();
     }
 
+
     function renderItemPrice() {
-        let html_adults = ``;
-        let html_kids = ``;
-
+        let html = ``;
         let i = 0;
-        $('.qty_adults_select_').each(function () {
-            let price = $(this).data('price');
+        let arr_info_idx = [];
+
+        $(".spa_option_detail").each(function() {
+            
+            i++;
             let idx = $(this).data('idx');
-            let type = $(this).data('type');
-            let s_station = $(this).data('s_station');
-            let num = $(this).val();
-            if (num > 0) {
-                if (type === 'adults') {
-                    i++;
-                    html_adults += `<div class="flex_b_c cus-count-input" id="children_adults_${idx}">
-                                <div class="payment">
-                                    <p class="ped_label ped_label__booking">성인 ${i}</p>
-                                </div>
-                                <div class="opt_count_box count_box flex__c">
-                                    <input type="hidden" name="s_station[]" id="s_station${idx}" value="${s_station}">
-                                    <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
-                                           value="${num}" readonly="" style="padding: 0; width: 30px">
-                                    <span>명</span>
-                                    <input type="hidden" name="adultPrice[]" id="adultPrice${idx}" value="${price}">
-                                </div>
-                            </div>`;
-                }
+            let op_name = $(this).data('op_name');
+            let info_idx = $(this).data('info_idx');
+            let count = $(this).data('count');            
+
+            if (!arr_info_idx[info_idx]) {
+                arr_info_idx[info_idx] = 0;
             }
-        })
 
-        let j = 0;
-        $('.qty_children_select_').each(function () {
-            let price = $(this).data('price');
-            let idx = $(this).data('idx');
-            let type = $(this).data('type');
-            let num = $(this).val();
-            if (num > 0) {
-                if (type === 'kids') {
-                    j++;
-                    html_kids += `<div class="flex_b_c cus-count-input" id="children_kids_${idx}">
-                                <div class="payment">
-                                    <p class="ped_label ped_label__booking">아동 ${j}</p>
-                                </div>
-                                <div class="opt_count_box count_box flex__c">
-                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
-                                           id="childrenQty${idx}" value="${num}"
-                                           readonly="" style="padding: 0; width: 30px">
-                                    <span>명</span>
-                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice${idx}" value="${price}">
-                                </div>
-                            </div>`;
-                }
+            arr_info_idx[info_idx]++;
+            
+            let adult_price = $(this).find(".qty_adults_select_").data('price');
+            let adult_type = $(this).find(".qty_adults_select_").data('type');
+            let adult_num = $(this).find(".qty_adults_select_").val();
+
+            let child_price = $(this).find(".qty_children_select_").data('price');
+            let child_type = $(this).find(".qty_children_select_").data('type');
+            let child_num = $(this).find(".qty_children_select_").val();
+
+            html += `<li class="">`;
+
+            if(adult_num > 0 || child_num > 0){
+
+                html += `<p style="font-weight: bold; margin-bottom: 10px;">${op_name}</p>`
             }
-        })
 
-        if (html_kids === ``) {
-            html_kids = `<div class="flex_b_c cus-count-input">
-                                <div class="payment">
-                                    <p class="ped_label ped_label__booking">아동</p>
-                                </div>
-                                <div class="opt_count_box count_box flex__c">
-                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
-                                           id="childrenQty" value="0"
-                                           readonly="" style="padding: 0; width: 30px">
-                                    <span>명</span>
-                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice">
-                                </div>
-                            </div>`;
-        }
+            if(adult_num > 0) {
+                html += 
+                `
+                    <div class="flex_b_c cus-count-input cus-count-input-adult" id="children_adults_${idx}">
+                        <div class="payment">
+                            <p class="ped_label ped_label__booking">성인 ${i}</p>
+                        </div>
+                        <div class="opt_count_box count_box flex__c">
+                            <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
+                                    value="${adult_num}" readonly="" style="padding: 0; width: 30px">
+                            <span>명</span>
+                            <input type="hidden" name="adultPrice[]" id="adultPrice${idx}" value="${adult_price}">
+                        </div>
+                    </div>
+                `;
+            }
+            // else {
+            //     html += `
+            //         <div class="flex_b_c cus-count-input cus-count-input-adult" id="children_adults_${idx}">
+            //             <div class="payment">
+            //                 <p class="ped_label ped_label__booking">성인 ${i}</p>
+            //             </div>
+            //             <div class="opt_count_box count_box flex__c">
+            //                 <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
+            //                         value="0" readonly="" style="padding: 0; width: 30px">
+            //                 <span>명</span>
+            //                 <input type="hidden" name="adultPrice[]" id="adultPrice${idx}">
+            //             </div>
+            //         </div>
+            //     `;
+            // }
 
-        if (html_adults === ``) {
-            html_adults = `<div class="flex_b_c cus-count-input">
-                                <div class="payment">
-                                    <p class="ped_label ped_label__booking">성인 </p>
-                                </div>
-                                <div class="opt_count_box count_box flex__c">
-                                    <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
-                                           value="0"
-                                           readonly="" style="padding: 0; width: 30px">
-                                    <span>명</span>
-                                    <input type="hidden" name="adultPrice[]" id="adultPrice">
-                                </div>
-                            </div>`;
-        }
+            if(child_num > 0) {
+                html +=
+                `
+                    <div class="flex_b_c cus-count-input cus-count-input-child" id="children_kids_${idx}">
+                        <div class="payment">
+                            <p class="ped_label ped_label__booking">아동 ${i}</p>
+                        </div>
+                        <div class="opt_count_box count_box flex__c">
+                            <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                    id="childrenQty${idx}" value="${child_num}"
+                                    readonly="" style="padding: 0; width: 30px">
+                            <span>명</span>
+                            <input type="hidden" name="childrenPrice[]" id="childrenPrice${idx}" value="${child_price}">
+                        </div>
+                    </div>
+                `;
+            }
+            // else {
+            //     html +=
+            //     `
+            //         <div class="flex_b_c cus-count-input cus-count-input-child" id="children_kids_${idx}">
+            //             <div class="payment">
+            //                 <p class="ped_label ped_label__booking">아동 ${i}</p>
+            //             </div>
+            //             <div class="opt_count_box count_box flex__c">
+            //                 <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+            //                         id="childrenQty${idx}" value="0"
+            //                         readonly="" style="padding: 0; width: 30px">
+            //                 <span>명</span>
+            //                 <input type="hidden" name="childrenPrice[]" id="childrenPrice${idx}" value="0">
+            //             </div>
+            //         </div>
+            //     `;
+            // }
 
-        $('#list_number_child_').html(html_kids);
-        $('#list_number_adult_').html(html_adults);
+            html += `</li>`
+        });
+
+        
+        $("#list_people_option").html(html);
     }
 
     function calcTotalPrice() {
@@ -766,7 +786,8 @@
         let price_total = 0;
 
         $('.qty_adults_select_').each(function () {
-            let q = $(this).val() ?? 0;
+            let q = ($(this).val() &&  $(this).val() != '') ? $(this).val() : 0;
+            
             let p = $(this).data('price');
 
             qty_adults += parseInt(q);
@@ -776,7 +797,7 @@
         })
 
         $('.qty_children_select_').each(function () {
-            let q = $(this).val() ?? 0;
+            let q = ($(this).val() &&  $(this).val() != '') ? $(this).val() : 0;
             let p = $(this).data('price');
 
             qty_children += parseInt(q);

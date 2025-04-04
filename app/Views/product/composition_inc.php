@@ -16,10 +16,9 @@
 
                     <p class="label item_label">예약인원을 확인해주세요.</p>
 
-                    <ul class="select_peo">
-                        <li class="" id="list_number_adult_">
-
-                            <div class="flex_b_c cus-count-input">
+                    <ul class="select_peo" id="list_people_option">
+                        <li class="">
+                            <div class="flex_b_c cus-count-input cus-count-input-adult">
                                 <div class="payment">
                                     <p class="ped_label ped_label__booking">성인 </p>
                                 </div>
@@ -32,9 +31,22 @@
                                 </div>
                             </div>
 
+                            <div class="flex_b_c cus-count-input cus-count-input-child">
+                                <div class="payment">
+                                    <p class="ped_label ped_label__booking">아동</p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                           id="childrenQty" value="0"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice">
+                                </div>
+                            </div>
+
                         </li>
 
-                        <li class="" id="list_number_child_">
+                        <!-- <li class="" id="list_number_child_">
 
                             <div class="flex_b_c cus-count-input">
                                 <div class="payment">
@@ -49,7 +61,7 @@
                                 </div>
                             </div>
 
-                        </li>
+                        </li> -->
                     </ul>
 
                     <div class="item_option" style="display: none">
