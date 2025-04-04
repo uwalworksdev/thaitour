@@ -599,6 +599,7 @@ class AdminTourController extends BaseController
     public function write_info_ok()
     {
         $productIdx        = $this->request->getPost('product_idx');
+        $info_name         = $this->request->getPost('info_name');
         $o_sdate           = $this->request->getPost('o_sdate');
         $o_edate           = $this->request->getPost('o_edate');
         $tours_subject     = $this->request->getPost('tours_subject');
@@ -617,6 +618,10 @@ class AdminTourController extends BaseController
         $use_yn            = $this->request->getPost('use_yn');
         $op_tour_idx       = $this->request->getPost('op_tour_idx');
         $moption_idx       = $this->request->getPost('moption_idx');
+        $o_onum            = $this->request->getPost('o_onum');
+        $tour_onum         = $this->request->getPost('tour_onum');
+        $moption_onum      = $this->request->getPost('moption_onum');
+        $op_tour_onum      = $this->request->getPost('op_tour_onum');
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -659,6 +664,7 @@ class AdminTourController extends BaseController
 
             $infoData = [
                 'product_idx' => $productIdx,
+                'info_name' => isset($info_name[$key]) ? $info_name[$key] : null,
                 'o_sdate' => $start_date,
                 'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
                 'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
@@ -668,6 +674,7 @@ class AdminTourController extends BaseController
                 'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
                 'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
                 'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
+                'o_onum' => isset($o_onum[$key]) ? $o_onum[$key] : 0,
                 'tour_info_price' => isset($tour_info_price[$key]) ? $tour_info_price[$key] : null,
                 'r_date' => date('Y-m-d H:i:s')
             ];
@@ -698,6 +705,7 @@ class AdminTourController extends BaseController
                             'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '',
                             'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '',
                             'status'            => isset($status[$index][$i]) ? $status[$index][$i] : '',
+                            'tour_onum'         => isset($tour_onum[$index][$i]) ? $tour_onum[$index][$i] : 0,
                             'info_idx'          => $infoId,
                             'r_date'            => date('Y-m-d H:i:s')
                         ];
@@ -788,6 +796,7 @@ class AdminTourController extends BaseController
             foreach ($moption_idx[$index] as $m_index => $code_idx) {
                 $data_op = [
                     'moption_name' => $moption_name[$index][$m_index] ?? '',
+                    'onum'         => $moption_onum[$index][$m_index] ?? 0,
                     'use_yn' => 'Y'
                 ];
 
@@ -806,6 +815,7 @@ class AdminTourController extends BaseController
                         'option_name'     => $o_name[$index][$m_index][$i],
                         'option_name_eng' => $o_name_eng[$index][$m_index][$i],
                         'option_price'    => $o_price[$index][$m_index][$i],
+                        'onum'            => $op_tour_onum[$index][$m_index][$i] ?? 0,
                         'use_yn'          => isset($use_yn[$index][$m_index][$i]) ? $use_yn[$index][$m_index][$i] : 'N',
                     ];
 

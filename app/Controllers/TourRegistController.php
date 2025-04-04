@@ -2166,7 +2166,7 @@ class TourRegistController extends BaseController
             SELECT pt.*, pti.* 
             FROM tbl_product_tours pt 
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx 
-            WHERE pt.product_idx = ? ORDER BY pt.tours_idx ASC
+            WHERE pt.product_idx = ? ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
         ";
 
         $query_info = $db->query($sql_info, [$product_idx]);
@@ -2195,9 +2195,9 @@ class TourRegistController extends BaseController
                 'status'            => $row['status'],
             ];
 
-            $groupedData[$infoIndex]['options'] = $this->moptionModel->where("info_idx", $infoIndex)->findAll();
+            $groupedData[$infoIndex]['options'] = $this->moptionModel->where("info_idx", $infoIndex)->orderBy("onum", "asc")->findAll();
             foreach($groupedData[$infoIndex]['options'] as $key => $value) {
-                $groupedData[$infoIndex]['options'][$key]['option_tours'] = $this->optionTourModel->where("code_idx", $value["code_idx"])->findAll();
+                $groupedData[$infoIndex]['options'][$key]['option_tours'] = $this->optionTourModel->where("code_idx", $value["code_idx"])->orderBy("onum", "asc")->findAll();
             }
 
             if (!isset($toursIdxMap[$infoIndex])) {

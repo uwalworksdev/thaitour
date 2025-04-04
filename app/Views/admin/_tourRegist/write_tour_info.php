@@ -74,8 +74,8 @@
                                         <div class="table_list" data-info-idx="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
                                             <table style="width: 100%">
 												<colgroup>
+													<col width="20%">
 													<col width="*">
-													<col width="35%">
 													<col width="15%">
 												</colgroup>
 												<!-- <thead>
@@ -91,12 +91,17 @@
                                                         <td>
 															<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																<div style="display: flex; justify-content: center; gap: 5px;">
-																	<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
+																	<input type="text" name="info_name[<?=$i?>]" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
 																	<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
 																	<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																</div>
+															</div>
+                                                        </td>
+                                                        <td>
+															<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																	<input type="hidden" name="o_onum[<?=$i?>]" value="<?=$info['info']['o_onum']?>">
+																	<input type="hidden" name="o_onum[<?=$i?>]" class="o_onum" value="<?=$info['info']['o_onum']?>">
 																	<input type="text" readonly class="datepicker s_date" placeholder="시작기간" name="o_sdate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
 																		value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
 																	<input type="text" readonly class="datepicker e_date" placeholder="종료기간" name="o_edate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
@@ -104,34 +109,35 @@
 																
 																	<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
 																</div>
-															</div>
-                                                        </td>
-                                                        <td>
-															<?php
-																$count_yoil = 0;
-																for($_y = 0; $_y <= 6; $_y++) {
-																	if($info['info']['yoil_'.$_y] == 'Y') {
-																		$count_yoil++;
+																<?php
+																	$count_yoil = 0;
+																	for($_y = 0; $_y <= 6; $_y++) {
+																		if($info['info']['yoil_'.$_y] == 'Y') {
+																			$count_yoil++;
+																		}
 																	}
-																}
 
-															?>
-															<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
-															전체&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
-                                                                <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+																?>
+																<div style="display: flex; align-items: center; gap: 5px;">
+																	<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
+																	전체&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
+																		<?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+
+																</div>
+															</div>
                                                         </td>
 														<td>
 															<div style="display: flex; gap: 5px;">
@@ -177,8 +183,8 @@
 																				<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
 																				<input type="hidden" name="tour_onum[<?=$i?>][]" class="tour_onum" value="<?= $tour['tour_onum'] ?>">
 																				<div class="flex" style="gap: 5px;">
-																					<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																					<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																					<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																					<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																					<input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="상품타입 국문글씨로 입력해주세요" class="tours_subject input_txt" style="width:50%" />
 																					<input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject input_txt" style="width:50%;" />
 																				</div>
@@ -217,9 +223,11 @@
 																
 																<tbody>
 																	<tr>
-																		<th>옵션추가</th>
-																		<td>
+																		<th>
+																			옵션추가
 																			<button type="button" class="btn btn-primary" onclick="add_main_option(this, <?= $i ?>);">추가</button>	
+																		</th>
+																		<td>
 																			<input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
 																			<?php $j = 0;?>
 																			<?php foreach ($info['options'] as $moption): ?>
@@ -244,8 +252,8 @@
 																									<button type="button" class="btn btn-danger"
 																											onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
 																									</button>
-																									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																									<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																									<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																								</div>
 																							</th>
 																						</tr>
@@ -284,7 +292,7 @@
 																									<tbody>
 	
 																										<?php foreach ($moption['option_tours'] as $option_tour): ?>
-																											<tr>
+																											<tr class="option_detail">
 																												<td>
 																													<div style="display: flex; gap: 5px;">
 																														<input type="hidden" name="op_tour_idx[<?=$i?>][<?= $j ?>][]" class="op_tour_idx" value="<?=$option_tour["idx"]?>">
@@ -310,8 +318,10 @@
 																													</select>
 																												</td>
 																												<td>
-																													<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																													<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																														<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																														<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													</div>
 																												</td>
 																												<td>
 																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -349,8 +359,8 @@
 									<div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
 										<table style="width: 100%">
 											<colgroup>
+												<col width="20%">
 												<col width="*">
-												<col width="35%">
 												<col width="15%">
 											</colgroup>
 								
@@ -359,34 +369,39 @@
 													<td>
 													<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 														<div style="display: flex; justify-content: center; gap: 5px;">
-															<input type="hidden" name="o_onum[0]" value="">
-															<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
+															<input type="hidden" name="o_onum[0]" class="o_onum" value="">
+															<input type="text" name="info_name[0]" style="width: 250px;" value="">
 															<a href="javascript:add_tours(0);" class="btn btn-primary">추가</a>
 															<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
 														</div>
-														<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-															<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
-															<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
-														</div>
+														
 													</div>
 													</td>
 													<td>
-														<input type="checkbox" class="all_yoil">
-														전체&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
-														일요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
-														월요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
-														화요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
-														수요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
-														목요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
-														금요일&nbsp;&nbsp;
-														<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
-														토요일&nbsp;&nbsp;
+														<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+															<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+																<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
+															</div>
+															<div style="display: flex; align-items: center; gap: 5px;">
+																<input type="checkbox" class="all_yoil">
+																전체&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
+																일요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
+																월요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
+																화요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
+																수요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
+																목요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
+																금요일&nbsp;&nbsp;
+																<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
+																토요일&nbsp;&nbsp;
+															</div>
+														</div>
 													</td>
 													<td>
 														<div style="display: flex; gap: 5px;">
@@ -412,8 +427,8 @@
 																		<input type="hidden" name="tours_idx[0][]" class="tours_idx" value="">
 																		<input type="hidden" name="tour_onum[0][]" class="tour_onum" value="">
 																		<div class="flex" style="gap: 5px;">
-																			<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																			<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																			<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																			<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																			<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 																			<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width:50%;" />
 																		</div>
@@ -451,9 +466,11 @@
 															
 															<tbody>
 																<tr>
-																	<th>옵션추가</th>
-																	<td>
+																	<th>
+																		옵션추가
 																		<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
+																	</th>
+																	<td>
 																		<div class="option_area">
 																			<input type="hidden" name="moption_idx[0][0]" class="moption_idx" value="">
 																			<input type="hidden" name="moption_onum[0][0]" class="moption_onum" value="">
@@ -475,8 +492,8 @@
 																							<button type="button" class="btn btn-danger"
 																									onclick="del_main_option('', this);">삭제
 																							</button>
-																							<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																							<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																							<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																							<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						</div>
 																					</th>
 																				</tr>
@@ -504,13 +521,13 @@
 																								<col width="8%"></col>
 																							</colgroup>
 																							<tbody>
-																								<tr>
+																								<tr class="option_detail">
 																									<td>
 																										<div style="display: flex; gap: 5px;">
 																											<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
 																											<input type="hidden" name="op_tour_onum[0][0][]" class="op_tour_onum" value="">
-																											<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요" style="width:48%;" />
-																											<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+																											<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요" />
+																											<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />
 																										</div>
 																									</td>
 																									<td>
@@ -528,8 +545,10 @@
 																										</select>
 																									</td>
 																									<td>
-																										<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																										<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																									<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																										<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																										<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																									</div>
 																									</td>
 																									<td>
 																										<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -611,14 +630,79 @@
 
 	});
 
+	function moveUp(button) {
+		let current = $(button).closest(".table_list");
+		let prev = current.prev(".table_list");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveDown(button) {
+		let current = $(button).closest(".table_list");
+		let next = current.next(".table_list");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveTourUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveTourDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveMOptionUp(button) {
+		let current = $(button).closest(".option_area");
+		let prev = current.prev(".option_area");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveMOptionDown(button) {
+		let current = $(button).closest(".option_area");
+		let next = current.next(".option_area");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveOptionUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveOptionDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+
 	function add_table() {
 		tableCount++;
 		var newTable = `
 			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
 				<table style="width: 100%">
 					<colgroup>
+						<col width="20%">
 						<col width="*">
-						<col width="35%">
 						<col width="15%">
 					</colgroup>
 					<tbody>
@@ -626,26 +710,31 @@
 							<td>
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
-										<input type="hidden" name="o_onum[${tableCount}]" value="">
-										<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
+										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
+										<input type="text" name="info_name[0]" style="width: 250px;" value="">
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
+									
+								</div>
+							</td>
+							<td>
+								<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
 									<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 									</div>
+									<div style="display: flex; align-items: center; gap: 5px;">
+										<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+									</div>
 								</div>
-							</td>
-							<td>
-								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
@@ -673,8 +762,8 @@
 												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
 												<div class="flex" style="gap: 5px;">
-													<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-													<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 													<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
 													<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
 												</div>
@@ -712,9 +801,11 @@
 									
 									<tbody>
 										<tr>
-											<th>옵션추가</th>
-											<td>
+											<th>
+												옵션추가
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
+											</th>
+											<td>
 												<div class="option_area">
 													<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
 													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
@@ -733,8 +824,8 @@
 																	<button type="button" class="btn btn-danger"
 																			onclick="del_main_option('', this);">삭제
 																	</button>
-																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																	<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																	<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
 															</th>
 														</tr>
@@ -758,13 +849,13 @@
 																		<col width="8%"></col>
 																	</colgroup>
 																	<tbody>
-																		<tr>
+																		<tr class="option_detail">
 																			<td>
 																				<div style="display: flex; gap: 5px;">
 																					<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
 																					<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
-																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />	
+																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" />
+																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />	
 																				</div>
 																			</td>
 																			<td>
@@ -782,8 +873,10 @@
 																				</select>
 																			</td>
 																			<td>
-																				<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																				<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				</div>
 																			</td>
 																			<td>
 																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -901,8 +994,8 @@
 					<input type="hidden" name="tour_onum[${tableListIndex}][]" class="tour_onum" value="">
 
 					<div class="flex" style="gap: 5px;">
-						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 						<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 					</div>	
@@ -952,8 +1045,8 @@
 					<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
 					<div class="flex" style="gap: 5px;">
-						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 						<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 					</div>
@@ -985,7 +1078,7 @@
 
 	function add_main_option(button, idx) {
 
-		let count_moption = Number($(button).closest("td").find(".count_moption").val() ?? 0)
+		let count_moption = Number($(button).closest("tr").find("> td").find(".count_moption").val() ?? 0)
 		let count = count_moption > 0 ? (count_moption - 1) : 0;
 		
 		if(!arr_count[idx] && arr_count[idx] != 0){
@@ -1013,8 +1106,8 @@
 								<button type="button" class="btn btn-danger"
 										onclick="del_main_option('', this);">삭제
 								</button>
-								<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-								<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+								<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 							</div>
 						</th>
 					</tr>
@@ -1038,13 +1131,13 @@
 									<col width="8%"></col>
 								</colgroup>
 								<tbody>
-									<tr>
+									<tr class="option_detail">
 										<td>
 											<div style="display: flex; gap: 5px;">
 												<input type="hidden" name="op_tour_onum[${idx}][${arr_count[idx]}][]" class="op_tour_onum" value="">
 												<input type="hidden" name="op_tour_idx[${idx}][${arr_count[idx]}][]" class="op_tour_idx" value="">
-												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
 											</div>
 										</td>
 										<td>
@@ -1062,8 +1155,11 @@
 											</select>
 										</td>
 										<td>
-											<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-											<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+												<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											</div
+
 										</td>
 										<td>
 											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1082,18 +1178,18 @@
 			</div>
 		`;
 
-		$(button).closest("td").append(html);
+		$(button).closest("tr").find("> td").append(html);
 	}
 
 	function add_sub_option(button, info_idx, op_idx) {
 		let html = `
-			<tr>
+			<tr class="option_detail">
 				<td>
 					<div style="display: flex; gap: 5px;">
 						<input type="hidden" name="op_tour_onum[${info_idx}][${op_idx}][]" class="op_tour_onum" value="">
 						<input type="hidden" name="op_tour_idx[${info_idx}][${op_idx}][]" class="op_tour_idx" value="">
-						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
 					</div>
 				</td>
 				<td>
@@ -1111,8 +1207,10 @@
 					</select>
 				</td>
 				<td>
-					<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-					<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+						<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					</div>
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1270,6 +1368,8 @@
 	function write_day_price(info_idx, product_idx){
 		location.href = "/AdmMaster/_tourRegist/list_tours_price?info_idx="+info_idx+"&product_idx="+product_idx;
 	}
+
+
 </script>
 
 <script>
@@ -1310,6 +1410,25 @@
 			}
 
 		}
+
+		$(".table_list").each(function() {
+			let o_onum = $(this).index();
+			$(this).find(".o_onum").val(o_onum);
+			$(this).find(".air_list_1").each(function() {
+				let tour_onum = $(this).index();
+				$(this).find(".tour_onum").val(tour_onum);
+			});
+
+			$(this).find(".option_area").each(function() {
+				let moption_onum = $(this).index();
+				$(this).find(".moption_onum").val(moption_onum);
+				$(this).find(".option_detail").each(function() {
+					let op_tour_onum = $(this).index();
+					$(this).find(".op_tour_onum").val(op_tour_onum);
+				});
+			});
+		})
+
 		frm.submit();
 	}
 </script>

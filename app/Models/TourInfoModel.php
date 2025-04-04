@@ -9,6 +9,7 @@ class TourInfoModel extends Model
     protected $allowedFields = [
         'product_idx', 
         'group', 
+        'info_name',
         'o_sdate', 
         'o_edate',
         'tour_info_price',
@@ -19,6 +20,7 @@ class TourInfoModel extends Model
         'yoil_4', 
         'yoil_5', 
         'yoil_6', 
+        'o_onum', 
         'r_date'
     ];
 
