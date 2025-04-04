@@ -1402,7 +1402,7 @@
 			});
 		})
 
-		// frm.submit();
+		frm.submit();
 	}
 </script>
 
