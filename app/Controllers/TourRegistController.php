@@ -753,6 +753,10 @@ class TourRegistController extends BaseController
         $data        = $this->getWrite('', '', '', '1302', '', "G");
         $db          = $this->connect;
 
+        $sql   = "SELECT * FROM tbl_golf_group WHERE product_idx = '" . $product_idx . "' ";
+        $query = $db->query($sql);
+        $group = $query->getRowArray();
+		
         $options = $this->golfOptionModel->getOptions($product_idx);
 
         $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
@@ -776,6 +780,7 @@ class TourRegistController extends BaseController
 			"golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
             'product_idx' => $product_idx,
             'product'     => $product,
+            'group'       => $group,
             'options'     => $options,
 			'filters'     => $filters
         ];
