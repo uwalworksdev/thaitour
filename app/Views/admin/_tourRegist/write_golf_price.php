@@ -172,6 +172,8 @@
 											 <input type='text' readonly class='datepickerX ' name='o_edate[]' style="width:10%" value='<?= $frow3['o_edate'] ?>' readonly/>
 									
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
+									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
+									<button type="button" id="btn_delete_option" class="btn_02">삭제</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
                             </tr>
