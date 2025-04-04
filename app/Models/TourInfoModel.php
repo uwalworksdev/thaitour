@@ -19,6 +19,7 @@ class TourInfoModel extends Model
         'yoil_4', 
         'yoil_5', 
         'yoil_6', 
+        'o_onum', 
         'r_date'
     ];
 

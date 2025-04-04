@@ -96,7 +96,7 @@
 																	<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																</div>
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																	<input type="hidden" name="o_onum[<?=$i?>]" value="<?=$info['info']['o_onum']?>">
+																	<input type="hidden" name="o_onum[<?=$i?>]" class="o_onum" value="<?=$info['info']['o_onum']?>">
 																	<input type="text" readonly class="datepicker s_date" placeholder="시작기간" name="o_sdate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
 																		value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
 																	<input type="text" readonly class="datepicker e_date" placeholder="종료기간" name="o_edate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
@@ -286,7 +286,7 @@
 																									<tbody>
 	
 																										<?php foreach ($moption['option_tours'] as $option_tour): ?>
-																											<tr>
+																											<tr class="option_detail">
 																												<td>
 																													<div style="display: flex; gap: 5px;">
 																														<input type="hidden" name="op_tour_idx[<?=$i?>][<?= $j ?>][]" class="op_tour_idx" value="<?=$option_tour["idx"]?>">
@@ -361,7 +361,7 @@
 													<td>
 													<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 														<div style="display: flex; justify-content: center; gap: 5px;">
-															<input type="hidden" name="o_onum[0]" value="">
+															<input type="hidden" name="o_onum[0]" class="o_onum" value="">
 															<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
 															<a href="javascript:add_tours(0);" class="btn btn-primary">추가</a>
 															<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
@@ -508,7 +508,7 @@
 																								<col width="8%"></col>
 																							</colgroup>
 																							<tbody>
-																								<tr>
+																								<tr class="option_detail">
 																									<td>
 																										<div style="display: flex; gap: 5px;">
 																											<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
@@ -695,7 +695,7 @@
 							<td>
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
-										<input type="hidden" name="o_onum[${tableCount}]" value="">
+										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
 										<input type="text" class="product_name" style="width: 250px;" value="<?=$product_name?>" readonly>
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
@@ -829,7 +829,7 @@
 																		<col width="8%"></col>
 																	</colgroup>
 																	<tbody>
-																		<tr>
+																		<tr class="option_detail">
 																			<td>
 																				<div style="display: flex; gap: 5px;">
 																					<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
@@ -1056,7 +1056,7 @@
 
 	function add_main_option(button, idx) {
 
-		let count_moption = Number($(button).closest("td").find(".count_moption").val() ?? 0)
+		let count_moption = Number($(button).closest("tr").find("> td").find(".count_moption").val() ?? 0)
 		let count = count_moption > 0 ? (count_moption - 1) : 0;
 		
 		if(!arr_count[idx] && arr_count[idx] != 0){
@@ -1109,7 +1109,7 @@
 									<col width="8%"></col>
 								</colgroup>
 								<tbody>
-									<tr>
+									<tr class="option_detail">
 										<td>
 											<div style="display: flex; gap: 5px;">
 												<input type="hidden" name="op_tour_onum[${idx}][${arr_count[idx]}][]" class="op_tour_onum" value="">
@@ -1153,12 +1153,12 @@
 			</div>
 		`;
 
-		$(button).closest("td").append(html);
+		$(button).closest("tr").find("> td").append(html);
 	}
 
 	function add_sub_option(button, info_idx, op_idx) {
 		let html = `
-			<tr>
+			<tr class="option_detail">
 				<td>
 					<div style="display: flex; gap: 5px;">
 						<input type="hidden" name="op_tour_onum[${info_idx}][${op_idx}][]" class="op_tour_onum" value="">
@@ -1383,7 +1383,26 @@
 			}
 
 		}
-		frm.submit();
+
+		$(".table_list").each(function() {
+			let o_onum = $(this).index();
+			$(this).find(".o_onum").val(o_onum);
+			$(this).find(".air_list_1").each(function() {
+				let tour_onum = $(this).index();
+				$(this).find(".tour_onum").val(tour_onum);
+			});
+
+			$(this).find(".option_area").each(function() {
+				let moption_onum = $(this).index();
+				$(this).find(".moption_onum").val(moption_onum);
+				$(this).find(".option_detail").each(function() {
+					let op_tour_onum = $(this).index();
+					$(this).find(".op_tour_onum").val(op_tour_onum);
+				});
+			});
+		})
+
+		// frm.submit();
 	}
 </script>
 
