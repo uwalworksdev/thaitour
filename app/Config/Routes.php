@@ -613,6 +613,8 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_check_end", "AjaxController::ajax_check_end");
 	$routes->post("ajax_trip_change", "AjaxController::ajax_trip_change");
 	$routes->post("ajax_getMinDate", "AjaxController::ajax_getMinDate");
+	$routes->post("ajax_golfPrice_add", "AjaxController::ajax_golfPrice_add");
+	
 });
 
 $routes->group("api", static function ($routes) {
