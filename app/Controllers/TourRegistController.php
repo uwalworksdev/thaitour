@@ -799,20 +799,31 @@ class TourRegistController extends BaseController
         $product_idx    = $data['product_idx'];
         $minium_people_cnt = $data['minium_people_cnt'];
         $total_people_cnt  = $data['total_people_cnt'];
-        $o_name         = $data['o_name'];
-        $o_price1       = $data['o_price1'];
-        $o_price2       = $data['o_price2'];
-        $o_price3       = $data['o_price3'];
-        $o_price4       = $data['o_price4'];
-        $o_price5       = $data['o_price5'];
-        $o_price6       = $data['o_price6'];
-        $o_price7       = $data['o_price7'];
-		$vehicle_price1 = $data['vehicle_price1'];
-		$vehicle_price2 = $data['vehicle_price2'];
-		$vehicle_price3 = $data['vehicle_price3'];
-		$vehicle_o_price1 = $data['vehicle_o_price1'];
-		$vehicle_o_price2 = $data['vehicle_o_price2'];
-		$vehicle_o_price3 = $data['vehicle_o_price3'];
+        $o_name            = $data['o_name'];
+        $o_price1_1        = $data['o_price1_1'];
+        $o_price1_2        = $data['o_price1_2'];
+        $o_price2_3        = $data['o_price2_3'];
+        $o_price3_1        = $data['o_price3_1'];
+        $o_price3_2        = $data['o_price3_2'];
+        $o_price3_3        = $data['o_price3_3'];
+        $o_price4_1        = $data['o_price4_1'];
+        $o_price4_2        = $data['o_price4_2'];
+        $o_price4_3        = $data['o_price4_3'];
+        $o_price5_1        = $data['o_price5_1'];
+        $o_price5_2        = $data['o_price5_2'];
+        $o_price5_3        = $data['o_price5_3'];
+        $o_price6_1        = $data['o_price6_1'];
+        $o_price6_2        = $data['o_price6_2'];
+        $o_price6_3        = $data['o_price6_3'];
+        $o_price7_1        = $data['o_price7_1'];
+        $o_price7_2        = $data['o_price7_2'];
+        $o_price7_3        = $data['o_price7_3'];
+		$vehicle_price1    = $data['vehicle_price1'];
+		$vehicle_price2    = $data['vehicle_price2'];
+		$vehicle_price3    = $data['vehicle_price3'];
+		$vehicle_o_price1  = $data['vehicle_o_price1'];
+		$vehicle_o_price2  = $data['vehicle_o_price2'];
+		$vehicle_o_price3  = $data['vehicle_o_price3'];
         $cart_price     = $data['cart_price'];
 		$o_cart_due     = $data['o_cart_due'];
 		$o_caddy_due    = $data['o_caddy_due'];
@@ -848,13 +859,27 @@ class TourRegistController extends BaseController
             if ($o_idx[$i]) {
                 $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
-													,goods_price1	= '" . $o_price1[$i] . "'
-													,goods_price2	= '" . $o_price2[$i] . "'
-													,goods_price3	= '" . $o_price3[$i] . "'
-													,goods_price4	= '" . $o_price4[$i] . "'
-													,goods_price5	= '" . $o_price5[$i] . "'
-													,goods_price6	= '" . $o_price6[$i] . "'
-													,goods_price7	= '" . $o_price7[$i] . "'
+													,goods_price1_1	= '" . $o_price1_1[$i] . "'
+													,goods_price1_2	= '" . $o_price1_2[$i] . "'
+													,goods_price1_3	= '" . $o_price1_3[$i] . "'
+													,goods_price2_1	= '" . $o_price2_1[$i] . "'
+													,goods_price2_2	= '" . $o_price2_2[$i] . "'
+													,goods_price2_3	= '" . $o_price2_3[$i] . "'
+													,goods_price3_1	= '" . $o_price3_1[$i] . "'
+													,goods_price3_2	= '" . $o_price3_2[$i] . "'
+													,goods_price3_3	= '" . $o_price3_3[$i] . "'
+													,goods_price4_1	= '" . $o_price4_1[$i] . "'
+													,goods_price4_2	= '" . $o_price4_2[$i] . "'
+													,goods_price4_3	= '" . $o_price4_3[$i] . "'
+													,goods_price5_1	= '" . $o_price5_1[$i] . "'
+													,goods_price5_2	= '" . $o_price5_2[$i] . "'
+													,goods_price5_3	= '" . $o_price5_3[$i] . "'
+													,goods_price6_1	= '" . $o_price6_1[$i] . "'
+													,goods_price6_2	= '" . $o_price6_2[$i] . "'
+													,goods_price6_3	= '" . $o_price6_3[$i] . "'
+													,goods_price7_1	= '" . $o_price7_1[$i] . "'
+													,goods_price7_2	= '" . $o_price7_2[$i] . "'
+													,goods_price7_3	= '" . $o_price7_3[$i] . "'
 													
 													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
 													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
@@ -888,13 +913,27 @@ class TourRegistController extends BaseController
                 $sql = "INSERT INTO tbl_golf_option SET 
 													 product_idx	= '" . $product_idx . "'
 													,goods_name		= '" . $o_name[$i] . "'
-													,goods_price1	= '" . $o_price1[$i] . "'
-													,goods_price2	= '" . $o_price2[$i] . "'
-													,goods_price3	= '" . $o_price3[$i] . "'
-													,goods_price4	= '" . $o_price4[$i] . "'
-													,goods_price5	= '" . $o_price5[$i] . "'
-													,goods_price6	= '" . $o_price6[$i] . "'
-													,goods_price7	= '" . $o_price7[$i] . "'
+													,goods_price1_1	= '" . $o_price1_1[$i] . "'
+													,goods_price1_2	= '" . $o_price1_2[$i] . "'
+													,goods_price1_3	= '" . $o_price1_3[$i] . "'
+													,goods_price2_1	= '" . $o_price2_1[$i] . "'
+													,goods_price2_2	= '" . $o_price2_2[$i] . "'
+													,goods_price2_3	= '" . $o_price2_3[$i] . "'
+													,goods_price3_1	= '" . $o_price3_1[$i] . "'
+													,goods_price3_2	= '" . $o_price3_2[$i] . "'
+													,goods_price3_3	= '" . $o_price3_3[$i] . "'
+													,goods_price4_1	= '" . $o_price4_1[$i] . "'
+													,goods_price4_2	= '" . $o_price4_2[$i] . "'
+													,goods_price4_3	= '" . $o_price4_3[$i] . "'
+													,goods_price5_1	= '" . $o_price5_1[$i] . "'
+													,goods_price5_2	= '" . $o_price5_2[$i] . "'
+													,goods_price5_3	= '" . $o_price5_3[$i] . "'
+													,goods_price6_1	= '" . $o_price6_1[$i] . "'
+													,goods_price6_2	= '" . $o_price6_2[$i] . "'
+													,goods_price6_3	= '" . $o_price6_3[$i] . "'
+													,goods_price7_1	= '" . $o_price7_1[$i] . "'
+													,goods_price7_2	= '" . $o_price7_2[$i] . "'
+													,goods_price7_3	= '" . $o_price7_3[$i] . "'
 													
 													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
 													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
@@ -942,14 +981,48 @@ class TourRegistController extends BaseController
                 $golf_date = $dateRange[$ii];
                 $dow = dateToYoil($golf_date);
 
-                if ($dow == "일") $price = $row_o['goods_price1'];
-                if ($dow == "월") $price = $row_o['goods_price2'];
-                if ($dow == "화") $price = $row_o['goods_price3'];
-                if ($dow == "수") $price = $row_o['goods_price4'];
-                if ($dow == "목") $price = $row_o['goods_price5'];
-                if ($dow == "금") $price = $row_o['goods_price6'];
-                if ($dow == "토") $price = $row_o['goods_price7'];
-
+                if ($dow == "일") {
+					$price1 = $row_o['goods_price1_1'];
+					$price2 = $row_o['goods_price1_2'];
+					$price3 = $row_o['goods_price1_3'];
+				}
+				
+                if ($dow == "월") {
+					$price1 = $row_o['goods_price2_1'];
+					$price2 = $row_o['goods_price2_2'];
+					$price3 = $row_o['goods_price2_3'];
+				}
+				
+                if ($dow == "화") {
+					$price1 = $row_o['goods_price3_1'];
+					$price2 = $row_o['goods_price3_2'];
+					$price3 = $row_o['goods_price3_3'];
+				}
+				
+                if ($dow == "수") {
+					$price1 = $row_o['goods_price4_1'];
+					$price2 = $row_o['goods_price4_2'];
+					$price3 = $row_o['goods_price4_3'];
+				}
+				
+                if ($dow == "목") {
+					$price1 = $row_o['goods_price5_1'];
+					$price2 = $row_o['goods_price5_2'];
+					$price3 = $row_o['goods_price5_3'];
+				}
+				
+                if ($dow == "금") {
+					$price1 = $row_o['goods_price6_1'];
+					$price2 = $row_o['goods_price6_2'];
+					$price3 = $row_o['goods_price6_3'];
+				}
+				
+                if ($dow == "토") {
+					$price1 = $row_o['goods_price7_1'];
+					$price2 = $row_o['goods_price7_2'];
+					$price3 = $row_o['goods_price7_3'];
+                }
+				
                 $sql_opt = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '" . $row_o['idx'] . "' AND goods_name = '" . $row_o['goods_name'] . "' AND goods_date = '" . $golf_date . "' ";
                // write_log("2- " . $sql_opt);
                 $option = $this->connect->query($sql_opt)->getRowArray();
@@ -960,7 +1033,9 @@ class TourRegistController extends BaseController
 															, dow	      = '" . $dow . "'	
 															, product_idx = '" . $product_idx . "'	
 															, goods_name  = '" . $row_o['goods_name'] . "'	
-															, price	      = '" . $price . "'	
+															, price_1	  = '" . $price1 . "'	
+															, price_2	  = '" . $price2 . "'	
+															, price_3	  = '" . $price3 . "'	
 															, day_yn	  = 'Y'	
 															, day_price	  = '" . $row_o['o_day_price'] . "'	
 															, afternoon_yn	  = '" . $row_o['o_afternoon_yn'] . "'	
