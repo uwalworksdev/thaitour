@@ -198,13 +198,13 @@
                                             <thead>
                                             <tr>
                                                 <th>홀수</th>
-                                                <th>일</th>
                                                 <th>월</th>
                                                 <th>화</th>
                                                 <th>수</th>
                                                 <th>목</th>
                                                 <th>금</th>
                                                 <th>토</th>
+                                                <th>일</th>
                                                 <th>삭제</th>
                                             </tr>
                                             </thead>
@@ -221,12 +221,6 @@
                                                         value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
-                                                </td>
-                                                <td>
-                                                    <input type="text" numberonly="true" name="o_price1[]"
-                                                            style="text-align:right;"
-                                                            id="goods_price1_<?= $frow3['idx'] ?>"
-                                                            value='<?= $frow3['goods_price1'] ?>'>
                                                 </td>
                                                 <td>
                                                     <input type="text" numberonly="true" name="o_price2[]"
@@ -263,6 +257,12 @@
                                                             style="text-align:right;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7'] ?>'>
+                                                </td>
+                                                <td>
+                                                    <input type="text" numberonly="true" name="o_price1[]"
+                                                            style="text-align:right;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
                                                 </td>
                                                 <td rowspan="2">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
