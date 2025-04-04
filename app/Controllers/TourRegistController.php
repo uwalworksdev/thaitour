@@ -753,14 +753,14 @@ class TourRegistController extends BaseController
         $data        = $this->getWrite('', '', '', '1302', '', "G");
         $db          = $this->connect;
 
-        $sql   = "SELECT * FROM tbl_golf_group WHERE product_idx = '" . $product_idx . "' ";
-        $query = $db->query($sql);
-        $group = $query->getRowArray();
+		$sql     = "SELECT * FROM tbl_golf_group WHERE product_idx = ?";
+		$query   = $db->query($sql, [$product_idx]);
+		$groups  = $query->getResultArray();
 		
         $options = $this->golfOptionModel->getOptions($product_idx);
 
-        $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
-        $query = $db->query($sql);
+        $sql     = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
+        $query   = $db->query($sql);
         $product = $query->getRowArray();
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
@@ -780,7 +780,7 @@ class TourRegistController extends BaseController
 			"golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
             'product_idx' => $product_idx,
             'product'     => $product,
-            'group'       => $group,
+            'groups'      => $groups,
             'options'     => $options,
 			'filters'     => $filters
         ];
@@ -2166,7 +2166,7 @@ class TourRegistController extends BaseController
             SELECT pt.*, pti.* 
             FROM tbl_product_tours pt 
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx 
-            WHERE pt.product_idx = ? ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
+            WHERE pt.product_idx = ? ORDER BY pt.tours_idx ASC
         ";
 
         $query_info = $db->query($sql_info, [$product_idx]);
@@ -2195,9 +2195,9 @@ class TourRegistController extends BaseController
                 'status'            => $row['status'],
             ];
 
-            $groupedData[$infoIndex]['options'] = $this->moptionModel->where("info_idx", $infoIndex)->orderBy("onum", "asc")->findAll();
+            $groupedData[$infoIndex]['options'] = $this->moptionModel->where("info_idx", $infoIndex)->findAll();
             foreach($groupedData[$infoIndex]['options'] as $key => $value) {
-                $groupedData[$infoIndex]['options'][$key]['option_tours'] = $this->optionTourModel->where("code_idx", $value["code_idx"])->orderBy("onum", "asc")->findAll();
+                $groupedData[$infoIndex]['options'][$key]['option_tours'] = $this->optionTourModel->where("code_idx", $value["code_idx"])->findAll();
             }
 
             if (!isset($toursIdxMap[$infoIndex])) {
