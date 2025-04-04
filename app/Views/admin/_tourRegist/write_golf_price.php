@@ -329,7 +329,7 @@
                                             </tr>
                                             
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
-                                                <td colspan="8"><span class="badge">왕복</span>&nbsp;
+                                                <td colspan="7"><span class="badge">왕복</span>&nbsp;
                                                     승용차:      <input type='text' name='vehicle_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price3'] ?>'/>&nbsp; 
@@ -338,7 +338,14 @@
                                                     승용차:      <input type='text' name='vehicle_o_price1[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price1'] ?>'/>&nbsp;&nbsp; 
                                                     밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_o_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
-                                                </td>                                            
+                                                </td>    
+                                                <td>
+                                                    <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
+                                                    <button type="button" class="btn_01"
+                                                            onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
+                                                    </button>
+                                                </td>
+											</tr>	
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="8">
                                                     카트:       <input type='text' name='cart_price[]' style="width:6%;text-align:right;" value='<?= $frow3['cart_price'] ?>'/>&nbsp;&nbsp;&nbsp; 
