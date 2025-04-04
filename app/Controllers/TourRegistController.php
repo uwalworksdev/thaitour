@@ -807,7 +807,7 @@ class TourRegistController extends BaseController
 				$group_idx         = $option['group_idx'];
 				write_log("group_idx- ". $group_idx);
                 $option_type       = $option['option_type'];
-				$o_name            = $option['o_name'];
+				$o_name            = $option['goods_name'];
 				write_log("o_name- ". $o_name);
                 $o_sdate           = $option['o_sdate'];				
                 $o_edate           = $option['o_edate'];				
