@@ -251,32 +251,72 @@
                                                             value='<?= $frow3['goods_price3'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price4[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price4_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price4_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price4'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price4_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price4_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price4'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price4_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price4_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price4'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price5[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price5_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price5_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price5'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price5_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price5_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price5'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price5_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price5_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price5'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price6[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price6_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price6_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price6'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price6_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price6_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price6'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price6_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price6_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price6'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price7[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price7_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price7_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price7'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price7_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price7_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price7'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price7_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price7_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price7'] ?>'>
                                                 </td>
                                                 <td>
-                                                    <input type="text" numberonly="true" name="o_price1[]"
-                                                            style="text-align:right;"
+                                                    <input type="text" numberonly="true" name="o_price1_1[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price1_2[]"
+                                                            style="text-align:right;width:32%;"
+                                                            id="goods_price1_<?= $frow3['idx'] ?>"
+                                                            value='<?= $frow3['goods_price1'] ?>'>
+                                                    <input type="text" numberonly="true" name="o_price1_3[]"
+                                                            style="text-align:right;width:32%;"
                                                             id="goods_price1_<?= $frow3['idx'] ?>"
                                                             value='<?= $frow3['goods_price1'] ?>'>
                                                 </td>
