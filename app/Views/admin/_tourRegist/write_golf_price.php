@@ -146,38 +146,12 @@
 
 						</tbody>
 					</table>
-							
-                    <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
-                        <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-                        <tr height="45">
-                            <th>홀선택</th>
-                            <td>
-                                <select id="golf_code" name="golf_code" class="input_select">
-                                    <option value="">선택</option>
-                                    <?php foreach (GOLF_HOLES as $hole) : ?>
-                                        <option value="<?= $hole ?>"><?= $hole ?>홀</option>
-                                    <?php endforeach; ?>
-                                </select>
-								<button type="button" id="btn_add_option" class="btn_01">추가</button>
-                                <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
-                            </td>
-                        </tr>
-                        <!--th>
-                            홀등록
-                            <p style="display:block;margin-top:10px;">
-                                <!--button type="button" id="btn_add_option" class="btn_01">추가</button-->
-                            <!--/p>
-                        </th-->
-					</table>	
+	
 					
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr height="45">
                             <th>홀선택</th>
-                            <td>
+                            <td colspan="8">
                                 <select id="golf_code" name="golf_code" class="input_select">
                                     <option value="">선택</option>
                                     <?php foreach (GOLF_HOLES as $hole) : ?>
