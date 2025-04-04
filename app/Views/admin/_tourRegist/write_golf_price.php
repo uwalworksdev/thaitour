@@ -186,7 +186,7 @@
 					    <td>
                             <div id="mainGolf">
                                 <?php foreach ($options as $frow3): ?>
-                                    <?php if ($frow3['option_type'] == "M") { ?>
+                                    <?php if ($frow3['group_idx'] == $row['group_idx'] && $frow3['option_type'] == "M") { ?>
                                         <table>
                                             <colgroup>
                                                 <col width="*"></col>
