@@ -137,19 +137,17 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-
-                                    <tr>
-                                        <th>
-                                            골프요금 추가
-                                        </th>
-                                        <td colspan="3"><button type="button" id="btn_add_option" class="btn_01">추가</button></td>
-									</tr>	
                                 </tbody>
                             </table>				
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+                        <colgroup>
+                            <col width="10%"/>
+                            <col width="90%"/>
+                        </colgroup>
+                        <tbody>
                         <tr height="45">
                             <th>홀선택</th>
-                            <td colspan="8">
+                            <td>
                                 <select id="golf_code" name="golf_code" class="input_select">
                                     <option value="">선택</option>
                                     <?php foreach (GOLF_HOLES as $hole) : ?>
@@ -157,20 +155,15 @@
                                     <?php endforeach; ?>
                                 </select>
                                 <!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
-								<button type="button" id="btn_add_option" class="btn_01">추가</button>
                             </td>
                         </tr>
-                        
-							<!--th>
-								홀등록
-								<p style="display:block;margin-top:10px;">
-									<button type="button" id="btn_add_option" class="btn_01">추가</button>
-								</p>
-							</th>
-                        </tr-->
-					  </table>
-					  <table>
-					   <tr>
+                        <th>
+                            홀등록
+                            <p style="display:block;margin-top:10px;">
+                                <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                            </p>
+                        </th>
+
                         <td>
                             <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. </span>
                             <div id="mainGolf">
