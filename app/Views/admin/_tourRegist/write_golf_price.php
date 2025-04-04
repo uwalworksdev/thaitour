@@ -271,7 +271,7 @@
                                                     <input type='text' readonly class='datepicker ' name='o_edate[]'
                                                             style="width:30%" value='<?= $frow3['o_edate'] ?>'/>
                                                     <button type="button" class="btn_01"
-                                                            onclick="updOption('<?= $frow3['idx'] ?>',this)">수정
+                                                            onclick="updOption('<?= $frow3['idx'] ?>',this)">일자별수정
                                                     </button>
                                                 </td>
                                                 <td colspan="4">
