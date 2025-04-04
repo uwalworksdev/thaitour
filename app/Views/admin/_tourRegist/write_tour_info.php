@@ -177,8 +177,8 @@
 																				<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
 																				<input type="hidden" name="tour_onum[<?=$i?>][]" class="tour_onum" value="<?= $tour['tour_onum'] ?>">
 																				<div class="flex" style="gap: 5px;">
-																					<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																					<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																					<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																					<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																					<input type="text" name="tours_subject[<?=$i?>][]" value="<?= $tour['tours_subject'] ?>" placeholder="상품타입 국문글씨로 입력해주세요" class="tours_subject input_txt" style="width:50%" />
 																					<input type="text" name="tours_subject_eng[<?=$i?>][]" value="<?= $tour['tours_subject_eng'] ?>" placeholder="상품타입 영문글씨로 입력해주세요"  class="tours_subject input_txt" style="width:50%;" />
 																				</div>
@@ -217,9 +217,11 @@
 																
 																<tbody>
 																	<tr>
-																		<th>옵션추가</th>
-																		<td>
+																		<th>
+																			옵션추가
 																			<button type="button" class="btn btn-primary" onclick="add_main_option(this, <?= $i ?>);">추가</button>	
+																		</th>
+																		<td>
 																			<input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
 																			<?php $j = 0;?>
 																			<?php foreach ($info['options'] as $moption): ?>
@@ -244,8 +246,8 @@
 																									<button type="button" class="btn btn-danger"
 																											onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
 																									</button>
-																									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																									<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																									<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																								</div>
 																							</th>
 																						</tr>
@@ -310,8 +312,8 @@
 																													</select>
 																												</td>
 																												<td>
-																													<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																													<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																													<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																												</td>
 																												<td>
 																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -412,8 +414,8 @@
 																		<input type="hidden" name="tours_idx[0][]" class="tours_idx" value="">
 																		<input type="hidden" name="tour_onum[0][]" class="tour_onum" value="">
 																		<div class="flex" style="gap: 5px;">
-																			<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																			<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																			<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																			<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																			<input type="text" name="tours_subject[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 																			<input type="text" name="tours_subject_eng[0][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width:50%;" />
 																		</div>
@@ -451,9 +453,11 @@
 															
 															<tbody>
 																<tr>
-																	<th>옵션추가</th>
-																	<td>
+																	<th>
+																		옵션추가
 																		<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
+																	</th>
+																	<td>
 																		<div class="option_area">
 																			<input type="hidden" name="moption_idx[0][0]" class="moption_idx" value="">
 																			<input type="hidden" name="moption_onum[0][0]" class="moption_onum" value="">
@@ -475,8 +479,8 @@
 																							<button type="button" class="btn btn-danger"
 																									onclick="del_main_option('', this);">삭제
 																							</button>
-																							<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																							<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																							<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																							<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						</div>
 																					</th>
 																				</tr>
@@ -509,8 +513,8 @@
 																										<div style="display: flex; gap: 5px;">
 																											<input type="hidden" name="op_tour_idx[0][0][]" class="op_tour_idx" value="">
 																											<input type="hidden" name="op_tour_onum[0][0][]" class="op_tour_onum" value="">
-																											<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요" style="width:48%;" />
-																											<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+																											<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요" />
+																											<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />
 																										</div>
 																									</td>
 																									<td>
@@ -528,8 +532,8 @@
 																										</select>
 																									</td>
 																									<td>
-																										<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																										<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																										<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																										<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																									</td>
 																									<td>
 																										<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -611,6 +615,71 @@
 
 	});
 
+	function moveUp(button) {
+		let current = $(button).closest(".table_list");
+		let prev = current.prev(".table_list");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveDown(button) {
+		let current = $(button).closest(".table_list");
+		let next = current.next(".table_list");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveTourUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveTourDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveMOptionUp(button) {
+		let current = $(button).closest(".option_area");
+		let prev = current.prev(".option_area");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveMOptionDown(button) {
+		let current = $(button).closest(".option_area");
+		let next = current.next(".option_area");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveOptionUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveOptionDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+
 	function add_table() {
 		tableCount++;
 		var newTable = `
@@ -673,8 +742,8 @@
 												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
 												<div class="flex" style="gap: 5px;">
-													<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-													<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 													<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
 													<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
 												</div>
@@ -712,9 +781,11 @@
 									
 									<tbody>
 										<tr>
-											<th>옵션추가</th>
-											<td>
+											<th>
+												옵션추가
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
+											</th>
+											<td>
 												<div class="option_area">
 													<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
 													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
@@ -733,8 +804,8 @@
 																	<button type="button" class="btn btn-danger"
 																			onclick="del_main_option('', this);">삭제
 																	</button>
-																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																	<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																	<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
 															</th>
 														</tr>
@@ -763,8 +834,8 @@
 																				<div style="display: flex; gap: 5px;">
 																					<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
 																					<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
-																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />	
+																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" />
+																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />	
 																				</div>
 																			</td>
 																			<td>
@@ -782,8 +853,8 @@
 																				</select>
 																			</td>
 																			<td>
-																				<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																				<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																				<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																			</td>
 																			<td>
 																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -901,8 +972,8 @@
 					<input type="hidden" name="tour_onum[${tableListIndex}][]" class="tour_onum" value="">
 
 					<div class="flex" style="gap: 5px;">
-						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 						<input type="text" name="tours_subject_eng[${tableListIndex}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 					</div>	
@@ -952,8 +1023,8 @@
 					<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
 					<div class="flex" style="gap: 5px;">
-						<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
 						<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
 					</div>
@@ -1013,8 +1084,8 @@
 								<button type="button" class="btn btn-danger"
 										onclick="del_main_option('', this);">삭제
 								</button>
-								<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-								<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+								<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 							</div>
 						</th>
 					</tr>
@@ -1043,8 +1114,8 @@
 											<div style="display: flex; gap: 5px;">
 												<input type="hidden" name="op_tour_onum[${idx}][${arr_count[idx]}][]" class="op_tour_onum" value="">
 												<input type="hidden" name="op_tour_idx[${idx}][${arr_count[idx]}][]" class="op_tour_idx" value="">
-												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
 											</div>
 										</td>
 										<td>
@@ -1062,8 +1133,8 @@
 											</select>
 										</td>
 										<td>
-											<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-											<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+											<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 										</td>
 										<td>
 											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1092,8 +1163,8 @@
 					<div style="display: flex; gap: 5px;">
 						<input type="hidden" name="op_tour_onum[${info_idx}][${op_idx}][]" class="op_tour_onum" value="">
 						<input type="hidden" name="op_tour_idx[${info_idx}][${op_idx}][]" class="op_tour_idx" value="">
-						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
 					</div>
 				</td>
 				<td>
@@ -1111,8 +1182,8 @@
 					</select>
 				</td>
 				<td>
-					<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-					<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1270,6 +1341,8 @@
 	function write_day_price(info_idx, product_idx){
 		location.href = "/AdmMaster/_tourRegist/list_tours_price?info_idx="+info_idx+"&product_idx="+product_idx;
 	}
+
+
 </script>
 
 <script>
