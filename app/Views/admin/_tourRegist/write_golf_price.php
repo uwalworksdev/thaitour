@@ -173,8 +173,8 @@
                             <!--/p>
                         </th-->
 					</table>	
+					
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
-						
                         <tr>
                         <td>
                             <div id="mainGolf">
@@ -405,8 +405,8 @@
                         </td>
                         </tr>
                         </table>
-                    <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
 						
+                        <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr height="45">
                             <th>
                                 추가옵션등록
