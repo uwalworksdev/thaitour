@@ -152,6 +152,7 @@
 					
 					
 					<!-- 기간별 골프 가격 S: -->		
+					<?php foreach ($group as $row) { ?>
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
                         <tr>
                         <td>
@@ -170,8 +171,8 @@
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
-									적용기간: <input type='text' readonly class='datepickerX ' name='o_sdate[]' style="width:10%" value='<?= $frow3['o_sdate'] ?>' readonly/> ~
-											 <input type='text' readonly class='datepickerX ' name='o_edate[]' style="width:10%" value='<?= $frow3['o_edate'] ?>' readonly/>
+									적용기간: <input type='text' readonly class='datepickerX ' name='o_sdate[]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
+											 <input type='text' readonly class='datepickerX ' name='o_edate[]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
 									<button type="button" id="btn_add_option" class="btn_01">추가</button>
 									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
@@ -472,6 +473,7 @@
                         </td>
                         </tr>
                         </table>
+						<?php } ?>
 				        <!-- 기간별 골프 가격 E: -->		
 
 						
