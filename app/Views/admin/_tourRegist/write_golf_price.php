@@ -339,9 +339,9 @@
                                                     밴 (승합차): <input type='text' name='vehicle_o_price2[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price2'] ?>'/>&nbsp;&nbsp; 
                                                     SUV:        <input type='text' name='vehicle_o_price3[]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_o_price3'] ?>'/>(단위: 바트) 
                                                 </td>    
-                                                <td rowspan="2">
+                                                <td rowspan="2" align="center">
                                                     <!--button type="button" onclick="updPrice('<?= $frow3['idx'] ?>',this)">수정</button-->
-                                                    <button type="button" class="btn_01"
+                                                    <button type="button" class="btn_02"
                                                             onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                     </button>
                                                 </td>
