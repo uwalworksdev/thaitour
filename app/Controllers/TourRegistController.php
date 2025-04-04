@@ -795,178 +795,176 @@ class TourRegistController extends BaseController
 
     public function write_golf_price_ok()
     {
-        $data = $this->request->getPost();
-        $product_idx    = $data['product_idx'];
+        $data              = $this->request->getPost();
+        $product_idx       = $data['product_idx'];
         $minium_people_cnt = $data['minium_people_cnt'];
         $total_people_cnt  = $data['total_people_cnt'];
-        $o_name            = $data['o_name'];
-        $o_price1_1        = $data['o_price1_1'];
-        $o_price1_2        = $data['o_price1_2'];
-        $o_price1_3        = $data['o_price1_3'];
-        $o_price2_1        = $data['o_price2_1'];
-        $o_price2_2        = $data['o_price2_2'];
-        $o_price2_3        = $data['o_price2_3'];
-        $o_price3_1        = $data['o_price3_1'];
-        $o_price3_2        = $data['o_price3_2'];
-        $o_price3_3        = $data['o_price3_3'];
-        $o_price4_1        = $data['o_price4_1'];
-        $o_price4_2        = $data['o_price4_2'];
-        $o_price4_3        = $data['o_price4_3'];
-        $o_price5_1        = $data['o_price5_1'];
-        $o_price5_2        = $data['o_price5_2'];
-        $o_price5_3        = $data['o_price5_3'];
-        $o_price6_1        = $data['o_price6_1'];
-        $o_price6_2        = $data['o_price6_2'];
-        $o_price6_3        = $data['o_price6_3'];
-        $o_price7_1        = $data['o_price7_1'];
-        $o_price7_2        = $data['o_price7_2'];
-        $o_price7_3        = $data['o_price7_3'];
-		$vehicle_price1    = $data['vehicle_price1'];
-		$vehicle_price2    = $data['vehicle_price2'];
-		$vehicle_price3    = $data['vehicle_price3'];
-		$vehicle_o_price1  = $data['vehicle_o_price1'];
-		$vehicle_o_price2  = $data['vehicle_o_price2'];
-		$vehicle_o_price3  = $data['vehicle_o_price3'];
-        $cart_price     = $data['cart_price'];
-		$o_cart_due     = $data['o_cart_due'];
-		$o_caddy_due    = $data['o_caddy_due'];
-		$o_cart_cont    = $data['o_cart_cont'];
-		$o_caddy_cont   = $data['o_caddy_cont'];
-        $caddie_fee     = $data['caddie_fee'];			
-        $o_day_price    = $data['o_day_price'];
-        $o_afternoon_price = $data['o_afternoon_price'];
-        $o_night_price  = $data['o_night_price'];
-        $o_day_yn       = $data['o_day_yn'];
-        $o_afternoon_yn = $data['o_afternoon_yn'];
-        $o_night_yn     = $data['o_night_yn'];
-        $o_sdate        = $data['o_sdate'];
-        $o_edate        = $data['o_edate'];
-        $o_golf         = $data['o_golf'];
-        $option_type    = $data['option_type'];
-        $o_soldout      = $data['o_soldout'];
- 
-		$sql = "UPDATE  tbl_product_mst  SET minium_people_cnt = '". $minium_people_cnt ."', total_people_cnt = '". $total_people_cnt ."' WHERE product_idx = '". $product_idx ."' ";
-		$result = $this->connect->query($sql);
-				
-        $data1['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
-        $data1['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
-        $data1['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data1['carts']          = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data1['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
-        $this->golfInfoModel->updateData($product_idx, $data1);
- 
-        $o_idx = $data['o_idx'] ?? [];
-        $len = count($o_idx);
-        for ($i = 0; $i < $len; $i++) {
-            if ($o_idx[$i]) {
-                $sql = "UPDATE  tbl_golf_option  SET 
-													 goods_name		= '" . $o_name[$i] . "'
-													,goods_price1_1	= '" . $o_price1_1[$i] . "'
-													,goods_price1_2	= '" . $o_price1_2[$i] . "'
-													,goods_price1_3	= '" . $o_price1_3[$i] . "'
-													,goods_price2_1	= '" . $o_price2_1[$i] . "'
-													,goods_price2_2	= '" . $o_price2_2[$i] . "'
-													,goods_price2_3	= '" . $o_price2_3[$i] . "'
-													,goods_price3_1	= '" . $o_price3_1[$i] . "'
-													,goods_price3_2	= '" . $o_price3_2[$i] . "'
-													,goods_price3_3	= '" . $o_price3_3[$i] . "'
-													,goods_price4_1	= '" . $o_price4_1[$i] . "'
-													,goods_price4_2	= '" . $o_price4_2[$i] . "'
-													,goods_price4_3	= '" . $o_price4_3[$i] . "'
-													,goods_price5_1	= '" . $o_price5_1[$i] . "'
-													,goods_price5_2	= '" . $o_price5_2[$i] . "'
-													,goods_price5_3	= '" . $o_price5_3[$i] . "'
-													,goods_price6_1	= '" . $o_price6_1[$i] . "'
-													,goods_price6_2	= '" . $o_price6_2[$i] . "'
-													,goods_price6_3	= '" . $o_price6_3[$i] . "'
-													,goods_price7_1	= '" . $o_price7_1[$i] . "'
-													,goods_price7_2	= '" . $o_price7_2[$i] . "'
-													,goods_price7_3	= '" . $o_price7_3[$i] . "'
-													
-													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
-													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
-													,vehicle_price3 = '" . $vehicle_price3[$i] . "'
-													,vehicle_o_price1 = '" . $vehicle_o_price1[$i] . "'
-													,vehicle_o_price2 = '" . $vehicle_o_price2[$i] . "'
-													,vehicle_o_price3 = '" . $vehicle_o_price3[$i] . "'
-													,cart_price     = '" . $cart_price[$i] . "'
-													,caddie_fee     = '" . $caddie_fee[$i] . "'	
-													,o_cart_due     = '" . $o_cart_due[$i] . "'	
-													,o_caddy_due    = '" . $o_caddy_due[$i] . "'	
-													,o_cart_cont    = '" . $o_cart_cont[$i] . "'	
-													,o_caddy_cont   = '" . $o_caddy_cont[$i] . "'	
-													
-													,o_day_price	= '" . $o_day_price[$i] . "'
-													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
-													,o_night_price	= '" . $o_night_price[$i] . "'
-													,o_day_yn		= 'Y'
-													,o_afternoon_yn	= '" . $o_afternoon_yn[$i] . "'
-													,o_night_yn	    = '" . $o_night_yn[$i] . "'
-                                                    
-													,o_sdate		= '" . $o_sdate[$i] . "'
-													,o_edate		= '" . $o_edate[$i] . "'
-													,o_golf			= '" . $o_golf[$i] . "'
-													,option_type	= '" . $option_type[$i] . "'
-													,o_soldout		= '" . $o_soldout[$i] . "'
-												WHERE idx	        = '" . $o_idx[$i] . "' ";
-               // write_log("tbl_golf_option -  " . $sql);
-                $result = $this->connect->query($sql);
-            } else {
-                $sql = "INSERT INTO tbl_golf_option SET 
-													 product_idx	= '" . $product_idx . "'
-													,goods_name		= '" . $o_name[$i] . "'
-													,goods_price1_1	= '" . $o_price1_1[$i] . "'
-													,goods_price1_2	= '" . $o_price1_2[$i] . "'
-													,goods_price1_3	= '" . $o_price1_3[$i] . "'
-													,goods_price2_1	= '" . $o_price2_1[$i] . "'
-													,goods_price2_2	= '" . $o_price2_2[$i] . "'
-													,goods_price2_3	= '" . $o_price2_3[$i] . "'
-													,goods_price3_1	= '" . $o_price3_1[$i] . "'
-													,goods_price3_2	= '" . $o_price3_2[$i] . "'
-													,goods_price3_3	= '" . $o_price3_3[$i] . "'
-													,goods_price4_1	= '" . $o_price4_1[$i] . "'
-													,goods_price4_2	= '" . $o_price4_2[$i] . "'
-													,goods_price4_3	= '" . $o_price4_3[$i] . "'
-													,goods_price5_1	= '" . $o_price5_1[$i] . "'
-													,goods_price5_2	= '" . $o_price5_2[$i] . "'
-													,goods_price5_3	= '" . $o_price5_3[$i] . "'
-													,goods_price6_1	= '" . $o_price6_1[$i] . "'
-													,goods_price6_2	= '" . $o_price6_2[$i] . "'
-													,goods_price6_3	= '" . $o_price6_3[$i] . "'
-													,goods_price7_1	= '" . $o_price7_1[$i] . "'
-													,goods_price7_2	= '" . $o_price7_2[$i] . "'
-													,goods_price7_3	= '" . $o_price7_3[$i] . "'
-													
-													,vehicle_price1 = '" . $vehicle_price1[$i] . "'
-													,vehicle_price2 = '" . $vehicle_price2[$i] . "'
-													,vehicle_price3 = '" . $vehicle_price3[$i] . "'
-													,vehicle_o_price1 = '" . $vehicle_o_price1[$i] . "'
-													,vehicle_o_price2 = '" . $vehicle_o_price2[$i] . "'
-													,vehicle_o_price3 = '" . $vehicle_o_price3[$i] . "'
-													,cart_price     = '" . $cart_price[$i] . "'
-													,caddie_fee     = '" . $caddie_fee[$i] . "'	
-													,o_cart_due     = '" . $o_cart_due[$i] . "'	
-													,o_caddy_due    = '" . $o_caddy_due[$i] . "'	
-													,o_cart_cont    = '" . $o_cart_cont[$i] . "'	
-													,o_caddy_cont   = '" . $o_caddy_cont[$i] . "'	
+		$options           = $data['options']; // 다차원 배열로 받음		
+        foreach ($options as $option) {
+	
+				$o_idx             = $option['o_idx'];
+                $option_type       = $option['option_type'];
+				$o_name            = $option['o_name'];
+                $o_sdate           = $option['o_sdate'];				
+                $o_edate           = $option['o_edate'];				
+				$o_price1_1        = $option['o_price1_1'];
+				$o_price1_2        = $option['o_price1_2'];
+				$o_price1_3        = $option['o_price1_3'];
+				$o_price2_1        = $option['o_price2_1'];
+				$o_price2_2        = $option['o_price2_2'];
+				$o_price2_3        = $option['o_price2_3'];
+				$o_price3_1        = $option['o_price3_1'];
+				$o_price3_2        = $option['o_price3_2'];
+				$o_price3_3        = $option['o_price3_3'];
+				$o_price4_1        = $option['o_price4_1'];
+				$o_price4_2        = $option['o_price4_2'];
+				$o_price4_3        = $option['o_price4_3'];
+				$o_price5_1        = $option['o_price5_1'];
+				$o_price5_2        = $option['o_price5_2'];
+				$o_price5_3        = $option['o_price5_3'];
+				$o_price6_1        = $option['o_price6_1'];
+				$o_price6_2        = $option['o_price6_2'];
+				$o_price6_3        = $option['o_price6_3'];
+				$o_price7_1        = $option['o_price7_1'];
+				$o_price7_2        = $option['o_price7_2'];
+				$o_price7_3        = $option['o_price7_3'];
+				$vehicle_price1    = $option['vehicle_price1'];
+				$vehicle_price2    = $option['vehicle_price2'];
+				$vehicle_price3    = $option['vehicle_price3'];
+				$vehicle_o_price1  = $option['vehicle_o_price1'];
+				$vehicle_o_price2  = $option['vehicle_o_price2'];
+				$vehicle_o_price3  = $option['vehicle_o_price3'];
+				$cart_price        = $option['cart_price'];
+				$o_cart_due        = $option['o_cart_due'];
+				$o_caddy_due       = $option['o_caddy_due'];
+				$o_cart_cont       = $option['o_cart_cont'];
+				$o_caddy_cont      = $option['o_caddy_cont'];
+				$caddie_fee        = $option['caddie_fee'];
+		/*		
+				$o_day_price       = $data['o_day_price'];
+				$o_afternoon_price = $data['o_afternoon_price'];
+				$o_night_price     = $data['o_night_price'];
+				$o_day_yn          = $data['o_day_yn'];
+				$o_afternoon_yn    = $data['o_afternoon_yn'];
+				$o_night_yn        = $data['o_night_yn'];
+				$o_sdate           = $data['o_sdate'];
+				$o_edate           = $data['o_edate'];
+		*/		
+				$o_golf            = $option['o_golf'];
+				$option_type       = $option['option_type'];
+				$o_soldout         = $option['o_soldout'];
+		 
+				$sql = "UPDATE  tbl_product_mst  SET minium_people_cnt = '". $minium_people_cnt ."', total_people_cnt = '". $total_people_cnt ."' WHERE product_idx = '". $product_idx ."' ";
+				$result = $this->connect->query($sql);
+						
+				$data1['green_peas']     = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+				$data1['slots']          = "|" . implode("|", $data['slots'] ?? []) . "|";
+				$data1['travel_times']   = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+				$data1['carts']          = "|" . implode("|", $data['carts'] ?? []) . "|";
+				$data1['facilities']     = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
-													,o_day_price	= '" . $o_day_price[$i] . "'
-													,o_afternoon_price	= '" . $o_afternoon_price[$i] . "'
-													,o_night_price	= '" . $o_night_price[$i] . "'
-													,o_day_yn		= 'Y'
-                                                    ,o_afternoon_yn	= '" . $o_afternoon_yn[$i] . "'
-													,o_night_yn	    = '" . $o_night_yn[$i] . "'
-													,o_sdate		= '" . $o_sdate[$i] . "'
-													,o_edate		= '" . $o_edate[$i] . "'
-													,o_golf			= '" . $o_golf[$i] . "'
-													,option_type	= '" . $option_type[$i] . "'
-													,o_soldout		= '" . $o_soldout[$i] . "' ";
-               // write_log("tbl_golf_option -  " . $sql);
-                $result = $this->connect->query($sql);
-            }
+				$this->golfInfoModel->updateData($product_idx, $data1);
+		 
+				$o_idx = $data['o_idx'] ?? [];
+				$len = count($o_idx);
+				for ($i = 0; $i < $len; $i++) {
+					if ($o_idx[$i]) {
+						$sql = "UPDATE  tbl_golf_option  SET 
+															 goods_name		= '" . $o_name . "'
+															,goods_price1_1	= '" . $o_price1_1 . "'
+															,goods_price1_2	= '" . $o_price1_2 . "'
+															,goods_price1_3	= '" . $o_price1_3 . "'
+															,goods_price2_1	= '" . $o_price2_1 . "'
+															,goods_price2_2	= '" . $o_price2_2 . "'
+															,goods_price2_3	= '" . $o_price2_3 . "'
+															,goods_price3_1	= '" . $o_price3_1 . "'
+															,goods_price3_2	= '" . $o_price3_2 . "'
+															,goods_price3_3	= '" . $o_price3_3 . "'
+															,goods_price4_1	= '" . $o_price4_1 . "'
+															,goods_price4_2	= '" . $o_price4_2 . "'
+															,goods_price4_3	= '" . $o_price4_3 . "'
+															,goods_price5_1	= '" . $o_price5_1 . "'
+															,goods_price5_2	= '" . $o_price5_2 . "'
+															,goods_price5_3	= '" . $o_price5_3 . "'
+															,goods_price6_1	= '" . $o_price6_1 . "'
+															,goods_price6_2	= '" . $o_price6_2 . "'
+															,goods_price6_3	= '" . $o_price6_3 . "'
+															,goods_price7_1	= '" . $o_price7_1 . "'
+															,goods_price7_2	= '" . $o_price7_2 . "'
+															,goods_price7_3	= '" . $o_price7_3 . "'
+															
+															,vehicle_price1 = '" . $vehicle_price1 . "'
+															,vehicle_price2 = '" . $vehicle_price2 . "'
+															,vehicle_price3 = '" . $vehicle_price3 . "'
+															,vehicle_o_price1 = '" . $vehicle_o_price1 . "'
+															,vehicle_o_price2 = '" . $vehicle_o_price2 . "'
+															,vehicle_o_price3 = '" . $vehicle_o_price3 . "'
+															,cart_price     = '" . $cart_price . "'
+															,caddie_fee     = '" . $caddie_fee . "'	
+															,o_cart_due     = '" . $o_cart_due . "'	
+															,o_caddy_due    = '" . $o_caddy_due . "'	
+															,o_cart_cont    = '" . $o_cart_cont . "'	
+															,o_caddy_cont   = '" . $o_caddy_cont . "'	
+															
+															,o_sdate		= '" . $o_sdate . "'
+															,o_edate		= '" . $o_edate . "'
+															,o_golf			= '" . $o_golf . "'
+															,option_type	= '" . $option_type . "'
+															,o_soldout		= '" . $o_soldout . "'
+														WHERE idx	        = '" . $o_idx . "' ";
+					   // write_log("tbl_golf_option -  " . $sql);
+						$result = $this->connect->query($sql);
+					} else {
+						$sql = "INSERT INTO tbl_golf_option SET 
+															 product_idx	= '" . $product_idx . "'
+															,goods_name		= '" . $o_name . "'
+															,goods_price1_1	= '" . $o_price1_1 . "'
+															,goods_price1_2	= '" . $o_price1_2 . "'
+															,goods_price1_3	= '" . $o_price1_3 . "'
+															,goods_price2_1	= '" . $o_price2_1 . "'
+															,goods_price2_2	= '" . $o_price2_2 . "'
+															,goods_price2_3	= '" . $o_price2_3 . "'
+															,goods_price3_1	= '" . $o_price3_1 . "'
+															,goods_price3_2	= '" . $o_price3_2 . "'
+															,goods_price3_3	= '" . $o_price3_3 . "'
+															,goods_price4_1	= '" . $o_price4_1 . "'
+															,goods_price4_2	= '" . $o_price4_2 . "'
+															,goods_price4_3	= '" . $o_price4_3 . "'
+															,goods_price5_1	= '" . $o_price5_1 . "'
+															,goods_price5_2	= '" . $o_price5_2 . "'
+															,goods_price5_3	= '" . $o_price5_3 . "'
+															,goods_price6_1	= '" . $o_price6_1 . "'
+															,goods_price6_2	= '" . $o_price6_2 . "'
+															,goods_price6_3	= '" . $o_price6_3 . "'
+															,goods_price7_1	= '" . $o_price7_1 . "'
+															,goods_price7_2	= '" . $o_price7_2 . "'
+															,goods_price7_3	= '" . $o_price7_3 . "'
+															
+															,vehicle_price1 = '" . $vehicle_price1 . "'
+															,vehicle_price2 = '" . $vehicle_price2 . "'
+															,vehicle_price3 = '" . $vehicle_price3 . "'
+															,vehicle_o_price1 = '" . $vehicle_o_price1 . "'
+															,vehicle_o_price2 = '" . $vehicle_o_price2 . "'
+															,vehicle_o_price3 = '" . $vehicle_o_price3 . "'
+															,cart_price     = '" . $cart_price . "'
+															,caddie_fee     = '" . $caddie_fee . "'	
+															,o_cart_due     = '" . $o_cart_due . "'	
+															,o_caddy_due    = '" . $o_caddy_due . "'	
+															,o_cart_cont    = '" . $o_cart_cont . "'	
+															,o_caddy_cont   = '" . $o_caddy_cont . "'	
+
+															,o_sdate		= '" . $o_sdate . "'
+															,o_edate		= '" . $o_edate . "'
+															,o_golf			= '" . $o_golf . "'
+															,option_type	= '" . $option_type . "'
+															,o_soldout		= '" . $o_soldout . "' ";
+					   // write_log("tbl_golf_option -  " . $sql);
+						$result = $this->connect->query($sql);
+					}
+				}
         }
-
+		
         // 골프 옵션 -> 일자별 가격 설정
 
         $sql_o = " select * from tbl_golf_option where product_idx = '" . $product_idx . "' AND option_type = 'M' ";
