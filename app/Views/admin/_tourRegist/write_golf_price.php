@@ -178,13 +178,13 @@
                                         <table>
                                             <colgroup>
                                                 <col width="*"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
-                                                <col width="12%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
+                                                <col width="13%"></col>
                                                 <col width="5%"></col>
                                             </colgroup>
                                             <thead>
