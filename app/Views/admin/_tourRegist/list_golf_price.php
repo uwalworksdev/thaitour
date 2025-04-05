@@ -452,9 +452,21 @@
 									 return false;
                                 }
 
-							    if($("#dowPrice").val() < "1") {
+							    if($("#dowPrice_1").val() < "1") {
 								     alert('적용할 금액을 입력하세요.');
-									 $("#dowPrice").focus();
+									 $("#dowPrice_1").focus();
+									 return false;
+                                }
+
+							    if($("#dowPrice_2").val() < "1") {
+								     alert('적용할 금액을 입력하세요.');
+									 $("#dowPrice_2").focus();
+									 return false;
+                                }
+
+							    if($("#dowPrice_3").val() < "1") {
+								     alert('적용할 금액을 입력하세요.');
+									 $("#dowPrice_3").focus();
 									 return false;
                                 }
 
