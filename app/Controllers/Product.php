@@ -1927,7 +1927,7 @@ foreach ($golf_price_result as $golf_price):
 			$data['golf_price'] = $golf_price;
 
 			$data['group_idx']      = $golf_price['group_idx'];
-			write_log("group_idx- ". $group_idx);
+			write_log("group_idx- ". $data['group_idx']);
 			$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
 			$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
 			$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
