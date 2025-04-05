@@ -608,18 +608,45 @@ $(document).ready(function () {
 	$.ajax({
 		url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
 		type: 'POST',
-		data: { "product_idx" : $("#product_idx").val() },
-
+		data: { "product_idx": $("#product_idx").val() },
 		dataType: 'json',
 		async: false,
 		cache: false,
-			
+
 		success: function (data, textStatus) {
 			if (data.status === 'success') {
 				var minDate = new Date(data.min_date);  // DB에서 가져온 날짜
+
+				// 시작일 설정
 				$("#a_sdate").datepicker({
 					dateFormat: 'yy-mm-dd',
-					minDate: minDate,  // 동적으로 설정된 최소 날짜
+					minDate: minDate,
+					maxDate: "+99Y",
+					showButtonPanel: true,
+					closeText: '닫기',
+					currentText: '오늘',
+					prevText: '이전',
+					nextText: '다음',
+					showOn: "both",
+					yearRange: "c:c+30",
+					buttonImage: "/images/admin/common/date.png",
+					buttonImageOnly: true,
+					onSelect: function (selectedDate) {
+						var startDate = $(this).datepicker('getDate');
+
+						// 다음날 계산
+						var nextDay = new Date(startDate);
+						nextDay.setDate(nextDay.getDate() + 1);
+
+						// 종료일 최소 선택일 설정
+						$("#a_edate").datepicker("option", "minDate", nextDay);
+						$("#a_edate").val('');  // 기존 값 초기화
+					}
+				});
+
+				// 종료일 설정 (기본 설정만)
+				$("#a_edate").datepicker({
+					dateFormat: 'yy-mm-dd',
 					maxDate: "+99Y",
 					showButtonPanel: true,
 					closeText: '닫기',
@@ -641,6 +668,7 @@ $(document).ready(function () {
 	});
 });
 </script>
+
 
 <script>
 $(function() {
