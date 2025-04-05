@@ -827,15 +827,14 @@ $(document).ready(function () {
 
                     addTable += "<table id='tab_"+ newIdx +"'>";
                     addTable += "	<colgroup>";
-                    addTable += "		<col width='*'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='12%'></col>";
-                    addTable += "		<col width='5%'></col>";
+                    addTable += "     <col width='*'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
+                    addTable += "     <col width='14%'></col>";
                     addTable += "	</colgroup>";
                     addTable += "	<thead>";
                     addTable += "		<tr>";
@@ -847,7 +846,6 @@ $(document).ready(function () {
                     addTable += "			<th>목</th>";
                     addTable += "			<th>금</th>";
                     addTable += "			<th>토</th>";
-                    addTable += "			<th>삭제</th>";
                     addTable += "		</tr>";
                     addTable += "	</thead>";
                     addTable += "	<tbody id='tblgolf" + g_idx + "'>";
