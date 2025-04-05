@@ -805,10 +805,8 @@ class TourRegistController extends BaseController
 	
 				$o_idx             = $option['o_optidx'];
 				$group_idx         = $option['group_idx'];
-				write_log("group_idx- ". $group_idx);
                 $option_type       = $option['option_type'];
 				$o_name            = $option['goods_name'];
-				write_log("o_name- ". $o_name);
                 $o_sdate           = $option['o_sdate'];				
                 $o_edate           = $option['o_edate'];				
 				$o_price1_1        = $option['o_price1_1'];
@@ -913,7 +911,6 @@ class TourRegistController extends BaseController
 														,option_type	= '" . $option_type . "'
 														,o_soldout		= '" . $o_soldout . "'
 													WHERE idx	        = '" . $o_idx . "' ";
-				    write_log("tbl_golf_option -  " . $sql);
 					$result = $this->connect->query($sql);
 				} else {
 					$sql = "INSERT INTO tbl_golf_option SET 
@@ -959,9 +956,32 @@ class TourRegistController extends BaseController
 														,o_golf			= '" . $o_golf . "'
 														,option_type	= '" . $option_type . "'
 														,o_soldout		= '" . $o_soldout . "' ";
-				    write_log("tbl_golf_option -  " . $sql);
 					$result = $this->connect->query($sql);
 				}
+        }
+		
+        $o_idx = $data['o_idx'] ?? [];
+        $len = count($o_idx);
+        for ($i = 0; $i < $len; $i++) {
+            if ($o_idx[$i]) {
+                $sql = "UPDATE  tbl_golf_option  SET 
+													 goods_name		= '" . $o_name[$i] . "'
+													 goods_name_eng	= '" . $o_name_eng[$i] . "'
+													,goods_price1	= '" . $o_price1[$i] . "'
+												WHERE idx	        = '" . $o_idx[$i] . "' ";
+               // write_log("tbl_golf_option -  " . $sql);
+                $result = $this->connect->query($sql);
+            } else {
+                $sql = "INSERT INTO tbl_golf_option SET 
+													 product_idx	= '" . $product_idx . "'
+													,goods_name		= '" . $o_name[$i] . "'
+													 goods_name_eng	= '" . $o_name_eng[$i] . "'
+													,goods_price1	= '" . $o_price1[$i] . "'
+													,option_type	= '" . $option_type[$i] . "'
+													,o_soldout		= '" . $o_soldout[$i] . "' ";
+               // write_log("tbl_golf_option -  " . $sql);
+                $result = $this->connect->query($sql);
+            }
         }
 		
         // 골프 옵션 -> 일자별 가격 설정
