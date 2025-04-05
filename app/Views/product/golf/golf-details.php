@@ -5,7 +5,8 @@
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-			alert(dataTabValue);
+			var product_idx  = $("#product_idx").val();
+			alert(product_idx+'-'+dataTabValue);
 			console.log('홀- '+dataTabValue);
 			console.log('caddie fee- '+$("#caddie_fee_sel").val());
 			
