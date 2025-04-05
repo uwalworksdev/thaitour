@@ -562,26 +562,51 @@
 
 <script>
 $(document).on('click', '.btn_add_option', function () {
-    // 버튼 자체
-    var $btn = $(this);
+			// 버튼 자체
+			var $btn = $(this);
 
-    // data 속성 가져오기
-    var sdate     = $btn.data('sdate');
-    var edate     = $btn.data('edate');
-    var groupIdx  = $btn.val();  // 버튼의 value 값
-    var golf_code = $("#golf_code_"+groupIdx).val();
-	
-	if(golf_code == "") {
-	   alert('추가할 홀을 선택하세요.');
-	   $("#golf_code_"+groupIdx).focus();
-	   return false;
-	}   
-    console.log("시작일:", sdate);
-    console.log("종료일:", edate);
-    console.log("그룹 IDX:", groupIdx);
-    console.log("홀:", golf_code);
+			// data 속성 가져오기
+			var sdate      = $btn.data('sdate');
+			var edate      = $btn.data('edate');
+			var group_idx  = $btn.val();  // 버튼의 value 값
+			var goods_name = $("#golf_code_"+groupIdx).val() +'홀';
+			
+			if(golf_code == "") {
+			   alert('추가할 홀을 선택하세요.');
+			   $("#golf_code_"+groupIdx).focus();
+			   return false;
+			}   
+			console.log("시작일:", sdate);
+			console.log("종료일:", edate);
+			console.log("그룹 IDX:", group_idx);
+			console.log("홀:", goods_name);
+			
+			var message = "";
+			$.ajax({
 
-    // 여기서 원하는 로직 실행 (예: 모달 열기, 값 세팅 등)
+				url: "/ajax/ajax_golfHole_add",
+				type: "POST",
+				data: {
+						"product_idx" : $("#product_idx").val(),
+						"group_idx"   : group_idx,
+						"goods_name"  : goods_name,
+						"o_sdate"     : sdate,
+						"o_edate"     : edate
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});			
+
+			// 여기서 원하는 로직 실행 (예: 모달 열기, 값 세팅 등)
 });
 </script>
 
