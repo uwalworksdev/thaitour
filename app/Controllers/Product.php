@@ -2017,7 +2017,7 @@ class Product extends BaseController
             $data['coupons'][$key] = $coupon;
         }
 
-        $options = $this->golfOptionModel->getOptions($product_idx);
+        //$options = $this->golfOptionModel->getOptions($product_idx);
 
         $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
