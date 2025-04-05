@@ -615,6 +615,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_getMinDate", "AjaxController::ajax_getMinDate");
 	$routes->post("ajax_golfPrice_add", "AjaxController::ajax_golfPrice_add");
 	$routes->post("ajax_golfHole_add", "AjaxController::ajax_golfHole_add");
+	$routes->post("ajax_golfGroup_del", "AjaxController::ajax_golfGroup_del");
 });
 
 $routes->group("api", static function ($routes) {

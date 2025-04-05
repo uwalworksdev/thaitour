@@ -3133,5 +3133,52 @@ class AjaxController extends BaseController {
 	{
 		$days = ['일', '월', '화', '수', '목', '금', '토'];
 		return $days[$num];
-	}	
+	}
+
+	public function ajax_golfGroup_del()
+	{
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
+		$db->transBegin();
+
+		try {
+			$group_idx = $this->request->getPost("group_idx");
+
+			if (empty($group_idx)) {
+				return $this->response
+					->setStatusCode(400)
+					->setJSON([
+						'status' => 'error',
+						'message' => 'No group_idx provided'
+					]);
+			}
+
+			$db->query("DELETE FROM tbl_golf_group  WHERE group_idx = ?", [$group_idx]);
+			$db->query("DELETE FROM tbl_golf_option WHERE group_idx = ?", [$group_idx]);
+			$db->query("DELETE FROM tbl_golf_price  WHERE group_idx = ?", [$group_idx]);
+
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '삭제 중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '골프가격 삭제완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}
+		
+	}
+	
 }	
