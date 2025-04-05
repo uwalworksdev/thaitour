@@ -1923,8 +1923,8 @@ class Product extends BaseController
 		foreach ($golf_price_result as $golf_price):
 
 				// 결과 확인 및 데이터 처리
-					$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
-					$data['golf_price'] = $golf_price;
+					//$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
+					//$data['golf_price'] = $golf_price;
 
 					$data['group_idx']      = $golf_price['group_idx'];
 					write_log("group_idx- ". $data['group_idx']);
