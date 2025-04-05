@@ -20,7 +20,6 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 페이지 어디든 클릭 시 실행
     $(document).on('click', function(event) {
-alert('xxxxxxxxxx');
 			if($("#o_caddy_due").val() == "Y") {
 			   $('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
@@ -65,7 +64,7 @@ alert('xxxxxxxxxx');
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
-                <input type="hidden" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
+                <input type="text" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
                 <input type="text" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="text" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
                 <input type="text" name="o_cart_cont" id="o_cart_cont" value="<?=$o_cart_cont?>">
