@@ -2017,14 +2017,14 @@ class Product extends BaseController
             $data['coupons'][$key] = $coupon;
         }
 
-        //$options = $this->golfOptionModel->getOptions($product_idx);
+        $options = $this->golfOptionModel->getOptions($product_idx);
 
-        //$hole_cnt_arr = array_column($options, 'goods_name');
+        $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
-        //$data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
-       //     return in_array($value, $hole_cnt_arr);
-        //});
+        $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
+            return in_array($value, $hole_cnt_arr);
+        });
 
         //$data['hour_arr'] = array_filter(GOLF_HOURS, function ($value) use ($hour_arr) {
         //    return in_array($value, $hour_arr);
