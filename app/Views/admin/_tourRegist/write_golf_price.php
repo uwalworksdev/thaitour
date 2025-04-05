@@ -173,12 +173,17 @@
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
-									적용기간: <input type='text' readonly class='datepicker'  name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
-											  <input type='text' readonly class='datepicker' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+										적용기간:
+										<input type='text' class='datepicker-start' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" readonly/>
+										~
+										<input type='text' class='datepicker-end' name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
-									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
-											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
-									<?php } ?>  
+										적용기간:
+										<input type='text' class='datepickerX' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
+										~
+										<input type='text' class='datepickerX' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+									<?php } ?>
+
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
 									<button type="button" class="btn_day_option btn_02" value="<?= $row['group_idx'] ?>">기간등록</button>
