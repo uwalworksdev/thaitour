@@ -64,7 +64,7 @@ $(document).ready(function() {
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
-                <input type="text" name="option_idx" id="option_idx" value="<?=$golf_price['idx']?>">
+                <input type="text" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="text" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="text" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
                 <input type="text" name="o_cart_cont" id="o_cart_cont" value="<?=$o_cart_cont?>">
