@@ -175,7 +175,7 @@
 									
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									<button type="button" id="btn_copy_option"   class="btn_01">복사</button>
-									<button type="button" id="btn_delete_option" class="btn_02">삭제</button>
+									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
@@ -612,6 +612,14 @@ $(document).on('click', '.btn_add_option', function () {
 
 			// 여기서 원하는 로직 실행 (예: 모달 열기, 값 세팅 등)
 });
+
+$(document).on('click', '.btn_delete_option', function () {
+	
+	   var group_idx = $(this).val();
+	   alert('delete- '+group_idx);
+	   
+});
+
 </script>
 
 <script>
