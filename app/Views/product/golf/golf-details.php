@@ -10,6 +10,7 @@ $(document).ready(function() {
 			console.log('홀- '+dataTabValue);
 			console.log('caddie fee- '+$("#caddie_fee_sel").val());
 			
+			$("#o_cart_cont").val('Y');
 			if($("#caddie_fee_sel").val() == "Y") {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
 			   $("#vehicle_5").prop('disabled', true);
@@ -69,8 +70,8 @@ $(document).ready(function() {
                 <input type="text" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="text" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="text" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
-                <input type="text" name="o_cart_cont" id="o_cart_cont" value="Y">
-                <input type="text" name="o_caddy_cont" id="o_caddy_cont" value="Y">
+                <input type="text" name="o_cart_cont" id="o_cart_cont" value="<?=$o_cart_cont?>">
+                <input type="text" name="o_caddy_cont" id="o_caddy_cont" value="<?=$o_caddy_cont?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
 
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
