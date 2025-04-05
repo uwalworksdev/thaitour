@@ -14,6 +14,7 @@ class GolfOptionModel extends Model
 		'product_idx',	
 		'group_idx',	
 		'goods_name',	
+		'goods_name_eng',	
 		'goods_price1_1',	
 		'goods_price1_2',	
 		'goods_price1_3',	
