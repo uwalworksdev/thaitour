@@ -170,13 +170,13 @@
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
+									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
 											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
-									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
-									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
+									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
                             </tr>
