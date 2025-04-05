@@ -3196,6 +3196,8 @@ class AjaxController extends BaseController {
 		if ($oldGroup) {
 			unset($oldGroup['group_idx']);
 			$oldGroup['group_idx'] = $new_group_idx;
+			$oldGroup['sdate']     = "";
+			$oldGroup['edate']     = "";
 			$oldGroup['reg_date'] = date('Y-m-d H:i:s');
 			$db->table('tbl_golf_group')->insert($oldGroup);
 		}
@@ -3206,20 +3208,25 @@ class AjaxController extends BaseController {
 			$old_o_idx = $opt['idx'];
 			unset($opt['idx']); // auto_increment 제거
 			$opt['group_idx'] = $new_group_idx;
-			$opt['reg_date'] = date('Y-m-d H:i:s');
+			$opt['o_sdate']   = "";
+			$opt['o_edate']   = "";
+			$opt['reg_date']  = date('Y-m-d H:i:s');
 			$db->table('tbl_golf_option')->insert($opt);
 			$new_o_idx = $db->insertID();
 
 			// 3. tbl_golf_price 복사
+			/*
 			$prices = $db->table('tbl_golf_price')->where('o_idx', $old_o_idx)->get()->getResultArray();
 			foreach ($prices as $price) {
 				unset($price['idx']);
 				$price['group_idx'] = $new_group_idx;
 				$price['o_idx'] = $new_o_idx;
+				
 				$price['reg_date'] = date('Y-m-d H:i:s');
 				$price['upd_date'] = date('Y-m-d H:i:s');
 				$db->table('tbl_golf_price')->insert($price);
 			}
+			*/
 		}
 
 		return [
