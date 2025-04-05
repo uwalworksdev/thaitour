@@ -174,6 +174,10 @@
 									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
 											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
+									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
+									<button type="button" class="btn_day_option btn_02" value="<?= $row['group_idx'] ?>">기간등록</button>
+									<?php } ?>
+										
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
 									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
