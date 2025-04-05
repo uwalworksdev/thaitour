@@ -149,9 +149,9 @@
 											<input type="checkbox" class="priceDow" value="토" >토
 										</div>
                                         <div style="margin:10px;text-align:left;">
-											<input type="text" name="dowPrice_1" id="dowPrice_1" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> baht
-											<input type="text" name="dowPrice_2" id="dowPrice_2" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> baht
-											<input type="text" name="dowPrice_3" id="dowPrice_3" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> baht
+											주간<input type="text" name="dowPrice_1" id="dowPrice_1" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> 
+											오후<input type="text" name="dowPrice_2" id="dowPrice_2" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> 
+											야간<input type="text" name="dowPrice_3" id="dowPrice_3" value="0" numberonly="true" style="text-align:right;background: white; width: 50px;"> 단위(바트)
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
