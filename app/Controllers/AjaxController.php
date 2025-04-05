@@ -3047,7 +3047,7 @@ $result = $db->query($sql);
 
 		try {
 			// 골프 홀 추가
-			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, reg_date) VALUES (?, ?, ?, ?, ?, NOW())";
+			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, option_type, reg_date) VALUES (?, ?, ?, ?, ?, 'M', NOW())";
 			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
 
 			$msg = "홀 등록 완료";
