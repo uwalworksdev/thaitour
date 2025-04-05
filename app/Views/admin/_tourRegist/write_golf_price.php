@@ -518,9 +518,9 @@
                                                                 value="<?= $frow3['goods_name'] ?>" size="70"/>
 												    </td>
 												    <td>
-                                                        <input type='text' name='o_name[]' style='width: 80%;'
+                                                        <input type='text' name='o_name_eng[]' style='width: 80%;'
                                                                 id=''
-                                                                value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                                value="<?= $frow3['goods_name_eng'] ?>" size="70"/>
                                                     </td>
                                                     <td>
                                                         <input type='text' numberonly='true'
