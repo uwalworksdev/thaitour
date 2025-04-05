@@ -491,12 +491,9 @@
                                 <div>
                                     <table>
                                         <colgroup>
-                                            <col width="*">
-                                            </col>
-                                            <col width="25%">
-                                            </col>
-                                            <col width="15%">
-                                            </col>
+                                            <col width="*"></col>
+                                            <col width="10%"></col>
+                                            <col width="10%"></col>
                                         </colgroup>
                                         <thead>
                                         <tr>
