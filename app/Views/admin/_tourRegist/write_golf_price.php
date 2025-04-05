@@ -174,7 +174,7 @@
 											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
-									<button type="button" id="btn_copy_option"   class="btn_01">복사</button>
+									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
@@ -641,6 +641,35 @@ $(document).on('click', '.btn_delete_option', function () {
 				}
 			});	   
 	   
+});
+
+$(document).on('click', '.btn_copy_option', function () {
+	
+			if (confirm("가격을 복사 하시겠습니까?") == false) {
+				return;
+			}
+	
+		    var group_idx = $(this).val();	   
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfGroup_copy",
+				type: "POST",
+				data: {
+						"group_idx" : group_idx 
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	   
 });
 </script>
 

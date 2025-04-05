@@ -3181,4 +3181,51 @@ class AjaxController extends BaseController {
 		
 	}
 	
+	public function ajax_golfGroup_copy()
+	{
+		$db = \Config\Database::connect();
+
+		$old_group_idx = $this->request->getPost("group_idx");
+
+		// 새로운 group_idx 생성 (예: max값 + 1)
+		$builder = $db->table('tbl_golf_group');
+		$new_group_idx = $db->table('tbl_golf_group')->selectMax('group_idx')->get()->getRow()->group_idx + 1;
+
+		// 1. tbl_golf_group 복사
+		$oldGroup = $db->table('tbl_golf_group')->where('group_idx', $old_group_idx)->get()->getRowArray();
+		if ($oldGroup) {
+			unset($oldGroup['group_idx']);
+			$oldGroup['group_idx'] = $new_group_idx;
+			$oldGroup['reg_date'] = date('Y-m-d H:i:s');
+			$db->table('tbl_golf_group')->insert($oldGroup);
+		}
+
+		// 2. tbl_golf_option 복사
+		$options = $db->table('tbl_golf_option')->where('group_idx', $old_group_idx)->get()->getResultArray();
+		foreach ($options as $opt) {
+			$old_o_idx = $opt['idx'];
+			unset($opt['idx']); // auto_increment 제거
+			$opt['group_idx'] = $new_group_idx;
+			$opt['reg_date'] = date('Y-m-d H:i:s');
+			$db->table('tbl_golf_option')->insert($opt);
+			$new_o_idx = $db->insertID();
+
+			// 3. tbl_golf_price 복사
+			$prices = $db->table('tbl_golf_price')->where('o_idx', $old_o_idx)->get()->getResultArray();
+			foreach ($prices as $price) {
+				unset($price['idx']);
+				$price['group_idx'] = $new_group_idx;
+				$price['o_idx'] = $new_o_idx;
+				$price['reg_date'] = date('Y-m-d H:i:s');
+				$price['upd_date'] = date('Y-m-d H:i:s');
+				$db->table('tbl_golf_price')->insert($price);
+			}
+		}
+
+		return [
+			'status' => 'success',
+			'message' => "복사 완료. 새 그룹번호: $new_group_idx"
+		];
+	}	
+	
 }	
