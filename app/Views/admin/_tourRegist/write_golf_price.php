@@ -604,23 +604,41 @@ $(document).ready(function () {
 </script>
 
 <script>
-$(function() {
-    // 공통 옵션 (원하는 포맷으로 조절)
-    var dateFormat = "yy-mm-dd";
+$(document).ready(function () {
+	$.ajax({
+		url: '/ajax/ajax_getMinDate',  // CI4 라우팅에 맞게 설정
+		type: 'POST',
+		data: { "product_idx" : $("#product_idx").val() },
 
-    // 시작일 선택
-    $("#a_sdate").datepicker({
-        dateFormat: dateFormat,
-        onSelect: function(selectedDate) {
-            var startDate = $(this).datepicker('getDate');
-            $("#a_edate").datepicker("option", "minDate", startDate);
-        }
-    });
-
-    // 종료일 선택
-    $("#a_edate").datepicker({
-        dateFormat: dateFormat
-    });
+		dataType: 'json',
+		async: false,
+		cache: false,
+			
+		success: function (data, textStatus) {
+			if (data.status === 'success') {
+				var minDate = new Date(data.min_date);  // DB에서 가져온 날짜
+				$("#a_sdate").datepicker({
+					dateFormat: 'yy-mm-dd',
+					minDate: minDate,  // 동적으로 설정된 최소 날짜
+					maxDate: "+99Y",
+					showButtonPanel: true,
+					closeText: '닫기',
+					currentText: '오늘',
+					prevText: '이전',
+					nextText: '다음',
+					showOn: "both",
+					yearRange: "c:c+30",
+					buttonImage: "/images/admin/common/date.png",
+					buttonImageOnly: true
+				});
+			} else {
+				alert('날짜를 불러오는 데 실패했습니다.');
+			}
+		},
+		error: function () {
+			alert('서버와의 통신 오류');
+		}
+	});
 });
 </script>
 

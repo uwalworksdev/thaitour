@@ -2969,7 +2969,7 @@ $result = $db->query($sql);
 	public function ajax_getMinDate()
 	{
         $db = \Config\Database::connect();
-		
+		/*
 		$o_idx     = $this->request->getPost('o_idx');
 		
 		$query     = $db->query("SELECT DATE_ADD(MAX(goods_date), INTERVAL 1 DAY) AS next_date 
@@ -2977,7 +2977,16 @@ $result = $db->query($sql);
 							     WHERE o_idx = '" . $o_idx . "'");
 		$row       = $query->getRow();
 		$next_date = $row->next_date;
-
+        */
+		
+		$product_idx     = $this->request->getPost('product_idx');
+		
+		$query     = $db->query("SELECT DATE_ADD(MAX(edate), INTERVAL 1 DAY) AS next_date 
+							     FROM tbl_golf_group 
+							     WHERE product_idx = '" . $product_idx . "'");
+		$row       = $query->getRow();
+		$next_date = $row->next_date;
+		
 		if ($row) {
 			return $this->response
 					->setStatusCode(200)
