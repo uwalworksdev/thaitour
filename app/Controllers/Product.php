@@ -1920,6 +1920,7 @@ class Product extends BaseController
 
 		$query = $builder->get();
 		$golf_price_result = $query->getResultArray();
+		write_log("debug -". $this->db->getLastQuery());
 		foreach ($golf_price_result as $golf_price):
 
 				// 결과 확인 및 데이터 처리
@@ -2018,7 +2019,7 @@ class Product extends BaseController
         }
 
         $options = $this->golfOptionModel->getGolfGroup($data['group_idx']);
-write_log("debug -". $this->db->getLastQuery());
+
         $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
