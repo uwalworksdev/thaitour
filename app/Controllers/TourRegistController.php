@@ -969,7 +969,7 @@ class TourRegistController extends BaseController
                 $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
-													,goods_price1	= '" . $o_price1[$i] . "'
+													,goods_price1_1	= '" . $o_price1[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
                 write_log("tbl_golf_option -1  " . $sql);
                 $result = $this->connect->query($sql);
@@ -978,7 +978,7 @@ class TourRegistController extends BaseController
 													 product_idx	= '" . $product_idx . "'
 													,goods_name		= '" . $o_name[$i] . "'
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
-													,goods_price1	= '" . $o_price1[$i] . "'
+													,goods_price1_1	= '" . $o_price1[$i] . "'
 													,option_type	= 'S' ";
                 write_log("tbl_golf_option -2 " . $sql);
                 $result = $this->connect->query($sql);
