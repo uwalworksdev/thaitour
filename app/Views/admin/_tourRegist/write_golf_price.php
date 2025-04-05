@@ -653,7 +653,6 @@ $(document).ready(function () {
 });
 </script>
 
-<!--
 <script>
 $(document).ready(function () {
 	$.ajax({
@@ -719,7 +718,7 @@ $(document).ready(function () {
 	});
 });
 </script>
--->
+
 
 <script>
 $(function() {

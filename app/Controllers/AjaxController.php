@@ -3066,4 +3066,6 @@ $result = $db->query($sql);
 					'message' => "룸 등록 오류: " . $e->getMessage()
 				]);
 		}	
+		
+    }		
 }	
