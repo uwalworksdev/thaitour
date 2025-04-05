@@ -619,9 +619,7 @@ $(document).on('click', '.btn_delete_option', function () {
 				return;
 			}
 	
-		    var group_idx = $(this).val();
-		    alert('delete- '+group_idx);
-	   
+		    var group_idx = $(this).val();	   
 			var message = "";
 			$.ajax({
 
@@ -644,7 +642,6 @@ $(document).on('click', '.btn_delete_option', function () {
 			});	   
 	   
 });
-
 </script>
 
 <script>
