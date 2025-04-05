@@ -580,6 +580,57 @@
 </div>
 
 <script>
+$(document).ready(function() {
+    $(".datepicker-start").each(function() {
+        var $startInput = $(this);
+        var idx         = $startInput.data("idx");
+        var $endInput   = $(`input[name='optionsx[${idx}][o_edate]']`);
+        var product_idx = $("#product_idx").val();
+
+        if ($startInput.val() === "") {
+            // AJAX로 시작일자 가져오기
+            $.ajax({
+                url: "/ajax/get_start_date",
+                type: "POST",
+                data: {
+                    product_idx: product_idx
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.sdate) {
+                        $startInput.val(response.sdate);
+
+                        var nextDay = new Date(response.sdate);
+                        nextDay.setDate(nextDay.getDate() + 1);
+
+                        $endInput.datepicker({
+                            minDate: nextDay,
+                            dateFormat: "yy-mm-dd"
+                        });
+                    }
+                }
+            });
+        }
+
+        // 시작일 선택 시 종료일 제한
+        $startInput.datepicker({
+            dateFormat: "yy-mm-dd",
+            onSelect: function(dateStr) {
+                var nextDate = new Date(dateStr);
+                nextDate.setDate(nextDate.getDate() + 1);
+
+                $endInput.datepicker("option", "minDate", nextDate);
+            }
+        });
+
+        $endInput.datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+});
+</script>
+
+<script>
 $(document).on('click', '.btn_add_option', function () {
 			// 버튼 자체
 			var $btn = $(this);

@@ -3236,4 +3236,33 @@ class AjaxController extends BaseController {
 
 	}	
 	
+	public function get_start_date()
+	{
+		$db = \Config\Database::connect();
+		$product_idx = $this->request->getPost('product_idx');
+
+		if (!$product_idx) {
+			return $this->response->setStatusCode(400)->setJSON([
+				'status' => 'error',
+				'message' => '상품코드 누락'
+			]);
+		}
+
+		$query     = $db->query("SELECT DATE_ADD(MAX(edate), INTERVAL 1 DAY) AS next_date 
+							     FROM tbl_golf_group 
+							     WHERE product_idx = '" . $product_idx . "'");
+		$row       = $query->getRow();
+		$next_date = $row->next_date;
+
+		if ($next_date) {
+			return $this->response->setJSON([
+				'sdate' => $next_date
+			]);
+		} else {
+			return $this->response->setJSON([
+				'sdate' => date('Y-m-d')  // 기본값
+			]);
+		}
+	}
+	
 }	
