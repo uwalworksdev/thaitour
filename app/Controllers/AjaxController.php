@@ -1122,7 +1122,7 @@ class AjaxController extends BaseController {
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 //			}
 
-			//write_log($sql);
+			write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
