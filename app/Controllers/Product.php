@@ -1907,6 +1907,44 @@ class Product extends BaseController
         $data['mcodes'] = $mcodes;
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
+
+		$builder = $this->db->table('tbl_golf_price a');
+		$builder->select('a.*, b.*');
+		$builder->join('tbl_golf_option b', 'a.o_idx = b.idx', 'left');
+		$builder->where('a.product_idx', $product_idx);
+		$builder->where('a.goods_date >=', date('Y-m-d'));
+		$builder->where('a.use_yn !=', 'N');
+		$builder->orderBy('a.goods_date', 'ASC');
+		$builder->orderBy('a.goods_name', 'ASC');
+		$builder->limit(1);
+
+		$query = $builder->get();
+		$golf_price_result = $query->getResultArray();
+		foreach ($golf_price_result as $golf_price):
+
+				// 결과 확인 및 데이터 처리
+					//$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
+					//$data['golf_price'] = $golf_price;
+
+					$data['idx']            = $golf_price['idx'];
+					$data['group_idx']      = $golf_price['group_idx'];
+					write_log("group_idx- ". $data['group_idx']);
+					$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
+					$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
+					$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
+					$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
+					$data['caddie_fee']     = $golf_price['caddie_fee'] * $baht_thai;
+					$data['o_cart_due']     = $golf_price['o_cart_due'];
+					$data['o_caddy_due']    = $golf_price['o_caddy_due'];
+					$data['o_cart_cont']    = $golf_price['o_cart_cont'];
+					$data['o_caddy_cont']   = $golf_price['o_caddy_cont'];
+
+					$data['vehicle_price1_baht'] = $golf_price['vehicle_price1'];
+					$data['vehicle_price2_baht'] = $golf_price['vehicle_price2'];
+					$data['vehicle_price3_baht'] = $golf_price['vehicle_price3'];
+					$data['cart_price_baht']     = $golf_price['cart_price'];
+					$data['caddie_fee_baht']     = $golf_price['caddie_fee'];
+		endforeach;
         
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
         $data['info']       = $this->golfInfoModel->getGolfInfo($product_idx);
@@ -1979,58 +2017,19 @@ class Product extends BaseController
             $data['coupons'][$key] = $coupon;
         }
 
-        $options = $this->golfOptionModel->getOptions($product_idx);
+        //$options = $this->golfOptionModel->getOptions($product_idx);
 
-        $hole_cnt_arr = array_column($options, 'goods_name');
+        //$hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
-        $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
-            return in_array($value, $hole_cnt_arr);
-        });
+        //$data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
+       //     return in_array($value, $hole_cnt_arr);
+        //});
 
         //$data['hour_arr'] = array_filter(GOLF_HOURS, function ($value) use ($hour_arr) {
         //    return in_array($value, $hour_arr);
         //});
 
-
-		$builder = $this->db->table('tbl_golf_price a');
-		$builder->select('a.*, b.*');
-		$builder->join('tbl_golf_option b', 'a.o_idx = b.idx', 'left');
-		$builder->where('a.product_idx', $product_idx);
-		$builder->where('a.goods_date >=', date('Y-m-d'));
-		$builder->where('a.use_yn !=', 'N');
-		$builder->orderBy('a.goods_date', 'ASC');
-		$builder->orderBy('a.goods_name', 'ASC');
-		$builder->limit(1);
-
-		$query = $builder->get();
-		$golf_price_result = $query->getResultArray();
-		foreach ($golf_price_result as $golf_price):
-
-				// 결과 확인 및 데이터 처리
-					//$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
-					//$data['golf_price'] = $golf_price;
-
-					$data['idx']            = $golf_price['idx'];
-					$data['group_idx']      = $golf_price['group_idx'];
-					write_log("group_idx- ". $data['group_idx']);
-					$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
-					$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
-					$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
-					$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
-					$data['caddie_fee']     = $golf_price['caddie_fee'] * $baht_thai;
-					$data['o_cart_due']     = $golf_price['o_cart_due'];
-					$data['o_caddy_due']    = $golf_price['o_caddy_due'];
-					$data['o_cart_cont']    = $golf_price['o_cart_cont'];
-					$data['o_caddy_cont']   = $golf_price['o_caddy_cont'];
-
-					$data['vehicle_price1_baht'] = $golf_price['vehicle_price1'];
-					$data['vehicle_price2_baht'] = $golf_price['vehicle_price2'];
-					$data['vehicle_price3_baht'] = $golf_price['vehicle_price3'];
-					$data['cart_price_baht']     = $golf_price['cart_price'];
-					$data['caddie_fee_baht']     = $golf_price['caddie_fee'];
-		endforeach;
-		
         $data['reviewCategories'] = $this->getReviewCategories($product_idx, 4204) ?? [];
 
         $review_data = $this->getReviewProduct($product_idx);
