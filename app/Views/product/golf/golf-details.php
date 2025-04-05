@@ -2,19 +2,7 @@
 
 <?php $this->section('content'); ?>
 
-<script>
-$(document).ready(function() {
-			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-			console.log('홀- '+dataTabValue);
-			console.log('caddie fee- '+$("#caddie_fee_sel").val());
-			
-			if($("#caddie_fee_sel").val() == "Y") {
-			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-			   $("#vehicle_5").prop('disabled', true);
-			}   
-	
-});
-</script>
+
 
 <script>
 $(document).ready(function() {
