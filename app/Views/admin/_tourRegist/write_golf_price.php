@@ -491,13 +491,15 @@
                                 <div>
                                     <table>
                                         <colgroup>
-                                            <col width="*"></col>
+                                            <col width="40%"></col>
+                                            <col width="40%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
                                         </colgroup>
                                         <thead>
                                         <tr>
-                                            <th>옵션명</th>
+                                            <th>옵션명(한글)</th>
+                                            <th>옵션명(영문)</th>
                                             <th>가격</th>
                                             <th>삭제</th>
                                         </tr>
@@ -511,10 +513,12 @@
                                                                 value='<?= $frow3['idx'] ?>'/>
                                                         <input type='hidden' name='option_type[]'
                                                                 value='<?= $frow3['option_type'] ?>'/>
-                                                        <input type='text' name='o_name[]' style='width: 50%;'
+                                                        <input type='text' name='o_name[]' style='width: 40%;'
                                                                 id=''
                                                                 value="<?= $frow3['goods_name'] ?>" size="70"/>
-                                                        <input type='text' name='o_name[]' style='width: 50%;'
+												    </td>
+												    <td>
+                                                        <input type='text' name='o_name[]' style='width: 40%;'
                                                                 id=''
                                                                 value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                     </td>
