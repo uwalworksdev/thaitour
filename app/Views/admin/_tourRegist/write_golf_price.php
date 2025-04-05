@@ -1073,7 +1073,10 @@ $(document).ready(function () {
             addOption += "	<td>																  ";
             addOption += "		<input type='hidden' name='o_idx[]'  value='' />				  ";
             addOption += "		<input type='hidden' name='option_type[]'  value='S' />			  ";
-            addOption += "		<input type='text' name='o_name[]' style='width: 100%;' value='' size='70' />		  ";
+            addOption += "		<input type='text' name='o_name[]' style='width: 80%;' value='' size='70' />		  ";
+            addOption += "	</td>																  ";
+            addOption += "	<td>																  ";
+            addOption += "		<input type='text' name='o_name_eng[]' style='width: 80%;' value='' size='70' />		  ";
             addOption += "	</td>																  ";
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_price1[]' numberonly='true' value='' style='text-align:right;'/>  ";
