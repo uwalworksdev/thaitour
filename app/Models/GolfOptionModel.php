@@ -51,7 +51,8 @@ class GolfOptionModel extends Model
 		'o_sdate',	
 		'o_edate',	
 		'o_soldout',	
-		'o_golf'	
+		'o_golf',	
+		'reg_date'	
 
     ];
 

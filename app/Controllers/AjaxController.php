@@ -3035,4 +3035,35 @@ $result = $db->query($sql);
 
 	}	
 	
+	public function ajax_golfHole_add()
+	{
+		$db = \Config\Database::connect(); // 데이터베이스 연결
+
+		$product_idx  = $this->request->getPost("product_idx");
+		$group_idx    = $this->request->getPost("group_idx");
+		$goods_name   = $this->request->getPost("goods_name");
+		$o_sdate      = $this->request->getPost("o_sdate");
+		$o_edate      = $this->request->getPost("o_edate");
+
+		try {
+			// 골프 홀 추가
+			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, reg_date) VALUES (?, ?, ?, ?, ?, NOW())";
+			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
+
+			$msg = "홀 등록 완료";
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg
+				]);
+		} catch (\Exception $e) {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'status'  => 'error',
+					'message' => "룸 등록 오류: " . $e->getMessage()
+				]);
+		}	
 }	
