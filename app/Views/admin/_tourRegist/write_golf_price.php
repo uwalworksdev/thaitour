@@ -525,7 +525,7 @@
                                                     <td>
                                                         <input type='text' numberonly='true'
                                                                 style='text-align:right;' name='o_price1[]' id=''
-                                                                value="<?= $frow3['goods_price1'] ?>"/>
+                                                                value="<?= $frow3['goods_price1_1'] ?>"/>
                                                     </td>
                                                     <td>
                                                         <button type="button"
