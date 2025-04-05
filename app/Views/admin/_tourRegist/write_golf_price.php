@@ -173,7 +173,7 @@
 									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
 											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
-									<button type="button" class="btn_add_option" class="btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
+									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									<button type="button" id="btn_copy_option"   class="btn_01">복사</button>
 									<button type="button" id="btn_delete_option" class="btn_02">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
