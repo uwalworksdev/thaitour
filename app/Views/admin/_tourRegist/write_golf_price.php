@@ -174,9 +174,9 @@
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
 										적용기간:
-										<input type='text' class='datepicker-start' name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
+										<input type='text' class='datepicker-start' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
 										~
-										<input type='text' class='datepicker-end' name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
+										<input type='text' class='datepicker-end' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
 										적용기간:
 										<input type='text' class='datepickerX' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
@@ -724,6 +724,35 @@ $(document).on('click', '.btn_copy_option', function () {
 				type: "POST",
 				data: {
 						"group_idx" : group_idx 
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	   
+});
+
+$(document).on('click', '.btn_day_option', function () {
+
+		    var group_idx = $(this).val();
+			var sdate = $("#sdate_"+group_idx).val();
+			var edate = $("#edate_"+group_idx).val();
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfDay_update",
+				type: "POST",
+				data: {
+						"group_idx" : group_idx, 
+						"sdate"     : sdate, 
+						"edate"     : edate 
 				},
 				dataType: "json",
 				async: false,

@@ -618,6 +618,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_golfGroup_del", "AjaxController::ajax_golfGroup_del");
 	$routes->post("ajax_golfGroup_copy", "AjaxController::ajax_golfGroup_copy");
 	$routes->post("get_start_date", "AjaxController::get_start_date");
+	$routes->post("ajax_golfDay_update", "AjaxController::ajax_golfDay_update");
 });
 
 $routes->group("api", static function ($routes) {

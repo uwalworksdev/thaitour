@@ -3265,4 +3265,48 @@ class AjaxController extends BaseController {
 		}
 	}
 	
+	public function ajax_golfDay_update()
+	{	
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$group_idx = $this->request->getPost("group_idx");
+			$sdate     = $this->request->getPost("sdate");
+			$edate     = $this->request->getPost("edate");
+
+			if (empty($group_idx)) {
+				return $this->response
+					->setStatusCode(400)
+					->setJSON([
+						'status'  => 'error',
+						'message' => 'No group_idx provided'
+					]);
+			}
+
+			$db->query("UPDATE tbl_golf_group SET sdate = ?, edate = ? WHERE group_idx = ?", [$sdate, $edate, $group_idx]);
+
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '기간 설정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '기간설정 완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+	}
 }	
