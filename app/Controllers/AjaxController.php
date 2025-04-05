@@ -3065,6 +3065,43 @@ $result = $db->query($sql);
 			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, option_type, reg_date) VALUES (?, ?, ?, ?, ?, 'M', NOW())";
 			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
 
+			$start = new DateTime($o_sdate);
+			$end   = new DateTime($o_edate);
+			$end->modify('+1 day');  // 종료일 포함시키기
+
+			$interval = new DateInterval('P1D'); // 하루 간격
+			$period   = new DatePeriod($start, $interval, $end);
+
+			foreach ($period as $date) {
+				$goods_date = $date->format('Y-m-d');
+				$dow = getKoreanDay($date->format('w'));  // 요일 구하기
+
+				$data = [
+							'o_idx'           => $o_idx,
+							'goods_date'      => $goods_date,
+							'dow'             => $dow,
+							'product_idx'     => $product_idx,
+							'group_idx'       => $group_idx,
+							'goods_name'      => $goods_name,
+							'price_1'         => 0,
+							'price_2'         => 0,
+							'price_3'         => 0,
+							'day_yn'          => 'Y',
+							'day_price'       => 0,
+							'afternoon_yn'    => 'Y',
+							'afternoon_price' => 0,
+							'night_yn'        => 'Y',
+							'night_price'     => 0,
+							'use_yn'          => 'Y',
+							'caddy_fee'       => '',
+							'cart_pie_fee'    => '',
+							'reg_date'        => date('Y-m-d H:i:s'),
+							'upd_date'        => date('Y-m-d H:i:s'),
+				];
+
+				$db->table('tbl_golf_price')->insert($data);
+			}
+	
 			$msg = "홀 등록 완료";
 
 			return $this->response
@@ -3082,5 +3119,11 @@ $result = $db->query($sql);
 				]);
 		}	
 		
-    }		
+    }	
+	
+	function getKoreanDay($num)
+	{
+		$days = ['일', '월', '화', '수', '목', '금', '토'];
+		return $days[$num];
+	}	
 }	
