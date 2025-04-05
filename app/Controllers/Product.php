@@ -2018,7 +2018,7 @@ class Product extends BaseController
         }
 
         $options = $this->golfOptionModel->getGolfGroup($data['group_idx']);
-write_log("debug -". $db->getLastQuery());
+write_log("debug -". $this->db->getLastQuery());
         $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
