@@ -599,7 +599,6 @@ $(document).on('click', '.btn_add_option', function () {
 				success: function (data, textStatus) {
 					message = data.message;
 					alert(message);
-					send_it();
 					location.reload();
 				},
 				error: function (request, status, error) {
