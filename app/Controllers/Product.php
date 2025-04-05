@@ -1958,7 +1958,7 @@ class Product extends BaseController
         $golf_vehicle = $data['info']['golf_vehicle'];
 
         $golfVehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
-
+/*
         $data['golfVehicles'] = array_filter($golfVehicles, function ($vehicle) use ($golf_vehicle) {
             return in_array($vehicle['code_no'], explode("|", $golf_vehicle));
         });
@@ -1976,7 +1976,7 @@ class Product extends BaseController
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
-
+*/
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
             $price_won = round($price * $baht_thai);
