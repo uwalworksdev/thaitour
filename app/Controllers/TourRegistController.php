@@ -964,8 +964,7 @@ class TourRegistController extends BaseController
 		$o_name     = $data['o_name'] ?? [];
 		$o_name_eng = $data['o_name_eng'] ?? [];
 		$o_price1   = $data['o_price1'] ?? [];
-        $_len       = count($o_idx);
-        for ($i = 0; $i < $len; $i++) {
+        for ($i = 0; $i < count($o_idx); $i++) {
             if ($o_idx[$i]) {
                 $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
