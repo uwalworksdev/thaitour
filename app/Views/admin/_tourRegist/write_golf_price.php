@@ -77,7 +77,7 @@
 						<tbody>
 						<tr height="45">
 							<th>상품명</th>
-							<td><?=$product_name?></td>
+							<td colspan="3"><?=$product_name?></td>
 						</tr>
 						<tr height="45">
 							<th>최소/최대 라운딩인원</th>
