@@ -93,7 +93,7 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
-define('GOLF_HOLES', ['18', '27', '36', '45']);
+define('GOLF_HOLES', [18, 27, 36, 45]);
 
 define('GOLF_HOURS', ['06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']);
 //define('GOLF_HOURS', ['오전', '오후']);
