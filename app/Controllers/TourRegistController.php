@@ -969,7 +969,7 @@ class TourRegistController extends BaseController
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
-               // write_log("tbl_golf_option -  " . $sql);
+                write_log("tbl_golf_option -1  " . $sql);
                 $result = $this->connect->query($sql);
             } else {
                 $sql = "INSERT INTO tbl_golf_option SET 
@@ -979,7 +979,7 @@ class TourRegistController extends BaseController
 													,goods_price1	= '" . $o_price1[$i] . "'
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "' ";
-               // write_log("tbl_golf_option -  " . $sql);
+                write_log("tbl_golf_option -2 " . $sql);
                 $result = $this->connect->query($sql);
             }
         }
