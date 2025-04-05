@@ -1908,17 +1908,22 @@ class Product extends BaseController
 
         $data['product']['product_price_won'] = $data['product']['product_price'] * $baht_thai;
 
-        // 예약가능한 일자 및 금액 데이터 조회
-        $sql_p = "SELECT a.*, b.* FROM tbl_golf_price a
-		                                      LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
-											  WHERE a.product_idx = '$product_idx' AND a.goods_date >= CURDATE() AND a.use_yn != 'N' ORDER BY a.goods_date, a.goods_name ASC LIMIT 0,1 ";
-        $result_p           = $this->db->query($sql_p);
+$builder = $this->db->table('tbl_golf_price a');
+$builder->select('a.*, b.*');
+$builder->join('tbl_golf_option b', 'a.o_idx = b.idx', 'left');
+$builder->where('a.product_idx', $product_idx);
+$builder->where('a.goods_date >=', date('Y-m-d'));
+$builder->where('a.use_yn !=', 'N');
+$builder->orderBy('a.goods_date', 'ASC');
+$builder->orderBy('a.goods_name', 'ASC');
+$builder->limit(1);
 
-		// 결과를 가져옴
-		$golf_price_result = $result_p->getResultArray();
+$query = $builder->get();
+$golf_price_result = $query->getResultArray();
+
 
 		// 결과 확인 및 데이터 처리
-		//if (!empty($golf_price_result)) {
+		if (!empty($golf_price_result)) {
 			$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
 			$data['golf_price'] = $golf_price;
 
@@ -1936,7 +1941,21 @@ class Product extends BaseController
 			$data['vehicle_price3_baht'] = $golf_price['vehicle_price3'];
 			$data['cart_price_baht']     = $golf_price['cart_price'];
 			$data['caddie_fee_baht']     = $golf_price['caddie_fee'];
-
+		} else {
+			// 결과가 없을 경우 기본값 처리 (예: 0)
+			write_log("group_idx- ". $group_idx);
+			$data['golf_price'] = [];
+			$data['vehicle_price1'] = 0;
+			$data['vehicle_price2'] = 0;
+			$data['vehicle_price3'] = 0;
+			$data['cart_price']     = 0;
+			$data['caddie_fee']     = 0;
+			$data['vehicle_price1_baht'] = 0;
+			$data['vehicle_price2_baht'] = 0;
+			$data['vehicle_price3_baht'] = 0;
+			$data['cart_price_baht'] = 0;
+			$data['caddie_fee_baht'] = 0;
+		}
         
         $data['night_yn']   = $data['golf_price']['o_night_yn'];
         $data['info']       = $this->golfInfoModel->getGolfInfo($product_idx);
