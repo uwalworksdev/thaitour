@@ -174,7 +174,7 @@
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
 										적용기간:
-										<input type='text' class='datepicker-start' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" readonly/>
+										<input type='text' class='datepicker-start' name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
 										~
 										<input type='text' class='datepicker-end' name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
