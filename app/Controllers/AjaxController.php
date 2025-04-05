@@ -3229,10 +3229,11 @@ class AjaxController extends BaseController {
 			*/
 		}
 
-		return [
-			'status' => 'success',
-			'message' => "복사 완료. 새 그룹번호: $new_group_idx"
-		];
+		return $this->response->setStatusCode(200)->setJSON([
+			'status'  => 'success',
+			'message' => '복사 완료. 새 그룹번호: $new_group_idx'
+		]);
+
 	}	
 	
 }	
