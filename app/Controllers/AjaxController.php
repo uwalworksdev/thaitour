@@ -3065,6 +3065,9 @@ class AjaxController extends BaseController {
 			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, option_type, reg_date) VALUES (?, ?, ?, ?, ?, 'M', NOW())";
 			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
 
+			// 마지막 삽입된 룸의 ID 가져오기
+			$o_idx = $db->insertID();
+
 			// 일자뱔 가격등록
 			$dateRange   = getDateRange($o_sdate, $o_edate);
 
