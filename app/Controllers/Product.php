@@ -2104,13 +2104,16 @@ class Product extends BaseController
 
         foreach ($options as $key => $value) {
             if ($hour == "day") {
-                $option_price = (float)($value['price'] + $value['o_day_price']);
+                //$option_price = (float)($value['price'] + $value['o_day_price']);
+                $option_price = (float)($value['price_1']);
             } else if ($hour == "afternoon") {
-                $option_price = (float)($value['price'] + $value['o_afternoon_price']);
-                if ($value['o_afternoon_yn'] != "Y") $option_price = "0";
+                //$option_price = (float)($value['price'] + $value['o_afternoon_price']);
+                $option_price = (float)($value['price_2']);
+                //if ($value['o_afternoon_yn'] != "Y") $option_price = "0";
             } else {
-                $option_price = (float)($value['price'] + $value['o_night_price']);
-                if ($value['o_night_yn'] != "Y") $option_price = "0";
+                //$option_price = (float)($value['price'] + $value['o_night_price']);
+                $option_price = (float)($value['price_3']);
+                //if ($value['o_night_yn'] != "Y") $option_price = "0";
             }
             $baht_thai      = (float)($this->setting['baht_thai'] ?? 0);
             $o_afternoon_yn = $value['o_afternoon_yn'];
@@ -2146,23 +2149,29 @@ class Product extends BaseController
         $option = $result->getResultArray();
 
         if ($hour == "day") {
-            $option_price = $data['price'] + $data['o_day_price'];
+            //$option_price = $data['price'] + $data['o_day_price'];
+            $option_price = $data['price_1'];
         } else if ($hour == "afternoon") {
-            $option_price = $data['price'] + $data['o_afternoon_price'];
+            //$option_price = $data['price'] + $data['o_afternoon_price'];
+            $option_price = $data['price_2'];
         } else {
-            $option_price = $data['price'] + $data['o_night_price'];
+            //$option_price = $data['price'] + $data['o_night_price'];
+            $option_price = $data['price_3'];
         }
 
         foreach ($option as $data) {
             if ($hour == "day") {
                 $hour_type = "주간";
-                $option_tot = $data['price'] + $data['o_day_price'];
+                //$option_tot = $data['price'] + $data['o_day_price'];
+                $option_tot = $data['price_1'];
             } else if ($hour == "afternoon") {
                 $hour_type = "오후";
-                $option_tot = $data['price'] + $data['o_afternoon_price'];
+                //$option_tot = $data['price'] + $data['o_afternoon_price'];
+                $option_tot = $data['price_2'];
             } else {
                 $hour_type = "야간";
-                $option_tot = $data['price'] + $data['o_night_price'];
+                //$option_tot = $data['price'] + $data['o_night_price'];
+                $option_tot = $data['price_3'];
             }
 
             $option_price = $option_tot;
