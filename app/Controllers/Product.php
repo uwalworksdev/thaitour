@@ -1934,6 +1934,9 @@ foreach ($golf_price_result as $golf_price):
 			$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
 			$data['caddie_fee']     = $golf_price['caddie_fee'] * $baht_thai;
 			$data['o_cart_due']     = $golf_price['o_cart_due'];
+			$data['o_caddy_due']    = $golf_price['o_caddy_due'];
+			$data['o_cart_cont']    = $golf_price['o_cart_cont'];
+			$data['o_caddy_cont']   = $golf_price['o_caddy_cont'];
 
 			$data['vehicle_price1_baht'] = $golf_price['vehicle_price1'];
 			$data['vehicle_price2_baht'] = $golf_price['vehicle_price2'];
