@@ -3046,6 +3046,21 @@ $result = $db->query($sql);
 		$o_edate      = $this->request->getPost("o_edate");
 
 		try {
+			
+			$query     = $db->query("SELECT COUNT(*) AS cnt 
+									 FROM tbl_golf_option 
+									 WHERE product_idx = '" . $product_idx . "' AND group_idx = '". $group_idx ."' AND goods_name = '". $goods_name."' ");
+			$row       = $query->getRow();
+			if($row->cnt > 0) {
+				$msg = "기 등록되어있는 홀입니다.";
+				return $this->response
+					->setStatusCode(200)
+					->setJSON([
+						'status'  => 'success',
+						'message' => $msg
+					]);
+            }
+			
 			// 골프 홀 추가
 			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, option_type, reg_date) VALUES (?, ?, ?, ?, ?, 'M', NOW())";
 			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
