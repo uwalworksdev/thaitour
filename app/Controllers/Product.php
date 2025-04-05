@@ -2019,7 +2019,7 @@ class Product extends BaseController
 
         $options = $this->golfOptionModel->getOptions($product_idx);
 
-        $hole_cnt_arr = array_column($options, 'group_idx');
+        $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
         $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
