@@ -173,7 +173,7 @@
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
-										적용기간:
+										적용기간:<?=$i?>
 										<input type='text' class='datepicker-start' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
 										~
 										<input type='text' class='datepicker-end' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
@@ -190,7 +190,7 @@
 									<?php } ?>
 										
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
-									<button type="button" id="btn_update_option" class="btn_01">일자별수정<?=$i?></button>
+									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
 									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
