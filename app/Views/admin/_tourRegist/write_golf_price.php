@@ -584,7 +584,6 @@ $(document).ready(function() {
     $(".datepicker-start").each(function() {
         var $startInput = $(this);
         var idx         = $startInput.data("idx");
-		alert('idx- '+idx);
         var $endInput   = $(`input[name='optionsx[${idx}][o_edate]']`);
         var product_idx = $("#product_idx").val();
 
