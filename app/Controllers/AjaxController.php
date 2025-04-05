@@ -3253,7 +3253,7 @@ class AjaxController extends BaseController {
 							     WHERE product_idx = '" . $product_idx . "'");
 		$row       = $query->getRow();
 		$next_date = $row->next_date;
-
+ 
 		if ($next_date) {
 			return $this->response->setJSON([
 				'sdate' => $next_date
