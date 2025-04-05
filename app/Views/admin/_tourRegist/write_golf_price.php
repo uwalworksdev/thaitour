@@ -713,7 +713,7 @@ $(document).ready(function () {
 			}
 		},
 		error: function () {
-			alert('서버와의 통신 오류');
+			alert('서버와의 통신 오류'+data.status);
 		}
 	});
 });
