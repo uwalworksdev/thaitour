@@ -513,12 +513,12 @@
                                                                 value='<?= $frow3['idx'] ?>'/>
                                                         <input type='hidden' name='option_type[]'
                                                                 value='<?= $frow3['option_type'] ?>'/>
-                                                        <input type='text' name='o_name[]' style='width: 40%;'
+                                                        <input type='text' name='o_name[]' style='width: 80%;'
                                                                 id=''
                                                                 value="<?= $frow3['goods_name'] ?>" size="70"/>
 												    </td>
 												    <td>
-                                                        <input type='text' name='o_name[]' style='width: 40%;'
+                                                        <input type='text' name='o_name[]' style='width: 80%;'
                                                                 id=''
                                                                 value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                     </td>
