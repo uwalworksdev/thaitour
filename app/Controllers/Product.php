@@ -1923,12 +1923,11 @@ class Product extends BaseController
 		foreach ($golf_price_result as $golf_price):
 
 				// 결과 확인 및 데이터 처리
-					//$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
-					//$data['golf_price'] = $golf_price;
+					$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
+					$data['golf_price'] = $golf_price;
 
 					$data['idx']            = $golf_price['idx'];
 					$data['group_idx']      = $golf_price['group_idx'];
-					write_log("group_idx- ". $data['group_idx']);
 					$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
 					$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
 					$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
@@ -1954,7 +1953,7 @@ class Product extends BaseController
 
         $data['imgs']       = [];
         $data['img_names']  = [];
-/*
+
         $golf_vehicle = $data['info']['golf_vehicle'];
 
         $golfVehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
@@ -1976,7 +1975,7 @@ class Product extends BaseController
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
- 
+
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
             $price_won = round($price * $baht_thai);
@@ -1986,7 +1985,7 @@ class Product extends BaseController
         }
 
         $data['golfVehiclesChildren'] = $golfVehiclesChildren;
-*/
+
         for ($i = 1; $i <= 7; $i++) {
             $file = "ufile" . $i;
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
