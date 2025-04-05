@@ -1058,7 +1058,9 @@ class AjaxController extends BaseController {
             
 			$product_idx  = $_POST['product_idx'];
 			$idx          = $_POST['idx'];
-			$price        = str_replace(',', '', $_POST['price']);
+			$price_1        = str_replace(',', '', $_POST['price_1']);
+			$price_2        = str_replace(',', '', $_POST['price_2']);
+			$price_3        = str_replace(',', '', $_POST['price_3']);
 			$use_yn       = $_POST['use_yn'];
 /*
 			$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND
@@ -1113,7 +1115,9 @@ class AjaxController extends BaseController {
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 			} else {
 */
-				$sql = "UPDATE tbl_golf_price SET  price        = '". $price ."'
+				$sql = "UPDATE tbl_golf_price SET  price_1      = '". $price_1 ."'
+				                                 , price_2      = '". $price_2 ."'
+												 , price_3      = '". $price_3 ."'
 												 , use_yn       = '". $use_yn ."'
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 //			}

@@ -664,7 +664,9 @@
 
 								"product_idx"   : $("#product_idx").val(),
 								"idx"           : idx,
-								"price"         : $("#price_"+idx).val(),
+								"price_1        : $("#price_1_"+idx).val(),
+								"price_2        : $("#price_2_"+idx).val(),
+								"price_3        : $("#price_3_"+idx).val(),
 								"use_yn"        : use_yn 
 
 						},
