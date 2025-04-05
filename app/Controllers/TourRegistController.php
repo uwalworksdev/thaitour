@@ -960,8 +960,11 @@ class TourRegistController extends BaseController
 				}
         }
 		
-        $o_idx = $data['o_idx'] ?? [];
-        $len = count($o_idx);
+        $o_idx      = $data['o_idx'] ?? [];
+		$o_name     = $data['o_name'] ?? [];
+		$o_name_eng = $data['o_name_eng'] ?? [];
+		$o_price1   = $data['o_price1'] ?? [];
+        $_len       = count($o_idx);
         for ($i = 0; $i < $len; $i++) {
             if ($o_idx[$i]) {
                 $sql = "UPDATE  tbl_golf_option  SET 
@@ -977,8 +980,7 @@ class TourRegistController extends BaseController
 													,goods_name		= '" . $o_name[$i] . "'
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
-													,option_type	= '" . $option_type[$i] . "'
-													,o_soldout		= '" . $o_soldout[$i] . "' ";
+													,option_type	= 'S' ";
                 write_log("tbl_golf_option -2 " . $sql);
                 $result = $this->connect->query($sql);
             }
