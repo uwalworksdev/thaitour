@@ -164,17 +164,17 @@
                             <tr height="45">
                                 <th>홀선택</th>
                                 <td>
-									<select id="golf_code" name="golf_code" class="input_select">
+									<select id="golf_code_<?= $row['group_idx'] ?>" name="golf_code" class="input_select">
 										<option value="">선택</option>
 										<?php foreach (GOLF_HOLES as $hole) : ?>
 											<option value="<?= $hole ?>"><?= $hole ?>홀</option>
 										<?php endforeach; ?>
 									</select>
 									적용기간: <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/> ~
-											 <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+											  <input type='text' readonly class='datepickerX ' name='optionsx[<?=$i?>]o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									
-									<button type="button" id="btn_add_option" class="btn_01" value="<?= $row['group_idx'] ?>">추가</button>
-									<button type="button" id="btn_copy_option" class="btn_01">복사</button>
+									<button type="button" class="btn_add_option" class="btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
+									<button type="button" id="btn_copy_option"   class="btn_01">복사</button>
 									<button type="button" id="btn_delete_option" class="btn_02">삭제</button>
 									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
@@ -559,6 +559,24 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).on('click', '.btn_add_option', function () {
+    // 버튼 자체
+    var $btn = $(this);
+
+    // data 속성 가져오기
+    var sdate    = $btn.data('sdate');
+    var edate    = $btn.data('edate');
+    var groupIdx = $btn.val();  // 버튼의 value 값
+
+    console.log("시작일:", sdate);
+    console.log("종료일:", edate);
+    console.log("그룹 IDX:", groupIdx);
+
+    // 여기서 원하는 로직 실행 (예: 모달 열기, 값 세팅 등)
+});
+</script>
 
 <script>
 $(document).ready(function () {
