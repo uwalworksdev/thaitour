@@ -571,9 +571,9 @@ $(document).on('click', '.btn_add_option', function () {
 			var group_idx  = $btn.val();  // 버튼의 value 값
 			var goods_name = $("#golf_code_"+groupIdx).val() +'홀';
 			
-			if(golf_code == "") {
+			if(goods_name == "") {
 			   alert('추가할 홀을 선택하세요.');
-			   $("#golf_code_"+groupIdx).focus();
+			   $("#golf_code_"+group_idx).focus();
 			   return false;
 			}   
 			console.log("시작일:", sdate);
