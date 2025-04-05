@@ -966,7 +966,7 @@ class TourRegistController extends BaseController
             if ($o_idx[$i]) {
                 $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
-													 goods_name_eng	= '" . $o_name_eng[$i] . "'
+													.goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
                // write_log("tbl_golf_option -  " . $sql);
@@ -975,7 +975,7 @@ class TourRegistController extends BaseController
                 $sql = "INSERT INTO tbl_golf_option SET 
 													 product_idx	= '" . $product_idx . "'
 													,goods_name		= '" . $o_name[$i] . "'
-													 goods_name_eng	= '" . $o_name_eng[$i] . "'
+													.goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1	= '" . $o_price1[$i] . "'
 													,option_type	= '" . $option_type[$i] . "'
 													,o_soldout		= '" . $o_soldout[$i] . "' ";
