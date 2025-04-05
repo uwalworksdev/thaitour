@@ -149,7 +149,7 @@
 						</tbody>
 					</table>
 					
-					
+					<?php $i = -1; ?>
 					<!-- 기간별 골프 가격 S: -->
 					<?php foreach ($groups as $row) { ?>
                     <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
@@ -199,7 +199,6 @@
 					    <tr>
 					    <td>
                             <div id="mainGolf">
-								<?php $i = -1; ?>
                                 <?php foreach ($options as $frow3): ?>
                                     <?php if ($frow3['group_idx'] == $row['group_idx'] && $frow3['option_type'] == "M") { ?>
 								    <?php $i = $i+1; ?>	

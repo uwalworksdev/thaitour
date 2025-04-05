@@ -2116,9 +2116,12 @@ class Product extends BaseController
                 //if ($value['o_night_yn'] != "Y") $option_price = "0";
             }
             $baht_thai      = (float)($this->setting['baht_thai'] ?? 0);
-            $o_afternoon_yn = $value['o_afternoon_yn'];
-            $o_night_yn     = $value['o_night_yn'];
+            //$o_afternoon_yn = $value['o_afternoon_yn'];
+            //$o_night_yn     = $value['o_night_yn'];
 
+            if($value['price_2'] > 0) $o_afternoon_yn = "Y";
+            if($value['price_3'] > 0) $o_night_yn     = "Y";
+			
             $option_price_won = round($option_price * $baht_thai);
             $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
