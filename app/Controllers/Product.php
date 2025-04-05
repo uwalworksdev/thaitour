@@ -1922,6 +1922,8 @@ class Product extends BaseController
 			$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
 			$data['golf_price'] = $golf_price;
 
+			$data['group_idx']      = $golf_price['group_idx'];
+			write_log("group_idx- ". $group_idx);
 			$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
 			$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
 			$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
@@ -1936,6 +1938,7 @@ class Product extends BaseController
 			$data['caddie_fee_baht']     = $golf_price['caddie_fee'];
 		} else {
 			// 결과가 없을 경우 기본값 처리 (예: 0)
+			write_log("group_idx- ". $group_idx);
 			$data['golf_price'] = [];
 			$data['vehicle_price1'] = 0;
 			$data['vehicle_price2'] = 0;
