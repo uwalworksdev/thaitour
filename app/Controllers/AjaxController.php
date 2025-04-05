@@ -1519,49 +1519,49 @@ class AjaxController extends BaseController {
 
 			$uncheck  = $this->request->getPost('uncheck');
 
-// POST 데이터 받아오기
-$s_date        = $_POST['s_date'];
-$e_date        = $_POST['e_date'];  
-$bed_val       = $_POST['bed_val'];
-$dow_val       = $_POST['dow_val'];
-$product_idx   = $_POST['product_idx'];
-$g_idx         = $_POST['g_idx'];
-$roomIdx       = $_POST['roomIdx'];
-$goods_price1  = $_POST['goods_price1'];
-$goods_price2  = $_POST['goods_price2'];
-$goods_price3  = $_POST['goods_price3'];
-$goods_price5  = $_POST['goods_price5'];
-$goods_price4  = $goods_price2 + $goods_price3;
+			// POST 데이터 받아오기
+			$s_date        = $_POST['s_date'];
+			$e_date        = $_POST['e_date'];  
+			$bed_val       = $_POST['bed_val'];
+			$dow_val       = $_POST['dow_val'];
+			$product_idx   = $_POST['product_idx'];
+			$g_idx         = $_POST['g_idx'];
+			$roomIdx       = $_POST['roomIdx'];
+			$goods_price1  = $_POST['goods_price1'];
+			$goods_price2  = $_POST['goods_price2'];
+			$goods_price3  = $_POST['goods_price3'];
+			$goods_price5  = $_POST['goods_price5'];
+			$goods_price4  = $goods_price2 + $goods_price3;
 
-//write_log("bed_val". $bed_val);
+			//write_log("bed_val". $bed_val);
 
-// bed_val가 비어 있을 경우 IN() 구문을 제외
-$bed_idx_condition = '';
-if (!empty($bed_val)) {
-    $bed_idx_condition = "AND bed_idx IN (". $bed_val .") ";
-}
+			// bed_val가 비어 있을 경우 IN() 구문을 제외
+			$bed_idx_condition = '';
+			if (!empty($bed_val)) {
+				$bed_idx_condition = "AND bed_idx IN (". $bed_val .") ";
+			}
 
-// SQL 쿼리 작성
-$sql = "UPDATE tbl_room_price
-        SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
-            goods_price2 = '" . $db->escapeString($goods_price2) . "',
-            goods_price3 = '" . $db->escapeString($goods_price3) . "',
-            goods_price4 = '" . $db->escapeString($goods_price4) . "',
-            goods_price5 = '" . $db->escapeString($goods_price5) . "',
-            upd_date = NOW()
-        WHERE dow IN ($dow_val)
-        $bed_idx_condition
-        AND product_idx = '" . $db->escapeString($product_idx) . "'
-        AND g_idx = '" . $db->escapeString($g_idx) . "'
-        AND upd_yn != 'Y'
-        AND rooms_idx = '" . $db->escapeString($roomIdx) . "'
-        AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
+			// SQL 쿼리 작성
+			$sql = "UPDATE tbl_room_price
+					SET goods_price1 = '" . $db->escapeString($goods_price1) . "',
+						goods_price2 = '" . $db->escapeString($goods_price2) . "',
+						goods_price3 = '" . $db->escapeString($goods_price3) . "',
+						goods_price4 = '" . $db->escapeString($goods_price4) . "',
+						goods_price5 = '" . $db->escapeString($goods_price5) . "',
+						upd_date = NOW()
+					WHERE dow IN ($dow_val)
+					$bed_idx_condition
+					AND product_idx = '" . $db->escapeString($product_idx) . "'
+					AND g_idx = '" . $db->escapeString($g_idx) . "'
+					AND upd_yn != 'Y'
+					AND rooms_idx = '" . $db->escapeString($roomIdx) . "'
+					AND goods_date BETWEEN '" . $db->escapeString($s_date) . "' AND '" . $db->escapeString($e_date) . "'";
 
-// 쿼리 실행 전에 로그 출력 (디버깅용)
-write_log("dow_val- ". $dow_val ." - ". $sql);
+			// 쿼리 실행 전에 로그 출력 (디버깅용)
+			write_log("dow_val- ". $dow_val ." - ". $sql);
 
-// 쿼리 실행
-$result = $db->query($sql);
+			// 쿼리 실행
+			$result = $db->query($sql);
 
 			
 /*
@@ -3065,42 +3065,38 @@ $result = $db->query($sql);
 			$sql = "INSERT INTO tbl_golf_option (product_idx, group_idx, goods_name, o_sdate, o_edate, option_type, reg_date) VALUES (?, ?, ?, ?, ?, 'M', NOW())";
 			$db->query($sql, [$product_idx, $group_idx, $goods_name, $o_sdate, $o_edate]);
 
-			$start = new DateTime($o_sdate);
-			$end   = new DateTime($o_edate);
-			$end->modify('+1 day');  // 종료일 포함시키기
+			// 일자뱔 가격등록
+			$dateRange   = getDateRange($o_sdate, $o_edate);
 
-			$interval = new DateInterval('P1D'); // 하루 간격
-			$period   = new DatePeriod($start, $interval, $end);
+			$ii = -1;
+			foreach ($dateRange as $date) 
+			{ 
+				$ii++;
+		 
+				$goods_date = $dateRange[$ii];
+				$dow        = dateToYoil($goods_date);
 
-			foreach ($period as $date) {
-				$goods_date = $date->format('Y-m-d');
-				$dow = getKoreanDay($date->format('w'));  // 요일 구하기
-
-				$data = [
-							'o_idx'           => $o_idx,
-							'goods_date'      => $goods_date,
-							'dow'             => $dow,
-							'product_idx'     => $product_idx,
-							'group_idx'       => $group_idx,
-							'goods_name'      => $goods_name,
-							'price_1'         => 0,
-							'price_2'         => 0,
-							'price_3'         => 0,
-							'day_yn'          => 'Y',
-							'day_price'       => 0,
-							'afternoon_yn'    => 'Y',
-							'afternoon_price' => 0,
-							'night_yn'        => 'Y',
-							'night_price'     => 0,
-							'use_yn'          => 'Y',
-							'caddy_fee'       => '',
-							'cart_pie_fee'    => '',
-							'reg_date'        => date('Y-m-d H:i:s'),
-							'upd_date'        => date('Y-m-d H:i:s'),
-				];
-
-				$db->table('tbl_golf_price')->insert($data);
-			}
+				$sql_p = "INSERT INTO tbl_golf_price  SET  
+													  o_idx        = '". $o_idx ."' 	
+													 ,goods_date   = '". $goods_date ."' 	
+													 ,dow 	       = '". $dow ."'
+													 ,product_idx  = '". $product_idx ."' 
+													 ,group_idx    = '". $group_idx ."' 
+													 ,goods_name   = '". $goods_name ."' 
+													 ,price_1      = '0'
+													 ,price_2      = '0'
+													 ,price_3      = '0'
+													 ,day_yn       = ''
+													 ,day_price    = '0'
+													 ,night_yn     = 'Y'
+													 ,night_price  = '0'
+													 ,use_yn       = ''	
+													 ,caddy_fee    = ''
+													 ,cart_pie_fee = ''
+													 ,reg_date     = now() ";
+                write_log($sql_p); 													 
+				$result = $db->query($sql_p);
+			} 
 	
 			$msg = "홀 등록 완료";
 
