@@ -1926,6 +1926,7 @@ class Product extends BaseController
 					//$golf_price = $golf_price_result[0]; // 첫 번째 결과만 사용
 					//$data['golf_price'] = $golf_price;
 
+					$data['idx']            = $golf_price['idx'];
 					$data['group_idx']      = $golf_price['group_idx'];
 					write_log("group_idx- ". $data['group_idx']);
 					$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
