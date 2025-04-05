@@ -587,8 +587,13 @@ $(document).ready(function() {
         var $endInput   = $(`input[name='optionsx[${idx}][o_edate]']`);
         var product_idx = $("#product_idx").val();
 
+        // 종료일 먼저 datepicker 초기화
+        $endInput.datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        // 시작일자 설정 안 된 경우
         if ($startInput.val() === "") {
-            // AJAX로 시작일자 가져오기
             $.ajax({
                 url: "/ajax/get_start_date",
                 type: "POST",
@@ -600,19 +605,18 @@ $(document).ready(function() {
                     if (response.sdate) {
                         $startInput.val(response.sdate);
 
+                        // 시작일로부터 +1일 구하기
                         var nextDay = new Date(response.sdate);
                         nextDay.setDate(nextDay.getDate() + 1);
 
-                        $endInput.datepicker({
-                            minDate: nextDay,
-                            dateFormat: "yy-mm-dd"
-                        });
+                        // 종료일 제한 업데이트
+                        $endInput.datepicker("option", "minDate", nextDay);
                     }
                 }
             });
         }
 
-        // 시작일 선택 시 종료일 제한
+        // 시작일 수동 선택할 때도 minDate 변경
         $startInput.datepicker({
             dateFormat: "yy-mm-dd",
             onSelect: function(dateStr) {
@@ -622,13 +626,10 @@ $(document).ready(function() {
                 $endInput.datepicker("option", "minDate", nextDate);
             }
         });
-
-        $endInput.datepicker({
-            dateFormat: "yy-mm-dd"
-        });
     });
 });
 </script>
+
 
 <script>
 $(document).on('click', '.btn_add_option', function () {
