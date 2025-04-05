@@ -580,7 +580,6 @@ $(document).ready(function() {
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
 					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
-					    <option value="">선택</option>
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -597,7 +596,6 @@ $(document).ready(function() {
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
 					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
-					    <option value="">선택</option>
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -616,7 +614,6 @@ $(document).ready(function() {
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
-					    <option value="">선택</option>
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
