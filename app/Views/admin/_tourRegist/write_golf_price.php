@@ -682,12 +682,26 @@ $(document).ready(function() {
         var $endInput   = $(`input[name='optionsx[${idx}][o_edate]']`);
         var product_idx = $("#product_idx").val();
 
-        // 종료일 먼저 datepicker 초기화
+        var today = new Date();
+
+        // 종료일 먼저 초기화
         $endInput.datepicker({
             dateFormat: "yy-mm-dd"
         });
 
-        // 시작일자 설정 안 된 경우
+        // 시작일 초기화
+        $startInput.datepicker({
+            dateFormat: "yy-mm-dd",
+            minDate: today, // 시작일: 오늘 이후만 선택 가능
+            onSelect: function(dateStr) {
+                var nextDate = new Date(dateStr);
+                nextDate.setDate(nextDate.getDate() + 1);
+
+                $endInput.datepicker("option", "minDate", nextDate);
+            }
+        });
+
+        // 시작일이 비어 있으면 AJAX로 가져오기
         if ($startInput.val() === "") {
             $.ajax({
                 url: "/ajax/get_start_date",
@@ -699,31 +713,18 @@ $(document).ready(function() {
                 success: function(response) {
                     if (response.sdate) {
                         $startInput.val(response.sdate);
-
-                        // 시작일로부터 +1일 구하기
                         var nextDay = new Date(response.sdate);
                         nextDay.setDate(nextDay.getDate() + 1);
 
-                        // 종료일 제한 업데이트
                         $endInput.datepicker("option", "minDate", nextDay);
                     }
                 }
             });
         }
-
-        // 시작일 수동 선택할 때도 minDate 변경
-        $startInput.datepicker({
-            dateFormat: "yy-mm-dd",
-            onSelect: function(dateStr) {
-                var nextDate = new Date(dateStr);
-                nextDate.setDate(nextDate.getDate() + 1);
-
-                $endInput.datepicker("option", "minDate", nextDate);
-            }
-        });
     });
 });
 </script>
+
 
 
 <script>
