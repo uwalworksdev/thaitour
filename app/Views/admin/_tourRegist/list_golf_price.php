@@ -486,6 +486,80 @@
 					</script>
 
 					<script>
+					$(document).ready(function () {
+						$(".upd_all").on("change", function () {
+							// 체크 여부 확인
+							let isChecked = $(this).prop("checked");
+
+							// row 클래스가 "yes"인 경우만 체크박스 변경
+							$("tr").find("input.upd_chk").prop("checked", isChecked);
+						});
+					});
+					</script>
+					
+					<script>
+					$(document).ready(function () {
+						$(".upd_yn").change(function () {
+							let isChecked = $(this).prop("checked") ? "Y" : "N"; // 체크 여부 확인
+							let idx = $(this).data("idx"); // 해당 행의 ID 가져오기
+
+							if (!idx) {
+								alert("idx 값이 없습니다!");
+								return;
+							}
+
+							$.ajax({
+								url: "/ajax/update_upd_yn",
+								type: "POST",
+								data: { 
+									     idx    : idx, 
+										 upd_yn : isChecked 
+									  },
+								dataType: "json",
+								async: false,
+								cache: false,
+								success: function(data, textStatus) {
+									var message  = data.message;
+									alert(message);
+									location.reload();
+								},
+								error:function(request,status,error){
+									alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+								}
+							});							
+						});
+					});
+					</script>
+
+					<script>
+						$(document).ready(function () {
+							// 전체 선택 체크박스 클릭 이벤트
+							$('#checkAll').on('change', function () {
+								$('.priceDow').prop('checked', $(this).prop('checked'));
+							});
+
+							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+							$('.priceDow').on('change', function () {
+								$('#checkAll').prop('checked', $('.priceDow:checked').length === $('.priceDow').length);
+							});
+						});
+					</script>
+
+					<script>
+						$(document).ready(function () {
+							// 전체 선택 체크박스 클릭 이벤트
+							$('#bedAll').on('change', function () {
+								$('.bed_type').prop('checked', $(this).prop('checked'));
+							});
+
+							// 개별 체크박스 클릭 시 전체 선택 체크박스 상태 변경
+							$('.bed_type').on('change', function () {
+								$('#bedAll').prop('checked', $('.bed_type:checked').length === $('.bed_type').length);
+							});
+						});
+					</script>
+					
+					<script>
 						$("#allCharge").one("click", function () {
 							location.href='/AdmMaster/_tourRegist/list_golf_price?product_idx='+$("#product_idx").val();
 						});
