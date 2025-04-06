@@ -506,7 +506,7 @@
                                     <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
                                         삭제바랍니다.</span>
                                 <div>
-                                    <table>
+                                    <table id="roomTable">
                                         <colgroup>
                                             <col width="34%"></col>
                                             <col width="34%"></col>
@@ -526,7 +526,7 @@
                                         <tbody id="settingBody2">
                                         <?php foreach ($options as $frow3): ?>
                                             <?php if ($frow3['option_type'] == "S") { ?>
-                                                <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
+                                                <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>' data-room-id="101">
                                                     <td>
                                                         <input type='hidden' name='o_idx[]'
                                                                 value='<?= $frow3['idx'] ?>'/>
