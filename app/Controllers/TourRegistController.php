@@ -1184,6 +1184,8 @@ class TourRegistController extends BaseController
         $s_date = $this->request->getVar("s_date");
         $e_date = $this->request->getVar("e_date");
 
+        if($s_date == "") $s_date = date('Y-m-d');
+		
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
