@@ -61,6 +61,8 @@
             <input type=hidden name="s_product_code_1" value='<?= $product['product_code_1'] ?>'>
             <input type=hidden name="s_product_code_2" value='<?= $product['product_code_2'] ?>'>
             <input type=hidden name="s_product_code_3" value='<?= $product['product_code_3'] ?>'>
+            <input type=text name="checkedValues" id="checkedValues" value=''>
+			
             <div id="contents">
                 <div class="listBottom">
 				
@@ -603,6 +605,7 @@ $(document).ready(function() {
 			return $(this).val();
 		}).get();
 
+        $("#checkedValues").val(checkedValues); 
 		console.log('checked- '+checkedValues); // 예: ["111", "222", "333"]
 
 	});
