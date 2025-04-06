@@ -145,7 +145,7 @@
                                          <input type='text' readonly class='datepicker ' name='a_edate' id='a_edate' style="width:10%" value=''/>
 
 								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
-								<button type="button" id="btn_upd_all" class="btn_02" style="width:15%">요금날짜 일괄수정</button>
+								<button type="button" id="btn_upd_all" class="btn_02" style="width:10%">요금날짜 일괄수정</button>
                             </td>
                         </tr>						
 
