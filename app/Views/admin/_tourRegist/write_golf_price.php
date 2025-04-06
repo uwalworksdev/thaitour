@@ -594,8 +594,8 @@ function moveUpRoom(btn) {
 
     if (prev.length) {
         row.insertBefore(prev);
+        //updateRanksAndSend();
     }
-	updateRanks();
 }
 
 function moveDownRoom(btn) {
@@ -604,13 +604,39 @@ function moveDownRoom(btn) {
 
     if (next.length) {
         row.insertAfter(next);
+        //updateRanksAndSend();
     }
-	updateRanks();
 }
 
-function updateRanks() {
-    $("table tbody tr").each(function(index) {
-        $(this).find(".rank-cell").text(index + 1); // 순번은 1부터 시작
+function updateRanksAndSend() {
+    let rankData = [];
+
+    $("#roomTable tbody tr").each(function(index) {
+        var roomId = $(this).data("room-id");
+        var rank = index + 1;
+
+        // 화면상의 순번 업데이트 (선택 사항)
+        $(this).find(".rank-cell").text(rank);
+
+        rankData.push({ room_id: roomId, rank: rank });
+    });
+
+    // 서버에 순위 업데이트
+    $.ajax({
+        url: "/ajax/update_room_ranks",  // 라우터 또는 컨트롤러 경로에 맞게 수정
+        type: "POST",
+        data: { ranks: rankData },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === 'success') {
+                console.log("순위 저장 완료");
+            } else {
+                alert("순위 저장 실패: " + response.message);
+            }
+        },
+        error: function(xhr) {
+            alert("에러 발생: " + xhr.responseText);
+        }
     });
 }
 </script>
