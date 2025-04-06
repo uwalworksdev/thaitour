@@ -475,13 +475,13 @@
 									url: "/ajax/golf_dow_charge",
 									type: "POST",
 									data: {
-										    "s_date"  : $("#s_date").val(),
-											"e_date"  : $("#e_date").val(),
-											"o_idx"   : $("#o_idx").val(),
-											"dow_val" : dow_val, 
-											"price_1" : $("#dowPrice_1").val(),
-											"price_2" : $("#dowPrice_2").val(),
-											"price_3" : $("#dowPrice_3").val()
+										    "s_date"      : $("#s_date").val(),
+											"e_date"      : $("#e_date").val(),
+											"product_idx" : $("#product_idx").val(),
+											"dow_val"     : dow_val, 
+											"price_1"     : $("#dowPrice_1").val(),
+											"price_2"     : $("#dowPrice_2").val(),
+											"price_3"     : $("#dowPrice_3").val()
 										  },
 									dataType: "json",
 									async: false,

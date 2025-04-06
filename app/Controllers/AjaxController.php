@@ -1226,20 +1226,21 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
-			$s_date   = $this->request->getPost('s_date');
-			$e_date   = $this->request->getPost('e_date');
-			$o_idx    = $this->request->getPost('o_idx');
-			$dow_val  = $this->request->getPost('dow_val');
-			$price_1  = $this->request->getPost('price_1');
-			$price_2  = $this->request->getPost('price_2');
-			$price_3  = $this->request->getPost('price_3');
+			$s_date      = $this->request->getPost('s_date');
+			$e_date      = $this->request->getPost('e_date');
+			//$o_idx    = $this->request->getPost('o_idx');
+			$product_idx = $this->request->getPost('product_idx');
+			$dow_val     = $this->request->getPost('dow_val');
+			$price_1     = $this->request->getPost('price_1');
+			$price_2     = $this->request->getPost('price_2');
+			$price_3     = $this->request->getPost('price_3');
 
 		    $sql    = " UPDATE tbl_golf_price SET 
 			                                   price_1 = '". $price_1 ."'  
 			                                  ,price_2 = '". $price_2 ."'  
 			                                  ,price_3 = '". $price_3 ."'  
 			            WHERE dow in($dow_val) 
-						AND o_idx       = '$o_idx'  
+						AND product_idx       = '$product_idx'  
 						AND goods_date >= '". $s_date ."'
 						AND goods_date <= '". $e_date ."' ";
 			
