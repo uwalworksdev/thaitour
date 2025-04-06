@@ -665,7 +665,7 @@ $(document).ready(function() {
                </div>
 			   
         </div>
-		
+		<?php echo "222222222"; exit;?>
         <div class="section2-sub">
             <div class="left-main">
                 <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
