@@ -1279,6 +1279,7 @@ $(document).ready(function() {
                 success: function (data) {
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
+                    var day_yn       = $(".card-item").data('o_day_yn');
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
                     console.log("fafafa");
@@ -1298,8 +1299,17 @@ $(document).ready(function() {
 					
 					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
 					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
+
+                    $("#o_cart_due").val( $(".card-item").data('o_cart_due') );
+                    $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
+                    $("#o_cart_cont").val( $(".card-item").data('o_cart_cont') );
+                    $("#o_caddy_cont").val( $(".card-item").data('o_caddy_cont') );
 					
-					$(".day_option_first").show();
+					if (day_yn == "Y") {
+                        $(".day_option_first").show();
+                    } else { 
+                        $(".day_option_first").hide();
+                    }
 					
 					if (night_yn == "Y") {
                         $(".day_option_second").show();
