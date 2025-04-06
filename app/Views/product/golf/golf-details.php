@@ -174,6 +174,7 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </div>
+				<?php echo "1111"; exit;?>
                 <div class="sub-header-hotel-detail">
                     <div class="main">
                         <a class="short_link active" data-target="product_info" href="#product_info">상품 정보</a>
