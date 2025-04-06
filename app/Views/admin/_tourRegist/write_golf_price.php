@@ -512,6 +512,7 @@
                                             <col width="40%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
+                                            <col width="5%"></col>
                                         </colgroup>
                                         <thead>
                                         <tr>
@@ -519,6 +520,7 @@
                                             <th>옵션명(영문)</th>
                                             <th>가격</th>
                                             <th>삭제</th>
+                                            <th>정렬</th>
                                         </tr>
                                         </thead>
                                         <tbody id="settingBody2">
@@ -549,6 +551,10 @@
                                                                 onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                         </button>
                                                     </td>
+													<td>
+														<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+														<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+													</td>
                                                 </tr>
                                             <?php } ?>
                                         <?php endforeach; ?>
