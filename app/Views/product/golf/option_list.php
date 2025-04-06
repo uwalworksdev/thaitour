@@ -1,7 +1,7 @@
 <?php foreach ($options as $option) { ?>
 	<?php
      	
-        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        $baht_thai           = (float)($setting['baht_thai']);
 	    $vehicle_price1_won  = (int)($option['vehicle_price1'] * $baht_thai);
 	    $vehicle_price2_won  = (int)($option['vehicle_price2'] * $baht_thai);
 	    $vehicle_price3_won  = (int)($option['vehicle_price3'] * $baht_thai);
