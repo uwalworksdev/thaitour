@@ -365,12 +365,11 @@
  								
 								// Ajax 요청
 								$.ajax({
-									url: "/ajax/update_upd_y",
+									url: "/ajax/ajax_golf_upd_y",
 									type: "POST",
 									data: {
 											product_idx :  $("#product_idx").val(),	
-											g_idx 	    :  $("#g_idx").val(),
-											rooms_idx   :  $("#roomIdx").val(),									
+											o_idx 	    :  $("#o_idx").val(),
 										    s_date      :  $("#s_date").val(),
 											e_date      :  $("#e_date").val(),
 										    dow_val     :  selectedDays.join(','),
@@ -383,7 +382,7 @@
 									success: function (data, textStatus) {
 										var message = data.message;
 										alert(message);
-										location.href='list_room_price?g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val()+'&product_idx='+$("#product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
+										location.href='list_golf_price?product_idx='+$("#product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
 									},
 									error: function (request, status, error) {
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

@@ -3350,4 +3350,57 @@ class AjaxController extends BaseController {
 			]);
 		}		
 	}
+	
+	
+	public function ajax_golf_upd_y()
+	{	
+			$db = \Config\Database::connect(); // DB 연결
+
+			// POST 데이터 받기
+			$product_idx = $this->request->getPost('product_idx');	
+			$o_idx 	     = $this->request->getPost('o_idx');
+			$s_date      = $this->request->getPost('s_date');
+			$e_date      = $this->request->getPost('e_date');
+			$dow_val     = $this->request->getPost('dow_val'); // "일" 같은 문자열
+			$idx         = $this->request->getPost('idx');     // 배열로 받아야 함
+			$upd_yn      = $this->request->getPost('upd_yn');
+
+			// dow_val을 배열로 변환 (빈 값 체크 및 공백 제거)
+			$dowArray = (!empty($dow_val)) ? array_map('trim', explode(',', $dow_val)) : [];
+
+			// 쿼리 실행
+			$builder = $db->table('bl_golf_price');
+			$builder->set('upd_yn', $upd_yn)
+					->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
+						->where('product_idx =', $product_idx)
+						->where('goods_date >=', $s_date)
+						->where('goods_date <=', $e_date)
+					->groupEnd();  // 그룹 종료
+
+			// idx 값이 있을 때만 whereIn('idx', $idx) 조건 추가
+			if (!empty($idx)) {
+				$builder->whereIn('idx', $idx);
+			}
+
+			if (!empty($dowArray)) {
+				$builder->whereIn('dow', $dowArray);
+			}
+
+			$success = $builder->update();
+
+			// 실행된 SQL 확인 (디버깅용)
+			log_message('debug', $db->getLastQuery()); // 로그로 저장
+
+			// 실행 결과 확인
+			if ($success) {
+				$message = ($upd_yn == "Y") ? '수정불가 설정완료' : '수정가능 설정완료';
+				return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'message' => $message]);
+			} else {
+				return $this->response
+					->setStatusCode(500)
+					->setJSON(['status' => 'error', 'message' => 'Database update failed']);
+			}		
+	}
 }	
