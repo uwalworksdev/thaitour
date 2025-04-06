@@ -1052,21 +1052,21 @@ $(document).ready(function() {
             $(".day_option_first").addClass("active");
             $(".day_option_second").removeClass("active");
             $(".day_option_third").removeClass("active");
-            getOptions();
+            //getOptions();
         });
 
         $('.day_option_second').click(function () {
             $(".day_option_second").addClass("active");
             $(".day_option_first").removeClass("active");
             $(".day_option_third").removeClass("active");
-            getOptions();
+            //getOptions();
         });
 
         $('.day_option_third').click(function () {
             $(".day_option_third").addClass("active");
             $(".day_option_first").removeClass("active");
             $(".day_option_second").removeClass("active");
-            getOptions();
+            //getOptions();
         });
     </script>
 
@@ -1259,7 +1259,6 @@ $(document).ready(function() {
         }
 
         function getOptions() {
-			alert('1111111111');
             const golf_date = $("#order_date").val();
             const hole_cnt = $('.tag-js.active').data('tab') + '홀';
             const hour = $('.day_option.active').data('type');
@@ -1531,7 +1530,7 @@ $(document).ready(function() {
 			$("#vehicle_5").val(""); // 기본값으로 리셋
             */
 			
-            getOptions();
+            //getOptions();
 			calculatePrice();
         });
 
@@ -1539,7 +1538,7 @@ $(document).ready(function() {
             $('.tag-list .tag-js2').removeClass('active');
             $(".final_hour").text($(this).data('tab'));
             $(this).addClass('active');
-            getOptions();
+            //getOptions();
         });
 
         let swiper = new Swiper(".swiper_product_list_", {
@@ -1634,7 +1633,7 @@ $(document).ready(function() {
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
-                getOptions();
+                //getOptions();
 
             }
             $('.day a').removeClass("on");
