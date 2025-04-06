@@ -1283,7 +1283,7 @@ $(document).ready(function() {
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
                     console.log("fafafa");
 					
-                    $("#option_idx").val($(".card-item").data('idx')));
+                    $("#option_idx").val( $(".card-item").data('idx') );
 
 					const $select_1 = $("#vehicle_1");
 					const $select_2 = $("#vehicle_2");
