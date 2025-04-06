@@ -239,7 +239,7 @@
                                                 <input type='hidden' name='optGolf[<?=$i?>][goods_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
-													<input type="checkbox" name="updChk" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>"><?= $frow3['idx'] ?>
+													<input type="checkbox" name="updChk" class="updChk" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>">
                                                 </td>
                                                 <td>
                                                     <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_1]"
