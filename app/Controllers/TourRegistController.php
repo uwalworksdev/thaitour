@@ -1192,7 +1192,7 @@ class TourRegistController extends BaseController
         if ($o_idx) {
             $search = " AND o_idx = '$o_idx' ";
         } else {
-            $search = "";
+            $search = " AND goods_date >= '". $s_date ."' ";
         }
 
         if ($s_date && $e_date) {
