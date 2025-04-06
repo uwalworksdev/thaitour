@@ -557,7 +557,7 @@
                                                         </button>
                                                     </td>
 													<td>
-														<button class="btn_move up" onclick="moveUpRoom(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+														<button class="btn_move up"   onclick="moveUpRoom(this)"   type="button" style="width: 30px; height: 30px;">▲</button>
 														<button class="btn_move down" onclick="moveDownRoom(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 													</td>
                                                 </tr>
