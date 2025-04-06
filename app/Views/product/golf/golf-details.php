@@ -1297,7 +1297,7 @@ $(document).ready(function() {
 					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_bath'));
 					
 					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
-					$select_4.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
+					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
 					
 					$(".day_option_first").show();
 					
