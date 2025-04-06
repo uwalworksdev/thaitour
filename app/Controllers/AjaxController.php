@@ -1205,7 +1205,7 @@ class AjaxController extends BaseController {
             } else {
 			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND product_idx = '$product_idx' ";
             }
-			//write_log("dow_val- ". $dow_val);
+			write_log("dow_val- ". $dow_val);
 			$result = $db->query($sql);
 
 			if($result) {

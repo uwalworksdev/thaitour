@@ -402,8 +402,8 @@
 									url: "/ajax/golf_dow_update",
 									type: "POST",
 									data: {
-											"o_idx"   : $("#o_idx").val(),
-											"dow_val" : dow_val 
+											"product_idx" : $("#product_idx").val(),
+											"dow_val"     : dow_val 
 										  },
 									dataType: "json",
 									async: false,
