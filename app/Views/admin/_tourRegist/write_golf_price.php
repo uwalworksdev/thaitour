@@ -588,6 +588,53 @@
 </div>
 
 <script>
+	function moveUpRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let prev = current.prev(".item_");
+
+		if (prev.length) {
+			current.insertBefore(prev);
+			saveNewOrder();
+		}
+	}
+
+	function moveDownRoom(btn) {
+		let current = $(btn).closest(".item_");
+		let next = current.next(".item_");
+
+		if (next.length) {
+			current.insertAfter(next);
+			saveNewOrder();
+		}
+	}
+
+	function saveNewOrder() {
+		let items = document.querySelectorAll(".room_list .item_");
+		let order = [];
+
+		$(".room_list .item_").each(function(index) {
+			order.push({
+				g_idx: $(this).data("id"),
+				position: index + 1
+			});
+		});
+
+		$.ajax({
+			url: "update_room_order",
+			type: "POST",
+			data: JSON.stringify({ order: order }),
+			contentType: "application/json",
+			success: function(response) {
+				location.reload();
+			},
+			error: function(xhr, status, error) {
+				console.error("error:", error);
+			}
+		});
+	}
+</script>
+
+<script>
 $(document).ready(function() {
     $(".datepicker-start").each(function() {
         var $startInput = $(this);
