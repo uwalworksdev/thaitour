@@ -1290,13 +1290,15 @@ $(document).ready(function() {
 					const $select_3 = $("#vehicle_3");
 
 					// 원하는 data-* 속성들을 이동
-					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1'));
-					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_o_price1'));
-					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2'));
-					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_o_price2'));
-					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3'));
-					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_o_price3'));
-		
+					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1_won'));
+					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_price1_bath'));
+					
+					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2_won'));
+					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_bath'));
+					
+					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
+					$select_4.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
+					
 					$(".day_option_first").show();
 					
 					if (night_yn == "Y") {
