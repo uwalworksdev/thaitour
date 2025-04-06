@@ -609,39 +609,41 @@ function moveDownRoom(btn) {
 }
 
 function updateRanksAndSend() {
-    let rankData = "";
+			let rankData = "";
 
-    $("#roomTable tbody tr").each(function(index) {
-        var roomId = $(this).data("room-id");
-        var rank = index + 1;
+			$("#roomTable tbody tr").each(function(index) {
+				var roomId = $(this).data("room-id");
+				var rank = index + 1;
 
-        if(rankData == "") {
-		   rankData  = roomId+':'+rank+'|';	
-		} else {   
-		   rankData += '|'+roomId+':'+rank;	
-		}   
-    });
-    alert(rankData);
+				if(rankData == "") {
+				   rankData  = roomId+':'+rank+'|';	
+				} else {   
+				   rankData += '|'+roomId+':'+rank;	
+				}   
+			});
+			alert(rankData);
 
-/*
-    // 서버에 순위 업데이트
-    $.ajax({
-        url: "/ajax/update_room_ranks",  // 라우터 또는 컨트롤러 경로에 맞게 수정
-        type: "POST",
-        data: { ranks: rankData },
-        dataType: "json",
-        success: function(response) {
-            if (response.status === 'success') {
-                console.log("순위 저장 완료");
-            } else {
-                alert("순위 저장 실패: " + response.message);
-            }
-        },
-        error: function(xhr) {
-            alert("에러 발생: " + xhr.responseText);
-        }
-    });
-*/	
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfOpt_ranks",
+				type: "POST",
+				data: {
+                        "rankData" : rankData
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});				
+	
 }
 </script>
 

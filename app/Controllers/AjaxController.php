@@ -3311,4 +3311,43 @@ class AjaxController extends BaseController {
 			]);
 		}		
 	}
+	
+	public function ajax_golfOpt_ranks()
+	{	
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$rankData = $this->request->getPost("rankData");
+            $arr = explode("|", $rankData);
+
+            for($i=0;$i<count($arr);$i++)
+			{	
+				$var = explode(":", $arr[$i]);
+			    $db->query("UPDATE tbl_golf_option SET o_seq = ? WHERE idx = ?", [$var[1], $var[0]]);
+            } 
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '순위 설정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '순위설정 완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+	}
 }	
