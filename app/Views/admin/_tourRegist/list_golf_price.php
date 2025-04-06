@@ -323,6 +323,49 @@
 			        </div>
                     <!-- // listBottom -->
 
+					<script>					
+					$(document).ready(function () {
+						$("#changeE").click(function () {
+							let checkedIdx = [];   // 체크된 항목 (use_yn = 'N' 처리)
+							let uncheckedIdx = []; // 체크 해제된 항목 (use_yn = '' 처리)
+
+							$(".use_yn").each(function () {
+								let idx = $(this).data("idx"); 
+								if ($(this).is(":checked")) {
+									checkedIdx.push(idx);
+								} else {
+									uncheckedIdx.push(idx);
+								}
+							});
+
+							// 서버로 전송할 데이터
+							let postData = {
+								checked_list: checkedIdx,
+								unchecked_list: uncheckedIdx
+							};
+ 
+							// Ajax 요청
+							$.ajax({
+								url: "/ajax/ajax_golf_end",
+								type: "POST",
+								data: postData,
+								dataType: "json",
+								async: false,
+								cache: false,
+								success: function (data, textStatus) {
+									var message = data.message;
+									alert(message);
+									location.reload();
+								},
+								error: function (request, status, error) {
+									alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+								}
+							});	
+ 							
+						});
+					});
+					</script>
+					
                     <script>
 					$(document).ready(function() {
 						$(".yes").css("background-color", "#e9f2f4"); // 연한 빨간색
