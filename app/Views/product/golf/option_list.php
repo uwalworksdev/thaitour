@@ -3,7 +3,8 @@
      	$setting             = homeSetInfo();
         $baht_thai           = (float)($setting['baht_thai']);
 
-        $o_afternoon_yn = $o_night_yn = "";
+        $o_day_yn = $o_afternoon_yn = $o_night_yn = "";
+		if($option['price_1'] > 0) $o_day_yn       = "Y";
 		if($option['price_2'] > 0) $o_afternoon_yn = "Y";
 		if($option['price_3'] > 0) $o_night_yn     = "Y";
 						
