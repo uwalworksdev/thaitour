@@ -323,6 +323,78 @@
 			        </div>
                     <!-- // listBottom -->
 
+
+					<script>					
+					$(document).ready(function () {
+						// 수정불가 설정 클릭
+						$("#changeN").click(function () {
+							if (!confirm("수정불가 설정을 하시겠습니까?")) return false;
+							
+							let use_yn = "Y";
+							let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+								return $(this).data("idx");  // data-idx 값 가져오기
+							}).get();  // 배열로 변환
+
+							updateUpdY(checkedIdx, use_yn);
+						});
+
+
+						// 수정가능 설정 클릭
+						$("#changeY").click(function () {
+							if (!confirm("수정가능 설정을 하시겠습니까?")) return false;
+
+							let use_yn = "";
+							let checkedIdx = $("input[name='upd_chk']:checked").map(function () {
+								return $(this).data("idx");  // data-idx 값 가져오기
+							}).get();  // 배열로 변환
+
+							updateUpdY(checkedIdx, use_yn);
+
+						});
+
+						// Ajax로 `upd_y` 값 업데이트 (배열 전송 가능)
+						function updateUpdY(idxArray, value) {
+
+							    // 체크된 요일 가져오기
+								
+								var selectedDays = [];
+								$('.priceDow:checked').each(function() {
+									selectedDays.push($(this).val());
+								});								
+								console.log("선택된 요일:", selectedDays);
+ 								
+								// Ajax 요청
+								$.ajax({
+									url: "/ajax/update_upd_y",
+									type: "POST",
+									data: {
+											product_idx :  $("#product_idx").val(),	
+											g_idx 	    :  $("#g_idx").val(),
+											rooms_idx   :  $("#roomIdx").val(),									
+										    s_date      :  $("#s_date").val(),
+											e_date      :  $("#e_date").val(),
+										    dow_val     :  selectedDays.join(','),
+											idx         :  idxArray,  
+											upd_yn      :  value
+										  },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function (data, textStatus) {
+										var message = data.message;
+										alert(message);
+										location.href='list_room_price?g_idx='+$("#g_idx").val()+'&roomIdx='+$("#roomIdx").val()+'&product_idx='+$("#product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
+									},
+									error: function (request, status, error) {
+										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});
+ 								
+						}
+
+					});
+					</script>
+					
                     <script>
 					$(document).ready(function () {
 						// 전체 선택 체크박스 클릭
