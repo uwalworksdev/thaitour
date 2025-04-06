@@ -163,7 +163,7 @@
                             <tbody>
                             <tr height="45">
                                 <th>홀선택
-								   <input type="checkbox" name="updGrpChk" class="updGrpChk__<?= $row['group_idx'] ?>" id="updGrpChk_<?= $row['group_idx'] ?>" value="<?= $row['group_idx'] ?>">
+								   <input type="checkbox" name="updGrpChk" class="updGrpChk_<?= $row['group_idx'] ?>" id="updGrpChk_<?= $row['group_idx'] ?>" value="<?= $row['group_idx'] ?>">
                                  </th>
                                 <td>
 									<select id="golf_code_<?= $row['group_idx'] ?>" name="golf_code" class="input_select">
@@ -241,7 +241,7 @@
                                                 <input type='hidden' name='optGolf[<?=$i?>][goods_name]' id='' value="<?= $frow3['goods_name'] ?>" size="70"/>
                                                 <td rowspan="4" style="text-align:center;">
                                                     <?= $frow3['goods_name'] ?>
-													<input type="checkbox" name="updChk" class="updChk__<?= $frow3['idx'] ?>" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>">
+													<input type="checkbox" name="updChk" class="updChk_<?= $frow3['idx'] ?>" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>">
                                                 </td>
                                                 <td>
                                                     <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_1]"
