@@ -184,6 +184,7 @@
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
+									<col width="5%">
 									<col width="*">
 									<col width="10%">
 									<col width="20%">
@@ -196,6 +197,9 @@
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
+											<td style="text-align:center">
+												<input type="checkbox" name="upd_all" class="upd_all" value="Y"  >
+											</td>
 											<td style="text-align:center">
 												일자
 											</td>
@@ -227,7 +231,18 @@
 										</tr>
 
 										<?php foreach ($roresult as $item): ?>
-												<tr style="height:40px">
+										        <?php if($item['upd_yn'] == "Y") { ?>
+												<tr class="yes" style="height:40px">
+												<?php } else { ?>
+												<tr class="no" style="height:40px"-->
+												<?php } ?>
+													<td>
+														<label class="center-checkbox">
+															<!--input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>" <?php if($item['upd_yn'] == "Y") echo "checked";?> value="Y"-->
+															<input type="checkbox" name="upd_chk" class="upd_chk <?=$item['dow']?>" data-idx="<?= $item['idx'] ?>"  value="Y">
+														</label>
+													</td>
+												
 													<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 													<td style="text-align:center"><?=$item['goods_name']?></td>
 													<td style="text-align:center">
