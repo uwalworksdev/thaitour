@@ -508,11 +508,11 @@
                                 <div>
                                     <table>
                                         <colgroup>
-                                            <col width="40%"></col>
-                                            <col width="40%"></col>
+                                            <col width="38%"></col>
+                                            <col width="38%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
-                                            <col width="5%"></col>
+                                            <col width="9%"></col>
                                         </colgroup>
                                         <thead>
                                         <tr>
