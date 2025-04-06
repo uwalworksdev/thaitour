@@ -1180,7 +1180,9 @@ class TourRegistController extends BaseController
     public function list_golf_price()
     {
 
-        $g_list_rows = 20;
+        //$g_list_rows = 20;
+        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+		
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
