@@ -190,7 +190,7 @@
 									<?php } ?>
 										
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
-									<button type="button" id="btn_update_option" class="btn_01">일자별수정</button>
+									<button type="button" id="btn_update_option" class="btn_01" onclick="updDay('<?= $row['product_idx'] ?>')">일자별수정</button>
 									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
 								</td>
@@ -1304,6 +1304,10 @@ $(document).ready(function () {
 <script>
     function updOption(idx) {
         location.href = '/AdmMaster/_tourRegist/list_golf_price?o_idx=' + idx + '&product_idx=' + $("#product_idx").val();
+    }
+
+	function updDay(idx) {
+        location.href = '/AdmMaster/_tourRegist/list_golf_price?product_idx=' + idx;
     }
 </script>
 
