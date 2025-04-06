@@ -345,6 +345,8 @@
                                                     </button>
                                                 </td-->
                                             </tr>
+											
+											<!--
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="3">
                                                     적용기간: <input type='text' readonly class='datepickerX '
@@ -393,7 +395,8 @@
 
                                                 </td>
                                             </tr>
-                                            
+                                            -->
+											
                                             <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>'>
                                                 <td colspan="6"><span class="badge">왕복</span>&nbsp;
                                                     승용차:      <input type='text' name='optGolf[<?=$i?>][vehicle_price1]' style="width:7%;text-align:right;" value='<?= $frow3['vehicle_price1'] ?>'/>&nbsp;&nbsp; 
