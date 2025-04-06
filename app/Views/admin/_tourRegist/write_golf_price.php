@@ -594,7 +594,7 @@ function moveUpRoom(btn) {
 
     if (prev.length) {
         row.insertBefore(prev);
-        //updateRanksAndSend();
+        updateRanksAndSend();
     }
 }
 
@@ -604,7 +604,7 @@ function moveDownRoom(btn) {
 
     if (next.length) {
         row.insertAfter(next);
-        //updateRanksAndSend();
+        updateRanksAndSend();
     }
 }
 
@@ -617,10 +617,10 @@ function updateRanksAndSend() {
 
         // 화면상의 순번 업데이트 (선택 사항)
         $(this).find(".rank-cell").text(rank);
-
+alert(roomId+'-'+rank);
         rankData.push({ room_id: roomId, rank: rank });
     });
-
+/*
     // 서버에 순위 업데이트
     $.ajax({
         url: "/ajax/update_room_ranks",  // 라우터 또는 컨트롤러 경로에 맞게 수정
@@ -638,6 +638,7 @@ function updateRanksAndSend() {
             alert("에러 발생: " + xhr.responseText);
         }
     });
+*/	
 }
 </script>
 
