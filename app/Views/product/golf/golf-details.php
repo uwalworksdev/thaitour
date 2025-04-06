@@ -1284,7 +1284,19 @@ $(document).ready(function() {
                     console.log("fafafa");
 					
                     $("#option_idx").val($(".card-item").data('idx')));
-                    
+
+					const $select_1 = $("#vehicle_1");
+					const $select_2 = $("#vehicle_2");
+					const $select_3 = $("#vehicle_3");
+
+					// 원하는 data-* 속성들을 이동
+					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1'));
+					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_o_price1'));
+					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2'));
+					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_o_price2'));
+					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3'));
+					$select_4.attr("data-price_baht",  $(".card-item").data('vehicle_o_price3'));
+		
 					$(".day_option_first").show();
 					
 					if (night_yn == "Y") {
