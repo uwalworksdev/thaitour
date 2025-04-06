@@ -595,6 +595,7 @@ function moveUpRoom(btn) {
     if (prev.length) {
         row.insertBefore(prev);
     }
+	updateRanks();
 }
 
 function moveDownRoom(btn) {
@@ -604,6 +605,13 @@ function moveDownRoom(btn) {
     if (next.length) {
         row.insertAfter(next);
     }
+	updateRanks();
+}
+
+function updateRanks() {
+    $("table tbody tr").each(function(index) {
+        $(this).find(".rank-cell").text(index + 1); // 순번은 1부터 시작
+    });
 }
 </script>
 
