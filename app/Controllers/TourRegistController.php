@@ -761,9 +761,9 @@ class TourRegistController extends BaseController
 		$query   = $db->query($sql, [$product_idx]);
 		$options = $query->getResultArray();
 		
-		$sql      = "SELECT * FROM tbl_golf_option WHERE product_idx = ? AND order_type = 'S' ORDER BY o_seq ASC";
-		$query    = $db->query($sql, [$product_idx]);
-		$options1 = $query->getResultArray();
+		//$sql      = "SELECT * FROM tbl_golf_option WHERE product_idx = ? AND order_type = 'S' ORDER BY o_seq ASC";
+		//$query    = $db->query($sql, [$product_idx]);
+		//$options1 = $query->getResultArray();
 		
         $sql     = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
         $query   = $db->query($sql);
@@ -788,7 +788,7 @@ class TourRegistController extends BaseController
             'product'     => $product,
             'groups'      => $groups,
             'options'     => $options,
-            'options1'    => $options1,
+            //'options1'    => $options1,
 			'filters'     => $filters
         ];
 
