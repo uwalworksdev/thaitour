@@ -609,19 +609,20 @@ function moveDownRoom(btn) {
 }
 
 function updateRanksAndSend() {
-    let rankData = [];
+    let rankData = "";
 
     $("#roomTable tbody tr").each(function(index) {
         var roomId = $(this).data("room-id");
         var rank = index + 1;
 
-        alert(roomId+'-'+rank);
-
-        // 화면상의 순번 업데이트 (선택 사항)
-//        $(this).find(".rank-cell").text(rank);
-//alert(roomId+'-'+rank);
-//        rankData.push({ room_id: roomId, rank: rank });
+        if(rankData == "") {
+		   rankData  = roomId+':'+rank+'|';	
+		} else {   
+		   rankData += '|'+roomId+':'+rank;	
+		}   
     });
+    alert(rankData);
+
 /*
     // 서버에 순위 업데이트
     $.ajax({
