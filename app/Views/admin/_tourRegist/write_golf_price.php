@@ -140,7 +140,7 @@
 						<?php } ?>
                         <tr height="45">
                             <th>골프요금 추가</th>
-                            <td>
+                            <td colspan="3">
                                 적용기간: <input type='text' readonly class='datepicker ' name='a_sdate' id='a_sdate' style="width:20%" value=''/> ~
                                          <input type='text' readonly class='datepicker ' name='a_edate' id='a_edate' style="width:20%" value=''/>
 
