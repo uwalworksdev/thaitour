@@ -78,24 +78,6 @@
 
 			<div id="contents">
                 <div class="listWrap_noline">
-				
-                    <p><span style="font-weight: bold; color: red;">※</span> 수정불가로 설정되면 가격적용시 수정 되지않습니다. <span style="color:red;">수정가능으로 저장하면, 가격 적용시 수정됩니다.</span>
-					<!--button type="button" class="allUpdate" >일괄수정</button-->
-
-						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
-							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
-							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
-							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
-							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
-							<option value="500" <?= ($g_list_rows == 500) ? 'selected' : '' ?>>500개</option>
-							<option value="900" <?= ($g_list_rows == 900) ? 'selected' : '' ?>>900개</option>
-						</select>
-                        <a href="#!" id="changeN" class="btn btn-primary1" style="margin-left:20px">수정불가 설정</a>  
-                        <a href="#!" id="changeY" class="btn btn-primary"  style="margin-left:10px">수정가능 설정</a>  
-                        <a href="#!" id="changeE" class="btn btn-primary"  style="margin-left:10px">일괄 마감처리</a>  
-					
-					</p>
-				
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption>
@@ -182,6 +164,23 @@
                         </table>
                     </div>
 
+                    <p><span style="font-weight: bold; color: red;">※</span> 수정불가로 설정되면 가격적용시 수정 되지않습니다. <span style="color:red;">수정가능으로 저장하면, 가격 적용시 수정됩니다.</span>
+					<!--button type="button" class="allUpdate" >일괄수정</button-->
+
+						<select id="list_rows" name="list_rows" id="list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
+							<option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
+							<option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+							<option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
+							<option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
+							<option value="500" <?= ($g_list_rows == 500) ? 'selected' : '' ?>>500개</option>
+							<option value="900" <?= ($g_list_rows == 900) ? 'selected' : '' ?>>900개</option>
+						</select>
+                        <a href="#!" id="changeN" class="btn btn-primary1" style="margin-left:20px">수정불가 설정</a>  
+                        <a href="#!" id="changeY" class="btn btn-primary"  style="margin-left:10px">수정가능 설정</a>  
+                        <a href="#!" id="changeE" class="btn btn-primary"  style="margin-left:10px">일괄 마감처리</a>  
+					
+					</p>
+				
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
