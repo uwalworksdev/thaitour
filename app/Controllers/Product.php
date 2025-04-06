@@ -2034,7 +2034,7 @@ class Product extends BaseController
         $review_data = $this->getReviewProduct($product_idx);
         $data = array_merge($data, $review_data);
 
-        $sql_opt = " SELECT * FROM tbl_golf_option WHERE product_idx = '" . $product_idx . "' AND group_idx = '' AND option_type = 'S' ORDER BY idx ASC ";
+        $sql_opt = " SELECT * FROM tbl_golf_option WHERE product_idx = '" . $product_idx . "' AND group_idx = '' AND option_type = 'S' ORDER BY o_seq ASC ";
         $query_opt = $this->db->query($sql_opt);
         $data['result_opt'] = $query_opt->getResultArray();
         $data['baht_thai'] = $baht_thai;
