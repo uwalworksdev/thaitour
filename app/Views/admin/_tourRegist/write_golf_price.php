@@ -600,6 +600,13 @@ $(document).ready(function() {
         $(".updChk_" + val).prop("checked", checked);
     });
 });
+
+// 모든 updChk_ 클래스 체크박스 중 체크된 항목의 value 가져오기
+var checkedValues = $("input[name='updChk']:checked").map(function() {
+    return $(this).val();
+}).get();
+
+console.log(checkedValues); // 예: ["111", "222", "333"]
 </script>
 
 <script>
