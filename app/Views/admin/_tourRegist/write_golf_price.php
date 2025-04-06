@@ -524,7 +524,7 @@
                                         </tr>
                                         </thead>
                                         <tbody id="settingBody2">
-                                        <?php foreach ($options as $frow3): ?>
+                                        <?php foreach ($options1 as $frow3): ?>
                                             <?php if ($frow3['option_type'] == "S") { ?>
                                                 <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>' data-room-id="<?= $frow3['idx'] ?>">
                                                     <td class="rank-cell">
