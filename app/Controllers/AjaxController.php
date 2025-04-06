@@ -2931,6 +2931,32 @@ class AjaxController extends BaseController {
 		
 	}	
 
+    public function ajax_golf_end()
+    {
+
+				$db = \Config\Database::connect(); // DB 연결
+
+				// 체크된 항목 업데이트 (use_yn = 'N')
+				if (!empty($_POST['checked_list']) && is_array($_POST['checked_list'])) {
+					$checkedIdx = implode(",", array_map('intval', $_POST['checked_list']));
+					$query      = "UPDATE tbl_golf_price SET use_yn = 'N' WHERE idx IN ($checkedIdx)";
+					$result1    = $db->query($query);
+				}
+
+				// 체크 해제된 항목 업데이트 (use_yn = '')
+				if (!empty($_POST['unchecked_list']) && is_array($_POST['unchecked_list'])) {
+					$uncheckedIdx = implode(",", array_map('intval', $_POST['unchecked_list']));
+					$query        = "UPDATE tbl_gilf_price SET use_yn = '' WHERE idx IN ($uncheckedIdx)";
+					$result2      = $db->query($query);
+				}
+
+				return $this->response
+					->setStatusCode(200)
+					->setJSON(['status' => 'success', 'message' => '일괄 마감완료']);
+
+		
+	}	
+		
 	public function ajax_trip_change()
 	{
 				$db = \Config\Database::connect(); // DB 연결
