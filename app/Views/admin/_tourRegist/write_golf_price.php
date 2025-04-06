@@ -621,7 +621,7 @@ function updateRanksAndSend() {
 				   rankData += '|'+roomId+':'+rank;	
 				}   
 			});
-			alert(rankData);
+			//alert(rankData);
 
 			var message = "";
 			$.ajax({
@@ -636,8 +636,8 @@ function updateRanksAndSend() {
 				cache: false,
 				success: function (data, textStatus) {
 					message = data.message;
-					alert(message);
-					location.reload();
+					//alert(message);
+					//location.reload();
 				},
 				error: function (request, status, error) {
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
