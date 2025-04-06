@@ -605,7 +605,7 @@ var checkedValues = $("input[name='updChk']:checked").map(function() {
     return $(this).val();
 }).get();
 
-console.log(checkedValues); // 예: ["111", "222", "333"]
+console.log('checked- '+checkedValues); // 예: ["111", "222", "333"]
 	
 });
 </script>
