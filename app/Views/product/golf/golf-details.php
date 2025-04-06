@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
+<?php echo "xxxxxxxx- ". $idx;?>
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
