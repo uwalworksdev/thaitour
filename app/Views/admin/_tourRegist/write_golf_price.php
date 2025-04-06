@@ -526,8 +526,8 @@
                                         <tbody id="settingBody2">
                                         <?php foreach ($options as $frow3): ?>
                                             <?php if ($frow3['option_type'] == "S") { ?>
-                                                <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>' data-room-id="101">
-                                                    <td>
+                                                <tr color='<?= $_tmp_color ?>' size='<?= $frow2['type'] ?>' data-room-id="<?= $frow3['idx'] ?>">
+                                                    <td class="rank-cell">
                                                         <input type='hidden' name='o_idx[]'
                                                                 value='<?= $frow3['idx'] ?>'/>
                                                         <input type='hidden' name='option_type[]'
