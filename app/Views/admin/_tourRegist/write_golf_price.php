@@ -591,6 +591,18 @@
 </div>
 
 <script>
+$(document).ready(function() {
+    $("input[name='updGrpChk']").on('change', function() {
+        var val = $(this).val(); // ex) 111, 222, ...
+        var checked = $(this).is(":checked");
+
+        // 같은 번호의 .updChk_[val] 체크박스 모두 처리
+        $(".updChk_" + val).prop("checked", checked);
+    });
+});
+</script>
+
+<script>
 function moveUpRoom(btn) {
     var row = $(btn).closest("tr");
     var prev = row.prev("tr");
