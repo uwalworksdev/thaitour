@@ -1281,7 +1281,9 @@ alert(golf_date+':'+hole_cnt+':'+hour);
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
-
+alert(data('vehicle_price1'));
+alert(data('vehicle_price2'));
+alert(data('vehicle_price3'));
                     console.log("fafafa");
 
                     $(".day_option_first").show();
