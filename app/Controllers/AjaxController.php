@@ -3373,8 +3373,8 @@ class AjaxController extends BaseController {
 			$builder->set('upd_yn', $upd_yn)
 					->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
 						->where('product_idx =', $product_idx)
-						->where('goods_date >=', $s_date)
-						->where('goods_date <=', $e_date)
+						//->where('goods_date >=', $s_date)
+						//->where('goods_date <=', $e_date)
 					->groupEnd();  // 그룹 종료
 
 			// idx 값이 있을 때만 whereIn('idx', $idx) 조건 추가
