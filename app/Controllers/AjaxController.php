@@ -3369,7 +3369,7 @@ class AjaxController extends BaseController {
 			$dowArray = (!empty($dow_val)) ? array_map('trim', explode(',', $dow_val)) : [];
 
 			// 쿼리 실행
-			$builder = $db->table('bl_golf_price');
+			$builder = $db->table('tbl_golf_price');
 			$builder->set('upd_yn', $upd_yn)
 					->groupStart()  // 그룹 시작 (OR 조건을 그룹으로 묶기)
 						->where('product_idx =', $product_idx)
