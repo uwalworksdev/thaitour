@@ -1,6 +1,6 @@
 <?php foreach ($options as $option) { ?>
 	<?php
-     	
+     	$setting             = homeSetInfo();
         $baht_thai           = (float)($setting['baht_thai']);
 	    $vehicle_price1_won  = (int)($option['vehicle_price1'] * $baht_thai);
 	    $vehicle_price2_won  = (int)($option['vehicle_price2'] * $baht_thai);
