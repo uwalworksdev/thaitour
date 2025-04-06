@@ -3387,7 +3387,9 @@ class AjaxController extends BaseController {
 			}
 
 			$success = $builder->update();
-
+            
+			write_log("ajax_golf_upd_y- ". $db->getLastQuery());
+			
 			// 실행된 SQL 확인 (디버깅용)
 			log_message('debug', $db->getLastQuery()); // 로그로 저장
 
