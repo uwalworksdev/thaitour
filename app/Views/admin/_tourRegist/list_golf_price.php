@@ -38,6 +38,52 @@
 
 </style>
 
+<style>
+    .container_date {
+        display: flex; /* 가로 정렬 */
+    }
+
+    .order_btn {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+	.center-checkbox {
+		display: flex;
+		flex-direction: row;  /* 가로 방향 정렬 */
+		justify-content: center; /* 수평 중앙 정렬 */
+		align-items: center; /* 수직 중앙 정렬 */
+		gap: 5px; /* 체크박스 간 간격 조정 (필요에 따라 변경) */
+	}
+	
+	.allUpdate {
+		border: 2px solid red;  /* 빨간 테두리 */
+		background-color: white; /* 배경 흰색 */
+		color: red; /* 글자색 빨강 */
+		padding: 8px 16px; /* 내부 여백 */
+		font-size: 14px; /* 글자 크기 */
+		font-weight: bold; /* 글자 굵기 */
+		border-radius: 5px; /* 모서리 둥글게 */
+		cursor: pointer; /* 마우스 오버 시 손 모양 */
+		transition: all 0.3s ease; /* 부드러운 애니메이션 */
+	}
+
+	.allUpdate:hover {
+		background-color: red; /* 마우스 오버 시 배경 빨강 */
+		color: white; /* 글자색 흰색 */
+	}
+
+	div.listBottom table.mem_detail tbody td {
+		padding: 5px 15px !important;
+	}
+</style>
+
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
