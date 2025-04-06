@@ -1196,13 +1196,14 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
-			$o_idx    = $_POST['o_idx'];
+			//$o_idx    = $_POST['o_idx'];
+			$product_idx    = $_POST['product_idx'];
 			$dow_val  = $_POST['dow_val'];
 			
 			if($dow_val == "") {
-			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'Y'  WHERE o_idx = '$o_idx' ";
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'Y'  WHERE product_idx = '$product_idx' ";
             } else {
-			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND o_idx = '$o_idx' ";
+			   $sql    = " UPDATE tbl_golf_price SET use_yn = 'N'  WHERE dow in($dow_val) AND product_idx = '$product_idx' ";
             }
 			//write_log("dow_val- ". $dow_val);
 			$result = $db->query($sql);
