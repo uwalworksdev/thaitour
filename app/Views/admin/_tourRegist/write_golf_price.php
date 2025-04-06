@@ -615,10 +615,12 @@ function updateRanksAndSend() {
         var roomId = $(this).data("room-id");
         var rank = index + 1;
 
+        alert(roomId+'-'+rank);
+
         // 화면상의 순번 업데이트 (선택 사항)
-        $(this).find(".rank-cell").text(rank);
-alert(roomId+'-'+rank);
-        rankData.push({ room_id: roomId, rank: rank });
+//        $(this).find(".rank-cell").text(rank);
+//alert(roomId+'-'+rank);
+//        rankData.push({ room_id: roomId, rank: rank });
     });
 /*
     // 서버에 순위 업데이트
