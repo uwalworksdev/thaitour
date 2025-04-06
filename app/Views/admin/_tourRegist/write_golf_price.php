@@ -606,8 +606,6 @@ $(document).ready(function() {
 		console.log('checked- '+checkedValues); // 예: ["111", "222", "333"]
 
 	});
-	
-// 모든 updChk_ 클래스 체크박스 중 체크된 항목의 value 가져오기
 });
 </script>
 
