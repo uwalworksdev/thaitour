@@ -1282,8 +1282,10 @@ $(document).ready(function() {
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
                     console.log("fafafa");
-alert('idx- '+$(".card-item").data('idx'));
-                    $(".day_option_first").show();
+					
+                    $("#option_idx").val($(".card-item").data('idx')));
+                    
+					$(".day_option_first").show();
 					
 					if (night_yn == "Y") {
                         $(".day_option_second").show();
