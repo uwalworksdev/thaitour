@@ -583,7 +583,7 @@ $(document).ready(function() {
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
-                    <select id="vehicle_1" data-name="승용차" data-price="<?=$golf_price['vehicle_price1']?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select id="vehicle_1" data-name="승용차" data-price="<?=$vehicle_price1?>" data-price_baht="<?=$vehicle_price1_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
 						<option value="2">2대</option>
@@ -665,8 +665,7 @@ $(document).ready(function() {
                </div>
 			   
         </div>
-
-		<div class="section2-sub">
+        <div class="section2-sub">
             <div class="left-main">
                 <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
                 <p>
@@ -1052,21 +1051,21 @@ $(document).ready(function() {
             $(".day_option_first").addClass("active");
             $(".day_option_second").removeClass("active");
             $(".day_option_third").removeClass("active");
-            //getOptions();
+            getOptions();
         });
 
         $('.day_option_second').click(function () {
             $(".day_option_second").addClass("active");
             $(".day_option_first").removeClass("active");
             $(".day_option_third").removeClass("active");
-            //getOptions();
+            getOptions();
         });
 
         $('.day_option_third').click(function () {
             $(".day_option_third").addClass("active");
             $(".day_option_first").removeClass("active");
             $(".day_option_second").removeClass("active");
-            //getOptions();
+            getOptions();
         });
     </script>
 
@@ -1262,7 +1261,7 @@ $(document).ready(function() {
             const golf_date = $("#order_date").val();
             const hole_cnt = $('.tag-js.active').data('tab') + '홀';
             const hour = $('.day_option.active').data('type');
-
+alert(golf_date+':'+hole_cnt+':'+hour);
             $("#hole_cnt").val(hole_cnt);
             $("#hour").val(hour);
             //alert(golf_date+' - '+hole_cnt+' - '+hour);
@@ -1530,7 +1529,7 @@ $(document).ready(function() {
 			$("#vehicle_5").val(""); // 기본값으로 리셋
             */
 			
-            //getOptions();
+            getOptions();
 			calculatePrice();
         });
 
@@ -1538,7 +1537,7 @@ $(document).ready(function() {
             $('.tag-list .tag-js2').removeClass('active');
             $(".final_hour").text($(this).data('tab'));
             $(this).addClass('active');
-            //getOptions();
+            getOptions();
         });
 
         let swiper = new Swiper(".swiper_product_list_", {
@@ -1633,7 +1632,7 @@ $(document).ready(function() {
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
-                //getOptions();
+                getOptions();
 
             }
             $('.day a').removeClass("on");
