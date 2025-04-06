@@ -2,6 +2,11 @@
 	<?php
      	$setting             = homeSetInfo();
         $baht_thai           = (float)($setting['baht_thai']);
+
+        $o_afternoon_yn = $o_night_yn = "";
+		if($option['price_2'] > 0) $o_afternoon_yn = "Y";
+		if($option['price_3'] > 0) $o_night_yn     = "Y";
+						
 	    $vehicle_price1_won  = (int)($option['vehicle_price1'] * $baht_thai);
 	    $vehicle_price2_won  = (int)($option['vehicle_price2'] * $baht_thai);
 	    $vehicle_price3_won  = (int)($option['vehicle_price3'] * $baht_thai);
@@ -27,8 +32,8 @@
 	    data-o_cart_cont         = "<?=$option['o_cart_cont']?>"	
 	    data-o_caddy_cont        = "<?=$option['o_caddy_cont']?>"
         data-option_price        = "<?=$option['option_price']?>"
-		data-o_afternoon_yn      = "<?=$option['o_afternoon_yn']?>"
-		data-o_night_yn          = "<?=$option['o_night_yn']?>"
+		data-o_afternoon_yn      = "<?=$o_afternoon_yn?>"
+		data-o_night_yn          = "<?=$o_night_yn?>"
         data-option_price_baht   = "<?=$option['option_price_baht']?>"
         data-caddy_fee           = "<?=$option['caddy_fee']?>"
         data-cart_pie_fee        = "<?=$option['cart_pie_fee']?>" onclick="selectOption(this)">
