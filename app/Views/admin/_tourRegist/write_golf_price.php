@@ -92,10 +92,10 @@
 							<tr>
 								<th>
 									<?= $filter['code_name'] ?>
-									<!--input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
+									<input type="checkbox" id="all_<?=$filter['filter_name']?>" class="all_input" value=""/>
 									<label for="all_<?=$filter['filter_name']?>">
 										모두 선택
-									</label-->
+									</label>
 								</th>
 								<td colspan="3">
 									<!--select name="filter_<?= $filter['code_no'] ?>"
@@ -165,7 +165,7 @@
                             <tbody>
                             <tr height="45">
                                 <th>홀선택
-								   <input type="checkbox" name="updGrpChk" class="updGrpChk_<?= $row['group_idx'] ?>" id="updGrpChk_<?= $row['group_idx'] ?>" value="<?= $row['group_idx'] ?>">전체
+								   <!--input type="checkbox" name="updGrpChk" class="updGrpChk_<?= $row['group_idx'] ?>" id="updGrpChk_<?= $row['group_idx'] ?>" value="<?= $row['group_idx'] ?>">전체-->
                                  </th>
                                 <td>
 									<select id="golf_code_<?= $row['group_idx'] ?>" name="golf_code" class="input_select">
