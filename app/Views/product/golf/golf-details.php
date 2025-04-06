@@ -1259,6 +1259,7 @@ $(document).ready(function() {
         }
 
         function getOptions() {
+			alert('1111111111');
             const golf_date = $("#order_date").val();
             const hole_cnt = $('.tag-js.active').data('tab') + '홀';
             const hour = $('.day_option.active').data('type');
