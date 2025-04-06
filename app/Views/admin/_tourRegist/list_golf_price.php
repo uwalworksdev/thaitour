@@ -323,6 +323,12 @@
 			        </div>
                     <!-- // listBottom -->
 
+                    <script>
+					$(document).ready(function() {
+						$(".yes").css("background-color", "#e9f2f4"); // 연한 빨간색
+					});
+                    </script>
+					
 
 					<script>					
 					$(document).ready(function () {
