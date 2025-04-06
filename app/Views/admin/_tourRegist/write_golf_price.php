@@ -716,7 +716,7 @@ $(document).ready(function() {
                         var nextDay = new Date(response.sdate);
                         nextDay.setDate(nextDay.getDate() + 1);
 
-                        $endInput.datepicker("option", "minDate", response.sdate);
+                        $endInput.datepicker("option", "minDate", nextDay);
                     }
                 }
             });
