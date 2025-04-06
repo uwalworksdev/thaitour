@@ -2946,7 +2946,7 @@ class AjaxController extends BaseController {
 				// 체크 해제된 항목 업데이트 (use_yn = '')
 				if (!empty($_POST['unchecked_list']) && is_array($_POST['unchecked_list'])) {
 					$uncheckedIdx = implode(",", array_map('intval', $_POST['unchecked_list']));
-					$query        = "UPDATE tbl_gilf_price SET use_yn = '' WHERE idx IN ($uncheckedIdx)";
+					$query        = "UPDATE tbl_golf_price SET use_yn = '' WHERE idx IN ($uncheckedIdx)";
 					$result2      = $db->query($query);
 				}
 
