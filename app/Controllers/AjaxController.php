@@ -3384,7 +3384,7 @@ class AjaxController extends BaseController {
 
 			// POST 데이터 받기
 			$product_idx = $this->request->getPost('product_idx');	
-			$o_idx 	     = $this->request->getPost('o_idx');
+			$group_idx   = $this->request->getPost('group_idx');
 			$s_date      = $this->request->getPost('s_date');
 			$e_date      = $this->request->getPost('e_date');
 			$dow_val     = $this->request->getPost('dow_val'); // "일" 같은 문자열

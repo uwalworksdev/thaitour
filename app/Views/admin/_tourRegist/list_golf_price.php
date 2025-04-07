@@ -429,7 +429,7 @@
 									type: "POST",
 									data: {
 											product_idx :  $("#product_idx").val(),	
-											o_idx 	    :  $("#o_idx").val(),
+											group_idx   :  $("#group_idx").val(),
 										    s_date      :  $("#s_date").val(),
 											e_date      :  $("#e_date").val(),
 										    dow_val     :  selectedDays.join(','),
@@ -442,7 +442,7 @@
 									success: function (data, textStatus) {
 										var message = data.message;
 										alert(message);
-										location.href='list_golf_price?product_idx='+$("#product_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
+										location.href='list_golf_price?product_idx='+$("#product_idx").val()+'&group_idx='+$("#group_idx").val()+'&s_date='+$("#s_date").val()+'&e_date='+$("#e_date").val();
 									},
 									error: function (request, status, error) {
 										alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
