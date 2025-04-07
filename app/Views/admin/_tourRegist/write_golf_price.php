@@ -603,8 +603,31 @@
 <script>
 $(document).ready(function() {
     $('#btn_upd_all').on('click', function(e) {
-        $('#golfForm').attr('action', '<?= route_to("admin._tourRegist.write_golf_allupdate") ?>');
-        $('#golfForm').submit();
+		
+			var f = document.golfForm;
+			var golf_data = $(f).serialize();
+
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfPrice_all",
+				type: "POST",
+				data: golf_data,
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					//location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+        //$('#golfForm').attr('action', '<?= route_to("admin._tourRegist.write_golf_allupdate") ?>');
+        //$('#golfForm').submit();
     });
 });
 </script>
