@@ -504,7 +504,7 @@
                         <tr height="45">
                             <th>
                                 추가옵션등록
-                                <p style="display:block;margin-top:10px;">
+                                <p style="display:block;margin-top:10px;width:50px;">
                                     <button type="button" id="btn_add_option2" class="btn_01">추가</button>
                                 </p>
                             </th>
