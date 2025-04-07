@@ -1157,7 +1157,7 @@
 			
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_golf_price">
             <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
-            <input type="hidden" name="g_idx"        value="<?=$g_idx?>" >
+            <input type="hidden" name="group_idx"    value="<?=$group_idx?>" >
             <input type="hidden" name="goods_name"   id="goods_name"   value="<?=$goods_name?>">
 			<input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
 			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
