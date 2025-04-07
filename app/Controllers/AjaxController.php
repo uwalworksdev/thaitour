@@ -3439,9 +3439,37 @@ class AjaxController extends BaseController {
 			$data              = $this->request->getPost();
 			$product_idx       = $data['product_idx'];
 
-			$options           = $data['optGolf']; // 다차원 배열로 받음		
+			$options           = $data['optGolf']; // 다차원 배열로 받음
+
+			$input             = "";
 			foreach ($options as $index => $option) 
 			{
+				    
+					$o_sdate           = $option['o_sdate'];				
+					$o_edate           = $option['o_edate'];				
+
+                    if($input == "") {
+					   $input = $o_sdate .":". $o_edate;
+					} else {  
+					   $input = "|". $o_sdate .":". $o_edate;	
+					}   
+					
+            }
+
+			// 중복일자 검증
+			$dateRanges = parseDateRanges($input);
+
+			if (hasOverlappingDates($dateRanges)) {
+				return $this->response->setStatusCode(200)->setJSON([
+					'status'  => 'success',
+					'message' => '중복된 날짜 구간이 있습니다.'
+				]);
+				
+			}
+
+			foreach ($options as $index => $option) 
+			{
+				    
 					$o_sdate           = $option['o_sdate'];				
 					$o_edate           = $option['o_edate'];				
 
@@ -3455,7 +3483,7 @@ class AjaxController extends BaseController {
 					$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
             
             }
-			
+
 			foreach ($options as $index => $option) {
 		
 					$o_idx             = $option['o_optidx'];

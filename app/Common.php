@@ -1876,4 +1876,34 @@ function isDateFormat($date) {
     return preg_match('/^\d{4}-\d{2}-\d{2}$/', $date);
 }
 
+function parseDateRanges(string $input): array {
+    $ranges = explode('|', $input);
+    $result = [];
+
+    foreach ($ranges as $range) {
+        [$start, $end] = explode(':', $range);
+        $result[] = ['start' => trim($start), 'end' => trim($end)];
+    }
+
+    return $result;
+}
+
+function hasOverlappingDates(array $dateRanges): bool {
+    // 시작일 기준으로 정렬
+    usort($dateRanges, function($a, $b) {
+        return strtotime($a['start']) <=> strtotime($b['start']);
+    });
+
+    for ($i = 1; $i < count($dateRanges); $i++) {
+        $prevEnd = strtotime($dateRanges[$i - 1]['end']);
+        $currentStart = strtotime($dateRanges[$i]['start']);
+
+        if ($currentStart <= $prevEnd) {
+            return true; // 겹침 있음
+        }
+    }
+
+    return false;
+}
+
 ?>
