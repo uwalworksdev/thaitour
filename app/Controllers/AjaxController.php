@@ -3531,7 +3531,7 @@ class AjaxController extends BaseController {
 															,o_soldout		= '" . $o_soldout . "'
 														WHERE idx	        = '" . $o_idx . "' ";
 						write_log("111- ". $sql);								
-						$result = $db->connect->query($sql);
+						$result = $db->query($sql);
 					}
 					
 					// 일자별 가격설정
@@ -3541,7 +3541,7 @@ class AjaxController extends BaseController {
 							AND use_yn     != 'N'
 							AND upd_yn     != 'Y'";
 
-					$result = $db->connect->query($sql, [$from_date, $to_date, $product_idx]);
+					$result = $db->query($sql, [$from_date, $to_date, $product_idx]);
 					
 					$ii = -1;
 					$dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
@@ -3605,7 +3605,7 @@ class AjaxController extends BaseController {
 																, price_3	  = '" . $price3 . "'	
 																, use_yn	  = ''	
 																, reg_date    = now() ";
-						$db->connect->query($sql_c);
+						$db->query($sql_c);
 					}
 					
 			}
@@ -3614,7 +3614,7 @@ class AjaxController extends BaseController {
 			$sql = "SELECT DISTINCT(goods_name) AS goods_name 
 					FROM tbl_golf_price 
 					WHERE product_idx = ? "; 
-			$query   = $db->connect->query($sql, [$product_idx]);
+			$query   = $db->query($sql, [$product_idx]);
 			$results = $query->getResultArray();
 
 			$holes_number = ""; 
@@ -3628,7 +3628,7 @@ class AjaxController extends BaseController {
 
 			// 업데이트 쿼리 실행
 			$sql_u = "UPDATE tbl_golf_info SET holes_number = ? WHERE product_idx = ?";
-			$db->connect->query($sql_u, [$holes_number, $product_idx]);
+			$db->query($sql_u, [$holes_number, $product_idx]);
 			
 			return $this->response->setStatusCode(200)->setJSON([
 				'status'  => 'success',
