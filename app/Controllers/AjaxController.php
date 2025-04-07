@@ -3608,8 +3608,11 @@ class AjaxController extends BaseController {
         }
 		
 		// 골프 옵션 조회
-		$sql     = "SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND option_type = 'M'";
-		$query   = $this->connect->query($sql);
+		$sql = "SELECT DISTINCT(goods_name) AS goods_name 
+				FROM tbl_golf_option 
+				WHERE product_idx = ? 
+				  AND option_type = 'M'";
+		$query   = $this->connect->query($sql, [$product_idx]);
 		$results = $query->getResultArray();
 
         $holes_number = ""; 
