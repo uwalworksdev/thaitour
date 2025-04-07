@@ -181,9 +181,9 @@
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									
 										적용기간:
-										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
+										<input type='text' class='datepicker' name='group_sdate[]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
 										~
-										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+										<input type='text' class='datepicker' name='group_edate[]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
