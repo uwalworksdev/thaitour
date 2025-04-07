@@ -603,7 +603,22 @@
 <script>
 $(document).ready(function() {
     $('#btn_upd_all').on('click', function(e) {
-		
+
+$('[class^="source_sdate_"]').each(function() {
+    // 현재 요소의 클래스명 중에서 xxx 부분 추출
+    var classes = $(this).attr('class').split(/\s+/);
+    var match = classes.find(function(cls) {
+        return cls.startsWith('source_sdate_');
+    });
+
+    if (match) {
+        var xxx = match.replace('source_sdate_', '');
+        var value = $(this).val();
+
+        // 대응되는 target 요소에 값 복사
+        $('.target_sdate_' + xxx).val(value);
+    }
+});		
 			var f = document.frm;
 			var golf_data = $(f).serialize();
 
