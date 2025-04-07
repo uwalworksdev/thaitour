@@ -144,7 +144,10 @@
                                 <th>홀구분</th>
                                 <td>
                                     <select name="hole" id="hole">
-									   <option value=""></option>
+									   <option value="">홀선택</option>
+										<?php foreach($hresult as $row): ?>
+											  <option value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?></option>
+										<?php endforeach; ?>
 									</select>   
                                 </td>
                             </tr>
