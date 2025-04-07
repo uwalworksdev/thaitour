@@ -3455,7 +3455,7 @@ class AjaxController extends BaseController {
 					}   
 					
             }
-
+write_log("input- ". $input;
 			// 중복일자 검증
 			$dateRanges = parseDateRanges($input);
 
