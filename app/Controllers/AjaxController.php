@@ -3435,37 +3435,24 @@ class AjaxController extends BaseController {
 	public function ajax_golfPrice_all()
     {
 			$db = \Config\Database::connect(); // DB 연결
+
+			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+				$optionsx = $_POST['optionsx'] ?? [];
+
+				if (hasOverlappingDateRanges($optionsx)) {
+					return $this->response->setStatusCode(200)->setJSON([
+						'status'  => 'success',
+						'message' => '중복된 날짜 구간이 있습니다.'
+					]);
+				}	
+					
+			}
+
 			
 			$data              = $this->request->getPost();
 			$product_idx       = $data['product_idx'];
 
 			$options           = $data['optGolf']; // 다차원 배열로 받음
-
-			$input             = "";
-			foreach ($options as $index => $option) 
-			{
-				    
-					$o_sdate           = $option['o_sdate'];				
-					$o_edate           = $option['o_edate'];				
-
-                    if($input == "") {
-					   $input  = $o_sdate .":". $o_edate;
-					} else {  
-					   $input .= "|". $o_sdate .":". $o_edate;	
-					}   
-					
-            }
-write_log("input- ". $input);
-			// 중복일자 검증
-			$dateRanges = parseDateRanges($input);
-
-			if (hasOverlappingDates($dateRanges)) {
-				return $this->response->setStatusCode(200)->setJSON([
-					'status'  => 'success',
-					'message' => '중복된 날짜 구간이 있습니다.'
-				]);
-				
-			}
 
 			foreach ($options as $index => $option) 
 			{
