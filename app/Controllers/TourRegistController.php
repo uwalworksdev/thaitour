@@ -1187,9 +1187,9 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
-        $o_idx = $this->request->getVar("o_idx");
-        $s_date = $this->request->getVar("s_date");
-        $e_date = $this->request->getVar("e_date");
+        $group_idx   = $this->request->getVar("group_idx_idx");
+        $s_date      = $this->request->getVar("s_date");
+        $e_date      = $this->request->getVar("e_date");
 
         if($s_date == "") $s_date = date('Y-m-d');
 		
@@ -1197,7 +1197,7 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         if ($o_idx) {
-            $search = " AND o_idx = '$o_idx' ";
+            $search = " AND group_idx = '$group_idx' ";
         } else {
             $search = " AND goods_date >= '". $s_date ."' ";
         }
@@ -1238,8 +1238,8 @@ class TourRegistController extends BaseController
         // 마지막 값
         $lastValue = end($result);   // 배열의 마지막 값
 
-		$hsql    = "SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_price WHERE product_idx = ? ORDER BY goods_name ASC";
-		$hquery  = $this->connect->query($hsql, [$product_idx]);
+		$hsql    = "SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_price WHERE product_idx = ? AND group_idx = ? ORDER BY goods_name ASC";
+		$hquery  = $this->connect->query($hsql, [$product_idx, $group_idx]);
 		$hresult = $hquery->getResultArray();
 
 
@@ -1252,7 +1252,7 @@ class TourRegistController extends BaseController
             "nTotalCount"  => $nTotalCount,
             'roresult'     => $roresult,
             'product_idx'  => $product_idx,
-            'o_idx'        => $o_idx,
+            'group_idx'    => $group_idx,
             'product_name' => $product_name,
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
