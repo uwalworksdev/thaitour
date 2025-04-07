@@ -1403,8 +1403,8 @@ $(document).ready(function () {
         location.href = '/AdmMaster/_tourRegist/list_golf_price?o_idx=' + idx + '&product_idx=' + $("#product_idx").val();
     }
 
-	function updDay(idx) {
-        location.href = '/AdmMaster/_tourRegist/list_golf_price?product_idx=' + idx;
+	function updDay(idx,group) {
+        location.href = '/AdmMaster/_tourRegist/list_golf_price?product_idx=' + idx +'&group_idx=' + group;
     }
 </script>
 
