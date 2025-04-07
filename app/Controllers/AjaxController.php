@@ -3541,10 +3541,10 @@ class AjaxController extends BaseController {
 							AND use_yn     != 'N'
 							AND upd_yn     != 'Y'";
 
-					$result = $db->query($sql, [$from_date, $to_date, $product_idx]);
+					$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
 					
 					$ii = -1;
-					$dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
+					$dateRange = getDateRange($o_sdate, $o_edate);
 					foreach ($dateRange as $date) {
 
 						$ii++;
@@ -3552,54 +3552,54 @@ class AjaxController extends BaseController {
 						$dow       = dateToYoil($golf_date);
 
 						if ($dow == "일") {
-							$price1 = $row_o['goods_price1_1'];
-							$price2 = $row_o['goods_price1_2'];
-							$price3 = $row_o['goods_price1_3'];
+							$price1 = $goods_price1_1;
+							$price2 = $goods_price1_2;
+							$price3 = $goods_price1_3;
 						}
 						
 						if ($dow == "월") {
-							$price1 = $row_o['goods_price2_1'];
-							$price2 = $row_o['goods_price2_2'];
-							$price3 = $row_o['goods_price2_3'];
+							$price1 = $goods_price2_1;
+							$price2 = $goods_price2_2;
+							$price3 = $goods_price2_3;
 						}
 						
 						if ($dow == "화") {
-							$price1 = $row_o['goods_price3_1'];
-							$price2 = $row_o['goods_price3_2'];
-							$price3 = $row_o['goods_price3_3'];
+							$price1 = $goods_price3_1;
+							$price2 = $goods_price3_2;
+							$price3 = $goods_price3_3;
 						}
 						
 						if ($dow == "수") {
-							$price1 = $row_o['goods_price4_1'];
-							$price2 = $row_o['goods_price4_2'];
-							$price3 = $row_o['goods_price4_3'];
+							$price1 = $goods_price4_1;
+							$price2 = $goods_price4_2;
+							$price3 = $goods_price4_3;
 						}
 						
 						if ($dow == "목") {
-							$price1 = $row_o['goods_price5_1'];
-							$price2 = $row_o['goods_price5_2'];
-							$price3 = $row_o['goods_price5_3'];
+							$price1 = $goods_price5_1;
+							$price2 = $goods_price5_2;
+							$price3 = $goods_price5_3;
 						}
 						
 						if ($dow == "금") {
-							$price1 = $row_o['goods_price6_1'];
-							$price2 = $row_o['goods_price6_2'];
-							$price3 = $row_o['goods_price6_3'];
+							$price1 = $goods_price6_1;
+							$price2 = $goods_price6_2;
+							$price3 = $goods_price6_3;
 						}
 						
 						if ($dow == "토") {
-							$price1 = $row_o['goods_price7_1'];
-							$price2 = $row_o['goods_price7_2'];
-							$price3 = $row_o['goods_price7_3'];
+							$price1 = $goods_price7_1;
+							$price2 = $goods_price7_2;
+							$price3 = $goods_price7_3;
 						}
 						
 						$sql_c = "INSERT INTO tbl_golf_price  SET  
-																  o_idx	      = '" . $row_o['idx'] . "'	
+																  o_idx	      = '" . $o_idx . "'	
 																, goods_date  = '" . $golf_date . "'	
 																, dow	      = '" . $dow . "'	
 																, product_idx = '" . $product_idx . "'	
-																, group_idx   = '" . $row_o['group_idx'] . "'	
-																, goods_name  = '" . $row_o['goods_name'] . "'	
+																, group_idx   = '" . $group_idx . "'	
+																, goods_name  = '" . $goods_name . "'	
 																, price_1	  = '" . $price1 . "'	
 																, price_2	  = '" . $price2 . "'	
 																, price_3	  = '" . $price3 . "'	
