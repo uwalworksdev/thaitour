@@ -3530,7 +3530,7 @@ class AjaxController extends BaseController {
 															,option_type	= '" . $option_type . "'
 															,o_soldout		= '" . $o_soldout . "'
 														WHERE idx	        = '" . $o_idx . "' ";
-						write_log("111- ". $sql);								
+						//write_log("111- ". $sql);								
 						$result = $db->query($sql);
 					}
 					
