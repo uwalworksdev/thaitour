@@ -3605,6 +3605,7 @@ class AjaxController extends BaseController {
 																, price_3	  = '" . $price3 . "'	
 																, use_yn	  = ''	
 																, reg_date    = now() ";
+						write_log("aaaa- ". $sql_c);										
 						$db->query($sql_c);
 					}
 					
