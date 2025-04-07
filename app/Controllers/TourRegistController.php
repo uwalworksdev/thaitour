@@ -1238,9 +1238,10 @@ class TourRegistController extends BaseController
         // 마지막 값
         $lastValue = end($result);   // 배열의 마지막 값
 
-        $hsql    = " SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_name ASC ";
-        $hresult = $this->connect->query($hsql);
-        $hresult = $hresult->getResultArray();
+		$hsql    = "SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_price WHERE product_idx = ? ORDER BY goods_name ASC";
+		$hquery  = $this->connect->query($hsql, [$product_idx]);
+		$hresult = $query->getResultArray();
+
 
         $data = [
             "num"          => $num,
