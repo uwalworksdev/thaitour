@@ -145,6 +145,8 @@
                                 적용기간: <input type='text' readonly class='datepicker ' name='a_sdate' id='a_sdate' style="width:10%" value=''/> ~
                                          <input type='text' readonly class='datepicker ' name='a_edate' id='a_edate' style="width:10%" value=''/>
                                 -->
+                                <input type='hidden' name='a_sdate' id='a_sdate' /> 
+                                <input type='hidden' name='a_edate' id='a_edate' />
 								<button type="button" id="btn_add_fee" class="btn_01">추가</button>
 								<button type="button" id="btn_upd_all" class="btn_02" style="width:10%">요금날짜 일괄수정</button>
                             </td>
