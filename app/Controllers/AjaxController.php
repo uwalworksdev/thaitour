@@ -3047,14 +3047,10 @@ class AjaxController extends BaseController {
 
 			// POST 데이터 수신
 			$product_idx = $this->request->getPost('product_idx');
-			$sdate       = $this->request->getPost('sdate');
-			$edate       = $this->request->getPost('edate');
 
 			// insert용 데이터 배열 구성
 			$data = [
 				'product_idx' => $product_idx,
-				'sdate'       => $sdate,
-				'edate'       => $edate,
 				'reg_date'    => date('Y-m-d H:i:s') // DB now() 대신 PHP 처리
 			];
 

@@ -904,9 +904,7 @@ $(document).ready(function () {
 				url: "/ajax/ajax_golfPrice_add",
 				type: "POST",
 				data: {
-						"product_idx" : $("#product_idx").val(),
-						"sdate"       : $("#a_sdate").val(),
-						"edate"       : $("#a_edate").val()
+						"product_idx" : $("#product_idx").val() 
 				},
 				dataType: "json",
 				async: false,
