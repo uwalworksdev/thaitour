@@ -1233,25 +1233,29 @@ class TourRegistController extends BaseController
         $fresult = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
-
         // 첫 번째 값
         $firstValue = reset($result); // 배열의 첫 번째 값
         // 마지막 값
         $lastValue = end($result);   // 배열의 마지막 값
 
+        $hsql    = " SELEC DISTINCT(goods_name) AS goods_name FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY goods_name ASC ";
+        $hresult = $this->connect->query($hsql);
+        $hresult = $hresult->getResultArray();
+
         $data = [
-            "num" => $num,
-            "nPage" => $nPage,
-            "pg" => $pg,
-            "g_list_rows" => $g_list_rows,
-            "search_val" => $search_val,
-            "nTotalCount" => $nTotalCount,
-            'roresult' => $roresult,
-            'product_idx' => $product_idx,
-            'o_idx' => $o_idx,
+            "num"          => $num,
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            "search_val"   => $search_val,
+            "nTotalCount"  => $nTotalCount,
+            'roresult'     => $roresult,
+            'product_idx'  => $product_idx,
+            'o_idx'        => $o_idx,
             'product_name' => $product_name,
-            's_date' => $o_sdate,
-            'e_date' => $o_edate,
+            's_date'       => $o_sdate,
+            'e_date'       => $o_edate,
+            'hresult'      => $hresult,
         ];
 
         return view("admin/_tourRegist/list_golf_price", $data);
