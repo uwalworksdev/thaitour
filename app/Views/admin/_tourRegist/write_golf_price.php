@@ -182,14 +182,14 @@
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
 										적용기간:
-										<input type='text' class='datepicker-start' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
+										<input type='text' class='datepicker-start source_sdate_<?= $row['group_idx'] ?>' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
 										~
-										<input type='text' class='datepicker-end' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
+										<input type='text' class='datepicker-end source_edate_<?= $row['group_idx'] ?>' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
 										적용기간:
-										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
+										<input type='text' class='datepicker source_sdate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
 										~
-										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+										<input type='text' class='datepicker source_edate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									<?php } ?>
 
 									
@@ -238,8 +238,8 @@
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
                                             <tr id="option_<?= $frow3['idx'] ?>">
 
-                                                <input type='hidden' name='optGolf[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>'/>
-                                                <input type='hidden' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>'/>
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>' class='target_sdate_<?= $row['group_idx'] ?>' />
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>' class='target_edate_<?= $row['group_idx'] ?>' />
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_optidx]'     value='<?= $frow3['idx'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][group_idx]'    value='<?= $frow3['group_idx'] ?>'/>
