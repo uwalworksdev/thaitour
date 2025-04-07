@@ -238,8 +238,8 @@
                                             <tbody id="tblgolf<?= $grow['o_golf'] ?>">
                                             <tr id="option_<?= $frow3['idx'] ?>">
 
-                                                <input type='text' name='optGolf[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>' class='target_sdate_<?= $row['group_idx'] ?>' />
-                                                <input type='text' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>' class='target_edate_<?= $row['group_idx'] ?>' />
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_sdate]'      value='<?= $row['sdate'] ?>' class='target_sdate_<?= $row['group_idx'] ?>' />
+                                                <input type='hidden' name='optGolf[<?=$i?>][o_edate]'      value='<?= $row['edate'] ?>' class='target_edate_<?= $row['group_idx'] ?>' />
                                                 <input type='hidden' name='optGolf[<?=$i?>][o_optidx]'     value='<?= $frow3['idx'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][option_type]'  value='<?= $frow3['option_type'] ?>'/>
                                                 <input type='hidden' name='optGolf[<?=$i?>][group_idx]'    value='<?= $frow3['group_idx'] ?>'/>
