@@ -1305,11 +1305,11 @@ $(document).ready(function() {
                     $("#o_cart_cont").val( $(".card-item").data('o_cart_cont') );
                     $("#o_caddy_cont").val( $(".card-item").data('o_caddy_cont') );
 					
-					if (day_yn == "Y") {
+					//if (day_yn == "Y") {
                         $(".day_option_first").show();
-                    } else { 
-                        $(".day_option_first").hide();
-                    }
+                    //} else { 
+                    //    $(".day_option_first").hide();
+                    //}
 					
 					if (night_yn == "Y") {
                         $(".day_option_second").show();
