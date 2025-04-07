@@ -1322,7 +1322,9 @@ class AjaxController extends BaseController {
             $product_idx  = $_POST['product_idx'];
             $idx          = $_POST['idx'];
 
-			$price        = str_replace(',', '', $_POST['price']);
+			$price_1      = str_replace(',', '', $_POST['price_1']);
+			$price_2      = str_replace(',', '', $_POST['price_2']);
+			$price_3      = str_replace(',', '', $_POST['price_3']);
 			$chk_idx      = explode(",", $_POST['chk_idx']);
             for($i=0;$i<count($chk_idx);$i++)
 		    { 
@@ -1340,7 +1342,9 @@ class AjaxController extends BaseController {
 						$use = "";
                     }
 
-					$sql = "UPDATE tbl_golf_price SET  price     = '". $price[$i]    ."'  
+					$sql = "UPDATE tbl_golf_price SET  price_1     = '". $price_1[$i]    ."' 
+				                                     , price_2     = '". $price_2[$i]    ."'  	
+				                                     , price_3     = '". $price_3[$i]    ."'  	
 													 , upd_date     = now() WHERE idx = '". $idx[$i] ."'  ";
 
 					$result = $db->query($sql);
