@@ -604,22 +604,22 @@
 $(document).ready(function() {
     $('#btn_upd_all').on('click', function(e) {
 
-$('[class*="groupId"]').each(function() {
-    // 클래스에서 groupIdX 형태 찾기
-    var classes = $(this).attr('class').split(/\s+/);
-    var groupClass = classes.find(cls => cls.startsWith('groupId'));
+			$('[class*="groupId"]').each(function() {
+				// 클래스에서 groupIdX 형태 찾기
+				var classes = $(this).attr('class').split(/\s+/);
+				var groupClass = classes.find(cls => cls.startsWith('groupId'));
 
-    if (groupClass) {
-        var groupIdx = groupClass.replace('groupId', '');
+				if (groupClass) {
+					var groupIdx = groupClass.replace('groupId', '');
 
-        // 해당 인덱스 기반으로 값 복사
-        var sdate = $('.source_sdate_' + groupIdx).val();
-        var edate = $('.source_edate_' + groupIdx).val();
+					// 해당 인덱스 기반으로 값 복사
+					var sdate = $('.source_sdate_' + groupIdx).val();
+					var edate = $('.source_edate_' + groupIdx).val();
 
-        $('.target_sdate_' + groupIdx).val(sdate);
-        $('.target_edate_' + groupIdx).val(edate);
-    }
-});	
+					$('.target_sdate_' + groupIdx).val(sdate);
+					$('.target_edate_' + groupIdx).val(edate);
+				}
+			});	
  
 			var f = document.frm;
 			var golf_data = $(f).serialize();
