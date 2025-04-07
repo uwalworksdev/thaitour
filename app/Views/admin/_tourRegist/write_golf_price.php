@@ -182,14 +182,14 @@
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
 										적용기간:
-										<input type='text' class='datepicker-start source_sdate_<?= $row['group_idx'] ?>' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
+										<input type='text' class='datepicker-start groupId<?= $row['group_idx'] ?> source_sdate_<?= $row['group_idx'] ?>' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
 										~
-										<input type='text' class='datepicker-end source_edate_<?= $row['group_idx'] ?>' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
+										<input type='text' class='datepicker-end groupId<?= $row['group_idx'] ?> source_edate_<?= $row['group_idx'] ?>' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
 										적용기간:
-										<input type='text' class='datepicker source_sdate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
+										<input type='text' class='datepicker groupId<?= $row['group_idx'] ?> source_sdate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
 										~
-										<input type='text' class='datepicker source_edate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+										<input type='text' class='datepicker groupId<?= $row['group_idx'] ?> source_edate_<?= $row['group_idx'] ?>' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									<?php } ?>
 
 									
@@ -604,22 +604,22 @@
 $(document).ready(function() {
     $('#btn_upd_all').on('click', function(e) {
 
-$('[class^="source_sdate_"]').each(function() {
-    // 현재 요소의 클래스명 중에서 xxx 부분 추출
+$('[class*="groupId"]').each(function() {
+    // 클래스에서 groupIdX 형태 찾기
     var classes = $(this).attr('class').split(/\s+/);
-    var match = classes.find(function(cls) {
-        return cls.startsWith('source_sdate_');
-    });
+    var groupClass = classes.find(cls => cls.startsWith('groupId'));
 
-    if (match) {
-        var xxx = match.replace('source_sdate_', '');
-		alert('xxx- '+xxx);
-        var value = $(this).val();
+    if (groupClass) {
+        var groupIdx = groupClass.replace('groupId', '');
 
-        // 대응되는 target 요소에 값 복사
-        $('.target_sdate_' + xxx).val(value);
+        // 해당 인덱스 기반으로 값 복사
+        var sdate = $('.source_sdate_' + groupIdx).val();
+        var edate = $('.source_edate_' + groupIdx).val();
+
+        $('.target_sdate_' + groupIdx).val(sdate);
+        $('.target_edate_' + groupIdx).val(edate);
     }
-});		
+});	
 /*
 			var f = document.frm;
 			var golf_data = $(f).serialize();
