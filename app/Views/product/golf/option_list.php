@@ -33,6 +33,7 @@
 	    data-o_cart_cont         = "<?=$option['o_cart_cont']?>"	
 	    data-o_caddy_cont        = "<?=$option['o_caddy_cont']?>"
         data-option_price        = "<?=$option['option_price']?>"
+		data-o_day_yn            = "<?=$o_day_yn?>"
 		data-o_afternoon_yn      = "<?=$o_afternoon_yn?>"
 		data-o_night_yn          = "<?=$o_night_yn?>"
         data-option_price_baht   = "<?=$option['option_price_baht']?>"
