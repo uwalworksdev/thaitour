@@ -141,6 +141,14 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>홀구분</th>
+                                <td>
+                                    <select name="hole" id="hole">
+									   <option value=""></option>
+									</select>   
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>날짜지정</th>
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
