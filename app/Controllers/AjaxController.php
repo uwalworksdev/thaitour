@@ -3607,26 +3607,7 @@ class AjaxController extends BaseController {
 				}
 				
         }
-		
-		// 골프 옵션 조회
-		$sql = "SELECT DISTINCT(goods_name) AS goods_name 
-				FROM tbl_golf_price 
-				WHERE product_idx = ? "; 
-		$query   = $this->connect->query($sql, [$product_idx]);
-		$results = $query->getResultArray();
 
-        $holes_number = ""; 
-		foreach ($results as $row) {
-			if($holes_number == "") {
-			   $holes_number  = $row['goods_name'];
-			} else {  
-			   $holes_number .= ", ". $row['goods_name'];
-			}   
-		}
-
-		// 업데이트 쿼리 실행
-		$sql_u = "UPDATE tbl_golf_info SET holes_number = ? WHERE product_idx = ?";
-		$this->connect->query($sql_u, [$holes_number, $product_idx]);
 		
 		return $this->response->setStatusCode(200)->setJSON([
 			'status'  => 'success',
