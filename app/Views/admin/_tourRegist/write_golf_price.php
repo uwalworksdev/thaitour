@@ -187,9 +187,9 @@
 										<input type='text' class='datepicker-end' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
 									<?php } else { ?>
 										적용기간:
-										<input type='text' class='datepickerX' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
+										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
 										~
-										<input type='text' class='datepickerX' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
 									<?php } ?>
 
 									
