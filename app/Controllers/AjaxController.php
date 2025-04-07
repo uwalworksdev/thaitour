@@ -3541,7 +3541,7 @@ class AjaxController extends BaseController {
 							AND use_yn     != 'N'
 							AND upd_yn     != 'Y'";
 
-					$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
+					//$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
 					
 					$ii = -1;
 					$dateRange = getDateRange($o_sdate, $o_edate);
