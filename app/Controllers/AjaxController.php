@@ -3518,7 +3518,10 @@ class AjaxController extends BaseController {
 					$o_soldout         = $option['o_soldout'];
 			 
 					if ($o_idx) {
-						$sql = "UPDATE  tbl_golf_option  SET 
+						$sql_g  = "UPDATE tbl_golf_group SET sdate = '". $o_sdate ."', edate = '". $o_edate ."' WHERE group_idx = '". $group_idx ."' ";
+						$result = $db->query($sql_g);
+
+						$sql    = "UPDATE  tbl_golf_option  SET 
 															 goods_name		= '" . $o_name . "'
 															,goods_price1_1	= '" . $o_price1_1 . "'
 															,goods_price1_2	= '" . $o_price1_2 . "'
