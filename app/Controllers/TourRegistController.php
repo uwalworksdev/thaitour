@@ -1410,8 +1410,8 @@ class TourRegistController extends BaseController
         $o_sdate = $row['s_date'];
         $o_edate = $row['e_date'];
 
-        if ($s_date) $o_sdate = $s_date;
-        if ($e_date) $o_edate = $e_date;
+        //if ($s_date) $o_sdate = $s_date;
+        //if ($e_date) $o_edate = $e_date;
 
         if ($s_date && $e_date) {
             $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
