@@ -1906,4 +1906,34 @@ function hasOverlappingDates(array $dateRanges): bool {
     return false;
 }
 
+function hasOverlappingDateRanges($optionsx) {
+    $dateRanges = [];
+
+    foreach ($optionsx as $option) {
+        if (!empty($option['o_sdate']) && !empty($option['o_edate'])) {
+            $dateRanges[] = [
+                'start' => $option['o_sdate'],
+                'end'   => $option['o_edate']
+            ];
+        }
+    }
+
+    // 날짜 정렬
+    usort($dateRanges, function($a, $b) {
+        return strtotime($a['start']) <=> strtotime($b['start']);
+    });
+
+    // 겹치는 날짜 체크
+    for ($i = 1; $i < count($dateRanges); $i++) {
+        $prevEnd = strtotime($dateRanges[$i - 1]['end']);
+        $currentStart = strtotime($dateRanges[$i]['start']);
+
+        if ($currentStart <= $prevEnd) {
+            return true; // 겹침 있음
+        }
+    }
+
+    return false;
+}
+
 ?>
