@@ -1196,11 +1196,7 @@ class TourRegistController extends BaseController
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        if ($o_idx) {
-            $search = " AND group_idx = '$group_idx' ";
-        } else {
-            $search = " AND goods_date >= '". $s_date ."' ";
-        }
+        $search = " AND group_idx = '$group_idx' ";
 
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
