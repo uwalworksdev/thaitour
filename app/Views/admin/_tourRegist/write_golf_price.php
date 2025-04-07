@@ -180,10 +180,17 @@
 									</select>
 									<button type="button" class="btn_add_option btn_01" data-sdate="<?= $row['sdate'] ?>" data-edate="<?= $row['edate'] ?>" value="<?= $row['group_idx'] ?>">추가</button>
 									
+									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
+										적용기간:
+										<input type='text' class='datepicker-start' id="sdate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_sdate]' data-idx="<?=$i?>" style="width:10%" readonly/>
+										~
+										<input type='text' class='datepicker-end' id="edate_<?= $row['group_idx'] ?>" name='optionsx[<?=$i?>][o_edate]' style="width:10%" readonly/>
+									<?php } else { ?>
 										적용기간:
 										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_sdate]' style="width:10%" value='<?= $row['sdate'] ?>' readonly/>
 										~
 										<input type='text' class='datepicker' name='optionsx[<?=$i?>][o_edate]' style="width:10%" value='<?= $row['edate'] ?>' readonly/>
+									<?php } ?>
 
 									
 									<?php if($row['sdate'] == "" && $row['edate'] == "") { ?>
