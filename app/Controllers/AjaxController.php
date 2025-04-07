@@ -3552,45 +3552,45 @@ class AjaxController extends BaseController {
 						$dow       = dateToYoil($golf_date);
 
 						if ($dow == "일") {
-							$price1 = $goods_price1_1;
-							$price2 = $goods_price1_2;
-							$price3 = $goods_price1_3;
+							$price1 = $o_price1_1;
+							$price2 = $o_price1_2;
+							$price3 = $o_price1_3;
 						}
 						
 						if ($dow == "월") {
-							$price1 = $goods_price2_1;
-							$price2 = $goods_price2_2;
-							$price3 = $goods_price2_3;
+							$price1 = $o_price2_1;
+							$price2 = $o_price2_2;
+							$price3 = $o_price2_3;
 						}
 						
 						if ($dow == "화") {
-							$price1 = $goods_price3_1;
-							$price2 = $goods_price3_2;
-							$price3 = $goods_price3_3;
+							$price1 = $o_price3_1;
+							$price2 = $o_price3_2;
+							$price3 = $o_price3_3;
 						}
 						
 						if ($dow == "수") {
-							$price1 = $goods_price4_1;
-							$price2 = $goods_price4_2;
-							$price3 = $goods_price4_3;
+							$price1 = $o_price4_1;
+							$price2 = $o_price4_2;
+							$price3 = $o_price4_3;
 						}
 						
 						if ($dow == "목") {
-							$price1 = $goods_price5_1;
-							$price2 = $goods_price5_2;
-							$price3 = $goods_price5_3;
+							$price1 = $o_price5_1;
+							$price2 = $o_price5_2;
+							$price3 = $o_price5_3;
 						}
 						
 						if ($dow == "금") {
-							$price1 = $goods_price6_1;
-							$price2 = $goods_price6_2;
-							$price3 = $goods_price6_3;
+							$price1 = $o_price6_1;
+							$price2 = $o_price6_2;
+							$price3 = $o_price6_3;
 						}
 						
 						if ($dow == "토") {
-							$price1 = $goods_price7_1;
-							$price2 = $goods_price7_2;
-							$price3 = $goods_price7_3;
+							$price1 = $o_price7_1;
+							$price2 = $o_price7_2;
+							$price3 = $o_price7_3;
 						}
 						
 						$sql_c = "INSERT INTO tbl_golf_price  SET  
