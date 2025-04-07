@@ -1253,6 +1253,7 @@ class TourRegistController extends BaseController
             'product_idx'  => $product_idx,
             'group_idx'    => $group_idx,
             'product_name' => $product_name,
+            'goods_name'   => $goods_name,
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
             'hresult'      => $hresult,
