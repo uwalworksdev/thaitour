@@ -501,10 +501,14 @@
 
 						
                         <table cellpadding="0" cellspacing="0" border="1" summary="" class="listTable mem_detail" style="margin-top:10px;">
+						<colgroup>
+							<col width="10%"></col>
+							<col width="*"></col>
+						</colgroup>
                         <tr height="45">
                             <th>
                                 추가옵션등록
-                                <p style="display:block;margin-top:10px;width:50px;">
+                                <p style="display:block;margin-top:10px;">
                                     <button type="button" id="btn_add_option2" class="btn_01">추가</button>
                                 </p>
                             </th>
