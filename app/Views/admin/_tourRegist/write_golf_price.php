@@ -613,6 +613,7 @@ $('[class^="source_sdate_"]').each(function() {
 
     if (match) {
         var xxx = match.replace('source_sdate_', '');
+		alert('xxx- '+xxx);
         var value = $(this).val();
 
         // 대응되는 target 요소에 값 복사
