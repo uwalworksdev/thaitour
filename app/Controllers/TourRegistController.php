@@ -1238,6 +1238,7 @@ class TourRegistController extends BaseController
 		$hquery  = $this->connect->query($hsql, [$product_idx, $group_idx]);
 		$hresult = $hquery->getResultArray();
 
+        write_log("SELECT DISTINCT(goods_name) AS goods_name- " . $this->connect->getLastQuery());
 
         $data = [
             "num"          => $num,
