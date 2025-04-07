@@ -3433,41 +3433,202 @@ class AjaxController extends BaseController {
 	}
 	
 	public function ajax_golfPrice_all()
-	{	
-		$db = \Config\Database::connect();
+    {
+        $data              = $this->request->getPost();
+        $product_idx       = $data['product_idx'];
 
-		$db->transBegin();
+		$options           = $data['optGolf']; // 다차원 배열로 받음		
+        foreach ($options as $index => $option) {
+	
+				$o_idx             = $option['o_optidx'];
+				$group_idx         = $option['group_idx'];
+                $option_type       = $option['option_type'];
+				$o_name            = $option['goods_name'];
+                $o_sdate           = $option['o_sdate'];				
+                $o_edate           = $option['o_edate'];				
+				$o_price1_1        = $option['o_price1_1'];
+				$o_price1_2        = $option['o_price1_2'];
+				$o_price1_3        = $option['o_price1_3'];
+				$o_price2_1        = $option['o_price2_1'];
+				$o_price2_2        = $option['o_price2_2'];
+				$o_price2_3        = $option['o_price2_3'];
+				$o_price3_1        = $option['o_price3_1'];
+				$o_price3_2        = $option['o_price3_2'];
+				$o_price3_3        = $option['o_price3_3'];
+				$o_price4_1        = $option['o_price4_1'];
+				$o_price4_2        = $option['o_price4_2'];
+				$o_price4_3        = $option['o_price4_3'];
+				$o_price5_1        = $option['o_price5_1'];
+				$o_price5_2        = $option['o_price5_2'];
+				$o_price5_3        = $option['o_price5_3'];
+				$o_price6_1        = $option['o_price6_1'];
+				$o_price6_2        = $option['o_price6_2'];
+				$o_price6_3        = $option['o_price6_3'];
+				$o_price7_1        = $option['o_price7_1'];
+				$o_price7_2        = $option['o_price7_2'];
+				$o_price7_3        = $option['o_price7_3'];
+				$vehicle_price1    = $option['vehicle_price1'];
+				$vehicle_price2    = $option['vehicle_price2'];
+				$vehicle_price3    = $option['vehicle_price3'];
+				$vehicle_o_price1  = $option['vehicle_o_price1'];
+				$vehicle_o_price2  = $option['vehicle_o_price2'];
+				$vehicle_o_price3  = $option['vehicle_o_price3'];
+				$cart_price        = $option['cart_price'];
+				$o_cart_due        = $option['o_cart_due'];
+				$o_caddy_due       = $option['o_caddy_due'];
+				$o_cart_cont       = $option['o_cart_cont'];
+				$o_caddy_cont      = $option['o_caddy_cont'];
+				$caddie_fee        = $option['caddie_fee'];
 
-		try {
-			$rankData = $this->request->getPost("rankData");
-            $arr = explode("|", $rankData);
+				$o_golf            = $option['o_golf'];
+				$option_type       = $option['option_type'];
+				$o_soldout         = $option['o_soldout'];
+		 
+				if ($o_idx) {
+					$sql = "UPDATE  tbl_golf_option  SET 
+														 goods_name		= '" . $o_name . "'
+														,goods_price1_1	= '" . $o_price1_1 . "'
+														,goods_price1_2	= '" . $o_price1_2 . "'
+														,goods_price1_3	= '" . $o_price1_3 . "'
+														,goods_price2_1	= '" . $o_price2_1 . "'
+														,goods_price2_2	= '" . $o_price2_2 . "'
+														,goods_price2_3	= '" . $o_price2_3 . "'
+														,goods_price3_1	= '" . $o_price3_1 . "'
+														,goods_price3_2	= '" . $o_price3_2 . "'
+														,goods_price3_3	= '" . $o_price3_3 . "'
+														,goods_price4_1	= '" . $o_price4_1 . "'
+														,goods_price4_2	= '" . $o_price4_2 . "'
+														,goods_price4_3	= '" . $o_price4_3 . "'
+														,goods_price5_1	= '" . $o_price5_1 . "'
+														,goods_price5_2	= '" . $o_price5_2 . "'
+														,goods_price5_3	= '" . $o_price5_3 . "'
+														,goods_price6_1	= '" . $o_price6_1 . "'
+														,goods_price6_2	= '" . $o_price6_2 . "'
+														,goods_price6_3	= '" . $o_price6_3 . "'
+														,goods_price7_1	= '" . $o_price7_1 . "'
+														,goods_price7_2	= '" . $o_price7_2 . "'
+														,goods_price7_3	= '" . $o_price7_3 . "'
+														
+														,vehicle_price1 = '" . $vehicle_price1 . "'
+														,vehicle_price2 = '" . $vehicle_price2 . "'
+														,vehicle_price3 = '" . $vehicle_price3 . "'
+														,vehicle_o_price1 = '" . $vehicle_o_price1 . "'
+														,vehicle_o_price2 = '" . $vehicle_o_price2 . "'
+														,vehicle_o_price3 = '" . $vehicle_o_price3 . "'
+														,cart_price     = '" . $cart_price . "'
+														,caddie_fee     = '" . $caddie_fee . "'	
+														,o_cart_due     = '" . $o_cart_due . "'	
+														,o_caddy_due    = '" . $o_caddy_due . "'	
+														,o_cart_cont    = '" . $o_cart_cont . "'	
+														,o_caddy_cont   = '" . $o_caddy_cont . "'	
+														
+														,o_sdate		= '" . $o_sdate . "'
+														,o_edate		= '" . $o_edate . "'
+														,o_golf			= '" . $o_golf . "'
+														,option_type	= '" . $option_type . "'
+														,o_soldout		= '" . $o_soldout . "'
+													WHERE idx	        = '" . $o_idx . "' ";
+					$result = $this->connect->query($sql);
+				}
+				
+				// 일자별 가격살정
+				$sql = "DELETE FROM tbl_golf_price 
+						WHERE goods_date BETWEEN ? AND ?
+						AND product_idx = ?
+						AND use_yn     != 'N'
+						AND upd_yn     != 'Y'";
 
-            for($i=0;$i<count($arr);$i++)
-			{	
-				$var = explode(":", $arr[$i]);
-			    $db->query("UPDATE tbl_golf_option SET o_seq = ? WHERE idx = ?", [$var[1], $var[0]]);
-            } 
-			
-			if ($db->transStatus() === false) {
-				$db->transRollback();
-				return $this->response->setStatusCode(500)->setJSON([
-					'status'  => 'error',
-					'message' => '순위 설정중 오류가 발생했습니다.'
-				]);
-			}
+				$result = $this->connect->query($sql, [$from_date, $to_date, $product_idx]);
+				
+				$ii = -1;
+				$dateRange = getDateRange($row_o['o_sdate'], $row_o['o_edate']);
+				foreach ($dateRange as $date) {
 
-			$db->transCommit();
-			return $this->response->setStatusCode(200)->setJSON([
-				'status'  => 'success',
-				'message' => '순위설정 완료'
-			]);
+					$ii++;
+					$golf_date = $dateRange[$ii];
+					$dow       = dateToYoil($golf_date);
 
-		} catch (\Exception $e) {
-			$db->transRollback();
-			return $this->response->setStatusCode(500)->setJSON([
-				'status' => 'error',
-				'message' => $e->getMessage()
-			]);
+					if ($dow == "일") {
+						$price1 = $row_o['goods_price1_1'];
+						$price2 = $row_o['goods_price1_2'];
+						$price3 = $row_o['goods_price1_3'];
+					}
+					
+					if ($dow == "월") {
+						$price1 = $row_o['goods_price2_1'];
+						$price2 = $row_o['goods_price2_2'];
+						$price3 = $row_o['goods_price2_3'];
+					}
+					
+					if ($dow == "화") {
+						$price1 = $row_o['goods_price3_1'];
+						$price2 = $row_o['goods_price3_2'];
+						$price3 = $row_o['goods_price3_3'];
+					}
+					
+					if ($dow == "수") {
+						$price1 = $row_o['goods_price4_1'];
+						$price2 = $row_o['goods_price4_2'];
+						$price3 = $row_o['goods_price4_3'];
+					}
+					
+					if ($dow == "목") {
+						$price1 = $row_o['goods_price5_1'];
+						$price2 = $row_o['goods_price5_2'];
+						$price3 = $row_o['goods_price5_3'];
+					}
+					
+					if ($dow == "금") {
+						$price1 = $row_o['goods_price6_1'];
+						$price2 = $row_o['goods_price6_2'];
+						$price3 = $row_o['goods_price6_3'];
+					}
+					
+					if ($dow == "토") {
+						$price1 = $row_o['goods_price7_1'];
+						$price2 = $row_o['goods_price7_2'];
+						$price3 = $row_o['goods_price7_3'];
+					}
+					
+					$sql_c = "INSERT INTO tbl_golf_price  SET  
+															  o_idx	      = '" . $row_o['idx'] . "'	
+															, goods_date  = '" . $golf_date . "'	
+															, dow	      = '" . $dow . "'	
+															, product_idx = '" . $product_idx . "'	
+															, group_idx   = '" . $row_o['group_idx'] . "'	
+															, goods_name  = '" . $row_o['goods_name'] . "'	
+															, price_1	  = '" . $price1 . "'	
+															, price_2	  = '" . $price2 . "'	
+															, price_3	  = '" . $price3 . "'	
+															, use_yn	  = ''	
+															, reg_date    = now() ";
+					$this->connect->query($sql_c);
+				}
+				
+        }
+		
+		// 골프 옵션 조회
+		$sql     = "SELECT DISTINCT(goods_name) AS goods_name FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND option_type = 'M'";
+		$query   = $this->connect->query($sql);
+		$results = $query->getResultArray();
+
+        $holes_number = ""; 
+		foreach ($results as $row) {
+			if($holes_number == "") {
+			   $holes_number  = $row['goods_name'];
+			} else {  
+			   $holes_number .= ", ". $row['goods_name'];
+			}   
 		}
-	}	
+
+		// 업데이트 쿼리 실행
+		$sql_u = "UPDATE tbl_golf_info SET holes_number = ? WHERE product_idx = ?";
+		$this->connect->query($sql_u, [$holes_number, $product_idx]);
+		
+		return $this->response->setStatusCode(200)->setJSON([
+			'status'  => 'success',
+			'message' => '기간요금 설정완료'
+		]);
+		
+    }	
 }	
