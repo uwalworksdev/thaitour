@@ -3600,10 +3600,10 @@ class AjaxController extends BaseController {
 							$price3 = $o_price7_3;
 						}
 
-						$sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_date = '". $golf_date ."'";
-						$cnt = $db->query($sql)->getNumRows();
+						$sql_1 = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_date = '". $golf_date ."'";
+						$cnt_1 = $db->query($sql_1)->getNumRows();
 						
-						if($cnt == 0) {
+						if($cnt_1 == 0) {
 							$sql_c = "INSERT INTO tbl_golf_price  SET  
 																	  o_idx	      = '" . $o_idx . "'	
 																	, goods_date  = '" . $golf_date . "'	
