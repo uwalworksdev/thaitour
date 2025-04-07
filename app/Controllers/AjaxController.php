@@ -3592,21 +3592,26 @@ class AjaxController extends BaseController {
 							$price2 = $o_price7_2;
 							$price3 = $o_price7_3;
 						}
+
+						$sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_date = '". $golf_date ."'";
+						$cnt = $db->query($sql)->getNumRows();
 						
-						$sql_c = "INSERT INTO tbl_golf_price  SET  
-																  o_idx	      = '" . $o_idx . "'	
-																, goods_date  = '" . $golf_date . "'	
-																, dow	      = '" . $dow . "'	
-																, product_idx = '" . $product_idx . "'	
-																, group_idx   = '" . $group_idx . "'	
-																, goods_name  = '" . $o_name . "'	
-																, price_1	  = '" . $price1 . "'	
-																, price_2	  = '" . $price2 . "'	
-																, price_3	  = '" . $price3 . "'	
-																, use_yn	  = ''	
-																, reg_date    = now() ";
-						write_log("aaaa- ". $sql_c);										
-						$db->query($sql_c);
+						if($cnt == 0) {
+							$sql_c = "INSERT INTO tbl_golf_price  SET  
+																	  o_idx	      = '" . $o_idx . "'	
+																	, goods_date  = '" . $golf_date . "'	
+																	, dow	      = '" . $dow . "'	
+																	, product_idx = '" . $product_idx . "'	
+																	, group_idx   = '" . $group_idx . "'	
+																	, goods_name  = '" . $o_name . "'	
+																	, price_1	  = '" . $price1 . "'	
+																	, price_2	  = '" . $price2 . "'	
+																	, price_3	  = '" . $price3 . "'	
+																	, use_yn	  = ''	
+																	, reg_date    = now() ";
+							write_log("aaaa- ". $sql_c);										
+							$db->query($sql_c);
+					    }		
 					}
 					
 			}
