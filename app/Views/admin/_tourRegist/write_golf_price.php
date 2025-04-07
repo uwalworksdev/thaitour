@@ -602,10 +602,8 @@
 
 <script>
 $('#btn_upd_all').on('click', function(e) {
- 
-        //$('#golfForm').attr('action', '/AdmMaster/_tourRegist/write_golf_price_ok');
-        $('#golfForm').attr('action', '/AdmMaster/_tourRegist/write_golf_allupdate');
-        $("#golfForm").submit();
+        $('#golfForm').attr('action', '<?= route_to("admin._tourRegist.write_golf_allupdate") ?>');
+        $('#golfForm').submit();
 });
 </script>
 
