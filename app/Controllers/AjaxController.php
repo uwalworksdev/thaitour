@@ -3599,7 +3599,7 @@ class AjaxController extends BaseController {
 																, dow	      = '" . $dow . "'	
 																, product_idx = '" . $product_idx . "'	
 																, group_idx   = '" . $group_idx . "'	
-																, goods_name  = '" . $goods_name . "'	
+																, goods_name  = '" . $o_name . "'	
 																, price_1	  = '" . $price1 . "'	
 																, price_2	  = '" . $price2 . "'	
 																, price_3	  = '" . $price3 . "'	
