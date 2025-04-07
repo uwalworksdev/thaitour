@@ -1187,7 +1187,7 @@ class TourRegistController extends BaseController
         if ($pg == "") $pg = 1;
 
         $product_idx = $this->request->getVar("product_idx");
-        $group_idx   = $this->request->getVar("group_idx_idx");
+        $group_idx   = $this->request->getVar("group_idx");
         $s_date      = $this->request->getVar("s_date");
         $e_date      = $this->request->getVar("e_date");
 
