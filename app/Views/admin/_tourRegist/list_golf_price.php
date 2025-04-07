@@ -506,6 +506,8 @@
 					
 					<script>
 						$("#inqCharge").one("click", function () {
+							$("#goods_name").val($("#hole").val());
+							$("#in_s_date").val($("#s_date").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
@@ -1156,7 +1158,7 @@
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_golf_price">
             <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
             <input type="hidden" name="g_idx"        value="<?=$g_idx?>" >
-            <input type="hidden" name="roomIdx"      value="<?=$roomIdx?>">
+            <input type="hidden" name="goods_name"   id="goods_name"   value="<?=$goods_name?>">
 			<input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
 			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
 			<input type="hidden" name="g_list_rows"  value="<?=$g_list_rows?>" id="g_list_rows">
