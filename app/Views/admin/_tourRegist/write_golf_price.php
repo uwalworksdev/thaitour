@@ -620,7 +620,7 @@ $('[class*="groupId"]').each(function() {
         $('.target_edate_' + groupIdx).val(edate);
     }
 });	
-/*
+ 
 			var f = document.frm;
 			var golf_data = $(f).serialize();
 
@@ -645,7 +645,7 @@ $('[class*="groupId"]').each(function() {
 			
         //$('#golfForm').attr('action', '<?= route_to("admin._tourRegist.write_golf_allupdate") ?>');
         //$('#golfForm').submit();
-*/		
+ 		
     });
 });
 </script>
