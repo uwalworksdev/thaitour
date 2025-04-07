@@ -3600,7 +3600,7 @@ class AjaxController extends BaseController {
 							$price3 = $o_price7_3;
 						}
 
-						$sql_1 = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_date = '". $golf_date ."'";
+						$sql_1 = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_name = '". $o_name ."' AND goods_date = '". $golf_date ."'";
 						write_log("cccccccc- ". $sql_1);
 						$cnt_1 = $db->query($sql_1)->getNumRows();
 						
