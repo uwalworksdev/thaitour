@@ -3449,9 +3449,9 @@ class AjaxController extends BaseController {
 					$o_edate           = $option['o_edate'];				
 
                     if($input == "") {
-					   $input = $o_sdate .":". $o_edate;
+					   $input  = $o_sdate .":". $o_edate;
 					} else {  
-					   $input = "|". $o_sdate .":". $o_edate;	
+					   $input .= "|". $o_sdate .":". $o_edate;	
 					}   
 					
             }
