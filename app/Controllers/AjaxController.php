@@ -3440,6 +3440,22 @@ class AjaxController extends BaseController {
 			$product_idx       = $data['product_idx'];
 
 			$options           = $data['optGolf']; // 다차원 배열로 받음		
+			foreach ($options as $index => $option) 
+			{
+					$o_sdate           = $option['o_sdate'];				
+					$o_edate           = $option['o_edate'];				
+
+					// 일자별 가격설정
+					$sql = "DELETE FROM tbl_golf_price 
+							WHERE goods_date BETWEEN ? AND ?
+							AND product_idx = ?
+							AND use_yn     != 'N'
+							AND upd_yn     != 'Y'";
+
+					$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
+            
+            }
+			
 			foreach ($options as $index => $option) {
 		
 					$o_idx             = $option['o_optidx'];
@@ -3533,15 +3549,6 @@ class AjaxController extends BaseController {
 						//write_log("111- ". $sql);								
 						$result = $db->query($sql);
 					}
-					
-					// 일자별 가격설정
-					$sql = "DELETE FROM tbl_golf_price 
-							WHERE goods_date BETWEEN ? AND ?
-							AND product_idx = ?
-							AND use_yn     != 'N'
-							AND upd_yn     != 'Y'";
-
-					//$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
 					
 					$ii = -1;
 					$dateRange = getDateRange($o_sdate, $o_edate);
