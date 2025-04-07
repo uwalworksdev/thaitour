@@ -194,7 +194,7 @@
 									<button type="button" class="btn_day_option btn_02" value="<?= $row['group_idx'] ?>">기간등록</button>
 									<?php } ?>
 										
-									<button type="button" id="btn_update_option" class="btn_01" onclick="updDay('<?= $row['product_idx'] ?>')">일자별수정</button>
+									<button type="button" id="btn_update_option" class="btn_01" onclick="updDay('<?= $row['product_idx'] ?>','<?= $row['group_idx'] ?>')">일자별수정</button>
 									<button type="button" class="btn_copy_option btn_01" value="<?= $row['group_idx'] ?>">복사</button>
 									<button type="button" class="btn_delete_option btn_02" value="<?= $row['group_idx'] ?>">삭제</button>
 									<!-- <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span> -->
