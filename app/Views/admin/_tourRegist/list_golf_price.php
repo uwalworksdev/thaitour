@@ -144,7 +144,7 @@
                                 <th>홀구분</th>
                                 <td>
                                     <select name="hole" id="hole">
-									   <option value="">홀선택</option>
+									   <option value="">홀전체</option>
 										<?php foreach($hresult as $row): ?>
 											  <option value="<?= esc($row['goods_name']) ?>" <?php if($goods_name == $row['goods_name']) echo "selected";?> ><?= esc($row['goods_name']) ?></option>
 										<?php endforeach; ?>
