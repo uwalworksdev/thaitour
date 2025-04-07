@@ -3601,6 +3601,7 @@ class AjaxController extends BaseController {
 						}
 
 						$sql_1 = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx. "' AND goods_date = '". $golf_date ."'";
+						write_log("cccccccc- ". $sql_1);
 						$cnt_1 = $db->query($sql_1)->getNumRows();
 						
 						if($cnt_1 == 0) {
