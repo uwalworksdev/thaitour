@@ -604,7 +604,7 @@
 $(document).ready(function() {
     $('#btn_upd_all').on('click', function(e) {
 		
-			var f = document.golfForm;
+			var f = document.frm;
 			var golf_data = $(f).serialize();
 
 			var message = "";
