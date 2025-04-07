@@ -3434,6 +3434,7 @@ class AjaxController extends BaseController {
 	
 	public function ajax_golfPrice_all()
     {
+		write_log('aaaaaaaaaaaa');
         $data              = $this->request->getPost();
         $product_idx       = $data['product_idx'];
 
