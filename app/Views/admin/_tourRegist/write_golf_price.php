@@ -602,8 +602,11 @@
 
 <script>
 $('#btn_upd_all').on('click', function(e) {
+	alert('1111111111111');
         $('#golfForm').attr('action', '<?= route_to("admin._tourRegist.write_golf_allupdate") ?>');
+	alert('22222222222');
         $('#golfForm').submit();
+	alert('33333333333');
 });
 </script>
 
