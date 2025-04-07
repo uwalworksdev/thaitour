@@ -869,6 +869,7 @@ $(document).on('click', '.btn_day_option', function () {
 $(document).ready(function () {
     $("#btn_add_fee").on("click", function () {
            
+		    /*
             if($("#a_sdate").val() == "") {
 			   alert('시작일자를 입력하세요.');
 			   $("#a_sdate").focus();
@@ -880,7 +881,7 @@ $(document).ready(function () {
 			   $("#a_edate").focus();
 			   return false;
 		    }
-		   
+		    */
 			var message = "";
 			$.ajax({
 
