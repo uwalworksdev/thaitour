@@ -1123,12 +1123,6 @@
 			</script>
 
 			<script>
-				function go_list() {
-					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
-				}
-			</script>
-
-			<script>
 				function submitForm() {
 					$("#g_list_rows").val($("#list_rows").val());
 					$("#pg").val('1');
