@@ -852,7 +852,8 @@
                                 prevText: '이전',
                                 nextText: '다음',
                                 yearRange: "c:c+10",
-                                minDate: new Date(),
+                                //minDate: new Date(),
+                                minDate: null,
                                 maxDate: "+99Y",
                                 onClose: function (selectedDate) {
                                     $("#e_date").datepicker("option", "minDate", selectedDate);
