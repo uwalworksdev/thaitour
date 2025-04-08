@@ -540,8 +540,8 @@
 					<script>
 						$("#inqCharge").one("click", function () {
 							$("#goods_name").val($("#hole").val());
-							$("#in_s_date").val($("#sdate").val());
-							$("#in_e_date").val($("#edate").val());
+							//$("#in_s_date").val($("#sdate").val());
+							//$("#in_e_date").val($("#edate").val());
 							const selectedHoles = $('.holeOption:checked').map(function () {
 								return $(this).val();
 							}).get().join(',');
