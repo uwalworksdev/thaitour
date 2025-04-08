@@ -1146,11 +1146,13 @@
 				}
 			</script>
 
+            <!--
 			<script>
 				function go_list() {
                     window.location.href = "AdmMaster/_tourRegist/list_golf_price?product_idx=<?=$product_idx?>&o_idx=&s_date=<?=$s_date?>&e_date=<?=$e_date?>&pg=7					
 				}
 			</script>
+			-->
 			
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/list_golf_price">
             <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
