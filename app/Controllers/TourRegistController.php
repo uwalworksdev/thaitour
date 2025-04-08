@@ -1385,11 +1385,12 @@ class TourRegistController extends BaseController
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
-        $product_idx = $this->request->getVar("product_idx");
-        $group_idx   = $this->request->getVar("group_idx");
-        $goods_name  = $this->request->getVar("goods_name");
-        $s_date      = $this->request->getVar("s_date");
-        $e_date      = $this->request->getVar("e_date");
+        $product_idx   = $this->request->getVar("product_idx");
+        $group_idx     = $this->request->getVar("group_idx");
+        $goods_name    = $this->request->getVar("goods_name");
+		$selectedHoles = $this->request->getVar("holes");
+        $s_date        = $this->request->getVar("s_date");
+        $e_date        = $this->request->getVar("e_date");
 
         if($s_date == "") $s_date = date('Y-m-d');
 		
@@ -1397,6 +1398,21 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         $search = " AND group_idx = '". $group_idx ."' ";
+
+if (!empty($selectedHoles)) {
+    // 개수만큼 바인딩 파라미터 생성 (:hole0, :hole1 ...)
+    $placeholders = [];
+    $params = [];
+
+    foreach ($selectedHoles as $index => $hole) {
+        $key = ":hole" . $index;
+        $placeholders[] = $key;
+        $params[$key] = $hole;
+    }
+    $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
+	
+}
+
 		if($goods_name) $search .= " AND goods_name = '". $goods_name ."' ";
 
         if ($s_date && $e_date) {
