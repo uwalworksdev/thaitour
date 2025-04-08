@@ -121,6 +121,8 @@
             <input type=hidden name="group_idx" value='<?= $group_idx ?>' id='group_idx'>
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
             <input type=hidden name="chk_idx"   value='' id='chk_idx'>
+            <input type=hidden name="sdate"   value='<?=$sdate?>' id='sdate'>
+            <input type=hidden name="edate"   value='<?=$edate?>' id='edate'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -538,8 +540,8 @@
 					<script>
 						$("#inqCharge").one("click", function () {
 							$("#goods_name").val($("#hole").val());
-							$("#in_s_date").val($("#s_date").val());
-							$("#in_e_date").val($("#e_date").val());
+							$("#in_s_date").val($("#sdate").val());
+							$("#in_e_date").val($("#edate").val());
 							const selectedHoles = $('.holeOption:checked').map(function () {
 								return $(this).val();
 							}).get().join(',');
