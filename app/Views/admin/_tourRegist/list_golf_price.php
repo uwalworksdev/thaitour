@@ -1187,6 +1187,9 @@
 				function submitForm() {
 					$("#g_list_rows").val($("#list_rows").val());
 					$("#pg").val('1');
+			        $("#in_s_date").val('<?=$s_date?>'); 
+			        $("#in_e_date").val('<?=$e_date?>');  
+					
 					document.getElementById("priceForm").submit();
 					/*
 					var product_code_1  = '<?=$product_code_1?>';
