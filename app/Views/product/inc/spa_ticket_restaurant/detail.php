@@ -195,7 +195,7 @@
                     </h2>
 
                     <h2 class="title-sec2" style="margin-bottom: 10px">
-                        포함/불포함 사항
+                        상품정보
                     </h2>
 
                     <?php if($data_['tour_info']) {?>
