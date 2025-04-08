@@ -144,9 +144,9 @@
                                 <th>홀구분</th>
                                 <td>
                                     <select name="hole" id="hole">
-									   <option value="">홀전체</option>
+									    <input type="checkbox" value="" >홀전체
 										<?php foreach($hresult as $row): ?>
-											  <option value="<?= esc($row['goods_name']) ?>" <?php if($goods_name == $row['goods_name']) echo "selected";?> ><?= esc($row['goods_name']) ?></option>
+											  <input type="checkbox" value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?>
 										<?php endforeach; ?>
 									</select>   
                                 </td>
