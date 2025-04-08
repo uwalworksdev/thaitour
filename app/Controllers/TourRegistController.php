@@ -1414,8 +1414,6 @@ class TourRegistController extends BaseController
 
         if($placeholders) $search .= " AND goods_name IN (" . $placeholders . ")";
 
-    write_log("search - " . $search); // 로그 찍기
-
     // 이후 $params 를 이용해 PDO prepare/execute 등 가능
  
 
@@ -1438,7 +1436,6 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-        write_log("error-". $sql);
 		
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
@@ -1448,7 +1445,6 @@ class TourRegistController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $fsql = $sql . " order by goods_date, goods_name asc limit $nFrom, $g_list_rows";
-        write_log($fsql);
         $fresult  = $this->connect->query($fsql);
         $roresult = $fresult->getResultArray();
 
@@ -1478,6 +1474,7 @@ class TourRegistController extends BaseController
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
             'hresult'      => $hresult,
+			'holesStr'     =? $holesStr,
         ];
 
         return view("admin/_tourRegist/list_golf_price", $data);
