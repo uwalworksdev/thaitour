@@ -73,73 +73,93 @@
                                         ?>
                                             <div class="table_list" data-info-idx="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
                                                 <table style="width: 100%">
-                                                    <colgroup>
-                                                        <col width="35%">
-                                                        <col width="*">
-                                                        <col width="10%">
-                                                        <col width="15%">
-                                                    </colgroup>
-                                                    <thead>
+													<colgroup>
+														<col width="20%">
+														<col width="*">
+														<col width="15%">
+													</colgroup>
+                                                    <!-- <thead>
                                                         <tr>
                                                             <th>기간</th>
                                                             <th>출발요일</th>
                                                             <th>기존상품가</th>
                                                             <th></th>
                                                         </tr>
-                                                    </thead>
+                                                    </thead> -->
                                                     <tbody>
                                                         <tr>
+															<td>
+																<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+																	<div style="display: flex; justify-content: center; gap: 5px;">
+																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
+																		<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
+																		<a href="javascript:del_spas('<?= $info['info']['info_idx']?>', '<?= $info['spas_idx_json'] ?>');" class="btn btn-danger">삭제</a>
+																	</div>
+																</div>
+															</td>
                                                             <td>
-                                                                <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-                                                                    <input type="text" readonly class="datepicker s_date" name="o_sdate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
-                                                                        value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
-                                                                    <input type="text" readonly class="datepicker e_date" name="o_edate[<?=$i?>]" style="width: 150px; cursor: pointer;" 
-                                                                        value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                                                                
-                                                                    <button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                    $count_yoil = 0;
-                                                                    for($_y = 0; $_y <= 6; $_y++) {
-                                                                        if($info['info']['yoil_'.$_y] == 'Y') {
-                                                                            $count_yoil++;
-                                                                        }
-                                                                    }
+																<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+																	<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																		<input type="text" readonly class="datepicker s_date" name="o_sdate[<?=$i?>]" placeholder="시작기간" style="width: 120px; cursor: pointer;" 
+																			value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
+																		<input type="text" readonly class="datepicker e_date" placeholder="종료기간" name="o_edate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
+																			value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
+																	
+																		<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
+																	</div>
+																	<?php
+																		$count_yoil = 0;
+																		for($_y = 0; $_y <= 6; $_y++) {
+																			if($info['info']['yoil_'.$_y] == 'Y') {
+																				$count_yoil++;
+																			}
+																		}
 
-                                                                ?>
-                                                                <input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
-                                                                전체&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
-                                                                <input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
-                                                                    <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+																	?>
+																	<div style="display: flex; align-items: center; gap: 5px;">
+																		<input type="checkbox" class="all_yoil" <?= $count_yoil == 7 ? 'checked' : '' ?>>
+																		전체&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_0[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_1[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_2[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_3[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_4[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_5[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일&nbsp;&nbsp;
+																		<input type="checkbox" name="yoil_6[<?=$i?>]" class="yoil" 
+																			<?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일&nbsp;&nbsp;
+																	</div>
+																</div>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="spas_info_price[<?=$i?>]" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
+																<div style="display: flex; gap: 5px;">
+																	<input type="text" name="spas_info_price[<?=$i?>]" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
+																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																</div>
                                                             </td>
-                                                            <td>
+                                                            <!-- <td>
                                                                 <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
                                                                     <a href="javascript:add_spa(<?= $i ?>);" class="btn btn-primary">추가</a>
                                                                     <a href="javascript:del_spas('<?= $info['info']['info_idx']?>', '<?= $info['spas_idx_json'] ?>');" class="btn btn-danger">삭제</a>
                                                                 </div>
-                                                            </td>
+                                                            </td> -->
                                                         </tr>
                                                         <tr>
                                                             <td colspan="4">
                                                                 <table style="width:100%">
-                                                                    <thead>
+																	<colgroup>
+																		<col width="*">
+																		<col width="12%">
+																		<col width="12%">
+																		<col width="10%">
+																	</colgroup>
+                                                                    <!-- <thead>
                                                                         <tr style="height:40px">
                                                                             <td style="width:*;text-align:center">
                                                                                 상품타입(국문/영문)
@@ -154,22 +174,25 @@
                                                                                 판매상태
                                                                             </td>
                                                                         </tr>
-                                                                    </thead>
+                                                                    </thead> -->
                                                                     <tbody class="air_main" data-info-idx="<?= $i ?>">
                                                                         <?php foreach ($info['spas'] as $spa): ?>
                                                                             <tr class="air_list_1" style="height:40px">
                                                                                 <td>
                                                                                 	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
+																					<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="<?= $spa['spa_onum'] ?>">
 																					<div style="display: flex; gap: 5px;">
+																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
 																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
 																					</div>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['spas_price']) ?>" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['spas_price']) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['spas_price_kids']) ?>" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['spas_price_kids']) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                                 </td>
          
                                                                                 <td>
@@ -197,14 +220,17 @@
                                                                     
                                                                     <tbody>
                                                                         <tr>
-                                                                            <th>옵션추가</th>
+                                                                            <th>
+																				옵션추가
+																				<button type="button" class="btn btn-primary" onclick="add_main_option(this, <?= $i ?>);">추가</button>	
+																			</th>
                                                                             <td>
-                                                                                <button type="button" class="btn btn-primary" onclick="add_main_option(this, <?= $i ?>);">추가</button>	
                                                                                 <input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
                                                                                 <?php $j = 0;?>
                                                                                 <?php foreach ($info['options'] as $moption): ?>
                                                                                     <div class="option_area">
                                                                                         <input type="hidden" name="moption_idx[<?=$i?>][<?=$j?>]" class="moption_idx" value="<?=$moption["code_idx"]?>">
+																						<input type="hidden" name="moption_onum[<?=$i?>][<?=$j?>]" class="moption_onum" value="<?=$moption["onum"]?>">
                                                                                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                                                                                             <colgroup>
                                                                                                 <col width="10%">
@@ -215,10 +241,13 @@
                                                                                                 <th colspan="5">
                                                                                                     <div class="flex__c" style="gap: 5px;">
                                                                                                         옵션 <input type='text' name='moption_name[<?=$i?>][<?=$j?>]' class="moption_name"
+																													placeholder="옵션명"
                                                                                                                     value="<?=$moption["moption_name"]?>" style="width:550px"/>
                                                                                                         <button type="button" class="btn btn-danger"
                                                                                                                 onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
                                                                                                         </button>
+																										<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																										<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
                                                                                                     </div>
                                                                                                 </th>
                                                                                             </tr>
@@ -235,14 +264,14 @@
                                                                                                 <td>
                                                                                                     <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
                                                                                                     <table>
-                                                                                                        <colgroup>
-                                                                                                            <col width="*"></col>
-                                                                                                            <col width="10%"></col>
-                                                                                                            <col width="10%"></col>
-                                                                                                            <col width="10%"></col>
-                                                                                                            <col width="12%"></col>
-                                                                                                        </colgroup>
-                                                                                                        <thead>
+																										<colgroup>
+																											<col width="*"></col>
+																											<col width="15%"></col>
+																											<col width="10%"></col>
+																											<col width="10%"></col>
+																											<col width="8%"></col>
+																										</colgroup>
+                                                                                                        <!-- <thead>
                                                                                                         <tr>
                                                                                                             <th>옵션명 한글/영문</th>
                                                                                                             <th>가격(단위: 바트)</th>
@@ -250,19 +279,22 @@
                                                                                                             <th>순서</th>
                                                                                                             <th>삭제</th>
                                                                                                         </tr>
-                                                                                                        </thead>
+                                                                                                        </thead> -->
                                                                                                         <tbody>
         
                                                                                                             <?php foreach ($moption['option_spas'] as $option_spa): ?>
                                                                                                                 <tr>
                                                                                                                     <td>
-                                                                                                                        <input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="<?=$option_spa["idx"]?>">
-                                                                                                                        <input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" style="width:48%;" />
-                                                                                                                        <input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" style="width:48%;" />
+																														<div style="display: flex; gap: 5px;">
+                                                                                                                        	<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="<?=$option_spa["idx"]?>">
+																															<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="<?=$option_spa["onum"]?>">
+                                                                                                                        	<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" style="width:48%;" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+                                                                                                                        	<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" style="width:48%;" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																														</div>
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <input type='text' style="text-align:right;"
-                                                                                                                                name='o_price[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_price"]?>" numberOnly=true/>
+                                                                                                                                name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="<?=$option_spa["option_price"]?>" numberOnly=true/>
                                                                                                                     </td>
                                                                                                                     <td>
                                                                                                                         <select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
@@ -274,9 +306,15 @@
                                                                                                                             </option>
                                                                                                                         </select>
                                                                                                                     </td>
-                                                                                                                    <td>
+																													<td>
+																														<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																															<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																															<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																														</div>
+																													</td>
+                                                                                                                    <!-- <td>
                                                                                                                         <input type='text' name='o_num[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["onum"]?>" numberOnly=true/>
-                                                                                                                    </td>
+                                                                                                                    </td> -->
                                                                                                                     <td>
                                                                                                                         <div style="display: flex; gap: 5px; justify-content: center; align-items: center">
                                                                                                                             <button type="button" class="btn btn-danger"
@@ -325,45 +363,67 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
+														<td>
+															<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+																<div style="display: flex; justify-content: center; gap: 5px;">
+																	<input type="hidden" name="o_onum[0]" class="o_onum" value="">
+																	<input type="text" name="info_name[0]" style="width: 250px;" value="">
+																	<a href="javascript:add_spas(0);" class="btn btn-primary">추가</a>
+																	<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
+																</div>
+																
+															</div>
+														</td>
                                                         <td>
-                                                            <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-                                                                <input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" style="width: 150px; cursor: pointer;" value="" id=""> ~
-                                                                <input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" style="width: 150px; cursor: pointer;" value="" id="">
+															<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 150px; cursor: pointer;" value="" id=""> ~
+																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 150px; cursor: pointer;" value="" id="">
 
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <input type="checkbox" class="all_yoil">
-                                                            전체&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_0[0]" value="" class="yoil">
-                                                            일요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_1[0]" value="" class="yoil">
-                                                            월요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_2[0]" value="" class="yoil">
-                                                            화요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_3[0]" value="" class="yoil">
-                                                            수요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_4[0]" value="" class="yoil">
-                                                            목요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_5[0]" value="" class="yoil">
-                                                            금요일&nbsp;&nbsp;
-                                                            <input type="checkbox" name="yoil_6[0]" value="" class="yoil">
-                                                            토요일&nbsp;&nbsp;
+																</div>
+																<div style="display: flex; align-items: center; gap: 5px;">
+																	<input type="checkbox" class="all_yoil">
+																	전체&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_0[0]" value="" class="yoil">
+																	일요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_1[0]" value="" class="yoil">
+																	월요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_2[0]" value="" class="yoil">
+																	화요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_3[0]" value="" class="yoil">
+																	수요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_4[0]" value="" class="yoil">
+																	목요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_5[0]" value="" class="yoil">
+																	금요일&nbsp;&nbsp;
+																	<input type="checkbox" name="yoil_6[0]" value="" class="yoil">
+																	토요일&nbsp;&nbsp;
+																</div>
+															</div>
                                                         </td>
                                                         <td>
                                                             <input type="text" name="spas_info_price[0]" numberOnly=true>
+															<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+															<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
                                                         </td>
-                                                        <td>
+                                                        <!-- <td>
                                                             <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
                                                                 <a href="javascript:add_spas(0);" class="btn btn-primary">추가</a>
                                                                 <a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
                                                             </div>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td colspan="3">
                                                             <table style="width:100%">
-                                                                <thead>
+																<colgroup>
+																	<col width="*">
+																	<col width="12%">
+																	<col width="12%">
+																	<col width="12%">
+																	<col width="10%">
+																</colgroup>
+                                                                <!-- <thead>
                                                                     <tr style="height:40px">
                                                                         <td style="width:*;text-align:center">
                                                                             상품타입
@@ -378,21 +438,24 @@
                                                                             판매상태
                                                                         </td>
                                                                     </tr>
-                                                                </thead>
+                                                                </thead> -->
                                                                 <tbody class="air_main">
                                                                     <tr class="air_list_1" style="height:40px" >
                                                                         <td style="width:100px;text-align:center">
                                                                             <input type="hidden" name="spas_idx[0][]" class="spas_idx" value="">
+																			<input type="hidden" name="spa_onum[0][]" class="spa_onum" value="">
 																			<div style="display: flex; gap: 5px;">
+																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				<input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
 																			</div>
                                                                         </td>
                                                                         <td style="text-align:center">
-                                                                            <input type="text" name="spas_price[0][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+                                                                            <input type="text" name="spas_price[0][]" placeholder="성인가격(단위: 바트)" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
                                                                         </td>
                                                                         <td style="text-align:center">
-                                                                            <input type="text" name="spas_price_kids[0][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                            <input type="text" name="spas_price_kids[0][]" placeholder="소아가격(단위: 바트)" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                         </td>
                                                                         <td>
                                                                             <div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -418,11 +481,14 @@
                                                                 
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th>옵션추가</th>
+                                                                        <th>
+																			옵션추가
+																			<button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
+																		</th>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-primary" onclick="add_main_option(this, 0);">추가</button>	
                                                                             <div class="option_area">
                                                                                 <input type="hidden" name="moption_idx[0][0]" class="moption_idx" value="">
+																				<input type="hidden" name="moption_onum[0][0]" class="moption_onum" value="">
                                                                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                                                                                     <colgroup>
                                                                                         <col width="10%">
@@ -433,10 +499,13 @@
                                                                                         <th colspan="5">
                                                                                             <div class="flex__c" style="gap: 5px;">
                                                                                                 옵션 <input type='text' name='moption_name[0][0]'
+																											placeholder="옵션명"
                                                                                                             value="" style="width:550px"/>
                                                                                                 <button type="button" class="btn btn-danger"
                                                                                                         onclick="del_main_option('', this);">삭제
                                                                                                 </button>
+																								<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																								<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
                                                                                             </div>
                                                                                         </th>
                                                                                     </tr>
@@ -454,13 +523,13 @@
                                                                                             <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
                                                                                             <table>
                                                                                                 <colgroup>
-                                                                                                    <col width="*"></col>
-                                                                                                    <col width="10%"></col>
-                                                                                                    <col width="10%"></col>
-                                                                                                    <col width="10%"></col>
-                                                                                                    <col width="12%"></col>
+																									<col width="*"></col>
+																									<col width="15%"></col>
+																									<col width="10%"></col>
+																									<col width="10%"></col>
+																									<col width="8%"></col>
                                                                                                 </colgroup>
-                                                                                                <thead>
+                                                                                                <!-- <thead>
                                                                                                 <tr>
                                                                                                     <th>옵션명 한글/영문</th>
                                                                                                     <th>가격(단위: 바트)</th>
@@ -468,17 +537,18 @@
                                                                                                     <th>순서</th>
                                                                                                     <th>삭제</th>
                                                                                                 </tr>
-                                                                                                </thead>
+                                                                                                </thead> -->
                                                                                                 <tbody>
                                                                                                     <tr>
                                                                                                         <td>
                                                                                                             <input type="hidden" name="op_spa_idx[0][0][]" class="op_spa_idx" value="">
-                                                                                                            <input type='text' name='o_name[0][0][]' value="" style="width:48%;" />
-                                                                                                            <input type='text' name='o_name_eng[0][0][]' value="" style="width:48%;" />
+																											<input type="hidden" name="op_spa_onum[0][0][]" class="op_spa_onum" value="">
+                                                                                                            <input type='text' name='o_name[0][0][]' value="" style="width:48%;" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+                                                                                                            <input type='text' name='o_name_eng[0][0][]' value="" style="width:48%;" placeholder="옵션타입 영문글씨로 입력해주세요"/>
                                                                                                         </td>
                                                                                                         <td>
                                                                                                             <input type='text' style="text-align:right;"
-                                                                                                                    name='o_price[0][0][]' value="" numberOnly=true/>
+                                                                                                                    name='o_price[0][0][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
                                                                                                         </td>
                                                                                                         <td>
                                                                                                             <select name="use_yn[0][0][]" style="width:100%">
@@ -490,9 +560,15 @@
                                                                                                                 </option>
                                                                                                             </select>
                                                                                                         </td>
-                                                                                                        <td>
+																										<td>
+																											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																												<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																											</div>
+																										</td>
+                                                                                                        <!-- <td>
                                                                                                             <input type='text' name='o_num[0][0][]' value="" numberOnly=true/>
-                                                                                                        </td>
+                                                                                                        </td> -->
                                                                                                         <td>
                                                                                                             <div style="display: flex; gap: 5px; justify-content: center; align-items: center">
                                                                                                                 <button type="button" class="btn btn-danger"
@@ -573,78 +649,148 @@
 
 	});
 
+	function moveUp(button) {
+		let current = $(button).closest(".table_list");
+		let prev = current.prev(".table_list");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveDown(button) {
+		let current = $(button).closest(".table_list");
+		let next = current.next(".table_list");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveTourUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveTourDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveMOptionUp(button) {
+		let current = $(button).closest(".option_area");
+		let prev = current.prev(".option_area");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+		}
+
+	function moveMOptionDown(button) {
+		let current = $(button).closest(".option_area");
+		let next = current.next(".option_area");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
+	function moveOptionUp(button) {
+		let current = $(button).closest("tr");
+		let prev = current.prev("tr");
+		if (prev.length) {
+			current.insertBefore(prev);
+		}
+	}
+
+	function moveOptionDown(button) {
+		let current = $(button).closest("tr");
+		let next = current.next("tr");
+		if (next.length) {
+			current.insertAfter(next);
+		}
+	}
+
 	function add_table() {
 		tableCount++;
 		var newTable = `
 			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
 				<table style="width: 100%">
 					<colgroup>
-						<col width="35%">
+						<col width="20%">
 						<col width="*">
-						<col width="10%">
 						<col width="15%">
 					</colgroup>
-					<thead>
-						<tr>
-							<th>기간</th>
-							<th>출발요일</th>
-							<th>기존상품가</th>
-							<th></th>
-						</tr>
-					</thead>
 					<tbody>
 						<tr>
 							<td>
-								<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-									<input type="text" readonly class="datepicker s_date" name="o_sdate[${tableCount}]" style="width: 150px; cursor: pointer;" value=""> ~
-									<input type="text" readonly class="datepicker e_date" name="o_edate[${tableCount}]" style="width: 150px; cursor: pointer;" value="">
+								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+									<div style="display: flex; justify-content: center; gap: 5px;">
+										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
+										<input type="text" name="info_name[0]" style="width: 250px;" value="">
+										<a href="javascript:add_spas(${tableCount});" class="btn btn-primary">추가</a>
+										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
+									</div>
+									
 								</div>
 							</td>
 							<td>
-								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
-							</td>
-							<td>
-								<input type="text" name="spas_info_price[${tableCount}]" numberOnly=true>
-							</td>
-							<td>
-								<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-									<a href="javascript:add_spas(${tableCount});" class="btn btn-primary">추가</a>
-									<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
+								<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+									<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
+									</div>
+									<div style="display: flex; align-items: center; gap: 5px;">
+										<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+										<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+									</div>
 								</div>
 							</td>
+							<td>
+								<div style="display: flex; gap: 5px;">
+									<input type="text" name="spas_info_price[${tableCount}]" numberOnly=true>
+									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+								</div>
+							</td>
+
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="3">
 								<table style="width:100%">
-									<thead>
-										<tr style="height:40px">
-											<td style="width:*;text-align:center">상품타입</td>
-											<td style="width:15%;text-align:center">성인가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">소아가격(단위: 바트)</td>
-											<td style="width:15%;text-align:center">판매상태</td>
-										</tr>
-									</thead>
+									<colgroup>
+										<col width="*">
+										<col width="12%">
+										<col width="12%">
+										<col width="12%">
+										<col width="10%">
+									</colgroup>
+									
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
+												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
-												<div style="display: flex; gap: 5px;">
-													<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width: 50%" />
-													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+												<div class="flex" style="gap: 5px;">
+													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+													<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
+													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
 												</div>
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="spas_price[${tableCount}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+												<input type="text" name="spas_price[${tableCount}][]" value="" class="price spas_price input_txt" placeholder="성인가격(단위: 바트)" style="width:100%" numberOnly=true/>
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="spas_price_kids[${tableCount}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+												<input type="text" name="spas_price_kids[${tableCount}][]" value="" class="price spas_price_kids input_txt" placeholder="소아가격(단위: 바트)" style="width:90%" numberOnly=true/>
 											</td>
 											<td>
 												<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -652,7 +798,7 @@
 														<option value="Y" selected>판매중</option>
 														<option value="N">중지</option>
 													</select>
-													<a href="javascript:remove_spas(${tableCount}, 0);" class="btn btn-danger">삭제</a>
+													<a href="javascript:delete_spa(${tableCount}, 0);" class="btn btn-danger">삭제</a>
 												</div>
 											</td>
 										</tr>
@@ -661,7 +807,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="3">
 								<table style="width: 100%">
 									<colgroup>
 										<col width="7%">
@@ -670,10 +816,13 @@
 									
 									<tbody>
 										<tr>
-											<th>옵션추가</th>
-											<td>
+											<th>
+												옵션추가
 												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
+											</th>
+											<td>
 												<div class="option_area">
+													<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
 													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
 													<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 														<colgroup>
@@ -685,10 +834,13 @@
 															<th colspan="5">
 																<div class="flex__c" style="gap: 5px;">
 																	옵션 <input type='text' name='moption_name[${tableCount}][0]'
+																				placeholder="옵션명"			
 																				value="" style="width:550px"/>
 																	<button type="button" class="btn btn-danger"
 																			onclick="del_main_option('', this);">삭제
 																	</button>
+																	<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																	<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
 															</th>
 														</tr>
@@ -703,34 +855,27 @@
 																</div>
 															</th>
 															<td>
-																<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
 																<table>
 																	<colgroup>
 																		<col width="*"></col>
+																		<col width="15%"></col>
 																		<col width="10%"></col>
 																		<col width="10%"></col>
-																		<col width="10%"></col>
-																		<col width="12%"></col>
+																		<col width="8%"></col>
 																	</colgroup>
-																	<thead>
-																	<tr>
-																		<th>옵션명 한글/영문</th>
-																		<th>가격(단위: 바트)</th>
-																		<th>적용</th>
-																		<th>순서</th>
-																		<th>삭제</th>
-																	</tr>
-																	</thead>
 																	<tbody>
-																		<tr>
+																		<tr class="option_detail">
 																			<td>
-																				<input type="hidden" name="op_spa_idx[${tableCount}][0][]" class="op_spa_idx" value="">
-																				<input type='text' name='o_name[${tableCount}][0][]' value="" style="width:48%;" />
-																				<input type='text' name='o_name_eng[${tableCount}][0][]' value="" style="width:48%;" />
+																				<div style="display: flex; gap: 5px;">
+																					<input type="hidden" name="op_spa_onum[[${tableCount}][0][]" class="op_spa_onum" value="">
+																					<input type="hidden" name="op_spa_idx[${tableCount}][0][]" class="op_spa_idx" value="">
+																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" />
+																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />	
+																				</div>
 																			</td>
 																			<td>
-																				<input type='text' style="text-align:right;"
-																						name='o_price[${tableCount}][0][]' value="" numberOnly=true/>
+																				<input type='text'
+																						name='o_price[${tableCount}][0][]' value="" placeholder="가격(단위: 바트)" numberOnly=true/>
 																			</td>
 																			<td>
 																				<select name="use_yn[${tableCount}][0][]" style="width:100%">
@@ -743,7 +888,10 @@
 																				</select>
 																			</td>
 																			<td>
-																				<input type='text' name='o_num[${tableCount}][0][]' value="" numberOnly=true/>
+																				<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																				</div>
 																			</td>
 																			<td>
 																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -855,16 +1003,20 @@
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
 					<input type="hidden" name="spas_idx[${tableListIndex}][]" class="spas_idx" value="">
+					<input type="hidden" name="spa_onum[${tableListIndex}][]" class="spa_onum" value="">
+
 					<div style="display: flex; gap: 5px;">
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
 				<td style="text-align:center">
-					<input type="text" name="spas_price[${tableListIndex}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+					<input type="text" name="spas_price[${tableListIndex}][]" placeholder="성인가격(단위: 바트)" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
 				</td>
 				<td style="text-align:center">
-					<input type="text" name="spas_price_kids[${tableListIndex}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+					<input type="text" name="spas_price_kids[${tableListIndex}][]" placeholder="소아가격(단위: 바트)" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
 					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -900,16 +1052,19 @@
 			<tr class="air_list_1" style="height:40px">
 				<td>
 					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
+					<input type="hidden" name="spa_idx[${infoIdx}][]" class="spa_idx" value="new">
 					<div style="display: flex; gap: 5px;">
+						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
 				<td>
-					<input type="text" name="spas_price[${infoIdx}][]" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+					<input type="text" name="spas_price[${infoIdx}][]" placeholder="성인가격(단위: 바트)" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
 				</td>
 				<td>
-					<input type="text" name="spas_price_kids[${infoIdx}][]" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+					<input type="text" name="spas_price_kids[${infoIdx}][]" placeholder="소아가격(단위: 바트)" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
 					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
@@ -939,6 +1094,7 @@
 		let html = `
 			<div class="option_area">
 				<input type="hidden" name="moption_idx[${idx}][${arr_count[idx]}]" class="moption_idx" value="">
+				<input type="hidden" name="moption_onum[${idx}][${arr_count[idx]}]" class="moption_onum" value="">
 				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					<colgroup>
 						<col width="10%">
@@ -953,6 +1109,8 @@
 								<button type="button" class="btn btn-danger"
 										onclick="del_main_option('', this);">삭제
 								</button>
+								<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+								<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 							</div>
 						</th>
 					</tr>
@@ -971,26 +1129,20 @@
 							<table>
 								<colgroup>
 									<col width="*"></col>
+									<col width="15%"></col>
 									<col width="10%"></col>
 									<col width="10%"></col>
-									<col width="10%"></col>
-									<col width="12%"></col>
+									<col width="8%"></col>
 								</colgroup>
-								<thead>
-								<tr>
-									<th>옵션명 한글/영문</th>
-									<th>가격(단위: 바트)</th>
-									<th>적용</th>
-									<th>순서</th>
-									<th>삭제</th>
-								</tr>
-								</thead>
 								<tbody>
 									<tr>
 										<td>
-											<input type="hidden" name="op_spa_idx[${idx}][${arr_count[idx]}][]" class="op_spa_idx" value="">
-											<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
-											<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' value="" style="width:48%;" />
+											<div style="display: flex; gap: 5px;">
+												<input type="hidden" name="op_spa_idx[${idx}][${arr_count[idx]}][]" class="op_spa_idx" value="">
+												<input type="hidden" name="op_spa_idx[${idx}][${arr_count[idx]}][]" class="op_spa_idx" value="">
+												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
+												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+											</div>
 										</td>
 										<td>
 											<input type='text' style="text-align:right;"
@@ -1007,7 +1159,11 @@
 											</select>
 										</td>
 										<td>
-											<input type='text' name='o_num[${idx}][${arr_count[idx]}][]' value="" numberOnly=true/>
+											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+												<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+											</div
+
 										</td>
 										<td>
 											<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
@@ -1026,7 +1182,7 @@
 			</div>
 		`;
 
-		$(button).closest("td").append(html);
+		$(button).closest("tr").find("> td").append(html);
 	}
 
 	function add_sub_option(button, info_idx, op_idx) {
@@ -1034,12 +1190,13 @@
 			<tr>
 				<td>
 					<input type="hidden" name="op_spa_idx[${info_idx}][${op_idx}][]" class="op_spa_idx" value="">
-					<input type='text' name='o_name[${info_idx}][${op_idx}][]' value="" style="width:48%;" />
-					<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' value="" style="width:48%;" />
+					<input type="hidden" name="op_spa_idx[${info_idx}][${op_idx}][]" class="op_spa_idx" value="">
+					<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
+					<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
 				</td>
 				<td>
 					<input type='text' style="text-align:right;"
-							name='o_price[${info_idx}][${op_idx}][]' value="" numberOnly=true/>
+							name='o_price[${info_idx}][${op_idx}][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
 				</td>
 				<td>
 					<select name="use_yn[${info_idx}][${op_idx}][]" style="width:100%">
@@ -1052,7 +1209,10 @@
 					</select>
 				</td>
 				<td>
-					<input type='text' name='o_num[${info_idx}][${op_idx}][]' value="" numberOnly=true/>
+					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+						<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+						<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+					</div>
 				</td>
 				<td>
 					<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
