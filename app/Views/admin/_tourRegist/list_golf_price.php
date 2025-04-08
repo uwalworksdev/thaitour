@@ -534,7 +534,7 @@ const selectedHoles = $('.holeOption:checked').map(function () {
 }).get().join(',');
 
 #("#selectedHoles").val(selectedHoles); // 출력 예: "18홀,36홀"
-                            //$("#priceForm").submit();
+                            $("#priceForm").submit();
 						});
 
 						$('#price_all').on('click', function() {
