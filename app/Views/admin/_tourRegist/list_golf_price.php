@@ -318,12 +318,13 @@
 														<input type="text" name="night_price[]" id="night_price_<?=$item['idx']?>" value="<?=number_format($item['night_price'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right;width:80%;">
 													</td-->
 													<td style="text-align:center;">
-														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+														<input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" 
+														   <?php if($item['use_yn'] == "N") echo "checked";?> >
 													</td> 
 													<td style="text-align:center;"><?=$item['reg_date']?></td> 
 													<td style="text-align:center;"><?=$item['upd_date']?></td> 
 													<td style="text-align:center;">
-													    <?php if($item['upd_yn'] != "Y" || $item['use_yn'] == "Y") { ?>
+													    <?php if($item['upd_yn'] != "Y" && $item['use_yn'] != "N") { ?>
 														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
 														<?php } ?>
 														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
