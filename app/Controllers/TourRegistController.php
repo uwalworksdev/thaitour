@@ -1394,7 +1394,7 @@ class TourRegistController extends BaseController
 
         //$selectedHoles = array_filter(explode(',', $holesStr)); // 배열로 변환 후 빈 값 제거
 
-        if($s_date == "" || $s_date < date('Y-m-d')) $s_date = date('Y-m-d');
+        if($s_date == "") $s_date = date('Y-m-d');
 		
         $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
