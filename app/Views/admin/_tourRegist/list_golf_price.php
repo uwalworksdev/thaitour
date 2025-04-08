@@ -140,13 +140,24 @@
                                     <?= $product_name ?>
                                 </td>
                             </tr>
+							<?php
+									$holesParam = $_GET['holes'] ?? ''; // "18홀,27홀,36홀"
+									$selectedHoles = explode(',', $holesParam); // ['18홀', '27홀', '36홀']
+							?>		
                             <tr>
                                 <th>홀구분</th>
                                 <td>
 									    <input type="checkbox" id="allHoles" value="" >홀전체
-										<?php foreach($hresult as $row): ?>
-											  <input type="checkbox" name="holes[]" class="holeOption" value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?>
-										<?php endforeach; ?>
+<?php foreach($hresult as $row): ?>
+    <?php $holeName = $row['goods_name']; ?>
+    <input 
+        type="checkbox" 
+        name="holes[]" 
+        class="holeOption" 
+        value="<?= esc($holeName) ?>" 
+        <?= in_array($holeName, $selectedHoles) ? 'checked' : '' ?>
+    ><?= esc($holeName) ?>
+<?php endforeach; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -529,11 +540,13 @@
 							$("#goods_name").val($("#hole").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
-const selectedHoles = $('.holeOption:checked').map(function () {
-    return $(this).val();
-}).get().join(',');
-alert(selectedHoles);
-$("#selectedHoles").val(selectedHoles); // 출력 예: "18홀,36홀"
+							const selectedHoles = $('.holeOption:checked').map(function () {
+								return $(this).val();
+							}).get().join(',');
+							
+							//alert(selectedHoles);
+							
+							$("#selectedHoles").val(selectedHoles); // 출력 예: "18홀,36홀"
                             $("#priceForm").submit();
 						});
 
