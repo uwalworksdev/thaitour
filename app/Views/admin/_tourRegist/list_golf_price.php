@@ -993,7 +993,7 @@
                 <!-- // listWrap -->
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, 
-				    site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&group_idx='.$group_idx.'&holes='.$holes.'&s_date='.$s_date.'&e_date='.$e_date) . $search_val . "&pg=") ?>
+				    site_url('/AdmMaster/_tourRegist/list_golf_price?product_idx='.$product_idx.'&group_idx='.$group_idx.'&holes='.$holes.'&s_date='.$s_date.'&e_date='.$e_date.'&g_list_rows='.$g_list_rows) . $search_val . "&pg=") ?>
 
             </div>
             <!-- // contents -->
