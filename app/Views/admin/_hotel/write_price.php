@@ -580,9 +580,7 @@ $links = "list";
 					<ul>
 						<li class="left"></li>
 						<li class="right_sub">
-					        <a href="/product-hotel/hotel-detail/<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
-						</li>
-						<li class="right_sub">
+					        <a href="/product-hotel/hotel-detail/<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
 							<a href="/AdmMaster/_hotel/list" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
 							<!--a href="javascript:send_it_price()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a-->
 						</li>
