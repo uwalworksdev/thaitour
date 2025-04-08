@@ -969,14 +969,15 @@ class TourRegistController extends BaseController
 		$o_name     = $data['o_name'] ?? [];
 		$o_name_eng = $data['o_name_eng'] ?? [];
 		$o_price1   = $data['o_price1'] ?? [];
+		$o_sale     = $data['o_sale'] ?? [];
         for ($i = 0; $i < count($o_idx); $i++) {
             if ($o_idx[$i]) {
                 $sql = "UPDATE  tbl_golf_option  SET 
 													 goods_name		= '" . $o_name[$i] . "'
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1_1	= '" . $o_price1[$i] . "'
+													,o_sale      	= '" . $o_sale[$i] . "'
 												WHERE idx	        = '" . $o_idx[$i] . "' ";
-                write_log("tbl_golf_option -1  " . $sql);
                 $result = $this->connect->query($sql);
             } else {
                 $sql = "INSERT INTO tbl_golf_option SET 
@@ -984,8 +985,8 @@ class TourRegistController extends BaseController
 													,goods_name		= '" . $o_name[$i] . "'
 													,goods_name_eng	= '" . $o_name_eng[$i] . "'
 													,goods_price1_1	= '" . $o_price1[$i] . "'
+													,o_sale      	= '" . $o_sale[$i] . "'
 													,option_type	= 'S' ";
-                write_log("tbl_golf_option -2 " . $sql);
                 $result = $this->connect->query($sql);
             }
         }
