@@ -533,7 +533,7 @@ const selectedHoles = $('.holeOption:checked').map(function () {
     return $(this).val();
 }).get().join(',');
 
-console.log(selectedHoles); // 출력 예: "18홀,36홀"
+alert(selectedHoles); // 출력 예: "18홀,36홀"
                             //$("#priceForm").submit();
 						});
 
