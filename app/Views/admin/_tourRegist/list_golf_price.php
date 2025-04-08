@@ -175,7 +175,7 @@
 											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
-                                            <a href="#!" id="inqAll"    class="btn btn-primary">전체조회</a>
+                                            <!--a href="#!" id="inqAll"    class="btn btn-primary">전체조회</a-->
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
                                         </div>
 
