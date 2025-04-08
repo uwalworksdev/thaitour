@@ -529,8 +529,12 @@
 							$("#goods_name").val($("#hole").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
-                            //submitWithSelectedHoles();							
-							$("#priceForm").submit();
+const selectedHoles = $('input[name="holes[]"]:checked').map(function () {
+    return $(this).val();
+}).get();
+
+console.log(selectedHoles); // 예: ['18홀', '27홀']
+                            $("#priceForm").submit();
 						});
 
 						$('#price_all').on('click', function() {
