@@ -780,6 +780,12 @@
 								     dow_val = checkedValues.join(', ');
                                 }
 
+								const selectedHoles = $('.holeOption:checked').map(function () {
+									return $(this).val();
+								}).get().join(',');
+								
+								alert(selectedHoles);
+								
                                 if($("#s_date").val() == "" || $("#e_date").val() == "") {
 								     alert('적용할 일자를 선택하세요.');
 									 $("#s_date").focus();
@@ -814,13 +820,14 @@
 									url: "/ajax/golf_dow_charge",
 									type: "POST",
 									data: {
-										    "s_date"      : $("#s_date").val(),
-											"e_date"      : $("#e_date").val(),
-											"product_idx" : $("#product_idx").val(),
-											"dow_val"     : dow_val, 
-											"price_1"     : $("#dowPrice_1").val(),
-											"price_2"     : $("#dowPrice_2").val(),
-											"price_3"     : $("#dowPrice_3").val()
+										    "s_date"        : $("#s_date").val(),
+											"e_date"        : $("#e_date").val(),
+											"product_idx"   : $("#product_idx").val(),
+											"selectedHoles" : selectedHoles,	
+											"dow_val"       : dow_val, 
+											"price_1"       : $("#dowPrice_1").val(),
+											"price_2"       : $("#dowPrice_2").val(),
+											"price_3"       : $("#dowPrice_3").val()
 										  },
 									dataType: "json",
 									async: false,
