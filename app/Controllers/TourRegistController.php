@@ -1401,19 +1401,20 @@ class TourRegistController extends BaseController
 
         $search = " AND group_idx = '". $group_idx ."' ";
 
-        $arr_name = explode(",", $holesStr);
-		$placeholders = "";
-		for($i=0;$i<count($arr_name);$i++)
-		{
-			if($placeholders == "") {
-			   $placeholders  = "'". $arr_name[$i] ."'";
-			} else {  
-			   $placeholders .= ",'". $arr_name[$i] ."'";
-			}   
-		}	
+        if($holesStr) { 
+			$arr_name = explode(",", $holesStr);
+			$placeholders = "";
+			for($i=0;$i<count($arr_name);$i++)
+			{
+				if($placeholders == "") {
+				   $placeholders  = "'". $arr_name[$i] ."'";
+				} else {  
+				   $placeholders .= ",'". $arr_name[$i] ."'";
+				}   
+			}	
 
-        if($placeholders) $search .= " AND goods_name IN (" . $placeholders . ")";
-
+            if($placeholders) $search .= " AND goods_name IN (" . $placeholders . ")";
+        }
     // 이후 $params 를 이용해 PDO prepare/execute 등 가능
  
 
