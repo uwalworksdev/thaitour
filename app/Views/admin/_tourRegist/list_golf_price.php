@@ -784,8 +784,6 @@
 									return $(this).val();
 								}).get().join(',');
 								
-								alert(selectedHoles);
-								
                                 if($("#s_date").val() == "" || $("#e_date").val() == "") {
 								     alert('적용할 일자를 선택하세요.');
 									 $("#s_date").focus();
