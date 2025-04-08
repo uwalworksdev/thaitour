@@ -175,6 +175,7 @@
 											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
+                                            <a href="#!" id="inqAll"    class="btn btn-primary">전체조회</a>
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
                                         </div>
 
@@ -538,6 +539,20 @@
 					</script>
 					
 					<script>
+						$("#inqAll").one("click", function () {
+							$("#goods_name").val($("#hole").val());
+							$("#in_s_date").val('');
+							$("#in_e_date").val('');
+							const selectedHoles = $('.holeOption:checked').map(function () {
+								return $(this).val();
+							}).get().join(',');
+							
+							//alert(selectedHoles);
+							
+							$("#selectedHoles").val(selectedHoles); // 출력 예: "18홀,36홀"
+                            $("#priceForm").submit();
+						});
+
 						$("#inqCharge").one("click", function () {
 							$("#goods_name").val($("#hole").val());
 							//$("#in_s_date").val($("#sdate").val());
