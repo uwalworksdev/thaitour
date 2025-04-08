@@ -530,10 +530,10 @@
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 const selectedHoles = $('.holeOption:checked').map(function () {
-            return $(this).val()+',';
-        }).get();
+    return $(this).val();
+}).get().join(',');
 
-        alert("선택된 홀: " + selectedHoles);
+console.log(selectedHoles); // 출력 예: "18홀,36홀"
                             //$("#priceForm").submit();
 						});
 
