@@ -1189,7 +1189,7 @@
 					$("#pg").val('1');
 			        $("#in_s_date").val('<?=$s_date?>'); 
 			        $("#in_e_date").val('<?=$e_date?>');  
-					
+					$("#selectedHoles").val('');
 					document.getElementById("priceForm").submit();
 					/*
 					var product_code_1  = '<?=$product_code_1?>';
@@ -1229,7 +1229,7 @@
             <input type="hidden" name="product_idx"  value='<?=$product_idx?>' >
             <input type="hidden" name="group_idx"    value="<?=$group_idx?>" >
             <input type="hidden" name="goods_name"   id="goods_name"   value="<?=$goods_name?>">
-            <input type="hidden" name="holes"   id="selectedHoles"   value="<?=$selectedHoles?>">
+            <input type="hidden" name="holes"        id="selectedHoles"   value="<?=$selectedHoles?>">
 			
 			<input type="hidden" name="s_date"       value="<?=$s_date?>" id="in_s_date" >
 			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
