@@ -3456,18 +3456,18 @@ class AjaxController extends BaseController {
 
 			foreach ($options as $index => $option) 
 			{
-				    
+   					$group_idx         = $option['group_idx'];
 					$o_sdate           = $option['o_sdate'];				
 					$o_edate           = $option['o_edate'];				
 
 					// 일자별 가격설정
 					$sql = "DELETE FROM tbl_golf_price 
-							WHERE goods_date BETWEEN ? AND ?
+							WHERE group_idx = ?
 							AND product_idx = ?
 							AND use_yn     != 'N'
 							AND upd_yn     != 'Y'";
 
-					$result = $db->query($sql, [$o_sdate, $o_edate, $product_idx]);
+					$result = $db->query($sql, [$group_idx, $product_idx]);
             
             }
 

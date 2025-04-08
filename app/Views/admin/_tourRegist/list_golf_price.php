@@ -148,16 +148,16 @@
                                 <th>홀구분</th>
                                 <td>
 									    <input type="checkbox" id="allHoles" value="" >홀전체
-<?php foreach($hresult as $row): ?>
-    <?php $holeName = $row['goods_name']; ?>
-    <input 
-        type="checkbox" 
-        name="holes[]" 
-        class="holeOption" 
-        value="<?= esc($holeName) ?>" 
-        <?= in_array($holeName, $selectedHoles) ? 'checked' : '' ?>
-    ><?= esc($holeName) ?>
-<?php endforeach; ?>
+										<?php foreach($hresult as $row): ?>
+											<?php $holeName = $row['goods_name']; ?>
+											<input 
+												type="checkbox" 
+												name="holes[]" 
+												class="holeOption" 
+												value="<?= esc($holeName) ?>" 
+												<?= in_array($holeName, $selectedHoles) ? 'checked' : '' ?>
+											><?= esc($holeName) ?>
+										<?php endforeach; ?>
                                 </td>
                             </tr>
                             <tr>
