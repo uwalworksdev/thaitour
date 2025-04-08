@@ -529,7 +529,7 @@
 							$("#goods_name").val($("#hole").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
-                            submitWithSelectedHoles();							
+                            //submitWithSelectedHoles();							
 							$("#priceForm").submit();
 						});
 
