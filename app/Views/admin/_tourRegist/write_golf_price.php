@@ -642,7 +642,7 @@
                                                                 value="<?= $frow3['goods_price1_1'] ?>"/>
                                                     </td>
                                                     <td>
-                                                        <button type="button"
+                                                        <button type="button" class="btn_02"
                                                                 onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
                                                         </button>
                                                     </td>
