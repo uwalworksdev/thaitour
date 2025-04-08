@@ -647,9 +647,10 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <button type="button"
-                                                                onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
-                                                        </button>
+                                                        <select name="sale" >
+                                                             <option value="Y">판매중</option>
+                                                             <option value="Y">중지</option>
+                                                        </select>
                                                     </td>
 													<td>
 														<button class="btn_move up"   onclick="moveUpRoom(this)"   type="button" style="width: 30px; height: 30px;">▲</button>
