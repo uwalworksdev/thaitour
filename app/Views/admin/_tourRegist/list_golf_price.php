@@ -534,7 +534,7 @@ const selectedHoles = $('input[name="holes[]"]:checked').map(function () {
 }).get();
 
 console.log(selectedHoles); // 예: ['18홀', '27홀']
-                            $("#priceForm").submit();
+                            //$("#priceForm").submit();
 						});
 
 						$('#price_all').on('click', function() {
