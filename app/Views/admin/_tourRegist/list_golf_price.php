@@ -1167,27 +1167,6 @@ const selectedHoles = $('.holeOption:checked').map(function () {
 				}
 			</script>
 
-<script>
-    function submitWithSelectedHoles() {
-        // 기존 hidden 입력 제거 (중복 방지)
-        $('#priceForm input[name="holes[]"]').remove();
-
-        // 선택된 체크박스를 순회하며 hidden input 추가
-        $('.holeOption:checked').each(function () {
-            $('<input>').attr({
-                type: 'hidden',
-                name: 'holes[]',
-                value: $(this).val()
-            }).appendTo('#priceForm');
-        });
-    }
-
-    // 예시: 버튼 클릭 시 실행
-    $('#searchBtn').on('click', function (e) {
-        e.preventDefault();
-        submitWithSelectedHoles();
-    });
-</script>
             <!--
 			<script>
 				function go_list() {
