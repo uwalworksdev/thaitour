@@ -1437,7 +1437,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-		
+		write_log("zzzz- ". $sql);
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
