@@ -529,6 +529,7 @@
 							$("#goods_name").val($("#hole").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
+                            submitWithSelectedHoles();							
 							$("#priceForm").submit();
 						});
 
@@ -1162,6 +1163,27 @@
 				}
 			</script>
 
+<script>
+    function submitWithSelectedHoles() {
+        // 기존 hidden 입력 제거 (중복 방지)
+        $('#priceForm input[name="holes[]"]').remove();
+
+        // 선택된 체크박스를 순회하며 hidden input 추가
+        $('.holeOption:checked').each(function () {
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'holes[]',
+                value: $(this).val()
+            }).appendTo('#priceForm');
+        });
+    }
+
+    // 예시: 버튼 클릭 시 실행
+    $('#searchBtn').on('click', function (e) {
+        e.preventDefault();
+        submitWithSelectedHoles();
+    });
+</script>
             <!--
 			<script>
 				function go_list() {
@@ -1178,7 +1200,6 @@
 			<input type="hidden" name="e_date"       value="<?=$e_date?>" id="in_e_date" >
 			<input type="hidden" name="g_list_rows"  value="<?=$g_list_rows?>" id="g_list_rows">
 			<input type="hidden" name="pg"           value="<?=$pg?>" id="pg">
-			
         </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
