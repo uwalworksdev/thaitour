@@ -1401,19 +1401,18 @@ class TourRegistController extends BaseController
 
         $search = " AND group_idx = '". $group_idx ."' ";
 
-$selectedHoles = array_filter(explode(',', $holesStr)); // ['18홀', '27홀']
+        $arr_name = explode(",", $holesStr);
+		$placeholders = "";
+		for($i=0;$i<count($arr_name);$i++)
+		{
+			if($placeholders == "") {
+			   $placeholders = "'". $arr_name[$i] ."'";
+			} else {  
+			   $placeholders = ",'". $arr_name[$i] ."'";
+			}   
+		}	
 
-if (!empty($selectedHoles)) {
-    $placeholders = [];
-    $params = [];
-
-    foreach ($selectedHoles as $index => $hole) {
-        $key = ":hole$index";
-        $placeholders[] = $key;
-        $params[$key] = $hole;
-    }
-
-    $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
+        if($placeholders) $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
 
     write_log("search - " . $search); // 로그 찍기
 
