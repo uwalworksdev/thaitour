@@ -1475,7 +1475,7 @@ class TourRegistController extends BaseController
             's_date'       => $o_sdate,
             'e_date'       => $o_edate,
             'hresult'      => $hresult,
-			'holesStr'     => $holesStr,
+			'holes'        => $holesStr,
         ];
 
         return view("admin/_tourRegist/list_golf_price", $data);
