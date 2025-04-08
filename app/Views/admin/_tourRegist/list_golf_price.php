@@ -121,8 +121,8 @@
             <input type=hidden name="group_idx" value='<?= $group_idx ?>' id='group_idx'>
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
             <input type=hidden name="chk_idx"   value='' id='chk_idx'>
-            <input type=hidden name="sdate"   value='<?=$sdate?>' id='sdate'>
-            <input type=hidden name="edate"   value='<?=$edate?>' id='edate'>
+            <input type=hidden name="sdate"   value='<?=$s_date?>' id='sdate'>
+            <input type=hidden name="edate"   value='<?=$e_date?>' id='edate'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
