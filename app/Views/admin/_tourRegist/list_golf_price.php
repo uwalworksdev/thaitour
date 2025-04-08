@@ -1187,7 +1187,6 @@
 			$(document).ready(function() {
 				// 날짜가 바뀌면 hidden input에 자동 복사
 				$('#s_date, #e_date').on('change', function() {
-					alert('11111111');
 					$('#in_s_date').val($('#s_date').val());
 					$('#in_e_date').val($('#e_date').val());
 				});
