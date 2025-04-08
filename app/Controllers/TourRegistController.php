@@ -1417,7 +1417,7 @@ class TourRegistController extends BaseController
     write_log("search - " . $search); // 로그 찍기
 
     // 이후 $params 를 이용해 PDO prepare/execute 등 가능
-}
+ 
 
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
