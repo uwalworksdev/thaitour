@@ -250,18 +250,81 @@
                                                     <?= $frow3['goods_name'] ?>
 													<!--input type="checkbox" name="updChk" class="updChk_<?= $row['group_idx'] ?>" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>"-->
                                                 </td>
+												<?php
+																  $frow3['goods_price1_1'] =  0;
+																  $frow3['goods_price1_2'] =  0;
+																  $frow3['goods_price1_3'] =  0;
+															   
+																  $frow3['goods_price2_1'] =  0;
+																  $frow3['goods_price2_2'] =  0;
+																  $frow3['goods_price2_3'] =  0;
+															   
+																  $frow3['goods_price3_1'] =  0;
+																  $frow3['goods_price3_2'] =  0;
+																  $frow3['goods_price3_3'] =  0;
+															   
+																  $frow3['goods_price4_1'] =  0;
+																  $frow3['goods_price4_2'] =  0;
+																  $frow3['goods_price4_3'] =  0;
+															   
+																  $frow3['goods_price5_1'] =  0;
+																  $frow3['goods_price5_2'] =  0;
+																  $frow3['goods_price5_3'] =  0;
+															   
+																  $frow3['goods_price6_1'] =  0;
+																  $frow3['goods_price6_2'] =  0;
+																  $frow3['goods_price6_3'] =  0;
+															   
+																  $frow3['goods_price7_1'] =  0;
+																  $frow3['goods_price7_2'] =  0;
+																  $frow3['goods_price7_3'] =  0;												
 												
+												?>	
 												<?php $weeklyResult = getGolfweekly($product_idx, $frow3['goods_name'], $row['edate']);
 												      
 													  foreach ($weeklyResult as $day):
                                                                //echo $day['goods_name'] ." - ". $day['goods_date'] ." - ". $day['dow'] ." - ". $day['price_1'] ."<br>";
-													           if($day['dow'] == "일") $frow3['goods_price1_1'] =  $day['price_1'];
-													           if($day['dow'] == "월") $frow3['goods_price2_1'] =  $day['price_1'];
-													           if($day['dow'] == "화") $frow3['goods_price3_1'] =  $day['price_1'];
-													           if($day['dow'] == "수") $frow3['goods_price4_1'] =  $day['price_1'];
-													           if($day['dow'] == "목") $frow3['goods_price5_1'] =  $day['price_1'];
-													           if($day['dow'] == "금") $frow3['goods_price6_1'] =  $day['price_1'];
-													           if($day['dow'] == "토") $frow3['goods_price7_1'] =  $day['price_1'];
+													           if($day['dow'] == "일") {
+																  $frow3['goods_price1_1'] =  $day['price_1'];
+																  $frow3['goods_price1_2'] =  $day['price_2'];
+																  $frow3['goods_price1_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "월") {
+																  $frow3['goods_price2_1'] =  $day['price_1'];
+																  $frow3['goods_price2_2'] =  $day['price_2'];
+																  $frow3['goods_price2_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "화") {
+																  $frow3['goods_price3_1'] =  $day['price_1'];
+																  $frow3['goods_price3_2'] =  $day['price_2'];
+																  $frow3['goods_price3_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "수") {
+																  $frow3['goods_price4_1'] =  $day['price_1'];
+																  $frow3['goods_price4_2'] =  $day['price_2'];
+																  $frow3['goods_price4_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "목") {
+																  $frow3['goods_price5_1'] =  $day['price_1'];
+																  $frow3['goods_price5_2'] =  $day['price_2'];
+																  $frow3['goods_price5_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "금") {
+																  $frow3['goods_price6_1'] =  $day['price_1'];
+																  $frow3['goods_price6_2'] =  $day['price_2'];
+																  $frow3['goods_price6_3'] =  $day['price_3'];
+															   }
+															   
+													           if($day['dow'] == "토") {
+																  $frow3['goods_price7_1'] =  $day['price_1'];
+																  $frow3['goods_price7_2'] =  $day['price_2'];
+																  $frow3['goods_price7_3'] =  $day['price_3'];
+															   }	  
 													  endforeach;	  
 												
 												?>
