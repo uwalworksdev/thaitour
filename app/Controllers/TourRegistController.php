@@ -1388,7 +1388,7 @@ class TourRegistController extends BaseController
         $product_idx   = $this->request->getVar("product_idx");
         $group_idx     = $this->request->getVar("group_idx");
         $goods_name    = $this->request->getVar("goods_name");
-		$selectedHoles      = $this->request->getVar("holes");
+		$holesStr      = $this->request->getVar("holes");
         $s_date        = $this->request->getVar("s_date");
         $e_date        = $this->request->getVar("e_date");
 
@@ -1400,19 +1400,25 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         $search = " AND group_idx = '". $group_idx ."' ";
+
+$selectedHoles = array_filter(explode(',', $holesStr)); // ['18홀', '27홀']
+
 if (!empty($selectedHoles)) {
-$placeholders = [];
-$params = [];
+    $placeholders = [];
+    $params = [];
 
-foreach ($holesArray as $index => $hole) {
-    $key = ":hole$index";
-    $placeholders[] = $key;
-    $params[$key] = $hole;
-}
+    foreach ($selectedHoles as $index => $hole) {
+        $key = ":hole$index";
+        $placeholders[] = $key;
+        $params[$key] = $hole;
+    }
+
     $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
-	write_log("search- ". $search);
-}
 
+    write_log("search - " . $search); // 로그 찍기
+
+    // 이후 $params 를 이용해 PDO prepare/execute 등 가능
+}
 
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
