@@ -1412,7 +1412,7 @@ class TourRegistController extends BaseController
 			}   
 		}	
 
-        if($placeholders) $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
+        if($placeholders) $search .= " AND goods_name IN (" . $placeholders . ")";
 
     write_log("search - " . $search); // 로그 찍기
 
