@@ -529,11 +529,11 @@
 							$("#goods_name").val($("#hole").val());
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
-const selectedHoles = $('input[name="holes[]"]:checked').map(function () {
-    return $(this).val();
-}).get();
-alert(selectedHoles);
-//console.log(selectedHoles); // 예: ['18홀', '27홀']
+const selectedHoles = $('.holeOption:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        alert("선택된 홀: " + selectedHoles.join(', '));
                             //$("#priceForm").submit();
 						});
 
