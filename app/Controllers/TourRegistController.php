@@ -1406,9 +1406,9 @@ class TourRegistController extends BaseController
 		for($i=0;$i<count($arr_name);$i++)
 		{
 			if($placeholders == "") {
-			   $placeholders = "'". $arr_name[$i] ."'";
+			   $placeholders  = "'". $arr_name[$i] ."'";
 			} else {  
-			   $placeholders = ",'". $arr_name[$i] ."'";
+			   $placeholders .= ",'". $arr_name[$i] ."'";
 			}   
 		}	
 
