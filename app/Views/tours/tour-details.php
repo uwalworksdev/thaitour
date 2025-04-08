@@ -440,6 +440,9 @@
             </div>
         <?php } ?>
         <?php if($product['tour_info']) {?>
+            <h2 class="title-sec2" style="margin-bottom: 10px">
+                상품정보
+            </h2>
             <div class="des-type">
                 <?= viewSQ($product['tour_info']) ?>
             </div>

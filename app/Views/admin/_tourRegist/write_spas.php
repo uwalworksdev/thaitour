@@ -1181,7 +1181,7 @@
                             $breakfast_data_arr = array_filter($breakfast_data_arr);
                             ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
+                                   style="margin-top:50px; display: none">
                                 <caption>
                                 </caption>
                                 <colgroup>

@@ -111,8 +111,8 @@
                 <div class="sub-header-hotel-detail">
                     <div class="main nav-list">
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
-                        <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">소개&시설</p>
-                        <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p>
+                        <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">상품설명</p>
+                        <!-- <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p> -->
                         <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
                             생생리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
@@ -194,6 +194,10 @@
                         상품설명
                     </h2>
 
+                    <h2 class="title-sec2" style="margin-bottom: 10px">
+                        상품정보
+                    </h2>
+
                     <?php if($data_['tour_info']) {?>
                         <div class="container-big-text">
                                 <?= viewSQ($data_['tour_info']) ?>
@@ -203,7 +207,7 @@
 
                 <?php if($data_['product_confirm']) { ?>
                 <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec3">
+                    <h2 class="title-sec2">
                         미팅/픽업장소 안내
                     </h2>
 
@@ -213,26 +217,40 @@
                 </div>
                 <?php } ?>
 
-                <?php if($data_['product_able'] && $data_['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec3">
+                    <h2 class="title-sec2">
                         미팅/픽업장소 안내
                     </h2>
 
                     <div class="container-big-text">
                         <div class="only_w">
-                            <?= viewSQ($data_['product_able']) ?>
+                            <div class="tit-blue-type-2">
+                                <span class="tit-blue">포함사항</span>
+                            </div>
+                            <div class="des-type">
+                                <?= viewSQ($data_['product_able'])?>
+                            </div>
+                            <div class="tit-blue-type-2">
+                                <span class="tit-blue">불포함 사항</span>
+                            </div>
+                            <div class="des-type">
+                                <?= viewSQ($data_['product_unable'])?>
+                            </div>
                         </div>
                         <div class="only_m">
-                            <?= viewSQ($data_['mobile_able']) ?>
+                            <h2 class="title-sec2">
+                                추가정보 및 참고사항
+                            </h2>
+                            <div class="des-type">
+                                <?= viewSQ($data_['mobile_able'])?>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <?php } ?>
 
                 <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec3">
+                    <h2 class="title-sec2">
                         어린이정책
                     </h2>
 
@@ -244,7 +262,7 @@
 
                 <?php if($data_['notice_comment'] && $data_['notice_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec3">
+                    <h2 class="title-sec2">
                         유의사항
                     </h2>
 
@@ -256,7 +274,7 @@
 
                 <?php if($data_['etc_comment'] && $data_['etc_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec3">
+                    <h2 class="title-sec2">
                         더투어랩 이용방법
                     </h2>
 
@@ -321,7 +339,7 @@
                 }
                 ?>
 
-                <div class="section5" id="section5">
+                <div class="section5" id="section5" style="display: none">
                     <h1 class="title-sec5">스파정책</h1>
                     <div class="content-container-sec5">
                         <div class="content-item">
