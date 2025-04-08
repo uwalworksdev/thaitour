@@ -323,7 +323,7 @@
 													<td style="text-align:center;"><?=$item['reg_date']?></td> 
 													<td style="text-align:center;"><?=$item['upd_date']?></td> 
 													<td style="text-align:center;">
-													    <?php if($item['upd_yn'] != "Y" || $item['use_yn'] != "Y") { ?>
+													    <?php if($item['upd_yn'] != "Y" || $item['use_yn'] == "Y") { ?>
 														<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
 														<?php } ?>
 														<!--button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button-->
