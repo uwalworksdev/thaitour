@@ -1392,6 +1392,16 @@ class TourRegistController extends BaseController
         $s_date        = $this->request->getVar("s_date");
         $e_date        = $this->request->getVar("e_date");
 
+        $sql    = "SELECT sdate, edate FROM tbl_golf_group WHERE product_idx = '" . $product_idx . "' AND group_idx = '". $group_idx ."' ";
+        $result = $this->connect->query($sql);
+        $row = $result->getRowArray();
+        $ori_sdate = $row['sdate'];
+        $ori_edate = $row['edate'];
+
+        if ($s_date == "" && $e_date = "") {
+	        $s_date = $ori_sdate;
+	        $e_date = $ori_edate;
+		}	
         //$selectedHoles = array_filter(explode(',', $holesStr)); // 배열로 변환 후 빈 값 제거
 
         if($s_date == "") $s_date = date('Y-m-d');
