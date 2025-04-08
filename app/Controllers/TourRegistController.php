@@ -1388,9 +1388,11 @@ class TourRegistController extends BaseController
         $product_idx   = $this->request->getVar("product_idx");
         $group_idx     = $this->request->getVar("group_idx");
         $goods_name    = $this->request->getVar("goods_name");
-		$selectedHoles = $this->request->getVar("holes");
+		$holesStr      = $this->request->getVar("holes");
         $s_date        = $this->request->getVar("s_date");
         $e_date        = $this->request->getVar("e_date");
+
+        $selectedHoles = array_filter(explode(',', $holesStr)); // 배열로 변환 후 빈 값 제거
 
         if($s_date == "") $s_date = date('Y-m-d');
 		
