@@ -217,7 +217,6 @@
                 </div>
                 <?php } ?>
 
-                <?php if($data_['product_able'] && $data_['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
                         미팅/픽업장소 안내
@@ -225,14 +224,29 @@
 
                     <div class="container-big-text">
                         <div class="only_w">
-                            <?= viewSQ($data_['product_able']) ?>
+                            <div class="tit-blue-type-2">
+                                <span class="tit-blue">포함사항</span>
+                            </div>
+                            <div class="des-type">
+                                <?= viewSQ($data_['product_able'])?>
+                            </div>
+                            <div class="tit-blue-type-2">
+                                <span class="tit-blue">불포함 사항</span>
+                            </div>
+                            <div class="des-type">
+                                <?= viewSQ($data_['product_unable'])?>
+                            </div>
                         </div>
                         <div class="only_m">
-                            <?= viewSQ($data_['mobile_able']) ?>
+                            <h2 class="title-sec2">
+                                추가정보 및 참고사항
+                            </h2>
+                            <div class="des-type">
+                                <?= viewSQ($data_['mobile_able'])?>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <?php } ?>
 
                 <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
