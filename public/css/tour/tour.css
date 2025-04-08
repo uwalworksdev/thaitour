@@ -3090,6 +3090,11 @@
     font-size: 18px;
 }
 
+.tours-detail.spa-detail .title-sec2 {
+    font-size: 18px;
+    margin: 40px 0;
+}
+
 .tours-detail p.des-type {
     font-size: 17px;
     line-height: 1.5rem;

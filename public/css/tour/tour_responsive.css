@@ -3399,6 +3399,11 @@
   .content-sub-hotel-detail .title-sec3 {
     margin: 3.2rem 0;
   }
+  
+  .tours-detail.spa-detail .title-sec2 {
+    font-size: 2.8rem;
+    margin: 3.2rem 0;
+  }
 
   .thailand_hotel_list_top_ {
     display: flex;
