@@ -823,7 +823,7 @@
 										    "s_date"        : $("#s_date").val(),
 											"e_date"        : $("#e_date").val(),
 											"product_idx"   : $("#product_idx").val(),
-											"selectedHoles" : selectedHoles,	
+											"holes"         : selectedHoles,	
 											"dow_val"       : dow_val, 
 											"price_1"       : $("#dowPrice_1").val(),
 											"price_2"       : $("#dowPrice_2").val(),

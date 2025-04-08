@@ -1397,7 +1397,7 @@ class TourRegistController extends BaseController
         $row = $result->getRowArray();
         $ori_sdate = $row['sdate'];
         $ori_edate = $row['edate'];
-write_log($ori_sdate." - ".$ori_edate);
+ 
         if ($s_date == "" && $e_date == "") {
 	        $s_date = $ori_sdate;
 	        $e_date = $ori_edate;
