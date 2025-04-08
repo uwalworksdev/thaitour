@@ -1400,19 +1400,16 @@ class TourRegistController extends BaseController
         $product_name = viewSQ($row["product_name"]);
 
         $search = " AND group_idx = '". $group_idx ."' ";
-
 if (!empty($selectedHoles)) {
-    // 개수만큼 바인딩 파라미터 생성 (:hole0, :hole1 ...)
     $placeholders = [];
     $params = [];
 
-    foreach ($selectedHoles as $index => $hole) {
-        $key = ":hole" . $index;
+    foreach ($selectedHoles as $i => $hole) {
+        $key = ":hole{$i}";
         $placeholders[] = $key;
         $params[$key] = $hole;
     }
     $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
-	
 }
 
 		if($goods_name) $search .= " AND goods_name = '". $goods_name ."' ";
