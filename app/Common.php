@@ -1942,7 +1942,7 @@ function getGolfweekly($product_idx, $goods_name, $goods_date){
 	                            WHERE product_idx =  '". $product_idx ."' 
 								AND goods_name    =  '". $goods_name ."' 
 								AND goods_date    <= '". $goods_date."' ORDER BY goods_date DESC LIMIT 0,7 ");
-    $result  = $query->getRowArray();
+    $result  = $query->getResultArray();
 
     return $result;
 }
