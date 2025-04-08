@@ -254,7 +254,14 @@
 												<?php $weeklyResult = getGolfweekly($product_idx, $frow3['goods_name'], $row['edate']);
 												      
 													  foreach ($weeklyResult as $day):
-                                                               echo $day['goods_name'] ." - ". $day['goods_date'] ." - ". $day['dow'] ." - ". $day['price_1'] ."<br>";														        
+                                                               //echo $day['goods_name'] ." - ". $day['goods_date'] ." - ". $day['dow'] ." - ". $day['price_1'] ."<br>";
+													           if($day['dow'] == "일") $frow3['goods_price1_1'] =  $day['price_1'];
+													           if($day['dow'] == "월") $frow3['goods_price2_1'] =  $day['price_1'];
+													           if($day['dow'] == "화") $frow3['goods_price3_1'] =  $day['price_1'];
+													           if($day['dow'] == "수") $frow3['goods_price4_1'] =  $day['price_1'];
+													           if($day['dow'] == "목") $frow3['goods_price5_1'] =  $day['price_1'];
+													           if($day['dow'] == "금") $frow3['goods_price6_1'] =  $day['price_1'];
+													           if($day['dow'] == "토") $frow3['goods_price7_1'] =  $day['price_1'];
 													  endforeach;	  
 												
 												?>
