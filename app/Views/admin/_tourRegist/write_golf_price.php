@@ -1460,8 +1460,8 @@ $(document).ready(function () {
         location.href = '/AdmMaster/_tourRegist/list_golf_price?o_idx=' + idx + '&product_idx=' + $("#product_idx").val();
     }
 
-	function updDay(idx,group) {
-        location.href = '/AdmMaster/_tourRegist/list_golf_price?product_idx=' + idx +'&group_idx=' + group;
+	function updDay(idx,group,sdate,edate) {
+        location.href = '/AdmMaster/_tourRegist/list_golf_price?product_idx=' + idx +'&group_idx=' + group + '&s_date='+ sdate + '&e_date=' + edate;
     }
 </script>
 
