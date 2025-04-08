@@ -1936,4 +1936,14 @@ function hasOverlappingDateRanges($optionsx) {
     return false;
 }
 
+function getGolfweekly($product_idx, $goods_name, $goods_date){
+    $connect = db_connect();
+    $query   = $connect->query("SELECT * FROM tbl_golf_price 
+	                            WHERE product_idx =  '". $product_idx ."' 
+								AND goods_name    =  '". $goods_name ."' 
+								AND goods_date    <= '". $goods_date."' ORDER BY goods_date DESC LIMIT 0,7 ");
+    $result  = $query->getRowArray();
+
+    return $result;
+}
 ?>
