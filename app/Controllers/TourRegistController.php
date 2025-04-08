@@ -1410,9 +1410,9 @@ foreach ($holesArray as $index => $hole) {
     $params[$key] = $hole;
 }
     $search .= " AND goods_name IN (" . implode(',', $placeholders) . ")";
+	write_log("search- ". $search);
 }
 
-		if($goods_name) $search .= " AND goods_name = '". $goods_name ."' ";
 
         if ($s_date && $e_date) {
             $sql = "SELECT MIN(goods_date) AS s_date, MAX(goods_date) AS e_date FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search AND goods_date BETWEEN '$s_date' AND '$e_date' ";
