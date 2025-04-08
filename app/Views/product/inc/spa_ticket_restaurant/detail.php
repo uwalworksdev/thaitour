@@ -191,28 +191,80 @@
 
                 <div class="section3" id="section3">
                     <h2 class="title-sec3">
-                        소개&시설
+                        상품설명
+                    </h2>
+
+                    <?php if($data_['tour_info']) {?>
+                        <div class="container-big-text">
+                                <?= viewSQ($data_['tour_info']) ?>
+                        </div>
+                    <?php }?>
+                </div>
+
+                <?php if($data_['product_confirm']) { ?>
+                <div class="section3" style="margin-top: 0;">
+                    <h2 class="title-sec3">
+                        미팅/픽업장소 안내
+                    </h2>
+
+                    <div class="container-big-text">
+                            <?= viewSQ($data_['product_confirm']) ?>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if($data_['product_able'] && $data_['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                <div class="section3" style="margin-top: 0;">
+                    <h2 class="title-sec3">
+                        미팅/픽업장소 안내
                     </h2>
 
                     <div class="container-big-text">
                         <div class="only_w">
-                            <?= viewSQ($data_['product_contents']) ?>
+                            <?= viewSQ($data_['product_able']) ?>
                         </div>
                         <div class="only_m">
-                            <?= viewSQ($data_['product_contents_m']) ?>
+                            <?= viewSQ($data_['mobile_able']) ?>
                         </div>
                     </div>
                 </div>
+                <?php } ?>
 
-                <div class="section3" id="section3" style="margin-top: 0;">
+                <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                <div class="section3" style="margin-top: 0;">
+                    <h2 class="title-sec3">
+                        어린이정책
+                    </h2>
+
+                    <div class="container-big-text">
+                            <?= viewSQ($data_['special_benefit']) ?>
+                    </div>
+                </div>
+                <?php } ?>
+
+                <?php if($data_['notice_comment'] && $data_['notice_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec3">
                         유의사항
                     </h2>
 
                     <div class="container-big-text">
-                            <?= viewSQ($data_['note_news']) ?>
+                            <?= viewSQ($data_['notice_comment']) ?>
                     </div>
                 </div>
+                <?php } ?>
+
+                <?php if($data_['etc_comment'] && $data_['etc_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                <div class="section3" style="margin-top: 0;">
+                    <h2 class="title-sec3">
+                        더투어랩 이용방법
+                    </h2>
+
+                    <div class="container-big-text">
+                            <?= viewSQ($data_['etc_comment']) ?>
+                    </div>
+                </div>
+                <?php } ?>
 
                 <div class="section4" id="section4">
                     <h2 class="title-sec4">
