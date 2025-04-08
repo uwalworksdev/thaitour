@@ -32,6 +32,7 @@
                 <h2>골프 상품관리 정보입력</h2>
                 <div class="menus">
                     <ul>
+     					<li><a href="/product-golf/golf-detail/<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a></li>
                         <li>
                             <a href="list_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                 class="btn btn-default">
@@ -673,6 +674,7 @@
             <ul>
                 <li class="left"></li>
                 <li class="right_sub">
+			        <a href="/product-golf/golf-detail/<?= $product_idx?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">상품상세</span></a>
                     <a href="list_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                         class="btn btn-default">
                         <span class="glyphicon glyphicon-th-list"></span>
