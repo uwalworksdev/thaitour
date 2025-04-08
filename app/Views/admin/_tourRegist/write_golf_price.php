@@ -601,8 +601,8 @@
                                 <div>
                                     <table id="roomTable">
                                         <colgroup>
-                                            <col width="34%"></col>
-                                            <col width="34%"></col>
+                                            <col width="30%"></col>
+                                            <col width="30%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
