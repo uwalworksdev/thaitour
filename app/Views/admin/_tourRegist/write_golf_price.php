@@ -647,9 +647,9 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <select name="sale" >
-                                                             <option value="Y">판매중</option>
-                                                             <option value="Y">중지</option>
+                                                        <select name="sale[]" >
+                                                             <option value="Y" <?php if($frow3['sale'] == "Y") echo "selected";?> >판매중</option>
+                                                             <option value="N" <?php if($frow3['sale'] != "Y") echo "selected";?> >중지</option>
                                                         </select>
                                                     </td>
 													<td>
