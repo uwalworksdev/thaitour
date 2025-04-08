@@ -251,7 +251,13 @@
 													<!--input type="checkbox" name="updChk" class="updChk_<?= $row['group_idx'] ?>" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>"-->
                                                 </td>
 												
-												<?php $weeklyResult = getGolfweekly($product_idx, $goods_name, $goods_date);?>
+												<?php $weeklyResult = getGolfweekly($product_idx, $frow3['goods_name'], $row['edate']);
+												      
+													  foreach ($weeklyResult as $day):
+                                                               echo $day['goods_name'] ." - ". $day['goods_date'] ." - ". $day['dow'] ." - ". $day['price_1'] ."<br>";														        
+													  endforeach;	  
+												
+												?>
 													
                                                 <td>
                                                     <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_1]"
