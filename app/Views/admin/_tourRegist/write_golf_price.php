@@ -605,6 +605,7 @@
                                             <col width="34%"></col>
                                             <col width="10%"></col>
                                             <col width="10%"></col>
+                                            <col width="10%"></col>
                                             <col width="*"></col>
                                         </colgroup>
                                         <thead>
@@ -613,6 +614,7 @@
                                             <th>옵션명(영문)</th>
                                             <th>가격</th>
                                             <th>삭제</th>
+                                            <th>판매여부</th>
                                             <th>정렬</th>
                                         </tr>
                                         </thead>
@@ -638,6 +640,11 @@
                                                         <input type='text' numberonly='true'
                                                                 style='text-align:right;' name='o_price1[]' id=''
                                                                 value="<?= $frow3['goods_price1_1'] ?>"/>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button"
+                                                                onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
+                                                        </button>
                                                     </td>
                                                     <td>
                                                         <button type="button"
