@@ -143,12 +143,10 @@
                             <tr>
                                 <th>홀구분</th>
                                 <td>
-                                    <select name="hole" id="hole">
 									    <input type="checkbox" value="" >홀전체
 										<?php foreach($hresult as $row): ?>
 											  <input type="checkbox" value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?>
 										<?php endforeach; ?>
-									</select>   
                                 </td>
                             </tr>
                             <tr>
