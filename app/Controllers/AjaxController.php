@@ -3468,6 +3468,7 @@ class AjaxController extends BaseController {
 							AND upd_yn     != 'Y'";
 
 					$result = $db->query($sql, [$group_idx, $product_idx]);
+					write_log('LAST QUERY: ' . $db->getLastQuery());
             
             }
 
