@@ -530,7 +530,7 @@
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 const selectedHoles = $('.holeOption:checked').map(function () {
-            return $(this).val();
+            return $(this).val()+',';
         }).get();
 
         alert("선택된 홀: " + selectedHoles);
