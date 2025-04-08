@@ -143,9 +143,9 @@
                             <tr>
                                 <th>홀구분</th>
                                 <td>
-									    <input type="checkbox" value="" >홀전체
+									    <input type="checkbox" id="allHoles" value="" >홀전체
 										<?php foreach($hresult as $row): ?>
-											  <input type="checkbox" value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?>
+											  <input type="checkbox" class="holeOption" value="<?= esc($row['goods_name']) ?>" ><?= esc($row['goods_name']) ?>
 										<?php endforeach; ?>
                                 </td>
                             </tr>
@@ -334,6 +334,25 @@
 								</table>
 			        </div>
                     <!-- // listBottom -->
+
+<script>
+    // '홀전체' 체크시 다른 체크박스 전체 선택/해제
+    $('#allHoles').on('change', function () {
+        $('.holeOption').prop('checked', this.checked);
+    });
+
+    // 개별 체크박스 해제 시 '홀전체'도 해제
+    $('.holeOption').on('change', function () {
+        if (!$(this).prop('checked')) {
+            $('#allHoles').prop('checked', false);
+        } else {
+            // 모든 옵션이 체크되었을 때만 '홀전체' 자동 체크
+            if ($('.holeOption:checked').length === $('.holeOption').length) {
+                $('#allHoles').prop('checked', true);
+            }
+        }
+    });
+</script>
 
 					<script>					
 					$(document).ready(function () {
