@@ -533,7 +533,7 @@ const selectedHoles = $('.holeOption:checked').map(function () {
             return $(this).val();
         }).get();
 
-        alert("선택된 홀: " + selectedHoles.join(', '));
+        alert("선택된 홀: " + selectedHoles);
                             //$("#priceForm").submit();
 						});
 
