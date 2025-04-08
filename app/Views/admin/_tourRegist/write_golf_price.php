@@ -250,6 +250,9 @@
                                                     <?= $frow3['goods_name'] ?>
 													<!--input type="checkbox" name="updChk" class="updChk_<?= $row['group_idx'] ?>" id="updChk_<?= $frow3['idx'] ?>" value="<?= $frow3['idx'] ?>"-->
                                                 </td>
+												
+												<?php $weeklyResult = getGolfweekly($product_idx, $goods_name, $goods_date);?>
+													
                                                 <td>
                                                     <input type="text" numberonly="true" name="optGolf[<?=$i?>][o_price2_1]"
                                                             style="text-align:right;width:32%;"
