@@ -223,7 +223,7 @@
 											야간 <input type="text" name="dowPrice_3" id="dowPrice_3" value="0" numberonly="true" style="text-align:right;background: white; width: 100px;"> 단위(바트)
 										</div>
                                         <div style="margin:10px">
-                                            <a href="#!" id="dowCharge" class="btn btn-primary">적용</a>  
+                                            <a href="#!" id="dowCharge" class="btn btn-primary">일괄적용</a>  
                                         </div>
                                     </div>
                                 </td>
