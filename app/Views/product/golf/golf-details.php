@@ -742,7 +742,7 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    안내사항
+                    위치정보
                 </span>
                 <div class="description">
                     <?= viewSQ($product['code_services']) ?>
@@ -758,7 +758,7 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    골프텔 정보
+                    복장규정
                 </span>
                 <div class="description">
                     <?= viewSQ($product['product_more']) ?>
@@ -766,7 +766,7 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    더투어랩 이용방법
+                    레인체크 규정
                 </span>
                 <div class="description">
                     <?= viewSQ($product['departure_area']) ?>

@@ -749,8 +749,6 @@
         let arr_info_idx = [];
         let tmp_info = 0;
         let current_info_idx = $(el).closest(".spa_option_detail").data('info_idx');
-        let current_adult_num = $(el).closest(".spa_option_detail").find(".qty_adults_select_").val();
-        let current_child_num = $(el).closest(".spa_option_detail").find(".qty_children_select_").val();
 
         $(".spa_option_detail").each(function() {
             
@@ -859,31 +857,29 @@
         
         $("#list_people_option").html(html);
 
-        if(current_adult_num > 0 || current_child_num > 0){
-            let check_num_people = false;
-            $('.spa_option_detail[data-info_idx="' + current_info_idx + '"]').each(function() {
-                if($(this).find(".qty_adults_select_").val() > 0 || $(this).find(".qty_children_select_").val() > 0){
-                    check_num_people = true;
-                }
-            });
-
-            if(check_num_people){
-                let option_html = ``;
-                option_html += `
-                    <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="">
-                        <option value="">옵션선택</option>
-                        <option value="">
-                        </option>
-                    </select>
-                    <div class="opt_select disabled sel_option" id="sel_option">
-                        <select name="option" id="option" onchange="sel_option(this.value);">";
-                            <option value="">옵션 선택</option>
-                        </select>
-                    </div>
-                `;
-                
-                $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+        let check_num_people = false;
+        $('.spa_option_detail[data-info_idx="' + current_info_idx + '"]').each(function() {
+            if($(this).find(".qty_adults_select_").val() > 0 || $(this).find(".qty_children_select_").val() > 0){
+                check_num_people = true;
             }
+        });        
+
+        if(check_num_people){
+            let option_html = ``;
+            option_html += `
+                <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="">
+                    <option value="">옵션선택</option>
+                    <option value="">
+                    </option>
+                </select>
+                <div class="opt_select disabled sel_option" id="sel_option">
+                    <select name="option" id="option" onchange="sel_option(this.value);">";
+                        <option value="">옵션 선택</option>
+                    </select>
+                </div>
+            `;
+            
+            $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
         }
         
     }
