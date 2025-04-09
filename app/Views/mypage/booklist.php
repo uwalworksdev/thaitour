@@ -584,9 +584,16 @@ endforeach;
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
 
-
+<!--
 <form id="checkOut" action="/checkout/payment" method="post">
-<input type="hidden" name="dataValue" id="dataValue" value="" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="text" name="dataValue" id="dataValue" value="" >
+</form>
+-->
+
+<form id="checkOut" action="/checkout/confirm" method="post">
+<input type="text" name="payment_no" id="payment_no" value="" >
+<input type="text" name="dataValue" id="dataValue" value="" >
 </form>
 
 <script>
@@ -594,7 +601,33 @@ $(document).ready(function () {
     $(".btn_payment").on("click", function () {
         var dataValue = $(this).data("idx"); // 주문번호 가져오기
 		$("#dataValue").val(dataValue);
-		$("#checkOut").submit();
+		
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": dataValue 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				alert('payment_no- '+payment_no);
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+			
+		
     });
 });
 </script>
