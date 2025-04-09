@@ -742,10 +742,34 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    안내사항
+                    위치정보
                 </span>
                 <div class="description">
                     <?= viewSQ($product['code_services']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    캐디팁
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['note_news']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    1~2인 라운드 규정
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_contents']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    골프텔 정보
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_able']) ?>
                 </div>
             </div>
             <div class="content-item">
@@ -758,7 +782,7 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    골프텔 정보
+                    복장규정
                 </span>
                 <div class="description">
                     <?= viewSQ($product['product_more']) ?>
@@ -766,18 +790,34 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
-                    더투어랩 이용방법
+                    레인체크 규정
                 </span>
                 <div class="description">
                     <?= viewSQ($product['departure_area']) ?>
                 </div>
             </div>
+            <div class="content-item">
+                <span class="label">
+                    어린이 정책
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_confirm']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    중요 공지사항
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['notice_comment']) ?>
+                </div>
+            </div>
         </div>
 
-        <h3 class="title-size-24" id="product_des">유의사항</h3>
+        <!-- <h3 class="title-size-24" id="product_des">유의사항</h3>
         <div class="container-big-text">
             <?= viewSQ($product['note_news']) ?>
-        </div>
+        </div> -->
         <h3 class="title-size-24" id="location">위치정보</h3>
         <div id="map" style="width: 100%; height: 450px;"></div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

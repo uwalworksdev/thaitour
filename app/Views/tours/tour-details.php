@@ -1157,9 +1157,13 @@
     let selectedDate = null;
     let validDays = []
 
+    function toDateOnly(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
     const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
-        s_date = new Date(startDate);
-        e_date = new Date(endDate);
+        s_date = toDateOnly(new Date(startDate));
+        e_date = toDateOnly(new Date(endDate));
         productPrice = price;
         productPriceBaht = priceBaht;
         t_info_idx = info_idx;
@@ -1241,7 +1245,10 @@
                     const isValidDay = validDays.includes(date.getDay());
                     const isPastDate = date < today;                     
 
-                    const dayData = data.find(d => d.goods_date === formatDate);                        
+                    const dayData = data.find(d => d.goods_date === formatDate);     
+                    
+                    console.log(formatDate + "  " + isWithinDateRange);
+                    
 
                     if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
                         $dayDiv.addClass('disabled').append("<p>예약마감</p>");

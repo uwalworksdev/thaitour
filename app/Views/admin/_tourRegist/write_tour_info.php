@@ -711,7 +711,7 @@
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
 										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
-										<input type="text" name="info_name[0]" style="width: 250px;" value="">
+										<input type="text" name="info_name[${tableCount}]" style="width: 250px;" value="">
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
@@ -1427,7 +1427,7 @@
 					$(this).find(".op_tour_onum").val(op_tour_onum);
 				});
 			});
-		})
+		});
 
 		frm.submit();
 	}

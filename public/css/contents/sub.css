@@ -1365,6 +1365,10 @@
     padding: 15px 0 15px;
 }
 
+.view_nav .select_peo li.last{
+    border-bottom: 1px solid #000;
+}
+
 .view_nav .ped_label {
     color: #757575;
     margin-bottom: 6px;
@@ -5316,6 +5320,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border-radius: 4px;
     position: absolute;
     right: 0;
+    z-index: 999;
 }
 
 .cart-item-list .cart-item-list-container .title-cr {

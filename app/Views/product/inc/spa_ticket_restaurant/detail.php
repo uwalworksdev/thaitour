@@ -683,7 +683,8 @@
         let html = ``;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
-
+            console.log(item_.count_options);
+            
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
                     <td>${item_.spas_subject}</td>
@@ -738,14 +739,16 @@
 
         showTotalPrice();
 
-        renderItemPrice();
+        renderItemPrice(el);
     }
 
 
-    function renderItemPrice() {
+    function renderItemPrice(el) {
         let html = ``;
         let i = 0;
         let arr_info_idx = [];
+        let tmp_info = 0;
+        let current_info_idx = $(el).closest(".spa_option_detail").data('info_idx');
 
         $(".spa_option_detail").each(function() {
             
@@ -753,8 +756,8 @@
             let idx = $(this).data('idx');
             let op_name = $(this).data('op_name');
             let info_idx = $(this).data('info_idx');
-            let count = $(this).data('count');            
-
+            let count = $(this).data('count');   
+            
             if (!arr_info_idx[info_idx]) {
                 arr_info_idx[info_idx] = 0;
             }
@@ -769,9 +772,12 @@
             let child_type = $(this).find(".qty_children_select_").data('type');
             let child_num = $(this).find(".qty_children_select_").val();
 
-            html += `<li class="">`;
-
             if(adult_num > 0 || child_num > 0){
+                if(arr_info_idx[info_idx] == count){
+                    html += `<li class="last" data-info_idx="${info_idx}">`;
+                }else{
+                    html += `<li data-info_idx="${info_idx}">`;
+                }
 
                 html += `<p style="font-weight: bold; margin-bottom: 10px;">${op_name}</p>`
             }
@@ -843,11 +849,66 @@
             //     `;
             // }
 
-            html += `</li>`
+            if(adult_num > 0 || child_num > 0) {
+                html += `</li>`;
+            }
         });
 
         
         $("#list_people_option").html(html);
+
+        let check_num_people = false;
+        $('.spa_option_detail[data-info_idx="' + current_info_idx + '"]').each(function() {
+            if($(this).find(".qty_adults_select_").val() > 0 || $(this).find(".qty_children_select_").val() > 0){
+                check_num_people = true;
+            }
+        });        
+
+        if(check_num_people){
+
+            $.ajax({
+                url: "<?= route_to('api.spa_.get_mOption') ?>",
+                type: "GET",
+                data: { 
+                    info_idx: current_info_idx,
+                    product_idx: "<?= $data_['product_idx'] ?>",
+                },
+                error: function(request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function(data, status, request) {
+                    let option_html = ``;
+                    option_html += `
+                        <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="margin-top: 20px">
+                            <option value="">옵션선택</option>
+                            <option value="">
+                            </option>
+                        </select>
+                        <div class="opt_select disabled sel_option" id="sel_option">
+                            <select name="option" id="option" onchange="sel_option(this.value);">";
+                                <option value="">옵션 선택</option>
+                            </select>
+                        </div>
+                    `;
+                    
+                    $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+                }
+            });
+            $.ajax({
+                url: url,
+                type: "GET",
+                async: false,
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (data, status, request) {              
+                    
+                }
+            });
+
+
+        }
+        
     }
 
     function calcTotalPrice() {
