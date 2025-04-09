@@ -591,7 +591,7 @@ endforeach;
 </form>
 -->
 
-<form id="checkOut" action="/checkout/payment" method="post">
+<form id="checkOut" action="/checkout/confirm" method="post">
 <input type="text" name="payment_no" id="payment_no" value="" >
 <input type="text" name="dataValue" id="dataValue" value="" >
 </form>
