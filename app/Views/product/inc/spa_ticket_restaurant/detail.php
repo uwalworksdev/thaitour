@@ -867,7 +867,7 @@
         if(check_num_people){
             let option_html = ``;
             option_html += `
-                <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="">
+                <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="margin-top: 20px">
                     <option value="">옵션선택</option>
                     <option value="">
                     </option>

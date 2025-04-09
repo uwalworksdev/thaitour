@@ -1241,7 +1241,10 @@
                     const isValidDay = validDays.includes(date.getDay());
                     const isPastDate = date < today;                     
 
-                    const dayData = data.find(d => d.goods_date === formatDate);                        
+                    const dayData = data.find(d => d.goods_date === formatDate);     
+                    
+                    console.log(formatDate + "  " + isWithinDateRange);
+                    
 
                     if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
                         $dayDiv.addClass('disabled').append("<p>예약마감</p>");
