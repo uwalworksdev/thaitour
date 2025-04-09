@@ -635,6 +635,9 @@
     // });
     // });
 
+
+    var arr_data_option = [];
+
     $(document).on('click', '.allowDate', function () {
         $('.sel_date').removeClass('active_');
         $(this).addClass('active_');
@@ -683,7 +686,6 @@
         let html = ``;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
-            console.log(item_.count_options);
             
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
@@ -742,13 +744,162 @@
         renderItemPrice(el);
     }
 
+    function minusInput(el) {
+        let input = $(el).parent().find('input');
+        let idx = $(el).closest(".cus-count-input").data('idx');
+        let info_idx = $(el).closest(".cus-count-input").data('info_idx');
+        
+        if (parseInt(input.val()) > 1) {
+            let foundItem = arr_data_option[info_idx].find(item => parseInt(item.idx) === parseInt(idx));
+
+            foundItem.cnt = parseInt(input.val()) - 1;
+            input.val(parseInt(input.val()) - 1);
+            calcTotalSup();
+        } else {
+            arr_data_option[info_idx] = arr_data_option[info_idx].filter(item => item.idx !== idx);
+            removeData(el);
+        }
+
+    }
+
+    function plusInput(el) {
+        let input = $(el).parent().find('input');
+        let idx = $(el).closest(".cus-count-input").data('idx');
+        let info_idx = $(el).closest(".cus-count-input").data('info_idx');
+
+        let foundItem = arr_data_option[info_idx].find(item => parseInt(item.idx) === parseInt(idx));
+
+        foundItem.cnt = parseInt(input.val()) + 1;
+
+        input.val(parseInt(input.val()) + 1);
+
+        calcTotalSup();
+    }
+
+    function removeData(el) {
+        let info_idx = $(el).closest(".cus-count-input").data('info_idx');        
+
+        if (confirm('확실히 선택을 취소하고 싶습니다?')) {
+            $("#sel_option_" + info_idx).find("select").val('');
+
+            $(el).parent().parent().remove();
+            calcTotalSup();
+        }
+    }
+
+    function calcTotalSup() {
+        let data = calcTotalPrice();
+        let price_total = mainCalc(data.price_total.replaceAll(',', ''));
+        $('#total_sum').text(price_total);
+    }
+
+    function renderOpPrice(data, info_idx){
+        let parent_name = data.parent_name;
+        
+        let option_name = data.option_name;
+        let option_price = data.option_price;
+        let option_price_won = data.option_price_won;
+        let idx = data.idx;
+        let option_tot = data.option_tot ?? 0;
+        let option_cnt = data.option_cnt;
+        let cnt = data.cnt ?? 1;
+
+        let htm_ = `<li id="sel_option_data_${idx}" data-idx="${idx}" data-info_idx="${info_idx}" class="flex_b_c cus-count-input" style="margin-top: 10px">
+                        <div class="payment">
+                            <p class="ped_label">${parent_name}</p>
+                            <p class="money adult">
+                                <span id="adult_msg">${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</span>
+                            </p>
+                        </div>
+                        <div class="opt_count_box count_box flex__c">
+                            <button type="button" onclick="minusInput(this);" class="minus_btn"
+                                    id="minusAdult"></button>
+                            <input data-price="${option_price_won}" type="text" class="input-qty" name="option_qty[]" min="1" value="${cnt}"
+                                readonly="">
+                            <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                    id="addAdult"></button>
+                        </div>
+
+                        <div class="" style="display: none">
+                            <input type="hidden" name="option_name[]" value="${option_name}">
+                            <input type="hidden" name="option_idx[]" value="${idx}">
+                            <input type="hidden" name="option_tot[]" value="${option_tot}">
+                            <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                            <input type="hidden" name="option_price[]" value="${option_price}">
+                        </div>
+                    </li>`;
+        
+
+        let sel_option_ = $('#sel_option_data_' + idx);
+        if (!sel_option_.length > 0) {
+            
+            $("#option_list_" + info_idx).append(htm_);
+            calcTotalSup();
+        }
+    }
+
+    function sel_moption(code_idx, info_idx) {
+        let url = `<?= route_to('api.spa_.sel_moption') ?>`;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "product_idx": '<?= $data_['product_idx'] ?>',
+                "code_idx": code_idx,
+                "info_idx": info_idx
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                $("#sel_option_" + info_idx).html(data);
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
+    function sel_option(code_idx, info_idx) {
+        let url = `<?= route_to('api.spa_.sel_option') ?>`;
+        let idx = code_idx.split("|")[0];
+
+        let moption = $("#moption_" + info_idx).val();
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "idx": idx,
+                "moption": moption
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                if (!arr_data_option[info_idx]) {
+                    arr_data_option[info_idx] = [];
+                }
+
+                let exists = arr_data_option[info_idx].some(item => item.idx === idx);
+
+                if (!exists) {
+                    data.cnt = 1;
+                    arr_data_option[info_idx].push(data);
+                }
+                
+                renderOpPrice(data, info_idx);
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
 
     function renderItemPrice(el) {
         let html = ``;
         let i = 0;
         let arr_info_idx = [];
         let tmp_info = 0;
-        let current_info_idx = $(el).closest(".spa_option_detail").data('info_idx');
 
         $(".spa_option_detail").each(function() {
             
@@ -858,57 +1009,74 @@
         $("#list_people_option").html(html);
 
         let check_num_people = false;
-        $('.spa_option_detail[data-info_idx="' + current_info_idx + '"]').each(function() {
+
+        $('.spa_option_detail').each(function() {
+            let check_num_people = false;
+            let current_info_idx = $(this).data('info_idx');
+
             if($(this).find(".qty_adults_select_").val() > 0 || $(this).find(".qty_children_select_").val() > 0){
                 check_num_people = true;
             }
-        });        
 
-        if(check_num_people){
+            if(tmp_info != current_info_idx) {
+                tmp_info = current_info_idx
 
-            $.ajax({
-                url: "<?= route_to('api.spa_.get_mOption') ?>",
-                type: "GET",
-                data: { 
-                    info_idx: current_info_idx,
-                    product_idx: "<?= $data_['product_idx'] ?>",
-                },
-                error: function(request, status, error) {
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                },
-                success: function(data, status, request) {
-                    let option_html = ``;
-                    option_html += `
-                        <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="margin-top: 20px">
-                            <option value="">옵션선택</option>
-                            <option value="">
-                            </option>
-                        </select>
-                        <div class="opt_select disabled sel_option" id="sel_option">
-                            <select name="option" id="option" onchange="sel_option(this.value);">";
-                                <option value="">옵션 선택</option>
-                            </select>
-                        </div>
-                    `;
-                    
-                    $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+                if(check_num_people){
+
+                    $.ajax({
+                        url: "<?= route_to('api.spa_.get_mOption') ?>",
+                        type: "GET",
+                        data: { 
+                            info_idx: current_info_idx,
+                            product_idx: "<?= $data_['product_idx'] ?>",
+                        },
+                        error: function(request, status, error) {
+                            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                        },
+                        success: function(data, status, request) {
+                            let option_html = ``;
+                            
+                            option_html += `
+                                <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
+                                    <option value="">옵션선택</option>`;
+                            for (let i = 0; i < data.length; i++) {
+                                option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                            }
+
+                            option_html += `
+                                </select>
+                                <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
+                                    <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">";
+                                        <option value="">옵션 선택</option>
+                                    </select>
+                                </div>
+                                <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px">
+
+                                </ul>
+                            `;
+                            
+                            $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+
+                            for (let info_idx in arr_data_option) {
+            
+                                let dataList = arr_data_option[info_idx];
+
+                                for (let i = 0; i < dataList.length; i++) {
+                                    let data = dataList[i];
+                                    
+                                    console.log(data);
+                                    
+                                    renderOpPrice(data, info_idx);
+                                }
+                            }
+                        }
+                    });
                 }
-            });
-            $.ajax({
-                url: url,
-                type: "GET",
-                async: false,
-                error: function (request, status, error) {
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                },
-                success: function (data, status, request) {              
-                    
-                }
-            });
-
-
-        }
+            }
+        }); 
         
+        
+
     }
 
     function calcTotalPrice() {
@@ -968,12 +1136,15 @@
         let option_list_ = $("#option_list_").find('li.cus-count-input');
 
         let total_price = 0;
-        for (let i = 0; i < option_list_.length; i++) {
-            let inp = $(option_list_[i]).find('input.input-qty');
-            let price = inp.attr('data-price');
-            let cnt = inp.val();
-            total_price += parseInt(price) * parseInt(cnt);
-        }
+        $(".option_list_").each(function(){
+            let option_list_ = $(this).find('li.cus-count-input');
+            for (let i = 0; i < option_list_.length; i++) {
+                let inp = $(option_list_[i]).find('input.input-qty');
+                let price = inp.attr('data-price');
+                let cnt = inp.val();
+                total_price += parseInt(price) * parseInt(cnt);
+            }
+        });
 
         total_price += parseInt(price_total);
 

@@ -641,6 +641,8 @@ $routes->group("api", static function ($routes) {
     $routes->group("spa_", function ($routes) {
         $routes->get("get_spa_options", "SpaController::get_spa_options", ['as' => "api.spa_.get_spa_options"]);
         $routes->get("get_mOption", "SpaController::get_mOption", ['as' => "api.spa_.get_mOption"]);
+        $routes->post("sel_moption", "SpaController::sel_moption", ['as' => "api.spa_.sel_moption"]);
+        $routes->post("sel_option", "SpaController::sel_option", ['as' => "api.spa_.sel_option"]);
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
     });

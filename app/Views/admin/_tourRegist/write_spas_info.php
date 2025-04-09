@@ -100,6 +100,7 @@
                                                             <td>
 																<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
 																	<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+																	<input type="hidden" name="o_onum[<?=$i?>]" class="o_onum" value="<?=$info['info']['o_onum']?>">
 																		<input type="text" readonly class="datepicker s_date" name="o_sdate[<?=$i?>]" placeholder="시작기간" style="width: 120px; cursor: pointer;" 
 																			value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
 																		<input type="text" readonly class="datepicker e_date" placeholder="종료기간" name="o_edate[<?=$i?>]" style="width: 120px; cursor: pointer;" 
@@ -151,7 +152,7 @@
                                                             </td> -->
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4">
+                                                            <td colspan="3">
                                                                 <table style="width:100%">
 																	<colgroup>
 																		<col width="*">
@@ -211,7 +212,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td colspan="4">
+                                                            <td colspan="3">
                                                                 <table style="width: 100%">
                                                                     <colgroup>
                                                                         <col width="7%">
@@ -262,7 +263,6 @@
                                                                                                     </div>
                                                                                                 </th>
                                                                                                 <td>
-                                                                                                    <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
                                                                                                     <table>
 																										<colgroup>
 																											<col width="*"></col>
@@ -283,13 +283,13 @@
                                                                                                         <tbody>
         
                                                                                                             <?php foreach ($moption['option_spas'] as $option_spa): ?>
-                                                                                                                <tr>
+                                                                                                                <tr class="option_detail">
                                                                                                                     <td>
 																														<div style="display: flex; gap: 5px;">
                                                                                                                         	<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="<?=$option_spa["idx"]?>">
 																															<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="<?=$option_spa["onum"]?>">
-                                                                                                                        	<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" style="width:48%;" placeholder="옵션타입 국문글씨로 입력해주세요"/>
-                                                                                                                        	<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" style="width:48%;" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+                                                                                                                        	<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+                                                                                                                        	<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" placeholder="옵션타입 영문글씨로 입력해주세요"/>
 																														</div>
                                                                                                                     </td>
                                                                                                                     <td>
@@ -348,19 +348,11 @@
                                         <div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
                                             <table style="width: 100%">
                                                 <colgroup>
-                                                    <col width="35%">
-                                                    <col width="*">
-                                                    <col width="10%">
-                                                    <col width="15%">
+													<col width="20%">
+													<col width="*">
+													<col width="15%">
                                                 </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <th>기간</th>
-                                                        <th>출발요일</th>
-                                                        <th>기존상품가</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
+
                                                 <tbody>
                                                     <tr>
 														<td>
@@ -472,7 +464,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="4">
+                                                        <td colspan="3">
                                                             <table style="width: 100%">
                                                                 <colgroup>
                                                                     <col width="7%">
@@ -520,7 +512,6 @@
                                                                                             </div>
                                                                                         </th>
                                                                                         <td>
-                                                                                            <span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
                                                                                             <table>
                                                                                                 <colgroup>
 																									<col width="*"></col>
@@ -529,25 +520,18 @@
 																									<col width="10%"></col>
 																									<col width="8%"></col>
                                                                                                 </colgroup>
-                                                                                                <!-- <thead>
-                                                                                                <tr>
-                                                                                                    <th>옵션명 한글/영문</th>
-                                                                                                    <th>가격(단위: 바트)</th>
-                                                                                                    <th>적용</th>
-                                                                                                    <th>순서</th>
-                                                                                                    <th>삭제</th>
-                                                                                                </tr>
-                                                                                                </thead> -->
                                                                                                 <tbody>
-                                                                                                    <tr>
+                                                                                                    <tr class="option_detail">
                                                                                                         <td>
-                                                                                                            <input type="hidden" name="op_spa_idx[0][0][]" class="op_spa_idx" value="">
-																											<input type="hidden" name="op_spa_onum[0][0][]" class="op_spa_onum" value="">
-                                                                                                            <input type='text' name='o_name[0][0][]' value="" style="width:48%;" placeholder="옵션타입 국문글씨로 입력해주세요"/>
-                                                                                                            <input type='text' name='o_name_eng[0][0][]' value="" style="width:48%;" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																											<div style="display: flex; gap: 5px;">
+																												<input type="hidden" name="op_spa_idx[0][0][]" class="op_spa_idx" value="">
+																												<input type="hidden" name="op_spa_onum[0][0][]" class="op_spa_onum" value="">
+																												<input type='text' name='o_name[0][0][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+																												<input type='text' name='o_name_eng[0][0][]' placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																											</div>
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            <input type='text' style="text-align:right;"
+                                                                                                            <input type='text'
                                                                                                                     name='o_price[0][0][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
                                                                                                         </td>
                                                                                                         <td>
@@ -566,9 +550,6 @@
 																												<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																											</div>
 																										</td>
-                                                                                                        <!-- <td>
-                                                                                                            <input type='text' name='o_num[0][0][]' value="" numberOnly=true/>
-                                                                                                        </td> -->
                                                                                                         <td>
                                                                                                             <div style="display: flex; gap: 5px; justify-content: center; align-items: center">
                                                                                                                 <button type="button" class="btn btn-danger"
@@ -729,7 +710,7 @@
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
 										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
-										<input type="text" name="info_name[0]" style="width: 250px;" value="">
+										<input type="text" name="info_name[${tableCount}]" style="width: 250px;" value="">
 										<a href="javascript:add_spas(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
@@ -777,7 +758,7 @@
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
-												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
+												<input type="hidden" name="spa_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
 												<div class="flex" style="gap: 5px;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -1051,13 +1032,13 @@
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
 				<td>
-					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
+					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
 					<input type="hidden" name="spa_idx[${infoIdx}][]" class="spa_idx" value="new">
 					<div style="display: flex; gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
-						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
 				<td>
@@ -1083,7 +1064,8 @@
 	}
 
 	function add_main_option(button, idx) {
-		let count_moption = Number($(button).closest("td").find(".count_moption").val() ?? 0)
+
+		let count_moption = Number($(button).closest("tr").find("> td").find(".count_moption").val() ?? 0)
 		let count = count_moption > 0 ? (count_moption - 1) : 0;
 		
 		if(!arr_count[idx] && arr_count[idx] != 0){
@@ -1095,6 +1077,7 @@
 			<div class="option_area">
 				<input type="hidden" name="moption_idx[${idx}][${arr_count[idx]}]" class="moption_idx" value="">
 				<input type="hidden" name="moption_onum[${idx}][${arr_count[idx]}]" class="moption_onum" value="">
+
 				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
 					<colgroup>
 						<col width="10%">
@@ -1105,6 +1088,7 @@
 						<th colspan="5">
 							<div class="flex__c" style="gap: 5px;">
 								옵션 <input type='text' name='moption_name[${idx}][${arr_count[idx]}]'
+										placeholder="옵션명"	
 											value="" style="width:550px"/>
 								<button type="button" class="btn btn-danger"
 										onclick="del_main_option('', this);">삭제
@@ -1125,7 +1109,6 @@
 							</div>
 						</th>
 						<td>
-							<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
 							<table>
 								<colgroup>
 									<col width="*"></col>
@@ -1135,18 +1118,18 @@
 									<col width="8%"></col>
 								</colgroup>
 								<tbody>
-									<tr>
+									<tr class="option_detail">
 										<td>
 											<div style="display: flex; gap: 5px;">
+												<input type="hidden" name="op_spa_onum[${idx}][${arr_count[idx]}][]" class="op_spa_onum" value="">
 												<input type="hidden" name="op_spa_idx[${idx}][${arr_count[idx]}][]" class="op_spa_idx" value="">
-												<input type="hidden" name="op_spa_idx[${idx}][${arr_count[idx]}][]" class="op_spa_idx" value="">
-												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+												<input type='text' name='o_name[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+												<input type='text' name='o_name_eng[${idx}][${arr_count[idx]}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
 											</div>
 										</td>
 										<td>
-											<input type='text' style="text-align:right;"
-													name='o_price[${idx}][${arr_count[idx]}][]' value="" numberOnly=true/>
+											<input type='text'
+													name='o_price[${idx}][${arr_count[idx]}][]' placeholder="가격(단위: 바트)" numberOnly=true/>
 										</td>
 										<td>
 											<select name="use_yn[${idx}][${arr_count[idx]}][]" style="width:100%">
@@ -1187,16 +1170,18 @@
 
 	function add_sub_option(button, info_idx, op_idx) {
 		let html = `
-			<tr>
+			<tr class="option_detail">
 				<td>
-					<input type="hidden" name="op_spa_idx[${info_idx}][${op_idx}][]" class="op_spa_idx" value="">
-					<input type="hidden" name="op_spa_idx[${info_idx}][${op_idx}][]" class="op_spa_idx" value="">
-					<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" style="width:48%;" />
-					<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" style="width:48%;" />
+					<div style="display: flex; gap: 5px;">
+						<input type="hidden" name="op_spa_onum[${info_idx}][${op_idx}][]" class="op_spa_onum" value="">
+						<input type="hidden" name="op_spa_idx[${info_idx}][${op_idx}][]" class="op_spa_idx" value="">
+						<input type='text' name='o_name[${info_idx}][${op_idx}][]' placeholder="옵션타입 국문글씨로 입력해주세요" value=""/>
+						<input type='text' name='o_name_eng[${info_idx}][${op_idx}][]' placeholder="옵션타입 영문글씨로 입력해주세요" value=""/>
+					</div>
 				</td>
 				<td>
-					<input type='text' style="text-align:right;"
-							name='o_price[${info_idx}][${op_idx}][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
+					<input type='text'
+							name='o_price[${info_idx}][${op_idx}][]' placeholder="가격(단위: 바트)" numberOnly=true/>
 				</td>
 				<td>
 					<select name="use_yn[${info_idx}][${op_idx}][]" style="width:100%">
@@ -1410,6 +1395,25 @@
 			// }
 
 		}
+
+		$(".table_list").each(function() {
+			let o_onum = $(this).index();
+			$(this).find(".o_onum").val(o_onum);
+			$(this).find(".air_list_1").each(function() {
+				let spa_onum = $(this).index();
+				$(this).find(".spa_onum").val(spa_onum);
+			});
+
+			$(this).find(".option_area").each(function() {
+				let moption_onum = $(this).index();
+				$(this).find(".moption_onum").val(moption_onum);
+				$(this).find(".option_detail").each(function() {
+					let op_spa_onum = $(this).index();
+					$(this).find(".op_spa_onum").val(op_spa_onum);
+				});
+			});
+		});
+
 		frm.submit();
 	}
 </script>

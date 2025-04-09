@@ -64,8 +64,7 @@
                         </li> -->
                     </ul>
 
-                    <div class="item_option" style="display: none">
-                        <!-- opt_list -->
+                    <!-- <div class="item_option" style="display: none">
                         <div class="opt_list">
                             <strong class="label">옵션선택</strong>
 
@@ -85,14 +84,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- // opt_list -->
-                    </div>
+                    </div> -->
 
-                    <div class="option_list_" id="option_list_" style="margin-top: 20px">
+                    <!-- <div class="option_list_" id="option_list_" style="margin-top: 20px">
                         <ul class="select_peo option_list_" id="option_list_">
 
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="total_paymemt payment">
@@ -186,87 +184,7 @@
         });
     });
 
-    function sel_moption(code_idx) {
-        let url = `<?= route_to('api.product.sel_moption') ?>`;
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: {
-                "product_idx": '<?= $data_['product_idx'] ?>',
-                "code_idx": code_idx
-            },
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                $("#sel_option").html(data);
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-    }
-
-    function sel_option(code_idx) {
-        let url = `<?= route_to('api.product.sel_option') ?>`;
-        let idx = code_idx.split("|")[0];
-
-        let moption = $("#moption").val();
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: {
-                "idx": idx,
-                "moption": moption
-            },
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                let parent_name = data.parent_name;
-
-                let option_name = data.option_name;
-                let option_price = data.option_price;
-                let idx = data.idx;
-                let option_tot = data.option_tot ?? 0;
-                let option_cnt = data.option_cnt;
-
-                let htm_ = `<li id="sel_option_data_${idx}" class="flex_b_c cus-count-input" style="margin-top: 10px">
-                            <div class="payment">
-                                <p class="ped_label">${parent_name}</p>
-                                <p class="money adult">
-                                    <span id="adult_msg">${option_name}</span>
-                                </p>
-                            </div>
-                            <div class="opt_count_box count_box flex__c">
-                                <button type="button" onclick="minusInput(this);" class="minus_btn"
-                                        id="minusAdult"></button>
-                                <input data-price="${option_price}" type="text" class="input-qty" name="option_qty[]" min="1" value="1"
-                                       readonly="">
-                                <button type="button" onclick="plusInput(this);" class="plus_btn"
-                                        id="addAdult"></button>
-                            </div>
-
-                            <div class="" style="display: none">
-                                       <input type="hidden" name="option_name[]" value="${option_name}">
-                                       <input type="hidden" name="option_idx[]" value="${idx}">
-                                       <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                       <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                                       <input type="hidden" name="option_price[]" value="${option_price}">
-                            </div>
-                        </li>`;
-
-                let sel_option_ = $('#sel_option_data_' + idx);
-                if (!sel_option_.length > 0) {
-                    $("#option_list_").append(htm_);
-                    calcTotalSup();
-                }
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-    }
+    
 
     function order_it() {
         $("#ajax_loader").removeClass("display-none");
@@ -396,27 +314,6 @@
         });
     }
 
-    function minusInput(el) {
-        let input = $(el).parent().find('input');
-
-        if (parseInt(input.val()) > 1) {
-            input.val(parseInt(input.val()) - 1);
-            calcTotalSup();
-        } else {
-            removeData(el);
-        }
-    }
-
-    function plusInput(el) {
-        let input = $(el).parent().find('input');
-        input.val(parseInt(input.val()) + 1);
-        calcTotalSup();
-    }
-
-    function remove(idx) {
-        $("#opt_result_box_" + idx).remove();
-        price_account();
-    }
 </script>
 <script>
     // function plusInput(el) {
@@ -437,16 +334,4 @@
     //     }
     // }
 
-    function removeData(el) {
-        if (confirm('확실히 선택을 취소하고 싶습니다?')) {
-            $(el).parent().parent().remove();
-            calcTotalSup();
-        }
-    }
-
-    function calcTotalSup() {
-        let data = calcTotalPrice();
-        let price_total = mainCalc(data.price_total.replaceAll(',', ''));
-        $('#total_sum').text(price_total);
-    }
 </script>

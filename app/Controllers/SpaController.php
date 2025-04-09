@@ -610,6 +610,7 @@ class SpaController extends BaseController
         $builder->where("p.goods_date =", $date);
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
+        $builder->orderBy("s.spa_onum", 'asc');
         $options_list = $builder->get()->getResultArray();
 
         foreach($options_list as $key => $day) {
@@ -634,9 +635,63 @@ class SpaController extends BaseController
         $product_idx = $this->request->getVar('product_idx');
         $m_option = $this->spasMoption->where("info_idx", $info_idx)
                                         ->where("product_idx", $product_idx)
+                                        ->where("moption_name != ", "")
                                         ->orderBy("onum", "asc")
                                         ->get()->getResultArray();
         return $this->response->setJSON($m_option);
         
     }  
+
+
+    public function sel_moption()
+    {
+        $db = \Config\Database::connect();
+
+        try {
+            $product_idx = $this->request->getPost('product_idx');
+            $code_idx = $this->request->getPost('code_idx');
+            $info_idx = $this->request->getPost('info_idx');
+
+            $msg = "";
+            $msg .= "<select name='option' id='option_" . $code_idx . "' onchange='sel_option(this.value, ". $info_idx .");'>";
+            $msg .= "<option value=''>옵션 선택</option>";
+
+            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
+            $result = $db->query($sql);
+            $result = $result->getResultArray();
+            foreach ($result as $row) {
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] * $this->setting['baht_thai'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price'] * $this->setting['baht_thai']) . "원" . "(" . number_format($row['option_price']) . "바트)" . "</option>";
+            }
+
+            $msg .= "</select>";
+
+            return $msg;
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function sel_option()
+    {
+        $db = \Config\Database::connect();
+
+        try {
+            $idx = $this->request->getPost('idx');
+
+            $sql = "SELECT a.*, b.moption_name as parent_name FROM tbl_spas_option a LEFT JOIN tbl_spas_moption b ON a.code_idx = b.code_idx WHERE a.idx = '$idx' ";
+            $result = $db->query($sql)->getRowArray();
+     
+            $result['option_price_won'] = round($result['option_price'] * $this->setting['baht_thai']);
+
+            return $this->response->setJSON($result, 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

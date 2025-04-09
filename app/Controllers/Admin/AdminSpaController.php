@@ -674,26 +674,29 @@ class AdminSpaController extends BaseController
 
     public function write_info_ok()
     {
-        $productIdx        = $this->request->getPost('product_idx');
-        $o_sdate           = $this->request->getPost('o_sdate');
-        $o_edate           = $this->request->getPost('o_edate');
-        $spas_subject     = $this->request->getPost('spas_subject');
-        $spas_subject_eng = $this->request->getPost('spas_subject_eng') ?? [];
-        $spas_price        = $this->request->getPost('spas_price') ?? [];
-        $spas_price_kids   = $this->request->getPost('spas_price_kids') ?? [];
-        $spas_price_baby   = $this->request->getPost('spas_price_baby') ?? [];
-        $status            = $this->request->getPost('status');
-        $spas_idx         = $this->request->getPost('spas_idx');
-        $info_idx          = $this->request->getPost('info_idx');
-        $spas_info_price   = $this->request->getPost('spas_info_price');
-        $moption_name      = $this->request->getPost('moption_name');
-        $o_name            = $this->request->getPost('o_name');
-        $o_name_eng        = $this->request->getPost('o_name_eng');
-        $o_price           = $this->request->getPost('o_price');
-        $use_yn            = $this->request->getPost('use_yn');
-        $o_num             = $this->request->getPost('o_num');
-        $op_spa_idx       = $this->request->getPost('op_spa_idx');
-        $moption_idx       = $this->request->getPost('moption_idx');
+        $productIdx         = $this->request->getPost('product_idx');
+        $o_sdate            = $this->request->getPost('o_sdate');
+        $o_edate            = $this->request->getPost('o_edate');
+        $spas_subject       = $this->request->getPost('spas_subject');
+        $spas_subject_eng   = $this->request->getPost('spas_subject_eng') ?? [];
+        $spas_price         = $this->request->getPost('spas_price') ?? [];
+        $spas_price_kids    = $this->request->getPost('spas_price_kids') ?? [];
+        $spas_price_baby    = $this->request->getPost('spas_price_baby') ?? [];
+        $status             = $this->request->getPost('status');
+        $spas_idx           = $this->request->getPost('spas_idx');
+        $info_idx           = $this->request->getPost('info_idx');
+        $spas_info_price    = $this->request->getPost('spas_info_price');
+        $moption_name       = $this->request->getPost('moption_name');
+        $o_name             = $this->request->getPost('o_name');
+        $o_name_eng         = $this->request->getPost('o_name_eng');
+        $o_price            = $this->request->getPost('o_price');
+        $use_yn             = $this->request->getPost('use_yn');
+        $op_spa_idx         = $this->request->getPost('op_spa_idx');
+        $moption_idx        = $this->request->getPost('moption_idx');
+        $o_onum             = $this->request->getPost('o_onum');
+        $spa_onum           = $this->request->getPost('spa_onum');
+        $moption_onum       = $this->request->getPost('moption_onum');
+        $op_spa_onum        = $this->request->getPost('op_spa_onum');
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -743,6 +746,7 @@ class AdminSpaController extends BaseController
                 'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
                 'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
                 'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
+                'o_onum' => isset($o_onum[$key]) ? $o_onum[$key] : 0,
                 'spas_info_price' => isset($spas_info_price[$key]) ? $spas_info_price[$key] : null,
                 'r_date' => date('Y-m-d H:i:s')
             ];
@@ -767,12 +771,13 @@ class AdminSpaController extends BaseController
 
                         $data = [
                             'product_idx'       => $productIdx,
-                            'spas_subject'     => $subject,
-                            'spas_subject_eng' => isset($spas_subject_eng[$index][$i]) ? $spas_subject_eng[$index][$i] : '',
+                            'spas_subject'      => $subject,
+                            'spas_subject_eng'  => isset($spas_subject_eng[$index][$i]) ? $spas_subject_eng[$index][$i] : '',
                             'spas_price'        => isset($spas_price[$index][$i]) ? $spas_price[$index][$i] : '',
                             'spas_price_kids'   => isset($spas_price_kids[$index][$i]) ? $spas_price_kids[$index][$i] : '',
                             'spas_price_baby'   => isset($spas_price_baby[$index][$i]) ? $spas_price_baby[$index][$i] : '',
                             'status'            => isset($status[$index][$i]) ? $status[$index][$i] : '',
+                            'spa_onum'          => isset($spa_onum[$index][$i]) ? $spa_onum[$index][$i] : 0,
                             'info_idx'          => $infoId,
                             'r_date'            => date('Y-m-d H:i:s')
                         ];
@@ -840,6 +845,7 @@ class AdminSpaController extends BaseController
             foreach ($moption_idx[$index] as $m_index => $code_idx) {
                 $data_op = [
                     'moption_name' => $moption_name[$index][$m_index] ?? '',
+                    'onum'         => $moption_onum[$index][$m_index] ?? 0,
                     'use_yn' => 'Y'
                 ];
 
@@ -858,10 +864,9 @@ class AdminSpaController extends BaseController
                         'option_name'     => $o_name[$index][$m_index][$i],
                         'option_name_eng' => $o_name_eng[$index][$m_index][$i],
                         'option_price'    => $o_price[$index][$m_index][$i],
+                        'onum'            => $op_spa_onum[$index][$m_index][$i] ?? 0,
                         'use_yn'          => isset($use_yn[$index][$m_index][$i]) ? $use_yn[$index][$m_index][$i] : 'N',
-                        'onum'            => $o_num[$index][$m_index][$i]
                     ];
-
 
                     if(!empty($idx)){
                         $this->spasOption->update($idx, $data);

@@ -3064,7 +3064,7 @@ class Product extends BaseController
             SELECT pt.*, pti.*
             FROM tbl_product_tours pt
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
-            WHERE pt.product_idx = ? AND pt.status = 'Y' ORDER BY pt.info_idx ASC, pt.tours_idx ASC
+            WHERE pt.product_idx = ? AND pt.status = 'Y' ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
         ";
 
         $query_info = $this->db->query($sql_info, [$product_idx]);
@@ -3107,7 +3107,7 @@ class Product extends BaseController
             $builder->where('product_idx', $product_idx);
             $builder->where('info_idx', $infoIndex);
             $builder->where('use_yn', 'Y');
-            $builder->orderBy('onum', 'desc');
+            $builder->orderBy('onum', 'asc');
             $builder->orderBy('code_idx', 'asc');
             $query = $builder->get();
             $options = $query->getResultArray();
@@ -4030,7 +4030,7 @@ class Product extends BaseController
             $msg .= "<option value=''>옵션 선택</option>";
 
 
-            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ";
+            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
@@ -4488,7 +4488,7 @@ class Product extends BaseController
         $builder = $this->db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
         $builder->where('use_yn', 'Y');
-        $builder->orderBy('onum', 'desc');
+        $builder->orderBy('onum', 'asc');
         $query = $builder->get();
         $moption = $query->getResultArray();
 

@@ -832,24 +832,24 @@
                     let option_cnt = data.option_cnt;
     
                     let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
-                                        <div class="wrap-text">
-                                            <span>${parent_name}</span>
-                                            <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
-                                        </div>
-                                        <div class="wrap-btn opt_count_box count_box flex__c">
-                                            <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                            <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
-                                                        name="option_qty[]" id="input_qty" value="1">
-                                            <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
-                                        </div>
+                                    <div class="wrap-text">
+                                        <span>${parent_name}</span>
+                                        <p>${option_name + " +" + option_price_won.toLocaleString('en-US') + "원" + "(" + Number(option_price).toLocaleString('en-US') + "바트" + ")"}</p>
                                     </div>
+                                    <div class="wrap-btn opt_count_box count_box flex__c">
+                                        <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
+                                        <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                    name="option_qty[]" id="input_qty" value="1">
+                                        <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                    </div>
+                                </div>
     
                                 <div class="" style="display: none">
-                                        <input type="hidden" name="option_name[]" value="${option_name}">
-                                        <input type="hidden" name="option_idx[]" value="${idx}">
-                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                        <input type="hidden" name="option_price[]" value="${option_price}">
-                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                                    <input type="hidden" name="option_name[]" value="${option_name}">
+                                    <input type="hidden" name="option_idx[]" value="${idx}">
+                                    <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                    <input type="hidden" name="option_price[]" value="${option_price}">
+                                    <input type="hidden" name="option_cnt[]" value="${option_cnt}">
                                 </div>
                             </li>`;
     
