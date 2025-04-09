@@ -601,7 +601,32 @@ $(document).ready(function () {
     $(".btn_payment").on("click", function () {
         var dataValue = $(this).data("idx"); // 주문번호 가져오기
 		$("#dataValue").val(dataValue);
-		$("#checkOut").submit();
+		
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": dataValue 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+			
+		
     });
 });
 </script>
