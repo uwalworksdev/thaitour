@@ -3689,7 +3689,6 @@ class AjaxController extends BaseController {
     {
         $db         = \Config\Database::connect();
 
-		$array = explode(",", $_POST['dataValue']);
 		$array = explode(",", $this->request->getPost('dataValue'));	
 
 		// 각 요소에 작은따옴표 추가

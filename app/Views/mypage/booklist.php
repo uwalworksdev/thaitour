@@ -620,7 +620,7 @@ $(document).ready(function () {
 				alert('payment_no- '+payment_no);
 				$("#dataValue").val(dataValue);
 				$("#payment_no").val(payment_no);
-                //$("#checkOut").submit();
+                $("#checkOut").submit();
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
