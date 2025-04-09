@@ -154,6 +154,11 @@ endforeach;
                     </div>
                 </div>
 
+
+<form id="checkOut" action="/checkout/payment" method="post">
+<input type="text" name="dataValue" id="dataValue" value="" >
+</form>
+
                 <form name="search" id="search">
                     <input type="hidden" name="s_status" value="">
                     <input type="hidden" name="pg" value="">
@@ -583,11 +588,6 @@ endforeach;
     </div>
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
-
-
-<form id="checkOut" action="/checkout/payment" method="post">
-<input type="hidden" name="dataValue" id="dataValue" value="" >
-</form>
 
 <!--
 <form id="checkOut" action="/checkout/confirm" method="post">
