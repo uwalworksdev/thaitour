@@ -1157,9 +1157,13 @@
     let selectedDate = null;
     let validDays = []
 
+    function toDateOnly(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
     const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
-        s_date = new Date(startDate);
-        e_date = new Date(endDate);
+        s_date = toDateOnly(new Date(startDate));
+        e_date = toDateOnly(new Date(endDate));
         productPrice = price;
         productPriceBaht = priceBaht;
         t_info_idx = info_idx;
