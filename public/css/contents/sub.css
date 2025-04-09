@@ -5320,6 +5320,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     border-radius: 4px;
     position: absolute;
     right: 0;
+    z-index: 999;
 }
 
 .cart-item-list .cart-item-list-container .title-cr {
