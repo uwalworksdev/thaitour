@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use DateTime;
+use Config\Services;
 
 class AjaxController extends BaseController {
     private $db;
