@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use DateTime;
+use CodeIgniter\I18n\Time;
 use Config\Services;
 
 class AjaxController extends BaseController {
