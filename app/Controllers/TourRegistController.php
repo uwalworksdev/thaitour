@@ -2574,7 +2574,7 @@ class TourRegistController extends BaseController
             SELECT ps.*, psi.* 
             FROM tbl_product_spas ps 
             LEFT JOIN tbl_product_spas_info psi ON ps.info_idx = psi.info_idx 
-            WHERE ps.product_idx = ? ORDER BY ps.spas_idx ASC
+            WHERE ps.product_idx = ? ORDER BY psi.o_onum ASC, psi.info_idx ASC, ps.spa_onum ASC, ps.spas_idx ASC
         ";
 
         $query_info = $db->query($sql_info, [$product_idx]);
@@ -2603,9 +2603,9 @@ class TourRegistController extends BaseController
                 'status'            => $row['status'],
             ];
 
-            $groupedData[$infoIndex]['options'] = $this->spasMoption->where("info_idx", $infoIndex)->findAll();
+            $groupedData[$infoIndex]['options'] = $this->spasMoption->where("info_idx", $infoIndex)->orderBy("onum", "asc")->findAll();
             foreach($groupedData[$infoIndex]['options'] as $key => $value) {
-                $groupedData[$infoIndex]['options'][$key]['option_spas'] = $this->spasOption->where("code_idx", $value["code_idx"])->findAll();
+                $groupedData[$infoIndex]['options'][$key]['option_spas'] = $this->spasOption->where("code_idx", $value["code_idx"])->orderBy("onum", "asc")->findAll();
             }
 
             if (!isset($spasIdxMap[$infoIndex])) {
