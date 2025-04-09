@@ -656,7 +656,7 @@ class SpaController extends BaseController
             $msg .= "<select name='option' id='option_" . $code_idx . "' onchange='sel_option(this.value, ". $info_idx .");'>";
             $msg .= "<option value=''>옵션 선택</option>";
 
-            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ";
+            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
             $result = $db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
