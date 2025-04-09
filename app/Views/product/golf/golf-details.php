@@ -750,6 +750,30 @@ $(document).ready(function() {
             </div>
             <div class="content-item">
                 <span class="label">
+                    캐디팁
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['note_news']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    1~2인 라운드 규정
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_contents']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    골프텔 정보
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_able']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
                     티오프 시간
                 </span>
                 <div class="description">
@@ -770,6 +794,22 @@ $(document).ready(function() {
                 </span>
                 <div class="description">
                     <?= viewSQ($product['departure_area']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    어린이 정책
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['product_confirm']) ?>
+                </div>
+            </div>
+            <div class="content-item">
+                <span class="label">
+                    중요 공지사항
+                </span>
+                <div class="description">
+                    <?= viewSQ($product['notice_comment']) ?>
                 </div>
             </div>
         </div>
