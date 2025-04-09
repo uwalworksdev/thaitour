@@ -865,21 +865,48 @@
         });        
 
         if(check_num_people){
-            let option_html = ``;
-            option_html += `
-                <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="margin-top: 20px">
-                    <option value="">옵션선택</option>
-                    <option value="">
-                    </option>
-                </select>
-                <div class="opt_select disabled sel_option" id="sel_option">
-                    <select name="option" id="option" onchange="sel_option(this.value);">";
-                        <option value="">옵션 선택</option>
-                    </select>
-                </div>
-            `;
-            
-            $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+
+            $.ajax({
+                url: "<?= route_to('api.spa_.get_mOption') ?>",
+                type: "GET",
+                data: { 
+                    info_idx: current_info_idx,
+                    product_idx: "<?= $data_['product_idx'] ?>",
+                },
+                error: function(request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function(data, status, request) {
+                    let option_html = ``;
+                    option_html += `
+                        <select name="moption" class="moption" id="moption_" onchange="sel_moption(this.value);" data-info-index="" style="margin-top: 20px">
+                            <option value="">옵션선택</option>
+                            <option value="">
+                            </option>
+                        </select>
+                        <div class="opt_select disabled sel_option" id="sel_option">
+                            <select name="option" id="option" onchange="sel_option(this.value);">";
+                                <option value="">옵션 선택</option>
+                            </select>
+                        </div>
+                    `;
+                    
+                    $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
+                }
+            });
+            $.ajax({
+                url: url,
+                type: "GET",
+                async: false,
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (data, status, request) {              
+                    
+                }
+            });
+
+
         }
         
     }

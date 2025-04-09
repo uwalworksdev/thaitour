@@ -1427,7 +1427,7 @@
 					$(this).find(".op_tour_onum").val(op_tour_onum);
 				});
 			});
-		})
+		});
 
 		frm.submit();
 	}

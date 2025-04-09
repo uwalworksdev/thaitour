@@ -18,6 +18,8 @@ class SpaController extends BaseController
     protected $orderSubModel;
     private $coupon;
     private $couponHistory;
+    protected $spasMoption;
+    protected $spasOption;
     private $spasPrice;
 
 
@@ -35,6 +37,8 @@ class SpaController extends BaseController
         $this->orderSubModel = model("OrderSubModel");
         $this->coupon = model("Coupon");
         $this->couponHistory = model("CouponHistory");
+        $this->spasMoption = model("SpasMoptionModel");
+        $this->spasOption = model("SpasOptionModel");
         $this->spasPrice = model("SpasPrice");
 
     }
@@ -624,4 +628,15 @@ class SpaController extends BaseController
 
         return $this->response->setJSON($options_list);
     }
+
+    public function get_mOption() {
+        $info_idx = $this->request->getVar('info_idx');
+        $product_idx = $this->request->getVar('product_idx');
+        $m_option = $this->spasMoption->where("info_idx", $info_idx)
+                                        ->where("product_idx", $product_idx)
+                                        ->orderBy("onum", "asc")
+                                        ->get()->getResultArray();
+        return $this->response->setJSON($m_option);
+        
+    }  
 }
