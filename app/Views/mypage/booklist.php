@@ -617,6 +617,7 @@ $(document).ready(function () {
 			success: function (data, textStatus) {
 				var message = data.message;
 				var payment_no = data.payment_no;
+				alert('payment_no- '+payment_no);
 				$("#dataValue").val(dataValue);
 				$("#payment_no").val(payment_no);
                 //$("#checkOut").submit();
