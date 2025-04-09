@@ -89,7 +89,7 @@ class CheckoutController extends BaseController
         ]);
     }
 
-	public function confirm()
+    public function confirm()
     {
         $db     = \Config\Database::connect();
 
@@ -97,11 +97,8 @@ class CheckoutController extends BaseController
         $memberIdx  =  $session->get('member')['idx'] ?? null;
 
         $m_idx      =  $memberIdx;
-        //$payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
-		//$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
-        
-		$payment_no =  "P_20250409231318519";				// 가맹점 결제번호
-		$order_no 	=  "S20250409008,";				// 가맹점 주문번호
+        $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
+		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
 
         $group_no   = date('YmdHis');
 		$array      = explode(",", $order_no);
