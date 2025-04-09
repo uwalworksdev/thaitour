@@ -3828,4 +3828,6 @@ class AjaxController extends BaseController {
         ];
 
         return view('checkout/confirm', $data);
+	}	
+		
 }	
