@@ -611,10 +611,11 @@ class SpaController extends BaseController
         foreach($options_list as $key => $day) {
             $options_list[$key]['goods_price1_won'] = round($day['goods_price1'] * $baht_thai);
             $options_list[$key]['goods_price2_won'] = round($day['goods_price2'] * $baht_thai);
-            $query = $db->table('tbl_spas_price p')->selectCount('cnt')
+            $query = $db->table('tbl_spas_price p')->selectCount('p.goods_date', 'cnt')
                         ->join('tbl_product_spas s', 'p.spas_idx = s.spas_idx', 'left')
                         ->where("p.product_idx =", $day["product_idx"])
                         ->where("p.goods_date =", $day["goods_date"])
+                        ->where("p.info_idx =", $day["info_idx"])
                         ->where("s.status !=", 'N')
                         ->where("p.use_yn !=", 'N')
                         ->groupBy("goods_date")->get()->getRow();

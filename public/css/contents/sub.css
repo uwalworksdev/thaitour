@@ -1365,6 +1365,10 @@
     padding: 15px 0 15px;
 }
 
+.view_nav .select_peo li.last{
+    border-bottom: 1px solid #000;
+}
+
 .view_nav .ped_label {
     color: #757575;
     margin-bottom: 6px;
