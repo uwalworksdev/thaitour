@@ -584,17 +584,17 @@ endforeach;
     <div class="dim" style="justify-content: space-between;"></div>
 </div>
 
-
-<form id="checkOut" action="/checkout/payment" method="post">
-<input type="text" name="dataValue" id="dataValue" value="" >
-</form>
-
 <!--
-<form id="checkOut" action="/checkout/confirm" method="post">
+<form id="checkOut" action="/checkout/payment" method="post">
 <input type="hidden" name="payment_no" id="payment_no" value="" >
 <input type="text" name="dataValue" id="dataValue" value="" >
 </form>
 -->
+
+<form id="checkOut" action="/checkout/confirm" method="post">
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue" id="dataValue" value="" >
+</form>
 
 <script>
 $(document).ready(function () {
