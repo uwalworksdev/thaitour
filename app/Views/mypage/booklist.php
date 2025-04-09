@@ -585,7 +585,7 @@ endforeach;
 </div>
 
 
-<form id="checkOut" action="/checkout/payment" method="post">
+<form id="checkOut" action="/checkout/confirm" method="post">
 <input type="hidden" name="dataValue" id="dataValue" value="" >
 </form>
 
