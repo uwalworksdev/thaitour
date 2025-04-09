@@ -101,7 +101,7 @@ class CheckoutController extends BaseController
 		//$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
         
 		$payment_no =  "P_20250409231318519";				// 가맹점 결제번호
-		$order_no 	=  "S20250409008";				// 가맹점 주문번호
+		$order_no 	=  "S20250409008,";				// 가맹점 주문번호
 
         $group_no   = date('YmdHis');
 		$array      = explode(",", $order_no);
