@@ -84,7 +84,7 @@ class CheckoutController extends BaseController
 		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 		
         return view("checkout/payment", [
-            "result"     => $result,
+            "resultx"     => $result,
 			"payment_no" => $payment_no
         ]);
     }
