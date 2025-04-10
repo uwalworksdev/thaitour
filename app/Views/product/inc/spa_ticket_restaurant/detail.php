@@ -689,7 +689,10 @@
             
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
-                    <td>${item_.spas_subject}</td>
+                    <td>
+                        ${item_.spas_subject}
+                        <p style="margin-top: 5px;">${item_.info_name}</p>
+                    </td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
                             <div class="price" style="display: flex; justify-content: start; align-items: start; flex-direction: column; gap: 5px;">

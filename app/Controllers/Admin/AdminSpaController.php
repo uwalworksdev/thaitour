@@ -699,6 +699,8 @@ class AdminSpaController extends BaseController
         $spa_onum           = $this->request->getPost('spa_onum');
         $moption_onum       = $this->request->getPost('moption_onum');
         $op_spa_onum        = $this->request->getPost('op_spa_onum');
+        $info_name         = $this->request->getPost('info_name');
+
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -739,6 +741,7 @@ class AdminSpaController extends BaseController
 
             $infoData = [
                 'product_idx' => $productIdx,
+                'info_name' => isset($info_name[$key]) ? $info_name[$key] : null,
                 'o_sdate' => $start_date,
                 'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
                 'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
