@@ -261,7 +261,7 @@
                                         <td class="subject_">이메일</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="email" value="<?=$_POST['email_1']?>@<?=$_POST['email_2']?>" id="pay_email" name="pay_email" class="item_number__">
+                                                <input type="email" value="<?=$order_user_email?>" id="pay_email" name="pay_email" class="item_number__">
                                                 <p class="item_title__">
                                                     * 결제완료시 결제 확인 메일이 발송됩니다.
                                                 </p>
@@ -272,7 +272,7 @@
                                         <td class="subject_">휴대폰 번호</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="text" value="<?=$_POST['phone_1']?>-<?=$_POST['phone_2']?>-<?=$_POST['phone_3']?>" id="pay_hp" name="pay_hp" class="item_number__">
+                                                <input type="text" value="<?=$order_user_mobile?>" id="pay_hp" name="pay_hp" class="item_number__">
                                                 <p class="item_title__">
                                                     * 숫자와 - 만 입력해 주세요. 예) 010-1234-5678
                                                 </p>

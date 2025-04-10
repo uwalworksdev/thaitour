@@ -259,9 +259,12 @@ class CheckoutController extends BaseController
 			   $companion_gender           = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
 			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
+			   
 			   $payment_user_email         = $row_p['order_user_email'];
+   			   $order_user_email           = encryptField($payment_user_email, "decode");
 
 			   $payment_user_mobile        = $row_p['order_user_mobile'];
+   			   $order_user_mobile          = encryptField($payment_user_mobile, "decode");
 
 			   $payment_user_gender        = $row_p['companion_gender'];
 			   $phone_thai                 = $row_p['phone_thai'];
