@@ -291,40 +291,6 @@ class CheckoutController extends BaseController
         if(count($array) > 1) {
 		   $product_name .= " 외 ". (count($array)-1) ."개";
 		}
-		
-        $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
-        $payment_user_name  = encryptField($payment_user_name, "encode");
-
-        $companion_gender   = updateSQ($this->request->getPost('companion_gender'));
-
-        $payment_user_first_name_en = updateSQ($this->request->getPost('order_user_first_name_en'));
-        $payment_user_first_name_en = encryptField($payment_user_first_name_en, "encode");
-
-		$payment_user_last_name_en  = updateSQ($this->request->getPost('order_user_last_name_en'));
-        $payment_user_last_name_en  = encryptField($payment_user_last_name_en, "encode");
-
-        $email_1      = updateSQ($this->request->getPost('email_1'));
-        $email_2      = updateSQ($this->request->getPost('email_2'));
-		$payment_user_email = $email_1 ."@". $email_2;
-        $payment_user_email = encryptField($payment_user_email, "encode");
-
-		$phone_1      = updateSQ($this->request->getPost('phone_1'));
-        $phone_2      = updateSQ($this->request->getPost('phone_2'));	
-        $phone_3      = updateSQ($this->request->getPost('phone_3'));
-		$payment_user_mobile = $phone_1 ."-". $phone_2 ."-". $phone_3;
-        $payment_user_mobile  = encryptField($payment_user_mobile, "encode");
-
-		$payment_user_gender= updateSQ($this->request->getPost('companion_gender'));
-        $phone_thai   = updateSQ($this->request->getPost('phone_thai'));
-        $phone_thai   = encryptField($phone_thai, "encode");
-
-        $local_phone1 = updateSQ($this->request->getPost('local_phone1'));
-        $local_phone2 = updateSQ($this->request->getPost('local_phone2'));
-        $local_phone  = $local_phone1 ."-". $local_phone2;
-        $local_phone  = encryptField($local_phone, "encode");
-
-        $payment_memo = updateSQ($this->request->getPost('order_memo'));
-        $payment_date = Time::now('Asia/Seoul', 'en_US');
 
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
 		//write_log($sql);
