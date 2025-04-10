@@ -730,6 +730,32 @@ class AdminTourController extends BaseController
                 $end   = new DateTime($e_date);
                 $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
 
+                $builder = $this->connect->table('tbl_tours_price');
+                $builder->select('MIN(goods_date) AS min_date, MAX(goods_date) AS max_date');
+                $builder->where('product_idx', $productIdx);
+                $builder->where('info_idx', $infoId);  
+                $query = $builder->get();
+                $result = $query->getRow();
+
+                $minDate = $result->min_date;
+                $maxDate = $result->max_date;
+
+                if ($s_date >= $minDate) {
+                    $builder->resetQuery();
+                    $builder->where('product_idx', $productIdx)
+                            ->where('info_idx', $infoId)
+                            ->where('goods_date <', $s_date)
+                            ->delete();
+                }
+
+                if($maxDate >= $e_date){
+                    $builder->resetQuery();
+                    $builder->where('product_idx', $productIdx)
+                            ->where('info_idx', $infoId)
+                            ->where('goods_date >', $e_date)
+                            ->delete();
+                }
+
                 // 날짜 반복
                 while ($start < $end) 
                 {
