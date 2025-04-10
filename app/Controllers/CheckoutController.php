@@ -251,11 +251,12 @@ class CheckoutController extends BaseController
 			$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 			$row_p = $db->query($sql_p)->getRowArray();
 			if($i == 0) {
-			   $product_name = $row_p['product_name'];
-			   $payment_user_name = $row_p['order_user_name'];
-			   $companion_gender = $row_p['companion_gender'];
+			   $product_name       = $row_p['product_name'];
+			   
+			   $data['order_user_name'] = encryptField($row_p['order_user_name'], , "encode");
+			   $companion_gender   = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
-			   $payment_user_last_name_en = $row_p['order_user_last_name_en'];
+			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
 			   $email_1            = $row_p['email_1'];
 			   $email_2            = $row_p['email_2'];
 			   $payment_user_email = $email_1 ."@". $email_2;
@@ -281,8 +282,6 @@ class CheckoutController extends BaseController
 			}   
 			
 			$payment_price = $payment_price + $row_p['order_price'];
-			
-			write_log($sql_p ." - ". $payment_no ." - ". $product_name ." - ". $order_no ." - ". $row_p['order_price']);
 			
 			$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
 			$db->query($sql_u);
