@@ -243,8 +243,8 @@ class CheckoutController extends BaseController
 		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
 
         $payment_price = 0;
-        $group_no   = date('YmdHis');
-		$array      = explode(",", $order_no);
+        $group_no      = date('YmdHis');
+		$array         = explode(",", $order_no);
         for($i=0;$i<count($array);$i++)
         {
 			$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
@@ -255,7 +255,8 @@ class CheckoutController extends BaseController
 			
 			$payment_price = $payment_price + $row_p['order_price'];
 			
-			//write_log($sql_p ." - ". $product_name);
+			write_log($sql_p ." - ". $payment_no ." - ". $product_name ." - ". $order_no ." - ". $row_p['order_price']);
+			
 			$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
 			$db->query($sql_u);
 			 
