@@ -906,11 +906,10 @@ function encryptField($value, $way)
 
     } else if ($way == "decode") {
 
-        $query = $connect->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted_name", [$value, $private_key]);
+        $query = $connect->query("SELECT AES_DECRYPT(UNHEX(?), ?) AS decrypted_name", [$value, $private_key]);
         $result = $query->getRow();
-
-        $outText = $result->encrypted_name;
-    }
+        $outText = $result->decrypted_name;
+	}
 
 
     return $outText ?? null;
