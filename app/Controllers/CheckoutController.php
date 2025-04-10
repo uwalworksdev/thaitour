@@ -253,7 +253,7 @@ class CheckoutController extends BaseController
 			if($i == 0) {
 			   $product_name       = $row_p['product_name'];
 			   
-			   $data['order_user_name'] = encryptField($row_p['order_user_name'], , "encode");
+			   $data['order_user_name'] = encryptField($row_p['order_user_name'], "encode");
 			   $companion_gender   = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
 			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
