@@ -346,8 +346,10 @@ class CheckoutController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getResultArray(); // 결과 배열 반환
 
+		$order_user_name = $member['name'];
+
         $data = [
-			'order_user_name' => $member['name'],
+			'order_user_name' => $order_user_name,
             'product_name'    => $product_name,
             'payment_no'      => $payment_no,
             'dataValue'       => $ordert_no,
