@@ -1671,6 +1671,7 @@ class Product extends BaseController
             }
 
             $device_type = get_device();
+			$group_no    = date('YmdHis');
             $data = [
                 "m_idx"                    => $m_idx,
                 "device_type"              => $device_type,
@@ -1727,6 +1728,7 @@ class Product extends BaseController
                 "encode"                   => "Y",
                 "additional_request"       => $additional_request,
                 "ip"                       => $ipAddress,
+				"group_no"                 => $group_no,	
 				"device_type"              => $device_type,
 				"breakfast"	               => $breakfast,
 				"baht_thai"	               => $baht_thai 
