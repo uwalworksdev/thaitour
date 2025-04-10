@@ -675,7 +675,38 @@
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 LoadingPage();
             },
-            success: function (data, status, request) {              
+            success: function (data, status, request) { 
+                $("#list_people_option").html(
+                    `<li class="">
+                        <div class="flex_b_c cus-count-input cus-count-input-adult">
+                            <div class="payment">
+                                <p class="ped_label ped_label__booking">성인 </p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
+                                        value="0"
+                                        readonly="" style="padding: 0; width: 30px">
+                                <span>명</span>
+                                <input type="hidden" name="adultPrice[]" id="adultPrice">
+                            </div>
+                        </div>
+
+                        <div class="flex_b_c cus-count-input cus-count-input-child">
+                            <div class="payment">
+                                <p class="ped_label ped_label__booking">아동</p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                        id="childrenQty" value="0"
+                                        readonly="" style="padding: 0; width: 30px">
+                                <span>명</span>
+                                <input type="hidden" name="childrenPrice[]" id="childrenPrice">
+                            </div>
+                        </div>
+                    </li>`
+                );  
+
+                $("#total_sum").text("0");
                 renderData(data);
                 LoadingPage();
             }
@@ -824,11 +855,12 @@
                         </div>
 
                         <div class="" style="display: none">
+                            <input type="hidden" name="option_info_idx[]" value="${info_idx}">
                             <input type="hidden" name="option_name[]" value="${option_name}">
                             <input type="hidden" name="option_idx[]" value="${idx}">
                             <input type="hidden" name="option_tot[]" value="${option_tot}">
                             <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                            <input type="hidden" name="option_price[]" value="${option_price}">
+                            <input type="hidden" name="option_price[]" value="${option_price_won}">
                         </div>
                     </li>`;
         
@@ -934,6 +966,8 @@
                 }
 
                 html += `<p style="font-weight: bold; margin-bottom: 10px;">${op_name}</p>`
+                html += `<input type="hidden" name="op_name[]" value="${op_name}">`
+                html += `<input type="hidden" name="op_info_idx[]" value="${info_idx}">`
             }
 
             if(adult_num > 0) {
