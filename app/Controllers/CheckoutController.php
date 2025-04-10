@@ -350,12 +350,14 @@ class CheckoutController extends BaseController
 		$result = $query->getResultArray(); // 결과 배열 반환
 
         $data = [
-			'order_user_name' => $order_user_name,
-            'product_name'    => $product_name,
-            'payment_no'      => $payment_no,
-            'dataValue'       => $ordert_no,
-            'resultCoupon'    => $result,
-            'point'           => $mileage
+			'order_user_name'   => $order_user_name,
+			'order_user_email'  => $order_user_email,
+			'order_user_mobile' => $order_user_mobile,
+            'product_name'      => $product_name,
+            'payment_no'        => $payment_no,
+            'dataValue'         => $ordert_no,
+            'resultCoupon'      => $result,
+            'point'             => $mileage
         ];
 
         return view('checkout/confirmMypage', $data);
