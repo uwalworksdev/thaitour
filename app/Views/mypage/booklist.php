@@ -666,21 +666,22 @@ function fn_checkout() {
 	       alert('결제상품을 선택하세요.');
 	       return false;
 	    }
-alert($("#dataValue").val());
+		
+        var dataValue = $("#dataValue").val();
 		$.ajax({
 
 			url: "/ajax/ajax_payment",
 			type: "POST",
 			data: {
 
-				"dataValue": $("#dataValue").val() 
+				"dataValue": dataValue 
 
 			},
 			dataType: "json",
 			async: false,
 			cache: false,
 			success: function (data, textStatus) {
-				var message = data.message;
+				var message    = data.message;
 				var payment_no = data.payment_no;
 				$("#dataValue").val(dataValue);
 				$("#payment_no").val(payment_no);
