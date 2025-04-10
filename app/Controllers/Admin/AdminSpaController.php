@@ -551,6 +551,8 @@ class AdminSpaController extends BaseController
                     'product_manager_id' => $product_manager_id ?? '',
                     'original_price' => $original_price ?? '',
                     'keyword' => $keyword ?? '',
+                    'product_confirm' => updateSQ($product_confirm) ?? '',
+                    'special_benefit' => updateSQ($special_benefit) ?? '',
                     'product_price' => $product_price ?? '',
                     'product_best' => $product_best ?? '',
                     'onum' => $onum ?? '',
@@ -697,6 +699,8 @@ class AdminSpaController extends BaseController
         $spa_onum           = $this->request->getPost('spa_onum');
         $moption_onum       = $this->request->getPost('moption_onum');
         $op_spa_onum        = $this->request->getPost('op_spa_onum');
+        $info_name         = $this->request->getPost('info_name');
+
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -737,6 +741,7 @@ class AdminSpaController extends BaseController
 
             $infoData = [
                 'product_idx' => $productIdx,
+                'info_name' => isset($info_name[$key]) ? $info_name[$key] : null,
                 'o_sdate' => $start_date,
                 'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
                 'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
@@ -799,6 +804,32 @@ class AdminSpaController extends BaseController
                 $start = new DateTime($s_date);
                 $end   = new DateTime($e_date);
                 $end->modify('+1 day'); // 종료일까지 포함하기 위해 +1일 추가
+
+                $builder = $this->connect->table('tbl_spas_price');
+                $builder->select('MIN(goods_date) AS min_date, MAX(goods_date) AS max_date');
+                $builder->where('product_idx', $productIdx);
+                $builder->where('info_idx', $infoId);  
+                $query = $builder->get();
+                $result = $query->getRow();
+
+                $minDate = $result->min_date;
+                $maxDate = $result->max_date;
+
+                if ($s_date >= $minDate) {
+                    $builder->resetQuery();
+                    $builder->where('product_idx', $productIdx)
+                            ->where('info_idx', $infoId)
+                            ->where('goods_date <', $s_date)
+                            ->delete();
+                }
+
+                if($maxDate >= $e_date){
+                    $builder->resetQuery();
+                    $builder->where('product_idx', $productIdx)
+                            ->where('info_idx', $infoId)
+                            ->where('goods_date >', $e_date)
+                            ->delete();
+                }
 
                 // 날짜 반복
                 while ($start < $end) 
@@ -877,6 +908,7 @@ class AdminSpaController extends BaseController
                         $this->spasOption->insert($data);
                     }
                 }
+
             }
         }
 

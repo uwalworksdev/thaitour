@@ -231,12 +231,12 @@
         }
 
         <?php
-        if (empty(session()->get("member")["id"])) {
+            if (empty(session()->get("member")["id"])) {
         ?>
-        showOrHideLoginItem();
-        return false;
+            showOrHideLoginItem();
+            return false;
         <?php
-        }
+            }
         ?>
 
         var feeVal = "";
@@ -247,17 +247,17 @@
 
 			// data- 값들 가져오기
 			var type    = $input.data('type');      // 성인, 아동구분
-			var idx     = $input.data('idx');       // 상품 IDX
-			var station = $input.data('s_station'); // 상품명
+			var idx     = $input.closest(".spa_option_detail").data('idx');       // 상품 IDX
+			var op_name = $input.closest(".spa_option_detail").data('op_name'); // 상품명
 			var price   = $input.data('price');     // 금액
 		    var cnt     = $input.val();             // 인원수
 			
 			if(cnt > 0) {
-               if(feeVal == "") {
-                  feeVal  =     type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
-               } else {
-                  feeVal += '|'+type+':'+idx+':'+price+':'+station+':'+price+':'+cnt;
-               }
+                if(feeVal == "") {
+                    feeVal = type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+                } else {
+                    feeVal += '|'+type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+                }
             }
 		});
 		$("#feeVal").val(feeVal);
@@ -288,7 +288,6 @@
             contentType: false,
             success: function (response) {
                 $("#ajax_loader").addClass("display-none");
-                console.log("Success:", response);
                 if (response.result) {
                     if (array_restaurant.some(route => pathName.startsWith(route))) {
                         window.location.href = '/product-restaurant/restaurant-booking';
@@ -313,25 +312,5 @@
             }
         });
     }
-
-</script>
-<script>
-    // function plusInput(el) {
-    //     let input = $(el).parent().find('input');
-    //     input.val(parseInt(input.val()) + 1);
-    //     calcTotalSup();
-    // }
-    //
-    // function minusInput(el, d) {
-    //     let input = $(el).parent().find('input');
-    //     if (parseInt(input.val()) > 1) {
-    //         input.val(parseInt(input.val()) - 1);
-    //         calcTotalSup();
-    //     } else {
-    //         if (d !== 'd') {
-    //             removeData(el);
-    //         }
-    //     }
-    // }
 
 </script>

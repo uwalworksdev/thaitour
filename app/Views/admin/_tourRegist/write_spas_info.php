@@ -139,7 +139,7 @@
                                                             </td>
                                                             <td>
 																<div style="display: flex; gap: 5px;">
-																	<input type="text" name="spas_info_price[<?=$i?>]" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
+																	<input type="text" name="spas_info_price[<?=$i?>]" class="price" placeholder="기존상품가" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
 																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
@@ -185,8 +185,8 @@
 																					<div style="display: flex; gap: 5px;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
-																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
+																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
 																					</div>
                                                                                 </td>
                                                                                 <td>
@@ -293,7 +293,7 @@
 																														</div>
                                                                                                                     </td>
                                                                                                                     <td>
-                                                                                                                        <input type='text' style="text-align:right;"
+                                                                                                                        <input type='text'
                                                                                                                                 name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="<?=$option_spa["option_price"]?>" numberOnly=true/>
                                                                                                                     </td>
                                                                                                                     <td>
@@ -301,7 +301,7 @@
                                                                                                                             <option value="Y" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
                                                                                                                                 판매중
                                                                                                                             </option>
-                                                                                                                            <option value="N" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
+                                                                                                                            <option value="N" <?php if($option_spa["use_yn"] == "N"){ echo "selected"; }?>>
                                                                                                                                 중지
                                                                                                                             </option>
                                                                                                                         </select>
@@ -359,7 +359,7 @@
 															<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																<div style="display: flex; justify-content: center; gap: 5px;">
 																	<input type="hidden" name="o_onum[0]" class="o_onum" value="">
-																	<input type="text" name="info_name[0]" style="width: 250px;" value="">
+																	<input type="text" name="info_name[0]" placeholder="상품요금명" style="width: 250px;" value="">
 																	<a href="javascript:add_spas(0);" class="btn btn-primary">추가</a>
 																	<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
 																</div>
@@ -369,8 +369,8 @@
                                                         <td>
 															<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 150px; cursor: pointer;" value="" id=""> ~
-																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 150px; cursor: pointer;" value="" id="">
+																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 
 																</div>
 																<div style="display: flex; align-items: center; gap: 5px;">
@@ -394,9 +394,11 @@
 															</div>
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="spas_info_price[0]" numberOnly=true>
-															<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-															<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+															<div style="display: flex; gap: 5px;">
+																<input type="text" name="spas_info_price[0]" class="price" numberOnly=true>
+																<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+															</div>
                                                         </td>
                                                         <!-- <td>
                                                             <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
@@ -710,7 +712,7 @@
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
 										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
-										<input type="text" name="info_name[${tableCount}]" style="width: 250px;" value="">
+										<input type="text" name="info_name[${tableCount}]" placeholder="상품요금명" style="width: 250px;" value="">
 										<a href="javascript:add_spas(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
@@ -737,7 +739,7 @@
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
-									<input type="text" name="spas_info_price[${tableCount}]" numberOnly=true>
+									<input type="text" name="spas_info_price[${tableCount}]" class="price" numberOnly=true>
 									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 								</div>
@@ -751,14 +753,13 @@
 										<col width="*">
 										<col width="12%">
 										<col width="12%">
-										<col width="12%">
 										<col width="10%">
 									</colgroup>
 									
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
-												<input type="hidden" name="spa_onum[${tableCount}][]" class="tour_onum" value="">
+												<input type="hidden" name="spa_onum[${tableCount}][]" class="spa_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
 												<div class="flex" style="gap: 5px;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -919,7 +920,7 @@
 			minDate: new Date(),
 			maxDate: "+99Y",
 			onClose: function (selectedDate) {
-				$(".e_date").datepicker("option", "minDate", selectedDate);
+				$(this).closest("td").find(".e_date").datepicker("option", "minDate", selectedDate);
 			},
 			beforeShow: function (input) {
 				setTimeout(function () {
@@ -940,7 +941,7 @@
 			showButtonPanel: true
 			, onClose: function (selectedDate) {
 				// To 날짜 선택기의 최소 날짜를 설정
-				$(".s_date").datepicker("option", "maxDate", selectedDate);
+				$(this).closest("td").find(".s_date").datepicker("option", "maxDate", selectedDate);
 			}
 			, beforeShow: function (input) {
 				setTimeout(function () {
@@ -989,8 +990,8 @@
 					<div style="display: flex; gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
-						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
 				<td style="text-align:center">
@@ -1033,7 +1034,7 @@
 			<tr class="air_list_1" style="height:40px">
 				<td>
 					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
-					<input type="hidden" name="spa_idx[${infoIdx}][]" class="spa_idx" value="new">
+					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
 					<div style="display: flex; gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -1412,6 +1413,13 @@
 					$(this).find(".op_spa_onum").val(op_spa_onum);
 				});
 			});
+		});
+
+		$(".price").each(function () {
+			let val = $(this).val();
+			if (val) {
+				$(this).val(val.replace(/,/g, ''));
+			}
 		});
 
 		frm.submit();

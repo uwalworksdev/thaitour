@@ -3417,7 +3417,8 @@ class Product extends BaseController
 
             $feeVal = $_POST['feeVal'];
             $adultQty = $_POST['adultQty'];
-            $s_station = $_POST['s_station'];
+            $op_name = $_POST['op_name'];
+            $op_info_idx = $_POST['op_info_idx'];
             $adultPrice = $_POST['adultPrice'];
 
             $childrenQty = $_POST['childrenQty'];
@@ -3425,6 +3426,7 @@ class Product extends BaseController
 
             $totalPrice = $_POST['totalPrice'];
 
+            $option_info_idx = $_POST['option_info_idx'];
             $option_idx = $_POST['option_idx'];
             $option_tot = $_POST['option_tot'];
             $option_qty = $_POST['option_qty'];
@@ -3439,12 +3441,14 @@ class Product extends BaseController
                 'day_' => $day_,
                 'member_idx' => $member_idx,
                 'adultQty' => $adultQty,
-                's_station' => $s_station,
+                'op_name' => $op_name,
+                'op_info_idx' => $op_info_idx,
                 'adultPrice' => $adultPrice,
                 'childrenQty' => $childrenQty,
                 'childrenPrice' => $childrenPrice,
                 'totalPrice' => $totalPrice,
                 'option_idx' => $option_idx,
+                'option_info_idx' => $option_info_idx,
                 'option_qty' => $option_qty,
                 'option_tot' => $option_tot,
                 'option_price' => $option_price,
@@ -4340,7 +4344,8 @@ class Product extends BaseController
         $member_idx = $data['member_idx'];
 
         $adultQty = $data['adultQty'];
-        $s_station = $data['s_station'];
+        $op_name = $data['op_name'];
+        $op_info_idx = $data['op_info_idx'];
         $adultPrice = $data['adultPrice'];
         $childrenQty = $data['childrenQty'];
         $childrenPrice = $data['childrenPrice'];
@@ -4349,7 +4354,7 @@ class Product extends BaseController
 
         $prod = $this->productModel->getById($product_idx);
 
-        $builder = $this->db->table('tbl_tours_moption');
+        $builder = $this->db->table('tbl_spas_moption');
         $builder->where('product_idx', $product_idx);
         $builder->where('use_yn', 'Y');
         $builder->orderBy('onum', 'desc');
@@ -4382,7 +4387,8 @@ class Product extends BaseController
             'member_idx' => $member_idx,
             'moption' => $moption,
             'adultQty' => $adultQty,
-            's_station' => $s_station,
+            'op_name' => $op_name,
+            'op_info_idx' => $op_info_idx,
             'adultPrice' => $adultPrice,
             'childrenQty' => $childrenQty,
             'childrenPrice' => $childrenPrice,

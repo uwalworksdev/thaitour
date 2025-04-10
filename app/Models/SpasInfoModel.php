@@ -9,6 +9,7 @@ class SpasInfoModel extends Model
     protected $allowedFields = [
         'product_idx', 
         'group', 
+        'info_name', 
         'o_sdate', 
         'o_edate',
         'spas_info_price',

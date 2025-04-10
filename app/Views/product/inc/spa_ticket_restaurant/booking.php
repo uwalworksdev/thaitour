@@ -109,7 +109,7 @@
 							<div class="con-form mb-40">
 								<div class="form-group">
 									<label for="order_birth_date">생년월일 *</label>
-									<input type="text" id="order_birth_date" class="date_form" name="order_birth_date"
+									<input type="text" id="order_birth_date" class="date_form_birth" name="order_birth_date"
 										   required="" data-label="생년월일" placeholder="생년월일" readonly>
 								</div>
 							</div>
@@ -186,23 +186,23 @@
                             </div>
                         </div>
 
-                        <div class="card-left card-left-2" style="display:  none">
-                            <div class="" style="display:  none">
+                        <div class="card-left card-left-2" style="display: none">
+                            <div class="" style="display: none">
                                 <?php
 
                                 $numAdultQty = 0;
-                                $s_station_arr = [];
+                                $op_name_arr = [];
                                 foreach ($adultQty as $key => $num) {
                                     $numAdultQty += intval($num);
                                     for ($i = 1; $i <= intval($num); $i++) {
-                                        $s_station_arr[] = $s_station[$key];
+                                        $op_name_arr[] = $op_name[$key];
                                     }
                                 }
 
                                 for ($i = 1; $i <= $numAdultQty; $i++) {
                                     ?>
                                     <h3 class="title-sub-c mt-30">성인<?= $i ?> <span
-                                                class="text_divider"></span> <?= $s_station_arr[$i - 1] ?></h3>
+                                                class="text_divider"></span> <?= $op_name_arr[$i - 1] ?></h3>
                                     <div class="form-container" data-group="group<?= $i ?>">
                                         <div class="con-form mb-40">
                                             <div class="parent-form-group">
@@ -224,7 +224,7 @@
                                     <?php
                                 }
                                 ?>
-                                <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
+                                <!--<p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                                 <?php
 
                                 $numChildrenQty = 0;
@@ -259,7 +259,7 @@
                             </div>
                         </div>
 
-                        <div class="card-left card-left-2 coupon_area_" style="display:  none">
+                        <div class="card-left card-left-2 coupon_area_" style="display: none">
                             <h3 class="label">할인혜택</h3>
 
                             <div class="use_coupon flex__c">
@@ -330,28 +330,91 @@
                                 여행인원 및 예약금액
                             </h3>
                             <div class="list_schedule_">
-                                <?php foreach ($adultQty as $key => $val) { ?>
+                                <?php
+                                    $filter_info_idx = array_count_values($op_info_idx);
+                                    $arr_count = [];
+                                ?>
+                                <?php foreach ($op_name as $key => $val) { ?>
+                                    <?php
+                                        
+                                        if($filter_info_idx[$op_info_idx[$key]]){
+                                            $arr_count[$op_info_idx[$key]]++;
+                                        }else{
+                                            $arr_count[$op_info_idx[$key]] = 1;
+                                        }
+                                    ?>
                                     <div class="schedule schedule_booking">
-                                        <div class="wrap-text">
-                                            <p>성인<?= $key + 1 ?> x <?= $val ?></p>
+                                        <p style="font-weight: bold;"><?=$val?></p>
+                                        <div class="schedule_wrap">
+                                            <div class="wrap-text">
+                                                <p>성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
+                                            </div>
+                                            <div class="wrap-btn">
+                                                <span><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
+                                                <span> 원</span>
+                                            </div>
                                         </div>
-                                        <div class="wrap-btn">
-                                            <span><?= number_format((int)$adultPrice[$key] * (int)$val) ?></span>
-                                            <span> 원</span>
+                                        <div class="schedule_wrap">
+                                            <div class="wrap-text">
+                                                <p>아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
+                                            </div>
+                                            <div class="wrap-btn">
+                                                <span><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>
+                                                <span> 원</span>
+                                            </div>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                    <?php
+                                        if($arr_count[$op_info_idx[$key]] == $filter_info_idx[$op_info_idx[$key]]){
+                                    ?>
+                                        <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
+                                            <p class="schedule_ttl">옵션</p>    
+                                            <?php
+                                                if (isset($data['option_idx'])) {
+                                                    $num = count($data['option_idx']);
+                                                    for ($i = 0; $i < $num; $i++) {
+                                                        if($data['option_info_idx'][$i] != $op_info_idx[$key]){
+                                                            continue;
+                                                        }
 
-                                <?php foreach ($childrenQty as $key => $val) { ?>
-                                    <div class="schedule">
-                                        <div class="wrap-text">
-                                            <p>아동<?= $key + 1 ?> x <?= $val ?></p>
+                                                        $item = $data['option_idx'][$i];
+                                            ?>
+                                                <div class="schedule_option" id="schedule_<?= $item ?>">
+                                                    <div class="wrap-text">
+                                                        <p><?= $data['option_name'][$i] ?>(<?=number_format($data['option_price'][$i])?> 원)</p>
+                                                    </div>
+                                                    <div class="wrap-btn">
+                                                        <img onclick="minusQty(this)" class="minusQty"
+                                                            src="/images/sub/minus-ic.png"
+                                                            alt="">
+                                                        <span>
+                                                        <input style="text-align: center;" type="text"
+                                                            class="form-control input_qty" name="option_qty[]"
+                                                            data-price="<?= $data['option_price'][$i] ?>"
+                                                            id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
+                                                        </span>
+                                                        <img onclick="plusQty(this)" class="plusQty"
+                                                            src="/images/sub/plus-ic.png"
+                                                            alt="">
+                                                    </div>
+                                                    <div style="display: none">
+                                                        <input type="hidden" name="option_idx[]" value="<?= $item ?>">
+                                                        <input type="hidden" name="option_name[]"
+                                                            value="<?= $data['option_name'][$i] ?>">
+                                                        <input type="hidden" name="option_price[]"
+                                                            value="<?= $data['option_price'][$i] ?>">
+                                                        <input type="hidden" name="option_tot[]" value="0">
+                                                        <input type="hidden" name="option_cnt[]" value="0">
+                                                    </div>
+                                                </div>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
                                         </div>
-                                        <div class="wrap-btn">
-                                            <span><?= number_format((int)$childrenPrice[$key] * (int)$val) ?></span>
-                                            <span> 원</span>
-                                        </div>
-                                    </div>
+                                    <?php
+                                        }
+                                    ?>
                                 <?php } ?>
                             </div>
 
@@ -374,47 +437,7 @@
                                 </div>
                             </div>
 
-                            <div class="list_schedule_" id="option_list_">
-                                <?php
-                                if (isset($data['option_idx'])) {
-                                    $num = count($data['option_idx']);
-                                    for ($i = 0; $i < $num; $i++) {
-                                        $item = $data['option_idx'][$i];
-                                        ?>
-                                        <div class="schedule" id="schedule_<?= $item ?>">
-                                            <div class="wrap-text">
-                                                <span>옵션</span>
-                                                <p><?= $data['option_name'][$i] ?></p>
-                                            </div>
-                                            <div class="wrap-btn">
-                                                <img onclick="minusQty(this)" class="minusQty"
-                                                     src="/images/sub/minus-ic.png"
-                                                     alt="">
-                                                <span>
-                                                <input style="text-align: center;" type="text"
-                                                       class="form-control input_qty" name="option_qty[]"
-                                                       data-price="<?= $data['option_price'][$i] ?>"
-                                                       id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
-                                                </span>
-                                                <img onclick="plusQty(this)" class="plusQty"
-                                                     src="/images/sub/plus-ic.png"
-                                                     alt="">
-                                            </div>
-                                            <div class="" style="display: none">
-                                                <input type="hidden" name="option_idx[]" value="<?= $item ?>">
-                                                <input type="hidden" name="option_name[]"
-                                                       value="<?= $data['option_name'][$i] ?>">
-                                                <input type="hidden" name="option_price[]"
-                                                       value="<?= $data['option_price'][$i] ?>">
-                                                <input type="hidden" name="option_tot[]" value="0">
-                                                <input type="hidden" name="option_cnt[]" value="0">
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
-                            </div>
+                            
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
                                 <span>쿠폰 </span>
@@ -627,6 +650,14 @@
 			//buttonImage: "/images/ico/date_ico.png",
 			//buttonImageOnly: true
 		});
+
+        $(".date_form_birth").datepicker({
+            dateFormat: "yy-mm-dd",
+            showOn: "focus",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-120:+0"
+        });
 
         function formatDate(date) {
             var d = new Date(date),

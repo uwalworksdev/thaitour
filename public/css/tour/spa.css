@@ -660,12 +660,31 @@ div , p , ul, li, span {
 }
 
 .customer-form-page .container-card .card-right2 .schedule {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding-bottom: 22px;
     border-bottom: 1px solid #dbdbdb;
     margin-bottom: 20px;
+}
+
+.customer-form-page .container-card .card-right2 .schedule.last {
+    border-bottom: 1px solid #000;
+}
+
+.customer-form-page .container-card .card-right2 .schedule .schedule_wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.customer-form-page .container-card .card-right2 .schedule_ttl {
+    margin-top: 20px;
+}
+
+.customer-form-page .container-card .card-right2 .schedule_option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .card-right2 .schedule .wrap-text span {

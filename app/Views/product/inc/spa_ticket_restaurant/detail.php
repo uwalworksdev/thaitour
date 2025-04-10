@@ -219,11 +219,11 @@
 
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
-                        미팅/픽업장소 안내
+                        포함/불포함 사항
                     </h2>
 
                     <div class="container-big-text">
-                        <div class="only_w">
+                        <div>
                             <div class="tit-blue-type-2">
                                 <span class="tit-blue">포함사항</span>
                             </div>
@@ -237,7 +237,7 @@
                                 <?= viewSQ($data_['product_unable'])?>
                             </div>
                         </div>
-                        <div class="only_m">
+                        <div>
                             <h2 class="title-sec2">
                                 추가정보 및 참고사항
                             </h2>
@@ -675,7 +675,38 @@
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 LoadingPage();
             },
-            success: function (data, status, request) {              
+            success: function (data, status, request) { 
+                $("#list_people_option").html(
+                    `<li class="">
+                        <div class="flex_b_c cus-count-input cus-count-input-adult">
+                            <div class="payment">
+                                <p class="ped_label ped_label__booking">성인 </p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
+                                        value="0"
+                                        readonly="" style="padding: 0; width: 30px">
+                                <span>명</span>
+                                <input type="hidden" name="adultPrice[]" id="adultPrice">
+                            </div>
+                        </div>
+
+                        <div class="flex_b_c cus-count-input cus-count-input-child">
+                            <div class="payment">
+                                <p class="ped_label ped_label__booking">아동</p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                        id="childrenQty" value="0"
+                                        readonly="" style="padding: 0; width: 30px">
+                                <span>명</span>
+                                <input type="hidden" name="childrenPrice[]" id="childrenPrice">
+                            </div>
+                        </div>
+                    </li>`
+                );  
+
+                $("#total_sum").text("0");
                 renderData(data);
                 LoadingPage();
             }
@@ -689,7 +720,10 @@
             
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
-                    <td>${item_.spas_subject}</td>
+                    <td>
+                        <p style="margin-bottom: 5px; font-weight: bold;">${item_.info_name}</p>
+                        ${item_.spas_subject}
+                    </td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
                             <div class="price" style="display: flex; justify-content: start; align-items: start; flex-direction: column; gap: 5px;">
@@ -821,11 +855,12 @@
                         </div>
 
                         <div class="" style="display: none">
+                            <input type="hidden" name="option_info_idx[]" value="${info_idx}">
                             <input type="hidden" name="option_name[]" value="${option_name}">
                             <input type="hidden" name="option_idx[]" value="${idx}">
                             <input type="hidden" name="option_tot[]" value="${option_tot}">
                             <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                            <input type="hidden" name="option_price[]" value="${option_price}">
+                            <input type="hidden" name="option_price[]" value="${option_price_won}">
                         </div>
                     </li>`;
         
@@ -899,7 +934,7 @@
         let html = ``;
         let i = 0;
         let arr_info_idx = [];
-        let tmp_info = 0;
+        let tmp_info = [];
 
         $(".spa_option_detail").each(function() {
             
@@ -931,6 +966,8 @@
                 }
 
                 html += `<p style="font-weight: bold; margin-bottom: 10px;">${op_name}</p>`
+                html += `<input type="hidden" name="op_name[]" value="${op_name}">`
+                html += `<input type="hidden" name="op_info_idx[]" value="${info_idx}">`
             }
 
             if(adult_num > 0) {
@@ -1018,22 +1055,23 @@
                 check_num_people = true;
             }
 
-            if(tmp_info != current_info_idx) {
-                tmp_info = current_info_idx
+            if(check_num_people){
 
-                if(check_num_people){
+                $.ajax({
+                    url: "<?= route_to('api.spa_.get_mOption') ?>",
+                    type: "GET",
+                    data: { 
+                        info_idx: current_info_idx,
+                        product_idx: "<?= $data_['product_idx'] ?>",
+                    },
+                    error: function(request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    },
+                    success: function(data, status, request) {
 
-                    $.ajax({
-                        url: "<?= route_to('api.spa_.get_mOption') ?>",
-                        type: "GET",
-                        data: { 
-                            info_idx: current_info_idx,
-                            product_idx: "<?= $data_['product_idx'] ?>",
-                        },
-                        error: function(request, status, error) {
-                            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        },
-                        success: function(data, status, request) {
+                        if(!tmp_info[current_info_idx]) {
+                            tmp_info[current_info_idx] = current_info_idx
+                            
                             let option_html = ``;
                             
                             option_html += `
@@ -1042,7 +1080,7 @@
                             for (let i = 0; i < data.length; i++) {
                                 option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
                             }
-
+    
                             option_html += `
                                 </select>
                                 <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
@@ -1051,32 +1089,30 @@
                                     </select>
                                 </div>
                                 <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px">
-
+    
                                 </ul>
                             `;
                             
                             $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
-
+    
                             for (let info_idx in arr_data_option) {
-            
+    
                                 let dataList = arr_data_option[info_idx];
-
+    
                                 for (let i = 0; i < dataList.length; i++) {
                                     let data = dataList[i];
-                                    
-                                    console.log(data);
-                                    
+                                                                        
                                     renderOpPrice(data, info_idx);
                                 }
                             }
                         }
-                    });
-                }
+                    }
+                });
             }
+
+
         }); 
         
-        
-
     }
 
     function calcTotalPrice() {
