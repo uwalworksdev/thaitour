@@ -251,33 +251,20 @@ class CheckoutController extends BaseController
 			$sql_p = " SELECT * from tbl_order_mst WHERE order_no = '" . $array[$i]. "'";
 			$row_p = $db->query($sql_p)->getRowArray();
 			if($i == 0) {
-			   $product_name       = $row_p['product_name'];
-			   write_log("aaaaaaa- ". $row_p['order_user_name']);
-			   $order_user_name    = encryptField($row_p['order_user_name'], "decode");
-			   $companion_gender   = $row_p['companion_gender'];
+			   $product_name               = $row_p['product_name'];
+
+			   $payment_user_name          = $row_p['order_user_name'];
+			   $companion_gender           = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
 			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
-			   $email_1            = $row_p['email_1'];
-			   $email_2            = $row_p['email_2'];
-			   $payment_user_email = $email_1 ."@". $email_2;
-			   $payment_user_email = encryptField($payment_user_email, "encode");
+			   $payment_user_email         = $row_p['order_user_email'];
 
-			   $phone_1            = $row_p['phone_1'];
-			   $phone_2            = $row_p['phone_2'];	
-			   $phone_3            = $row_p['phone_3'];
-			   $payment_user_mobile = $phone_1 ."-". $phone_2 ."-". $phone_3;
-			   $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+			   $payment_user_mobile        = $row_p['order_user_mobile'];
 
-			   $payment_user_gender= $row_p['companion_gender'];
-			   $phone_thai   = $row_p['phone_thai'];
-			   $phone_thai   = encryptField($phone_thai, "encode");
-
-			   $local_phone1 = $row_p['local_phone1'];
-			   $local_phone2 = $row_p['local_phone2'];
-			   $local_phone  = $local_phone1 ."-". $local_phone2;
-			   $local_phone  = encryptField($local_phone, "encode");
-
-			   $payment_memo = $row_p['order_memo'];
+			   $payment_user_gender        = $row_p['companion_gender'];
+			   $phone_thai                 = $row_p['phone_thai'];
+			   $local_phone                = $row_p['local_phone'];
+			   $payment_memo               = $row_p['order_memo'];
 			   
 			}   
 			
