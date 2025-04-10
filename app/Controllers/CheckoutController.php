@@ -267,8 +267,6 @@ class CheckoutController extends BaseController
 		   $product_name .= " 외 ". (count($array)-1) ."개";
 		}
 		
-        //$payment_price  	= updateSQ($this->request->getPost('payment_price'));
-
         $payment_user_name  = updateSQ($this->request->getPost('order_user_name'));
         $payment_user_name  = encryptField($payment_user_name, "encode");
 

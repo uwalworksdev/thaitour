@@ -617,7 +617,6 @@ $(document).ready(function () {
 			success: function (data, textStatus) {
 				var message = data.message;
 				var payment_no = data.payment_no;
-				alert('payment_no- '+payment_no);
 				$("#dataValue").val(dataValue);
 				$("#payment_no").val(payment_no);
                 $("#checkOut").submit();
@@ -663,13 +662,37 @@ $(document).ready(function() {
 <script>
 function fn_checkout() {
 	
-	if($("#dataValue").val() == "") {
-	   alert('결제상품을 선택하세요.');
-	   return false;
-	}
-	
-	$("#checkOut").submit();
-	//window.location.href = `/checkout/show`;
+	    if($("#dataValue").val() == "") {
+	       alert('결제상품을 선택하세요.');
+	       return false;
+	    }
+
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": $("#dataValue").val() 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+		
+	    //$("#checkOut").submit();
+	    //window.location.href = `/checkout/show`;
 }
 
 function go_submit()
