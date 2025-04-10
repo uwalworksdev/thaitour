@@ -2468,6 +2468,7 @@ class Product extends BaseController
 			$data['device_type']              = get_device();
             $data['baht_thai']                = $this->setting['baht_thai'];
 			$data['device_type']              = get_device();
+			$data['group_no']                 = date('YmdHis');
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
