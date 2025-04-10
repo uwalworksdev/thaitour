@@ -219,11 +219,11 @@
 
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
-                        미팅/픽업장소 안내
+                        포함/불포함 사항
                     </h2>
 
                     <div class="container-big-text">
-                        <div class="only_w">
+                        <div>
                             <div class="tit-blue-type-2">
                                 <span class="tit-blue">포함사항</span>
                             </div>
@@ -237,7 +237,7 @@
                                 <?= viewSQ($data_['product_unable'])?>
                             </div>
                         </div>
-                        <div class="only_m">
+                        <div>
                             <h2 class="title-sec2">
                                 추가정보 및 참고사항
                             </h2>
