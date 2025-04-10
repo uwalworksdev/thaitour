@@ -369,7 +369,7 @@
 														<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 															<div style="display: flex; justify-content: center; gap: 5px;">
 																<input type="hidden" name="o_onum[0]" class="o_onum" value="">
-																<input type="text" name="info_name[0]" style="width: 250px;" value="">
+																<input type="text" name="info_name[0]" placeholder="상품요금명" style="width: 250px;" value="">
 																<a href="javascript:add_tours(0);" class="btn btn-primary">추가</a>
 																<a href="javascript:remove_table(0);" class="btn btn-danger">삭제</a>
 															</div>
@@ -709,7 +709,7 @@
 								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 									<div style="display: flex; justify-content: center; gap: 5px;">
 										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
-										<input type="text" name="info_name[${tableCount}]" style="width: 250px;" value="">
+										<input type="text" name="info_name[${tableCount}]" placeholder="상품요금명" style="width: 250px;" value="">
 										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
 										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
 									</div>
