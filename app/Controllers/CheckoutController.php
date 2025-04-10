@@ -317,7 +317,7 @@ class CheckoutController extends BaseController
 				$mileage = 0;
 			}
 			
-			$order_user_name = encryptField($row_m["order_user_name"], "decode");
+			$order_user_name = encryptField($row_m["user_name"], "decode");
 
 		}
 
