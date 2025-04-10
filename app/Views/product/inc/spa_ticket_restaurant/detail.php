@@ -1022,6 +1022,7 @@
             }
 
             if(check_num_people){
+
                 $.ajax({
                     url: "<?= route_to('api.spa_.get_mOption') ?>",
                     type: "GET",
@@ -1033,6 +1034,7 @@
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     },
                     success: function(data, status, request) {
+
                         if(!tmp_info[current_info_idx]) {
                             tmp_info[current_info_idx] = current_info_idx
                             
@@ -1077,8 +1079,6 @@
 
         }); 
         
-        
-
     }
 
     function calcTotalPrice() {

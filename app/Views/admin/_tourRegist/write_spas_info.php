@@ -920,7 +920,7 @@
 			minDate: new Date(),
 			maxDate: "+99Y",
 			onClose: function (selectedDate) {
-				$(".e_date").datepicker("option", "minDate", selectedDate);
+				$(this).closest("td").find(".e_date").datepicker("option", "minDate", selectedDate);
 			},
 			beforeShow: function (input) {
 				setTimeout(function () {
@@ -941,7 +941,7 @@
 			showButtonPanel: true
 			, onClose: function (selectedDate) {
 				// To 날짜 선택기의 최소 날짜를 설정
-				$(".s_date").datepicker("option", "maxDate", selectedDate);
+				$(this).closest("td").find(".s_date").datepicker("option", "maxDate", selectedDate);
 			}
 			, beforeShow: function (input) {
 				setTimeout(function () {
