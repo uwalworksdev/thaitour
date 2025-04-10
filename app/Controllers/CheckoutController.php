@@ -254,6 +254,8 @@ class CheckoutController extends BaseController
 			   $product_name               = $row_p['product_name'];
 
 			   $payment_user_name          = $row_p['order_user_name'];
+   			   $order_user_name            = encryptField($payment_user_name, "decode");
+
 			   $companion_gender           = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
 			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
@@ -316,8 +318,6 @@ class CheckoutController extends BaseController
 			if ($mileage == "") {
 				$mileage = 0;
 			}
-			
-			$order_user_name = encryptField($row_m["user_name"], "decode");
 
 		}
 
