@@ -253,7 +253,7 @@ class CheckoutController extends BaseController
 			if($i == 0) {
 			   $product_name       = $row_p['product_name'];
 			   
-			   $data['order_user_name'] = encryptField($row_p['order_user_name'], "encode");
+			   $order_user_name    = encryptField($row_p['order_user_name'], "encode");
 			   $companion_gender   = $row_p['companion_gender'];
 			   $payment_user_first_name_en = $row_p['order_user_first_name_en'];
 			   $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
@@ -358,11 +358,12 @@ class CheckoutController extends BaseController
 		$result = $query->getResultArray(); // 결과 배열 반환
 
         $data = [
-            'product_name' => $product_name,
-            'payment_no'   => $payment_no,
-            'dataValue'    => $ordert_no,
-            'resultCoupon' => $result,
-            'point'        => $mileage
+			'order_user_name' => $order_user_name,
+            'product_name'    => $product_name,
+            'payment_no'      => $payment_no,
+            'dataValue'       => $ordert_no,
+            'resultCoupon'    => $result,
+            'point'           => $mileage
         ];
 
         return view('checkout/confirmMypage', $data);
