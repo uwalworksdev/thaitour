@@ -899,7 +899,7 @@
         let html = ``;
         let i = 0;
         let arr_info_idx = [];
-        let tmp_info = 0;
+        let tmp_info = [];
 
         $(".spa_option_detail").each(function() {
             
@@ -1018,22 +1018,21 @@
                 check_num_people = true;
             }
 
-            if(tmp_info != current_info_idx) {
-                tmp_info = current_info_idx
-
-                if(check_num_people){
-
-                    $.ajax({
-                        url: "<?= route_to('api.spa_.get_mOption') ?>",
-                        type: "GET",
-                        data: { 
-                            info_idx: current_info_idx,
-                            product_idx: "<?= $data_['product_idx'] ?>",
-                        },
-                        error: function(request, status, error) {
-                            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        },
-                        success: function(data, status, request) {
+            if(check_num_people){
+                $.ajax({
+                    url: "<?= route_to('api.spa_.get_mOption') ?>",
+                    type: "GET",
+                    data: { 
+                        info_idx: current_info_idx,
+                        product_idx: "<?= $data_['product_idx'] ?>",
+                    },
+                    error: function(request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    },
+                    success: function(data, status, request) {
+                        if(!tmp_info[current_info_idx]) {
+                            tmp_info[current_info_idx] = current_info_idx
+                            
                             let option_html = ``;
                             
                             option_html += `
@@ -1042,7 +1041,7 @@
                             for (let i = 0; i < data.length; i++) {
                                 option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
                             }
-
+    
                             option_html += `
                                 </select>
                                 <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
@@ -1051,28 +1050,28 @@
                                     </select>
                                 </div>
                                 <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px">
-
+    
                                 </ul>
                             `;
                             
                             $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
-
+    
                             for (let info_idx in arr_data_option) {
-            
+    
                                 let dataList = arr_data_option[info_idx];
-
+    
                                 for (let i = 0; i < dataList.length; i++) {
                                     let data = dataList[i];
-                                    
-                                    console.log(data);
-                                    
+                                                                        
                                     renderOpPrice(data, info_idx);
                                 }
                             }
                         }
-                    });
-                }
+                    }
+                });
             }
+
+
         }); 
         
         

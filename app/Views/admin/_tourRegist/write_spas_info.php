@@ -139,7 +139,7 @@
                                                             </td>
                                                             <td>
 																<div style="display: flex; gap: 5px;">
-																	<input type="text" name="spas_info_price[<?=$i?>]" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
+																	<input type="text" name="spas_info_price[<?=$i?>]" placeholder="기존상품가" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
 																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
@@ -185,8 +185,8 @@
 																					<div style="display: flex; gap: 5px;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
-																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
+																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
 																					</div>
                                                                                 </td>
                                                                                 <td>
@@ -293,7 +293,7 @@
 																														</div>
                                                                                                                     </td>
                                                                                                                     <td>
-                                                                                                                        <input type='text' style="text-align:right;"
+                                                                                                                        <input type='text'
                                                                                                                                 name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="<?=$option_spa["option_price"]?>" numberOnly=true/>
                                                                                                                     </td>
                                                                                                                     <td>
@@ -369,8 +369,8 @@
                                                         <td>
 															<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 150px; cursor: pointer;" value="" id=""> ~
-																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 150px; cursor: pointer;" value="" id="">
+																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 
 																</div>
 																<div style="display: flex; align-items: center; gap: 5px;">
@@ -394,9 +394,11 @@
 															</div>
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="spas_info_price[0]" numberOnly=true>
-															<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-															<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+															<div style="display: flex; gap: 5px;">
+																<input type="text" name="spas_info_price[0]" numberOnly=true>
+																<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+															</div>
                                                         </td>
                                                         <!-- <td>
                                                             <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
@@ -758,7 +760,7 @@
 									<tbody class="air_main">
 										<tr class="air_list_1" style="height:40px">
 											<td style="width:100px;text-align:center">
-												<input type="hidden" name="spa_onum[${tableCount}][]" class="tour_onum" value="">
+												<input type="hidden" name="spa_onum[${tableCount}][]" class="spa_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
 												<div class="flex" style="gap: 5px;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -989,8 +991,8 @@
 					<div style="display: flex; gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
-						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
+						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
 					</div>
 				</td>
 				<td style="text-align:center">
@@ -1033,7 +1035,7 @@
 			<tr class="air_list_1" style="height:40px">
 				<td>
 					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
-					<input type="hidden" name="spa_idx[${infoIdx}][]" class="spa_idx" value="new">
+					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
 					<div style="display: flex; gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>

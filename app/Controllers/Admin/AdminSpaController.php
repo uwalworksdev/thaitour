@@ -551,6 +551,8 @@ class AdminSpaController extends BaseController
                     'product_manager_id' => $product_manager_id ?? '',
                     'original_price' => $original_price ?? '',
                     'keyword' => $keyword ?? '',
+                    'product_confirm' => updateSQ($product_confirm) ?? '',
+                    'special_benefit' => updateSQ($special_benefit) ?? '',
                     'product_price' => $product_price ?? '',
                     'product_best' => $product_best ?? '',
                     'onum' => $onum ?? '',
