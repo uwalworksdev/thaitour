@@ -611,8 +611,11 @@ class SpaController extends BaseController
         $builder->where("p.goods_date =", $date);
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
-        // $builder->orderBy("si.o_onum", 'asc');
-        // $builder->orderBy("s.spa_onum", 'asc');
+        $builder->orderBy("si.o_onum", 'asc');
+        $builder->orderBy("si.info_idx", 'asc');
+        $builder->orderBy("s.spa_onum", 'asc');
+        $builder->orderBy("s.spas_idx", 'asc');
+
         $options_list = $builder->get()->getResultArray();
 
         foreach($options_list as $key => $day) {
