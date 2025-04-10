@@ -879,6 +879,7 @@ class AdminSpaController extends BaseController
                         $this->spasOption->insert($data);
                     }
                 }
+
             }
         }
 

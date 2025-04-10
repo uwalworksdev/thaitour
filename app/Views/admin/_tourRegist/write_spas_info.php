@@ -139,7 +139,7 @@
                                                             </td>
                                                             <td>
 																<div style="display: flex; gap: 5px;">
-																	<input type="text" name="spas_info_price[<?=$i?>]" placeholder="기존상품가" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
+																	<input type="text" name="spas_info_price[<?=$i?>]" class="price" placeholder="기존상품가" value="<?= number_format($info['info']['spas_info_price']) ?>" numberOnly=true>
 																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
@@ -301,7 +301,7 @@
                                                                                                                             <option value="Y" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
                                                                                                                                 판매중
                                                                                                                             </option>
-                                                                                                                            <option value="N" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
+                                                                                                                            <option value="N" <?php if($option_spa["use_yn"] == "N"){ echo "selected"; }?>>
                                                                                                                                 중지
                                                                                                                             </option>
                                                                                                                         </select>
@@ -395,7 +395,7 @@
                                                         </td>
                                                         <td>
 															<div style="display: flex; gap: 5px;">
-																<input type="text" name="spas_info_price[0]" numberOnly=true>
+																<input type="text" name="spas_info_price[0]" class="price" numberOnly=true>
 																<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 															</div>
@@ -739,7 +739,7 @@
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
-									<input type="text" name="spas_info_price[${tableCount}]" numberOnly=true>
+									<input type="text" name="spas_info_price[${tableCount}]" class="price" numberOnly=true>
 									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 								</div>
@@ -751,7 +751,6 @@
 								<table style="width:100%">
 									<colgroup>
 										<col width="*">
-										<col width="12%">
 										<col width="12%">
 										<col width="12%">
 										<col width="10%">

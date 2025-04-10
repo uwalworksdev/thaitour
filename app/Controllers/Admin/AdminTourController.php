@@ -679,6 +679,8 @@ class AdminTourController extends BaseController
                 'r_date' => date('Y-m-d H:i:s')
             ];
 
+
+
             if ($infoIndex) {
                 if ($infoIndex['o_sdate'] !== $start_date) {
                     $infoData['o_sdate'] = $start_date;

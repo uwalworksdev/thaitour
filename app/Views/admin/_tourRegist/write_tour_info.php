@@ -140,7 +140,7 @@
 															</td>
 															<td>
 																<div style="display: flex; gap: 5px;">
-																	<input type="text" name="tour_info_price[<?=$i?>]" placeholder="기존상품가" value="<?= number_format($info['info']['tour_info_price']) ?>" numberOnly=true>
+																	<input type="text" name="tour_info_price[<?=$i?>]" placeholder="기존상품가" class="price" value="<?= number_format($info['info']['tour_info_price']) ?>" numberOnly=true>
 																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
@@ -311,7 +311,7 @@
 																															<option value="Y" <?php if($option_tour["use_yn"] == "Y"){ echo "selected"; }?>>
 																																판매중
 																															</option>
-																															<option value="N" <?php if($option_tour["use_yn"] == "Y"){ echo "selected"; }?>>
+																															<option value="N" <?php if($option_tour["use_yn"] == "N"){ echo "selected"; }?>>
 																																중지
 																															</option>
 																														</select>
@@ -404,7 +404,7 @@
 														</td>
 														<td>
 															<div style="display: flex; gap: 5px;">
-																<input type="text" name="tour_info_price[0]" numberOnly=true>
+																<input type="text" name="tour_info_price[0]" class="price" placeholder="기존상품가" numberOnly=true>
 																<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 															</div>
@@ -736,7 +736,7 @@
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
-									<input type="text" name="tour_info_price[${tableCount}]" numberOnly=true>
+									<input type="text" name="tour_info_price[${tableCount}]" class="price" placeholder="기존상품가" numberOnly=true>
 									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 								</div>
@@ -1423,6 +1423,13 @@
 					$(this).find(".op_tour_onum").val(op_tour_onum);
 				});
 			});
+		});
+
+		$(".price").each(function () {
+			let val = $(this).val();
+			if (val) {
+				$(this).val(val.replace(/,/g, ''));
+			}
 		});
 
 		frm.submit();
