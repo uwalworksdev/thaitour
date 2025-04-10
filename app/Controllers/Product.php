@@ -2818,7 +2818,7 @@ class Product extends BaseController
             $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
-            $data['order_status'] = $data['order_status'];
+            $data['order_status'] = updateSQ($data['order_status']);
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
@@ -2832,16 +2832,16 @@ class Product extends BaseController
             $data['order_gubun'] = "tour";
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
 
-            $data['people_adult_cnt'] = $data['people_adult_cnt'];
-            $data['people_kids_cnt'] = $data['people_kids_cnt'];
-            $data['people_baby_cnt'] = $data['people_baby_cnt'];
+            $data['people_adult_cnt'] = updateSQ($data['people_adult_cnt']);
+            $data['people_kids_cnt'] = updateSQ($data['people_kids_cnt']);
+            $data['people_baby_cnt'] = updateSQ($data['people_baby_cnt']);
 
-            $data['people_adult_price'] = $data['people_adult_price'];
-            $data['people_kids_price'] = $data['people_kids_price'];
-            $data['people_baby_price'] = $data['people_baby_price'];
+            $data['people_adult_price'] = updateSQ($data['people_adult_price']);
+            $data['people_kids_price'] = updateSQ($data['people_kids_price']);
+            $data['people_baby_price'] = updateSQ($data['people_baby_price']);
             $data['order_price'] = $data['total_price'];
-            $data['total_price_baht'] = $data['total_price_baht'];
-            $data['order_day']        = $data['order_date'];
+            $data['total_price_baht'] = updateSQ($data['total_price_baht']);
+            $data['order_day']        = updateSQ($data['order_date']);
             $data['order_date']       = date('Y-m-d H:i:s');
 
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
