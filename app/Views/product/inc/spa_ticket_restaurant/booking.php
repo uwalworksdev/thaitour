@@ -655,7 +655,8 @@
             dateFormat: "yy-mm-dd",
             showOn: "focus",
             changeMonth: true,
-            changeYear: true
+            changeYear: true,
+            yearRange: "-120:+0"
         });
 
         function formatDate(date) {
