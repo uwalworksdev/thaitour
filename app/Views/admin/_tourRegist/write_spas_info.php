@@ -1415,6 +1415,13 @@
 			});
 		});
 
+		$(".price").each(function () {
+			let val = $(this).val();
+			if (val) {
+				$(this).val(val.replace(/,/g, ''));
+			}
+		});
+
 		frm.submit();
 	}
 </script>
