@@ -109,7 +109,7 @@
 							<div class="con-form mb-40">
 								<div class="form-group">
 									<label for="order_birth_date">생년월일 *</label>
-									<input type="text" id="order_birth_date" class="date_form" name="order_birth_date"
+									<input type="text" id="order_birth_date" class="date_form_birth" name="order_birth_date"
 										   required="" data-label="생년월일" placeholder="생년월일" readonly>
 								</div>
 							</div>
@@ -650,6 +650,13 @@
 			//buttonImage: "/images/ico/date_ico.png",
 			//buttonImageOnly: true
 		});
+
+        $(".date_form_birth").datepicker({
+            dateFormat: "yy-mm-dd",
+            showOn: "focus",
+            changeMonth: true,
+            changeYear: true
+        });
 
         function formatDate(date) {
             var d = new Date(date),
