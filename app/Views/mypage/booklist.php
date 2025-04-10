@@ -666,7 +666,7 @@ function fn_checkout() {
 	       alert('결제상품을 선택하세요.');
 	       return false;
 	    }
-
+alert($("#dataValue").val());
 		$.ajax({
 
 			url: "/ajax/ajax_payment",
