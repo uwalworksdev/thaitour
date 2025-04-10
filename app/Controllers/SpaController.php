@@ -606,10 +606,12 @@ class SpaController extends BaseController
 
         $builder->select('p.*, s.spas_subject');
         $builder->join('tbl_product_spas s', 'p.spas_idx = s.spas_idx', 'left');
+        $builder->join('tbl_product_spas_info si', 'si.info_idx = s.info_idx', 'left');
         $builder->where("p.product_idx =", $product_idx);
         $builder->where("p.goods_date =", $date);
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
+        $builder->orderBy("si.o_onum", 'asc');
         $builder->orderBy("s.spa_onum", 'asc');
         $options_list = $builder->get()->getResultArray();
 
