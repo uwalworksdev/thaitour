@@ -384,9 +384,10 @@ class Product extends BaseController
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
 
-            $products = $this->productModel->findProductPaging([
-                'product_code_1' => 1303,
-            ], $this->scale, 1, ['onum' => 'DESC']);
+            // $products = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1303,
+            // ], $this->scale, 1, ['onum' => 'DESC']);
+            $products = $this->mainDispModel->goods_find(233501);
 
             foreach ($products['items'] as $key => $product) {
 
@@ -435,12 +436,14 @@ class Product extends BaseController
 
             $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
-            $theme_products = $this->productModel->findProductPaging([
-                'product_code_1' => 1303,
-                'special_price' => 'Y',
-            ], $this->scale, 1, ['onum' => 'DESC']);
+            // $theme_products = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1303,
+            //     'special_price' => 'Y',
+            // ], $this->scale, 1, ['onum' => 'DESC']);
 
-            $bestValueProduct = $this->mainDispModel->goods_find(2334)['items'];
+            $theme_products = $this->mainDispModel->goods_find(233502);
+
+            $bestValueProduct = $this->mainDispModel->goods_find(233503)['items'];
 
             foreach ($bestValueProduct as $key => $product) {
 
