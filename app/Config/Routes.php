@@ -550,6 +550,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("get_golf_option", "AjaxController::get_golf_option");
     $routes->post("get_best", "AjaxMainController::get_best");
     $routes->post("set_seq", "AjaxMainController::set_seq");
+    $routes->post("set_seq_hotel", "AjaxMainController::set_seq_hotel");
     $routes->post("set_search_txt", "AjaxMainController::set_search_txt");
     $routes->get("get_code", "CodeController::ajaxGet");
     $routes->get("get_sub_code", "CodeController::get_sub_code");

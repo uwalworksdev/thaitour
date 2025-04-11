@@ -662,7 +662,7 @@ $searchTxt = $SearchText->List()->findAll();
 
         function set_hotel_seq(local) {
             $.ajax({
-                url: "/ajax/set_seq",
+                url: "/ajax/set_seq_hotel",
                 type: "POST",
                 data: {
                     type: "hotel",

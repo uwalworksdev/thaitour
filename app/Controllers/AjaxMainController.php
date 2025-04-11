@@ -89,7 +89,7 @@ class AjaxMainController extends BaseController {
  
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
-								  WHERE a.code_no = '$code_no' AND b.product_status != 'stop' ORDER BY a.onum ASC ";
+								  WHERE a.code_no = '$code_no' AND b.product_status != 'stop' AND b.product_status != 'D' ORDER BY a.onum ASC ";
         //write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
@@ -116,6 +116,69 @@ class AjaxMainController extends BaseController {
 			$msg .= '<div class="prd_price_ko">'. number_format($item3['product_price_won']) .'<span> 원</span></div>';
 			$msg .= '<div class="prd_price_thai">'. number_format($item3['product_price']) .'<span> 바트</span></div>';
 			$msg .= '</div></a>';
+			$msg .= '</div>';
+		endforeach;
+
+        $output = [
+            "message"  => $msg
+        ];
+
+		return $this->response->setJSON($output);
+    }
+
+	public function set_seq_hotel()  
+	{
+		helper(['setting']);
+        $setting = homeSetInfo();
+
+        $type     = $this->request->getPost('type');
+        $code_no  = $this->request->getPost('local');
+        $db    = \Config\Database::connect();
+ 
+		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
+		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
+								  WHERE a.code_no = '$code_no' AND b.product_status != 'stop' AND b.product_status != 'D' ORDER BY a.onum ASC, a.code_idx DESC";
+        //write_log("AjaxMainController- ". $sql);
+ 
+        $rows  = $db->query($sql)->getResultArray();
+
+		foreach ($rows as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_won = $product_price * $baht_thai;
+            $rows[$key]['product_price_won'] = $product_price_won;
+        }
+
+        $msg   = "";
+		$seq   = 0;
+		foreach ($rows as $item3):
+			$seq++;
+			$img_dir = img_link($item3['product_code_1']);
+		
+			$arr   = product_price($item3["product_idx"]);
+			$price = explode("|", $arr);
+			$item3['product_price_won'] = $price[0];
+			$item3['product_price']     = $price[1];
+		
+			$msg .= '<div class="swiper-slide">';
+			$msg .= '<a href="'. getUrlFromProduct($item3) .'" class="hot_product_list__item">';
+			$msg .= '<div class="img_box img_box_2">';
+			$msg .= '<img src="/data/'. $img_dir .'/'. $item3['ufile1'] .'" alt="main">';
+			$msg .= '</div>';
+			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
+			$msg .= '<div class="d_flex justify_content_start align_items_end gap_10">';
+		
+			if ($item3['is_won_bath'] == "W") {
+				$msg .= '<div class="prd_price_ko">'. number_format($item3['product_price_won']) .'<span> 원</span></div>';
+			} else if ($item3['is_won_bath'] == "B") {
+				$msg .= '<div class="prd_price_ko">'. number_format($item3['product_price']) .'<span> 바트</span></div>';
+			} else {
+				$msg .= '<div class="prd_price_ko">'. number_format($item3['product_price_won']) .'<span> 원</span></div>';
+				$msg .= '<div class="prd_price_thai">'. number_format($item3['product_price']) .'<span> 바트</span></div>';
+			}
+		
+			$msg .= '</div>'; // end of flex
+			$msg .= '</a>';
 			$msg .= '</div>';
 		endforeach;
 
