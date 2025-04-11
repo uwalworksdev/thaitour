@@ -4,7 +4,7 @@
         $(function(){
             $("select[name='category']").change(function(){
                 var cate = $(this).val();
-                location.href = "?code=<?= $code ?>&scategory=" + cate;
+                location.href = "?code=<?= $code ?>&type=<?= $type ?>&scategory=" + cate;
             });
         });
     </script>
@@ -71,7 +71,7 @@
                         </td>
                     <?php endforeach; ?>
                     <td>
-                        <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?code=<?= esc($code) ?>"><img src="/images/admin/common/ico_setting2.png"></a>
+                        <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?code=<?= esc($code) ?>&type=<?= esc($type) ?>"><img src="/images/admin/common/ico_setting2.png"></a>
                         <a href="javascript:del_it('<?= $row['bbs_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
                     </td>
                 </tr>

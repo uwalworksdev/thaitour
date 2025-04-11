@@ -243,7 +243,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
                     <a href="#!"><span class="tit"><?= $menu['name'] ?></span></a>
                     <ul class="smenu_<?=$mi?> depth2 <?=$menu['active']?>">
                         <?php foreach ($menu['submenus'] as $submenu):
-                            $submenu_url = site_url($submenu['url']);
+                            $submenu_url = site_url($submenu['url'][0]);
                             ?>
                             <li class="fir <?= $submenu['active'] ?>">
                                 <a href="<?= $submenu_url ?>"><?= $submenu['name'] ?></a>
