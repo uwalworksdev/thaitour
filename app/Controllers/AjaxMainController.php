@@ -34,7 +34,7 @@ class AjaxMainController extends BaseController {
         if($code_no)        $sql .= " AND a.code_no        = '$code_no' "; 
 		if($product_code_1) $sql .= " AND b.product_code_1 = '$product_code_1' ";
 
-		$sql  .= "ORDER BY a.onum ASC ";
+		$sql  .= "ORDER BY a.onum ASC, a.code_idx DESC ";
         //write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
