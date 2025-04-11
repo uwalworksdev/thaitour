@@ -93,6 +93,9 @@ class MainDispModel extends Model
         $builder->where('tbl_main_disp.code_no', $code_no);
         $builder->where('tbl_product_mst.product_status !=', 'stop');
         $builder->where('tbl_product_mst.product_status !=', 'D');
+        $builder->orderBy('tbl_main_disp.onum', 'asc');
+        $builder->orderBy('tbl_main_disp.code_idx', 'desc');
+
         if ($keyword) {
             $builder->like('tbl_product_mst.product_name', $keyword);
         }
