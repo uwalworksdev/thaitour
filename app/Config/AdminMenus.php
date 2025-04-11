@@ -110,7 +110,7 @@ class AdminMenus extends BaseConfig
             ]
         ],
         [
-            'name' => '기타상품 관리',
+            'name' => '추천상품/배너 관리',
             'code' => 'C',
             'submenus' => [
                 [
