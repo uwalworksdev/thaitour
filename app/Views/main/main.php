@@ -514,10 +514,10 @@ $searchTxt = $SearchText->List()->findAll();
                 </div>
             </div>
             <div class="main_hot__head__place only_mo_flex">
-                <a href="#!" class="place_item active">방콕</a>
-                <a href="#!" class="place_item">파타야</a>
-                <a href="#!" class="place_item">푸켓</a>
-                <a href="#!" class="place_item">치앙마이</a>
+                <a href="#!" class="place_item_hotel active" data-id="290201">방콕</a>
+                <a href="#!" class="place_item_hotel" data-id="290202">파타야</a>
+                <a href="#!" class="place_item_hotel" data-id="290203">푸켓</a>
+                <a href="#!" class="place_item_hotel" data-id="290204">치앙마이</a>
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
@@ -772,10 +772,10 @@ $searchTxt = $SearchText->List()->findAll();
                 </div>
             </div>
             <div class="main_hot__head__place only_mo_flex">
-                <div class="place_item">방콕</div>
-                <div class="place_item">파타야</div>
-                <div class="place_item">푸켓</div>
-                <div class="place_item active">치앙마이</div>
+                <div class="place_item_golf active" data-id="290101">방콕</div>
+                <div class="place_item_golf" data-id="290102">파타야</div>
+                <div class="place_item_golf" data-id="290103">푸켓</div>
+                <div class="place_item_golf" data-id="290104">치앙마이</div>
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
