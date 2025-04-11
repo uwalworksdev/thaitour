@@ -114,7 +114,7 @@ class AdminMenus extends BaseConfig
             'code' => 'C',
             'submenus' => [
                 [
-                    'name' => '메인 추천상품 관리',
+                    'name' => '메인 관리',
                     'code' => 'C1',
                     'url' => '/AdmMaster/_tourSuggestion/list',
                     'alias' => ['TourSuggestionController::list', 'TourSuggestionController::write']

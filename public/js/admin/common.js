@@ -1197,3 +1197,9 @@ function updateQueryParam(param, value) {
 
     window.history.pushState({}, '', url);
 }
+
+function resetQueryParams() {
+    let url = new URL(window.location);
+    url.search = '';
+    window.history.replaceState({}, '', url);
+}
