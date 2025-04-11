@@ -137,6 +137,8 @@ class TourSuggestionController extends BaseController
                         a.product_code, 
                         a.is_view,
                         a.product_status,
+                        a.ufile1,
+                        a.rfile1,
                         b.onum,
                         b.code_idx
                         from tbl_product_mst a, tbl_main_disp b

@@ -92,17 +92,17 @@
                                     <table id="pick_select_layer">
                                         <colgroup>
                                             <col style="width: 80px">
+                                            <col style="width: 120px">
                                             <col style="width: auto">
                                             <col style="width: 160px">
                                             <col style="width: 160px">
                                             <col style="width: 100px">
                                             <col style="width: 100px">
-
-
                                         </colgroup>
                                         <thead>
                                         <tr>
                                             <th></th>
+                                            <th>썸네일이미지</th>
                                             <th>상품명</th>
                                             <th>판매상태결정</th>
                                             <th>상품코드</th>
