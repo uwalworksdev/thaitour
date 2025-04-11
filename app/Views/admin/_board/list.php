@@ -20,7 +20,7 @@
                             <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                         <?php } ?>
                         <li>
-                            <a href="/AdmMaster/_bbs/board_write?code=<?= esc($code) ?>&scategory=<?= esc($scategory) ?>"
+                            <a href="/AdmMaster/_bbs/board_write?code=<?= esc($code) ?>&type=<?= esc($type) ?>&scategory=<?= esc($scategory) ?>"
                                class="btn btn-primary">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="txt">글 등록</span>
@@ -34,6 +34,7 @@
         <div id="contents">
             <form name="frmSearch" method="GET">
                 <input type="hidden" name="code" value="<?= esc($code) ?>">
+                <input type="hidden" name="type" value="<?= esc($type) ?>">
                 <input type="hidden" name="scategory" value="<?= esc($scategory) ?>">
                 <header id="headerContents">
                     <p>
@@ -92,7 +93,7 @@
                     }
                 ?>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&type=$type&pg=") ?>
             </div>
         </div>
     </div>

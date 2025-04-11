@@ -61,12 +61,19 @@ class Bbs extends Model
         (select subject from tbl_bbs_category where tbl_bbs_category.tbc_idx=tbl_bbs_list.category) as scategory,
         (select count(*) from tbl_bbs_cmt inner join tbl_member on tbl_member.m_idx = tbl_bbs_cmt.r_m_idx where tbl_bbs_cmt.r_idx = tbl_bbs_list.bbs_idx and tbl_bbs_cmt.r_code = '$code' and tbl_bbs_cmt.r_delYN = 'N') as comment_cnt,
         (select count(*) from tbl_wish_list where tbl_wish_list.bbs_idx=tbl_bbs_list.bbs_idx) as cnt_like");
+
+        $builder->join('tbl_bbs_category', 'tbl_bbs_category.tbc_idx = tbl_bbs_list.category', 'left');
+        
         if (!empty($whereArr['search_word'])) {
             if (!empty($whereArr['search_mode'])) {
-                $builder->like($whereArr['search_mode'], $whereArr['search_word']);
+                if($whereArr['search_mode'] == "subject"){
+                    $builder->like('tbl_bbs_list.subject', $whereArr['search_word']);
+                }else{
+                    $builder->like($whereArr['search_mode'], $whereArr['search_word']);
+                }
             } else {
                 $builder->groupStart();
-                $builder->orLike('subject', $whereArr['search_word']);
+                $builder->orLike('tbl_bbs_list.subject', $whereArr['search_word']);
                 if($code != "time_sale"){
                     $builder->orLike('contents', $whereArr['search_word']);
                     $builder->orLike('writer', $whereArr['search_word']);
@@ -77,7 +84,12 @@ class Bbs extends Model
         if (!empty($whereArr['category'])) {
             $builder->where('category', $whereArr['category']);
         }
-        $builder->where('code', $code);
+
+        if (!empty($whereArr['type'])) {
+            $builder->where('tbl_bbs_category.type', $whereArr['type']);
+        }
+
+        $builder->where('tbl_bbs_list.code', $code);
         $builder->groupBy("{$this->table}.bbs_idx");
         $onumCodeArray = ['banner'];
         if (in_array($code, $onumCodeArray)) {

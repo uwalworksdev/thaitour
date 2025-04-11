@@ -42,6 +42,7 @@ class BoardController extends BaseController
     public function index()
     {
         $code = $this->request->getGet('code');
+        $type = $this->request->getGet('type');
         $scategory = $this->request->getGet('scategory');
         $search_word = $this->request->getGet('search_word');
         $search_mode = $this->request->getGet('search_mode');
@@ -49,7 +50,7 @@ class BoardController extends BaseController
 
         $pg = $this->request->getGet('pg') ?? 1;
 
-        $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory]);
+        $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory, 'type' => $type]);
 
         $nTotalCount = $builder->countAllResults(false);
 
@@ -68,6 +69,7 @@ class BoardController extends BaseController
 
         $data = [
             'code' => $code,
+            'type' => $type,
             'scategory' => $scategory,
             'search_mode' => $search_mode,
             'search_word' => $search_word,
@@ -77,7 +79,7 @@ class BoardController extends BaseController
             'nPage' => $nPage,
             'nFrom' => $nFrom,
             'rows' => $rows,
-            'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code),
+            'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code, $type),
         ];
 
         // Load the view with the data
@@ -99,7 +101,7 @@ class BoardController extends BaseController
         }
 
         $data['config'] = $this->bbsConfigModel->where("board_code", $data['code'])->first();
-        $data['list_category'] = $this->bbsCategoryModel->getCategoriesByCodeAndStatus($data['code']);
+        $data['list_category'] = $this->bbsCategoryModel->getCategoriesByCodeAndStatus($data['code'], $data['type']);
         $data['list_code'] = $this->codeModel->getCodesByGubunDepthAndStatus('tour', '2');
         $data['list_code2'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
         $data['list_code_faq'] = $this->codeModel->getCodesByGubunDepthAndStatus('faq', '2');

@@ -3,6 +3,18 @@
 
 <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
 
+<style>
+    .btn_fil {
+        border: 1px solid #000000;
+        font-weight: 500;
+    }
+
+    .btn_fil.active {
+        background-color: #000000;
+        color: #fff;
+    }
+</style>
+
 <div id="container" class="item_manage">
     <div id="print_this">
         <!-- 인쇄영역 시작 //-->
@@ -10,8 +22,9 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>추천상품 관리</h2>
+                <h2>메인 관리</h2>
             </div><!-- // inner -->
+            
         </header><!-- // headerContainer -->
 
         <div id="contents" class="">
@@ -21,6 +34,12 @@
                     <input type="hidden" name="parent_code" id="parent_code" value="<?= $parent_code ?>">
                     <input type="hidden" name="parent_code_1" id="parent_code_1" value="<?= $parent_code_1 ?>">
                     <div class="listBottom">
+
+                        <div class="menu_tab">
+                            <a href="/AdmMaster/_tourSuggestion/list" class="btn btn_fil active">상품관리</a>
+                            <a href="/AdmMaster/_bbs/board_list?code=banner&type=main" class="btn btn_fil">배너관리</a>
+                        </div>
+
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption></caption>
                             <colgroup>
