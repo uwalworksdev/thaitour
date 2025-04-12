@@ -21,7 +21,7 @@ class Banner_model extends Model
         }
 
         return $this->where('code_no', $code_no)
-            ->orderBy('onum', 'ASC')
+            ->orderBy('onum', 'DESC')
             ->orderBy('cb_idx', 'DESC')
             ->findAll();
     }
