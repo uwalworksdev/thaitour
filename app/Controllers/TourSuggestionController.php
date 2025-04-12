@@ -82,7 +82,9 @@ class TourSuggestionController extends BaseController
 
         if($gubun == "hotel"){
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1303' and status='Y' order by onum asc, code_idx desc";
-        }else{
+        }else if($gubun == "golf") {
+            $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1302' and status='Y' order by onum asc, code_idx desc";
+        }else {
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309') and status='Y' order by onum asc, code_idx desc";
         }
         $fresult = $this->connect->query($fsql);
@@ -132,6 +134,13 @@ class TourSuggestionController extends BaseController
         $data = $this->getCodeData('2335', 'hotel');
 
         return view('admin/_tourSuggestionSub/list_hotel', $data);
+    }
+
+    public function list_golf()
+    {
+        $data = $this->getCodeData('2337', 'golf');
+
+        return view('admin/_tourSuggestionSub/list_golf', $data);
     }
 
     public function create()

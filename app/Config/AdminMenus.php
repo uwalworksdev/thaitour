@@ -117,19 +117,19 @@ class AdminMenus extends BaseConfig
                     'name' => '메인 관리',
                     'code' => 'C1',
                     'url' => ['/AdmMaster/_tourSuggestion/list', '/AdmMaster/_bbs/board_list?code=banner&type=main'],
-                    'alias' => ['TourSuggestionController::list', 'TourSuggestionController::write', 'BoardController::index', 'BoardController::board_write']
+                    'alias' => ['TourSuggestionController::list', 'BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '호텔 관리',
                     'code' => 'C2',
-                    'url' => ['/AdmMaster/_tourSuggestion/list_hotel'],
-                    'alias' => ['TourSuggestionController::list_hotel', 'TourSuggestionController::write_hotel', 'BoardController::index', 'BoardController::board_write']
+                    'url' => ['/AdmMaster/_tourSuggestion/list_hotel', '/AdmMaster/_cateBanner/list?code_no=1303'],
+                    'alias' => ['TourSuggestionController::list_hotel', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '골프 관리',
                     'code' => 'C3',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_tourSuggestion/list_golf', '/AdmMaster/_cateBanner/list?code_no=1302'],
+                    'alias' => ['TourSuggestionController::list_golf', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '투어 관리',

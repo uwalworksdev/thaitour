@@ -141,7 +141,7 @@ class MenuAuth
                             $match = false;
 
                             if (
-                                in_array($controller, ["AdminBbsController", "BoardController", "Member"])
+                                in_array($controller, ["AdminBbsController", "AdminCateBannerController", "BoardController", "Member"])
                                 && isset($parsedUrl['query'])
                             ) {
                                 parse_str($parsedUrl['query'], $params);

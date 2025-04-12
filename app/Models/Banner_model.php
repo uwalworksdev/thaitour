@@ -32,7 +32,9 @@ class Banner_model extends Model
 
         if ($where['s_parent_code_no'] != "") {
             $builder->where('parent_code_no', $where['s_parent_code_no']);
-        } else {
+        } else if($where['code_no'] != "") {
+            $builder->where('a.code_no', $where['code_no']);
+        }else {
             $builder->where('parent_code_no', '13');
         }
 

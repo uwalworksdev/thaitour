@@ -6,7 +6,15 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2><?= $board_name ?></h2>
+                <h2>
+                    <?php
+                        if($code == "banner" && $type == "main"){
+                            echo "메인 관리";
+                        }else{
+                            echo $board_name;
+                        }
+                    ?>
+                </h2>
                 <div class="menus">
                     <ul class="first">
                         <li><a href="javascript:CheckAll(document.getElementsByName('bbs_idx[]'), true)"
@@ -36,7 +44,17 @@
                 <input type="hidden" name="code" value="<?= esc($code) ?>">
                 <input type="hidden" name="type" value="<?= esc($type) ?>">
                 <input type="hidden" name="scategory" value="<?= esc($scategory) ?>">
-                <header id="headerContents">
+                <header id="headerContents" <?php if(isset($type)){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
+                    <?php
+                        if(isset($type)){
+                    ?>     
+                        <div class="menu_tab">
+                            <a href="/AdmMaster/_tourSuggestion/list" class="btn btn_fil">상품관리</a>
+                            <a href="/AdmMaster/_bbs/board_list?code=banner&type=main" class="btn btn_fil active">배너관리</a>
+                        </div>   
+                    <?php
+                        }
+                    ?>
                     <p>
                         <input type="radio" name="search_mode"
                                value="" <?php if ($search_mode == "") echo "checked"; ?>>
@@ -62,6 +80,7 @@
                             <span class="txt">검색하기</span>
                         </a>
                     </p>
+                    <div></div>
                 </header>
             </form>
 

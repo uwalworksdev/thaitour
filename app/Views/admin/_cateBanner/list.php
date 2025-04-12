@@ -22,6 +22,21 @@
             </header><!-- // headerContainer -->
 
             <div id="contents">
+                <?php
+                    if(isset($code_no)){
+                        if($code_no == "1303"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_hotel";
+                        }else if($code_no == "1302"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_golf";
+                        }
+                ?>     
+                    <div class="menu_tab" style="margin-bottom: 15px;">
+                        <a href="<?=$url_topic?>" class="btn btn_fil">상품관리</a>
+                        <a href="/AdmMaster/_cateBanner/list?code_no=<?=$code_no?>" class="btn btn_fil active">배너관리</a>
+                    </div>   
+                <?php
+                    }
+                ?>
 
                 <div class="listWrap">
                     <!-- 안내 문구 필요시 구성 //-->
@@ -75,7 +90,7 @@
                                             <?php } ?>
                                         </td>
                                         <td class="tal">
-                                            <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>">
+                                            <a href="write?code_no=<?= $code_no ?>&code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>">
                                                 <?= $row["code_name"] ?>
                                             </a>
                                         </td>
@@ -89,9 +104,9 @@
                                             }
                                             ?></td>
                                         <td>
-                                            <a href="list?s_parent_code_no=<?= $row["code_no"] ?>"
+                                            <a href="list?code_no=<?= $code_no ?>&s_parent_code_no=<?= $row["code_no"] ?>"
                                                class="btn btn-default">하위</a>
-                                            <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"
+                                            <a href="write?code_no=<?= $code_no ?>&code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"
                                                class="btn btn-default">수정</a>
                                         </td>
                                     </tr>
@@ -103,7 +118,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?php echo ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_cateBanner/list') . "?ca_idx=$ca_idx&search_category=$search_category&search_name=$search_name&pg=") ?>
+                    <?php echo ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_cateBanner/list') . "?code_no=$code_no&s_parent_code_no=$s_parent_code_no&pg=") ?>
 
                     <div id="headerContainer">
 

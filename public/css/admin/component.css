@@ -1308,6 +1308,13 @@ fieldset[disabled] .btn-black.active {
   background-color: #fff;
 }
 
+.btn_fil {
+  border: 1px solid #000000;
+  font-weight: 500;
+}
 
-
+.btn_fil.active {
+  background-color: #000000;
+  color: #fff;
+}
 

@@ -287,7 +287,7 @@ class CodeController extends BaseController
     public function ajaxGet() {
         $depth = $this->request->getVar('depth');
         $parent_code_no = $this->request->getVar('parent_code_no');
-        $results = $this->CodeModel->getByParentAndDepth($parent_code_no, $depth)->getResultArray();
+        $results = $this->CodeModel->getByParentCode($parent_code_no)->getResultArray();
         return $this->response->setJSON($results);
     }
 

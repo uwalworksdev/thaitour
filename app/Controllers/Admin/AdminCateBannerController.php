@@ -25,8 +25,10 @@ class AdminCateBannerController extends BaseController
         $pg = $this->request->getGet('pg') ?? 1;
         $g_list_rows = 10;
         $s_parent_code_no = updateSQ($_GET["s_parent_code_no"] ?? '');
+        $code_no = updateSQ($_GET["code_no"] ?? '');
         
         $result = $this->cateBannerModel->getList([
+            'code_no' => $code_no,
             's_parent_code_no' => $s_parent_code_no
         ], $g_list_rows, $pg);
 
@@ -37,6 +39,7 @@ class AdminCateBannerController extends BaseController
             'nTotalCount' => $result['nTotalCount'],
             'nPage' => $result['nPage'],
             's_parent_code_no' => $s_parent_code_no,
+            'code_no' => $code_no,
             'g_list_rows' => $g_list_rows,
             'ca_idx' => $ca_idx ?? '',
             'search_category' => $search_category ?? '',
