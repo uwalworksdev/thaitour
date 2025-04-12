@@ -54,7 +54,6 @@
                                         <div class="sel_box">
                                             <select name="child_code_1" id="child_code_1" class="main_category"
                                                     onchange="getChildCode(this.value, 3)">
-                                                <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result as $row) {
                                                     ?>
