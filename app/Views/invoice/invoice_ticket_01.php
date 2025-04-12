@@ -109,7 +109,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($option->option_tot)?>바트 (<?=$option->option_qty?>명)</td>
+                            <td colspan = "3"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
                         </tr>
                         <?php 
 							  } 
