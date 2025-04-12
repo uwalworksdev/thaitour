@@ -839,8 +839,8 @@ $searchTxt = $SearchText->List()->findAll();
             $mo_banner_1 = "/data/bbs/" . $item_m['ufile5'];
         }
         if ($seq == 2){ 
-            $banner_2 = "/data/bbs/" . $item_m['ufile5'];
-            $mo_banner_2 = "/data/bbs/" . $item_m['ufile6'];
+            $banner_2 = "/data/bbs/" . $item_m['ufile6'];
+            $mo_banner_2 = "/data/bbs/" . $item_m['ufile5'];
         }
 
     endforeach;
