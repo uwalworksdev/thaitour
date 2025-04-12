@@ -74,7 +74,7 @@ class Banner_model extends Model
     }
 
     public function getByCodeIdx($code_idx) {
-        return $this->where('code_idx', $code_idx)->findAll();
+        return $this->where('code_idx', $code_idx)->orderBy("onum", "asc")->findAll();
     }
 
     public function getLineBanners($category = '123')
