@@ -22,6 +22,7 @@ class Banner_model extends Model
 
         return $this->where('code_no', $code_no)
             ->orderBy('onum', 'ASC')
+            ->orderBy('cb_idx', 'DESC')
             ->findAll();
     }
     public function getList($where = [], $g_list_rows = 10, $pg = 1)
