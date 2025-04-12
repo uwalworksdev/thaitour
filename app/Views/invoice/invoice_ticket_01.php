@@ -124,7 +124,7 @@ $setting = homeSetInfo();
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span><?= number_format($row->order_price * $row->baht_thai) ?>원</span> (<?= number_format($row->order_price) ?>바트)</p>
+                    <p>총 견적서 금액 : <span><?= number_format($row->order_price) ?>원</span> (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
