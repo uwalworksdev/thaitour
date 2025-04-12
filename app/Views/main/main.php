@@ -834,8 +834,14 @@ $searchTxt = $SearchText->List()->findAll();
     foreach ($bannerBottom as $item_m):
 
         $seq++;
-        if ($seq == 1) $banner_1 = "/data/bbs/" . $item_m['ufile5'];
-        if ($seq == 2) $banner_2 = "/data/bbs/" . $item_m['ufile5'];
+        if ($seq == 1){
+            $banner_1 = "/data/bbs/" . $item_m['ufile6'];
+            $mo_banner_1 = "/data/bbs/" . $item_m['ufile5'];
+        }
+        if ($seq == 2){ 
+            $banner_2 = "/data/bbs/" . $item_m['ufile5'];
+            $mo_banner_2 = "/data/bbs/" . $item_m['ufile6'];
+        }
 
     endforeach;
     ?>
@@ -849,7 +855,8 @@ $searchTxt = $SearchText->List()->findAll();
                         <a href="/product-hotel/1303" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="<?= $banner_1 ?>" alt="">
+                        <img class="only_web" src="<?= $banner_1 ?>" alt="">
+                        <img class="only_mo" src="<?= $mo_banner_1 ?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
@@ -917,7 +924,8 @@ $searchTxt = $SearchText->List()->findAll();
                         <a href="/product-golf/1302/1" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="<?= $banner_2 ?>" alt="">
+                        <img class="only_web" src="<?= $banner_2 ?>" alt="">
+                        <img class="only_mo" src="<?= $mo_banner_2 ?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
