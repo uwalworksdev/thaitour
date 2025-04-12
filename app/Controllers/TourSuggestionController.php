@@ -61,8 +61,10 @@ class TourSuggestionController extends BaseController
             $replace_code = $code;
         } else if ($parent_code_1 != '' && isset($parent_code_1)) {
             $replace_code = $parent_code_1;
-        } else{
+        } else if ($parent_code != '' && isset($parent_code)){
             $replace_code = $parent_code;
+        }else {
+            $replace_code = $result[0]['code_no'];
         }
 
         // $sql = "select  a.product_name, 
