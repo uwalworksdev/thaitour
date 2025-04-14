@@ -245,7 +245,7 @@ class Product extends BaseController
     public function showTicket($code_no)
     {
         try {
-            $data = $this->viewData($code_no);
+            $data = $this->viewData($code_no, 233401, 233402);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('product/show-ticket', $data);
@@ -953,7 +953,7 @@ class Product extends BaseController
     public function indexSpa($code_no, $s = "1")
     {
         try {
-            $data = $this->viewData($code_no);
+            $data = $this->viewData($code_no, 233601, 233602);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('product/product-spa', $data);
@@ -3541,7 +3541,7 @@ class Product extends BaseController
     public function restaurantIndex($code_no)
     {
         try {
-            $data = $this->viewData($code_no);
+            $data = $this->viewData($code_no, 233801, 233802);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('/product/restaurant/product-restaurant', $data);
@@ -4301,7 +4301,7 @@ class Product extends BaseController
         //     'product_code_1' => $code_no,
         // ], 10, 1, ['onum' => 'DESC'])['items'];
 
-        $products = $this->mainDispModel->goods_find($code_no, 10)['items'];
+        $products = $this->mainDispModel->goods_find_by_parent($topic_code_1, 10)['items'];
 
         $productResults = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
@@ -4328,7 +4328,7 @@ class Product extends BaseController
             $productResults[$key]['product_price_won'] = $product['product_price'] * $baht_thai;
         }
 
-        $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+        $codes = $this->codeModel->getByParentCode($topic_code_2)->getResultArray();
 
         foreach ($codes as $key => $code) {
             $sProducts = $this->productModel->findProductPaging([
