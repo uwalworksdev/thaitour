@@ -3,18 +3,6 @@
 
 <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
 
-<style>
-    .btn_fil {
-        border: 1px solid #000000;
-        font-weight: 500;
-    }
-
-    .btn_fil.active {
-        background-color: #000000;
-        color: #fff;
-    }
-</style>
-
 <div id="container" class="item_manage">
     <div id="print_this">
         <!-- 인쇄영역 시작 //-->
@@ -135,9 +123,7 @@
                                 </td>
                             </tr>
 
-                            <script>
-                                console.log(<?= $replace_code ?>);
-                                
+                            <script>                                
 
                                 function getChildCode(parent_code_no, depth) {
                                     $.ajax({
@@ -597,8 +583,9 @@
 
     function search_it() {
 
-        let code = $("#code").val();
-        let parent_code = $("#parent_code").val();
+        let code = $("#child_code_3").val();
+        let parent_code_1 = $("#child_code_2").val();
+        let parent_code = $("#child_code_1").val();
         let product_code_1 = $("#product_code_1").val();
         let product_code_2 = $("#product_code_2").val();
         let product_code_3 = $("#product_code_3").val();
@@ -609,7 +596,7 @@
             url: "./item_allfind",
             type: "GET",
             data: {
-                "code": code || parent_code,
+                "code": code || parent_code_1 || parent_code,
                 "product_code_1": product_code_1,
                 "product_code_2": product_code_2,
                 "product_code_3": product_code_3,
@@ -621,9 +608,6 @@
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-
             }
             , success: function (response, status, request) {
 
@@ -669,9 +653,6 @@
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-
-                }
                 , success: function (response, status, request) {
 
                     $("#pick_select_layer tbody").empty();
@@ -688,38 +669,36 @@
     function sub_sel(code) {
 
         /*
-                let main_category   = $("#main_category").val();
-                let goods_category  = $("#goods_category").val();
+            let main_category   = $("#main_category").val();
+            let goods_category  = $("#goods_category").val();
 
-                $.ajax({
+            $.ajax({
 
-                    url: "./goods_list.php",
-                    type: "POST",
-                    data: {
-                        "main_category"  : main_category,
-                        "goods_category" : goods_category
+                url: "./goods_list.php",
+                type: "POST",
+                data: {
+                    "main_category"  : main_category,
+                    "goods_category" : goods_category
 
-                    },
-                    error : function(request, status, error) {
-                     //통신 에러 발생시 처리
-                        alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        $("#ajax_loader").addClass("display-none");
-                    }
-                    ,complete: function(request, status, error) {
+                },
+                error : function(request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                ,complete: function(request, status, error) {
 
-                    }
-                    , success : function(response, status, request) {
-                        $("#pick_select_layer tbody").empty();
-                        $("#pick_select_layer tbody").html(response);
-                    }
-                });
+                }
+                , success : function(response, status, request) {
+                    $("#pick_select_layer tbody").empty();
+                    $("#pick_select_layer tbody").html(response);
+                }
+            });
         */
         let main_category = $("#main_category").val();
         let goods_category = $("#goods_category").val();
 
         document.location = "./item_management.php?category=" + main_category + "&scate=" + goods_category;
-
-
     }
 </script>
 <?= $this->endSection() ?>

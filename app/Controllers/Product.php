@@ -296,9 +296,11 @@ class Product extends BaseController
         try {
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
 
-            $products = $this->productModel->findProductPaging([
-                'product_code_1' => 1301,
-            ], $this->scale, 1, ['product_price' => 'ASC']);
+            // $products = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1301,
+            // ], $this->scale, 1, ['product_price' => 'ASC']);
+
+            $products = $this->mainDispModel->goods_find(233301, $this->scale);
 
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
@@ -322,25 +324,27 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
+            $code_new = $this->codeModel->getByParentAndDepth(233302, 4)->getResultArray();
 
             $codeRecommendedActive = $code_new[0]['code_no'];
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
-            $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 4)->getResultArray();
+            $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 5)->getResultArray();
 
             $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
-            $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 4, 1) : [];
+            $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 5, 1) : [];
             $productStep2ByRecommended['code_no'] = $codeStep2RecommendedActive;
 
-            $code_popular = $this->codeModel->getByParentAndDepth(2337, 3)->getResultArray();
+            $code_popular = $this->codeModel->getByParentAndDepth(233303, 4)->getResultArray();
             $codePopularActive = $code_popular[0]['code_no'];
             $productByPopular = $this->mainDispModel->goods_find($codePopularActive);
 
-            $product_popular = $this->productModel->findProductPaging([
-                'product_code_1' => 1301,
-                'special_price' => 'Y',
-            ], $this->scale, 1, ['r_date' => 'DESC']);
+            // $product_popular = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1301,
+            //     'special_price' => 'Y',
+            // ], $this->scale, 1, ['r_date' => 'DESC']);
+
+            $product_popular = $this->mainDispModel->goods_find(233304, $this->scale);
 
             $products = $this->groupData($products);
             $productStep2ByRecommended = $this->groupData($productStep2ByRecommended);
@@ -744,13 +748,17 @@ class Product extends BaseController
 
             $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
 
-            $bestProducts = $this->productModel->getBestProducts(1302);
+            // $bestProducts = $this->productModel->getBestProducts(1302);
+
+            $bestProducts = $this->mainDispModel->goods_find(233701, 10)["items"];
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->countAllResults();
 
-            $cheepProducts = $this->productModel->findProductPaging([
-                'product_code_1' => 1302,
-            ], $this->scale, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
+            // $cheepProducts = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1302,
+            // ], $this->scale, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
+
+            $cheepProducts =  $this->mainDispModel->goods_find(233702, 8);
 
             foreach ($cheepProducts['items'] as $key => $product) {
 
@@ -767,19 +775,21 @@ class Product extends BaseController
                 $cheepProducts['items'][$key]['review_average'] = $productReview['avg'];
             }
 
-            $codes = $this->codeModel->getByParentAndDepth(2333, 3)->getResultArray();
+            $codes = $this->codeModel->getByParentAndDepth(233703, 4)->getResultArray();
 
             $codeRecommendedActive = $codes[0]['code_no'];
 
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
-            $productSpecialPrice = $this->productModel->findProductPaging([
-                'product_code_1' => 1302,
-                'special_price' => 'Y'
-            ], $this->scale, 1, ['onum' => 'DESC']);
+            // $productSpecialPrice = $this->productModel->findProductPaging([
+            //     'product_code_1' => 1302,
+            //     'special_price' => 'Y'
+            // ], $this->scale, 1, ['onum' => 'DESC']);
 
-            $productMDRecommended = $this->mainDispModel->goods_find(2335, $this->scale, 1);
-            $productMDRecommended["code_no"] = 2335;
+            $productSpecialPrice = $this->mainDispModel->goods_find(233704, 10);
+
+            $productMDRecommended = $this->mainDispModel->goods_find(233705, $this->scale, 1);
+            $productMDRecommended["code_no"] = 233705;
 
             foreach ($productMDRecommended['items'] as $key => $product) {
                 $code = $product['product_code_1'];

@@ -389,6 +389,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "TourSuggestionController::list");
         $routes->get("list_hotel", "TourSuggestionController::list_hotel");
         $routes->get("list_golf", "TourSuggestionController::list_golf");
+        $routes->get("list_tour", "TourSuggestionController::list_tour");
+        $routes->get("list_spa", "TourSuggestionController::list_spa");
+        $routes->get("list_ticket", "TourSuggestionController::list_ticket");
+        $routes->get("list_restaurant", "TourSuggestionController::list_restaurant");
+
         $routes->get("write", "TourSuggestionController::write");
         $routes->get("prd_list", "TourSuggestionController::prd_list");
         $routes->get("goods_find", "TourSuggestionController::goods_find");

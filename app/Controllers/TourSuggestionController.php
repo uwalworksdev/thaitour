@@ -49,11 +49,11 @@ class TourSuggestionController extends BaseController
             $product_code_name = $row1['code_name'];
         };
 
-        $sql    = "  select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc ";
+        $sql    = "  select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx desc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
-        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code' and status = 'Y' order by onum asc ";
+        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code' and status = 'Y' order by onum asc, code_idx desc ";
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
@@ -78,7 +78,7 @@ class TourSuggestionController extends BaseController
         //                 and b.code_no    = '$replace_code' 
         //                 order by b.onum asc, b.code_idx desc";
 
-        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc ";
+        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc, code_idx desc ";
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();
 
@@ -86,6 +86,14 @@ class TourSuggestionController extends BaseController
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1303' and status='Y' order by onum asc, code_idx desc";
         }else if($gubun == "golf") {
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1302' and status='Y' order by onum asc, code_idx desc";
+        }else if($gubun == "tour") {
+            $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1301' and status='Y' order by onum asc, code_idx desc";
+        }else if($gubun == "spa") {
+            $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1325' and status='Y' order by onum asc, code_idx desc";
+        }else if($gubun == "ticket") {
+            $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1317' and status='Y' order by onum asc, code_idx desc";
+        }else if($gubun == "restaurant") {
+            $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1320' and status='Y' order by onum asc, code_idx desc";
         }else {
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309') and status='Y' order by onum asc, code_idx desc";
         }
@@ -145,6 +153,34 @@ class TourSuggestionController extends BaseController
         return view('admin/_tourSuggestionSub/list_golf', $data);
     }
 
+    public function list_tour()
+    {
+        $data = $this->getCodeData('2333', 'tour');
+
+        return view('admin/_tourSuggestionSub/list_tour', $data);
+    }
+
+    public function list_spa()
+    {
+        $data = $this->getCodeData('2336', 'spa');
+
+        return view('admin/_tourSuggestionSub/list_spa', $data);
+    }
+
+    public function list_ticket()
+    {
+        $data = $this->getCodeData('2334', 'ticket');
+
+        return view('admin/_tourSuggestionSub/list_ticket', $data);
+    }
+
+    public function list_restaurant()
+    {
+        $data = $this->getCodeData('2338', 'restaurant');
+
+        return view('admin/_tourSuggestionSub/list_restaurant', $data);
+    }
+
     public function create()
     {
         $data = [];
@@ -170,8 +206,9 @@ class TourSuggestionController extends BaseController
                         b.onum,
                         b.code_idx
                         from tbl_product_mst a, tbl_main_disp b
-                        where a.product_idx    =  b.product_idx
-                        and b.code_no    = '$replace_code' 
+                        where a.product_idx = b.product_idx
+                        and product_status != 'D'
+                        and b.code_no = '$replace_code' 
                         order by b.onum asc, b.code_idx desc";
 
         $result3 = $this->connect->query($sql);

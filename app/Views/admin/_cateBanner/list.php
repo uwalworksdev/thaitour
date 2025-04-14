@@ -28,6 +28,14 @@
                             $url_topic = "/AdmMaster/_tourSuggestion/list_hotel";
                         }else if($code_no == "1302"){
                             $url_topic = "/AdmMaster/_tourSuggestion/list_golf";
+                        }else if($code_no == "1301"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_tour";
+                        }else if($code_no == "1325"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_spa";
+                        }else if($code_no == "1317"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_ticket";
+                        }else if($code_no == "1320"){
+                            $url_topic = "/AdmMaster/_tourSuggestion/list_restaurant";
                         }
                 ?>     
                     <div class="menu_tab" style="margin-bottom: 15px;">
