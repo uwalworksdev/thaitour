@@ -197,7 +197,7 @@
             <div class="ticket-tool">
                 <div class="ticket-tool-l">
                     <?php
-                        if(empty($main_product_code)){
+                        if(!empty($main_product_code)){
                             echo $title_page;
                         }else {
                             echo $title_page_main;
