@@ -67,8 +67,16 @@
 </style>
 <script>
     function searchSpa() {
+        
         let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
-        let code = '<?= $product_code_2 ?>';
+
+        <?php
+            if(!empty($main_product_code)) {
+        ?>
+            let code = '<?= $main_product_code ?>';
+        <?php
+            }
+        ?>
 
         goUrl(keyword, code);
     }
@@ -92,7 +100,17 @@
         }
 
         ?>
-        window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
+        <?php
+            if(!empty($main_product_code)) {
+        ?>
+            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&main_product_code=${code}#redirect-list`;
+        <?php
+            }else{
+        ?>
+            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
+        <?php
+            }
+        ?>
     }
 </script>
 <section>
@@ -220,12 +238,18 @@
             </style>
             <div class="tiket-tool-b">
                 <div class="btn-gr-ticket" id="btn-gr-ticket">
-                    <button onclick="searchSpaCode('')"
-                            class="<?= !$product_code_2 ? 'on' : '' ?>">전체
-                    </button>
+                    <?php
+                        if(empty($main_product_code)){
+                    ?>
+                        <button onclick="searchSpaCode('')"
+                                class="<?= !$product_code_2 ? 'on' : '' ?>">전체
+                        </button>
+                    <?php
+                        }
+                    ?>
                     <?php foreach ($codes as $code) { ?>
                         <button style="text-wrap: nowrap;"
-                                class="<?= $product_code_2 === $code['code_no'] ? 'on' : '' ?>"
+                                class="<?= empty($main_product_code) ? ($product_code_2 === $code['code_no'] ? 'on' : '') : ($main_product_code === $code['code_no'] ? 'on' : '') ?>"
                                 onclick="searchSpaCode('<?= $code['code_no'] ?>');"><?= $code['code_name'] ?>
                             (<?= $code['count'] ?>)
                         </button>
