@@ -90,7 +90,7 @@ class MainDispModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table($this->table);
-        $builder->select('tbl_main_disp.*, tbl_product_mst.*');
+        $builder->select('tbl_main_disp.*, tbl_product_mst.*, tbl_code.code_name');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner');
         $builder->join('tbl_code', 'tbl_code.code_no = tbl_main_disp.code_no', 'inner');
         $builder->where('tbl_code.parent_code_no', $code_no);

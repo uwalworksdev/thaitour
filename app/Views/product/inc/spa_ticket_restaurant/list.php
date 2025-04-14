@@ -92,7 +92,7 @@
         }
 
         ?>
-        window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}`;
+        window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
     }
 </script>
 <section>
@@ -103,7 +103,7 @@
 
                     <?php foreach ($products as $product) { ?>
                         <?php
-
+                        
                         $code_gubun = $product['product_code_1'];
 
                         $url = '#!';
@@ -190,6 +190,7 @@
             <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
             <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
         </div>
+        <div id="redirect-list"></div>
         <div class="ticket-list">
             <div class="ticket-tool">
                 <div class="ticket-tool-l">

@@ -750,7 +750,7 @@ class Product extends BaseController
 
             // $bestProducts = $this->productModel->getBestProducts(1302);
 
-            $bestProducts = $this->mainDispModel->goods_find(233701, 10)["items"];
+            $bestProducts = $this->mainDispModel->goods_find_by_parent(233701, 10)["items"];
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->countAllResults();
 

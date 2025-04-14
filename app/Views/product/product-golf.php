@@ -29,10 +29,16 @@
                                     <img class="only_web" src="<?= getImage("/data/product/{$product['ufile1']}") ?>" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
                                     <img class="only_mo img_box_re_img"
                                         src="<?= getImage("/data/product/{$product['ufile1']}") ?>" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
-                                    <?php if ($product['is_best_value']): ?>
-                                        <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
-                                        <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
-                                    <?php endif; ?>
+                                        <?php if ($product['code_name'] === "MD 추천") { ?>
+                                        <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
+                                        <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
+                                    <?php } elseif ($product['code_name'] === "가성비추천") { ?>
+                                        <img src="/uploads/icons/tag-red.png" alt="" class="tag-red only_web">
+                                        <img src="/uploads/icons/tag-red-m.png" alt="" class="tag-red only_mo">
+                                    <?php } elseif ($product['code_name'] === "핫딜추천") { ?>
+                                        <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
+                                        <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
+                                    <?php } ?>
                                     <p class="text_img_box_re">
                                         <?= viewSQ($product['product_name']) ?>
                                     </p>
