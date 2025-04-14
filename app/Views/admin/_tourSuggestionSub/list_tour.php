@@ -553,7 +553,7 @@
 
     function fn_pick_update() {
 
-        var f = document.select_pick_frm;
+        var f = document.select_pick_frm;        
 
         var pick_data = $(f).serialize();
         var save_result = "";

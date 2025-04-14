@@ -24,7 +24,7 @@
                     <div class="listBottom">
 
                         <div class="menu_tab">
-                            <a href="/AdmMaster/_tourSuggestion/list" class="btn btn_fil active">상품관리</a>
+                            <a href="/AdmMaster/_tourSuggestion/list_hotel" class="btn btn_fil active">상품관리</a>
                             <a href="/AdmMaster/_cateBanner/list?code_no=1303" class="btn btn_fil">배너관리</a>
                         </div>
 
