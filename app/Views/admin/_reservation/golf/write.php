@@ -98,7 +98,7 @@
 
 
                         <div class="listBottom">
-                            <div style="font-size:12pt;margin-bottom:10px">■ 에약정보(골프)</div>   
+                            <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(골프)</div>   
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
@@ -262,6 +262,69 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
+                                <tr>
+                                    <th>총 결제금액</th>
+                                    <td>
+                                        원화계산 : <?php
+                                            $setting    = homeSetInfo();
+                                            $extra_cost = 0;
+                                
+                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            
+                                            $total_price = 0;
+                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            if (!empty($setting["extra_cost"])) {
+                                                if ($type_extra_cost == "P") {
+                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                                } else {
+                                                    $extra_cost = $setting["extra_cost"];
+                                                }
+                                            }
+
+                                        ?>   
+                                        <?php
+                                            if($price_secret == "Y"){
+                                        ?>
+                                            0원(<span style="color: red;">비밀특가</span>)
+                                        <?php
+                                            }else{
+                                        ?>
+                                        <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
+                                        -
+                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                        -
+                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        +
+                                        <?= number_format( $extra_cost) ?>원
+                                        = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        원
+                                        <?php } ?> <br>
+										바트계산 : 5,891 TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용) + 589원 = 5,980 원
+                                    </td>
+                                    <th>결제금액</th>
+                                    <td>
+										<input type="text" id="order_confirm_price" name="order_confirm_price"
+                                               value="<?= number_format((int)($order_price / $baht_thai))?>" class="input_txt price"
+                                               style="width:150px;text-align:right;"/> TH
+                                        <input type="text" id="order_confirm_price" name="order_confirm_price"
+                                               value="<?= number_format($order_price) ?>" class="input_txt price"
+                                               style="width:150px;text-align:right;"/> 원
+                                        <?php
+                                        if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
+                                            echo "결제완료 ";
+                                            echo "<button type='button' onclick='payment_cancel(2);'>결제취소</button>";
+                                        }
+
+                                       
+                                        ?>&emsp;
+										
+                                       <a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
+										&emsp;2025-02-08 00:00 <br>
+										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+                                    </td>
+                                </tr>								
                                 <tr>
                                     <th>예약현황</th>
                                     <td>

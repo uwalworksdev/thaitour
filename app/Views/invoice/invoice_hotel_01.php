@@ -67,7 +67,7 @@ $setting = homeSetInfo();
                                   <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
                             </td>
                             <th>바우처 이름</th>
-                            <td>KIM YOUNGHWAN</td>
+                            <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
