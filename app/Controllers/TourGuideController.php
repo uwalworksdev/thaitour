@@ -26,6 +26,7 @@ class TourGuideController extends BaseController
     protected $orderModel;
     protected $productQna;
     protected $productImg;
+    protected $bannerModel;
 
 
     public function __construct()
@@ -43,9 +44,11 @@ class TourGuideController extends BaseController
         $this->reviewModel = model("ReviewModel");
         $this->productQna = model("ProductQna");
         $this->productImg = model("ProductImg");
+        $this->bannerModel = model("Banner_model");
+
     }
 
-    public function index()
+    public function index($code_no)
     {
         try {
             $g_list_rows = 10;
@@ -65,6 +68,7 @@ class TourGuideController extends BaseController
             $res = [
                 'products' => $data['items'],
                 'guides' => $product_guides,
+                'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
 
             return $this->renderView('guides/index', $res);

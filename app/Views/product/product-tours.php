@@ -122,7 +122,8 @@
                                             <div class="swiper-wrapper">
                                                 <div class="swiper-slide">
                                                     <div class="img_box img_box_9">
-                                                        <img src="/data/cate_banner/<?= $banner['ufile1'] ?>" alt="main">
+                                                        <img class="only_web" src="/data/cate_banner/<?= $banner['ufile1'] ?>" alt="main">
+                                                        <img class="only_mo" src="/data/cate_banner/<?= $banner['ufile2'] ?>" alt="main">
                                                     </div>
                                                 </div>
                                             </div>
