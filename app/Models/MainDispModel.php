@@ -17,7 +17,7 @@ class MainDispModel extends Model
         'p_idx'
     ];
 
-    public function goods_find(int $code_no, $g_list_rows = 1000, $pg = 1): array
+    public function goods_find(int $code_no, $g_list_rows = 1000, $pg = 1, $search_category = '', $search_txt = ''): array
     {
         helper(['setting']);
         $setting = homeSetInfo();
@@ -27,6 +27,12 @@ class MainDispModel extends Model
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner');
         $builder->where('tbl_main_disp.code_no', $code_no);
+
+        if (!empty($search_category)) {
+            if (!empty($search_txt)) {
+                $builder->like($search_category, $search_txt);
+            } 
+        }
 
         $currentUrl = current_url();
         $link = '/AdmMaster/';
@@ -77,7 +83,7 @@ class MainDispModel extends Model
         return $data;
     }
 
-    public function goods_find_by_parent(int $code_no, $g_list_rows = 1000, $pg = 1): array
+    public function goods_find_by_parent(int $code_no, $g_list_rows = 1000, $pg = 1, $search_category = '', $search_txt = ''): array
     {
         helper(['setting']);
         $setting = homeSetInfo();
@@ -88,6 +94,12 @@ class MainDispModel extends Model
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner');
         $builder->join('tbl_code', 'tbl_code.code_no = tbl_main_disp.code_no', 'inner');
         $builder->where('tbl_code.parent_code_no', $code_no);
+
+        if (!empty($search_category)) {
+            if (!empty($search_txt)) {
+                $builder->like($search_category, $search_txt);
+            } 
+        }
 
         $currentUrl = current_url();
         $link = '/AdmMaster/';
