@@ -121,12 +121,14 @@
         </style>
 
         <section class="banner-middle-tour">
-            <div class="container-middle-tour">
-                <h2 class="son-title">
-                    <?=viewSQ($bannerTop['title'])?>
-                </h2>
-                <p class="son-des"><?=viewSQ($bannerTop['subtitle'])?></p>
-            </div>
+            <a href="<?=$bannerTop['url']?>">
+                <div class="container-middle-tour">
+                    <h2 class="son-title">
+                        <?=viewSQ($bannerTop['title'])?>
+                    </h2>
+                    <p class="son-des"><?=viewSQ($bannerTop['subtitle'])?></p>
+                </div>
+            </a>
         </section>
         <?php endif; ?>
         <section class="sub_section3 thailand_hotel_">

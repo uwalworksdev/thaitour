@@ -183,12 +183,14 @@
             </div>
         </div>
         <div class="mid-banner-ticket">
-            <div class="box-text">
-                <h3 class="title-box"><?= viewSQ($bannerTop['title']) ?></h3>
-                <p class="des-box"><?= viewSQ($bannerTop['subtitle']) ?></p>
-            </div>
-            <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
-            <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
+            <a href="<?=$bannerTop['url']?>">
+                <div class="box-text">
+                    <h3 class="title-box"><?= viewSQ($bannerTop['title']) ?></h3>
+                    <p class="des-box"><?= viewSQ($bannerTop['subtitle']) ?></p>
+                </div>
+                <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
+                <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
+            </a>
         </div>
         <div id="redirect-list"></div>
         <div class="ticket-list">

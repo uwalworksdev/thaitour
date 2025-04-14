@@ -34,6 +34,13 @@ class TourSuggestionController extends BaseController
         $parent_code = $_GET["parent_code"] ?? '';
         $parent_code_1 = $_GET["parent_code_1"] ?? '';
 
+        if(empty($parent_code)){
+            $sql_code_first    = "select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx desc ";
+            $result_code_first = $this->connect->query($sql_code_first);
+            $result_code_first = $result_code_first->getResultArray();
+            $parent_code = $result_code_first[0]['code_no'];
+        }
+
         $product_code_no = '';
         $product_code_name = '';
         if ($code != "") {
