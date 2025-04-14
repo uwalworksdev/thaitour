@@ -135,13 +135,13 @@
                                          src="/data/product/noimg.png" alt="">
                                 <?php }
                                 ?>
-                                <?php if ($product['product_type'] === "MD 추천") { ?>
+                                <?php if ($product['code_name'] === "MD 추천") { ?>
                                     <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
                                     <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
-                                <?php } elseif ($product['product_type'] === "가성비 추천") { ?>
+                                <?php } elseif ($product['code_name'] === "가성비 추천") { ?>
                                     <img src="/uploads/icons/tag-red.png" alt="" class="tag-red only_web">
                                     <img src="/uploads/icons/tag-red-m.png" alt="" class="tag-red only_mo">
-                                <?php } elseif ($product['product_type'] === "핫딜 추천") { ?>
+                                <?php } elseif ($product['code_name'] === "핫딜 추천") { ?>
                                     <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
                                     <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
                                 <?php } ?>
