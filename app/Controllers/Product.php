@@ -294,7 +294,7 @@ class Product extends BaseController
     public function indexTour($code_no)
     {
         try {
-            $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
+            $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'ASC')->orderBy("code_idx", "DESC")->findAll();
 
             // $products = $this->productModel->findProductPaging([
             //     'product_code_1' => 1301,
@@ -332,7 +332,7 @@ class Product extends BaseController
             $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 5)->getResultArray();
 
             $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
-            $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 5, 1) : [];
+            $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 4, 1) : $this->mainDispModel->goods_find($codeRecommendedActive, 4, 1);
             $productStep2ByRecommended['code_no'] = $codeStep2RecommendedActive;
 
             $code_popular = $this->codeModel->getByParentAndDepth(233303, 4)->getResultArray();
@@ -438,7 +438,7 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
+            $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'ASC')->orderBy('code_idx', 'DESC')->findAll();
 
             // $theme_products = $this->productModel->findProductPaging([
             //     'product_code_1' => 1303,
@@ -622,7 +622,7 @@ class Product extends BaseController
     {
         $code_no = $this->request->getVar('code_no');
 
-        $code_step2 = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
+        $code_step2 = $this->codeModel->getByParentAndDepth($code_no, 5)->getResultArray();
 
         $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
 
@@ -4292,14 +4292,16 @@ class Product extends BaseController
         return base_url("/data/product/thum_798_463/{$file}");
     }
 
-    private function viewData($code_no)
+    private function viewData($code_no, $topic_code_1, $topic_code_2)
     {
         $search_product_name = $this->request->getVar('keyword') ?? "";
         $product_code_2 = $this->request->getVar('product_code_2') ?? "";
 
-        $products = $this->productModel->findProductPaging([
-            'product_code_1' => $code_no,
-        ], 10, 1, ['onum' => 'DESC'])['items'];
+        // $products = $this->productModel->findProductPaging([
+        //     'product_code_1' => $code_no,
+        // ], 10, 1, ['onum' => 'DESC'])['items'];
+
+        $products = $this->mainDispModel->goods_find($code_no, 10)['items'];
 
         $productResults = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,

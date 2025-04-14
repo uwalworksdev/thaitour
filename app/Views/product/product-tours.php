@@ -640,7 +640,12 @@
             dataType: "json",
             success: function(data) {
                 $("#tab2-content").html(data.html);
-                handleLoadRecommendedProduct(data.codeStep2RecommendedActive);
+                    
+                if(data.html){
+                    handleLoadRecommendedProduct(data.codeStep2RecommendedActive);
+                }else{
+                    handleLoadRecommendedProduct(code_no);
+                }
             }
         });
     }
@@ -667,9 +672,7 @@
                 $('.tour__head__tabs2__tab').on('click', function(event) {
                     event.preventDefault();
 
-
                     $('.tour__head__tabs2__tab').removeClass('active');
-
 
                     $(this).addClass('active');
                 });
