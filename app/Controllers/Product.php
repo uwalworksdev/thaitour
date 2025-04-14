@@ -4318,6 +4318,8 @@ class Product extends BaseController
                     'search_category' => "product_name",
                     'search_txt' => $search_product_name
                 ], 1000, 1)['nTotalCount'];
+                $codes[$key]['count'] = $sProducts;
+
             }
 
         }else {
