@@ -158,8 +158,8 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '차량/가이드 관리',
                     'code' => 'C8',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_cateBanner/list?code_no=1324'],
+                    'alias' => ['AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '커뮤니티 관리',

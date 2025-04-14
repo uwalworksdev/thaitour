@@ -23,7 +23,7 @@
 
             <div id="contents">
                 <?php
-                    if(isset($code_no)){
+                    if(isset($code_no) && $code_no != "1324"){
                         if($code_no == "1303"){
                             $url_topic = "/AdmMaster/_tourSuggestion/list_hotel";
                         }else if($code_no == "1302"){
