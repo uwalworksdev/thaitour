@@ -134,26 +134,26 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '투어 관리',
                     'code' => 'C4',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_tourSuggestion/list_tour', '/AdmMaster/_cateBanner/list?code_no=1301'],
+                    'alias' => ['TourSuggestionController::list_tour', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '스파 관리',
                     'code' => 'C5',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_tourSuggestion/list_spa', '/AdmMaster/_cateBanner/list?code_no=1325'],
+                    'alias' => ['TourSuggestionController::list_spa', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '쇼/입장권 관리',
                     'code' => 'C6',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_tourSuggestion/list_ticket', '/AdmMaster/_cateBanner/list?code_no=1317'],
+                    'alias' => ['TourSuggestionController::list_ticket', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '레스토랑 관리',
                     'code' => 'C7',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_tourSuggestion/list_restaurant', '/AdmMaster/_cateBanner/list?code_no=1320'],
+                    'alias' => ['TourSuggestionController::list_restaurant', 'AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 [
                     'name' => '차량/가이드 관리',
