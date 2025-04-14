@@ -224,7 +224,7 @@
                                     </td>
                                     <th>상품금액</th>
                                     <td>
-										<?= number_format($order_price) ?>원  | <?= number_format($order_price / $baht_thai) ?> 바트
+										원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / $baht_thai) ?> 바트
 										
                                     </td>
                                 </tr>
