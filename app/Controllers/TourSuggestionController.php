@@ -206,8 +206,13 @@ class TourSuggestionController extends BaseController
         $sql = "select  a.product_name, 
                         a.product_idx, 
                         a.product_code, 
+                        a.product_code_1,
+                        a.product_code_2, 
+                        a.product_code_list,
                         a.is_view,
                         a.product_status,
+                        a.special_price,
+                        a.r_date,
                         a.ufile1,
                         a.rfile1,
                         b.onum,
@@ -220,6 +225,16 @@ class TourSuggestionController extends BaseController
 
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();
+
+        foreach($result3 as $key => $value) {
+            $sql_code_1 = "select code_name from tbl_code where code_no = '". $value['product_code_1'] ."'";
+            $result_code_1 = $this->connect->query($sql_code_1)->getRowArray();
+            $result3[$key]['product_code_name_1'] = $result_code_1['code_name'];
+
+            $sql_code_2 = "select code_name from tbl_code where code_no = '". $value['product_code_2'] ."'";
+            $result_code_2 = $this->connect->query($sql_code_2)->getRowArray();
+            $result3[$key]['product_code_name_2'] = $result_code_2['code_name'];
+        }
         return view('admin/_tourSuggestionSub/prd_list', ['result3' => $result3, 'replace_code' => $replace_code]);
     }
 

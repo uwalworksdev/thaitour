@@ -7,6 +7,51 @@ foreach ($result3 as $row) {
         </td>
         <td>
             <?php
+
+                if($row["product_code_1"] == "1303"){
+                    $_product_code_arr = explode("|", $row['product_code_list']);
+                    $_product_code_arr = array_filter($_product_code_arr);
+                    foreach ($_product_code_arr as $_tmp_code) {
+                        $cate_text = get_cate_text($_tmp_code);
+                    }
+                    $url_detail = '/product-hotel/hotel-detail/' . $row["product_idx"];
+                    $url_admin = "/AdmMaster/_hotel/write?product_idx=". $row["product_idx"];
+                }else{
+                    $cate_text = $row["product_code_name_1"] . " / " . $row["product_code_name_2"];
+
+                    if($row["product_code_1"] == "1302") {
+                        $url_detail = '/product-golf/golf-detail/' . $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/write_golf?product_idx=". $row["product_idx"];
+                    }else if($row["product_code_1"] == "1301") {
+                        $url_detail = '/product-tours/item_view/' . $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/write_tours?product_idx=". $row["product_idx"];
+                    }else if($row["product_code_1"] == "1325") {
+                        $url_detail = '/product-spa/spa-details/' . $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                    }else if($row["product_code_1"] == "1317") {
+                        $url_detail = '/ticket/ticket-detail/' . $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                    }else if($row["product_code_1"] == "1320") {
+                        $url_detail = '/product-restaurant/restaurant-detail/' . $row["product_idx"];
+                        $url_admin = "/AdmMaster/_tourRegist/write_spas?product_idx=". $row["product_idx"];
+                    } 
+                } 
+            ?>
+            <div style="padding: 0 20px; text-align: center;">
+                <p class="new"><?= $cate_text ?></p>
+            </div>
+            <div class="flex_c_c" style="gap: 10px;">
+                <a href="<?=$url_detail?>"
+                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                <a href="<?=$url_admin?>"
+                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>
+            </div>
+        </td>
+        <td style="text-align:center;">
+            <?= $row['product_code'] ?>
+        </td>
+        <td>
+            <?php
                 if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
                     $src = "/data/product/" . $row["ufile1"];
                 } else {
@@ -30,14 +75,15 @@ foreach ($result3 as $row) {
                 </option>
             </select>
         </td>
-        <td style="text-align:center;">
-            <?= $row['product_code'] ?>
-        </td>
+
         <td style="text-align:center;">
             <a href="#!" class="order_btn"
                 onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','U')">▲</a>
             <a href="#!" class="order_btn"
                 onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','D')">▼</a>
+        </td>
+        <td style="text-align:center;">
+            <?= $row["r_date"] ?>
         </td>
         <td>
             <button type="button" class="btn btn-danger" onclick="javascript:goods_del('<?= $row['code_idx'] ?>');">

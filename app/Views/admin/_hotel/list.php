@@ -348,7 +348,7 @@
                                     </td>
                                     <td>
                                         <input type="checkbox" name="special_price_show_[]"
-                                               onclick="check_sale('<?= $row["product_idx"] ?>')"
+                                               onclick="check_sale('<?= $row['product_idx'] ?>')"
                                                id="special_price_show_<?= $row["product_idx"] ?>"
                                             <?= $row["special_price"] == 'Y' ? 'checked' : '' ?>>
                                     </td>
