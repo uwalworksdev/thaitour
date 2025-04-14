@@ -128,11 +128,11 @@ function getSubMenu($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/product-spa/$parent_code_no?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/show-ticket/$parent_code_no?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/product-restaurant/$parent_code_no?keyword=&main_product_code=$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
