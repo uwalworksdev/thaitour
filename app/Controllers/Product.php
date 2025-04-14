@@ -4305,7 +4305,7 @@ class Product extends BaseController
 
             $productResults = $this->productModel->findProductPaging([
                 'product_code_1' => $code_no,
-                'product_code_2' => $product_code_2,
+                'product_code_2' => $main_product_code,
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
             ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
