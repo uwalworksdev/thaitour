@@ -1667,6 +1667,16 @@ input[type="checkbox"]:checked+label {
     cursor: pointer;
 }
 
+.booklist_wrap .booking_product .product_box .book_group_wrap .group_r .btn_group_movement {
+    font-size: 14px;
+    border: 1px solid #999;
+    padding: 8px;   
+    border-radius: 4px;
+    background-color: #fff;
+    color: #252525;
+    cursor: pointer;
+}
+
 .booklist_wrap .booking_product .product_detail {
     padding: 15px 10px;
     display: flex;
