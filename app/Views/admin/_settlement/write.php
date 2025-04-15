@@ -393,6 +393,10 @@
 							height: 30px;
 							margin: 0 auto;
 							border: 1px solid rgb(204, 204, 204);
+						}
+						
+						div.listBottom table.mem_detail tbody td.files {
+							padding: 5px 15px;
 						}						
                         </style>
 
