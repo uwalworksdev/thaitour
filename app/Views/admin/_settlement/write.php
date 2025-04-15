@@ -437,6 +437,8 @@
 										<th style="text-align:center">첨부파일</th>
 										<th style="text-align:center">관리</th>
 									</tr>
+									<?php foreach ($expense as $row) {	?>
+
                                     <tr>
                                         <td style="text-align:center"><input type="text" name="exp_id[]"
                                                 id="exp_id_<?= $row['idx'] ?>"
@@ -503,6 +505,8 @@
                                                 style="margin-top: 1px">삭제</button>
                                         </td>
                                     </tr>
+									<?php } ?>
+													
                                 </tbody>
                             </table>
 							<!--br>
