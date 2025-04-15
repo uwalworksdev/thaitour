@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-        <div class="pagination">
+        <div class="custom pagination">
             <a class="page-link" href="javascript:;" title="Go to first page">
                 <img src="/images/community/pagination_prev.png" alt="pagination_prev">
             </a>
