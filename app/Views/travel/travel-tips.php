@@ -171,7 +171,7 @@
             <div class="sec_03">
                 <div class="header_sec">
                     <h3 class="title_sec">여행정보</h3>
-                    <a href="#!" class="more_link">더보기 +</a>
+                    <a href="/travel-tips/travel-info" class="more_link">더보기 +</a>
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_info">
@@ -247,7 +247,7 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">인포그래픽</h3>
-                <a href="#!" class="more_link">더보기 +</a>
+                <a href="/travel-tips/infographic" class="more_link">더보기 +</a>
             </div>
             <div class="only_web content_sec">
                 <div class="list_travel_banner">
