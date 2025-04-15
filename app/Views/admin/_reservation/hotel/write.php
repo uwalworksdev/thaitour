@@ -201,11 +201,24 @@
                                           <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) / <?= $order_day_cnt ?>일
 										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<br>
 										  <?php
+										        /*
+												2025-04-17:12:21:31:21:41::42.41|
+												2025-04-18:12:21:31:21:41::42.41|
+												2025-04-19:12:21:31:21:41::42.41|
+												2025-04-20:12:21:31:21:41::42.41|
+												Extra 베드,6955,164	
+												*/
+												$temp  = "";
 										        $arr = explode("|", $date_price);
 												for($i=0;$i<count($arr);$i++)
 												{
-												    echo $arr[$i] ."<br>"; 
-												}		
+												    //echo $arr[$i] ."<br>"; 
+													$price = explode(":", $arr[$i]);
+													if($price[0] != "Extra 베드") {
+													   $temp .= $price[0] ." 기본가:" . $price[1] ."컨택가:" . $price[2] ."수익가:" . $price[3] ."Extra베드가:". $price[5] ."<br>";
+													}   
+												}
+												echo $temp;
 										  ?>
                                     </td>
                                     <th>객실수/총인원</th>
