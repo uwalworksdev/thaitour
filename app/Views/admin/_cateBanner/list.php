@@ -105,9 +105,9 @@
                                         <td class="tac"><?= $row["cnt"] ?></td>
                                         <td class="tac">
                                             <?php
-                                            if ($row["rolling_yn"] == "Y") {
+                                            if ($row["use_yn"] == "Y") {
                                                 echo "사용";
-                                            } elseif ($row["rolling_yn"] == "N") {
+                                            } else {
                                                 echo "사용안함";
                                             }
                                             ?></td>

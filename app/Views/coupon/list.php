@@ -6,8 +6,8 @@
             <img src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="" class="only_w">
             <img src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="" class="only_m">
             <div class="visual_txt">
-                <p>할인쿠폰 전체 출력</p>
-                <span>전체 쿠폰 출력을 원하시면 클릭해주세요.</span>
+                <p><?=viewSQ($bannerTop['title'])?></p>
+                <span><?=viewSQ($bannerTop['subtitle'])?></span>
             </div>
         </div>
         <div class="coupon_content">

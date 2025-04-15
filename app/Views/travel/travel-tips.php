@@ -9,8 +9,8 @@
                 <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
 
                 <div class="text_banner">
-                    <span>여행꿀팁</span>
-                    <p>태국에서 뭐하지? 어디가지? <br> 깨알 같은 정보를 모두 모아서 한눈에~!</p>
+                    <span><?=viewSQ($bannerTop['title'])?></span>
+                    <p><?=viewSQ($bannerTop['subtitle'])?></p>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                             <span><?=$banner['title']?></span>
                         </a>
                     <?php endforeach; ?>
-                    
+
                     <script>
                         function updateBannerImages() {
                             const isMobile = window.innerWidth < 850;
