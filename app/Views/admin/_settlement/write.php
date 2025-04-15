@@ -395,12 +395,18 @@
                             </table>
 
 							<br>
+							<?php
+							        $total_expense = 0; 
+									foreach ($expense as $row) {	
+										     $total_expense = $total_expense + $row['exp_amt'];
+									}
+							?>
 							<div style="text-align:right;list-style-type: none;">
 								<li style="text-align:left;font-size:12pt;margin-top:20px; display: flex; align-items:center; gap: 5px">■ 지출정보
 									<a href="#!" class="btn btn-default" id="addExp"><span class="txt">추가+</span></a>
 									<!--a href="javascript:confirm_pay();" class="btn btn-default"><span class="txt" id="confirmPay">확인</span></a-->
 									<div class="sum_txt" style="margin-left: 10px; display: flex; align-items: center; gap: 3px;">
-										총금액: <p class="red" style="color: red"><?=number_format($row_sum['total_expense'])?></p>원
+										총금액: <p class="red" style="color: red"><?=number_format($total_expense)?></p>원
 									</div>
 								</li>
 							</div>
