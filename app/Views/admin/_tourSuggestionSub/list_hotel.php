@@ -126,7 +126,34 @@
 
                                 </td>
                             </tr>
+<script>
+function positionUP(groupCode, itemId, direction) {
+    if (!confirm("정말 순서를 변경하시겠습니까?")) return false;
 
+    fetch('/your-api-url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            groupCode: groupCode,
+            itemId: itemId,
+            direction: direction
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            location.reload(); // 순서 변경 후 새로고침
+        } else {
+            alert('순서 변경에 실패했습니다.');
+        }
+    });
+
+    return false; // a 링크 이동 막기
+}
+</script>
+         
                             <script>                                
 
                                 function getChildCode(parent_code_no, depth) {
@@ -238,7 +265,7 @@
                                         }
                                     });
                                 }
-                                function positionUP(code, id, flag) {
+                                function positionUPx(code, id, flag) {
 
                                     if (code == "") return false;
                                     if (id == "") return false;
