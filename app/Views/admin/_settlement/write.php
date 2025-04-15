@@ -304,9 +304,9 @@
                                        
                                         ?>&emsp;
 										
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <!--a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
-										&emsp;2025-02-08 00:00 
+										&emsp;2025-02-08 00:00--> 
                                     </td>
                                 </tr>
                                 <tr>
