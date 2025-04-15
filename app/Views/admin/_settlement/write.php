@@ -340,15 +340,12 @@
                                     <th>정산현황</th>
                                     <td>
                                         <select name="calc" class="select_txt">
-                                            <option value="">건택</option>
+                                            <option value="">선택</option>
                                             <option value="Y" <?php if ($calc == "Y") {
                                                 echo "selected";
                                             } ?>>정산완료
                                             </option>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										&emsp;2025-02-08 00:00
                                     </td>
 
 								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
