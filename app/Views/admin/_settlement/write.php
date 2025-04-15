@@ -181,14 +181,9 @@
                                     </td>
 									 <th>상품 담당자</th>
                                     <td>
-                                        <input type="text" id="manager_name" name="manager_name" placeholder="이름"
-                                               value="<?= $row['manager_name'] ?>" class="input_txt" style="width:20%"/>
-                                        <input type="text" id="manager_phone" name="manager_phone" placeholder="휴대폰"
-                                               value="<?= $row['manager_phone'] ?>" class="input_txt"
-                                               style="width:20%"/>
-                                        <input type="text" id="manager_email" name="manager_email" placeholder="이메일"
-                                               value="<?= $row['manager_email'] ?>" class="input_txt"
-                                               style="width:20%"/>
+                                        이름: <?= $row['manager_name'] ?>
+                                        휴대폰: <?= $row['manager_phone'] ?>
+                                        이메일: <?= $row['manager_email'] ?>
                                     </td> 
                                 </tr>
                                 <tr style="height:100px">
