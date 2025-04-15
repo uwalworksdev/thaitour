@@ -128,7 +128,7 @@
                             </tr>
 <script>
 function changePosition(groupCode, itemId, direction) {
-    if (!confirm("정렬 순서를 변경하시겠습니까?")) return false;
+    //if (!confirm("정렬 순서를 변경하시겠습니까?")) return false;
 
     fetch("<?= site_url('position/change') ?>", {
         method: "POST",
