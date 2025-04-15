@@ -550,9 +550,9 @@ class SettlementController extends BaseController
 	public function write_ok()
 	{
 		try {
-			$data = $this->request->getPost();  // 배열로 들어옴
+			$data      = $this->request->getPost();  // 배열로 들어옴
 			$order_idx = $data['order_idx'];
-			$order_no  = $data['order_no'],
+			$order_no  = $data['order_no'];
 
 			$count = count($data['exp_id']);    // 항목 개수
 
