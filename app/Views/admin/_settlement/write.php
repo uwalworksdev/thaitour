@@ -405,66 +405,112 @@
 								</li>
 							</div>
 							
-							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th>인보이스 발송</th>
-                                    <td>
-                                       <select name="order_status" class="select_txt">
-                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
-                                            } ?>>인보이스 준비
-                                            </option>
-                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
-                                            } ?>>인보이스 발송
-                                            </option>
-                                        </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/hotel_01', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
-
-										<a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-										&emsp;2025-02-08 00:00 &emsp;<BR>
-										 <input type="text" id="order_user_email" name="order_user_email"
-                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
-											   <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
-                                    </td>
-                                    <th>바우처 발송</th>
-                                    <td>
-                                        <select name="order_status" class="select_txt">
-                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
-                                            } ?>>바우처 준비
-                                            </option>
-                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
-                                            } ?>>바우처 발송
-                                            </option>
-                                        </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/hotel', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
-										
-										<a href="javascript:send_it()" class="btn btn-default">
-										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-										&emsp;2025-02-08 00:00 &emsp;<BR>
-										<input type="text" id="order_user_email" name="order_user_email"
-                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
-											   <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
-											   <input type="text" id="order_user_email" name="order_user_email"
-                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="">호텔 메일발송</button><BR>
-                                    </td>
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail new_spe" id="expTable">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="*">
+                                <col width="10%">
+                                <col width="13%">
+                                <col width="10%">
+                                <col width="12%">
+                                <col width="12%">
+                                <col width="12%">
+								<col width="5%">
+                                <col width="8%">
+                            </colgroup>
+                            <tbody id="payment">
+                                <tr height="45">
+                                    <th style="text-align:center; text-wrap: nowrap">상품구분</th>
+                                    <th style="text-align:center">일자</th>
+                                    <th style="text-align:center">금액</th>
+                                    <th style="text-align:center">결제방법</th>
+                                    <th style="text-align:center">업체명</th>
+                                    <th style="text-align:center">명세서</th>
+                                    <th style="text-align:center">비고</th>
+									<th style="text-align:center">첨부파일</th>
+                                    <th style="text-align:center">관리</th>
                                 </tr>
+                                <?php
+                                $sql = " select * from tbl_expense_hist where order_idx = '$order_idx' order by idx asc";
+								//echo $sql;
+                                $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+                                while ($row = mysqli_fetch_array($result)) {
+                                    if ($row['upd_date'] == "0000-00-00 00:00:00") {
+                                        $upd_date = "";
+                                    } else {
+                                        $upd_date = $row['upd_date'];
+                                    }
+                                ?>
+                                    <tr>
+                                        <td style="text-align:center"><input type="text" name="exp_id[]"
+                                                id="exp_id_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_id'] ?>" class="exp_id input_txt"
+                                                style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_date[]"
+                                                id="exp_date_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_date'] ?>"
+                                                class="exp_date input_txt datepicker" style="width:90%;" readonly ></td>
+                                        
+										<td style="text-align:center"><input type="text" name="exp_amt[]"
+                                                id="exp_amt_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt'] ?>"
+                                                class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
+                                        <td style="text-align:center">
+										
+
+											<select name="exp_payment[]" id="exp_payment_<?= $row['idx'] ?>" class="exp_payment input_txt" style="width:100%" >
+												<option value="신용/체크카드"	<?if($row['exp_payment']=="신용/체크카드")echo "selected";?> >신용/체크카드</option>
+												<option value="실시간계좌이체"	<?if($row['exp_payment']=="실시간계좌이체")echo "selected";?> >실시간계좌이체</option>
+												<option value="무통장(가상계좌)"	<?if($row['exp_payment']=="무통장(가상계좌)")echo "selected";?> >무통장(가상계좌)</option>
+												<option value="무통장입금"		<?if($row['exp_payment']=="무통장입금")echo "selected";?> >무통장입금</option>
+											</select>
+										</td>
+                                        <td style="text-align:center"><input type="text" name="exp_comp[]"
+                                                id="exp_comp_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_comp'] ?>"
+                                                class="exp_comp input_txt" style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_sheet[]"
+                                                id="exp_sheet_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_sheet'] ?>"
+                                                class="exp_sheet input_txt" style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_remark[]"
+                                                id="exp_remark_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_remark'] ?>"
+                                                class="exp_remark input_txt" style="width:90%"></td>
+
+										<td style="text-align:center; position: relative; max-width: 145px;" class="files">
+											<input type="file" style="width:100px;" rel="<?= $row['idx'] ?>" class="j_files" />
+											
+											<?
+											if ($row['ufile']) {
+											?>
+                                                <div>
+                                                    <a href="/data/pay/<?= $row['ufile'] ?>" download="<?= $row['ufile'] ?>">
+                                                        <span class="file-name" style="position: absolute; background: #fff; top: 43px; left: 8px;min-height: 24px;">
+                                                            <?= basename($row['ufile']) ?>
+                                                        </span>
+                                                    </a>
+                                                </div>
+												<a class="btn_download_passport"
+													href="javascript:handlleShowPassport(`/data/pay/<?= $row['ufile'] ?>`)">보기</a>
+												<a class="btn_download_passport btn_del_passport" style="background-color:#FF0000;"
+													href="javascript:handlleDelJichool(`<?= $row['idx'] ?>`)">삭제</a>
+											<?
+											}
+											?>
+										
+										</td>
+
+                                        <td style="text-align:center">
+                                            <button type="button" class="expUpdate" value="<?= $row['idx'] ?>">수정</button>
+                                            <button type="button" class="expDelete" value="<?= $row['idx'] ?>"
+                                                style="margin-top: 1px">삭제</button>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
                                 
                                 </tbody>
                             </table>
