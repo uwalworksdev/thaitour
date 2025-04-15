@@ -153,7 +153,7 @@
     margin-top: 35px;
 }
 
-.planing_sect .plan_card .slide_box .profile img{
+.planing_sect .plan_card .slide_box .profile img {
     width: 32px;
     height: 32px;
 }
@@ -260,13 +260,16 @@
     display: flex;
     align-items: center;
 }
+
 .travel_info .bs-select,
 .travel_info .bs-input:not(textarea) {
     max-width: 200px;
 }
-.travel_info .flex{
+
+.travel_info .flex {
     gap: 10px;
 }
+
 .travel_info .quantily .bs-input {
     width: 80px;
     text-align: right;
@@ -297,6 +300,7 @@
     width: 20px;
     height: 20px;
 }
+
 .travel_info .table_form .depart,
 .travel_info .table_form .email,
 .travel_info .table_form .phone {
@@ -520,8 +524,10 @@
 }
 
 .travel_info .btn_submit .btn.blue {
-    filter: drop-shadow(0px 16px 8px rgba(46,62,146,0.28));
+    filter: drop-shadow(0px 16px 8px rgba(46, 62, 146, 0.28));
     border: none;
     background-color: #2e3e92;
     color: #fff;
 }
+
+

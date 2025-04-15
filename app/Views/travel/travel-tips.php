@@ -78,7 +78,7 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">핫 플레이스</h3>
-                <a href="#!" class="more_link">더보기 +</a>
+                <a href="/travel-tips/hot-place" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
                 <div class="relative">
