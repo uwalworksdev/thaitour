@@ -136,7 +136,7 @@
         }
     }
 </style>
-<section class="section_vehicle_1" style="background-color: none;">
+<section class="section_vehicle_1" style="background-color: #fff;">
     <div class="banner_vehicle">
         <div class="body_inner">
             <div class="swiper_container_ticket swiper">
