@@ -339,24 +339,11 @@
 
                                     <th>정산현황</th>
                                     <td>
-                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                        <select name="order_status" class="select_txt">
-                                            <option value="">정산현황</option>
-                                            <option value="W" <?php if ($order_status == "W") {
+                                        <select name="calc" class="select_txt">
+                                            <option value="">건택</option>
+                                            <option value="Y" <?php if ($calc == "Y") {
                                                 echo "selected";
-                                            } ?>>예약접수
-                                            </option>
-                                            <option value="G" <?php if ($order_status == "G") {
-                                                echo "selected";
-                                            } ?>>결제대기
-                                            </option>
-                                            <option value="Y" <?php if ($order_status == "Y") {
-                                                echo "selected";
-                                            } ?>>결제완료
-                                            </option>
-                                            <option value="C" <?php if ($order_status == "C") {
-                                                echo "selected";
-                                            } ?>>예약취소
+                                            } ?>>정산완료
                                             </option>
                                         </select>
                                        <a href="javascript:send_it()" class="btn btn-default">
