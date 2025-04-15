@@ -562,6 +562,7 @@ class SettlementController extends BaseController
 				$expData = [
 					'order_idx'   => $order_idx,
 					'order_no'    => $order_no,
+					'exp_id'      => $data['exp_id'][$i],
 					'exp_date'    => $data['exp_date'][$i],
 					'exp_amt'     => $data['exp_amt'][$i],
 					'exp_payment' => $data['exp_payment'][$i],
@@ -575,8 +576,10 @@ class SettlementController extends BaseController
 
 				if ($idx) {
 					$model->update($idx, $expData);
+					write_log("UPDATE QUERY: " . $model->db->getLastQuery());
 				} else {
 					$model->insert($expData);
+					write_log("INSERT QUERY: " . $model->db->getLastQuery());
 				}
 			}
 
