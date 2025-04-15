@@ -37,6 +37,7 @@ class Code extends Model
             ->where('depth', $depth)
             ->where('status', 'Y')
             ->orderBy('onum', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->get();
     }
 
@@ -46,7 +47,7 @@ class Code extends Model
             ->where('parent_code_no', $parent_code_no)
             ->where('status', 'Y')
             ->orderBy('onum', 'ASC')
-            // ->orderBy('code_idx', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->get();
     }
 
@@ -56,6 +57,7 @@ class Code extends Model
             ->where('parent_code_no', $parent_code_no)
             ->where('status', 'Y')
             ->orderBy('onum', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->findAll();
     }
 
@@ -157,6 +159,7 @@ class Code extends Model
             ->where('depth', $depth)
             ->where('status', 'Y')
             ->orderBy('onum', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->findAll();
     }
 
@@ -166,6 +169,7 @@ class Code extends Model
             ->where('depth', $depth)
             ->where('status', 'Y')
             ->orderBy('onum', 'ASC')
+            ->orderBy('code_idx', 'ASC')
             ->findAll();
     }
 
