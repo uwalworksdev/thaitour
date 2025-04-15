@@ -431,17 +431,6 @@
 									<th style="text-align:center">첨부파일</th>
                                     <th style="text-align:center">관리</th>
                                 </tr>
-                                <?php
-                                $sql = " select * from tbl_expense_hist where order_idx = '$order_idx' order by idx asc";
-								//echo $sql;
-                                $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-                                while ($row = mysqli_fetch_array($result)) {
-                                    if ($row['upd_date'] == "0000-00-00 00:00:00") {
-                                        $upd_date = "";
-                                    } else {
-                                        $upd_date = $row['upd_date'];
-                                    }
-                                ?>
                                     <tr>
                                         <td style="text-align:center"><input type="text" name="exp_id[]"
                                                 id="exp_id_<?= $row['idx'] ?>"
@@ -508,10 +497,6 @@
                                                 style="margin-top: 1px">삭제</button>
                                         </td>
                                     </tr>
-                                <?php
-                                }
-                                ?>
-                                
                                 </tbody>
                             </table>
 							<!--br>
