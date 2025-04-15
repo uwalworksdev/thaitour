@@ -156,7 +156,7 @@ function changePosition(groupCode, itemId, direction) {
 </script>
 
 <script>
-function positionUP(groupCode, itemId, direction) {
+function positionUPx(groupCode, itemId, direction) {
     if (!confirm("정말 순서를 변경하시겠습니까?")) return false;
 
     fetch('/your-api-url', {
@@ -294,7 +294,7 @@ function positionUP(groupCode, itemId, direction) {
                                         }
                                     });
                                 }
-                                function positionUPx(code, id, flag) {
+                                function positionUP(code, id, flag) {
 
                                     if (code == "") return false;
                                     if (id == "") return false;
