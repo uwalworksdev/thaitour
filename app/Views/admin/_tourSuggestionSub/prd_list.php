@@ -76,12 +76,19 @@ foreach ($result3 as $row) {
             </select>
         </td>
 
-        <td style="text-align:center;">
+        <!--td style="text-align:center;">
             <a href="#!" class="order_btn"
                 onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','U')">▲</a>
             <a href="#!" class="order_btn"
                 onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','D')">▼</a>
-        </td>
+        </td-->
+		<td style="text-align:center;">
+			<a href="#!" class="order_btn"
+				onclick="return changePosition('<?= esc($replace_code) ?>','<?= esc($row['code_idx']) ?>','U')">▲</a>
+			<a href="#!" class="order_btn"
+				onclick="return changePosition('<?= esc($replace_code) ?>','<?= esc($row['code_idx']) ?>','D')">▼</a>
+		</td>
+		
         <td style="text-align:center;">
             <?= $row["r_date"] ?>
         </td>

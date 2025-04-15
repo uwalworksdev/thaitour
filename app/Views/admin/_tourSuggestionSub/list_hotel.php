@@ -127,6 +127,35 @@
                                 </td>
                             </tr>
 <script>
+function changePosition(groupCode, itemId, direction) {
+    if (!confirm("정렬 순서를 변경하시겠습니까?")) return false;
+
+    fetch("<?= site_url('position/change') ?>", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "<?= csrf_hash() ?>"
+        },
+        body: JSON.stringify({
+            groupCode: groupCode,
+            itemId: itemId,
+            direction: direction
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert(data.message || "변경에 실패했습니다.");
+        }
+    });
+
+    return false;
+}
+</script>
+
+<script>
 function positionUP(groupCode, itemId, direction) {
     if (!confirm("정말 순서를 변경하시겠습니까?")) return false;
 
