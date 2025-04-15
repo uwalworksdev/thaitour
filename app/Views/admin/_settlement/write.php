@@ -122,40 +122,21 @@
                                 
                                 <tr>
                                     <th>주문자명</th>
-                                    <td>
-                                        <input type="text" id="order_user_name" name="order_user_name"
-                                               value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
-                                    </td>
+                                    <td><?= $order_user_name ?></td>
                                     <th>주문자 이메일</th>
-                                    <td>
-                                        <input type="text" id="order_user_email" name="order_user_email"
-                                               value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
-                                    </td>
+                                    <td><?= $order_user_email ?></td>
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
-                                    <td>
-                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
-                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:45%"/>
-											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
-                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
-                                    </td>
+                                    <td><?= $order_user_first_name_en ?></td>
                                     <th>영문 성(Last Name)</th>
-                                    <td>
-                                        
-                                    </td>
+                                    <td><?= $order_user_last_name_en ?></td>
                                 </tr>
                                 <tr>
                                     <th>휴대전화</th>
-                                    <td>
-                                        <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
-                                    </td>
+                                    <td><?= $order_user_mobile ?></td>
                                     <th>여행시 현지 연락처(TH)</th>
-                                    <td>
-                                        <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
-                                    </td>
+                                    <td><?= $local_phone ?></td>
                                 </tr>
 								<tr>
                                     <th>룸타입/프로모션	</th>
