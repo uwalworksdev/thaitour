@@ -14,11 +14,13 @@ class ReviewController extends BaseController
     private $db;
     protected $codeModel;
     protected $policy;
+    protected $bannerModel;
 
     public function __construct()
     {
         $this->db = db_connect();
         $this->ReviewModel = model("ReviewModel");
+        $this->bannerModel = model("Banner_model");
         $this->Bbs = model("Bbs");
         $this->codeModel = new Code();
         helper('my_helper');
@@ -57,6 +59,7 @@ class ReviewController extends BaseController
         }, $resultObj['review_list']);
 
         return view("review/review_list", [
+            'bannerTop' => $this->bannerModel->getBanners("5901", "top")[0],
             "best_review" => $best_review,
             "visual" => $visual,
             "review_list" => $resultObj['review_list'],

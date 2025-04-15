@@ -136,25 +136,27 @@
         }
     }
 </style>
-<section class="section_vehicle_1">
+<section class="section_vehicle_1" style="background-color: #fff;">
     <div class="banner_vehicle">
-        <div class="swiper_container_ticket swiper">
-            <div class="swiper-wrapper">
-                <?php foreach ($bannerTop as $banner) : ?>
-                    <div class="swiper-slide">
-                        <div class="img_box img_box_14">
-                            <picture>
-                                <source media="(min-width: 851px)"
-                                    srcset="/data/cate_banner/<?= $banner['ufile1'] ?>">
-                                <img class="img_box__img" src="/data/cate_banner/<?= $banner['ufile2'] ?>"
-                                    alt="">
-                            </picture>
+        <div class="body_inner">
+            <div class="swiper_container_ticket swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($bannerTop as $banner) : ?>
+                        <div class="swiper-slide">
+                            <div class="img_box img_box_14">
+                                <picture>
+                                    <source media="(min-width: 851px)"
+                                        srcset="/data/cate_banner/<?= $banner['ufile1'] ?>">
+                                    <img class="img_box__img" src="/data/cate_banner/<?= $banner['ufile2'] ?>"
+                                        alt="">
+                                </picture>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
+                <div class="swiper-button-next-vehicle"><img src="/uploads/icons/next_s.png" alt=""></div>
+                <div class="swiper-button-prev-vehicle"><img src="/uploads/icons/prev_s.png" alt=""></div>
             </div>
-            <div class="swiper-button-next-vehicle"><img src="/uploads/icons/next_s.png" alt=""></div>
-            <div class="swiper-button-prev-vehicle"><img src="/uploads/icons/prev_s.png" alt=""></div>
         </div>
     </div>
 </section>

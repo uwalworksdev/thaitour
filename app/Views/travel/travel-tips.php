@@ -5,12 +5,12 @@
     <div class="sec_banner">
         <div class="inner">
             <div class="wrap_banner">
-                <img class="only_web" src="/images/sub/tra_sec_banner.png" alt="">
-                <img class="only_mo" src="/images/sub/tra_sec_banner-m.png" alt="">
+                <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
+                <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
 
                 <div class="text_banner">
-                    <span>여행꿀팁</span>
-                    <p>태국에서 뭐하지? 어디가지? <br> 깨알 같은 정보를 모두 모아서 한눈에~!</p>
+                    <span><?=viewSQ($bannerTop['title'])?></span>
+                    <p><?=viewSQ($bannerTop['subtitle'])?></p>
                 </div>
             </div>
         </div>
@@ -23,7 +23,34 @@
             </div>
             <div class="only_web content_sec">
                 <div class="list_item">
-                    <a href="#!" class="item item_1">
+                    <?php foreach($bannerMiddle as $i => $banner): 
+                        $url = !empty($banner['url']) ? $banner['url'] : "#";
+                    ?>
+                        <a 
+                            href="<?=$url?>" 
+                            class="item item_1" 
+                            style="background-image: url('/data/cate_banner/<?=$banner['ufile1']?>');"
+                            data-pc="/data/cate_banner/<?=$banner['ufile1']?>"
+                            data-mo="/data/cate_banner/<?=$banner['ufile2']?>"
+                            id="banner_<?=$i?>"
+                        >
+                            <span><?=$banner['title']?></span>
+                        </a>
+                    <?php endforeach; ?>
+
+                    <script>
+                        function updateBannerImages() {
+                            const isMobile = window.innerWidth < 850;
+                            document.querySelectorAll('.item.item_1').forEach(el => {
+                                const img = isMobile ? el.dataset.mo : el.dataset.pc;
+                                el.style.backgroundImage = `url('${img}')`;
+                            });
+                        }
+
+                        window.addEventListener('DOMContentLoaded', updateBannerImages);
+                        window.addEventListener('resize', updateBannerImages);
+                    </script>
+                    <!-- <a href="#!" class="item item_1">
                         <span>#관광명소</span>
                     </a>
                     <a href="#!" class="item item_2">
@@ -37,7 +64,7 @@
                     </a>
                     <a href="#!" class="item item_5">
                         <span>#나이트</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="only_mo content_sec">
@@ -78,7 +105,7 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">핫 플레이스</h3>
-                <a href="#!" class="more_link">더보기 +</a>
+                <a href="/travel-tips/hot-place" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
                 <div class="relative">

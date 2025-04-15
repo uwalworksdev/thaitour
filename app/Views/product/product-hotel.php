@@ -223,7 +223,7 @@
             <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
             <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
             <div class="main_visual_content_">
-                <div class="text_title">지금, 바로 떠날 수 있는 이유</div>
+                <div class="text_title"><?= viewSQ($bannerTop['title']) ?></div>
                 <div class="form_search">
                     <div class="form_element_">
                         <div class="form_input_">

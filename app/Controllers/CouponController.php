@@ -15,6 +15,8 @@ class CouponController extends BaseController
     private $product;
     private $couponProduct;
     private $couponImg;
+    private $bannerModel;
+
 
     public function __construct()
     {
@@ -22,6 +24,7 @@ class CouponController extends BaseController
         helper('comment_helper');
         helper('coupon_helper');
 
+        $this->bannerModel = model("Banner_model");
         $this->couponMst = model("CouponMst");
         $this->coupon = model("Coupon");
         $this->couponProduct = model("CouponProduct");
@@ -36,7 +39,8 @@ class CouponController extends BaseController
         $code_list = $this->code->getByParentCode("13")->getResultArray();
 
         return view('coupon/list',[
-            "code_list" => $code_list
+            "code_list" => $code_list,
+            'bannerTop' => $this->bannerModel->getBanners("5903", "top")[0],
         ]);
     }
 

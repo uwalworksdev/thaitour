@@ -164,8 +164,8 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '커뮤니티 관리',
                     'code' => 'C9',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_cateBanner/list?code_no=59'],
+                    'alias' => ['AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 // [
                 //     'name' => '서브 추천상품 관리',

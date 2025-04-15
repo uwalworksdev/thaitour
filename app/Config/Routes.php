@@ -977,7 +977,6 @@ $routes->get('excel/download', 'ExcelController::downloadExcel');
 
 // Point
 $routes->get('point-system', 'Point::index');
-$routes->get('travel-tips', 'Point::TravelTips');
 $routes->get("api/update_data", "Admin\AdminHotelController::updateData");
 
 $routes->get('/naver/login', 'NaverLogin::login');
@@ -986,5 +985,11 @@ $routes->get('/naver/callback', 'NaverLogin::callback');
 $routes->get('/birthdaychecker', 'BirthdayChecker::index');
 
 $routes->get('/pdf/quotation', 'PdfController::generateQuotation');
+
+$routes->group("travel-tips", static function ($routes) {
+    $routes->get("/", 'Point::TravelTips'); 
+    $routes->get("hot-place", 'Point::HotPlace'); 
+    
+});
 
 ?>

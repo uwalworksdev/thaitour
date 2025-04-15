@@ -35,7 +35,7 @@ class TourSuggestionController extends BaseController
         $parent_code_1 = $_GET["parent_code_1"] ?? '';
 
         if(empty($parent_code)){
-            $sql_code_first    = "select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx desc ";
+            $sql_code_first    = "select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx asc ";
             $result_code_first = $this->connect->query($sql_code_first);
             $result_code_first = $result_code_first->getResultArray();
             $parent_code = $result_code_first[0]['code_no'];
@@ -56,11 +56,11 @@ class TourSuggestionController extends BaseController
             $product_code_name = $row1['code_name'];
         };
 
-        $sql    = "  select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx desc ";
+        $sql    = "  select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx asc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
-        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code' and status = 'Y' order by onum asc, code_idx desc ";
+        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code' and status = 'Y' order by onum asc, code_idx asc ";
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
@@ -85,7 +85,7 @@ class TourSuggestionController extends BaseController
         //                 and b.code_no    = '$replace_code' 
         //                 order by b.onum asc, b.code_idx desc";
 
-        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc, code_idx desc ";
+        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc, code_idx asc ";
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();
 

@@ -21,6 +21,7 @@ class Banner_model extends Model
         }
 
         return $this->where('code_no', $code_no)
+            ->where('use_yn', 'Y')
             ->orderBy('onum', 'DESC')
             ->orderBy('cb_idx', 'DESC')
             ->findAll();
@@ -47,7 +48,11 @@ class Banner_model extends Model
                     (SELECT ufile1 
                     FROM tbl_cate_banner 
                     WHERE a.code_idx = tbl_cate_banner.code_idx 
-                    LIMIT 0, 1) AS img
+                    LIMIT 0, 1) AS img,
+                    (SELECT use_yn 
+                    FROM tbl_cate_banner 
+                    WHERE a.code_idx = tbl_cate_banner.code_idx 
+                    LIMIT 0, 1) AS use_yn,
                 ");
 
         $nTotalCount = $builder->countAllResults(false);
