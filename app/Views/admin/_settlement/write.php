@@ -675,6 +675,210 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
+<script>
+    $(document).ready(function() {
+        // 지출정보 추가 버튼 클릭 이벤트
+        $('#addExp').click(function() {
+            // 새로운 행 생성
+            var newRow = "";
+            newRow = '<tr>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_id[]"      value="" class="exp_id input_txt"      style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_date[]"    value="" class="exp_date input_txt datepicker"    style="width:90%" readonly ></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_amt[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
+            newRow += '<td style="text-align:center">';
+
+			newRow += '<select name="exp_payment[]" class="exp_payment input_txt" style="width:90%" ><option value="신용/체크카드">신용/체크카드</option><option value="실시간계좌이체">실시간계좌이체</option><option value="무통장(가상계좌)">무통장(가상계좌)</option><option value="무통장입금">무통장입금</option></select>';
+			
+			newRow += '</td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_comp[]"    value="" class="exp_comp input_txt"    style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_sheet[]"   value="" class="exp_sheet input_txt"   style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_remark[]"  value="" class="exp_remark input_txt"  style="width:90%"></td>';
+			newRow += '<td style="text-align:center">등록먼저 해주세요.</td>';
+            newRow += '<td style="text-align:center">';
+            newRow += '<button type="button" class="expConfirm">확인</button>';
+            newRow += '<button type="button" onclick="exp_delete();" class="expRemove">삭제</button>';
+            newRow += '</td>';
+            newRow += '</tr>';
+
+            // 테이블의 tbody에 새 행 추가
+            $('#expTable tbody').append(newRow);
+
+
+			
+
+			$(".datepicker").datepicker({
+				showButtonPanel: true,
+				beforeShow: function(input) {
+					setTimeout(function() {
+						var buttonPane = $(input)
+							.datepicker("widget")
+							.find(".ui-datepicker-buttonpane");
+						var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+						btn.unbind("click").bind("click", function() {
+							$.datepicker._clearDate(input);
+						});
+						btn.appendTo(buttonPane);
+					}, 1);
+				},
+				dateFormat: 'yy-mm-dd',
+				showOn: "both",
+				yearRange: "c-100:c+10",
+				//buttonImage: "/img/ico/date_ico.png",
+				//buttonImageOnly: true,
+				closeText: '닫기',
+				prevText: '이전',
+				nextText: '다음'
+				// ,minDate: 1
+				<? if ($str_guide != "") { ?>,
+					beforeShowDay: function(date) {
+
+						var day = date.getDay();
+						return [(<?= $str_guide ?>)];
+
+					}
+				<? } ?>
+
+
+			});
+			$(".ui-datepicker-trigger").remove();
+
+
+			
+        });
+
+        // 동적으로 추가된 행에서도 제거 기능이 작동하도록 이벤트 위임 사용
+        $('#expTable').on('click', '.expRemove', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        // 동적으로 추가된 행에서도 제거 기능이 작동하도록 이벤트 위임 사용
+        $('#peopleTable').on('click', '.peopleRemove', function() {
+            $(this).closest('tr').remove();
+        });
+
+        // on 메서드를 사용한 동적 처리 (필요한 경우)
+        $(document).on('focus', '.passport_date', function() {
+            $(this).datepicker();
+        });
+
+        $(document).on('focus', '.order_birthday', function() {
+            $(this).datepicker();
+        });
+
+		$(".j_files").on('change', function() {
+			var relValue = $(this).attr('rel');
+			var fileInput = this;
+
+			if (fileInput.files.length > 0) {
+				var formData = new FormData();
+				formData.append('passport_file', fileInput.files[0]);
+				formData.append('rel', relValue);
+
+				$.ajax({
+					url: 'j_upload.php',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(response) {
+						alert("등록 되었습니다");
+						location.reload();
+					},
+					error: function() {
+						alert('업로드 중 오류가 발생했습니다.');
+					}
+				});
+			} else {
+				alert('파일을 선택해 주세요.');
+			}
+		});
+
+
+		$(".a_files").on('change', function() {
+			var relValue = $(this).attr('rel');
+			var fileInput = this;
+
+			if (fileInput.files.length > 0) {
+				var formData = new FormData();
+				formData.append('passport_file', fileInput.files[0]);
+				formData.append('rel', relValue);
+
+				$.ajax({
+					url: 'a_upload.php',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(response) {
+						alert("등록 되었습니다");
+						location.reload();
+					},
+					error: function() {
+						alert('업로드 중 오류가 발생했습니다.');
+					}
+				});
+			} else {
+				alert('파일을 선택해 주세요.');
+			}
+		});
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 지출정보 확인버튼 클릭 이벤트
+        $('#expTable').on('click', '.expConfirm', function() {
+
+            if (!confirm("지출항목을 등록 하시겠습니까?"))
+                return false;
+
+            var row = $(this).closest('tr');
+            var exp_id = row.find('.exp_id').val(); // 상품구분
+            var exp_date = row.find('.exp_date').val(); // 일자
+            var exp_amt = row.find('.exp_amt').val(); // 금액
+            var exp_payment = row.find('.exp_payment').val(); // 결제방법
+            var exp_comp = row.find('.exp_comp').val(); // 업체명
+            var exp_sheet = row.find('.exp_sheet').val(); // 명세서
+            var exp_remark = row.find('.exp_remark').val(); // 비고
+
+            $.ajax({
+
+                url: "/ajax/ajax.expense_hist.php",
+                type: "POST",
+                data: {
+
+                    "order_idx": $("#order_idx").val(),
+                    "order_no": $("#order_no").val(),
+                    "exp_id": exp_id, // 상품구분
+                    "exp_date": exp_date, // 일자
+                    "exp_amt": exp_amt, // 금액
+                    "exp_payment": exp_payment, // 결제방법
+                    "exp_comp": exp_comp, // 업체명
+                    "exp_sheet": exp_sheet, // 명세서
+                    "exp_remark": exp_remark // 비고
+
+                },
+                success: function(rs) {
+                    const data = JSON.parse(rs);
+                    var message = data.message;
+                    //payment = data.payment;
+                    alert(message);
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        });
+    });
+</script>
+
     <script>
 
         function handleShowImgPop(img) {
