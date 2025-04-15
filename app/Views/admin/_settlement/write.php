@@ -729,14 +729,14 @@
 				prevText: '이전',
 				nextText: '다음'
 				// ,minDate: 1
-				<? if ($str_guide != "") { ?>,
+				<?php if ($str_guide != "") { ?>,
 					beforeShowDay: function(date) {
 
 						var day = date.getDay();
 						return [(<?= $str_guide ?>)];
 
 					}
-				<? } ?>
+				<?php } ?>
 
 
 			});
