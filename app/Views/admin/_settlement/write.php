@@ -946,7 +946,7 @@
 
         function fn_comment() {
 
-            <? if ($_SESSION["member"]["id"] != "") { ?>
+            <?php if ($_SESSION["member"]["id"] != "") { ?>
             if ($("#comment").val() == "") {
                 alert("댓글을 입력해주세요.");
                 return;
@@ -966,9 +966,9 @@
                     }
                 }
             });
-            <? } else { ?>
+            <?php } else { ?>
             alert("로그인을 해주세요.");
-            <? } ?>
+            <?php } ?>
         }
 
         function fn_comment_list() {
