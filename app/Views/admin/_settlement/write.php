@@ -314,7 +314,7 @@
 									<?php $status = get_deli_type();?>
                                     <td>
 									    <?=$status[$order_status]?>
-                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
+                                        <!--input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
                                             <option value="W" <?php if ($order_status == "W") {
