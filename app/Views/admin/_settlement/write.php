@@ -397,7 +397,7 @@
 
                             </table>
 							
-							<!--br>
+							<br>
 							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
@@ -457,7 +457,7 @@
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
 											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="">호텔 메일발송</button><BR>
                                     </td>
-                                </tr-->
+                                </tr>
                                 
                                 </tbody>
                             </table>
