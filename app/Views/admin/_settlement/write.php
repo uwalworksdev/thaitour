@@ -649,7 +649,7 @@
             // 새로운 행 생성
             var newRow = "";
             newRow  = '<tr>';
-			newRow += '<input type="hidden" name="idx[]" value="">                     
+			newRow += '<input type="hidden" name="idx[]" value="">';                     
 
             newRow += '<td style="text-align:center"><input type="text" name="exp_id[]"      value="" class="exp_id input_txt"      style="width:90%"></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_date[]"    value="" class="exp_date input_txt datepicker"    style="width:90%" readonly ></td>';
