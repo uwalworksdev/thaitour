@@ -573,7 +573,7 @@ class SettlementController extends BaseController
 				// 파일이 유효한 경우에만 처리
 				if ($file && $file->isValid() && !$file->hasMoved()) {
 					$newName = $file->getRandomName();
-					$file->move($uploadPath , $newName);
+					$file->move($this->uploadPath, $newName);
 
 					$expData['ufile'] = $newName;                // 저장된 파일명
 					$expData['rfile'] = $file->getClientName();  // 사용자가 업로드한 원본 파일명
