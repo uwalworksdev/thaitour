@@ -152,13 +152,13 @@ function updateRanksAndSend() {
 			let rankData = "";
 
 			$("#pick_select_layer tbody tr").each(function(index) {
-				var roomId = $(this).data("idx");
+				var code_idx = $(this).data("idx");
 				var rank = index + 1;
 
 				if(rankData == "") {
-				   rankData  = roomId+':'+rank+'|';	
+				   rankData  = code_idx+':'+rank+'|';	
 				} else {   
-				   rankData += '|'+roomId+':'+rank;	
+				   rankData += '|'+code_idx+':'+rank;	
 				}   
 			});
 			//alert(rankData);
