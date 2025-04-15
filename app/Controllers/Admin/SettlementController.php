@@ -538,6 +538,11 @@ class SettlementController extends BaseController
             $data['sup_options'] = $sup_options;
         }
 
+        $fsql    = "select * from tbl_expense_hist where order_idx ='". $order_idx ."' ";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
+		$data['expense'] = $fresult;
+		
         return view("admin/_settlement/write", array_merge($data, $row));
     }
 

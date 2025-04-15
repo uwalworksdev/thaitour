@@ -420,17 +420,17 @@
                                 <col width="8%">
                             </colgroup>
                             <tbody id="payment">
-                                <tr height="45">
-                                    <th style="text-align:center; text-wrap: nowrap">상품구분</th>
-                                    <th style="text-align:center">일자</th>
-                                    <th style="text-align:center">금액</th>
-                                    <th style="text-align:center">결제방법</th>
-                                    <th style="text-align:center">업체명</th>
-                                    <th style="text-align:center">명세서</th>
-                                    <th style="text-align:center">비고</th>
-									<th style="text-align:center">첨부파일</th>
-                                    <th style="text-align:center">관리</th>
-                                </tr>
+									<tr height="45">
+										<th style="text-align:center; text-wrap: nowrap">상품구분</th>
+										<th style="text-align:center">일자</th>
+										<th style="text-align:center">금액</th>
+										<th style="text-align:center">결제방법</th>
+										<th style="text-align:center">업체명</th>
+										<th style="text-align:center">명세서</th>
+										<th style="text-align:center">비고</th>
+										<th style="text-align:center">첨부파일</th>
+										<th style="text-align:center">관리</th>
+									</tr>
                                     <tr>
                                         <td style="text-align:center"><input type="text" name="exp_id[]"
                                                 id="exp_id_<?= $row['idx'] ?>"
