@@ -87,7 +87,7 @@ foreach ($result3 as $row) {
         </td>
         <td>
             <button type="button" class="btn btn-danger" onclick="javascript:goods_del('<?= $row['code_idx'] ?>');">
-                삭제
+                삭제...
             </button>
         </td>
     </tr>
