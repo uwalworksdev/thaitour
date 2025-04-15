@@ -164,8 +164,8 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '커뮤니티 관리',
                     'code' => 'C9',
-                    'url' => '#',
-                    'alias' => []
+                    'url' => ['/AdmMaster/_cateBanner/list?code_no=59'],
+                    'alias' => ['AdminCateBannerController::list', 'AdminCateBannerController::write']
                 ],
                 // [
                 //     'name' => '서브 추천상품 관리',
@@ -366,12 +366,12 @@ class AdminMenus extends BaseConfig
                 //      'url' => ['/AdmMaster/_bbs/board_list?code=awards'],
                 //      'alias' => ['BoardController::index', 'BoardController::board_write']
                 // ],
-                [
-                    'name' => '메인/서브비주얼관리',
-                    'code' => 'H2',
-                    'url' => ['/AdmMaster/_bbs/board_list?code=banner'],
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
-                ],
+                // [
+                //     'name' => '메인/서브비주얼관리',
+                //     'code' => 'H2',
+                //     'url' => ['/AdmMaster/_bbs/board_list?code=banner'],
+                //     'alias' => ['BoardController::index', 'BoardController::board_write']
+                // ],
                 // [
                 //     'name' => '메인이벤트 관리',
                 //     'code' => 'H3',
@@ -384,12 +384,12 @@ class AdminMenus extends BaseConfig
                 //     'url' => ['/AdmMaster/_bbs/board_list?code=hashtag'],
                 //     'alias' => ['BoardController::index', 'BoardController::board_write']
                 // ],
-                [
-                    'name' => '카테고리배너관리',
-                    'code' => 'H6',
-                    'url' => ['/AdmMaster/_cateBanner/list'],
-                    'alias' => ['AdminCateBannerController::list', 'AdminCateBannerController::write']
-                ],
+                // [
+                //     'name' => '카테고리배너관리',
+                //     'code' => 'H6',
+                //     'url' => ['/AdmMaster/_cateBanner/list'],
+                //     'alias' => ['AdminCateBannerController::list', 'AdminCateBannerController::write']
+                // ],
                 [
                     'name' => '팝업관리',
                     'code' => 'H7',

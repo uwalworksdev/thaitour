@@ -26,11 +26,17 @@ class AdminCateBannerController extends BaseController
         $g_list_rows = 10;
         $s_parent_code_no = updateSQ($_GET["s_parent_code_no"] ?? '');
         $code_no = updateSQ($_GET["code_no"] ?? '');
-        
-        $result = $this->cateBannerModel->getList([
-            'code_no' => $code_no,
-            's_parent_code_no' => $s_parent_code_no
-        ], $g_list_rows, $pg);
+
+        if(($code_no == 59 || $code_no == 1324) && empty($s_parent_code_no)) {
+            $result = $this->cateBannerModel->getList([
+                's_parent_code_no' => $code_no
+            ], $g_list_rows, $pg);
+        }else{
+            $result = $this->cateBannerModel->getList([
+                'code_no' => $code_no,
+                's_parent_code_no' => $s_parent_code_no
+            ], $g_list_rows, $pg);
+        }
 
         $data = [
             'items' => $result['items'],
