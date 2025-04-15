@@ -78,9 +78,9 @@ foreach ($result3 as $row) {
 
         <td style="text-align:center;">
             <a href="#!" class="order_btn"
-                onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','U')">▲</a>
+                onclick="moveUpRoom(this)">▲</a>
             <a href="#!" class="order_btn"
-                onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','D')">▼</a>
+                onclick="moveDownRoom(this)">▼</a>
         </td>
 		<!--td style="text-align:center;">
 			<a href="#!" class="order_btn"

@@ -126,6 +126,67 @@
 
                                 </td>
                             </tr>
+							
+<script>
+function moveUpRoom(btn) {
+    var row = $(btn).closest("tr");
+    var prev = row.prev("tr");
+
+    if (prev.length) {
+        row.insertBefore(prev);
+        updateRanksAndSend();
+    }
+}
+
+function moveDownRoom(btn) {
+    var row = $(btn).closest("tr");
+    var next = row.next("tr");
+
+    if (next.length) {
+        row.insertAfter(next);
+        updateRanksAndSend();
+    }
+}
+
+function updateRanksAndSend() {
+			let rankData = "";
+
+			$("#roomTable tbody tr").each(function(index) {
+				var roomId = $(this).data("room-id");
+				var rank = index + 1;
+
+				if(rankData == "") {
+				   rankData  = roomId+':'+rank+'|';	
+				} else {   
+				   rankData += '|'+roomId+':'+rank;	
+				}   
+			});
+			//alert(rankData);
+
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_golfOpt_ranks",
+				type: "POST",
+				data: {
+                        "rankData" : rankData
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					//alert(message);
+					//location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});				
+	
+}
+</script>
+
 <script>
 function changePosition(groupCode, itemId, direction) {
     //if (!confirm("정렬 순서를 변경하시겠습니까?")) return false;
