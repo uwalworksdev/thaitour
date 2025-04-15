@@ -346,6 +346,8 @@
                                             } ?>>정산완료
                                             </option>
                                         </select>
+                                       <a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
                                     </td>
 
 								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
