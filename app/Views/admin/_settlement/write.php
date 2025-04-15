@@ -391,13 +391,20 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                
-                                
                                 </tbody>
-
                             </table>
-							
+
 							<br>
+							<div style="text-align:right;list-style-type: none;">
+								<li style="text-align:left;font-size:12pt;margin-top:20px; display: flex; align-items:center; gap: 5px">■ 지출정보
+									<a href="#!" class="btn btn-default" id="addExp"><span class="txt">추가+</span></a>
+									<!--a href="javascript:confirm_pay();" class="btn btn-default"><span class="txt" id="confirmPay">확인</span></a-->
+									<div class="sum_txt" style="margin-left: 10px; display: flex; align-items: center; gap: 3px;">
+										총금액: <p class="red" style="color: red"><?=number_format($row_sum['total_expense'])?></p>원
+									</div>
+								</li>
+							</div>
+							
 							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
@@ -458,6 +465,70 @@
 											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="">호텔 메일발송</button><BR>
                                     </td>
                                 </tr>
+                                
+                                </tbody>
+                            </table>
+							<!--br>
+							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>인보이스 발송</th>
+                                    <td>
+                                       <select name="order_status" class="select_txt">
+                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
+                                            } ?>>인보이스 준비
+                                            </option>
+                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
+                                            } ?>>인보이스 발송
+                                            </option>
+                                        </select>
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/hotel_01', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
+
+										<a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+										&emsp;2025-02-08 00:00 &emsp;<BR>
+										 <input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <input type="text" id="order_user_mobile" name="order_user_mobile"
+                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
+                                    </td>
+                                    <th>바우처 발송</th>
+                                    <td>
+                                        <select name="order_status" class="select_txt">
+                                            <option value="W" <?php if ($order_status == "W") { echo "selected";
+                                            } ?>>바우처 준비
+                                            </option>
+                                            <option value="G" <?php if ($order_status == "G") { echo "selected";
+                                            } ?>>바우처 발송
+                                            </option>
+                                        </select>
+										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/hotel', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										
+										<a href="javascript:send_it()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+										&emsp;2025-02-08 00:00 &emsp;<BR>
+										<input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <input type="text" id="order_user_mobile" name="order_user_mobile"
+                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
+											   <input type="text" id="order_user_email" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
+											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="">호텔 메일발송</button><BR>
+                                    </td>
+                                </tr-->
                                 
                                 </tbody>
                             </table>
