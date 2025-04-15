@@ -151,8 +151,8 @@ function moveDownRoom(btn) {
 function updateRanksAndSend() {
 			let rankData = "";
 
-			$("#roomTable tbody tr").each(function(index) {
-				var roomId = $(this).data("room-id");
+			$("#pick_select_layer tbody tr").each(function(index) {
+				var roomId = $(this).data("idx");
 				var rank = index + 1;
 
 				if(rankData == "") {
@@ -166,7 +166,7 @@ function updateRanksAndSend() {
 			var message = "";
 			$.ajax({
 
-				url: "/ajax/ajax_golfOpt_ranks",
+				url: "/ajax/ajax_mainDisp_ranks",
 				type: "POST",
 				data: {
                         "rankData" : rankData
