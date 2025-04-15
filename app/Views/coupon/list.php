@@ -6,8 +6,8 @@
             <img src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="" class="only_w">
             <img src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="" class="only_m">
             <div class="visual_txt">
-                <p><?=viewSQ($bannerTop['title'])?></p>
-                <span><?=viewSQ($bannerTop['subtitle'])?></span>
+                <p><?= viewSQ($bannerTop['title']) ?></p>
+                <span><?= viewSQ($bannerTop['subtitle']) ?></span>
             </div>
         </div>
         <div class="coupon_content">
