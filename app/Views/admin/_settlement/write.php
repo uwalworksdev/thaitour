@@ -497,7 +497,7 @@
                                                     </a>
                                                 </div>
 												<a class="btn_download_passport"
-													href="javascript:handlleShowPassport(`/data/pay/<?= $row['ufile'] ?>`)">보기</a>
+													href="javascript:handlleShowPassport(`/data/expense/<?= $row['ufile'] ?>`)">보기</a>
 												<a class="btn_download_passport btn_del_passport" style="background-color:#FF0000;"
 													href="javascript:handlleDelJichool(`<?= $row['idx'] ?>`)">삭제</a>
 											<?php
@@ -507,7 +507,7 @@
 										</td>
 
                                         <td style="text-align:center">
-                                            <button type="button" class="expUpdate" value="<?= $row['idx'] ?>">수정</button>
+                                            <!--button type="button" class="expUpdate" value="<?= $row['idx'] ?>">수정</button-->
                                             <button type="button" class="expDelete" value="<?= $row['idx'] ?>"
                                                 style="margin-top: 1px">삭제</button>
                                         </td>
