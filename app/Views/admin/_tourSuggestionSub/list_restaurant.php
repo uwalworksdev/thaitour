@@ -10,7 +10,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>골프 관리</h2>
+                <h2>레스토랑 관리</h2>
             </div><!-- // inner -->
             
         </header><!-- // headerContainer -->
