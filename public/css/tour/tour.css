@@ -5324,3 +5324,33 @@
 .travel_info .list_product .item .info .view {
     padding-left: 12px;
 }
+
+.infographic .list_infographic {
+    display: flex;
+    flex-wrap: wrap ;
+    align-items: center;
+    gap: 46px 18px;
+    padding-bottom: 42px;
+    border-bottom: 1px solid #dbdbdb; 
+
+}
+
+.infographic .list_infographic .item {
+    width: calc((100% - calc(18px * 3)) / 4);
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+
+.infographic .list_infographic .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.infographic .list_infographic .item p {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 25px;
+}

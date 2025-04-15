@@ -26,7 +26,7 @@
             <div class="navigation-container-next">
                 <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
                 <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                <span class="font-bold">핫 플레이스 </span>
+                <span class="font-bold">여행정보</span>
 
                 <!-- <div class="depth_2_tools_ active_" id="depth_2_tools_">
                     <ul class="depth_2_tool_list_" id="depth_2_tool_list_">
