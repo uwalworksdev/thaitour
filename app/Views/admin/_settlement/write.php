@@ -122,15 +122,13 @@
                                 
                                 <tr>
                                     <th>주문자명</th>
-                                    <td><?= $order_user_name ?></td>
-                                    <th>주문자 이메일</th>
-                                    <td><?= $order_user_email ?></td>
+                                    <td colspan="3"><?= $order_user_name ?></td>
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
-                                    <td><?= $order_user_first_name_en ?></td>
-                                    <th>영문 성(Last Name)</th>
-                                    <td><?= $order_user_last_name_en ?></td>
+                                    <td><?= $order_user_first_name_en ?> <?= $order_user_last_name_en ?></td>
+                                    <th>주문자 이메일</th>
+                                    <td><?= $order_user_email ?></td>
                                 </tr>
                                 <tr>
                                     <th>휴대전화</th>
@@ -838,30 +836,30 @@
             if (!confirm("지출항목을 등록 하시겠습니까?"))
                 return false;
 
-            var row = $(this).closest('tr');
-            var exp_id = row.find('.exp_id').val(); // 상품구분
-            var exp_date = row.find('.exp_date').val(); // 일자
-            var exp_amt = row.find('.exp_amt').val(); // 금액
+            var row         = $(this).closest('tr');
+            var exp_id      = row.find('.exp_id').val(); // 상품구분
+            var exp_date    = row.find('.exp_date').val(); // 일자
+            var exp_amt     = row.find('.exp_amt').val(); // 금액
             var exp_payment = row.find('.exp_payment').val(); // 결제방법
-            var exp_comp = row.find('.exp_comp').val(); // 업체명
-            var exp_sheet = row.find('.exp_sheet').val(); // 명세서
-            var exp_remark = row.find('.exp_remark').val(); // 비고
+            var exp_comp    = row.find('.exp_comp').val(); // 업체명
+            var exp_sheet   = row.find('.exp_sheet').val(); // 명세서
+            var exp_remark  = row.find('.exp_remark').val(); // 비고
 
             $.ajax({
 
-                url: "/ajax/ajax.expense_hist.php",
+                url: "/ajax/ajax.expense_hist",
                 type: "POST",
                 data: {
 
-                    "order_idx": $("#order_idx").val(),
-                    "order_no": $("#order_no").val(),
-                    "exp_id": exp_id, // 상품구분
-                    "exp_date": exp_date, // 일자
-                    "exp_amt": exp_amt, // 금액
-                    "exp_payment": exp_payment, // 결제방법
-                    "exp_comp": exp_comp, // 업체명
-                    "exp_sheet": exp_sheet, // 명세서
-                    "exp_remark": exp_remark // 비고
+                    "order_idx"   : $("#order_idx").val(),
+                    "order_no"    : $("#order_no").val(),
+                    "exp_id"      : exp_id, // 상품구분
+                    "exp_date"    : exp_date, // 일자
+                    "exp_amt"     : exp_amt, // 금액
+                    "exp_payment" : exp_payment, // 결제방법
+                    "exp_comp"    : exp_comp, // 업체명
+                    "exp_sheet"   : exp_sheet, // 명세서
+                    "exp_remark"  : exp_remark // 비고
 
                 },
                 success: function(rs) {
