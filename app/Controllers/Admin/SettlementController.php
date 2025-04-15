@@ -547,24 +547,52 @@ class SettlementController extends BaseController
     }
 
 
-    public function write_ok($order_idx = null)
-    {
-        try {
-            $data = $this->request->getPost();
+	public function write_ok()
+	{
+		try {
+			$data = $this->request->getPost();  // 배열로 들어옴
+			$order_idx = $data['order_idx'];
+			$order_no  = $data['order_no'],
 
+			$count = count($data['exp_id']);    // 항목 개수
 
-            $message = "수정되었습니다.";
-            return "<script>
-                alert('$message');
-                    parent.location.reload();
-                </script>";
-        } catch (Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
+			$model = new \App\Models\ExpenseModel();
+
+			for ($i = 0; $i < $count; $i++) {
+				$expData = [
+					'order_idx'   => $order_idx,
+					'order_no'    => $order_no,
+					'exp_date'    => $data['exp_date'][$i],
+					'exp_amt'     => $data['exp_amt'][$i],
+					'exp_payment' => $data['exp_payment'][$i],
+					'exp_comp'    => $data['exp_comp'][$i],
+					'exp_sheet'   => $data['exp_sheet'][$i],
+					'exp_remark'  => $data['exp_remark'][$i],
+					'exp_file'    => $data['exp_file'][$i],  // 파일명만 처리하는 경우
+				];
+
+				$idx = $data['idx'][$i];
+
+				if ($idx) {
+					$model->update($idx, $expData);
+				} else {
+					$model->insert($expData);
+				}
+			}
+
+			return "<script>
+				alert('저장이 완료되었습니다.');
+				parent.location.reload();
+			</script>";
+
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'result' => false,
+				'message' => $e->getMessage()
+			]);
+		}
+	}
+
 
     public function delete()
     {

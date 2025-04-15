@@ -53,44 +53,12 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_settlement/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name="frm" action="/AdmMaster/_settlement/write_ok/<?= $order_idx ?>" method="post" enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type="hidden" id="action_type" name="action_type" value="">
-
-                <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
-
-                <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
-                <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
-
-                <input type=hidden name="people_kids_cnt" value='<?= $people_kids_cnt ?>'>
-                <input type=hidden name="people_kids_price" value='<?= $people_kids_price ?>'>
-
-                <input type=hidden name="people_baby_cnt" value='<?= $people_baby_cnt ?>'>
-                <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
-
-                <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <input type=hidden name="order_price" value='<?= $order_price ?>'>
-                <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
-                <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
-                <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
-                <input type=hidden name="used_coupon_money" value='<?= $used_coupon_money ?>'>
-                <input type=hidden name="product_mileage" value='<?= $product_mileage ?>'>
-                <input type=hidden name="order_mileage" value='<?= $order_mileage ?>'>
-
-                <input type=hidden name="product_period" value='<?= $product_period ?>'>
-                <input type=hidden name="tour_period" value='<?= $tour_period ?>'>
-                <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
-                <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
-                <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
-                <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
-                <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
-                <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
-                <input type=hidden name="paydate" value='<?= $paydate ?>'>
+                <input type=text name="order_idx" value='<?= $order_idx ?>'>
+                <input type=text name="order_no"  value='<?= $order_no ?>'>
 
 
                 <div id="contents">
@@ -475,8 +443,9 @@
 									<?php foreach ($expense as $row) {	?>
 
                                     <tr>
-                                        <td style="text-align:center"><input type="text" name="exp_id[]"
-                                                id="exp_id_<?= $row['idx'] ?>"
+                                        <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>">                     
+                                        <td style="text-align:center"><input type="text" name="exp_id[]"                     
+										        id="exp_id_<?= $row['idx'] ?>"
                                                 value="<?= $row['exp_id'] ?>" class="exp_id input_txt"
                                                 style="width:90%"></td>
                                         <td style="text-align:center"><input type="text" name="exp_date[]"
@@ -512,7 +481,7 @@
                                                 class="exp_remark input_txt" style="width:90%"></td>
 
 										<td style="text-align:center; position: relative; max-width: 145px;" class="files">
-											<input type="file" style="width:100px;" rel="<?= $row['idx'] ?>" class="j_files" />
+											<input type="file" style="width:100px;" name="exp_file[]" rel="<?= $row['idx'] ?>" class="j_files" />
 											
 											<?
 											if ($row['ufile']) {
@@ -679,7 +648,9 @@
         $('#addExp').click(function() {
             // 새로운 행 생성
             var newRow = "";
-            newRow = '<tr>';
+            newRow  = '<tr>';
+			newRow += '<input type="hidden" name="idx[]" value="">                     
+
             newRow += '<td style="text-align:center"><input type="text" name="exp_id[]"      value="" class="exp_id input_txt"      style="width:90%"></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_date[]"    value="" class="exp_date input_txt datepicker"    style="width:90%" readonly ></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_amt[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
