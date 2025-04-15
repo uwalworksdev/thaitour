@@ -484,7 +484,7 @@
                                                 class="exp_remark input_txt" style="width:90%"></td>
 
 										<td style="text-align:center; position: relative; max-width: 145px;" class="files">
-											<input type="file" style="width:100px;" name="exp_file[]" rel="<?= $row['idx'] ?>" class="j_files" />
+											<input type="file" style="width:100px;" name="exp_file[]" rel="<?= $row['idx'] ?>" class="j_filesx" />
 											
 											<?php
 											if ($row['ufile']) {
