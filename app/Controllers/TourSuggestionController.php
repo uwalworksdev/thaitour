@@ -284,11 +284,11 @@ class TourSuggestionController extends BaseController
         $flag      = $_POST['flag'];
 
         if ($flag == "U") {
-            $data = ['onum' => 'onum + 1.5'];
+            $data = ['onum' => 'onum - 1.5'];
             $this->mainDispModel->update($id, $data);
             // write_log("UPDATE tbl_main_disp SET onum = onum + 1.5 WHERE code_idx = " . $id);
         } else if ($flag == "D") {
-            $data = ['onum' => 'onum - 1.5'];
+            $data = ['onum' => 'onum + 1.5'];
             $this->mainDispModel->update($id, $data);
             write_log("UPDATE tbl_main_disp SET onum = onum - 1.5 WHERE code_idx = " . $id);
         }
