@@ -419,7 +419,7 @@
 
                             </table>
 							
-							<br>
+							<!--br>
 							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
@@ -432,7 +432,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>인보이스 발송xxx</th>
+                                    <th>인보이스 발송</th>
                                     <td>
                                        <select name="order_status" class="select_txt">
                                             <option value="W" <?php if ($order_status == "W") { echo "selected";
@@ -479,7 +479,7 @@
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
 											   <button type="button" class="btn btn btn-danger" style="width: unset;" onclick="">호텔 메일발송</button><BR>
                                     </td>
-                                </tr>
+                                </tr-->
                                 
                                 </tbody>
                             </table>
