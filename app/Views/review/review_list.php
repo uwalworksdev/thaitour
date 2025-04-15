@@ -1,11 +1,21 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+<style>
+    .sub_visual {
+        background-image: url("/data/cate_banner/<?=$visual['ufile1']?>") !important;
+    }
+
+    @media screen and (max-width: 850px) {
+        .sub_visual {
+            background-image: url("/data/cate_banner/<?=$visual['ufile2']?>") !important;
+        }
+    }
+</style>
     <div id="container" class="sub list_container ">
         <section class="evaluate_section">
             <div class="inner">
                 <a href="<?= $visual['url'] ?>" id="myLink">
-                    <div class="sub_visual"
-                         style="background-image: url(/images/mypage/review_bg.png);"></div>
+                    <div class="sub_visual"></div>
                 </a>
                 <div class="sect_ttl_box">
                     <h2>Best 여행후기</h2>

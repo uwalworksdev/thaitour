@@ -3,8 +3,8 @@
 <section class="coupon_list">
     <div class="inner">
         <div class="coupon_visual">
-            <img src="/images/sub/coupon_main.png" alt="" class="only_w">
-            <img src="/images/sub/coupon_main_mo.png" alt="" class="only_m">
+            <img src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="" class="only_w">
+            <img src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="" class="only_m">
             <div class="visual_txt">
                 <p>할인쿠폰 전체 출력</p>
                 <span>전체 쿠폰 출력을 원하시면 클릭해주세요.</span>
