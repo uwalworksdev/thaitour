@@ -2,19 +2,19 @@
 <?php $this->section('content'); ?>
 <style>
     .sub_visual {
-        background-image: url("/data/cate_banner/<?=$visual['ufile1']?>") !important;
+        background-image: url("/data/cate_banner/<?=$bannerTop['ufile1']?>") !important;
     }
 
     @media screen and (max-width: 850px) {
         .sub_visual {
-            background-image: url("/data/cate_banner/<?=$visual['ufile2']?>") !important;
+            background-image: url("/data/cate_banner/<?=$bannerTop['ufile2']?>") !important;
         }
     }
 </style>
     <div id="container" class="sub list_container ">
         <section class="evaluate_section">
             <div class="inner">
-                <a href="<?= $visual['url'] ?>" id="myLink">
+                <a href="<?= $bannerTop['url'] ?>" id="myLink">
                     <div class="sub_visual"></div>
                 </a>
                 <div class="sect_ttl_box">
