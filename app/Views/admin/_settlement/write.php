@@ -311,7 +311,9 @@
                                 </tr>
                                 <tr>
                                     <th>예약현황</th>
+									<?php $status = get_deli_type();?>
                                     <td>
+									    <?=$status[$order_status]?>
                                         <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
