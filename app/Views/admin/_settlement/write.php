@@ -410,11 +410,11 @@
 							<div style="text-align:right;list-style-type: none;">
 								<li style="text-align:left;font-size:12pt;margin-top:20px; display: flex; align-items:center; gap: 5px">■ 지출정보
 									<a href="#!" class="btn btn-default" id="addExp"><span class="txt">추가+</span></a>
-									<a href="javascript:send_it()" class="btn btn-default" id="save"><span class="txt">저장</span></a>
 									<!--a href="javascript:confirm_pay();" class="btn btn-default"><span class="txt" id="confirmPay">확인</span></a-->
 									<div class="sum_txt" style="margin-left: 10px; display: flex; align-items: center; gap: 3px;">
 										총금액: <p class="red" style="color: red"><?=number_format($total_expense)?></p>원
 									</div>
+									<a href="javascript:send_it()" class="btn btn-default" id="save"><span class="txt">저장</span></a>
 								</li>
 							</div>
 							
