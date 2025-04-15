@@ -337,11 +337,11 @@
 										&emsp;2025-02-08 00:00
                                     </td>
 
-                                    <th>예약현황</th>
+                                    <th>정산현황</th>
                                     <td>
                                         <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
-                                            <option value="">결제현황</option>
+                                            <option value="">정산현황</option>
                                             <option value="W" <?php if ($order_status == "W") {
                                                 echo "selected";
                                             } ?>>예약접수
