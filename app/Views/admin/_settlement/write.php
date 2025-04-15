@@ -609,7 +609,7 @@
                 </div>
                 <!-- // contents -->
             </form>
-            <div class="inner cmt_area">
+            <!--div class="inner cmt_area">
                 <form action="" id="frm" name="com_form" class="com_form">
                     <input type="hidden" name="code" id="code" value="order">
                     <input type="hidden" name="r_code" id="r_code" value="order">
@@ -621,11 +621,11 @@
                     </div>
                 </form>
                 <div id="comment_list"></div>
-            </div>
+            </div-->
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
-    <div class="pop_common img_pop">
+    <!--div class="pop_common img_pop">
         <div class="pop_item" style="max-width: 600px;">
             <div class="pop_top" style="border-radius: 0px;">
                 <button
@@ -640,7 +640,7 @@
             </div>
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
-    </div>
+    </div-->
 
 <script>
     $(document).ready(function() {
