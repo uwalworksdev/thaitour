@@ -278,7 +278,7 @@ class TourSuggestionController extends BaseController
         $this->mainDispModel->whereIn('code_idx', $idx_val)->delete();
         return $this->response->setJSON(['result' => 'OK', 'message' => '정상적으로 제외되었습니다.']);
     }
-    public function seq_upd1() {
+    public function seq_upd1x() {
         $code      = $_POST['code'];
         $id        = $_POST['id'];
         $flag      = $_POST['flag'];
