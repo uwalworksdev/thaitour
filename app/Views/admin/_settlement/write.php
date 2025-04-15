@@ -421,6 +421,14 @@
 							font-size: 14px;
 							line-height: 30px;
 						}
+						
+						div.listBottom table.listTable tbody td button {
+							display: inline-block;
+							width: 70px;
+							height: 30px;
+							margin: 0 auto;
+							border: 1px solid rgb(204, 204, 204);
+						}						
                         </style>
 
 							<br>
