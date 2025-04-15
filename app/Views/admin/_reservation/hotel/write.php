@@ -215,7 +215,7 @@
 												    //echo $arr[$i] ."<br>"; 
 													$price = explode(":", $arr[$i]);
 													if($price[0] != "Extra 베드") {
-													   $temp .= $price[0] ." 기본가:" . $price[1] ."컨택가:" . $price[2] ."수익가:" . $price[3] ."Extra베드가:". $price[5] ."<br>";
+													   $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
 													}   
 												}
 												echo $temp;
