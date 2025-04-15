@@ -628,7 +628,7 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
-    <!--div class="pop_common img_pop">
+    <div class="pop_common img_pop">
         <div class="pop_item" style="max-width: 600px;">
             <div class="pop_top" style="border-radius: 0px;">
                 <button
@@ -643,7 +643,14 @@
             </div>
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
-    </div-->
+    </div>
+
+<script type="text/javascript">
+    function handlleShowPassport(img) {
+        $("#img_showing").attr("src", img);
+        $(".img_pop").show();
+    }
+</script>
 
 <script>
     $(document).ready(function() {
