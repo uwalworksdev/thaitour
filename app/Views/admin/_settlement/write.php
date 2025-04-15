@@ -332,9 +332,9 @@
                                             } ?>>예약취소
                                             </option>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <!--a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										&emsp;2025-02-08 00:00
+										&emsp;2025-02-08 00:00-->
                                     </td>
 
                                     <th>정산현황</th>
