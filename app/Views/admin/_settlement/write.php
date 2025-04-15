@@ -13,7 +13,6 @@
 
         function send_it() {
             var frm = document.frm;
-            document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
         }
