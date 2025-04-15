@@ -596,8 +596,8 @@ class SettlementController extends BaseController
 					log_message('debug', 'INSERT QUERY: ' . $model->db->getLastQuery());
 				}
 	        }
-	}
-
+	    }
+    }
 
     public function delete()
     {
