@@ -33,6 +33,9 @@ class Point extends BaseController
     public function TravelInfo() {
         return view('travel/travel-info');
     }
+    public function Infographic() {
+        return view('travel/infographic');
+    }
 
     
 }
