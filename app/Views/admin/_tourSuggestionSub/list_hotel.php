@@ -161,7 +161,7 @@ function updateRanksAndSend() {
 				   rankData += '|'+roomId+':'+rank;	
 				}   
 			});
-			alert(rankData);
+			//alert(rankData);
 
 			var message = "";
 			$.ajax({
