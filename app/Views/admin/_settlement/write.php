@@ -494,10 +494,10 @@
 										
 
 											<select name="exp_payment[]" id="exp_payment_<?= $row['idx'] ?>" class="exp_payment input_txt" style="width:100%" >
-												<option value="신용/체크카드"	<?if($row['exp_payment']=="신용/체크카드")    echo "selected";?> >신용/체크카드</option>
-												<option value="실시간계좌이체"	<?if($row['exp_payment']=="실시간계좌이체")   echo "selected";?> >실시간계좌이체</option>
-												<option value="무통장(가상계좌)"	<?if($row['exp_payment']=="무통장(가상계좌)") echo "selected";?> >무통장(가상계좌)</option>
-												<option value="무통장입금"		<?if($row['exp_payment']=="무통장입금")       echo "selected";?> >무통장입금</option>
+												<option value="신용/체크카드"	<?php if($row['exp_payment']=="신용/체크카드")    echo "selected";?> >신용/체크카드</option>
+												<option value="실시간계좌이체"	<?php if($row['exp_payment']=="실시간계좌이체")   echo "selected";?> >실시간계좌이체</option>
+												<option value="무통장(가상계좌)"	<?php if($row['exp_payment']=="무통장(가상계좌)") echo "selected";?> >무통장(가상계좌)</option>
+												<option value="무통장입금"		<?php if($row['exp_payment']=="무통장입금")       echo "selected";?> >무통장입금</option>
 											</select>
 										</td>
                                         <td style="text-align:center"><input type="text" name="exp_comp[]"
