@@ -30,6 +30,9 @@ class Point extends BaseController
     public function HotPlace() {
         return view('travel/hot-place');
     }
+    public function TravelInfo() {
+        return view('travel/travel-info');
+    }
 
     
 }
