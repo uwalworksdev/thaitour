@@ -5240,6 +5240,10 @@
     width: 270px;
 }
 
+.travel_info .head_list_product .input_search_box img {
+    cursor: pointer;
+}
+
 .travel_info .head_list_product .input_search_box input {
     border: none;
     outline: none;
