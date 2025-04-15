@@ -26,4 +26,10 @@ class Point extends BaseController
             'bannerMiddle' => $this->bannerModel->getBanners("5902", "middle"),
         ]);
     }
+
+    public function HotPlace() {
+        return view('travel/hot-place');
+    }
+
+    
 }
