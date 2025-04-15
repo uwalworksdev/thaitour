@@ -293,7 +293,7 @@ class TourSuggestionController extends BaseController
             // write_log("UPDATE tbl_main_disp SET onum = onum - 1.5 WHERE code_idx = " . $id);
         }
 
-        $mainDispList = $this->mainDispModel->where('code_no', $code)->orderBy('onum', 'ASC')->findAll();
+        $mainDispList = $this->mainDispModel->where('code_no', $code)->orderBy('onum', 'DESC')->findAll();
 
         $num = 0;
         foreach ($mainDispList as $item) {
