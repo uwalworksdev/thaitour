@@ -394,6 +394,26 @@
                                 </tbody>
                             </table>
 
+                        <style>
+                            div.listTop div.right_btn {
+                                float: right;
+                                display: flex;
+                                gap: 10px;
+                                /* margin-right: 200px; */
+                            }
+
+						.btn_download_passport {
+							background-color: #095995;
+							border-radius: 4px;
+							padding: 0px 5px;
+							color: #fff;
+							height: 30px;
+							display: inline-block;
+							font-size: 14px;
+							line-height: 30px;
+						}
+                        </style>
+
 							<br>
 							<?php
 							        $total_expense = 0; 
