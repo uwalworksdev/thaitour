@@ -402,6 +402,15 @@
                                 /* margin-right: 200px; */
                             }
 
+						#input_file_ko button {
+							margin-right: 10px;
+							padding: 3px 5px;
+							background-color: white;
+							border: 1px solid #ccc;
+							border-radius: 4px;
+							width: unset;
+						}
+
 						.btn_download_passport {
 							background-color: #095995;
 							border-radius: 4px;
