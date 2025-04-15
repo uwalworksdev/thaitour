@@ -325,7 +325,9 @@ endforeach;
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
+                                <div onclick="openNewWindow()" class="btn_group_movement">그룹이동</div>
                             </div>
+
                         </div>
 
 
