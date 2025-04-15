@@ -563,8 +563,9 @@ class SettlementController extends BaseController
 			$order_no  = $data['order_no'];
 
 			$files = $this->request->getFileMultiple('exp_file'); // <input type="file" name="exp_file[]">
+			$model = new \App\Models\ExpenseModel(); // 모델 선언
 
-			foreach ($files as $i => $file) {
+			foreach ($data['exp_id'] as $i => $val) {
 				$expData = [
 					'order_idx'   => $order_idx,
 					'order_no'    => $order_no,
@@ -577,13 +578,14 @@ class SettlementController extends BaseController
 					'exp_remark'  => $data['exp_remark'][$i],
 				];
 
-				// 파일이 유효한 경우에만 처리
-				if ($file && $file->isValid() && !$file->hasMoved()) {
+				// 파일이 있는 경우에만 처리
+				if (isset($files[$i]) && $files[$i]->isValid() && !$files[$i]->hasMoved()) {
+					$file = $files[$i];
 					$newName = $file->getRandomName();
 					$file->move($this->uploadPath, $newName);
 
 					$expData['ufile'] = $newName;                // 저장된 파일명
-					$expData['rfile'] = $file->getClientName();  // 사용자가 업로드한 원본 파일명
+					$expData['rfile'] = $file->getClientName();  // 원본 파일명
 				}
 
 				$idx = $data['idx'][$i];
@@ -595,9 +597,21 @@ class SettlementController extends BaseController
 					$model->insert($expData);
 					log_message('debug', 'INSERT QUERY: ' . $model->db->getLastQuery());
 				}
-	        }
-	    }
-    }
+			}
+
+			return "<script>
+				alert('저장이 완료되었습니다.');
+				parent.location.reload();
+			</script>";
+
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'result' => false,
+				'message' => $e->getMessage()
+			]);
+		}
+	}
+
 
     public function delete()
     {
