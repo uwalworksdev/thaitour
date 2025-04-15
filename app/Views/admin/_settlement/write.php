@@ -483,7 +483,7 @@
 										<td style="text-align:center; position: relative; max-width: 145px;" class="files">
 											<input type="file" style="width:100px;" name="exp_file[]" rel="<?= $row['idx'] ?>" class="j_files" />
 											
-											<?
+											<?php
 											if ($row['ufile']) {
 											?>
                                                 <div>
@@ -497,7 +497,7 @@
 													href="javascript:handlleShowPassport(`/data/pay/<?= $row['ufile'] ?>`)">보기</a>
 												<a class="btn_download_passport btn_del_passport" style="background-color:#FF0000;"
 													href="javascript:handlleDelJichool(`<?= $row['idx'] ?>`)">삭제</a>
-											<?
+											<?php
 											}
 											?>
 										
