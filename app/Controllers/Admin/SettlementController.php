@@ -30,10 +30,17 @@ class SettlementController extends BaseController
     private $orderGuide;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
-    private $uploadPath = ROOTPATH . "public/data/expense/";
+    private string $uploadPath;
 
     public function __construct()
     {
+        $this->uploadPath = ROOTPATH . "public/data/expense/";
+
+        // 필요시 디렉토리 체크
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0755, true);
+        }
+		
         $this->db = db_connect();
         $this->orderModel = model("OrdersModel");
         $this->orderSubModel = model("OrderSubModel");
