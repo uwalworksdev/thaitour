@@ -464,18 +464,16 @@
                                                 value="<?= $row['exp_date'] ?>"
                                                 class="exp_date input_txt datepicker" style="width:90%;" readonly ></td>
                                         
-										<td style="text-align:center"><input type="text" name="exp_amt_won[]"
-                                                id="exp_amt_won_<?= $row['idx'] ?>"
-                                                value="<?= $row['exp_amt_won'] ?>"
-                                                class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
-                                        
 										<td style="text-align:center"><input type="text" name="exp_amt_bath[]"
                                                 id="exp_amt_bath_<?= $row['idx'] ?>"
                                                 value="<?= $row['exp_amt_bath'] ?>"
                                                 class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
-                                        <td style="text-align:center">
 										
-
+										<td style="text-align:center"><input type="text" name="exp_amt_won[]"
+                                                id="exp_amt_won_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt_won'] ?>"
+                                                class="exp_amt input_txt" style="width:90%;text-align:right;" readonly></td>
+                                        
 											<select name="exp_payment[]" id="exp_payment_<?= $row['idx'] ?>" class="exp_payment input_txt" style="width:100%" >
 												<option value="신용/체크카드"	<?php if($row['exp_payment']=="신용/체크카드")    echo "selected";?> >신용/체크카드</option>
 												<option value="실시간계좌이체"	<?php if($row['exp_payment']=="실시간계좌이체")   echo "selected";?> >실시간계좌이체</option>
