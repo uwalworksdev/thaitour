@@ -178,7 +178,8 @@ class SpaController extends BaseController
 
             $real_price_bath   =  (int)($postData['lastPrice'] / $baht_thai);
             $real_price_won    =  $postData['lastPrice'];
-			
+            $order_price_bath  =  (int)($postData['lastPrice'] / $baht_thai);
+
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
@@ -201,6 +202,7 @@ class SpaController extends BaseController
                 'people_kids_cnt'               => $childrenQtySum,
                 'inital_price'                  => $postData['totalPrice'] ?? 0,
                 'order_price'                   => $postData['lastPrice'] ?? 0,
+				'order_price_bath'              => $order_price_bath,	
                 'real_price_bath'               => $real_price_bath,
                 'real_price_won'                => $real_price_won,
                 'order_memo'                    => $postData['order_memo'] ?? '',

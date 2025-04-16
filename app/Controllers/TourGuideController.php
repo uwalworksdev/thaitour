@@ -331,8 +331,9 @@ class TourGuideController extends BaseController
 	
             $real_price_bath   =  (int)($order_price / $baht_thai);
             $real_price_won    =  $order_price;
-
-            $orderData = [
+            $order_price_bath  =  (int)($order_price / $baht_thai);
+            
+			$orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
                 'order_user_last_name_en' => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
@@ -348,6 +349,7 @@ class TourGuideController extends BaseController
                 'inital_price' => $postData['totalPrice'] ?? 0,
                 'people_adult_cnt' => $postData['people_cnt'] ?? 0,
                 'order_price' => $postData['lastPrice'] ?? $postData['totalPrice'],
+				'order_price_bath' => $order_price_bath,
                 'real_price_bath' => $real_price_bath,
                 'real_price_won' => $real_price_won,
 				'baht_thai' => $baht_thai,

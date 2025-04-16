@@ -1689,6 +1689,8 @@ class Product extends BaseController
             $real_price_bath   =  (int)($order_price / $baht_thai);
             $real_price_won    =  $order_price;
 			
+			$order_price_bath  =  (int)($order_price / $baht_thai);
+			
             $data = [
                 "m_idx"                    => $m_idx,
                 "device_type"              => $device_type,
@@ -1719,7 +1721,7 @@ class Product extends BaseController
                 "order_memo"               => $order_memo,
                 "room_op_price_sale"       => $room_op_price_sale,
                 "order_price"              => $order_price,
-					
+				"order_price_bath"         => $order_price_bath,	
 				"price"                    => $price,
 				"price_won"                => $price_won,
 				"extra_won"                => $extra_won,
@@ -2503,6 +2505,8 @@ class Product extends BaseController
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
 			
+			$data['order_price_bath']  =  (int)($data['order_price'] / $data['baht_thai']);
+			
             $this->orderModel->save($data);
  
             $order_idx = $this->orderModel->getInsertID();
@@ -2890,6 +2894,7 @@ class Product extends BaseController
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
+            $data['order_price_bath']  =  (int)($data['order_price'] / $data['baht_thai']);
 
             $this->orderModel->save($data);
 
@@ -4727,6 +4732,7 @@ class Product extends BaseController
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
+            $data['order_price_bath']  =  (int)($data['order_price'] / $data['baht_thai']);
 
             $this->orderModel->save($data);
            // write_log("last orderModel query- " . $this->connect->getLastQuery());
@@ -5217,6 +5223,7 @@ class Product extends BaseController
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
+            $data['order_price_bath']  =  (int)($data['order_price'] / $data['baht_thai']);
 
             $this->orderModel->save($data);
 			//write_log("last query(tourPaymentOk)- ". $db->getLastQuery());
