@@ -633,7 +633,6 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_golf_end", "AjaxController::ajax_golf_end");
 	$routes->post("ajax_golfPrice_all", "AjaxController::ajax_golfPrice_all");
 	$routes->post("ajax_payment", "AjaxController::ajax_payment");
-	$routes->post("ajax_mainDisp_ranks", "AjaxController::ajax_mainDisp_ranks");
 });
 
 $routes->group("api", static function ($routes) {

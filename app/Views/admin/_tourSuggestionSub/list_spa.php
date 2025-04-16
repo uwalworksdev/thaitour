@@ -52,25 +52,44 @@
                                             </select>
                                             <select name="code" id="child_code_2" class="main_category"
                                                     onchange="getChildCode(this.value, 4);">
-                                                <option value="">2차분류</option>
-                                                <?php
-                                                foreach ($result2 as $row) {
-                                                    ?>
-                                                    <option value="<?= $row['code_no'] ?>" <?php if ($parent_code_1 == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
                                                     <?php
-                                                }
-                                                ?>
+                                                        if(count($result2) == 0){
+                                                    ?>     
+                                                        <option value="">2차분류</option>
+                                                    <?php
+                                                        }else{
+                                                    ?>
+                                                        <?php
+                                                            foreach ($result2 as $row) {
+                                                        ?>
+                                                            <option value="<?= $row['code_no'] ?>" <?php if ($parent_code_1 == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                
                                             </select>
                                             <select name="code" id="child_code_3" class="main_category"
                                                     onchange="getChildCode(this.value, 5);">
-                                                <option value="">3차분류</option>
-                                                <?php
-                                                foreach ($result3 as $row) {
-                                                    ?>
-                                                    <option value="<?= $row['code_no'] ?>" <?php if ($code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
                                                     <?php
-                                                }
-                                                ?>
+                                                        if(count($result3) == 0){
+                                                    ?>     
+                                                        <option value="">3차분류</option>
+                                                    <?php
+                                                        }else{
+                                                    ?>
+                                                        <?php
+                                                            foreach ($result3 as $row) {
+                                                        ?>
+                                                            <option value="<?= $row['code_no'] ?>" <?php if ($code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    <?php
+                                                        }
+                                                    ?>
                                             </select>
                                         </div>
                                     </div>
@@ -198,22 +217,43 @@
                                             "depth": depth
                                         },
                                         success: function (json, textStatus) {
+
+                                            var list = $.parseJSON(json);
+                                            var listLen = list.length;
+
                                             $("#isrt_code").val(parent_code_no);
                                             if (depth <= 3) {
                                                 $("#child_code_2").find('option').each(function () {
                                                     $(this).remove();
                                                 });
-                                                $("#child_code_2").append("<option value=''>2차분류</option>");
+
+                                                if(listLen == 0){
+                                                    $("#child_code_2").append("<option value=''>2차분류</option>");
+                                                }
+
                                                 $("#parent_code").val(parent_code_no);
                                                 // updateQueryParam("parent_code", parent_code_no);
                                             } else if (depth == 4) {
                                                 $("#child_code_3").find('option').remove();
-                                                $("#child_code_3").append("<option value=''>3차분류</option>");
+                                                if(listLen == 0){
+                                                    $("#child_code_3").append("<option value=''>3차분류</option>");
+                                                }
                                                 $("#parent_code_1").val(parent_code_no);
                                                 // updateQueryParam("parent_code_1", parent_code_no);
                                             } else {
                                                 $("#code").val(parent_code_no);
                                                 // updateQueryParam("code", parent_code_no);
+                                            }
+
+                                            var contentStr = "";
+                                            for (var i = 0; i < listLen; i++) {
+                                                contentStr = "";
+                                                if (list[i].code_status == "C") {
+                                                    contentStr = "[마감]";
+                                                } else if (list[i].code_status == "N") {
+                                                    contentStr = "[사용안함]";
+                                                }
+                                                $("#child_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
                                             }
 
                                             resetQueryParams();
@@ -233,20 +273,13 @@
                                             if(child_code_3 != ''){
                                                 updateQueryParam("code", child_code_3);
                                             }
-
-                                            var list = $.parseJSON(json);
-                                            var listLen = list.length;
-                                            var contentStr = "";
-                                            for (var i = 0; i < listLen; i++) {
-                                                contentStr = "";
-                                                if (list[i].code_status == "C") {
-                                                    contentStr = "[마감]";
-                                                } else if (list[i].code_status == "N") {
-                                                    contentStr = "[사용안함]";
-                                                }
-                                                $("#child_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                                            
+                                            if(listLen == 0){
+                                                get_prd_list(parent_code_no);
+                                            }else{
+                                                get_prd_list(list[0].code_no);
                                             }
-                                            get_prd_list(parent_code_no);
+
                                         },
                                         error: function (request, status, error) {
                                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

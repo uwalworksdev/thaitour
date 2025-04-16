@@ -30,9 +30,9 @@ class TourSuggestionController extends BaseController
     }
 
     public function getCodeData($code_, $gubun){
-        $code = $_GET['code'] ?? "";
         $parent_code = $_GET["parent_code"] ?? '';
         $parent_code_1 = $_GET["parent_code_1"] ?? '';
+        $code = $_GET['code'] ?? "";
 
         if(empty($parent_code)){
             $sql_code_first    = "select  * from tbl_code where parent_code_no = '$code_' and status = 'Y' order by onum asc, code_idx asc ";
@@ -43,6 +43,7 @@ class TourSuggestionController extends BaseController
 
         $product_code_no = '';
         $product_code_name = '';
+
         if ($code != "") {
             $sql1 = "select t1.*, t2.code_no as product_code_no from tbl_code t1
                 left join tbl_code t2 on t1.ref_product_code_idx = t2.code_no
@@ -64,6 +65,22 @@ class TourSuggestionController extends BaseController
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
+        if(empty($parent_code_1)){
+            if(count($result2) > 0){
+                $parent_code_1 = $result2[0]['code_no'];
+            }
+        }
+
+        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc, code_idx asc ";
+        $result3 = $this->connect->query($sql);
+        $result3 = $result3->getResultArray();
+
+        if(empty($code)){
+            if(count($result3) > 0){
+                $code = $result3[0]['code_no'];
+            }
+        }
+
         if ($code != '' && isset($code)) {
             $replace_code = $code;
         } else if ($parent_code_1 != '' && isset($parent_code_1)) {
@@ -73,21 +90,6 @@ class TourSuggestionController extends BaseController
         }else {
             $replace_code = $result[0]['code_no'];
         }
-
-        // $sql = "select  a.product_name, 
-        //                 a.product_idx, 
-        //                 a.product_code, 
-        //                 a.is_view,
-        //                 b.onum,
-        //                 b.code_idx
-        //                 from tbl_product_mst a, tbl_main_disp b
-        //                 where a.product_idx    =  b.product_idx
-        //                 and b.code_no    = '$replace_code' 
-        //                 order by b.onum asc, b.code_idx desc";
-
-        $sql     = "select  * from tbl_code where parent_code_no = '$parent_code_1' and status = 'Y' order by onum asc, code_idx asc ";
-        $result3 = $this->connect->query($sql);
-        $result3 = $result3->getResultArray();
 
         if($gubun == "hotel"){
             $fsql    = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1303' and status='Y' order by onum asc, code_idx desc";
