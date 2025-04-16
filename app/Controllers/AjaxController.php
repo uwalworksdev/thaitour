@@ -1850,7 +1850,7 @@ class AjaxController extends BaseController {
 		//$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 		//$MID            = "nicepay00m"; // 상점아이디
 		
-		$merchantKey     = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$merchantKey     = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키  
 		$MID             = $setting['nicepay_mid'];  //"nicepay00m"; // 상점아이디
 
 		$ediDate        = date("YmdHis");
