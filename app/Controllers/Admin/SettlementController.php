@@ -557,25 +557,33 @@ class SettlementController extends BaseController
 
 	public function write_ok()
 	{
+				
 		try {
+			
+		    //$setting   = homeSetInfo();
+            //$baht_thai = (float)($setting['baht_thai'] ?? 0);
+			
 			$data      = $this->request->getPost();  // 배열로 들어옴
 			$order_idx = $data['order_idx'];
 			$order_no  = $data['order_no'];
+            $baht_thai = $data['baht_thai'];
 
 			$files = $this->request->getFileMultiple('exp_file'); // <input type="file" name="exp_file[]">
 			$model = new \App\Models\ExpenseModel(); // 모델 선언
 
 			foreach ($data['exp_id'] as $i => $val) {
 				$expData = [
-					'order_idx'   => $order_idx,
-					'order_no'    => $order_no,
-					'exp_id'      => $data['exp_id'][$i],
-					'exp_date'    => $data['exp_date'][$i],
-					'exp_amt'     => $data['exp_amt'][$i],
-					'exp_payment' => $data['exp_payment'][$i],
-					'exp_comp'    => $data['exp_comp'][$i],
-					'exp_sheet'   => $data['exp_sheet'][$i],
-					'exp_remark'  => $data['exp_remark'][$i],
+					'order_idx'    => $order_idx,
+					'order_no'     => $order_no,
+					'exp_id'       => $data['exp_id'][$i],
+					'exp_date'     => $data['exp_date'][$i],
+					'exp_amt_won'  => $data['exp_amt_won'][$i],
+					'exp_amt_bath' => $data['exp_amt_bath'][$i],
+					'baht_thai'    => $baht_thai,
+					'exp_payment'  => $data['exp_payment'][$i],
+					'exp_comp'     => $data['exp_comp'][$i],
+					'exp_sheet'    => $data['exp_sheet'][$i],
+					'exp_remark'   => $data['exp_remark'][$i],
 				];
 
 				// 파일이 있는 경우에만 처리

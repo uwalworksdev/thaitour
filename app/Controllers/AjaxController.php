@@ -1751,6 +1751,7 @@ class AjaxController extends BaseController {
         $coupon_money   = $row->coupon_money;
         $point          = $row->point;
     
+	
 	    // 나이스페이
 		$setting        = homeSetInfo();
 		$merchantKey    = $setting['nicepay_key']; //"9TGrEiVAtgD9dxVp710YEIoab8/InI4gloDSq6ifxmAXktaFNfk3KtS5mKiX9IoMVUG4JZMu4TUk41qaXvfiyA=="; // 상점키
@@ -1850,7 +1851,7 @@ class AjaxController extends BaseController {
 		//$merchantKey    = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 		//$MID            = "nicepay00m"; // 상점아이디
 		
-		$merchantKey     = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+		$merchantKey     = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키  
 		$MID             = $setting['nicepay_mid'];  //"nicepay00m"; // 상점아이디
 
 		$ediDate        = date("YmdHis");
@@ -3763,4 +3764,39 @@ class AjaxController extends BaseController {
 		]);
 		
 	}
+	
+	public function ajax_calc_set()
+	{
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$order_idx = $this->request->getPost("order_idx");
+			$calc      = $this->request->getPost("calc");
+			
+		    $db->query("UPDATE tbl_order_mst SET calc = ? WHERE order_idx = ?", [$calc, $order_idx]);
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '정산 설정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '정산설정 완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+	}	
 }	

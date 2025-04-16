@@ -1,5 +1,9 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<?php
+		$setting   = homeSetInfo();
+		$baht_thai = (float)($setting['baht_thai']);
+?>
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -56,8 +60,9 @@
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type=text name="order_idx" value='<?= $order_idx ?>'>
-                <input type=text name="order_no"  value='<?= $order_no ?>'>
+                <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
+                <input type=hidden name="order_no"  value='<?= $order_no ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
 
 
                 <div id="contents">
@@ -232,10 +237,10 @@
                                     <td>
 										<input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> TH
+                                               style="width:150px" readonly /> TH
                                         <input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> 원
+                                               style="width:150px" readonly /> 원
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
@@ -282,14 +287,14 @@
 
                                     <th>정산현황</th>
                                     <td>
-                                        <select name="calc" class="select_txt">
+                                        <select name="calc" id="calc" class="select_txt">
                                             <option value="">선택</option>
                                             <option value="Y" <?php if ($calc == "Y") {
                                                 echo "selected";
                                             } ?>>정산완료
                                             </option>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="#!" class="btn btn-default" id="calc_set">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
                                     </td>
 
@@ -424,7 +429,8 @@
                             <colgroup>
                                 <col width="*">
                                 <col width="10%">
-                                <col width="13%">
+                                <col width="10%">
+                                <col width="10%">
                                 <col width="10%">
                                 <col width="12%">
                                 <col width="12%">
@@ -434,9 +440,10 @@
                             </colgroup>
                             <tbody id="payment">
 									<tr height="45">
-										<th style="text-align:center; text-wrap: nowrap">상품구분</th>
+										<th style="text-align:center; text-wrap: nowrap">지출구분</th>
 										<th style="text-align:center">일자</th>
-										<th style="text-align:center">금액</th>
+										<th style="text-align:center">금액(바트)</th>
+										<th style="text-align:center">금액(원)</th>
 										<th style="text-align:center">결제방법</th>
 										<th style="text-align:center">업체명</th>
 										<th style="text-align:center">명세서</th>
@@ -457,13 +464,17 @@
                                                 value="<?= $row['exp_date'] ?>"
                                                 class="exp_date input_txt datepicker" style="width:90%;" readonly ></td>
                                         
-										<td style="text-align:center"><input type="text" name="exp_amt[]"
-                                                id="exp_amt_<?= $row['idx'] ?>"
-                                                value="<?= $row['exp_amt'] ?>"
+										<td style="text-align:center"><input type="text" name="exp_amt_bath[]"
+                                                id="exp_amt_bath_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt_bath'] ?>"
                                                 class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
-                                        <td style="text-align:center">
 										
-
+										<td style="text-align:center"><input type="text" name="exp_amt_won[]"
+                                                id="exp_amt_won_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt_won'] ?>"
+                                                class="exp_amt input_txt" style="width:90%;text-align:right;" readonly></td>
+                                        
+                                        <td style="text-align:center">
 											<select name="exp_payment[]" id="exp_payment_<?= $row['idx'] ?>" class="exp_payment input_txt" style="width:100%" >
 												<option value="신용/체크카드"	<?php if($row['exp_payment']=="신용/체크카드")    echo "selected";?> >신용/체크카드</option>
 												<option value="실시간계좌이체"	<?php if($row['exp_payment']=="실시간계좌이체")   echo "selected";?> >실시간계좌이체</option>
@@ -646,6 +657,45 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
+<script>
+$(document).ready(function() {
+    $('#calc_set').on('click', function(e) {
+        e.preventDefault(); // 링크 기본 동작 방지 (선택사항)
+		
+		var order_idx = $("#order_idx").val();
+        var calc      = $("#calc").val();
+
+		// 원하는 작업 수행
+		if (!confirm("선택한 예약을 정산처리 하시겠습니까?"))
+		return false;
+
+		var message = "";
+		$.ajax({
+
+			url: "/ajax/ajax_calc_set",
+			type: "POST",
+			data: {
+				"order_idx" : order_idx,
+				"calc"      : calc,
+				"baht_thai"	: $("#baht_thai").val()
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function(data, textStatus) {
+				message = data.message;
+				alert(message);
+				location.reload();
+			},
+			error:function(request,status,error){
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});        
+        // 예: Ajax 요청, 모달 띄우기, 클래스 토글 등등
+    });
+});
+</script>
+
 <script type="text/javascript">
     function handlleShowPassport(img) {
         $("#img_showing").attr("src", img);
@@ -819,7 +869,7 @@
                 return false;
 
             var row         = $(this).closest('tr');
-            var exp_id      = row.find('.exp_id').val(); // 상품구분
+            var exp_id      = row.find('.exp_id').val(); // 지출구분
             var exp_date    = row.find('.exp_date').val(); // 일자
             var exp_amt     = row.find('.exp_amt').val(); // 금액
             var exp_payment = row.find('.exp_payment').val(); // 결제방법
@@ -835,7 +885,7 @@
 
                     "order_idx"   : $("#order_idx").val(),
                     "order_no"    : $("#order_no").val(),
-                    "exp_id"      : exp_id, // 상품구분
+                    "exp_id"      : exp_id, // 지출구분
                     "exp_date"    : exp_date, // 일자
                     "exp_amt"     : exp_amt, // 금액
                     "exp_payment" : exp_payment, // 결제방법
