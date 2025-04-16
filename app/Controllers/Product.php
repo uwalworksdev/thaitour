@@ -3888,6 +3888,12 @@ class Product extends BaseController
 
                 $product_idx = $this->carsPrice->find($cp_idx)["product_idx"];
                 $product_name = $this->productModel->getById($product_idx)["product_name"];
+
+                $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+				
+				$real_price_bath   =  (int)($order_price / $baht_thai);
+				$real_price_won    =  $order_price;
+				
                 $data = [
                     "m_idx" => $m_idx,
                     "device_type" => $device_type,
@@ -3911,6 +3917,8 @@ class Product extends BaseController
                     "people_kids_cnt" => $child_cnt,
                     "inital_price" => $inital_price,
                     "order_price" => $order_price,
+				    "real_price_bath" => $real_price_bath,
+				    "real_price_won" => $real_price_won,
                     "order_date" => Time::now('Asia/Seoul', 'en_US'),
                     "departure_area" => $departure_area,
                     "destination_area" => $destination_area,
@@ -3918,6 +3926,7 @@ class Product extends BaseController
                     "return_date" => $return_date,
                     "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
                     "order_status" => $order_status,
+					"$baht_thai" => $baht_thai,
                     "encode" => "Y",
                     "ip" => $ipAddress,
 					"device_type" =>  get_device(),
