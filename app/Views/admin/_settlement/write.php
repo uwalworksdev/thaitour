@@ -737,7 +737,8 @@ $(document).ready(function() {
 
             newRow += '<td style="text-align:center"><input type="text" name="exp_id[]"      value="" class="exp_id input_txt"      style="width:90%"></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_date[]"    value="" class="exp_date input_txt datepicker"    style="width:90%" readonly ></td>';
-            newRow += '<td style="text-align:center"><input type="text" name="exp_amt[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_amt_bath[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_amt_won[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
             newRow += '<td style="text-align:center">';
 
 			newRow += '<select name="exp_payment[]" class="exp_payment input_txt" style="width:90%" ><option value="신용/체크카드">신용/체크카드</option><option value="실시간계좌이체">실시간계좌이체</option><option value="무통장(가상계좌)">무통장(가상계좌)</option><option value="무통장입금">무통장입금</option></select>';
