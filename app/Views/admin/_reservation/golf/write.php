@@ -86,7 +86,7 @@
                 <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
                 <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
                 <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
+                <input type=hidden name="order_no" id="order_no" value='<?= $order_no ?>'>
                 <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
@@ -539,6 +539,61 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
+	<script>
+	$(document).ready(function () {
+		$('#price_update').on('click', function (e) {
+			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
+
+			if (!confirm('결제금액을 수정 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_price_update",
+				type : "POST",
+				data : {
+					"order_no"        : $("#order_no").val(),
+					"real_price_bath" : $("#real_price_bath").val(),
+					"real_price_won"  : $("#real_price_won").val()
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		});
+	});
+    </script>
+	
+	<script>  
+	$(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$("#real_price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+			var bath = parseFloat($("#real_price_bath").val().replace(/,/g, '')) || 0;
+
+			// 환산된 원화 계산
+			var won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$("#real_price_won").val(won.toLocaleString());
+		});
+	});
+	</script>
+	
     <script>
 	function allimtalk(order_no, alimCode)
 	{
