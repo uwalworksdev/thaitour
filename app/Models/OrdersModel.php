@@ -329,6 +329,7 @@ class OrdersModel extends Model
         , AES_DECRYPT(UNHEX(local_phone),     	        '$private_key') local_phone 
         , AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') order_user_first_name_en 
         , AES_DECRYPT(UNHEX(order_user_last_name_en),   '$private_key') order_user_last_name_en 
+		, AES_DECRYPT(UNHEX(order_passport_number),     '$private_key') order_passport_number 
         FROM tbl_order_mst where order_idx='" . $order_idx . "' ";
         return $this->db->query($sql_d)->getRowArray();
     }
