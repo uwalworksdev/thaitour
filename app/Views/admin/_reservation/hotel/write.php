@@ -340,12 +340,12 @@
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
-										<input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= number_format($order_price / $baht_thai)?>" class="input_txt price"
+										<input type="text" id="real_price_bath" name="real_price_bath"
+                                               value="<?= number_format($real_price_bath)?>" class="input_txt price"
                                                style="width:150px;text-align:right;"/> TH
-                                        <input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= number_format($order_price) ?>" class="input_txt price"
-                                               style="width:150px;text-align:right;"/> 원
+                                        <input type="text" id="real_price_won" name="real_price_won"
+                                               value="<?= number_format($real_price_won) ?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" readonly/> 원
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
@@ -554,6 +554,26 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+
+	<script>  
+	$(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($('#baht_thai').val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$('#real_price_bath').on('input', function () {
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+			var bath = parseFloat($("#real_price_bath").val().replace(/,/g, '')) || 0;
+
+			// 환산된 원화 계산
+			var won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$('#real_price_bath").val(won.toLocaleString());
+		});
+	});
+	</script>
 
     <script>
 	function allimtalk(order_no, alimCode)
