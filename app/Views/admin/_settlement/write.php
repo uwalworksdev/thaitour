@@ -424,7 +424,8 @@
                             <colgroup>
                                 <col width="*">
                                 <col width="10%">
-                                <col width="13%">
+                                <col width="10%">
+                                <col width="10%">
                                 <col width="10%">
                                 <col width="12%">
                                 <col width="12%">
@@ -434,9 +435,10 @@
                             </colgroup>
                             <tbody id="payment">
 									<tr height="45">
-										<th style="text-align:center; text-wrap: nowrap">상품구분</th>
+										<th style="text-align:center; text-wrap: nowrap">지출구분</th>
 										<th style="text-align:center">일자</th>
-										<th style="text-align:center">금액</th>
+										<th style="text-align:center">금액(바트)</th>
+										<th style="text-align:center">금액(원)</th>
 										<th style="text-align:center">결제방법</th>
 										<th style="text-align:center">업체명</th>
 										<th style="text-align:center">명세서</th>
@@ -457,9 +459,14 @@
                                                 value="<?= $row['exp_date'] ?>"
                                                 class="exp_date input_txt datepicker" style="width:90%;" readonly ></td>
                                         
-										<td style="text-align:center"><input type="text" name="exp_amt[]"
-                                                id="exp_amt_<?= $row['idx'] ?>"
-                                                value="<?= $row['exp_amt'] ?>"
+										<td style="text-align:center"><input type="text" name="exp_amt_won[]"
+                                                id="exp_amt_won_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt_won'] ?>"
+                                                class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
+                                        
+										<td style="text-align:center"><input type="text" name="exp_amt_bath[]"
+                                                id="exp_amt_bath_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt_bath'] ?>"
                                                 class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
                                         <td style="text-align:center">
 										
@@ -857,7 +864,7 @@ $(document).ready(function() {
                 return false;
 
             var row         = $(this).closest('tr');
-            var exp_id      = row.find('.exp_id').val(); // 상품구분
+            var exp_id      = row.find('.exp_id').val(); // 지출구분
             var exp_date    = row.find('.exp_date').val(); // 일자
             var exp_amt     = row.find('.exp_amt').val(); // 금액
             var exp_payment = row.find('.exp_payment').val(); // 결제방법
@@ -873,7 +880,7 @@ $(document).ready(function() {
 
                     "order_idx"   : $("#order_idx").val(),
                     "order_no"    : $("#order_no").val(),
-                    "exp_id"      : exp_id, // 상품구분
+                    "exp_id"      : exp_id, // 지출구분
                     "exp_date"    : exp_date, // 일자
                     "exp_amt"     : exp_amt, // 금액
                     "exp_payment" : exp_payment, // 결제방법
