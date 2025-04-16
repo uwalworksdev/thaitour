@@ -635,6 +635,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_payment", "AjaxController::ajax_payment");
 	$routes->post("ajax_mainDisp_ranks", "AjaxController::ajax_mainDisp_ranks");
 	$routes->post("ajax_calc_set", "AjaxController::ajax_calc_set");
+	$routes->post("ajax_price_update", "AjaxController::ajax_price_update");
 	
 });
 

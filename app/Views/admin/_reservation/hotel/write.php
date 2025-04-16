@@ -87,7 +87,7 @@
                 <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
                 <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
                 <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
+                <input type=hidden name="order_no" id="order_no" value='<?= $order_no ?>'>
                 <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
@@ -341,10 +341,10 @@
                                     <th>실 결제금액</th>
                                     <td>
 										<input type="text" id="real_price_bath" name="real_price_bath"
-                                               value="<?= number_format($real_price_bath)?>" class="input_txt price"
+                                               value="<?= number_format($order_price_bath)?>" class="input_txt price"
                                                style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
                                         <input type="text" id="real_price_won" name="real_price_won"
-                                               value="<?= number_format($real_price_won) ?>" class="input_txt price"
+                                               value="<?= number_format($order_price) ?>" class="input_txt price"
                                                style="width:150px;text-align:right;" readonly/> 원
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
@@ -356,9 +356,9 @@
                                         ?>&emsp;
 
 										<?php if($order_status == "W") { ?>
-                                        <a href="javascript:send_it()" class="btn btn-default">
+                                        <a href="#!" class="btn btn-default" id="price_update" >
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
-										&emsp;2025-02-08 00:00 <br>
+										&emsp;<?=$order_r_date?> <br>
 										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
 										<?php } ?>
                                     </td>
@@ -556,7 +556,41 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+    
+	<script>
+	$(document).ready(function () {
+		$('#price_update').on('click', function (e) {
+			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
 
+			if (!confirm('결제금액을 수정 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_price_update",
+				type : "POST",
+				data : {
+					"order_no"        : $("#order_no").val(),
+					"real_price_bath" : $("#real_price_bath").val(),
+					"real_price_won"  : $("#real_price_won").val()
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		});
+	});
+    </script>
+	
 	<script>  
 	$(document).ready(function () {
 		// 환율 값 가져오기

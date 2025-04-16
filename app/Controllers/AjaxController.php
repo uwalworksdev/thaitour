@@ -3798,5 +3798,42 @@ class AjaxController extends BaseController {
 				'message' => $e->getMessage()
 			]);
 		}		
-	}	
+	}
+	
+	public function ajax_price_update()
+    {
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$order_no        = $this->request->getPost("order_no");
+			$real_price_bath = $this->request->getPost("real_price_bath");
+			$real_price_won  = $this->request->getPost("real_price_won");
+						
+		    $db->query("UPDATE tbl_order_mst SET order_price = ?, order_price_bath WHERE order_no = ?", [$real_price_won, $real_price_bath, $order_no]);
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '결제금액 수정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '결제금액 수정완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+    }
+	
 }	
