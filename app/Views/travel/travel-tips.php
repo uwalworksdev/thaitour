@@ -18,7 +18,7 @@
     <div class="sec_01">
         <div class="inner">
             <div class="header_sec">
-                <h3 class="title_sec"><i style="color : #29459f">더투어랩</i> 나침반</h3>
+                <h3 class="title_sec"><i style="color : #29459f">더투어랩</i> 테마여행</h3>
                 <p class="sub_title_sec">관광지부터 핫 플레이스, 맛집까지 정보가 한곳에</p>
             </div>
             <div class="only_web content_sec">
@@ -104,7 +104,7 @@
     <div class="sec_02">
         <div class="inner">
             <div class="header_sec">
-                <h3 class="title_sec">핫 플레이스</h3>
+                <h3 class="title_sec">추천 여행지</h3>
                 <a href="/travel-tips/hot-place" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
