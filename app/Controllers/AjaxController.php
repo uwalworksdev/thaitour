@@ -3808,10 +3808,11 @@ class AjaxController extends BaseController {
 
 		try {
 			$order_no        = $this->request->getPost("order_no");
-			$real_price_bath = $this->request->getPost("real_price_bath");
-			$real_price_won  = $this->request->getPost("real_price_won");
+			$real_price_bath = (float) str_replace(',', '', $this->request->getPost("real_price_bath"));
+			$real_price_won  = (float) str_replace(',', '', $this->request->getPost("real_price_won"));
+
 						
-		    $db->query("UPDATE tbl_order_mst SET order_price = ?, order_price_bath WHERE order_no = ?", [$real_price_won, $real_price_bath, $order_no]);
+		    $db->query("UPDATE tbl_order_mst SET real_price_won = ?, real_price_bath WHERE order_no = ?", [$real_price_won, $real_price_bath, $order_no]);
 			
 			if ($db->transStatus() === false) {
 				$db->transRollback();
