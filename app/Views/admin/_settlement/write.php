@@ -767,7 +767,6 @@ $(document).ready(function () {
             newRow += '<td style="text-align:center"><input type="text" name="exp_comp[]"    value="" class="exp_comp input_txt"    style="width:90%"></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_sheet[]"   value="" class="exp_sheet input_txt"   style="width:90%"></td>';
             newRow += '<td style="text-align:center"><input type="text" name="exp_remark[]"  value="" class="exp_remark input_txt"  style="width:90%"></td>';
-			newRow += '<td style="text-align:center">등록먼저 해주세요.</td>';
             newRow += '<td style="text-align:center"><input type="file" style="width:100px;" name="exp_file[]" class="j_filesx" />';
 
             //newRow += '<button type="button" class="expConfirm">확인</button>';
