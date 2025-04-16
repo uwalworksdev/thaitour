@@ -176,8 +176,8 @@ class SpaController extends BaseController
                 $group_no  = ""; 
             }
 
-            $real_price_bath   =  (int)($order_price / $baht_thai);
-            $real_price_won    =  $order_price;
+            $real_price_bath   =  (int)($postData['lastPrice'] / $baht_thai);
+            $real_price_won    =  $postData['lastPrice'];
 			
 			$orderData = [
                 'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
