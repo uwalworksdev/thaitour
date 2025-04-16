@@ -63,6 +63,7 @@
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
