@@ -747,6 +747,23 @@ $(document).ready(function () {
 </script>
 
 <script>
+$(document).on('input', 'input[name="exp_amt_bath[]"], input[name="exp_amt_won[]"]', function () {
+    let val = $(this).val();
+
+    // 숫자와 소수점만 허용 (0~9와 .)
+    val = val.replace(/[^0-9.]/g, '');
+
+    // 소수점이 여러 개 들어가지 않도록 처리
+    let parts = val.split('.');
+    if (parts.length > 2) {
+        val = parts[0] + '.' + parts[1];
+    }
+
+    $(this).val(val);
+});
+</script>
+
+<script>
     $(document).ready(function() {
         // 지출정보 추가 버튼 클릭 이벤트
         $('#addExp').click(function() {
