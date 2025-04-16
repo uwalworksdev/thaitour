@@ -436,7 +436,7 @@
                                 <col width="12%">
                                 <col width="12%">
 								<col width="5%">
-                                <col width="8%">
+                                <col width="5%">
                             </colgroup>
                             <tbody id="payment">
 									<tr height="45">
