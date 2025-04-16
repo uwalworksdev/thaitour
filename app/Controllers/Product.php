@@ -2888,6 +2888,9 @@ class Product extends BaseController
 
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
+            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            $data['real_price_won']    =  $data['order_price'];
+
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
