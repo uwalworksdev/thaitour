@@ -727,6 +727,26 @@ $(document).ready(function() {
 </script>
 
 <script>
+$(document).ready(function () {
+    // 환율 계산 함수
+    function applyExchangeRate($input) {
+        var baht_thai = parseFloat($('#baht_thai').val());
+        var val = $input.val().replace(/,/g, '');
+        var bath = parseFloat(val) || 0;
+        var won = Math.round(bath * baht_thai);
+
+        // 같은 행에서 won 필드 찾아서 값 넣기
+        $input.closest('tr').find('input[name="exp_amt_won[]"]').val(won.toLocaleString());
+    }
+
+    // 동적 포함 모두 적용
+    $(document).on('input', 'input[name="exp_amt_bath[]"]', function () {
+        applyExchangeRate($(this));
+    });
+});
+</script>
+
+<script>
     $(document).ready(function() {
         // 지출정보 추가 버튼 클릭 이벤트
         $('#addExp').click(function() {
