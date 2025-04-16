@@ -657,7 +657,7 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
-<script>
+<script>  
 $(document).ready(function () {
     // 환율 값 가져오기
     var baht_thai = parseFloat($('#baht_thai').val());
