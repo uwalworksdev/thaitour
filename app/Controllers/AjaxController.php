@@ -1751,6 +1751,7 @@ class AjaxController extends BaseController {
         $coupon_money   = $row->coupon_money;
         $point          = $row->point;
     
+	
 	    // 나이스페이
 		$setting        = homeSetInfo();
 		$merchantKey    = $setting['nicepay_key']; //"9TGrEiVAtgD9dxVp710YEIoab8/InI4gloDSq6ifxmAXktaFNfk3KtS5mKiX9IoMVUG4JZMu4TUk41qaXvfiyA=="; // 상점키
