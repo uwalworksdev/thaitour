@@ -326,14 +326,14 @@
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
+                                        <?= number_format( $order_price) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
                                         +
                                         <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
                                         <?php } ?> <br>
 										바트계산 : 5,891 TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용) + 589원 = 5,980 원
