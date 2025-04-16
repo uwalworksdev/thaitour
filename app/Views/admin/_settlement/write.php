@@ -56,8 +56,8 @@
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type=text name="order_idx" value='<?= $order_idx ?>'>
-                <input type=text name="order_no"  value='<?= $order_no ?>'>
+                <input type=hidden name="order_idx" value='<?= $order_idx ?>'>
+                <input type=hidden name="order_no"  value='<?= $order_no ?>'>
 
 
                 <div id="contents">
@@ -232,10 +232,10 @@
                                     <td>
 										<input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> TH
+                                               style="width:150px" readonly /> TH
                                         <input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= $order_confirm_price ?>" class="input_txt price"
-                                               style="width:150px"/> 원
+                                               style="width:150px" readonly /> 원
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
