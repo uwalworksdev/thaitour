@@ -655,7 +655,7 @@ $(document).ready(function() {
         var calc      = $("#calc").val();
         // 원하는 작업 수행
 		
-		if (!confirm("선택한 일정전체 내용을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
+		if (!confirm("선택한 예약을 정산처리 하시겠습니까?"))
 		return false;
 
 		var message = "";
