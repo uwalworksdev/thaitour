@@ -658,6 +658,29 @@
     </div>
 
 <script>
+$(document).ready(function () {
+    // 환율 값 가져오기
+    var baht_thai = parseFloat($('#baht_thai').val());
+
+    // .exp_amt 클래스의 input 값이 변경될 때
+    $('.exp_amt').on('input', function () {
+        // 현재 입력된 baht 필드의 ID에서 인덱스 추출
+        var id = $(this).attr('id'); // 예: exp_amt_bath_5
+        var idx = id.replace('exp_amt_bath_', ''); // => 5
+
+        // 입력된 값 가져오기
+        var bath = parseFloat($(this).val().replace(/,/g, '')) || 0;
+
+        // 환산된 원화 계산
+        var won = Math.round(bath * baht_thai);
+
+        // 해당 인덱스의 원화 input에 값 넣기
+        $('#exp_amt_won_' + idx).val(won.toLocaleString());
+    });
+});
+</script>
+
+<script>
 $(document).ready(function() {
     $('#calc_set').on('click', function(e) {
         e.preventDefault(); // 링크 기본 동작 방지 (선택사항)
