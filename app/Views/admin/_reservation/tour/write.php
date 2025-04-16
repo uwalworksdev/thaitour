@@ -87,7 +87,7 @@
                 <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
                 <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
                 <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
+                <input type=hidden name="order_no" id="order_no" value='<?= $order_no ?>'>
                 <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
