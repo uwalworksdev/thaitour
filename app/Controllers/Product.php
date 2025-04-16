@@ -4713,6 +4713,9 @@ class Product extends BaseController
 
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
+            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            $data['real_price_won']    =  $data['order_price'];
+
             $this->orderModel->save($data);
            // write_log("last orderModel query- " . $this->connect->getLastQuery());
             $order_idx = $this->orderModel->getInsertID();
@@ -5199,6 +5202,9 @@ class Product extends BaseController
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
             $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+
+            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            $data['real_price_won']    =  $data['order_price'];
 
             $this->orderModel->save($data);
 			//write_log("last query(tourPaymentOk)- ". $db->getLastQuery());
