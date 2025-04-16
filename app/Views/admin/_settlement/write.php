@@ -769,7 +769,7 @@ $(document).ready(function () {
             newRow += '<td style="text-align:center"><input type="text" name="exp_remark[]"  value="" class="exp_remark input_txt"  style="width:90%"></td>';
 			newRow += '<td style="text-align:center">등록먼저 해주세요.</td>';
             newRow += '<td style="text-align:center">';
-            newRow += '<button type="button" class="expConfirm">확인</button>';
+            //newRow += '<button type="button" class="expConfirm">확인</button>';
             newRow += '<button type="button" onclick="exp_delete();" class="expRemove">삭제</button>';
             newRow += '</td>';
             newRow += '</tr>';
