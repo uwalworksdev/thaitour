@@ -342,7 +342,7 @@
                                     <td>
 										<input type="text" id="real_price_bath" name="real_price_bath"
                                                value="<?= number_format($real_price_bath)?>" class="input_txt price"
-                                               style="width:150px;text-align:right;"/> TH
+                                               style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
                                         <input type="text" id="real_price_won" name="real_price_won"
                                                value="<?= number_format($real_price_won) ?>" class="input_txt price"
                                                style="width:150px;text-align:right;" readonly/> 원
