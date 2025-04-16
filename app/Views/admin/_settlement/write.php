@@ -1,5 +1,9 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<?php
+		$setting   = homeSetInfo();
+		$baht_thai = (float)($setting['baht_thai']);
+?>
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -58,6 +62,7 @@
                 <input type=hidden name="pg" value='<?= $pg ?>'>
                 <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
                 <input type=hidden name="order_no"  value='<?= $order_no ?>'>
+                <input type=text name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
 
 
                 <div id="contents">
