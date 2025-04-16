@@ -126,7 +126,124 @@
 
                                 </td>
                             </tr>
+							
+<script>
+function moveUpRoom(btn) {
+    var row = $(btn).closest("tr");
+    var prev = row.prev("tr");
 
+    if (prev.length) {
+        row.insertBefore(prev);
+        updateRanksAndSend();
+    }
+}
+
+function moveDownRoom(btn) {
+    var row = $(btn).closest("tr");
+    var next = row.next("tr");
+
+    if (next.length) {
+        row.insertAfter(next);
+        updateRanksAndSend();
+    }
+}
+
+function updateRanksAndSend() {
+			let rankData = "";
+
+			$("#pick_select_layer tbody tr").each(function(index) {
+				var code_idx = $(this).data("idx");
+				var rank = index + 1;
+
+				if(rankData == "") {
+				   rankData  = code_idx+':'+rank+'|';	
+				} else {   
+				   rankData += '|'+code_idx+':'+rank;	
+				}   
+			});
+			//alert(rankData);
+
+			var message = "";
+			$.ajax({
+
+				url: "/ajax/ajax_mainDisp_ranks",
+				type: "POST",
+				data: {
+                        "rankData" : rankData
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					//alert(message);
+					//location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});				
+	
+}
+</script>
+
+<script>
+function changePosition(groupCode, itemId, direction) {
+    //if (!confirm("정렬 순서를 변경하시겠습니까?")) return false;
+
+    fetch("<?= site_url('position/change') ?>", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "<?= csrf_hash() ?>"
+        },
+        body: JSON.stringify({
+            groupCode: groupCode,
+            itemId: itemId,
+            direction: direction
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert(data.message || "변경에 실패했습니다.");
+        }
+    });
+
+    return false;
+}
+</script>
+
+<script>
+function positionUPx(groupCode, itemId, direction) {
+    if (!confirm("정말 순서를 변경하시겠습니까?")) return false;
+
+    fetch('/your-api-url', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            groupCode: groupCode,
+            itemId: itemId,
+            direction: direction
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            location.reload(); // 순서 변경 후 새로고침
+        } else {
+            alert('순서 변경에 실패했습니다.');
+        }
+    });
+
+    return false; // a 링크 이동 막기
+}
+</script>
+         
                             <script>                                
 
                                 function getChildCode(parent_code_no, depth) {

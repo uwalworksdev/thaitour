@@ -127,6 +127,66 @@
                                 </td>
                             </tr>
 
+							<script>
+							function moveUpRoom(btn) {
+								var row = $(btn).closest("tr");
+								var prev = row.prev("tr");
+
+								if (prev.length) {
+									row.insertBefore(prev);
+									updateRanksAndSend();
+								}
+							}
+
+							function moveDownRoom(btn) {
+								var row = $(btn).closest("tr");
+								var next = row.next("tr");
+
+								if (next.length) {
+									row.insertAfter(next);
+									updateRanksAndSend();
+								}
+							}
+
+							function updateRanksAndSend() {
+										let rankData = "";
+
+										$("#pick_select_layer tbody tr").each(function(index) {
+											var code_idx = $(this).data("idx");
+											var rank = index + 1;
+
+											if(rankData == "") {
+											   rankData  = code_idx+':'+rank+'|';	
+											} else {   
+											   rankData += '|'+code_idx+':'+rank;	
+											}   
+										});
+										//alert(rankData);
+
+										var message = "";
+										$.ajax({
+
+											url: "/ajax/ajax_mainDisp_ranks",
+											type: "POST",
+											data: {
+													"rankData" : rankData
+											},
+											dataType: "json",
+											async: false,
+											cache: false,
+											success: function (data, textStatus) {
+												message = data.message;
+												//alert(message);
+												//location.reload();
+											},
+											error: function (request, status, error) {
+												alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+											}
+										});				
+								
+							}
+							</script>
+
                             <script>                                
 
                                 function getChildCode(parent_code_no, depth) {

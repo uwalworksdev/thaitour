@@ -30,9 +30,17 @@ class SettlementController extends BaseController
     private $orderGuide;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    private string $uploadPath;
 
     public function __construct()
     {
+        $this->uploadPath = ROOTPATH . "public/data/expense/";
+
+        // 필요시 디렉토리 체크
+        if (!is_dir($this->uploadPath)) {
+            mkdir($this->uploadPath, 0755, true);
+        }
+		
         $this->db = db_connect();
         $this->orderModel = model("OrdersModel");
         $this->orderSubModel = model("OrderSubModel");
@@ -538,120 +546,72 @@ class SettlementController extends BaseController
             $data['sup_options'] = $sup_options;
         }
 
+        $fsql    = "select * from tbl_expense_hist where order_idx ='". $order_idx ."' ";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
+		$data['expense'] = $fresult;
+		
         return view("admin/_settlement/write", array_merge($data, $row));
     }
 
 
-    public function write_ok($order_idx = null)
-    {
-        try {
-            $data = $this->request->getPost();
+	public function write_ok()
+	{
+		try {
+			$data      = $this->request->getPost();  // 배열로 들어옴
+			$order_idx = $data['order_idx'];
+			$order_no  = $data['order_no'];
 
-            $data['order_price'] = str_replace(",", "", $data['order_price']);
-            $data['order_confirm_price'] = str_replace(",", "", $data['order_confirm_price']);
-            $data['deposit_price'] = str_replace(",", "", $data['deposit_price']);
+			$files = $this->request->getFileMultiple('exp_file'); // <input type="file" name="exp_file[]">
+			$model = new \App\Models\ExpenseModel(); // 모델 선언
 
-            $order_status = $data['order_status'];
-            $order_no = $data['order_no'];
+			foreach ($data['exp_id'] as $i => $val) {
+				$expData = [
+					'order_idx'   => $order_idx,
+					'order_no'    => $order_no,
+					'exp_id'      => $data['exp_id'][$i],
+					'exp_date'    => $data['exp_date'][$i],
+					'exp_amt'     => $data['exp_amt'][$i],
+					'exp_payment' => $data['exp_payment'][$i],
+					'exp_comp'    => $data['exp_comp'][$i],
+					'exp_sheet'   => $data['exp_sheet'][$i],
+					'exp_remark'  => $data['exp_remark'][$i],
+				];
 
+				// 파일이 있는 경우에만 처리
+				if (isset($files[$i]) && $files[$i]->isValid() && !$files[$i]->hasMoved()) {
+					$file = $files[$i];
+					$newName = $file->getRandomName();
+					$file->move($this->uploadPath, $newName);
 
-            $data['order_m_date'] = (string)Time::now('Asia/Seoul', 'en_US');
+					$expData['ufile'] = $newName;                // 저장된 파일명
+					$expData['rfile'] = $file->getClientName();  // 원본 파일명
+				}
 
-            if ($order_status == "R") {
-                $data["order_confirm_date"] = (string)Time::now('Asia/Seoul', 'en_US');
-            } else if ($order_status == "Y") {
-                $data["order_c_date"] = (string)Time::now('Asia/Seoul', 'en_US');
-            }
+				$idx = $data['idx'][$i];
 
-            $this->orderModel->updateData($order_idx, $data);
+				if ($idx) {
+					$model->update($idx, $expData);
+					log_message('debug', 'UPDATE QUERY: ' . $model->db->getLastQuery());
+				} else {
+					$model->insert($expData);
+					log_message('debug', 'INSERT QUERY: ' . $model->db->getLastQuery());
+				}
+			}
 
-            $gl_idx = $data['gl_idx'] ?? [];
-            $order_name_kor = $data['order_name_kor'] ?? "";
-            $order_first_name = $data['order_first_name'] ?? "";
-            $order_last_name = $data['order_last_name'] ?? "";
-            $order_full_name = $data['order_full_name'] ?? "";
-            $passport_num = $data['passport_num'] ?? "";
-            $order_email = $data['order_email'] ?? "";
-            $order_birthday = $data['order_birthday'] ?? "";
-            $order_mobile = $data['order_mobile'] ?? "";
-            $passport_date = $data['passport_date'] ?? "";
-            $order_sex = $data['order_sex'] ?? "";
+			return "<script>
+				alert('저장이 완료되었습니다.');
+				parent.location.reload();
+			</script>";
 
-            for ($i = 0; $i < count($gl_idx); $i++) {
-                $data_sub = [
-                    "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
-                    "order_first_name" => encryptField($order_first_name[$i], "encode"),
-                    "order_last_name" => encryptField($order_last_name[$i], "encode"),
-                    "order_full_name" => encryptField($order_full_name[$i], "encode"),
-                    "passport_num" => encryptField($passport_num[$i], "encode"),
-                    "order_email" => encryptField($order_email[$i], "encode"),
-                    "order_birthday" => $order_birthday[$i],
-                    "order_mobile" => encryptField($order_mobile[$i], "encode"),
-                    "passport_date" => $passport_date[$i],
-                    "order_sex" => $order_sex[$i]
-                ];
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'result' => false,
+				'message' => $e->getMessage()
+			]);
+		}
+	}
 
-                $this->orderSubModel->update($gl_idx[$i], $data_sub);
-            }
-
-            $idx = $data['idx_tour'] ?? "";
-            $start_place = $data['start_place'] ?? "";
-            $metting_time = $data['metting_time'] ?? "";
-            $id_kakao = $data['id_kakao'] ?? "";
-            $description = $data['description'] ?? "";
-            $end_place = $data['end_place'] ?? "";
-
-            if (!empty($idx)) {
-                $data_tour = [
-                    "start_place" => $start_place,
-                    "metting_time" => $metting_time,
-                    "id_kakao" => $id_kakao,
-                    "description" => $description,
-                    "end_place" => $end_place,
-                ];
-
-                $this->orderTours->update($idx, $data_tour);
-            }
-
-            if ($order_status == "G" || $order_status == "J") {
-
-                $this->paymentHistModel->where('order_no', $order_no)->delete();
-
-                $this->paymentHistModel->insert([
-                    "order_no" => $order_no,
-                    "order_gubun" => "1",
-                    "order_price" => $data['deposit_price'],
-                    "regDate" => Time::now('Asia/Seoul', 'en_US')
-                ]);
-
-                $this->paymentHistModel->insert([
-                    "order_no" => $order_no,
-                    "order_gubun" => "2",
-                    "order_price" => $data['order_confirm_price'],
-                    "regDate" => Time::now('Asia/Seoul', 'en_US')
-                ]);
-
-            } else if ($order_status == "R") {
-                $this->paymentHistModel->where('order_no', $order_no)
-                    ->where('order_gubun', "1")
-                    ->update(["order_status" => "Y"]);
-            } else if ($order_status == "Y") {
-                $this->paymentHistModel->where('order_no', $order_no)
-                    ->where('order_gubun', "2")
-                    ->update(["order_status" => "Y"]);
-            }
-            $message = "수정되었습니다.";
-            return "<script>
-                alert('$message');
-                    parent.location.reload();
-                </script>";
-        } catch (Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
 
     public function delete()
     {

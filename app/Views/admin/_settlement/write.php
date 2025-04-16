@@ -13,7 +13,6 @@
 
         function send_it() {
             var frm = document.frm;
-            document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
         }
@@ -53,44 +52,12 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_settlement/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name="frm" action="/AdmMaster/_settlement/write_ok/<?= $order_idx ?>" method="post" enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type="hidden" id="action_type" name="action_type" value="">
-
-                <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
-
-                <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
-                <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
-
-                <input type=hidden name="people_kids_cnt" value='<?= $people_kids_cnt ?>'>
-                <input type=hidden name="people_kids_price" value='<?= $people_kids_price ?>'>
-
-                <input type=hidden name="people_baby_cnt" value='<?= $people_baby_cnt ?>'>
-                <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
-
-                <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <input type=hidden name="order_price" value='<?= $order_price ?>'>
-                <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
-                <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
-                <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
-                <input type=hidden name="used_coupon_money" value='<?= $used_coupon_money ?>'>
-                <input type=hidden name="product_mileage" value='<?= $product_mileage ?>'>
-                <input type=hidden name="order_mileage" value='<?= $order_mileage ?>'>
-
-                <input type=hidden name="product_period" value='<?= $product_period ?>'>
-                <input type=hidden name="tour_period" value='<?= $tour_period ?>'>
-                <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
-                <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
-                <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
-                <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
-                <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
-                <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
-                <input type=hidden name="paydate" value='<?= $paydate ?>'>
+                <input type=text name="order_idx" value='<?= $order_idx ?>'>
+                <input type=text name="order_no"  value='<?= $order_no ?>'>
 
 
                 <div id="contents">
@@ -122,15 +89,13 @@
                                 
                                 <tr>
                                     <th>주문자명</th>
-                                    <td><?= $order_user_name ?></td>
-                                    <th>주문자 이메일</th>
-                                    <td><?= $order_user_email ?></td>
+                                    <td colspan="3"><?= $order_user_name ?></td>
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
-                                    <td><?= $order_user_first_name_en ?></td>
-                                    <th>영문 성(Last Name)</th>
-                                    <td><?= $order_user_last_name_en ?></td>
+                                    <td><?= $order_user_first_name_en ?> <?= $order_user_last_name_en ?></td>
+                                    <th>주문자 이메일</th>
+                                    <td><?= $order_user_email ?></td>
                                 </tr>
                                 <tr>
                                     <th>휴대전화</th>
@@ -391,12 +356,167 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                
-                                
                                 </tbody>
-
                             </table>
+
+                        <style>
+                            div.listTop div.right_btn {
+                                float: right;
+                                display: flex;
+                                gap: 10px;
+                                /* margin-right: 200px; */
+                            }
+
+						#input_file_ko button {
+							margin-right: 10px;
+							padding: 3px 5px;
+							background-color: white;
+							border: 1px solid #ccc;
+							border-radius: 4px;
+							width: unset;
+						}
+
+						.btn_download_passport {
+							background-color: #095995;
+							border-radius: 4px;
+							padding: 0px 5px;
+							color: #fff;
+							height: 30px;
+							display: inline-block;
+							font-size: 14px;
+							line-height: 30px;
+						}
+						
+						div.listBottom table.listTable tbody td button {
+							display: inline-block;
+							width: 70px;
+							height: 30px;
+							margin: 0 auto;
+							border: 1px solid rgb(204, 204, 204);
+						}
+						
+						div.listBottom table.mem_detail tbody td.files {
+							padding: 5px 15px;
+						}						
+                        </style>
+
+							<br>
+							<?php
+							        $total_expense = 0; 
+									foreach ($expense as $row) {	
+										     $total_expense = $total_expense + $row['exp_amt'];
+									}
+							?>
+							<div style="text-align:right;list-style-type: none;">
+								<li style="text-align:left;font-size:12pt;margin-top:20px; display: flex; align-items:center; gap: 5px">■ 지출정보
+									<a href="#!" class="btn btn-default" id="addExp"><span class="txt">추가+</span></a>
+									<!--a href="javascript:confirm_pay();" class="btn btn-default"><span class="txt" id="confirmPay">확인</span></a-->
+									<div class="sum_txt" style="margin-left: 10px; display: flex; align-items: center; gap: 3px;">
+										총금액: <p class="red" style="color: red"><?=number_format($total_expense)?></p>원
+									</div>
+									<a href="javascript:send_it()" class="btn btn-default" id="save"><span class="txt">저장</span></a>
+								</li>
+							</div>
 							
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail new_spe" id="expTable">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="*">
+                                <col width="10%">
+                                <col width="13%">
+                                <col width="10%">
+                                <col width="12%">
+                                <col width="12%">
+                                <col width="12%">
+								<col width="5%">
+                                <col width="8%">
+                            </colgroup>
+                            <tbody id="payment">
+									<tr height="45">
+										<th style="text-align:center; text-wrap: nowrap">상품구분</th>
+										<th style="text-align:center">일자</th>
+										<th style="text-align:center">금액</th>
+										<th style="text-align:center">결제방법</th>
+										<th style="text-align:center">업체명</th>
+										<th style="text-align:center">명세서</th>
+										<th style="text-align:center">비고</th>
+										<th style="text-align:center">첨부파일</th>
+										<th style="text-align:center">관리</th>
+									</tr>
+									<?php foreach ($expense as $row) {	?>
+
+                                    <tr>
+                                        <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>">                     
+                                        <td style="text-align:center"><input type="text" name="exp_id[]"                     
+										        id="exp_id_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_id'] ?>" class="exp_id input_txt"
+                                                style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_date[]"
+                                                id="exp_date_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_date'] ?>"
+                                                class="exp_date input_txt datepicker" style="width:90%;" readonly ></td>
+                                        
+										<td style="text-align:center"><input type="text" name="exp_amt[]"
+                                                id="exp_amt_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_amt'] ?>"
+                                                class="exp_amt input_txt" style="width:90%;text-align:right;"></td>
+                                        <td style="text-align:center">
+										
+
+											<select name="exp_payment[]" id="exp_payment_<?= $row['idx'] ?>" class="exp_payment input_txt" style="width:100%" >
+												<option value="신용/체크카드"	<?php if($row['exp_payment']=="신용/체크카드")    echo "selected";?> >신용/체크카드</option>
+												<option value="실시간계좌이체"	<?php if($row['exp_payment']=="실시간계좌이체")   echo "selected";?> >실시간계좌이체</option>
+												<option value="무통장(가상계좌)"	<?php if($row['exp_payment']=="무통장(가상계좌)") echo "selected";?> >무통장(가상계좌)</option>
+												<option value="무통장입금"		<?php if($row['exp_payment']=="무통장입금")       echo "selected";?> >무통장입금</option>
+											</select>
+										</td>
+                                        <td style="text-align:center"><input type="text" name="exp_comp[]"
+                                                id="exp_comp_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_comp'] ?>"
+                                                class="exp_comp input_txt" style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_sheet[]"
+                                                id="exp_sheet_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_sheet'] ?>"
+                                                class="exp_sheet input_txt" style="width:90%"></td>
+                                        <td style="text-align:center"><input type="text" name="exp_remark[]"
+                                                id="exp_remark_<?= $row['idx'] ?>"
+                                                value="<?= $row['exp_remark'] ?>"
+                                                class="exp_remark input_txt" style="width:90%"></td>
+
+										<td style="text-align:center; position: relative; max-width: 145px;" class="files">
+											<input type="file" style="width:100px;" name="exp_file[]" rel="<?= $row['idx'] ?>" class="j_filesx" />
+											
+											<?php
+											if ($row['ufile']) {
+											?>
+                                                <div>
+                                                    <a href="/data/pay/<?= $row['ufile'] ?>" download="<?= $row['ufile'] ?>">
+                                                        <span class="file-name" style="position: absolute; background: #fff; top: 43px; left: 8px;min-height: 24px;">
+                                                            <?= basename($row['ufile']) ?>
+                                                        </span>
+                                                    </a>
+                                                </div>
+												<a class="btn_download_passport"
+													href="javascript:handlleShowPassport(`/data/expense/<?= $row['ufile'] ?>`)">보기</a>
+												<a class="btn_download_passport btn_del_passport" style="background-color:#FF0000;"
+													href="javascript:handlleDelJichool(`<?= $row['idx'] ?>`)">삭제</a>
+											<?php
+											}
+											?>
+										
+										</td>
+
+                                        <td style="text-align:center">
+                                            <!--button type="button" class="expUpdate" value="<?= $row['idx'] ?>">수정</button-->
+                                            <button type="button" class="expDelete" value="<?= $row['idx'] ?>"
+                                                style="margin-top: 1px">삭제</button>
+                                        </td>
+                                    </tr>
+									<?php } ?>
+													
+                                </tbody>
+                            </table>
 							<!--br>
 							<div style="font-size:12pt;margin-bottom:10px">■ 바우처/인보이스</div>    
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -493,7 +613,7 @@
                 </div>
                 <!-- // contents -->
             </form>
-            <div class="inner cmt_area">
+            <!--div class="inner cmt_area">
                 <form action="" id="frm" name="com_form" class="com_form">
                     <input type="hidden" name="code" id="code" value="order">
                     <input type="hidden" name="r_code" id="r_code" value="order">
@@ -505,7 +625,7 @@
                     </div>
                 </form>
                 <div id="comment_list"></div>
-            </div>
+            </div-->
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
@@ -525,6 +645,219 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+
+<script type="text/javascript">
+    function handlleShowPassport(img) {
+        $("#img_showing").attr("src", img);
+        $(".img_pop").show();
+    }
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 지출정보 추가 버튼 클릭 이벤트
+        $('#addExp').click(function() {
+            // 새로운 행 생성
+            var newRow = "";
+            newRow  = '<tr>';
+			newRow += '<input type="hidden" name="idx[]" value="">';                     
+
+            newRow += '<td style="text-align:center"><input type="text" name="exp_id[]"      value="" class="exp_id input_txt"      style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_date[]"    value="" class="exp_date input_txt datepicker"    style="width:90%" readonly ></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_amt[]"     value="" class="exp_amt input_txt"     style="width:90%;text-align:right;"></td>';
+            newRow += '<td style="text-align:center">';
+
+			newRow += '<select name="exp_payment[]" class="exp_payment input_txt" style="width:90%" ><option value="신용/체크카드">신용/체크카드</option><option value="실시간계좌이체">실시간계좌이체</option><option value="무통장(가상계좌)">무통장(가상계좌)</option><option value="무통장입금">무통장입금</option></select>';
+			
+			newRow += '</td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_comp[]"    value="" class="exp_comp input_txt"    style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_sheet[]"   value="" class="exp_sheet input_txt"   style="width:90%"></td>';
+            newRow += '<td style="text-align:center"><input type="text" name="exp_remark[]"  value="" class="exp_remark input_txt"  style="width:90%"></td>';
+			newRow += '<td style="text-align:center">등록먼저 해주세요.</td>';
+            newRow += '<td style="text-align:center">';
+            newRow += '<button type="button" class="expConfirm">확인</button>';
+            newRow += '<button type="button" onclick="exp_delete();" class="expRemove">삭제</button>';
+            newRow += '</td>';
+            newRow += '</tr>';
+
+            // 테이블의 tbody에 새 행 추가
+            $('#expTable tbody').append(newRow);
+
+
+			
+
+			$(".datepicker").datepicker({
+				showButtonPanel: true,
+				beforeShow: function(input) {
+					setTimeout(function() {
+						var buttonPane = $(input)
+							.datepicker("widget")
+							.find(".ui-datepicker-buttonpane");
+						var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
+						btn.unbind("click").bind("click", function() {
+							$.datepicker._clearDate(input);
+						});
+						btn.appendTo(buttonPane);
+					}, 1);
+				},
+				dateFormat: 'yy-mm-dd',
+				showOn: "both",
+				yearRange: "c-100:c+10",
+				//buttonImage: "/img/ico/date_ico.png",
+				//buttonImageOnly: true,
+				closeText: '닫기',
+				prevText: '이전',
+				nextText: '다음'
+				// ,minDate: 1
+				<?php if ($str_guide != "") { ?>,
+					beforeShowDay: function(date) {
+
+						var day = date.getDay();
+						return [(<?= $str_guide ?>)];
+
+					}
+				<?php } ?>
+
+
+			});
+			$(".ui-datepicker-trigger").remove();
+
+
+			
+        });
+
+        // 동적으로 추가된 행에서도 제거 기능이 작동하도록 이벤트 위임 사용
+        $('#expTable').on('click', '.expRemove', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        // 동적으로 추가된 행에서도 제거 기능이 작동하도록 이벤트 위임 사용
+        $('#peopleTable').on('click', '.peopleRemove', function() {
+            $(this).closest('tr').remove();
+        });
+
+        // on 메서드를 사용한 동적 처리 (필요한 경우)
+        $(document).on('focus', '.passport_date', function() {
+            $(this).datepicker();
+        });
+
+        $(document).on('focus', '.order_birthday', function() {
+            $(this).datepicker();
+        });
+
+		$(".j_files").on('change', function() {
+			var relValue = $(this).attr('rel');
+			var fileInput = this;
+
+			if (fileInput.files.length > 0) {
+				var formData = new FormData();
+				formData.append('passport_file', fileInput.files[0]);
+				formData.append('rel', relValue);
+
+				$.ajax({
+					url: 'j_upload.php',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(response) {
+						alert("등록 되었습니다");
+						location.reload();
+					},
+					error: function() {
+						alert('업로드 중 오류가 발생했습니다.');
+					}
+				});
+			} else {
+				alert('파일을 선택해 주세요.');
+			}
+		});
+
+
+		$(".a_files").on('change', function() {
+			var relValue = $(this).attr('rel');
+			var fileInput = this;
+
+			if (fileInput.files.length > 0) {
+				var formData = new FormData();
+				formData.append('passport_file', fileInput.files[0]);
+				formData.append('rel', relValue);
+
+				$.ajax({
+					url: 'a_upload.php',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(response) {
+						alert("등록 되었습니다");
+						location.reload();
+					},
+					error: function() {
+						alert('업로드 중 오류가 발생했습니다.');
+					}
+				});
+			} else {
+				alert('파일을 선택해 주세요.');
+			}
+		});
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // 지출정보 확인버튼 클릭 이벤트
+        $('#expTable').on('click', '.expConfirm', function() {
+
+            if (!confirm("지출항목을 등록 하시겠습니까?"))
+                return false;
+
+            var row         = $(this).closest('tr');
+            var exp_id      = row.find('.exp_id').val(); // 상품구분
+            var exp_date    = row.find('.exp_date').val(); // 일자
+            var exp_amt     = row.find('.exp_amt').val(); // 금액
+            var exp_payment = row.find('.exp_payment').val(); // 결제방법
+            var exp_comp    = row.find('.exp_comp').val(); // 업체명
+            var exp_sheet   = row.find('.exp_sheet').val(); // 명세서
+            var exp_remark  = row.find('.exp_remark').val(); // 비고
+
+            $.ajax({
+
+                url: "/ajax/ajax.expense_hist",
+                type: "POST",
+                data: {
+
+                    "order_idx"   : $("#order_idx").val(),
+                    "order_no"    : $("#order_no").val(),
+                    "exp_id"      : exp_id, // 상품구분
+                    "exp_date"    : exp_date, // 일자
+                    "exp_amt"     : exp_amt, // 금액
+                    "exp_payment" : exp_payment, // 결제방법
+                    "exp_comp"    : exp_comp, // 업체명
+                    "exp_sheet"   : exp_sheet, // 명세서
+                    "exp_remark"  : exp_remark // 비고
+
+                },
+                success: function(rs) {
+                    const data = JSON.parse(rs);
+                    var message = data.message;
+                    //payment = data.payment;
+                    alert(message);
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        });
+    });
+</script>
 
     <script>
 
@@ -569,31 +902,6 @@
     </script>
 
     <script>
-
-        function calculateTotal() {
-            var depositPrice = document.getElementById('deposit_price').value;
-            var confirmPrice = document.getElementById('order_confirm_price').value;
-
-            depositPrice = parseFloat(depositPrice.replace(/,/g, '')) || 0;
-            confirmPrice = parseFloat(confirmPrice.replace(/,/g, '')) || 0;
-
-            if (depositPrice > 0 || confirmPrice > 0) {
-                var totalPrice = depositPrice + confirmPrice;
-
-                document.getElementById('total_price').value = totalPrice.toLocaleString();
-            } else {
-                document.getElementById('total_price').value = '';
-            }
-        }
-
-        document.getElementById('deposit_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('deposit_price').addEventListener('change', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('change', calculateTotal);
-
-        document.addEventListener('DOMContentLoaded', calculateTotal);
-
-
         function del_it() {
 
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -624,7 +932,7 @@
 
         function fn_comment() {
 
-            <? if ($_SESSION["member"]["id"] != "") { ?>
+            <?php if ($_SESSION["member"]["id"] != "") { ?>
             if ($("#comment").val() == "") {
                 alert("댓글을 입력해주세요.");
                 return;
@@ -644,9 +952,9 @@
                     }
                 }
             });
-            <? } else { ?>
+            <?php } else { ?>
             alert("로그인을 해주세요.");
-            <? } ?>
+            <?php } ?>
         }
 
         function fn_comment_list() {
@@ -668,7 +976,7 @@
 
         fn_comment_list();
     </script>
-    <script src="/AdmMaster/_include/comment.js"></script>
+    <!--<script src="/AdmMaster/_include/comment.js"></script>-->
     <script>
         $(function () {
             $.datepicker.regional['ko'] = {

@@ -1,7 +1,7 @@
 <?php
 foreach ($result3 as $row) {
     ?>
-    <tr id="tr_<?= $row['code_idx'] ?>">
+    <tr id="tr_<?= $row['code_idx'] ?>" data-idx="<?= $row['code_idx'] ?>">
         <td>
             <input type="checkbox" class="select_idx" name="idx[]" value="<?= $row['code_idx'] ?>">
         </td>
@@ -78,10 +78,17 @@ foreach ($result3 as $row) {
 
         <td style="text-align:center;">
             <a href="#!" class="order_btn"
-                onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','U')">▲</a>
+                onclick="moveUpRoom(this)">▲</a>
             <a href="#!" class="order_btn"
-                onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','D')">▼</a>
+                onclick="moveDownRoom(this)">▼</a>
         </td>
+		<!--td style="text-align:center;">
+			<a href="#!" class="order_btn"
+				onclick="return changePosition('<?= esc($replace_code) ?>','<?= esc($row['code_idx']) ?>','U')">▲</a>
+			<a href="#!" class="order_btn"
+				onclick="return changePosition('<?= esc($replace_code) ?>','<?= esc($row['code_idx']) ?>','D')">▼</a>
+		</td-->
+		
         <td style="text-align:center;">
             <?= $row["r_date"] ?>
         </td>

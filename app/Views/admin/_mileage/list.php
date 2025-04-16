@@ -152,7 +152,7 @@
                                 </ul>
 
                                 <ul class="last">
-                                    <li><a href="write.php" class="btn btn-primary"><span
+                                    <li><a href="write" class="btn btn-primary"><span
                                                     class="glyphicon glyphicon-pencil"></span> <span
                                                     class="txt">마일리지부여</span></a></li>
                                 </ul>

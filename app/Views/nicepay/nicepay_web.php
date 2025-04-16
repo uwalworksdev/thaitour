@@ -58,7 +58,7 @@ function nicepaySubmit(){
 
 //[PC 결제창 전용]결제창 종료 함수 <<'nicepayClose()' 이름 수정 불가능>>
 function nicepayClose(){
-	alert("결제가 취소 되었습니다");
+	alert("결제가 취소 되었습니다..");
 }
 
 //pc, mobile 구분(가이드를 위한 샘플 함수입니다.)
@@ -103,7 +103,7 @@ function checkPlatform(ua) {
 
 </head>
 <body>
-<form name="payForm" method="post" action="<?=$returnURL?>" style="display:none;">
+<form name="payForm" method="post" action="<?=$returnURL?>" style="display:;">
 	<table>
 		<tr>
 			<th>결제 수단</th>

@@ -51,7 +51,7 @@ function nicepaySubmit(){
 
 //[PC 결제창 전용]결제창 종료 함수 <<'nicepayClose()' 이름 수정 불가능>>
 function nicepayClose(){
-	alert("결제가 취소 되었습니다");
+	alert("결제가 취소 되었습니다...");
 }
 </script>
 </head>
