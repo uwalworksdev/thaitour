@@ -15,7 +15,7 @@ class OrdersModel extends Model
         , "order_gubun", "order_no", "order_date", "order_user_name", "order_user_email", "order_user_mobile", "order_user_phone"
         , "order_memo", "admin_memo", "manager_name", "manager_phone", "manager_email", "start_date", "end_date"
         , "product_period", "tour_period", "people_adult_cnt", "people_adult_price", "people_kids_cnt", "people_kids_price"
-        , "people_baby_cnt", "people_baby_price", "oil_price", "inital_price", "order_price", "option_amt", "extra_cost", "order_confirm_price"
+        , "people_baby_cnt", "people_baby_price", "oil_price", "inital_price", "order_price", "order_price_bath", "option_amt", "extra_cost", "order_confirm_price"
 		, "real_price_bath", "real_price_won"
 	    , "price", "price_won", "extra_won", "extra_bath","room", "room_type", "bed_type", "date_price", "adult", "kids", "last_price" 				
         , "order_confirm_date", "confirm_method", "deposit_price", "deposit_date", "deposit_method", "order_method", "used_op_type", "room_op_price_sale"
