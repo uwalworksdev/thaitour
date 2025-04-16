@@ -3774,7 +3774,7 @@ class AjaxController extends BaseController {
 		try {
 			$order_idx = $this->request->getPost("order_idx");
 			$calc      = $this->request->getPost("calc");
-
+			
 		    $db->query("UPDATE tbl_order_mst SET calc = ? WHERE order_idx = ?", [$calc, $order_idx]);
 			
 			if ($db->transStatus() === false) {

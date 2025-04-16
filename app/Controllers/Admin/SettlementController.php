@@ -560,12 +560,13 @@ class SettlementController extends BaseController
 				
 		try {
 			
-		    $setting   = homeSetInfo();
-            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+		    //$setting   = homeSetInfo();
+            //$baht_thai = (float)($setting['baht_thai'] ?? 0);
 			
 			$data      = $this->request->getPost();  // 배열로 들어옴
 			$order_idx = $data['order_idx'];
 			$order_no  = $data['order_no'];
+            $baht_thai = $data['baht_thai'];
 
 			$files = $this->request->getFileMultiple('exp_file'); // <input type="file" name="exp_file[]">
 			$model = new \App\Models\ExpenseModel(); // 모델 선언

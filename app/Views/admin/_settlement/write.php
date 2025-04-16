@@ -62,7 +62,7 @@
                 <input type=hidden name="pg" value='<?= $pg ?>'>
                 <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
                 <input type=hidden name="order_no"  value='<?= $order_no ?>'>
-                <input type=text name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
 
 
                 <div id="contents">
@@ -677,7 +677,8 @@ $(document).ready(function() {
 			type: "POST",
 			data: {
 				"order_idx" : order_idx,
-				"calc"      : calc
+				"calc"      : calc,
+				"baht_thai"	: $("#baht_thai").val()
 			},
 			dataType: "json",
 			async: false,
