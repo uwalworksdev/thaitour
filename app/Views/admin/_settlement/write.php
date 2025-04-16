@@ -653,8 +653,8 @@ $(document).ready(function() {
 		
 		var order_idx = $("#order_idx").val();
         var calc      = $("#calc").val();
-        // 원하는 작업 수행
-		alert(order_idx+'-'+calc);
+
+		// 원하는 작업 수행
 		if (!confirm("선택한 예약을 정산처리 하시겠습니까?"))
 		return false;
 
