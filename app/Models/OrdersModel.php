@@ -32,7 +32,17 @@ class OrdersModel extends Model
         , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
         , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast", "group_no"
     ];
-    protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
+    protected $encryptedField = [ "order_user_name", 
+	                              "order_user_email", 
+	                              "order_user_mobile", 
+	                              "order_user_phone", 
+	                              "local_phone", 
+	                              "order_user_first_name_en", 
+	                              "order_user_last_name_en", 
+		                          "order_passport_number",
+	                              "manager_name", 
+	                              "manager_phone", 
+	                              "manager_email",];
 
     public function insertData($data)
     {
