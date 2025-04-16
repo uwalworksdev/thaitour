@@ -290,26 +290,26 @@
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
+                                        <?= number_format( $order_price) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
                                         +
                                         <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
                                         <?php } ?> <br>
-										바트계산 : 5,891 TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용) + 589원 = 5,980 원
+										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
                                     </td>
-                                    <th>결제금액</th>
+                                    <th>실 결제금액</th>
                                     <td>
-										<input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= number_format((int)($order_price / $baht_thai))?>" class="input_txt price"
-                                               style="width:150px;text-align:right;"/> TH
-                                        <input type="text" id="order_confirm_price" name="order_confirm_price"
-                                               value="<?= number_format($order_price) ?>" class="input_txt price"
-                                               style="width:150px;text-align:right;"/> 원
+										<input type="text" id="real_price_bath" name="real_price_bath"
+                                               value="<?= number_format($real_price_bath)?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
+                                        <input type="text" id="real_price_won" name="real_price_won"
+                                               value="<?= number_format($real_price_won) ?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" readonly/> 원
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
@@ -318,13 +318,15 @@
 
                                        
                                         ?>&emsp;
-										
-                                       <a href="javascript:send_it()" class="btn btn-default">
+
+										<?php if($order_status == "W") { ?>
+                                        <a href="#!" class="btn btn-default" id="price_update" >
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
-										&emsp;2025-02-08 00:00 <br>
+										&emsp;<?=$order_r_date?> <br>
 										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+										<?php } ?>
                                     </td>
-                                </tr>								
+                                </tr>									
                                 <tr>
                                     <th>예약현황</th>
                                     <td>
