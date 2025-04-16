@@ -210,7 +210,7 @@
 												*/
 												$temp  = "";
 										        $arr = explode("|", $date_price);
-												for($i=0;$i<count($order_day_cnt);$i++)
+												for($i=0;$i<$order_day_cnt;$i++)
 												{
 												    //echo $arr[$i] ."<br>"; 
 													$price = explode(":", $arr[$i]);
