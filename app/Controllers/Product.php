@@ -2470,6 +2470,7 @@ class Product extends BaseController
             );
 			
             $data['order_price']              = $priceCalculate['final_price'];
+            $data['last_price']               = $priceCalculate['final_price'];
             $data['inital_price']             = $priceCalculate['inital_price'];
             $data['used_coupon_idx']          = $data['use_coupon_idx'];
             $data['ip']                       = $this->request->getIPAddress();
