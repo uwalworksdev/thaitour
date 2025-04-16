@@ -3926,7 +3926,7 @@ class Product extends BaseController
                     "return_date" => $return_date,
                     "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
                     "order_status" => $order_status,
-					"$baht_thai" => $baht_thai,
+					"baht_thai" => $baht_thai,
                     "encode" => "Y",
                     "ip" => $ipAddress,
 					"device_type" =>  get_device(),
