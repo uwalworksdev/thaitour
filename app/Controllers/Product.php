@@ -3893,7 +3893,9 @@ class Product extends BaseController
 				
 				$real_price_bath   =  (int)($order_price / $baht_thai);
 				$real_price_won    =  $order_price;
-				
+
+				$group_no          = date('YmdHis');
+
                 $data = [
                     "m_idx" => $m_idx,
                     "device_type" => $device_type,
@@ -3931,7 +3933,8 @@ class Product extends BaseController
                     "ip" => $ipAddress,
 					"device_type" =>  get_device(),
                     "ca_depth_idx" => $ca_depth_idx,
-                    "cp_idx" => $cp_idx
+                    "cp_idx" => $cp_idx,
+					"group_no" => $group_no
                 ];
 
                 $order_idx = $this->orderModel->insert($data);
