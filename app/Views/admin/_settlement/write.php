@@ -282,14 +282,14 @@
 
                                     <th>정산현황</th>
                                     <td>
-                                        <select name="calc" class="select_txt">
+                                        <select name="calc" id="calc" class="select_txt">
                                             <option value="">선택</option>
                                             <option value="Y" <?php if ($calc == "Y") {
                                                 echo "selected";
                                             } ?>>정산완료
                                             </option>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="#!" class="btn btn-default" id="calc_set">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
                                     </td>
 
@@ -645,6 +645,19 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+
+<script>
+$(document).ready(function() {
+    $('#calc_set').on('click', function(e) {
+        e.preventDefault(); // 링크 기본 동작 방지 (선택사항)
+        var calc = $("#calc").val();
+        // 원하는 작업 수행
+        alert('상태수정 버튼 클릭됨! '+calc);
+        
+        // 예: Ajax 요청, 모달 띄우기, 클래스 토글 등등
+    });
+});
+</script>
 
 <script type="text/javascript">
     function handlleShowPassport(img) {
