@@ -336,7 +336,7 @@
                                         = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=$order_price?> 원
+										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
