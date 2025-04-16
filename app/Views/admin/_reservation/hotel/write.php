@@ -57,13 +57,13 @@
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type="hidden" id="action_type" name="action_type" value="">
+                <input type=hidden id="action_type" name="action_type" value="">
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=text name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
