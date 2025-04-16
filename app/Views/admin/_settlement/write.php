@@ -56,7 +56,7 @@
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type=hidden name="order_idx" value='<?= $order_idx ?>'>
+                <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
                 <input type=hidden name="order_no"  value='<?= $order_no ?>'>
 
 
@@ -650,10 +650,35 @@
 $(document).ready(function() {
     $('#calc_set').on('click', function(e) {
         e.preventDefault(); // 링크 기본 동작 방지 (선택사항)
-        var calc = $("#calc").val();
+		
+		var order_idx = $("#order_idx").val();
+        var calc      = $("#calc").val();
         // 원하는 작업 수행
-        alert('상태수정 버튼 클릭됨! '+calc);
-        
+		
+		if (!confirm("선택한 일정전체 내용을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
+		return false;
+
+		var message = "";
+		$.ajax({
+
+			url: "/ajax/ajax_calc_set",
+			type: "POST",
+			data: {
+				"order_idx" : order_idx,
+				"calc"      : calc
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function(data, textStatus) {
+				message = data.message;
+				alert(message);
+				location.reload();
+			},
+			error:function(request,status,error){
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});        
         // 예: Ajax 요청, 모달 띄우기, 클래스 토글 등등
     });
 });

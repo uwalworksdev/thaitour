@@ -3764,4 +3764,39 @@ class AjaxController extends BaseController {
 		]);
 		
 	}
+	
+	public function ajax_calc_set()
+	{
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$order_idx = $this->request->getPost("order_idx");
+			$calc      = $this->request->getPost("calc");
+
+		    $db->query("UPDATE tbl_order_mst SET calc = ? WHERE order_idx = ?", [$order_idx, $calc);
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '정산 설정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '정산설정 완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+	}	
 }	
