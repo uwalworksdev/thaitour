@@ -1685,6 +1685,10 @@ class Product extends BaseController
 
             $device_type = get_device();
 			$group_no    = date('YmdHis');
+			
+            $real_price_bath   =  (int)($order_price / $baht_thai);
+            $real_price_won    =  $order_price;
+			
             $data = [
                 "m_idx"                    => $m_idx,
                 "device_type"              => $device_type,
@@ -1728,6 +1732,8 @@ class Product extends BaseController
 				"kids"                     => $kids,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
+                "real_price_bath"          => $real_price_bath,
+                "real_price_won"           => $real_price_won,
 
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
