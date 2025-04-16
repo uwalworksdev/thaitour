@@ -471,13 +471,13 @@ endforeach;
           <h1>더투어랩 여행견적서 </h1>
           <div class="sec1">
               <div class="left">
-                  <p class="ttl">TOTO Booking Co., Ltd. </p>
-                  <span>Sukhumvit 101 Bangjak </span>
-                  <span>Prakhanong Bangkok 10260 </span>
-                  <span>서비스/여행업 No. 101-86-79949 </span>
+                  <p class="ttl">The Tour Lab Co.,Ltd </p>
+                  <span>Sukhumvit 13 Klongtoei Nuea </span>
+                  <span>Watthana Bangkok 10110 </span>
+                  <span>서비스/여행업 No. 0105565060507 </span>
                   <p class="day">견적일 : 2025년 03월 14일 </p>
                   <p class="name">고객명 : 김평진 님 귀하 </p>
-                  <img src="/images/mypage/stem.jpg" class="img_stem">
+                  <img src="/img/sub/sign-001.jpg" class="img_stem">
               </div>
               <div class="right">
                   <table>
