@@ -572,13 +572,17 @@ class SettlementController extends BaseController
 			$model = new \App\Models\ExpenseModel(); // 모델 선언
 
 			foreach ($data['exp_id'] as $i => $val) {
+				
+				$exp_amt_bath = (float)str_replace(',', '', $data['exp_amt_bath'][$i]);
+				$exp_amt_won  = (float)str_replace(',', '', $data['exp_amt_won'][$i]);
+				
 				$expData = [
 					'order_idx'    => $order_idx,
 					'order_no'     => $order_no,
 					'exp_id'       => $data['exp_id'][$i],
 					'exp_date'     => $data['exp_date'][$i],
-					'exp_amt_won'  => $data['exp_amt_won'][$i],
-					'exp_amt_bath' => $data['exp_amt_bath'][$i],
+					'exp_amt_won'  => $exp_amt_won,
+					'exp_amt_bath' => $exp_amt_bath,
 					'baht_thai'    => $baht_thai,
 					'exp_payment'  => $data['exp_payment'][$i],
 					'exp_comp'     => $data['exp_comp'][$i],
