@@ -305,6 +305,9 @@ class TourGuideController extends BaseController
             if (empty($dataCart)) {
                 return redirect()->to('/');
             }
+		    
+			$setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
             $postData = $this->request->getPost();
 
@@ -324,6 +327,11 @@ class TourGuideController extends BaseController
             $local_phone = updateSQ($this->request->getPost('local_phone'));
             $local_phone = encryptField($local_phone, "encode");
 
+            $order_price = $postData['lastPrice'] ?? $postData['totalPrice'];
+	
+            $real_price_bath   =  (int)($order_price / $baht_thai);
+            $real_price_won    =  $order_price;
+
             $orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
@@ -340,6 +348,9 @@ class TourGuideController extends BaseController
                 'inital_price' => $postData['totalPrice'] ?? 0,
                 'people_adult_cnt' => $postData['people_cnt'] ?? 0,
                 'order_price' => $postData['lastPrice'] ?? $postData['totalPrice'],
+                'real_price_bath' => $real_price_bath,
+                'real_price_won' => $real_price_won,
+				'baht_thai' => $baht_thai,
                 'order_memo' => $postData['order_memo'] ?? '',
                 'start_date' => $postData['start_date'] ?? '',
                 'end_date' => $postData['end_date'] ?? '',
