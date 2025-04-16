@@ -354,11 +354,13 @@
 
                                        
                                         ?>&emsp;
-										
-                                       <a href="javascript:send_it()" class="btn btn-default">
+
+										<?php if($order_status == "W") { ?>
+                                        <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
 										&emsp;2025-02-08 00:00 <br>
 										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+										<?php } ?>
                                     </td>
                                 </tr>								
                                 <tr>
@@ -377,11 +379,8 @@
 												} 
 											?>
                                         </select>
-										<?php if($order_status == "W") { ?>
                                         <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										<?php } ?>
-										
 										&emsp;<?=$order_r_date?>
                                     </td>
                                     <th>상품금액</th>
