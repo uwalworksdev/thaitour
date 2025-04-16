@@ -273,7 +273,7 @@ class CheckoutController extends BaseController
 			   
 			}   
 			
-			$payment_price = $payment_price + $row_p['order_price'];
+			$payment_price = $payment_price + $row_p['real_price_won'];
 			
 			$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
 			$db->query($sql_u);
