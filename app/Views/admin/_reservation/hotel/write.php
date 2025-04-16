@@ -337,7 +337,7 @@
                                         <?php } ?> <br>
 										바트계산 : 5,891 TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용) + 589원 = 5,980 원
                                     </td>
-                                    <th>결제금액</th>
+                                    <th>실 결제금액</th>
                                     <td>
 										<input type="text" id="order_confirm_price" name="order_confirm_price"
                                                value="<?= number_format($order_price / $baht_thai)?>" class="input_txt price"
