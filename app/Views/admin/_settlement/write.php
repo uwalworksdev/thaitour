@@ -428,9 +428,9 @@
                             </caption>
                             <colgroup>
                                 <col width="*">
-                                <col width="10%">
-                                <col width="10%">
-                                <col width="10%">
+                                <col width="9%">
+                                <col width="9%">
+                                <col width="9%">
                                 <col width="10%">
                                 <col width="12%">
                                 <col width="12%">
