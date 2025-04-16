@@ -64,6 +64,7 @@
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
                 <!--                <input type=hidden name="people_adult_cnt" value='-->
                 <?php //= $people_adult_cnt ?><!--'>-->
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
@@ -89,7 +90,7 @@
                 <input type=hidden name="used_mileage_money" value='<?= $used_mileage_money ?>'>
                 <input type=hidden name="air_idx" value='<?= $air_idx ?>'>
                 <input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
-                <input type=hidden name="order_no" value='<?= $order_no ?>'>
+                <input type=hidden name="order_no" id="order_no" value='<?= $order_no ?>'>
                 <input type=hidden name="order_r_date" value='<?= $order_r_date ?>'>
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
@@ -267,6 +268,71 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
+                                <tr>
+                                    <th>총 결제금액</th>
+                                    <td>
+                                        원화계산 : <?php
+                                            $setting    = homeSetInfo();
+                                            $extra_cost = 0;
+                                
+                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            
+                                            $total_price = 0;
+                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            if (!empty($setting["extra_cost"])) {
+                                                if ($type_extra_cost == "P") {
+                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                                } else {
+                                                    $extra_cost = $setting["extra_cost"];
+                                                }
+                                            }
+
+                                        ?>   
+                                        <?php
+                                            if($price_secret == "Y"){
+                                        ?>
+                                            0원(<span style="color: red;">비밀특가</span>)
+                                        <?php
+                                            }else{
+                                        ?>
+                                        <?= number_format( $order_price) ?>원    
+                                        -
+                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                        -
+                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        +
+                                        <?= number_format( $extra_cost) ?>원
+                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        원
+                                        <?php } ?> <br>
+										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+                                    </td>
+                                    <th>실 결제금액</th>
+                                    <td>
+										<input type="text" id="real_price_bath" name="real_price_bath"
+                                               value="<?= number_format($real_price_bath)?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
+                                        <input type="text" id="real_price_won" name="real_price_won"
+                                               value="<?= number_format($real_price_won) ?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" readonly/> 원
+                                        <?php
+                                        if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
+                                            echo "결제완료 ";
+                                            echo "<button type='button' onclick='payment_cancel(2);'>결제취소</button>";
+                                        }
+
+                                       
+                                        ?>&emsp;
+
+										<?php if($order_status == "W") { ?>
+                                        <a href="#!" class="btn btn-default" id="price_update" >
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
+										&emsp;<?=$order_r_date?> <br>
+										<span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+										<?php } ?>
+                                    </td>
+                                </tr>									
                                 <tr>
                                     <th>예약현황</th>
                                     <td>
@@ -469,7 +535,60 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
+	<script>
+	$(document).ready(function () {
+		$('#price_update').on('click', function (e) {
+			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
 
+			if (!confirm('결제금액을 수정 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_price_update",
+				type : "POST",
+				data : {
+					"order_no"        : $("#order_no").val(),
+					"real_price_bath" : $("#real_price_bath").val(),
+					"real_price_won"  : $("#real_price_won").val()
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		});
+	});
+    </script>
+	
+	<script>  
+	$(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$("#real_price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+			var bath = parseFloat($("#real_price_bath").val().replace(/,/g, '')) || 0;
+
+			// 환산된 원화 계산
+			var won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$("#real_price_won").val(won.toLocaleString());
+		});
+	});
+	</script>
     <script>
 	function allimtalk(order_no, alimCode)
 	{
