@@ -1,12 +1,5 @@
-<?php $this->extend('inc/layout_index'); ?>
-<?php $this->section('content'); ?>
-
-<link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/mypage/mypage_reponsive_new.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/mypage/mypage_reponsive_new02.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/mypage/mypage.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/mypage/mypage_reponsive.css') ?>" rel="stylesheet" type="text/css"/>
-<link href="<?= base_url('css/community/community.css') ?>" rel="stylesheet" type="text/css"/>
+<?= $this->extend('layouts/popup_layout') ?>
+<?= $this->section('content') ?>
 
 	  <div class="group_movement_popup_content custom_popup_content">
          <div class="btn_close_popup">
@@ -78,3 +71,4 @@
               <p>* 상품을 선택하고 그룹을 선택 후 그룹이동 버튼을 클릭합니다. </p>
           </div>
       </div>
+<?= $this->endSection() ?>	  
