@@ -63,6 +63,11 @@ $(document).on('click', '#btn_select', function() {
     // 예: 체크된 항목 수
     let checkedItems = $('input[type=checkbox]:checked').length;
 
+    if(selectedGroup == "") {
+	   alert('이동할 그룹을 선택하세요.');
+	   $("#group_select:).focus();
+	   return false;
+	}   
     console.log('선택된 그룹:', selectedGroup);
     console.log('선택된 항목 수:', checkedItems);
 });
