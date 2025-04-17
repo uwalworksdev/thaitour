@@ -65,7 +65,7 @@ $(document).on('click', '#btn_select', function() {
 
     if(selectedGroup == "") {
 	   alert('이동할 그룹을 선택하세요.');
-	   $("#group_select:).focus();
+	   $("#group_select").focus();
 	   return false;
 	}   
     console.log('선택된 그룹:', selectedGroup);
