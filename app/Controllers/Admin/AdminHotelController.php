@@ -305,7 +305,7 @@ class AdminHotelController extends BaseController
             $room_list       = trim($room_list, '|');
             $room_array      = explode('|', $room_list);
 
-            if (!empty($room_array)) {
+           // if (!empty($room_array)) {
                 $room_array_str = implode(',', array_map('intval', $room_array));
 
                 $sql    = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY g_idx ASC ";
@@ -318,7 +318,7 @@ class AdminHotelController extends BaseController
                         'roomName' => $room['roomName']
                     ];
                 }
-            }
+           // }
             $rresult = $dataRoom;
         }
 
