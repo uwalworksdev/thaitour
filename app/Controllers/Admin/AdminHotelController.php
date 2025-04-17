@@ -302,6 +302,7 @@ class AdminHotelController extends BaseController
             $hresult         = $hresult->getResultArray();
 
             $room_list       = $hresult[0]['room_list'];
+            // 	$room_list 가 공백일때 SELECT distinct(g_idx) AS room_list FROM `tbl_hotel_rooms` WHERE `goods_code` LIKE '2223'  		
             $room_list       = trim($room_list, '|');
             $room_array      = explode('|', $room_list);
 
