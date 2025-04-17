@@ -36,12 +36,12 @@
                         </td>
                           <td>골프 </td>
                           <td>
-                              <p class="time">2025-03-28(금) | 로얄 방파인 골프 클럽 </p>
+                              <p class="time"><?= esc($i['product_name']) ?></p>
                               <p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p>
                           </td>
                           <td>
-                              <p>303,175원 </p>
-                              <p>(6,700바트) </p>
+                              <p><?= esc($i['real_price_won']) ?>원 </p>
+                              <p>(<?= esc($i['real_price_bath']) ?>바트) </p>
                           </td>
                       </tr>
                   <?php endforeach; ?>					  
