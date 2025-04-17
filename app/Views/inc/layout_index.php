@@ -113,7 +113,7 @@ try {
 </script>
 
 <main>
-    <?php 
+<?php 
         $banner_ = getLeftBottomBanner(); 
         $time_sale_list = getTimeSale()->findAll();
 
@@ -123,18 +123,12 @@ try {
     ?>
 
 <div class="main_sale_banner flex__c">
+    <?php foreach ($banner_ as $file) { ?>
+
         <div class="time_sale_banner flex__c">
            <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
         </div>
-        <div class="time_sale_banner flex__c">
-           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
-        </div>
-        <div class="time_sale_banner flex__c">
-           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
-        </div>
-        <div class="time_sale_banner flex__c">
-           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
-        </div>
+	<?php } ?>	
 </div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
