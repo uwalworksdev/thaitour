@@ -693,7 +693,7 @@ $(document).on('click', '.btn_group_movement', function () {
 			data: {
 				    "group_no": groupNo 
 			},
-			dataType: "html",
+			dataType: "json",
 			async: false,
 			cache: false,
 			success: function (data, textStatus) {
