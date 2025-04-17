@@ -6,7 +6,7 @@
           <h1>그룹이동</h1>
           <div class="sec2">
             <div class="box_select">
-                <select name="group_select" id="group_select">
+                <select name="group_select" id="group_select" style="width:100px;">
                 <?php foreach ($groups as $g): ?>
                     <option value="<?= esc($g['group_no']) ?>">그룹번호 <?= esc($g['group_no']) ?></option>
                 <?php endforeach; ?>
