@@ -341,7 +341,6 @@ endforeach;
                                 // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
                             }
                         </script>
-						<!--
                         <script>
                             function openGroupMovement() {
                                 $(".group_movement_popup_wrap").show();
@@ -350,7 +349,6 @@ endforeach;
                                 })
                             }
                         </script>
-						-->
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
@@ -601,7 +599,7 @@ endforeach;
 </div>
 
 <script>
-$(document).on('click', '.btn_group_movement', function () {
+$(document).on('click', '.btn_group_movementx', function () {
     const groupNo = $(this).data('group');
 
     $.ajax({
