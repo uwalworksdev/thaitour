@@ -3897,7 +3897,7 @@ class AjaxController extends BaseController {
     ];
 
     // HTML 문자열 생성
-    $html = '<div class="group_movement_popup_content custom_popup_content" id="popupContainer">';
+    $html  = '<div class="group_movement_popup_content custom_popup_content" id="popupContainer">';
     $html .= '<div class="btn_close_popup" onclick="$(\'#popupContainer\').remove();">';
     $html .= '<img src="/img/btn/btn_close_black_20x20.png" alt=""></div>';
     $html .= '<h1>그룹이동</h1>';
@@ -3921,8 +3921,8 @@ class AjaxController extends BaseController {
     $html .= '<div class="list_desc"><p>* 상품을 선택하고 그룹을 선택 후 그룹이동 버튼을 클릭합니다.</p></div>';
     $html .= '</div>';
 			  
-			return $this->response->setStatusCode(500)->setJSON([
-				'status'  => 'error',
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
 				'message' => $html
 			]);
     }	
