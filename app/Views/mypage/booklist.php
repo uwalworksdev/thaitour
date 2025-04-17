@@ -326,7 +326,7 @@ endforeach;
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
                                 <!--div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div-->
-								<div class="btn_group_movement" data-group="123">그룹이동</div>
+								<div class="btn_group_movement" data-group="<?= esc($group['group_no']) ?>">그룹이동</div>
                             </div>
 
                         </div>
