@@ -671,7 +671,7 @@
 	$(document).ready(function () {
 		// 환율 값 가져오기
 		var baht_thai = parseFloat($("#baht_thai").val());
-
+alert(baht_thai);
 		// .exp_amt 클래스의 input 값이 변경될 때
 		$("#real_price_bath").on('input', function () {
 			
