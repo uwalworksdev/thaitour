@@ -681,23 +681,29 @@ endforeach;
 
 <script>
 $(document).on('click', '.btn_group_movement', function () {
-    // 클릭된 요소에서 data-group 값 가져오기
-    const groupNo = $(this).data('group'); // 또는 .attr('data-group')
+		// 클릭된 요소에서 data-group 값 가져오기
+		const groupNo = $(this).data('group'); // 또는 .attr('data-group')
 
-    alert('선택된 그룹 번호:'+ groupNo);
+		alert('선택된 그룹 번호:'+ groupNo);
+	
+		$.ajax({
 
-    // 예: Ajax로 해당 그룹 정보를 불러오기
-    $.ajax({
-        url: '/ajax/ajax_group_movement',
-        type: 'GET',
-        data: { group_no: groupNo },
-        success: function (response) {
-            $('#popupContainer').html(response); // 받은 HTML 삽입
-        },
-        error: function () {
-            alert('그룹 정보를 불러오지 못했습니다.');
-        }
-    });
+			url: "/ajax/ajax_group_movement",
+			type: "POST",
+			data: {
+				    "group_no": groupNo 
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+                $('#popupContainer').html(response); // 받은 HTML 삽입
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});	
 });
 </script>
 

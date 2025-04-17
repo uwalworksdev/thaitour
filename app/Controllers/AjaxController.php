@@ -3872,4 +3872,58 @@ class AjaxController extends BaseController {
 		}		
     }
 	
+	public function ajax_group_movement()
+    {
+		$db = \Config\Database::connect();
+
+		$group_no        = $this->request->getPost("group_no");
+		
+    // 예시 데이터 (DB에서 조회했다고 가정)
+    $items = [
+        [
+            'id' => 1,
+            'type' => '골프',
+            'desc' => '로얄 방파인 골프 클럽',
+            'detail' => '18홀 오전 | 성인 2명',
+            'price' => '303,175원 (6,700바트)',
+        ],
+        [
+            'id' => 2,
+            'type' => '투어',
+            'desc' => '아유타야 선셋 리버크루즈',
+            'detail' => '[프로모션] 아유타야 오후 | 성인 1명',
+            'price' => '39,000원',
+        ]
+    ];
+
+    // HTML 문자열 생성
+    $html = '<div class="group_movement_popup_content custom_popup_content" id="popupContainer">';
+    $html .= '<div class="btn_close_popup" onclick="$(\'#popupContainer\').remove();">';
+    $html .= '<img src="/img/btn/btn_close_black_20x20.png" alt=""></div>';
+    $html .= '<h1>그룹이동</h1>';
+    $html .= '<div class="sec2"><div class="box_select">';
+    $html .= '<select name="new_group"><option value="">그룹 선택</option>';
+    $html .= '<option value="1">그룹번호 1</option><option value="2">그룹번호 2</option></select>';
+    $html .= '<div class="btn_select">그룹이동</div></div>';
+
+    $html .= '<table><tr><th></th><th>품목</th><th>상세</th><th>금액</th></tr>';
+
+    foreach ($items as $item) {
+        $html .= '<tr>';
+        $html .= '<td><input type="checkbox" class="group-item" data-id="' . $item['id'] . '"></td>';
+        $html .= '<td>' . esc($item['type']) . '</td>';
+        $html .= '<td><p>' . esc($item['desc']) . '</p><p>' . esc($item['detail']) . '</p></td>';
+        $html .= '<td><p>' . esc($item['price']) . '</p></td>';
+        $html .= '</tr>';
+    }
+
+    $html .= '</table></div>';
+    $html .= '<div class="list_desc"><p>* 상품을 선택하고 그룹을 선택 후 그룹이동 버튼을 클릭합니다.</p></div>';
+    $html .= '</div>';
+			  
+			return $this->response->setStatusCode(500)->setJSON([
+				'status'  => 'error',
+				'message' => $html
+			]);
+    }	
 }	
