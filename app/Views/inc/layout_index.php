@@ -199,6 +199,11 @@ try {
                 </div>
             </div> -->
         </a>
+        <a href="#!">
+            <div class="banner_bt">
+                <img src="/img/sub/banner_bt.jpg" alt="">
+            </div>
+        </a>
     </div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
