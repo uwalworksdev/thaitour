@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/popup_layout') ?>
 <?= $this->section('content') ?>
-<?php echo '뷰 파일 정상 로딩됨'; exit; ?>
+
 	  <div class="group_movement_popup_content custom_popup_content">
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
