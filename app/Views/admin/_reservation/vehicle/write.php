@@ -653,6 +653,19 @@
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약취소</button>
                                         </td>
+										<th>바우쳐 금액</th>
+										<td>
+											<input type="text" id="voucher_price_bath" name="voucher_price_bath"
+												   value="<?= number_format($voucher_price_bath)?>" class="input_txt price"
+												   style="width:150px;text-align:right;" /> TH
+											<input type="text" id="voucher_price_won" name="voucher_price_won"
+												   value="<?= number_format($voucher_price_won) ?>" class="input_txt price"
+												   style="width:150px;text-align:right;" readonly /> 원 
+												   
+                                            <a href="#!" class="btn btn-default" id="voucher_update" >
+										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a><br>
+										    <span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+									 	</td>                                  
                                   </tr>
                                 
                                 </tbody>
@@ -856,6 +869,63 @@
 		});
 	});
 	</script>
+	
+
+	<script>  
+	$(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$("#voucher_price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+			var bath = parseFloat($("#voucher_price_bath").val().replace(/,/g, '')) || 0;
+
+			// 환산된 원화 계산
+			var won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$("#voucher_price_won").val(won.toLocaleString());
+		});
+	});
+	</script>
+	
+	<script>
+	$(document).ready(function () {
+		$('#voucher_update').on('click', function (e) {
+			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
+
+			if (!confirm('바우처금액을 수정 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_voucher_update",
+				type : "POST",
+				data : {
+					"order_no"        : $("#order_no").val(),
+					"voucher_price_bath" : $("#voucher_price_bath").val(),
+					"voucher_price_won"  : $("#voucher_price_won").val()
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		});
+	});
+    </script>
+	
     <script>
 
         function handleShowImgPop(img) {

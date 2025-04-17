@@ -317,7 +317,8 @@
                                             <a href="#!" class="btn btn-default" id="voucher_update" >
 										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a><br>
 										    <span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
-									 	</td>                                  </tr>
+									 	</td>                                  
+								</tr>
                                 
                                 </tbody>
 
