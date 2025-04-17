@@ -39,8 +39,8 @@
                               <p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p>
                           </td>
                           <td>
-                              <p><?= esc($i['real_price_won']) ?>원 </p>
-                              <p>(<?= esc($i['real_price_bath']) ?>바트) </p>
+                              <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
+                              <p>(<?= number_format(esc($i['real_price_bath'])) ?>바트) </p>
                           </td>
                       </tr>
                   <?php endforeach; ?>					  
