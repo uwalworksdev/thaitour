@@ -33,7 +33,7 @@
                             <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox" value="<?= esc($i['order_idx']) ?>">
                             <label for="check_b_<?= esc($i['order_idx']) ?>"></label>
                         </td>
-                          <td>골프 </td>
+                          <td><?= esc($i['code_name']) ?></td>
                           <td>
                               <p class="time"><?= esc($i['product_name']) ?></p>
                               <!--p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p-->
