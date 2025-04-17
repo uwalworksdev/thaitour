@@ -123,7 +123,7 @@ try {
     ?>
 
     <div class="main_sale_banner flex__c">
-        <div class="time_sale_banner flex__c">
+        <div class="time_sale_banner flex__c xxx">
             <?php 
                 if(count($time_sale_list) <= 0){
             ?>
