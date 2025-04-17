@@ -114,8 +114,8 @@ try {
 
 <main>
     <?php 
-        $time_sale_list = getLeftBottomBanner(); 
-        //$time_sale_list = getTimeSale()->findAll();
+        $banner_ = getLeftBottomBanner(); 
+        $time_sale_list = getTimeSale()->findAll();
 
         $currentDateTime = new DateTime();
 		
@@ -125,7 +125,16 @@ try {
     <div class="main_sale_banner flex__c">
         <div class="time_sale_banner flex__c">
             <?php 
-
+                if(count($time_sale_list) <= 0){
+            ?>
+                <?php if ($banner_): ?>
+                    <a href="/time_sale/list">
+                        <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
+                    </a>
+                <?php endif; ?>
+            <?php
+                }else {
+                    $i = 1;
                     foreach($time_sale_list as $time_sale){
                         $url = "#";
                         if(!empty($time_sale["url"])){
@@ -141,7 +150,7 @@ try {
                         $product_idx = getProductIdFromUrl($url);
 
                         $product_price = getViewProduct($product_idx)["product_price"];
-/*
+
                         if(!empty($time_sale["e_date"]) && !empty($time_sale["e_time"])){
                             $endDateTime = $time_sale["e_date"] . " " . $time_sale["e_time"];
                             $endDateTimeObj = new DateTime($endDateTime);
@@ -152,7 +161,6 @@ try {
                             $minute = str_pad($interval->i, 2, '0', STR_PAD_LEFT);
                             $second = str_pad($interval->s, 2, '0', STR_PAD_LEFT);
                         }
-*/						
             ?>
                 <a href="<?=$url?>">
                     <div class="time_sale_wrap <?php echo $i == 1 ? "active" : ""?>">
@@ -176,25 +184,11 @@ try {
                     </div>
                 </a>
             <?php
+                    $i++;
+                    }
                 }
             ?>
         </div>
-		<!--
-        <a href="/coupon/list">
-            <?php echo getCouponList(); ?>
-            <!-- <div class="coupon_sale">
-                <img src="/images/main/coupon_sale_img.png" alt="">
-                <div class="tit_cou">
-                    <p>첫 예약 축하 5000
-                    포인트 쿠폰</p>
-                </div>
-            </div> -->
-        <!--/a>
-        <!-- <a href="#!">
-            <div class="banner_bt">
-                <img src="/img/sub/banner_bt2.png" alt="">
-            </div>
-        </a> -->
     </div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
