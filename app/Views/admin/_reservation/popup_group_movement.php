@@ -1,3 +1,6 @@
+<?php $this->extend('inc/layout_index'); ?>
+<?php $this->section('content'); ?>
+
 <link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('css/mypage/mypage_reponsive_new.css') ?>" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('css/mypage/mypage_reponsive_new02.css') ?>" rel="stylesheet" type="text/css"/>
