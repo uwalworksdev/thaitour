@@ -23,10 +23,7 @@
                   <tbody>
 				  <?php foreach ($items as $i): ?>
                       <tr>
-                        <th>
-                            <input id="check_b_1" type="checkbox">
-                            <label for="check_b_1"></label>
-                        </th>
+                          <th><input id="check_all" type="checkbox"><label for="check_all"></label></th>
                           <th>품목</th>
                           <th>상세</th>
                           <th>금액</th>
@@ -34,8 +31,8 @@
                       </tr>
                       <tr>
                         <td>
-                            <input id="check_b_2" type="checkbox">
-                            <label for="check_b_2"></label>
+                            <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox">
+                            <label for="check_b_<?= esc($i['order_idx']) ?>"></label>
                         </td>
                           <td>골프 </td>
                           <td>
