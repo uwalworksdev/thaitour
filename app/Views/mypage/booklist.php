@@ -325,7 +325,8 @@ endforeach;
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div>
+                                <!--div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div-->
+                                <div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
