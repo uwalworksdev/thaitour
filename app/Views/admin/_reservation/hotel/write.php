@@ -610,7 +610,7 @@
 		$('#voucher_update').on('click', function (e) {
 			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
 
-			if (!confirm('결제금액을 수정 하시겠습니까?'))
+			if (!confirm('바우처금액을 수정 하시겠습니까?'))
 				return false;
 
 			var message = "";
