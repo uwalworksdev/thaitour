@@ -681,7 +681,7 @@ endforeach;
 </form>
 
 <script>
-$(document).on('click', '.btn_group_movement', function () {
+$(document).on('click', '.btn_group_movementx', function () {
 		// 클릭된 요소에서 data-group 값 가져오기
 		const groupNo = $(this).data('group'); // 또는 .attr('data-group')
 
