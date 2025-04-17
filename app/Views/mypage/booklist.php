@@ -690,7 +690,7 @@ function openGroupMovement(group_no) {
 -->
 
 <form id="checkOut" action="/checkout/confirmMypage" method="post">
-<input type="text" name="user_id" id="user_id" value="<?=$member['id']?>" >
+<input type="text" name="user_id" id="user_id" value="<?= session("member.id") ?>" >
 <input type="text" name="payment_no" id="payment_no" value="" >
 <input type="text" name="dataValue" id="dataValue" value="" >
 </form>
