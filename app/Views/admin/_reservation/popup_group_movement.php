@@ -15,12 +15,13 @@
             </div>
               <table>
                   <colgroup>
-                    <col width="30px">
+                      <col width="30px">
                       <col width="70px">
                       <col width="*">
                       <col width="110px">
                   </colgroup>
                   <tbody>
+				  <?php foreach ($items as $i): ?>
                       <tr>
                         <th>
                             <input id="check_b_1" type="checkbox">
@@ -46,22 +47,7 @@
                               <p>(6,700바트) </p>
                           </td>
                       </tr>
-                      <tr>
-                        <td>
-                            <input id="check_b_3" type="checkbox">
-                            <label for="check_b_3"></label>
-                        </td>
-                          <td>투어 </td>
-                          <td>
-                              <p class="time">2025-03-28(금) | (아속출발) 아유타야 선셋 리버크루즈 반일 투어 </p>
-                              <p>[프로모션] 아유타야 오후 | 성인 1명 | 39,000원 X 1명 </p>
-                          </td>
-                          <td>
-                            <p>303,175원 </p>
-                            <p>(6,700바트) </p>
-                          </td>
-                      </tr>
-  
+                  <?php endforeach; ?>					  
               </table>
           </div>
   
