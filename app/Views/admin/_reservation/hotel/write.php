@@ -418,11 +418,11 @@
 												   style="width:150px;text-align:right;" /> TH
 											<input type="text" id="voucher_price_won" name="voucher_price_won"
 												   value="<?= number_format($voucher_price_won) ?>" class="input_txt price"
-												   style="width:150px;text-align:right;" readonly /> 원<br>
-										    <span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
+												   style="width:150px;text-align:right;" readonly /> 원 
 												   
                                             <a href="#!" class="btn btn-default" id="voucher_update" >
-										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
+										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a><br>
+										    <span style="color:red;" >* 바트를 넣으면 원화가 계산됩니다.</span>
 									 	</td>
                                   </tr>
                                 
