@@ -3886,18 +3886,18 @@ class AjaxController extends BaseController {
 		$db = \Config\Database::connect();
 
 		// ① 전체 그룹 목록
-		//$groups = $db->query("SELECT group_no, group_name FROM tbl_groups ORDER BY group_no ASC")->getResultArray();
+		$groups = $db->query("SELECT group_no, group_name FROM tbl_groups ORDER BY group_no ASC")->getResultArray();
 
 		// ② 해당 그룹의 아이템 목록
-		//$items = $db->query("SELECT * FROM tbl_group_items WHERE group_no = ?", [$group_no])->getResultArray();
-/*
+		$items = $db->query("SELECT * FROM tbl_group_items WHERE group_no = ?", [$group_no])->getResultArray();
+
 		$data = [
 			'group_no' => $group_no,
 			'groups'   => $groups,
 			'items'    => $items
 		];
 
-*/		return view('admin/_reservation/popup_group_movement');
+		return view('admin/_reservation/popup_group_movement', $data);
 	}
 
 }	
