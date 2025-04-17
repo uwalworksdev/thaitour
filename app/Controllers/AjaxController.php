@@ -3836,4 +3836,40 @@ class AjaxController extends BaseController {
 		}		
     }
 	
+	public function ajax_voucher_update()
+    {
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$order_no        = $this->request->getPost("order_no");
+			$voucher_price_bath = (float) str_replace(',', '', $this->request->getPost("voucher_price_bath"));
+			$voucher_price_won  = (float) str_replace(',', '', $this->request->getPost("voucher_price_won"));
+
+            $db->query("UPDATE tbl_order_mst SET voucher_price_won = ?, voucher_price_bath = ? WHERE order_no = ?", [$voucher_price_won, $voucher_price_bath, $order_no]);
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '바우처금액 수정중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '바우처금액 수정완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+    }
+	
 }	

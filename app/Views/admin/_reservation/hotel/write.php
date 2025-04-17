@@ -603,6 +603,41 @@
 		});
 	});
     </script>
+
+    
+	<script>
+	$(document).ready(function () {
+		$('#voucher_update').on('click', function (e) {
+			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
+
+			if (!confirm('결제금액을 수정 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_voucher_update",
+				type : "POST",
+				data : {
+					"order_no"        : $("#order_no").val(),
+					"voucher_price_bath" : $("#voucher_price_bath").val(),
+					"voucher_price_won"  : $("#voucher_price_won").val()
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		});
+	});
+    </script>
 	
 	<script>  
 	$(document).ready(function () {
