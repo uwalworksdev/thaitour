@@ -698,7 +698,8 @@ $(document).on('click', '.btn_group_movement', function () {
 			cache: false,
 			success: function (data, textStatus) {
 				var message = data.message;
-                $('#popupContainer').html(response); // 받은 HTML 삽입
+                $('#popupContainer').html(message); // 받은 HTML 삽입
+				openGroupMovement();
 			},
 			error: function (request, status, error) {
 				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
