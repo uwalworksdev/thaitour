@@ -611,7 +611,12 @@ $(document).on('click', '.btn_group_movement', function () {
             // 받은 HTML을 팝업 내부에 삽입
             $(".group_movement_popup_wrap").html(html);
 
-            // 팝업 오픈 함수 호출
+		   // CSS가 head에 없으면 추가
+			const cssPath = "/css/mypage/mypage_new.css";
+			if (!$(`link[href='${cssPath}']`).length) {
+				$('head').append(`<link rel="stylesheet" href="${cssPath}" type="text/css" />`);
+			}
+				// 팝업 오픈 함수 호출
             openGroupMovement();
         },
         error: function (request, status, error) {
