@@ -401,7 +401,7 @@
 								
 								<tr>
                                         <th>예약 문자발송(알림톡)</th>
-                                        <td>
+                                        <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약가능</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약불가능</button>
@@ -411,7 +411,7 @@
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">예약취소</button>
                                         </td>
 										
-										<th>바우쳐 금액</th>
+										<!--th>바우쳐  금액</th>
 										<td>
 											<input type="text" id="voucher_price_bath" name="voucher_price_bath"
 												   value="<?= number_format($voucher_price_bath)?>" class="input_txt price"
