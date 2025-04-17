@@ -585,7 +585,9 @@ function getTab($tab_active)
 function getLeftBottomBanner()
 {
     $fsql = "SELECT * FROM tbl_bbs_list WHERE code = 'banner' AND category = '125' AND status = 'Y' ORDER BY onum ASC";
-    return db_connect()->query($fsql)->getRowArray();
+    //return db_connect()->query($fsql)->getRowArray();
+	return db_connect()->query($fsql)->getResultArray();
+
 }
 
 function get_device()
