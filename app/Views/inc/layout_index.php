@@ -123,8 +123,7 @@ try {
     ?>
 
 <div class="main_sale_banner flex__c">
-    <?php foreach ($time_sale_list as $file) { ?>
-
+    <?php foreach ($banner_ as $row) { ?>
         <div class="time_sale_banner flex__c">
            <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
         </div>
