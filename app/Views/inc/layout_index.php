@@ -150,7 +150,7 @@ try {
                         $product_idx = getProductIdFromUrl($url);
 
                         $product_price = getViewProduct($product_idx)["product_price"];
-
+/*
                         if(!empty($time_sale["e_date"]) && !empty($time_sale["e_time"])){
                             $endDateTime = $time_sale["e_date"] . " " . $time_sale["e_time"];
                             $endDateTimeObj = new DateTime($endDateTime);
@@ -161,6 +161,7 @@ try {
                             $minute = str_pad($interval->i, 2, '0', STR_PAD_LEFT);
                             $second = str_pad($interval->s, 2, '0', STR_PAD_LEFT);
                         }
+*/						
             ?>
                 <a href="<?=$url?>">
                     <div class="time_sale_wrap <?php echo $i == 1 ? "active" : ""?>">
