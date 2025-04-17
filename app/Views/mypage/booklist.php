@@ -318,15 +318,14 @@ endforeach;
                             </div>
                             <div class="group_r flex__c">
                                 <div class="total">
-                                    <p>그룹 총금액 <span><?= esc(number_format($group['order_price']))?>원</span></p>
+                                    <p>그룹 총금액 <span><?= esc(number_format($group['real_price_won']))?>원</span></p>
                                 </div>
                                 <div onclick="openNewWindow()" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <!--div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div-->
-								<div data-groupNo="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div>
+                                <div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
@@ -364,7 +363,7 @@ endforeach;
 									       if($order['order_status'] == "X" || $order['order_status'] == "G") {
 										     echo '<input type="checkbox" 
 											              data-idx="'. $order['order_no'] .'" 
-														  data-price="'. $order['order_price'] .'" 
+														  data-price="'. $order['real_price_won'] .'" 
 														  id="prod'.esc($order['order_idx']).'" 
 														  class="pay sub'.esc($group['group_no']).'" 
 														  value="Y">';
@@ -397,7 +396,7 @@ endforeach;
                                            echo "<p>성인 ". $order['people_adult_cnt'] ."명</p>";
 									    }
 									?>	   
-                                    <p><?= esc(number_format($order['order_price']))?>원 (<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
+                                    <p><?= esc(number_format($order['real_price_won']))?>원 (<?= esc(number_format($order['real_price_bath']))?>바트)</p>
                                 </div>
                                 <div class="info_name">
                                     <p>여행자 이름: <?= esc($order["order_user_name"]);?>[<?= esc($order["order_user_first_name_en"]);?> <?= esc($order["order_user_last_name_en"]);?>]</p>
@@ -412,8 +411,8 @@ endforeach;
 							    
 								<?php if($order['order_status'] == "X" || $order['order_status'] == "G") { ?>
                                 <div class="info_total_price flex__c box">
-                                    <p class="pri_won"><?= esc(number_format($order['order_price']))?> <span>원</span></p>
-                                    <p class="pri_bath">(<?= esc(number_format($order['order_price'] / $order['baht_thai']))?>바트)</p>
+                                    <p class="pri_won"><?= esc(number_format($order['real_price_won']))?> <span>원</span></p>
+                                    <p class="pri_bath">(<?= esc(number_format($order['real_price_bath']))?>바트)</p>
                                     <div class="btn_payment" data-idx="<?=$order['order_no']?>" >
                                         <p>결제하기</p>
                                     </div>
@@ -681,34 +680,30 @@ endforeach;
 </form>
 
 <script>
-$(document).ready(function () {
-		$(document).on('click', '.btn_group_movement', function () {
-				// 클릭된 요소에서 data-group 값 가져오기
-				const groupNo = $(this).data('group'); // 또는 .attr('data-group')
+$(document).on('click', '.btn_group_movement', function () {
+		// 클릭된 요소에서 data-group 값 가져오기
+		const groupNo = $(this).data('group'); // 또는 .attr('data-group')
 
-				alert('선택된 그룹 번호:'+ groupNo);
-			
-				$.ajax({
+		alert('선택된 그룹 번호:'+ groupNo);
+	
+		$.ajax({
 
-					url: "/ajax/ajax_group_movement",
-					type: "POST",
-					data: {
-							"group_no": groupNo 
-					},
-					dataType: "json",
-					async: false,
-					cache: false,
-					success: function (data, textStatus) {
-						var message = data.message;
-						alert(message);
-						$('#popupContainer').html(message); // 받은 HTML 삽입
-						openGroupMovement();
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});	
-		});
+			url: "/ajax/ajax_group_movement",
+			type: "POST",
+			data: {
+				    "group_no": groupNo 
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+                $('#popupContainer').html(response); // 받은 HTML 삽입
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});	
 });
 </script>
 
