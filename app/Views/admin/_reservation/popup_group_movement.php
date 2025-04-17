@@ -79,7 +79,7 @@ $(document).on('click', '#btn_select', function() {
 	}   
 		
     console.log('선택된 그룹:', selectedGroup);
-    console.log('선택된 항목 수:', checkedItems);
+    console.log('선택된 항목 수:', selectedItems);
 });
 
 $(document).on('click', '#check_all', function () {
