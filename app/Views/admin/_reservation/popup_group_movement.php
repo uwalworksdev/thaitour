@@ -59,15 +59,25 @@ $(document).on('click', '#btn_select', function() {
     
     // 예: 선택된 그룹 값 가져오기
     let selectedGroup = $('#group_select').val();
-    
-    // 예: 체크된 항목 수
-    let checkedItems = $('input[type=checkbox]:checked').length;
-
     if(selectedGroup == "") {
-	   alert('이동할 그룹을 선택하세요.');
+	   alert('이동 그룹을 선택하세요.');
 	   $("#group_select").focus();
 	   return false;
 	}   
+    
+    // 예: 체크된 항목 수
+    let selectedItems = $('input[type="checkbox"][id^="check_b_"]:checked')
+        .map(function () {
+            return $(this).val();
+        })
+        .get()
+        .join('|');
+
+    if(selectedItems == "") {
+	   alert('이동할 에약을 선택하세요.');
+	   return false;
+	}   
+		
     console.log('선택된 그룹:', selectedGroup);
     console.log('선택된 항목 수:', checkedItems);
 });
