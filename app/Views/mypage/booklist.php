@@ -325,7 +325,8 @@ endforeach;
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div>
+                                <!--div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div-->
+								<div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
@@ -706,9 +707,7 @@ endforeach;
 <script>
 $(document).ready(function () {
 		$(document).on('click', '.btn_group_movement', function () {
-			openGroupMovement();
 				// 클릭된 요소에서 data-group 값 가져오기
-			/*	
 				const groupNo = $(this).data('group'); // 또는 .attr('data-group')
 
 				alert('선택된 그룹 번호:'+ groupNo);
@@ -732,8 +731,7 @@ $(document).ready(function () {
 					error: function (request, status, error) {
 						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 					}
-				});
-			*/	
+				});	
 		});
 });
 </script>
