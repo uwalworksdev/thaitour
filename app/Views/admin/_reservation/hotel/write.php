@@ -401,7 +401,7 @@
 								
 								<tr>
                                         <th>예약 문자발송(알림톡)</th>
-                                        <td colspan="3">
+                                        <td>
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약가능</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약불가능</button>
@@ -410,6 +410,21 @@
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">예약확정</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">예약취소</button>
                                         </td>
+										
+										<th>바우쳐 금액</th>
+										<td>
+											<input type="text" id="real_price_bath" name="real_price_bath"
+												   value="<?= number_format($real_price_bath)?>" class="input_txt price"
+												   style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
+											<input type="text" id="real_price_won" name="real_price_won"
+												   value="<?= number_format($real_price_won) ?>" class="input_txt price"
+												   style="width:150px;text-align:right;" readonly/> 원
+
+											<?php if($order_status == "W") { ?>
+                                            <a href="#!" class="btn btn-default" id="price_update" >
+										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
+											<?php } ?>
+									 	</td>
                                   </tr>
                                 
                                 </tbody>
