@@ -1,4 +1,11 @@
-      <div class="group_movement_popup_content custom_popup_content">
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new02.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css"/>
+<link href="/css/community/community.css" rel="stylesheet" type="text/css"/>      
+	  
+	  <div class="group_movement_popup_content custom_popup_content">
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
           </div>
