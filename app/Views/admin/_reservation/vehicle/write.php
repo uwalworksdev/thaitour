@@ -645,7 +645,7 @@
 								
 								<tr>
                                         <th>예약 문자발송(알림톡)</th>
-                                        <td colspan="3">
+                                        <td>
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확인</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확정</button>
