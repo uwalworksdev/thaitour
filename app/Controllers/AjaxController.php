@@ -3901,4 +3901,43 @@ class AjaxController extends BaseController {
 		return view('admin/_reservation/popup_group_movement', $data);
 	}
 
+    public function ajax_group_change()
+    {
+		$db = \Config\Database::connect();
+
+		$db->transBegin();
+
+		try {
+			$selectedGroup = $this->request->getPost("selectedGroup");
+			$selectedItems = $this->request->getPost("selectedItems");
+            $order_idx     = explode("|", $selectedItems);
+			
+			for($i=0;$i<count($order_idx);$i++)
+			{	
+		        $db->query("UPDATE tbl_order_mst SET group_no = ? WHERE order_idx = ?", [$selectedGroup, $order_idx[$i]]);
+			}
+			
+			if ($db->transStatus() === false) {
+				$db->transRollback();
+				return $this->response->setStatusCode(500)->setJSON([
+					'status'  => 'error',
+					'message' => '그룹변겸중 오류가 발생했습니다.'
+				]);
+			}
+
+			$db->transCommit();
+			return $this->response->setStatusCode(200)->setJSON([
+				'status'  => 'success',
+				'message' => '그룹변겸 완료'
+			]);
+
+		} catch (\Exception $e) {
+			$db->transRollback();
+			return $this->response->setStatusCode(500)->setJSON([
+				'status' => 'error',
+				'message' => $e->getMessage()
+			]);
+		}		
+		
+	}	
 }	
