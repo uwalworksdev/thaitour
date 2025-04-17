@@ -326,7 +326,7 @@ endforeach;
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
                                 <!--div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div-->
-								<div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div>
+								<div onclick="openGroupMovement('<?= esc($group['group_no']) ?>')" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
@@ -342,9 +342,9 @@ endforeach;
                             }
                         </script>
                         <script>
-                            function openGroupMovement() {
+                            function openGroupMovement(groupNo) {
 								
-				const groupNo = $(this).data('group'); // 또는 .attr('data-group')
+				//const groupNo = $(this).data('group'); // 또는 .attr('data-group')
 
 				alert('선택된 그룹 번호:'+ groupNo);
 			
