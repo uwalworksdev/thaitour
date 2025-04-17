@@ -624,6 +624,27 @@
 		});
 	});
 	</script>
+	
+	<script>  
+	$(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$("#voucher_price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+			var bath = parseFloat($("#voucher_price_bath").val().replace(/,/g, '')) || 0;
+
+			// 환산된 원화 계산
+			var won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$("#voucher_price_won").val(won.toLocaleString());
+		});
+	});
+	</script>
 
     <script>
 	function allimtalk(order_no, alimCode)
