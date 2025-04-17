@@ -413,17 +413,15 @@
 										
 										<th>바우쳐 금액</th>
 										<td>
-											<input type="text" id="real_price_bath" name="real_price_bath"
-												   value="<?= number_format($real_price_bath)?>" class="input_txt price"
-												   style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
-											<input type="text" id="real_price_won" name="real_price_won"
-												   value="<?= number_format($real_price_won) ?>" class="input_txt price"
-												   style="width:150px;text-align:right;" readonly/> 원
+											<input type="text" id="voucher_price_bath" name="voucher_price_bath"
+												   value="<?= number_format($voucher_price_bath)?>" class="input_txt price"
+												   style="width:150px;text-align:right;" /> TH
+											<input type="text" id="voucher_price_won" name="voucher_price_won"
+												   value="<?= number_format($voucher_price_won) ?>" class="input_txt price"
+												   style="width:150px;text-align:right;" /> 원
 
-											<?php if($order_status == "W") { ?>
-                                            <a href="#!" class="btn btn-default" id="price_update" >
+                                            <a href="#!" class="btn btn-default" id="voucher_update" >
 										    <span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
-											<?php } ?>
 									 	</td>
                                   </tr>
                                 
