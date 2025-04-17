@@ -343,30 +343,6 @@ endforeach;
                         </script>
                         <script>
                             function openGroupMovement(groupNo) {
-								
-				//const groupNo = $(this).data('group'); // 또는 .attr('data-group')
-
-				alert('선택된 그룹 번호:'+ groupNo);
-			
-				$.ajax({
-
-					url: "/ajax/ajax_group_movement",
-					type: "POST",
-					data: {
-							"group_no": groupNo 
-					},
-					dataType: "json",
-					async: false,
-					cache: false,
-					success: function (data, textStatus) {
-						var message = data.message;
-						alert(message);
-						$('#popupContainer').html(message); // 받은 HTML 삽입
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});								
                                 $(".group_movement_popup_wrap").show();
                                 $(".group_movement_popup_content .btn_close_popup").click(function() {
                                     $(".group_movement_popup_wrap").hide();
