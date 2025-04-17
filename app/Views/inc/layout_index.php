@@ -114,8 +114,8 @@ try {
 
 <main>
     <?php 
-        $banner_ = getLeftBottomBanner(); 
-        $time_sale_list = getTimeSale()->findAll();
+        $time_sale_list = getLeftBottomBanner(); 
+        //$time_sale_list = getTimeSale()->findAll();
 
         $currentDateTime = new DateTime();
 		
