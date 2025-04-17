@@ -325,7 +325,7 @@ endforeach;
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div>
+                                <div data-group="<?= esc($group['group_no']) ?>" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
@@ -576,7 +576,7 @@ endforeach;
       </div>
   </div>
   <div class="group_movement_popup_wrap custom_popup">
-      <div class="group_movement_popup_content custom_popup_content">
+      <div class="group_movement_popup_content custom_popup_content" id="popupContainer">
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
           </div>
@@ -678,6 +678,28 @@ endforeach;
 <input type="text" name="payment_no" id="payment_no" value="" >
 <input type="text" name="dataValue" id="dataValue" value="" >
 </form>
+
+<script>
+$(document).on('click', '.btn_group_movement', function () {
+    // 클릭된 요소에서 data-group 값 가져오기
+    const groupNo = $(this).data('group'); // 또는 .attr('data-group')
+
+    alert('선택된 그룹 번호:'+ groupNo);
+
+    // 예: Ajax로 해당 그룹 정보를 불러오기
+    $.ajax({
+        url: '/ajax/ajax_group_movement',
+        type: 'GET',
+        data: { group_no: groupNo },
+        success: function (response) {
+            $('#popupContainer').html(response); // 받은 HTML 삽입
+        },
+        error: function () {
+            alert('그룹 정보를 불러오지 못했습니다.');
+        }
+    });
+});
+</script>
 
 <script>
 $(document).ready(function () {
