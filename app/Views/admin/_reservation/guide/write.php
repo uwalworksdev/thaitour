@@ -32,7 +32,7 @@
 
             <header id="headerContainer">
                 <div class="inner">
-                    <h2><?= $titleStr ?></h2>
+                    <h2><?= $titleStr ?>(가이드)</h2>
                     <div class="menus">
                         <ul>
                             <li>
