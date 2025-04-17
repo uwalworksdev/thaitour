@@ -66,4 +66,11 @@ $(document).on('click', '#btn_select', function() {
     console.log('선택된 그룹:', selectedGroup);
     console.log('선택된 항목 수:', checkedItems);
 });
+
+$(document).on('click', '#check_all', function () {
+    const isChecked = $(this).is(':checked');
+    
+    // 모든 개별 체크박스에 체크 상태 설정
+    $('input[type="checkbox"][id^="check_b_"]').prop('checked', isChecked);
+});
 </script>
