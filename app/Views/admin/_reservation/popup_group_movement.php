@@ -11,7 +11,7 @@
                     <option value="<?= esc($g['group_no']) ?>">그룹번호 <?= esc($g['group_no']) ?></option>
                 <?php endforeach; ?>
                 </select>
-                <div class="btn_select">그룹이동</div>
+                <div class="btn_select" id="btn_select">그룹이동</div>
             </div>
               <table>
                   <colgroup>
@@ -51,3 +51,19 @@
               <p>* 상품을 선택하고 그룹을 선택 후 그룹이동 버튼을 클릭합니다. </p>
           </div>
       </div>
+
+<script>
+$(document).on('click', '#btn_select', function() {
+    // 여기서 원하는 동작 실행
+    alert('그룹이동 버튼 클릭됨!');
+    
+    // 예: 선택된 그룹 값 가져오기
+    let selectedGroup = $('#group_select').val();
+    
+    // 예: 체크된 항목 수
+    let checkedItems = $('input[type=checkbox]:checked').length;
+
+    console.log('선택된 그룹:', selectedGroup);
+    console.log('선택된 항목 수:', checkedItems);
+});
+</script>
