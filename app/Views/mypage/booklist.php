@@ -340,14 +340,29 @@ endforeach;
                                 // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
                             }
                         </script>
-                        <script>
-                            function openGroupMovement() {
-                                $(".group_movement_popup_wrap").show();
-                                $(".group_movement_popup_content .btn_close_popup").click(function() {
-                                    $(".group_movement_popup_wrap").hide();
-                                })
-                            }
-                        </script>
+<script>
+function openGroupMovement() {
+    $.ajax({
+        url: "/ajax/ajax_group_movement",
+        type: "POST",
+        data: {
+            group_no: 1 // 필요한 데이터
+        },
+        success: function(res) {
+            $(".group_movement_popup_wrap").html(res).show();
+
+            // 팝업 닫기 이벤트 다시 바인딩
+            $(".group_movement_popup_wrap .btn_close_popup").click(function () {
+                $(".group_movement_popup_wrap").hide();
+            });
+        },
+        error: function() {
+            alert("팝업 데이터를 불러오지 못했습니다.");
+        }
+    });
+}
+</script>
+
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력

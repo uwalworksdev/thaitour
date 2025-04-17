@@ -1,6 +1,4 @@
-<?= $this->extend('layouts/popup_layout') ?>
-<?= $this->section('content') ?>
-
+<link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" />
 	  <div class="group_movement_popup_content custom_popup_content">
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
@@ -71,4 +69,3 @@
               <p>* 상품을 선택하고 그룹을 선택 후 그룹이동 버튼을 클릭합니다. </p>
           </div>
       </div>
-<?= $this->endSection() ?>	  
