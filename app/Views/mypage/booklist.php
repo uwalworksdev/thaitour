@@ -325,7 +325,7 @@ endforeach;
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div onclick="openGroupMovement()" class="btn_group_movement">그룹이동</div>
+                                <div onclick="openGroupMovement('<?= esc($group['group_no']) ?>')" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
@@ -341,12 +341,12 @@ endforeach;
                             }
                         </script>
 <script>
-function openGroupMovement() {
+function openGroupMovement(group_no) {
     $.ajax({
         url: "/ajax/ajax_group_movement",
         type: "POST",
         data: {
-            group_no: 1 // 필요한 데이터
+                 group_no: group_no // 필요한 데이터
         },
         success: function(res) {
             $(".group_movement_popup_wrap").html(res).show();
@@ -690,6 +690,7 @@ function openGroupMovement() {
 -->
 
 <form id="checkOut" action="/checkout/confirmMypage" method="post">
+<input type="text" name="user_id" id="user_id" value="<?=$member['id']?>" >
 <input type="text" name="payment_no" id="payment_no" value="" >
 <input type="text" name="dataValue" id="dataValue" value="" >
 </form>
