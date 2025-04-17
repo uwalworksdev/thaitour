@@ -3897,7 +3897,7 @@ class AjaxController extends BaseController {
 			'items'    => $items
 		];
 
-		return view('admin/_reservation/popup_group_movement', $data);
+		return view('admin/_reservation/popup_group_movement');
 	}
 
 }	
