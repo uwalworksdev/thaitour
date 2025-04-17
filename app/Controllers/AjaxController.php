@@ -3881,15 +3881,16 @@ class AjaxController extends BaseController {
 	
 	public function ajax_group_movement()
 	{
+		$m_idx    = $this->request->getPost('m_idx');
 		$group_no = $this->request->getPost('group_no');
 
 		$db = \Config\Database::connect();
 
 		// ① 전체 그룹 목록
-		$groups = $db->query("SELECT group_no, group_name FROM tbl_groups ORDER BY group_no ASC")->getResultArray();
+		$groups = $db->query("SELECT DISTINCT(group_no) AS group_no FROM tbl_order_mst WHERE m_idx = '". $m_idx ."' AND group_no != '". $group_no."' ORDER BY group_no ASC")->getResultArray();
 
 		// ② 해당 그룹의 아이템 목록
-		$items = $db->query("SELECT * FROM tbl_group_items WHERE group_no = ?", [$group_no])->getResultArray();
+		$items = $db->query("SELECT * FROM tbl_order_mst WHERE group_no = ?", [$group_no])->getResultArray();
 
 		$data = [
 			'group_no' => $group_no,

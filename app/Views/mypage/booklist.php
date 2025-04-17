@@ -346,7 +346,8 @@ function openGroupMovement(group_no) {
         url: "/ajax/ajax_group_movement",
         type: "POST",
         data: {
-                 group_no: group_no // 필요한 데이터
+			     "m_idx"    : $("#m_idx").val(),
+                 "group_no" : group_no  
         },
         success: function(res) {
             $(".group_movement_popup_wrap").html(res).show();
@@ -690,9 +691,9 @@ function openGroupMovement(group_no) {
 -->
 
 <form id="checkOut" action="/checkout/confirmMypage" method="post">
-<input type="text" name="user_id" id="user_id" value="<?= session("member.id") ?>" >
-<input type="text" name="payment_no" id="payment_no" value="" >
-<input type="text" name="dataValue" id="dataValue" value="" >
+<input type="hidden" name="m_idx"      id="m_idx"   value="<?= session("member.idx") ?>" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue"  id="dataValue"  value="" >
 </form>
 
 <script>
