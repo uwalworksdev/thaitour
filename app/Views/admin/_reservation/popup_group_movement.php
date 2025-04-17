@@ -36,7 +36,7 @@
                           <td>골프 </td>
                           <td>
                               <p class="time"><?= esc($i['product_name']) ?></p>
-                              <p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p>
+                              <!--p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p-->
                           </td>
                           <td>
                               <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
