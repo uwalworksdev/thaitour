@@ -2,7 +2,7 @@
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
           </div>
-          <h1>그룹이동xxxxxxxx</h1>
+          <h1>그룹이동</h1>
           <div class="sec2">
             <div class="box_select">
                 <select name="" id="">
