@@ -115,7 +115,7 @@ try {
 <main>
     <?php 
         $banner_ = getLeftBottomBanner(); 
-        $time_sale_list = $banner_;
+        $time_sale_list = getTimeSale()->findAll();
 
         $currentDateTime = new DateTime();
 		
@@ -189,6 +189,7 @@ try {
                 }
             ?>
         </div>
+		<!--
         <a href="/coupon/list">
             <?php echo getCouponList(); ?>
             <!-- <div class="coupon_sale">
@@ -198,7 +199,7 @@ try {
                     포인트 쿠폰</p>
                 </div>
             </div> -->
-        </a>
+        <!--/a>
         <!-- <a href="#!">
             <div class="banner_bt">
                 <img src="/img/sub/banner_bt2.png" alt="">
