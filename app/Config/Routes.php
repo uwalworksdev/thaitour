@@ -1000,4 +1000,6 @@ $routes->group("travel-tips", static function ($routes) {
     
 });
 
+$routes->get('group-move-popup', 'ReservationController::groupMoveView');
+
 ?>
