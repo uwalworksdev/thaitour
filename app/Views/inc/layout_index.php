@@ -201,7 +201,7 @@ try {
         </a>
         <a href="#!">
             <div class="banner_bt">
-                <img src="/img/sub/banner_bt.jpg" alt="">
+                <img src="/img/sub/banner_bt.png" alt="">
             </div>
         </a>
     </div>
