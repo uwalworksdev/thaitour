@@ -122,74 +122,20 @@ try {
 		session()->set('redirect_url', current_url());
     ?>
 
-    <div class="main_sale_banner flex__c">
+<div class="main_sale_banner flex__c">
         <div class="time_sale_banner flex__c">
-            <?php 
-                if(count($time_sale_list) <= 0){
-            ?>
-                <?php if ($banner_): ?>
-                    <a href="/time_sale/list">
-                        <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
-                    </a>
-                <?php endif; ?>
-            <?php
-                }else {
-                    $i = 1;
-                    foreach($time_sale_list as $time_sale){
-                        $url = "#";
-                        if(!empty($time_sale["url"])){
-                            $url = $time_sale["url"];
-                        }
-
-                        if(!empty($time_sale["ufile1"])){
-                            $img = "/data/bbs/" . $time_sale["ufile1"];
-                        }else{
-                            $img = "";
-                        }
-
-                        $product_idx = getProductIdFromUrl($url);
-
-                        $product_price = getViewProduct($product_idx)["product_price"];
-
-                        if(!empty($time_sale["e_date"]) && !empty($time_sale["e_time"])){
-                            $endDateTime = $time_sale["e_date"] . " " . $time_sale["e_time"];
-                            $endDateTimeObj = new DateTime($endDateTime);
-                            $interval = $currentDateTime->diff($endDateTimeObj);
-
-                            $hour = ($interval->d * 24) + $interval->h;
-                            $hour = str_pad($hour, 2, '0', STR_PAD_LEFT);;
-                            $minute = str_pad($interval->i, 2, '0', STR_PAD_LEFT);
-                            $second = str_pad($interval->s, 2, '0', STR_PAD_LEFT);
-                        }
-            ?>
-                <a href="<?=$url?>">
-                    <div class="time_sale_wrap <?php echo $i == 1 ? "active" : ""?>">
-                        <div class="time_sale_clock flex_c_c">
-                            <i></i>
-                            <span>타임세일</span>
-                        </div>
-                        <div class="time_sale_product">
-                            <img src="<?=$img?>" alt="<?=$time_sale["rfile1"]?>">
-                            <div class="time_sale_ttl">
-                                <p class="subject"><?=$time_sale["subject"]?></p>
-                                <p class="price"><?=number_format($product_price)?> 바트</p>
-                            </div>
-                        </div>
-                        <div class="time_remaining flex_c_c">
-                            <p class="ttl">이벤트 남은 시간</p>
-                            <div class="time">
-                                <span class="hours"><?=$hour?></span> : <span class="minutes"><?=$minute?></span> : <span class="seconds"><?=$second?></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            <?php
-                    $i++;
-                    }
-                }
-            ?>
+           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
         </div>
-    </div>
+        <div class="time_sale_banner flex__c">
+           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
+        </div>
+        <div class="time_sale_banner flex__c">
+           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
+        </div>
+        <div class="time_sale_banner flex__c">
+           <a href="/time_sale/list"><img src="/data/bbs/20250417141826026.png" alt="main_sale_img"></a>
+        </div>
+</div>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
     <?php echo view("inc/popup_login"); ?>
