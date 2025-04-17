@@ -27,11 +27,10 @@
                           <th>품목</th>
                           <th>상세</th>
                           <th>금액</th>
-
                       </tr>
                       <tr>
                         <td>
-                            <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox">
+                            <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox" value="<?= esc($i['order_idx']) ?>">
                             <label for="check_b_<?= esc($i['order_idx']) ?>"></label>
                         </td>
                           <td>골프 </td>
