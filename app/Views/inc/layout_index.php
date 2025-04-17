@@ -125,16 +125,7 @@ try {
     <div class="main_sale_banner flex__c">
         <div class="time_sale_banner flex__c">
             <?php 
-                if(count($time_sale_list) <= 0){
-            ?>
-                <?php if ($banner_): ?>
-                    <a href="/time_sale/list">
-                        <img src="/data/bbs/<?= $banner_['ufile5'] ?? $banner_['ufile6'] ?>" alt="main_sale_img">
-                    </a>
-                <?php endif; ?>
-            <?php
-                }else {
-                    $i = 1;
+
                     foreach($time_sale_list as $time_sale){
                         $url = "#";
                         if(!empty($time_sale["url"])){
@@ -185,8 +176,6 @@ try {
                     </div>
                 </a>
             <?php
-                    $i++;
-                    }
                 }
             ?>
         </div>
