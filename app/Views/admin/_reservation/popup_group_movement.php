@@ -86,7 +86,7 @@
 					data: {
 
 						"selectedGroup": selectedGroup, 
-						"selectedItems": selectedItems 
+						"order_idxs"   : selectedItems 
 
 					},
 					dataType: "json",

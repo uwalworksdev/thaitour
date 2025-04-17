@@ -3908,14 +3908,13 @@ class AjaxController extends BaseController {
 		$db->transBegin();
 
 		try {
-			$selectedGroup = $this->request->getPost("selectedGroup");
-			$selectedItems = $this->request->getPost("selectedItems");
-            $order_idx     = explode("|", $selectedItems);
-			
-			for($i=0;$i<count($order_idx);$i++)
-			{	
-		        $db->query("UPDATE tbl_order_mst SET group_no = ? WHERE order_idx = ?", [$selectedGroup, $order_idx[$i]]);
+			$order_idxs    = explode('|', $this->request->getPost('order_idxs')); // 예: "101|102|103"
+			$selectedGroup = $this->request->getPost('selectedGroup');
+
+			foreach ($order_idxs as $idx) {
+				$db->query("UPDATE tbl_order_mst SET group_no = ? WHERE order_idx = ?", [$selectedGroup, $idx]);
 			}
+
 			
 			if ($db->transStatus() === false) {
 				$db->transRollback();
