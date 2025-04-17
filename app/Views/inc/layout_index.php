@@ -114,7 +114,7 @@ try {
 
 <main>
     <?php 
-        $banner_ = getLeftBottomBanner(); 
+        $banner_ = getLeftBottomBannerx(); 
         $time_sale_list = getTimeSale()->findAll();
 
         $currentDateTime = new DateTime();
@@ -123,7 +123,7 @@ try {
     ?>
 
     <div class="main_sale_banner flex__c">
-        <div class="time_sale_banner flex__c xxx">
+        <div class="time_sale_banner flex__c">
             <?php 
                 if(count($time_sale_list) <= 0){
             ?>
