@@ -20,6 +20,8 @@ class VoucherController extends BaseController
         $this->ordersModel  = model("OrdersModel");
         $this->roomImg      = model("RoomImg");
         $this->CodeModel    = model("Code");
+        helper('my_helper');
+
     }
 	
     public function hotel(idx)
