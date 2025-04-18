@@ -554,8 +554,8 @@
 }
 
 .golf_invoice .logo_voice img {
-    width: 180px;
-    height: 76px;
+    width: 165px;
+    /* height: 76px; */
 }
 
 .golf_invoice .invoice_ttl {
