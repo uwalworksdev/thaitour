@@ -96,7 +96,15 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Breakfast</th>
-                            <td colspan="3">Include (Yes) Adult Breakfast</td>
+                            <td colspan="3">
+							    <?php
+								  if($result->breakfast == "N") {
+							         echo "Include (No) Adult Breakfast";
+						          } else {  	 
+							         echo "Include (Yes) Adult Breakfast";
+						          }
+								?>	 
+							</td>
 
                         </tr>
                         <tr>

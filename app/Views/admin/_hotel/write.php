@@ -447,6 +447,17 @@ $links = "list";
                                             특가</label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>연락처</th>
+                                    <td colspan="3">
+                                        <div style="display: flex; align-items: center;">
+                                            <input type="text" name="tel_no"
+                                                   value="<?= $tel_no ?? "" ?>"
+                                                   class="text" style="width:500px" maxlength="100"/>
+                                            <span style="color: gray;">(연락처)</span>
+                                        </div>
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <th>상품 담당자</th>
