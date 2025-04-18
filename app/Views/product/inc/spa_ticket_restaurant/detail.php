@@ -120,9 +120,11 @@
                 </div>
 
                 <div class="section2" id="section2">
-                    <h2 class="title-sec2">
+                    <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
+
+                    <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
                         <colgroup>
@@ -251,7 +253,7 @@
                 <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
-                        어린이정책
+                        임산부 & 어린이 정책
                     </h2>
 
                     <div class="container-big-text">

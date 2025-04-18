@@ -477,7 +477,7 @@
                                             </label>
                                         <?php endforeach; ?>
                                     </td> -->
-                                    <td colspan="3">
+                                    <td>
                                         <?php
                                             $_arr = explode("|", $mbti);
                                             $total = count($mcodes);
@@ -508,6 +508,12 @@
                                             <?php endfor; ?>
                                         </div>
                                     </td>
+                                    <th>운영시간</th>
+                                    <td>
+                                        <input id="time_line" name="time_line" class="input_txt" type="text"
+                                               value="<?= $time_line ?>" style="width:100%"/><br/>
+                                        <!-- <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span> -->
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>직접결제</th>
@@ -516,14 +522,6 @@
                                                 echo "checked=checked"; ?>> 
                                     </td>								
 								</tr>
-                                <!-- <tr>
-                                    <th>예약시간</th>
-                                    <td colspan="3">
-                                        <input id="time_line" name="time_line" class="input_txt" type="text"
-                                               value="<?= $time_line ?>" style="width:100%"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
-                                    </td>								
-								</tr> -->
                                 </tbody>
                             </table>
 
@@ -800,9 +798,7 @@
                                 <tr>
                                     <th>상품정보</th>
                                     <td colspan="3">
-
-
-								<textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
+								        <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                           style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors14 = [];
@@ -836,8 +832,7 @@
                                 <tr>
                                     <th>미팅/픽업장소 안내</th>
                                     <td colspan="3">
-
-								<textarea name="product_confirm" id="product_confirm" class="input_txt"
+								        <textarea name="product_confirm" id="product_confirm" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors12 = [];
@@ -903,8 +898,7 @@
                                 <tr>
                                     <th>포함사항</th>
                                     <td>
-
-								<textarea name="product_able" id="product_able" class="input_txt"
+								        <textarea name="product_able" id="product_able" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_able); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors2 = [];
@@ -936,7 +930,7 @@
                                     </td>
                                     <th>불포함사항</th>
                                     <td>
-								<textarea name="product_unable" id="product_unable" class="input_txt"
+								        <textarea name="product_unable" id="product_unable" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_unable); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors5 = [];
@@ -970,7 +964,7 @@
                                 <tr>
                                     <th>추가정보 및 참고사항</th>
                                     <td>
-								<textarea name="mobile_able" id="mobile_able" class="input_txt"
+								        <textarea name="mobile_able" id="mobile_able" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($mobile_able); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors3 = [];
@@ -1000,9 +994,9 @@
                                         </script>
 
                                     </td>
-                                    <th>어린이정책</th>
+                                    <th>임산부 & 어린이 정책</th>
                                     <td>
-								<textarea name="special_benefit" id="special_benefit" class="input_txt"
+								        <textarea name="special_benefit" id="special_benefit" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($special_benefit); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors6 = [];
@@ -1066,7 +1060,7 @@
                                     </td>
                                     <th>더투어랩 이용방법</th>
                                     <td>
-								<textarea name="etc_comment" id="etc_comment" class="input_txt"
+								        <textarea name="etc_comment" id="etc_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors10 = [];
