@@ -46,15 +46,15 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>ΤΗ 0840731020</td>
+                            <td>ΤΗ <?=$result->local_phone?></td>
                         </tr>
                     </tbody>
                 </table>
-                <h2 class="tit_top">Booking detailsㅌㅌㅌ</h2>
+                <h2 class="tit_top">Booking details</h2>
                 <table class="invoice_tbl">
                     <colgroup>
                         <col width="150px">
