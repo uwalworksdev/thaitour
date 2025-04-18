@@ -2438,7 +2438,7 @@ class Product extends BaseController
             $data['order_date']       = date('Y-m-d H:i:s');
             $data['order_r_date']     = date('Y-m-d H:i:s');
 
-            $golf_date                = $data['order_date'];  // 라운딩 일자
+            $golf_date                = $data['order_day'];   // 라운딩 일자
 			$hole                     = $data['hole_cnt'];    // 라운딩 홀 수
             $hour                     = $data['hour'];        // 주간/오후/야간
 		    $trip_type1               = $data['trip_type1'];
