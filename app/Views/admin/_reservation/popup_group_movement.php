@@ -21,13 +21,14 @@
                       <col width="110px">
                   </colgroup>
                   <tbody>
-				  <?php foreach ($items as $i): ?>
+				  
                       <tr>
                           <th><input id="check_all" type="checkbox"><label for="check_all"></label></th>
                           <th>품목</th>
                           <th>상세</th>
                           <th>금액</th>
                       </tr>
+                      <?php foreach ($items as $i): ?>					  
                       <tr>
                         <td>
                             <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox" value="<?= esc($i['order_idx']) ?>">
