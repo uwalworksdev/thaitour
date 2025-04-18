@@ -1975,6 +1975,19 @@ function order_info($order_gubun, $order_no, $order_idx)
 		$result     = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
 		$order_info = $result['option_name'] . "| 라운딩인원 ". $result['option_cnt'] ."명";
 	}
+
+	if($order_gubun == "spa") {
+		$query      = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' "); 
+        $result     = $query->getResultArray();
+		$order_info = "";
+		foreach ($result as $row):
+			if($order_info == "") {
+		       $order_info  = $row['option_name'] . " ". $row['option_cnt'] ."명";
+		    } else {
+		       $order_info .= "|". $row['option_name'] . " ". $row['option_cnt'] ."명 ";
+		    }   
+		endforeach;
+	}
 	
 	return $order_info;
 }
