@@ -118,6 +118,15 @@ class BoardController extends BaseController
         $data['list_code2'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
         $data['list_code_faq'] = $this->codeModel->getCodesByGubunDepthAndStatus('faq', '2');
 
+        if($data['code'] == "tour" || $data['code'] == "infographics"){
+            if($data['code'] == "tour"){
+                $code_no = "6001";
+            }else{
+                $code_no = "6002";
+            }
+            $data['code_list'] = $this->codeModel->getByParentCode($code_no)->getResultArray();
+        }
+
         return view('admin/_board/write', $data);
     }
 

@@ -42,17 +42,26 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <?php if ($inputType == "select"): ?>
     <select name="<?= $name ?>" id="<?= $name ?>" style="width: <?= $width ?>" onchange="select_cate(this.value);">
         <option value="">선택</option>
+ 
         <?php if($name == "category") { ?>
-            <?php if($code != "faq"){ ?>
+      
+            <?php if($code != "faq" && $code != "tour" && $code != "infographics"){ ?>
+
                 <?php foreach ($list_category as $frow) { ?>
                     <option value="<?= $frow["tbc_idx"] ?>" <?= ($frow["tbc_idx"] == $info[$name]) ? "selected" : ""?> >
                         <?= $frow["subject"] ?>
                     </option>
                 <?php } ?>
-            <?php }else{ ?> 
-                <?php foreach ($list_code_faq as $code) { ?>
-                    <option value="<?= $code["code_idx"] ?>" <?= ($code["code_idx"] == $info[$name]) ? "selected" : ""?> >
-                        <?= $code["code_name"] ?>
+            <?php }else if($code == "faq") { ?> 
+                <?php foreach ($list_code_faq as $code_child) { ?>
+                    <option value="<?= $code_child["code_idx"] ?>" <?= ($code_child["code_idx"] == $info[$name]) ? "selected" : ""?> >
+                        <?= $code_child["code_name"] ?>
+                    </option>
+                <?php } ?>
+            <?php }else { ?>
+                <?php foreach ($code_list as $code_child) { ?>
+                    <option value="<?= $code_child["code_idx"] ?>" <?= ($code_child["code_idx"] == $info[$name]) ? "selected" : ""?> >
+                        <?= $code_child["code_name"] ?>
                     </option>
                 <?php } ?>
             <?php } ?>
