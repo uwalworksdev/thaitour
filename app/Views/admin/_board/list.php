@@ -44,9 +44,9 @@
                 <input type="hidden" name="code" value="<?= esc($code) ?>">
                 <input type="hidden" name="type" value="<?= esc($type) ?>">
                 <input type="hidden" name="scategory" value="<?= esc($scategory) ?>">
-                <header id="headerContents" <?php if(isset($type) && $code == "banner"){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
+                <header id="headerContents" <?php if(isset($type) && $type != ""){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
                     <?php
-                        if(isset($type) && $code == "banner"){
+                        if(isset($type) && $type != ""){
                     ?>     
                         <div class="menu_tab">
                             <a href="/AdmMaster/_tourSuggestion/list" class="btn btn_fil">상품관리</a>
