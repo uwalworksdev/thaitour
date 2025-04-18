@@ -240,6 +240,31 @@
                                 <?= viewSQ($data_['product_unable'])?>
                             </div>
                         </div>
+
+                        <?php if($data_['etc_comment'] && $data_['etc_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                            <div class="section3" style="margin-top: 0;">
+                                <h2 class="title-sec2">
+                                    좌석안내
+                                </h2>
+
+                                <div class="container-big-text">
+                                        <?= viewSQ($data_['etc_comment']) ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+                            <div class="section3" style="margin-top: 0;">
+                                <h2 class="title-sec2">
+                                    임산부 & 어린이 정책
+                                </h2>
+
+                                <div class="container-big-text">
+                                        <?= viewSQ($data_['special_benefit']) ?>
+                                </div>
+                            </div>
+                        <?php } ?>
+
                         <div>
                             <h2 class="title-sec2">
                                 추가정보 및 참고사항
@@ -251,18 +276,6 @@
                     </div>
                 </div>
 
-                <?php if($data_['special_benefit'] && $data_['special_benefit'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
-                <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec2">
-                        임산부 & 어린이 정책
-                    </h2>
-
-                    <div class="container-big-text">
-                            <?= viewSQ($data_['special_benefit']) ?>
-                    </div>
-                </div>
-                <?php } ?>
-
                 <?php if($data_['notice_comment'] && $data_['notice_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
@@ -271,18 +284,6 @@
 
                     <div class="container-big-text">
                             <?= viewSQ($data_['notice_comment']) ?>
-                    </div>
-                </div>
-                <?php } ?>
-
-                <?php if($data_['etc_comment'] && $data_['etc_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
-                <div class="section3" style="margin-top: 0;">
-                    <h2 class="title-sec2">
-                        좌석안내
-                    </h2>
-
-                    <div class="container-big-text">
-                            <?= viewSQ($data_['etc_comment']) ?>
                     </div>
                 </div>
                 <?php } ?>
