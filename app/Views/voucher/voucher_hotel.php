@@ -50,7 +50,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>ΤΗ <?=$result->local_phone?></td>
+                            <td><?=$result->order_user_mobile?></td>
                         </tr>
                     </tbody>
                 </table>
