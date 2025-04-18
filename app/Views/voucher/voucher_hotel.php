@@ -70,7 +70,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">27-Sep-2023(Wed) 28-Sep-2023(Thu) /1 night</td>
+                            <td style="color : red" colspan="3"><?=$result->start_date?>(Wed) <?=$result->end_date?>(Thu) /<?=$result->order_day_cnt?> night</td>
 
                         </tr>
                         <tr>
