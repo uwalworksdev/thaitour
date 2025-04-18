@@ -1973,7 +1973,7 @@ function order_info($order_gubun, $order_no, $order_idx)
     if($order_gubun == "golf") {
 		$query      = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main' "); 
 		$result     = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
-		$order_info = $result['option_name'];
+		$order_info = $result['option_name'] . "| 라운딩인원". $result['option_cnt'];
 	}
 	
 	return $order_info;
