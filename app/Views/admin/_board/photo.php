@@ -61,7 +61,7 @@
                 <?php
                     }else{
                 ?>
-                    <span><?= $row['category_code_name'] ?></span>
+                    <span>(<?= $row['category_code_name'] ?>)</span>
                 <?php
                     }
                 ?>
