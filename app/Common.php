@@ -1942,20 +1942,12 @@ function getGolfweekly($product_idx, $group_idx, $goods_name)
 	$monday  = date('Y-m-d', strtotime('monday this week'));
 	$sunday  = date('Y-m-d', strtotime('sunday this week'));
     
-	$sql = "SELECT * FROM tbl_golf_price 
-								WHERE product_idx = '". $product_idx ."'
-								AND group_idx     = '". $group_idx ."'
-								AND goods_name    = '". $goods_name ."' 
-								AND goods_date BETWEEN '". $monday ."' AND '". $sunday ."'
-								ORDER BY goods_date ASC ";
-								
 	$query   = $connect->query("SELECT * FROM tbl_golf_price 
 								WHERE product_idx = '". $product_idx ."' 
 								AND group_idx     = '". $group_idx ."'
 								AND goods_name    = '". $goods_name ."' 
 								AND goods_date BETWEEN '". $monday ."' AND '". $sunday ."'
 								ORDER BY goods_date ASC ");
-	write_log("getGolfweekly- ". $sql);
     $result  = $query->getResultArray();
 
     return $result;
