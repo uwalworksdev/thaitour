@@ -448,13 +448,13 @@ $links = "list";
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>연락처</th>
+                                    <th>전화번호</th>
                                     <td colspan="3">
                                         <div style="display: flex; align-items: center;">
                                             <input type="text" name="tel_no"
                                                    value="<?= $tel_no ?? "" ?>"
                                                    class="text" style="width:500px" maxlength="100"/>
-                                            <span style="color: gray;">(연락처)</span>
+                                            <span style="color: gray;">(전화번호)</span>
                                         </div>
                                     </td>
                                 </tr>
