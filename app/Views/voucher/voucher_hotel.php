@@ -78,9 +78,9 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Room Type</th>
-                            <td><?=$result->room_type?></td>
+                            <td><?=$result->room_type_eng?></td>
                             <th>Bed Type</th>
-                            <td><?=$result->bed_type?></td>
+                            <td><?=$result->bed_type_eng?></td>
                         </tr>
                         <tr>
                             <th>Guest Name</th>
