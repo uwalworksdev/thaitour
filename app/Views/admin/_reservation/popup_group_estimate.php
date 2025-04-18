@@ -23,35 +23,25 @@
                           <col width="110px">
                       </colgroup>
                       <tbody>
+					      <?php
+						    $tot_cnt = 0;
+						    $tot_won = 0;
+						  ?>	
+					      <?php foreach ($sum as $i): ?>
+					      <?php
+						    $tot_cnt = $tot_cnt + $i['cnt'];
+						    $tot_won = $tot_won + $i['total_won'];
+						  ?>	
                           <tr>
-                              <th>호텔 </th>
-                              <td>0건 </td>
-                              <td>0원 </td>
+                              <th><?= esc($i['code_name']) ?></th>
+                              <td><?= esc($i['cnt']) ?>건 </td>
+                              <td><?= number_format(esc($i['total_won'])) ?>원 </td>
                           </tr>
-                          <tr>
-                              <th>골프 </th>
-                              <td>1건 </td>
-                              <td>303,175원 </td>
-                          </tr>
-                          <tr>
-                              <th>투어 </th>
-                              <td>1건 </td>
-                              <td>39,000원 </td>
-                          </tr>
-                          <tr>
-                              <th>차량 </th>
-                              <td>0건 </td>
-                              <td>0원 </td>
-                          </tr>
-                          <tr>
-                              <th>가이드 </th>
-                              <td>0건 </td>
-                              <td>0원 </td>
-                          </tr>
+						  <?php endforeach; ?>
                           <tr>
                               <th class="total">합계 </th>
-                              <td class="total">2건 </td>
-                              <td class="total">342,175원 </td>
+                              <td class="total"><?=$tot_cnt?>건 </td>
+                              <td class="total"><?=number_format($tot_won)?>원 </td>
                           </tr>
                       </tbody>
                   </table>
