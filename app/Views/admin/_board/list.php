@@ -44,7 +44,7 @@
                 <input type="hidden" name="code" value="<?= esc($code) ?>">
                 <input type="hidden" name="type" value="<?= esc($type) ?>">
                 <input type="hidden" name="scategory" value="<?= esc($scategory) ?>">
-                <header id="headerContents" <?php if(isset($type)){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
+                <header id="headerContents" <?php if(isset($type) && $code == "banner"){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
                     <?php
                         if(isset($type) && $code == "banner"){
                     ?>     
