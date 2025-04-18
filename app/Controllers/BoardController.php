@@ -50,7 +50,11 @@ class BoardController extends BaseController
 
         $pg = $this->request->getGet('pg') ?? 1;
 
-        $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory, 'type' => $type]);
+        if($code == "tour" || $code == "infographics") {
+            $builder = $this->bbsModel->ListByCode($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory]);
+        }else {
+            $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory, 'type' => $type]);
+        }
 
         $nTotalCount = $builder->countAllResults(false);
 

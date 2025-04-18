@@ -280,42 +280,63 @@ $time_sale['inputTypes'][5]    = "files";
 // hashtag
 
 //tour
-$tour['titles'][0]        = "조회";
-$tour['names'][0]         = "hit";
-$tour['inputTypes'][0]    = "text";
-$tour['widths'][0]        = "150px";
 
-$tour['titles'][1]        = "제목";
-$tour['names'][1]         = "subject";
+$tour["titles"][0]        = "구분";
+$tour["names"][0]         = "category";
+$tour["inputTypes"][0]    = "select";
+$tour["widths"][0]        = "150px";
+
+$tour['titles'][1]        = "작성자";
+$tour['names'][1]         = "writer";
 $tour['inputTypes'][1]    = "text";
-$tour['widths'][1]        = "100%";
+$tour['widths'][1]        = "200px";
 
-$tour['titles'][2]        = "내용";
-$tour['names'][2]         = "contents";
-$tour['inputTypes'][2]    = "summernote";
+$tour['titles'][2]        = "조회";
+$tour['names'][2]         = "hit";
+$tour['inputTypes'][2]    = "text";
+$tour['widths'][2]        = "150px";
 
-$tour['titles'][3]        = "이미지첨부";
-$tour['names'][3]         = "ufile1";
-$tour['inputTypes'][3]    = "files";
+$tour['titles'][3]        = "제목";
+$tour['names'][3]         = "subject";
+$tour['inputTypes'][3]    = "text";
+$tour['widths'][3]        = "100%";
+
+$tour['titles'][4]        = "내용";
+$tour['names'][4]         = "contents";
+$tour['inputTypes'][4]    = "summernote";
+
+$tour['titles'][5]        = "이미지첨부";
+$tour['names'][5]         = "ufile1";
+$tour['inputTypes'][5]    = "files";
 
 //infographics
-$infographics['titles'][0]        = "조회";
-$infographics['names'][0]         = "hit";
-$infographics['inputTypes'][0]    = "text";
-$infographics['widths'][0]        = "150px";
+$infographics["titles"][0]        = "구분";
+$infographics["names"][0]         = "category";
+$infographics["inputTypes"][0]    = "select";
+$infographics["widths"][0]        = "150px";
 
-$infographics['titles'][1]        = "제목";
-$infographics['names'][1]         = "subject";
+$infographics['titles'][1]        = "작성자";
+$infographics['names'][1]         = "writer";
 $infographics['inputTypes'][1]    = "text";
-$infographics['widths'][1]        = "100%";
+$infographics['widths'][1]        = "200px";
 
-$infographics['titles'][2]        = "내용";
-$infographics['names'][2]         = "contents";
-$infographics['inputTypes'][2]    = "summernote";
+$infographics['titles'][2]        = "조회";
+$infographics['names'][2]         = "hit";
+$infographics['inputTypes'][2]    = "text";
+$infographics['widths'][2]        = "150px";
 
-$infographics['titles'][3]        = "이미지첨부";
-$infographics['names'][3]         = "ufile1";
-$infographics['inputTypes'][3]    = "files";
+$infographics['titles'][3]        = "제목";
+$infographics['names'][3]         = "subject";
+$infographics['inputTypes'][3]    = "text";
+$infographics['widths'][3]        = "100%";
+
+$infographics['titles'][4]        = "내용";
+$infographics['names'][4]         = "contents";
+$infographics['inputTypes'][4]    = "summernote";
+
+$infographics['titles'][5]        = "이미지첨부";
+$infographics['names'][5]         = "ufile1";
+$infographics['inputTypes'][5]    = "files";
 
 define("BBS_WRITE_CONFIG", [
     "b2b_notice"    => $b2b_notice,
