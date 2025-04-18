@@ -2300,6 +2300,17 @@
     margin-bottom: 30px;
 }
 
+.tours-detail .section2 .sec2-item-card.tour_calendar {
+    position: relative;
+}
+
+.tours-detail .section2 .sec2-item-card.tour_calendar .time_work p {
+    text-align: right;
+    font-size: 18px;
+    color: #252525;
+    font-weight: 700;
+}
+
 .tours-detail .section2 .sec2-item-card {
     padding: 40px 30px 20px 30px;
     border: 1px solid rgb(219, 219, 219);

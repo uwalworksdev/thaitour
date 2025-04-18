@@ -831,7 +831,7 @@
                                 </tr>
                                 <tr>
                                     <th>미팅/픽업장소 안내</th>
-                                    <td colspan="3">
+                                    <td>
 								        <textarea name="product_confirm" id="product_confirm" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
                                         <script type="text/javascript">
@@ -862,10 +862,10 @@
                                         </script>
 
                                     </td>
-                                    <!-- <th>예약전 확인사항(모바일)</th>
+                                    <th>운영시간</th>
                                     <td>
-								        <textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm_m); ?></textarea>
+								        <textarea name="product_period" id="product_period" class="input_txt"
+                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_period); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors13 = [];
 
@@ -874,7 +874,7 @@
 
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors13,
-                                                elPlaceHolder: "product_confirm_m",
+                                                elPlaceHolder: "product_period",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -892,7 +892,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-                                    </td> -->
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -2220,6 +2220,7 @@
             oEditors10.getById["etc_comment"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors13.getById["product_period"].exec("UPDATE_CONTENTS_FIELD", []);
 
             // if ($("#chk_product_code").val() == "N") {
             //     alert("중복된 제품 코드를 확인하세요.");

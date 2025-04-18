@@ -548,11 +548,11 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>여행기간</th>
+                                    <th>운영시간</th>
                                     <td colspan="">
                                         <input id="product_period" name="product_period" class="input_txt" type="text"
                                                value="<?= $product_period ?>" style="width:39%"/><br/>
-                                        <span style="color: gray;">* ex) 3박 5일</span>
+                                        <!-- <span style="color: gray;">* ex) 3박 5일</span> -->
                                     </td>
                                 </tr>
 

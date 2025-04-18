@@ -220,6 +220,18 @@
                 </div>
                 <?php } ?>
 
+                <?php if($data_['product_period']) { ?>
+                <div class="section3" style="margin-top: 0;">
+                    <h2 class="title-sec2">
+                        운영시간
+                    </h2>
+
+                    <div class="container-big-text">
+                            <?= viewSQ($data_['product_period']) ?>
+                    </div>
+                </div>
+                <?php } ?>
+
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
                         포함/불포함 사항
