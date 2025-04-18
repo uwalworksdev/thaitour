@@ -68,7 +68,7 @@
 								$order_info .= "(객실수 : ". $i['order_room_cnt'] ." Room)";
 							}	
 							
-							if($i['order_gubun'] == "golf" || $i['order_gubun'] == "spa") {
+							if($i['order_gubun'] == "golf" || $i['order_gubun'] == "spa" || $i['order_gubun'] == "restaurant") {
 							   $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
 							}   
 					  ?>
