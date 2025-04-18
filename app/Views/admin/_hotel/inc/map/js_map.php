@@ -127,6 +127,7 @@
         $('#g_idx').val(room.g_idx);
         $('#room_category').val(room.category);
         $('#roomName').val(room.roomName);
+        $('#roomName_eng').val(room.roomName_eng);
         $('#scenery').val(room.scenery);
         $('#extent').val(room.extent);
         $('#floor').val(room.floor);
@@ -287,6 +288,7 @@
         $('#g_idx').val('');
         $('#room_category').val('');
         $('#roomName').val('');
+        $('#roomName_eng').val('');
         $('#scenery').val('');
         $('#max_num_people').val('');
         $('input[name="_room_facil"]').prop('checked', false);
@@ -328,6 +330,7 @@
 
                     html += `<div class="item_">
                             <input readonly type="text" value="${data.roomName}">
+                            <input readonly type="text" value="${data.roomName_eng}">
                             <!--button class="update_" onclick="priceRoomProcess()"                    type="button">가격관리</button-->
                             <button class="delete_" onclick="removeRoomSelect(this, ${data.g_idx})" type="button">삭제</button>
                             <button class="update_" onclick="updateRoomSelect(this, ${data.g_idx})" type="button">수정</button>
