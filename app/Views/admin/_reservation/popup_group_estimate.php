@@ -60,12 +60,19 @@
                           <th>상세</th>
                           <th>금액</th>
                       </tr>
-					  <?php foreach ($items as $i): ?>	
+					  <?php foreach ($items as $i): ?>
+					  <?php
+							$order_info  = "";
+							if($i['code_gubun'] == "hotel") {
+								$order_info  = $i['start_date'] ."(". get_korean_day($i['start_date'] .") ~ ". $i['end_date'] ."(". get_korean_day($i['end_date'] .") / ". $i['order_day_cnt'] ."일 "
+								$order_info .= "(객실수 : ". $i['order_room_cnt'] ."Room)";
+							}	
+					  ?>
                       <tr>
                           <td><?= esc($i['code_name']) ?></td>
                           <td>
                               <p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
-                              <p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p>
+                              <p><?=$order_info?> </p>
                           </td>
                           <td>
                               <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
