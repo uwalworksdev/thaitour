@@ -3954,15 +3954,28 @@ class AjaxController extends BaseController {
 
 		$db = \Config\Database::connect();
 
-		// ① 그룹해당 예약목록
+		// 요약 정보 (상품 코드별 집계)
+		$sql = "SELECT code_name, 
+					   COUNT(order_idx) AS cnt,
+					   SUM(real_price_bath) AS total_bath,
+					   SUM(real_price_won) AS total_won
+				FROM tbl_order_mst
+				WHERE group_no = ?
+				GROUP BY code_name";
+
+		$sum = $db->query($sql, [$group_no])->getResultArray();
+
+		// ① 그룹 해당 예약 목록
 		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?", [$m_idx, $group_no])->getResultArray();
 
 		$data = [
 			'group_no' => $group_no,
+			'sum'      => $sum,
 			'items'    => $items
 		];
 
 		return view('admin/_reservation/popup_group_estimate', $data);
 	}
+
 	
 }	
