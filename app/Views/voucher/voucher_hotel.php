@@ -27,7 +27,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>13/3 South Sathorn Road, Bangkok 10120 THAILAND</td>
+                            <td><?=$result->stay_address?></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
