@@ -90,7 +90,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Total Persons</th>
-                            <td>2 Adult(s)</td>
+                            <td><?=$result->adult + $result->kids?> Adult(s)</td>
                             <th>Child Age</th>
                             <td></td>
                         </tr>
