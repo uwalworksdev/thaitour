@@ -133,6 +133,15 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    $(function(){
+        $("select[name='category']").change(function(){
+            var cate = $(this).val();
+            location.href = "?code=<?= $code ?>&type=<?= $type ?>&scategory=" + cate;
+        });
+    });
+</script>
+
 <script>
     function CheckAll(checkBoxes, checked) {
         var i;
