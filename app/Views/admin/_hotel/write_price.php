@@ -652,8 +652,10 @@ $links = "list";
 						<tr>
 							<th>룸 이름</th>
 							<td colspan="3">
-								<input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
-									   style="width:300px" maxlength="50" id="roomName"/>
+								한글<input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
+									   style="width:300px" maxlength="50" id="roomName"/>&nbsp;&nbsp;&nbsp;
+								영문<input type="text" name="roomName_eng" value="<?= $roomName_eng ?? '' ?>" class="text"
+									   style="width:300px" maxlength="50" id="roomName_eng"/>
 							</td>
 						</tr>
 						
