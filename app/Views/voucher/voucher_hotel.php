@@ -70,7 +70,9 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3"><?=$result->start_date?>(<?=date('l', strtotime($result->start_date))?>) <?=$result->end_date?>(Thu) /<?=$result->order_day_cnt?> night</td>
+                            <td style="color : red" colspan="3">
+							    <?=$result->start_date?>(<?=date('D', strtotime($result->start_date))?>) <?=$result->end_date?>(<?=date('D', strtotime($result->end_date))?>) /<?=$result->order_day_cnt?> night
+							</td>
 
                         </tr>
                         <tr>
