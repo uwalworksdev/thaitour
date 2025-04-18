@@ -1976,7 +1976,7 @@ function order_info($order_gubun, $order_no, $order_idx)
 		$order_info = $result['option_name'] . "| 라운딩인원 ". $result['option_cnt'] ."명";
 	}
 
-	if ($order_gubun == "spa") {
+	if ($order_gubun == "spa" || $order_gubun == "restaurant") {
 		$query  = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '" . addslashes($order_idx) . "'"); 
 		$result = $query->getResultArray();
 
