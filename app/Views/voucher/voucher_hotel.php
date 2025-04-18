@@ -31,7 +31,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66(0)2-344-8888</td>
+                            <td><?=$result->tel_no?></td>
                         </tr>
                     </tbody>
                 </table>
