@@ -214,11 +214,19 @@
     <script>
         function send_it() {
 
+            let form = document.getElementById('frm');
+            let category_select = form.querySelector('[name="category"]');
+
+            if(category_select && category_select.value === '') {
+                alert("구분 선택해주세요!");
+                return false;
+            }
+
             if(typeof oEditors != "undefined") {
                 oEditors?.getById["contents_"]?.exec("UPDATE_CONTENTS_FIELD", []);
             }
 
-            formData = new FormData(document.getElementById('frm'));
+            formData = new FormData(form);    
             $.ajax({
                 url: "/AdmMaster/_bbs/write_ok" + "<?= $bbs_idx ? "/$bbs_idx" : '' ?>",
                 type: "post",
