@@ -538,6 +538,7 @@ class AjaxController extends BaseController {
 				$bed_idx  = $postData['bed_idx'][$key] ?? [];  // 베드 IDX
 				$bed_num  = $postData['bed_num'][$key] ?? []; // 베드타입
 				$bed_type = $postData['bed_type'][$key] ?? []; // 베드타입
+				$bed_type_eng = $postData['bed_type_eng'][$key] ?? []; // 베드타입
 				$price1   = $postData['price1'][$key] ?? []; // 베드타입
 				$price2   = $postData['price2'][$key] ?? []; // 베드타입
 				$price3   = $postData['price3'][$key] ?? []; // 베드타입
@@ -554,6 +555,9 @@ class AjaxController extends BaseController {
 				}
 				if (!is_array($bed_type)) {
 					$bed_type = [$bed_type];
+				}
+				if (!is_array($bed_type_eng)) {
+					$bed_type_eng = [$bed_type_eng];
 				}
 				if (!is_array($price1)) {
 					$price1 = [$price1];
@@ -586,7 +590,8 @@ class AjaxController extends BaseController {
 						$price5[$i] = str_replace(",", "", $price5[$i]); // 콤마 제거
 					
 						$sql_bed = "UPDATE tbl_room_beds 
-									SET bed_type       = ?, 
+									SET bed_type       = ?,
+									    bed_type_eng   = ?, 
 										bed_seq        = ?, 
 										goods_price1   = ?, 
 										goods_price2   = ?, 
@@ -595,9 +600,9 @@ class AjaxController extends BaseController {
 										goods_price5   = ? 
 									WHERE bed_idx = ?";
 
-						//write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
+						//write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_type_eng[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
-						$db->query($sql_bed, [$bed_type[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
+						$db->query($sql_bed, [$bed_type[$i], $bed_type_eng[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 
 						// 마지막 실행된 쿼리 출력
 						//write_log("hotel_room_allupdate- ". $db->getLastQuery());	
@@ -643,6 +648,7 @@ class AjaxController extends BaseController {
 													   ,adult        = '$adult'
 												  	   ,kids         = '$kids'
 													   ,bed_type     = '$bed_type'
+													   ,bed_type_eng = '$bed_type_eng'
 													   ,bed_price    = '$bed_price'
 													   ,option_val   = '$option_val'
 													   ,price_secret = '$price_secret'
@@ -670,6 +676,7 @@ class AjaxController extends BaseController {
 														   ,adult        = '$adult'
 														   ,kids         = '$kids'
 														   ,bed_type     = '$bed_type'
+														   ,bed_type_eng = '$bed_type_eng'
 														   ,bed_price    = '$bed_price'
 														   ,option_val   = '$option_val'
 														   ,price_secret = '$price_secret'
