@@ -44,9 +44,9 @@
                 <input type="hidden" name="code" value="<?= esc($code) ?>">
                 <input type="hidden" name="type" value="<?= esc($type) ?>">
                 <input type="hidden" name="scategory" value="<?= esc($scategory) ?>">
-                <header id="headerContents" <?php if(isset($type)){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
+                <header id="headerContents" <?php if(isset($type) && $type != ""){ ?> style="display: flex; justify-content: space-between;" <?php } ?>>
                     <?php
-                        if(isset($type)){
+                        if(isset($type) && $type != ""){
                     ?>     
                         <div class="menu_tab">
                             <a href="/AdmMaster/_tourSuggestion/list" class="btn btn_fil">상품관리</a>
@@ -132,6 +132,15 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        $("select[name='category']").change(function(){
+            var cate = $(this).val();
+            location.href = "?code=<?= $code ?>&type=<?= $type ?>&scategory=" + cate;
+        });
+    });
+</script>
 
 <script>
     function CheckAll(checkBoxes, checked) {

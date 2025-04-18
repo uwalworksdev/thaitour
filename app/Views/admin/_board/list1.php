@@ -1,13 +1,5 @@
 <div class="listBottom">
     
-    <script type="text/javascript">
-        $(function(){
-            $("select[name='category']").change(function(){
-                var cate = $(this).val();
-                location.href = "?code=<?= $code ?>&type=<?= $type ?>&scategory=" + cate;
-            });
-        });
-    </script>
     <form name="lfrm" id="lfrm">
         <table cellpadding="0" cellspacing="0" summary="" class="listTable schedule">
             <caption></caption>
