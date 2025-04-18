@@ -1970,6 +1970,13 @@ function order_info($order_gubun, $order_no, $order_idx)
 {
     $connect = db_connect();
 
+	if($order_gubun == "hotel") {
+		$query       = $connect->query("SELECT * FROM tbl_order_mst WHERE order_idx = '". $order_idx ."'"); 
+		$row         = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
+		$order_info  = $eow['start_date'] ."(". get_korean_day($row['start_date']) .") ~ ". $row['end_date'] ."(". get_korean_day($row['end_date']) .") / ". $row['order_day_cnt'] ."일 ";
+		$order_info .= "(객실수 : ". $row['order_room_cnt'] ." Room)";
+	}	
+
     if($order_gubun == "golf") {
 		$query      = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main' "); 
 		$result     = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
