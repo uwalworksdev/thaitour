@@ -187,6 +187,9 @@
                     <?php endforeach; ?>
                 <?php endforeach;?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
+                    <div class="time_work">
+                        <p>운영시간: <?= $product['product_period']?></p>
+                    </div>
                     <div class="container-calendar tour">
                         <div class="calendar-left">
                             <h3 class="title-left calendar_txt">
