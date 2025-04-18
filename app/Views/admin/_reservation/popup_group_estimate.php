@@ -67,6 +67,8 @@
 								$order_info  = $i['start_date'] ."(". get_korean_day($i['start_date']) .") ~ ". $i['end_date'] ."(". get_korean_day($i['end_date']) .") / ". $i['order_day_cnt'] ."일 ";
 								$order_info .= "(객실수 : ". $i['order_room_cnt'] ." Room)";
 							}	
+							
+							if($i['order_gubun'] == "golf") $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
 					  ?>
                       <tr>
                           <td><?= esc($i['code_name']) ?></td>
