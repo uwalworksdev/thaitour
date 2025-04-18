@@ -12,7 +12,7 @@
                   <span>Watthana Bangkok 10110 </span>
                   <span>서비스/여행업 No. 0105565060507 </span>
                   <p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
-                  <p class="name">고객명 : 김평진 님 귀하 </p>
+                  <p class="name">고객명 : <?=$member['name']?> 님 귀하 </p>
                   <img src="/img/sub/sign-001.jpg" class="img_stem">
               </div>
               <div class="right">
