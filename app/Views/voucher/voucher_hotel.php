@@ -65,7 +65,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">144-396-565 (1)</td>
+                            <td colspan="3"><?=$result->order_no?></td>
 
                         </tr>
                         <tr>
