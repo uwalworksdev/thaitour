@@ -187,6 +187,9 @@
                     <?php endforeach; ?>
                 <?php endforeach;?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
+                    <div class="time_work">
+                        <p>운영시간: <?= $product['product_period']?></p>
+                    </div>
                     <div class="container-calendar tour">
                         <div class="calendar-left">
                             <h3 class="title-left calendar_txt">
@@ -464,17 +467,7 @@
                 </div>
             </div>
         <?php endif; ?> -->
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                미팅/픽업장소 안내
-            </h2>
-            <div class="des-type-1">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
-        <?php } ?>
-        <?php if($totalDays) {?>
+        <!-- <?php if($totalDays) {?>
             <h2 class="title-sec2">
                 투어 일정표
             </h2>
@@ -497,7 +490,7 @@
                     <?php endforeach; ?>
                 </ul>
             <?php endfor; ?>
-        <?php } ?>
+        <?php } ?> -->
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
@@ -517,20 +510,32 @@
             <?= viewSQ($product['product_unable'])?>
         </div>
         <?php } ?>
-        <?php if($product['mobile_able']) {?>
-        <h2 class="title-sec2">
-            추가정보 및 참고사항
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['mobile_able'])?>
-        </div>
+
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type-1" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
         <?php } ?>
+        
         <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
         </h2>
         <div class="des-type">
             <?= viewSQ($product['special_benefit'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['mobile_able']) {?>
+        <h2 class="title-sec2">
+            추가정보 및 참고사항
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['mobile_able'])?>
         </div>
         <?php } ?>
         <?php if($product['notice_comment']) {?>
@@ -542,14 +547,14 @@
         </div>
         <?php } ?>
         <?php if($product['etc_comment']) {?>
-        <h2 class="title-sec2">
+        <!-- <h2 class="title-sec2">
             더투어랩 이용방법
         </h2>
         <div class="des-type">
             <?= viewSQ($product['etc_comment'])?>
-        </div>
+        </div> -->
         <?php } ?>
-        <div class="steps-type">
+        <div class="steps-type" style="display: none">
             <div class="step-type">
                 <div class="con-step">
                     <img src="/uploads/sub/step_img1.png" alt="step_img1">

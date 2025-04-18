@@ -1935,14 +1935,35 @@ function hasOverlappingDateRanges($optionsx) {
     return false;
 }
 
-function getGolfweekly($product_idx, $goods_name, $goods_date){
+function getGolfweeklyx($product_idx, $group_idx, $goods_name)
+{
     $connect = db_connect();
-    $query   = $connect->query("SELECT * FROM tbl_golf_price 
-	                            WHERE product_idx =  '". $product_idx ."' 
-								AND goods_name    =  '". $goods_name ."' 
-								AND goods_date    <= '". $goods_date."' ORDER BY goods_date DESC LIMIT 0,7 ");
+	
+	$monday  = date('Y-m-d', strtotime('monday this week'));
+	$sunday  = date('Y-m-d', strtotime('sunday this week'));
+    
+	$query   = $connect->query("SELECT * FROM tbl_golf_price 
+								WHERE product_idx = '". $product_idx ."' 
+								AND group_idx     = '". $group_idx ."'
+								AND goods_name    = '". $goods_name ."' 
+								AND goods_date BETWEEN '". $monday ."' AND '". $sunday ."'
+								ORDER BY goods_date ASC ");
     $result  = $query->getResultArray();
 
     return $result;
 }
+
+
+function getGolfweekly($product_idx, $group_idx, $goods_name)
+{
+    $connect = db_connect();
+	
+	$query   = $connect->query("SELECT * FROM tbl_golf_option
+								WHERE product_idx = '". $product_idx ."' 
+								AND   group_idx   = '". $group_idx ."'
+								AND   goods_name  = '". $goods_name ."'"); 
+    $result  = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
+    return $result;
+}
+
 ?>
