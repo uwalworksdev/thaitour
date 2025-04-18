@@ -639,6 +639,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_voucher_update", "AjaxController::ajax_voucher_update");
 	$routes->post("ajax_group_movement", "AjaxController::ajax_group_movement");
 	$routes->post("ajax_group_change", "AjaxController::ajax_group_change");
+	$routes->post("ajax_group_estimate", "AjaxController::ajax_group_estimate");
 	
 });
 

@@ -3946,4 +3946,23 @@ class AjaxController extends BaseController {
 		}		
 		
 	}	
+	
+	public function ajax_group_estimate()
+	{
+		$m_idx    = $this->request->getPost('m_idx');
+		$group_no = $this->request->getPost('group_no');
+
+		$db = \Config\Database::connect();
+
+		// ① 그룹해당 예약목록
+		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?", [$m_idx, $group_no])->getResultArray();
+
+		$data = [
+			'group_no' => $group_no,
+			'items'    => $items
+		];
+
+		return view('admin/_reservation/popup_group_estimate', $data);
+	}
+	
 }	

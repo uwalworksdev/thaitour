@@ -340,30 +340,54 @@ endforeach;
                                 // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
                             }
                         </script>
-<script>
-function openGroupMovement(group_no) {
-    $.ajax({
-        url: "/ajax/ajax_group_movement",
-        type: "POST",
-        data: {
-			     "m_idx"    : $("#m_idx").val(),
-                 "group_no" : group_no  
-        },
-        success: function(res) {
-            $(".group_movement_popup_wrap").html(res).show();
 
-            // 팝업 닫기 이벤트 다시 바인딩
-            $(".group_movement_popup_wrap .btn_close_popup").click(function () {
-                $(".group_movement_popup_wrap").hide();
-            });
-        },
-        error: function() {
-            alert("팝업 데이터를 불러오지 못했습니다.");
-        }
-    });
-}
-</script>
+						<script>
+						function openGroupEstimate(group_no) {
+							$.ajax({
+								url: "/ajax/ajax_group_estimate",
+								type: "POST",
+								data: {
+										 "m_idx"    : $("#m_idx").val(),
+										 "group_no" : group_no  
+								},
+								success: function(res) {
+                                    $(".estimate_popup_wrap").show();
 
+									// 팝업 닫기 이벤트 다시 바인딩
+									$(".estimate_popup_content .btn_close_popup").click(function() {
+										$(".estimate_popup_wrap").hide();
+									})
+								},
+								error: function() {
+									alert("팝업 데이터를 불러오지 못했습니다.");
+								}
+							});
+						}
+						</script>
+						
+						<script>
+						function openGroupMovement(group_no) {
+							$.ajax({
+								url: "/ajax/ajax_group_movement",
+								type: "POST",
+								data: {
+										 "m_idx"    : $("#m_idx").val(),
+										 "group_no" : group_no  
+								},
+								success: function(res) {
+									$(".group_movement_popup_wrap").html(res).show();
+
+									// 팝업 닫기 이벤트 다시 바인딩
+									$(".group_movement_popup_wrap .btn_close_popup").click(function () {
+										$(".group_movement_popup_wrap").hide();
+									});
+								},
+								error: function() {
+									alert("팝업 데이터를 불러오지 못했습니다.");
+								}
+							});
+						}
+						</script>
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
