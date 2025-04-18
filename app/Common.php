@@ -1957,20 +1957,13 @@ function getGolfweeklyx($product_idx, $group_idx, $goods_name)
 function getGolfweekly($product_idx, $group_idx, $goods_name)
 {
     $connect = db_connect();
-
-    $stmt = $connect->prepare("SELECT * FROM tbl_golf_option
-                               WHERE product_idx = ?
-                               AND   group_idx = ?
-                               AND   goods_name = ?");
-    $stmt->bind_param("iis", $product_idx, $group_idx, $goods_name);
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-
-    $stmt->close();
-    return $row;
+	
+	$query   = $connect->query("SELECT * FROM tbl_golf_option
+								WHERE product_idx = '". $product_idx ."' 
+								AND   group_idx   = '". $group_idx ."'
+								AND   goods_name  = '". $goods_name ."'"); 
+    $result  = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
+    return $result;
 }
-
 
 ?>
