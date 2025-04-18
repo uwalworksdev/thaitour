@@ -281,7 +281,7 @@
 																  $frow3['goods_price7_3'] =  0;												
 												
 												?>	
-												<?php $weeklyResult = getGolfweekly($product_idx, $frow3['goods_name']);
+												<?php $weeklyResult = getGolfweekly($product_idx, $frow3['group_idx'], $frow3['goods_name']);
 												      
 													  foreach ($weeklyResult as $day):
                                                                //echo $day['goods_name'] ." - ". $day['goods_date'] ." - ". $day['dow'] ." - ". $day['price_1'] ."<br>";

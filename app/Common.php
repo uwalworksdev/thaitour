@@ -1935,7 +1935,7 @@ function hasOverlappingDateRanges($optionsx) {
     return false;
 }
 
-function getGolfweekly($product_idx, $goods_name)
+function getGolfweekly($product_idx, $group_idx, $goods_name)
 {
     $connect = db_connect();
 	
@@ -1943,13 +1943,15 @@ function getGolfweekly($product_idx, $goods_name)
 	$sunday  = date('Y-m-d', strtotime('sunday this week'));
     
 	$sql = "SELECT * FROM tbl_golf_price 
-								WHERE product_idx = '". $product_idx ."' 
+								WHERE product_idx = '". $product_idx ."'
+								AND group_idx     = '". $group_idx ."'
 								AND goods_name    = '". $goods_name ."' 
 								AND goods_date BETWEEN '". $monday ."' AND '". $sunday ."'
 								ORDER BY goods_date ASC ";
 								
 	$query   = $connect->query("SELECT * FROM tbl_golf_price 
 								WHERE product_idx = '". $product_idx ."' 
+								AND group_idx     = '". $group_idx ."'
 								AND goods_name    = '". $goods_name ."' 
 								AND goods_date BETWEEN '". $monday ."' AND '". $sunday ."'
 								ORDER BY goods_date ASC ");
