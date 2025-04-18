@@ -528,7 +528,7 @@ $links = "list";
 															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
 															수익     <input style="width:10%;text-align:right;" type="text" name="price3[<?=$roomIdx?>][]" value="<?=$bed['goods_price3']?>" class="numberOnly">=
 															판매가   <input style="width:10%;text-align:right;" type="text" name="price4[<?=$roomIdx?>][]" value="<?=$bed['goods_price4']?>" class="numberOnly" readonly>
-															Extra베드<input style="width:10%;text-align:right;" type="text" name="price5[<?=$roomIdx?>][]" value="<?=$bed['goods_price5']?>" class="numberOnly">
+															Extra베드<input style="width:8%;text-align:right;" type="text" name="price5[<?=$roomIdx?>][]" value="<?=$bed['goods_price5']?>" class="numberOnly">
 																
 															<?php if($i==0) { ?>
 															<button type="button" style="width: 31px; height : 31px" value="<?=$roomIdx?>" class="addBedBtn" >+</button>
