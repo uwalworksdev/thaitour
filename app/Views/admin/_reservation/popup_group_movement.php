@@ -29,6 +29,13 @@
                           <th>금액</th>
                       </tr>
                       <?php foreach ($items as $i): ?>					  
+					  <?php
+							$order_info  = "";
+							
+							if($i['order_gubun'] == "hotel" || $i['order_gubun'] == "golf" || $i['order_gubun'] == "spa" || $i['order_gubun'] == "restaurant") {
+							   $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
+							}   
+					  ?>
                       <tr>
                         <td>
                             <input id="check_b_<?= esc($i['order_idx']) ?>" type="checkbox" value="<?= esc($i['order_idx']) ?>">
@@ -37,7 +44,7 @@
                           <td><?= esc($i['code_name']) ?></td>
                           <td>
                               <p class="time"><?= esc($i['product_name']) ?></p>
-                              <!--p>18홀 오전 | 성인 2명 | 그린피 : 6,700바트 | 3,350바트 X 2명 </p-->
+                              <p><?=$order_info?> </p>
                           </td>
                           <td>
                               <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
