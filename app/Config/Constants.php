@@ -444,26 +444,30 @@ $time_sale_list['widths'][4] = "15%";
 //tour
 $tour_list['skin'] = "list";
 
-$tour_list['titles'][0] = "썸네일이미지";
-$tour_list['names'][0] = "ufile1";
-$tour_list["showTypes"][0] = "image";
-$tour_list['widths'][0] = "10%";
+$tour_list['titles'][0] = "구분";
+$tour_list['names'][0] = "category_code_name";
+$tour_list['widths'][0] = "8%";
 
-$tour_list['titles'][1] = "제목";
-$tour_list['names'][1] = "subject";
-$tour_list['widths'][1] = "*";
+$tour_list['titles'][1] = "썸네일이미지";
+$tour_list['names'][1] = "ufile1";
+$tour_list["showTypes"][1] = "image";
+$tour_list['widths'][1] = "10%";
 
-$tour_list['titles'][2] = "작성자";
-$tour_list['names'][2] = "writer";
-$tour_list['widths'][2] = "10%";
+$tour_list['titles'][2] = "제목";
+$tour_list['names'][2] = "subject";
+$tour_list['widths'][2] = "*";
 
-$tour_list['titles'][3] = "조회";
-$tour_list['names'][3] = "hit";
-$tour_list['widths'][3] = "7%";
+$tour_list['titles'][3] = "작성자";
+$tour_list['names'][3] = "writer";
+$tour_list['widths'][3] = "10%";
 
-$tour_list['titles'][4] = "등록일";
-$tour_list['names'][4] = "r_date";
-$tour_list['widths'][4] = "15%";
+$tour_list['titles'][4] = "조회";
+$tour_list['names'][4] = "hit";
+$tour_list['widths'][4] = "7%";
+
+$tour_list['titles'][5] = "등록일";
+$tour_list['names'][5] = "r_date";
+$tour_list['widths'][5] = "15%";
 
 //infographics
 $infographics_list['skin'] = "photo";
