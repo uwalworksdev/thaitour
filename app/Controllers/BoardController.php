@@ -82,7 +82,6 @@ class BoardController extends BaseController
             'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code, $type),
         ];
 
-        // Load the view with the data
         return view('admin/_board/list', array_merge($data, $config));
     }
 
