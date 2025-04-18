@@ -63,7 +63,7 @@
 					  <?php foreach ($items as $i): ?>
 					  <?php
 							$order_info  = "";
-							if($i['code_gubun'] == "hotel") {
+							if($i['order_gubun'] == "hotel") {
 								$order_info  = $i['start_date'] ."(". get_korean_day($i['start_date']) .") ~ ". $i['end_date'] ."(". get_korean_day($i['end_date']) .") / ". $i['order_day_cnt'] ."일 ";
 								$order_info .= "(객실수 : ". $i['order_room_cnt'] ."Room)";
 							}	
