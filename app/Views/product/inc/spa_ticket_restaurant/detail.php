@@ -123,8 +123,9 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-
-                    <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                    <div style="display: flex; justify-content: flex-end;">
+                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                    </div>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
                         <colgroup>
