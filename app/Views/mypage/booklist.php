@@ -352,7 +352,7 @@ endforeach;
 										 "group_no" : group_no  
 								},
 								success: function(res) {
-                                    $(".estimate_popup_wrap").show();
+									$(".estimate_popup_wrap").html(res).show();
 
 									// 팝업 닫기 이벤트 다시 바인딩
 									$(".estimate_popup_content .btn_close_popup").click(function() {
