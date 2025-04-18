@@ -311,25 +311,26 @@ class AdminProductApi extends BaseController
 		$db = \Config\Database::connect(); // 데이터베이스 연결
 
         try {
-            $files = $this->request->getFiles();
-            $product_idx = updateSQ($_POST["product_idx"]);
-            $g_idx = updateSQ($_POST["g_idx"]);
-            $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
-            $roomName = updateSQ($_POST["roomName"] ?? '');
-            $room_facil = updateSQ($_POST["room_facil"] ?? '');
-            $room_category = updateSQ($_POST["room_category"] ?? '');
-            $scenery = updateSQ($_POST["scenery"] ?? '');
+            $files           = $this->request->getFiles();
+            $product_idx     = updateSQ($_POST["product_idx"]);
+            $g_idx           = updateSQ($_POST["g_idx"]);
+            $hotel_code      = updateSQ($_POST["hotel_code"] ?? '');
+            $roomName        = updateSQ($_POST["roomName"] ?? '');
+            $roomName_eng    = updateSQ($_POST["roomName_eng"] ?? '');
+            $room_facil      = updateSQ($_POST["room_facil"] ?? '');
+            $room_category   = updateSQ($_POST["room_category"] ?? '');
+            $scenery         = updateSQ($_POST["scenery"] ?? '');
 
-            $breakfast = updateSQ($_POST["breakfast"] ?? 'N');
-            $lunch = updateSQ($_POST["lunch"] ?? 'N');
-            $dinner = updateSQ($_POST["dinner"] ?? 'N');
+            $breakfast       = updateSQ($_POST["breakfast"] ?? 'N');
+            $lunch           = updateSQ($_POST["lunch"] ?? 'N');
+            $dinner          = updateSQ($_POST["dinner"] ?? 'N');
 
-            $extent = updateSQ($_POST["extent"] ?? '');
-            $floor = updateSQ($_POST["floor"] ?? '');
+            $extent          = updateSQ($_POST["extent"] ?? '');
+            $floor           = updateSQ($_POST["floor"] ?? '');
             $policy_customer = updateSQ($_POST["policy_customer"] ?? '');
-            $max_num_people = updateSQ($_POST["max_num_people"] ?? 1);
+            $max_num_people  = updateSQ($_POST["max_num_people"] ?? 1);
 
-            $publicPath = ROOTPATH . 'public/uploads/rooms';
+            $publicPath      = ROOTPATH . 'public/uploads/rooms';
 
             // for ($i = 1; $i <= 6; $i++) {
             //     $file = isset($files["room_ufile" . $i]) ? $files["room_ufile" . $i] : null;
@@ -377,6 +378,7 @@ class AdminProductApi extends BaseController
                 $sql = "update tbl_room SET
                              hotel_code			= '" . $product_idx . "'
                             ,roomName			= '" . $roomName . "'
+                            ,roomName_eng		= '" . $roomName_eng . "'
                             ,room_facil			= '" . $room_facil . "'
                             ,scenery			= '" . $scenery . "'
                             ,category			= '" . $room_category . "'
@@ -437,6 +439,7 @@ class AdminProductApi extends BaseController
                 $sql = "insert into tbl_room SET
                              hotel_code				= '" . $product_idx . "'
                             ,roomName				= '" . $roomName . "'
+                            ,roomName_eng			= '" . $roomName_eng . "'
                             ,room_facil				= '" . $room_facil . "'
                             ,scenery			    = '" . $scenery . "'
 			                ,category			    = '" . $room_category . "'
