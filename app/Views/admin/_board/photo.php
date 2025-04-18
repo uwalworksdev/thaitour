@@ -54,7 +54,17 @@
                         } ?>
                     </p>
                 </a>
-                <input type="text" name="onum[]" value="<?= $row['onum'] ?>" style="width:60px;"/>
+                <?php
+                    if($code != "infographics" && $code != "tour"){
+                ?>
+                    <input type="text" name="onum[]" value="<?= $row['onum'] ?>" style="width:60px;"/>
+                <?php
+                    }else{
+                ?>
+                    <span><?= $row['category_code_name'] ?></span>
+                <?php
+                    }
+                ?>
                 <input type="hidden" name="code_idx[]" value="<?= $row["bbs_idx"] ?>" class="input_txt"/>
             </li>
 
