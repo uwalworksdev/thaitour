@@ -448,18 +448,6 @@ $links = "list";
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>전화번호</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; align-items: center;">
-                                            <input type="text" name="tel_no"
-                                                   value="<?= $tel_no ?? "" ?>"
-                                                   class="text" style="width:500px" maxlength="100"/>
-                                            <span style="color: gray;">(전화번호)</span>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>상품 담당자</th>
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
@@ -938,6 +926,17 @@ $links = "list";
                                         
                                     </td>
                                    
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
+                                    <td colspan="3">
+                                        <div style="display: flex; align-items: center;">
+                                            <input type="text" name="tel_no"
+                                                   value="<?= $stay_item['tel_no']?>"
+                                                   class="text" style="width:500px" maxlength="100"/>
+                                            <span style="color: gray;">(전화번호)</span>
+                                        </div>
+                                    </td>
                                 </tr>
                                 </tbody>
 
