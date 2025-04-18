@@ -103,7 +103,7 @@ class Bbs extends Model
     public function ListByCode($code, $whereArr = [])
     {
         $builder = $this;
-        $builder->select("{$this->table}.*, tbl_code.code_name
+        $builder->select("{$this->table}.*, tbl_code.code_name,
         (select count(*) from tbl_bbs_cmt inner join tbl_member on tbl_member.m_idx = tbl_bbs_cmt.r_m_idx where tbl_bbs_cmt.r_idx = tbl_bbs_list.bbs_idx and tbl_bbs_cmt.r_code = '$code' and tbl_bbs_cmt.r_delYN = 'N') as comment_cnt,
         (select count(*) from tbl_wish_list where tbl_wish_list.bbs_idx=tbl_bbs_list.bbs_idx) as cnt_like");
 
