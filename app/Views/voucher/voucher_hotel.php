@@ -78,15 +78,15 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Room Type</th>
-                            <td>Club Room (Club Wing) Normal DBL</td>
+                            <td><?=$result->room_type?></td>
                             <th>Bed Type</th>
-                            <td>DBL</td>
+                            <td><?=$result->bed_type?></td>
                         </tr>
                         <tr>
                             <th>Guest Name</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
                             <th>Number of rooms</th>
-                            <td>1</td>
+                            <td><?=$result->order_room_cnt?></td>
                         </tr>
                         <tr>
                             <th>Total Persons</th>
