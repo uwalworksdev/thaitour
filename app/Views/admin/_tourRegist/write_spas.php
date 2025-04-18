@@ -1058,7 +1058,7 @@
                                             });
                                         </script>
                                     </td>
-                                    <th>더투어랩 이용방법</th>
+                                    <th>좌석안내</th>
                                     <td>
 								        <textarea name="etc_comment" id="etc_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>

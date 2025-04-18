@@ -277,7 +277,7 @@
                 <?php if($data_['etc_comment'] && $data_['etc_comment'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
                 <div class="section3" style="margin-top: 0;">
                     <h2 class="title-sec2">
-                        더투어랩 이용방법
+                        좌석안내
                     </h2>
 
                     <div class="container-big-text">
