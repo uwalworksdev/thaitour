@@ -1,5 +1,5 @@
 <form name=lfrm id=lfrm>
-    <ul class="gallery-wrap" style="text-align:center;width:1500px; margin: 0 auto; }">
+    <ul class="gallery-wrap" style="text-align:center;width:1500px; margin: 0 auto;">
 
         <?php
         foreach ($rows as $row) {
@@ -16,7 +16,6 @@
             }
             $file_chk = "N";
             $img = "";
-            //echo $row[url];
             $url = "";
             $youtubes = explode("https://youtu.be/", $row["url"]);
             $youtube_codes = explode("?", $youtubes[1]);
@@ -40,8 +39,7 @@
             }
             ?>
             <li class="gallery-list" style="width:280px" rel="<?= $row['b_ref'] ?>">
-                <a
-                        href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
+                <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
                     <p class="pic" style="width:280px"><img src="<?= $img ?>" alt="<?= $row['subject'] ?>"></p>
                     <p class="pic-info">
                         <input type="checkbox" id="" name="bbs_idx[]" value="<?= $row['bbs_idx'] ?>"

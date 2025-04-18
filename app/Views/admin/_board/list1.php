@@ -36,7 +36,7 @@
             <tbody>
                 <?php 
                 $num = $nTotalCount - $nFrom;
-                $colspan = 4;
+                $colspan = 8;
                 if($nTotalCount == 0){
                     if($code == "faq"){
                         $colspan = 5;
@@ -52,7 +52,7 @@
                 foreach ($rows as $row): 
                     $nums = $row['notice_yn'] == "Y" ? "Notice" : $num;
                     $newStr = $row['is_new'] ? "<img src=\"/img_board/new.gif\" style=\"margin:1px 3px 0 5px;\" alt=\"신규게시물\" />" : "";
-                                        $recStr = $row['recomm_yn'] == "Y" ? "<font color=red>[추천]</font>" : "";
+                    $recStr = $row['recomm_yn'] == "Y" ? "<font color=red>[추천]</font>" : "";
                     $rstr = str_repeat("&nbsp;&nbsp;", $row['b_level']) . ($row['b_level'] > 0 ? "ㄴ" : "");
                     $c_cnt = $row['comment_cnt'] > 0 ? "(" . $row['comment_cnt'] . ")" : "";
                     $secureStr = $row['secure_yn'] == "Y" ? "<img src='/img/ico/ico_lock.png'>" : "";

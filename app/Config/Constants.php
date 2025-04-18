@@ -279,6 +279,44 @@ $time_sale['inputTypes'][5]    = "files";
 // main_event
 // hashtag
 
+//tour
+$tour['titles'][0]        = "조회";
+$tour['names'][0]         = "hit";
+$tour['inputTypes'][0]    = "text";
+$tour['widths'][0]        = "150px";
+
+$tour['titles'][1]        = "제목";
+$tour['names'][1]         = "subject";
+$tour['inputTypes'][1]    = "text";
+$tour['widths'][1]        = "100%";
+
+$tour['titles'][2]        = "내용";
+$tour['names'][2]         = "contents";
+$tour['inputTypes'][2]    = "summernote";
+
+$tour['titles'][3]        = "이미지첨부";
+$tour['names'][3]         = "ufile1";
+$tour['inputTypes'][3]    = "files";
+
+//infographics
+$infographics['titles'][0]        = "조회";
+$infographics['names'][0]         = "hit";
+$infographics['inputTypes'][0]    = "text";
+$infographics['widths'][0]        = "150px";
+
+$infographics['titles'][1]        = "제목";
+$infographics['names'][1]         = "subject";
+$infographics['inputTypes'][1]    = "text";
+$infographics['widths'][1]        = "100%";
+
+$infographics['titles'][2]        = "내용";
+$infographics['names'][2]         = "contents";
+$infographics['inputTypes'][2]    = "summernote";
+
+$infographics['titles'][3]        = "이미지첨부";
+$infographics['names'][3]         = "ufile1";
+$infographics['inputTypes'][3]    = "files";
+
 define("BBS_WRITE_CONFIG", [
     "b2b_notice"    => $b2b_notice,
     "faq"           => $faq,
@@ -287,6 +325,8 @@ define("BBS_WRITE_CONFIG", [
     'event'         => $event,
     'magazines'     => $magazines,
     'time_sale'     => $time_sale,
+    'tour'          => $tour,
+    'infographics'  => $infographics
 ]);
 
 $b2b_notice_list['skin'] = "list";
@@ -380,6 +420,33 @@ $time_sale_list['titles'][4] = "등록일";
 $time_sale_list['names'][4] = "r_date";
 $time_sale_list['widths'][4] = "15%";
 
+//tour
+$tour_list['skin'] = "list";
+
+$tour_list['titles'][0] = "썸네일이미지";
+$tour_list['names'][0] = "ufile1";
+$tour_list["showTypes"][0] = "image";
+$tour_list['widths'][0] = "10%";
+
+$tour_list['titles'][1] = "제목";
+$tour_list['names'][1] = "subject";
+$tour_list['widths'][1] = "*";
+
+$tour_list['titles'][2] = "작성자";
+$tour_list['names'][2] = "writer";
+$tour_list['widths'][2] = "10%";
+
+$tour_list['titles'][3] = "조회";
+$tour_list['names'][3] = "hit";
+$tour_list['widths'][3] = "7%";
+
+$tour_list['titles'][4] = "등록일";
+$tour_list['names'][4] = "r_date";
+$tour_list['widths'][4] = "15%";
+
+//infographics
+$infographics_list['skin'] = "photo";
+
 define("BBS_LIST_CONFIG", [
     "b2b_notice" => $b2b_notice_list,
     "faq" => $faq_list,
@@ -392,7 +459,9 @@ define("BBS_LIST_CONFIG", [
     "main_event" => $main_event_list,
     "hashtag" => $hashtag_list,
     'magazines' => $magazines_list,
-    'time_sale' => $time_sale_list
+    'time_sale' => $time_sale_list,
+    'tour' => $tour_list,
+    'infographics' => $infographics_list
 ]);
 
 

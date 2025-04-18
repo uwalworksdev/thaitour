@@ -128,7 +128,6 @@
     </span><!-- 인쇄 영역 끝 //-->
     </div><!-- // container -->
 
-
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -138,7 +137,6 @@
                 event.returnValue = false;
             }
         }
-
 
         $(function () {
             $.datepicker.regional['ko'] = {
@@ -213,7 +211,6 @@
         });
     </script>
 
-
     <script>
         function send_it() {
 
@@ -274,7 +271,6 @@
                     }
                 }
             });
-
 
         }
     </script>
