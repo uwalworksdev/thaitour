@@ -70,6 +70,7 @@
                           <th>상세</th>
                           <th>금액</th>
                       </tr>
+					  <?php foreach ($items as $i): ?>	
                       <tr>
                           <td>골프 </td>
                           <td>
@@ -81,17 +82,7 @@
                               <p>(6,700바트) </p>
                           </td>
                       </tr>
-                      <tr>
-                          <td>투어 </td>
-                          <td>
-                              <p class="time">2025-03-28(금) | (아속출발) 아유타야 선셋 리버크루즈 반일 투어 </p>
-                              <p>[프로모션] 아유타야 오후 | 성인 1명 | 39,000원 X 1명 </p>
-                          </td>
-                          <td>
-                              <p>39,000원 </p>
-                          </td>
-                      </tr>
-  
+					  <?php endforeach; ?>
               </table>
           </div>
   
