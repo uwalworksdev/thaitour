@@ -23,7 +23,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">The Sukhothai Bangkok</td>
+                            <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                         </tr>
                         <tr>
                             <th>Address</th>
