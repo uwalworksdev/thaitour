@@ -521,8 +521,8 @@ $links = "list";
 															
 															<input type="hidden" name="bed_num[<?=$roomIdx?>][]"  value="<?=$i?>" >
 															<input type="hidden" name="bed_idx[<?=$roomIdx?>][]"  value="<?=$bed['bed_idx']?>" >
-															<input style="width:10%;" type="text" name="bed_type[<?=$roomIdx?>][]"      value="<?=$bed['bed_type']?>" >
-															<input style="width:18%;" type="text" name="bed_type_eng[<?=$roomIdx?>][]"  value="<?=$bed['bed_type_eng']?>" >
+															<input style="width:10%;" type="text" name="bed_type[<?=$roomIdx?>][]"      value="<?=$bed['bed_type']?>" placeholder="한글">
+															<input style="width:18%;" type="text" name="bed_type_eng[<?=$roomIdx?>][]"  value="<?=$bed['bed_type_eng']?>" placeholder="영문">
 
 															기본가   <input style="width:10%;text-align:right;" type="text" name="price1[<?=$roomIdx?>][]" value="<?=$bed['goods_price1']?>" class="numberOnly">
 															컨택가   <input style="width:10%;text-align:right;" type="text" name="price2[<?=$roomIdx?>][]" value="<?=$bed['goods_price2']?>" class="numberOnly">+
@@ -1563,8 +1563,8 @@ $(".addTableBtn").on("click", function () {
 							<td>
 								<p style="margin-bottom: 3px;">침대타입추가 (침대타입의 가격은 추가되는 금액만 넣습니다. (제목/금액))
 								</p>
-								<input style="width: 10%;" type="text" name="bed_type[${room_Idx}][]">
-								<input style="width: 18%;" type="text" name="bed_type_eng[${room_Idx}][]">
+								<input style="width: 10%;" type="text" name="bed_type[${room_Idx}][]" placeholder="한글">
+								<input style="width: 18%;" type="text" name="bed_type_eng[${room_Idx}][]" placeholder="영문">
 								<input style="width: 8%;"  type="text" name="bed_price[${room_Idx}][]" onkeyup="chkNum(this)">
 								<button type="button" style="width: 31px; height : 31px" value="${room_Idx}" class="addBedBtn" >+</button>
 							</td>
