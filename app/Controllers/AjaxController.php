@@ -602,7 +602,7 @@ class AjaxController extends BaseController {
 
 						//write_log("SQL 실행: " . $sql_bed . " 값: [" . $bed_type[$i] . ", " . $bed_type_eng[$i] . ", " . $bed_seq[$i] . ", " . $price1[$i] . ", " . $price2[$i] . ", " . $price3[$i] . ", " . $price4[$i] . ", " . $price5[$i] . "]");
 
-						$db->query($sql_bed, [$bed_type[$i], [$bed_type_eng[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
+						$db->query($sql_bed, [$bed_type[$i], $bed_type_eng[$i], $bed_num[$i], $price1[$i], $price2[$i], $price3[$i], $price4[$i], $price5[$i], $bed_idx[$i]]);
 
 						// 마지막 실행된 쿼리 출력
 						//write_log("hotel_room_allupdate- ". $db->getLastQuery());	
