@@ -50,8 +50,8 @@ class VoucherController extends BaseController
 		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
 		$builder->where('a.order_idx', $idx);
 
-		$query = $builder->get();
-		$result = $query->getResult();
+		$query  = $builder->get();
+		$result = $query->getRow();
 
         return view("voucher/voucher_hotel", [ 'result'  => $result ]);        
     }
