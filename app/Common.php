@@ -1935,7 +1935,7 @@ function hasOverlappingDateRanges($optionsx) {
     return false;
 }
 
-function getGolfweekly($product_idx, $group_idx, $goods_name)
+function getGolfweeklyx($product_idx, $group_idx, $goods_name)
 {
     $connect = db_connect();
 	
@@ -1950,6 +1950,19 @@ function getGolfweekly($product_idx, $group_idx, $goods_name)
 								ORDER BY goods_date ASC ");
     $result  = $query->getResultArray();
 
+    return $result;
+}
+
+
+function getGolfweekly($product_idx, $group_idx, $goods_name)
+{
+    $connect = db_connect();
+	
+	$query   = $connect->query("SELECT * FROM tbl_golf_option
+								WHERE product_idx = '". $product_idx ."' 
+								AND   group_idx   = '". $group_idx ."'
+								AND   goods_name  = '". $goods_name ."'"); 
+    $result  = $query->fetch_assoc(); // 단일 row 반환 (연관 배열 형태)
     return $result;
 }
 
