@@ -82,6 +82,15 @@ class BoardController extends BaseController
             'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code, $type),
         ];
 
+        if($code == "tour" || $code == "infographics"){
+            if($code == "tour"){
+                $code_no = "6001";
+            }else{
+                $code_no = "6002";
+            }
+            $data['code_list'] = $this->codeModel->getByParentCode($code_no)->getResultArray();
+        }
+
         return view('admin/_board/list', array_merge($data, $config));
     }
 
@@ -175,17 +184,6 @@ class BoardController extends BaseController
         return view('admin/_board/view', $data);
     }
 
-    public function bbs_del()
-    {
-
-    }
-
-    public function goods_find()
-    {
-        $code_no = $_POST['code_no'];
-        $inq_sw = $_POST['inq_sw'];
-    }
-
     public function item_allfind()
     {
         $product_code_1  = $_POST['product_code_1'];
@@ -236,7 +234,6 @@ class BoardController extends BaseController
         ]);
 
     }
-
 
     public function event_dis_delete()
     {

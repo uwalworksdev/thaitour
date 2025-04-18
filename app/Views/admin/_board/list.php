@@ -91,13 +91,28 @@
                     </div>
                     <div class="">
                         <?php if ($is_category == "Y"): ?>
+                            
                             <select name="category" class="input_select">
                                 <option value="">선택</option>
-                                <?php foreach ($categories as $frow): ?>
-                                    <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $scategory ? 'selected' : '' ?>>
-                                        <?= $frow['subject'] ?>
-                                    </option>
-                                <?php endforeach; ?>
+                                <?php
+                                    if($code == "tour" || $code == "infographics") {
+                                ?>       
+                                    <?php foreach ($code_list as $frow): ?>
+                                        <option value="<?= $frow['code_idx'] ?>" <?= $frow['code_idx'] == $scategory ? 'selected' : '' ?>>
+                                            <?= $frow['code_name'] ?>
+                                        </option>
+                                    <?php endforeach; ?> 
+                                <?php
+                                    }else{
+                                ?>
+                                    <?php foreach ($categories as $frow): ?>
+                                        <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $scategory ? 'selected' : '' ?>>
+                                            <?= $frow['subject'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <?php
+                                    }
+                                ?>
                             </select>
                         <?php endif; ?>
                     </div>
@@ -133,7 +148,6 @@
     function SELECT_DELETE() {
 
         var tmpChkCnt = $(".bbs_idx:checked").length;
-        //alert(tmpChkCnt);	// 3 (A,B,C)
 
         if (tmpChkCnt == 0) {
             alert("삭제할 게시물을 선택하셔야 합니다.");
@@ -151,9 +165,6 @@
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            },
-            complete: function (request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
             },
             success: function (response, status, request) {
                 alert_("정상적으로 삭제되었습니다.");
@@ -180,9 +191,6 @@
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
             },
-            complete: function (request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
-            },
             success: function (response, status, request) {
                 alert_("정상적으로 삭제되었습니다.");
                 setTimeout(function () {
@@ -207,15 +215,12 @@
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                // save_result = data;
-                // var obj = jQuery.parseJSON(save_result);
                 var message = data.message;
                 alert(message);
                 location.reload();
             },
             error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " +
-                    error); // 실패 시 처리
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
         });
     }
