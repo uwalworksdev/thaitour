@@ -403,7 +403,7 @@
         <h2 class="title-sec3" id="product_des">
             상품설명
         </h2>
-        <?php if($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') {?>
+        <!-- <?php if($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') {?>
             <h3 class="title-sec2">
                 상품 포인트
             </h3>
@@ -463,7 +463,7 @@
                     <div class="swiper-tour_content-pagination"></div>
                 </div>
             </div>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <?php if($product['product_confirm']) { ?>
             <h2 class="title-sec2">
                 미팅/픽업장소 안내
