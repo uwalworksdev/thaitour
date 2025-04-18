@@ -1023,7 +1023,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <tr style="display: none">
                                     <th>상품정보</th>
                                     <td colspan="3">
 
@@ -1059,72 +1059,7 @@
 
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>미팅/픽업장소 안내</th>
-                                    <td colspan="3">
-
-								<textarea name="product_confirm" id="product_confirm" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors12 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors12,
-                                                elPlaceHolder: "product_confirm",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                    <!-- <th>예약전 확인사항(모바일)</th>
-                                    <td>
-								        <textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm_m); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors13 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors13,
-                                                elPlaceHolder: "product_confirm_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td> -->
-                                </tr>
+                            
 
                                 <tr>
                                     <th>포함사항</th>
@@ -1290,9 +1225,42 @@
                                             });
                                         </script>
                                     </td>
-                                    <th>더투어랩 이용방법</th>
+                                    <th>투어준비물</th>
                                     <td>
-								<textarea name="etc_comment" id="etc_comment" class="input_txt"
+
+								    <textarea name="product_confirm" id="product_confirm" class="input_txt"
+                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors12 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors12,
+                                                elPlaceHolder: "product_confirm",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th style="display: none">더투어랩 이용방법</th>
+                                    <td style="display: none">
+								        <textarea name="etc_comment" id="etc_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors10 = [];
