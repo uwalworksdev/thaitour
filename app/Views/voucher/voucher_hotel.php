@@ -110,12 +110,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Agent Memo</th>
-                            <td colspan="3">
-                                <p>Family Plan :</p>
-                                <p>-A complimentary baby cot is provided for a child up to 2 years old</p>
-                                <p>-Child &lt;6 yrs may share existing bed with parents at no extra charge and complimentary breakfast
-                                    at Colonnade if dining with a paying adult.</p>
-                            </td>
+                            <td colspan="3"><?=$result->order_memo?></td>
                         </tr>
                         <tr>
                             <th>Remarks</th>
