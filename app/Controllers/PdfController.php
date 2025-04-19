@@ -40,7 +40,7 @@ class PdfController extends BaseController
         // 사용자 이름 세션 예시
         session()->set(['member' => ['name' => '김평진']]);
 
-        $html = view('pdf/quotation_view', compact('sum', 'items'));
+        $html = view('pdf/quotation', compact('sum', 'items'));
 
         // mPDF 설정
         $mpdf = new Mpdf([
