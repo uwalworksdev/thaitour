@@ -17,21 +17,19 @@
     </style>
 </head>
 <body>
-<div style="overflow: hidden; margin-bottom: 10px;">
-    <div style="float: left;">
-        <p>
-            Sukhumvit 101 Bangjak<br>
-            Prakhanong Bangkok 10260<br>
-            서비스/여행업 No.101-86-79949
-        </p>
-        <p>견적일: <?= date('Y년 m월 d일') ?><br>
-           고객명: <?= $customer_name ?> 님 귀하</p>
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+    <div>
+        <p style="margin: 0;">Sukhumvit 101 Bangjak<br>
+        Prakhanong Bangkok 10260<br>
+        서비스/여행업 No.101-86-79949</p>
     </div>
-
-    <div style="float: right;">
-        <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-top: 0px;">
+    <div>
+        <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
     </div>
 </div>
+
+        <p>견적일: <?= date('Y년 m월 d일') ?><br>
+           고객명: <?= $customer_name ?> 님 귀하</p>
 
     <table>
 	  <colgroup>
