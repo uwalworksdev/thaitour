@@ -110,7 +110,7 @@
 					    <?php $arr = explode(":", $golf_info);?>
                         <tr>
                             <th>그린피</th>
-                            <td><?=$arr[1]/$row['baht_thai']?>바트(3,150바트Χ3명)</td>
+                            <td><?=(int)($arr[1]/$row['baht_thai'])?>바트(3,150바트Χ3명)</td>
                             <th>카트피</th>
                             <td>2,400바트(1인1카트 800바트Χ3대)</td>
                         </tr>
