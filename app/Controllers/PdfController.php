@@ -11,11 +11,12 @@ class PdfController extends BaseController
         ob_clean();
 
         // PDF 객체 생성 (임시 디렉토리 포함)
-        $pdf = new Mpdf([
-            'tempDir' => WRITEPATH . 'mpdf_tmp',
+		$pdf = new \Mpdf\Mpdf([
+			'default_font' => 'dejavusans', // 또는 'notosanskr'
+			'tempDir' => WRITEPATH . 'mpdf_tmp', // 임시 디렉토리 필수
             'format' => 'A4'
         ]);
-
+		
         // 전달할 데이터
         $data = [
             'quotation_date' => '2025년 03월 14일',
