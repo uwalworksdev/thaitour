@@ -34,7 +34,7 @@ class PdfController extends BaseController
             ]
         ]);
 
-		$group_no = $this->request->getPost('group_no');
+		$group_no = $this->request->getVar('group_no');
 
 		$db = \Config\Database::connect();
 
@@ -57,25 +57,8 @@ class PdfController extends BaseController
 			'sum'      => $sum,
 			'items'    => $items
 		];
-/*		
-        $data = [
-					'quotation_date' => '2025년 03월 14일',
-					'customer_name'  => '김태균',
-					'hotel_count' => '0건',
-					'hotel_price' => '0원',
-					'golf_count'  => '12건',
-					'golf_price'  => '303,175원',
-					'tour_count'  => '1건',
-					'tour_price'  => '39,000원',
-					'car_count'   => '0건',
-					'car_price'   => '0원',
-					'guide_count' => '0건',
-					'guide_price' => '0원',
-					'total_count' => '2건',
-					'total_price' => '342,175원'
-        ];
-*/
-        $html = view('pdf/quotation', $data);
+
+		$html = view('pdf/quotation', $data);
 
         $pdf->WriteHTML($html);
 		
