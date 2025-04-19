@@ -24,7 +24,7 @@
         Prakhanong Bangkok 10260<br>
         서비스/여행업 No.101-86-79949
     </p>
-    <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="150">
+    <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="50">
 
     <p>
         견적일: <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일<br>
