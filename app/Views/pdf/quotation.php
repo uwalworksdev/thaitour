@@ -32,16 +32,15 @@
     </p>
 
     <table>
+
+	
         <tr>
             <th>호텔</th><td><?= $hotel_count ?></td><td><?= $hotel_price ?></td>
-            <th>골프</th><td><?= $golf_count ?></td><td><?= $golf_price ?></td>
         </tr>
         <tr>
             <th>투어</th><td><?= $tour_count ?></td><td><?= $tour_price ?></td>
-            <th>차량</th><td><?= $car_count ?></td><td><?= $car_price ?></td>
         </tr>
         <tr>
-            <th>가이드</th><td><?= $guide_count ?></td><td><?= $guide_price ?></td>
             <th>합계</th><td><?= $total_count ?></td><td><?= $total_price ?></td>
         </tr>
     </table>
