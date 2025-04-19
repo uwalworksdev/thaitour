@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-<div style="overflow: hidden; margin-bottom: 20px;">
+<div style="overflow: hidden; margin-bottom: 10px;">
     <div style="float: left;">
         <p>
             Sukhumvit 101 Bangjak<br>
@@ -28,8 +28,8 @@
            고객명: <?= $customer_name ?> 님 귀하</p>
     </div>
 
-    <div style="float: right; text-align: right;">
-        <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-top: 10px;">
+    <div style="float: right;">
+        <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-top: 0px;">
     </div>
 </div>
 
