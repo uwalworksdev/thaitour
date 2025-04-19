@@ -86,7 +86,7 @@
 				}   
 		  ?>
 		  <tr>
-			  <td><?= esc($i['code_name']) ?></td>
+			  <td align="center"><?= esc($i['code_name']) ?></td>
 			  <td>
 				  <p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
 				  <p><?=$order_info?> </p>
