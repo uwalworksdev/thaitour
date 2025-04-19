@@ -48,9 +48,9 @@ class InvoiceController extends BaseController
 		$result2 = $query->getResultArray();
 		foreach ($result2 as $row) {
 			if($golf_option == "") {
-			   $order_info =      $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
+			   $golf_option =      $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
 			} else {  
-			   $order_info = "|". $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
+			   $golf_option = "|". $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
 			}   
 		}
 
