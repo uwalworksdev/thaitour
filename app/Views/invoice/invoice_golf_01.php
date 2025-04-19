@@ -128,7 +128,7 @@
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span><?=number_format($row['real_price_won'])?>원</span> (<?=number_format($row['real_price_bath'])?>0바트)</p>
+                    <p>총 인보이스 금액 : <span><?=number_format($row['real_price_won'])?>원</span> (<?=number_format($row['real_price_bath'])?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
