@@ -81,6 +81,7 @@
                       </tr>
 					  <?php endforeach; ?>
               </table>
+			  
           </div>
   
           <div class="list_desc">
