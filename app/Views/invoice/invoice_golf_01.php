@@ -107,10 +107,14 @@
                         <col width="*">
                     </colgroup>
                     <tbody>
-					    <?php $arr = explode(":", $golf_info);?>
+					    <?php 
+						      $arr      = explode(":", $golf_info); 
+						      $greenFee = (int)($arr[1]/$row['baht_thai']);
+						      $price    = (int)($arr[1]/$row['baht_thai']/$arr[2]);
+						?>	  
                         <tr>
                             <th>그린피</th>
-                            <td><?=(int)($arr[1]/$row['baht_thai'])?>바트(3,150바트Χ3명)</td>
+                            <td><?=$greenFee?>바트(<?=number_format($price)?>바트Χ$arr[2]명)</td>
                             <th>카트피</th>
                             <td>2,400바트(1인1카트 800바트Χ3대)</td>
                         </tr>
