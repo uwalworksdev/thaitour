@@ -1,9 +1,12 @@
 <?php
+
+namespace App\Controllers;
+
 use Mpdf\Mpdf;
 
-class PdfController extends \CodeIgniter\Controller
+class PdfController extends BaseController
 {
-    public function generatePdf()
+    public function generateQuotation()
     {
         // mPDF 설정
         $config = [
@@ -27,6 +30,5 @@ class PdfController extends \CodeIgniter\Controller
         $mpdf->Output();
     }
 }
-
 
 
