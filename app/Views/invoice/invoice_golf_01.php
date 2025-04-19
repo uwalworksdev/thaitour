@@ -26,19 +26,18 @@
                         <col width="150px">  
                         <col width="*">
                     </colgroup>
-					<?php foreach ($result as $row) : ?>
                     <tbody>
 					   <?php 
 							$weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
-							$timestamp = strtotime(substr($row->order_m_date,0,10)); // 문자열 날짜를 타임스탬프로 변환
+							$timestamp = strtotime(substr($row['order_m_date'],0,10)); // 문자열 날짜를 타임스탬프로 변환
 							$weekday   = $weekdays[date("w", $timestamp)];
 
                         ?> 
                         <tr>
                             <th>예약번호</th>
-                            <td><?= esc($row->order_no) ?></td>
+                            <td><?= esc($row['order_no']) ?></td>
                             <th>예약날짜</th>
-                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=$weekday?>)</td>
+                            <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
@@ -47,7 +46,6 @@
                             <td>thaitouradventure@gmail.com</td>
                         </tr>
                     </tbody>
-					<?php endforeach; ?>
                 </table>
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
@@ -61,21 +59,20 @@
                         <col width="*">
                     </colgroup>
 					
-                    <?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
                             <th>바우처 이름</th>
-                            <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
+                            <td><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3"><?=$row->order_user_mobile?></td>
+                            <td colspan="3"><?=$row['order_user_mobile']?></td>
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3"><?=$row->product_name?></td>
+                            <td colspan="3"><?=$row['product_name']?></td>
                         </tr>
                         <tr>
                             <th>총인원</th>
@@ -96,7 +93,6 @@
                             <td colspan="3">available afternoon</td>
                         </tr>
                     </tbody>
-                    <?php endforeach; ?>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">

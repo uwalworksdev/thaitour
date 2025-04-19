@@ -34,9 +34,9 @@ class InvoiceController extends BaseController
 		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
         //write_log("last query- ". $db->getLastQuery());
 
-		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
+		$result  = $query->getResultArray(); // 결과 가져오기 (객체 배열)
 		
-        return view("invoice/invoice_golf_01", [ 'result'  => $result ]);
+        return view("invoice/invoice_golf_01", [ 'row'  => $result ]);
 		
     }
 
