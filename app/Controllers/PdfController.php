@@ -6,6 +6,19 @@ use Mpdf\Mpdf;
 
 class PdfController extends BaseController
 {
+    private $db;
+    private $productModel;
+    private $roomImg;
+    private $CodeModel;
+
+
+    public function __construct() {
+        $this->db           = db_connect();
+        $this->productModel = model("ProductModel");
+        $this->roomImg      = model("RoomImg");
+        $this->CodeModel    = model("Code");
+    }
+	
     public function generateQuotation()
     {
         $pdf = new Mpdf([
