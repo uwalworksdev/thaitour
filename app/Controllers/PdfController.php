@@ -37,14 +37,14 @@ class PdfController extends BaseController
 		$sum = $db->query($sql, [$group_no])->getResultArray();
 
 		// ① 그룹 해당 예약 목록
-		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?", [$m_idx, $group_no])->getResultArray();
+		$items = $db->query("SELECT * FROM tbl_order_mst WHERE group_no = ?", [$group_no])->getResultArray();
 
 		$data = [
 			'group_no' => $group_no,
 			'sum'      => $sum,
 			'items'    => $items
 		];
-		
+/*		
         $data = [
 					'quotation_date' => '2025년 03월 14일',
 					'customer_name'  => '김태균',
@@ -61,7 +61,7 @@ class PdfController extends BaseController
 					'total_count' => '2건',
 					'total_price' => '342,175원'
         ];
-
+*/
         $html = view('pdf/quotation', $data);
 
         $pdf->WriteHTML($html);
