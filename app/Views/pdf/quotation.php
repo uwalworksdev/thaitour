@@ -47,11 +47,11 @@
 		    <td><?= number_format(esc($i['total_won'])) ?>원 </td>
         </tr>
         <?php endforeach; ?>		
-        <tr>
-            <th>합계</th>
-			<td><?= $total_count ?></td>
-			<td><?= $total_price ?></td>
-        </tr>
+	    <tr>
+		    <th class="total">합계 </th>
+		    <td class="total"><?=$tot_cnt?>건 </td>
+		    <td class="total"><?=number_format($tot_won)?>원 </td>
+	    </tr>
     </table>
 	<table>
 	  <colgroup>
