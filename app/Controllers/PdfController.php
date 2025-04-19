@@ -1,42 +1,32 @@
 <?php
-
-namespace App\Controllers;
-
 use Mpdf\Mpdf;
 
-class PdfController extends BaseController
+class PdfController extends \CodeIgniter\Controller
 {
-    public function generateQuotation()
+    public function generatePdf()
     {
-        $pdf = new Mpdf([
+        // mPDF 설정
+        $config = [
             'mode' => 'utf-8', // UTF-8 모드 사용
             'format' => 'A4',
             'default_font' => 'NanumGothic', // 기본 폰트 설정
-        ]);
-
-        $data = [
-            'quotation_date' => '2025년 03월 14일',
-            'customer_name'  => '김평진',
-            'hotel_count' => '0건',
-            'hotel_price' => '0원',
-            'golf_count'  => '12건',
-            'golf_price'  => '303,175원',
-            'tour_count'  => '1건',
-            'tour_price'  => '39,000원',
-            'car_count'   => '0건',
-            'car_price'   => '0원',
-            'guide_count' => '0건',
-            'guide_price' => '0원',
-            'total_count' => '2건',
-            'total_price' => '342,175원'
         ];
 
-        $html = view('pdf/quotation', $data);
+        $mpdf = new Mpdf($config);
 
-        $pdf->WriteHTML($html);
-        $pdf->Output('quotation.pdf', 'I');
-        exit;
+        // 한글 폰트 설정
+        $mpdf->addTTFfont(FCPATH . 'mpdf/ttfonts/NanumGothic.ttf', 'TrueType', '', 96);
+        
+        // PDF 내용 작성
+        $html = '<h1>한글 테스트</h1><p>이 텍스트는 한글입니다.</p>';
+        
+        // HTML로 PDF 생성
+        $mpdf->WriteHTML($html);
+        
+        // PDF 출력
+        $mpdf->Output();
     }
 }
+
 
 
