@@ -9,14 +9,14 @@ class PdfController extends BaseController
     public function generateQuotation()
     {
         $pdf = new Mpdf([
-            'mode' => 'utf-8', // UTF-8 모드 사용
+            'mode' => 'utf-8',
             'format' => 'A4',
-            'default_font' => 'NanumGothic', // 기본 폰트 설정
-            'fontDir' => [FCPATH . 'public/ttfonts'], // 폰트 디렉토리 설정
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
             'fontdata' => [
-                'NanumGothic' => [
-                    'R' => 'NanumGothic.ttf', // Regular 폰트 파일
-                    'B' => 'NanumGothicBold.ttf', // Bold 폰트 파일
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
                 ]
             ]
         ]);
