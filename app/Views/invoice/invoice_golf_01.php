@@ -107,6 +107,7 @@
                         <col width="*">
                     </colgroup>
                     <tbody>
+					    <?php $arr = explode(":", $golf_info);?>
                         <tr>
                             <th>그린피</th>
                             <td>9,450바트(3,150바트Χ3명)</td>

@@ -43,12 +43,21 @@ class InvoiceController extends BaseController
 		$order_info = "그린피:" . $result1['option_tot'] . ":" . $result1['option_cnt'];
 
 		// 기타 옵션
-		$query = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
-		$golf_option = $query->getResultArray();
+		$golf_option = "";
+		$query   = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
+		$result2 = $query->getResultArray();
+		foreach ($result2 as $row) {
+			if($golf_option == "") {
+			   $order_info =      $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
+			} else {  
+			   $order_info = "|". $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
+			}   
+		}
+
 
 		return view("invoice/invoice_golf_01", [
-			'row' => $row,
-			'golf_info' => $order_info,
+			'row'         => $row,
+			'golf_info'   => $order_info,
 			'golf_option' => $golf_option
 		]);
 	}
