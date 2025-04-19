@@ -9,8 +9,9 @@ class PdfController extends BaseController
     public function generateQuotation()
     {
         $pdf = new Mpdf([
-            'default_font' => 'dejavusans',
-            'tempDir' => WRITEPATH . 'mpdf_tmp'
+            'mode' => 'utf-8', // UTF-8 모드 사용
+            'format' => 'A4',
+            'default_font' => 'NanumGothic', // 기본 폰트 설정
         ]);
 
         $data = [
