@@ -72,7 +72,7 @@
 		    <td align="right"><?=$tot_cnt?></td>
 		    <td align="right"><?=number_format($tot_won)?></td>
 	    </tr>
-	  <tbody>		
+	  </tbody>		
     </table>
 	<table style="margin-bottom: 20px;">
 	  <colgroup>
