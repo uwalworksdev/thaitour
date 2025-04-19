@@ -12,7 +12,7 @@
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </div>
             <div class="invoice_ttl">
-                <p>요청하신 예약이 가능하여 인보이스가 발송되었습니다xxxxxxx.</p>
+                <p>요청하신 예약이 가능하여 인보이스가 발송되었습니다.</p>
                 <span>원하시는 날짜, 시간, 인원 등이 맞는지 예약 내용을 반드시 확인해 주신후 결제 진행해 주세요.</span>
                 <span>결제 하시면 예약 확정 후 바우처가 발송됩니다.</span>
                 <span>바우처 수령 후에도 바우처 상에 표시된 예약정보 최종 확인 부탁드립니다.</span>
