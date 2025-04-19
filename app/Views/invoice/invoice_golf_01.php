@@ -1,8 +1,6 @@
 <?php
      helper('setting_helper');
      $setting = homeSetInfo();
-	 
-	 $row = $row[0]; // 첫 번째 레코드만 꺼냄
 ?>
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
