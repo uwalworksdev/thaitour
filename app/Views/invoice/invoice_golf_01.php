@@ -1,6 +1,8 @@
 <?php
      helper('setting_helper');
      $setting = homeSetInfo();
+	 
+	 $row = $row[0]; // 첫 번째 레코드만 꺼냄
 ?>
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
@@ -35,7 +37,7 @@
                         ?> 
                         <tr>
                             <th>예약번호</th>
-                            <td><?= esc($row->order_no) ?></td>
+                            <td><?= esc($row['order_no']) ?></td>
                             <th>예약날짜</th>
                             <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
