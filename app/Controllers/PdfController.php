@@ -15,15 +15,13 @@ class PdfController extends BaseController
             'default_font' => 'NanumGothic', // 기본 폰트 설정
         ];
 
+        // mPDF 객체 생성
         $mpdf = new Mpdf($config);
 
-        // 한글 폰트 설정
-        $mpdf->addTTFfont(FCPATH . 'mpdf/ttfonts/NanumGothic.ttf', 'TrueType', '', 96);
-        
-        // PDF 내용 작성
+        // HTML로 PDF 내용 작성
         $html = '<h1>한글 테스트</h1><p>이 텍스트는 한글입니다.</p>';
         
-        // HTML로 PDF 생성
+        // PDF 생성
         $mpdf->WriteHTML($html);
         
         // PDF 출력
