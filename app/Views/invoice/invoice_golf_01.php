@@ -78,7 +78,7 @@
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3"><?=$row['product_name']?>[<?=$order_txt[0]?> <?=$order_txt[1]?>]</td>
+                            <td colspan="3"><?=$row['product_name']?>[ <?=$order_txt[0]?> <?=$order_txt[1]?> ]</td>
                         </tr>
                         <tr>
                             <th>총인원</th>
