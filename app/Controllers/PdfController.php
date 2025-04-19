@@ -12,7 +12,7 @@ class PdfController extends BaseController
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('TOTO Booking Co., Ltd.');
         $pdf->SetTitle('여행 견적서');
-        $pdf->SetHeaderData('', 0, '더투어랩 여행견적서', 'TOTO Booking Co., Ltd.');
+        $pdf->SetHTMLHeader('', 0, '더투어랩 여행견적서', 'TOTO Booking Co., Ltd.');
 
         // 페이지 추가
         $pdf->AddPage();
