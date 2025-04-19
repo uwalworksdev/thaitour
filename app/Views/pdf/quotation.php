@@ -54,8 +54,8 @@
 	    ?>	
         <tr>
 		    <th align="center"><?= esc($i['code_name']) ?></th>
-		    <td align="right"><?= esc($i['cnt']) ?>건 </td>
-		    <td align="right"><?= number_format(esc($i['total_won'])) ?>원 </td>
+		    <td align="right"><?= esc($i['cnt']) ?></td>
+		    <td align="right"><?= number_format(esc($i['total_won'])) ?></td>
         </tr>
         <?php endforeach; ?>		
 	    <tr>
