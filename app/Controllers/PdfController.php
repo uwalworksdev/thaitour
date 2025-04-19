@@ -1,14 +1,14 @@
 <?php
 namespace App\Controllers;
 
-use TCPDF;
+use Mpdf\Mpdf;
 
 class PdfController extends BaseController
 {
     public function generateQuotation()
     {
         // PDF 객체 생성
-        $pdf = new TCPDF();
+        $pdf = new Mpdf();
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('TOTO Booking Co., Ltd.');
         $pdf->SetTitle('여행 견적서');
