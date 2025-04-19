@@ -17,14 +17,15 @@
     </style>
 </head>
 <body>
-    <h1>더투어랩 여행견적서</h1>
-    <h3>TOTO Booking Co., Ltd.</h3>
-    <p>
+<div style="overflow: hidden;"> <!-- float 깨짐 방지 -->
+    <p style="float: left;">
         Sukhumvit 101 Bangjak<br>
         Prakhanong Bangkok 10260<br>
         서비스/여행업 No.101-86-79949
     </p>
-    <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="50">
+
+    <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="50" style="float: right;">
+</div>
 
     <p>
         견적일: <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일<br>
