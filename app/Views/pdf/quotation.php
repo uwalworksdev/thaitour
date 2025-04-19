@@ -19,6 +19,9 @@
 <body>
 	<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
 		<div>
+			<h1>더투어랩 여행견적서</h1>
+			<h3>TOTO Booking Co., Ltd.</h3>
+		
 			<p style="margin: 0;">Sukhumvit 101 Bangjak<br>
 			Prakhanong Bangkok 10260<br>
 			서비스/여행업 No.101-86-79949</p>
