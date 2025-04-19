@@ -17,21 +17,21 @@
     </style>
 </head>
 <body>
-<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-    <div>
-        <p style="margin: 0;">Sukhumvit 101 Bangjak<br>
-        Prakhanong Bangkok 10260<br>
-        서비스/여행업 No.101-86-79949</p>
-    </div>
-    <div>
-        <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
-    </div>
-</div>
+	<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+		<div>
+			<p style="margin: 0;">Sukhumvit 101 Bangjak<br>
+			Prakhanong Bangkok 10260<br>
+			서비스/여행업 No.101-86-79949</p>
+		</div>
+		<div>
+			<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
+		</div>
+	</div>
 
-        <p>견적일: <?= date('Y년 m월 d일') ?><br>
-           고객명: <?=session()->get("member")["name"]?> 님 귀하</p>
+	<p>견적일: <?= date('Y년 m월 d일') ?><br>
+	   고객명: <?=session()->get("member")["name"]?> 님 귀하</p>
 
-    <table>
+    <table style="margin-bottom: 30px;">
 	  <colgroup>
 		  <col width="50%">
 		  <col width="*">
