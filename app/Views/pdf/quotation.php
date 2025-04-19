@@ -41,6 +41,12 @@
 		  $tot_cnt = $tot_cnt + $i['cnt'];
 		  $tot_won = $tot_won + $i['total_won'];
 	    ?>	
+	  <colgroup>
+		  <col width="30%">
+		  <col width="30%">
+		  <col width="*">
+	  </colgroup>
+	  <tbody>		
         <tr>
 		    <th><?= esc($i['code_name']) ?></th>
 		    <td><?= esc($i['cnt']) ?>건 </td>
@@ -52,6 +58,7 @@
 		    <td class="total"><?=$tot_cnt?>건 </td>
 		    <td class="total"><?=number_format($tot_won)?>원 </td>
 	    </tr>
+	  <tbody>		
     </table>
 	<table>
 	  <colgroup>
