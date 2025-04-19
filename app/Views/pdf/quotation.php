@@ -67,15 +67,15 @@
     </table>
 	<table>
 	  <colgroup>
-		  <col width="10%">
+		  <col width="20%">
 		  <col width="*">
 		  <col width="20%">
 	  </colgroup>
 	  <tbody>
 		  <tr>
-			  <th>예약상품</th>
-			  <th>상세</th>
-			  <th>금액(원)</th>
+			  <th align="center">예약상품</th>
+			  <th align="center">상세</th>
+			  <th align="center">금액</th>
 		  </tr>
 		  <?php foreach ($items as $i): ?>
 		  <?php
@@ -91,7 +91,7 @@
 				  <p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
 				  <p><?=$order_info?> </p>
 			  </td>
-			  <td>
+			  <td align="right">
 				  <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
 				  <p>(<?= number_format(esc($i['real_price_bath'])) ?>바트) </p>
 			  </td>		  
