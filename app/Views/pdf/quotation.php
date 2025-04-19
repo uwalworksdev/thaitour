@@ -16,6 +16,7 @@
 		}	
 		
 		.list_desc p {
+			margin-top: 10px;
 			margin: 2px 0;
 			line-height: 1.3;
 			font-size: 11pt;
