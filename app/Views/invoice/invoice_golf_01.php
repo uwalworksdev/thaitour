@@ -62,7 +62,10 @@
                     </colgroup>
 					
                     <tbody>
-					<?php $order_info = order_info($row['order_gubun'], $row['order_no'], $row['order_idx']); ?>
+					<?php 
+					       $order_info = order_info($row['order_gubun'], $row['order_no'], $row['order_idx']); 
+						   $order_txt  = explode("|", $order_info);
+					?>
                         <tr>
                             <th>날짜</th>
                             <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
@@ -75,17 +78,17 @@
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3"><?=$row['product_name']?></td>
+                            <td colspan="3"><?=$row['product_name']?>[<?=$order_txt[0]?> <?=$order_txt[1]?>]</td>
                         </tr>
                         <tr>
-                            <th>총인원<?=$order_info?></th>
-                            <td colspan="3">성인 : 3 명</td>
+                            <th>총인원</th>
+                            <td colspan="3"><?=$order_txt[3]?></td>
                         </tr>
                         <tr>
                             <th>티오프 요청시간</th>
-                            <td>10:00</td>
+                            <td><?=$order_txt[2]?></td>
                             <th>티오프 가능시간</th>
-                            <td>11:37</td>
+                            <td><?=$order_txt[2]?></td>
                         </tr>
                         <tr>
                             <th>불포함</th>
