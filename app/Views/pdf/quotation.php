@@ -27,8 +27,8 @@
     <img src="/img/sub/sign-001.jpg" class="img_stem">
 
     <p>
-        견적일: <?= esc($quotation_date) ?><br>
-        고객명: <?= esc($customer_name) ?> 님 귀하
+        견적일: <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일<br>
+        고객명: <?=session()->get("member")["name"]?> 님 귀하
     </p>
 
     <table>
