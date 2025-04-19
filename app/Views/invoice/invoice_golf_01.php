@@ -123,12 +123,12 @@
                         </tr>
                         <tr>
                             <th>총금액</th>
-                            <td colspan="3">13,050바트</td>
+                            <td colspan="3"><?=number_format($row['real_price_bath'])?>바트</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span>526,698원</span> (13,050바트)</p>
+                    <p>총 인보이스 금액 : <span><?=number_format($row['real_price_won'])?>원</span> (<?=number_format($row['real_price_bath'])?>0바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
