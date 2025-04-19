@@ -35,8 +35,8 @@ class InvoiceController extends BaseController
 		$result      = $query->getResultArray(); // 결과 가져오기 (객체 배열)
 
 		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' "); 
-		$result      = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
-		$order_info  = "그린피:". $result['option_tot'] .":". $result['option_cnt'];
+		$result1     = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
+		$order_info  = "그린피:". $result1['option_tot'] .":". $result1['option_cnt'];
 
 		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' "); 
 		$golf_option = $query->getResultArray(); // 단일 row 반환 (연관 배열 형태)
