@@ -1,22 +1,4 @@
 <link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" />
-
-	<style>
-	@media print {
-		.btns_download,
-		.send_mail,
-		.btn_close_popup {
-			display: none !important;
-		}
-
-		body {
-			background: white;
-		}
-
-		.estimate_popup_content {
-			box-shadow: none;
-		}
-	}
-	</style>
 	
       <div class="estimate_popup_content custom_popup_content">
          <div class="btn_close_popup">
