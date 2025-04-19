@@ -96,7 +96,7 @@
           </div>
           <div class="btns_download">
               <button id="btn_print">프린트</button>
-              <button id="btn_pdf"> PDF다운로드</button>
+              <button id="btn_pdf" value="<?= esc($i['group_no']) ?>"> PDF다운로드</button>
           </div>
       </div>
 
