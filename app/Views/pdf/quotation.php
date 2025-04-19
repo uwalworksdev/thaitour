@@ -29,7 +29,7 @@
 </div>
 
         <p>견적일: <?= date('Y년 m월 d일') ?><br>
-           고객명: <?= $customer_name ?> 님 귀하</p>
+           고객명: <?=session()->get("member")["name"]?> 님 귀하</p>
 
     <table>
 	  <colgroup>
