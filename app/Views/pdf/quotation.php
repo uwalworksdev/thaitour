@@ -16,7 +16,6 @@
 		}	
 		
 		.list_desc p {
-			margin-top: 10px;
 			margin: 2px 0;
 			line-height: 1.3;
 			font-size: 11pt;
@@ -41,7 +40,7 @@
 	<p>견적일: <?= date('Y년 m월 d일') ?><br>
 	   고객명: <?=session()->get("member")["name"]?> 님 귀하</p>
 
-    <table style="margin-bottom: 30px;">
+    <table style="margin-bottom: 20px;">
 	  <colgroup>
 		  <col width="50%">
 		  <col width="*">
@@ -75,7 +74,7 @@
 	    </tr>
 	  <tbody>		
     </table>
-	<table>
+	<table style="margin-bottom: 20px;">
 	  <colgroup>
 		  <col width="20%">
 		  <col width="*">
