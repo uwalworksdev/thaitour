@@ -33,11 +33,6 @@
     </div>
 </div>
 
-    <p>
-        견적일: <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일<br>
-        고객명: <?=session()->get("member")["name"]?> 님 귀하
-    </p>
-
     <table>
 	  <colgroup>
 		  <col width="50%">
