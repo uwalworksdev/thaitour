@@ -13,12 +13,13 @@ class InvoiceController extends BaseController
         $this->db = db_connect();
         helper('my_helper');
     }
-    public function golf_01($idx)
-    {
+	
+	public function golf_01($idx)
+	{
 		$private_key = private_key();
-		
-		$db      = db_connect(); // DB 연결
-		$builder = $db->table('tbl_order_mst'); // 테이블 지정
+		$db = db_connect(); // DB 연결
+
+		$builder = $db->table('tbl_order_mst');
 		$builder->select(" *,
 			AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
 			AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
@@ -30,20 +31,28 @@ class InvoiceController extends BaseController
 			AES_DECRYPT(UNHEX(order_addr1), '$private_key') AS order_addr1,
 			AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
 			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
-		");		
-		$query       = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
-		$result      = $query->getResultArray(); // 결과 가져오기 (객체 배열)
+		");
 
-		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' "); 
-		$result1     = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
-		$order_info  = "그린피:". $result1['option_tot'] .":". $result1['option_cnt'];
+		$query = $builder->where('order_idx', $idx)->get();
+		$result = $query->getResultArray();
+		$row = $result[0]; // ✅ 배열에서 첫 row만 추출
 
-		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' "); 
-		$golf_option = $query->getResultArray(); // 단일 row 반환 (연관 배열 형태)
-		
-        return view("invoice/invoice_golf_01", [ 'row'  => $result, 'golf_info' => $order_info, 'golf_option' => $golf_option ]);
-		
-    }
+		// 메인 옵션
+		$query = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' ");
+		$result1 = $query->getRowArray();
+		$order_info = "그린피:" . $result1['option_tot'] . ":" . $result1['option_cnt'];
+
+		// 기타 옵션
+		$query = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
+		$golf_option = $query->getResultArray();
+
+		return view("invoice/invoice_golf_01", [
+			'row' => $row,
+			'golf_info' => $order_info,
+			'golf_option' => $golf_option
+		]);
+	}
+
 
     public function hotel()
     {
