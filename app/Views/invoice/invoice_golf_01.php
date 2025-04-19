@@ -62,6 +62,7 @@
                     </colgroup>
 					
                     <tbody>
+					<?php $order_info = order_info($row['order_gubun'], $row['order_no'], $row['order_idx']); ?>
                         <tr>
                             <th>날짜</th>
                             <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
@@ -77,7 +78,7 @@
                             <td colspan="3"><?=$row['product_name']?></td>
                         </tr>
                         <tr>
-                            <th>총인원</th>
+                            <th>총인원<?=$order_info?></th>
                             <td colspan="3">성인 : 3 명</td>
                         </tr>
                         <tr>
