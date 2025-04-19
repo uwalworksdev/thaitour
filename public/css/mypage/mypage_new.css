@@ -2161,3 +2161,37 @@ input[type="checkbox"]:checked+label {
     font-weight: 600;
     color: #252525;
 }
+
+@media print {
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+        color: #000;
+    }
+
+    .estimate_popup_content {
+        box-shadow: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    /* 불필요한 요소 숨기기 */
+    .btns_download,
+    .send_mail,
+    .btn_close_popup,
+    nav,
+    footer {
+        display: none !important;
+    }
+
+    /* a 태그 자동 링크 표시 방지 */
+    a[href]:after {
+        content: "" !important;
+    }
+
+    /* 이미지 max-width 제한 해제 */
+    img {
+        max-width: none !important;
+    }
+}
