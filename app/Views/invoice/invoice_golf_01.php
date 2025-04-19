@@ -114,7 +114,7 @@
 						?>	  
                         <tr>
                             <th>그린피</th>
-                            <td><?=$greenFee?>바트(<?=number_format($price)?>바트Χ$arr[2]명)</td>
+                            <td><?=$greenFee?>바트(<?=number_format($price)?>바트Χ<?=$arr[2]?>명)</td>
                             <th>카트피</th>
                             <td>2,400바트(1인1카트 800바트Χ3대)</td>
                         </tr>
