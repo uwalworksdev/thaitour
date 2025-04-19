@@ -31,34 +31,28 @@
         고객명: <?=session()->get("member")["name"]?> 님 귀하
     </p>
 
-                  <table>
-                      <colgroup>
-                          <col width="110px">
-                          <col width="110px">
-                          <col width="110px">
-                      </colgroup>
-                      <tbody>
-					      <?php
-						    $tot_cnt = 0;
-						    $tot_won = 0;
-						  ?>	
-					      <?php foreach ($sum as $i): ?>
-					      <?php
-						    $tot_cnt = $tot_cnt + $i['cnt'];
-						    $tot_won = $tot_won + $i['total_won'];
-						  ?>	
-                          <tr>
-                              <th><?= esc($i['code_name']) ?></th>
-                              <td><?= esc($i['cnt']) ?>건 </td>
-                              <td><?= number_format(esc($i['total_won'])) ?>원 </td>
-                          </tr>
-						  <?php endforeach; ?>
-                          <tr>
-                              <th class="total">합계 </th>
-                              <td class="total"><?=$tot_cnt?>건 </td>
-                              <td class="total"><?=number_format($tot_won)?>원 </td>
-                          </tr>
-                      </tbody>
+    <table>
+	    <?php
+		  $tot_cnt = 0;
+		  $tot_won = 0;
+	    ?>	
+	    <?php foreach ($sum as $i): ?>
+	    <?php
+		  $tot_cnt = $tot_cnt + $i['cnt'];
+		  $tot_won = $tot_won + $i['total_won'];
+	    ?>	
+        <tr>
+		    <th><?= esc($i['code_name']) ?></th>
+		    <td><?= esc($i['cnt']) ?>건 </td>
+		    <td><?= number_format(esc($i['total_won'])) ?>원 </td>
+        </tr>
+        <?php endforeach; ?>		
+        <tr>
+            <th>합계</th>
+			<td><?= $total_count ?></td>
+			<td><?= $total_price ?></td>
+        </tr>
+    </table>
 	<table>
 	  <colgroup>
 		  <col width="70px">
@@ -71,7 +65,7 @@
 			  <th>상세</th>
 			  <th>금액</th>
 		  </tr>
-													<tr>
+		  <tr>
 			  <td>스파</td>
 			  <td>
 				  <p class="time">2025-04-16 18:36:59(수) | Spa 테스트 상품... </p>
