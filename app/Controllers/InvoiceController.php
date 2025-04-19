@@ -31,12 +31,17 @@ class InvoiceController extends BaseController
 			AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
 			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
 		");		
-		$query   = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
-        //write_log("last query- ". $db->getLastQuery());
+		$query       = $builder->where('order_idx', $idx)->get(); // 조건 추가 후 실행
+		$result      = $query->getResultArray(); // 결과 가져오기 (객체 배열)
 
-		$result  = $query->getResultArray(); // 결과 가져오기 (객체 배열)
+		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' "); 
+		$result      = $query->getRowArray(); // 단일 row 반환 (연관 배열 형태)
+		$order_info  = "그린피:". $result['option_tot'] .":". $result['option_cnt'];
+
+		$query       = $connect->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' "); 
+		$golf_option = $query->getResultArray(); // 단일 row 반환 (연관 배열 형태)
 		
-        return view("invoice/invoice_golf_01", [ 'row'  => $result ]);
+        return view("invoice/invoice_golf_01", [ 'row'  => $result, 'golf_info' => $order_info, 'golf_option' => $golf_option ]);
 		
     }
 
