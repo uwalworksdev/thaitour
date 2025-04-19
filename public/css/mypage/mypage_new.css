@@ -2191,5 +2191,51 @@ input[type="checkbox"]:checked+label {
   }
 }
 
+@media print {
+  /* 모든 요소 숨김 */
+  body * {
+    visibility: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 견적서 내용만 출력 */
+  .estimate_popup_content,
+  .estimate_popup_content * {
+    visibility: visible !important;
+  }
+
+  /* 출력 위치, 여백, 크기 조정 */
+  .estimate_popup_content {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    transform: scale(1) !important;
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    box-sizing: border-box;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    page-break-after: avoid !important;
+  }
+
+  /* 불필요한 버튼 제거 */
+  .btns_download,
+  .send_mail,
+  .btn_close_popup {
+    display: none !important;
+  }
+
+  /* 페이지 여백 제거 */
+  @page {
+    margin: 0;
+    size: A4 portrait;
+  }
+}
+
 
 
