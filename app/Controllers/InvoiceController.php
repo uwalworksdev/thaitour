@@ -35,7 +35,7 @@ class InvoiceController extends BaseController
 
 		$query = $builder->where('order_idx', $idx)->get();
 		$result = $query->getResultArray();
-		$row = $result[0]; // ✅ 배열에서 첫 row만 추출
+		//$row = $result[0]; // ✅ 배열에서 첫 row만 추출
 
 		// 메인 옵션
 		$query = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' ");
@@ -52,7 +52,7 @@ class InvoiceController extends BaseController
 
 
 		return view("invoice/invoice_golf_01", [
-			'row'         => $row,
+			'row'         => $result,
 			'golf_info'   => $order_info,
 			'golf_option' => $golf_option
 		]);
