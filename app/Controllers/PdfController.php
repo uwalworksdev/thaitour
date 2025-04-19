@@ -46,7 +46,7 @@ class PdfController extends BaseController
         $mpdf = new Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4',
-            'fontDir' => [FCPATH . 'ttfonts'],
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
             'default_font' => 'nanumgothic',
             'fontdata' => [
                 'nanumgothic' => [
