@@ -7,15 +7,27 @@ class PdfController extends BaseController
 {
     public function generateQuotation()
     {
-        // PDF 객체 생성
-        $pdf = new Mpdf();
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('TOTO Booking Co., Ltd.');
-        $pdf->SetTitle('여행 견적서');
-        $pdf->SetHTMLHeader('', 0, '더투어랩 여행견적서', 'TOTO Booking Co., Ltd.');
+        // mPDF 객체 생성 (tempDir 설정 권장)
+        $pdf = new Mpdf([
+            'tempDir' => WRITEPATH . 'mpdf_tmp', // 권한 필요: chmod 777
+            'format' => 'A4',
+            'margin_top' => 10,
+            'margin_bottom' => 15,
+        ]);
 
-        // 페이지 추가
-        $pdf->AddPage();
+        // 헤더 설정
+        $pdf->SetHTMLHeader('
+            <div style="text-align: right; font-weight: bold; font-size: 12px;">
+                더투어랩 여행견적서
+            </div>
+        ');
+
+        // 푸터 설정 (페이지 번호 포함)
+        $pdf->SetHTMLFooter('
+            <div style="text-align: center; font-size: 10px;">
+                {PAGENO} / {nb}
+            </div>
+        ');
 
         // HTML 내용
         $html = '
@@ -28,7 +40,7 @@ class PdfController extends BaseController
         <p>견적일: 2025년 03월 14일<br>
         고객명: 김평진 님 귀하</p>
 
-        <table border="1" cellpadding="5">
+        <table border="1" cellpadding="5" cellspacing="0" width="100%">
             <tr>
                 <th>호텔</th><td>0건</td><td>0원</td>
                 <th>골프</th><td>12건</td><td>303,175원</td>
@@ -45,7 +57,7 @@ class PdfController extends BaseController
 
         <br><br>
 
-        <table border="1" cellpadding="5">
+        <table border="1" cellpadding="5" cellspacing="0" width="100%">
             <tr>
                 <th>품목</th><th>상세</th><th>금액</th>
             </tr>
@@ -61,17 +73,20 @@ class PdfController extends BaseController
             </tr>
         </table>
 
-        <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다.<br>
+        <br>
+
+        <p style="font-size:10px;">
+        - 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다.<br>
         - 견적서상 내용은 항공 및 예약 가능여부/환율 등에 따라 금액 및 내용에 변동이 있을 수 있습니다.<br>
         - 계좌번호: 636101-01-3031315 (주) 토토북킹<br>
-        - 태국: Kasikorn Bank 895-2-19850-6 (Totobooking)</p>
+        - 태국: Kasikorn Bank 895-2-19850-6 (Totobooking)
+        </p>
         ';
 
-        // HTML 출력
-        $pdf->writeHTML($html, true, false, true, false, '');
+        // HTML → PDF 변환
+        $pdf->WriteHTML($html);
 
-        // PDF 출력
-        return $pdf->Output('quotation.pdf', 'I');
+        // 브라우저 출력
+        return $pdf->Output('quotation.pdf', 'I'); // I: inline
     }
 }
-
