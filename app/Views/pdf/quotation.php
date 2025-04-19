@@ -42,9 +42,9 @@
 		  $tot_won = $tot_won + $i['total_won'];
 	    ?>	
 	  <colgroup>
-		  <col width="30%">
-		  <col width="30%">
+		  <col width="50%">
 		  <col width="*">
+		  <col width="30%">
 	  </colgroup>
 	  <tbody>		
         <tr>
