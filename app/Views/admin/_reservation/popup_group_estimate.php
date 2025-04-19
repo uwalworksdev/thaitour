@@ -108,6 +108,7 @@
 			
 			// PDF 버튼 클릭 시
 			$(document).on('click', '#btn_pdf', function () {
-				location.href='/pdf/quotation';
+				var group_no = $(this).val(); 
+				location.href='/pdf/quotation?group_no='+group_no;
 			});
 		</script>
