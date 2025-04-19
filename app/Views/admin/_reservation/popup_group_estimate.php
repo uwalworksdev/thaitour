@@ -1,5 +1,23 @@
 <link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" />
 
+	<style>
+	@media print {
+		.btns_download,
+		.send_mail,
+		.btn_close_popup {
+			display: none !important;
+		}
+
+		body {
+			background: white;
+		}
+
+		.estimate_popup_content {
+			box-shadow: none;
+		}
+	}
+	</style>
+	
       <div class="estimate_popup_content custom_popup_content">
          <div class="btn_close_popup">
               <img src="/img/btn/btn_close_black_20x20.png" alt="">
@@ -94,10 +112,17 @@
               <button>메일보내기 </button>
           </div>
           <div class="btns_download">
-              <button>프린트</button>
+              <button id="btn_print">프린트</button>
               <button> PDF다운로드</button>
           </div>
       </div>
+
+		<script>
+			// 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
+			$(document).on('click', '#btn_print', function () {
+				window.print();
+			});
+		</script>
 
 		<script>
 		$(document).on('click', '#btn_select', function() {
