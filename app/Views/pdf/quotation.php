@@ -1,7 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'DejaVu Sans'; font-size: 12pt; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+        h1, h3 { text-align: center; }
+    </style>
+</head>
+<body>
+
 <div class="estimate_popup_content custom_popup_content">
-         <div class="btn_close_popup">
-              <img src="/img/btn/btn_close_black_20x20.png" alt="">
-          </div>
           <h1>더투어랩 여행견적서 </h1>
           <div class="sec1">
               <div class="left">
@@ -70,12 +80,8 @@
               <p>- 한국 : 국민은행 636101-01-301315 (주) 토토부킹 </p>
               <p>- 태국: Kasikorn Bank 895-2-19850-6 (Totobooking) </p>
           </div>
-          <div class="send_mail">
-              <input type="text" value="lifeess@naver.com ">
-              <button>메일보내기 </button>
-          </div>
-          <div class="btns_download">
-              <button id="btn_print">프린트</button>
-              <button> PDF다운로드</button>
-          </div>
       </div>
+
+
+</body>
+</html>
