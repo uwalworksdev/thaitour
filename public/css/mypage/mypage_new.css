@@ -2195,3 +2195,41 @@ input[type="checkbox"]:checked+label {
         max-width: none !important;
     }
 }
+
+@media print {
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        -webkit-print-color-adjust: exact !important;
+    }
+
+    .estimate_popup_content {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        width: 100%;
+        max-width: 100%;
+        transform: scale(0.9); /* 필요 시 크기 줄이기 */
+        transform-origin: top left;
+    }
+
+    /* 페이지 나눠지는 거 방지 */
+    table, tr, td, th, div, p {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .btns_download,
+    .send_mail,
+    .btn_close_popup,
+    footer,
+    nav {
+        display: none !important;
+    }
+
+    a[href]:after {
+        content: "" !important;
+    }
+}
