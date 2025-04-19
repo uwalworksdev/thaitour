@@ -23,7 +23,7 @@ class PdfController extends BaseController
 
         $data = [
 					'quotation_date' => '2025년 03월 14일',
-					'customer_name'  => '김평진',
+					'customer_name'  => '김태균',
 					'hotel_count' => '0건',
 					'hotel_price' => '0원',
 					'golf_count'  => '12건',
