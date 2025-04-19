@@ -39,9 +39,9 @@
 	  </colgroup>
 	  <tbody>		
 		<tr>
-		    <th>예약구분</th>
-			<th>건수</th>
-			<th>예약금액(원)</th>
+		    <th align="center">예약구분</th>
+			<th align="center">건수</th>
+			<th align="center">예약금액(원)</th>
 		</tr>
 	    <?php
 		  $tot_cnt = 0;
@@ -53,14 +53,14 @@
 		  $tot_won = $tot_won + $i['total_won'];
 	    ?>	
         <tr>
-		    <th><?= esc($i['code_name']) ?></th>
-		    <td><?= esc($i['cnt']) ?>건 </td>
-		    <td><?= number_format(esc($i['total_won'])) ?>원 </td>
+		    <th align="center"><?= esc($i['code_name']) ?></th>
+		    <td align="right"><?= esc($i['cnt']) ?>건 </td>
+		    <td align="right"><?= number_format(esc($i['total_won'])) ?>원 </td>
         </tr>
         <?php endforeach; ?>		
 	    <tr>
-		    <th class="total">합계 </th>
-		    <td class="total"><?=$tot_cnt?>건 </td>
+		    <th class="center">합계 </th>
+		    <td class="right"><?=$tot_cnt?>건 </td>
 		    <td align="right"><?=number_format($tot_won)?></td>
 	    </tr>
 	  <tbody>		
