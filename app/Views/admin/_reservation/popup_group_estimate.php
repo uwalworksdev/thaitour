@@ -95,7 +95,7 @@
           </div>
           <div class="btns_download">
               <button id="btn_print">프린트</button>
-              <button> PDF다운로드</button>
+              <button id="btn_pdf"> PDF다운로드</button>
           </div>
       </div>
 
@@ -103,5 +103,10 @@
 			// 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
 			$(document).on('click', '#btn_print', function () {
 				window.print();
+			});
+			
+			// PDF 버튼 클릭 시
+			$(document).on('click', '#btn_pdf', function () {
+				location.href='/pdf/quotation';
 			});
 		</script>
