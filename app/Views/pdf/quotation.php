@@ -40,7 +40,7 @@
 	  <tbody>		
 		<tr>
 		    <th align="center">예약구분</th>
-			<th align="center">건수</th>
+			<th align="center">건수(건)</th>
 			<th align="center">예약금액(원)</th>
 		</tr>
 	    <?php
@@ -59,8 +59,8 @@
         </tr>
         <?php endforeach; ?>		
 	    <tr>
-		    <th class="center">합계 </th>
-		    <td class="right"><?=$tot_cnt?>건 </td>
+		    <th align="center">합계 </th>
+		    <td align="right"><?=$tot_cnt?></td>
 		    <td align="right"><?=number_format($tot_won)?></td>
 	    </tr>
 	  <tbody>		
