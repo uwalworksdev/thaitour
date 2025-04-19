@@ -67,49 +67,36 @@
     </table>
 	<table>
 	  <colgroup>
-		  <col width="70px">
+		  <col width="10%">
 		  <col width="*">
-		  <col width="110px">
+		  <col width="20%">
 	  </colgroup>
 	  <tbody>
 		  <tr>
-			  <th>품목</th>
+			  <th>예약상품</th>
 			  <th>상세</th>
-			  <th>금액</th>
+			  <th>금액(원)</th>
 		  </tr>
+		  <?php foreach ($items as $i): ?>
+		  <?php
+				$order_info  = "";
+				
+				if($i['order_gubun'] == "hotel" || $i['order_gubun'] == "golf" || $i['order_gubun'] == "spa" || $i['order_gubun'] == "restaurant") {
+				   $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
+				}   
+		  ?>
 		  <tr>
-			  <td>스파</td>
+			  <td><?= esc($i['code_name']) ?></td>
 			  <td>
-				  <p class="time">2025-04-16 18:36:59(수) | Spa 테스트 상품... </p>
-				  <p>성인: 테스트 3: 1명 | 아동: 테스트 4: 1명 </p>
+				  <p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
+				  <p><?=$order_info?> </p>
 			  </td>
 			  <td>
-				  <p>212원 </p>
-				  <p>(5바트) </p>
-			  </td>
+				  <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
+				  <p>(<?= number_format(esc($i['real_price_bath'])) ?>바트) </p>
+			  </td>		  
 		  </tr>
-													<tr>
-			  <td>레스토랑</td>
-			  <td>
-				  <p class="time">2025-04-16 21:46:57(수) | 테스트 상품 0304 </p>
-				  <p>성인: 테스트 : 1명 | 아동: 테스트 1: 1명 </p>
-			  </td>
-			  <td>
-				  <p>127,230원 </p>
-				  <p>(3,000바트) </p>
-			  </td>
-		  </tr>
-		  <tr>
-			  <td>차량</td>
-			  <td>
-				  <p class="time">2025-04-16 22:02:33(수) | 프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) 좌석 3개 (어른7) </p>
-				  <p> </p>
-			  </td>
-			  <td>
-				  <p>42,410원 </p>
-				  <p>(1,000바트) </p>
-			  </td>
-		  </tr>
+          <?php endforeach; ?>
 	</tbody>
 	</table>
           <div class="list_desc">
