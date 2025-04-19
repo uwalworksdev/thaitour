@@ -20,6 +20,7 @@ Prakhanong Bangkok 10260<br>
 
 <p>견적일: <?= $quotation_date ?><br>
 고객명: <?= $customer_name ?> 님 귀하</p>
+<img src="/img/sub/sign-001.jpg" class="img_stem">
 
 <table>
     <tr>
