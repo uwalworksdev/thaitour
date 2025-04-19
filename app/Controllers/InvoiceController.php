@@ -47,11 +47,7 @@ class InvoiceController extends BaseController
 		$query   = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
 		$result2 = $query->getResultArray();
 		foreach ($result2 as $row) {
-			if($golf_option == "") {
-			   $golf_option =      $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
-			} else {  
-			   $golf_option = "|". $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'];
-			}   
+			   $golf_option .=  $row['option_name'] . ":" . $row['option_price'] . ":" . $row['option_cnt'] ."|";
 		}
 
 
