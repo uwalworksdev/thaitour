@@ -1321,19 +1321,16 @@ $(document).ready(function() {
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     
-					var idx          = $(".card-item").data('idx');
-                    var day_yn       = $(".card-item").data('o_day_yn');
-                    var night_yn     = $(".card-item").data('o_night_yn');
-                    var afternoon_yn = $(".card-item").data('o_afternoon_yn');
-					var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
-					var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
-					var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
+					var idx                 = $(".card-item").data('idx');
+                    var day_yn              = $(".card-item").data('o_day_yn');
+                    var night_yn            = $(".card-item").data('o_night_yn');
+                    var afternoon_yn        = $(".card-item").data('o_afternoon_yn');
+					var vehicle_price1_won  = $(".card-item").data('vehicle_price1_won');
+					var vehicle_price2_won  = $(".card-item").data('vehicle_price2_won');
+					var vehicle_price3_won  = $(".card-item").data('vehicle_price3_won');
 					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
 					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
 					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
-					alert(vehicle_price1_baht);
-					alert(vehicle_price2_baht);
-					alert(vehicle_price3_baht);
                     console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
