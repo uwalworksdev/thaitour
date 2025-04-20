@@ -626,10 +626,10 @@ $(document).ready(function() {
                     <span class="label">SUV</span>
 		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_3" value="SUV">
                     <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_3"  value="3">
-                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_3"  value="0">
-                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_3"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_3"  value="<?=$vehicle_price3?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_3" value="<?=$vehicle_price3_baht?>">
+                    <input type="text" name="vehicle_gbn[]"  id="vehicle_gbn_3"  value="0">
+                    <input type="text" name="vehicle_qty[]"  id="vehicle_qty_3"  value="0">
+                    <input type="text" name="vehicle_won[]"  id="vehicle_won_3"  value="<?=$vehicle_price3?>">
+                    <input type="text" name="vehicle_bath[]" id="vehicle_bath_3" value="<?=$vehicle_price3_baht?>">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
@@ -653,8 +653,8 @@ $(document).ready(function() {
                     <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_4"  value="4">
                     <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_4"  value="0">
                     <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_4"  value="0">
-                    <input type="text" name="vehicle_won[]"  id="vehicle_won_4"  value="<?=$cart_price?>">
-                    <input type="text" name="vehicle_bath[]" id="vehicle_bath_4" value="<?=$cart_price_baht?>">
+                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_4"  value="<?=$cart_price?>">
+                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_4" value="<?=$cart_price_baht?>">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
