@@ -10,17 +10,20 @@ class OrderOptionModel extends Model
     protected $primaryKey = 'opt_idx';
 
     protected $allowedFields = [
-        'option_type',
-        'order_idx',
-        'product_idx',
-        'option_name',
-        'option_idx',
-        'option_tot',
-        'option_cnt',
-        'option_price',
-        'option_qty',
-        'option_date',
-		'baht_thai',
+		'option_type', 
+		'order_idx',	
+		'product_idx',	
+		'option_name',	
+		'option_name_eng',	
+		'option_idx',	
+		'option_tot',	
+		'option_tot_bath',	
+		'option_cnt',	
+		'option_date',	
+		'option_price',	
+		'option_price_bath', 	
+		'option_qty', 	
+		'baht_thai',		
     ];
 
     public function getOption($order_idx, $option_type)
