@@ -1237,7 +1237,7 @@ $(document).ready(function() {
 
             //$("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
-			$("#vehicle_won_0"),val(price);
+			$("#vehicle_won_0").val(price);
             $("#final_caddy_fee").text(caddy_fee);
             $("#final_cart_pie_fee").text(cart_pie_fee);
             $("#final_option_price_baht").text(number_format(price_baht));
