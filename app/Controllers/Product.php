@@ -1734,8 +1734,8 @@ class Product extends BaseController
 				"kids"                     => $kids,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
-                "real_price_bath"          => $real_price_bath,
-                "real_price_won"           => $real_price_won,
+                "real_price_bath"          => $order_price_bath,
+                "real_price_won"           => $order_price,
 
                 "order_date"               => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx"          => $use_coupon_idx,
