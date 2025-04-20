@@ -1328,12 +1328,12 @@ $(document).ready(function() {
 					var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
 					var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
 					var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
-					var vehicle_price1_bath = $(".card-item").data('vehicle_price1_bath');
-					var vehicle_price2_bath = $(".card-item").data('vehicle_price2_bath');
-					var vehicle_price3_bath = $(".card-item").data('vehicle_price3_bath');
-					alert(vehicle_price1_bath);
-					alert(vehicle_price2_bath);
-					alert(vehicle_price3_bath);
+					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
+					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
+					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
+					alert(vehicle_price1_baht);
+					alert(vehicle_price2_baht);
+					alert(vehicle_price3_baht);
                     console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
@@ -1353,15 +1353,15 @@ $(document).ready(function() {
 					// 원하는 data-* 속성들을 이동
 					$select_1.attr("data-idx",         $(".card-item").data('idx'));
 					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1_won'));
-					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_price1_bath'));
+					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_price1_baht'));
 					
 					$select_2.attr("data-idx",         $(".card-item").data('idx'));
 					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2_won'));
-					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_bath'));
+					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_baht'));
 					
 					$select_3.attr("data-idx",         $(".card-item").data('idx'));
 					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
-					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
+					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_baht'));
 
                     $("#o_cart_due").val( $(".card-item").data('o_cart_due') );
                     $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
