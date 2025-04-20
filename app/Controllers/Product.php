@@ -2526,29 +2526,41 @@ class Product extends BaseController
             $result_opt = $this->db->query($sql_opt);
             $golf_opt   = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
-                $hole_cnt = $item['goods_name'];
+                $hole_cnt          = $item['goods_name'];
             }
 
             if ($data['hour'] == "day") {
-                $hour_gubun = "주간";
+                $hour_gubun        = "주간";
+                $option_price      = $item['price_1'] * $this->setting['baht_thai'];
+                $option_price_bath = $item['price_1'];
+                $option_tot_bath   = $item['price_1'] * $data['people_adult_cnt'];
             } else if ($data['hour'] == "afternoon") {
-                $hour_gubun = "오후";
+                $hour_gubun        = "오후";
+                $option_price      = $item['price_2'] * $this->setting['baht_thai'];
+                $option_price_bath = $item['price_2'];
+                $option_tot_bath   = $item['price_2'] * $data['people_adult_cnt'];
             } else {
                 $hour_gubun = "야간";
+                $option_price      = $item['price_3'] * $this->setting['baht_thai'];
+                $option_price_bath = $item['price_3'];
+                $option_tot_bath   = $item['price_3'] * $data['people_adult_cnt'];
             }
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
             $this->orderOptionModel->insert([
-                'option_type' => 'main',
-                'order_idx'   => $order_idx,
-                'product_idx' => $data['product_idx'],
+                'option_type'       => 'main',
+                'order_idx'         => $order_idx,
+                'product_idx'       => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_name' => $option_name,
-                'option_idx'  => $data['option_idx'],
-                'option_tot'  => $priceCalculate['total_price'],
-                'option_cnt'  => $data['people_adult_cnt'],
-                'option_date' => $data['order_r_date'],
-				'baht_thai'	  => $this->setting['baht_thai'],
+                'option_name'       => $option_name,
+                'option_idx'        => $data['option_idx'],
+                'option_tot'        => $priceCalculate['total_price'],
+                'option_tot_bath'   => $option_tot_bath,
+                'option_price'      => $option_price,
+                'option_price_bath' => $option_price_bath,
+                'option_cnt'        => $data['people_adult_cnt'],
+                'option_date'       => $data['order_r_date'],
+				'baht_thai'	        => $this->setting['baht_thai'],
             ]);
 
             $option_tot = 0;
@@ -2569,9 +2581,11 @@ class Product extends BaseController
 									'option_name'  => "승용차",
 									'option_idx'   => $data['option_idx'],
 									'option_tot'   => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_tot_bath'   => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key],
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price1'] * $this->setting['baht_thai'],
+									'option_price_bath' => $vehicle['vehicle_price1'],
 									'option_date'  => $data['order_r_date'],
                      				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
@@ -2586,9 +2600,11 @@ class Product extends BaseController
 									'option_name'  => "밴(승합차)",
 									'option_idx'   => $data['option_idx'],
 									'option_tot'   => $vehicle['vehicle_price2'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_tot_bath'   => $vehicle['vehicle_price2'] * $data['vehicle_cnt'][$key],
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price2'] * $this->setting['baht_thai'],
+									'option_price_bath' => $vehicle['vehicle_price2'],
 									'option_date'  => $data['order_r_date'],
                      				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
@@ -2603,9 +2619,11 @@ class Product extends BaseController
 									'option_name'  => "SUV",
 									'option_idx'   => $data['option_idx'],
 									'option_tot'   => $vehicle['vehicle_price3'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_tot_bath'   => $vehicle['vehicle_price3'] * $data['vehicle_cnt'][$key],
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['vehicle_price3'] * $this->setting['baht_thai'],
+									'option_price_bath' => $vehicle['vehicle_price3'],
 									'option_date'  => $data['order_r_date'],
                      				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
@@ -2620,9 +2638,11 @@ class Product extends BaseController
 									'option_name'  => "카트",
 									'option_idx'   => $data['option_idx'],
 									'option_tot'   => $vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_tot_bath'   => $vehicle['cart_price'] * $data['vehicle_cnt'][$key],
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['cart_price'] * $this->setting['baht_thai'],
+									'option_price_barh' => $vehicle['cart_price'],
 									'option_date'  => $data['order_r_date'],
                      				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
@@ -2638,9 +2658,11 @@ class Product extends BaseController
 									'option_name'  => "캐디피",
 									'option_idx'   => $data['option_idx'],
 									'option_tot'   => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_tot_bath'   => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key],
 									'option_cnt'   => $data['vehicle_cnt'][$key],
 									'option_qty'   => $data['vehicle_cnt'][$key],
 									'option_price' => $vehicle['caddie_fee'] * $this->setting['baht_thai'],
+									'option_price_bath' => $vehicle['caddie_fee'],
 									'option_date'  => $data['order_r_date'],
                      				'baht_thai'	   => $this->setting['baht_thai'],
 							   ]);
@@ -2662,9 +2684,11 @@ class Product extends BaseController
 														    , option_name  = '" . $optName[$i] . "'	
 														    , option_idx   = '" . $optIdx[$i] . "'	
 														    , option_tot   = '" . $option_tot . "'	
+														    , option_tot_bath   = '" . $option_tot_bath . "'	
 														    , option_cnt   = '" . $optCnt[$i] . "'
 														    , option_date  = '" . $data['order_r_date'] . "'	
 														    , option_price = '" . $option_price . "'	
+														    , option_price_bath = '" . $option_price_bath . "'	
 														    , option_qty   = '" . $optCnt[$i] . "'
 															, baht_thai    = '" . $this->setting['baht_thai'] ."' ";
                 $result_order = $this->db->query($sql_order);
