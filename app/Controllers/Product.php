@@ -2552,7 +2552,7 @@ class Product extends BaseController
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
 			$option_tot         = $priceCalculate['total_price'];
-			$option_tot_bath    = $option_tot / $this->setting['baht_thai']; 
+			$option_tot_bath    = $option_tot / $data['baht_thai']; 
 			$option_price       = $option_tot / $data['people_adult_cnt']; 
 			$option_price_bath  = $option_tot_bath / $data['people_adult_cnt']; 
             $this->orderOptionModel->insert([
@@ -2583,19 +2583,19 @@ class Product extends BaseController
 							if($data['vehicle_idx'][$key] == "1") { 
 							   $option_tot = $option_tot + ($vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
 							   $this->orderOptionModel->insert([
-									'option_type'  => 'vehicle',
-									'order_idx'    => $order_idx,
-									'product_idx'  => $data['product_idx'],
-									'option_name'  => "승용차",
-									'option_idx'   => $data['option_idx'],
-									'option_tot'   => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_type'       => 'vehicle',
+									'order_idx'         => $order_idx,
+									'product_idx'       => $data['product_idx'],
+									'option_name'       => "승용차",
+									'option_idx'        => $data['option_idx'],
+									'option_tot'        => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
 									'option_tot_bath'   => $vehicle['vehicle_price1'] * $data['vehicle_cnt'][$key],
-									'option_cnt'   => $data['vehicle_cnt'][$key],
-									'option_qty'   => $data['vehicle_cnt'][$key],
-									'option_price' => $vehicle['vehicle_price1'] * $this->setting['baht_thai'],
+									'option_cnt'        => $data['vehicle_cnt'][$key],
+									'option_qty'        => $data['vehicle_cnt'][$key],
+									'option_price'      => $vehicle['vehicle_price1'] * $this->setting['baht_thai'],
 									'option_price_bath' => $vehicle['vehicle_price1'],
-									'option_date'  => $data['order_r_date'],
-                     				'baht_thai'	   => $this->setting['baht_thai'],
+									'option_date'       => $data['order_r_date'],
+                     				'baht_thai'	        => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
