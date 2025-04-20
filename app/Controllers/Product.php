@@ -1951,11 +1951,11 @@ class Product extends BaseController
 
 					$data['idx']            = $golf_price['idx'];
 					$data['group_idx']      = $golf_price['group_idx'];
-					$data['vehicle_price1'] = $golf_price['vehicle_price1'] * $baht_thai;
-					$data['vehicle_price2'] = $golf_price['vehicle_price2'] * $baht_thai;
-					$data['vehicle_price3'] = $golf_price['vehicle_price3'] * $baht_thai;
-					$data['cart_price']     = $golf_price['cart_price'] * $baht_thai;
-					$data['caddie_fee']     = $golf_price['caddie_fee'] * $baht_thai;
+					$data['vehicle_price1'] = (int)($golf_price['vehicle_price1'] * $baht_thai);
+					$data['vehicle_price2'] = (int)($golf_price['vehicle_price2'] * $baht_thai);
+					$data['vehicle_price3'] = (int)($golf_price['vehicle_price3'] * $baht_thai);
+					$data['cart_price']     = (int)($golf_price['cart_price'] * $baht_thai);
+					$data['caddie_fee']     = (int)($golf_price['caddie_fee'] * $baht_thai);
 					$data['o_cart_due']     = $golf_price['o_cart_due'];
 					$data['o_caddy_due']    = $golf_price['o_caddy_due'];
 					$data['o_cart_cont']    = $golf_price['o_cart_cont'];
