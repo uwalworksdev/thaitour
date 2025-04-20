@@ -573,19 +573,11 @@ $(document).ready(function() {
                 </div>
             <?php endforeach; ?>
         </div-->
-		  <input type="hidden" name="vehicle_name[]" id="vehicle_name_0" value="그린피">
-		  <input type="hidden" name="vehicle_won[]"  id="vehicle_won_0"  value="">
-		  <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_0" value="">
 		
           <div class="list-select-element">
 		       <div class="item-select">
                     <span class="label">승용차</span>
-		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_1" value="그린피">
-                    <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_1"  value="1">
-                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_1"  value="0">
-                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_1"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_1"  value="<?=$vehicle_price1?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_1" value="<?=$vehicle_price1_baht?>">
+                    <input type="hidden" name="vehicle_idx[]" value="1">
 					<select id="trip_type1" name="trip_type1" style="width:80px;" data-car="1" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
@@ -601,12 +593,7 @@ $(document).ready(function() {
                 </div>
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
-		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_2" value="밴 (승합차)">
-                    <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_2"  value="2">
-                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_2"  value="0">
-                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_2"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_2"  value="<?=$vehicle_price2?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_2" value="<?=$vehicle_price2_baht?>">
+                    <input type="hidden" name="vehicle_idx[]" value="2">
 					<select id="trip_type2" name="trip_type2" style="width:80px;" data-car="2" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
@@ -624,12 +611,7 @@ $(document).ready(function() {
                 </div>
             	<div class="item-select">
                     <span class="label">SUV</span>
-		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_3" value="SUV">
-                    <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_3"  value="3">
-                    <input type="text" name="vehicle_gbn[]"  id="vehicle_gbn_3"  value="0">
-                    <input type="text" name="vehicle_qty[]"  id="vehicle_qty_3"  value="0">
-                    <input type="text" name="vehicle_won[]"  id="vehicle_won_3"  value="<?=$vehicle_price3?>">
-                    <input type="text" name="vehicle_bath[]" id="vehicle_bath_3" value="<?=$vehicle_price3_baht?>">
+                    <input type="hidden" name="vehicle_idx[]" value="3">
 					<select id="trip_type3" name="trip_type3" style="width:80px;" data-car="3" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
@@ -649,12 +631,7 @@ $(document).ready(function() {
 			   </div>
 			   <div class="item-select" id="cart_yes" style="display:none">
                     <span class="label">카트</span>
-		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_4" value="카트">
-                    <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_4"  value="4">
-                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_4"  value="0">
-                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_4"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_4"  value="<?=$cart_price?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_4" value="<?=$cart_price_baht?>">
+                    <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
@@ -670,11 +647,7 @@ $(document).ready(function() {
 			   </div>
                <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
-		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_5" value="캐디피">
-                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_5"  value="0">
-                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_5"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_5"  value="<?=$caddie_fee?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_5" value="<?=$caddie_fee_baht?>">
+                    <input type="hidden" name="vehicle_idx[]" value="5">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1명</option>
@@ -1038,8 +1011,7 @@ $(document).ready(function() {
 			success: function (data) {
 				console.log("AJAX 응답:", data);
 				if (data.status === "success") {
-					alert(data.price_won);
-					alert(data.price_bath);
+					
 					// #vehicle_2 요소에 data-price와 data-price_baht 값 업데이트
 					$('#vehicle_'+car).data('price', data.price_won);
 					$('#vehicle_'+car).data('price_baht', data.price_bath);
@@ -1243,11 +1215,9 @@ $(document).ready(function() {
 
             //$("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
-			$("#vehicle_won_0").val(price);
             $("#final_caddy_fee").text(caddy_fee);
             $("#final_cart_pie_fee").text(cart_pie_fee);
             $("#final_option_price_baht").text(number_format(price_baht));
-			$("#vehicle_bath_0").val(price_baht);
             $(".final_people_cnt").text(number_format(people_cnt));
             $("#total_final_option_price").text(number_format(final_price));
             $("#total_final_option_price_baht").text(number_format(final_price_baht));
