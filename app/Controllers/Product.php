@@ -2551,6 +2551,10 @@ class Product extends BaseController
             }
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
+			$option_tot         = $priceCalculate['total_price'];
+			$option_tot_bath    = $option_tot / $this->setting['baht_thai']; 
+			$option_price       = $option_tot / $data['people_adult_cnt']; 
+			$option_price_bath  = $option_tot_bath / $data['people_adult_cnt']; 
             $this->orderOptionModel->insert([
                 'option_type'       => 'main',
                 'order_idx'         => $order_idx,
@@ -2558,7 +2562,7 @@ class Product extends BaseController
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
                 'option_name'       => $option_name,
                 'option_idx'        => $data['option_idx'],
-                'option_tot'        => $priceCalculate['total_price'],
+                'option_tot'        => $option_tot,
                 'option_tot_bath'   => $option_tot_bath,
                 'option_price'      => $option_price,
                 'option_price_bath' => $option_price_bath,
@@ -2679,8 +2683,8 @@ class Product extends BaseController
 
             for ($i = 0; $i < count($optIdx); $i++) {
                 $row          = $this->golfOptionModel->getByIdx($optIdx[$i]);
-                $option_price = $row['goods_price1'] * $this->setting['baht_thai'];
-                $option_tot   = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
+                $option_price = $row['goods_price1_1'] * $this->setting['baht_thai'];
+                $option_tot   = $row['goods_price1_1'] * $optCnt[$i] * $this->setting['baht_thai'];
                 $sql_order    = "INSERT INTO tbl_order_option SET 
 														      option_type       = 'option'	
 														    , order_idx	        = '" . $order_idx . "'
