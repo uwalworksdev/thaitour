@@ -1022,7 +1022,6 @@ $(document).ready(function() {
 					$('#vehicle_'+car).attr('data-price', data.price_won);
 					$('#vehicle_'+car).attr('data-price_baht', data.price_bath);
 					setListVehicle();
-					getOptions();
 		
 				} else {
 					alert("데이터를 불러오는 데 실패했습니다.");
@@ -1301,7 +1300,7 @@ $(document).ready(function() {
 
         function getOptions() {
             const golf_date = $("#order_date").val();
-            const hole_cnt = $('.tag-js.active').data('tab') + '홀';
+            const hole_cnt  = $('.tag-js.active').data('tab') + '홀';
             const hour = $('.day_option.active').data('type');
 
 			$("#hole_cnt").val(hole_cnt);
@@ -1326,6 +1325,12 @@ $(document).ready(function() {
                     var day_yn       = $(".card-item").data('o_day_yn');
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
+					var vehicle_price1_won = $(".card-item").data('vehicle_price1_won');
+					var vehicle_price2_won = $(".card-item").data('vehicle_price2_won');
+					var vehicle_price3_won = $(".card-item").data('vehicle_price3_won');
+					var vehicle_price1_bath = $(".card-item").data('vehicle_price1_bath');
+					var vehicle_price2_bath = $(".card-item").data('vehicle_price2_bath');
+					var vehicle_price3_bath = $(".card-item").data('vehicle_price3_bath');
                     console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
