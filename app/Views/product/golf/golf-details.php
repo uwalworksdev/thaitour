@@ -1331,6 +1331,9 @@ $(document).ready(function() {
 					var vehicle_price1_bath = $(".card-item").data('vehicle_price1_bath');
 					var vehicle_price2_bath = $(".card-item").data('vehicle_price2_bath');
 					var vehicle_price3_bath = $(".card-item").data('vehicle_price3_bath');
+					alert(vehicle_price1_won);
+					alert(vehicle_price2_won);
+					alert(vehicle_price3_won);
                     console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
