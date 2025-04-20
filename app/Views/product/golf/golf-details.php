@@ -1022,7 +1022,7 @@ $(document).ready(function() {
 					$('#vehicle_'+car).attr('data-price', data.price_won);
 					$('#vehicle_'+car).attr('data-price_baht', data.price_bath);
 					setListVehicle();
-					setOptionArea();
+					getOptions();
 		
 				} else {
 					alert("데이터를 불러오는 데 실패했습니다.");
