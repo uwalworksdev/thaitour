@@ -118,17 +118,17 @@
                         <tr>
                             <th>그린피</th>
                             <td><?=$golf_info['option_price']?></td>
-                            <td><?=$golf_info['option_qty']?></td>
+                            <td><?=$golf_info['option_cnt']?></td>
                             <th><?=number_format($golf_info['option_tot'])?></th>
                             <td><?=number_format($golf_info['option_tot_bath'])?></td>
                         </tr>
 						<?php foreach ($golf_option as $row) { ?>
                         <tr>
-                            <th><?=$golf_info['option_name']?></th>
-                            <td><?=$golf_info['option_price']?></td>
-                            <td><?=$golf_info['option_qty']?></td>
-                            <th><?=number_format($golf_info['option_tot'])?></th>
-                            <td><?=number_format($golf_info['option_tot_bath'])?></td>
+                            <th><?=$row['option_name']?></th>
+                            <td><?=$row['option_price']?></td>
+                            <td><?=$row['option_cnt']?></td>
+                            <th><?=number_format($row['option_tot'])?></th>
+                            <td><?=number_format($row['option_tot_bath'])?></td>
                         </tr>
 						<?php } ?>
                         <tr>
