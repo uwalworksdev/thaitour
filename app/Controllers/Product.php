@@ -2221,7 +2221,7 @@ class Product extends BaseController
                 //$info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
 				
 				$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '$option_idx' ";
-				write_log("golf option- ". $sql);
+				//write_log("golf option- ". $sql);
 				$result0 = $this->db->query($sql);
 				$result = $result0->getResultArray();
 				foreach($result as $info)
@@ -2299,6 +2299,7 @@ class Product extends BaseController
 							$info['code_name']        = "캐디피";
 							$info['price_baht']       = $info['caddie_fee'];
 							$info['price_baht_total'] = $info['caddie_fee'] * $value;
+							write_log("golf option 5- ". $info['price_baht_total']);
 							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
 							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
