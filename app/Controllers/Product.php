@@ -2678,19 +2678,19 @@ class Product extends BaseController
                 $option_price = $row['goods_price1'] * $this->setting['baht_thai'];
                 $option_tot   = $row['goods_price1'] * $optCnt[$i] * $this->setting['baht_thai'];
                 $sql_order    = "INSERT INTO tbl_order_option SET 
-														      option_type  = 'option'	
-														    , order_idx	   = '" . $order_idx . "'
-														    , product_idx  = '" . $data['product_idx'] . "'
-														    , option_name  = '" . $optName[$i] . "'	
-														    , option_idx   = '" . $optIdx[$i] . "'	
-														    , option_tot   = '" . $option_tot . "'	
+														      option_type       = 'option'	
+														    , order_idx	        = '" . $order_idx . "'
+														    , product_idx       = '" . $data['product_idx'] . "'
+														    , option_name       = '" . $optName[$i] . "'	
+														    , option_idx        = '" . $optIdx[$i] . "'	
+														    , option_tot        = '" . $option_tot . "'	
 														    , option_tot_bath   = '" . $option_tot_bath . "'	
-														    , option_cnt   = '" . $optCnt[$i] . "'
-														    , option_date  = '" . $data['order_r_date'] . "'	
-														    , option_price = '" . $option_price . "'	
+														    , option_cnt        = '" . $optCnt[$i] . "'
+														    , option_date       = '" . $data['order_r_date'] . "'	
+														    , option_price      = '" . $option_price . "'	
 														    , option_price_bath = '" . $option_price_bath . "'	
-														    , option_qty   = '" . $optCnt[$i] . "'
-															, baht_thai    = '" . $this->setting['baht_thai'] ."' ";
+														    , option_qty        = '" . $optCnt[$i] . "'
+															, baht_thai         = '" . $this->setting['baht_thai'] ."' ";
                 $result_order = $this->db->query($sql_order);
             }
 
@@ -2709,13 +2709,13 @@ class Product extends BaseController
                     $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
                     $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $data['product_idx'],
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "order_idx"         => $order_idx,
+                        "product_idx"       => $data['product_idx'],
+                        "used_coupon_no"    => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx"   => $data['use_coupon_idx'],
                         "used_coupon_money" => $priceCalculate['discount'],
-                        "ch_r_date" => date('Y-m-d H:i:s'),
-                        "m_idx" => session('member.idx')
+                        "ch_r_date"         => date('Y-m-d H:i:s'),
+                        "m_idx"             => session('member.idx')
                     ];
 
                     $this->couponHistory->insert($cou_his);
