@@ -110,7 +110,7 @@
                     <tbody>
                         <tr>
                             <th>에약항목</th>
-                            <th>단가</th>
+                            <th>단가(원)</th>
                             <th>수량</th>
                             <th>합계(원)</th>
                             <th>합계(바트)</th>
@@ -122,13 +122,13 @@
                             <th><?=number_format($golf_info['option_tot'])?></th>
                             <td><?=number_format($golf_info['option_tot_bath'])?></td>
                         </tr>
-						<?php foreach ($golf_option as $row) { ?>
+						<?php foreach ($golf_option as $data) { ?>
                         <tr>
-                            <th><?=$row['option_name']?></th>
-                            <td><?=$row['option_price']?></td>
-                            <td><?=$row['option_cnt']?></td>
-                            <th><?=number_format($row['option_tot'])?></th>
-                            <td><?=number_format($row['option_tot_bath'])?></td>
+                            <th><?=$data['option_name']?></th>
+                            <td><?=$data['option_price']?></td>
+                            <td><?=$data['option_cnt']?></td>
+                            <th><?=number_format($data['option_tot'])?></th>
+                            <td><?=number_format($data['option_tot_bath'])?></td>
                         </tr>
 						<?php } ?>
                         <tr>
