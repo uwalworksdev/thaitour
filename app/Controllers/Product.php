@@ -2640,39 +2640,38 @@ class Product extends BaseController
 							if($data['vehicle_idx'][$key] == "4") { 
 							   $option_tot = $option_tot + ($vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
 							   $this->orderOptionModel->insert([
-									'option_type'  => 'vehicle',
-									'order_idx'    => $order_idx,
-									'product_idx'  => $data['product_idx'],
-									'option_name'  => "카트",
-									'option_idx'   => $data['option_idx'],
-									'option_tot'   => $vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_type'       => 'vehicle',
+									'order_idx'         => $order_idx,
+									'product_idx'       => $data['product_idx'],
+									'option_name'       => "카트",
+									'option_idx'        => $data['option_idx'],
+									'option_tot'        => $vehicle['cart_price'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
 									'option_tot_bath'   => $vehicle['cart_price'] * $data['vehicle_cnt'][$key],
-									'option_cnt'   => $data['vehicle_cnt'][$key],
-									'option_qty'   => $data['vehicle_cnt'][$key],
-									'option_price' => $vehicle['cart_price'] * $this->setting['baht_thai'],
-									'option_price_barh' => $vehicle['cart_price'],
-									'option_date'  => $data['order_r_date'],
-                     				'baht_thai'	   => $this->setting['baht_thai'],
+									'option_cnt'        => $data['vehicle_cnt'][$key],
+									'option_qty'        => $data['vehicle_cnt'][$key],
+									'option_price'      => $vehicle['cart_price'] * $this->setting['baht_thai'],
+									'option_price_bath' => $vehicle['cart_price'],
+									'option_date'       => $data['order_r_date'],
+                     				'baht_thai'	        => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
 							if($data['vehicle_idx'][$key] == "5") { 
-							   write_log('vvvvvvvvvvvvvvv');	
 							   $option_tot = $option_tot + ($vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai']);
 							   $this->orderOptionModel->insert([
-									'option_type'  => 'vehicle',
-									'order_idx'    => $order_idx,
-									'product_idx'  => $data['product_idx'],
-									'option_name'  => "캐디피",
-									'option_idx'   => $data['option_idx'],
-									'option_tot'   => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
+									'option_type'       => 'vehicle',
+									'order_idx'         => $order_idx,
+									'product_idx'       => $data['product_idx'],
+									'option_name'       => "캐디피",
+									'option_idx'        => $data['option_idx'],
+									'option_tot'        => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key] * $this->setting['baht_thai'],
 									'option_tot_bath'   => $vehicle['caddie_fee'] * $data['vehicle_cnt'][$key],
-									'option_cnt'   => $data['vehicle_cnt'][$key],
-									'option_qty'   => $data['vehicle_cnt'][$key],
-									'option_price' => $vehicle['caddie_fee'] * $this->setting['baht_thai'],
+									'option_cnt'        => $data['vehicle_cnt'][$key],
+									'option_qty'        => $data['vehicle_cnt'][$key],
+									'option_price'      => $vehicle['caddie_fee'] * $this->setting['baht_thai'],
 									'option_price_bath' => $vehicle['caddie_fee'],
-									'option_date'  => $data['order_r_date'],
-                     				'baht_thai'	   => $this->setting['baht_thai'],
+									'option_date'       => $data['order_r_date'],
+                     				'baht_thai'	        => $this->setting['baht_thai'],
 							   ]);
 							}		
 					
