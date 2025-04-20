@@ -2527,23 +2527,26 @@ class Product extends BaseController
             $golf_opt   = $result_opt->getResultArray();
             foreach ($golf_opt as $item) {
                 $hole_cnt          = $item['goods_name'];
+                $price_1           = $item['price_1'];
+                $price_2           = $item['price_2'];
+                $price_3           = $item['price_3'];
             }
 
             if ($data['hour'] == "day") {
                 $hour_gubun        = "주간";
-                $option_price      = $item['price_1'] * $this->setting['baht_thai'];
-                $option_price_bath = $item['price_1'];
-                $option_tot_bath   = $item['price_1'] * $data['people_adult_cnt'];
+                $option_price      = $price_1 * $this->setting['baht_thai'];
+                $option_price_bath = $price_1;
+                $option_tot_bath   = $price_1 * $data['people_adult_cnt'];
             } else if ($data['hour'] == "afternoon") {
                 $hour_gubun        = "오후";
-                $option_price      = $item['price_2'] * $this->setting['baht_thai'];
-                $option_price_bath = $item['price_2'];
-                $option_tot_bath   = $item['price_2'] * $data['people_adult_cnt'];
+                $option_price      = $price_2 * $this->setting['baht_thai'];
+                $option_price_bath = $price_2;
+                $option_tot_bath   = $price_2 * $data['people_adult_cnt'];
             } else {
                 $hour_gubun = "야간";
-                $option_price      = $item['price_3'] * $this->setting['baht_thai'];
-                $option_price_bath = $item['price_3'];
-                $option_tot_bath   = $item['price_3'] * $data['people_adult_cnt'];
+                $option_price      = $price_3 * $this->setting['baht_thai'];
+                $option_price_bath = $price_3;
+                $option_tot_bath   = $price_3 * $data['people_adult_cnt'];
             }
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
