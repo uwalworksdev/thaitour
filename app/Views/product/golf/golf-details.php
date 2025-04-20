@@ -1319,6 +1319,8 @@ $(document).ready(function() {
                 success: function (data) {
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
+                    var idx          = $(".card-item").data('idx');
+					alert("idx- "+idx);
                     var day_yn       = $(".card-item").data('o_day_yn');
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
