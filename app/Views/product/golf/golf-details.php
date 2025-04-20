@@ -9,7 +9,7 @@ $(document).ready(function() {
 			
 			if($("#caddie_fee_sel").val() == "Y") {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-			   $("#vehicle_5").prop('disabled', true);
+			   //$("#vehicle_5").prop('disabled', true);
 			}   
 	
 });
