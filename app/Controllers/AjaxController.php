@@ -2997,6 +2997,7 @@ class AjaxController extends BaseController {
 				$baht_thai = (float)($setting['baht_thai'] ?? 0);
 
 				// POST 데이터 받기
+				$idx         = $this->request->getPost('idx');    
 				$product_idx = $this->request->getPost('product_idx');    
 				$goods_name  = $this->request->getPost('goods_name');    
 				$type        = $this->request->getPost('type');
@@ -3007,8 +3008,8 @@ class AjaxController extends BaseController {
 				$price_bath = 0;
 
 				// 골프 차량 금액 조회 (SQL Injection 방지를 위해 바인딩 사용)
-				$sql = "SELECT * FROM tbl_golf_option WHERE product_idx = ? AND goods_name = ?";
-				$query = $db->query($sql, [$product_idx, $goods_name."홀" ]);
+				$sql = "SELECT * FROM tbl_golf_option WHERE idx = ? AND product_idx = ? AND goods_name = ?";
+				$query = $db->query($sql, [$idx, $product_idx, $goods_name."홀" ]);
 
 				if ($row = $query->getRowArray()) { // 단일 행 가져오기
 					switch ($car) {
