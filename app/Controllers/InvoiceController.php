@@ -38,21 +38,15 @@ class InvoiceController extends BaseController
 		$row    = $result[0]; // ✅ 배열에서 첫 row만 추출
 
 		// 메인 옵션
-		$query1  = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' ");
-		$result1 = $query1->getRowArray();
-		$order_info = "그린피:" . $result1['option_tot'] . ":" . $result1['option_cnt'];
+		$query1     = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type = 'main' ");
+		$order_info = $query1->getRowArray();
 
 		// 기타 옵션
-		$golf_option = "";
-		$query2   = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
-		$result2  = $query2->getResultArray();
-		foreach ($result2 as $data) {
-			     $golf_option .=  $data['option_name'] . ":" . $data['option_price'] . ":" . $data['option_cnt'] ."|";
-		}
-
+		$query2      = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $idx ."' AND option_type != 'main' ");
+		$golf_option = $query2->getResultArray();
 
 		return view("invoice/invoice_golf_01", [
-			'row'      => $row,
+			'row'         => $row,
 			'golf_info'   => $order_info,
 			'golf_option' => $golf_option
 		]);

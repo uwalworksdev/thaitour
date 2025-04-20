@@ -101,29 +101,36 @@
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">
                     <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">  
-                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
                     </colgroup>
                     <tbody>
-					    <?php 
-						      $arr      = explode(":", $golf_info); 
-						      $greenFee = (int)($arr[1]/$row['baht_thai']);
-						      $price    = (int)($arr[1]/$row['baht_thai']/$arr[2]);
-						?>	  
+                        <tr>
+                            <th>에약항목</th>
+                            <th>단가</th>
+                            <th>수량</th>
+                            <th>합계(원)</th>
+                            <th>합계(바트)</th>
+                        </tr>					
                         <tr>
                             <th>그린피</th>
-                            <td><?=$greenFee?>바트(<?=number_format($price)?>바트Χ<?=$arr[2]?>명)</td>
-                            <th>카트피</th>
-                            <td>2,400바트(1인1카트 800바트Χ3대)</td>
+                            <td><?=$golf_info['option_price']?></td>
+                            <td><?=$golf_info['option_qty']?></td>
+                            <th><?=number_format($golf_info['option_tot'])?></th>
+                            <td><?=number_format($golf_info['option_tot_bath'])?></td>
                         </tr>
+						<?php foreach ($golf_option as $row) { ?>
                         <tr>
-                            <th>캐디피</th>
-                            <td>1,200바트</td>
-                            <th>추가내역</th>
-                            <td>0바트</td>
+                            <th><?=$golf_info['option_name']?></th>
+                            <td><?=$golf_info['option_price']?></td>
+                            <td><?=$golf_info['option_qty']?></td>
+                            <th><?=number_format($golf_info['option_tot'])?></th>
+                            <td><?=number_format($golf_info['option_tot_bath'])?></td>
                         </tr>
+						<?php } ?>
                         <tr>
                             <th>총금액</th>
                             <td colspan="3"><?=number_format($row['real_price_bath'])?>바트</td>
