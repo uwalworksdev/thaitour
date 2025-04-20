@@ -653,8 +653,8 @@ $(document).ready(function() {
                     <input type="hidden" name="vehicle_idx[]"  id="vehicle_idx_4"  value="4">
                     <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_4"  value="0">
                     <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_4"  value="0">
-                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_4"  value="<?=$cart_price?>">
-                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_4" value="<?=$cart_price_baht?>">
+                    <input type="text" name="vehicle_won[]"  id="vehicle_won_4"  value="<?=$cart_price?>">
+                    <input type="text" name="vehicle_bath[]" id="vehicle_bath_4" value="<?=$cart_price_baht?>">
                     <select id="vehicle_4"  data-name="카트" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 						<option value="1">1대</option>
