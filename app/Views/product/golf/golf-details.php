@@ -1319,8 +1319,8 @@ $(document).ready(function() {
                 success: function (data) {
                     $('#final_option_list').html(data);
                     $("#final_option_list .card-item").eq(0).trigger("click");
-                    var idx          = $(".card-item").data('idx');
-					alert("idx- "+idx);
+                    
+					var idx          = $(".card-item").data('idx');
                     var day_yn       = $(".card-item").data('o_day_yn');
                     var night_yn     = $(".card-item").data('o_night_yn');
                     var afternoon_yn = $(".card-item").data('o_afternoon_yn');
@@ -1333,12 +1333,15 @@ $(document).ready(function() {
 					const $select_3 = $("#vehicle_3");
 
 					// 원하는 data-* 속성들을 이동
+					$select_1.attr("data-idx",         $(".card-item").data('idx'));
 					$select_1.attr("data-price",       $(".card-item").data('vehicle_price1_won'));
 					$select_1.attr("data-price_baht",  $(".card-item").data('vehicle_price1_bath'));
 					
+					$select_2.attr("data-idx",         $(".card-item").data('idx'));
 					$select_2.attr("data-price",       $(".card-item").data('vehicle_price2_won'));
 					$select_2.attr("data-price_baht",  $(".card-item").data('vehicle_price2_bath'));
 					
+					$select_3.attr("data-idx",         $(".card-item").data('idx'));
 					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
 					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_bath'));
 
