@@ -1241,6 +1241,7 @@ $(document).ready(function() {
             $("#final_caddy_fee").text(caddy_fee);
             $("#final_cart_pie_fee").text(cart_pie_fee);
             $("#final_option_price_baht").text(number_format(price_baht));
+			$("#vehicle_bath_0").val(price_baht);
             $(".final_people_cnt").text(number_format(people_cnt));
             $("#total_final_option_price").text(number_format(final_price));
             $("#total_final_option_price_baht").text(number_format(final_price_baht));
