@@ -670,11 +670,11 @@ $(document).ready(function() {
 			   </div>
                <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
-		            <input type="text" name="vehicle_name[]" id="vehicle_name_5" value="캐디피">
-                    <input type="text" name="vehicle_gbn[]"  id="vehicle_gbn_5"  value="0">
-                    <input type="text" name="vehicle_qty[]"  id="vehicle_qty_5"  value="0">
-                    <input type="text" name="vehicle_won[]"  id="vehicle_won_5"  value="<?=$caddie_fee?>">
-                    <input type="text" name="vehicle_bath[]" id="vehicle_bath_5" value="<?=$caddie_fee_baht?>">
+		            <input type="hidden" name="vehicle_name[]" id="vehicle_name_5" value="캐디피">
+                    <input type="hidden" name="vehicle_gbn[]"  id="vehicle_gbn_5"  value="0">
+                    <input type="hidden" name="vehicle_qty[]"  id="vehicle_qty_5"  value="0">
+                    <input type="hidden" name="vehicle_won[]"  id="vehicle_won_5"  value="<?=$caddie_fee?>">
+                    <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_5" value="<?=$caddie_fee_baht?>">
                     <select id="vehicle_5"  data-name="캐디피" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1명</option>
