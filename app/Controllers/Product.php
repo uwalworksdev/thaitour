@@ -2552,7 +2552,7 @@ class Product extends BaseController
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
 			$option_tot         = $priceCalculate['total_price'];
-			$option_tot_bath    = $option_tot / $data['baht_thai']; 
+			$option_tot_bath    = (int)($option_tot / $data['baht_thai']); 
 			$option_price       = $option_tot / $data['people_adult_cnt']; 
 			$option_price_bath  = $option_tot_bath / $data['people_adult_cnt']; 
             $this->orderOptionModel->insert([
