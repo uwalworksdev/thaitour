@@ -2327,10 +2327,10 @@ class Product extends BaseController
             if ($value > 0) {
                 $info = $this->golfOptionModel->getCodeByIdx($opt_idx[$key]);
                 $info['cnt'] = $value;
-                $info['price_baht'] = $info['goods_price1'];
-                $info['price_baht_total'] = $info['goods_price1'] * $value;
-                $info['price'] = (int)($info['goods_price1'] * ($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = (int)($info['price'] * $value);
+                $info['price_baht'] = $info['goods_price1_1'];
+                $info['price_baht_total'] = $info['goods_price1_1'] * $value;
+                $info['price'] = (int)($info['goods_price1_1'] * ($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = (int)($info['price_1'] * $value);
                 $option_arr[] = $info;
 
                 $total_option_price += $info['price'] * $value;
