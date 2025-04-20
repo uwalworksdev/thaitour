@@ -573,9 +573,9 @@ $(document).ready(function() {
                 </div>
             <?php endforeach; ?>
         </div-->
-		  <input type="text" name="vehicle_name[]" id="vehicle_name_0"  value="그린피">
-		  <input type="text" name="vehicle_won[]"  id="vehicle_won_0"  value="">
-		  <input type="text" name="vehicle_bath[]" id="vehicle_bath_0" value="">
+		  <input type="hidden" name="vehicle_name[]" id="vehicle_name_0" value="그린피">
+		  <input type="hidden" name="vehicle_won[]"  id="vehicle_won_0"  value="">
+		  <input type="hidden" name="vehicle_bath[]" id="vehicle_bath_0" value="">
 		
           <div class="list-select-element">
 		       <div class="item-select">
