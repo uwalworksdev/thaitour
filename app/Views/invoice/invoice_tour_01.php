@@ -54,17 +54,17 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td>2024-12-20(금)</td>
+                            <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
                             <th>여행자 이름</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
-                            <td colspan="3">KR 01021004474 | TH 084-073-1020 | KR 0840731020</td>
+                            <td colspan="3"><?=$row['order_user_mobile']?></td>
                         </tr>
                         <tr>
                             <th>예약상품</th>
-                            <td colspan="3">진리의 성전 입장권 | 주간 입장권 (08:00~16:30)</td>
+                            <td colspan="3"><?=$row['product_name']?></td>
                         </tr>
                         <tr>
                             <th>시작시간</th>
@@ -96,7 +96,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3">3,200바트 (성인400바트X8명)</td>
+                            <td colspan = "3"><?=number_format($row['real_price_bath'])?></td>
                             
                         </tr>
                         <tr>
@@ -109,7 +109,7 @@ $setting = homeSetInfo();
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span>954,284원</span> (24,400바트)</p>
+                    <p>총 견적서 금액 : <span><?=number_format($row['real_price_won'])?>원</span> (<?=number_format($row['real_price_bath'])?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
