@@ -811,6 +811,7 @@ $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");
     $routes->get("view_paid", "Orders::invoice_view_paid");
     $routes->get("golf_01/(:any)", "InvoiceController::golf_01/$1");
+    $routes->get("car_01/(:any)", "InvoiceController::car_01/$1");
     $routes->get("hotel", "InvoiceController::hotel");
     $routes->get("hotel_01/(:any)", "InvoiceController::hotel_01/$1");
     $routes->get("ticket_01/(:any)", "InvoiceController::ticket_01/$1");
