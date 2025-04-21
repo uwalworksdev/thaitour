@@ -40,7 +40,9 @@
             ?>
             <li class="gallery-list" style="width:280px" rel="<?= $row['b_ref'] ?>">
                 <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
-                    <p class="pic" style="width:280px"><img src="<?= $img ?>" alt="<?= $row['subject'] ?>"></p>
+                    <p class="pic" style="width:280px">
+                        <img <?php if($code == "infographics"){?> style="border: none;" <?php } ?> src="<?= $img ?>" alt="<?= $row['subject'] ?>">
+                    </p>
                     <p class="pic-info">
                         <input type="checkbox" id="" name="bbs_idx[]" value="<?= $row['bbs_idx'] ?>"
                                class="bbs_idx input_check"/>
