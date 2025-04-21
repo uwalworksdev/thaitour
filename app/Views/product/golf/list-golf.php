@@ -174,10 +174,7 @@
                             </div>
                             <div class="list-item-info">
                                 <div class="item-info">
-                                    <div class="item-info-label text-gray">
-                                        ✓ 장거리 이동도 편안하게! 22인승 럭셔리 리무진 탑승<br>
-                                        ✓ 미서부 핵심 3대 도시 + 4대캐년 관광
-                                    </div>
+                                    <div class="item-info-label text-gray"><?=nl2br($product['description'])?></div>
                                 </div>
                                 <div class="item-info">
                                     <div class="item-info">
