@@ -485,7 +485,7 @@
                                             <?= $_isDelete ?>(<?= $row['code_name'] ?>)
                                         </td>
                                         <td class="tal"><a
-                                                    href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+                                                    href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row["user_name"] ?></td>
@@ -522,7 +522,7 @@
                                         </td>
                                         <td class="tac">카드결제</td>
                                         <td>
-                                            <a href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>

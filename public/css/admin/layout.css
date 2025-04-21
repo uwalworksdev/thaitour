@@ -5042,3 +5042,55 @@ table.comment tr td:nth-last-child(1) {
     background-color: #7499b2;
     color: #fff;
 }
+
+.settlement_wrap h4 {
+    font-size: 18px;
+}
+
+.table_accounts {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.table_accounts dl {
+    flex: 1;
+    box-sizing: border-box;
+    border: 1px solid #DAE4FB;
+}
+
+.table_accounts dt {
+    text-align: right;
+    font-weight: 600;
+    color: #21212D;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #F1F1F6;
+}
+
+.table_accounts dd {
+    text-align: right;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #000;
+    background: #fff;
+}
+
+.t_green {
+    color: #01c73c !important;
+}
+
+.t_orange {
+    color: #ff6600 !important;
+}
+
+.t_sky {
+    color: #0099ff !important;
+}

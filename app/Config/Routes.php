@@ -67,7 +67,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list_payment", "Admin\ReservationController::list_payment");
         $routes->get("write_payment", "Admin\ReservationController::write_payment");
         $routes->get("list", "Admin\ReservationController::list");
-        $routes->get("(:segment)/write", "Admin\ReservationController::write/$1");
+        $routes->get("write/(:segment)", "Admin\ReservationController::write/$1");
         $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");

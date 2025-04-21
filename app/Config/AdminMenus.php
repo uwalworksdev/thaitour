@@ -254,7 +254,7 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '여행상품예약',
                     'code' => 'E1',
-                    'url' => ['/AdmMaster/_reservation/list'],
+                    'url' => ['/AdmMaster/_reservation/list', '/AdmMaster/_reservation/write'],
                     'alias' => ['ReservationController::list', 'ReservationController::write']
                 ],
                 // [

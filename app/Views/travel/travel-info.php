@@ -52,24 +52,23 @@
         </div>
         <h2>여행정보</h2>
         <div class="list_tab_head">
-            <div class="tab on">전체</div>
-            <div class="tab">히마판 칼럼</div>
-            <div class="tab">축제 및 이벤트 </div>
-            <div class="tab">교통</div>
-            <div class="tab">지역</div>
-            <div class="tab">기타 정보</div>
+            <div class="tab on"><a href="">전체</a></div>
+            <?php
+                foreach($code_list as $code){
+            ?>
+                <div class="tab"><a href=""><?=$code["code_name"]?></a></div>
+            <?php } ?>
         </div>
 
         <div class="head_list_product">
-            <p class="total_text">총 상품 <span>10</span></p>
-            <select name="" id="">
-                <option value="">제목</option>
-                <option value="">제목1</option>
-                <option value="">제목2</option>
-                <option value="">제목3</option>
+            <p class="total_text">총 상품 <span><?=$nTotalCount?></span></p>
+            <select name="search_mode" id="search_mode">
+                <option value="subject">제목</option>
+                <option value="contents">내용</option>
+                <option value="writer">작성자</option>
             </select>
             <div class="input_search_box">
-                <input type="text">
+                <input type="text" name="search_word" id="search_word">
                 <img src="/img/sub/search-ic-01.png" alt="search-ic">
             </div>
         </div>
@@ -183,29 +182,9 @@
                 </div>
             </div>
         </div>
-        <div class="custom pagination">
-            <a class="page-link" href="javascript:;" title="Go to first page">
-                <img src="/images/community/pagination_prev.png" alt="pagination_prev">
-            </a>
-            <a class="page-link" style="margin-right: 20px;" href="javascript:;" title="Go to previous page">
-                <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-            </a>
-            <a class="page-link active" href="javascript:;" title="Go to page 1">
-                <strong>1</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 2">
-                <strong>2</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 3">
-                <strong>3</strong>
-            </a>
-            <a class="page-link" style="margin-left: 20px;" href="javascript:;" title="Go to next page">
-                <img src="/images/community/pagination_next_s.png" alt="pagination_next">
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to last page">
-                <img src="/images/community/pagination_next.png" alt="pagination_next">
-            </a>
-        </div>
+        <?php 
+            echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?category=". $category ."&search_mode=". $search_mode ."&search_word=". $search_word ."&pg=")
+        ?>
     </div>
 
     <script>
