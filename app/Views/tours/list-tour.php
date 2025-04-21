@@ -211,7 +211,7 @@
                                     </div>
                                     <div class="list-item-info">
                                         <div class="item-info">
-                                            <div class="item-info-label text-gray flex_tour" style="background-color: #fff7f4;">
+                                            <div class="item-info-label text-gray flex_tour" style="background-color: #f2f2fe;">
                                                 <!-- <?php
                                                 $arr_keyword = explode(",", $product['keyword']);
                                                 $arr_keyword = array_filter($arr_keyword);

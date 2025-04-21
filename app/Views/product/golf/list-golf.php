@@ -174,7 +174,7 @@
                             </div>
                             <div class="list-item-info">
                                 <div class="item-info">
-                                    <div class="item-info-label text-gray" style="background-color: #f2f2fe;"><?=nl2br($product['description'])?></div>
+                                    <div class="item-info-label text-gray" style="background-color: #fff7f4;"><?=nl2br($product['description'])?></div>
                                 </div>
                                 <div class="item-info">
                                     <div class="item-info">
