@@ -240,75 +240,13 @@
                                 </td>
                             </tr> -->
                             <tr>
-                                <td style="font-weight: bold;">카테고리</td>
+                                <td style="font-weight: bold;">상품명</td>
                                 <td>
-                                    <select id="product_code_1" name="product_code_1" class="input_select"
-                                            onchange="javascript:get_code(this.value, 3)">
-                                        <option value="">1차분류</option>
-                                        <?php
-
-                                        foreach ($fresult as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-
-                                    </select>
-                                    <select id="product_code_2" name="product_code_2" class="input_select"
-                                            onchange="javascript:get_code(this.value, 4)">
-                                        <option value="">2차분류</option>
-                                        <?php
-
-                                        foreach ($fresult2 as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <select id="product_code_3" name="product_code_3" class="input_select">
-                                        <option value="">3차분류</option>
-                                        <?php
-
-                                        foreach ($fresult3 as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-                                    </select>
+                                   <input type="text" name="product_name" value="" placeholder="상품명">
                                 </td>
                                 <td style="font-weight: bold;">결제수단</td>
                                 <td>
-                                    <select name="payment_chker" class="state_chker">
+                                    <select name="payment_chker" class="state_chker" style="width: 100%;">
                                         <option value="">결제수단 전체</option>
                                         <?php
                                             foreach ($_pg_Method as $key => $value) {
@@ -339,9 +277,9 @@
                                             </option>
                                         </select>&nbsp;
                                         <div style="display: flex; gap: 5px; align-items: center;">
-                                            <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" class="date_form">
+                                            <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" class="date_form" placeholder="날짜 선택">
                                             <span>~</span>
-                                            <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" class="date_form">
+                                            <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" class="date_form" placeholder="날짜 선택">
                                         </div>
 
                                         <div id="time_layer"
@@ -365,33 +303,9 @@
                                 <td style="font-weight: bold;">검색어</td>
                                 <td class="inbox">
                                     <div class="r_box">
-                                        <select id="" name="search_category" class="input_select" style="width:112px">
-                                            <option value="a.order_no" <?php if ($search_category == "a.order_no") {
-                                                echo "selected";
-                                            } ?>>예약번호
-                                            </option>
-                                            <option value="a.order_user_name" <?php if ($search_category == "a.order_user_name") {
-                                                echo "selected";
-                                            } ?>>예약자명
-                                            </option>
-                                            <option value="a.manager_name" <?php if ($search_category == "a.manager_name") {
-                                                echo "selected";
-                                            } ?>>담당자명
-                                            </option>
-                                            <option value="a.product_name" <?php if ($search_category == "a.product_name") {
-                                                echo "selected";
-                                            } ?>>상품명
-                                            </option>
-                                            <option value="a.order_user_mobile" <?php if ($search_category == "a.order_user_mobile") {
-                                                echo "selected";
-                                            } ?>>예약지휴대폰
-                                            </option>
-                                        </select>
-
-                                        <input type="text" id="" name="search_name" value="<?= $search_name ?>"
-                                            class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
-
-                                        <a href="javascript:get_excel()" class="btn btn-default"> <span class="txt">다운로드</span></a>
+                                        <span>입점업체 미사용</span>
+                                        <a href="#" style="color: #48A1E5; text-decoration: underline;">신청하기</a>
+                                        <!-- <a href="javascript:get_excel()" class="btn btn-default"> <span class="txt">다운로드</span></a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -427,6 +341,10 @@
                                 <dd class="t_sky">0원</dd>
                             </dl>
                         </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: end; margin-top: 10px;">
+                        <a href="javascript:get_excel()" class="btn btn-default"> <span class="txt">다운로드</span></a>
                     </div>
 
                     <div style="border: 1px dashed black; margin: 20px 0;"></div>
