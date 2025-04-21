@@ -32,7 +32,7 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '호텔 상품관리',
                     'code' => 'B2',
-                    'url' => ['/AdmMaster/_hotel/list'],
+                    'url' => ['/AdmMaster/_hotel/list', '/AdmMaster/_tourRegist/list_room_price'],
                     'alias' => ['AdminHotelController::list', 'AdminHotelController::write', 'AdminHotelController::write_options',  'AdminHotelController::write_price', 'TourRegistController::list_room_price']
                 ],
                 [
