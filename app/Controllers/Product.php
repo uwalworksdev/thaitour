@@ -1892,7 +1892,7 @@ class Product extends BaseController
             if ($product['product_code_2']) $code = $product['product_code_2'];
             if ($product['product_code_3']) $code = $product['product_code_3'];
 
-            $codeTree = $this->codeModel->getCodeTree($product['product_code_1']);
+            $codeTree = $this->codeModel->getCodeTree($code);
 
             $products['items'][$key]['codeTree'] = $codeTree;
 
@@ -3356,7 +3356,7 @@ class Product extends BaseController
                 if ($product['product_code_2']) $code = $product['product_code_2'];
                 if ($product['product_code_3']) $code = $product['product_code_3'];
 
-                $codeTree = $this->codeModel->getCodeTree($product['product_code_1']);
+                $codeTree = $this->codeModel->getCodeTree($code);
 
                 $products['items'][$key]['codeTree'] = $codeTree;
 

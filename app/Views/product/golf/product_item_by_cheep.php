@@ -14,6 +14,9 @@
     <div class="prd_name">
         <?= viewSQ($item['product_name']) ?>
     </div>
+    <div class="prd_desc">
+        <p class="prd_keywords"><?= nl2br($item['description']) ?></p>
+    </div>
     <div class="prd_info">
         <div class="prd_info__left">
             <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">

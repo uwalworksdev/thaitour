@@ -196,12 +196,15 @@
                                 </div>
                                 <div class="sub_tour_section7_product_item__name"><?= viewSQ($item['product_name']) ?></div>
                                 <div class="sub_tour_section7_product_item__keywords">
-                                    <?php
+                                    <!-- <?php
                                     $keywords = explode(',', $item['keyword']);
                                     $keywords = array_filter($keywords);
                                     foreach ($keywords as $item) : ?>
                                         <span>#<?= viewSQ($item) ?></span>
-                                    <?php endforeach; ?>
+                                    <?php endforeach; ?> -->
+
+                                    <p class="prd_keywords"><?= nl2br($item['description']) ?></p>
+                                    
                                 </div>
                             </a>
                         </div>

@@ -5,6 +5,9 @@
     <div class="prd_name">
         <?= viewSQ($item['product_name']) ?>
     </div>
+    <div class="prd_desc">
+        <p class="prd_keywords"><?= nl2br($item['description']) ?></p>
+    </div>
     <div class="prd_price_ko">
         <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
             <?= number_format($item['product_price']) ?>
