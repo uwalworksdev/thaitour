@@ -239,6 +239,19 @@
                                                 class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                                 </td>
                             </tr>
+                </form>
+
+                <form name="search" id="search">
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
+                        <colgroup>
+                            <col width="100">
+                            <col width="*">
+                            <col width="100">
+                            <col width="*">
+                        </colgroup>
+
+                        <tbody>
+							
                             <tr>
                                 <td style="font-weight: bold;">상품명</td>
                                 <td>
