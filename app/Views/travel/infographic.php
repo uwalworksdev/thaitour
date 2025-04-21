@@ -1,6 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+<link rel="stylesheet" href="/css/magazines/magazines.css">
+
 <div class="container travel_info infographic">
     <div class="inner">
         <div class="sub-hotel-navigation-container">
@@ -52,83 +54,55 @@
         </div>
         <h2>인포그래픽</h2>
         <div class="list_tab_head">
-            <div class="tab on">전체</div>
-            <div class="tab">호텔</div>
-            <div class="tab">골프</div>
-            <div class="tab">투어</div>
+            <div class="tab <?php if(empty($category)){ echo "on"; }?>"><a href="<?=current_url()?>?search_mode=<?=$search_mode?>&search_word=<?=$search_word?>">전체</a></div>
+            <?php
+                foreach($code_list as $code){
+            ?>
+                <div class="tab <?php if($category == $code["code_idx"]){ echo "on"; }?>"><a href="<?=current_url()?>?category=<?=$code["code_idx"]?>&search_mode=<?=$search_mode?>&search_word=<?=$search_word?>"><?=$code["code_name"]?></a></div>
+            <?php } ?>
         </div>
 
-        <div class="head_list_product">
-            <p class="total_text">총 상품 <span>10</span></p>
-            <select name="" id="">
-                <option value="">제목</option>
-                <option value="">제목1</option>
-                <option value="">제목2</option>
-                <option value="">제목3</option>
-            </select>
-            <div class="input_search_box">
-                <input type="text">
-                <img src="/img/sub/search-ic-01.png" alt="search-ic">
+        <form action="" name="frmSearch" method="get">
+            <div class="head_list_product">
+                <p class="total_text">총 상품 <span><?=$nTotalCount?></span></p>
+                <input type="hidden" name="category" value="<?= $category ?>">
+                <select name="search_mode" id="search_mode">
+                    <option value="subject" <?php if($search_mode == "subject"){ echo "selected"; }?>>제목</option>
+                    <option value="contents" <?php if($search_mode == "contents"){ echo "selected"; }?>>내용</option>
+                    <option value="writer" <?php if($search_mode == "writer"){ echo "selected"; }?>>작성자</option>
+                </select>
+                <div class="input_search_box">
+                    <input type="text" name="search_word" id="search_word" value="<?= $search_word ?>">
+                    <img src="/img/sub/search-ic-01.png" style="cursor: pointer;" onclick="goSearch()" alt="search-ic">
+                </div>
             </div>
-        </div>
+        </form>
+
+        <script>
+            function goSearch() {
+                let frm = document.frmSearch;
+                frm.submit();
+            }
+        </script>
 
         <div class="list_infographic">
-            <div class="item">
-                <img src="/img/sub/grap1.png" alt="">
-                <p>2025 태국 공휴일 안내</p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap2.png" alt="">
-                <p>차종별 좌석 배치와 짐 적재 </p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap3.png" alt="">
-                <p>2025년 연휴 연차팁</p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap4.png" alt="">
-                <p>태국의 술은 어떤 것이 있을까요? </p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap5.png" alt="">
-                <p>태국어와 함께 하는 상황 별 태국...</p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap6.png" alt="">
-                <p>한국어 통역이 가능한 병원 </p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap7.png" alt="">
-                <p>태국어와 함께 하는 상황 별 태국 표현 ...</p>
-            </div>
-            <div class="item">
-                <img src="/img/sub/grap8.png" alt="">
-                <p>태국의 술은 어떤 것이 있을까요? </p>
-            </div>
+            <?php
+                foreach($rows as $row) {
+                    if(!empty($row["ufile1"])){
+                        $img_infographic = "/data/bbs/" . $row["ufile1"];
+                    }
+            ?>
+                <div class="item">
+                    <img src="<?=$img_infographic?>" alt="<?=$row["rfile1"]?>">
+                    <p><?=$row["subject"]?></p>
+                </div>
+            <?php
+                }
+            ?>
         </div>
-        <div class="custom pagination">
-            <a class="page-link" href="javascript:;" title="Go to first page">
-                <img src="/images/community/pagination_prev.png" alt="pagination_prev">
-            </a>
-            <a class="page-link" style="margin-right: 20px;" href="javascript:;" title="Go to previous page">
-                <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-            </a>
-            <a class="page-link active" href="javascript:;" title="Go to page 1">
-                <strong>1</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 2">
-                <strong>2</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 3">
-                <strong>3</strong>
-            </a>
-            <a class="page-link" style="margin-left: 20px;" href="javascript:;" title="Go to next page">
-                <img src="/images/community/pagination_next_s.png" alt="pagination_next">
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to last page">
-                <img src="/images/community/pagination_next.png" alt="pagination_next">
-            </a>
-        </div>
+        <?php 
+            echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?category=". $category ."&search_mode=". $search_mode ."&search_word=". $search_word ."&pg=")
+        ?>
     </div>
 
     <script>

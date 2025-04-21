@@ -73,7 +73,38 @@ class Point extends BaseController
         return view('travel/travel-info', $data);
     }
     public function Infographic() {
-        return view('travel/infographic');
+
+        $category = $this->request->getGet('category');
+        $search_word = $this->request->getGet('search_word');
+        $search_mode = $this->request->getGet('search_mode');
+        $pg = $this->request->getGet('pg') ?? 1;
+        $g_list_rows = 8;
+        $code = "infographics";
+        
+        $builder = $this->bbsModel->ListByCode($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $category]);
+
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $rows = $builder->paginate($g_list_rows, 'default', $pg);
+
+        $data = [
+            'category' => $category,
+            'search_mode' => $search_mode,
+            'search_word' => $search_word,
+            'nTotalCount' => $nTotalCount,
+            'g_list_rows' => $g_list_rows,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'nFrom' => $nFrom,
+            'rows' => $rows,
+            'code_list' => $this->codeModel->getByParentCode(6002)->getResultArray()
+        ];
+
+        return view('travel/infographic', $data);
     }
 
     
