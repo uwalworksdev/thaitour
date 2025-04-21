@@ -1,6 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+<?php
+    date_default_timezone_set('Asia/Seoul');
+?>
 <div class="container travel-tips">
     <div class="sec_banner">
         <div class="inner">
@@ -175,19 +178,33 @@
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_info">
-                        <a href="#!" class="item">
-                            <img src="/images/sub/tra-sec-03-1.png" alt="">
-                            <div class="bx_text">
-                                <span class="head_text">기타 정보</span>
-                                <p class="title">[태국/쇼핑] 300원짜리 볶음면? 한국인들이 안 사서 정리 골프 여행객에게 인기 좋은 호텔 여행객에게 인기 좋은 호텔</p>
-                                <div class="desc">
-                                    <span class="time">2025-01-08(수)</span>
-                                    <span class="name">더투어랩-스마일</span>
-                                    <span class="view">조회수 39</span>
+                        <?php
+                            $arrDayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+                            foreach($tour_list as $tour):
+                                $dateString = $tour["r_date"];
+                                $timestamp = strtotime($dateString);
+                                $dayOfWeek = date('w', $timestamp);
+
+                                if(!empty($tour["ufile1"])){
+                                    $img_tour = "/data/bbs/" . $tour["ufile1"];
+                                }
+                        ?>
+                            <a href="#!" class="item">
+                                <img src="<?=$img_tour?>" alt="<?=$tour["rfile1"]?>">
+                                <div class="bx_text">
+                                    <span class="head_text"><?=$tour["code_name"]?></span>
+                                    <p class="title"><?=$tour["subject"]?></p>
+                                    <div class="desc">
+                                        <span class="time"><?=date('Y-m-d', $timestamp)?>(<?=$arrDayOfWeek[$dayOfWeek]?>)</span>
+                                        <span class="name"><?=$tour["writer"]?></span>
+                                        <span class="view">조회수 <?=$tour["hit"]?></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#!" class="item">
+                            </a>
+                        <?php
+                            endforeach;
+                        ?>
+                        <!-- <a href="#!" class="item">
                             <img src="/images/sub/tra-sec-03-2.png" alt="">
                             <div class="bx_text">
                                 <span class="head_text">기타 정보</span>
@@ -210,7 +227,7 @@
                                     <span class="view">조회수 25</span>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -251,52 +268,38 @@
             </div>
             <div class="only_web content_sec">
                 <div class="list_travel_banner">
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-05-1.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-05-2.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-05-3.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-05-4.png" alt="">
-                    </a>
-                    <a href="#!" class="item">
-                        <img src="/images/sub/tra-sec-05-5.png" alt="">
-                    </a>
+                    <?php
+                        foreach($infographics_list as $infographic) :
+                            if(!empty($infographic["ufile1"])) {
+                                $img_infographic = "/data/bbs/" . $infographic["ufile1"];
+                            }
+                    ?>
+                        <a href="#!" class="item">
+                            <img src="<?=$img_infographic?>" alt="<?=$infographic["rfile1"]?>">
+                        </a>
+                    <?php
+                        endforeach;
+                    ?>
                 </div>
             </div>
 
             <div class="only_mo content_sec">
                 <div class="swiper swipper_sec_05">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-05-1.png" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-05-2.png" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-05-3.png" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-05-4.png" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-05-5.png" alt="">
-                            </a>
-                        </div>
+                        <?php
+                            foreach($infographics_list as $infographic_mo) :
+                                if(!empty($infographic_mo["ufile1"])) {
+                                    $img_infographic_mo = "/data/bbs/" . $infographic_mo["ufile1"];
+                                }
+                        ?>
+                            <div class="swiper-slide">
+                                <a href="#!" class="item">
+                                    <img src="<?=$img_infographic_mo?>" alt="<?=$infographic_mo["rfile1"]?>">
+                                </a>
+                            </div>
+                        <?php
+                            endforeach;
+                        ?>
                     </div>
                 </div>
                 <div class="swiper-pagination tra-sec-05-swiper-pagination"></div>
@@ -338,8 +341,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script>
         $(document).ready(function() {
@@ -384,7 +385,6 @@
         });
     </script>
 
-
     <script>
         var swiper = new Swiper(".tra_sec_02_swiper", {
             slidesPerView: "auto",
@@ -400,6 +400,5 @@
             },
         });
     </script>
-
 
     <?php $this->endSection(); ?>
