@@ -525,7 +525,7 @@
                                 <tr>
                                     <th>간략설명</th>
                                     <td colspan="3">
-                                          <textarea id="description" name="description" rows="5" cols="100"></textarea>
+                                          <textarea id="description" name="description" rows="5" cols="100"><?=$description?></textarea>
                                     </td>
                                 </tr>
 								
