@@ -289,7 +289,7 @@ $tour["widths"][0]        = "150px";
 $tour['titles'][1]        = "작성자";
 $tour['names'][1]         = "writer";
 $tour['inputTypes'][1]    = "text";
-$tour['widths'][1]        = "200px";
+$tour['widths'][1]        = "150px";
 
 $tour['titles'][2]        = "조회";
 $tour['names'][2]         = "hit";
@@ -318,7 +318,7 @@ $infographics["widths"][0]        = "150px";
 $infographics['titles'][1]        = "작성자";
 $infographics['names'][1]         = "writer";
 $infographics['inputTypes'][1]    = "text";
-$infographics['widths'][1]        = "200px";
+$infographics['widths'][1]        = "150px";
 
 $infographics['titles'][2]        = "조회";
 $infographics['names'][2]         = "hit";
