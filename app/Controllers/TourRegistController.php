@@ -447,6 +447,7 @@ class TourRegistController extends BaseController
         $data['product_able']      = $data["product_able"] ?? '';
         $data['notice_comment']    = $data["notice_comment"] ?? '';
         $data['description']       = $data["description"] ?? '';
+        $description               = $data["description"] ?? '';
 		
 		$files = $this->request->getFiles();
 
