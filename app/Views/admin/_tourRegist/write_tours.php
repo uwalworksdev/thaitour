@@ -531,6 +531,13 @@
                                 </tr>
 
                                 <tr>
+                                    <th>간략설명</th>
+                                    <td colspan="3">
+                                          <textarea id="description" name="description" rows="5" cols="100" style="width: 100%;"><?=$description?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">

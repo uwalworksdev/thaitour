@@ -196,9 +196,10 @@
                                 $arr_keyword = array_filter($arr_keyword);
                                 ?>
                                 <div class="prd_keywords">
-                                    <?php foreach ($arr_keyword as $keyword): ?>
+                                    <!-- <?php foreach ($arr_keyword as $keyword): ?>
                                         <span>#<?= $keyword ?></span>
-                                    <?php endforeach; ?>
+                                    <?php endforeach; ?> -->
+                                    <span><?= nl2br($row['description']) ?></span>
                                 </div>
                                 <div class="prd_info">
                                     <div class="prd_info__left">
@@ -575,9 +576,10 @@
                                     $arr_keyword = array_filter($arr_keyword);
                                     ?>
                                     <div class="sub_tour_section7_product_item__keywords">
-                                        <?php foreach ($arr_keyword as $keyword): ?>
+                                        <!-- <?php foreach ($arr_keyword as $keyword): ?>
                                             <span>#<?= $keyword ?></span>
-                                        <?php endforeach; ?>
+                                        <?php endforeach; ?> -->
+                                        <span><?= nl2br($item['description']) ?></span>
                                     </div>
                                 </a>
                             </div>

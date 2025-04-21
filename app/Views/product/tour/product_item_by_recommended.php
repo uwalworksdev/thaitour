@@ -6,12 +6,13 @@
         <?= viewSQ($item['product_name']) ?>
     </div>
     <div class="prd_keywords">
-    <?php
+    <!-- <?php
             $keywords = explode(',', $item['keyword']);
             $keywords = array_filter($keywords);
             foreach ($keywords as $row) : ?>
                 <span>#<?= viewSQ($row) ?></span>
-            <?php endforeach; ?>
+        <?php endforeach; ?> -->
+        <span><?=nl2br($item['description'])?></span>
     </div>
     <div class="prd_info">
         <div class="prd_info__left">

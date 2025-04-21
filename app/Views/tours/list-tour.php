@@ -211,14 +211,15 @@
                                     </div>
                                     <div class="list-item-info">
                                         <div class="item-info">
-                                            <div class="item-info-label text-gray flex_tour">
-                                                <?php
+                                            <div class="item-info-label text-gray flex_tour" style="background-color: #fff7f4;">
+                                                <!-- <?php
                                                 $arr_keyword = explode(",", $product['keyword']);
                                                 $arr_keyword = array_filter($arr_keyword);
                                                 ?>
                                                 <?php foreach ($arr_keyword as $keyword): ?>
                                                     <p>#<?= $keyword ?></p>
-                                                <?php endforeach; ?>
+                                                <?php endforeach; ?> -->
+                                                <p><?=nl2br($product['description'])?></p>
                                             </div>
                                         </div>
                                         <div class="item-info">

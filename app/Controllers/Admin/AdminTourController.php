@@ -163,6 +163,7 @@ class AdminTourController extends BaseController
             $arr = $_POST["deadline_date"] ?? '';
 
             $mbti = updateSQ($_POST["mbti" ?? '']);
+            $description = updateSQ($_POST["description" ?? '']);
 
             if (!is_array($arr)) {
                 $arr = [];
@@ -317,6 +318,7 @@ class AdminTourController extends BaseController
 							,deadline_date          = '" . $deadline_date . "'
 							,direct_payment         = '" . $direct_payment . "'
 							,mbti                   = '" . $mbti . "'
+							,description            = '" . $description . "'
 			                ,worker_id              = '" . session()->get('member')['id'] ."'
 			                ,worker_name            = '" . session()->get('member')['name'] ."'
                             ,m_date					= now()
@@ -508,6 +510,7 @@ class AdminTourController extends BaseController
 							,direct_payment         = '" . $direct_payment . "'
                             
                             ,mbti                   = '" . $mbti . "'
+							,description            = '" . $description . "'
                             
                             ,m_date					= now()
                             ,r_date					= now()
