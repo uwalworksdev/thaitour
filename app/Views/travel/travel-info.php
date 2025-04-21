@@ -1,6 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+<link rel="stylesheet" href="/css/magazines/magazines.css">
+
 <div class="container travel_info">
     <div class="inner">
         <div class="sub-hotel-navigation-container">
@@ -74,7 +76,49 @@
         </div>
 
         <div class="list_product">
-            <div class="item">
+            <?php
+                $arrDayOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+
+                foreach($rows as $row) {
+                    $dateString = $row["r_date"];
+                    $timestamp = strtotime($dateString);
+                    $dayOfWeek = date('w', $timestamp);
+
+                    if(!empty($row["ufile1"])){
+                        $img_tour = "/data/bbs/" . $row["ufile1"];
+                    }
+            ?>
+                <div class="item">
+                    <div class="img">
+                        <img src="<?=$img_tour?>" alt="<?=$row["rfile1"]?>">
+                    </div>
+                    <div class="text">
+                        <span class="tit"><?=$row["code_name"]?></span>
+                        <p class="name"><?=$row["subject"]?></p>
+                        <div class="desc">
+                            <div class="desc_inner">
+                                <?php
+                                    $content = $row['contents'];
+
+                                    $content = preg_replace('/<img[^>]*>/i', '', $content);
+
+                                    $plainText = strip_tags($content);
+
+                                    $plainText = html_entity_decode($plainText);
+
+                                    echo nl2br($plainText);
+                                ?>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <span class="date"><?=date('Y-m-d', $timestamp)?>(<?=$arrDayOfWeek[$dayOfWeek]?>)</span>
+                            <span class="author"><?=$row["writer"]?></span>
+                            <span class="view">조회수 <?=$row["hit"]?></span>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <!-- <div class="item">
                 <div class="img">
                     <img src="/img/sub/info1.png" alt="">
                 </div>
@@ -180,7 +224,7 @@
                         <span class="view">조회수 39</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <?php 
             echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?category=". $category ."&search_mode=". $search_mode ."&search_word=". $search_word ."&pg=")

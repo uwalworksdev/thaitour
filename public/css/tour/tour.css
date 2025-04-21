@@ -5188,6 +5188,10 @@
     border-color: var(--bs-point);
 }
 
+.travel_info {
+    padding-bottom: 130px;
+}
+
 .travel_info h2 {
     font-size: 28px;
     font-weight: 700;

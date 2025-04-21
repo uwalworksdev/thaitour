@@ -179,14 +179,14 @@
     font-family: "Pretendard";
 }
 
-.magazines_page_ .magazines_area_ .magazines_list_ .pagination {
+.pagination {
     margin: 32px 0 0px 0;
     display: flex;
     list-style: none;
     padding: 0;
 }
 
-.magazines_page_ .magazines_area_ .magazines_list_ .page-link {
+.page-link {
     display: inline-block;
     padding: 10px 15px;
     margin: 0 5px;
@@ -197,7 +197,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
-.magazines_page_ .magazines_area_ .magazines_list_ .page-link.active {
+.page-link.active {
     color: var(--bs-point);
     border-color: var(--bs-point);
 }
@@ -525,16 +525,16 @@
         margin-top: 3rem;
     }
 
-    .magazines_page_ .magazines_area_ .magazines_list_ .pagination {
+    .pagination {
         margin: 6rem 0 0 0;
     }
 
-    .magazines_page_ .magazines_area_ .magazines_list_ .page-link:has(img) {
+    .page-link:has(img) {
         padding: 1.8rem 2rem;
         height: 5.5rem;
     }
 
-    .magazines_page_ .magazines_area_ .magazines_list_ .page-link {
+    .page-link {
         margin: 0 0.5rem;
         border-radius: 0.5rem;
     }
