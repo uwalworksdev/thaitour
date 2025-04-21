@@ -335,25 +335,25 @@
                         </a>
                     </div>
 
-                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
                     <div class="settlement_wrap">
                         <h4>전체 정산대기 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>판매금액</dt>
+                                <dt>총 상품예약</dt>
                                 <dd>0원</dd>
                             </dl>
                             <dl>
-                                <dt>지출금액</dt>
+                                <dt>결제완료</dt>
                                 <dd class="t_green">0원</dd>
                             </dl>
                             <dl>
-                                <dt>총수익</dt>
+                                <dt>예약확정</dt>
                                 <dd class="t_orange">0원</dd>
                             </dl>
                             <dl>
-                                <dt>판매갯수</dt>
+                                <dt>예약취소</dt>
                                 <dd class="t_sky">0원</dd>
                             </dl>
                         </div>
@@ -364,7 +364,7 @@
                         <span class="txt">다운로드</span></a>
                     </div>
 
-                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
                 </form>
 

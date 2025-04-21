@@ -318,7 +318,7 @@
                         </a>
                     </div>
 
-                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
                     <div class="settlement_wrap">
                         <h4>전체 정산대기 통계</h4>
@@ -347,7 +347,7 @@
                         <span class="txt">다운로드</span></a>
                     </div>
 
-                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
                 </form>
 

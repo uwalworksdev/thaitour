@@ -579,7 +579,7 @@
                                         <!-- <?php foreach ($arr_keyword as $keyword): ?>
                                             <span>#<?= $keyword ?></span>
                                         <?php endforeach; ?> -->
-                                        <span><?= nl2br($item['description']) ?></span>
+                                        <span class="prd_keywords"><?= nl2br($item['description']) ?></span>
                                     </div>
                                 </a>
                             </div>
