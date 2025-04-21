@@ -523,6 +523,14 @@
                                 </tr>
 
                                 <tr>
+                                    <th>간략설명</th>
+                                    <td colspan="3">
+<textarea id="message" name="message" rows="5" cols="40"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+								
+                                <tr>
                                     
 
                                     <th>검색키워드</th>
