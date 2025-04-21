@@ -15,7 +15,7 @@
         <?= viewSQ($item['product_name']) ?>
     </div>
     <div class="prd_desc">
-        <p class="prd_keywords"><?= nl2br($item['description']) ?></p>
+        <p class="prd_keywords" style="color: #397eb9 !important;"><?= nl2br($item['description']) ?></p>
     </div>
     <div class="prd_info">
         <div class="prd_info__left">
