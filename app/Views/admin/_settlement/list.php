@@ -22,226 +22,229 @@
             </header><!-- // headerContainer -->
 
             <div id="contents">
-                <!--form name="search" id="search">
+                <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
-                            <col width="100">
-                            <col width="*">
-                            <col width="100">
+                            <col width="150">
                             <col width="*">
                         </colgroup>
-
+                        <thead>
+                        <tr>
+                            <th colspan="2"></th>
+                        </tr>
+                        </thead>
                         <tbody>
-                            <tr>
-                                <td class="label">카테고리</td>
-                                <td>
-                                    <select id="product_code_1" name="product_code_1" class="input_select"
-                                            onchange="javascript:get_code(this.value, 3)">
-                                        <option value="">1차분류</option>
-                                        <?php
-
-                                        foreach ($fresult as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-
-                                    </select>
-                                    <select id="product_code_2" name="product_code_2" class="input_select"
-                                            onchange="javascript:get_code(this.value, 4)">
-                                        <option value="">2차분류</option>
-                                        <?php
-
-                                        foreach ($fresult2 as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <select id="product_code_3" name="product_code_3" class="input_select">
-                                        <option value="">3차분류</option>
-                                        <?php
-
-                                        foreach ($fresult3 as $frow) {
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-
-                                            ?>
-                                            <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
-                                                echo "selected";
-                                            } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="label">결제방법</td>
-                                <td class="inbox">
-
+                        <tr>
+                            <td class="label">카테고리</td>
+                            <td>
+                                <select id="product_code_1" name="product_code_1" class="input_select"
+                                        onchange="javascript:get_code(this.value, 3)">
+                                    <option value="">1차분류</option>
                                     <?php
-                                    foreach ($_pg_Method as $key => $value) {
-                                        ?>
-                                        <p>
-                                            <input name="payment_chker[]" class="state_chker" type="checkbox"
-                                                value="<?= $key ?>" > <?= $value ?>
-                                            &nbsp;&nbsp;
-                                        </p>
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="label">예약상품상태</td>
-                                <td class="inbox">
-                                    <?php
-                                    foreach ($_deli_type as $key => $value) {
-                                        ?>
-                                        <p>
-                                            <input name="state_chker[]" class="state_chker" type="checkbox"
-                                                value="<?= $key ?>" <?php if (in_array($key, $state_chker)) echo "checked"; ?> > <?= $value ?>
-                                            &nbsp;&nbsp;
-                                        </p>
-                                    <?php } ?>
-                                    <p><input name="isDelete" class="state_chker" type="checkbox"
-                                            value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="label">기간검색</td>
-                                <td class="inbox">
 
+                                    foreach ($fresult as $frow) {
+                                        $status_txt = "";
+                                        if ($frow["status"] == "Y") {
+                                            $status_txt = "";
+                                        } elseif ($frow["status"] == "N") {
+                                            $status_txt = "[삭제]";
+                                        } elseif ($frow["status"] == "C") {
+                                            $status_txt = "[마감]";
+                                        }
+
+                                        ?>
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
+                                            echo "selected";
+                                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                    <?php } ?>
+
+                                </select>
+                                <select id="product_code_2" name="product_code_2" class="input_select"
+                                        onchange="javascript:get_code(this.value, 4)">
+                                    <option value="">2차분류</option>
+                                    <?php
+
+                                    foreach ($fresult2 as $frow) {
+                                        $status_txt = "";
+                                        if ($frow["status"] == "Y") {
+                                            $status_txt = "";
+                                        } elseif ($frow["status"] == "N") {
+                                            $status_txt = "[삭제]";
+                                        } elseif ($frow["status"] == "C") {
+                                            $status_txt = "[마감]";
+                                        }
+
+                                        ?>
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                            echo "selected";
+                                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                    <?php } ?>
+                                </select>
+                                <select id="product_code_3" name="product_code_3" class="input_select">
+                                    <option value="">3차분류</option>
+                                    <?php
+
+                                    foreach ($fresult3 as $frow) {
+                                        $status_txt = "";
+                                        if ($frow["status"] == "Y") {
+                                            $status_txt = "";
+                                        } elseif ($frow["status"] == "N") {
+                                            $status_txt = "[삭제]";
+                                        } elseif ($frow["status"] == "C") {
+                                            $status_txt = "[마감]";
+                                        }
+
+                                        ?>
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                            echo "selected";
+                                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">결제방법</td>
+                            <td class="inbox">
+
+                                <?php
+                                foreach ($_pg_Method as $key => $value) {
+                                    ?>
                                     <p>
-                                        <select name="date_chker" id="date_chker" class="select_02">
-                                            <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
-                                                예약일
-                                            </option>
-                                            <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
-                                                선금결제일
-                                            </option>
-                                            <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
-                                                잔금결제일
-                                            </option>
-                                            <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
-                                                취소일
-                                            </option>
-                                        </select>&nbsp;
+                                        <input name="payment_chker[]" class="state_chker" type="checkbox"
+                                               value="<?= $key ?>" > <?= $value ?>
+                                        &nbsp;&nbsp;
                                     </p>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">예약상품상태</td>
+                            <td class="inbox">
+                                <?php
+                                foreach ($_deli_type as $key => $value) {
+                                    ?>
+                                    <p>
+                                        <input name="state_chker[]" class="state_chker" type="checkbox"
+                                               value="<?= $key ?>" <?php if (in_array($key, $state_chker)) echo "checked"; ?> > <?= $value ?>
+                                        &nbsp;&nbsp;
+                                    </p>
+                                <?php } ?>
+                                <p><input name="isDelete" class="state_chker" type="checkbox"
+                                          value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">기간검색</td>
+                            <td class="inbox">
 
-                                    <div class="contact_btn_box">
-                                        <div>
-                                            <button type="button" rel="<?= date('Y-m-d') ?>" class="contact_btn"
-                                                    title="today">오늘
-                                            </button>
-                                            <button type="button" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>"
-                                                    class="contact_btn" title="week">1주일
-                                            </button>
-                                            <button type="button" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>"
-                                                    class="contact_btn" title="1month">1개월
-                                            </button>
-                                            <button type="button" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"
-                                                    class="contact_btn" title="6month">6개월
-                                            </button>
-                                            <button type="button" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>"
-                                                    class="contact_btn" title="year">1년
-                                            </button>
-                                            <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>"
-                                                class="date_form"><span>~</span><input type="text" name="e_date"
-                                                                                        id="e_date"
-                                                                                        value="<?= $e_date ?>"
-                                                                                        class="date_form">
-                                            <div id="time_layer"
-                                                style="float: left; display: <?= (trim($s_time) == "" && trim($e_time) == "" ? "none" : "") ?>;">
-                                                <select id="s_time" name="s_time">
-                                                    <option value="">선택</option>
-                                                    <?php for ($t = 1; $t <= 23; $t++) { ?>
-                                                        <option value="<?= $t ?>" <?= ((int)($s_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
-                                                    <?php } ?>
-                                                </select> ~
-                                                <select id="e_time" name="e_time">
-                                                    <option value="">선택</option>
-                                                    <?php for ($t = 1; $t <= 23; $t++) { ?>
-                                                        <option value="<?= $t ?>" <?= ((int)($e_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
+                                <p>
+                                    <select name="date_chker" id="date_chker" class="select_02">
+                                        <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
+                                            예약일
+                                        </option>
+                                        <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
+                                            선금결제일
+                                        </option>
+                                        <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
+                                            잔금결제일
+                                        </option>
+                                        <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
+                                            취소일
+                                        </option>
+                                    </select>&nbsp;
+                                </p>
+
+                                <div class="contact_btn_box">
+                                    <div>
+                                        <button type="button" rel="<?= date('Y-m-d') ?>" class="contact_btn"
+                                                title="today">오늘
+                                        </button>
+                                        <button type="button" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>"
+                                                class="contact_btn" title="week">1주일
+                                        </button>
+                                        <button type="button" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>"
+                                                class="contact_btn" title="1month">1개월
+                                        </button>
+                                        <button type="button" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"
+                                                class="contact_btn" title="6month">6개월
+                                        </button>
+                                        <button type="button" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>"
+                                                class="contact_btn" title="year">1년
+                                        </button>
+                                        <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>"
+                                               class="date_form"><span>~</span><input type="text" name="e_date"
+                                                                                      id="e_date"
+                                                                                      value="<?= $e_date ?>"
+                                                                                      class="date_form">
+                                        <div id="time_layer"
+                                             style="float: left; display: <?= (trim($s_time) == "" && trim($e_time) == "" ? "none" : "") ?>;">
+                                            <select id="s_time" name="s_time">
+                                                <option value="">선택</option>
+                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
+                                                    <option value="<?= $t ?>" <?= ((int)($s_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
+                                                <?php } ?>
+                                            </select> ~
+                                            <select id="e_time" name="e_time">
+                                                <option value="">선택</option>
+                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
+                                                    <option value="<?= $t ?>" <?= ((int)($e_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td class="label">검색어</td>
-                                <td class="inbox">
-                                    <div class="r_box">
-                                        <select id="" name="search_category" class="input_select" style="width:112px">
-                                            <option value="a.order_no" <?php if ($search_category == "a.order_no") {
-                                                echo "selected";
-                                            } ?>>예약번호
-                                            </option>
-                                            <option value="a.order_user_name" <?php if ($search_category == "a.order_user_name") {
-                                                echo "selected";
-                                            } ?>>예약자명
-                                            </option>
-                                            <option value="a.manager_name" <?php if ($search_category == "a.manager_name") {
-                                                echo "selected";
-                                            } ?>>담당자명
-                                            </option>
-                                            <option value="a.product_name" <?php if ($search_category == "a.product_name") {
-                                                echo "selected";
-                                            } ?>>상품명
-                                            </option>
-                                            <option value="a.order_user_mobile" <?php if ($search_category == "a.order_user_mobile") {
-                                                echo "selected";
-                                            } ?>>예약지휴대폰
-                                            </option>
-                                        </select>
+                        <tr>
+                            <td class="label">검색어</td>
+                            <td class="inbox">
+                                <div class="r_box">
+                                    <select id="" name="search_category" class="input_select" style="width:112px">
+                                        <option value="a.order_no" <?php if ($search_category == "a.order_no") {
+                                            echo "selected";
+                                        } ?>>예약번호
+                                        </option>
+                                        <option value="a.order_user_name" <?php if ($search_category == "a.order_user_name") {
+                                            echo "selected";
+                                        } ?>>예약자명
+                                        </option>
+                                        <option value="a.manager_name" <?php if ($search_category == "a.manager_name") {
+                                            echo "selected";
+                                        } ?>>담당자명
+                                        </option>
+                                        <option value="a.product_name" <?php if ($search_category == "a.product_name") {
+                                            echo "selected";
+                                        } ?>>상품명
+                                        </option>
+                                        <option value="a.order_user_mobile" <?php if ($search_category == "a.order_user_mobile") {
+                                            echo "selected";
+                                        } ?>>예약지휴대폰
+                                        </option>
+                                    </select>
 
-                                        <input type="text" id="" name="search_name" value="<?= $search_name ?>"
-                                            class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
+                                    <input type="text" id="" name="search_name" value="<?= $search_name ?>"
+                                           class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
 
-                                        <a href="javascript:search_it()" class="btn btn-default"><span
-                                                    class="glyphicon glyphicon-search"></span> <span
-                                                    class="txt">검색하기</span></a>
-                                    </div>
-                                </td>
-                            </tr>
+                                    <a href="javascript:search_it()" class="btn btn-default"><span
+                                                class="glyphicon glyphicon-search"></span> <span
+                                                class="txt">검색하기</span></a>
+                                </div>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td class="label">엑셀받기</td>
-                                <td class="inbox">
-                                    <a href="javascript:get_excel()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="label">엑셀받기</td>
+                            <td class="inbox">
+                                <a href="javascript:get_excel()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
-                </form-->
+                </form>
 
                 <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
