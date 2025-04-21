@@ -239,6 +239,8 @@
                                                 class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                                 </td>
                             </tr>
+                        </tbody>
+                    </table>
                 </form>
 
                 <form name="search" id="search">
