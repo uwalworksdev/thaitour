@@ -22,7 +22,7 @@
             </header><!-- // headerContainer -->
 
             <div id="contents">
-                <form name="search" id="search">
+                <!-- <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
                             <col width="150">
@@ -244,6 +244,128 @@
 
                         </tbody>
                     </table>
+                </form> -->
+
+                <form name="search" id="search">
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
+                        <colgroup>
+                            <col width="100">
+                            <col width="*">
+                            <col width="100">
+                            <col width="*">
+                        </colgroup>
+
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold;">상품명</td>
+                                <td>
+                                   <input type="text" name="product_name" value="" placeholder="상품명">
+                                </td>
+                                <td style="font-weight: bold;">결제수단</td>
+                                <td>
+                                    <select name="payment_chker" class="state_chker" style="width: 100%;">
+                                        <option value="">결제수단 전체</option>
+                                        <?php
+                                            foreach ($_pg_Method as $key => $value) {
+                                        ?>
+                                            <option value="<?= $key ?>"><?= $value ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">검색기간</td>
+                                <td class="inbox">
+                                    <div style="display: flex; gap: 5px;">
+                                        <select name="date_chker" id="date_chker" class="select_02">
+                                            <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
+                                                예약일
+                                            </option>
+                                            <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
+                                                선금결제일
+                                            </option>
+                                            <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
+                                                잔금결제일
+                                            </option>
+                                            <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
+                                                취소일
+                                            </option>
+                                        </select>&nbsp;
+                                        <div style="display: flex; gap: 5px; align-items: center;">
+                                            <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" class="date_form" placeholder="날짜 선택">
+                                            <span>~</span>
+                                            <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" class="date_form" placeholder="날짜 선택">
+                                        </div>
+
+                                        <div id="time_layer"
+                                            style="display: <?= (trim($s_time) == "" && trim($e_time) == "" ? "none" : "flex") ?>; align-items: center; gap: 5px;">
+                                            <select id="s_time" name="s_time">
+                                                <option value="">선택</option>
+                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
+                                                    <option value="<?= $t ?>" <?= ((int)($s_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
+                                                <?php } ?>
+                                            </select> ~
+                                            <select id="e_time" name="e_time">
+                                                <option value="">선택</option>
+                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
+                                                    <option value="<?= $t ?>" <?= ((int)($e_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td style="font-weight: bold;">검색어</td>
+                                <td class="inbox">
+                                    <div class="r_box">
+                                        <span>입점업체 미사용</span>
+                                        <a href="#" style="color: #48A1E5; text-decoration: underline;  text-underline-offset: 3px;">신청하기</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <a href="javascript:search_it()" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span> 
+                            <span class="txt">검색하기</span>
+                        </a>
+                    </div>
+
+                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+
+                    <div class="settlement_wrap">
+                        <h4>전체 정산대기 통계</h4>
+                        <div class="table_accounts">
+                            <dl>
+                                <dt>판매금액</dt>
+                                <dd>0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>지출금액</dt>
+                                <dd class="t_green">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>총수익</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>판매갯수</dt>
+                                <dd class="t_sky">0원</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: end; margin-top: 10px;">
+                        <a href="javascript:get_excel()" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
+                        <span class="txt">다운로드</span></a>
+                    </div>
+
+                    <div style="border: 1px dashed black; margin: 20px 0;"></div>
+
                 </form>
 
                 <script>
@@ -304,9 +426,9 @@
                 <script>
                     function search_it() {
                         var frm = document.search;
-                        if (frm.search_name.value == "검색어 입력") {
-                            frm.search_name.value = "";
-                        }
+                        // if (frm.search_name.value == "검색어 입력") {
+                        //     frm.search_name.value = "";
+                        // }
                         frm.submit();
                     }
 

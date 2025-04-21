@@ -304,8 +304,7 @@
                                 <td class="inbox">
                                     <div class="r_box">
                                         <span>입점업체 미사용</span>
-                                        <a href="#" style="color: #48A1E5; text-decoration: underline;">신청하기</a>
-                                        <!-- <a href="javascript:get_excel()" class="btn btn-default"> <span class="txt">다운로드</span></a> -->
+                                        <a href="#" style="color: #48A1E5; text-decoration: underline;  text-underline-offset: 3px;">신청하기</a>
                                     </div>
                                 </td>
                             </tr>
@@ -344,7 +343,8 @@
                     </div>
 
                     <div style="display: flex; justify-content: end; margin-top: 10px;">
-                        <a href="javascript:get_excel()" class="btn btn-default"> <span class="txt">다운로드</span></a>
+                        <a href="javascript:get_excel()" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
+                        <span class="txt">다운로드</span></a>
                     </div>
 
                     <div style="border: 1px dashed black; margin: 20px 0;"></div>
@@ -409,9 +409,9 @@
                 <script>
                     function search_it() {
                         var frm = document.search;
-                        if (frm.search_name.value == "검색어 입력") {
-                            frm.search_name.value = "";
-                        }
+                        // if (frm.search_name.value == "검색어 입력") {
+                        //     frm.search_name.value = "";
+                        // }
                         frm.submit();
                     }
 
