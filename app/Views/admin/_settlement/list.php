@@ -32,7 +32,7 @@
                         </colgroup>
 
                         <tbody>
-                            <!-- <tr>
+                            <tr>
                                 <td class="label">카테고리</td>
                                 <td>
                                     <select id="product_code_1" name="product_code_1" class="input_select"
@@ -238,7 +238,7 @@
                                     <a href="javascript:get_excel()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                                 </td>
-                            </tr> -->
+                            </tr>
                             <tr>
                                 <td style="font-weight: bold;">상품명</td>
                                 <td>
