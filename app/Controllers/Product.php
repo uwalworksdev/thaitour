@@ -3956,9 +3956,10 @@ class Product extends BaseController
                     "people_adult_cnt" => $adult_cnt,
                     "people_kids_cnt" => $child_cnt,
                     "inital_price" => $inital_price,
-                    "order_price" => $order_price,
-				    "real_price_bath" => $real_price_bath,
-				    "real_price_won" => $real_price_won,
+                    "order_price" => $order_price, 
+					"order_price_bath" => (int)($order_price / $baht_thai),
+				    "real_price_bath"   =>  (int)($order_price / $baht_thai),
+				    "real_price_won"    =>  $order_price;					
                     "order_date" => Time::now('Asia/Seoul', 'en_US'),
                     "departure_area" => $departure_area,
                     "destination_area" => $destination_area,

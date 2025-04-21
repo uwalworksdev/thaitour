@@ -176,8 +176,13 @@ class SpaController extends BaseController
                 $group_no  = ""; 
             }
 
+            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            $data['real_price_won']    =  $data['order_price'];
+
             $real_price_bath   =  (int)($postData['lastPrice'] / $baht_thai);
             $real_price_won    =  $postData['lastPrice'];
+            $order_price_won   =  $postData['lastPrice'];
+			
             $order_price_bath  =  (int)($postData['lastPrice'] / $baht_thai);
 
 			$orderData = [
@@ -203,8 +208,8 @@ class SpaController extends BaseController
                 'inital_price'                  => $postData['totalPrice'] ?? 0,
                 'order_price'                   => $postData['lastPrice'] ?? 0,
 				'order_price_bath'              => $order_price_bath,	
-                'real_price_bath'               => $real_price_bath,
-                'real_price_won'                => $real_price_won,
+                'real_price_bath'               => $order_price_bath,
+                'real_price_won'                => $order_price_won,
                 'order_memo'                    => $postData['order_memo'] ?? '',
                 'order_r_date'                  => Time::now('Asia/Seoul', 'en_US'),
                 'order_date'                    => Time::now('Asia/Seoul', 'en_US'),
