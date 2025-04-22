@@ -212,6 +212,11 @@ class MyPage extends BaseController
         return view('mypage/consultation');
     }
 
+    public function alarm()
+    {
+        return view('mypage/alarm');
+    }
+
     public function qnaDel()
     {
 

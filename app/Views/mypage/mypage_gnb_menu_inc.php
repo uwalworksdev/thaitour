@@ -16,6 +16,9 @@
         예약내역
     </button>
     <ul class="gnb_menu_list flex">
+        <li class="<?= $tab_10 ?>">
+            <div class="menu_level_1 flex_b_c"><a href="../mypage/alarm">알림</a></div>
+        </li>
         <li class="<?= $tab_1 ?>">
             <div class="menu_level_1 flex_b_c"><a href="../mypage/booklist">예약내역</a></div>
         </li>
