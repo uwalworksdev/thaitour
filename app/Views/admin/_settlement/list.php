@@ -355,7 +355,7 @@
                             </dl>
                             <dl>
                                 <dt>판매갯수</dt>
-                                <dd class="t_sky">0원</dd>
+                                <dd class="t_sky"><?=$fresult4['order_cnt']?>원</dd>
                             </dl>
                         </div>
                     </div>
