@@ -999,7 +999,8 @@ $routes->get('/pdf/quotation', 'PdfController::generateQuotation');
 $routes->group("travel-tips", static function ($routes) {
     $routes->get("/", 'Point::TravelTips'); 
     $routes->get("hot-place", 'Point::HotPlace'); 
-    $routes->get("travel-info", 'Point::TravelInfo'); 
+    $routes->get("travel-info", 'Point::TravelInfo');
+    $routes->get("travel-info/view", 'Point::TravelView'); 
     $routes->get("infographic", 'Point::Infographic'); 
     
 });

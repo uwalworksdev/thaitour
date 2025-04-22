@@ -107,5 +107,14 @@ class Point extends BaseController
         return view('travel/infographic', $data);
     }
 
+    public function TravelView() {
+        $bbs_idx = $_GET['bbs_idx'];
+
+        $travel = $this->bbsModel->View($bbs_idx);
+
+        return view('travel/travel_view', [
+            'travel' => $travel
+        ]);
+    }
     
 }

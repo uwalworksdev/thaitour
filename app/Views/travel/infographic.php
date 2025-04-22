@@ -106,12 +106,12 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('.list_tab_head .tab').click(function() {
-                $('.list_tab_head .tab').removeClass('on');
-                $(this).addClass('on');
-            });
-        });
+        // $(document).ready(function() {
+        //     $('.list_tab_head .tab').click(function() {
+        //         $('.list_tab_head .tab').removeClass('on');
+        //         $(this).addClass('on');
+        //     });
+        // });
     </script>
 
     <?php $this->endSection(); ?>

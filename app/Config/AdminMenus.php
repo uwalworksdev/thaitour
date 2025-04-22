@@ -228,13 +228,13 @@ class AdminMenus extends BaseConfig
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
-                    'name' => '타임세일 관리',
+                    'name' => '여행정보 관리',
                     'code' => 'D6',
                     'url' => ['/AdmMaster/_bbs/board_list?code=tour'],
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
-                    'name' => '타임세일 관리',
+                    'name' => '인포그래픽 관리',
                     'code' => 'D6',
                     'url' => ['/AdmMaster/_bbs/board_list?code=infographics'],
                     'alias' => ['BoardController::index', 'BoardController::board_write']

@@ -189,7 +189,7 @@
                                     $img_tour = "/data/bbs/" . $tour["ufile1"];
                                 }
                         ?>
-                            <a href="#!" class="item">
+                            <a href="/travel-tips/travel-info/view?code=<?=$tour["code"]?>&bbs_idx=<?=$tour["bbs_idx"]?>" class="item">
                                 <img src="<?=$img_tour?>" alt="<?=$tour["rfile1"]?>">
                                 <div class="bx_text">
                                     <span class="head_text"><?=$tour["code_name"]?></span>
