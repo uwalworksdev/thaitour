@@ -102,9 +102,225 @@
 
 		<script>
 			// 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
-			$(document).on('click', '#btn_print', function () {
-				window.print();
-			});
+			// $(document).on('click', '#btn_print', function () {
+			// 	window.print();
+			// });
+
+            $(document).on('click', '#btn_print', function () {
+                const content = document.querySelector('.estimate_popup_content').innerHTML;
+
+                let iframe = document.createElement('iframe');
+                iframe.name = "printFrame";
+                iframe.style.position = 'absolute';
+                iframe.style.top = '-9999px';
+                document.body.appendChild(iframe);
+
+                let frameDoc = iframe.contentWindow || iframe.contentDocument;
+                if (frameDoc.document) frameDoc = frameDoc.document;
+
+                frameDoc.open();
+                frameDoc.write(`
+                    <html>
+                    <head>
+                        <title>여행 견적서</title>
+                        <link href="css/mypage/mypage_new.css" rel="stylesheet" />
+                        <style>
+                            @media print {
+                                body {
+                                    background: white !important;
+                                    margin: 0;
+                                    padding: 0;
+                                    color: #000;
+                                }
+
+                                .estimate_popup_content {
+                                    box-shadow: none;
+                                    width: 100%;
+                                    padding: 0;
+                                }
+
+                                /* 불필요한 요소 숨기기 */
+                                .btns_download,
+                                .send_mail,
+                                .btn_close_popup,
+                                nav,
+                                footer {
+                                    display: none !important;
+                                }
+
+                                /* a 태그 자동 링크 표시 방지 */
+                                a[href]:after {
+                                    content: "" !important;
+                                }
+
+                                /* 이미지 max-width 제한 해제 */
+                                img {
+                                    max-width: none !important;
+                                }
+
+                                h1 {
+                                    text-align: center;
+                                    font-size: 24px;
+                                    font-weight: bold;
+                                    margin-bottom: 30px
+                                }
+                                
+                                .sec1 {
+                                    display: flex;
+                                    /* gap: 30px; */
+                                    justify-content: space-between;
+                                }
+                                
+                                .sec1 .left {
+                                    position: relative;
+                                    width: 294px;
+                                }
+                                
+                                .sec1 .left .img_stem {
+                                    position: absolute;
+                                    top: 12px;
+                                    right: 5px;
+                                    width: 60px;
+                                }
+                                
+                                .sec1 .ttl {
+                                    font-size: 16px;
+                                    margin-bottom: 8px;
+                                    color: #353535;
+                                    font-weight: 600;
+                                }
+                                
+                                .sec1 .left>span {
+                                    font-size: 14px;
+                                    color: #757575;
+                                    margin-bottom: 5px;
+                                    display: block;
+                                }
+                                
+                                .sec1 .left .day,
+                                .sec1 .left .name {
+                                    font-size: 14px;
+                                    color: #252525;
+                                    padding: 10px 0;
+                                    border-bottom: 1px solid #999
+                                }
+                                
+                                table {
+                                    border-collapse: collapse;
+                                    width: 100%;
+                                }
+                                
+                                td,
+                                th {
+                                    border: 1px solid #dbdbdb;
+                                    padding: 6px;
+                                    text-align: center;
+                                    font-size: 14px;
+                                    color: #252525
+                                }
+                                
+                                th {
+                                    background-color: #fafafa
+                                }
+                                
+                                tr .total {
+                                    color: rgb(250, 17, 17)
+                                }
+                                
+                                .sec2 {
+                                    margin-top: 40px
+                                }
+                                
+                                .sec2 .time {
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    text-align: left;
+                                    margin-bottom: 4px;
+                                
+                                }
+                                
+                                .sec2 .time+p {
+                                    text-align: left;
+                                    color: #757575;
+                                    font-size: 12px
+                                }
+                                
+                                .sec2 td {
+                                    padding: 12px
+                                }
+                                
+                                .list_desc {
+                                    margin-top: 20px;
+                                    margin-bottom: 34px;
+                                }
+                                
+                                .list_desc p {
+                                    font-size: 13px;
+                                    color: #656565;
+                                    line-height: 1.4;
+                                }
+                                
+                                .send_mail {
+                                    display: flex;
+                                    align-items: center;
+                                    gap : 8px;
+                                    padding-top: 35px;
+                                    border-top: 1px solid #dbdbdb;
+                                }
+                                
+                                .send_mail input {
+                                    flex: 1;
+                                    padding: 0 10px;
+                                    border: 1px solid #dbdbdb;
+                                    outline: none;
+                                    height: 45px;
+                                    font-size: 14px;
+                                    color : #555
+                                }
+                                
+                                .send_mail button {
+                                    font-size: 14px;
+                                    font-weight: 700;
+                                    color: #666;
+                                    border: 1px solid #dbdbdb;
+                                    height: 45px;
+                                    padding: 10px 20px;
+                                }
+                                
+                                .btns_download {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap : 4px;
+                                    margin-top: 35px
+                                }
+                                
+                                .btns_download button {
+                                    font-size: 15px;
+                                    font-weight: 700;
+                                    padding: 16px 36px;
+                                    background-color: #17469e;
+                                    color: #fff;
+                                    border: none;
+                                
+                                }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${content}
+                    </body>
+                    </html>
+                `);
+                frameDoc.close();
+
+                setTimeout(function () {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                    document.body.removeChild(iframe); 
+                }, 500);
+            });
+
 			
 			// PDF 버튼 클릭 시
 			$(document).on('click', '#btn_pdf', function () {
