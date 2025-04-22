@@ -4908,7 +4908,8 @@ class Product extends BaseController
 														   ,phone_thai                 = '". $phone_thai ."'
 														   ,payment_memo               = '". $payment_memo ."'
 														   ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 
-														   ,device_type                = '". $device_type ."'" ;
+														   ,device_type                = '". $device_type ."' 
+														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
 					write_log("INSERT INTO tbl_payment_mst- ". $sql);
 					$result = $db->query($sql);
 			}
@@ -5128,7 +5129,8 @@ class Product extends BaseController
 														   ,phone_thai                 = '". $phone_thai ."'
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
-                                                           ,device_type                = '". $device_type ."'" ;					
+                                                           ,device_type                = '". $device_type ."' 					
+														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
 					write_log("custHotelPaymentOk - ". $sql);
 					$result = $db->query($sql);
 			}
@@ -5348,7 +5350,8 @@ class Product extends BaseController
 														   ,phone_thai                 = '". $phone_thai ."'
 														   ,payment_memo               = '". $payment_memo ."' 
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
-                                                           ,device_type                = '". $device_type ."'" ;					
+                                                           ,device_type                = '". $device_type ."' 					
+														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
 					write_log("tourPaymentOk- ". $sql);
 					$result = $db->query($sql);
 			}

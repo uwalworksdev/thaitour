@@ -544,7 +544,6 @@
                                     <col width="150px"/>
                                     <col width="80px"/>
                                     <col width="100px"/>
-                                    <col width="130px"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
                                     <col width="80px"/>
@@ -559,9 +558,8 @@
 									<th>상품구분</th>
                                     <th>상품명</th>
                                     <th>예약일시</th>
-                                    <th>예약자</th>
-                                    <th>연락처</th>
-                                    <th>이메일</th>
+                                    <th>예약자/아이디</th>
+                                    <th>연락처/이메일</th>
                                     <th>상품금액(원)</th>
                                     <th>상품금액(바트)</th>
                                     <th>결제방법</th>
@@ -611,9 +609,8 @@
                                                     href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row["user_name"] ?></td>
-                                        <td class="tac"><?= $row["user_mobile"] ?> </td>
-                                        <td class="tac"><?= $row["user_email"] ?></td>
+                                        <td class="tac"><?= $row["user_name"] ?><br><?= $row["user_id"] ?></td>
+                                        <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac">
                                             <?php 
                                                 if($row['order_gubun'] == "vehicle"){

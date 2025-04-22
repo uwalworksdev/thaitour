@@ -179,7 +179,8 @@ class CheckoutController extends BaseController
 													   ,phone_thai                 = '". $phone_thai ."'
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
-													   ,device_type                = '". $device_type ."' "; 
+													   ,device_type                = '". $device_type ."' 
+													   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
 				//write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
         }
@@ -308,7 +309,8 @@ class CheckoutController extends BaseController
 													   ,phone_thai                 = '". $phone_thai ."'
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
-													   ,device_type                = '". $device_type ."' "; 
+													   ,device_type                = '". $device_type ."' 
+													   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
 				//write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
         }

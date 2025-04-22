@@ -345,7 +345,7 @@ class SettlementController extends BaseController
                         LEFT JOIN tbl_order_list c  ON c.order_idx   = a.order_idx
 						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
 						where a.is_modify='N' $strSql group by a.order_idx";
-		write_log("total_sql- ". $total_sql);				
+		//write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
