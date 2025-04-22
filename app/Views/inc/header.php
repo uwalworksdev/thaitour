@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/mypage/booklist" class="text-grey">마이페이지<span style="color: red;">(0)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                     <?php else: ?>
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
@@ -107,7 +107,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="/mypage/booklist" class="icon-menu-item">
+                    <a href="/mypage/alarm" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
@@ -275,7 +275,7 @@
                     </li>
                     <li>
                         <?php if (session("member")): ?>
-                            <a href="/mypage/booklist" class="text-grey">마이페이지<span style="color: red;">(0)</span></a>
+                            <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                         <?php else: ?>
                             <a href="/member/join_choice" class="text-grey">회원가입</a>
                         <?php endif; ?>
@@ -497,9 +497,9 @@
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
             <span class="nav-text text-grey">전체메뉴</span>
         </div>
-        <div class="nav-item" onclick="location.href='/mypage/booklist'">
+        <div class="nav-item" onclick="location.href='/mypage/alarm'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
-            <span class="nav-text text-grey">마이페이지<span style="color: red;">(0)</span></span>
+            <span class="nav-text text-grey flex__s">마이페이지<i class="count_like" style="color: red;">(0)</i></span>
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
@@ -532,7 +532,7 @@
 
                 <?php if (session("member")): ?>
                     <li>
-                        <a href="/mypage/booklist" class="text-grey">마이페이지<span style="color: red;">(0)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                     </li>
                 <?php else: ?>
                     <li>
