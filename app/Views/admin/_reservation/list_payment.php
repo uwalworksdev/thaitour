@@ -104,19 +104,18 @@
                         </tr>
                         <tr>
                             <td class="label">결제방법</td>
-<?php foreach ($_pg_Method as $key => $value): ?>
-    <p>
-        <input
-            name="payment_chker[]"
-            class="state_chker"
-            type="checkbox"
-            value="<?= esc($value) ?>"
-            <?= in_array($value, $selected_payments) ? 'checked' : '' ?>
-        >
-        <?= esc($value) ?>
-        &nbsp;&nbsp;
-    </p>
-<?php endforeach; ?>
+                            <td class="inbox">
+
+                                <?php
+                                foreach ($_pg_Method as $key => $value) {
+                                    ?>
+                                    <p>
+                                        <input name="payment_chker[]" class="state_chker" type="checkbox"
+                                               value="<?= $_pg_Method[$key] ?>" > <?= $value ?>
+                                        &nbsp;&nbsp;
+                                    </p>
+                                <?php } ?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">예약상품상태</td>
