@@ -132,22 +132,7 @@ class ReservationController extends BaseController
                 $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
             }
         }
-        //$strSql = $strSql . " and a.order_status != 'D' ";
 
-/*
-        $total_sql = "	select a.product_name as product_name_new  
-		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
-						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
-						     , AES_DECRYPT(UNHEX(a.manager_name),      '$private_key') AS man_name
-						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
-						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
-                             , a.*
-                             , count(c.order_idx) as cnt_number_person
-						from tbl_order_mst a 
-						left join tbl_product_mst b on a.product_idx = b.product_idx
-                        left join tbl_order_list c on c.order_idx = a.order_idx
-						where a.is_modify='N' $strSql group by a.order_idx";
-*/						
          $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.payment_user_name),   'gkdlghwn!@12') AS user_name
 						     , AES_DECRYPT(UNHEX(a.payment_user_mobile), 'gkdlghwn!@12') AS user_mobile
@@ -186,22 +171,6 @@ class ReservationController extends BaseController
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
 
-        /*
-		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
-						 , AES_DECRYPT(UNHEX('{$result['order_user_mobile']}'), '$private_key') order_user_mobile
-						 , AES_DECRYPT(UNHEX('{$result['manager_name']}'),      '$private_key') manager_name
-						 , AES_DECRYPT(UNHEX('{$result['manager_phone']}'),     '$private_key') manager_phone
-						 , AES_DECRYPT(UNHEX('{$result['manager_email']}'),     '$private_key') manager_email ";
-
-		$res_d = $this->connect->query($sql_d);
-		$row_d = $res_d->getResultArray();
-
-		$result['order_user_name']   = $row_d['order_user_name'];
-		$result['order_user_mobile'] = $row_d['order_user_mobile'];
-		$result['manager_name']      = $row_d['manager_name'];
-		$result['manager_phone']     = $row_d['manager_phone'];
-		$result['manager_email']     = $row_d['manager_email'];
-        */
         $_pg_Method = getPgMethods();
         $_deli_type = get_deli_type();
         $s_time = '';
