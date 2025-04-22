@@ -336,7 +336,7 @@
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
                     <?php 
 					   $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
-                       foreach ($result4 as $row4) {
+                       foreach ($fresult4 as $row4) {
 						        if($row4['status_group'] == "예약접수") $tot_price1 = $row4['total_amount'];	
 						        if($row4['status_group'] == "예약확인") $tot_price2 = $row4['total_amount'];	
 						        if($row4['status_group'] == "결제완료") $tot_price3 = $row4['total_amount'];	
