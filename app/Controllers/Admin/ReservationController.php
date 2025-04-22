@@ -77,7 +77,7 @@ class ReservationController extends BaseController
 
         if (sizeof($payment_chker) > 0) {
 
-            $strSql = $strSql . " and a.deposit_method in (";
+            $strSql = $strSql . " and a.payment_method in (";
             $_tmp_cnt = 0;
             foreach ($payment_chker as $vals) {
                 if ($_tmp_cnt > 0) {
