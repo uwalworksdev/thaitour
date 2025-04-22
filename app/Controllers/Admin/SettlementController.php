@@ -306,9 +306,9 @@ class SettlementController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if ($product_code_1) $strSql = $strSql . " and b.product_code_1 = '$product_code_1' ";
-        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like '%|$product_code_2%'";
-        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like '%|$product_code_3%'";
+        if ($product_code_1) $strSql = $strSql . " and a.product_code_1 = '$product_code_1' ";
+        if ($product_code_2) $strSql = $strSql . " and a.product_code_list like '%|$product_code_2%'";
+        if ($product_code_3) $strSql = $strSql . " and a.product_code_list like '%|$product_code_3%'";
 
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
@@ -330,7 +330,7 @@ class SettlementController extends BaseController
         }
         $strSql = $strSql . " and a.order_status NOT IN ('B', 'D') ";
 
-        $total_sql = "	select a.product_name as product_name_new  
+        $total_sql = "	SELECT a.product_name AS product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
 						     , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
@@ -338,10 +338,12 @@ class SettlementController extends BaseController
 						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
 						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
                              , a.*
-                             , count(c.order_idx) as cnt_number_person
-						from tbl_order_mst a 
-						left join tbl_product_mst b on a.product_idx = b.product_idx
-                        left join tbl_order_list c on c.order_idx = a.order_idx
+		                     , d.user_id  
+                             , COUNT(c.order_idx) AS cnt_number_person
+						FROM tbl_order_mst a 
+						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                        LEFT JOIN tbl_order_list c  ON c.order_idx   = a.order_idx
+						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
 						where a.is_modify='N' $strSql group by a.order_idx";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
