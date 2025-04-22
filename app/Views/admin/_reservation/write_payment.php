@@ -53,7 +53,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_reservation/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="/AdmMaster/_reservation/list_payment/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
