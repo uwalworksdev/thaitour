@@ -79,7 +79,7 @@ function handleReplySubmit(e, idx, r_idx) {
     frmData.append("r_idx", r_idx);
     frmData.append("r_level", r_level);
     frmData.append("r_content", comment);
-    frmData.append("r_code", "contact");
+    frmData.append("r_code", r_code);
     
     $.ajax({
         url: "/comment/cmtRep",
