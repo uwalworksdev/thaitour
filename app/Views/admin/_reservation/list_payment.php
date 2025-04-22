@@ -567,8 +567,6 @@
                                     <col width="80px"/>
                                     <col width="150px"/>
                                     <col width="150px"/>
-                                    <col width="150px"/>
-                                    
                                     <col width="100px"/>
                                     <col width="100px"/>
                                     <col width="120px"/>
@@ -582,9 +580,8 @@
                                     <th>현황</th>									
                                     <th>상품명</th>
                                     <th>예약일시</th>
-                                    <th>예약자</th>
-                                    <th>연락처</th>
-                                    <th>이메일</th>
+                                    <th>예약자/아이디</th>
+                                    <th>연락처/이메일</th>
                                     <th>결제금액(원)</th>
 									<th>결제금액(바트)</th>
                                     <th>결제방법</th>
@@ -632,9 +629,8 @@
 												</a>
 										</td>
                                         <td class="tac"><?= $row["payment_date"] ?></td>
-                                        <td class="tac"><?= $row['user_name'] ?></td>
-                                        <td class="tac"><?= $row["user_mobile"] ?></td>
-                                        <td class="tac"><?= $row["user_email"] ?></td>
+                                        <td class="tac"><?= $row['user_name'] ?><br><?= $row['user_id'] ?></td>
+                                        <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
 										<td class="tac"><?= number_format((int)($row["payment_tot"]/$row['baht_thai'])) ?></td>
                                         <td class="tac"><?= $row["payment_method"] ?></td>
