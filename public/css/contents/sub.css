@@ -6750,7 +6750,7 @@ iframe::-webkit-scrollbar {
 
 .area-tooltip>a {
     cursor: pointer;
-    color: #183153;
+    color: #183153 !important;
     background: #f0f1f3;
     border-radius: 10px;
     padding: 3px 10px;
