@@ -58,7 +58,7 @@
                     <?php foreach ($titles as $key => $val):
                         $name = BBS_LIST_CONFIG[$code]['names'][$key];
                         ?>
-                        <td class="pd10">
+                        <td class="pd10" style="text-align: left">
                             <?= view("admin/_board/list_field", ['info' => $row, 'key' => $key]) ?>
                         </td>
                     <?php endforeach; ?>
