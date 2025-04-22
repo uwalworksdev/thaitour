@@ -183,13 +183,14 @@
                                                                                 	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
 																					<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="<?= $spa['spa_onum'] ?>">
 																					<input type="hidden" name="spas_explain[<?=$i?>][]" class="spas_explain" value="<?= $spa['spas_explain'] ?>">
+																					<input type="hidden" name="is_explain[<?=$i?>][]" class="hidden_is_explain" value="<?= $spa['is_explain'] ?>">
 
 																					<div style="display: flex; gap: 5px; align-items: center;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
 																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
-																						<input type="checkbox" name="is_explain[<?=$i?>][]" onchange="InitPopup(this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
+																						<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
 																						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 																					</div>
                                                                                 </td>
@@ -442,13 +443,14 @@
                                                                             <input type="hidden" name="spas_idx[0][]" class="spas_idx" value="">
 																			<input type="hidden" name="spa_onum[0][]" class="spa_onum" value="">
 																			<input type="hidden" name="spas_explain[0][]" class="spas_explain" value="">
+																			<input type="hidden" name="is_explain[0][]" class="hidden_is_explain" value="">
 
 																			<div style="display: flex; gap: 5px; align-items: center;">
 																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				<input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
-																				<input type="checkbox" name="is_explain[0][]" onchange="InitPopup(this);" class="is_explain" value="Y">
+																				<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y">
 																				<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 																			</div>
                                                                         </td>
@@ -649,9 +651,12 @@
 		const checkbox = $(el).closest("div").find(".is_explain");
 
 		if(checkbox.is(":checked")){
+			$(el).closest("td").find(".hidden_is_explain").val('Y');
 			$("#popupDesc_").data("element", $(el));
 			$("#popupDesc_").find(".text_desc").val(content);
 			TogglePopup();
+		}else{
+			$(el).closest("td").find(".hidden_is_explain").val('');
 		}
 	}
 
@@ -671,8 +676,11 @@
 		}
 
 		if(!checkbox.is(":checked")){
+			$(this).closest("td").find(".hidden_is_explain").val('Y');
 			$("#popupDesc_").data("element", $(this));
 			TogglePopup();
+		}else{
+			$(this).closest("td").find(".hidden_is_explain").val('');
 		}
 	});
 
@@ -829,13 +837,14 @@
 												<input type="hidden" name="spa_onum[${tableCount}][]" class="spa_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
 												<input type="hidden" name="spas_explain[${tableCount}][]" class="spas_explain" value="">
+												<input type="hidden" name="is_explain[${tableCount}][]" class="hidden_is_explain" value="">
 
 												<div class="flex" style="gap: 5px; align-items: center;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 													<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
 													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />	
-													<input type="checkbox" name="is_explain[${tableCount}][]" onchange="InitPopup(this);" class="is_explain" value="Y">
+													<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y">
 													<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>			
 												</div>
 											</td>
@@ -1058,13 +1067,14 @@
 					<input type="hidden" name="spas_idx[${tableListIndex}][]" class="spas_idx" value="">
 					<input type="hidden" name="spa_onum[${tableListIndex}][]" class="spa_onum" value="">
 					<input type="hidden" name="spas_explain[${tableListIndex}][]" class="spas_explain" value="">
+					<input type="hidden" name="is_explain[${tableListIndex}][]" class="hidden_is_explain" value="">
 
 					<div style="display: flex; gap: 5px; align-items: center;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
-						<input type="checkbox" name="is_explain[${tableListIndex}][]" class="is_explain" onchange="InitPopup(this);" value="Y">
+						<input type="checkbox" class="is_explain" onchange="InitPopup(this);" value="Y">
 						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 					</div>
 				</td>
@@ -1110,13 +1120,14 @@
 					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
 					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
 					<input type="hidden" name="spas_explain[${infoIdx}][]" class="spas_explain" value="">
+					<input type="hidden" name="is_explain[${infoIdx}][]" class="hidden_is_explain" value="">
 
 					<div style="display: flex; gap: 5px; align-items: center;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
-						<input type="checkbox" name="is_explain[${infoIdx}][]" class="is_explain" onchange="InitPopup(this);" value="Y">
+						<input type="checkbox" class="is_explain" onchange="InitPopup(this);" value="Y">
 						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 					</div>
 				</td>
