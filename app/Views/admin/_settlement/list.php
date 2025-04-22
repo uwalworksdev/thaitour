@@ -542,8 +542,8 @@
 									<col width="100px"/>
                                     <col width="*"/>
                                     <col width="150px"/>
-                                    <col width="80px"/>
-                                    <col width="100px"/>
+                                    <col width="120px"/>
+                                    <col width="120px"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
                                     <col width="80px"/>
