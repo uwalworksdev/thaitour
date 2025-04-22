@@ -216,9 +216,9 @@
                                             echo "selected";
                                         } ?>>상품명
                                         </option>
-                                        <option value="a.order_user_mobile" <?php if ($search_category == "a.order_user_mobile") {
+                                        <option value="a.payment_user_mobile" <?php if ($search_category == "a.payment_user_mobile") {
                                             echo "selected";
-                                        } ?>>예약지휴대폰
+                                        } ?>>예약자휴대폰
                                         </option>
                                     </select>
 
