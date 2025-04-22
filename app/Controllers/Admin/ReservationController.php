@@ -167,26 +167,29 @@ class ReservationController extends BaseController
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
-        $fsql = "SELECT 
-					CASE 
-						WHEN payment_status IS NULL OR payment_status = '' OR payment_status = 'W' THEN '예약접수'
-						WHEN payment_status = 'X' THEN '예약확인'
-						WHEN payment_status = 'Y' THEN '결제완료'
-						WHEN payment_status IN ('Z','G','R','J') THEN '예약확정'
-						WHEN payment_status = 'C' THEN '예약취소'
-						WHEN payment_status = 'N' THEN '예약불가'
-						WHEN payment_status = 'E' THEN '이용완료'
-						ELSE '기타'
-					END AS status_group,
-					SUM(payment_tot) AS total_amount
-				FROM 
-					tbl_payment_mst
-				WHERE 
-					is_modify = 'N'  -- 조건 필요 시
-				GROUP BY 
-					status_group
-				ORDER BY 
-					FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료') ";
+        $fsql = "SELECT a.*,
+						CASE 
+							WHEN a.payment_status IS NULL OR a.payment_status = '' OR a.payment_status = 'W' THEN '예약접수'
+							WHEN a.payment_status = 'X' THEN '예약확인'
+							WHEN a.payment_status = 'Y' THEN '결제완료'
+							WHEN a.payment_status IN ('Z','G','R','J') THEN '예약확정'
+							WHEN a.payment_status = 'C' THEN '예약취소'
+							WHEN a.payment_status = 'N' THEN '예약불가'
+							WHEN a.payment_status = 'E' THEN '이용완료'
+							ELSE '기타'
+						END AS status_group
+					FROM 
+						tbl_payment_mst a
+					LEFT JOIN 
+						tbl_order_mst b ON FIND_IN_SET(b.order_no, REPLACE(a.order_no, ' ', '')) > 0 
+					LEFT JOIN 
+						tbl_order_list c ON c.order_idx = a.payment_idx
+					WHERE 
+						a.is_modify = 'N' AND a.payment_status != 'G' $strSql
+					GROUP BY 
+						a.payment_idx ";
+        $fresult4 = $this->connect->query($fsql);
+        $fresult4 = $fresult4->getResultArray();
 
 
         $nPage = ceil($nTotalCount / $g_list_rows);
