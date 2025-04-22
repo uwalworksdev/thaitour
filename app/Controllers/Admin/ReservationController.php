@@ -192,6 +192,7 @@ class ReservationController extends BaseController
 					ORDER BY 
 						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
+		write_log("sum_sql- ". $fsql);				
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();
 
