@@ -107,11 +107,12 @@
                             <td class="inbox">
 
                                 <?php
+								$selected_payments = $payment_chker;
                                 foreach ($_pg_Method as $key => $value) {
                                     ?>
                                     <p>
                                         <input name="payment_chker[]" class="state_chker" type="checkbox"
-                                               value="<?= $key ?>" > <?= $value ?>
+                                               value="<?= $_pg_Method[$key] ?>" <?= in_array($value, $selected_payments) ? 'checked' : '' ?> > <?= $value ?>
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
@@ -202,7 +203,7 @@
                             <td class="inbox">
                                 <div class="r_box">
                                     <select id="" name="search_category" class="input_select" style="width:112px">
-                                        <option value="a.order_no" <?php if ($search_category == "a.order_no") {
+                                        <option value="a.payment_no" <?php if ($search_category == "a.payment_no") {
                                             echo "selected";
                                         } ?>>예약번호
                                         </option>
