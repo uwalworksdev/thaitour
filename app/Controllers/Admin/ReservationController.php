@@ -331,7 +331,7 @@ class ReservationController extends BaseController
         }
         $strSql = $strSql . " AND a.order_status NOT IN ('B', 'D') ";
 
-        $total_sql = "	SELECT a.product_name AS product_name_new 
+        $total_sql = "	SELECT a.product_name AS product_name_new  
 		                     , d.user_id  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
