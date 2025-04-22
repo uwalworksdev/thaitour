@@ -633,7 +633,7 @@
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?=number_format($row["order_price"])?></td>
                                         <td class="tac"><?=number_format($row["order_price_bath"])?></td>
-                                        <td class="tac">카드결제</td>
+                                        <td class="tac"></td>
                                         <td>
                                             <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
