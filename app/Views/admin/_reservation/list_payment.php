@@ -203,7 +203,7 @@
                             <td class="inbox">
                                 <div class="r_box">
                                     <select id="" name="search_category" class="input_select" style="width:112px">
-                                        <option value="a.order_no" <?php if ($search_category == "a.order_no") {
+                                        <option value="a.order_no" <?php if ($search_category == "a.payment_no") {
                                             echo "selected";
                                         } ?>>예약번호
                                         </option>
