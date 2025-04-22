@@ -234,13 +234,13 @@
                             </td>
                         </tr>
 
-                        <tr>
+                        <!--tr>
                             <td class="label">엑셀받기</td>
                             <td class="inbox">
                                 <a href="javascript:get_excel()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                             </td>
-                        </tr>
+                        </tr-->
 
                         </tbody>
                     </table>
