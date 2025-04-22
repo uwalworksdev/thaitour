@@ -729,6 +729,10 @@
         });
     }
 
+    function nl2br(str) {
+        return str.replace(/\n/g, "<br>");
+    }
+
     function renderData(data) {
         let html = ``;
         for (let i = 0; i < data.length; i++) {
@@ -738,8 +742,20 @@
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
                     <td>
                         <p style="margin-bottom: 5px; font-weight: bold;">${item_.info_name}</p>
-                        ${item_.spas_subject}
-                    </td>
+                        ${item_.spas_subject}`;
+            if(item_.is_explain == 'Y') {
+                html += `<div class="area-tooltip">
+                            <a onclick="$('#tipcon_${item_.spas_idx}').toggle();">설명</a>
+                            <div class="layer_info" id="tipcon_${item_.spas_idx}" style="display: none;">
+                                <a onclick="$('#tipcon_${item_.spas_idx}').hide();" class="btn_close">
+                                    <span class="btn_close_s"></span>
+                                </a>                
+                                <p>${nl2br(item_.spas_explain)}</p>
+                            </div>
+                        </div>`;
+            }
+            html +=        
+                    `</td>
                     <td>
                         <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
                             <div class="price" style="display: flex; justify-content: start; align-items: start; flex-direction: column; gap: 5px;">
