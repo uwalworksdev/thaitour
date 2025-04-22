@@ -593,7 +593,7 @@
                                     <?php
                                 }
 									
-								$_deli_type = get_deli_type();
+								$_deli_type = get_payment_type();
                                 foreach ($result as $row) {
 									
 									     $status = $_deli_type[$row['payment_status']];
@@ -625,7 +625,7 @@
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac"><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
-										<td class="tac"> 1,120,000 </td>
+										<td class="tac"><?= number_format((int)($row["payment_tot"]/) ?></td>
                                         <td class="tac"><?= $row["payment_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
