@@ -2599,7 +2599,7 @@ class TourRegistController extends BaseController
                 'spas_idx'          => $row['spas_idx'],
                 'spas_subject'      => $row['spas_subject'],
                 'spas_subject_eng'  => $row['spas_subject_eng'],
-                'is_explaini'        => $row['is_explain'],
+                'is_explain'        => $row['is_explain'],
                 'spas_explain'      => $row['spas_explain'],
                 'spas_price'        => $row['spas_price'],
                 'spas_price_kids'   => $row['spas_price_kids'],
