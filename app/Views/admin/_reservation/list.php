@@ -227,9 +227,9 @@
                                     <input type="text" id="" name="search_name" value="<?= $search_name ?>"
                                            class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
 
-                                    <a href="javascript:search_it()" class="btn btn-default"><span
+                                    <!--a href="javascript:search_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-search"></span> <span
-                                                class="txt">검색하기</span></a>
+                                                class="txt">검색하기</span></a-->
                                 </div>
                             </td>
                         </tr>
