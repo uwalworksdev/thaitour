@@ -343,15 +343,15 @@
                         <div class="table_accounts">
                             <dl>
                                 <dt>판매금액</dt>
-                                <dd>0원</dd>
+                                <dd><?=number_format($fresult4['price_tot'])?>원</dd>
                             </dl>
                             <dl>
                                 <dt>지출금액</dt>
-                                <dd class="t_green">0원</dd>
+                                <dd class="t_green"><?=number_format($fresult4['exp_amt'])?>원</dd>
                             </dl>
                             <dl>
                                 <dt>총수익</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($fresult4['price_tot'] - $fresult4['exp_amt'])?>원</dd>
                             </dl>
                             <dl>
                                 <dt>판매갯수</dt>

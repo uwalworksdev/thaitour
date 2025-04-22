@@ -369,7 +369,7 @@ class SettlementController extends BaseController
 						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
 						WHERE a.is_modify='N'        AND a.order_status = 'Y' $strSql ";
         $fresult4 = $this->connect->query($fsql);
-        $fresult4 = $fresult4->getResultArray();
+        $row4     = $fresult4->getRowArray();  // 1개의 row 가져옴
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") {
@@ -422,7 +422,7 @@ class SettlementController extends BaseController
             'fresult'         => $fresult,
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
-            'fresult4'        => $fresult4,
+            'fresult4'        => $row4,
             'pg'              => $pg,
             'nPage'           => $nPage,
             'search_category' => $search_category,
