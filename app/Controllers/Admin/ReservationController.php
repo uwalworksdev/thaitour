@@ -120,7 +120,7 @@ class ReservationController extends BaseController
 
         if ($s_date != "" && $e_date != "") {
             if ($date_chker == "order_r_date")   $strSql = $strSql . " AND (DATE(a.order_r_date) >= '" .   $s_date . "' AND DATE(a.order_r_date) <= '".     $e_date . "')";
-            if ($date_chker == "pay_date")       $strSql = $strSql . " AND (DATE(a.pay_date) >= '" .       $s_date . "' AND DATE(a.pay_date) <= '".         $e_date . "')";
+            if ($date_chker == "paydate")        $strSql = $strSql . " AND (DATE(a.paydate) >= '" .        $s_date . "' AND DATE(a.paydate) <= '".         $e_date . "')";
             if ($date_chker == "payment_c_date") $strSql = $strSql . " AND (DATE(a.payment_c_date) >= '" . $s_date . "' AND DATE(a.a.payment_c_date) <= '". $e_date . "')";
         }
 
