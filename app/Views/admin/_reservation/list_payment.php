@@ -207,7 +207,7 @@
                                             echo "selected";
                                         } ?>>예약번호
                                         </option>
-                                        <option value="a.order_user_name" <?php if ($search_category == "a.order_user_name") {
+                                        <option value="a.payment_user_name" <?php if ($search_category == "a.payment_user_name") {
                                             echo "selected";
                                         } ?>>예약자명
                                         </option>
