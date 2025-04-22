@@ -142,7 +142,7 @@ class ReservationController extends BaseController
 						from tbl_payment_mst a 
                         left join tbl_order_list c on c.order_idx = a.payment_idx
 						where a.is_modify='N' $strSql group by a.payment_idx";
-						
+		write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -165,7 +165,6 @@ class ReservationController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by payment_r_date desc, payment_idx desc limit $nFrom, $g_list_rows ";
-		write_log("xxxx- ". $sql);				
 
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
