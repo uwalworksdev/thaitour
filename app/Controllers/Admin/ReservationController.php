@@ -95,9 +95,9 @@ class ReservationController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if (is_array($state_chkerx) && sizeof($state_chkerx) > 0) {
+        if (is_array($state_chker) && sizeof($state_chker) > 0) {
 
-            $strSql = $strSql . " and a.order_status in (";
+            $strSql = $strSql . " and a.payment_status in (";
             $_tmp_cnt = 0;
             foreach ($state_chker as $vals) {
                 if ($_tmp_cnt > 0) {
