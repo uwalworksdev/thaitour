@@ -631,35 +631,8 @@
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row["user_name"] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
-                                        <td class="tac">
-                                            <?php 
-                                                if($row['order_gubun'] == "vehicle"){
-                                                    echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
-                                                }else if($row['order_gubun'] == "hotel"){
-                                                    if($row['room_secret'] == "Y"){
-                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
-                                                    }else{
-                                                        echo number_format($row["order_price"]);
-                                                    }
-                                                } else{
-                                                    echo number_format($row["order_price"]);
-                                                }
-                                               
-                                            ?>
-                                        </td>
-                                        <td class="tac">
-                                            <?php
-                                                if($row['order_gubun'] == "hotel"){
-                                                    if($row['room_secret'] == "Y"){
-                                                        echo "0바트(<span style='color: red;'>비밀특가</span>)";
-                                                    }else{
-                                                        echo number_format($row["order_price"] / $row["baht_thai"]);
-                                                    }
-                                                }else{
-                                                    echo number_format($row["order_price"] / $row["baht_thai"]);
-                                                }
-                                            ?>                                            
-                                        </td>
+                                        <td class="tac"><?=number_format($row["order_price"])?></td>
+                                        <td class="tac"><?=number_format($row["order_price_bath"])?></td>
                                         <td class="tac">카드결제</td>
                                         <td>
                                             <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
