@@ -107,7 +107,7 @@
                             <td class="inbox">
 
                                 <?php
-								$selected_payments = $this->request->getPost('payment_chker') ?? [];
+								$selected_payments = $payment_chker;
                                 foreach ($_pg_Method as $key => $value) {
                                     ?>
                                     <p>
