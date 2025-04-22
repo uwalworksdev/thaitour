@@ -699,7 +699,10 @@ class AdminSpaController extends BaseController
         $spa_onum           = $this->request->getPost('spa_onum');
         $moption_onum       = $this->request->getPost('moption_onum');
         $op_spa_onum        = $this->request->getPost('op_spa_onum');
-        $info_name         = $this->request->getPost('info_name');
+        $info_name          = $this->request->getPost('info_name');
+        $is_explain         = $this->request->getPost('is_explain');
+        $spas_explain       = $this->request->getPost('spas_explain');
+
 
 
 		$setting      = homeSetInfo();
@@ -778,6 +781,8 @@ class AdminSpaController extends BaseController
                             'product_idx'       => $productIdx,
                             'spas_subject'      => $subject,
                             'spas_subject_eng'  => isset($spas_subject_eng[$index][$i]) ? $spas_subject_eng[$index][$i] : '',
+                            'is_explain'        => isset($is_explain[$index][$i]) ? $is_explain[$index][$i] : '',
+                            'spas_explain'      => isset($spas_explain[$index][$i]) ? $spas_explain[$index][$i] : '',
                             'spas_price'        => isset($spas_price[$index][$i]) ? $spas_price[$index][$i] : '',
                             'spas_price_kids'   => isset($spas_price_kids[$index][$i]) ? $spas_price_kids[$index][$i] : '',
                             'spas_price_baby'   => isset($spas_price_baby[$index][$i]) ? $spas_price_baby[$index][$i] : '',

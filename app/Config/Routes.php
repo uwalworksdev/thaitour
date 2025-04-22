@@ -13,6 +13,8 @@ $routes->set404Override(function () {
 
 $routes->get('pdf', 'PdfTestController::generatePdf');
 
+$routes->get('promotion', 'PromotionController::index');
+
 $routes->group("AdmMaster", static function ($routes) {
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");

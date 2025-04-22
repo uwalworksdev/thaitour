@@ -1,0 +1,279 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.clip-label {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+}
+
+.banner-animation {
+    animation: slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.banner-animation {
+    animation: slideDown 0.8s ease-out forwards;
+    opacity: 0; /* 초기 상태 */
+}
+.location-card {
+    opacity: 0;
+    /*transform: scale(0.8) ;*/
+    transition: all 0.5s ease-out;
+    /*width: 300px;*/
+    margin-bottom: 12px;
+}
+.location-card.show{
+    opacity: 1;
+    /*transform: scale(1) translateX(-100px);*/
+}
+
+/*@media (min-width: 768px) {*/
+/*    .location-card-left {*/
+/*        right: 50%;*/
+/*        transform:scale(0.8) translateX(-100px);*/
+/*    }*/
+/*    .location-card.map-line.show{*/
+/*        right: 50%;*/
+/*        !*transform:scale(1) translateX(135px);*!*/
+/*    }*/
+/*    .location-card-left.show {*/
+/*        opacity: 1;*/
+/*        transform: scale(1) translateX(-100px);*/
+/*    }*/
+/*}*/
+/*.location-card .connector {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    width: 2px;*/
+/*    height: 80px;*/
+/*    border-left: 2px dashed #f97316; !* orange-500 *!*/
+/*    left: 50%;*/
+/*    top: 100%;*/
+/*    transform: translateX(-50%);*/
+/*    z-index: 0;*/
+/*}*/
+
+
+.map-point {
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.card-animation {
+    opacity: 0;
+    /*transform: translateY(20px);*/
+    animation: slideInX 0.8s ease forwards;
+}
+@keyframes slideInX  {
+    0% {
+        opacity: 0;
+        transform: translateX(var(--start-x, 0));
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(var(--end-x, 0));
+    }
+}
+.bg-gradient {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+.animate-title {
+    animation: slideUpFade 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.animate-subtitle {
+    animation: slideUpFade 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.4s;
+}
+.animate-button {
+    animation: slideUpFade 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.8s;
+}
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.slide.active {
+    opacity: 1;
+}
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+.title-section {
+    width: 100%;   /* 원하는 표시 크기 */
+    height: 325px;   /* 원하는 표시 크기 */
+    background-image: url('/event/images/250418_방콕호텔.png'); /* 원본 전체 이미지 */
+    background-repeat: no-repeat;
+    background-size: 650px auto; /* 가로 1200px에 맞추고, 세로는 비율 유지 */
+    background-position: center top; /* 기본 위치 */
+    margin-bottom: 20px;
+}
+
+/* 각각 보일 영역 조정 (배경 위치) */
+.luxury-hotel {
+    background-position: center 17px;
+}
+
+.residence-hotel {
+    background-position: center -300px;
+    height: 220px;
+}
+
+.good-price-hotel {
+    background-position: center -500px;
+    height: 220px;
+}
+
+.infinitypool-hotel {
+    background-position: center -700px;
+    height: 220px;
+}
+
+.shopping-hotel {
+    background-position: center -900px;
+    height: 220px;
+}
+
+.pet-hotel {
+    background-position: center -1100px;
+    height: 220px;
+}
+
+
+
+.title-section-tour {
+    width: 100%;   /* 원하는 표시 크기 */
+    height: 325px;   /* 원하는 표시 크기 */
+    background-image: url('/event/images/250418_방콕투어.png'); /* 원본 전체 이미지 */
+    background-repeat: no-repeat;
+    background-size: 650px auto; /* 가로 1200px에 맞추고, 세로는 비율 유지 */
+    background-position: center top; /* 기본 위치 */
+    margin-bottom: 20px;
+}
+
+/* 각각 보일 영역 조정 (배경 위치) */
+.tour-1 {
+    background-position: center 17px;
+}
+
+.tour-2 {
+    background-position: center -300px;
+    height: 220px;
+}
+
+.tour-3 {
+    background-position: center -520px;
+    height: 220px;
+}
+
+.tour-4 {
+    background-position: center -740px;
+    height: 220px;
+}
+
+.tour-5 {
+    background-position: center -960px;
+    height: 220px;
+}
+
+.tour-6 {
+    background-position: center -1180px;
+    height: 220px;
+}
+.tour-7 {
+    background-position: center -1400px;
+    height: 220px;
+}
+
+.title-section-golf {
+    width: 100%;   /* 원하는 표시 크기 */
+    height: 325px;   /* 원하는 표시 크기 */
+    background-image: url('/event/images/250418_방콕골프.png'); /* 원본 전체 이미지 */
+    background-repeat: no-repeat;
+    background-size: 650px auto; /* 가로 1200px에 맞추고, 세로는 비율 유지 */
+    background-position: center top; /* 기본 위치 */
+    margin-bottom: 20px;
+}
+
+/* 각각 보일 영역 조정 (배경 위치) */
+.title-section-golf.sub-1 {
+    background-position: center 17px;
+}
+
+.title-section-golf.sub-2 {
+    background-position: center -300px;
+    height: 220px;
+}
+
+.title-section-golf.sub-3 {
+    background-position: center -520px;
+    height: 220px;
+}
+
+.title-section-golf.sub-4 {
+    background-position: center -740px;
+    height: 220px;
+}
+
+.title-section-golf.sub-5 {
+    background-position: center -960px;
+    height: 220px;
+}
+
+.title-section-golf.sub-6 {
+    background-position: center -1100px;
+    height: 220px;
+}
+.grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4.gap-6{
+    justify-content: center;
+}
+.title-section-best {
+    width: 100%;   /* 원하는 표시 크기 */
+    height: 270px;   /* 원하는 표시 크기 */
+    background-image: url('/event/images/방콕필수코스5가지.png'); /* 원본 전체 이미지 */
+    background-repeat: no-repeat;
+    background-size: 650px auto; /* 가로 1200px에 맞추고, 세로는 비율 유지 */
+    background-position: center top; /* 기본 위치 */
+    margin-bottom: 20px;
+}
+
+/* 각각 보일 영역 조정 (배경 위치) */
+.title-section-best.sub-1 {
+    background-position: center 17px;
+}
+.best5{
+    background-image: url('/event/images/방콕필수코스5가지%2B바탕화면.png');
+    background-repeat: no-repeat;
+}

@@ -182,11 +182,16 @@
                                                                                 <td>
                                                                                 	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
 																					<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="<?= $spa['spa_onum'] ?>">
-																					<div style="display: flex; gap: 5px;">
+																					<input type="hidden" name="spas_explain[<?=$i?>][]" class="spas_explain" value="<?= $spa['spas_explain'] ?>">
+																					<input type="hidden" name="is_explain[<?=$i?>][]" class="hidden_is_explain" value="<?= $spa['is_explain'] ?>">
+
+																					<div style="display: flex; gap: 5px; align-items: center;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
 																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																						<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
+																						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 																					</div>
                                                                                 </td>
                                                                                 <td>
@@ -414,7 +419,6 @@
 																	<col width="*">
 																	<col width="12%">
 																	<col width="12%">
-																	<col width="12%">
 																	<col width="10%">
 																</colgroup>
                                                                 <!-- <thead>
@@ -438,11 +442,16 @@
                                                                         <td style="width:100px;text-align:center">
                                                                             <input type="hidden" name="spas_idx[0][]" class="spas_idx" value="">
 																			<input type="hidden" name="spa_onum[0][]" class="spa_onum" value="">
-																			<div style="display: flex; gap: 5px;">
+																			<input type="hidden" name="spas_explain[0][]" class="spas_explain" value="">
+																			<input type="hidden" name="is_explain[0][]" class="hidden_is_explain" value="">
+
+																			<div style="display: flex; gap: 5px; align-items: center;">
 																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																				<input type="text" name="spas_subject[0][]" value="" class="spas_subject input_txt" placeholder="국문글씨 입력해주세요" style="width:50%" />
 																				<input type="text" name="spas_subject_eng[0][]" value="" class="spas_subject input_txt" placeholder="영문글씨 입력해주세요" style="width:50%;" />
+																				<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y">
+																				<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 																			</div>
                                                                         </td>
                                                                         <td style="text-align:center">
@@ -605,9 +614,76 @@
         </form>
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
+
+<div class="popup_" id="popupDesc_" data-element="">
+	<div class="popup_area_ popup_area_xl_">
+		<div class="popup_top_">
+			<p></p>
+			<p>
+				<button type="button" class="btn_close_" onclick="TogglePopup();">X</button>
+			</p>
+		</div>
+		<div class="popup_content_">
+			<textarea class="text_desc" style="width: 100%; height: 150px; resize: none;"></textarea>
+		</div>
+		<div class="popup_bottom_">
+			<button type="button" class="" onclick="TogglePopup();">취소</button>
+			<button type="button" class="" onclick="UpdateDesc();">확인</button>
+		</div>
+	</div>
+</div>
+
 <script>
 	var tableCount = <?= (isset($productSpasInfo) && count($productSpasInfo) > 0) ? (count($productSpasInfo) - 1) : 0 ?>;
 	var arr_count = [];
+
+	function TogglePopup() {
+        $("#popupDesc_").toggleClass('show_');
+    }
+
+	function resetContent() {
+		$("#popupDesc_").find(".text_desc").val("");
+	}
+
+	function InitPopup(el){
+		resetContent();
+		let content = $(el).closest("td").find(".spas_explain").val();
+		const checkbox = $(el).closest("div").find(".is_explain");
+
+		if(checkbox.is(":checked")){
+			$(el).closest("td").find(".hidden_is_explain").val('Y');
+			$("#popupDesc_").data("element", $(el));
+			$("#popupDesc_").find(".text_desc").val(content);
+		}else{
+			$(el).closest("td").find(".hidden_is_explain").val('');
+		}
+
+		TogglePopup();
+
+	}
+
+	function UpdateDesc() {
+		const originalElement = $("#popupDesc_").data("element");
+		let content = $("#popupDesc_").find(".text_desc").val();
+
+		originalElement.closest("td").find(".spas_explain").val(content);
+		TogglePopup();
+	}
+
+	$(document).on("click", ".explain_label", function() {
+		const checkbox = $(this).closest("div").find(".is_explain");
+
+		if (checkbox.length) {
+			checkbox.prop('checked', !checkbox.prop('checked')).trigger('change');
+			if(!checkbox.is(":checked")){
+				$(this).closest("td").find(".hidden_is_explain").val('Y');
+				$("#popupDesc_").data("element", $(this));
+			}else{
+				$(this).closest("td").find(".hidden_is_explain").val('');
+			}
+			TogglePopup();
+		}
+	});
 
 	$(document).on("change", ".all_yoil", function() {
 		if ($(this).is(":checked")) {
@@ -761,11 +837,16 @@
 											<td style="width:100px;text-align:center">
 												<input type="hidden" name="spa_onum[${tableCount}][]" class="spa_onum" value="">
 												<input type="hidden" name="spas_idx[${tableCount}][]" class="spas_idx" value="">
-												<div class="flex" style="gap: 5px;">
+												<input type="hidden" name="spas_explain[${tableCount}][]" class="spas_explain" value="">
+												<input type="hidden" name="is_explain[${tableCount}][]" class="hidden_is_explain" value="">
+
+												<div class="flex" style="gap: 5px; align-items: center;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 													<input type="text" name="spas_subject[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
-													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
+													<input type="text" name="spas_subject_eng[${tableCount}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />	
+													<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y">
+													<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>			
 												</div>
 											</td>
 											<td style="text-align:center">
@@ -986,12 +1067,16 @@
 				<td style="text-align:center">
 					<input type="hidden" name="spas_idx[${tableListIndex}][]" class="spas_idx" value="">
 					<input type="hidden" name="spa_onum[${tableListIndex}][]" class="spa_onum" value="">
+					<input type="hidden" name="spas_explain[${tableListIndex}][]" class="spas_explain" value="">
+					<input type="hidden" name="is_explain[${tableListIndex}][]" class="hidden_is_explain" value="">
 
-					<div style="display: flex; gap: 5px;">
+					<div style="display: flex; gap: 5px; align-items: center;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${tableListIndex}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="checkbox" class="is_explain" onchange="InitPopup(this);" value="Y">
+						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 					</div>
 				</td>
 				<td style="text-align:center">
@@ -1035,11 +1120,16 @@
 				<td>
 					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
 					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
-					<div style="display: flex; gap: 5px;">
+					<input type="hidden" name="spas_explain[${infoIdx}][]" class="spas_explain" value="">
+					<input type="hidden" name="is_explain[${infoIdx}][]" class="hidden_is_explain" value="">
+
+					<div style="display: flex; gap: 5px; align-items: center;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
 						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
+						<input type="checkbox" class="is_explain" onchange="InitPopup(this);" value="Y">
+						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 					</div>
 				</td>
 				<td>
