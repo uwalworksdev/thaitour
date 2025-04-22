@@ -334,37 +334,48 @@
                     </div>
 
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
-
+                    <?php 
+					   $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
+                       foreach ($result4 as $row4) {
+						        if($row4['status_group'] == "예약접수") $tot_price1 = $row4['total_amount'];	
+						        if($row4['status_group'] == "예약확인") $tot_price2 = $row4['total_amount'];	
+						        if($row4['status_group'] == "결제완료") $tot_price3 = $row4['total_amount'];	
+						        if($row4['status_group'] == "예약확정") $tot_price4 = $row4['total_amount'];	
+						        if($row4['status_group'] == "예약취소") $tot_price5 = $row4['total_amount'];	
+						        if($row4['status_group'] == "예약불가") $tot_price6 = $row4['total_amount'];	
+						        if($row4['status_group'] == "이용완료") $tot_price7 = $row4['total_amount'];	
+					   }
+					?>   
 					<div class="settlement_wrap">
                         <h4>전체 결제내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
                                 <dt>예약접수</dt>
-                                <dd>0원</dd>
+                                <dd><?=number_format($tot_price1)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약확인</dt>
-                                <dd class="t_green">0원</dd>
+                                <dd class="t_green"><?=number_format($tot_price2)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>결제완료</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($tot_price3)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약확정</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($tot_price4)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약취소</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($tot_price5)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약불가</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($tot_price6)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>이용완료</dt>
-                                <dd class="t_orange">0원</dd>
+                                <dd class="t_orange"><?=number_format($tot_price7)?>원</dd>
                             </dl>
                         </div>
                     </div>
