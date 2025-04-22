@@ -2670,7 +2670,7 @@ class AjaxController extends BaseController {
 																				 rooms_idx   = '". $rooms_idx ."'   AND 
 																				 bed_idx     = '". $bed_idx ."'     AND
 																				 goods_date  = '". $room_date ."'  ";
-					write_log("2- " . $sql_opt);
+					//write_log("2- " . $sql_opt);
 					$option = $db->query($sql_opt)->getRowArray();
 					if ($option['cnt'] == 0) {
 				        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);

@@ -247,7 +247,7 @@ class PaymentController extends BaseController
 									   ->update(['status' => 'E']);
 
 									// 로그 기록
-									write_log("2- Coupon status updated for c_idx: " . $row['used_coupon_idx']);
+									//write_log("2- Coupon status updated for c_idx: " . $row['used_coupon_idx']);
 								}
 
 								// 3. 포인트 소멸 처리
