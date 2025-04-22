@@ -362,6 +362,30 @@ class ReservationController extends BaseController
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
+		$fsql = "SELECT 
+					CASE 
+						WHEN a.order_status IS NULL OR a.order_status = '' OR a.order_status = 'W' THEN '예약접수'
+						WHEN a.order_status = 'X' THEN '예약확인'
+						WHEN a.order_status = 'Y' THEN '결제완료'
+						WHEN a.order_status IN ('Z','G','R','J') THEN '예약확정'
+						WHEN a.order_status = 'C' THEN '예약취소'
+						WHEN a.order_status = 'N' THEN '예약불가'
+						WHEN a.order_status = 'E' THEN '이용완료'
+						ELSE '기타'
+					END AS status_group,
+					SUM(a.real_price_won) AS total_amount
+					FROM 
+						tbl_order_mst a
+					WHERE 
+						a.is_modify = 'N' AND a.order_status != 'G' AND a.order_status != '' $strSql
+					GROUP BY 
+						status_group
+					ORDER BY 
+						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+
+        $fresult4 = $this->connect->query($fsql);
+        $fresult4 = $fresult4->getResultArray();
+		
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") {
             $pg = 1;

@@ -631,8 +631,8 @@
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row["user_name"] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
-                                        <td class="tac"><?=number_format($row["order_price"])?></td>
-                                        <td class="tac"><?=number_format($row["order_price_bath"])?></td>
+                                        <td class="tac"><?=number_format($row["real_price_won"])?></td>
+                                        <td class="tac"><?=number_format($row["real_price_bath"])?></td>
                                         <td class="tac"></td>
                                         <td>
                                             <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
