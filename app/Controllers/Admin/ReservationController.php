@@ -332,7 +332,6 @@ class ReservationController extends BaseController
         $strSql = $strSql . " AND a.order_status NOT IN ('B', 'D') ";
 
         $total_sql = "	SELECT a.product_name AS product_name_new  
-		                     , d.user_id  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
 						     , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
@@ -340,6 +339,7 @@ class ReservationController extends BaseController
 						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
 						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
                              , a.*
+		                     , d.user_id  
                              , COUNT(c.order_idx) AS cnt_number_person
 						FROM tbl_order_mst a 
 						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
