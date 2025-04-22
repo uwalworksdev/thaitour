@@ -426,7 +426,7 @@ $_pg_Method = array();
 $_pg_Method['Card'] = "신용/체크카드";
 $_pg_Method['Rbank'] = "실시간계좌이체";
 $_pg_Method['Vbank'] = "가상계좌";
-$_pg_Method['Dbank'] = "무통장";
+$_pg_Method['Dbank'] = "계좌입금";
 $_pg_Method['Cash'] = "포인트";
 
 function getPgMethod($method)
