@@ -607,7 +607,7 @@
 									     $status = $_deli_type[$row['payment_status']];
 										 
 										 if (str_starts_with($row['user_id'], 'naver_')) {
-											 $user_id = substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
+											 $user_id = "naver_". substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
 										 } else	{ 
 											 $user_id = $row['user_id'];
 										 }
