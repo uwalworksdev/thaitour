@@ -107,11 +107,12 @@
                             <td class="inbox">
 
                                 <?php
+								$selected_payments = $this->request->getPost('payment_chker') ?? [];
                                 foreach ($_pg_Method as $key => $value) {
                                     ?>
                                     <p>
                                         <input name="payment_chker[]" class="state_chker" type="checkbox"
-                                               value="<?= $_pg_Method[$key] ?>" > <?= $value ?>
+                                               value="<?= $_pg_Method[$key] ?>" <?= in_array($value, $selected_payments) ? 'checked' : '' ?> > <?= $value ?>
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
