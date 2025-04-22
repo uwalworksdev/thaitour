@@ -111,7 +111,7 @@
                                     ?>
                                     <p>
                                         <input name="payment_chker[]" class="state_chker" type="checkbox"
-                                               value="<?= $key ?>" > <?= $value ?>
+                                               value="<?= $_pg_Method[$key] ?>" > <?= $value ?>
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
