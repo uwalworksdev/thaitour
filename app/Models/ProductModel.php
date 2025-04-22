@@ -1764,7 +1764,7 @@ class ProductModel extends Model
             $items[$key]['product_price_won'] = $product_price_won;
         }
 		
-        write_log("golf last- ". $this->db->getLastQuery());
+        //write_log("golf last- ". $this->db->getLastQuery());
 		
         $data = [
             'items' => $items,
