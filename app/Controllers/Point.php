@@ -36,6 +36,10 @@ class Point extends BaseController
         ]);
     }
 
+    public function ThemeMain() {
+        return view('travel/theme_main');
+    }
+
     public function HotPlace() {
         return view('travel/hot-place');
     }

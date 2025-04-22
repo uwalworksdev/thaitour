@@ -32,8 +32,8 @@
                 <?php endforeach; ?>
             </ul>
         </div>
-        <?php foreach ($list as $key => $item): ?>
-        <div class="search__result <?=$key == $tab ? 'show' : ''?>" id="search__result_<?=$key?>">
+        <?php foreach ($list as $key_gubun => $item): ?>
+        <div class="search__result <?=$key_gubun == $tab ? 'show' : ''?>" id="search__result_<?=$key_gubun?>">
             <div class="search__result__head">
                 <h1 class="ttl"><?=$item['title']?><span>(<?=$item['result']['nTotalCount']?>)</span></h1>
                 <ul class="search__result__sort">
@@ -53,7 +53,7 @@
             </div>
             <div class="search__result__list">
                 <?php foreach ($item['result']['items'] as $item1_1):
-                    switch ($key) {
+                    switch ($key_gubun) {
                         case "hotel":
                             $href = "/product-hotel/hotel-detail/{$item1_1['product_idx']}";
                             break;
@@ -78,6 +78,7 @@
                         default:
                             $href = "#!";
                     }
+
                     ?>
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
