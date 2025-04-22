@@ -588,6 +588,8 @@
                                     </tr>
                                     <?php
                                 }
+									
+								$_deli_type = get_payment_type(); 	
                                 foreach ($result as $row) {
                                     ?>
                                     <tr style="height:50px">
