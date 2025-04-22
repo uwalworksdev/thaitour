@@ -589,6 +589,13 @@
 									
 								$_deli_type = get_payment_type(); 	
                                 foreach ($result as $row) {
+									
+										 if (str_starts_with($row['user_id'], 'naver_')) {
+											 $user_id = "naver_". substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
+										 } else	{ 
+											 $user_id = $row['user_id'];
+										 }
+									
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
@@ -622,7 +629,7 @@
                                                     href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row["user_name"] ?><br><?= $row["user_id"] ?></td>
+                                        <td class="tac"><?= $row["user_name"] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac">
                                             <?php 
