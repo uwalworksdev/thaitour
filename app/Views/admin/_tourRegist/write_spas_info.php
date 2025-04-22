@@ -654,10 +654,12 @@
 			$(el).closest("td").find(".hidden_is_explain").val('Y');
 			$("#popupDesc_").data("element", $(el));
 			$("#popupDesc_").find(".text_desc").val(content);
-			TogglePopup();
 		}else{
 			$(el).closest("td").find(".hidden_is_explain").val('');
 		}
+
+		TogglePopup();
+
 	}
 
 	function UpdateDesc() {
@@ -673,14 +675,13 @@
 
 		if (checkbox.length) {
 			checkbox.prop('checked', !checkbox.prop('checked')).trigger('change');
-		}
-
-		if(!checkbox.is(":checked")){
-			$(this).closest("td").find(".hidden_is_explain").val('Y');
-			$("#popupDesc_").data("element", $(this));
+			if(!checkbox.is(":checked")){
+				$(this).closest("td").find(".hidden_is_explain").val('Y');
+				$("#popupDesc_").data("element", $(this));
+			}else{
+				$(this).closest("td").find(".hidden_is_explain").val('');
+			}
 			TogglePopup();
-		}else{
-			$(this).closest("td").find(".hidden_is_explain").val('');
 		}
 	});
 
