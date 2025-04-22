@@ -59,7 +59,7 @@
 
 .search-input {
     border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: 25px !important;
     padding: 13px 20px !important;
     outline: none;
     /* width: 400px !important; */

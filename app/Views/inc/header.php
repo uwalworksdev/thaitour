@@ -27,7 +27,7 @@
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
                 </li>
-                <li><a href="/community/customer_center" class="text-grey">고객센터</a></li>
+                <li><a href="/community/main" class="text-grey">고객센터</a></li>
             </ul>
         </div>
     </div>
@@ -186,7 +186,7 @@
                         <li class="new"><a class="" data-key="micepage" href="/mice-page">인센티브</a></li>
                         <li class="new"><a class="" data-key="travel_insurance" target="_blank" href = "https://tourlab.toursafe.co.kr/main/main.php" class="link_top">여행자 보험</a></li>
                         <li class="">
-                            <a class="" data-key="_community" href="/community/main" class="link_top">커뮤니티</a>
+                            <a class="" data-key="_community" href="/travel-tips" class="link_top">커뮤니티</a>
                             <div class="sub_nav_menu">
                                 <a href="/review/review_list" class="sub_item">
                                     <p>여행후기 </p>
@@ -455,7 +455,7 @@
             <?php echo getHeaderTabMobile(); ?>
             <span class=""><a href="/mice-page" >인센티브</a></span>
             <span class=""><a href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a></span>
-            <span class=""><a href="/community/main">커뮤니티</a></span>
+            <span class=""><a href="/travel-tips">커뮤니티</a></span>
         </div>
     </div>
     <div class="search_m_header only_web">
@@ -559,7 +559,7 @@
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="/community/main">커뮤니티</a>
+                        <a href="/travel-tips">커뮤니티</a>
                         <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
                     </div>
                     <div class="menu_level_2 flex_b_c">
