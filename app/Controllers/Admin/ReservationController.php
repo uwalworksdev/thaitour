@@ -143,11 +143,11 @@ class ReservationController extends BaseController
 							FROM 
 								tbl_payment_mst a
 							LEFT JOIN 
-								tbl_order_mst b ON FIND_IN_SET(b.order_no, REPLACE(a.order_no, ' ', '')) > 0
+								tbl_order_mst b ON FIND_IN_SET(b.order_no, REPLACE(a.order_no, ' ', '')) > 0 
 							LEFT JOIN 
 								tbl_order_list c ON c.order_idx = a.payment_idx
 							WHERE 
-								a.is_modify = 'N' $strSql
+								a.is_modify = 'N' AND a.payment_status != 'G' $strSql
 							GROUP BY 
 								a.payment_idx";
 
