@@ -362,7 +362,8 @@ class SettlementController extends BaseController
         $fresult3 = $fresult3->getResultArray();
 
         $fsql     = "	SELECT 
-		                 SUM(a.real_price_won) AS price_tot  
+		                 COUNT(a.order_idx)    AS order_cnt
+		                ,SUM(a.real_price_won) AS price_tot  
 						,SUM(e.exp_amt_won)    AS exp_amt
 						FROM tbl_order_mst a 
 						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
