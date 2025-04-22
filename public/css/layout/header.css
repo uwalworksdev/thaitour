@@ -195,6 +195,31 @@
     text-decoration: none;
 }
 
+.icon-menu-cart {
+    position: relative;
+}
+
+.icon-menu-cart .cart_count {
+    position: absolute;
+    top: -5px;
+    right: 3px;
+    min-width: 15px;     
+    height: 15px;
+    padding: 0 5px;  
+    border-radius: 50%;  
+    background-color: red;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.count_like {
+    font-size: 14px;
+}
+
 .icon-menu-item.icon_my_page {
     display: flex;
     align-items: center;

@@ -730,6 +730,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("custom_travel_view", "MyPage::custom_travel_view");
     $routes->get("contact", "MyPage::contact");
     $routes->get("consultation", "MyPage::consultation");
+    $routes->get("alarm", "MyPage::alarm");
     $routes->get("fav_list", "MyPage::fav_list");
     $routes->get("travel_review", "MyPage::travel_review");
     $routes->get("point", "MyPage::point");

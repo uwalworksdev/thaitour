@@ -112,7 +112,7 @@
     font-size: 18px;
     margin-top: 40px;
     padding-bottom: 20px;
-    border-bottom: 1px solid;
+    /* border-bottom: 1px solid; */
 }
 
 .mypage_container .content .count span {
@@ -125,7 +125,9 @@ table-layout: fixed;
     }
 
 .mypage_container .content .details_table thead tr {
+    background-color: #fafbfd;
     height: 60px;
+    border-top: 1px solid rgb(170, 170, 170);
     border-bottom: 1px solid rgb(170, 170, 170);
 }
 
@@ -2160,6 +2162,63 @@ input[type="checkbox"]:checked+label {
     font-size: 16px;
     font-weight: 600;
     color: #252525;
+}
+
+.box_gr01 {
+    margin: 30px 0;
+    text-align: center;
+    padding: 25px 0;
+    background: #fafafa;
+    border-radius: 20px;
+}
+
+.box_gr01:after, .box_gr02:after, .box_gr03:after, .box_gr04:after, .box_gr05:after, .box_gr06:after, .box_gr08:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.pr50 {
+    padding-right: 50px !important;
+}
+
+.f_black {
+    color: #000 !important;
+}
+
+.my_p_cont span {
+    color: #17469E;
+}
+
+.my_p_cont em {
+    padding: 0 10px;
+    color: #eee;
+}
+
+.custom_btn1 {
+    display: inline-block !important;
+    outline: none !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    line-height: normal !important;
+    overflow: visible;
+    vertical-align: middle !important;
+    border: 0;
+}
+
+.b_p1020 {
+    padding: 10px 20px;
+}
+
+.b_white {
+    color: #666 !important;
+    border: 1px solid #cdcdcd;
+    background: #fff;
+}
+
+.btn_custom {
+    margin-top: 30px;
 }
 
 @media print {
