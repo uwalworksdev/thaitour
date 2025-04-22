@@ -100,11 +100,15 @@
             ?>
                 <div class="item">
                     <div class="img">
-                        <img src="<?=$img_tour?>" alt="<?=$row["rfile1"]?>">
+                        <a href="/travel-tips/travel-info/view?code=<?=$row["code"]?>&bbs_idx=<?=$row["bbs_idx"]?>">
+                            <img src="<?=$img_tour?>" alt="<?=$row["rfile1"]?>">
+                        </a>
                     </div>
                     <div class="text">
                         <span class="tit"><?=$row["code_name"]?></span>
-                        <p class="name"><?=$row["subject"]?></p>
+                        <a href="/travel-tips/travel-info/view?code=<?=$row["code"]?>&bbs_idx=<?=$row["bbs_idx"]?>">
+                            <p class="name"><?=$row["subject"]?></p>
+                        </a>
                         <div class="desc">
                             <div class="desc_inner">
                                 <?php
