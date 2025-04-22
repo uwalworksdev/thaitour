@@ -1002,6 +1002,7 @@ $routes->group("travel-tips", static function ($routes) {
     $routes->get("travel-info", 'Point::TravelInfo');
     $routes->get("travel-info/view", 'Point::TravelView'); 
     $routes->get("infographic", 'Point::Infographic'); 
+    $routes->get("infographic/view", 'Point::InfographicView'); 
     
 });
 

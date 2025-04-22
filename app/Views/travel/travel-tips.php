@@ -274,7 +274,7 @@
                                 $img_infographic = "/data/bbs/" . $infographic["ufile1"];
                             }
                     ?>
-                        <a href="#!" class="item">
+                        <a href="/travel-tips/infographic/view?code=<?=$infographic["code"]?>&bbs_idx=<?=$infographic["bbs_idx"]?>" class="item">
                             <img src="<?=$img_infographic?>" alt="<?=$infographic["rfile1"]?>">
                         </a>
                     <?php
