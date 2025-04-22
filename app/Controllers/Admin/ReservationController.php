@@ -147,7 +147,7 @@ class ReservationController extends BaseController
 							LEFT JOIN 
 								tbl_order_list c ON c.order_idx = a.payment_idx
 							WHERE 
-								a.is_modify = 'N' AND a.payment_status != 'G' $strSql
+								a.is_modify = 'N' AND a.payment_status != 'G' AND a.payment_status != '' $strSql
 							GROUP BY 
 								a.payment_idx";
 
@@ -186,7 +186,7 @@ class ReservationController extends BaseController
 					LEFT JOIN 
 						tbl_order_list c ON c.order_idx = a.payment_idx
 					WHERE 
-						a.is_modify = 'N' AND a.payment_status != 'G' $strSql
+						a.is_modify = 'N' AND a.payment_status != 'G' AND a.payment_status != '' $strSql
 					GROUP BY 
 						status_group
 					ORDER BY 
