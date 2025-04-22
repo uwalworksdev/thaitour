@@ -139,6 +139,7 @@ class ReservationController extends BaseController
 								AES_DECRYPT(UNHEX(a.payment_user_mobile), '$private_key') AS user_mobile,
 								AES_DECRYPT(UNHEX(a.payment_user_email),  '$private_key') AS user_email,
 								a.*,
+								d.user_id,
 								COUNT(c.order_idx) AS cnt_number_person
 							FROM 
 								tbl_payment_mst a
@@ -146,6 +147,8 @@ class ReservationController extends BaseController
 								tbl_order_mst b ON FIND_IN_SET(b.order_no, REPLACE(a.order_no, ' ', '')) > 0 
 							LEFT JOIN 
 								tbl_order_list c ON c.order_idx = a.payment_idx
+							LEFT JOIN 
+								tbl_member d ON a.m_idx = d.m_idx
 							WHERE 
 								a.is_modify = 'N' AND a.payment_status != 'G' AND a.payment_status != '' $strSql
 							GROUP BY 
