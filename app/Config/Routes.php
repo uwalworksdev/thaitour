@@ -80,6 +80,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\SettlementController::write/$1");
         $routes->post("write_ok/(:segment)", "Admin\SettlementController::write_ok/$1");
         $routes->post("delete", "Admin\SettlementController::delete");
+        $routes->get("get_code", "Admin\SettlementController::get_code");
     });
 
     $routes->group("_reservationCar", static function ($routes) {
