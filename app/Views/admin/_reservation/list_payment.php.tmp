@@ -7,7 +7,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>정산관리</h2>
+                    <h2>결제내역</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td class="label">카테고리</td>
+                            <td class="label">카테고리</td>  
                             <td>
                                 <select id="product_code_1" name="product_code_1" class="input_select"
                                         onchange="javascript:get_code(this.value, 3)">
@@ -107,18 +107,19 @@
                             <td class="inbox">
 
                                 <?php
+								$selected_payments = $payment_chker;
                                 foreach ($_pg_Method as $key => $value) {
                                     ?>
                                     <p>
                                         <input name="payment_chker[]" class="state_chker" type="checkbox"
-                                               value="<?= $key ?>" > <?= $value ?>
+                                               value="<?= $_pg_Method[$key] ?>" <?= in_array($value, $selected_payments) ? 'checked' : '' ?> > <?= $value ?>
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
                             </td>
                         </tr>
-                        <!--tr>
-                            <td class="label">예약상품상태</td>
+                        <tr>
+                            <td class="label">예약상태</td>
                             <td class="inbox">
                                 <?php
                                 foreach ($_deli_type as $key => $value) {
@@ -132,8 +133,8 @@
                                 <!--p><input name="isDelete" class="state_chker" type="checkbox"
                                           value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
                                 </p-->
-                            <!--/td>
-                        </tr-->
+                            </td>
+                        </tr>
                         <tr>
                             <td class="label">기간검색</td>
                             <td class="inbox">
@@ -202,11 +203,11 @@
                             <td class="inbox">
                                 <div class="r_box">
                                     <select id="" name="search_category" class="input_select" style="width:112px">
-                                        <option value="a.order_no" <?php if ($search_category == "a.order_no") {
+                                        <option value="a.payment_no" <?php if ($search_category == "a.payment_no") {
                                             echo "selected";
                                         } ?>>예약번호
                                         </option>
-                                        <option value="a.order_user_name" <?php if ($search_category == "a.order_user_name") {
+                                        <option value="a.payment_user_name" <?php if ($search_category == "a.payment_user_name") {
                                             echo "selected";
                                         } ?>>예약자명
                                         </option>
@@ -244,7 +245,7 @@
 
                         </tbody>
                     </table>
-                <!--/form>
+                <!--/form> 
 
                 <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
@@ -256,7 +257,6 @@
                         </colgroup>
 
                         <tbody>
-							
                             <tr>
                                 <td style="font-weight: bold;">상품명</td>
                                 <td>
@@ -338,24 +338,36 @@
 
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
-                    <div class="settlement_wrap">
-                        <h4>전체 정산대기 통계</h4>
+					<div class="settlement_wrap">
+                        <h4>전체 결제내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>판매금액</dt>
+                                <dt>예약접수</dt>
                                 <dd>0원</dd>
                             </dl>
                             <dl>
-                                <dt>지출금액</dt>
+                                <dt>예약확인</dt>
                                 <dd class="t_green">0원</dd>
                             </dl>
                             <dl>
-                                <dt>총수익</dt>
+                                <dt>결제완료</dt>
                                 <dd class="t_orange">0원</dd>
                             </dl>
                             <dl>
-                                <dt>판매갯수</dt>
-                                <dd class="t_sky">0원</dd>
+                                <dt>예약확정</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약취소</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약불가</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>이용완료</dt>
+                                <dd class="t_orange">0원</dd>
                             </dl>
                         </div>
                     </div>
@@ -514,6 +526,9 @@
                     }
                 </script>
 
+                <div class="listWrap">
+                    <!-- 안내 문구 필요시 구성 //-->
+
 
                     <form name="frm" id="frm" method="GET">
                         <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
@@ -523,8 +538,8 @@
 
                             <div class="right">
                                 <select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
-                                    <option value="30"  <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
-                                    <option value="50"  <?= ($g_list_rows == 50)  ? 'selected' : '' ?>>50개</option>
+                                    <option value="30" <?= ($g_list_rows == 30) ? 'selected' : '' ?>>30개</option>
+                                    <option value="50" <?= ($g_list_rows == 50) ? 'selected' : '' ?>>50개</option>
                                     <option value="100" <?= ($g_list_rows == 100) ? 'selected' : '' ?>>100개</option>
                                     <option value="200" <?= ($g_list_rows == 200) ? 'selected' : '' ?>>200개</option>
                                 </select>
@@ -537,115 +552,87 @@
                                 <colgroup>
                                     <col width="60px"/>
                                     <col width="140px"/>
-									<col width="140px"/>
-                                    <col width="100px"/>
-									<col width="100px"/>
+                                    <col width="60px"/>
+									<col width="80px"/>
                                     <col width="*"/>
                                     <col width="150px"/>
                                     <col width="80px"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    
                                     <col width="100px"/>
-                                    <col width="130px"/>
+                                    <col width="100px"/>
                                     <col width="120px"/>
-                                    <col width="120px"/>
-                                    <col width="80px"/>
                                     <col width="80px"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>그룹번호</th>
                                     <th>예약번호</th>
-									<th>상태</th>
-									<th>상품구분</th>
+									<th>Device</th>
+                                    <th>현황</th>									
                                     <th>상품명</th>
                                     <th>예약일시</th>
                                     <th>예약자</th>
                                     <th>연락처</th>
                                     <th>이메일</th>
-                                    <th>상품금액(원)</th>
-                                    <th>상품금액(바트)</th>
+                                    <th>결제금액(원)</th>
+									<th>결제금액(바트)</th>
                                     <th>결제방법</th>
+                                    <th>ip</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
+								
+								
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=14 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=18 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
+									
+								$_deli_type = get_deli_type();
                                 foreach ($result as $row) {
+									
+									     $status = $_deli_type[$row['payment_status']];
+										 
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["group_no"] ?>
+										   <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>">
+                                              <?= $row["payment_no"] ?>
+										   </a> 
+                                            
                                         </td>
-                                        <td class="tac">
-                                            <?= $row["order_no"] ?>
-                                        </td>
-										<!--td class="tac">
-                                           
-                                            <?php if ($row['device_type'] == 'P') { ?>
+                                        
+										<td class="tac"><?php if ($row['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
                                             <?php }
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
-                                            <?php } ?>
-                                        </td-->
-                                        <td class="tac">
-                                            <?php if ($row["is_modify"] == "Y") { ?>
-                                                <font color="red">예약수정</font>
-                                            <?php } else { ?>
-                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
-                                            <?php } ?>
-                                            
-                                        </td>
-										 <td class="tac">
-                                            <?= $_isDelete ?>(<?= $row['code_name'] ?>)
-                                        </td>
-                                        <td class="tal"><a
-                                                    href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
-                                                <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
-                                        <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row["user_name"] ?></td>
-                                        <td class="tac"><?= $row["user_mobile"] ?> </td>
+                                            <?php } ?></td>
+										<td class="tac"><?=$status?></td>
+                                        <td class="tal">
+										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+                                                <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>
+												</a>
+										</td>
+                                        <td class="tac"><?= $row["payment_date"] ?></td>
+                                        <td class="tac"><?= $row['user_name'] ?></td>
+                                        <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac"><?= $row["user_email"] ?></td>
-                                        <td class="tac">
-                                            <?php 
-                                                if($row['order_gubun'] == "vehicle"){
-                                                    echo $row["people_adult_cnt"] + $row["people_kids_cnt"];
-                                                }else if($row['order_gubun'] == "hotel"){
-                                                    if($row['room_secret'] == "Y"){
-                                                        echo "0원(<span style='color: red;'>비밀특가</span>)";
-                                                    }else{
-                                                        echo number_format($row["order_price"]);
-                                                    }
-                                                } else{
-                                                    echo number_format($row["order_price"]);
-                                                }
-                                               
-                                            ?>
-                                        </td>
-                                        <td class="tac">
-                                            <?php
-                                                if($row['order_gubun'] == "hotel"){
-                                                    if($row['room_secret'] == "Y"){
-                                                        echo "0바트(<span style='color: red;'>비밀특가</span>)";
-                                                    }else{
-                                                        echo number_format($row["order_price"] / $row["baht_thai"]);
-                                                    }
-                                                }else{
-                                                    echo number_format($row["order_price"] / $row["baht_thai"]);
-                                                }
-                                            ?>                                            
-                                        </td>
-                                        <td class="tac">카드결제</td>
+                                        <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
+										<td class="tac"> 1,120,000 </td>
+                                        <td class="tac"><?= $row["payment_method"] ?></td>
+                                        <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
-                                            <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment=<?= $row['payment_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>
@@ -659,8 +646,8 @@
                             </table>
                         </div><!-- // listBottom -->
                     </form>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list_payment') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_settlement/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
 
                     <div id="headerContainer">
