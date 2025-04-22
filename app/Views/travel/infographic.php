@@ -93,8 +93,10 @@
                     }
             ?>
                 <div class="item">
-                    <img src="<?=$img_infographic?>" alt="<?=$row["rfile1"]?>">
-                    <p><?=$row["subject"]?></p>
+                    <a href="/travel-tips/infographic/view?code=<?=$row["code"]?>&bbs_idx=<?=$row["bbs_idx"]?>">
+                        <img src="<?=$img_infographic?>" alt="<?=$row["rfile1"]?>">
+                        <p><?=$row["subject"]?></p>
+                    </a>
                 </div>
             <?php
                 }
