@@ -616,7 +616,7 @@ class SpaController extends BaseController
 
         $builder = $db->table('tbl_spas_price p');
 
-        $builder->select('p.*, s.spas_subject, si.info_name');
+        $builder->select('p.*, s.spas_subject, s.is_explain, s.spas_explain, si.info_name');
         $builder->join('tbl_product_spas s', 'p.spas_idx = s.spas_idx', 'left');
         $builder->join('tbl_product_spas_info si', 'si.info_idx = s.info_idx', 'left');
         $builder->where("p.product_idx =", $product_idx);

@@ -6742,6 +6742,73 @@ iframe::-webkit-scrollbar {
     margin-bottom: 20px;
 }
 
+.area-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.area-tooltip>a {
+    cursor: pointer;
+    color: #183153;
+    background: #f0f1f3;
+    border-radius: 10px;
+    padding: 3px 10px;
+    letter-spacing: -1px;
+    font-size: 12px;
+}
+
+.layer_info {
+    position: absolute;
+    border: 1px solid #a4a4a4;
+    z-index: 2000;
+    line-height: 16px;
+    color: gray;
+    background: #fff;
+    width: 400px;
+    top: 40px;
+    left: 140px;
+    display: none;
+    padding: 8px;
+}
+
+.layer_info .btn_close {
+    position: absolute;
+    right: 0 !important;
+    top: 8px;
+}
+
+.btn_close_s {
+    width: 12px;
+    height: 11px;
+    display: inline-block;
+    overflow: hidden;
+    background: url(/images/btn/btn_close_s.gif) no-repeat !important;
+    vertical-align: middle;
+}
+
+.area-tooltip .layer_info {
+    box-shadow: 0 1px 10px 0px rgb(0 0 0 / 23%);
+    top: 25px;
+    left: 0;
+    padding: 15px;
+    border: none;
+    min-width: 350px;
+    width: auto;
+}
+
+.area-tooltip .layer_info a {
+    cursor: pointer;
+    left: initial;
+    right: 10px !important;
+    padding: 5px;
+}
+
+.area-tooltip .layer_info p {
+    padding: 0 20px 0 5px;
+}
+
+
 @media screen and (min-width: 1921px) {
     #iframeContainer {
         height: 208vh;
