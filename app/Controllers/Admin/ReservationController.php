@@ -135,9 +135,9 @@ class ReservationController extends BaseController
 
 		$total_sql = "SELECT 
 								a.product_name AS product_name_new,
-								AES_DECRYPT(UNHEX(a.payment_user_name),   $private_key) AS user_name,
-								AES_DECRYPT(UNHEX(a.payment_user_mobile), $private_key) AS user_mobile,
-								AES_DECRYPT(UNHEX(a.payment_user_email),  $private_key) AS user_email,
+								AES_DECRYPT(UNHEX(a.payment_user_name),   '$private_key') AS user_name,
+								AES_DECRYPT(UNHEX(a.payment_user_mobile), '$private_key') AS user_mobile,
+								AES_DECRYPT(UNHEX(a.payment_user_email),  '$private_key') AS user_email,
 								a.*,
 								COUNT(c.order_idx) AS cnt_number_person
 							FROM 
