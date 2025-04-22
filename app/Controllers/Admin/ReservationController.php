@@ -104,6 +104,7 @@ class ReservationController extends BaseController
                     $strSql = $strSql . ",";
                 }
                 $strSql = $strSql . " '" . $vals . "' ";
+				if($vals == "X") $strSql .= ",'R' ";
                 $_tmp_cnt++;
                 $arrays_paging .= "&state_chker[]=" . $vals;
             }
