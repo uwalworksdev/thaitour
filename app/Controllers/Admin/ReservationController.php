@@ -119,9 +119,9 @@ class ReservationController extends BaseController
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
         if ($s_date != "" && $e_date != "") {
-            if ($date_chker == "order_r_date")   $strSql = $strSql . " AND (DATE(a.order_r_date) >= '" .   $s_date . "' AND DATE(a.order_r_date) <= '".     $e_date . "')";
-            if ($date_chker == "paydate")        $strSql = $strSql . " AND (DATE(a.paydate) >= '" .        $s_date . "' AND DATE(a.paydate) <= '".         $e_date . "')";
-            if ($date_chker == "payment_c_date") $strSql = $strSql . " AND (DATE(a.payment_c_date) >= '" . $s_date . "' AND DATE(a.a.payment_c_date) <= '". $e_date . "')";
+            if ($date_chker == "order_r_date")   $strSql = $strSql . " AND (DATE(a.payment_r_date) >= '".  $s_date . "' AND DATE(a.payment_r_date) <= '".   $e_date . "')";
+            if ($date_chker == "paydate")        $strSql = $strSql . " AND (DATE(a.paydate) >= '".         $s_date . "' AND DATE(a.paydate) <= '".          $e_date . "')";
+            if ($date_chker == "payment_c_date") $strSql = $strSql . " AND (DATE(a.payment_c_date) >= '".  $s_date . "' AND DATE(a.a.payment_c_date) <= '". $e_date . "')";
         }
 
         $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
