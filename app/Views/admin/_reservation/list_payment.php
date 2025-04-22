@@ -606,6 +606,12 @@
 									
 									     $status = $_deli_type[$row['payment_status']];
 										 
+										 if (str_starts_with($row['user_id'], 'naver_')) {
+											 $user_id = substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
+										 } else	{ 
+											 $user_id = $row['user_id'];
+										 }
+										 
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
@@ -629,7 +635,7 @@
 												</a>
 										</td>
                                         <td class="tac"><?= $row["payment_date"] ?></td>
-                                        <td class="tac"><?= $row['user_name'] ?><br><?= $row['user_id'] ?></td>
+                                        <td class="tac"><?= $row['user_name'] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
 										<td class="tac"><?= number_format((int)($row["payment_tot"]/$row['baht_thai'])) ?></td>
