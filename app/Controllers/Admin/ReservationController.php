@@ -167,7 +167,7 @@ class ReservationController extends BaseController
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
-        $fsql = "SELECT a.*,
+        $fsql = "SELECT 
 						CASE 
 							WHEN a.payment_status IS NULL OR a.payment_status = '' OR a.payment_status = 'W' THEN '예약접수'
 							WHEN a.payment_status = 'X' THEN '예약확인'
@@ -178,6 +178,7 @@ class ReservationController extends BaseController
 							WHEN a.payment_status = 'E' THEN '이용완료'
 							ELSE '기타'
 						END AS status_group
+						SUM(a.payment_tot) AS total_amount
 					FROM 
 						tbl_payment_mst a
 					LEFT JOIN 
