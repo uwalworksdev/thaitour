@@ -111,9 +111,9 @@ class ReservationController extends BaseController
             $strSql = $strSql . " ) ";
         }
 
-        if ($product_code_1) $strSql = $strSql . " and a.product_code_1 = '$product_code_1' ";
-        if ($product_code_2) $strSql = $strSql . " and a.product_code_list like '%|$product_code_2%'";
-        if ($product_code_3) $strSql = $strSql . " and a.product_code_list like '%|$product_code_3%'";
+        if ($product_code_1) $strSql = $strSql . " and b.product_code_1 = '$product_code_1' ";
+        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like '%|$product_code_2%'";
+        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like '%|$product_code_3%'";
 
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
@@ -133,15 +133,24 @@ class ReservationController extends BaseController
             }
         }
 
-         $total_sql = "	select a.product_name as product_name_new  
-		                     , AES_DECRYPT(UNHEX(a.payment_user_name),   'gkdlghwn!@12') AS user_name
-						     , AES_DECRYPT(UNHEX(a.payment_user_mobile), 'gkdlghwn!@12') AS user_mobile
-						     , AES_DECRYPT(UNHEX(a.payment_user_email),  'gkdlghwn!@12') AS user_email
-                             , a.*
-                             , count(c.order_idx) as cnt_number_person
-						from tbl_payment_mst a 
-                        left join tbl_order_list c on c.order_idx = a.payment_idx
-						where a.is_modify='N' $strSql group by a.payment_idx";
+$total_sql = "SELECT 
+    a.product_name AS product_name_new,
+    AES_DECRYPT(UNHEX(a.payment_user_name),   'gkdlghwn!@12') AS user_name,
+    AES_DECRYPT(UNHEX(a.payment_user_mobile), 'gkdlghwn!@12') AS user_mobile,
+    AES_DECRYPT(UNHEX(a.payment_user_email),  'gkdlghwn!@12') AS user_email,
+    a.*,
+    COUNT(c.order_idx) AS cnt_number_person
+FROM 
+    tbl_payment_mst a
+LEFT JOIN 
+    tbl_order_mst b ON FIND_IN_SET(b.order_no, REPLACE(a.order_no, ' ', '')) > 0
+LEFT JOIN 
+    tbl_order_list c ON c.order_idx = a.payment_idx
+WHERE 
+    a.is_modify = 'N' $strSql
+GROUP BY 
+    a.payment_idx";
+
 		write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
