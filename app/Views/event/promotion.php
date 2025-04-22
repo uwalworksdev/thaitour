@@ -10,7 +10,19 @@
 <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
 <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
 <script src="/event/js/tailwind.config.js"></script>
+<style>
+  .icon-menu-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 
+  .select2-container .select2-selection--single .select2-selection__rendered span{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+</style>
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
 
 <!-- 배너 섹션 -->
