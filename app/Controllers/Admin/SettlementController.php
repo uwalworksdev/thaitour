@@ -344,7 +344,7 @@ class SettlementController extends BaseController
 						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
                         LEFT JOIN tbl_order_list c  ON c.order_idx   = a.order_idx
 						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
-						where a.is_modify='N' $strSql group by a.order_idx";
+						WHERE a.is_modify='N'       AND a.order_status = 'Y' $strSql GROUP BY a.order_idx";
 		//write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
@@ -360,6 +360,16 @@ class SettlementController extends BaseController
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
+
+        $fsql     = "	SELECT 
+		                 SUM(a.real_price_won) AS price_tot  
+						,SUM(e.exp_amt_won)    AS exp_amt
+						FROM tbl_order_mst a 
+						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
+						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
+						WHERE a.is_modify='N'        AND a.order_status = 'Y' $strSql ";
+        $fresult4 = $this->connect->query($fsql);
+        $fresult4 = $fresult4->getResultArray();
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") {
@@ -405,35 +415,36 @@ class SettlementController extends BaseController
         $s_status = '';
         $arrays_paging = '';
         $data = [
-            'total_sql' => $total_sql,
-            'nTotalCount' => $nTotalCount,
-            'num' => $num,
-            'result' => $result,
-            'fresult' => $fresult,
-            'fresult2' => $fresult2,
-            'fresult3' => $fresult3,
-            'pg' => $pg,
-            'nPage' => $nPage,
+            'total_sql'       => $total_sql,
+            'nTotalCount'     => $nTotalCount,
+            'num'             => $num,
+            'result'          => $result,
+            'fresult'         => $fresult,
+            'fresult2'        => $fresult2,
+            'fresult3'        => $fresult3,
+            'fresult4'        => $fresult4,
+            'pg'              => $pg,
+            'nPage'           => $nPage,
             'search_category' => $search_category,
-            'search_name' => $search_name,
-            'product_code_1' => $product_code_1,
-            'product_code_2' => $product_code_2,
-            'product_code_3' => $product_code_3,
-            's_date' => $s_date,
-            'e_date' => $e_date,
-            'date_chker' => $date_chker,
-            'isDelete' => $isDelete,
-            '_isDelete' => $isDelete,
-            'g_list_rows' => $g_list_rows,
-            'nFrom' => $nFrom,
-            '_pg_Method' => $_pg_Method,
-            '_deli_type' => $_deli_type,
-            'state_chker' => $state_chker,
-            's_time' => $s_time,
-            'e_time' => $e_time,
-            'payment_chker' => $payment_chker,
-            's_status' => $s_status,
-            'arrays_paging' => $arrays_paging
+            'search_name'     => $search_name,
+            'product_code_1'  => $product_code_1,
+            'product_code_2'  => $product_code_2,
+            'product_code_3'  => $product_code_3,
+            's_date'          => $s_date,
+            'e_date'          => $e_date,
+            'date_chker'      => $date_chker,
+            'isDelete'        => $isDelete,
+            '_isDelete'       => $isDelete,
+            'g_list_rows'     => $g_list_rows,
+            'nFrom'           => $nFrom,
+            '_pg_Method'      => $_pg_Method,
+            '_deli_type'      => $_deli_type,
+            'state_chker'     => $state_chker,
+            's_time'          => $s_time,
+            'e_time'          => $e_time,
+            'payment_chker'   => $payment_chker,
+            's_status'        => $s_status,
+            'arrays_paging'   => $arrays_paging
         ];
 
         return view('admin/_settlement/list', $data);
