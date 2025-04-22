@@ -36,7 +36,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="/AdmMaster/_reservation/list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                <a href="/AdmMaster/_reservation/list_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -53,7 +53,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_reservation/list_payment/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="/AdmMaster/_reservation/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
