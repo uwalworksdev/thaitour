@@ -337,19 +337,35 @@
 
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
-                    <div class="settlement_wrap">
-                        <h4>전체 정산대기 통계</h4>
+					<div class="settlement_wrap">
+                        <h4>전체 결제내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>주문건수</dt>
+                                <dt>예약접수</dt>
                                 <dd>0원</dd>
                             </dl>
                             <dl>
-                                <dt>결제대기</dt>
+                                <dt>예약확인</dt>
                                 <dd class="t_green">0원</dd>
                             </dl>
                             <dl>
                                 <dt>결제완료</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약확정</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약취소</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약불가</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>이용완료</dt>
                                 <dd class="t_orange">0원</dd>
                             </dl>
                         </div>
