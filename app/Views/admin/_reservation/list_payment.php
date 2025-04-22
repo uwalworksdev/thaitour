@@ -141,16 +141,13 @@
 
                                 <p>
                                     <select name="date_chker" id="date_chker" class="select_02">
-                                        <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
+                                        <option value="order_r_date"  <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
                                             예약일
                                         </option>
-                                        <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
-                                            선금결제일
+                                        <option value="pay_date"       <?php if ($date_chker == "pay_date") echo "selected"; ?> >
+                                            결제일
                                         </option>
-                                        <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
-                                            잔금결제일
-                                        </option>
-                                        <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
+                                        <option value="payment_c_date" <?php if ($date_chker == "payment_c_date") echo "selected"; ?> >
                                             취소일
                                         </option>
                                     </select>&nbsp;
@@ -219,18 +216,18 @@
                                             echo "selected";
                                         } ?>>상품명
                                         </option>
-                                        <option value="a.order_user_mobile" <?php if ($search_category == "a.order_user_mobile") {
+                                        <option value="a.payment_user_mobile" <?php if ($search_category == "a.payment_user_mobile") {
                                             echo "selected";
-                                        } ?>>예약지휴대폰
+                                        } ?>>예약자휴대폰
                                         </option>
                                     </select>
 
                                     <input type="text" id="" name="search_name" value="<?= $search_name ?>"
                                            class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
 
-                                    <a href="javascript:search_it()" class="btn btn-default"><span
+                                    <!--a href="javascript:search_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-search"></span> <span
-                                                class="txt">검색하기</span></a>
+                                                class="txt">검색하기</span></a-->
                                 </div>
                             </td>
                         </tr>

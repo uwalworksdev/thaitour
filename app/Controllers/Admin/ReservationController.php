@@ -104,6 +104,7 @@ class ReservationController extends BaseController
                     $strSql = $strSql . ",";
                 }
                 $strSql = $strSql . " '" . $vals . "' ";
+				if($vals == "X") $strSql .= ",'R' ";
                 $_tmp_cnt++;
                 $arrays_paging .= "&state_chker[]=" . $vals;
             }
@@ -118,15 +119,14 @@ class ReservationController extends BaseController
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
         if ($s_date != "" && $e_date != "") {
-            if ($date_chker == "order_r_date") $strSql = $strSql . " AND (DATE(a.order_r_date) >= '" . $s_date . "'       AND DATE(order_r_date) <= '" . $e_date . "')";
-            if ($date_chker == "deposit_date") $strSql = $strSql . " AND (DATE(a.deposit_date) >= '" . $s_date . "'       AND DATE(deposit_date) <= '" . $e_date . "')";
-            if ($date_chker == "confirm_date") $strSql = $strSql . " AND (DATE(a.order_confirm_date) >= '" . $s_date . "' AND DATE(order_confirm_date) <= '" . $e_date . "')";
-            if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(order_c_date) <= '" . $e_date . "')";
+            if ($date_chker == "order_r_date")   $strSql = $strSql . " AND (DATE(a.order_r_date) >= '" .   $s_date . "' AND DATE(a.order_r_date) <= '".     $e_date . "')";
+            if ($date_chker == "paydate")        $strSql = $strSql . " AND (DATE(a.paydate) >= '" .        $s_date . "' AND DATE(a.paydate) <= '".         $e_date . "')";
+            if ($date_chker == "payment_c_date") $strSql = $strSql . " AND (DATE(a.payment_c_date) >= '" . $s_date . "' AND DATE(a.a.payment_c_date) <= '". $e_date . "')";
         }
 
         $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
         if ($search_name) {
-            if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
+            if ($search_category == "a.payment_user_name" || $search_category == "a.payment_user_mobile" || $search_category == "a.payment_user_email" || $search_category == "a.manager_name") {
                 $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
             } else {
                 $strSql = $strSql . " and $search_category = '". $search_name ."' ";
@@ -135,9 +135,9 @@ class ReservationController extends BaseController
 
 		$total_sql = "SELECT 
 								a.product_name AS product_name_new,
-								AES_DECRYPT(UNHEX(a.payment_user_name),   'gkdlghwn!@12') AS user_name,
-								AES_DECRYPT(UNHEX(a.payment_user_mobile), 'gkdlghwn!@12') AS user_mobile,
-								AES_DECRYPT(UNHEX(a.payment_user_email),  'gkdlghwn!@12') AS user_email,
+								AES_DECRYPT(UNHEX(a.payment_user_name),   '$private_key') AS user_name,
+								AES_DECRYPT(UNHEX(a.payment_user_mobile), '$private_key') AS user_mobile,
+								AES_DECRYPT(UNHEX(a.payment_user_email),  '$private_key') AS user_email,
 								a.*,
 								COUNT(c.order_idx) AS cnt_number_person
 							FROM 

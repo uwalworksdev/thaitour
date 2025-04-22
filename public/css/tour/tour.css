@@ -1241,7 +1241,7 @@
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
-    margin: 10px 0 20px 0;
+    margin: 35px 0 20px 0;
 }
 
 .content-sub-product-hotel .list-item-info .item-info.promotion_n {
@@ -2274,6 +2274,12 @@
 
 .product-card-item-right .product_intro {
     line-height: 1.4;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+
 }
 
 .tours-detail .section9 .title-sec9 {
