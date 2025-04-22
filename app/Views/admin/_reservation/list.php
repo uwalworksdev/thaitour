@@ -338,7 +338,7 @@
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
                     <div class="settlement_wrap">
-                        <h4>전체 정산대기 통계</h4>
+                        <h4>전체 예약내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
                                 <dt>예약접수</dt>
