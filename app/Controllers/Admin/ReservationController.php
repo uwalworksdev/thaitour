@@ -151,7 +151,7 @@ class ReservationController extends BaseController
 							GROUP BY 
 								a.payment_idx";
 
-		write_log("total_sql- ". $total_sql);				
+		write_log("total_sql- ". $strSql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -166,6 +166,28 @@ class ReservationController extends BaseController
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
+
+        $fsql = "SELECT 
+					CASE 
+						WHEN payment_status IS NULL OR payment_status = '' OR payment_status = 'W' THEN '예약접수'
+						WHEN payment_status = 'X' THEN '예약확인'
+						WHEN payment_status = 'Y' THEN '결제완료'
+						WHEN payment_status IN ('Z','G','R','J') THEN '예약확정'
+						WHEN payment_status = 'C' THEN '예약취소'
+						WHEN payment_status = 'N' THEN '예약불가'
+						WHEN payment_status = 'E' THEN '이용완료'
+						ELSE '기타'
+					END AS status_group,
+					SUM(payment_tot) AS total_amount
+				FROM 
+					tbl_payment_mst
+				WHERE 
+					is_modify = 'N'  -- 조건 필요 시
+				GROUP BY 
+					status_group
+				ORDER BY 
+					FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료') ";
+
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") {
