@@ -151,7 +151,7 @@ class ReservationController extends BaseController
 							GROUP BY 
 								a.payment_idx";
 
-		write_log("total_sql- ". $strSql);				
+		write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
