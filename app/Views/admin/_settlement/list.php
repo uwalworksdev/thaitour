@@ -129,9 +129,9 @@
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
-                                <p><input name="isDelete" class="state_chker" type="checkbox"
+                                <!--p><input name="isDelete" class="state_chker" type="checkbox"
                                           value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
-                                </p>
+                                </p-->
                             </td>
                         </tr>
                         <tr>
@@ -234,19 +234,19 @@
                             </td>
                         </tr>
 
-                        <tr>
+                        <!--tr>
                             <td class="label">엑셀받기</td>
                             <td class="inbox">
                                 <a href="javascript:get_excel()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                             </td>
-                        </tr>
+                        </tr-->
 
                         </tbody>
                     </table>
                 <!--/form>
 
-                <form name="search" id="search"-->
+                <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
                             <col width="100">
@@ -327,7 +327,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table-->
 
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <a href="javascript:search_it()" class="btn btn-default">

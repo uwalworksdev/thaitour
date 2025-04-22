@@ -22,7 +22,7 @@
             </header><!-- // headerContainer -->
 
             <div id="contents">
-                <!-- <form name="search" id="search">
+                <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
                             <col width="150">
@@ -129,9 +129,9 @@
                                         &nbsp;&nbsp;
                                     </p>
                                 <?php } ?>
-                                <p><input name="isDelete" class="state_chker" type="checkbox"
+                                <!--p><input name="isDelete" class="state_chker" type="checkbox"
                                           value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
-                                </p>
+                                </p-->
                             </td>
                         </tr>
                         <tr>
@@ -234,17 +234,17 @@
                             </td>
                         </tr>
 
-                        <tr>
+                        <!--tr>
                             <td class="label">엑셀받기</td>
                             <td class="inbox">
                                 <a href="javascript:get_excel()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-search"></span> <span class="txt">다운로드</span></a>
                             </td>
-                        </tr>
+                        </tr-->
 
                         </tbody>
                     </table>
-                </form> -->
+                <!--/form> 
 
                 <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
@@ -326,7 +326,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table-->
 
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <a href="javascript:search_it()" class="btn btn-default">
@@ -337,19 +337,35 @@
 
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
 
-                    <div class="settlement_wrap">
-                        <h4>전체 정산대기 통계</h4>
+					<div class="settlement_wrap">
+                        <h4>전체 결제내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>주문건수</dt>
+                                <dt>예약접수</dt>
                                 <dd>0원</dd>
                             </dl>
                             <dl>
-                                <dt>결제대기</dt>
+                                <dt>예약확인</dt>
                                 <dd class="t_green">0원</dd>
                             </dl>
                             <dl>
                                 <dt>결제완료</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약확정</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약취소</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약불가</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>이용완료</dt>
                                 <dd class="t_orange">0원</dd>
                             </dl>
                         </div>

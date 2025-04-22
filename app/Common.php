@@ -99,6 +99,21 @@ function get_deli_type()
     $_deli_type['X'] = "예약확인";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
+    //$_deli_type['G'] = "결제대기";
+    //$_deli_type['R'] = "계좌발급";
+    //$_deli_type['J'] = "입금대기";
+    $_deli_type['C'] = "예약취소";
+    $_deli_type['N'] = "예약불가";
+    $_deli_type['E'] = "이용완료";
+    return $_deli_type;
+}
+
+function get_payment_type()
+{
+    $_deli_type['W'] = "예약접수";
+    $_deli_type['X'] = "예약확인";
+    $_deli_type['Y'] = "결제완료";
+    $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
     $_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "입금대기";
