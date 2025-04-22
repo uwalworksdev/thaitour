@@ -141,16 +141,13 @@
 
                                 <p>
                                     <select name="date_chker" id="date_chker" class="select_02">
-                                        <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
+                                        <option value="order_r_date"  <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
                                             예약일
                                         </option>
-                                        <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
-                                            선금결제일
+                                        <option value="pay_date"       <?php if ($date_chker == "pay_date") echo "selected"; ?> >
+                                            결제일
                                         </option>
-                                        <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
-                                            잔금결제일
-                                        </option>
-                                        <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
+                                        <option value="payment_c_date" <?php if ($date_chker == "payment_c_date") echo "selected"; ?> >
                                             취소일
                                         </option>
                                     </select>&nbsp;
