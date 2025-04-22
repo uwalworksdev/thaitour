@@ -341,12 +341,16 @@
                         <h4>전체 정산대기 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>총 상품예약</dt>
+                                <dt>예약접수</dt>
                                 <dd>0원</dd>
                             </dl>
                             <dl>
-                                <dt>결제완료</dt>
+                                <dt>예약확인</dt>
                                 <dd class="t_green">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>결제완료</dt>
+                                <dd class="t_orange">0원</dd>
                             </dl>
                             <dl>
                                 <dt>예약확정</dt>
@@ -354,7 +358,15 @@
                             </dl>
                             <dl>
                                 <dt>예약취소</dt>
-                                <dd class="t_sky">0원</dd>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>예약불가</dt>
+                                <dd class="t_orange">0원</dd>
+                            </dl>
+                            <dl>
+                                <dt>이용완료</dt>
+                                <dd class="t_orange">0원</dd>
                             </dl>
                         </div>
                     </div>
