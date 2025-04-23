@@ -93,9 +93,7 @@
 
 		.dom-line {
 			padding: 10px 0;
-			border-bottom: 1px solid #000;
 			font-size: 14px;
-			line-height: 80px;
 			color: #000;
 		}
 		
@@ -131,16 +129,18 @@
 					<table style="width: 100%; border: unset;">
 						<tr style="border: unset;">
 							<td style="vertical-align: top; text-align:left; border: unset;">
-								<p style="margin: 0; font-weight: bold; font-size: 18px; color: #000">The Tour Lab Co.,Ltd</p> <br>
-								<p style="">Sukhumvit 13 Klongtoei Nuea</p>
-								<p style="">Watthana Bangkok 10110</p>
-								<p style="">서비스/여행업 No. 0105565060507</p> <br>
-								<p class="dom-line" style="line-height: 2;">
+								<div style="margin: 0; font-weight: bold; font-size: 18px; color: #000">The Tour Lab Co.,Ltd</div> <br>
+								<div style="">Sukhumvit 13 Klongtoei Nuea</div>
+								<div style="">Watthana Bangkok 10110</div>
+								<div style="">서비스/여행업 No. 0105565060507</div> <br>
+								<div class="dom-line" style="marign-top: 10px">
 								견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일
-								</p> <br>
-								<p class="dom-line">
+								</div>
+								<hr style="border: none; height: 1px; background-color: #000;">
+								<div class="dom-line">
 								고객명 : <?=session()->get("member")["name"]?> 님 귀하
-								</p>
+								</div>
+								<hr style="border: none; height: 1px; background-color: #000;">
 							</td>
 
 							<td style="width: 60px; text-align: right; vertical-align: top; border: unset;">
