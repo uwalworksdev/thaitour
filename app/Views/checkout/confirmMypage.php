@@ -810,6 +810,7 @@ $(window).on("load", function() {
 				$(".lastPrice").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				payment_acnt();
             }
         })
 });
