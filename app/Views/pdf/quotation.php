@@ -114,14 +114,14 @@
 		<h1>더투어랩 여행견적서</h1>
 		<div class="sec1">
 			<div class="left">
-                  <p class="ttl">The Tour Lab Co.,Ltd </p>
-                  <span>Sukhumvit 13 Klongtoei Nuea </span>
-                  <span>Watthana Bangkok 10110 </span>
-                  <span>서비스/여행업 No. 0105565060507 </span>
-                  <p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
-                  <p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
-				  <img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
-			<div>
+				<p class="ttl">The Tour Lab Co.,Ltd </p>
+				<span>Sukhumvit 13 Klongtoei Nuea </span>
+				<span>Watthana Bangkok 10110 </span>
+				<span>서비스/여행업 No. 0105565060507 </span>
+				<p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
+				<p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
+				<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
+			</div>
 			<div class="right">
                   <table>
                       <colgroup>
