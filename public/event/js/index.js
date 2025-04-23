@@ -248,7 +248,7 @@ function renderHotels(hotels, container) {
         hotelElement.innerHTML = `
       <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         <div class="aspect-w-16 aspect-h-9">
-          <img src="${hotel.imgSrc.replace(/ /g, "%20")}" alt="${hotel.imgAlt}" class="object-cover transition-transform duration-300 ease-in-out hover:scale-110" loading="lazy"/>
+          <img src="${hotel.imgSrc.replace(/ /g, "%20").replace(/\+/g, "%2B")}" alt="${hotel.imgAlt}" class="object-cover transition-transform duration-300 ease-in-out hover:scale-110" loading="lazy"/>
         </div>
         <div class="p-4">
           <h3 class="text-lg font-medium text-gray-900 mb-2">${hotel.title}</h3>

@@ -114,14 +114,19 @@ try {
 
 <main>
 <?php 
-        $banner_ = getLeftBottomBanner(); 
-        $time_sale_list = getTimeSale()->findAll();
+    $banner_ = getLeftBottomBanner(); 
+    $time_sale_list = getTimeSale()->findAll();
 
-        $currentDateTime = new DateTime();
-		
-		session()->set('redirect_url', current_url());
-    ?>
+    $currentDateTime = new DateTime();
+    
+    session()->set('redirect_url', current_url());
 
+?>
+
+<?php
+    $c_path = service('uri');
+    if ($c_path->getSegment(1) !== 'promotion') {
+?>
 <div class="main_sale_banner flex__c">
     <?php foreach ($banner_ as $row) { ?>
         <div class="time_sale_banner flex__c">
@@ -129,8 +134,15 @@ try {
         </div>
 	<?php } ?>	
 </div>
+<?php
+    }
+?>
     <?php echo $this->renderSection('content'); ?>
-    <?php echo view("inc/sidebar_inc"); ?>
+    <?php
+        if ($c_path->getSegment(1) !== 'promotion') {
+    ?>
+        <?php echo view("inc/sidebar_inc"); ?>
+    <?php } ?>
     <?php echo view("inc/popup_login"); ?>
 </main>
 <?php echo view('inc/footer', ["setting" => $setting]); ?>
