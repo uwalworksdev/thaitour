@@ -3967,7 +3967,7 @@ class AjaxController extends BaseController {
 		$sum = $db->query($sql, [$group_no])->getResultArray();
 
 		// ① 그룹 해당 예약 목록
-		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?", [$m_idx, $group_no])->getResultArray();
+		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?, upd_date = now()", [$m_idx, $group_no])->getResultArray();
 
 		$data = [
 			'group_no' => $group_no,
