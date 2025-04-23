@@ -513,6 +513,8 @@ class Member extends BaseController
 
     public function detail()
     {
+		$db = \Config\Database::connect();
+		
         $m_idx = $this->request->getGet('idx');
         $titleStr = '회원정보';
         if ($m_idx) {
