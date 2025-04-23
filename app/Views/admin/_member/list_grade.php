@@ -45,7 +45,10 @@
                                 <?php foreach ($fresult as $row) { ?>
                                     <tr>
                                         <td><?= esc($row['grade_name']) ?></td>
-                                        <td><input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;"></td>
+                                        <td>
+										    <input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
+											<button type="button" id="" value="">수정</button>
+										</td>
                                         <td><?= esc($row['upd_date']) ?></td>
                                         <td><?= esc($row['reg_date']) ?></td>
                                         <td>
