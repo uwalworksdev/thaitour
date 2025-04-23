@@ -766,6 +766,7 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum         =  res.sum;
+				var sum1        =  0;
 				var lastPrice   =  res.lastPrice;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
@@ -774,6 +775,11 @@ $(window).on("load", function() {
                 var sign        =  res.sign;
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
+				
+				var used_discount = parseInt(sum * $("#discount_rate").val() / 100);
+				sum1 = sum - used_discount;
+				alert(sum1);
+				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
                 $("#signature").val(sign);
