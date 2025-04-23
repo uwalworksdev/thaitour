@@ -785,6 +785,7 @@ $(window).on("load", function() {
                 var orderNumber =  res.orderNumber;
 
 				var used_discount = sum * $("#discount_rate").val() / 100;
+				sum = sum - used_discount;
 				$("#use_discount").val(used_discount);
 				$("#minus_discount").text(used_discount);
 				$("#minus_discount").text(used_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -800,6 +801,7 @@ $(window).on("load", function() {
 				$("#Amt").val(lastPrice);
 				$("#price").val(lastPrice);
 				$("#payment_price").val(sum);
+				
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
