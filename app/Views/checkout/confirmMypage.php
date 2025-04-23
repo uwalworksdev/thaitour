@@ -191,6 +191,18 @@
                                             <p class="price_ paySum"></p>
                                         </td>
                                     </tr>
+                                    <tr class="">
+                                        <td class="subject_">회원할인</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_">
+                                                <p class="item_title_">
+                                                    할인금액 (상품가격의 10%)
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+									
 									<?php 
 									   $coupon_cnt = 0;
 									   foreach ($resultCoupon as $row): 
