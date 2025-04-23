@@ -1000,7 +1000,10 @@ $routes->get('/naver/callback', 'NaverLogin::callback');
 
 $routes->get('/birthdaychecker', 'BirthdayChecker::index');
 
-$routes->get('/pdf/quotation', 'PdfController::generateQuotation');
+$routes->group("pdf", static function ($routes) {
+    $routes->get('quotation', 'PdfController::generateQuotation');
+    $routes->get('invoice_golf', 'PdfController::invoiceGolf');    
+});
 
 $routes->group("travel-tips", static function ($routes) {
     $routes->get("/", 'Point::TravelTips'); 
