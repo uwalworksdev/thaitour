@@ -798,15 +798,15 @@ $(window).on("load", function() {
 				$("#timestamp").val(timestamp);
                 $("#Moid").val(orderNumber);
 	            $("#oid").val(orderNumber);
-				$("#Amt").val(lastPrice);
-				$("#price").val(lastPrice);
+				$("#Amt").val(sum1);
+				$("#price").val(sum1);
 				$("#payment_price").val(sum1);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$(".lastPrice").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }
