@@ -96,7 +96,6 @@ class Member extends BaseController
 
     public function list_grade()
     {
-        $model = $this->member;
         $private_key = private_key();
 
         $fsql    = "SELECT * FROM tbl_member_grade ORDER BY onum ASC ";
