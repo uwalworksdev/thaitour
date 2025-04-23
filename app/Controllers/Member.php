@@ -93,19 +93,17 @@ class Member extends BaseController
         ]);
     }
 
+	public function list_grade()
+	{
+		$db = \Config\Database::connect();
 
-    public function list_grade()
-    {
-        $private_key = private_key();
+		$fsql = "SELECT * FROM tbl_member_grade ORDER BY onum ASC";
+		$fresult = $db->query($fsql)->getResultArray();
 
-        $fsql    = "SELECT * FROM tbl_member_grade ORDER BY onum ASC ";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
-
-        return view('admin/_member/list_grade', [
-            'fresult' => $fresult,
-        ]);
-    }
+		return view('admin/_member/list_grade', [
+			'fresult' => $fresult,
+		]);
+	}
 	
     public function del()
     {
