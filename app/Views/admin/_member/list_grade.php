@@ -37,7 +37,7 @@
                                 <tr>
                                     <th>회원등급명</th>
                                     <th>등급</th>
-                                    <th>할인율</th>
+                                    <th>적립율</th>
                                     <th>등록일</th>
                                     <th>수정일</th>
                                     <th>관리</th>
@@ -51,7 +51,7 @@
 											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;">
 										</td>
 										<td>
-											<input type="text" name="discount_rate" id="discount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
+											<input type="text" name="amount_rate" id="amount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['amount_rate']) ?>" style="width:100px;text-align:right;">
 										</td>
 										<td><?= esc($row['upd_date']) ?></td>
 										<td><?= esc($row['reg_date']) ?></td>
@@ -68,7 +68,7 @@
 										<input type="text" name="user_level" id="user_level" value="" style="width:100px;text-align:left;">
 									</td>
 									<td>
-										<input type="text" name="discount_rate" id="discount_rate" value="" style="width:100px;text-align:right;">
+										<input type="text" name="amount_rate" id="amount_rate" value="" style="width:100px;text-align:right;">
 									</td>
 									<td></td>
 									<td></td>
@@ -93,15 +93,15 @@ $(function() {
     // 🔧 등급 수정 버튼 클릭 시
     $(document).on('click', '.grade_upd', function() {
         const g_idx         = $(this).val();
-        const discount_rate = $('#discount_rate_' + g_idx).val();
+        const amount_rate = $('#amount_rate_' + g_idx).val();
 
 		$.ajax({
 
 			url: "/ajax/ajax_grade_update",
 			type: "POST",
 			data: {
-					"g_idx"         : g_idx,
-					"discount_rate" : discount_rate
+					"g_idx"       : g_idx,
+					"amount_rate" : amount_rate
 			},
 			dataType: "json",
 			async: false,
@@ -120,11 +120,11 @@ $(function() {
     // ➕ 등급 추가 버튼 클릭 시
     $('#grade_add').on('click', function() {
         const grade_name    = $('#grade_name').val();
-        const discount_rate = $('#discount_rate').val();
+        const amount_rate = $('#amount_rate').val();
 
         $.post('/admin/member/grade_add', {
             grade_name: grade_name,
-            discount_rate: discount_rate
+            amount_rate: amount_rate
         }).done(function(response) {
             alert('새 등급이 추가되었습니다.');
             location.reload();
