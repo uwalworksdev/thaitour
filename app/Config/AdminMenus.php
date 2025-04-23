@@ -331,6 +331,12 @@ class AdminMenus extends BaseConfig
                     'alias' => ['Member::list_member', 'Member::detail']
                 ],
                 [
+                    'name' => '회원등급관리',
+                    'code' => 'F5',
+                    'url' => ['/AdmMaster/_member/list_grade'],
+                    'alias' => ['Member::list_grade', 'Member::detailGrade']
+                ],
+                [
                     'name' => '이메일 관리',
                     'code' => 'F3',
                     'url' => ['/AdmMaster/_member/email'],
