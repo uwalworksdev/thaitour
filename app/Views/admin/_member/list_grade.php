@@ -6,33 +6,11 @@
         <header id="headerContainer">
             <div class="inner">
                 <h2>회원등급관리</h2>
-                <div class="menus">
-                    <ul class="first">
-                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), true)"
-                                class="btn btn-success">전체선택</a></li>
-                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), false)"
-                                class="btn btn-success">선택해체</a></li>
-                        <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
-                    </ul>
-                </div>
             </div>
         </header>
 
         <div id="contents">
-            <form name="search" id="search">
-                <header id="headerContents">
-                    <select name="search_category" class="input_select" style="width:112px">
-                        <option value="user_name" <?= ($search_category == "user_name") ? "selected" : "" ?>>성명</option>
-                        <option value="user_id" <?= ($search_category == "user_id") ? "selected" : "" ?>>아이디</option>
-                        <option value="user_email" <?= ($search_category == "user_email") ? "selected" : "" ?>>이메일</option>
-                        <option value="user_mobile" <?= ($search_category == "user_mobile") ? "selected" : "" ?>>모바일</option>
-                    </select>
-                    <input type="text" name="search_name" value="<?= esc($search_name) ?>" class="input_txt placeHolder"
-                        rel="검색어 입력" style="width:240px" />
-                    <a href="javascript:search_it()" class="btn btn-default"><span
-                            class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
-                </header>
-            </form>
+
             <script>
                 function search_it() {
                     var frm = document.search;
