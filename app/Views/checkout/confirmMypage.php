@@ -776,9 +776,11 @@ $(window).on("load", function() {
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
 				
-				var used_discount = parseInt(sum * $("#discount_rate").val() / 100);
+				var use_discount = parseInt(sum * $("#discount_rate").val() / 100);
 				sum1 = sum - used_discount;
 				alert(sum1);
+				$("#use_discount").val(use_discount);
+				$("#minus_discount").text(use_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
