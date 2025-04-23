@@ -235,11 +235,11 @@
             <div class="sec_04">
                 <div class="header_sec">
                     <h3 class="title_sec">테마별 인기호텔</h3>
-                    <a href="#!" class="more_link">더보기 +</a>
+                    <a href="/travel-tips/theme_main" class="more_link">더보기 +</a>
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_banner">
-                        <a href="#!" class="item">
+                        <a href="/travel-tips/theme_view" class="item">
                             <img class="only_web" src="/images/sub/tra-sec-04-1.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-1-m.png" alt="">
                             <div class="bx_text">
@@ -247,7 +247,7 @@
                                 <p class="title">골프 여행객에게 인기 좋은 호텔</p>
                             </div>
                         </a>
-                        <a href="#!" class="item">
+                        <a href="/travel-tips/theme_view" class="item">
                             <img class="only_web" src="/images/sub/tra-sec-04-2.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-2-m.png" alt="">
                             <div class="bx_text">
