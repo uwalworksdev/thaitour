@@ -48,7 +48,7 @@
 									<tr>
 										<td><?= esc($row['grade_name']) ?></td>
 										<td>
-											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;">
+											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;" readonly>
 										</td>
 										<td>
 											<input type="text" name="amount_rate" id="amount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['amount_rate']) ?>" style="width:100px;text-align:right;">
