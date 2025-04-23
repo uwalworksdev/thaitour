@@ -351,6 +351,13 @@ class CheckoutController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getResultArray(); // 결과 배열 반환
 
+		// 회원할인율
+		$sql_p	  = "SELECT a.user_id, b.discount_rate FROM tbl_member a 
+                                                       LEFT JOIN tbl_member_grade b ON a.user_level = b.user_level 
+													   WHERE a.m_idx = '". $m_idx."'";
+		$row_p    = $db->query($sql_p)->getRowArray();
+		$discount_rate  = $row_p['discount_rate'];
+         
         $data = [
 			'order_user_name'   => $order_user_name,
 			'order_user_email'  => $order_user_email,
@@ -359,6 +366,7 @@ class CheckoutController extends BaseController
             'payment_no'        => $payment_no,
             'dataValue'         => $ordert_no,
             'resultCoupon'      => $result,
+			'discount_rate'     => $discount_rate,
             'point'             => $mileage
         ];
 
