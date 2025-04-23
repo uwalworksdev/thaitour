@@ -41,35 +41,35 @@
                                     <th>관리</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php foreach ($fresult as $row) { ?>
-                                    <tr>
-                                        <td><?= esc($row['grade_name']) ?></td>
-                                        <td>
-										    <input type="text" name="discount_rate" id="discount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
+							<tbody>
+								<?php foreach ($fresult as $row) { ?>
+									<tr>
+										<td><?= esc($row['grade_name']) ?></td>
+										<td>
+											<input type="text" name="discount_rate" id="discount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
 										</td>
-                                        <td><?= esc($row['upd_date']) ?></td>
-                                        <td><?= esc($row['reg_date']) ?></td>
-                                        <td>
-                                            <button type="button" id="geade_upd" value="<?= esc($row['g_idx']) ?>">등급수정</button>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                                    <tr>
-                                        <td>
-										    <input type="text" name="grade_name" id="grade_name" value="" style="width:100px;text-align:left;">
+										<td><?= esc($row['upd_date']) ?></td>
+										<td><?= esc($row['reg_date']) ?></td>
+										<td>
+											<button type="button" class="grade_upd" value="<?= esc($row['g_idx']) ?>">등급수정</button>
 										</td>
-                                        <td>
-										    <input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
-										</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <button type="button" id="geade_add">등급추가</button>
-                                        </td>
-                                    </tr>
-												
-                            </tbody>
+									</tr>
+								<?php } ?>
+								<tr>
+									<td>
+										<input type="text" name="grade_name" id="grade_name" value="" style="width:100px;text-align:left;">
+									</td>
+									<td>
+										<input type="text" name="discount_rate" id="discount_rate" value="" style="width:100px;text-align:right;">
+									</td>
+									<td></td>
+									<td></td>
+									<td>
+										<button type="button" id="grade_add">등급추가</button>
+									</td>
+								</tr>
+							</tbody>
+
                         </table>
                     </div>
                 </form>
