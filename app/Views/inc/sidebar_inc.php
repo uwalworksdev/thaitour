@@ -5,7 +5,7 @@
 <div class="side-bar-inc">
     <div class="side-bar-inc-main">
         <div class="top_cart flex_c_c">
-            <h3 class="title-side-bar">장바구니</h3>
+            <h3 class="title-side-bar">장바구니1</h3>
             <img src="/images/ico/select_ico_active.png" alt="" class="arrow-cart">
         </div>
         <div class="side-bar-cart">

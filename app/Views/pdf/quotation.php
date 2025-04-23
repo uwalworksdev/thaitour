@@ -112,48 +112,51 @@
 <body>
 	<div style="width: 100%">
 		<h1>더투어랩 여행견적서</h1>
-		<div class="sec1" style="width: 100%;">
-			<div class="left" style="display: inline-block; width: 48%; vertical-align: top;">
+		<table style="width: 100%;">
+			<tr>
+				<td style="width: 50%; vertical-align: top;">
 				<p class="ttl">The Tour Lab Co.,Ltd </p>
-				<span>Sukhumvit 13 Klongtoei Nuea </span>
-				<span>Watthana Bangkok 10110 </span>
-				<span>서비스/여행업 No. 0105565060507 </span>
+				<span>Sukhumvit 13 Klongtoei Nuea </span><br>
+				<span>Watthana Bangkok 10110 </span><br>
+				<span>서비스/여행업 No. 0105565060507 </span><br>
 				<p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
 				<p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
 				<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
-			</div>
-			<div class="right" style="display: inline-block; width: 48%; vertical-align: top;">
-                  <table>
-                      <colgroup>
-                          <col width="110px">
-                          <col width="110px">
-                          <col width="110px">
-                      </colgroup>
-                      <tbody>
-					      <?php
-						    $tot_cnt = 0;
-						    $tot_won = 0;
-						  ?>	
-					      <?php foreach ($sum as $i): ?>
-					      <?php
-						    $tot_cnt = $tot_cnt + $i['cnt'];
-						    $tot_won = $tot_won + $i['total_won'];
-						  ?>	
-                          <tr>
-                              <th><?= esc($i['code_name']) ?></th>
-                              <td><?= esc($i['cnt']) ?>건 </td>
-                              <td><?= number_format(esc($i['total_won'])) ?>원 </td>
-                          </tr>
-						  <?php endforeach; ?>
-                          <tr>
-                              <th class="total">합계 </th>
-                              <td class="total"><?=$tot_cnt?>건 </td>
-                              <td class="total"><?=number_format($tot_won)?>원 </td>
-                          </tr>
-                      </tbody>
-                  </table>
-            </div>
-		</div>
+				</td>
+				<td style="width: 50%; vertical-align: top;">
+				<table style="width: 100%; border-collapse: collapse;">
+					<colgroup>
+					<col width="110px">
+					<col width="110px">
+					<col width="110px">
+					</colgroup>
+					<tbody>
+					<?php
+						$tot_cnt = 0;
+						$tot_won = 0;
+					?>	
+					<?php foreach ($sum as $i): ?>
+					<?php
+						$tot_cnt = $tot_cnt + $i['cnt'];
+						$tot_won = $tot_won + $i['total_won'];
+					?>	
+					<tr>
+						<th><?= esc($i['code_name']) ?></th>
+						<td><?= esc($i['cnt']) ?>건 </td>
+						<td><?= number_format(esc($i['total_won'])) ?>원 </td>
+					</tr>
+					<?php endforeach; ?>
+					<tr>
+						<th class="total">합계 </th>
+						<td class="total"><?=$tot_cnt?>건 </td>
+						<td class="total"><?=number_format($tot_won)?>원 </td>
+					</tr>
+					</tbody>
+				</table>
+				</td>
+			</tr>
+		</table>
+
 		<div class="sec2">
 			<table>
 				<colgroup>
