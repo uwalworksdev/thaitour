@@ -199,7 +199,7 @@
                                             <div class="item_number_area_">
                                                 <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_">
                                                 <p class="item_title_">
-                                                    할인금액 (총 결제금액의 10%)
+                                                    할인금액 (총 결제금액의 <?=$discount_rate?>%)
                                                 </p>
                                             </div>
                                         </td>
