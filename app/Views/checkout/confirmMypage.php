@@ -187,7 +187,7 @@
                                 </colgroup>
                                 <tbody>
                                     <tr class="">
-                                        <td class="subject_">총 결제금액</td>
+                                        <td class="subject_">상품금액</td>
                                         <td class="normal_">
                                             <p class="price_ paySum"></p>
                                         </td>
@@ -309,12 +309,20 @@
                             </span>
                         </div>
 
+
                         <!--div class="item-info-r">
                             <span>세금&서비스비용</span>
                             <span>
                                 <span class="textPrice_ ">0</span> 원
                             </span>
                         </div-->
+
+						<div class="item-info-r">
+                            <span>회원할인</span>
+                            <span>
+                                -<span class="textPrice_ " id="minus_discount">-0</span> 원
+                            </span>
+                        </div>
 
                         <div class="item-info-r">
                             <span>포인트</span>
@@ -776,9 +784,11 @@ $(window).on("load", function() {
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
 				
-				var used_discount = parseInt(sum * $("#discount_rate").val() / 100);
-				sum1 = sum - used_discount;
+				var use_discount = parseInt(sum * $("#discount_rate").val() / 100);
+				sum1 = sum - use_discount;
 				alert(sum1);
+				$("#use_discount").val(use_discount);
+				$("#minus_discount").text(use_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
@@ -790,7 +800,7 @@ $(window).on("load", function() {
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(lastPrice);
 				$("#price").val(lastPrice);
-				$("#payment_price").val(sum);
+				$("#payment_price").val(sum1);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
