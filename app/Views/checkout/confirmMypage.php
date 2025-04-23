@@ -726,7 +726,7 @@ function payment_acnt()
 		 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 		 var payment_price = payment_tot - use_discount - used_coupon_money - used_point;
-		 //alert(payment_price);
+		 alert(payment_price);
 		 $("#payment_price").val(payment_price);
 		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -788,7 +788,6 @@ $(window).on("load", function() {
 				
 				var use_discount = parseInt(sum * $("#discount_rate").val() / 100);
 				sum1 = sum - use_discount;
-				alert(sum1);
 				$("#use_discount").val(use_discount);
 				$("#minus_discount").text(use_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				
