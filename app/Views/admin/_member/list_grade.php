@@ -51,9 +51,7 @@
                                         <td><?= esc($row['upd_date']) ?></td>
                                         <td><?= esc($row['reg_date']) ?></td>
                                         <td>
-                                            <!--a href="#!"><img src="/images/admin/common/ico_setting2.png" alt="수정"></a-->
-                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
-                                                    src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                                            <button type="button" id="geade_add">등급수정</button>
                                         </td>
                                     </tr>
                                 <?php } ?>
