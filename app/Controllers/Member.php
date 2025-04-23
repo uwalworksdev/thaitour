@@ -543,6 +543,9 @@ class Member extends BaseController
 
             $mcodes = $this->code->getByParentCode('56')->getResultArray();
 
+			$fsql = "SELECT * FROM tbl_member_grade ORDER BY onum ASC";
+			$grade = $db->query($fsql)->getResultArray();
+
             //$result = $this->ordersModel->getOrders('', 'product_name', 1, 10000, []);
 
             //$total = 0;
@@ -552,23 +555,24 @@ class Member extends BaseController
             //}
 
 			return view('admin/_member/write', [
-                'member' => $member,
-                'mcodes' => $mcodes,
-                'titleStr' => $titleStr,
+                'member'        => $member,
+                'grade'         => $grade,
+                'mcodes'        => $mcodes,
+                'titleStr'      => $titleStr,
                 'user_email_yn' => $user_email_yn,
-                'status' => $status,
-                'gubun' => $gubun,
-                'email1' => $email1,
-                'email2' => $email2,
-                'mobile1' => $mobile1,
-                'mobile2' => $mobile2,
-                'mobile3' => $mobile3,
-                'phone1' => $phone1,
-                'phone2' => $phone2,
-                'phone3' => $phone3,
+                'status'        => $status,
+                'gubun'         => $gubun,
+                'email1'        => $email1,
+                'email2'        => $email2,
+                'mobile1'       => $mobile1,
+                'mobile2'       => $mobile2,
+                'mobile3'       => $mobile3,
+                'phone1'        => $phone1,
+                'phone2'        => $phone2,
+                'phone3'        => $phone3,
                 // 'total' => $total,
-                'visit_route' => $member['visit_route'],
-                'recommender' => $member['recommender'],
+                'visit_route'   => $member['visit_route'],
+                'recommender'   => $member['recommender'],
             ]);
         } else {
             return "Thwarted.";
