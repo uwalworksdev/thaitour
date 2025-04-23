@@ -187,7 +187,7 @@
                                 </colgroup>
                                 <tbody>
                                     <tr class="">
-                                        <td class="subject_">총 결제금액</td>
+                                        <td class="subject_">상품금액</td>
                                         <td class="normal_">
                                             <p class="price_ paySum"></p>
                                         </td>
