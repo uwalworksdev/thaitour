@@ -3967,7 +3967,7 @@ class AjaxController extends BaseController {
 		$sum = $db->query($sql, [$group_no])->getResultArray();
 
 		// ① 그룹 해당 예약 목록
-		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?, upd_date = now()", [$m_idx, $group_no])->getResultArray();
+		$items = $db->query("SELECT * FROM tbl_order_mst WHERE m_idx = ? AND group_no = ?", [$m_idx, $group_no])->getResultArray();
 
 		$data = [
 			'group_no' => $group_no,
@@ -3988,7 +3988,7 @@ class AjaxController extends BaseController {
 			$g_idx         = $this->request->getPost('g_idx');
 			$discount_rate = $this->request->getPost('discount_rate');
 
-            $db->query("UPDATE tbl_member_grade SET discount_rate = ? WHERE g_idx = ?", [$discount_rate, $g_idx]);
+            $db->query("UPDATE tbl_member_grade SET discount_rate = ? WHERE g_idx = ?, upd_date = now()", [$discount_rate, $g_idx]);
 			
 			if ($db->transStatus() === false) {
 				$db->transRollback();
@@ -4012,5 +4012,5 @@ class AjaxController extends BaseController {
 			]);
 		}		
 		
-	}	
+	}		
 }	
