@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use Mpdf\Mpdf;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 class PdfController extends BaseController
 {
     private $db;
@@ -122,6 +125,7 @@ class PdfController extends BaseController
         $pdf->Output('invoice_golf.pdf', 'I');
         exit;
     }
+
 }
 
 

@@ -261,9 +261,7 @@
         }
 
         .golf_invoice .invoice_golf_total {
-            display: flex !important;
-            justify-content: flex-end !important;
-            align-items: center !important;
+            text-align: right !important;
         }
     </style>
 </head>
