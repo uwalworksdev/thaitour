@@ -309,12 +309,20 @@
                             </span>
                         </div>
 
+
                         <!--div class="item-info-r">
                             <span>세금&서비스비용</span>
                             <span>
                                 <span class="textPrice_ ">0</span> 원
                             </span>
                         </div-->
+
+						<div class="item-info-r">
+                            <span>회원할인</span>
+                            <span>
+                                -<span class="textPrice_ " id="minus_discount">-0</span> 원
+                            </span>
+                        </div>
 
                         <div class="item-info-r">
                             <span>포인트</span>
