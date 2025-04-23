@@ -42,12 +42,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($members as $i => $row) { ?>
+                                <?php foreach ($fresult as $row) { ?>
                                     <tr>
-                                        <td><?= esc($row['user_name']) ?></td>
-                                        <td><?= esc($row['user_name']) ?></td>
-                                        <td><?= esc($row['r_date']) ?></td>
-                                        <td><?= esc($row['r_date']) ?></td>
+                                        <td><?= esc($row['grade_name']) ?></td>
+                                        <td><?= esc($row['discount_rate']) ?></td>
+                                        <td><?= esc($row['upd_date']) ?></td>
+                                        <td><?= esc($row['reg_date']) ?></td>
                                         <td>
                                             <a href="write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>
