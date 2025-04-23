@@ -48,6 +48,7 @@
 	        <input type="hidden" name="coupon_pe"           id="coupon_pe"     value="0" >
 	        <input type="hidden" name="coupon_price"        id="coupon_price"  value="0" >
 	        <input type="hidden" name="used_point"          id="used_point"    value="0" >
+	        <input type="hidden" name="discount_rate"       id="discount_rate" value="<?=$discount_rate?>" >
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -191,6 +192,18 @@
                                             <p class="price_ paySum"></p>
                                         </td>
                                     </tr>
+                                    <tr class="">
+                                        <td class="subject_">회원할인</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_" readonly>
+                                                <p class="item_title_">원
+                                                    할인금액 (총 결제금액의 <?=$discount_rate?>%)
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+									
 									<?php 
 									   $coupon_cnt = 0;
 									   foreach ($resultCoupon as $row): 
