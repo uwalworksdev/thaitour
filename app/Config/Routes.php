@@ -1010,6 +1010,8 @@ $routes->group("travel-tips", static function ($routes) {
     $routes->get("infographic", 'Point::Infographic'); 
     $routes->get("infographic/view", 'Point::InfographicView'); 
     $routes->get("theme_main", 'Point::ThemeMain'); 
+    $routes->get("theme_view", 'Point::ThemeView'); 
+
     
 });
 

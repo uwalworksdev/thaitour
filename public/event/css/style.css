@@ -277,3 +277,17 @@ body {
     background-image: url('/event/images/방콕필수코스5가지%2B바탕화면.png');
     background-repeat: no-repeat;
 }
+
+@media screen and (max-width: 1000px) {
+    .best5 {
+        width: 100%;
+    }
+
+    .flex_header_top {
+        flex-wrap: wrap;
+    }
+
+    .card-animation {
+        width: 100%;
+    }
+}
