@@ -47,13 +47,11 @@
                                         <td><?= esc($row['grade_name']) ?></td>
                                         <td>
 										    <input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
-											<button type="button" id="" value="">수정</button>
 										</td>
                                         <td><?= esc($row['upd_date']) ?></td>
                                         <td><?= esc($row['reg_date']) ?></td>
                                         <td>
-                                            <a href="write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
-                                                    src="/images/admin/common/ico_setting2.png"></a>
+                                            <a href="#!"><img src="/images/admin/common/ico_setting2.png" alt="수정"></a>
                                             <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
                                         </td>
