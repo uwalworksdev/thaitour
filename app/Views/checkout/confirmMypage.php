@@ -48,6 +48,8 @@
 	        <input type="hidden" name="coupon_pe"           id="coupon_pe"     value="0" >
 	        <input type="hidden" name="coupon_price"        id="coupon_price"  value="0" >
 	        <input type="hidden" name="used_point"          id="used_point"    value="0" >
+	        <input type="hidden" name="discount_rate"       id="discount_rate" value="<?=$discount_rate?>" >
+			
                 <div class="container-card cus_item_spa_">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -191,6 +193,18 @@
                                             <p class="price_ paySum"></p>
                                         </td>
                                     </tr>
+                                    <tr class="">
+                                        <td class="subject_">회원할인</td>
+                                        <td class="normal_">
+                                            <div class="item_number_area_">
+                                                <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_" readonly>
+                                                <p class="item_title_">원
+                                                    할인금액 (총 결제금액의 <?=$discount_rate?>%)
+                                                </p>
+                                            </div>
+                                        </td>
+                                    </tr>
+									
 									<?php 
 									   $coupon_cnt = 0;
 									   foreach ($resultCoupon as $row): 
@@ -302,6 +316,13 @@
                                 <span class="textPrice_ ">0</span> 원
                             </span>
                         </div-->
+
+                        <div class="item-info-r">
+                            <span>회원할인</span>
+                            <span>
+                                -<span class="textPrice_ " id="minus_discount">-0</span> 원
+                            </span>
+                        </div>
 
                         <div class="item-info-r">
                             <span>포인트</span>
@@ -686,14 +707,15 @@ $('.couponApply').click(function () {
 <script>
 function payment_acnt()
 {
-		 var coupon_idx   = $("#coupon_idx").val();
-		 var coupon_num   = $("#coupon_num").val();	
-		 var coupon_name  = $("#coupon_name").val();	
-		 var payment_tot  = $("#payment_tot").val()*1;
-		 var coupon_pe    = $("#coupon_pe").val()*1;
-		 var coupon_price = $("#coupon_price").val()*1;
-		 var used_point   = $("#used_point").val()*1;
-
+		 var coupon_idx    = $("#coupon_idx").val();
+		 var coupon_num    = $("#coupon_num").val();	
+		 var coupon_name   = $("#coupon_name").val();	
+		 var payment_tot   = $("#payment_tot").val()*1;
+		 var coupon_pe     = $("#coupon_pe").val()*1;
+		 var coupon_price  = $("#coupon_price").val()*1;
+		 var used_point    = $("#used_point").val()*1;
+		 var used_discount = $("#use_discount").val()*1;
+		 
 		 if(coupon_pe > 0) {
 			var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
 		 } else {  
@@ -702,7 +724,7 @@ function payment_acnt()
 		 $("#used_coupon_money").val(used_coupon_money);
 		 $("#coupon_discount").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
-		 var payment_price = payment_tot - used_coupon_money - used_point;
+		 var payment_price = payment_tot - used_discount - used_coupon_money - used_point;
 		 //alert(payment_price);
 		 $("#payment_price").val(payment_price);
 		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -753,6 +775,7 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum         =  res.sum;
+				var sum1        =  0;
 				var lastPrice   =  res.lastPrice;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
@@ -761,6 +784,13 @@ $(window).on("load", function() {
                 var sign        =  res.sign;
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
+
+				var used_discount = sum * $("#discount_rate").val() / 100;
+				sum1 = sum - used_discount;
+				$("#use_discount").val(used_discount);
+				$("#minus_discount").text(used_discount);
+				$("#minus_discount").text(used_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
                 $("#signature").val(sign);
@@ -771,13 +801,14 @@ $(window).on("load", function() {
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(lastPrice);
 				$("#price").val(lastPrice);
-				$("#payment_price").val(sum);
+				$("#payment_price").val(sum1);
+				
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-				$("#payment_tot").val(sum);
-				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#payment_tot").val(sum1);
+				$(".paySum").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$(".lastPrice").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
             }

@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__c">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                     <?php else: ?>
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
@@ -204,6 +204,9 @@
                                 </a><a href="/coupon/list" class="sub_item">
                                     <p>여행 쿠폰 </p>
                                 </a>
+                                <a href="/promotion" class="sub_item">
+                                    <p>프로모션</p>
+                                </a>
                             </div>
                         </li>
 
@@ -275,7 +278,7 @@
                     </li>
                     <li>
                         <?php if (session("member")): ?>
-                            <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
+                            <a href="/mypage/alarm" class="text-grey flex__c">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                         <?php else: ?>
                             <a href="/member/join_choice" class="text-grey">회원가입</a>
                         <?php endif; ?>
@@ -499,7 +502,7 @@
         </div>
         <div class="nav-item" onclick="location.href='/mypage/alarm'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
-            <span class="nav-text text-grey flex__s">마이페이지<i class="count_like" style="color: red;">(0)</i></span>
+            <span class="nav-text text-grey flex__c">마이페이지<i class="count_like" style="color: red;">(0)</i></span>
         </div>
         <div class="nav-item">
             <div class="nav-con-cus">
@@ -532,7 +535,7 @@
 
                 <?php if (session("member")): ?>
                     <li>
-                        <a href="/mypage/alarm" class="text-grey flex__s">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__c">마이페이지<span class="count_like" style="color: red;">(0)</span></a>
                     </li>
                 <?php else: ?>
                     <li>
@@ -570,6 +573,7 @@
                         <a href="/time_sale/list"><p>타임세일</p></a>
                         <a href="/travel-tips"><p>여행꿀팁 </p></a>
                         <a href="/coupon/list"><p>여행 쿠폰 </p></a>
+                        <a href="/promotion"><p>프로모션</p></a>
                     </div>
                 </li>
                 
