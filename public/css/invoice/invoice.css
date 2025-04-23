@@ -955,7 +955,9 @@
     color: #7d7d7d;
 }
 
-
+.btn_wrap_member {
+    gap: 5px;
+}
 
 @media screen and (max-width: 850px) {
     .invoice_paid .invoice_table_new table tr .btn_payment {
