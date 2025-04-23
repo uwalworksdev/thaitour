@@ -777,7 +777,7 @@ $(window).on("load", function() {
                 var orderNumber =  res.orderNumber;
 				
 				var use_discount = parseInt(sum * $("#discount_rate").val() / 100);
-				sum1 = sum - used_discount;
+				sum1 = sum - use_discount;
 				alert(sum1);
 				$("#use_discount").val(use_discount);
 				$("#minus_discount").text(use_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
