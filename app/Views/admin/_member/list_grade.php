@@ -21,106 +21,32 @@
                 }
             </script>
             <div class="listWrap">
-                <div class="listTop">
-                    <div class="left">
-                        <p class="schTxt">■ 총 <?= esc($nTotalCount) ?>개의 목록이 있습니다.</p>
-                    </div>
-                </div>
-
                 <form name="frm" id="frm">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
-                                <col width="50px" />
-                                <col width="60px" />
-                                <col width="70px" />
-                                <col width="150px" />
-                                <col width="150px" />
-                                <?php if ($s_status == 'Y') { ?>
-                                    <col width="100px" />
-                                    <col width="*" />
-                                <?php }
-                                if ($s_status == 'N') { ?>
-                                    <col width="*" />
-                                    <col width="150px" />
-                                <?php } ?>
-                                <col width="150px" />
-                                <col width="150px" />
-                                <?php if ($s_status == 'Y') { ?>
-                                    <col width="150px" />
-                                    <col width="200px" />
-                                <?php } ?>
-                                <col width="100px" />
+                                <col width="*" />
+                                <col width="20%" />
+                                <col width="10%" />
+                                <col width="10%" />
+                                <col width="20%" />
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th>선택</th>
-                                    <th>번호</th>
-                                    <th>현황</th>
-                                    <th>아이디</th>
-                                    <th>이름</th>
-                                    <?php if ($s_status == 'Y') { ?>
-                                        <th>회원등급</th>
-                                    <?php }
-                                    if ($s_status == 'N') { ?>
-                                        <th>탈퇴사유</th>
-                                    <?php } ?>
-                                    <?php if ($s_status == 'Y') { ?>
-                                        <th>이메일</th>
-                                    <?php }
-                                    if ($s_status == 'N') { ?>
-                                        <th>기타이유</th>
-                                    <?php } ?>
-                                    <?php if ($s_status == 'Y') { ?>
-                                        <th>모바일</th>
-                                    <?php }
-                                    if ($s_status == 'N') { ?>
-                                        <th>탈퇴일</th>
-                                    <?php } ?>
-                                    <?php if ($s_status == 'Y') { ?>
-                                        <th>연락처</th>
-                                    <?php } ?>
-                                    <?php if ($s_status == 'Y') { ?>
-                                        <th>마일리지</th>
-                                    <?php } ?>
-                                    <th>가입일시</th>
+                                    <th>회원등급</th>
+                                    <th>할인율</th>
+                                    <th>등록일</th>
+                                    <th>수정일</th>
                                     <th>관리</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($members as $i => $row) { ?>
                                     <tr>
-                                        <td><input type="checkbox" class="m_idx" name="m_idx[]" value="<?= $row['m_idx'] ?>" /></td>
-                                        <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
-                                        <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
-                                        <td><?=maskNaverId(esc($row['user_id']))?></td>
                                         <td><?= esc($row['user_name']) ?></td>
-                                        <?php if ($s_status == 'Y') { ?>
-										<td>
-										   <?php
-											  if($row['user_level'] == "10") echo "일반";
-											  if($row['user_level'] == "9")  echo "실버";
-											  if($row['user_level'] == "8")  echo "골드";
-											  if($row['user_level'] == "7")  echo "VIP";
-											  if($row['user_level'] == "6")  echo "VVIP";
-										   ?>
-									    </td>
-                                        <?php } ?>
-                                        <?php if ($s_status == 'N') { ?>
-                                            <td class="tac"><?= $row["out_reason"] ?></td>
-                                            <td class="tac"><?= $row["out_etc"] ?></td>
-                                            <td class="tac"><?= $row["out_date"] ?></td>
-                                        <?php } ?>
-                                        <?php if ($s_status == 'Y') { ?>
-                                            <td><?= esc($row['user_email']) ?></td>
-                                            <td><?= esc($row['user_mobile']) ?></td>
-                                            <td><?= esc($row['user_phone']) ?></td>
-                                            <td><?= esc($row['mileage']) ?></td>
-                                        <?php }
-                                        if ($s_status == 'N') { ?>
-                                            <!-- <td><?= esc($row['r_date']) ?></td> -->
-                                        <?php } ?>
+                                        <td><?= esc($row['user_name']) ?></td>
+                                        <td><?= esc($row['r_date']) ?></td>
                                         <td><?= esc($row['r_date']) ?></td>
                                         <td>
                                             <a href="write?idx=<?= $row['m_idx'] ?>&s_status=<?= $s_status ?>"><img
@@ -129,17 +55,12 @@
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
                                         </td>
                                     </tr>
-
                                 <?php } ?>
                             </tbody>
                         </table>
                     </div>
                 </form>
 
-                <!-- 페이지네이션 -->
-                <div class="pagination">
-                    <?= ipageListing($pg, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=") ?>
-                </div>
             </div>
         </div>
     </span>
