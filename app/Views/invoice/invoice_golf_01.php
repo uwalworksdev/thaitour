@@ -133,7 +133,7 @@
 						<?php } ?>
                         <tr>
                             <th>총금액</th>
-                            <td colspan="3"><?=number_format($row['real_price_bath'])?>바트</td>
+                            <td colspan="4"><?=number_format($row['real_price_bath'])?>바트</td>
                         </tr>
                     </tbody>
                 </table>
@@ -158,7 +158,7 @@
                 </p>
                 <div class="btn_wrap_member flex_c_c">
                     <button type="button" class="invoice_member" id="btn_print">프린트</button>
-                    <button type="button" class="invoice_member">PDF다운로드</button>
+                    <button type="button" class="invoice_member" id="btn_pdf" data-order_idx="<?=$row['order_idx']?>">PDF다운로드</button>
                     <button type="button" class="invoice_member">결제하러 가기</button>
                 </div>
                 <div class="invoice_note">
@@ -199,7 +199,7 @@
 <script>
 
     $(document).on('click', '#btn_print', function () {
-        const content = document.querySelector('.golf_invoice .inner').innerHTML;
+        const content = document.querySelector('#container_voice').innerHTML;
 
         let iframe = document.createElement('iframe');
         iframe.name = "printFrame";
@@ -215,7 +215,7 @@
             <html>
             <head>
                 <title>요청하신 예약이 가능하여 인보이스가 발송되었습니다</title>
-                <link href="css/invoice/invoice.css" rel="stylesheet" />
+                <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
                 <style>
                     @media print {
                         body {
@@ -232,6 +232,23 @@
 
                         .btn_wrap_member, .invoice_note, .invoice_info, .tit_note, .inquiry_qna {
                             display: none !important;
+                        }
+
+                        table {
+                            border-collapse: collapse !important;
+                        }
+
+                        .golf_invoice .invoice_table .invoice_tbl tr th {
+                            background-color: #f4f4f4 !important;
+                            border-top: 1px solid #dddddd !important;
+                            border-bottom: 1px solid #dddddd !important;
+                        }
+
+                        .golf_invoice .invoice_golf_total {
+                            padding: 10px !important;
+                            display: flex !important;
+                            justify-content: flex-end !important;
+                            align-items: center !important;
                         }
                     }
                 </style>
@@ -253,7 +270,7 @@
     
     // PDF 버튼 클릭 시
     $(document).on('click', '#btn_pdf', function () {
-        var group_no = $(this).val(); 
-        location.href='/pdf/quotation?group_no='+group_no;
+        var order_idx = $(this).data("order_idx"); 
+        location.href='/pdf/invoice_golf?order_idx='+order_idx;
     });
 </script>
