@@ -775,6 +775,7 @@ $(window).on("load", function() {
             dataType: 'json',
             success: function (res) {
 				var sum         =  res.sum;
+				var sum1        =  0;
 				var lastPrice   =  res.lastPrice;
 				var EdiDate     =  res.EdiDate;
 				var hashString  =  res.hashString;
@@ -785,8 +786,8 @@ $(window).on("load", function() {
                 var orderNumber =  res.orderNumber;
 
 				var used_discount = sum * $("#discount_rate").val() / 100;
-				sum = sum - used_discount;
-				alert(sum);
+				sum1 = sum - used_discount;
+				alert(sum1);
 				$("#use_discount").val(used_discount);
 				$("#minus_discount").text(used_discount);
 				$("#minus_discount").text(used_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -801,10 +802,10 @@ $(window).on("load", function() {
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(lastPrice);
 				$("#price").val(lastPrice);
-				$("#payment_price").val(sum);
+				$("#payment_price").val(sum1);
 				
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-				$("#payment_tot").val(sum);
+				$("#payment_tot").val(sum1);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
