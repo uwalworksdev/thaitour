@@ -786,6 +786,7 @@ $(window).on("load", function() {
 
 				var used_discount = sum * $("#discount_rate").val() / 100;
 				sum = sum - used_discount;
+				alert(sum);
 				$("#use_discount").val(used_discount);
 				$("#minus_discount").text(used_discount);
 				$("#minus_discount").text(used_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
