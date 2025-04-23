@@ -318,6 +318,13 @@
                         </div-->
 
                         <div class="item-info-r">
+                            <span>회원할인</span>
+                            <span>
+                                -<span class="textPrice_ " id="minus_discount">-0</span> 원
+                            </span>
+                        </div>
+
+                        <div class="item-info-r">
                             <span>포인트</span>
                             <span>
                                 -<span class="textPrice_ " id="minus_point">-0</span> 원
@@ -779,6 +786,8 @@ $(window).on("load", function() {
 
 				var used_discount = sum * $("#discount_rate").val() / 100;
 				$("#use_discount").val(used_discount);
+				$("#minus_discount").text(used_discount);
+				$("#minus_discount").text(used_discount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
