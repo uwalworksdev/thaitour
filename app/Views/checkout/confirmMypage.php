@@ -707,8 +707,6 @@ function payment_acnt()
 		 var coupon_pe     = $("#coupon_pe").val()*1;
 		 var coupon_price  = $("#coupon_price").val()*1;
 		 var used_point    = $("#used_point").val()*1;
-		 var used_discount = payment_tot * $("#discount_rate").val() / 100;
-         $("#use_discount").val(used_discount);
 		 
 		 if(coupon_pe > 0) {
 			var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
@@ -777,6 +775,10 @@ $(window).on("load", function() {
                 var sign        =  res.sign;
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
+
+				var used_discount = sum * $("#discount_rate").val() / 100;
+				$("#use_discount").val(used_discount);
+				
 				$("#EdiDate").val(EdiDate);
 				$("#SignData").val(hashString);
                 $("#signature").val(sign);
