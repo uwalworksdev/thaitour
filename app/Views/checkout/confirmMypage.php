@@ -803,14 +803,13 @@ $(window).on("load", function() {
 				$("#price").val(sum1);
 				$("#payment_price").val(sum1);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-				$("#payment_tot").val(sum1);
-				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#payment_tot").val(sum);
+				$(".paySum").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$(".lastPrice").text(sum1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				payment_acnt();
             }
         })
 });
