@@ -287,7 +287,6 @@
 							
 							<!-- 예약금액 및 상태설정 수정 -->
 							<br>
-							<div style="font-size:12pt;margin-bottom:10px">■ 상품금액 및 예약설정</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>

@@ -344,7 +344,7 @@ class SettlementController extends BaseController
 						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
                         LEFT JOIN tbl_order_list c  ON c.order_idx   = a.order_idx
 						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
-						WHERE a.is_modify='N'       AND a.order_status = 'Y' $strSql GROUP BY a.order_idx";
+						WHERE a.is_modify='N'       AND a.order_status = 'Z' $strSql GROUP BY a.order_idx";
 		//write_log("total_sql- ". $total_sql);				
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
@@ -368,7 +368,7 @@ class SettlementController extends BaseController
 						FROM tbl_order_mst a 
 						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
 						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
-						WHERE a.is_modify='N'        AND a.order_status = 'Y' $strSql ";
+						WHERE a.is_modify='N'        AND a.order_status = 'Z' $strSql ";
         $fresult4 = $this->connect->query($fsql);
         $row4     = $fresult4->getRowArray();  // 1개의 row 가져옴
 
