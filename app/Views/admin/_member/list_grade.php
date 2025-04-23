@@ -27,6 +27,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="*" />
+                                <col width="10%" />
                                 <col width="20%" />
                                 <col width="10%" />
                                 <col width="10%" />
@@ -34,7 +35,8 @@
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <th>회원등급</th>
+                                    <th>회원등급명</th>
+                                    <th>등급</th>
                                     <th>할인율</th>
                                     <th>등록일</th>
                                     <th>수정일</th>
@@ -45,6 +47,9 @@
 								<?php foreach ($fresult as $row) { ?>
 									<tr>
 										<td><?= esc($row['grade_name']) ?></td>
+										<td>
+											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;">
+										</td>
 										<td>
 											<input type="text" name="discount_rate" id="discount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
 										</td>
