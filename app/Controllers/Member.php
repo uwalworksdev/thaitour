@@ -93,6 +93,58 @@ class Member extends BaseController
         ]);
     }
 
+
+    public function list_grade()
+    {
+        $model = $this->member;
+        $private_key = private_key();
+
+        $search_name = $this->request->getGet('search_name');
+        $search_category = $this->request->getGet('search_category');
+        $s_status = $this->request->getGet('s_status') ?? 'Y';
+        $pg = $this->request->getGet('pg') ?? 1;
+
+        $strSql = "WHERE 1=1";
+
+        if ($search_name) {
+            if ($search_category == "user_id") {
+                $strSql .= " AND user_id = '" . $this->db->escapeString($search_name) . "'";
+            } else {
+                $strSql .= " AND CONVERT(AES_DECRYPT(UNHEX($search_category), '$private_key') USING utf8) LIKE '%" . $this->db->escapeString($search_name) . "%'";
+            }
+        }
+
+        if ($s_status == "Y") {
+            $strTitle = "(일반)";
+            $strSql .= " AND status != 'O'";
+        } else {
+            $strTitle = "(탈퇴)";
+            $strSql .= " AND status = 'O'";
+        }
+
+        $strSql .= " AND user_level > 6";
+
+        $g_list_rows = 20;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $total_count = $model->getMemberCount($strSql);
+ 
+        $nPage = ceil($total_count / $g_list_rows);
+
+        $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
+        return view('admin/_member/list_grade', [
+            'strTitle' => $strTitle,
+            'nTotalCount' => $total_count,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'members' => $members,
+            's_status' => $s_status,
+            'pg' => $pg,
+            'g_list_rows' => $g_list_rows,
+            'nPage' => $nPage,
+        ]);
+    }
+	
     public function del()
     {
         $m_idx = $this->request->getPost('m_idx');

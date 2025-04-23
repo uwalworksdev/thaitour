@@ -34,11 +34,13 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_member", static function ($routes) {
         $routes->get("list", "Member::list_member");
+        $routes->get("list_grade", "Member::list_grade");
         $routes->post("del", "Member::del");
         $routes->post("member_out", "Member::member_out");
         $routes->get("email", "AutoMailController::index");
         $routes->get("sms", "SmsSettings::index");
         $routes->get("write", "Member::detail");
+        $routes->get("write", "Member::detailGrade");
         $routes->get("sms_view", "SmsSettings::sms_view");
         $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
         $routes->get("email_view", "AutoMailController::email_view");
