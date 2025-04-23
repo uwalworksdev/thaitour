@@ -197,8 +197,8 @@
                                         <td class="subject_">회원할인</td>
                                         <td class="normal_">
                                             <div class="item_number_area_">
-                                                <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_">
-                                                <p class="item_title_">
+                                                <input type="number" value="0" name="use_discount" id="use_discount" min="0" class="item_number_" readonly>
+                                                <p class="item_title_">원
                                                     할인금액 (총 결제금액의 <?=$discount_rate?>%)
                                                 </p>
                                             </div>
