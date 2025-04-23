@@ -361,7 +361,7 @@ class InicisController extends BaseController
 					// 배열을 다시 문자열로 변환
 					$output = implode(',', $quotedArray);
 
-					$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
+					$sql = "UPDATE tbl_order_mst SET payment_method = 'Card', order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
 					$db->query($sql);
 
 					// 쿠폰, 포인트 소멸부분 추가

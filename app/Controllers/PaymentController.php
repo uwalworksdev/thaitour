@@ -154,7 +154,7 @@ class PaymentController extends BaseController
 
 								$output = explode(",", $row['order_no']);
 
-								$sql = "UPDATE tbl_order_mst SET order_status = 'Y', deposit_date = now()  WHERE order_no IN(". $output .") "; 
+								$sql = "UPDATE tbl_order_mst SET payment_method = 'Card', order_status = 'Y', deposit_date = now()  WHERE order_no IN(". $output .") "; 
 								$db->query($sql);
 
 								// 쿠폰 소멸부분 추가
