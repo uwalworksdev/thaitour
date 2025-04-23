@@ -5,7 +5,7 @@
     <span id="print_this">
         <header id="headerContainer">
             <div class="inner">
-                <h2><?= esc($strTitle) ?> 회원리스트</h2>
+                <h2>회원등급관리</h2>
                 <div class="menus">
                     <ul class="first">
                         <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), true)"
