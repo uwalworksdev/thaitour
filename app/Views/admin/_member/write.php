@@ -65,10 +65,9 @@
                             <th>회원등급</th>
                             <td>
                                 <select name="user_level">
-                                    <option value="10" <?= $member['user_level'] == "10" ? 'selected' : '' ?>>일반</option>
-                                    <option value="9" <?= $member['user_level'] == "9" ? 'selected' : '' ?>>실버</option>
-                                    <option value="8" <?= $member['user_level'] == "8" ? 'selected' : '' ?>>골드</option>
-                                    <option value="7" <?= $member['user_level'] == "7" ? 'selected' : '' ?>>VIP</option>
+								<?php foreach ($grade as $row) { ?>
+                                    <option value="<?=$row['user_level']?>" <?= $member['user_level'] == $row['user_level'] ? 'selected' : '' ?>><?=$row['grade_name']?></option>
+								<?php } ?>	
                                 </select>
                             </td>
                             <th>현황</th>

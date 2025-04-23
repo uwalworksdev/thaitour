@@ -90,6 +90,12 @@
 			color: #757575;
 			font-size: 12px
 		}
+
+		.dom-line {
+			padding: 10px 0;
+			font-size: 14px;
+			color: #000;
+		}
 		
 		.sec2 td {
 			padding: 12px
@@ -105,26 +111,47 @@
 			color: #656565;
 			line-height: 1.4;
 		}
+
+		.line_new {
+			width: 100%;
+			height: 1px;
+			background-color: #000;
+		}
 	
     </style>
 </head>
-<link rel="stylesheet" href="/css/mypage/mypage_new.css.css">
 <body>
 	<div style="width: 100%">
 		<h1>더투어랩 여행견적서</h1>
-		<table style="width: 100%;">
-			<tr>
-				<td style="width: 50%; vertical-align: top;">
-				<p class="ttl">The Tour Lab Co.,Ltd </p>
-				<span>Sukhumvit 13 Klongtoei Nuea </span><br>
-				<span>Watthana Bangkok 10110 </span><br>
-				<span>서비스/여행업 No. 0105565060507 </span><br>
-				<p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
-				<p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
-				<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
+		<table style="width: 100%; border: unset; height: 100%;">
+			<tr style="border: unset; height: 100%;">
+				<td style="width: 48%; text-align:left; border: unset;">
+					<table style="width: 100%; border: unset;">
+						<tr style="border: unset;">
+							<td style="vertical-align: top; text-align:left; border: unset;">
+								<div style="margin: 0; font-weight: bold; font-size: 18px; color: #000">The Tour Lab Co.,Ltd</div> <br>
+								<div style="">Sukhumvit 13 Klongtoei Nuea</div>
+								<div style="">Watthana Bangkok 10110</div>
+								<div style="">서비스/여행업 No. 0105565060507</div> <br>
+								<div class="dom-line" style="marign-top: 10px">
+								견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일
+								</div>
+								<hr style="border: none; height: 1px; background-color: #000;">
+								<div class="dom-line">
+								고객명 : <?=session()->get("member")["name"]?> 님 귀하
+								</div>
+								<hr style="border: none; height: 1px; background-color: #000;">
+							</td>
+
+							<td style="width: 60px; text-align: right; vertical-align: top; border: unset;">
+								<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" style="width: 60px;">
+							</td>
+						</tr>
+					</table>
 				</td>
-				<td style="width: 50%; vertical-align: top;">
-				<table style="width: 100%; border-collapse: collapse;">
+				<td style="width: 4%; vertical-align: top; border: unset;"></td>
+				<td style="width: 48%; vertical-align: top; border: unset;">
+				<table style="width: 100%; border-collapse: collapse; border: unset;">
 					<colgroup>
 					<col width="110px">
 					<col width="110px">
@@ -180,9 +207,9 @@
 					?>
 					<tr>
 						<td><?= esc($i['code_name']) ?></td>
-						<td>
-							<p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
-							<p><?=$order_info?> </p>
+						<td style="text-align: left">
+							<p class="time" style="font-size: 14px; color: #000; font-weight: bold"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
+							<p style="font-size: 12px; color: #757575;"><?=$order_info?> </p>
 						</td>
 						<td>
 							<p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
