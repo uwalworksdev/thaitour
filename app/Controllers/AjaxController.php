@@ -3988,7 +3988,7 @@ class AjaxController extends BaseController {
 			$g_idx         = $this->request->getPost('g_idx');
 			$discount_rate = $this->request->getPost('discount_rate');
 
-            $db->query("UPDATE tbl_member_grade SET discount_rate = ? WHERE g_idx = ?, upd_date = now()", [$discount_rate, $g_idx]);
+            $db->query("UPDATE tbl_member_grade SET discount_rate = ?, upd_date = NOW() WHERE g_idx = ?", [$discount_rate, $g_idx]);
 			
 			if ($db->transStatus() === false) {
 				$db->transRollback();
