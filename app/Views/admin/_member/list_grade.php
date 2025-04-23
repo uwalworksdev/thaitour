@@ -57,7 +57,7 @@
                                 <?php } ?>
                                     <tr>
                                         <td>
-										    <input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
+										    <input type="text" name="grade_name" id="grade_name" value="" style="width:100px;text-align:left;">
 										</td>
                                         <td>
 										    <input type="text" name="discount_rate" id="discount_rate" value="<?= esc($row['discount_rate']) ?>" style="width:100px;text-align:right;">
