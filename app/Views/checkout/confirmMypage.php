@@ -707,7 +707,7 @@ function payment_acnt()
 		 var coupon_pe     = $("#coupon_pe").val()*1;
 		 var coupon_price  = $("#coupon_price").val()*1;
 		 var used_point    = $("#used_point").val()*1;
-		 var used_discount = $("#used_discount").val()*1;
+		 var used_discount = $("#use_discount").val()*1;
 		 
 		 if(coupon_pe > 0) {
 			var used_coupon_money = parseInt(payment_tot * coupon_pe / 100);
