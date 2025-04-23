@@ -157,8 +157,9 @@
                     취소 규정 : 결제 후 <span>19년11월09일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.
                 </p>
                 <div class="btn_wrap_member flex_c_c">
-                    <button type="button" class="invoice_member">결제하러
-                    가기</button>
+                    <button type="button" class="invoice_member" id="btn_print">프린트</button>
+                    <button type="button" class="invoice_member">PDF다운로드</button>
+                    <button type="button" class="invoice_member">결제하러 가기</button>
                 </div>
                 <div class="invoice_note">
                     <p>- 인보이스를 보내드릴 때 룸 또는 좌석을 홀딩하지는 않으므로 결제가 늦어질 경우 예약이 불가할 수 있습니다.</p>
@@ -194,3 +195,65 @@
         </div>
     </section>
 </div>
+
+<script>
+
+    $(document).on('click', '#btn_print', function () {
+        const content = document.querySelector('.golf_invoice .inner').innerHTML;
+
+        let iframe = document.createElement('iframe');
+        iframe.name = "printFrame";
+        iframe.style.position = 'absolute';
+        iframe.style.top = '-9999px';
+        document.body.appendChild(iframe);
+
+        let frameDoc = iframe.contentWindow || iframe.contentDocument;
+        if (frameDoc.document) frameDoc = frameDoc.document;
+
+        frameDoc.open();
+        frameDoc.write(`
+            <html>
+            <head>
+                <title>요청하신 예약이 가능하여 인보이스가 발송되었습니다</title>
+                <link href="css/invoice/invoice.css" rel="stylesheet" />
+                <style>
+                    @media print {
+                        body {
+                            background: white !important;
+                            margin: 0;
+                            padding: 0;
+                            color: #000;
+                        }
+
+                        .golf_invoice .invoice_table {
+                            padding: 0 !important;
+                            border: none !important;
+                        }
+
+                        .btn_wrap_member, .invoice_note, .invoice_info, .tit_note, .inquiry_qna {
+                            display: none !important;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                ${content}
+            </body>
+            </html>
+        `);
+        frameDoc.close();
+
+        setTimeout(function () {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+            document.body.removeChild(iframe); 
+        }, 500);
+    });
+
+    
+    // PDF 버튼 클릭 시
+    $(document).on('click', '#btn_pdf', function () {
+        var group_no = $(this).val(); 
+        location.href='/pdf/quotation?group_no='+group_no;
+    });
+</script>
