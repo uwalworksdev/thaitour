@@ -93,7 +93,7 @@
 
         <!-- 카오산 -->
         <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
+            <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-full max-w-[1000px] h-auto max-w-none">
         </div>
 
         <!-- 쇼핑몰 -->

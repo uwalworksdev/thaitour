@@ -540,6 +540,10 @@
         height: 4.7rem;
     }
 
+    .count_like {
+        font-size: 1.8rem;
+    }
+
     .burger {
         cursor: pointer;
         /* background-image: url("/uploads/icons/menu_m.png"); */
