@@ -792,7 +792,7 @@ $(window).on("load", function() {
 	            $("#oid").val(orderNumber);
 				$("#Amt").val(lastPrice);
 				$("#price").val(lastPrice);
-				$("#payment_price").val(sum);
+				$("#payment_price").val(sum1);
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
