@@ -112,7 +112,7 @@
 <body>
 	<div style="width: 100%">
 		<h1>더투어랩 여행견적서</h1>
-		<div class="sec1" style="width: 100%">
+		<div class="sec1" style="width: 100%;">
 			<div class="left" style="display: inline-block; width: 48%; vertical-align: top;">
 				<p class="ttl">The Tour Lab Co.,Ltd </p>
 				<span>Sukhumvit 13 Klongtoei Nuea </span>
