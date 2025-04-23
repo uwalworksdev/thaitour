@@ -3,56 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { font-family: 'DejaVu Sans', sans-serif; font-size: 12pt; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #000; padding: 5px; text-align: left; }
-        h1 { text-align: center; }
-        tr, td, th { page-break-inside: avoid; }
-		.img_stem {
-			position: absolute;
-			top: 12px;
-			right: 5px;
-			width: 60px;
-		}	
-		
-		.list_desc p {
-			margin: 2px 0;
-			line-height: 1.3;
-			font-size: 11pt;
-		}
-
-		body {
-			background: white !important;
-			margin: 0;
-			padding: 0;
-			color: #000;
-		}
-
-		.estimate_popup_content {
-			box-shadow: none;
-			width: 100%;
-			padding: 0;
-		}
-
-		/* 불필요한 요소 숨기기 */
-		.btns_download,
-		.send_mail,
-		.btn_close_popup,
-		nav,
-		footer {
-			display: none !important;
-		}
-
-		/* a 태그 자동 링크 표시 방지 */
-		a[href]:after {
-			content: "" !important;
-		}
-
-		/* 이미지 max-width 제한 해제 */
-		img {
-			max-width: none !important;
-		}
-
+        
 		h1 {
 			text-align: center;
 			font-size: 24px;
@@ -154,55 +105,12 @@
 			color: #656565;
 			line-height: 1.4;
 		}
-		
-		.send_mail {
-			display: flex;
-			align-items: center;
-			gap : 8px;
-			padding-top: 35px;
-			border-top: 1px solid #dbdbdb;
-		}
-		
-		.send_mail input {
-			flex: 1;
-			padding: 0 10px;
-			border: 1px solid #dbdbdb;
-			outline: none;
-			height: 45px;
-			font-size: 14px;
-			color : #555
-		}
-		
-		.send_mail button {
-			font-size: 14px;
-			font-weight: 700;
-			color: #666;
-			border: 1px solid #dbdbdb;
-			height: 45px;
-			padding: 10px 20px;
-		}
-		
-		.btns_download {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap : 4px;
-			margin-top: 35px
-		}
-		
-		.btns_download button {
-			font-size: 15px;
-			font-weight: 700;
-			padding: 16px 36px;
-			background-color: #17469e;
-			color: #fff;
-			border: none;
-		
-		}
+	
     </style>
 </head>
+<link rel="stylesheet" href="/css/mypage/mypage_new.css.css">
 <body>
-	<div>
+	<div style="width: 100%">
 		<h1>더투어랩 여행견적서</h1>
 		<div class="sec1">
 			<div class="left">
