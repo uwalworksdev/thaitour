@@ -22,11 +22,108 @@
     align-items: center;
     gap: 3px;
   }
+
+  @media screen and (max-width: 850px) {
+      #header_mobile {
+          overflow: hidden;
+      }
+
+      #footer {
+        padding-bottom: 20rem;
+        overflow: hidden;
+    }
+
+    html {
+        font-size: 1.38888889vw !important;
+    }
+
+    .title-section-best {
+        width: 100%;
+        height: 23rem;
+        background-image: url(/event/images/방콕필수코스5가지.png);
+        background-repeat: no-repeat;
+        background-size: 56rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+    }
+
+    .title-section {
+        width: 100%;
+        height: 28.5rem;
+        background-image: url(/event/images/250418_방콕호텔.png);
+        background-repeat: no-repeat;
+        background-size: 59rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+    }
+
+    .hotel-list a {
+      width: 60rem;
+      min-width: 60rem;
+      max-width: 60rem;
+    }
+
+    .hotel-list a .p-4 h3 {
+      font-size: 2.125rem;
+      line-height: 2.75rem;
+    }
+
+    .good-price-hotel, .infinitypool-hotel, .shopping-hotel, .pet-hotel {
+      margin-top: 5rem;
+    }
+
+    .title-section-tour {
+        width: 100%;
+        height: 32.5rem;
+        background-image: url(/event/images/250418_방콕투어.png);
+        background-repeat: no-repeat;
+        background-size: 65rem auto;
+        background-position: center top;
+        margin-bottom: 2rem;
+        margin-top: 5rem;
+    }
+
+    .tour-7 {
+        background-position: center -140rem;
+        height: 22rem;
+    }
+
+    .title-section-golf {
+      width: 100%;
+      height: 32.5rem;
+      background-image: url(/event/images/250418_방콕골프.png);
+      background-repeat: no-repeat;
+      background-size: 65rem auto;
+      background-position: center top;
+      margin-bottom: 2rem;
+    }
+
+    .title-section-golf.sub-1 {
+        background-position: center 1.7rem;
+    }
+
+    .title-section-golf.sub-2 {
+        background-position: center -30rem;
+        height: 22rem;
+    }
+
+    .title-section-golf.sub-3 {
+        background-position: center -52rem;
+        height: 22rem;
+    }
+
+  }
+
+  @media screen and (max-width: 700px) {
+    .box_img {
+      margin: 0 16rem;
+    }
+  }
 </style>
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
 
 <!-- 배너 섹션 -->
-<section class="w-full min-h-screen relative overflow-hidden ">
+<section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
     <div class="absolute inset-0 w-full h-full">
         <div class="slider-container w-full h-full relative">
 
@@ -63,59 +160,64 @@
 <!-- 구글폰트 Pretendard 사용 -->
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
 
-<div class="max-w-8xl mx-auto px-4 py-8 bg-[#fcf1e0] section-best" >
+<div class="max-w-8xl mx-auto px-4 py-8 bg-[#fcf1e0] section-best overflow-hidden" >
 
     <!-- 제목 필요시 활성화 -->
     <!-- <h1 class="text-4xl font-bold text-center mb-16 text-gray-800">방콕 한눈에 살펴보기</h1> -->
 
     <!-- 전체 배경 지도 (중앙) -->
-    <div class="relative h-[935px] md:h-[935px] flex flex-col md:block items-center">
+    <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
         <img src="/event/images/방콕명소요약가이드.png" class="object-scale-down w-full h-44">
         <!-- 중앙 지도 -->
-        <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
-            <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
-        </div>
-
-        <!-- 사원 -->
-        <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
-        </div>
-
-        <!-- 강 -->
-        <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
-        </div>
-
-        <!-- 야시장 -->
-        <div class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
-            <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
-        </div>
-
-        <!-- 카오산 -->
-        <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
-        </div>
-
-        <!-- 쇼핑몰 -->
-        <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
-        </div>
-
-        <!-- 무에타이 -->
-        <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
-            <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
-        </div>
+         <div class="hidden lg:block">
+           <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
+               <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
+           </div>
+   
+           <!-- 사원 -->
+           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
+               <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
+           </div>
+   
+           <!-- 강 -->
+           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
+               <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
+           </div>
+   
+           <!-- 야시장 -->
+           <div class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
+               <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
+           </div>
+   
+           <!-- 카오산 -->
+           <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
+               <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
+           </div>
+   
+           <!-- 쇼핑몰 -->
+           <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
+               <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
+           </div>
+   
+           <!-- 무에타이 -->
+           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
+               <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
+           </div>
+         </div>
+         <div class="lg:hidden">
+            <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
+         </div>
     </div>
 </div>
 
-<div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5">
+<div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
     <div class="title-section-best sub-1"></div>
-    <div class="flex flex-col items-center justify-center space-y-5 relative">
-        <img src="/event/images/방콕필수코스5가지%2B1.png" class="card-animation w-[700px] " alt="이미지1" />
-        <img src="/event/images/방콕필수코스5가지%2B2.png" class="card-animation w-[700px] " alt="이미지2" />
-        <img src="/event/images/방콕필수코스5가지%2B3.png" class="card-animation w-[700px] " alt="이미지3" />
-        <img src="/event/images/방콕필수코스5가지%2B4.png" class="card-animation w-[700px] " alt="이미지4" />
-        <img src="/event/images/방콕필수코스5가지%2B5.png" class="card-animation w-[700px] " alt="이미지5" />
+    <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[10rem] md:mx-[0]">
+        <img src="/event/images/방콕필수코스5가지%2B1.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지1" />
+        <img src="/event/images/방콕필수코스5가지%2B2.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지2" />
+        <img src="/event/images/방콕필수코스5가지%2B3.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지3" />
+        <img src="/event/images/방콕필수코스5가지%2B4.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지4" />
+        <img src="/event/images/방콕필수코스5가지%2B5.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지5" />
     </div>
 </div>
 
@@ -123,15 +225,15 @@
     <div class="max-w-8xl mx-auto">
         <div class="flex justify-center">
             <div class="flex space-x-8">
-                <a href="#hotel-section" class="px-3 py-4 text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">호텔 & 리조트</a>
-                <a href="#tour-section" class="px-3 py-4 text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">투어</a>
-                <a href="#rest-section" class="px-3 py-4 text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">레스토랑</a>
-                <a href="#golf-section" class="px-3 py-4 text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">골프</a>
+                <a href="#hotel-section" class="px-3 py-4 text-2xl lg:text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">호텔 & 리조트</a>
+                <a href="#tour-section" class="px-3 py-4 text-2xl lg:text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">투어</a>
+                <a href="#rest-section" class="px-3 py-4 text-2xl lg:text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">레스토랑</a>
+                <a href="#golf-section" class="px-3 py-4 text-2xl lg:text-base font-medium text-gray-500 hover:text-custom hover:border-b-2 hover:border-custom">골프</a>
             </div>
         </div>
     </div>
 </nav>
-<main class="max-w-8xl mx-auto px-4 py-8">
+<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden">
     <div id="hotel-section" class="mb-16">
         <div class="title-section luxury-hotel" title="럭셔리 호텔"></div>
         <div class="flex flex-wrap justify-center gap-6 hotel-list" data-id="luxury-hotel"></div>
