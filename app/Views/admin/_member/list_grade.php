@@ -65,6 +65,9 @@
 										<input type="text" name="grade_name" id="grade_name" value="" style="width:100px;text-align:left;">
 									</td>
 									<td>
+										<input type="text" name="user_level" id="user_level" value="" style="width:100px;text-align:left;">
+									</td>
+									<td>
 										<input type="text" name="discount_rate" id="discount_rate" value="" style="width:100px;text-align:right;">
 									</td>
 									<td></td>
