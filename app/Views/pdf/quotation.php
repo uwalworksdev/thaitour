@@ -113,7 +113,7 @@
 	<div style="width: 100%">
 		<h1>더투어랩 여행견적서</h1>
 		<div class="sec1" style="display: flex; justify-content: space-between;">
-			<div class="left">
+			<div class="left" style="display: inline-block; width: 48%; vertical-align: top;">
 				<p class="ttl">The Tour Lab Co.,Ltd </p>
 				<span>Sukhumvit 13 Klongtoei Nuea </span>
 				<span>Watthana Bangkok 10110 </span>
@@ -122,7 +122,7 @@
 				<p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
 				<img src="<?= FCPATH . 'img/sub/sign-001.jpg' ?>" width="60" style="margin-left: 20px;">
 			</div>
-			<div class="right">
+			<div class="right" style="display: inline-block; width: 48%; vertical-align: top;">
                   <table>
                       <colgroup>
                           <col width="110px">
