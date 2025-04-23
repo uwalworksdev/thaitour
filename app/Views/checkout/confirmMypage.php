@@ -785,7 +785,7 @@ $(window).on("load", function() {
                 var sign2       =  res.sign2;
                 var orderNumber =  res.orderNumber;
 
-				var used_discount = sum * $("#discount_rate").val() / 100;
+				var used_discount = parseInt(sum * $("#discount_rate").val() / 100);
 				sum1 = sum - used_discount;
 				alert(sum1);
 				$("#use_discount").val(used_discount);
