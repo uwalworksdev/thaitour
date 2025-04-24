@@ -219,12 +219,20 @@
 					<?php endforeach; ?>
 			</table>
 		</div>
-		<div class="list_desc">
+		  <div class="list_desc">
               <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다. </p>
               <p>- 견적서상 내용은 확정 예약시 상품의 예약가능여부/환을 등에 따라 금액 및 내용에 변동이 있을 수 있습니다. </p>
               <p>- 한국 : 국민은행 636101-01-301315 (주) 토토부킹 </p>
               <p>- 태국: Kasikorn Bank 895-2-19850-6 (Totobooking) </p>
           </div>
+          <div class="send_mail">
+              <input type="text" value="lifeess@naver.com ">
+              <button>메일보내기.. </button>
+          </div>
+          <div class="btns_download">
+              <button>프린트</button>
+              <button> PDF다운로드</button>
+          </div>		  
 	</div>
 
 	<!-- <p>견적일: <?= date('Y년 m월 d일') ?><br>
