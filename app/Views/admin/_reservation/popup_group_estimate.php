@@ -91,7 +91,7 @@
               <p>- 태국: Kasikorn Bank 895-2-19850-6 (Totobooking) </p>
           </div>
           <div class="send_mail">
-              <input type="text" value="lifeess@naver.com ">
+              <input type="text" value="<?=session()->get("member")["email"]?>">
               <button>메일보내기 </button>
           </div>
           <div class="btns_download">
