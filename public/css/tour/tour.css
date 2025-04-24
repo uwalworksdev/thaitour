@@ -5131,7 +5131,7 @@
 
 .hot_place .list_place .item .name {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     margin-top: 12px;
 }
 
@@ -5155,6 +5155,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.hot_place .list_place .item .comt .acc {
+    font-weight: 500;
+    margin-right: 10px;
 }
 
 
