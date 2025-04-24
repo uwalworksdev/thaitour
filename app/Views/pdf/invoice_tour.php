@@ -11,13 +11,15 @@
             margin-left: 20px !important;
         }
 
-        ol, ul, li {
-            padding: 0 !important;
+        .ml-40 {
+            margin-left: 40px !important;
         }
 
         p {
-            margin: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
         }
+
         .golf_invoice {
             padding: 20px 0 100px;
         }
@@ -33,7 +35,7 @@
         }
 
         .golf_invoice .invoice_ttl {
-            margin: 40px 0;
+            margin: 20px 0 !important;
             text-align: center;
         }
 
@@ -74,19 +76,19 @@
         }
         
         .golf_invoice .tit_top {
-            margin-bottom: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #252525;
-            margin-top: 20px;
+            margin-bottom: 10px !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            color: #252525 !important;
+            margin-top: 20px !important;
         }
 
         .golf_invoice.voucher .invoice_table .tit_top {
-            margin-bottom: 10px;
-            font-size: 20px;
-            font-weight: 600;
-            color: #7d7d7d;
-            margin-top: 20px;
+            margin-bottom: 10px !important;
+            font-size: 20px !important;
+            font-weight: 600 !important;
+            color: #7d7d7d !important;
+            margin-top: 20px !important;
         }
 
         .golf_invoice .invoice_table .invoice_tbl {
@@ -108,7 +110,7 @@
         .golf_invoice .invoice_table .invoice_tbl tr th {
             font-weight: 400;
             color: #333;
-            font-size: 14px;
+            font-size: 14px !important;
             padding: 5px 10px;
             background-color: #f4f4f4;
             border-top: 1px solid #dddddd;
@@ -117,12 +119,12 @@
         }
 
         .golf_invoice .invoice_table .invoice_tbl tr td {
-            height: 35px;
+            height: 35px !important;
             border: 1px solid #dddddd;
             border-right: unset;
             border-left: unset;
             padding: 10px;
-            font-size: 14px;
+            font-size: 14px !important;
             line-height: 1.4;
             color: #7d7d7d;
             text-align: left;
@@ -274,20 +276,46 @@
         .golf_invoice .invoice_golf_total {
             text-align: right !important;
         }
+
+        .table_custom {
+            border-collapse: collapse !important;
+            width: 100%;
+            font-size: 14px;
+            table-layout: fixed;
+        }
+
+        .table_custom tr td {
+            border: none !important;
+            padding-bottom: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 5px !important;
+        }
+
+        .table_custom tr td:first-child {
+            padding-top: 0 !important;
+        }
+
+        .hotel_invoice .row_ttl {
+            font-weight: bold !important;
+            font-size: 15px !important;
+            margin-bottom: 4px !important;
+            margin-top: 7px !important;
+            color: #454545 !important;
+        }
+        
     </style>
 </head>
+
+<?php foreach ($result as $row): ?>
+<?php endforeach; ?>
 <body>
     <div id="container_voice">
-        <section class="golf_invoice">
+        <section class="golf_invoice hotel_invoice">
             <div class="inner">
                 <div class="logo_voice">
                     <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
                 </div>
                 <div class="invoice_ttl">
-                    <p>요청하신 예약이 가능하여 인보이스가 발송되었습니다.</p>
-                    <span>원하시는 날짜, 시간, 인원 등이 맞는지 예약 내용을 반드시 확인해 주신후 결제 진행해 주세요.</span>
-                    <span>결제 하시면 예약 확정 후 바우처가 발송됩니다.</span>
-                    <span>바우처 수령 후에도 바우처 상에 표시된 예약정보 최종 확인 부탁드립니다.</span>
                 </div>
                 <div class="invoice_table">
                     <h2 class="tit_top">예약자정보</h2>
@@ -295,126 +323,93 @@
                         <colgroup>
                             <col width="150px">
                             <col width="35%">
-                            <col width="150px">  
+                            <col width="150px">
                             <col width="*">
                         </colgroup>
                         <tbody>
-                        <?php 
-                                $weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
-                                $timestamp = strtotime(substr($row['order_m_date'],0,10)); // 문자열 날짜를 타임스탬프로 변환
-                                $weekday   = $weekdays[date("w", $timestamp)];
-
-                            ?> 
                             <tr>
                                 <th>예약번호</th>
-                                <td><?= esc($row['order_no']) ?></td>
+                                <td><?=$row->order_no?></td>
                                 <th>예약날짜</th>
-                                <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
+                                <td>2023-09-13(수)</td>
                             </tr>
                             <tr>
                                 <th>여행사(담당자)</th>
-                                <td>Pattaya Sea Adventure Co.,Ltd. (파타야 씨 어드벤처)</td>
+                                <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
                                 <th>이메일</th>
                                 <td>thaitouradventure@gmail.com</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="top_flex">
-                        <table width="100%">
-                            <tr>
-                                <td style="width: 20%;"><p class="tit_top">예약내역</p></td>
-                                <td style="width: 80%; text-align: right;"><span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span></td>
-                            </tr>
-                        </table>
+                    <div class="top_flex flex_b_c">
+                        <h2 class="tit_top">예약내역</h2>
                     </div>
                     <table class="invoice_tbl">
                         <colgroup>
                             <col width="150px">
                             <col width="35%">
-                            <col width="150px">  
+                            <col width="150px">
                             <col width="*">
                         </colgroup>
-                        
                         <tbody>
-                        <?php 
-                            $order_info = order_info($row['order_gubun'], $row['order_no'], $row['order_idx']); 
-                            $order_txt  = explode("|", $order_info);
-                        ?>
                             <tr>
                                 <th>날짜</th>
-                                <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
-                                <th>바우처 이름</th>
-                                <td><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
+                                <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                                <th>여행자 이름</th>
+                                <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                             </tr>
                             <tr>
                                 <th>고객 연락처</th>
-                                <td colspan="3"><?=$row['order_user_mobile']?></td>
+                                <td colspan="3"><?=$row->order_user_mobile?></td>
                             </tr>
                             <tr>
                                 <th>예약상품</th>
-                                <td colspan="3"><?=$row['product_name']?>[ <?=$order_txt[0]?> <?=$order_txt[1]?> ]</td>
+                                <td colspan="3"><?=$row->product_name?></td>
                             </tr>
                             <tr>
+                                <th>시작시간</th>
+                                <td>08:00~16:30</td>
                                 <th>총인원</th>
-                                <td colspan="3"><?=$order_txt[3]?></td>
+                                <td>성인 : 8명</td>
                             </tr>
                             <tr>
-                                <th>티오프 요청시간</th>
-                                <td><?=$order_txt[2]?></td>
-                                <th>티오프 가능시간</th>
-                                <td><?=$order_txt[2]?></td>
-                            </tr>
-                            <tr>
-                                <th>불포함</th>
-                                <td colspan="3">캐디팁</td>
-                            </tr>
-                            <tr>
-                                <th>안내사항</th>
-                                <td colspan="3">available afternoon</td>
+                                <th>픽업포함여부</th>
+                                <td>불포함</td>
+                                <th>미팅 장소</th>
+                                <td>개별이동</td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="tit_top">금액내역</h2>
                     <table class="invoice_tbl">
                         <colgroup>
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
+                            <col width="150px">
+                            <col width="35%">
+                            <col width="150px">
+                            <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th>에약항목</th>
-                                <th>단가(원)</th>
-                                <th>수량</th>
-                                <th>합계(원)</th>
-                                <th>합계(바트)</th>
-                            </tr>					
-                            <tr>
-                                <th>그린피</th>
-                                <td><?=$golf_info['option_price']?></td>
-                                <td><?=$golf_info['option_cnt']?></td>
-                                <th><?=number_format($golf_info['option_tot'])?></th>
-                                <td><?=number_format($golf_info['option_tot_bath'])?></td>
+                                <th>1인당 금액</th>
+                                <td colspan="3">성인400바트</td>
+                                
                             </tr>
-                            <?php foreach ($golf_option as $data) { ?>
                             <tr>
-                                <th><?=$data['option_name']?></th>
-                                <td><?=$data['option_price']?></td>
-                                <td><?=$data['option_cnt']?></td>
-                                <th><?=number_format($data['option_tot'])?></th>
-                                <td><?=number_format($data['option_tot_bath'])?></td>
+                                <th>금액</th>
+                                <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
+                                
                             </tr>
-                            <?php } ?>
                             <tr>
+                                <th>추가내역</th>
+                                <td>0바트</td>
                                 <th>총금액</th>
-                                <td colspan="4"><?=number_format($row['real_price_bath'])?>바트</td>
+                                <td><?=number_format($row->real_price_bath)?>바트</td>
                             </tr>
+                        
                         </tbody>
                     </table>
                     <div class="invoice_golf_total flex_e_c">
-                        <p>총 인보이스 금액 : <span><?=number_format($row['real_price_won'])?>원</span> (<?=number_format($row['real_price_bath'])?>바트)</p>
+                        <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
                     </div>
                     <table class="invoice_tbl spe">
                         <colgroup>
@@ -428,9 +423,20 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="cancle_txt">
-                        취소 규정 : 결제 후 <span>19년11월09일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.
-                    </p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <tr>
+                            <td style="width: 20px; vertical-align: top;">
+                                <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
+                            </td>
+                            <td style="padding-left: 5px;">
+                                <span style="color: #7d7d7d; font-size: 14px;">
+                                    취소 규정: 결제 후 
+                                    <span style="color: #17469E;">24년 12월 18일 18시(한국시간)</span> 
+                                    이전에 취소하시면 무료취소가 가능합니다.
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>

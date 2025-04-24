@@ -12,8 +12,8 @@ $setting = homeSetInfo();
                 <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
             </div>
             <div class="invoice_ttl">
-                <p>고객님 예약이 가능하여 이메일로 견적서 발송해 드렸으며 홈페이지에 마이페이지에서도 확인이 가능합니다. 견적서 내용을 꼼꼼하게 확인 후 결제 진행해 주시면 됩니다. </p>
-                <p>요청하신 조건으로는 예약이 불가능하고, 예약 가능한 다른 조건으로 견적서가 발송되었습니다. 반드시 예약 내용(객실타입, 시간 등)을 확인하여 이 조건으로 예약 원하신다면 결제 진행해 주시고, 다른 상품으로 이용원하실 경우 다시 예약을 넣어주시기 바랍니다.</p>
+                <p>고객님 예약이 가능하여 이메일로 견적서 발송해 드렸으며 홈페이지에 마이페이지에서도 확인이 가능합니다. <br> 견적서 내용을 꼼꼼하게 확인 후 결제 진행해 주시면 됩니다. </p>
+                <p>요청하신 조건으로는 예약이 불가능하고, 예약 가능한 다른 조건으로 견적서가 발송되었습니다. <br> 반드시 예약 내용(객실타입, 시간 등)을 확인하여 이 조건으로 예약 원하신다면 결제 진행해 주시고, 다른 상품으로 이용원하실 경우 다시 예약을 넣어주시기 바랍니다.</p>
             </div>
             <div class="invoice_table">
                 <h2 class="tit_top">예약자정보<?=$idx?></h2>
@@ -269,9 +269,10 @@ $setting = homeSetInfo();
                     </tbody>
                 </table>
 
-                <div class="btns_download_print">
-                    <button class="btn_download">다운로드</button>
-                    <button class="btn_download">프린트</button>
+                <div class="btns_download_print flex_c_c">
+                    <button type="button" class="btn_download">다운로드</button>
+                    <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
+                    <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="table_wrapper invoice_table">
                     <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
@@ -367,3 +368,100 @@ $setting = homeSetInfo();
         </div>
     </section>     
 </div>
+
+<script>
+
+    $(document).on('click', '#btn_print', function () {
+        const content = document.querySelector('#container_voice').innerHTML;
+
+        let iframe = document.createElement('iframe');
+        iframe.name = "printFrame";
+        iframe.style.position = 'absolute';
+        iframe.style.top = '-9999px';
+        document.body.appendChild(iframe);
+
+        let frameDoc = iframe.contentWindow || iframe.contentDocument;
+        if (frameDoc.document) frameDoc = frameDoc.document;
+
+        frameDoc.open();
+        frameDoc.write(`
+            <html>
+            <head>
+                <title>요청하신 예약이 가능하여 인보이스가 발송되었습니다</title>
+                <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
+                <style>
+                    @media print {
+                        body {
+                            background: white !important;
+                            margin: 0;
+                            padding: 0;
+                            color: #000;
+                        }
+
+                        .golf_invoice .invoice_ttl p {
+                            font-size: 18px !important;
+                        }
+
+                        .golf_invoice .invoice_table .top_flex {
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: space-between !important;
+                        }
+
+                        .golf_invoice .invoice_table {
+                            padding: 0 !important;
+                            border: none !important;
+                        }
+
+                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                            display: none !important;
+                        }
+
+                        table {
+                            border-collapse: collapse !important;
+                        }
+
+                        .golf_invoice .invoice_table .invoice_tbl tr th {
+                            background-color: #f4f4f4 !important;
+                            border-top: 1px solid #dddddd !important;
+                            border-bottom: 1px solid #dddddd !important;
+                        }
+
+                        .golf_invoice .invoice_golf_total {
+                            padding: 10px !important;
+                            display: flex !important;
+                            justify-content: flex-end !important;
+                            align-items: center !important;
+                        }
+
+                        .ml-20 {
+                            margin-left: 0 !important;
+                        }
+
+                        p {
+                            margin-top: 0 !important;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                ${content}
+            </body>
+            </html>
+        `);
+        frameDoc.close();
+
+        setTimeout(function () {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+            document.body.removeChild(iframe); 
+        }, 500);
+    });
+
+    
+    // PDF 버튼 클릭 시
+    $(document).on('click', '#btn_pdf', function () {
+        var order_idx = $(this).data("order_idx"); 
+        location.href='/pdf/invoice_hotel?order_idx='+order_idx;
+    });
+</script>

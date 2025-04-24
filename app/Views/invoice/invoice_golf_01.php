@@ -225,6 +225,12 @@
                             color: #000;
                         }
 
+                        .golf_invoice .invoice_table .top_flex {
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: space-between !important;
+                        }
+
                         .golf_invoice .invoice_table {
                             padding: 0 !important;
                             border: none !important;
@@ -249,6 +255,10 @@
                             display: flex !important;
                             justify-content: flex-end !important;
                             align-items: center !important;
+                        }
+
+                        p {
+                            margin-top: 0 !important;
                         }
                     }
                 </style>
