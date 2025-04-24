@@ -140,6 +140,11 @@
                                             <span class="main"><?=number_format($item1_1['spa_price_won'])?></span class="text-gray"> 원 ~</span>
                                             <span class="sub text-gray"><?=number_format($item1_1['spa_price'])?>바트</span>
                                         <?php
+                                            }else if($tab == "golf"){                                              
+                                        ?>
+                                            <span class="main"><?=number_format($item1_1['spa_price_won'])?></span class="text-gray"> 원xxx ~</span>
+                                            <span class="sub text-gray"><?=number_format($item1_1['spa_price'])?>바트</span>
+                                        <?php
                                             }else{
                                         ?>
                                             <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
