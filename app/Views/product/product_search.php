@@ -144,7 +144,7 @@
 											   $golf_price = golf_price($item1_1['product_idx']);
 											   $arr        = explode("|", $golf_price);
                                         ?>
-                                            <span class="main"><?=number_format($arr[0])?></span class="text-gray"> 원 ~</span>
+                                            <span class="main"><?=number_format($arr[0])?></span class="text-gray"> 원<?=$item1_1['product_idx']?> ~</span>
                                             <span class="sub text-gray"><?=number_format($arr[1])?>바트</span>
                                         <?php
                                             }else{
