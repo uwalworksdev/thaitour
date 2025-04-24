@@ -1905,9 +1905,10 @@ class Product extends BaseController
 			
 			// 골프 당일 최저가 금액 추출 
 $builder = $db->table('tbl_golf_price');
-$builder->select('price_1');
+$builder->selectMin('price_1');
 $builder->where('product_idx', $product['product_idx']);
 $builder->where('goods_date', date('Y-m-d'));
+$builder->where('price_1 >', 0); // 0보다 큰 값만 대상
 $query = $builder->get();
 write_log("xxxxxxxx- ". $db->getLastQuery()); // 쿼리 확인용 (get 실행 전));
 if ($row = $query->getRow()) {
