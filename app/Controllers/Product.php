@@ -1910,7 +1910,7 @@ $builder->where('goods_date', date('Y-m-d'));
 $query = $builder->get();
 
 if ($row = $query->getRow()) {
-    $products['items'][$key]['product_price'] = $row->price1;
+    $products['items'][$key]['product_price'] = $row->price_1;
 } else {
     $products['items'][$key]['product_price'] = 0;
 }			
