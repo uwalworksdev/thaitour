@@ -1911,8 +1911,10 @@ $query = $builder->get();
 
 if ($row = $query->getRow()) {
     $products['items'][$key]['product_price'] = $row->price_1;
+    $products['items'][$key]['product_price_won'] = (int)($row->price_1 * $this->setting['baht_thai']);
 } else {
     $products['items'][$key]['product_price'] = 0;
+    $products['items'][$key]['product_price_won'] = 0;
 }			
 			
         }
