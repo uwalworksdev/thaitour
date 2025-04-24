@@ -1843,6 +1843,8 @@ class Product extends BaseController
 
     public function golfList($code_no)
     {
+        $db     = \Config\Database::connect(); // 데이터베이스 연결
+
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
         $green_peas = $this->request->getGet('green_peas');
@@ -1900,6 +1902,23 @@ class Product extends BaseController
 
             $products['items'][$key]['total_review'] = $productReview['total_review'];
             $products['items'][$key]['review_average'] = $productReview['avg'];
+			
+			// 골프 당일 최저가 금액 추출 
+			$builder = $db->table('tbl_golf_price');
+			$builder->selectMin('price_1');
+			$builder->where('product_idx', $product['product_idx']);
+			$builder->where('goods_date', date('Y-m-d'));
+			$builder->where('price_1 >', 0); // 0보다 큰 값만 대상
+			$query = $builder->get();
+			//write_log("xxxxxxxx- ". $db->getLastQuery()); // 쿼리 확인용 (get 실행 전));
+			if ($row = $query->getRow()) {
+				$products['items'][$key]['product_price'] = $row->price_1;
+				$products['items'][$key]['product_price_won'] = (int)($row->price_1 * $this->setting['baht_thai']);
+			} else {
+				$products['items'][$key]['product_price'] = 0;
+				$products['items'][$key]['product_price_won'] = 0;
+			}			
+			
         }
 
         return $this->renderView('product/golf/list-golf', [
