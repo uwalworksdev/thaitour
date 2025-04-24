@@ -2015,4 +2015,40 @@ function order_info($order_gubun, $order_no, $order_idx)
 	return $order_info;
 }
 
+
+function golf_price($product_idx) 
+{
+    $setting     = homeSetInfo();
+    $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+
+    $connect     = db_connect();
+    $private_key = private_key();
+
+    $today       = date('Y-m-d'); 
+    $sql	     = " SELECT MIN(price_1) AS price_1 FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND goods_date = '". $today ."' AND price_1 > 0 ";
+    $row         = $connect->query($sql)->getRowArray();
+
+	if ($row['price_1'] > 0) {
+		$price = $row['price_1'];
+	}
+        $sql   = " SELECT MIN(price_1) AS price_1 FROM tbl_golf_price 
+		           WHERE product_idx = '". $product_idx ."' AND 
+				         goods_date > '". $today ."' AND 
+						 price_1 > 0 ORDER BY goods_date ASC LIMIT 0,1 ";
+        $row         = $connect->query($sql)->getRowArray();
+		if ($row['price_1']) {
+		    $price = $row['price_1'];
+		} else {
+		    $price = 0;
+		}	
+    }
+
+	$price_bath = $price;
+	$price_won  = $price * $baht_thai;
+
+	$price_info = $price_won ."|". $price_bath;
+	
+    return $price_info;
+}
+
 ?>
