@@ -3895,14 +3895,31 @@
     margin-bottom: 30px;
     display: flex;
     align-items: center;
+    gap: 30px;
+}
+
+.box-selecter .item-select .label {
+    width: 50px;
+}
+
+.body-box {
+    gap: 5px;
+}
+
+.body-box .box {
+    width: 80px;
 }
 
 .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: calc(50% - 40px);
 }
 
+.custom-golf-detail .tag-con-below-calendar .item-tag.new .label.first {
+    width: 50px;
+}
+
 .custom-golf-detail .tag-con-below-calendar .cus-width {
-    width: 280px;
+    width: 100px;
     padding-left: 20px;
     padding-right: 0;
 }
@@ -4031,11 +4048,11 @@
 .custom-golf-detail .list-select-element .item-select {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 15px;
 }
 
 .custom-golf-detail .list-select-element .item-select .select_custom_ {
-    width: 230px;
+    width: 200px;
 }
 
 .custom-golf-detail .list-select-element .item-select .vehicle_number {
@@ -4573,9 +4590,9 @@
     flex-wrap: wrap;
 }
 
-.custom-golf-detail .list-select-element .item-select .label {
+/* .custom-golf-detail .list-select-element .item-select .label {
     width: 70px;
-}
+} */
 
 
 .travel-tips .sec_banner {
