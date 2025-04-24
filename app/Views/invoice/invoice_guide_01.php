@@ -126,8 +126,8 @@ $setting = homeSetInfo();
                 </table>
                 <div class = "note_no_entry"> <img style="width: 18px; opacity:0.7" src="/images/sub/forbidden-sign-icon.png" alt=""> <p style="color: #7d7d7d; font-size: 14px;">취소 규정: 결제 후 <span style="color : #17469E">24년 12월 18일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.</p></div>
                 <div class="btns_download_print">
-                    <button class="btn_download">다운로드</button>
-                    <button class="btn_download">프린트</button>
+                    <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
+                    <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="table_wrapper invoice_table">
                     <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
@@ -223,3 +223,104 @@ $setting = homeSetInfo();
         </div>
     </section>
 </div>
+
+<script>
+    $(document).on('click', '#btn_print', function () {
+        const content = document.querySelector('#container_voice').innerHTML;
+
+        let iframe = document.createElement('iframe');
+        iframe.name = "printFrame";
+        iframe.style.position = 'absolute';
+        iframe.style.top = '-9999px';
+        document.body.appendChild(iframe);
+
+        let frameDoc = iframe.contentWindow || iframe.contentDocument;
+        if (frameDoc.document) frameDoc = frameDoc.document;
+
+        frameDoc.open();
+        frameDoc.write(`
+            <html>
+            <head>
+                <title>요청하신 예약이 가능하여 인보이스가 발송되었습니다</title>
+                <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
+                <style>
+                    @media print {
+                        body {
+                            background: white !important;
+                            margin: 0;
+                            padding: 0;
+                            color: #000;
+                        }
+
+                        .golf_invoice .invoice_ttl {
+                            margin-bottom: 0px !important;
+                        }
+
+                        .golf_invoice .invoice_ttl p {
+                            font-size: 18px !important;
+                        }
+
+                        .golf_invoice .invoice_table .top_flex {
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: space-between !important;
+                        }
+
+                        .golf_invoice .invoice_table {
+                            padding: 0 !important;
+                            border: none !important;
+                        }
+
+                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                            display: none !important;
+                        }
+
+                        table {
+                            border-collapse: collapse !important;
+                        }
+
+                        .golf_invoice .invoice_table .invoice_tbl tr th {
+                            background-color: #f4f4f4 !important;
+                            border-top: 1px solid #dddddd !important;
+                            border-bottom: 1px solid #dddddd !important;
+                        }
+
+                        .golf_invoice .invoice_golf_total {
+                            padding: 10px !important;
+                            display: flex !important;
+                            justify-content: flex-end !important;
+                            align-items: center !important;
+                        }
+
+                        .ml-20 {
+                            margin-left: 0 !important;
+                        }
+
+                        p {
+                            margin-top: 0 !important;
+                            margin-bottom: 0 !important
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                ${content}
+            </body>
+            </html>
+        `);
+        frameDoc.close();
+
+        setTimeout(function () {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+            document.body.removeChild(iframe); 
+        }, 500);
+    });
+
+    
+    // PDF 버튼 클릭 시
+    $(document).on('click', '#btn_pdf', function () {
+        var order_idx = $(this).data("order_idx"); 
+        location.href='/pdf/invoice_guide?order_idx='+order_idx;
+    });
+</script>

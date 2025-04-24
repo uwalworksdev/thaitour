@@ -1002,7 +1002,12 @@ $routes->get('/birthdaychecker', 'BirthdayChecker::index');
 
 $routes->group("pdf", static function ($routes) {
     $routes->get('quotation', 'PdfController::generateQuotation');
-    $routes->get('invoice_golf', 'PdfController::invoiceGolf');    
+    $routes->get('invoice_hotel', 'PdfController::invoiceHotel');    
+    $routes->get('invoice_golf', 'PdfController::invoiceGolf');
+    $routes->get('invoice_tour', 'PdfController::invoiceTour');
+    $routes->get('invoice_ticket', 'PdfController::invoiceTicket');
+    $routes->get('invoice_car', 'PdfController::invoiceCar');
+    $routes->get('invoice_guide', 'PdfController::invoiceGuide');
 });
 
 $routes->group("travel-tips", static function ($routes) {
