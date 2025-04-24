@@ -1909,7 +1909,7 @@ $builder->select('price_1');
 $builder->where('product_idx', $product['product_idx']);
 $builder->where('goods_date', date('Y-m-d'));
 $query = $builder->get();
-write_log("xxxxxxxx- ". $builder->getCompiledSelect()); // 쿼리 확인용 (get 실행 전));
+write_log("xxxxxxxx- ". $db->getLastQuery()); // 쿼리 확인용 (get 실행 전));
 if ($row = $query->getRow()) {
     $products['items'][$key]['product_price'] = $row->price_1;
     $products['items'][$key]['product_price_won'] = (int)($row->price_1 * $this->setting['baht_thai']);
