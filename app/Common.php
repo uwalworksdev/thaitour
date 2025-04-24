@@ -2030,7 +2030,7 @@ function golf_price($product_idx)
 
 	if ($row['price_1'] > 0) {
 		$price = $row['price_1'];
-	}
+	} else {
         $sql   = " SELECT MIN(price_1) AS price_1 FROM tbl_golf_price 
 		           WHERE product_idx = '". $product_idx ."' AND 
 				         goods_date > '". $today ."' AND 
