@@ -1910,14 +1910,30 @@ class Product extends BaseController
 			$builder->where('goods_date', date('Y-m-d'));
 			$builder->where('price_1 >', 0); // 0보다 큰 값만 대상
 			$query = $builder->get();
-			//write_log("xxxxxxxx- ". $db->getLastQuery()); // 쿼리 확인용 (get 실행 전));
-			if ($row = $query->getRow()) {
-				$products['items'][$key]['product_price'] = $row->price_1;
-				$products['items'][$key]['product_price_won'] = (int)($row->price_1 * $this->setting['baht_thai']);
+            $row = $query->getRow();
+
+			if ($row && $row->price_1 > 0) {
+				$price = $row->price_1;
 			} else {
-				$products['items'][$key]['product_price'] = 0;
-				$products['items'][$key]['product_price_won'] = 0;
-			}			
+				$builder = $db->table('tbl_golf_price');
+				$builder->select('price_1');
+				$builder->where('product_idx', $product['product_idx']);
+				$builder->where('goods_date >', date('Y-m-d'));
+				$builder->where('price_1 >', 0);
+				$builder->orderBy('goods_date', 'ASC'); // 가까운 날짜부터
+				$builder->limit(1); // 한 건만
+				$query = $builder->get();
+				$nextRow = $query->getRow();
+
+				if ($nextRow) {
+					$price = $nextRow->price_1;
+				} else {
+					$price = null; // 가격 없음
+				}
+			}
+			
+			$products['items'][$key]['product_price'] = $price;
+			$products['items'][$key]['product_price_won'] = (int)($price * $this->setting['baht_thai']);
 			
         }
 
