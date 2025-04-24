@@ -1900,6 +1900,8 @@ class Product extends BaseController
 
             $products['items'][$key]['total_review'] = $productReview['total_review'];
             $products['items'][$key]['review_average'] = $productReview['avg'];
+            $products['items'][$key]['product_price'] = 123456;
+			
         }
 
         return $this->renderView('product/golf/list-golf', [
