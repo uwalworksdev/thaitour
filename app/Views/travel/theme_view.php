@@ -9,13 +9,13 @@
                     style="background: url('https://i.travelapi.com/lodging/1000000/30000/26700/26661/be9e7ff2_z.jpg') 
                                 no-repeat;background-size: cover;background-position-y: center;">
                     <div class="theme_headline">
-                        <h3 class="f_white">2025년 몽키트래블 테마별 인기 호텔 TOP 5!</h3>
+                        <h3 class="f_white">2025년 더투어랩 테마별 인기 호텔 TOP 5!</h3>
                         <h1 class="f_white">도심 속 쉼표, 조용한 호텔</h1>
                     </div>
                 </div>
                 <p class="stfcomment">
                     테마별 인기 호텔은 실제 판매량을 기준으로 테마에 적합한 호텔만 추려 순위를 정하였습니다.<br>
-                    당연히 몽키트래블의 주관적인 의견이 포함되어 있을 수 있습니다.
+                    당연히 더투어랩의 주관적인 의견이 포함되어 있을 수 있습니다.
                 </p>
                 <div class="theme_content theme_cont" style="display: block;">
                     <div class="theme_nbox">
@@ -156,7 +156,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>방콕ㆍ파타야</span>
                                             <strong>수영장이 좋은 호텔편</strong>
-                                            <p>몽키트래블 테마별 인기 호텔 TOP 5!</p>
+                                            <p>더투어랩 테마별 인기 호텔 TOP 5!</p>
                                         </div>
                                     </a>
                                 </div>
@@ -167,7 +167,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>이달의 호텔</span>
                                             <strong>크로스 파타야 프라탐낙</strong>
-                                            <p>2025 몽키트래블 월간 추천 호텔</p>
+                                            <p>2025 더투어랩 월간 추천 호텔</p>
                                         </div>
                                     </a>
                                 </div>
@@ -177,7 +177,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>방콕</span>
                                             <strong>장기 투숙객에게 선호도 높은 호텔</strong>
-                                            <p>2025년 몽키트래블 테마별 인기 호텔 TOP 5!</p>
+                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
                                         </div>
                                     </a>
                                 </div>
@@ -187,7 +187,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>이달의 호텔</span>
                                             <strong>그랜드 머큐어 푸켓 빠통</strong>
-                                            <p>2025 몽키트래블 월간 추천 호텔</p>
+                                            <p>2025 더투어랩 월간 추천 호텔</p>
                                         </div>
                                     </a>
                                 </div>
@@ -197,7 +197,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>방콕</span>
                                             <strong>반려동물 동반 가능한 호텔</strong>
-                                            <p>2025년 몽키트래블 테마별 인기 호텔 TOP 5!</p>
+                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
                                         </div>
                                     </a>
                                 </div>
@@ -207,7 +207,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>이달의 호텔</span>
                                             <strong>애스콧 통로 방콕</strong>
-                                            <p>2025 몽키트래블 월간 추천 호텔</p>
+                                            <p>2025 더투어랩 월간 추천 호텔</p>
                                         </div>
                                     </a>
                                 </div>
@@ -217,7 +217,7 @@
                                         <div class="card" onclick="location.href='#'">
                                             <span>파타야ㆍ푸켓</span>
                                             <strong>씨 뷰가 매력적인 호텔</strong>
-                                            <p>2025년 몽키트래블 테마별 인기 호텔 TOP 5!</p>
+                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
                                         </div>
                                     </a>
                                 </div>
