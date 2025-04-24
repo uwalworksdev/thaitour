@@ -92,14 +92,70 @@
           </div>
           <div class="send_mail">
               <input type="text" value="<?=session()->get("member")["email"]?>">
-              <button>메일보내기 </button>
+              <button type="button" id="mailsend" value="<?= esc($group_no)?>">메일보내기 </button>
           </div>
           <div class="btns_download">
               <button id="btn_print">프린트</button>
               <button id="btn_pdf" value="<?= esc($i['group_no']) ?>"> PDF다운로드</button>
           </div>
       </div>
+		<script>
+		$(document).ready(function() {
+			$('#mailsend').on('click', function() {
+				const groupNo = $(this).val(); // 버튼의 value 속성 가져오기
+				alert("선택한 그룹 번호:"+ groupNo);
 
+				var message = "";
+				$.ajax({
+					url  : "/ajax/ajax_estimate_mailsend",
+					type : "POST",
+					data : {
+						"group_no"  : groupNo 
+					},
+					dataType : "json",
+					async: false,
+					cache: false,
+					success: function (data, textStatus) {
+						message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
+			});
+		});
+		</script>
+		<script>
+		function estimate_mailsend(group_no)
+		{
+				if (!confirm('인보이스를 전송 하시겠습니까?'))
+					return false;
+
+				var message = "";
+				$.ajax({
+					url  : "/ajax/ajax_incoiceHotel_send",
+					type : "POST",
+					data : {
+						"order_no"  : order_no 
+					},
+					dataType : "json",
+					async: false,
+					cache: false,
+					success: function (data, textStatus) {
+						message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});		
+			
+		}
+		</script>
+	
 		<script>
 			// 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
 			// $(document).on('click', '#btn_print', function () {
