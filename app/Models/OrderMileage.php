@@ -8,7 +8,7 @@ class OrderMileage extends Model
 
     protected $primaryKey = 'mi_idx';
 
-    protected $allowedFields = ["mi_title", "order_idx", "order_mileage", "order_gubun", "m_idx", "product_idx", "mi_r_date", "remaining_mileage"];
+    protected $allowedFields = ["mi_title", "order_idx", "order_no", "order_mileage", "order_gubun", "m_idx", "product_idx", "mi_r_date", "remaining_mileage"];
 
     public function getPoint($s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10)
     {

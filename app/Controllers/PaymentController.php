@@ -154,9 +154,18 @@ class PaymentController extends BaseController
 
 								$output = explode(",", $row['order_no']);
 
-								$sql = "UPDATE tbl_order_mst SET payment_method = 'Card', order_status = 'Y', deposit_date = now()  WHERE order_no IN(". $output .") "; 
+								$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
+								                                ,order_status   = 'Y' 
+																,payment_no     = '". $moid ."'
+																,ResultCode_1   = '". $respArr->ResultCode ."'
+															  	,ResultMsg_1    = '". $respArr->ResultMsg ."'
+																,Amt_1          = '". $respArr->Amt ."'
+																,TID_1          = '". $respArr->TID ."'
+															    ,AuthCode_1     = '". $respArr->AuthCode ."'
+																,AuthDate_1     = '". $respArr->AuthDate ."'  WHERE order_no IN(". $output .") "; 
+								write_log("nicepay- ". $sql);
 								$db->query($sql);
-
+								
 								// 쿠폰 소멸부분 추가
 								if($row['used_coupon_idx']) {
 								   $sql = "UPDATE tbl_coupon SET status = 'E'	WHERE c_idx = '". $row['used_coupon_idx'] ."' "; 
@@ -170,6 +179,7 @@ class PaymentController extends BaseController
 								   $sql = "INSERT INTO tbl_order_mileage SET
 								                                         mi_title          = '". $mi_title ."'
 																	   , order_idx         = '". $row['payment_idx'] ."'
+																	   , order_no         = '". $row['order_no'] ."'
 																	   , order_mileage     = '". $order_mileage ."'
 																	   , order_gubun       = '통합결제'
 																	   , m_idx             = '". $row['m_idx']."'
@@ -179,7 +189,35 @@ class PaymentController extends BaseController
 								   set_all_mileage($row['m_idx']);
                                 }
 
-                                //alimTalk_depisit_send($row['order_no']); 
+                                // 포인트 지급
+								$sql = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
+								                        left join tbl_member_grade b on a.user_level = b.user_level where a.m_idx = '". $row['m_idx'] ."' ";
+								$row = $db->query($sql)->getRowArray();
+								$order_mileage = $respArr->Amt * $row['amount_rate'] / 100;
+								
+								$mi_title = "예약결제 후 포인트지급(". $moid .")";
+								$sql_m    = "insert tbl_order_mileage set
+                                                                      mi_title          = '". $mi_title ."'
+															         ,order_idx         = '". $row['payment_idx'] ."'
+															         ,order_no          = '". $row['order_no'] ."'
+                                                                     ,order_mileage     = '". $order_mileage ."'
+                                                                     ,m_idx             =  '". $row['m_idx'] ."'
+                                                                     ,mi_r_date         = now()
+                                                                     ,remaining_mileage = '' ";
+							    $db->query($sql_m);
+                                $insertId    = $db->insertID();
+								
+								$sql		 = " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '".$row['m_idx']."' ";
+								$row         = $db->query($sql)->getRowArray();
+								$sum_mileage = $row["sum_mileage"];
+
+								$sql = "update tbl_member SET mileage = '".$sum_mileage."' where m_idx = '".$row['m_idx']."' ";																   
+							    $db->query($sql);
+
+								$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
+							    $db->query($sql);
+
+								//alimTalk_depisit_send($row['order_no']); 
 
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
