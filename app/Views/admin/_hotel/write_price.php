@@ -957,6 +957,7 @@ $(document).ready(function () {
 			}
 
 		    let rooms_idx = $(this).val();
+			alert(rooms_idx);
 			let	from_date = $("#o_sdate_"+rooms_idx).val();
 			let	to_date   = $("#o_edate_"+rooms_idx).val();		
 
