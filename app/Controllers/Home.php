@@ -24,7 +24,7 @@ class Home extends BaseController
 
     public function index(): string
     {
-/*		
+ 		
 		$builder = $this->db->table('tbl_product_mst');
 		$builder->select('product_idx');
 		$builder->where('product_code_1', '1302');
@@ -67,7 +67,7 @@ class Home extends BaseController
 
 		endforeach;
 
-*/		
+ 		
         $codes = $this->CodeModel->getByParentCode('50')->getResultArray();
         $codeBanners = $this->CodeModel->getByParentCode('51')->getResultArray();
 
