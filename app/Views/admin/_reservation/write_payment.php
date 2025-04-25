@@ -77,7 +77,8 @@
                                 </caption>
                                 <colgroup>
                                     <col width="4%"/>
-                                    <col width="40%"/>
+                                    <col width="30%"/>
+                                    <col width="30%"/>
 									<!--col width="10%"/>
                                     <col width="10%"/-->
                                     <col width="10%"/>
@@ -85,6 +86,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
+									<th style="line-height:40px;">결제번호th>
 									<th style="line-height:40px;">예약번호</th>
 									<th>상품명</th>
 									<!--th>할인전 금액(원)</th>
@@ -95,6 +97,7 @@
 								
                                 <?php foreach ($order_row as $order) { ?>								
                                 <tr>
+                                    <td><?=$order['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td align="right"><?=number_format($order['order_price'])?></td>
@@ -169,7 +172,7 @@
                                     <th>결제금액 취소</th>
                                         <td>
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
-											<a href="javascript:send_it()" class="btn btn-default">
+											<a href="javascript:payment_cancel()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
 										&emsp;2025-02-08 00:00
                                         </td>
@@ -389,9 +392,6 @@
 
     <script>
         function payment_cancel(type) {
-            var amt_type = "";
-            if (type == "1") amt_type = "선금";
-            if (type == "2") amt_type = "잔금";
 
             if (!confirm(amt_type + ' 을 결제취소 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
