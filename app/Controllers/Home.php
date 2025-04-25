@@ -64,7 +64,7 @@ class Home extends BaseController
 			$updateBuilder = $this->db->table('tbl_product_mst');
 			$updateBuilder->where('product_idx', $productIdx);
 			$updateBuilder->update(['product_price' => $price]);
-
+            write_log("last- ". $this->db->getLastQuery());
 		endforeach;
 
  		
