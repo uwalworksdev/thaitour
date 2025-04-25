@@ -67,7 +67,7 @@
             <img src="/img/sub/search-ic-01.png" alt="search-ic">
         </div>
         <div class="list_place">
-            <div class="item">
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place1.png" alt="">
                 </div>
@@ -88,8 +88,8 @@
                     </p>
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 꽇송이 사람이 너무 많아서 공황 오는줄</p>
                 </div>
-            </div>
-            <div class="item">
+            </a>
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place2.png" alt="">
                 </div>
@@ -107,8 +107,8 @@
                         야시장이 먼저 오픈을 하여 현재 가장 유명한 야시장이 되었지
                     </p>
                 </div>
-            </div>
-            <div class="item">
+            </a>
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place3.png" alt="">
                 </div>
@@ -127,8 +127,8 @@
                     </p>
                     <p class="comt"><i class="acc">보물창고</i> 날씨가 엄청 덥긴했지만 한번쯤은 돌아다....</p>
                 </div>
-            </div>
-            <div class="item">
+            </a>
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place4.png" alt="">
                 </div>
@@ -147,8 +147,8 @@
                     </p>
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 ㅜㅜ....</p>
                 </div>
-            </div>
-            <div class="item">
+            </a>
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place5.png" alt="">
                 </div>
@@ -167,8 +167,8 @@
                     </p>
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 ㅜㅜ....</p>
                 </div>
-            </div>
-            <div class="item">
+            </a>
+            <a href="/travel-tips/view_detail" class="item">
                 <div class="img">
                     <img src="/img/sub/place6.png" alt="">
                 </div>
@@ -187,7 +187,7 @@
                     </p>
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 ㅜㅜ....</p>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="custom pagination">
             <a class="page-link" href="javascript:;" title="Go to first page">
