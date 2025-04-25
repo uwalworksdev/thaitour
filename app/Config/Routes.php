@@ -647,6 +647,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_group_estimate", "AjaxController::ajax_group_estimate");
 	$routes->post("ajax_grade_update", "AjaxController::ajax_grade_update");
 	$routes->post("ajax_estimate_mailsend", "AjaxController::ajax_estimate_mailsend");
+	$routes->post("ajax_card_cancelResult", "AjaxController::ajax_card_cancelResult");
 	
 });
 

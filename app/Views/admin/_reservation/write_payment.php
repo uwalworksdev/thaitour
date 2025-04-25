@@ -391,19 +391,18 @@
     </script>
 
     <script>
-        function payment_cancel(type) {
+        function payment_cancel(no) {
 
-            if (!confirm(amt_type + ' 을 결제취소 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
+            if (!confirm(결제취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
             var message = "";
             $.ajax({
 
-                url: "/nicepay/ajax.cancelResult.php",
+                url: "/ajax/ajax_card_cancelResult",
                 type: "POST",
                 data: {
-                    "order_idx": $("#order_idx").val(),
-                    "type": type
+                    "payment_no": no
                 },
                 dataType: "json",
                 async: false,
