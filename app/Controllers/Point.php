@@ -44,6 +44,10 @@ class Point extends BaseController
         return view('travel/theme_view');
     }
 
+    public function ThemeTravel() {
+        return view('travel/theme_travel');
+    }
+
     public function HotPlace() {
         return view('travel/hot-place');
     }
