@@ -1010,6 +1010,11 @@ $routes->group("pdf", static function ($routes) {
     $routes->get('invoice_ticket', 'PdfController::invoiceTicket');
     $routes->get('invoice_car', 'PdfController::invoiceCar');
     $routes->get('invoice_guide', 'PdfController::invoiceGuide');
+
+    $routes->get('voucher_hotel', 'PdfController::voucherHotel');
+    $routes->get('voucher_golf', 'PdfController::voucherGolf');
+    $routes->get('voucher_tour', 'PdfController::voucherTour');
+    $routes->get('voucher_ticket', 'PdfController::voucherTicket');    
 });
 
 $routes->group("travel-tips", static function ($routes) {

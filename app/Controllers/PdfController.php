@@ -106,6 +106,8 @@ class PdfController extends BaseController
 
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
 
+
+
 		$html = view('pdf/invoice_hotel', [
             'result' => $result,
         ]);
@@ -415,6 +417,127 @@ class PdfController extends BaseController
         $pdf->WriteHTML($html);
 		
         $pdf->Output('invoice_guide.pdf', 'I');
+        exit;
+    }
+
+    public function voucherHotel()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ]
+        ]);
+
+		$order_idx = $this->request->getVar('order_idx');
+
+        $private_key = private_key(); // 복호화 키
+
+		$db = db_connect();
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->select("
+					a.*, b.*, c.*,
+					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
+					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
+					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
+					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
+					AES_DECRYPT(UNHEX(a.order_addr2), '$private_key') AS order_addr2,
+					AES_DECRYPT(UNHEX(a.manager_name), '$private_key') AS manager_name
+		");
+
+		$builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
+		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
+		$builder->where('a.order_idx', $order_idx);
+
+		$query  = $builder->get();
+		$result = $query->getRow();
+
+		$html = view('pdf/voucher_hotel', [ 'result'  => $result ]);
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_hotel.pdf', 'I');
+        exit;
+    }
+
+    public function voucherGolf()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ],
+            'margin_bottom' => 10,
+        ]);
+
+		$html = view('pdf/voucher_golf');
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_golf.pdf', 'I');
+        exit;
+    }
+
+    public function voucherTour()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ]
+        ]);
+
+		$html = view('pdf/voucher_tour');
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_tour.pdf', 'I');
+        exit;
+    }
+
+    public function voucherTicket()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ]
+        ]);
+
+		$html = view('pdf/voucher_ticket');
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_ticket.pdf', 'I');
         exit;
     }
 }
