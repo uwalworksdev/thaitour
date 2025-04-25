@@ -115,7 +115,7 @@
                     <div class="swiper tra_sec_02_swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="#!">
+                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-1.png" alt="">
                                     </div>
@@ -126,7 +126,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="#!">
+                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-2.png" alt="">
                                     </div>
@@ -137,7 +137,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="#!">
+                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-3.png" alt="">
                                     </div>
@@ -148,7 +148,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="#!">
+                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-2.png" alt="">
                                     </div>
