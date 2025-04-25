@@ -477,6 +477,7 @@ class ReservationController extends BaseController
         $sql             = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
 									 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
 									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
+									 , payment_no 
 									 , payment_idx 
 									 , order_no 
 									 , payment_tot
