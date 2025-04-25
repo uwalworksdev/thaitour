@@ -158,34 +158,34 @@ $setting = homeSetInfo();
                     <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
-                    <colgroup>
+                    <!-- <colgroup>
                         <col width="150px">
                         <col width="*">
-                    </colgroup>
+                    </colgroup> -->
                     <tbody>
                         <tr>
-                            <th>
+                            <th style="width: 150px;">
                                 취소규정</th>
                             <td>날짜 및 시간(한국시간)</td>
                         </tr>
                         <tr>
-                            <th>무료 취소</th>
+                            <th style="width: 150px;">무료 취소</th>
                             <td>23년09월05일(화) 18시 이전</td>
                         </tr>
                         <tr>
-                            <th>1박 취소수수료</th>
+                            <th style="width: 150px;">1박 취소수수료</th>
                             <td>23년09월05일(화) 18시 ~ 23년09월09일(토) 18시</td>
                         </tr>
                         <tr>
-                            <th>50 % 취소수수료</th>
+                            <th style="width: 150px;">50 % 취소수수료</th>
                             <td>23년09월09일(토) 18시 ~ 23년09월10일(일) 18시</td>
                         </tr>
                         <tr>
-                            <th>환불 불가</th>
+                            <th style="width: 150px;">환불 불가</th>
                             <td>23년09월10일(일) 18시 이후 취소 또는 노쇼(No show)</td>
                         </tr>
                         <tr>
-                            <th>중요안내</th>
+                            <th style="width: 150px;">중요안내</th>
                             <td>
                                 <p class="row_ttl">체크인 안내</p>
                                 <p>채크인 15:00/체크아웃 정오</p>
