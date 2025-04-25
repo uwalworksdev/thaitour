@@ -1027,6 +1027,7 @@ $routes->group("travel-tips", static function ($routes) {
     $routes->get("theme_main", 'Point::ThemeMain'); 
     $routes->get("theme_view", 'Point::ThemeView'); 
     $routes->get("theme_travel", 'Point::ThemeTravel'); 
+    $routes->get("view_detail", 'Point::viewDetail'); 
 
     
 });

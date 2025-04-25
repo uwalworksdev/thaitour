@@ -51,6 +51,10 @@ class Point extends BaseController
     public function HotPlace() {
         return view('travel/hot-place');
     }
+
+    public function viewDetail() {
+        return view('travel/view_detail');
+    }
     public function TravelInfo() {
         $category = $this->request->getGet('category');
         $search_word = $this->request->getGet('search_word');
