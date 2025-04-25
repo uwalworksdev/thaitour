@@ -2274,10 +2274,10 @@
 
 .product-card-item-right .product_intro {
     line-height: 1.4;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    display: -webkit-box; 
-    -webkit-line-clamp: 2; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 
 }
@@ -5232,7 +5232,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    align-items: center;    
+    align-items: center;
     margin-bottom: 33px;
 }
 
@@ -5313,13 +5313,13 @@
 
 .travel_info .list_product .item .img {
     width: 350px;
-    
+
 }
 
 .travel_info .list_product .item .img img {
     width: 100%;
     object-fit: cover;
-    
+
 }
 
 .travel_info .list_product .item .text {
@@ -5379,11 +5379,11 @@
 
 .infographic .list_infographic {
     display: flex;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     align-items: center;
     gap: 46px 18px;
     padding-bottom: 42px;
-    border-bottom: 1px solid #dbdbdb; 
+    border-bottom: 1px solid #dbdbdb;
 
 }
 
@@ -5822,3 +5822,98 @@
 }
 
 /* theme area end */
+
+.mr_auto {
+    margin: 0 !important;
+    margin-right: auto !important;
+}
+
+.theme_travel .head_list_product select {
+    width: 140px;
+    height: 50px;
+    border: 1px solid #dbdbdb;
+    padding: 0 20px;
+    margin-left: 0;
+}
+
+.theme_travel .head_list_product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.theme_travel .head_list_product .wrap_select {
+    display: flex;
+    gap: 10px;
+}
+
+.theme_travel .list_product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 46px 18px;
+}
+
+.theme_travel .list_product .item_box {
+    width: calc((100% - (18px * 3)) / 4);
+
+}
+
+.theme_travel .list_product .item_box .img {
+    width: 100%;
+    height: 210px;
+    position: relative;
+
+}
+
+.theme_travel .list_product .item_box .img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.theme_travel .list_product .item_box .img .text {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.404);
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.theme_travel .list_product .item_box .title {
+    margin-top: 27px;
+    margin-bottom: 10px;
+    color: #757575;
+    font-size: 15px;
+
+}
+
+.theme_travel .list_product .item_box .name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.theme_travel .list_product .item_box .vote {
+    display: flex;
+
+}
+
+.theme_travel .list_product .item_box .vote span {
+    display: block;
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid #dbdbdb;
+}
+
+.theme_travel .list_product .item_box .vote span i {
+    font-weight: 600;
+    color: #252525;
+}
