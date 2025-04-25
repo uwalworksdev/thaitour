@@ -26,6 +26,7 @@ $setting = homeSetInfo();
             padding-bottom: 0 !important;
             padding-left: 0 !important;
             padding-right: 5px !important;
+            padding-top: 0 !important;
         }
 
         .table_custom tr td:first-child {
