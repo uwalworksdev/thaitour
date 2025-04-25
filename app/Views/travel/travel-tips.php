@@ -27,7 +27,7 @@
             <div class="only_web content_sec">
                 <div class="list_item">
                     <?php foreach($bannerMiddle as $i => $banner): 
-                        $url = !empty($banner['url']) ? $banner['url'] : "#";
+                        $url = !empty($banner['url']) ? $banner['url'] : "/travel-tips/theme_travel";
                     ?>
                         <a 
                             href="<?=$url?>" 

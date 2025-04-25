@@ -271,6 +271,106 @@
                     </div>
                 </div>
             </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-1.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-2.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-3.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-4.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
             
         </div>
         <?php
