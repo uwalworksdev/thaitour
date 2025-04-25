@@ -168,7 +168,7 @@
 
                                     <th>결제금액 취소</th>
                                         <td>
-                                            16,000원 &emsp;
+                                            <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
 										&emsp;2025-02-08 00:00

@@ -208,6 +208,7 @@ $orderList = "'" . implode("','", $orderArr) . "'";
 															         ,order_idx         = '". $row['payment_idx'] ."'
 															         ,order_no          = '". $row['order_no'] ."'
                                                                      ,order_mileage     = '". $order_mileage ."'
+                                                                     ,order_gubun       = '예약포인트 지급'
                                                                      ,m_idx             = '". $row['m_idx'] ."'
                                                                      ,mi_r_date         = now()
                                                                      ,remaining_mileage = '' ";
