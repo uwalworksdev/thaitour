@@ -150,9 +150,18 @@
     </div>
     <script>
         function send_its() {
-            oEditors1.getById["policy_contents"].exec("UPDATE_CONTENTS_FIELD", []);
+            <?php if (!empty($related_policies)) { ?>
+                var totalEditors = <?= count($related_policies) ?>;
+                for (var i = 0; i < totalEditors; i++) {
+                    window['oEditors' + i][0].exec("UPDATE_CONTENTS_FIELD", []);
+                }
+            <?php } else { ?>
+                oEditors1.getById["policy_contents"].exec("UPDATE_CONTENTS_FIELD", []);
+            <?php } ?>
+
             $("#frm").submit();
         }
+
 
     </script>
 
