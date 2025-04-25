@@ -409,10 +409,10 @@ class PdfController extends BaseController
         $product_idx = $firstRow->product_idx;
 
         $builder = $db->table('tbl_product_mst');
-        $builder->select("notice_comment");
+        $builder->select("product_info");
         $query  = $builder->where('product_idx', $product_idx)->get();
         $result = $query->getRowArray();
-        $notice_contents = $result["notice_comment"];
+        $notice_contents = $result["product_info"];
 
         $builder = $db->table('tbl_policy_cancel');
         $builder->select("policy_contents");
@@ -489,10 +489,10 @@ class PdfController extends BaseController
         $product_idx = $firstRow->product_idx;
 
         $builder = $db->table('tbl_product_mst');
-        $builder->select("notice_comment");
+        $builder->select("product_info");
         $query  = $builder->where('product_idx', $product_idx)->get();
         $result = $query->getRowArray();
-        $notice_contents = $result["notice_comment"];
+        $notice_contents = $result["product_info"];
 
         $builder = $db->table('tbl_policy_cancel');
         $builder->select("policy_contents");
