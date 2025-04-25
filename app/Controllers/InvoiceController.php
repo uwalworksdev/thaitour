@@ -84,9 +84,15 @@ class InvoiceController extends BaseController
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
        
         $builder = $db->table('tbl_policy_info');
-        $policy = $builder->where('p_idx', 24)->get()->getRowArray();
+		$policy = $builder->whereIn('p_idx', [24, 26])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
 
-        return view("invoice/invoice_hotel_01", [ 'result'  => $result, 'policy' => $policy ]);
+        return view("invoice/invoice_hotel_01", [ 
+			'result' 	=> $result, 
+			'policy_1' 	=> $policy[0],
+			'policy_2' 	=> $policy[1],
+		]);
     }
 
     public function ticket_01($idx)

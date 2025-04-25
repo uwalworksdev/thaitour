@@ -157,11 +157,7 @@ $setting = homeSetInfo();
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
                 </div>
-                <table class="invoice_tbl spe">
-                    <!-- <colgroup>
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup> -->
+                <!-- <table class="invoice_tbl spe">
                     <tbody>
                         <tr>
                             <th style="width: 150px;">
@@ -267,14 +263,16 @@ $setting = homeSetInfo();
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
+
+                <?=viewSQ($policy_2["policy_contents"])?>
 
                 <div class="btns_download_print flex_c_c">
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="table_wrapper invoice_table">
-                    <?=viewSQ($policy["policy_contents"])?>
+                    <?=viewSQ($policy_1["policy_contents"])?>
                     <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
