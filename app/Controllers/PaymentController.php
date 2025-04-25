@@ -400,10 +400,10 @@ class PaymentController extends BaseController
 						'CharSet'           => 'utf-8'
 					);	
 					$response = reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp"); //취소 API 호출
-					write_log($response);
+					//write_log($response);
 					//jsonRespDump($response);
 					$response_data = json_decode($response, true);
-					print_r($response_data);
+					//print_r($response_data);
 					
 					$data['ResultCode'] = $response_data['ResultCode'];
 					$data['ResultMsg']  = $response_data['ResultMsg'];

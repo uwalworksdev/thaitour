@@ -4061,79 +4061,87 @@ class AjaxController extends BaseController {
 				]);		
 	}
 	
-    public function ajax_card_cancelResult()
-    {
-        $db      = \Config\Database::connect();
+	public function ajax_card_cancelResult()
+	{
+		$db      = \Config\Database::connect();
+		$setting = homeSetInfo();
 
-        $payment_no = $this->request->getPost('payment_no');
-        $partialCancelCode = "0"; // 전체취소
+		$paymentNo = $this->request->getPost('payment_no');
 
-        if ($payment_no == "") {
-            return $this->response->setJSON(['message' => '결제취소정보 누락']);
-        }
+		$row = $db->table('tbl_payment_mst')
+				  ->where('payment_no', $paymentNo)
+				  ->get()
+				  ->getRowArray();
 
-        // 주문 정보 조회
-        $orderRow = $db->table('tbl_payment_mst')
-                       ->where('payment_no', $payment_no)
-                       ->get()
-                       ->getRowArray();
+		if (!$row) {
+			return $this->response->setJSON(['message' => '결제 정보가 없습니다.']);
+		}
 
-        if (!$orderRow) {
-            return $this->response->setJSON(['message' => '주문 정보 없음']);
-        }
+		$orderList = "'" . implode("','", array_filter(explode(',', rtrim($row['order_no'], ',')))) . "'";
 
-        // 결제 정보 설정
-        $tid       = $orderRow['TID_1'];
-        $cancelAmt = $orderRow['Amt_1'];
-        $cancelMsg = '고객요청';
+		$merchantKey = $setting['nicepay_key'];
+		$mid         = $setting['nicepay_mid'];
+		$moid        = $paymentNo;
+		$cancelMsg   = "고객요청";
 
-        // Nicepay 객체 생성
-        require_once(ROOTPATH . 'lib/NicepayLite.php');
-        $nicepay = new \NicepayLite();
-        $nicepay->m_NicepayHome       = ROOTPATH . 'nicepay/log';
-        $nicepay->m_ActionType        = 'CLO';
-        $nicepay->m_CancelAmt         = $cancelAmt;
-        $nicepay->m_TID               = $tid;
-        $nicepay->m_CancelMsg         = $cancelMsg;
-        $nicepay->m_PartialCancelCode = $partialCancelCode;
-        $nicepay->m_CancelPwd         = _NICEPAY_PASS;
-        $nicepay->m_ssl               = 'true';
-        $nicepay->m_charSet           = 'UTF8';
+		$tid       = $row['TID_1'];
+		$cancelAmt = $row['Amt_1'];
 
-        $nicepay->startAction();
+		$ediDate   = date("YmdHis");
+		$signData  = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
 
-        $resultCode = $nicepay->m_ResultData['ResultCode'];
-        $resultMsg  = $nicepay->m_ResultData['ResultMsg'];
+		try {
+			$data = [
+				'TID'               => $tid,
+				'MID'               => $mid,
+				'Moid'              => $moid,
+				'CancelAmt'         => $cancelAmt,
+				'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
+				'PartialCancelCode' => '0',
+				'EdiDate'           => $ediDate,
+				'SignData'          => $signData,
+				'CharSet'           => 'utf-8'
+			];
 
-        if (in_array($resultCode, ['2001', '2211'])) {
-            $cancelDateField = $type === '1' ? 'CancelDate_1' : 'CancelDate_2';
+			$response = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
+			$responseData = json_decode($response, true);
 
-            $db->table('tbl_payment_hist')
-               ->where(['TID' => $tid, 'order_gubun' => $type])
-               ->update(['order_status' => 'C', 'CancelDate' => $nicepay->m_ResultData['CancelDate']]);
+			$resultCode = $responseData['ResultCode'] ?? '9999';
+			$resultMsg  = $responseData['ResultMsg'] ?? '응답 오류';
 
-            $db->table('tbl_order_mst')
-               ->where('order_idx', $orderIdx)
-               ->update([$cancelDateField => $nicepay->m_ResultData['CancelDate'], 'order_status' => 'C']);
-        }
+			if (in_array($resultCode, ['2001', '2211'])) {
+				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');
 
-        // 사용자 이름/전화번호 복호화 및 문자 발송
-        $privateKey = config('Encryption')->key;
-        $sql_d = "SELECT 
-                    AES_DECRYPT(UNHEX(order_user_name), '{$privateKey}') AS order_user_name,
-                    AES_DECRYPT(UNHEX(order_user_mobile), '{$privateKey}') AS order_user_mobile
-                  FROM tbl_order_mst
-                  WHERE order_idx = ?";
-        $row_d = $db->query($sql_d, [$orderIdx])->getRowArray();
+				$db->table('tbl_payment_hist')
+				   ->where('TID', $tid)
+				   ->update(['order_status' => 'C', 'CancelDate' => $cancelDate]);
 
-        if ($row_d) {
-            $orderUserName = $row_d['order_user_name'];
-            $toPhone       = $row_d['order_user_mobile'];
+				// 여러 주문번호에 대해 업데이트 수행
+				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
 
-            $replaceText = "|||{{ORDER_NAME}}:::{$orderUserName}|||{{PROD_NAME}}:::{$orderRow['product_name']}|||{{ORDER_ID}}:::{$orderRow['order_no']}";
-            autoSms("S03", $toPhone, $replaceText);
-        }
+				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+			} else {
+				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+			}
 
-        return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
-    }	
+		} catch (\Exception $e) {
+			return $this->response->setJSON(['message' => "[9999] 통신실패: " . $e->getMessage()]);
+		}
+	}
+
+	// POST API 요청 함수
+	private function reqPost(array $data, string $url)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($ch, CURLOPT_POST, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		return $response;
+	}
+
 }	
