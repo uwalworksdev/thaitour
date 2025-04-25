@@ -62,10 +62,62 @@ $_policy = explode("|", $policy);
                                 </thead>
                                 <tbody>
                                 <?php
-                                foreach ($result as $row) {
+                                    $voucher_policies = [];
+                                    $invoice_policies = [];
+                                    $other_policies = [];
+                                    foreach ($result as $row) {
+                                        if ($row['policy_code'] === 'voucher') {
+                                            $voucher_policies[] = $row;
+                                        } elseif ($row['policy_code'] === 'invoice') {
+                                            $invoice_policies[] = $row;
+                                        } else {
+                                            $other_policies[] = $row;
+                                        }
+                                    }
                                     ?>
+                                    <?php if (!empty($voucher_policies)) {?>
                                     <tr style="height:50px">
-                                        <td><?= $row['p_idx'] ?></td>
+                                        <td>
+                                            <?= $voucher_policies[0]['p_idx'] ?>
+                                        </td>
+                                        <td class="tal">
+                                            <a href="policy_write?p_idx=<?= $voucher_policies[0]['p_idx'] ?>&r_code=onfo">바우처 약관및 규정 관리</a>
+                                        </td>
+                                        <td class="td_control">
+                                            <a href="policy_write?p_idx=<?= $voucher_policies[0]['p_idx'] ?>">
+                                                <img src="/images/admin/common/ico_setting2.png" class="btn_mod"
+                                                     alt="관리">
+                                            </a>
+                                            <a href="#!" onclick="del_it('<?= $voucher_policies[0]['p_idx'] ?>');">
+                                                <img src="/images/admin/common/ico_error.png" class="btn_del"
+                                                    alt="삭제">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php } if (!empty($invoice_policies)) {?>
+                                        <tr style="height:50px">
+                                        <td>
+                                            <?= $invoice_policies[0]['p_idx'] ?>
+                                        </td>
+                                        <td class="tal">
+                                            <a href="policy_write?p_idx=<?= $invoice_policies[0]['p_idx'] ?>&r_code=onfo">인보이스 약관및 규정 관리</a>
+                                        </td>
+                                        <td class="td_control">
+                                            <a href="policy_write?p_idx=<?= $invoice_policies[0]['p_idx'] ?>">
+                                                <img src="/images/admin/common/ico_setting2.png" class="btn_mod"
+                                                     alt="관리">
+                                            </a>
+                                            <a href="#!" onclick="del_it('<?= $invoice_policies[0]['p_idx'] ?>');">
+                                                <img src="/images/admin/common/ico_error.png" class="btn_del"
+                                                    alt="삭제">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php } foreach ($other_policies as $row) {?>
+                                    <tr style="height:50px">
+                                        <td>
+                                            <?= $row['p_idx'] ?>
+                                        </td>
                                         <td class="tal">
                                             <?php if($row["p_idx"] == '19') {?>
                                                 <a href="policy_cancel_list"><?= $row['policy_type'] ?></a>
@@ -91,9 +143,9 @@ $_policy = explode("|", $policy);
                                                 </a>
                                         </td>
                                     </tr>
-                                    <?php
-                                }
-                                ?>
+                                        <?php
+                                        }
+                                        ?>
 
                                 </tbody>
                             </table>
