@@ -3595,7 +3595,8 @@
 }
 
 .custom-golf-detail .golf-table tbody td {
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    line-height: 1.3;
 }
 
 .custom-golf-detail .golf-table td[colspan="5"] {
@@ -5851,7 +5852,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 46px 18px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #dbdbdb;
 }
+
+
 
 .theme_travel .list_product .item_box {
     width: calc((100% - (18px * 3)) / 4);

@@ -271,20 +271,140 @@
                     </div>
                 </div>
             </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-1.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-2.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-3.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="item_box">
+                <div class="img">
+                    <img src="/img/sub/theme-travel-4.png" alt="">
+                    <div class="text">
+                        <span>쇼핑 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span>백화점/쇼핑몰</span>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>방콕 </span>
+                        <img src="/img/sub/arr-right-01.png" alt="">
+                        <span> 스쿰빗(아속-프롬퐁)</span>
+                    </div>
+                    <p class="name">터미널 21 아속</p>
+                    <div class="vote">
+                        <p class="star">
+                            <img src="/img/sub/star-ic-13.png" alt="">
+                            4.0
+                        </p>
+                        <span>이용자 리뷰 <i>(0)</i></span>
+                    </div>
+                </div>
+            </div>
             
         </div>
-        <?php
-        echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?category=" . $category . "&search_mode=" . $search_mode . "&search_word=" . $search_word . "&pg=")
-        ?>
+        <div class="custom pagination">
+            <a class="page-link" href="javascript:;" title="Go to first page">
+                <img src="/images/community/pagination_prev.png" alt="pagination_prev">
+            </a>
+            <a class="page-link" style="margin-right: 20px;" href="javascript:;" title="Go to previous page">
+                <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
+            </a>
+            <a class="page-link active" href="javascript:;" title="Go to page 1">
+                <strong>1</strong>
+            </a>
+            <a class="page-link" href="javascript:;" title="Go to page 2">
+                <strong>2</strong>
+            </a>
+            <a class="page-link" href="javascript:;" title="Go to page 3">
+                <strong>3</strong>
+            </a>
+            <a class="page-link" style="margin-left: 20px;" href="javascript:;" title="Go to next page">
+                <img src="/images/community/pagination_next_s.png" alt="pagination_next">
+            </a>
+            <a class="page-link" href="javascript:;" title="Go to last page">
+                <img src="/images/community/pagination_next.png" alt="pagination_next">
+            </a>
+        </div>
     </div>
 
     <script>
-        // $(document).ready(function() {
-        //     $('.list_tab_head .tab').click(function() {
-        //         $('.list_tab_head .tab').removeClass('on');
-        //         $(this).addClass('on');
-        //     });
-        // });
+        $(document).ready(function() {
+            $('.list_tab_head .tab').click(function() {
+                $('.list_tab_head .tab').removeClass('on');
+                $(this).addClass('on');
+            });
+        });
     </script>
 
     <?php $this->endSection(); ?>
