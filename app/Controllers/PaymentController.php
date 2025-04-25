@@ -360,20 +360,24 @@ class PaymentController extends BaseController
 	public function nicepay_refund()
 	{
 		        $db         = \Config\Database::connect();
+	            $setting    = homeSetInfo();
 
 				header("Content-Type:text/html; charset=utf-8;"); 
 
-				$payment_no          = "P_20241228112326543";
+				$payment_no          = "P_20250426015214415";
 
 				// 쿼리 빌더 사용
 				$query = $db->table('tbl_payment_mst')         // 테이블 지정
 							->where('payment_no', $payment_no) // 조건 설정
 							->get(); // 쿼리 실행
 
-				$row = $query->getRowArray(); // 결과 가져오기 (연관 배열)
+				$row  = $query->getRowArray(); // 결과 가져오기 (연관 배열)
 
-				$merchantKey       = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
-				$mid               = "nicepay00m";
+				$merchantKey       = $setting['nicepay_key']; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
+				$mid               = $setting['nicepay_mid'];
+
+				//$merchantKey       = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
+				//$mid               = "nicepay00m";
 				$moid              =  $payment_no;		
 				$cancelMsg         = "고객요청";
 
