@@ -3595,7 +3595,7 @@
 }
 
 .custom-golf-detail .golf-table tbody td {
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 .custom-golf-detail .golf-table td[colspan="5"] {
