@@ -167,10 +167,26 @@ class PdfController extends BaseController
 		$query2      = $db->query("SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type != 'main' ");
 		$golf_option = $query2->getResultArray();
 
+        $product_idx = $row["product_idx"];
+
+		$builder = $db->table('tbl_product_mst');
+		$builder->select("notice_comment");
+		$query  = $builder->where('product_idx', $product_idx)->get();
+		$result = $query->getRowArray();
+		$notice_contents = $result["notice_comment"];
+
+		$builder = $db->table('tbl_policy_cancel');
+		$builder->select("policy_contents");
+		$query  = $builder->where('product_idx', $product_idx)->get();
+		$result = $query->getRowArray();
+		$cancle_contents = $result["policy_contents"];
+
 		$html = view('pdf/invoice_golf', [
             'row'         => $row,
 			'golf_info'   => $order_info,
-			'golf_option' => $golf_option
+			'golf_option' => $golf_option,
+            'notice_contents' => $notice_contents,
+			'cancle_contents' => $cancle_contents
         ]);
 
         $pdf->WriteHTML($html);
@@ -229,8 +245,26 @@ class PdfController extends BaseController
             $order->options = $optionResult; // options 키에 옵션 배열 추가
         }
 
+        $firstRow = $orderResult[0] ?? null;
+
+        $product_idx = $firstRow->product_idx;
+
+        $builder = $db->table('tbl_product_mst');
+        $builder->select("notice_comment");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $notice_contents = $result["notice_comment"];
+
+        $builder = $db->table('tbl_policy_cancel');
+        $builder->select("policy_contents");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $cancle_contents = $result["policy_contents"];
+
 		$html = view('pdf/invoice_tour', [
-            'result' => $orderResult
+            'result' => $orderResult,
+            'notice_contents' => $notice_contents,
+            'cancle_contents' => $cancle_contents
         ]);
         
 
@@ -291,8 +325,26 @@ class PdfController extends BaseController
             $order->options = $optionResult; // options 키에 옵션 배열 추가
         }
 
+        $firstRow = $orderResult[0] ?? null;
+
+        $product_idx = $firstRow->product_idx;
+
+        $builder = $db->table('tbl_product_mst');
+        $builder->select("notice_comment");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $notice_contents = $result["notice_comment"];
+
+        $builder = $db->table('tbl_policy_cancel');
+        $builder->select("policy_contents");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $cancle_contents = $result["policy_contents"];
+
 		$html = view('pdf/invoice_ticket', [
-            'result' => $orderResult
+            'result' => $orderResult,
+            'notice_contents' => $notice_contents,
+            'cancle_contents' => $cancle_contents
         ]);
         
 
@@ -352,8 +404,26 @@ class PdfController extends BaseController
             $order->options = $optionResult; // options 키에 옵션 배열 추가
         }
 
+        $firstRow = $orderResult[0] ?? null;
+
+        $product_idx = $firstRow->product_idx;
+
+        $builder = $db->table('tbl_product_mst');
+        $builder->select("notice_comment");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $notice_contents = $result["notice_comment"];
+
+        $builder = $db->table('tbl_policy_cancel');
+        $builder->select("policy_contents");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $cancle_contents = $result["policy_contents"];
+
 		$html = view('pdf/invoice_car', [
-            'result' => $orderResult
+            'result' => $orderResult,
+            'notice_contents' => $notice_contents,
+            'cancle_contents' => $cancle_contents
         ]);
         
 
@@ -414,8 +484,26 @@ class PdfController extends BaseController
             $order->options = $optionResult; // options 키에 옵션 배열 추가
         }
 
+        $firstRow = $orderResult[0] ?? null;
+
+        $product_idx = $firstRow->product_idx;
+
+        $builder = $db->table('tbl_product_mst');
+        $builder->select("notice_comment");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $notice_contents = $result["notice_comment"];
+
+        $builder = $db->table('tbl_policy_cancel');
+        $builder->select("policy_contents");
+        $query  = $builder->where('product_idx', $product_idx)->get();
+        $result = $query->getRowArray();
+        $cancle_contents = $result["policy_contents"];
+
 		$html = view('pdf/invoice_guide', [
-            'result' => $orderResult
+            'result' => $orderResult,
+            'notice_contents' => $notice_contents,
+            'cancle_contents' => $cancle_contents
         ]);
         
         $pdf->WriteHTML($html);

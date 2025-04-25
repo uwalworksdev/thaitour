@@ -423,14 +423,15 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th>중요안내</th>
-                                <td>상품등록 페이지에서 중요안내 연동해주세요</td>
+                                <th>중요 공지사항</th>
+                                <td><?=viewSQ($notice_contents)?></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p class="cancle_txt">
-                        취소 규정 : 결제 후 <span>19년11월09일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.
-                    </p>
+                    
+                    <?=viewSQ($cancle_contents)?>
+                    <!-- <p class="cancle_txt">
+                    </p> -->
                 </div>
             </div>
         </section>
