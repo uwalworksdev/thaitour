@@ -419,7 +419,7 @@
                     </colgroup>
                     <tbody>
                         <tr>
-                            <th>중요안내</th>
+                            <th>유의사항</th>
                             <td><?=viewSQ($notice_contents)?></td>
                         </tr>
                     </tbody>
