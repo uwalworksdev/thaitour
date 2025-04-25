@@ -76,7 +76,7 @@
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="4%"/>
+                                    <col width="10%"/>
                                     <col width="30%"/>
                                     <col width="30%"/>
 									<!--col width="10%"/>
@@ -86,7 +86,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-									<th style="line-height:40px;">결제번호th>
+									<th style="line-height:40px;">결제번호</th>
 									<th style="line-height:40px;">예약번호</th>
 									<th>상품명</th>
 									<!--th>할인전 금액(원)</th>
