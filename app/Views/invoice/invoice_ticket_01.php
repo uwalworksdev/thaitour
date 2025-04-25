@@ -149,7 +149,7 @@ $setting = homeSetInfo();
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="table_wrapper invoice_table">
-                    <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
+                    <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
                     </p>
@@ -225,7 +225,9 @@ $setting = homeSetInfo();
                             </tr>
                         </tbody>
 
-                    </table>
+                    </table> -->
+                    <?=viewSQ($policy_1["policy_contents"])?>
+
                 </div>
 
             </div>

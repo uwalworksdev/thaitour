@@ -164,7 +164,7 @@
                     <button type="button" class="invoice_member" id="btn_pdf" data-order_idx="<?=$row['order_idx']?>">PDF다운로드</button>
                     <button type="button" class="invoice_member">결제하러 가기</button>
                 </div>
-                <div class="invoice_note">
+                <!-- <div class="invoice_note">
                     <p>- 인보이스를 보내드릴 때 룸 또는 좌석을 홀딩하지는 않으므로 결제가 늦어질 경우 예약이 불가할 수 있습니다.</p>
                     <p>- 인보이스가 발송될 때는 예약가능여부만 확인했을 뿐 예약이 확정된 것이 아닙니다.</p>
                     <p>- 결제가 곧 예약확정이 아님을 주의하세요. 간혹 여러가지 사유로 예약이 불가할 수 있습니다.</p>
@@ -184,7 +184,8 @@
                 <div class="tit_note">
                     ※ 인보이스는 예약 또는 실제 이용 당사자에게 결제 청구용으로 발행된 문서로, 해당 인보이스를 다른 목적으로 사용 할 경우
                     (호텔 또는 제 3자에게 최저가 보장을 위한 목적 등) 민/형사상의 불이익을 당할 수 있습니다.
-                </div>
+                </div> -->
+                <?=viewSQ($policy_1["policy_contents"])?>
             </div>
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>

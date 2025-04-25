@@ -59,12 +59,19 @@ class InvoiceController extends BaseController
 		$result = $query->getRowArray();
 		$cancle_contents = $result["policy_contents"];
 
+		
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [27])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
 		return view("invoice/invoice_golf_01", [
 			'row'         => $row,
 			'golf_info'   => $order_info,
 			'golf_option' => $golf_option,
 			'notice_contents' => $notice_contents,
 			'cancle_contents' => $cancle_contents,
+            'policy_1'=> $policy[0]
 		]);
 	}
 
@@ -163,10 +170,16 @@ class InvoiceController extends BaseController
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
 
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [24])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
 				return view("invoice/invoice_ticket_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
-					'cancle_contents' => $cancle_contents
+					'cancle_contents' => $cancle_contents,
+					'policy_1' 	=> $policy[0]
 				]);
 
     }
@@ -230,10 +243,16 @@ class InvoiceController extends BaseController
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
 
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [24])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
 				return view("invoice/invoice_tour_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
-					'cancle_contents' => $cancle_contents
+					'cancle_contents' => $cancle_contents,
+					'policy_1' 	=> $policy[0]
 				]);
 				
 	}

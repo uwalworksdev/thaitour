@@ -53,7 +53,15 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-        return view("voucher/voucher_hotel", [ 'result'  => $result ]);        
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [23])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+        return view("voucher/voucher_hotel", [
+            'result'  => $result,
+            'policy_1' => $policy[0]
+        ]);        
     }
 
     public function tour()
@@ -71,15 +79,29 @@ class VoucherController extends BaseController
     }
     public function golf()
     {
+        $db = db_connect();
+
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [28])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
        
         return view("voucher/voucher_golf", [
+            'policy_1' => $policy[0]
         ]);
     }
 
     public function ticket()
     {
-       
+		$db = db_connect();
+
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [25])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
         return view("voucher/voucher_ticket", [
+            'policy_1' => $policy[0]
         ]);
     }
 }

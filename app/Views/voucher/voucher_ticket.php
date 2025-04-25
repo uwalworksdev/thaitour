@@ -103,7 +103,7 @@ $setting = homeSetInfo();
                 </div>
                 <div class="invoice_note_">
                     <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
-                    <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
+                    <!-- <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
                     <p><span>-</span><span>이예약확험서(바우처)를 가이드나 기사에게 제시한 후 해당 상품을 이용해 주세요.</span></p>
                     <p><span>-</span><span>픽업이 포함된 투어는 미리 픽업장소와 시각을 정확히 알아 두세요. 픽업장소가 호텔인 경우에는 그 호텔 로비입니다.
                             보비에 계시면 가이드나 기사가 예약확정서상의 성험으로 찾습니다.
@@ -115,8 +115,8 @@ $setting = homeSetInfo();
                     <p><span>-</span><span>단독투어가 아닌 조인투어는 앞의 여름과 사랑에 따라 10~15분 정도 픽업에 늦어질 수도 있습니다.
                             픽업 등 문제가 발생하면 아래로 연락주세요. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
                             태국내에서 포밍폰 사용시는 지역번호나 국가번호 없이 080-709-0500만 누르시면 됩니다.</span>
-                    </p>
-
+                    </p> -->
+                    <?= viewSQ($policy_1["policy_contents"]) ?>
                 </div>
             </div>
             <div class="inquiry_qna">

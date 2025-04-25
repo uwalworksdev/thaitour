@@ -117,12 +117,13 @@ $setting = homeSetInfo();
                 </div>
 
                 <div class="box_notifi no-break">
-                    <p class="tit">주요공지</p>
+                    <!-- <p class="tit">주요공지</p>
                     <span style="color : #7d7d7d; margin-bottom: 8px">2018년10월01일~2020년 12월31일</span>
                     <div style="background-color: #eee;" class="desc">
                         <p style = "margin-bottom: 4px">30분전 골프장 도착하신후 확정된 티오프시간전에 티오프 준비를 마치셔야 합니다.</p>
                         <p>늦으시는 경우 라운딩이 불가능하거나 장시간 대기할수 있으므로 꼭 시간내 엄수해주기 바랍니다.</p>
-                    </div>
+                    </div> -->
+                    <?=viewSQ($policy_1["policy_contents"])?>
                 </div>
 
                 <div class="btns_download_print">

@@ -579,7 +579,16 @@ class PdfController extends BaseController
             'margin_bottom' => 10,
         ]);
 
-		$html = view('pdf/voucher_golf');
+        $db = db_connect();
+
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [28])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+		$html = view('pdf/voucher_golf',[
+            'policy_1' => $policy[0]
+        ]);
         
         $pdf->WriteHTML($html);
 		
