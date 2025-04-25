@@ -46,7 +46,6 @@
                         <?php
 
                         ?>
-
                         <div class="listBottom">
                             <?php if (!empty($related_policies)) { ?>
                                 <?php foreach ($related_policies as $index => $item) { ?>
@@ -55,20 +54,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <input type="text" name="policy_type_<?= $index ?>" class="input_txt"
-                                                        style="width:400px;height:30px;"
+                                                    <input type="hidden" name="p_idx[]" value="<?= $item['p_idx'] ?>">
+                                                    <input type="text" name="policy_type[]" class="input_txt"
                                                         value="<?= $item['policy_type'] ?>">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <textarea name="policy_contents_<?= $index ?>" id="policy_contents_<?= $index ?>" rows="10" cols="100"
-                                                            class="input_txt"
-                                                            style="width:100%; height:400px; display:none;"><?= viewSQ($item['policy_contents']) ?></textarea>
-
+                                                    <textarea name="policy_contents[]" id="policy_contents_<?= $index ?>" ...><?= viewSQ($item['policy_contents']) ?></textarea>
+                                                    
                                                     <script type="text/javascript">
                                                         var oEditors<?= $index ?> = [];
-
                                                         nhn.husky.EZCreator.createInIFrame({
                                                             oAppRef: oEditors<?= $index ?>,
                                                             elPlaceHolder: "policy_contents_<?= $index ?>",
@@ -86,6 +82,7 @@
                                         </tbody>
                                     </table>
                                 <?php } ?>
+
                             <?php } else {?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                     <caption>
@@ -140,7 +137,7 @@
                                 </table>
                             <?php } ?>
                         </div>
-
+                    </form>
                 </div>
                 <!-- // contents -->
 
