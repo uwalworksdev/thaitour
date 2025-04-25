@@ -30,40 +30,43 @@ class Home extends BaseController
 		$builder->where('product_code_1', '1302');
 		$query = $builder->get();
 		$golf_result = $query->getResultArray();
+
 		foreach ($golf_result as $golf_row):
-			// 골프 당일 최저가 금액 추출 
-			$builder = $db->table('tbl_golf_price');
+			$productIdx = $golf_row['product_idx'];
+
+			// 당일 최저가 조회
+			$builder = $this->db->table('tbl_golf_price');
 			$builder->selectMin('price_1');
-			$builder->where('product_idx', $product['product_idx']);
+			$builder->where('product_idx', $productIdx);
 			$builder->where('goods_date', date('Y-m-d'));
-			$builder->where('price_1 >', 0); // 0보다 큰 값만 대상
+			$builder->where('price_1 >', 0);
 			$query = $builder->get();
-            $row = $query->getRow();
+			$row = $query->getRow();
 
 			if ($row && $row->price_1 > 0) {
 				$price = $row->price_1;
 			} else {
-				$builder = $db->table('tbl_golf_price');
+				// 다음 날짜 최저가 조회
+				$builder = $this->db->table('tbl_golf_price');
 				$builder->select('price_1');
-				$builder->where('product_idx', $golf_row['product_idx']);
+				$builder->where('product_idx', $productIdx);
 				$builder->where('goods_date >', date('Y-m-d'));
 				$builder->where('price_1 >', 0);
-				$builder->orderBy('goods_date', 'ASC'); // 가까운 날짜부터
-				$builder->limit(1); // 한 건만
-				$query   = $builder->get();
+				$builder->orderBy('goods_date', 'ASC');
+				$builder->limit(1);
+				$query = $builder->get();
 				$nextRow = $query->getRow();
 
-				if ($nextRow) {
-					$price = $nextRow->price_1;
-				} else {
-					$price = 0; // 가격 없음
-				}
-			}	
-			
-            $sql_prod    = "UPDATE tbl_product_mst SET product_price = '" . $price . "' WHERE product_idx = '" . $golf_row['product_idx'] . "' ";
-            $result_prod =  $this->db->query($sql_prod);
-			
+				$price = $nextRow ? $nextRow->price_1 : 0;
+			}
+
+			// 가격 업데이트
+			$updateBuilder = $this->db->table('tbl_product_mst');
+			$updateBuilder->where('product_idx', $productIdx);
+			$updateBuilder->update(['product_price' => $price]);
+
 		endforeach;
+
 */		
         $codes = $this->CodeModel->getByParentCode('50')->getResultArray();
         $codeBanners = $this->CodeModel->getByParentCode('51')->getResultArray();
