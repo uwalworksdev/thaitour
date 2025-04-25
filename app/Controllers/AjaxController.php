@@ -3985,7 +3985,7 @@ class AjaxController extends BaseController {
 		$db->transBegin();
 
 		try {
-			$g_idx         = $this->request->getPost('g_idx');
+			$g_idx       = $this->request->getPost('g_idx');
 			$amount_rate = $this->request->getPost('amount_rate');
 
             $db->query("UPDATE tbl_member_grade SET amount_rate = ?, upd_date = NOW() WHERE g_idx = ?", [$amount_rate, $g_idx]);
@@ -4065,10 +4065,10 @@ class AjaxController extends BaseController {
     {
         $db      = \Config\Database::connect();
 
-        $payment_no = $request->getPost('payment_no');
+        $payment_no = $this->request->getPost('payment_no');
         $partialCancelCode = "0"; // 전체취소
 
-        if (!in_array($type, ['1', '2'])) {
+        if ($payment_no == "") {
             return $this->response->setJSON(['message' => '결제취소정보 누락']);
         }
 
