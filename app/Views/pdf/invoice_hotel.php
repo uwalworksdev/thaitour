@@ -20,7 +20,7 @@
         }
 
         .golf_invoice {
-            padding: 20px 0 100px;
+            padding: 20px 0 0;
         }
 
         .golf_invoice .logo_voice {
@@ -464,7 +464,7 @@
                     <div class="invoice_golf_total">
                         <p style="margin-bottom: 0 !important;">총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
                     </div>
-                    <table class="invoice_tbl spe">
+                    <!-- <table class="invoice_tbl spe">
                         <tbody>
                             <tr>
                                 <th style="width: 150px;">
@@ -634,7 +634,10 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    
+                    <?=viewSQ($policy_1["policy_contents"])?>
+                                        
                 </div>
             </div>
         </section>     

@@ -106,10 +106,14 @@ class PdfController extends BaseController
 
 		$result  = $query->getResult(); // 결과 가져오기 (객체 배열)
 
-
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [24, 26])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
 
 		$html = view('pdf/invoice_hotel', [
             'result' => $result,
+            'policy_1' 	=> $policy[1],
         ]);
 
         $pdf->WriteHTML($html);

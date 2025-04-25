@@ -5,6 +5,33 @@ $setting = homeSetInfo();
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
+<style>
+        .ml-20 {
+            margin-left: 20px !important;
+        }
+
+        .ml-40 {
+            margin-left: 40px !important;
+        }
+
+        .table_custom {
+            border-collapse: collapse !important;
+            width: 100%;
+            font-size: 14px;
+            table-layout: fixed;
+        }
+
+        .table_custom tr td {
+            border: none !important;
+            padding-bottom: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 5px !important;
+        }
+
+        .table_custom tr td:first-child {
+            padding-top: 0 !important;
+        }
+</style>
 <div id="container_voice">
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
@@ -393,6 +420,10 @@ $setting = homeSetInfo();
                             margin: 0;
                             padding: 0;
                             color: #000;
+                        }
+
+                        .golf_invoice {
+                            padding: 20px 0 0 !important;
                         }
 
                         .golf_invoice .invoice_ttl p {
