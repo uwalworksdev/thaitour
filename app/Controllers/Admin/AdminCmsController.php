@@ -110,7 +110,7 @@ class AdminCmsController extends BaseController
 
     public function policy_list()
     {
-        $sql = " select * from tbl_policy_info order by p_idx asc ";
+        $sql = " select * from tbl_policy_info order by p_idx desc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
@@ -136,27 +136,59 @@ class AdminCmsController extends BaseController
         $total_sql = " select * from tbl_policy_info where p_idx = '$p_idx' ";
         $result = $this->connect->query($total_sql);
         $row = $result->getRowArray();
+        $related_policies = [];
 
+        if (!empty($row) && in_array($row['policy_code'], ['voucher', 'invoice'])) {
+            $policy_code = $row['policy_code'];
+            $related_sql = "SELECT * FROM tbl_policy_info WHERE policy_code = '$policy_code' ORDER BY p_idx DESC";
+            $related_result = $this->connect->query($related_sql);
+            $related_policies = $related_result->getResultArray();
+        }
         $data = [
             'p_idx' => $p_idx,
-            'row' => $row
+            'row' => $row,
+            'related_policies' => $related_policies
         ];
         return view('admin/_cms/policy_write', $data);
     }
 
     public function policy_ok()
     {
-        $p_idx		      = updateSQ($_POST["p_idx"]);
-        $policy_type      = updateSQ($_POST["policy_type"]);
-        $policy_contents  = updateSQ($_POST["policy_contents"]);
 
-        if($p_idx) {
-            $this->policyModel->update($p_idx, ['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
-            return redirect()->to("/AdmMaster/_cms/policy_write?p_idx=$p_idx");
-        } else {
-            $this->policyModel->insert(['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
-            return redirect()->to("/AdmMaster/_cms/policy_list");
+        $p_idx_list         = $_POST['p_idx'] ?? [];
+        $policy_types       = $_POST['policy_type'] ?? [];
+        $policy_contents    = $_POST['policy_contents'] ?? [];
+
+        foreach ($policy_types as $i => $policy_type) {
+            $p_idx      = updateSQ($p_idx_list[$i]);
+            $type       = updateSQ($policy_type);
+            $contents   = updateSQ($policy_contents[$i]);
+
+            if ($p_idx) {
+                $this->policyModel->update($p_idx, [
+                    'policy_type' => $type,
+                    'policy_contents' => $contents
+                ]);
+            } else {
+                $this->policyModel->insert([
+                    'policy_type' => $type,
+                    'policy_contents' => $contents
+                ]);
+            }
         }
+
+        return redirect()->to("/AdmMaster/_cms/policy_list");
+        // $p_idx		      = updateSQ($_POST["p_idx"]);
+        // $policy_type      = updateSQ($_POST["policy_type"]);
+        // $policy_contents  = updateSQ($_POST["policy_contents"]);
+
+        // if($p_idx) {
+        //     $this->policyModel->update($p_idx, ['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
+        //     return redirect()->to("/AdmMaster/_cms/policy_write?p_idx=$p_idx");
+        // } else {
+        //     $this->policyModel->insert(['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
+        //     return redirect()->to("/AdmMaster/_cms/policy_list");
+        // }
     }
 
     public function policy_cancel_list() {
