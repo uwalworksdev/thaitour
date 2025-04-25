@@ -393,7 +393,7 @@
     <script>
         function payment_cancel(no) {
 
-            if (!confirm(결제취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
+            if (!confirm('결제취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
             var message = "";
