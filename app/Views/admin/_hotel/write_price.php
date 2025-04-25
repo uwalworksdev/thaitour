@@ -964,13 +964,13 @@ $(document).ready(function () {
 
 			if(from_date == "") {
 			   alert('가격적용 기간을 입력하세요.');
-			   $("#o_sdate_"+rooms_idx).val();
+			   $("#o_sdate_"+rooms_idx).focus();
 			   return false;
 			}   
 				   
 			if(to_date == "") {
 			   alert('가격적용 기간을 입력하세요.');
-			   $("#o_edate_"+rooms_idx).val();
+			   $("#o_edate_"+rooms_idx).focus();
 			   return false;
 			}   
  				   
