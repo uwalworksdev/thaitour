@@ -153,7 +153,14 @@ class PaymentController extends BaseController
 								$row = $db->query($sql)->getRowArray();
 
 								$output = explode(",", $row['order_no']);
+// 끝에 쉼표 제거
+$order_no = rtrim($row['order_no'], ',');
 
+// 문자열을 배열로 변환
+$orderArr = explode(',', $row['order_no']);
+
+// 각 항목을 따옴표로 감싸기
+$orderList = "'" . implode("','", $orderArr) . "'";
 								$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
 								                                ,order_status   = 'Y' 
 																,payment_no     = '". $moid ."'
@@ -162,7 +169,7 @@ class PaymentController extends BaseController
 																,Amt_1          = '". $respArr->Amt ."'
 																,TID_1          = '". $respArr->TID ."'
 															    ,AuthCode_1     = '". $respArr->AuthCode ."'
-																,AuthDate_1     = '". $respArr->AuthDate ."'  WHERE order_no IN(". $output .") "; 
+																,AuthDate_1     = '". $respArr->AuthDate ."'  WHERE order_no IN(". $orderList .") "; 
 								write_log("nicepay- ". $sql);
 								$db->query($sql);
 								
