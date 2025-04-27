@@ -498,14 +498,37 @@ class InicisController extends BaseController
 
 	public function inicisRefund()
 	{
-	   $session = session();
-       $setting = homeSetInfo();
+	    $session = session();
+        $setting = homeSetInfo();
 
-       $db  = \Config\Database::connect();
+        $db  = \Config\Database::connect();
+        $payment_no = $this->request->getPost('payment_no');
 
+	    header('Content-Type:text/html; charset=utf-8');
 
-	   header('Content-Type:text/html; charset=utf-8');
+		// 결제정보 조회
+		$row = $db->table('tbl_payment_mst')
+				  ->where('payment_no', $payment_no)
+				  ->get()
+				  ->getRowArray();
 
+		if (!$row) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => '결제 정보를 찾을 수 없습니다.',
+			]);
+		}
+
+		$output = explode(",", $row['order_no']);
+		// 끝에 쉼표 제거
+		$order_no = rtrim($row['order_no'], ',');
+
+		// 문자열을 배열로 변환
+		$orderArr = explode(',', $row['order_no']);
+
+		// 각 항목을 따옴표로 감싸기
+		$orderList = "'" . implode("','", $orderArr) . "'";
+		
 		//step1. 요청을 위한 파라미터 설정
 		$key       = "cjAo6CD95LpJS0S4";
 		$type      = "refund";
@@ -519,9 +542,9 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 		
 		//// Data 상세
-		$detail = array();
-		$detail["tid"] = "StdpayCARDthaitour3720241228114053661744";
-		$detail["msg"] = "테스트취소";
+		$detail        = array();
+		$detail["tid"] = $row['TID_1'];
+		$detail["msg"] = "관리자 결제취소";
 
 		$postdata["data"] = $detail;
 		
@@ -558,18 +581,17 @@ class InicisController extends BaseController
 		 
 		$response = curl_exec($ch);
 		
-	curl_close($ch); // cURL 종료
+	    curl_close($ch); // cURL 종료
 
-// JSON 형식 파싱
-$response_data = json_decode($response, true); // 연관 배열로 변환
+        // JSON 형식 파싱
+        $response_data = json_decode($response, true); // 연관 배열로 변환
 
-// 응답 결과 출력 (디버깅용)
-echo '<pre>';
-print_r($response_data);
-echo '</pre>';
+		// 응답 결과 출력 (디버깅용)
+		echo '<pre>';
+		print_r($response_data);
+		echo '</pre>';
 
 		curl_close($ch);
-		
 		
 		//step3. 결과출력
 		
