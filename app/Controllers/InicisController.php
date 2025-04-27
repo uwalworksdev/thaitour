@@ -597,7 +597,7 @@ class InicisController extends BaseController
 			// 취소 실패
 			return $this->response->setJSON([
 				'status'  => 'error',
-				'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
+				'message' => $resultCode .'-'. $resultMsg,
 			]);
 		}
 
