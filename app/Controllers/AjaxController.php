@@ -4061,7 +4061,7 @@ class AjaxController extends BaseController {
 				]);		
 	}
 	
-	public function ajax_card_cancelResult()
+	public function ajax_nicepay_cancelResult()
 	{
 		$db      = \Config\Database::connect();
 		$setting = homeSetInfo();
@@ -4107,7 +4107,7 @@ class AjaxController extends BaseController {
 			$responseData = json_decode($response, true);
 
 			$resultCode = $responseData['ResultCode'] ?? '9999';
-			$resultMsg  = $responseData['ResultMsg'] ?? '응답 오류';
+			$resultMsg  = $responseData['ResultMsg']  ?? '응답 오류';
 
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');

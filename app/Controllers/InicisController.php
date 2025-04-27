@@ -507,8 +507,7 @@ class InicisController extends BaseController
 	   header('Content-Type:text/html; charset=utf-8');
 
 		//step1. 요청을 위한 파라미터 설정
-		$key       = "cjAo6CD95LpJS0S4x";
-		$mid       = "thaitour37";
+		$key       = "cjAo6CD95LpJS0S4";
 		$type      = "refund";
 		$timestamp = date("YmdHis");
 		$clientIp  = $_SERVER["REMOTE_ADDR"];

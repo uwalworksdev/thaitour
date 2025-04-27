@@ -166,7 +166,7 @@
                                         </select>
                                        <a href="javascript:status_upd()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
-										<?=$payment_row['payment_m_date']?>
+										<?=$payment_row['payment_c_date']?>
                                     </td>
 
                                     <th>결제금액 취소</th>
@@ -174,7 +174,7 @@
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>)" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
-										&emsp;2025-02-08 00:00
+										&emsp;payment_c_date
                                         </td>
 									</tr>
 								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
@@ -391,15 +391,18 @@
     </script>
 
     <script>
-        function payment_cancel(no) {
+        function payment_cancel(no, pg) {
 
             if (!confirm('결제취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
+            let url = "";
+            if(pg == "NICEPAY") url = "/ajax/ajax_nicepay_cancelResult";	
+            if(pg == "INICIS")  url = "/ajax/ajax_inicis_cancelResult";	
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax_card_cancelResult",
+                url: url,
                 type: "POST",
                 data: {
                     "payment_no": no
