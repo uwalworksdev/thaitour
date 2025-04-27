@@ -595,10 +595,7 @@ class InicisController extends BaseController
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {
 			// 취소 실패
-			return $this->response->setJSON([
-				'status'  => 'error',
-				'message' => $resultCode .'-'. $resultMsg,
-			]);
+			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		}
 
 	    //return view('inicis_refund', $response_data);
