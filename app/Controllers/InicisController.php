@@ -335,16 +335,16 @@ class InicisController extends BaseController
 					
 					$paydate  = date("YmdHis");
 					
-					$sql = "UPDATE tbl_payment_mst SET payment_method = '신용카드'
-													  ,payment_status = 'Y'
-												      ,payment_pg     = 'INICIS'
-													  ,paydate		  = '". $paydate ."'
-													  ,ResultCode_1   = '". $out["P_STATUS"] ."'
-													  ,ResultMsg_1    = '". $out["P_RMESG1"] ."'
-													  ,Amt_1          = '". $out["P_AMT"] ."'
-													  ,TID_1          = '". $out["P_TID"] ."'
-													  ,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
-													  ,AuthDate_1     = '". $out["P_AUTH_DT"] ."' 
+					$sql = "UPDATE tbl_payment_mst SET payment_method  = '신용카드'
+													  ,payment_status  = 'Y'
+												      ,payment_pg      = 'INICIS'
+													  ,paydate		   = '". $paydate ."'
+													  ,ResultCode_1    = '". $out["P_STATUS"] ."'
+													  ,ResultMsg_1     = '". $out["P_RMESG1"] ."'
+													  ,Amt_1           = '". $out["P_AMT"] ."'
+													  ,TID_1           = '". $out["P_TID"] ."'
+													  ,AuthCode_1      = '". $out['P_AUTH_NO'] ."'
+													  ,AuthDate_1      = '". $out["P_AUTH_DT"] ."' 
 													  WHERE payment_no = '". $out["P_OID"] ."'";
 					$result = $db->query($sql);
 
@@ -372,6 +372,7 @@ class InicisController extends BaseController
 													,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
 													,AuthDate_1     = '". $out["P_AUTH_DT"] ."' 
 													WHERE order_no IN(". $orderList .") "; 
+					write_log("Inicis-1 ". $sql);								
 					$db->query($sql);
 								
 
@@ -394,6 +395,7 @@ class InicisController extends BaseController
 														   , m_idx             = '". $row['m_idx']."'
 														   , product_idx       = ''
 														   , mi_r_date         = now() ";
+    				   write_log("Inicis-2 ". $sql);								
 					   $db->query($sql);
 					   
 						// 포인트 지급
@@ -412,6 +414,7 @@ class InicisController extends BaseController
 															 ,m_idx             = '". $row['m_idx'] ."'
 															 ,mi_r_date         = now()
 															 ,remaining_mileage = '' ";
+     				    write_log("Inicis-3 ". $sql);								
 						$db->query($sql_m);
 						$insertId    = $db->insertID();
 						
