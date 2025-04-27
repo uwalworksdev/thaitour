@@ -498,7 +498,7 @@ class InicisController extends BaseController
 
 	public function inicisRefund()
 	{
-	   $session = session();
+	    $session = session();
         $setting = homeSetInfo();
 
         $db  = \Config\Database::connect();
