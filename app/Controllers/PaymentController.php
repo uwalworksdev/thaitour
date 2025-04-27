@@ -369,7 +369,7 @@ public function nicepay_refund()
 
     if (empty($payment_no)) {
         return $this->response->setJSON([
-            'status' => 'error',
+            'status'  => 'error',
             'message' => 'payment_no가 없습니다.',
         ]);
     }
