@@ -398,7 +398,7 @@
 
             let url = "";
             if(pg == "NICEPAY") url = "/nicepay_refund";	
-            if(pg == "INICIS")  url = "inicisRefund";	
+            if(pg == "INICIS")  url = "/inicis_refund";	
             var message = "";
             $.ajax({
 
