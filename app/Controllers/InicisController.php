@@ -501,10 +501,10 @@ class InicisController extends BaseController
 	    $session = session();
         $setting = homeSetInfo();
 
-        $db  = \Config\Database::connect();
+        $db         = \Config\Database::connect();
         $payment_no = $this->request->getPost('payment_no');
-        $payment_no = "P_20250427173422917";
-	    header('Content-Type:text/html; charset=utf-8');
+
+		header('Content-Type:text/html; charset=utf-8');
 
 		// 결제정보 조회
 		$row = $db->table('tbl_payment_mst')
@@ -607,29 +607,3 @@ class InicisController extends BaseController
 }
 
 ?>
-
-<!--
-plainTxt : cjAo6CD95LpJS0S4refund20250428000200{"tid":"StdpayCARDthaitour3720250427174450935895","msg":"관리자 결제취소"}
-
-hashData : 5524a3b27eb4f465cc8f99025fc719fe922e005d5e686720f72e0123ec0bca8e521529a9e86b80e61186b58e293d4b7c13288f888c12a2ac392aef4344963516
-
-**** 요청전문 ****
-{"mid":"thaitour37",
-"type":"refund",
-"timestamp":"20250428000200",
-"clientIp":"118.38.5.223",
-"data":{"tid":"StdpayCARDthaitour3720250427174450935895",
-"msg":"관리자 결제취소"},
-"hashData":"5524a3b27eb4f465cc8f99025fc719fe922e005d5e686720f72e0123ec0bca8e521529a9e86b80e61186b58e293d4b7c13288f888c12a2ac392aef4344963516"}
-
-Array
-(
-    [resultCode] => ER0400
-    [resultMsg] => 해시 데이터가 일치하지 않습니다.
-)
-**** 응답전문 ****
-{"resultCode":"ER0400",
-"resultMsg":"해시 데이터가 일치하지 않습니다."}
-
- 
--->
