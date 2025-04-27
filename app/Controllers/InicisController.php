@@ -499,6 +499,7 @@ class InicisController extends BaseController
 	public function inicisRefund()
 	{
 	   $session = session();
+       $setting = homeSetInfo();
 
        $db  = \Config\Database::connect();
 
@@ -513,7 +514,7 @@ class InicisController extends BaseController
 		$clientIp  = $_SERVER["REMOTE_ADDR"];
 		
 		$postdata              = array();
-		$postdata["mid"]       = $mid;
+		$postdata["mid"]       = $setting['inicis_mid'];
 		$postdata["type"]      = $type;
 		$postdata["timestamp"] = $timestamp;
 		$postdata["clientIp"]  = $clientIp;
