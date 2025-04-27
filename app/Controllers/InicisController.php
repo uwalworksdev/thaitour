@@ -217,10 +217,10 @@ class InicisController extends BaseController
 						}
 
 						// 포인트 지급
-						$sql = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
+						$sql   = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
 												left join tbl_member_grade b on a.user_level = b.user_level where a.m_idx = '". $row['m_idx'] ."' ";
-						$row = $db->query($sql)->getRowArray();
-						$order_mileage = $resultMap['TotPrice'] * $row['amount_rate'] / 100;
+						$row_p = $db->query($sql)->getRowArray();
+						$order_mileage = $resultMap['TotPrice'] * $row_p['amount_rate'] / 100;
 						
 						$mi_title = "예약결제 후 포인트지급(". $moid .")";
 						$sql_m    = "insert tbl_order_mileage set
@@ -437,10 +437,10 @@ class InicisController extends BaseController
 					   $db->query($sql);
 					   
 						// 포인트 지급
-						$sql = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
+						$sql   = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
 												left join tbl_member_grade b on a.user_level = b.user_level where a.m_idx = '". $row['m_idx'] ."' ";
-						$row = $db->query($sql)->getRowArray();
-						$order_mileage = $P_AMT * $row['amount_rate'] / 100;
+						$row_p = $db->query($sql)->getRowArray();
+						$order_mileage = $P_AMT * $row_p['amount_rate'] / 100;
 						
 						$mi_title = "예약결제 후 포인트지급(". $moid .")";
 						$sql_m    = "insert tbl_order_mileage set
