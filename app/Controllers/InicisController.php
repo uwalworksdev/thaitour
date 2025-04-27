@@ -503,7 +503,7 @@ class InicisController extends BaseController
 
         $db         = \Config\Database::connect();
         $payment_no = $this->request->getPost('payment_no');
-        $payment_no = "P_20250428000917773";
+        //$payment_no = "P_20250428000917773";
 		
 		header('Content-Type:text/html; charset=utf-8');
 
@@ -596,7 +596,7 @@ class InicisController extends BaseController
 		} else {
 			// 취소 실패
 			return $this->response->setJSON([
-				'status' => 'error',
+				'status'  => 'error',
 				'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
 			]);
 		}
