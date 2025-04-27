@@ -543,7 +543,8 @@ class InicisController extends BaseController
 		
 		//// Data 상세
 		$detail        = array();
-		$detail["tid"] = $row['TID_1'];
+		$detail["tid"] = $row['TID_1']; 
+		$detail["tid"] = "P_20250427173422917";
 		$detail["msg"] = "관리자 결제취소";
 
 		$postdata["data"] = $detail;
