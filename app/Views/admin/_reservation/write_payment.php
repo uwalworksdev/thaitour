@@ -402,7 +402,7 @@
             var message = "";
             $.ajax({
 
-                url: url,
+                url: "/ajax/ajax_nicepay_cancelResult",
                 type: "POST",
                 data: {
                     "payment_no": no
