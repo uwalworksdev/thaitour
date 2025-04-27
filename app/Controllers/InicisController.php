@@ -551,7 +551,7 @@ class InicisController extends BaseController
 		$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
 
 		//// Hash Encryption
-		$plainTxt = $key.$mid.$type.$timestamp.$details;
+		$plainTxt = $key.$postdata["mid"].$type.$timestamp.$details;
 		$hashData = hash("sha512", $plainTxt);
 
 		$postdata["hashData"] = $hashData;
@@ -609,51 +609,27 @@ class InicisController extends BaseController
 ?>
 
 <!--
-    [CARD_Quota] => 00
-    [CARD_ClEvent] => 
-    [CARD_CorpFlag] => 0
-    [buyerTel] => 01012345678
-    [parentEmail] => 
-    [applDate] => 20241222
-    [buyerEmail] => test@test.com
-    [OrgPrice] => 
-    [p_Sub] => 
-    [resultCode] => 0000
-    [mid] => INIpayTest
-    [CARD_UsePoint] => 
-    [CARD_Num] => 400933*********7
-    [authSignature] => 2645d244ba0c4ef57f26e469f7f995f3d9fe170b262614ab0172af877dc35e09
-    [tid] => StdpayCARDINIpayTest20241222133413130195
-    [EventCode] => 
-    [goodName] => 테스트상품
-    [TotPrice] => 1000
-    [payMethod] => Card
-    [CARD_MemberNum] => 
-    [MOID] => INIpayTest_1734841969375
-    [CARD_Point] => 
-    [currency] => WON
-    [CARD_PurchaseCode] => 
-    [CARD_PrtcCode] => 1
-    [applTime] => 133413
-    [goodsName] => 테스트상품
-    [CARD_CheckFlag] => 0
-    [FlgNotiSendChk] => 
-    [CARD_Code] => 14
-    [CARD_BankCode] => 26
-    [CARD_TerminalNum] => 019058I000
-    [P_FN_NM] => 신한카드
-    [buyerName] => 테스터
-    [p_SubCnt] => 
-    [applNum] => 35980068
-    [resultMsg] => 정상처리되었습니다.
-    [CARD_Interest] => 0
-    [CARD_SrcCode] => 
-    [CARD_ApplPrice] => 1000
-    [CARD_GWCode] => G
-    [custEmail] => test@test.com
-    [CARD_Expire] => 
-    [CARD_PurchaseName] => 신한카드
-    [CARD_PRTC_CODE] => 1
-    [payDevice] => PC
+plainTxt : cjAo6CD95LpJS0S4refund20250428000200{"tid":"StdpayCARDthaitour3720250427174450935895","msg":"관리자 결제취소"}
+
+hashData : 5524a3b27eb4f465cc8f99025fc719fe922e005d5e686720f72e0123ec0bca8e521529a9e86b80e61186b58e293d4b7c13288f888c12a2ac392aef4344963516
+
+**** 요청전문 ****
+{"mid":"thaitour37",
+"type":"refund",
+"timestamp":"20250428000200",
+"clientIp":"118.38.5.223",
+"data":{"tid":"StdpayCARDthaitour3720250427174450935895",
+"msg":"관리자 결제취소"},
+"hashData":"5524a3b27eb4f465cc8f99025fc719fe922e005d5e686720f72e0123ec0bca8e521529a9e86b80e61186b58e293d4b7c13288f888c12a2ac392aef4344963516"}
+
+Array
+(
+    [resultCode] => ER0400
+    [resultMsg] => 해시 데이터가 일치하지 않습니다.
+)
+**** 응답전문 ****
+{"resultCode":"ER0400",
+"resultMsg":"해시 데이터가 일치하지 않습니다."}
+
  
 -->
