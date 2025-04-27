@@ -174,7 +174,7 @@
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>)" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
-										&emsp;payment_c_date
+										&emsp;<?=$payment_row['payment_c_date']?>
                                         </td>
 									</tr>
 								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
