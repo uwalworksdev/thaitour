@@ -397,12 +397,12 @@
                 return false;
 
             let url = "";
-            if(pg == "NICEPAY") url = "/ajax/ajax_nicepay_cancelResult";	
-            if(pg == "INICIS")  url = "/ajax/ajax_inicis_cancelResult";	
+            if(pg == "NICEPAY") url = "/nicepay_refund";	
+            if(pg == "INICIS")  url = "inicisRefund";	
             var message = "";
             $.ajax({
 
-                url: "/nicepay_refund",
+                url: url,
                 type: "POST",
                 data: {
                     "payment_no": no
