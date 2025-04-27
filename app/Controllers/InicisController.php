@@ -344,25 +344,36 @@ class InicisController extends BaseController
 													  ,Amt_1          = '". $out["P_AMT"] ."'
 													  ,TID_1          = '". $out["P_TID"] ."'
 													  ,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
-													  ,AuthDate_1     = '". $out["P_AUTH_DT"] ."' WHERE payment_no = '". $out["P_OID"] ."'";
+													  ,AuthDate_1     = '". $out["P_AUTH_DT"] ."' 
+													  WHERE payment_no = '". $out["P_OID"] ."'";
 					$result = $db->query($sql);
 
 					$sql   = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $out["P_OID"] . "'";
 					$row   = $db->query($sql)->getRowArray();
 					$m_idx = $row['m_idx'];
 
-					$array = explode(",", $row['order_no']);
+					$output = explode(",", $row['order_no']);
+					// 끝에 쉼표 제거
+					$order_no = rtrim($row['order_no'], ',');
 
-					// 각 요소에 작은따옴표 추가
-					$quotedArray = array_map(function($item) {
-						return "'" . $item . "'";
-					}, $array);
+					// 문자열을 배열로 변환
+					$orderArr = explode(',', $row['order_no']);
 
-					// 배열을 다시 문자열로 변환
-					$output = implode(',', $quotedArray);
+					// 각 항목을 따옴표로 감싸기
+					$orderList = "'" . implode("','", $orderArr) . "'";
 
-					$sql = "UPDATE tbl_order_mst SET payment_method = 'Card', order_status = 'Y', deposit_date = now()	WHERE order_no IN(". $output .") "; 
+					$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
+													,order_status   = 'Y' 
+													,payment_no     = '". $out["P_OID"] ."'
+													,ResultCode_1   = '". $out["P_STATUS"] ."'
+													,ResultMsg_1    = '". $out["P_RMESG1"] ."'
+													,Amt_1          = '". $out["P_AMT"] ."'
+													,TID_1          = '". $out["P_TID"] ."'
+													,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
+													,AuthDate_1     = '". $out["P_AUTH_DT"] ."' 
+													WHERE order_no IN(". $orderList .") "; 
 					$db->query($sql);
+								
 
 					// 쿠폰, 포인트 소멸부분 추가
 					if($row['used_coupon_idx']) {
@@ -377,14 +388,45 @@ class InicisController extends BaseController
 					   $sql = "INSERT INTO tbl_order_mileage SET
 															 mi_title          = '". $mi_title ."'
 														   , order_idx         = '". $row['payment_idx'] ."'
+														   , order_no         = '". $row['order_no'] ."'
 														   , order_mileage     = '". $order_mileage ."'
-														   , order_gubun       = '". $row['product_name'] ."'
+														   , order_gubun       = '통합결제'
 														   , m_idx             = '". $row['m_idx']."'
 														   , product_idx       = ''
 														   , mi_r_date         = now() ";
 					   $db->query($sql);
-					   set_all_mileage($row['m_idx']);
-					}				
+					   
+						// 포인트 지급
+						$sql = "select a.user_id, a.m_idx, b.amount_rate from tbl_member a
+												left join tbl_member_grade b on a.user_level = b.user_level where a.m_idx = '". $row['m_idx'] ."' ";
+						$row = $db->query($sql)->getRowArray();
+						$order_mileage = $respArr->Amt * $row['amount_rate'] / 100;
+						
+						$mi_title = "예약결제 후 포인트지급(". $moid .")";
+						$sql_m    = "insert tbl_order_mileage set
+															  mi_title          = '". $mi_title ."'
+															 ,order_idx         = '". $row['payment_idx'] ."'
+															 ,order_no          = '". $row['order_no'] ."'
+															 ,order_mileage     = '". $order_mileage ."'
+															 ,order_gubun       = '예약포인트 지급'
+															 ,m_idx             = '". $row['m_idx'] ."'
+															 ,mi_r_date         = now()
+															 ,remaining_mileage = '' ";
+						$db->query($sql_m);
+						$insertId    = $db->insertID();
+						
+						$sql		 = " select ifnull(sum(order_mileage),0) as sum_mileage from tbl_order_mileage where m_idx = '".$row['m_idx']."' ";
+						$row         = $db->query($sql)->getRowArray();
+						$sum_mileage = $row["sum_mileage"];
+
+						$sql = "update tbl_member SET mileage = '".$sum_mileage."' where m_idx = '".$row['m_idx']."' ";																   
+						$db->query($sql);
+
+						$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
+						$db->query($sql);
+								
+					   //set_all_mileage($row['m_idx']);
+					}			
 			}
 			
 			$data = [];
