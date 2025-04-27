@@ -183,7 +183,7 @@ class InicisController extends BaseController
 
 						$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
 														,order_status   = 'Y' 
-														,payment_no     = '". $moid ."'
+														,payment_no     = '". $resultMap['MOID'] ."'
 														'ResultCode_1'  = '". $resultMap['resultCode'] ."'
 														'ResultMsg_1'   = '". $resultMap['resultMsg'] ."'
 														'Amt_1'         = '". $resultMap['TotPrice'] ."'
