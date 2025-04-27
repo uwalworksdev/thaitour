@@ -186,7 +186,7 @@ class PaymentController extends BaseController
 								   $sql = "INSERT INTO tbl_order_mileage SET
 								                                         mi_title          = '". $mi_title ."'
 																	   , order_idx         = '". $row['payment_idx'] ."'
-																	   , order_no         = '". $row['order_no'] ."'
+																	   , order_no          = '". $row['order_no'] ."'
 																	   , order_mileage     = '". $order_mileage ."'
 																	   , order_gubun       = '통합결제'
 																	   , m_idx             = '". $row['m_idx']."'
