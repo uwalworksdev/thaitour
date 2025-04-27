@@ -503,7 +503,7 @@ class InicisController extends BaseController
 
         $db  = \Config\Database::connect();
         $payment_no = $this->request->getPost('payment_no');
-
+        $payment_no = "P_20250427173422917";
 	    header('Content-Type:text/html; charset=utf-8');
 
 		// 결제정보 조회
@@ -544,7 +544,6 @@ class InicisController extends BaseController
 		//// Data 상세
 		$detail        = array();
 		$detail["tid"] = $row['TID_1']; 
-		$detail["tid"] = "P_20250427173422917";
 		$detail["msg"] = "관리자 결제취소";
 
 		$postdata["data"] = $detail;
