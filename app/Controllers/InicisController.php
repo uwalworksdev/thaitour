@@ -503,7 +503,8 @@ class InicisController extends BaseController
 
         $db         = \Config\Database::connect();
         $payment_no = $this->request->getPost('payment_no');
-
+        $payment_no = "P_20250428000917773";
+		
 		header('Content-Type:text/html; charset=utf-8');
 
 		// 결제정보 조회
