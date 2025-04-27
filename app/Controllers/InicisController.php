@@ -557,16 +557,8 @@ class InicisController extends BaseController
 
 		$postdata["hashData"] = $hashData;
 
-		echo "plainTxt : ".$plainTxt."<br/><br/>"; 
-		echo "hashData : ".$hashData."<br/><br/>"; 
-
-
 		$post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
-		
-		echo "**** 요청전문 **** <br/>" ; 
-		echo str_replace(',', ',<br>', $post_data)."<br/><br/>" ; 
-		
-		
+				
 		//step2. 요청전문 POST 전송
 		
 		$url = "https://iniapi.inicis.com/v2/pg/refund";
@@ -587,19 +579,60 @@ class InicisController extends BaseController
         // JSON 형식 파싱
         $response_data = json_decode($response, true); // 연관 배열로 변환
 
-		// 응답 결과 출력 (디버깅용)
-		echo '<pre>';
-		print_r($response_data);
-		echo '</pre>';
+		$resultCode = $responseData['resultCode'];
+		$resultMsg  = $responseData['resultMsg'];
 
-		curl_close($ch);
+		$cancelDate = $responseData['cancelDate'] ." ". $responseData['cancelTime'];
+
+		if ($resultCode == "00") {
+			$db->table('tbl_payment_mst')
+			   ->where('payment_no', $payment_no)
+			   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+
+			// 여러 주문번호에 대해 업데이트 수행
+			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+
+			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+		} else {
+			// 취소 실패
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
+			]);
+		}
+
+	    //return view('inicis_refund', $response_data);
 		
-		//step3. 결과출력
-		
-		echo "**** 응답전문 **** <br/>" ;
-		echo str_replace(',', ',<br>', $response)."<br><br>";
-		
-	    return view('inicis_refund', $response_data);
+		/*
+			plainTxt : cjAo6CD95LpJS0S4thaitour37refund20250428001325{"tid":"StdpayCARDthaitour3720250428001952866722","msg":"관리자 결제취소"}
+
+			hashData : a406b12be880ef0fe3fd1e3fe4bd120efaa3d286dc6d564871cbbbfb3eeb3f8179777396b9255cfb0678dec53373f6e93cfd90435f86e98db0176dea68a221bb
+
+			**** 요청전문 ****
+			{"mid":"thaitour37",
+			"type":"refund",
+			"timestamp":"20250428001325",
+			"clientIp":"118.38.5.223",
+			"data":{"tid":"StdpayCARDthaitour3720250428001952866722",
+			"msg":"관리자 결제취소"},
+			"hashData":"a406b12be880ef0fe3fd1e3fe4bd120efaa3d286dc6d564871cbbbfb3eeb3f8179777396b9255cfb0678dec53373f6e93cfd90435f86e98db0176dea68a221bb"}
+
+			Array
+			(
+				[resultCode] => 00
+				[resultMsg] => 정상처리되었습니다.
+				[cancelDate] => 20250428
+				[cancelTime] => 002315
+			)
+			**** 응답전문 ****
+			{"resultCode":"00",
+			"resultMsg":"정상처리되었습니다.",
+			"cancelDate":"20250428",
+			"cancelTime":"002315"}
+
+
+			KR 한국어
+        */		
 		
     }
 	
