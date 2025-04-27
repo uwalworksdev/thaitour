@@ -357,99 +357,117 @@ class PaymentController extends BaseController
 
 	}
 	
-public function nicepay_refund()
-{
-    $db = \Config\Database::connect();
-    $setting = homeSetInfo();
+	public function nicepay_refund()
+	{
+		$db = \Config\Database::connect();
+		$setting = homeSetInfo();
 
-    header("Content-Type: application/json; charset=utf-8");
+		header("Content-Type: application/json; charset=utf-8");
 
-    // Ajax로 넘어온 payment_no 받기
-    $payment_no = $this->request->getPost('payment_no');
+		// Ajax로 넘어온 payment_no 받기
+		$payment_no = $this->request->getPost('payment_no');
 
-    if (empty($payment_no)) {
-        return $this->response->setJSON([
-            'status'  => 'error',
-            'message' => 'payment_no가 없습니다.',
-        ]);
-    }
+		if (empty($payment_no)) {
+			return $this->response->setJSON([
+				'status'  => 'error',
+				'message' => 'payment_no가 없습니다.',
+			]);
+		}
 
-    // 결제정보 조회
-    $row = $db->table('tbl_payment_mst')
-              ->where('payment_no', $payment_no)
-              ->get()
-              ->getRowArray();
+		// 결제정보 조회
+		$row = $db->table('tbl_payment_mst')
+				  ->where('payment_no', $payment_no)
+				  ->get()
+				  ->getRowArray();
 
-    if (!$row) {
-        return $this->response->setJSON([
-            'status' => 'error',
-            'message' => '결제 정보를 찾을 수 없습니다.',
-        ]);
-    }
+		if (!$row) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => '결제 정보를 찾을 수 없습니다.',
+			]);
+		}
 
-    $merchantKey = $setting['nicepay_key'];
-    $mid         = $setting['nicepay_mid'];
-    $moid        = $payment_no;
-    $cancelMsg   = "고객요청";
+		$output = explode(",", $row['order_no']);
+		// 끝에 쉼표 제거
+		$order_no = rtrim($row['order_no'], ',');
 
-    $tid         = $row['TID_1'];
-    $cancelAmt   = $row['Amt_1'];
+		// 문자열을 배열로 변환
+		$orderArr = explode(',', $row['order_no']);
 
-    $ediDate     = date("YmdHis");
-    $signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
+		// 각 항목을 따옴표로 감싸기
+		$orderList = "'" . implode("','", $orderArr) . "'";
+									
+		$merchantKey = $setting['nicepay_key'];
+		$mid         = $setting['nicepay_mid'];
+		$moid        = $payment_no;
+		$cancelMsg   = "고객요청";
 
-    try {
-        $data = [
-            'TID'               => $tid,
-            'MID'               => $mid,
-            'Moid'              => $moid,
-            'CancelAmt'         => $cancelAmt,
-            'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
-            'PartialCancelCode' => '0',
-            'EdiDate'           => $ediDate,
-            'SignData'          => $signData,
-            'CharSet'           => 'utf-8'
-        ];
+		$tid         = $row['TID_1'];
+		$cancelAmt   = $row['Amt_1'];
 
-        $response = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
-        $response_data = json_decode($response, true);
+		$ediDate     = date("YmdHis");
+		$signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
 
-        if (isset($response_data['ResultCode']) && $response_data['ResultCode'] == '2001') {
-            // 취소 성공
-            return $this->response->setJSON([
-                'status' => 'success',
-                'message' => '결제 취소 성공: ' . ($response_data['ResultMsg'] ?? ''),
-            ]);
-        } else {
-            // 취소 실패
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
-            ]);
-        }
+		try {
+			$data = [
+				'TID'               => $tid,
+				'MID'               => $mid,
+				'Moid'              => $moid,
+				'CancelAmt'         => $cancelAmt,
+				'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
+				'PartialCancelCode' => '0',
+				'EdiDate'           => $ediDate,
+				'SignData'          => $signData,
+				'CharSet'           => 'utf-8'
+			];
 
-    } catch (\Exception $e) {
-        return $this->response->setJSON([
-            'status' => 'error',
-            'message' => 'API 통신 오류: ' . $e->getMessage(),
-        ]);
-    }
-}
+			$response      = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
+			$response_data = json_decode($response, true);
+				
+			$resultCode = $responseData['ResultCode'] ?? '9999';
+			$resultMsg  = $responseData['ResultMsg']  ?? '응답 오류';
 
-// Nicepay API POST 호출 함수
-private function reqPost(array $data, $url)
-{
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-    curl_setopt($ch, CURLOPT_POST, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    return $response;
-}
+			if (in_array($resultCode, ['2001', '2211'])) {
+				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');
+
+				$db->table('tbl_payment_mst')
+				   ->where('TID_1', $tid)
+				   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+
+				// 여러 주문번호에 대해 업데이트 수행
+				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+
+				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+			} else {
+				// 취소 실패
+				return $this->response->setJSON([
+					'status' => 'error',
+					'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
+				]);
+			}
+
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => 'API 통신 오류: ' . $e->getMessage(),
+			]);
+		}
+	}
+
+	// Nicepay API POST 호출 함수
+	private function reqPost(array $data, $url)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+		curl_setopt($ch, CURLOPT_POST, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		return $response;
+	}
 
 	
 }
