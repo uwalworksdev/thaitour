@@ -357,92 +357,100 @@ class PaymentController extends BaseController
 
 	}
 	
-	public function nicepay_refund()
-	{
-		        $db         = \Config\Database::connect();
-	            $setting    = homeSetInfo();
+public function nicepay_refund()
+{
+    $db = \Config\Database::connect();
+    $setting = homeSetInfo();
 
-				header("Content-Type:text/html; charset=utf-8;"); 
+    header("Content-Type: application/json; charset=utf-8");
 
-				$payment_no          = "P_20250426015214415";
+    // Ajax로 넘어온 payment_no 받기
+    $payment_no = $this->request->getPost('payment_no');
 
-				// 쿼리 빌더 사용
-				$query = $db->table('tbl_payment_mst')         // 테이블 지정
-							->where('payment_no', $payment_no) // 조건 설정
-							->get(); // 쿼리 실행
+    if (empty($payment_no)) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'payment_no가 없습니다.',
+        ]);
+    }
 
-				$row  = $query->getRowArray(); // 결과 가져오기 (연관 배열)
+    // 결제정보 조회
+    $row = $db->table('tbl_payment_mst')
+              ->where('payment_no', $payment_no)
+              ->get()
+              ->getRowArray();
 
-				$merchantKey       = $setting['nicepay_key']; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
-				$mid               = $setting['nicepay_mid'];
+    if (!$row) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => '결제 정보를 찾을 수 없습니다.',
+        ]);
+    }
 
-				//$merchantKey       = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
-				//$mid               = "nicepay00m";
-				$moid              =  $payment_no;		
-				$cancelMsg         = "고객요청";
+    $merchantKey = $setting['nicepay_key'];
+    $mid         = $setting['nicepay_mid'];
+    $moid        = $payment_no;
+    $cancelMsg   = "고객요청";
 
-			    $tid               = $row['TID_1'];			
-				$cancelAmt         = $row['Amt_1'];
-				
-				$ediDate           = date("YmdHis");
-				$signData          = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
+    $tid         = $row['TID_1'];
+    $cancelAmt   = $row['Amt_1'];
 
-				try{
-					$data = Array(
-						'TID'               => $tid,
-						'MID'               => $mid,
-						'Moid'              => $moid,
-						'CancelAmt'         => $cancelAmt,
-						'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
-						'PartialCancelCode' => '0',
-						'EdiDate'           => $ediDate,
-						'SignData'          => $signData,
-						'CharSet'           => 'utf-8'
-					);	
-					$response = reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp"); //취소 API 호출
-					//write_log($response);
-					//jsonRespDump($response);
-					$response_data = json_decode($response, true);
-					//print_r($response_data);
-					
-					$data['ResultCode'] = $response_data['ResultCode'];
-					$data['ResultMsg']  = $response_data['ResultMsg'];
-					
-					return view('nicepay_refund', $response_data);
-					
-				}catch(Exception $e){
-					$e->getMessage();
-					$ResultCode = "9999";
-					$ResultMsg  = "통신실패";
-				}
+    $ediDate     = date("YmdHis");
+    $signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
 
-				// API CALL foreach 예시
-				function jsonRespDump($resp){
-					$respArr = json_decode($resp);
-					foreach ( $respArr as $key => $value ){
-						if($key == "Data"){
-							echo decryptDump ($value, $merchantKey)."<br />";
-						}else{
-							$$key =  $value;
-							echo "$key=". $value."<br />";
-						}
-					}
-				}
+    try {
+        $data = [
+            'TID'               => $tid,
+            'MID'               => $mid,
+            'Moid'              => $moid,
+            'CancelAmt'         => $cancelAmt,
+            'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
+            'PartialCancelCode' => '0',
+            'EdiDate'           => $ediDate,
+            'SignData'          => $signData,
+            'CharSet'           => 'utf-8'
+        ];
 
-				//Post api call
-				function reqPost(Array $data, $url){
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, $url);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);					//connection timeout 15 
-					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-					curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));	//POST data
-					curl_setopt($ch, CURLOPT_POST, true);
-					$response = curl_exec($ch);
-					curl_close($ch);	 
-					return $response;
-				} 
-	}
+        $response = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
+        $response_data = json_decode($response, true);
+
+        if (isset($response_data['ResultCode']) && $response_data['ResultCode'] == '2001') {
+            // 취소 성공
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => '결제 취소 성공: ' . ($response_data['ResultMsg'] ?? ''),
+            ]);
+        } else {
+            // 취소 실패
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
+            ]);
+        }
+
+    } catch (\Exception $e) {
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'API 통신 오류: ' . $e->getMessage(),
+        ]);
+    }
+}
+
+// Nicepay API POST 호출 함수
+private function reqPost(array $data, $url)
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    curl_setopt($ch, CURLOPT_POST, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    return $response;
+}
+
 	
 }
 
