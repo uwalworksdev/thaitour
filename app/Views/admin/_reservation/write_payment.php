@@ -97,7 +97,7 @@
 								
                                 <?php foreach ($order_row as $order) { ?>								
                                 <tr>
-                                    <td><?=$order['payment_no']?></td>
+                                    <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td align="right"><?=number_format($order['order_price'])?></td>
