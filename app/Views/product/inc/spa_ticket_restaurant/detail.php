@@ -12,15 +12,7 @@
             <div class="title-container">
                 <h2><?= $data_['product_name'] ?><span style="margin-left: 15px;"><?= viewSQ($data_['product_name_en']) ?></span></h2>
                 <!-- <div class="only_web"> -->
-                <?php 
-                    if($data_['product_code_1'] == "1325" || $data_['product_code_1'] == "1320"){
-                ?>
-                    <ul class="tour_type_group">
-                        <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
-                    </ul>
-                <?php 
-                    }
-                ?>
+
                 <div class="list-icon">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
@@ -28,6 +20,15 @@
                 </div>
                 <!-- </div> -->
             </div>
+            <?php 
+                if($data_['product_code_1'] == "1325" || $data_['product_code_1'] == "1320"){
+            ?>
+                <ul class="tour_type_group">
+                    <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
+                </ul>
+            <?php 
+                }
+            ?>
             <div class="location-container">
                 <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                 <span><?= $data_['addrs'] ?></span> -->
