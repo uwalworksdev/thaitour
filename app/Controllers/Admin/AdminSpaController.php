@@ -311,6 +311,11 @@ class AdminSpaController extends BaseController
             $mbti = updateSQ($_POST["mbti" ?? '']);
             $note_news = updateSQ($_POST["note_news" ?? '']);
 
+            $company_name = updateSQ($_POST["company_name" ?? '']);
+            $company_contact = updateSQ($_POST["company_contact" ?? '']);
+            $company_url = updateSQ($_POST["company_url" ?? '']);
+            $company_notes = updateSQ($_POST["company_notes" ?? '']);
+
 //            $dataProductMore = new stdClass();
 
             $dataProductMore = "";
@@ -462,6 +467,10 @@ class AdminSpaController extends BaseController
                     'm_date' => 'now()',
                     'ufile1' => updateSQ($data['ufile1']),
                     'rfile1' => updateSQ($data['rfile1']),
+                    'company_name' => updateSQ($data['company_name']),
+                    'company_contact' => updateSQ($data['company_contact']),
+                    'company_url' => updateSQ($data['company_url']),
+                    'company_notes' => updateSQ($data['company_notes'])
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
@@ -616,6 +625,10 @@ class AdminSpaController extends BaseController
                     'jetlag' => $jetlag ?? 0,
                     'ufile1' => $data['ufile1'] ?? '',
                     'rfile1' => $data["rfile1"] ?? '',
+                    'company_name' => updateSQ($data['company_name']),
+                    'company_contact' => updateSQ($data['company_contact']),
+                    'company_url' => updateSQ($data['company_url']),
+                    'company_notes' => updateSQ($data['company_notes'])
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
