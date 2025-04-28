@@ -49,7 +49,7 @@
                         }
                     ?>
                     <?php
-                        if(!empty($product["company_name"]) || !empty($product["company_contact"]) || !empty($product["company_url"]) || !empty(trim($product["company_notes"]))){
+                        if(!empty(trim($product["company_name"])) || !empty(trim($product["company_contact"])) || !empty(trim($product["company_url"])) || !empty(trim($product["company_notes"]))){
                     ?>
                         <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
                     <?php
