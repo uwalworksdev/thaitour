@@ -16,7 +16,7 @@ $setting = homeSetInfo();
 
         .table_custom {
             border-collapse: collapse !important;
-            width: 100%;
+            width: 100% !important;
             font-size: 14px;
             table-layout: fixed;
         }
