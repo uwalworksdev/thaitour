@@ -5922,3 +5922,43 @@
     font-weight: 600;
     color: #252525;
 }
+
+.tour_type_group {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tour_type_group .type_title {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+    color: #797b80;
+}
+
+.tour_type_group .type_title.on {
+    color: #000;
+    border: 1px solid #17469E;
+}
+
+.tour_type_group .view_info_company a {
+    color: #252525;
+}
+
+.info_company .content_info {
+    padding-bottom: 10px;
+    line-height: 1.4;
+}
+
+.info_company .content_info .name span {
+    font-weight: 500;
+    color: #17469E;
+}
+
+.info_company .content_notes {
+    color: #666;
+    border-top: 1px solid #ededed;
+    padding: 10px 0;
+    line-height: 1.4;
+}

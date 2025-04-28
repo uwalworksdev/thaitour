@@ -3615,6 +3615,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-top: 30px;
 }
 
+.info_company .popup_place__body {
+    margin-top: 10px;
+}
+
 .popup_place__body .policy_top {
     margin-top: 30px;
     font-family: "Pretendard";
