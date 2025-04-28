@@ -5953,6 +5953,7 @@
 .tour_type_group .view_info_company a {
     color: #252525;
     text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .info_company .content_info {
