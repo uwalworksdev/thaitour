@@ -47,7 +47,7 @@
 								<?php foreach ($fresult as $row) { ?>
 									<tr>
 										<td>
-											<input type="text" name="grade_name" id="grade_name_<?= esc($row['g_idx']) ?>" value="<?= esc($row['grade_name']) ?>" style="width:100px;text-align:right;">
+											<input type="text" name="grade_name" id="grade_name_<?= esc($row['g_idx']) ?>" value="<?= esc($row['grade_name']) ?>" style="width:100px;">
 										</td>	
 										<td>
 											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;" readonly>
