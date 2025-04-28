@@ -33,6 +33,11 @@
                         </div>
                     <!-- </div> -->
                 </div>
+                <ul class="tour_type_group">
+                    <li class="type_title">빈일투어</li>
+                    <li class="type_title">조인 투어</li>
+                    <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
+                </ul>
                 <div class="location-container">
                     <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                     <span><?=$product['addrs']?></span> -->
@@ -707,6 +712,36 @@
                 </div>
             </div>
         </div>
+
+        <div class="popup_wrap benefit_pop info_company" style="display: none;">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closeInfoCompany()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>업체 정보</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body">
+                            <div class="content_info">
+                                <p class="name">ㆍ업체명 : <span>Bhawa Spa on the 8</span></p>
+                                <p class="contact">ㆍ연락처 : +66(0) 2254 9662-3</p>
+                                <p class="url">ㆍ홈페이지 : http://www.bhawaspa.com</p>
+                            </div>
+                            <div class="content_notes">
+                                - 본 상품은 ㈜토토부킹에서 판매 대행하고 실제 운영은 "Bhawa Spa on the 8" 에서 주관합니다. 상품 운영에 대한 책임은 "Bhawa Spa on the 8" 에 있습니다.
+                                <br>
+                                - 투어 참가시 귀중품 및 현금 등의 분실사고와 개인의 안전사고에 대해 각별히 유의해 주세요. (예약 전 안전수칙 동의서 필독 후 동의)
+                                <br>
+                                - 개인 부주의로 발생된 사고는 책임지지 않습니다.
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
 <script>
     $('.item_check_term_').click(function () {
         $(this).toggleClass('checked_');
@@ -747,6 +782,15 @@
 </script>
 
 <script>
+
+    function showInfoCompany() {
+        $(".info_company").show();
+    }
+
+    function closeInfoCompany() {
+        $(".info_company").hide();
+    }
+
     function closePopup() {
         $(".popup_wrap").hide();
         $(".dim").hide();
