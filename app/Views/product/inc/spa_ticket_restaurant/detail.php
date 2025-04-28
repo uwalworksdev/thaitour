@@ -12,11 +12,20 @@
             <div class="title-container">
                 <h2><?= $data_['product_name'] ?><span style="margin-left: 15px;"><?= viewSQ($data_['product_name_en']) ?></span></h2>
                 <!-- <div class="only_web"> -->
-                    <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                        <img src="/uploads/icons/share_icon.png" alt="share_icon">
-                    </div>
+                <?php 
+                    if($data_['product_code_1'] == "1325" || $data_['product_code_1'] == "1320"){
+                ?>
+                    <ul class="tour_type_group">
+                        <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
+                    </ul>
+                <?php 
+                    }
+                ?>
+                <div class="list-icon">
+                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                </div>
                 <!-- </div> -->
             </div>
             <div class="location-container">
@@ -513,7 +522,53 @@
     </div>
 </div>
 
+<div class="popup_wrap benefit_pop info_company" style="display: none;">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closeInfoCompany()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>업체 정보</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <div class="content_info">
+                        <?php if (!empty($data_["company_name"])){ ?>
+                            <p class="name">ㆍ업체명 : <span><?= $data_["company_name"] ?></span></p>
+                        <?php
+                            }    
+                        ?>
+                        <?php if (!empty($data_["company_contact"])){ ?>
+                            <p class="contact">ㆍ연락처 : <?= $data_["company_contact"] ?></p>
+                        <?php 
+                            } 
+                        ?>
+                        <?php if (!empty($data_["company_url"])){ ?>
+                            <p class="url">ㆍ홈페이지 : <?= $data_["company_url"] ?></p>
+                        <?php 
+                            } 
+                        ?>
+                    </div>
+                    <div class="content_notes">
+                        <?= viewSQ($data_["company_notes"])?>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 <script>
+    function showInfoCompany() {
+        $(".info_company").show();
+    }
+
+    function closeInfoCompany() {
+        $(".info_company").hide();
+    }
+
     $(".qa-item .qa-wrap").on("click", function () {
         if($(this).closest(".qa-item").find(".additional-info").length > 0){
             if($(this).closest(".qa-item").find(".additional-info").css("display") == "none"){
