@@ -21,7 +21,7 @@
                 <!-- </div> -->
             </div>
             <?php 
-                if(!empty(trim($data_["company_name"])) || !empty(trim($data_["company_contact"])) || !empty(trim($data_["company_url"])) || !isContentEmpty(viewSQ($product["company_notes"]))){
+                if(!empty(trim($data_["company_name"])) || !empty(trim($data_["company_contact"])) || !empty(trim($data_["company_url"])) || !isContentEmpty(viewSQ($data_["company_notes"]))){
             ?>
                 <ul class="tour_type_group">
                     <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
