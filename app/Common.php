@@ -16,6 +16,12 @@
 
 function isContentEmpty($html)
 {
+    $html = str_replace('&nbsp;', ' ', $html);
+
+    if (preg_match('/<(img|iframe)\b/i', $html)) {
+        return false;
+    }
+
     $text = strip_tags($html);
 
     $text = preg_replace('/\s+/', '', $text);
