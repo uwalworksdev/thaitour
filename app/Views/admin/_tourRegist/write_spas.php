@@ -2284,6 +2284,8 @@
             oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors13.getById["product_period"].exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors20.getById["company_notes"].exec("UPDATE_CONTENTS_FIELD", []);
+
 
             // if ($("#chk_product_code").val() == "N") {
             //     alert("중복된 제품 코드를 확인하세요.");
