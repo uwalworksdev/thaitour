@@ -208,6 +208,7 @@ class PaymentController extends BaseController
                                                                       mi_title          = '". $mi_title ."'
 															         ,order_idx         = '". $row['payment_idx'] ."'
 															         ,order_no          = '". $row['order_no'] ."'
+															         ,payment_no        = '". $row['payment_no'] ."'
                                                                      ,order_mileage     = '". $order_mileage ."'
                                                                      ,order_gubun       = '예약포인트 지급'
                                                                      ,m_idx             = '". $row['m_idx'] ."'
@@ -437,7 +438,11 @@ class PaymentController extends BaseController
 				// 여러 주문번호에 대해 업데이트 수행
 				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
 
+                // 적립포인트 삭제
+				$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ?", [$payment_no]);
+				
 				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+
 			} else {
 				// 취소 실패
 				return $this->response->setJSON([
