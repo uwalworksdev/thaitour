@@ -4254,7 +4254,7 @@
   }
 
   .travel_info .list_tab_head .tab {
-    padding: 1.2rem 2.9rem;
+    padding: 1.2rem 3.2rem;
     color: #757575;
     font-size: 2.6rem;
     font-weight: 500;
@@ -4268,11 +4268,113 @@
   .travel_info .list_tab_head {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.7rem;
     align-items: center;
     margin-bottom: 5.2rem;
     flex-wrap: wrap;
   }
 
+  .travel_info .head_list_product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.travel_info .head_list_product .total_text {
+  font-size: 2.6rem;
+  font-weight: 500;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+.travel_info .head_list_product select {
+  width: 20rem;
+  height: 8.8rem;
+  border: 1px solid #dbdbdb;
+  padding: 0 2.5rem;
+  margin-left: 0;
+  background-size: 2rem;
+}
+
+.travel_info .head_list_product .input_search_box {
+  display: flex
+;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #dbdbdb;
+  padding-right: 3rem;
+  margin-left: 1.5rem;
+  height: 8.8rem;
+  width: unset;
+  flex: 1;
+}
+
+.travel_info .head_list_product .input_search_box img {
+  cursor: pointer;
+  width: 3.6rem;
+}
+.travel_info .list_product .item {
+  display: flex
+;
+  align-items: center;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 4.2rem 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.travel_info .list_product .item .img {
+  width: 100%;
+}
+
+.travel_info .list_product .item .tit {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #757575;
+  display: block;
+}
+
+.travel_info .list_product .item .name {
+  font-size: 3rem;
+  margin-bottom: 3.5rem;
+  font-weight: 500;
+}
+
+.travel_info .list_product .item .desc {
+  padding: 2.8rem;
+  background-color: #f7f7f7;
+  margin-bottom: 3.3rem;
+}
+
+.travel_info .list_product .item .desc_inner {
+  font-size: 2.6rem;
+  color: #757575;
+  line-height: 1.5;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.travel_info .list_product .item .info {
+  color: #757575;
+  font-size: 2.6rem;
+}
+
+.travel_info .list_product .item .info .date {
+  padding-right: 1.8rem;
+  border-right: 1px solid #757575;
+}
+
+.travel_info .list_product .item .info .author {
+  padding-left: 1.8rem;
+  padding-right: 1.8rem;
+  border-right: 1px solid #757575;
+}
+
+.travel_info .list_product .item .info .view {
+  padding-left: 1.8rem;
+}
 
 }

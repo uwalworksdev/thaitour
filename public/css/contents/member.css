@@ -1040,7 +1040,8 @@ form .form_list .ch_area [type="checkbox"]+label {
     }
 
     .another_login {
-        max-width: 39rem;
+        /* max-width: 39rem; */
+        max-width: unset;
         margin-bottom: 0;
     }
 
