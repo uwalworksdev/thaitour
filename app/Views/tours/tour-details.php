@@ -48,7 +48,13 @@
                     <?php
                         }
                     ?>
-                    <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
+                    <?php
+                        if(!empty($product["company_name"]) || !empty($product["company_contact"]) || !empty($product["company_url"]) || !empty(trim($product["company_notes"]))){
+                    ?>
+                        <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
+                    <?php
+                        }
+                    ?>
                 </ul>
                 <div class="location-container">
                     <!-- <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
