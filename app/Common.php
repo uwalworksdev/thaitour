@@ -14,6 +14,15 @@
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
 
+function isContentEmpty($html)
+{
+    $text = strip_tags($html);
+
+    $text = preg_replace('/\s+/', '', $text);
+
+    return $text === '';
+}
+
 function private_key()
 {
     return env("PRIVATE_KEY");
