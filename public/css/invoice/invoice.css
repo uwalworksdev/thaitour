@@ -949,7 +949,7 @@
 
 .golf_invoice .box_notifi .desc {
     background-color: #f4f4f4;
-    width: 100%;
+    width: 100% !important;
     text-align: center;
     padding: 9px;
     color: #7d7d7d;
