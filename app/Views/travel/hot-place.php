@@ -55,6 +55,7 @@
             <div class="inner">
                 <div class="wrap_banner">
                     <img class="only_web" src="/img/sub/hot-place-banner.png" alt="">
+                    <img class="only_mo" src="/img/sub/hot-place-banner-m.jpg" alt="">
                     <div class="text_banner">
                         <span>태국 로컬시장 완벽 탐구!</span>
                         <p>전통시장부터 야시장까지~</p>
@@ -64,7 +65,8 @@
         </div>
         <div class="input_search_box">
             <input type="text">
-            <img src="/img/sub/search-ic-01.png" alt="search-ic">
+            <img class="only_web" src="/img/sub/search-ic-01.png" alt="search-ic">
+            <img class="only_mo" src="/img/sub/search-ic-35.jpg" alt="search-ic">
         </div>
         <div class="list_place">
             <a href="/travel-tips/view_detail" class="item">
