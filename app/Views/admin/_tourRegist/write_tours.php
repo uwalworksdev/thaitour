@@ -812,6 +812,81 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>그룹타입</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" name="tour_group[]"
+                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "E") !== false)) echo "checked"; ?> value="E">
+                                                조인 투어 &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tour_group[]"
+                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "T") !== false)) echo "checked"; ?> value="T">
+                                               빈일투어 &nbsp;&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>업체 정보</th>
+                                    <td colspan="3">
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                            <colgroup>
+                                                <col width="10%"/>
+                                                <col width="*%"/>
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>업체명</th>
+                                                    <td>
+                                                        <input id="company_name" name="company_name" class="input_txt" type="text" value="" style="width:100%">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>연락처</th>
+                                                    <td>
+                                                        <input id="company_contact" name="company_contact" class="input_txt" type="text" value="" style="width:100%">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>홈페이지</th>
+                                                    <td>
+                                                        <input id="company_url" name="company_url" class="input_txt" type="text" value="" style="width:100%">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>홈페이지</th>
+                                                    <td>
+                                                        <textarea name="company_notes" id="company_notes" rows="10" cols="100" class="input_txt"
+                                                            style="width:100%; height:400px; display:none;"><?= viewSQ($company_notes) ?>
+                                                        </textarea>
+                                                        <script type="text/javascript">
+                                                            var oEditors20 = [];
+
+                                                            nhn.husky.EZCreator.createInIFrame({
+                                                                oAppRef: oEditors20,
+                                                                elPlaceHolder: "company_notes",
+                                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                                htParams: {
+                                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                                    fOnBeforeUnload: function () {
+                                                                        //alert("완료!");
+                                                                    }
+                                                                }, //boolean
+                                                                fOnAppLoad: function () {
+                                                                    //예제 코드
+                                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                                },
+                                                                fCreator: "createSEditor2"
+                                                            });
+                                                        </script>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>    
+                                    </td>
+                                </tr>
+
                                 <script>
                                     $('#all_code_mbti').change(function () {
                                         if ($('#all_code_mbti').is(':checked')) {
@@ -2489,6 +2564,7 @@
             oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
             // oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors20.getById["company_notes"].exec("UPDATE_CONTENTS_FIELD", []);
 
 
             // if (frm.tour_period.value == "") {

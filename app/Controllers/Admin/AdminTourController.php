@@ -165,8 +165,23 @@ class AdminTourController extends BaseController
             $mbti = updateSQ($_POST["mbti" ?? '']);
             $description = updateSQ($_POST["description" ?? '']);
 
+            $t_group = $_POST["tour_group"] ?? [];
+            $company_name = updateSQ($_POST["company_name" ?? '']);
+            $company_contact = updateSQ($_POST["company_contact" ?? '']);
+            $company_url = updateSQ($_POST["company_url" ?? '']);
+            $company_notes = updateSQ($_POST["company_notes" ?? '']);
+
             if (!is_array($arr)) {
                 $arr = [];
+            }
+
+            $tour_group = "";
+            for ($i = 0; $i < count($t_group); $i++) {
+                if ($i == 0) {
+                    $tour_group .= $t_group[$i];
+                } else {
+                    $tour_group .= "," . $t_group[$i];
+                }
             }
 
             $deadline_date = "";
@@ -293,6 +308,13 @@ class AdminTourController extends BaseController
                             ,product_level			= '" . $product_level . "'
                             ,product_option         = '" . $product_option . "'
                             ,tours_cate             = '" . $tours_cate . "'
+
+                            ,tour_group             = '" . $tour_group . "'
+                            ,company_name           = '" . $company_name . "'
+                            ,company_contact        = '" . $company_contact . "'
+                            ,company_url            = '" . $company_url . "'
+                            ,company_notes          = '" . $company_notes . "'
+
                             ,yoil_0                 = '" . $yoil_0 . "'
                             ,yoil_1                 = '" . $yoil_1 . "'
                             ,yoil_2                 = '" . $yoil_2 . "'
@@ -477,6 +499,12 @@ class AdminTourController extends BaseController
                             ,jetlag					= '" . $jetlag . "'
                             ,capital_city			= '" . $capital_city . "'
                 
+                            ,tour_group             = '" . $tour_group . "'
+                            ,company_name           = '" . $company_name . "'
+                            ,company_contact        = '" . $company_contact . "'
+                            ,company_url            = '" . $company_url . "'
+                            ,company_notes          = '" . $company_notes . "'
+
                             ,user_id				= '" . $_SESSION['member']['id'] . "'
                             ,user_level				= '" . $_SESSION['member']['level'] . "'
                             ,information			= '" . $information . "'
