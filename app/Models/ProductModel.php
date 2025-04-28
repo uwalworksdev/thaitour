@@ -102,7 +102,9 @@ class ProductModel extends Model
             $filteredData[$key] = updateSQ($value);
         }
 
-		return $this->update($id, $filteredData);
+        return $this->builder()
+                    ->where('product_idx', $id)
+                    ->update($filteredData);
     }
 
     public function getSuggestedProducts($code_no)
