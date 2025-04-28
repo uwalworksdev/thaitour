@@ -23,7 +23,7 @@
             <?php 
                 if($data_['product_code_1'] == "1325" || $data_['product_code_1'] == "1320"){
             ?>
-                <ul class="tour_type_group">
+                <ul class="tour_type_group" style="margin: 0;">
                     <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
                 </ul>
             <?php 

@@ -5937,13 +5937,21 @@
     color: #797b80;
 }
 
-.tour_type_group .type_title.on {
-    color: #000;
-    border: 1px solid #17469E;
+.tour_type_group .type_title_1 {
+    color: #17469E;
+}
+
+.tour_type_group .type_title_2 {
+    color: #1bbacb;
+}
+
+.tour_type_group .view_info_company {
+    margin-left: 50px;
 }
 
 .tour_type_group .view_info_company a {
     color: #252525;
+    text-decoration: underline;
 }
 
 .info_company .content_info {

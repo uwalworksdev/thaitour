@@ -34,8 +34,20 @@
                     <!-- </div> -->
                 </div>
                 <ul class="tour_type_group">
-                    <li class="type_title <?= strpos($product["tour_group"], "E") !== false ? "on" : ""?>">빈일투어</li>
-                    <li class="type_title <?= strpos($product["tour_group"], "T") !== false ? "on" : ""?>">조인 투어</li>
+                    <?php
+                        if(strpos($product["tour_group"], "E") !== false){
+                    ?>
+                        <li class="type_title type_title_1">반일투어</li>
+                    <?php
+                        }
+                    ?>
+                    <?php
+                        if(strpos($product["tour_group"], "T") !== false){
+                    ?>
+                        <li class="type_title type_title_2">조인 투어</li>
+                    <?php
+                        }
+                    ?>
                     <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
                 </ul>
                 <div class="location-container">
