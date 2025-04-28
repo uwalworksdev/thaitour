@@ -34,8 +34,8 @@
                     <!-- </div> -->
                 </div>
                 <ul class="tour_type_group">
-                    <li class="type_title">빈일투어</li>
-                    <li class="type_title">조인 투어</li>
+                    <li class="type_title <?= strpos($product["tour_group"], "E") !== false ? "on" : ""?>">빈일투어</li>
+                    <li class="type_title <?= strpos($product["tour_group"], "T") !== false ? "on" : ""?>">조인 투어</li>
                     <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
                 </ul>
                 <div class="location-container">
@@ -725,16 +725,24 @@
                         </div>
                         <div class="popup_place__body">
                             <div class="content_info">
-                                <p class="name">ㆍ업체명 : <span>Bhawa Spa on the 8</span></p>
-                                <p class="contact">ㆍ연락처 : +66(0) 2254 9662-3</p>
-                                <p class="url">ㆍ홈페이지 : http://www.bhawaspa.com</p>
+                                <?php if (!empty($product["company_name"])){ ?>
+                                    <p class="name">ㆍ업체명 : <span><?= $product["company_name"] ?></span></p>
+                                <?php
+                                    }    
+                                ?>
+                                <?php if (!empty($product["company_contact"])){ ?>
+                                    <p class="contact">ㆍ연락처 : <?= $product["company_contact"] ?></p>
+                                <?php 
+                                    } 
+                                ?>
+                                <?php if (!empty($product["company_url"])){ ?>
+                                    <p class="url">ㆍ홈페이지 : <?= $product["company_url"] ?></p>
+                                <?php 
+                                    } 
+                                ?>
                             </div>
                             <div class="content_notes">
-                                - 본 상품은 ㈜토토부킹에서 판매 대행하고 실제 운영은 "Bhawa Spa on the 8" 에서 주관합니다. 상품 운영에 대한 책임은 "Bhawa Spa on the 8" 에 있습니다.
-                                <br>
-                                - 투어 참가시 귀중품 및 현금 등의 분실사고와 개인의 안전사고에 대해 각별히 유의해 주세요. (예약 전 안전수칙 동의서 필독 후 동의)
-                                <br>
-                                - 개인 부주의로 발생된 사고는 책임지지 않습니다.
+                                <?= viewSQ($company_notes)?>
                             </div>
                         </div> 
                     </div>

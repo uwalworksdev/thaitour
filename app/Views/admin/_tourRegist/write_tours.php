@@ -836,19 +836,19 @@
                                                 <tr>
                                                     <th>업체명</th>
                                                     <td>
-                                                        <input id="company_name" name="company_name" class="input_txt" type="text" value="" style="width:100%">
+                                                        <input id="company_name" name="company_name" class="input_txt" type="text" value="<?= viewSQ($company_name) ?>" style="width:100%">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>연락처</th>
                                                     <td>
-                                                        <input id="company_contact" name="company_contact" class="input_txt" type="text" value="" style="width:100%">
+                                                        <input id="company_contact" name="company_contact" class="input_txt" type="text" value="<?= viewSQ($company_contact) ?>" style="width:100%">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>홈페이지</th>
                                                     <td>
-                                                        <input id="company_url" name="company_url" class="input_txt" type="text" value="" style="width:100%">
+                                                        <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                                     </td>
                                                 </tr>
                                                 <tr>
