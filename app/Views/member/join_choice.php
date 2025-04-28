@@ -78,6 +78,9 @@ $returnUrl = "";
             <li class="google">
                 <a href="<?= $_url ?>" id="customBtn" class="btn-default"><i></i> 구글 가입하기</a>
             </li>
+            <li class="apple">
+                <a href="#!" id="" class="btn-default"><i></i> 애플 가입하기</a>
+            </li>
         </ul>
     </div>
 </main>

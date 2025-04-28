@@ -159,6 +159,12 @@
     background-image: url(/images/ico/google_ico.png);
 }
 
+.another_login .another_btn.apple {
+    background-image: url(/img/sub/app-ic.png);
+}
+
+
+
 
 .login_cont .find_radio {
     margin-bottom: 20px;
@@ -220,6 +226,11 @@
     border-color: #ffe100;
 }
 
+.join .join_list li.apple a {
+    background-color: #000;
+    color: #fff;
+}
+
 .join .join_list a i {
     display: block;
     background: no-repeat center;
@@ -242,6 +253,11 @@
     width: 31px;
     height: 32px;
     background-image: url(/images/ico/join_google_ico.png);
+}
+.join .join_list .apple a i {
+    width: 31px;
+    height: 32px;
+    background-image: url(/img/sub/ic-apple.png);
 }
 
 .join_step {
