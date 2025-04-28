@@ -5933,17 +5933,17 @@
 
 .tour_type_group .type_title {
     background: #fff;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 6px 10px;
-    color: #797b80;
+    color: #fff;
 }
 
 .tour_type_group .type_title_1 {
-    color: #17469E;
+    background-color: #17469E;
 }
 
 .tour_type_group .type_title_2 {
-    color: #1bbacb;
+    background-color: #1bbacb;
 }
 
 /* .tour_type_group .view_info_company {

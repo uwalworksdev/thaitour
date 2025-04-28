@@ -814,7 +814,7 @@ function updateSQ($textToFilter)
         $filterInputOutput = $textToFilter;
         return trim($filterInputOutput);
     }
-
+    return '';
 }
 
 function viewSQ($textToFilter)
