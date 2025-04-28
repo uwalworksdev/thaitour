@@ -817,7 +817,7 @@
                                     <td colspan="3">
                                         <input type="checkbox" name="tour_group[]"
                                                class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "E") !== false)) echo "checked"; ?> value="E">
-                                               빈일투어 &nbsp;&nbsp;&nbsp;
+                                               반일투어 &nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" name="tour_group[]"
                                                class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "T") !== false)) echo "checked"; ?> value="T">
                                                조인 투어 &nbsp;&nbsp;&nbsp;
