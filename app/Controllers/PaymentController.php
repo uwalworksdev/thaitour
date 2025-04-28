@@ -210,7 +210,7 @@ class PaymentController extends BaseController
 															         ,order_no          = '". $row['order_no'] ."'
 															         ,payment_no        = '". $row['payment_no'] ."'
                                                                      ,order_mileage     = '". $order_mileage ."'
-                                                                     ,order_gubun       = '예약포인트 지급'
+                                                                     ,order_gubun       = '포인트적립'
                                                                      ,m_idx             = '". $row['m_idx'] ."'
                                                                      ,mi_r_date         = now()
                                                                      ,remaining_mileage = '' ";
@@ -439,7 +439,7 @@ class PaymentController extends BaseController
 				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
 
                 // 적립포인트 삭제
-				$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ?", [$payment_no]);
+				$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ? AND order_gubun= '포인트적립'", [$payment_no]);
 				
 				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 
