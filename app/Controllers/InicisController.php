@@ -447,6 +447,7 @@ class InicisController extends BaseController
 															  mi_title          = '". $mi_title ."'
 															 ,order_idx         = '". $row['payment_idx'] ."'
 															 ,order_no          = '". $row['order_no'] ."'
+														     ,payment_no        = '". $row['payment_no'] ."'
 															 ,order_mileage     = '". $order_mileage ."'
 															 ,order_gubun       = '예약포인트 지급'
 															 ,m_idx             = '". $row['m_idx'] ."'
@@ -503,6 +504,12 @@ class InicisController extends BaseController
 
         $db         = \Config\Database::connect();
         $payment_no = $this->request->getPost('payment_no');
+		if (empty($payment_no)) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => '결제 정보를 찾을 수 없습니다.',
+			]);
+		}
 		
 		header('Content-Type:text/html; charset=utf-8');
 
@@ -590,6 +597,9 @@ class InicisController extends BaseController
 
 			// 여러 주문번호에 대해 업데이트 수행
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+
+			// 적립포인트 삭제
+			$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ?", [$payment_no]);
 
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {
