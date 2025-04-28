@@ -21,7 +21,7 @@
                 <!-- </div> -->
             </div>
             <?php 
-                if($data_['product_code_1'] == "1325" || $data_['product_code_1'] == "1320"){
+                if(!empty($data_["company_name"]) || !empty($data_["company_contact"]) || !empty($data_["company_url"]) || !empty(trim($data_["company_notes"]))){
             ?>
                 <ul class="tour_type_group">
                     <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
