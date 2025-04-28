@@ -742,7 +742,7 @@
                                 ?>
                             </div>
                             <div class="content_notes">
-                                <?= viewSQ($company_notes)?>
+                                <?= viewSQ($product["company_notes"])?>
                             </div>
                         </div> 
                     </div>
