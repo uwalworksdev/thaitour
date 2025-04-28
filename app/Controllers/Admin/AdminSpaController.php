@@ -467,10 +467,10 @@ class AdminSpaController extends BaseController
                     'm_date' => 'now()',
                     'ufile1' => updateSQ($data['ufile1']),
                     'rfile1' => updateSQ($data['rfile1']),
-                    'company_name' => updateSQ($company_name),
-                    'company_contact' => updateSQ($company_contact),
-                    'company_url' => updateSQ($company_url),
-                    'company_notes' => updateSQ($company_notes)
+                    'company_name' => $company_name,
+                    'company_contact' => $company_contact,
+                    'company_url' => $company_url,
+                    'company_notes' => $company_notes
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
@@ -625,10 +625,10 @@ class AdminSpaController extends BaseController
                     'jetlag' => $jetlag ?? 0,
                     'ufile1' => $data['ufile1'] ?? '',
                     'rfile1' => $data["rfile1"] ?? '',
-                    'company_name' => updateSQ($company_name),
-                    'company_contact' => updateSQ($company_contact),
-                    'company_url' => updateSQ($company_url),
-                    'company_notes' => updateSQ($company_notes)
+                    'company_name' => $company_name,
+                    'company_contact' => $company_contact,
+                    'company_url' => $company_url,
+                    'company_notes' => $company_notes
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
