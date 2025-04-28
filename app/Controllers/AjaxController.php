@@ -3986,22 +3986,23 @@ class AjaxController extends BaseController {
 
 		try {
 			$g_idx       = $this->request->getPost('g_idx');
+			$grade_name  = $this->request->getPost('grade_name');
 			$amount_rate = $this->request->getPost('amount_rate');
 
-            $db->query("UPDATE tbl_member_grade SET amount_rate = ?, upd_date = NOW() WHERE g_idx = ?", [$amount_rate, $g_idx]);
+            $db->query("UPDATE tbl_member_grade SET grade_name = ?, amount_rate = ?, upd_date = NOW() WHERE g_idx = ?", [$grade_name, $amount_rate, $g_idx]);
 			
 			if ($db->transStatus() === false) {
 				$db->transRollback();
 				return $this->response->setStatusCode(500)->setJSON([
 					'status'  => 'error',
-					'message' => '등급 할인율 수정중 오류가 발생했습니다.'
+					'message' => '등급 정보 수정중 오류가 발생했습니다.'
 				]);
 			}
 
 			$db->transCommit();
 			return $this->response->setStatusCode(200)->setJSON([
 				'status'  => 'success',
-				'message' => '등급 할인율 수정완료'
+				'message' => '등급 정보 수정완료'
 			]);
 
 		} catch (\Exception $e) {

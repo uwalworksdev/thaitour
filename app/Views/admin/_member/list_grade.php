@@ -46,7 +46,9 @@
 							<tbody>
 								<?php foreach ($fresult as $row) { ?>
 									<tr>
-										<td><?= esc($row['grade_name']) ?></td>
+										<td>
+											<input type="text" name="grade_name" id="grade_name_<?= esc($row['g_idx']) ?>" value="<?= esc($row['grade_name']) ?>" style="width:100px;text-align:right;">
+										</td>	
 										<td>
 											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;" readonly>
 										</td>
@@ -60,7 +62,7 @@
 										</td>
 									</tr>
 								<?php } ?>
-								<tr>
+								<!--tr>
 									<td>
 										<input type="text" name="grade_name" id="grade_name" value="" style="width:100px;text-align:left;">
 									</td>
@@ -75,7 +77,7 @@
 									<td>
 										<button type="button" id="grade_add">등급추가</button>
 									</td>
-								</tr>
+								</tr-->
 							</tbody>
 
                         </table>
@@ -92,7 +94,8 @@ $(function() {
 
     // 🔧 등급 수정 버튼 클릭 시
     $(document).on('click', '.grade_upd', function() {
-        const g_idx         = $(this).val();
+        const g_idx       = $(this).val();
+        const grade_name  = $('#grade_name_' + g_idx).val();
         const amount_rate = $('#amount_rate_' + g_idx).val();
 
 		$.ajax({
@@ -101,6 +104,7 @@ $(function() {
 			type: "POST",
 			data: {
 					"g_idx"       : g_idx,
+					"grade_name"  : grade_name,
 					"amount_rate" : amount_rate
 			},
 			dataType: "json",
