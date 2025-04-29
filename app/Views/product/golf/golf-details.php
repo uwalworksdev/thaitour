@@ -1428,8 +1428,8 @@ $(document).ready(function() {
 					$select_4.attr("data-price_baht",  $(".card-item").data('cart_fee_baht'));
 					
 					$select_5.attr("data-idx",         $(".card-item").data('idx'));
-					$select_5.attr("data-price",       $(".card-item").data('caddy_fee_won'));
-					$select_5.attr("data-price_baht",  $(".card-item").data('caddy_fee_baht'));
+					$select_5.attr("data-price",       $(".card-item").data('caddie_fee_won'));
+					$select_5.attr("data-price_baht",  $(".card-item").data('caddie_fee_baht'));
 
                     $("#o_cart_due").val( $(".card-item").data('o_cart_due') );
                     $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
