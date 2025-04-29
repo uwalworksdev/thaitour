@@ -74,7 +74,7 @@ $(document).ready(function() {
 				}
             }
 	 	*/	
-            calculatePrice();			
+        //    calculatePrice();			
     });
 });
 </script>
@@ -674,7 +674,7 @@ $(document).ready(function() {
                <div class="item-select" id="caddy_yes" style="display:none">
                     <span class="label">캐디피</span>
                     <input type="hidden" name="vehicle_idx[]" value="5">
-                    <select id="vehicle_5"  data-name="캐디피" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select id="vehicle_5"  data-name="캐디피ccc" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1명</option>
 								<option value="2">2명</option>
