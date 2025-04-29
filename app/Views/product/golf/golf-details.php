@@ -6,7 +6,35 @@ $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
 			console.log('홀- '+dataTabValue);
 			console.log('caddie fee- '+$("#caddie_fee_sel").val());
-	
+
+			if($("#o_caddy_due").val() == "Y") {
+			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#vehicle_5").val('0');
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            } 	
+			
+			if($("#o_cart_due").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+    			   $("#vehicle_4").val('0');
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+				   $("#cart_yes").show();	
+				   $("#cart_no").hide();	
+				}
+            }	
 });
 </script>
 
@@ -624,17 +652,17 @@ $(document).ready(function() {
 
 			   <?php
 				      if($golf_price['o_cart_cont'] == "Y") {
-						 $cart_no  = "";  
+						 $cart_no  = "none";  
 						 $cart_yes = "none";  
 			          } else {
 						 $cart_no  = "none";  
 						 $cart_yes = "";  
 			          }	 
 			   ?>
-			   <div class="item-select" id="cart_no" style="display:<?=$cart_no?>">
+			   <div class="item-select" id="cart_no" style="display:none">
 			      <p>카트비는 그린피에 포함입니다.</p>	   
 			   </div>
-			   <div class="item-select" id="cart_yes" style="display:<?=$cart_yes?>">
+			   <div class="item-select" id="cart_yes" style="display:none">
                     <span class="label">카트</span>
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
