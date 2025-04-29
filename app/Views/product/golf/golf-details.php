@@ -1754,7 +1754,7 @@ $(document).ready(function() {
 
         function sel_date(day, date = null) {
             if (date) {
-				alert(${daysOfWeek[newDay]});
+				alert(date);
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
