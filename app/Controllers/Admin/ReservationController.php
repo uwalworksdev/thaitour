@@ -733,7 +733,7 @@ class ReservationController extends BaseController
         }
     }
 
-    public function delete()
+    public function deletex()
     {
 
         try {
