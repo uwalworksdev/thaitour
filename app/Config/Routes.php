@@ -648,6 +648,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_grade_update", "AjaxController::ajax_grade_update");
 	$routes->post("ajax_estimate_mailsend", "AjaxController::ajax_estimate_mailsend");
 	$routes->post("ajax_nicepay_cancelResult", "AjaxController::ajax_nicepay_cancelResult");
+	$routes->post("ajax_order_del", "AjaxController::ajax_order_del");
 	
 });
 
