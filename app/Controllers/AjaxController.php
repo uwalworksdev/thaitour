@@ -4152,20 +4152,6 @@ private function ajax_order_del()
     try {
         $orderIdx = $this->request->getPost('order_idx');
 
-        if (empty($orderIdx)) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setJSON([
-                    'result'  => false,
-                    'message' => 'order_idx not provided'
-                ]);
-        }
-
-        // 단일 값이 넘어왔을 경우 배열로 변환
-        if (!is_array($orderIdx)) {
-            $orderIdx = [$orderIdx];
-        }
-
         $builder = $db->table('tbl_order_mst');
         $builder->whereIn('order_idx', $orderIdx);
         $deleted = $builder->delete();
