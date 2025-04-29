@@ -39,9 +39,6 @@
         margin-left: auto;
     }
 
-    .comment_box .item .info .eval img {
-        width: 2.5rem;
-    }
 
     .comment_box .item .info .time {
         font-size: 18px;
@@ -68,6 +65,13 @@
         line-height: 1.4;
         overflow-wrap: break-word;
     }
+
+    .comment_box .item .info .eval {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+    }
+
 
     @media screen and (max-width: 850px) {
         .section6 .qa_ques {
@@ -125,11 +129,6 @@
             padding-bottom: 12rem;
         }
 
-        .comment_box .item .info .eval {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-        }
 
         .comment_box .item .info .eval span {
             margin-left: 0.7rem;
@@ -142,6 +141,10 @@
             flex-direction: row;
             margin-bottom: 2rem;
             margin-top: 1rem;
+        }
+
+        .comment_box .item .info .eval img {
+            width: 2.5rem;
         }
     }
 </style>

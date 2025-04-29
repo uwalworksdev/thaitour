@@ -3391,6 +3391,7 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
+                'search_keyword' => $search_keyword,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
