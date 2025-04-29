@@ -1574,8 +1574,9 @@ $(document).ready(function() {
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
  			
-			var goods_date = $("#order_date").val();
-			var goods_name = $(this).data('tab') + '홀';
+			var product_idx = $("#product_idx").val();
+			var goods_date  = $("#order_date").val();
+			var goods_name  = $(this).data('tab') + '홀';
 
 			$.ajax({
 				url: "/ajax/get_golf_option",
@@ -1753,6 +1754,7 @@ $(document).ready(function() {
 
         function sel_date(day, date = null) {
             if (date) {
+				alert(${daysOfWeek[newDay]});
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
