@@ -70,6 +70,11 @@
         margin-left: auto;
         display: flex;
         align-items: center;
+        gap: 5px;
+    }
+
+    .comment_box .item .info .eval span {
+        margin-left: 3px;
     }
 
 
@@ -129,6 +134,12 @@
             padding-bottom: 12rem;
         }
 
+        .comment_box .item .info .eval {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 0px;
+        }
 
         .comment_box .item .info .eval span {
             margin-left: 0.7rem;

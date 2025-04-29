@@ -1970,14 +1970,16 @@ class Product extends BaseController
 		$builder->select('a.*, b.*');
 		$builder->join('tbl_golf_option b', 'a.o_idx = b.idx', 'left');
 		$builder->where('a.product_idx', $product_idx);
-		$builder->where('a.goods_date >=', date('Y-m-d'));
+		$builder->where('a.goods_date >=', date('Y-m-d', strtotime('+1 day')) );
 		$builder->where('a.use_yn !=', 'N');
+		$builder->where('b.group_idx > 0');
 		$builder->orderBy('a.goods_date', 'ASC');
 		$builder->orderBy('a.goods_name', 'ASC');
 		$builder->limit(1);
 
 		$query = $builder->get();
 		$golf_price_result = $query->getResultArray();
+		write_log("golfDetail- ". $this->db->getLastQuery()); // 실행 후 확인);
 		foreach ($golf_price_result as $golf_price):
 
 				// 결과 확인 및 데이터 처리
@@ -3391,7 +3393,6 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
-                'search_keyword' => $search_keyword,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
