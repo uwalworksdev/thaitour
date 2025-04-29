@@ -71,7 +71,7 @@
         </script>
 
         <div class="list_product">
-            <div class="item_box">
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-1.png" alt="">
                     <div class="text">
@@ -95,8 +95,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-2.png" alt="">
                     <div class="text">
@@ -120,8 +120,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-3.png" alt="">
                     <div class="text">
@@ -145,8 +145,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-4.png" alt="">
                     <div class="text">
@@ -170,8 +170,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-5.png" alt="">
                     <div class="text">
@@ -195,8 +195,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-6.png" alt="">
                     <div class="text">
@@ -220,8 +220,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-7.png" alt="">
                     <div class="text">
@@ -245,8 +245,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-8.png" alt="">
                     <div class="text">
@@ -270,8 +270,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-1.png" alt="">
                     <div class="text">
@@ -295,8 +295,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-2.png" alt="">
                     <div class="text">
@@ -320,8 +320,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-3.png" alt="">
                     <div class="text">
@@ -345,8 +345,8 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
-            <div class="item_box">
+            </a>
+            <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-4.png" alt="">
                     <div class="text">
@@ -370,7 +370,7 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </div>
+            </a>
             
         </div>
         <div class="custom pagination">
