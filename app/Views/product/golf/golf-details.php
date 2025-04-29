@@ -13,6 +13,7 @@ $(document).ready(function() {
 			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
+				   $('#vehicle_5').attr('data-price', 0).attr('data-price_baht', 0);
 				   $("#vehicle_5").val('0');
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
@@ -27,6 +28,7 @@ $(document).ready(function() {
 			   $("#cart_no").hide();	
 			} else {	
 				if($("#o_cart_cont").val() == "Y") {
+                   $('#vehicle_4').attr('data-price', 0).attr('data-price_baht', 0);
     			   $("#vehicle_4").val('0');
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
@@ -34,7 +36,9 @@ $(document).ready(function() {
 				   $("#cart_yes").show();	
 				   $("#cart_no").hide();	
 				}
-            }	
+            }
+	 	 	
+	
 });
 </script>
 
@@ -42,7 +46,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 페이지 어디든 클릭 시 실행
     $(document).on('click', function(event) {
-	/*	
+	 	/*
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
@@ -71,8 +75,8 @@ $(document).ready(function() {
 				   $("#cart_no").hide();	
 				}
             }
-	*/		
-            calculatePrice();			
+	 	*/	
+        //    calculatePrice();			
     });
 });
 </script>
@@ -650,15 +654,6 @@ $(document).ready(function() {
 				</select>
                 </div>
 
-			   <?php
-				      if($golf_price['o_cart_cont'] == "Y") {
-						 $cart_no  = "none";  
-						 $cart_yes = "none";  
-			          } else {
-						 $cart_no  = "none";  
-						 $cart_yes = "";  
-			          }	 
-			   ?>
 			   <div class="item-select" id="cart_no" style="display:none">
 			      <p>카트비는 그린피에 포함입니다.</p>	   
 			   </div>
@@ -1479,7 +1474,7 @@ $(document).ready(function() {
                 $("#people_adult_cnt").focus();
                 return false;
             }
-alert('xxxxxxxxxxx '+$("#o_cart_due").val());
+
 			if($("#o_cart_due").val() == "Y" && ($("#vehicle_4").val() == null || $("#vehicle_4").val() == "" || $("#vehicle_4").val() == "0")) {
                 alert('본홀은 카트의무예약 홀입니다 카트를 선택해주세요.');
                 $("#vehicle_4").focus();
@@ -1630,14 +1625,24 @@ alert('xxxxxxxxxxx '+$("#o_cart_due").val());
 					// 요소 선택
 					var $selectElement = $('#vehicle_4');
 					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.cart_price);
-					$selectElement.attr('data-price_baht', res.cart_price_ba);					
+					if($("#o_cart_cont").val() == "Y") {
+					   $selectElement.attr('data-price', 0);
+					   $selectElement.attr('data-price_baht', 0);	
+					} else {   
+					   $selectElement.attr('data-price', res.cart_price);
+					   $selectElement.attr('data-price_baht', res.cart_price_ba);					
+					}
 					
 					// 요소 선택
 					var $selectElement = $('#vehicle_5');
 					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.caddie_fee);
-					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
+                    if($("#o_caddy_cont").val() == "Y") {
+	                   $selectElement.attr('data-price', 0);
+					   $selectElement.attr('data-price_baht', 0);
+					} else {   
+	                   $selectElement.attr('data-price', res.caddie_fee);
+					   $selectElement.attr('data-price_baht', res.caddie_fee_ba);					
+					}   
 				}
 			})
 			/* 	

@@ -96,9 +96,10 @@ class AjaxController extends BaseController {
 		$rows = $db->table('tbl_golf_option')
 			->where('product_idx', $product_idx)
 			->where('goods_name',  $goods_name)
+			->where('group_idx >' ,  0)
 			->get()
 			->getResultArray();
-
+echo $builder->getCompiledSelect(); // 실행 전 쿼리 확인
 		foreach ($rows as $row) {
 				 
                  $option_idx        = $row['idx'];	
