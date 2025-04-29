@@ -42,8 +42,8 @@
         data-option_price_baht   = "<?=$option['option_price_baht']?>"
         data-caddy_fee_won       = "<?=$caddy_fee_won?>"
         data-caddy_fee_bath      = "<?=$caddy_fee_bath?>"
-        data-cart_price_won       = "<?=$cart__won?>"
-        data-caddy_fee_bath      = "<?=$caddy_fee_bath?>"
+        data-cart_price_won      = "<?=$cart_price_won?>"
+        data-cart_price_bath     = "<?=$cart_price_bath?>"
         data-cart_pie_fee        = "<?=$option['cart_pie_fee']?>" onclick="selectOption(this)">
         <div class="header">
             <div class="header-con">
