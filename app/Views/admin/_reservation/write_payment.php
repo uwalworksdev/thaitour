@@ -105,7 +105,7 @@
                                     <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
-									<td><span style="text-align:right"><?=number_format($order['order_price'])?></span></td>
+									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
 									<td align="right"><?=number_format($order['order_price_bath'])?></td>
 									<td align="right"><?=number_format($order['real_price_won'])?></td>
 									<td align="right"><?=number_format($order['real_price_bath'])?></td>
