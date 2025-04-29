@@ -291,8 +291,8 @@ $(document).ready(function() {
                         <div class="item-tag">
                             <span class="label">홀수</span>
                             <div class="tag-list">
-                                <?php foreach ($hole_cnt_arr as $row) : ?>
-                                    <span class="tag tag-js" data-tab="<?= $row['hole'] ?>"><?= $row['hole'] ?>홀</span>
+                                <?php foreach ($hole_cnt_arr as $hole) : ?>
+                                    <span class="tag tag-js" data-tab="<?= $hole ?>"><?= $hole ?>홀</span>
                                 <?php endforeach; ?>
                             </div>
                         </div>
