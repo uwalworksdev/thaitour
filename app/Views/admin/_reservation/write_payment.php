@@ -106,9 +106,9 @@
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
-									<td align="right"><?=number_format($order['order_price_bath'])?></td>
-									<td align="right"><?=number_format($order['real_price_won'])?></td>
-									<td align="right"><?=number_format($order['real_price_bath'])?></td>
+									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
+									<td style="text-align:right;"><?=number_format($order['real_price_won'])?></td>
+									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td>
 									<td>-</td-->
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
