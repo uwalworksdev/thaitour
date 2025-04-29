@@ -2537,7 +2537,7 @@ class Product extends BaseController
             $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'], 'encode');
 			$data['order_passport_number']      = $this->request->getPost('order_passport_number') ?? "";
-            $data['order_passport_number']      = encryptField($order_passport_number, "encode");
+            $data['order_passport_number']      = encryptField($data['order_passport_number'], "encode");
 			$data['order_passport_expiry_date'] = $this->request->getPost('order_passport_expiry_date') ?? "";
             $data['vehicle_time']               = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
             $data['device_type']                = get_device();
