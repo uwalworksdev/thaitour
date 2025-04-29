@@ -52,9 +52,9 @@ $price_arr['DBank'] = 0;
                     <li class="contentMenuSub">
                         <a href="statistics_sale_yoil">매출통계</a>
                     </li>
-                    <li class="contentMenuSub ">
+                    <!-- <li class="contentMenuSub ">
                         <a href="statistics_sale_sales">업체별 매출통계</a>
-                    </li>
+                    </li> -->
 
                     <li class="contentMenuSub selected">
                         <a href="statistics_sale_type">결제수단매출통계</a>

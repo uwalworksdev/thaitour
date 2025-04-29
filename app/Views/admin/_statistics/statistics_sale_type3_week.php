@@ -44,6 +44,27 @@
     $s_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
     $e_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
 
+
+
+    if ($weeks == "") {
+        $week_arr = getWeeksOfMonth($years, $months);
+
+        foreach ($week_arr as $index => $week) {
+            if (date('Y-m-d') >= $week['start'] && date('Y-m-d') <= $week['end']) {
+                $weeks = ($index + 1);
+            }
+        }
+    }
+
+    $week_tmp = getWeeksOfMonth($years, $months);
+    foreach ($week_tmp as $index => $week_tmp) {
+
+        if (($index + 1) == $weeks) {
+            $s_date = $week_tmp['start'];
+            $e_date = $week_tmp['end'];
+        }
+    }
+
     $price_arr = array();
 
 
@@ -93,7 +114,7 @@
             <div class="content">
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
-                    <form name="modifyForm1" method="get" action="statistics_sale_type3_day" autocomplete="off">
+                    <form name="modifyForm1" method="get" action="statistics_sale_type3_week" autocomplete="off">
                         <div class="firstLine selectYear" style="padding-left:0">
                             <select name="years" onchange="fn_search()">
                                 <?php for ($ys = 2024; $ys <= date('Y'); $ys++) { ?>
@@ -107,11 +128,16 @@
                                 <?php } ?>
                             </select>
 
-                            <select name="days" onchange="fn_search()">
-                                <?php for ($ds = 1; $ds <= date('t', mktime(0, 0, 0, $months, 1, $years)); $ds++) { ?>
-                                    <option value="<?= $ds ?>" <?php if ($ds == $days) echo "selected"; ?>><?= $ds ?>일</option>
+                            <select name="weeks" onchange="fn_search()">
+                                <option value="">전체</option>
+                                <?php
+                                $week_arr = getWeeksOfMonth($years, $months);
+                                foreach ($week_arr as $index => $week) {
+                                ?>
+                                    <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>><?= $index + 1 ?>주 (<?= $week['start'] ?>~<?= $week['end'] ?>)</option>
                                 <?php } ?>
                             </select>
+
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
@@ -126,8 +152,8 @@
                         <ul>
                             <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_year">년간통계</a></li>
                             <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_month">월간통계</a></li>
-                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
-                            <li class="contentMenuSub selected" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
+                            <li class="contentMenuSub selected" data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
+                            <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
                             <li class="contentMenuSub " data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type3">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
@@ -149,6 +175,7 @@
                         </div>
 
                         <script type="text/javascript">
+                          
                             google.charts.load('current', {
                                 'packages': ['corechart']
                             });
@@ -247,8 +274,6 @@
                                 });
                             }
                         </script>
-
-
                     </div>
 
                     <div class="empty10">&nbsp;</div>
@@ -269,7 +294,9 @@
                             </tr>
                         </thead>
                         <tbody id="list_all">
+
                             <?php
+
                                 $ordered_methods = [
                                     '강원',
                                     '경기',
@@ -299,6 +326,7 @@
                                 $tr_index = 0;
                                 foreach ($sorted_price_arr as $key => $addrs) {
                                     $tr_index++;
+                                    
                             ?>
 
                                 <tr>

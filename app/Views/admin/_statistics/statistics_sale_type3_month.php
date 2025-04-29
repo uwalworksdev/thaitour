@@ -22,7 +22,6 @@
 
     $years    = $_GET['years'];
     $months = $_GET['months'];
-    $days    = $_GET['days'];
     $payin    = $_GET['payin'];
 
     if ($years == "") {
@@ -33,16 +32,8 @@
         $months = date('m');
     }
 
-    if ($days == "") {
-        $days = date('d');
-    }
-
-    if ($days > date('t', mktime(0, 0, 0, $months, 1, $years))) {
-        $days = 1;
-    }
-
-    $s_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
-    $e_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
+    $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+    $e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
 
     $price_arr = array();
 
@@ -50,7 +41,6 @@
     foreach ($addr_group as $key => $vals) {
         $price_arr[$vals] = 0;
     }
-
 ?>
 
 <div id="container">
@@ -93,7 +83,7 @@
             <div class="content">
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
-                    <form name="modifyForm1" method="get" action="statistics_sale_type3_day" autocomplete="off">
+                    <form name="modifyForm1" method="get" action="statistics_sale_type3_month" autocomplete="off">
                         <div class="firstLine selectYear" style="padding-left:0">
                             <select name="years" onchange="fn_search()">
                                 <?php for ($ys = 2024; $ys <= date('Y'); $ys++) { ?>
@@ -104,12 +94,6 @@
                             <select name="months" onchange="fn_search()">
                                 <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
                                     <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
-                                <?php } ?>
-                            </select>
-
-                            <select name="days" onchange="fn_search()">
-                                <?php for ($ds = 1; $ds <= date('t', mktime(0, 0, 0, $months, 1, $years)); $ds++) { ?>
-                                    <option value="<?= $ds ?>" <?php if ($ds == $days) echo "selected"; ?>><?= $ds ?>일</option>
                                 <?php } ?>
                             </select>
 
@@ -125,9 +109,9 @@
                     <div class="contentMenu">
                         <ul>
                             <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_year">년간통계</a></li>
-                            <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_month">월간통계</a></li>
+                            <li class="contentMenuSub selected" data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_month">월간통계</a></li>
                             <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
-                            <li class="contentMenuSub selected" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
+                            <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
                             <li class="contentMenuSub " data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type3">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
@@ -149,6 +133,7 @@
                         </div>
 
                         <script type="text/javascript">
+                          
                             google.charts.load('current', {
                                 'packages': ['corechart']
                             });
@@ -247,8 +232,6 @@
                                 });
                             }
                         </script>
-
-
                     </div>
 
                     <div class="empty10">&nbsp;</div>
@@ -269,7 +252,9 @@
                             </tr>
                         </thead>
                         <tbody id="list_all">
+
                             <?php
+
                                 $ordered_methods = [
                                     '강원',
                                     '경기',
@@ -299,6 +284,7 @@
                                 $tr_index = 0;
                                 foreach ($sorted_price_arr as $key => $addrs) {
                                     $tr_index++;
+                                    
                             ?>
 
                                 <tr>
