@@ -2203,7 +2203,7 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate( $option_idx, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $cart_cnt, $use_coupon_idx, $order_date )
+    private function golfPriceCalculate( $option_idx, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
@@ -2334,39 +2334,33 @@ class Product extends BaseController
 							$total_vehicle            += $value;
 						}		
 				
-						if($vehicle_idx[$key] == "4") {
-							if($info['o_cart_cont'] != "Y") {
-								if($cart_cnt > 0) { 
-									$info['code_name']        = "카트";
-									$info['price_baht']       = $info['cart_price'];
-									$info['price_baht_total'] = $info['cart_price'] * $value;
-									$info['price']            = (int) round($info['cart_price'] * $baht_thai);
-									$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
-									$vehicle_arr[]            = $info;
+						if($vehicle_idx[$key] == "4") { 
+							$info['code_name']        = "카트";
+							$info['price_baht']       = $info['cart_price'];
+							$info['price_baht_total'] = $info['cart_price'] * $value;
+							$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-									$total_vehicle_price      += $info['price'] * $value;
-									$total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-									$total_vehicle            += $value;
-							    }		
-							}	
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "5") { 
-							if($info['o_caddie_cont'] != "Y") { 
-								$info['code_name']        = "캐디피";
-								$info['price_baht']       = $info['caddie_fee'];
-								$info['price_baht_total'] = $info['caddie_fee'] * $value;
-								write_log("golf option 5- ". $info['price_baht_total']);
-								$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
-								$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
-								$vehicle_arr[]            = $info;
+							$info['code_name']        = "캐디피";
+							$info['price_baht']       = $info['caddie_fee'];
+							$info['price_baht_total'] = $info['caddie_fee'] * $value;
+							write_log("golf option 5- ". $info['price_baht_total']);
+							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
+							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-								$total_vehicle_price      += $info['price'] * $value;
-								$total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-								$total_vehicle            += $value; 
-							}	
+							$total_vehicle            += $value;
 						}		
 				
 				}
@@ -2470,7 +2464,7 @@ class Product extends BaseController
             $data['vehicle_cnt'],
             $data['vehicle_idx'],
             $data['option_cnt'],
-            $data['cart_cnt'],
+            $data['opt_idx'],
             $data['use_coupon_idx'],
             $data['order_date'],
         );
@@ -2533,7 +2527,7 @@ class Product extends BaseController
                 $data['vehicle_cnt'],
                 $data['vehicle_idx'],
                 $data['opt_cnt'],
-                $data['cart_cnt'],
+                $data['opt_idx'],
                 $data['use_coupon_idx'],
 				$data['golf_date'],
 				
