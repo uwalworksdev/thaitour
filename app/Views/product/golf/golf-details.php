@@ -6,45 +6,6 @@ $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
 			console.log('홀- '+dataTabValue);
 			console.log('caddie fee- '+$("#caddie_fee_sel").val());
-			
-			if($("#caddie_fee_sel").val() == "Y") {
-			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
-			   //$("#vehicle_5").prop('disabled', true);
-			}   
-			
-			if($("#o_caddy_due").val() == "Y") {
-				alert('11111111111');
-			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
-			} else {
-				if($("#o_caddy_cont").val() == "Y") {
-				alert('222222222222');
-					
-				   $("#vehicle_5").val('0');
-				   $("#caddy_no").show();	
-				   $("#caddy_yes").hide();	
-				} else {   
-				   $("#caddy_yes").show();	
-				   $("#caddy_no").hide();	
-				}
-            } 	
-			
-			if($("#o_cart_due").val() == "Y") {
-			   $("#cart_yes").show();	
-			   $("#cart_no").hide();	
-			} else {	
-				if($("#o_cart_cont").val() == "Y") {
-									alert('3333333333');
-
-    			   $("#vehicle_4").val('0');
-				   $("#cart_no").show();	
-				   $("#cart_yes").hide();	
-				} else {   
-				   $("#cart_yes").show();	
-				   $("#cart_no").hide();	
-				}
-            }			
 	
 });
 </script>
@@ -53,6 +14,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 페이지 어디든 클릭 시 실행
     $(document).on('click', function(event) {
+		
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
@@ -1324,6 +1286,40 @@ $(document).ready(function() {
 
             $("#last_price").text(number_format(last_price));
             $("#last_price_baht").text(number_format(last_price_baht));
+			
+			if($("#caddie_fee_sel").val() == "Y") {
+			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
+			   //$("#vehicle_5").prop('disabled', true);
+			}   
+			
+			if($("#o_caddy_due").val() == "Y") {
+			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#vehicle_5").val('0');
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            } 	
+			
+			if($("#o_cart_due").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+    			   $("#vehicle_4").val('0');
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+				   $("#cart_yes").show();	
+				   $("#cart_no").hide();	
+				}
+            }				
         }
 
         function selectOption(obj) {
