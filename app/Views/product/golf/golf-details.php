@@ -47,8 +47,8 @@ $(document).ready(function() {
     // 페이지 어디든 클릭 시 실행
     $(document).on('click', function(event) {
 	 	 
+		    alert("o_caddy_due- "+$("#o_caddy_due").val());	
 			if($("#o_caddy_due").val() == "Y") {
-			   alert("o_caddy_due- "+$("#o_caddy_due").val());	
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
