@@ -840,7 +840,7 @@
     <script>
         function del_it() {
 
-			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다....")) {
+			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
 				return;
 		    }
 			var message = "";
