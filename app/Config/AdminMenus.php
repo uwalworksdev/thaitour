@@ -451,6 +451,33 @@ class AdminMenus extends BaseConfig
             'code' => 'I',
             'submenus' => [
                 [
+                    'name' => '매출분석',
+                    'code' => 'I6',
+                    'url' => ['/AdmMaster/_statistics/statistics_sale_yoil'],
+                    'alias' => [
+                                    'AdminStatisticsController::statistics_sale_yoil'
+                                    , 'AdminStatisticsController::statistics_sale_day'
+                                    , 'AdminStatisticsController::statistics_sale_month'
+                                    , 'AdminStatisticsController::statistics_sale_year'
+                                    , 'AdminStatisticsController::statistics_sale_sales'
+                                    , 'AdminStatisticsController::statistics_sale_type'
+                                    , 'AdminStatisticsController::statistics_sale_type2'
+                                    , 'AdminStatisticsController::statistics_sale_type3'
+                                    , 'AdminStatisticsController::statistics_sale_list'
+                                ]
+                ],
+                [
+                    'name' => '회원및 방문분석',
+                    'code' => 'I7',
+                    'url' => ['/AdmMaster/_statistics/member_statistics'],
+                    'alias' => [
+                                    'AdminStatisticsController::member_statistics',
+                                    'AdminStatisticsController::member_statistics3',
+                                    'AdminStatisticsController::member_statistics4',
+                                    'AdminStatisticsController::member_statistics5'
+                               ]
+                ],
+                [
                     'name' => '예약분석',
                     'code' => 'I1',
                     'url' => ['/AdmMaster/_statistics/statistics01_01'],

@@ -495,6 +495,22 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_statistics", static function ($routes) {
+        $routes->get("statistics_sale_yoil", "Admin\AdminStatisticsController::statistics_sale_yoil");
+        $routes->get("statistics_sale_day", "Admin\AdminStatisticsController::statistics_sale_day");
+        $routes->get("statistics_sale_month", "Admin\AdminStatisticsController::statistics_sale_month");
+        $routes->get("statistics_sale_year", "Admin\AdminStatisticsController::statistics_sale_year");
+
+        $routes->get("statistics_sale_sales", "Admin\AdminStatisticsController::statistics_sale_sales");
+        $routes->get("statistics_sale_type", "Admin\AdminStatisticsController::statistics_sale_type");
+        $routes->get("statistics_sale_type2", "Admin\AdminStatisticsController::statistics_sale_type2");
+        $routes->get("statistics_sale_type3", "Admin\AdminStatisticsController::statistics_sale_type3");
+        $routes->get("statistics_sale_list", "Admin\AdminStatisticsController::statistics_sale_list");
+
+        $routes->get("member_statistics", "Admin\AdminStatisticsController::member_statistics");
+        $routes->get("member_statistics3", "Admin\AdminStatisticsController::member_statistics3");
+        $routes->get("member_statistics4", "Admin\AdminStatisticsController::member_statistics4");
+        $routes->get("member_statistics5", "Admin\AdminStatisticsController::member_statistics5");
+
         $routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");
         $routes->get("statistics01_02", "Admin\AdminStatisticsController::statistics01_02");
         $routes->get("statistics01_03", "Admin\AdminStatisticsController::statistics01_03");
