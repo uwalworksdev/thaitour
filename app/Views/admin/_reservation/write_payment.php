@@ -78,8 +78,10 @@
                                 <colgroup>
                                     <col width="10%"/>
                                     <col width="30%"/>
-                                    <col width="30%"/>
+                                    <col width="*"/>
 									<!--col width="10%"/-->
+                                    <col width="10%"/>
+                                    <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
@@ -92,7 +94,9 @@
 									<!--th>할인전 금액(원)</th>
 									<th>할인금액(원)</th-->
 									<th>결제금액(원)</th>
+									<th>결제금액(바트)</th>
 									<th>실결제금액(원)</th>
+									<th>실결제금액(바트)</th>
                                     <th>예약정보</th>
                                 </tr>
 								
@@ -102,7 +106,9 @@
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td align="right"><?=number_format($order['order_price'])?></td>
+									<td align="right"><?=number_format($order['order_price_bath'])?></td>
 									<td align="right"><?=number_format($order['real_price_won'])?></td>
+									<td align="right"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td>
 									<td>-</td-->
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
