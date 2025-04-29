@@ -490,36 +490,36 @@ class AdminMenus extends BaseConfig
                                     'AdminStatisticsController::member_statistics5'
                                ]
                 ],
-                [
-                    'name' => '예약분석',
-                    'code' => 'I1',
-                    'url' => ['/AdmMaster/_statistics/statistics01_01'],
-                    'alias' => ['AdminStatisticsController::statistics01_01']
-                ],
-                [
-                    'name' => '매출분석',
-                    'code' => 'I2',
-                    'url' => ['/AdmMaster/_statistics/statistics02_01'],
-                    'alias' => ['AdminStatisticsController::statistics02_01']
-                ],
-                [
-                    'name' => '방문분석',
-                    'code' => 'I3',
-                    'url' => ['/AdmMaster/_statistics/statistics03_01'],
-                    'alias' => ['AdminStatisticsController::statistics03_01']
-                ],
-                [
-                    'name' => '상품분석',
-                    'code' => 'I4',
-                    'url' => ['/AdmMaster/_statistics/statistics04_01'],
-                    'alias' => ['AdminStatisticsController::statistics04_01']
-                ],
-                [
-                    'name' => '회원분석',
-                    'code' => 'I5',
-                    'url' => ['/AdmMaster/_statistics/statistics05_01'],
-                    'alias' => ['AdminStatisticsController::statistics05_01']
-                ],
+                // [
+                //     'name' => '예약분석',
+                //     'code' => 'I1',
+                //     'url' => ['/AdmMaster/_statistics/statistics01_01'],
+                //     'alias' => ['AdminStatisticsController::statistics01_01']
+                // ],
+                // [
+                //     'name' => '매출분석',
+                //     'code' => 'I2',
+                //     'url' => ['/AdmMaster/_statistics/statistics02_01'],
+                //     'alias' => ['AdminStatisticsController::statistics02_01']
+                // ],
+                // [
+                //     'name' => '방문분석',
+                //     'code' => 'I3',
+                //     'url' => ['/AdmMaster/_statistics/statistics03_01'],
+                //     'alias' => ['AdminStatisticsController::statistics03_01']
+                // ],
+                // [
+                //     'name' => '상품분석',
+                //     'code' => 'I4',
+                //     'url' => ['/AdmMaster/_statistics/statistics04_01'],
+                //     'alias' => ['AdminStatisticsController::statistics04_01']
+                // ],
+                // [
+                //     'name' => '회원분석',
+                //     'code' => 'I5',
+                //     'url' => ['/AdmMaster/_statistics/statistics05_01'],
+                //     'alias' => ['AdminStatisticsController::statistics05_01']
+                // ],
             ]
         ]
     ];
