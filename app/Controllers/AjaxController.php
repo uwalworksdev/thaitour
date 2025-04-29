@@ -4145,4 +4145,52 @@ class AjaxController extends BaseController {
 		return $response;
 	}
 
+	private function ajax_order_del()
+	{
+		$db = \Config\Database::connect();
+
+		try {
+			$orderIdx = $this->request->getPost('order_idx');
+
+			if (empty($orderIdx)) {
+				return $this->response
+					->setStatusCode(400)
+					->setJSON([
+						'result'  => false,
+						'message' => 'order_idx not provided'
+					]);
+			}
+
+			// order_idx가 배열인지 체크
+			if (!is_array($orderIdx)) {
+				$orderIdx = [$orderIdx];
+			}
+
+			// Prepared Query로 삭제
+			$builder = $db->table('tbl_order_mst');
+			$builder->whereIn('order_idx', $orderIdx);
+			$deleted = $builder->delete();
+
+			if ($deleted) {
+				$msg = "예약 삭제 완료";
+			} else {
+				$msg = "예약 삭제 실패";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'result' => $deleted ? true : false,
+					'message' => $msg
+				]);
+		} catch (\Exception $e) {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'result' => false,
+					'message' => $e->getMessage()
+				]);
+		}
+	}
+
 }	

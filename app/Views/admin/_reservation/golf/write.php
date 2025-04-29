@@ -765,33 +765,30 @@
     </script>
 
     <script>
-function del_it() {
-    if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
-        return;
-    }
-    $("#ajax_loader").removeClass("display-none");
+	function del_it() {
+		if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+			return;
+		}
 
-    $.ajax({
-        url: "/_reservation/delete", // 정확한 경로로 변경
-        type: "POST",
-        data: { 'order_idx[]': "<?=$order_idx?>" }, // 문자열 말고 객체로 전달
-        dataType: "json", // 서버 응답을 JSON으로 기대
-        error: function (request, status, error) {
-            alert("code : " + request.status + "\r\nmessage : " + request.responseText); // 오타 수정
-            $("#ajax_loader").addClass("display-none");
-        },
-        success: function (response) {
-            if (response.result === true) {
-                alert("정상적으로 삭제되었습니다.");
-                location.href = "/_reservation/list"; // 정확한 경로로 이동
-            } else {
-                alert(response.message || "삭제에 실패했습니다.");
-            }
-        }
-    });
-}
-
-
+			$.ajax({
+				url: "/ajax/ajax_order_del",
+				type: "POST",
+				data: {
+					'order_idx': "<?=$order_idx?>"
+				},
+				dataType: "json",
+				success: function(res) {
+					var message = res.message;
+					alert(message);
+					location.reload();
+				},
+				error: function(xhr, status, error) {
+					console.error(xhr.responseText); // 서버 응답 내용 확인
+					alert('Error: ' + error);
+				}
+			});
+		}
+		
         function fn_comment() {
 
             <?php if ($_SESSION["member"]["id"] != "") { ?>
