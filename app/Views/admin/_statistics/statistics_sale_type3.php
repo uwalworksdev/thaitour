@@ -12,14 +12,18 @@
     }
 </style>
 
+
 <?php
     $pay_method['Card']        = "카드결제";
     $pay_method['VBank']    = "무통장(가상계좌)";
     $pay_method['DBank']    = "실시간계좌이체	";
 
+    $addr_group = ['강원', '경기', '경남', '경북', '광주', '대구', '대전', '부산', '서울', '세종', '울산', '인천', '전남', '전북', '제주', '충남', '충북'];
+
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
     $payin    = $_GET['payin'];
+
 
     if ($s_date == "") {
         $s_date = date('Y-m-d');
@@ -29,11 +33,14 @@
         $e_date = date('Y-m-d');
     }
 
+
     $price_arr = array();
 
-    $price_arr['Card'] = 0;
-    $price_arr['VBank'] = 0;
-    $price_arr['DBank'] = 0;
+
+    foreach ($addr_group as $key => $vals) {
+        $price_arr[$vals] = 0;
+    }
+
 ?>
 
 <div id="container">
@@ -53,7 +60,7 @@
                         <a href="statistics_sale_sales">업체별 매출통계</a>
                     </li>
 
-                    <li class="contentMenuSub selected">
+                    <li class="contentMenuSub ">
                         <a href="statistics_sale_type">결제수단매출통계</a>
                     </li>
 
@@ -61,7 +68,7 @@
                         <a href="statistics_sale_type2">상품분석</a>
                     </li>
 
-                    <li class="contentMenuSub ">
+                    <li class="contentMenuSub selected">
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
 
@@ -72,10 +79,11 @@
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
             </div>
+
             <div class="content">
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
-                    <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
+                    <form name="modifyForm1" method="get" action="statistics_sale_type3" autocomplete="off">
                         <div class="period_search">
                             <div class="period_input">
                                 <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form">
@@ -100,11 +108,11 @@
                 <div class="listSelectR">
                     <div class="contentMenu">
                         <ul>
-                            <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type_year">년간통계</a></li>
-                            <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type_month">월간통계</a></li>
-                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type_week">주간통계</a></li>
-                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type_day">일간통계</a></li>
-                            <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type">특정기간통계</a></li>
+                            <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_year">년간통계</a></li>
+                            <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_month">월간통계</a></li>
+                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
+                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
+                            <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type3">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
                         <div class="contentBar right" style="left: 575px; display: none;"></div>
@@ -134,9 +142,28 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", <?= $price_arr['Card'] ?>],
-                                    ["무통장", <?= $price_arr['VBank'] ?>],
-                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>],
+                                    ["강원", <?= $price_arr['강원'] ?>],
+                                    ["경기", <?= $price_arr['경기'] ?>],
+                                    ["경남", <?= $price_arr['경남'] ?>],
+                                    ["강원", <?= $price_arr['강원'] ?>],
+
+                                    ["경북", <?= $price_arr['경북'] ?>],
+                                    ["광주", <?= $price_arr['광주'] ?>],
+                                    ["대구", <?= $price_arr['대구'] ?>],
+                                    ["대전", <?= $price_arr['대전'] ?>],
+
+                                    ["부산", <?= $price_arr['부산'] ?>],
+                                    ["서울", <?= $price_arr['서울'] ?>],
+                                    ["세종", <?= $price_arr['세종'] ?>],
+                                    ["울산", <?= $price_arr['울산'] ?>],
+
+                                    ["인천", <?= $price_arr['인천'] ?>],
+                                    ["전남", <?= $price_arr['전남'] ?>],
+                                    ["전북", <?= $price_arr['전북'] ?>],
+
+                                    ["제주", <?= $price_arr['제주'] ?>],
+                                    ["충남", <?= $price_arr['충남'] ?>],
+                                    ["충북", <?= $price_arr['충북'] ?>],
                                 ]);
 
                                 var options = {
@@ -155,17 +182,42 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $price_arr['강원'] ?> + <?= $price_arr['경기'] ?> + <?= $price_arr['경남'] ?> +
+                                    <?= $price_arr['경북'] ?> + <?= $price_arr['광주'] ?> + <?= $price_arr['대구'] ?> +
+                                    <?= $price_arr['대전'] ?> + <?= $price_arr['부산'] ?> + <?= $price_arr['서울'] ?> +
+                                    <?= $price_arr['세종'] ?> + <?= $price_arr['울산'] ?> + <?= $price_arr['인천'] ?> +
+                                    <?= $price_arr['전남'] ?> + <?= $price_arr['전북'] ?> + <?= $price_arr['제주'] ?> +
+                                    <?= $price_arr['충남'] ?> + <?= $price_arr['충북'] ?>;
                                 var rows = [
-                                    ["카드결제", <?= $price_arr['Card'] ?>, "#4285F4"],
-                                    ["무통장", <?= $price_arr['VBank'] ?>, "#4285F4"],
-                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>, "#4285F4"]
+                                    ["강원", <?= $price_arr['강원'] ?>, "#4285F4"],
+                                    ["경기", <?= $price_arr['경기'] ?>, "#4285F4"],
+                                    ["경남", <?= $price_arr['경남'] ?>, "#4285F4"],
+
+                                    ["경북", <?= $price_arr['경북'] ?>, "#4285F4"],
+                                    ["광주", <?= $price_arr['광주'] ?>, "#4285F4"],
+                                    ["대구", <?= $price_arr['대구'] ?>, "#4285F4"],
+
+                                    ["대전", <?= $price_arr['대전'] ?>, "#4285F4"],
+                                    ["부산", <?= $price_arr['부산'] ?>, "#4285F4"],
+                                    ["서울", <?= $price_arr['서울'] ?>, "#4285F4"],
+
+                                    ["세종", <?= $price_arr['세종'] ?>, "#4285F4"],
+                                    ["울산", <?= $price_arr['울산'] ?>, "#4285F4"],
+                                    ["인천", <?= $price_arr['인천'] ?>, "#4285F4"],
+
+                                    ["전남", <?= $price_arr['전남'] ?>, "#4285F4"],
+                                    ["전북", <?= $price_arr['전북'] ?>, "#4285F4"],
+                                    ["제주", <?= $price_arr['제주'] ?>, "#4285F4"],
+
+                                    ["충남", <?= $price_arr['충남'] ?>, "#4285F4"],
+                                    ["충북", <?= $price_arr['충북'] ?>, "#4285F4"],
                                 ];
 
                                 rows.forEach((row, index) => {
                                     var percentage = (row[1] / total) * 100;
                                     var container = document.createElement('div');
                                     container.classList.add('bar-container');
+
                                     document.querySelectorAll('.per_line')[index].appendChild(container);
 
                                     if (percentage > 0) {
@@ -179,6 +231,8 @@
                                 });
                             }
                         </script>
+
+
                     </div>
 
                     <div class="empty10">&nbsp;</div>
@@ -193,35 +247,54 @@
                         <thead>
                             <tr>
                                 <th>순위</th>
-                                <th>결제수단</th>
+                                <th>지역별</th>
                                 <th>매출</th>
                                 <th>점유률</th>
                             </tr>
                         </thead>
                         <tbody id="list_all">
+
                             <?php
-                                $ordered_methods = ['Card', 'VBank', 'DBank'];
-                                $sorted_price_arr = [];
 
-                                foreach ($ordered_methods as $method) {
-                                    if (isset($price_arr[$method])) {
-                                        $sorted_price_arr[$method] = $price_arr[$method];
-                                    }
+                            $ordered_methods = [
+                                '강원',
+                                '경기',
+                                '경남',
+                                '경북',
+                                '광주',
+                                '대구',
+                                '대전',
+                                '부산',
+                                '서울',
+                                '세종',
+                                '울산',
+                                '인천',
+                                '전남',
+                                '전북',
+                                '제주',
+                                '충남',
+                                '충북'
+                            ];
+                            $sorted_price_arr = [];
+
+                            foreach ($ordered_methods as $method) {
+                                if (isset($price_arr[$method])) {
+                                    $sorted_price_arr[$method] = $price_arr[$method];
                                 }
-                                $tr_index = 0;
-                                foreach ($sorted_price_arr as $key => $meth) {
-                                    $tr_index++;
+                            }
+                            $tr_index = 0;
+                            foreach ($sorted_price_arr as $key => $addrs) {
+                                $tr_index++;
                             ?>
-
                                 <tr>
                                     <td class="number"><?= $tr_index ?></td>
-                                    <td style="text-align:left;"><?= $pay_method[$key] ?></td>
-                                    <td class="number"><?= number_format($meth) ?></td>
+                                    <td style="text-align:left;"><?= $key ?></td>
+                                    <td class="number"><?= number_format($addrs) ?></td>
                                     <td>
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $meth ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= $addrs ?>%</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -263,6 +336,7 @@
         nextText: '다음'
 
     });
+
 
     $(".contact_btn").click(function() {
 
