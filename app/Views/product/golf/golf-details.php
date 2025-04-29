@@ -21,8 +21,8 @@ $(document).ready(function() {
     $(document).on('click', function(event) {
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
-			   $("#caddy_no").show();	
-			   $("#caddy_yes").hide();	
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
 				   $("#vehicle_5").val('0');
@@ -66,8 +66,8 @@ $(document).ready(function() {
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
-                <input type="hidden" name="o_cart_cont" id="o_cart_cont" value="<?=$o_cart_cont?>">
-                <input type="hidden" name="o_caddy_cont" id="o_caddy_cont" value="<?=$o_caddy_cont?>">
+                <input type="hidden" name="o_cart_cont" id="o_cart_cont" value="<?=$golf_price['o_cart_cont']?>">
+                <input type="hidden" name="o_caddy_cont" id="o_caddy_cont" value="<?=$golf_price['o_caddy_cont']?>">
                 <input type="hidden" name="caddie_fee_sel" id="caddie_fee_sel" value="<?=$product['caddie_fee_sel']?>">
 
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
