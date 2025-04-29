@@ -480,6 +480,11 @@ class AdminMenus extends BaseConfig
                     'url' => ['/AdmMaster/_statistics/member_statistics'],
                     'alias' => [
                                     'AdminStatisticsController::member_statistics',
+                                    'AdminStatisticsController::member_statistics_yoil',
+                                    'AdminStatisticsController::member_statistics_day',
+                                    'AdminStatisticsController::member_statistics_month',
+                                    'AdminStatisticsController::member_statistics_year',
+
                                     'AdminStatisticsController::member_statistics3',
                                     'AdminStatisticsController::member_statistics4',
                                     'AdminStatisticsController::member_statistics5'
