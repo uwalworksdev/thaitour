@@ -87,18 +87,19 @@
                                     <col width="10%"/>
                                 </colgroup>
                                 <tbody>
-                                <tr>
-									<th style="line-height:40px;">결제번호</th>
-									<th style="line-height:40px;">예약번호</th>
-									<th>상품명</th>
-									<!--th>할인전 금액(원)</th>
-									<th>할인금액(원)</th-->
-									<th>결제금액(원)</th>
-									<th>결제금액(바트)</th>
-									<th>실결제금액(원)</th>
-									<th>실결제금액(바트)</th>
-                                    <th>예약정보</th>
-                                </tr>
+								<tr>
+									<th style="line-height:40px; text-align:center;">결제번호</th>
+									<th style="line-height:40px; text-align:center;">예약번호</th>
+									<th style="text-align:center;">상품명</th>
+									<!--th style="text-align:center;">할인전 금액(원)</th>
+									<th style="text-align:center;">할인금액(원)</th-->
+									<th style="text-align:center;">결제금액(원)</th>
+									<th style="text-align:center;">결제금액(바트)</th>
+									<th style="text-align:center;">실결제금액(원)</th>
+									<th style="text-align:center;">실결제금액(바트)</th>
+									<th style="text-align:center;">예약정보</th>
+								</tr>
+
 								
                                 <?php foreach ($order_row as $order) { ?>								
                                 <tr>
