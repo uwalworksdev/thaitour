@@ -1972,6 +1972,7 @@ class Product extends BaseController
 		$builder->where('a.product_idx', $product_idx);
 		$builder->where('a.goods_date >=', date('Y-m-d', strtotime('+1 day')) );
 		$builder->where('a.use_yn !=', 'N');
+		$builder->where('b.group_idx > 0');
 		$builder->orderBy('a.goods_date', 'ASC');
 		$builder->orderBy('a.goods_name', 'ASC');
 		$builder->limit(1);
