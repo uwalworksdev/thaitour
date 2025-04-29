@@ -1399,9 +1399,11 @@ $(document).ready(function() {
                     const $trip_type2 = $("#trip_type2");
                     const $trip_type3 = $("#trip_type3");
 					
-					const $select_1   = $("#vehicle_1");
+					const $select_1   = $("#vehicle_1"); 
 					const $select_2   = $("#vehicle_2");
 					const $select_3   = $("#vehicle_3");
+					const $select_4   = $("#vehicle_4");
+					const $select_5   = $("#vehicle_5");
 
 					$trip_type1.attr("data-idx",       $(".card-item").data('idx'));
 					$trip_type2.attr("data-idx",       $(".card-item").data('idx'));
@@ -1419,6 +1421,14 @@ $(document).ready(function() {
 					$select_3.attr("data-idx",         $(".card-item").data('idx'));
 					$select_3.attr("data-price",       $(".card-item").data('vehicle_price3_won'));
 					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_baht'));
+					
+					$select_4.attr("data-idx",         $(".card-item").data('idx'));
+					$select_4.attr("data-price",       $(".card-item").data('cart_fee_won'));
+					$select_4.attr("data-price_baht",  $(".card-item").data('cart_fee_baht'));
+					
+					$select_5.attr("data-idx",         $(".card-item").data('idx'));
+					$select_5.attr("data-price",       $(".card-item").data('caddy_fee_won'));
+					$select_5.attr("data-price_baht",  $(".card-item").data('caddy_fee_baht'));
 
                     $("#o_cart_due").val( $(".card-item").data('o_cart_due') );
                     $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
