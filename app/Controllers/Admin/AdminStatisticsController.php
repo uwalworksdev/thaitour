@@ -240,4 +240,69 @@ class AdminStatisticsController extends BaseController
         $row_week = $result_week->getRowArray();
         return $row_week;
     }
+
+    public function statistics_sale_yoil()
+    {
+        return view('admin/_statistics/statistics_sale_yoil');
+    }
+
+    public function statistics_sale_day()
+    {
+        return view('admin/_statistics/statistics_sale_day');
+    }
+
+    public function statistics_sale_month()
+    {
+        return view('admin/_statistics/statistics_sale_month');
+    }
+
+    public function statistics_sale_year()
+    {
+        return view('admin/_statistics/statistics_sale_year');
+    }
+
+    public function statistics_sale_sales()
+    {
+        return view('admin/_statistics/statistics_sale_sales');
+    }
+
+    public function statistics_sale_type()
+    {
+        return view('admin/_statistics/statistics_sale_type');
+    }
+
+    public function statistics_sale_type2()
+    {
+        return view('admin/_statistics/statistics_sale_type2');
+    }
+
+    public function statistics_sale_type3()
+    {
+        return view('admin/_statistics/statistics_sale_type3');
+    }
+
+    public function statistics_sale_list()
+    {
+        return view('admin/_statistics/statistics_sale_list');
+    }
+
+    public function member_statistics()
+    {
+        return view('admin/_statistics/member_statistics');
+    }
+
+    public function member_statistics3()
+    {
+        return view('admin/_statistics/member_statistics3');
+    }
+
+    public function member_statistics4()
+    {
+        return view('admin/_statistics/member_statistics4');
+    }
+
+    public function member_statistics5()
+    {
+        return view('admin/_statistics/member_statistics5');
+    }
 }

@@ -30,16 +30,16 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
         <?= $setting['site_name'] ?>
     </title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-title" content="">
     <link rel="shortcut icon" type="image/x-icon" href="/uploads/setting/<?= $setting['favico'] ?>">
-    <link rel="apple-touch-icon" href=""/>
+    <link rel="apple-touch-icon" href="" />
     <meta name="Generator" content="">
     <meta name="Author" content="">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <link rel="stylesheet" href="/css/admin/import.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/admin/import.css" type="text/css" />
     <script type="text/javascript" src="/lib/jquery/jquery-1.8.3.min.js"></script>
     <!--[if lte IE 9]>
     <script src="/js/admin/html5.js"></script>
@@ -53,7 +53,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
     <script src="/lib/notifIt/notifIt.js" type="text/javascript"></script>
     <link href="/lib/notifIt/notifIt.css" type="text/css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/lib/colorbox-master/example4/colorbox.css"/>
+    <link rel="stylesheet" href="/lib/colorbox-master/example4/colorbox.css" />
     <script src="/lib/colorbox-master/jquery.colorbox.js"></script>
 
 
@@ -98,19 +98,21 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
             margin-top: 5px;
             margin-bottom: 10px;
         }
+
         #debug-bar {
             z-index: 999999999 !important;
         }
+
         .show-view .debug-view-path {
             position: relative;
             z-index: 999999999 !important;
         }
     </style>
 
-    <link rel="stylesheet" href="/css/admin/pop.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/admin/pop.css" type="text/css" />
     <script>
         //화면의 중앙으로 팝업창 띄우기
-        function PopUp(url, wName, width, height) {//화면의 중앙
+        function PopUp(url, wName, width, height) { //화면의 중앙
             var LeftPosition = (screen.width / 2) - (width / 2);
             var TopPosition = (screen.height / 2) - (height / 2);
             var win = window.open(url, wName, "left=" + LeftPosition + ",top=" + TopPosition + ",width=" + width + ",height=" + height);
@@ -122,7 +124,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
         }
 
         //화면의 중앙으로 팝업창 띄우기..(스크롤포함)
-        function PopUpWithScroll(url, wName, width, height) {//화면의 중앙
+        function PopUpWithScroll(url, wName, width, height) { //화면의 중앙
             var LeftPosition = (screen.width / 2) - (width / 2);
             var TopPosition = (screen.height / 2) - (height / 2);
             var win = window.open(url, wName, "left=" + LeftPosition + ",top=" + TopPosition + ",width=" + width + ",height=" + height + ",scrollbars=yes");
@@ -157,133 +159,137 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
     </script>
 
     <!-- 다음 우편번호 -->
-    <?php //if ($_IT_TOP_PROTOCOL == "https://") { ?>
+    <?php //if ($_IT_TOP_PROTOCOL == "https://") { 
+    ?>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-    <?php //} else { ?>
+    <?php //} else { 
+    ?>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <?php //} ?>
+    <?php //} 
+    ?>
 
 </head>
 
 <body>
-<div id="ajax_loader" class="wrap-loading display-none">
-    <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" stroke="#fff">
-            <g fill="none" fill-rule="evenodd" stroke-width="2">
-                <circle cx="22" cy="22" r="1">
-                    <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
-                             keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
-                    <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline"
-                             keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="22" cy="22" r="1">
-                    <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
-                             keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
-                    <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline"
-                             keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
-                </circle>
-            </g>
-        </svg>
-    </div>
-</div>
-
-<div id="wrap">
-    <header id="header">
-        <div class="header_top">
-            <div class="top_box">
-                <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
-                <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/main" class="logo">
-                    <!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] ?><!--" alt="">-->
-                    <img src="/images/sub/logo_w.png" alt="" style="height: 30px;">
-                </a>
-            </div>
-            <div class="info_box">
-                <ul class="connect_info">
-                    <li>
-                        <?= $setting['site_name'] ?> /
-                    </li>
-                    <li>IP : <?= $_SERVER['REMOTE_ADDR'] ?> /</li>
-                    <li>최근접속일시 : <span id="time"></span></li>
-                    <li>작업자 : <span id=""><?=session()->get('member')['id']?>[<?=session()->get('member')['name']?>]</span></li>
-                </ul>
-
-                <script>
-                    var serverTime = new Date('<?=$sessionCreateDate?>');
-
-                    var clientTimezoneOffset = new Date().getTimezoneOffset() * 60000;
-
-                    var clientTime = new Date(serverTime.getTime() - clientTimezoneOffset);
-                    var year = clientTime.getFullYear();
-                    var month = String(clientTime.getMonth() + 1).padStart(2, '0');
-                    var day = String(clientTime.getDate()).padStart(2, '0');
-                    var hours = String(clientTime.getHours()).padStart(2, '0');
-                    var minutes = String(clientTime.getMinutes()).padStart(2, '0');
-                    var seconds = String(clientTime.getSeconds()).padStart(2, '0');
-                    var formattedClientTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-                    $("#time").text(formattedClientTime);
-                </script>
-
-                <!-- <a href="/AdmMaster/_adminrator/store_config_admin">비밀번호변경</a> -->
-                <a href="/AdmMaster/_adminrator/setting">정보수정</a>
-                <a class="logout" href="/AdmMaster/logout">로그아웃</a>
-            </div>
-
+    <div id="ajax_loader" class="wrap-loading display-none">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" stroke="#fff">
+                <g fill="none" fill-rule="evenodd" stroke-width="2">
+                    <circle cx="22" cy="22" r="1">
+                        <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                            keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite" />
+                        <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline"
+                            keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="22" cy="22" r="1">
+                        <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                            keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite" />
+                        <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline"
+                            keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite" />
+                    </circle>
+                </g>
+            </svg>
         </div>
+    </div>
 
-        <div id="gnb" class="gnb_update">
-            <ul class="gnb_menu">
-
-            <?php
-            $mi = 1;
-
-            foreach ($menus as $menu):
-                ?>
-                <li class="menu<?= $mi ?> depth1_ttl">
-                    <a href="#!"><span class="tit"><?= $menu['name'] ?></span></a>
-                    <ul class="smenu_<?=$mi?> depth2 <?=$menu['active']?>">
-                        <?php foreach ($menu['submenus'] as $submenu):
-                            $submenu_url = site_url($submenu['url'][0]);
-                            ?>
-                            <li class="fir <?= $submenu['active'] ?>">
-                                <a href="<?= $submenu_url ?>"><?= $submenu['name'] ?></a>
-                            </li>
-                        <?php endforeach; ?>
+    <div id="wrap">
+        <header id="header">
+            <div class="header_top">
+                <div class="top_box">
+                    <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM 
+                                                            ?>" alt="로고"></a> -->
+                    <a href="/" class="txt_admin" target="_blank"></a>
+                    <a href="/AdmMaster/main" class="logo">
+                        <!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] 
+                                                                                ?><!--" alt="">-->
+                        <img src="/images/sub/logo_w.png" alt="" style="height: 30px;">
+                    </a>
+                </div>
+                <div class="info_box">
+                    <ul class="connect_info">
+                        <li>
+                            <?= $setting['site_name'] ?> /
+                        </li>
+                        <li>IP : <?= $_SERVER['REMOTE_ADDR'] ?> /</li>
+                        <li>최근접속일시 : <span id="time"></span></li>
+                        <li>작업자 : <span id=""><?= session()->get('member')['id'] ?>[<?= session()->get('member')['name'] ?>]</span></li>
                     </ul>
-                </li>
-                <?php
-                $mi++;
-            endforeach;
-            ?>
-            </ul>
-        </div><!-- // gnb -->
 
-    </header>
-    <!-- // header -->
-    <script>
-$(document).ready(function () {
-    $('.depth1_ttl > a').on('click', function (e) {
-        e.preventDefault(); // 기본 이벤트 방지 (예: 페이지 이동 방지)
+                    <script>
+                        var serverTime = new Date('<?= $sessionCreateDate ?>');
 
-        var $this = $(this);
-        var $submenu = $this.next('.depth2');
+                        var clientTimezoneOffset = new Date().getTimezoneOffset() * 60000;
 
-        // 현재 클릭한 메뉴가 열려 있는지 확인
-        var isOpen = $submenu.hasClass('on');
+                        var clientTime = new Date(serverTime.getTime() - clientTimezoneOffset);
+                        var year = clientTime.getFullYear();
+                        var month = String(clientTime.getMonth() + 1).padStart(2, '0');
+                        var day = String(clientTime.getDate()).padStart(2, '0');
+                        var hours = String(clientTime.getHours()).padStart(2, '0');
+                        var minutes = String(clientTime.getMinutes()).padStart(2, '0');
+                        var seconds = String(clientTime.getSeconds()).padStart(2, '0');
+                        var formattedClientTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                        $("#time").text(formattedClientTime);
+                    </script>
 
-        // 모든 메뉴 초기화 (다른 열린 메뉴 닫기)
-        $('.depth2').removeClass('on');
-        $('.depth1_ttl > a').removeClass('on');
+                    <!-- <a href="/AdmMaster/_adminrator/store_config_admin">비밀번호변경</a> -->
+                    <a href="/AdmMaster/_adminrator/setting">정보수정</a>
+                    <a class="logout" href="/AdmMaster/logout">로그아웃</a>
+                </div>
 
-        if (!isOpen) {
-            // 클릭한 메뉴만 활성화
-            $submenu.addClass('on');
-            $this.addClass('on');
-        }
-    });
-});
+            </div>
+
+            <div id="gnb" class="gnb_update">
+                <ul class="gnb_menu">
+
+                    <?php
+                    $mi = 1;
+
+                    foreach ($menus as $menu):
+                    ?>
+                        <li class="menu<?= $mi ?> depth1_ttl">
+                            <a href="#!"><span class="tit"><?= $menu['name'] ?></span></a>
+                            <ul class="smenu_<?= $mi ?> depth2 <?= $menu['active'] ?>">
+                                <?php foreach ($menu['submenus'] as $submenu):
+                                    $submenu_url = site_url($submenu['url'][0]);
+                                ?>
+                                    <li class="fir <?= $submenu['active'] ?>">
+                                        <a href="<?= $submenu_url ?>"><?= $submenu['name'] ?></a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    <?php
+                        $mi++;
+                    endforeach;
+                    ?>
+                </ul>
+            </div><!-- // gnb -->
+
+        </header>
+        <!-- // header -->
+        <script>
+            $(document).ready(function() {
+                $('.depth1_ttl > a').on('click', function(e) {
+                    e.preventDefault(); // 기본 이벤트 방지 (예: 페이지 이동 방지)
+
+                    var $this = $(this);
+                    var $submenu = $this.next('.depth2');
+
+                    // 현재 클릭한 메뉴가 열려 있는지 확인
+                    var isOpen = $submenu.hasClass('on');
+
+                    // 모든 메뉴 초기화 (다른 열린 메뉴 닫기)
+                    $('.depth2').removeClass('on');
+                    $('.depth1_ttl > a').removeClass('on');
+
+                    if (!isOpen) {
+                        // 클릭한 메뉴만 활성화
+                        $submenu.addClass('on');
+                        $this.addClass('on');
+                    }
+                });
+            });
 
 
-        // 좌측 메뉴
-
-    </script>
+            // 좌측 메뉴
+        </script>

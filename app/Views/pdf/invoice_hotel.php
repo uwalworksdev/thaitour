@@ -111,14 +111,14 @@
             font-size: 14px !important;
             padding: 5px 10px;
             background-color: #f4f4f4;
-            border-top: 1px solid #dddddd;
-            border-bottom: 1px solid #dddddd;
+            border-top: 1px solid #dddddd !important;
+            border-bottom: 1px solid #dddddd !important;
             text-align: left;
         }
 
         .golf_invoice .invoice_table .invoice_tbl tr td {
             height: 35px !important;
-            border: 1px solid #dddddd;
+            border: 1px solid #dddddd !important;
             border-right: unset;
             border-left: unset;
             padding: 10px;
