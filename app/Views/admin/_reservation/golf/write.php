@@ -777,7 +777,7 @@
                 data: "order_idx[]=<?=$order_idx?>",
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
