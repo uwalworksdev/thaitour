@@ -4535,7 +4535,6 @@
   .infographic .list_infographic {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 5.2rem 3.2rem;
     padding-bottom: 5.8rem;
     border-bottom: 1px solid #dbdbdb;

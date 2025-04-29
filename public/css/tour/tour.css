@@ -5381,7 +5381,6 @@
 .infographic .list_infographic {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 46px 18px;
     padding-bottom: 42px;
     border-bottom: 1px solid #dbdbdb;
