@@ -21,8 +21,8 @@ $(document).ready(function() {
     $(document).on('click', function(event) {
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
-			   $("#caddy_yes").show();	
-			   $("#caddy_no").hide();	
+			   $("#caddy_no").show();	
+			   $("#caddy_yes").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
 				   $("#vehicle_5").val('0');
