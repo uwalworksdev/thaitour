@@ -21,7 +21,7 @@ $(document).ready(function() {
     $(document).on('click', function(event) {
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
-			   $("#caddy_yes").css("display", "flex");	
+			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
@@ -29,13 +29,13 @@ $(document).ready(function() {
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
 				} else {   
-				   $("#caddy_yes").css("display", "flex");		
+				   $("#caddy_yes").show();	
 				   $("#caddy_no").hide();	
 				}
             } 	
 			
 			if($("#o_cart_due").val() == "Y") {
-			   $("#cart_yes").css("display", "flex");	
+			   $("#cart_yes").show();	
 			   $("#cart_no").hide();	
 			} else {	
 				if($("#o_cart_cont").val() == "Y") {
@@ -43,7 +43,7 @@ $(document).ready(function() {
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
 				} else {   
-                   $("#cart_yes").css("display", "flex");	
+				   $("#cart_yes").show();	
 				   $("#cart_no").hide();	
 				}
             }
@@ -296,118 +296,19 @@ $(document).ready(function() {
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="item-tag new" style="justify-content: space-between;">
-                            <div class="flex__c">
-                                <span class="label first">인원</span>
-                                <select class="select_custom_ active_ cus-width" onchange="changePeople()"
-                                        name="people_adult_cnt" id="people_adult_cnt">
-                                    <option value="">선택해주세요.</option>
-                                    <?php
-                                    $min = floatval($product['minium_people_cnt']);
-                                    $max = floatval($product['total_people_cnt']);
-                                    for ($i = $min; $i <= $max; $i++) {
-                                        echo '<option value="' . $i . '">' . $i . '인</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="flex_b_c">
-                                <span class="label">티오프 시간 선택</span>
-                                <div class="body-box flex">
-                                    <select class="box flex_1" id="hoursDay" onchange="">
-                                        <option value="">선택</option>
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
-                                    <select class="box flex_1" id="minuteDay" onchange="">
-                                        <option value="">선택</option>
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-                                        <option value="32">32</option>
-                                        <option value="33">33</option>
-                                        <option value="34">34</option>
-                                        <option value="35">35</option>
-                                        <option value="36">36</option>
-                                        <option value="37">37</option>
-                                        <option value="38">38</option>
-                                        <option value="39">39</option>
-                                        <option value="40">40</option>
-                                        <option value="41">41</option>
-                                        <option value="42">42</option>
-                                        <option value="43">43</option>
-                                        <option value="44">44</option>
-                                        <option value="45">45</option>
-                                        <option value="46">46</option>
-                                        <option value="47">47</option>
-                                        <option value="48">48</option>
-                                        <option value="49">49</option>
-                                        <option value="50">50</option>
-                                        <option value="51">51</option>
-                                        <option value="52">52</option>
-                                        <option value="53">53</option>
-                                        <option value="54">54</option>
-                                        <option value="55">55</option>
-                                        <option value="56">56</option>
-                                        <option value="57">57</option>
-                                        <option value="58">58</option>
-                                        <option value="59">59</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                        <div class="item-tag new">
+                            <span class="label">인원</span>
+                            <select class="select_custom_ active_ cus-width" onchange="changePeople()"
+                                    name="people_adult_cnt" id="people_adult_cnt">
+                                <option value="">선택해주세요.</option>
+                                <?php
+                                $min = floatval($product['minium_people_cnt']);
+                                $max = floatval($product['total_people_cnt']);
+                                for ($i = $min; $i <= $max; $i++) {
+                                    echo '<option value="' . $i . '">' . $i . '인</option>';
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="box-selecter flex_b_c">
@@ -425,45 +326,99 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-                        <div class="ic_item" style="gap: 30px;">
-                            <div class="flex__c" style="width: 50%;">
-                                <div class="item-select" id="cart_no" style="display:none">
-                                    <p>카트비는 그린피에 포함입니다.</p>	   
-                                </div>
-                                <div class="item-select" id="cart_yes" style="display:none; align-items: center; width: 100%;">
-                                    <span class="label">카트</span>
-                                    <input type="hidden" name="vehicle_idx[]" value="4">
-                                    <select id="vehicle_4" style="width: calc(100% - 50px);" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
-                                        <option value="">선택해주세요.</option>
-                                        <option value="1">1대</option>
-                                        <option value="2">2대</option>
-                                        <option value="3">3대</option>
-                                        <option value="4">4대</option>
-                                        <option value="5">5대</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="flex__c" style="width: 50%;">
-                                <div class="item-select" id="caddy_no" style="display:none">
-                                    <p>캐디피는 그린피에 포함입니다.</p>	   
-                                </div>
-                                <div class="item-select" id="caddy_yes" style="display:none; align-items: center; width: 100%;">
-                                    <span class="label">캐디피</span>
-                                    <input type="hidden" name="vehicle_idx[]" value="5">
-                                    <select id="vehicle_5" style="width: calc(100% - 50px);" data-name="캐디피" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
-                                        <option value="">선택해주세요.</option>
-                                        <option value="1">1명</option>
-                                        <option value="2">2명</option>
-                                        <option value="3">3명</option>
-                                        <option value="4">4명</option>
-                                        <option value="5">5명</option>
-                                        <option value="6">6명</option>
-                                        <option value="7">7명</option>
-                                        <option value="8">8명</option>
-                                        <option value="9">9명</option>
-                                        <option value="10">10명</option>
-                                    </select>
-                                </div>
+                        <div class="ic_item">
+                            <div class="title">티오프 시간 선택</div>
+                            <div class="body-box flex">
+                                <select class="box flex_1" id="hoursDay" onchange="">
+                                    <option value="">선택</option>
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                </select>
+                                <select class="box flex_1" id="minuteDay" onchange="">
+                                    <option value="">선택</option>
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                    <option value="32">32</option>
+                                    <option value="33">33</option>
+                                    <option value="34">34</option>
+                                    <option value="35">35</option>
+                                    <option value="36">36</option>
+                                    <option value="37">37</option>
+                                    <option value="38">38</option>
+                                    <option value="39">39</option>
+                                    <option value="40">40</option>
+                                    <option value="41">41</option>
+                                    <option value="42">42</option>
+                                    <option value="43">43</option>
+                                    <option value="44">44</option>
+                                    <option value="45">45</option>
+                                    <option value="46">46</option>
+                                    <option value="47">47</option>
+                                    <option value="48">48</option>
+                                    <option value="49">49</option>
+                                    <option value="50">50</option>
+                                    <option value="51">51</option>
+                                    <option value="52">52</option>
+                                    <option value="53">53</option>
+                                    <option value="54">54</option>
+                                    <option value="55">55</option>
+                                    <option value="56">56</option>
+                                    <option value="57">57</option>
+                                    <option value="58">58</option>
+                                    <option value="59">59</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -619,7 +574,7 @@ $(document).ready(function() {
             <?php endforeach; ?>
         </div-->
 		
-          <div class="list-select-element" style="justify-content: space-between;">
+          <div class="list-select-element">
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
@@ -636,7 +591,24 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
-            	
+            	<div class="item-select">
+                    <span class="label">밴 (승합차) </span>
+                    <input type="hidden" name="vehicle_idx[]" value="2">
+					<select id="trip_type2" name="trip_type2" style="width:80px;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
+					</select>
+                    <select id="vehicle_2" data-name="밴 (승합차)" data-idx="<?=$idx?>" data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+								<option value="1">1대</option>
+								<option value="2">2대</option>
+								<option value="3">3대</option>
+								<option value="4">4대</option>
+								<option value="5">5대</option>
+								<option value="6">6대</option>
+								<option value="7">7대</option>
+						</select>
+                </div>
             	<div class="item-select">
                     <span class="label">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
@@ -646,32 +618,50 @@ $(document).ready(function() {
 					</select>
                     <select id="vehicle_3" data-name="SUV" data-idx="<?=$idx?>" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
-                        <option value="1">1대</option>
-                        <option value="2">2대</option>
-                        <option value="3">3대</option>
-                        <option value="4">4대</option>
-                        <option value="5">5대</option>
-                    </select>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
+				</select>
                 </div>
-                <div class="item-select">
-                    <span class="label">밴 (승합차) </span>
-                    <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="trip_type2" name="trip_type2" style="width:80px;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
-					</select>
-                    <select id="vehicle_2" data-name="밴 (승합차)" data-idx="<?=$idx?>" data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+
+			   <div class="item-select" id="cart_no" style="display:none">
+			      <p>카트비는 그린피에 포함입니다.</p>	   
+			   </div>
+			   <div class="item-select" id="cart_yes" style="display:none">
+                    <span class="label">카트</span>
+                    <input type="hidden" name="vehicle_idx[]" value="4">
+                    <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
-                        <option value="1">1대</option>
-                        <option value="2">2대</option>
-                        <option value="3">3대</option>
-                        <option value="4">4대</option>
-                        <option value="5">5대</option>
-                        <option value="6">6대</option>
-                        <option value="7">7대</option>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
                     </select>
                 </div>
-			   
+				   
+			   <div class="item-select" id="caddy_no" style="display:none">
+			      <p>캐디피는 그린피에 포함입니다.</p>	   
+			   </div>
+               <div class="item-select" id="caddy_yes" style="display:none">
+                    <span class="label">캐디피</span>
+                    <input type="hidden" name="vehicle_idx[]" value="5">
+                    <select id="vehicle_5"  data-name="캐디피" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+								<option value="1">1명</option>
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+								<option value="5">5명</option>
+								<option value="6">6명</option>
+								<option value="7">7명</option>
+								<option value="8">8명</option>
+								<option value="9">9명</option>
+								<option value="10">10명</option>
+						</select>
+               </div>
 			   
         </div>
         <div class="section2-sub">
