@@ -23,7 +23,7 @@
         padding: 24px 50px 24px 20px;
     }
 
-    .comment_box .item + .item{
+    .comment_box .item+.item {
         border-top: 1px solid #f1f1f1;
     }
 
@@ -37,6 +37,9 @@
 
     .comment_box .item .info .eval {
         margin-left: auto;
+    }
+    .comment_box .item .info .eval img {
+        width: 2.5rem;
     }
 
     .comment_box .item .info .time {
@@ -62,6 +65,70 @@
     .custom-golf-detail .golf-table tbody td {
         white-space: wrap;
         line-height: 1.4;
+    }
+
+    @media screen and (max-width: 850px) {
+        .section6 .qa_ques {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1.8rem;
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-top: 3.8rem;
+        }
+        .section6 .qa_ques .list_star img {
+            width: 2.8rem;
+        }
+
+        .comment_box {
+            border-top: 1px solid #dbdbdb;
+            border-bottom: 1px solid #dbdbdb;
+            margin-top: 3rem;
+        }
+
+        .comment_box .item {
+            padding: 3rem 0 3rem 3rem;
+        }
+
+        .comment_box .item .info {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .comment_box .item .info .name {
+            font-size: 2.8rem;
+            font-weight: 600;
+        }
+
+        .comment_box .item .info .time {
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: #bbb;
+        }
+
+        .comment_box .item .content {
+            font-size: 2.8rem;
+        }
+        .content-sub-hotel-detail .main {
+            width: unset;
+        }
+        .view_detail {
+        padding-bottom: 12rem;
+    }
+
+    .comment_box .item .info .eval {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.comment_box .item .info .eval span {
+    margin-left: 0.7rem;
+}
     }
 </style>
 
