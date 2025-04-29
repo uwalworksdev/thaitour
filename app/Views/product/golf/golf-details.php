@@ -655,22 +655,6 @@ $(document).ready(function() {
 				</select>
                 </div>
 
-			   <div class="item-select" id="cart_no" style="display:none">
-			      <p>카트비는 그린피에 포함입니다.</p>	   
-			   </div>
-			   <div class="item-select" id="cart_yes" style="display:none">
-                    <span class="label">카트</span>
-                    <input type="hidden" name="vehicle_idx[]" value="4">
-                    <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
-                        <option value="0">선택해주세요.</option>
-						<option value="1">1대</option>
-						<option value="2">2대</option>
-						<option value="3">3대</option>
-						<option value="4">4대</option>
-						<option value="5">5대</option>
-                    </select>
-                </div>
-				   
 			   <div class="item-select" id="caddy_no" style="display:none">
 			      <p>캐디피는 그린피에 포함입니다.</p>	   
 			   </div>
@@ -691,6 +675,23 @@ $(document).ready(function() {
 								<option value="10">10명</option>
 						</select>
                </div>
+
+			   <div class="item-select" id="cart_no" style="display:none">
+			      <p>카트비는 그린피에 포함입니다.</p>	   
+			   </div>
+			   <div class="item-select" id="cart_yes" style="display:none">
+                    <span class="label">카트</span>
+                    <input type="hidden" name="vehicle_idx[]" value="4">
+                    <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="0">선택해주세요.</option>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
+                    </select>
+                </div>
+				   
 			   
         </div>
         <div class="section2-sub">
