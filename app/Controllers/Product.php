@@ -2203,7 +2203,7 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    private function golfPriceCalculate( $option_idx, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $opt_idx, $use_coupon_idx, $order_date )
+    private function golfPriceCalculate( $option_idx, $hour, $trip_type1, $trip_type2, $trip_type3, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $option_cnt, $cart_cnt, $use_coupon_idx, $order_date )
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
@@ -2335,18 +2335,20 @@ class Product extends BaseController
 						}		
 				
 						if($vehicle_idx[$key] == "4") {
-							if($info['o_cart_cont'] != "Y") { 
-								$info['code_name']        = "카트xx";
-								$info['price_baht']       = $info['cart_price'];
-								$info['price_baht_total'] = $info['cart_price'] * $value;
-								$info['price']            = (int) round($info['cart_price'] * $baht_thai);
-								$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
-								$vehicle_arr[]            = $info;
+							if($info['o_cart_cont'] != "Y")
+								if($cart_cnt > 0) { 
+									$info['code_name']        = "카트";
+									$info['price_baht']       = $info['cart_price'];
+									$info['price_baht_total'] = $info['cart_price'] * $value;
+									$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+									$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
+									$vehicle_arr[]            = $info;
 
-								$total_vehicle_price      += $info['price'] * $value;
-								$total_vehicle_price_baht += $info['price_baht'] * $value;
+									$total_vehicle_price      += $info['price'] * $value;
+									$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-								$total_vehicle            += $value;
+									$total_vehicle            += $value;
+							    }		
 							}	
 						}		
 				
@@ -2441,6 +2443,7 @@ class Product extends BaseController
         $data['order_date']       = $this->request->getVar('order_date');
 		$data['caddy_cnt']        = $this->request->getVar('caddy_cnt');
 		$data['caddy_price']      = $this->request->getVar('caddy_price');
+		$data['cart_cnt']         = $this->request->getVar('vehicle_4');
 
         $data['teeoff_hour']      = $this->request->getVar('teeoff_hour');
         $data['teeoff_min']       = $this->request->getVar('teeoff_min');
@@ -2466,7 +2469,7 @@ class Product extends BaseController
             $data['vehicle_cnt'],
             $data['vehicle_idx'],
             $data['option_cnt'],
-            $data['opt_idx'],
+            $data['cart_cnt'],
             $data['use_coupon_idx'],
             $data['order_date'],
         );
