@@ -8,7 +8,7 @@
 
 <?php
     $years    = $_GET['years'];
-    $seller    = $_GET['seller'];
+    $seller   = $_GET['seller'];
     $payin    = $_GET['payin'];
 
     if ($years == "") {
@@ -51,9 +51,9 @@
                     <li class="contentMenuSub selected">
                         <a href="statistics_sale_yoil">매출통계</a>
                     </li>
-                    <li class="contentMenuSub">
+                    <!-- <li class="contentMenuSub">
                         <a href="statistics_sale_sales">업체별 매출통계</a>
-                    </li>
+                    </li> -->
                     <li class="contentMenuSub ">
                         <a href="statistics_sale_type">결제수단매출통계</a>
                     </li>

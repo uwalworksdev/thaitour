@@ -7,32 +7,32 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-$years_s    = 2024;
-$years_e = date('Y');
+    $years_s    = 2024;
+    $years_e = date('Y');
 
-$s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years_s));
-$e_date = date('Y-m-d',  mktime(0, 0, 0, 12, 31, $years_e));
+    $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years_s));
+    $e_date = date('Y-m-d',  mktime(0, 0, 0, 12, 31, $years_e));
 
-$seller    = $_GET['seller'];
-$payin    = $_GET['payin'];
+    $seller    = $_GET['seller'];
+    $payin    = $_GET['payin'];
 
-$price_arr = array();
+    $price_arr = array();
 
-for ($i = $years_s; $i <= $years_e; $i++) {
-    $price_arr[$i] = 0;
-}
+    for ($i = $years_s; $i <= $years_e; $i++) {
+        $price_arr[$i] = 0;
+    }
 
-$cnt_arr = array();
+    $cnt_arr = array();
 
-for ($i = $years_s; $i <= $years_e; $i++) {
-    $cnt_arr[$i] = 0;
-}
+    for ($i = $years_s; $i <= $years_e; $i++) {
+        $cnt_arr[$i] = 0;
+    }
 
-$cp_arr = array();
+    $cp_arr = array();
 
-for ($i = $years_s; $i <= $years_e; $i++) {
-    $cp_arr[$i] = 0;
-}
+    for ($i = $years_s; $i <= $years_e; $i++) {
+        $cp_arr[$i] = 0;
+    }
 
 ?>
 
@@ -49,9 +49,9 @@ for ($i = $years_s; $i <= $years_e; $i++) {
                     <li class="contentMenuSub selected">
                         <a href="statistics_sale_yoil">매출통계</a>
                     </li>
-                    <li class="contentMenuSub">
+                    <!-- <li class="contentMenuSub">
                         <a href="statistics_sale_sales">업체별 매출통계</a>
-                    </li>
+                    </li> -->
                     <li class="contentMenuSub ">
                         <a href="statistics_sale_type">결제수단매출통계</a>
                     </li>
@@ -99,20 +99,20 @@ for ($i = $years_s; $i <= $years_e; $i++) {
                 </div>
 
                 <?php
-                // 매출 배열
-                $top_banner1_arr = array();
-                $top_banner1_arr['P'] = 0;
-                $top_banner1_arr['M'] = 0;
+                    // 매출 배열
+                    $top_banner1_arr = array();
+                    $top_banner1_arr['P'] = 0;
+                    $top_banner1_arr['M'] = 0;
 
-                // 상품 배열
-                $top_banner2_arr = array();
-                $top_banner2_arr['P'] = 0;
-                $top_banner2_arr['M'] = 0;
+                    // 상품 배열
+                    $top_banner2_arr = array();
+                    $top_banner2_arr['P'] = 0;
+                    $top_banner2_arr['M'] = 0;
 
-                // CP 배열
-                $top_banner3_arr = array();
-                $top_banner3_arr['P'] = 0;
-                $top_banner3_arr['M'] = 0;
+                    // CP 배열
+                    $top_banner3_arr = array();
+                    $top_banner3_arr['P'] = 0;
+                    $top_banner3_arr['M'] = 0;
 
                 ?>
 
