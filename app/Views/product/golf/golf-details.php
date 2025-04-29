@@ -18,7 +18,6 @@ $(document).ready(function() {
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
 				} else {   
-				   $("#vehicle_5").val('0');
 				   $("#caddy_yes").show();	
 				   $("#caddy_no").hide();	
 				}
@@ -34,7 +33,6 @@ $(document).ready(function() {
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
 				} else {   
-    			   $("#vehicle_4").val('0');
 				   $("#cart_yes").show();	
 				   $("#cart_no").hide();	
 				}
@@ -59,7 +57,6 @@ $(document).ready(function() {
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
 				} else {   
-				   $("#vehicle_5").val('0');
 				   $("#caddy_yes").show();	
 				   $("#caddy_no").hide();	
 				}
@@ -74,7 +71,6 @@ $(document).ready(function() {
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
 				} else {   
-    			   $("#vehicle_4").val('0');
 				   $("#cart_yes").show();	
 				   $("#cart_no").hide();	
 				}
@@ -1335,7 +1331,6 @@ $(document).ready(function() {
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
 				} else {   
-				   $("#vehicle_5").val('0');
 				   $("#caddy_yes").show();	
 				   $("#caddy_no").hide();	
 				}
@@ -1351,7 +1346,6 @@ $(document).ready(function() {
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
 				} else {   
-    			   $("#vehicle_4").val('0');
 				   $("#cart_yes").show();	
 				   $("#cart_no").hide();	
 				}
