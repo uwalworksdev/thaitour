@@ -13,27 +13,33 @@
 </style>
 
 <?php
-    $pay_method['Card']        = "카드결제";
-    $pay_method['VBank']    = "무통장(가상계좌)";
-    $pay_method['DBank']    = "실시간계좌이체	";
+$pay_method['Card']        = "카드결제";
+$pay_method['VBank']    = "무통장(가상계좌)";
+$pay_method['DBank']    = "실시간계좌이체	";
 
-    $s_date = $_GET['s_date'];
-    $e_date = $_GET['e_date'];
-    $payin    = $_GET['payin'];
 
-    if ($s_date == "") {
-        $s_date = date('Y-m-d');
-    }
 
-    if ($e_date == "") {
-        $e_date = date('Y-m-d');
-    }
+$years    = $_GET['years'];
+$months = $_GET['months'];
+$payin    = $_GET['payin'];
 
-    $price_arr = array();
+if ($years == "") {
+    $years = date('Y');
+}
 
-    $price_arr['Card'] = 0;
-    $price_arr['VBank'] = 0;
-    $price_arr['DBank'] = 0;
+if ($months == "") {
+    $months = date('m');
+}
+
+$s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+$e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+
+$price_arr = array();
+
+$price_arr['Card'] = 0;
+$price_arr['VBank'] = 0;
+$price_arr['DBank'] = 0;
+
 ?>
 
 <div id="container">
@@ -75,36 +81,36 @@
             <div class="content">
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
-                    <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
-                        <div class="period_search">
-                            <div class="period_input">
-                                <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form">
-                                <span>~</span>
-                                <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
-                            </div>
-                            <button type="submit">검색</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">1개월</button>
+                    <form name="modifyForm1" method="get" action="statistics_sale_type_month" autocomplete="off">
+                        <div class="firstLine selectYear" style="padding-left:0">
+                            <select name="years" onchange="fn_search()">
+                                <?php for ($ys = 2024; $ys <= date('Y'); $ys++) { ?>
+                                    <option value="<?= $ys ?>" <?php if ($ys == $years) echo "selected"; ?>><?= $ys ?>년</option>
+                                <?php } ?>
+                            </select>
 
-                            <select name="payin" onchange="submit()">
+                            <select name="months" onchange="fn_search()">
+                                <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
+                                    <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
+                                <?php } ?>
+                            </select>
+
+                            <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
                                 <option value="P">PC</option>
                                 <option value="M">모바일</option>
                             </select>
                         </div>
-
                     </form>
                 </div>
                 <div class="listSelectR">
                     <div class="contentMenu">
                         <ul>
                             <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type_year">년간통계</a></li>
-                            <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type_month">월간통계</a></li>
+                            <li class="contentMenuSub selected" data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type_month">월간통계</a></li>
                             <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type_week">주간통계</a></li>
-                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type_day">일간통계</a></li>
-                            <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type">특정기간통계</a></li>
+                            <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type_day">일간통계</a></li>
+                            <li class="contentMenuSub " data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
                         <div class="contentBar right" style="left: 575px; display: none;"></div>
@@ -125,6 +131,7 @@
                         </div>
 
                         <script type="text/javascript">
+
                             google.charts.load('current', {
                                 'packages': ['corechart']
                             });
@@ -166,6 +173,7 @@
                                     var percentage = (row[1] / total) * 100;
                                     var container = document.createElement('div');
                                     container.classList.add('bar-container');
+
                                     document.querySelectorAll('.per_line')[index].appendChild(container);
 
                                     if (percentage > 0) {
@@ -237,40 +245,9 @@
 <?= $this->endSection() ?>
 
 <script>
-    $(".date_form").datepicker({
-        showButtonPanel: true,
-        beforeShow: function(input) {
-            setTimeout(function() {
-                var buttonPane = $(input)
-                    .datepicker("widget")
-                    .find(".ui-datepicker-buttonpane");
-                var btn = $(
-                    '<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>'
-                );
-                btn.unbind("click").bind("click", function() {
-                    $.datepicker._clearDate(input);
-                });
-                btn.appendTo(buttonPane);
-            }, 1);
-        },
-        dateFormat: 'yy-mm-dd',
-        showOn: "both",
-        yearRange: "c-100:c+10",
-        buttonImage: "/AdmMaster/_images/common/date.png",
-        buttonImageOnly: true,
-        closeText: '닫기',
-        prevText: '이전',
-        nextText: '다음'
-
-    });
-
-    $(".contact_btn").click(function() {
-
-        var date1 = $(this).attr("rel");
-        var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-        $("#s_date").val(date1);
-        $("#e_date").val(date2);
-
-    });
+    // 검색하기
+    function fn_search() {
+        let frm = document.modifyForm1;
+        frm.submit();
+    }
 </script>

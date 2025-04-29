@@ -283,7 +283,7 @@
         background: #fff;
         border: 1px solid #dadfe6;
         border-radius: 8px;
-        width: 420px;
+        width: 520px;
         padding: 5px;
     }
 

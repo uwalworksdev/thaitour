@@ -271,6 +271,27 @@ class AdminStatisticsController extends BaseController
         return view('admin/_statistics/statistics_sale_type');
     }
 
+
+    public function statistics_sale_type_day()
+    {
+        return view('admin/_statistics/statistics_sale_type_day');
+    }
+
+    public function statistics_sale_type_week()
+    {
+        return view('admin/_statistics/statistics_sale_type_week');
+    }
+
+    public function statistics_sale_type_month()
+    {
+        return view('admin/_statistics/statistics_sale_type_month');
+    }
+
+    public function statistics_sale_type_year()
+    {
+        return view('admin/_statistics/statistics_sale_type_year');
+    }
+
     public function statistics_sale_type2()
     {
         return view('admin/_statistics/statistics_sale_type2');
@@ -279,6 +300,26 @@ class AdminStatisticsController extends BaseController
     public function statistics_sale_type3()
     {
         return view('admin/_statistics/statistics_sale_type3');
+    }
+
+    public function statistics_sale_type3_day()
+    {
+        return view('admin/_statistics/statistics_sale_type3_day');
+    }
+
+    public function statistics_sale_type3_week()
+    {
+        return view('admin/_statistics/statistics_sale_type3_week');
+    }
+
+    public function statistics_sale_type3_month()
+    {
+        return view('admin/_statistics/statistics_sale_type3_month');
+    }
+
+    public function statistics_sale_type3_year()
+    {
+        return view('admin/_statistics/statistics_sale_type3_year');
     }
 
     public function statistics_sale_list()

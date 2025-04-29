@@ -461,8 +461,16 @@ class AdminMenus extends BaseConfig
                                     , 'AdminStatisticsController::statistics_sale_year'
                                     , 'AdminStatisticsController::statistics_sale_sales'
                                     , 'AdminStatisticsController::statistics_sale_type'
+                                    , 'AdminStatisticsController::statistics_sale_type_day'
+                                    , 'AdminStatisticsController::statistics_sale_type_week'
+                                    , 'AdminStatisticsController::statistics_sale_type_month'
+                                    , 'AdminStatisticsController::statistics_sale_type_year'
                                     , 'AdminStatisticsController::statistics_sale_type2'
                                     , 'AdminStatisticsController::statistics_sale_type3'
+                                    , 'AdminStatisticsController::statistics_sale_type3_day'
+                                    , 'AdminStatisticsController::statistics_sale_type3_week'
+                                    , 'AdminStatisticsController::statistics_sale_type3_month'
+                                    , 'AdminStatisticsController::statistics_sale_type3_year'
                                     , 'AdminStatisticsController::statistics_sale_list'
                                 ]
                 ],

@@ -501,9 +501,21 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("statistics_sale_year", "Admin\AdminStatisticsController::statistics_sale_year");
 
         $routes->get("statistics_sale_sales", "Admin\AdminStatisticsController::statistics_sale_sales");
+
         $routes->get("statistics_sale_type", "Admin\AdminStatisticsController::statistics_sale_type");
+        $routes->get("statistics_sale_type_day", "Admin\AdminStatisticsController::statistics_sale_type_day");
+        $routes->get("statistics_sale_type_week", "Admin\AdminStatisticsController::statistics_sale_type_week");
+        $routes->get("statistics_sale_type_month", "Admin\AdminStatisticsController::statistics_sale_type_month");
+        $routes->get("statistics_sale_type_year", "Admin\AdminStatisticsController::statistics_sale_type_year");
+
         $routes->get("statistics_sale_type2", "Admin\AdminStatisticsController::statistics_sale_type2");
+
         $routes->get("statistics_sale_type3", "Admin\AdminStatisticsController::statistics_sale_type3");
+        $routes->get("statistics_sale_type3_day", "Admin\AdminStatisticsController::statistics_sale_type3_day");
+        $routes->get("statistics_sale_type3_week", "Admin\AdminStatisticsController::statistics_sale_type3_week");
+        $routes->get("statistics_sale_type3_month", "Admin\AdminStatisticsController::statistics_sale_type3_month");
+        $routes->get("statistics_sale_type3_year", "Admin\AdminStatisticsController::statistics_sale_type3_year");
+
         $routes->get("statistics_sale_list", "Admin\AdminStatisticsController::statistics_sale_list");
 
         $routes->get("member_statistics", "Admin\AdminStatisticsController::member_statistics");
