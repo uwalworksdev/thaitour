@@ -2076,13 +2076,17 @@ class Product extends BaseController
 
         $options = $this->golfOptionModel->getGolfGroup($data['group_idx']);
 
+        $sql_h   = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."' order by goods_name asc ";
+        $query_h = $this->db->query($sql_h);
+        $data['hole_cnt_arr'] = $query_h->getResultArray();
+/*	
         $hole_cnt_arr = array_column($options, 'goods_name');
         //$hour_arr = array_column($options, 'hour');
 
         $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
             return in_array($value, $hole_cnt_arr);
         });
-
+*/
         //$data['hour_arr'] = array_filter(GOLF_HOURS, function ($value) use ($hour_arr) {
         //    return in_array($value, $hour_arr);
         //});
