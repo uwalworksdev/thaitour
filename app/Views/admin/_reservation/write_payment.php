@@ -77,30 +77,39 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="30%"/>
-                                    <col width="30%"/>
-									<!--col width="10%"/>
-                                    <col width="10%"/-->
+                                    <col width="20%"/>
+                                    <col width="*"/>
+									<!--col width="10%"/-->
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
                                 </colgroup>
                                 <tbody>
-                                <tr>
-									<th style="line-height:40px;">결제번호</th>
-									<th style="line-height:40px;">예약번호</th>
-									<th>상품명</th>
-									<!--th>할인전 금액(원)</th>
-									<th>할인금액(원)</th-->
-									<th>결제금액(원)</th>
-                                    <th>예약정보</th>
-                                </tr>
+								<tr>
+									<th style="line-height:40px; text-align:center;">결제번호</th>
+									<th style="line-height:40px; text-align:center;">예약번호</th>
+									<th style="text-align:center;">상품명</th>
+									<!--th style="text-align:center;">할인전 금액(원)</th>
+									<th style="text-align:center;">할인금액(원)</th-->
+									<th style="text-align:center;">결제금액(원)</th>
+									<th style="text-align:center;">결제금액(바트)</th>
+									<th style="text-align:center;">실결제금액(원)</th>
+									<th style="text-align:center;">실결제금액(바트)</th>
+									<th style="text-align:center;">예약정보</th>
+								</tr>
+
 								
                                 <?php foreach ($order_row as $order) { ?>								
                                 <tr>
                                     <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['product_name']?></td>
-									<td align="right"><?=number_format($order['order_price'])?></td>
+									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
+									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
+									<td style="text-align:right;"><?=number_format($order['real_price_won'])?></td>
+									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td>
 									<td>-</td-->
 									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>

@@ -2497,7 +2497,7 @@ class Product extends BaseController
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
             $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
-            $priceCalculate = $this->golfPriceCalculate(
+			$priceCalculate = $this->golfPriceCalculate(
                 $data['option_idx'],
                 $data['hour'],
 				$data['trip_type1'],
@@ -2513,20 +2513,24 @@ class Product extends BaseController
 				
             );
 			
-            $data['order_price']              = $priceCalculate['final_price'];
-            $data['last_price']               = $priceCalculate['final_price'];
-            $data['inital_price']             = $priceCalculate['inital_price'];
-            $data['used_coupon_idx']          = $data['use_coupon_idx'];
-            $data['ip']                       = $this->request->getIPAddress();
-            $data['order_gubun']              = "golf";
-            $data['code_name']                = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name']          = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
-			$data['device_type']              = get_device();
-            $data['baht_thai']                = $this->setting['baht_thai'];
-			$data['device_type']              = get_device();
-			$data['group_no']                 = date('YmdHis');
+            $data['order_price']                = $priceCalculate['final_price'];
+            $data['last_price']                 = $priceCalculate['final_price'];
+            $data['inital_price']               = $priceCalculate['inital_price'];
+            $data['used_coupon_idx']            = $data['use_coupon_idx'];
+            $data['ip']                         = $this->request->getIPAddress();
+            $data['order_gubun']                = "golf";
+            $data['code_name']                  = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name']            = encryptField($data['order_user_name'], 'encode');
+            $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'], 'encode');
+            $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'], 'encode');
+			$data['order_passport_number']      = $this->request->getPost('order_passport_number') ?? "";
+            $data['order_passport_number']      = encryptField($order_passport_number, "encode");
+			$data['order_passport_expiry_date'] = $this->request->getPost('order_passport_expiry_date') ?? "";
+            $data['vehicle_time']               = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            $data['device_type']                = get_device();
+            $data['baht_thai']                  = $this->setting['baht_thai'];
+			$data['device_type']                = get_device();
+			$data['group_no']                   = date('YmdHis');
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];

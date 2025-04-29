@@ -838,107 +838,34 @@
     </script>
 
     <script>
-
-        function calculateTotal() {
-            var depositPrice = document.getElementById('deposit_price').value;
-            var confirmPrice = document.getElementById('order_confirm_price').value;
-
-            depositPrice = parseFloat(depositPrice.replace(/,/g, '')) || 0;
-            confirmPrice = parseFloat(confirmPrice.replace(/,/g, '')) || 0;
-
-            if (depositPrice > 0 || confirmPrice > 0) {
-                var totalPrice = depositPrice + confirmPrice;
-
-                document.getElementById('total_price').value = totalPrice.toLocaleString();
-            } else {
-                document.getElementById('total_price').value = '';
-            }
-        }
-
-        document.getElementById('deposit_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('deposit_price').addEventListener('change', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('change', calculateTotal);
-
-        document.addEventListener('DOMContentLoaded', calculateTotal);
-
-
         function del_it() {
 
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-            $("#ajax_loader").removeClass("display-none");
-            $.ajax({
-                url: "delete",
-                type: "POST",
-                data: "order_idx[]=<?=$order_idx?>",
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response.result == true) {
-                        alert("정상적으로 삭제되었습니다.");
-                        location.href = "list";
-                        return;
-                    } else {
-                        alert(response);
-                        return;
-                    }
-                }
-            });
+			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+				return;
+		    }
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_order_del",
+				type : "POST",
+				data : {
+					"order_idx" : '<?=$order_idx?>'
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.href='/AdmMaster/_reservation/list';
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});	
         }
-
-        function fn_comment() {
-
-            <? if ($_SESSION["member"]["id"] != "") { ?>
-            if ($("#comment").val() == "") {
-                alert("댓글을 입력해주세요.");
-                return;
-            }
-            var queryString = $("form[name=com_form]").serialize();
-            $.ajax({
-                type: "POST",
-                url: "/AdmMaster/_include/comment_proc.php",   
-                data: queryString,
-                cache: false,
-                success: function (ret) {
-                    if (ret.trim() == "OK") {
-                        fn_comment_list();
-                        $("#comment").val("");
-                    } else {
-                        alert("등록 오류입니다." + ret);
-                    }
-                }
-            });
-            <? } else { ?>
-            alert("로그인을 해주세요.");
-            <? } ?>
-        }
-
-        function fn_comment_list() {
-
-            $.ajax({
-                type: "POST",
-                url: "/AdmMaster/_include/comment_list.ajax.php",
-                data: {
-                    "r_code": "order",
-                    "r_idx": "<?=$order_idx?>"
-                },
-                cache: false,
-                success: function (ret) {
-                    $("#comment_list").html(ret);
-                }
-            });
-
-        }
-
-        fn_comment_list();
     </script>
-    <script src="/AdmMaster/_include/comment.js"></script>
-    <script>
+
+	<script>
         $(function () {
             $.datepicker.regional['ko'] = {
                 showButtonPanel: true,
