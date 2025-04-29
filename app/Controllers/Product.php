@@ -2210,7 +2210,7 @@ class Product extends BaseController
 					   b.idx        = '". $option_idx ."' AND 
 					   a.goods_date = '". $order_date ."'";
 					   
-        write_log("golfPriceCalculate- ". $sql);														   
+        //write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
@@ -2265,7 +2265,7 @@ class Product extends BaseController
                 //$info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
 				
 				$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '$option_idx' ";
-				//write_log("golf option- ". $sql);
+				write_log("golf option- ". $sql);
 				$result0 = $this->db->query($sql);
 				$result = $result0->getResultArray();
 				foreach($result as $info)
