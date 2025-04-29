@@ -2325,33 +2325,37 @@ class Product extends BaseController
 							$total_vehicle            += $value;
 						}		
 				
-						if($vehicle_idx[$key] == "4") { 
-							$info['code_name']        = "카트";
-							$info['price_baht']       = $info['cart_price'];
-							$info['price_baht_total'] = $info['cart_price'] * $value;
-							$info['price']            = (int) round($info['cart_price'] * $baht_thai);
-							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
-							$vehicle_arr[]            = $info;
+						if($vehicle_idx[$key] == "4") {
+							if($info['o_cart_cont'] != "Y") { 
+								$info['code_name']        = "카트";
+								$info['price_baht']       = $info['cart_price'];
+								$info['price_baht_total'] = $info['cart_price'] * $value;
+								$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+								$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
+								$vehicle_arr[]            = $info;
 
-							$total_vehicle_price      += $info['price'] * $value;
-							$total_vehicle_price_baht += $info['price_baht'] * $value;
+								$total_vehicle_price      += $info['price'] * $value;
+								$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle            += $value;
+								$total_vehicle            += $value;
+							}	
 						}		
 				
 						if($vehicle_idx[$key] == "5") { 
-							$info['code_name']        = "캐디피";
-							$info['price_baht']       = $info['caddie_fee'];
-							$info['price_baht_total'] = $info['caddie_fee'] * $value;
-							write_log("golf option 5- ". $info['price_baht_total']);
-							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
-							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
-							$vehicle_arr[]            = $info;
+							if($info['o_caddie_cont'] != "Y") { 
+								$info['code_name']        = "캐디피";
+								$info['price_baht']       = $info['caddie_fee'];
+								$info['price_baht_total'] = $info['caddie_fee'] * $value;
+								write_log("golf option 5- ". $info['price_baht_total']);
+								$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
+								$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
+								$vehicle_arr[]            = $info;
 
-							$total_vehicle_price      += $info['price'] * $value;
-							$total_vehicle_price_baht += $info['price_baht'] * $value;
+								$total_vehicle_price      += $info['price'] * $value;
+								$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle            += $value;
+								$total_vehicle            += $value;
+							}	
 						}		
 				
 				}
