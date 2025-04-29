@@ -1625,14 +1625,24 @@ $(document).ready(function() {
 					// 요소 선택
 					var $selectElement = $('#vehicle_4');
 					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.cart_price);
-					$selectElement.attr('data-price_baht', res.cart_price_ba);					
+					if($("#o_cart_cont").val() == "Y") {
+					   $selectElement.attr('data-price', 0);
+					   $selectElement.attr('data-price_baht', 0);	
+					} else {   
+					   $selectElement.attr('data-price', res.cart_price);
+					   $selectElement.attr('data-price_baht', res.cart_price_ba);					
+					}
 					
 					// 요소 선택
 					var $selectElement = $('#vehicle_5');
 					// 동적으로 data 속성 변경
-					$selectElement.attr('data-price', res.caddie_fee);
-					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
+                    if($("#o_caddy_cont").val() == "Y") {
+	                   $selectElement.attr('data-price', 0);
+					   $selectElement.attr('data-price_baht', 0);
+					} else {   
+	                   $selectElement.attr('data-price', res.caddie_fee);
+					   $selectElement.attr('data-price_baht', res.caddie_fee_ba);					
+					}   
 				}
 			})
 			/* 	
