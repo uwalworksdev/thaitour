@@ -97,9 +97,16 @@
                                     <span>1박 평균가격</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
+                                <?php
+                                    if(empty($products["price_type"]) || $products["price_type"] == "W"){
+                                        $unit_price = "원";
+                                    }else{
+                                        $unit_price = "바트";
+                                    }
+                                ?>
                                 <div class="tab_box_area_ tab_price_area">
                                     <p class="tab-currency">
-                                        <span class="currency active">원 · </span><span class="currency">원</span>
+                                        <span class="currency active"><?=$unit_price?> · </span><span class="currency"><?=$unit_price?></span>
                                     </p>
 
                                     <div class="slider-container only_web">
@@ -112,7 +119,7 @@
                                     </div>
                                     <div class="filter_price_wrap">
                                         <span class="price_range">
-                                            <i class="price_min">0</i>원 ~ <i class="price_max">0</i>원 이상
+                                            <i class="price_min">0</i><?=$unit_price?> ~ <i class="price_max">0</i><?=$unit_price?> 이상
                                         </span>
                                         <div class="filter">
                                             <button type="button" class="btn_fil_price <?php if(empty($products["price_type"]) || $products["price_type"] == "W"){ echo "active"; } ?>" data-type="W">원</button>
