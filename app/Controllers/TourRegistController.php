@@ -181,9 +181,9 @@ class TourRegistController extends BaseController
             $strSql .= " AND special_price = 'Y' ";
         }
 
-        if ($special_price == "N") {
-            $strSql .= " AND special_price = 'N' ";
-        }
+        //if ($special_price == "N") {
+        //    $strSql .= " AND special_price = 'N' ";
+        //}
         
         if ($hot_deal_yn == "Y") {
             $strSql .= " AND hot_deal_yn = 'Y' ";
@@ -221,7 +221,7 @@ class TourRegistController extends BaseController
         $total_sql = " 
 					SELECT p1.*, c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
 						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
-						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_status != 'D' $strSql  ";
+						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_status != 'D' $strSql group by p1.product_idx ";
         write_log("qwqwqwqw- ". $total_sql); 
 
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
