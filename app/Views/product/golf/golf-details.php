@@ -663,7 +663,7 @@ $(document).ready(function() {
                     <input type="hidden" name="vehicle_idx[]" value="4">
                     <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
-						<option value="1">1대</option>
+						<option value="1" selected>1대</option>
 						<option value="2">2대</option>
 						<option value="3">3대</option>
 						<option value="4">4대</option>
