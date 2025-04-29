@@ -48,7 +48,7 @@ $(document).ready(function() {
 				}
             }
 			
-            calculatePrice();			
+            //calculatePrice();			
     });
 });
 </script>
