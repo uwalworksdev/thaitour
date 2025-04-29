@@ -2157,7 +2157,10 @@ class Product extends BaseController
 
         $sql_opt = " SELECT a.*, b.*  FROM tbl_golf_price a
 		                              LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx AND b.group_idx > '0'
-								      WHERE a.product_idx = '" . $product_idx . "' AND a.goods_name = '" . $hole_cnt . "' AND a.goods_date = '" . $golf_date . "' ";
+								      WHERE a.product_idx = '" . $product_idx . "' 
+									  AND a.goods_name = '" . $hole_cnt . "' 
+									  AND b.group_idx  > '0'
+									  AND a.goods_date = '" . $golf_date . "' ";
         write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
         $query_opt = $this->db->query($sql_opt);
         $options   = $query_opt->getResultArray();
