@@ -2336,7 +2336,7 @@ class Product extends BaseController
 				
 						if($vehicle_idx[$key] == "4") {
 							if($info['o_cart_cont'] != "Y") { 
-								$info['code_name']        = "카트";
+								$info['code_name']        = "카트xx";
 								$info['price_baht']       = $info['cart_price'];
 								$info['price_baht_total'] = $info['cart_price'] * $value;
 								$info['price']            = (int) round($info['cart_price'] * $baht_thai);
