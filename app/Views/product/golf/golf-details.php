@@ -1424,8 +1424,8 @@ $(document).ready(function() {
 					$select_3.attr("data-price_baht",  $(".card-item").data('vehicle_price3_baht'));
 					
 					$select_4.attr("data-idx",         $(".card-item").data('idx'));
-					$select_4.attr("data-price",       $(".card-item").data('cart_fee_won'));
-					$select_4.attr("data-price_baht",  $(".card-item").data('cart_fee_baht'));
+					$select_4.attr("data-price",       $(".card-item").data('cart_price_won'));
+					$select_4.attr("data-price_baht",  $(".card-item").data('cart_price_baht'));
 					
 					$select_5.attr("data-idx",         $(".card-item").data('idx'));
 					$select_5.attr("data-price",       $(".card-item").data('caddie_fee_won'));
