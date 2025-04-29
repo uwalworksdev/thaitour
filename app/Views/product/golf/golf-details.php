@@ -292,7 +292,7 @@ $(document).ready(function() {
                             <span class="label">홀수</span>
                             <div class="tag-list">
                                 <?php foreach ($hole_cnt_arr as $row) : ?>
-                                    <span class="tag tag-js" data-tab="<?= $row['hole'] ?>"><?= $row['hole'] ?>홀</span>
+                                    <span class="tag tag-js" data-tab="<?= esc(str_replace('홀', '', $row['hole'])) ?>"><?= esc(str_replace('홀', '', $row['hole'])) ?>홀</span>
                                 <?php endforeach; ?>
                             </div>
                         </div>
