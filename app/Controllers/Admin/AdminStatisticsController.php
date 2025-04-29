@@ -332,6 +332,26 @@ class AdminStatisticsController extends BaseController
         return view('admin/_statistics/member_statistics');
     }
 
+    public function member_statistics_yoil()
+    {
+        return view('admin/_statistics/member_statistics_yoil');
+    }
+
+    public function member_statistics_day()
+    {
+        return view('admin/_statistics/member_statistics_day');
+    }
+
+    public function member_statistics_month()
+    {
+        return view('admin/_statistics/member_statistics_month');
+    }
+
+    public function member_statistics_year()
+    {
+        return view('admin/_statistics/member_statistics_year');
+    }
+
     public function member_statistics3()
     {
         return view('admin/_statistics/member_statistics3');

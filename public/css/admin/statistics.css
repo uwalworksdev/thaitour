@@ -388,7 +388,8 @@
     height: 30px;
     padding: 20px 30px;
     width: calc(100% - 60px);
-    background: #34353C;
+    background: #fff;
+    border: 1px solid #dadada;
     text-align: left;
     position: relative;
 }
@@ -801,7 +802,7 @@
 
 .searchIcon2 {
     position: absolute;
-    right: 55px;
+    right: 5%;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;

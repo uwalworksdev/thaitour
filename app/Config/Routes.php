@@ -519,6 +519,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("statistics_sale_list", "Admin\AdminStatisticsController::statistics_sale_list");
 
         $routes->get("member_statistics", "Admin\AdminStatisticsController::member_statistics");
+        $routes->get("member_statistics_yoil", "Admin\AdminStatisticsController::member_statistics_yoil");
+        $routes->get("member_statistics_day", "Admin\AdminStatisticsController::member_statistics_day");
+        $routes->get("member_statistics_month", "Admin\AdminStatisticsController::member_statistics_month");
+        $routes->get("member_statistics_year", "Admin\AdminStatisticsController::member_statistics_year");
+
+        $routes->get("member_statistics", "Admin\AdminStatisticsController::member_statistics");
+
         $routes->get("member_statistics3", "Admin\AdminStatisticsController::member_statistics3");
         $routes->get("member_statistics4", "Admin\AdminStatisticsController::member_statistics4");
         $routes->get("member_statistics5", "Admin\AdminStatisticsController::member_statistics5");
