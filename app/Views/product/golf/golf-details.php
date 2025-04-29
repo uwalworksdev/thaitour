@@ -1512,6 +1512,13 @@ $(document).ready(function() {
                 return false;
             }
 
+
+			if($("#o_caddy_due").val() == "Y" && ($("#vehicle_5").val() == null || $("#vehicle_5").val() == "" || $("#vehicle_5").val() == "0")) {
+                alert('본홀은 캐디의무예약 홀입니다 캐디를 선택해주세요.');
+                $("#vehicle_5").focus();
+                return false;
+            }
+
 			$("#frm").submit();
         }
 
