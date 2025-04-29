@@ -838,34 +838,9 @@
     </script>
 
     <script>
-
-        function calculateTotal() {
-            var depositPrice = document.getElementById('deposit_price').value;
-            var confirmPrice = document.getElementById('order_confirm_price').value;
-
-            depositPrice = parseFloat(depositPrice.replace(/,/g, '')) || 0;
-            confirmPrice = parseFloat(confirmPrice.replace(/,/g, '')) || 0;
-
-            if (depositPrice > 0 || confirmPrice > 0) {
-                var totalPrice = depositPrice + confirmPrice;
-
-                document.getElementById('total_price').value = totalPrice.toLocaleString();
-            } else {
-                document.getElementById('total_price').value = '';
-            }
-        }
-
-        document.getElementById('deposit_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('deposit_price').addEventListener('change', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('keyup', calculateTotal);
-        document.getElementById('order_confirm_price').addEventListener('change', calculateTotal);
-
-        document.addEventListener('DOMContentLoaded', calculateTotal);
-
-
         function del_it() {
 
-			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다....")) {
 				return;
 		    }
 			var message = "";
