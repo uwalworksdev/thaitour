@@ -89,7 +89,7 @@
         }
 
         .comment_box .item {
-            padding: 3rem 5.8rem 3rem 3rem;
+            padding: 3rem 0 3rem 3rem;
         }
 
         .comment_box .item .info {
