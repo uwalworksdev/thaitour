@@ -70,6 +70,11 @@
         margin-left: auto;
         display: flex;
         align-items: center;
+        gap: 5px;
+    }
+
+    .comment_box .item .info .eval span {
+        margin-left: 3px;
     }
 
 
