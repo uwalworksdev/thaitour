@@ -38,6 +38,7 @@
     .comment_box .item .info .eval {
         margin-left: auto;
     }
+
     .comment_box .item .info .eval img {
         width: 2.5rem;
     }
@@ -65,6 +66,7 @@
     .custom-golf-detail .golf-table tbody td {
         white-space: wrap;
         line-height: 1.4;
+        overflow-wrap: break-word;
     }
 
     @media screen and (max-width: 850px) {
@@ -78,6 +80,7 @@
             font-weight: 500;
             margin-top: 3.8rem;
         }
+
         .section6 .qa_ques .list_star img {
             width: 2.8rem;
         }
@@ -113,22 +116,33 @@
         .comment_box .item .content {
             font-size: 2.8rem;
         }
+
         .content-sub-hotel-detail .main {
             width: unset;
         }
+
         .view_detail {
-        padding-bottom: 12rem;
-    }
+            padding-bottom: 12rem;
+        }
 
-    .comment_box .item .info .eval {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-}
+        .comment_box .item .info .eval {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
 
-.comment_box .item .info .eval span {
-    margin-left: 0.7rem;
-}
+        .comment_box .item .info .eval span {
+            margin-left: 0.7rem;
+        }
+
+        .content-sub-hotel-detail .location-container {
+            gap: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+        }
     }
 </style>
 
