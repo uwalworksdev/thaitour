@@ -2444,6 +2444,7 @@ class Product extends BaseController
 		$data['caddy_cnt']        = $this->request->getVar('caddy_cnt');
 		$data['caddy_price']      = $this->request->getVar('caddy_price');
 		$data['cart_cnt']         = $this->request->getVar('vehicle_4');
+		$data['caddie_cnt']       = $this->request->getVar('vehicle_5');
 
         $data['teeoff_hour']      = $this->request->getVar('teeoff_hour');
         $data['teeoff_min']       = $this->request->getVar('teeoff_min');
