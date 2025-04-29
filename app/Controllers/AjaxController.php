@@ -87,18 +87,20 @@ class AjaxController extends BaseController {
     }
 
     public function get_golf_option() {
+        $db           = \Config\Database::connect();
 		$setting      = homeSetInfo();
-        $option_idx  = $this->request->getPost('option_idx');
+        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+		
+        $product_idx  = $this->request->getPost('product_idx');
         $goods_date   = $this->request->getPost('goods_date');
         $goods_name   = $this->request->getPost('goods_name');
-        $db           = \Config\Database::connect();
-        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
-		$rows = $db->table('tbl_golf_option')
-			->where('idx', $option_idx)
-			->get()
-			->getResultArray();
-        write_log("get_golf_option- ". $db->getLastQuery());
+		$sql = "SELEWCT a.*. b.* FROM tbl_golf_option a 
+		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
+								 WHERE product_idx = '". $product_idx ."' 
+								 AND goods_date = '". $goods_date ."' 
+								 AND goods_name = '". $goods_name ."' "; 
+		$rows = $db->query($sql)->getResultArray();
 		foreach ($rows as $row) {
 				 
                  $option_idx        = $row['idx'];	
