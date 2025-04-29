@@ -764,29 +764,31 @@
         }
     </script>
 
-    <script>
-	function del_it() {
-		if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
-			return;
-		}
+        <script>
+	    function del_it() {
+			if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+				return;
+		    }
 
+			var message = "";
 			$.ajax({
-				url: "/ajax/ajax_order_del",
-				type: "POST",
-				data: {
+				url  : "/ajax/ajax_order_del",
+				type : "POST",
+				data : {
 					'order_idx': "<?=$order_idx?>"
 				},
-				dataType: "json",
-				success: function(res) {
-					var message = res.message;
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
 					alert(message);
 					location.reload();
 				},
-				error: function(xhr, status, error) {
-					console.error(xhr.responseText); // 서버 응답 내용 확인
-					alert('Error: ' + error);
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 				}
-			});
+			});			
 		}
 		
         function fn_comment() {

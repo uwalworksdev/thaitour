@@ -4145,47 +4145,48 @@ class AjaxController extends BaseController {
 		return $response;
 	}
 
-	private function ajax_order_del()
-	{
-		$db = \Config\Database::connect();
+private function ajax_order_del()
+{
+    $db = \Config\Database::connect();
 
-		try {
-			$orderIdx = $this->request->getPost('order_idx');
+    try {
+        $orderIdx = $this->request->getPost('order_idx');
 
-			if (empty($orderIdx)) {
-				return $this->response
-					->setStatusCode(400)
-					->setJSON([
-						'result'  => false,
-						'message' => 'order_idx not provided'
-					]);
-			}
+        if (empty($orderIdx)) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'result'  => false,
+                    'message' => 'order_idx not provided'
+                ]);
+        }
 
-			// Prepared Query로 삭제
-			$builder = $db->table('tbl_order_mst');
-			$builder->whereIn('order_idx', $orderIdx);
-			$deleted = $builder->delete();
+        // 단일 값이 넘어왔을 경우 배열로 변환
+        if (!is_array($orderIdx)) {
+            $orderIdx = [$orderIdx];
+        }
 
-			if ($deleted) {
-				$msg = "예약 삭제 완료";
-			} else {
-				$msg = "예약 삭제 실패";
-			}
+        $builder = $db->table('tbl_order_mst');
+        $builder->whereIn('order_idx', $orderIdx);
+        $deleted = $builder->delete();
 
-			return $this->response
-				->setStatusCode(200)
-				->setJSON([
-					'result'  => $deleted ? true : false,
-					'message' => $msg
-				]);
-		} catch (\Exception $e) {
-			return $this->response
-				->setStatusCode(500)
-				->setJSON([
-					'result' => false,
-					'message' => $e->getMessage()
-				]);
-		}
-	}
+        $msg = $deleted ? "예약 삭제 완료" : "예약 삭제 실패";
+
+        return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
+                'result'  => $deleted ? true : false,
+                'message' => $msg
+            ]);
+    } catch (\Exception $e) {
+        return $this->response
+            ->setStatusCode(500)
+            ->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+    }
+}
+
 
 }	
