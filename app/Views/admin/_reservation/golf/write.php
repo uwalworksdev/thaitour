@@ -775,7 +775,7 @@
 				url  : "/ajax/ajax_order_del",
 				type : "POST",
 				data : {
-					'order_idx': ""
+					"order_idx" : ''
 				},
 				dataType : "json",
 				async: false,
