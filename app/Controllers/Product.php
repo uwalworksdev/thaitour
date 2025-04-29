@@ -1970,7 +1970,7 @@ class Product extends BaseController
 		$builder->select('a.*, b.*');
 		$builder->join('tbl_golf_option b', 'a.o_idx = b.idx', 'left');
 		$builder->where('a.product_idx', $product_idx);
-		$builder->where('a.goods_date >=', date('Y-m-d'));
+		$builder->where('a.goods_date >=', date('Y-m-d', strtotime('+1 day')) );
 		$builder->where('a.use_yn !=', 'N');
 		$builder->orderBy('a.goods_date', 'ASC');
 		$builder->orderBy('a.goods_name', 'ASC');
@@ -3391,7 +3391,6 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
-                'search_keyword' => $search_keyword,
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
