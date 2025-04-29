@@ -7,8 +7,6 @@ $(document).ready(function() {
 			console.log('홀- '+dataTabValue);
 			console.log('caddie fee- '+$("#caddie_fee_sel").val());
 
-            getOptions();
-			 
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
@@ -46,7 +44,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     // 페이지 어디든 클릭 시 실행
     $(document).on('click', function(event) {
-	 	
+	 	/*
 			if($("#o_caddy_due").val() == "Y") {
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
@@ -75,7 +73,7 @@ $(document).ready(function() {
 				   $("#cart_no").hide();	
 				}
             }
-	 		
+	 	*/	
             calculatePrice();			
     });
 });
