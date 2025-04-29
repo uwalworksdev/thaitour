@@ -2189,6 +2189,12 @@ class Product extends BaseController
             $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
             $options[$key]['option_price_won']  = $option_price_won;
+			
+            $options[$key]['o_cart_due']        = $value['o_cart_due'];
+            $options[$key]['o_caddy_due']       = $value['o_caddy_due'];
+            $options[$key]['o_cart_cont']       = $value['o_cart_cont'];
+            $options[$key]['o_caddy_cont']      = $value['o_caddy_cont'];
+			
         }
 
         return view('product/golf/option_list', ['options' => $options]);
