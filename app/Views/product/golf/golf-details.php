@@ -13,11 +13,14 @@ $(document).ready(function() {
 			}   
 			
 			if($("#o_caddy_due").val() == "Y") {
+				alert('11111111111');
 			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
 			   $("#caddy_yes").show();	
 			   $("#caddy_no").hide();	
 			} else {
 				if($("#o_caddy_cont").val() == "Y") {
+				alert('222222222222');
+					
 				   $("#vehicle_5").val('0');
 				   $("#caddy_no").show();	
 				   $("#caddy_yes").hide();	
@@ -32,6 +35,8 @@ $(document).ready(function() {
 			   $("#cart_no").hide();	
 			} else {	
 				if($("#o_cart_cont").val() == "Y") {
+									alert('3333333333');
+
     			   $("#vehicle_4").val('0');
 				   $("#cart_no").show();	
 				   $("#cart_yes").hide();	
