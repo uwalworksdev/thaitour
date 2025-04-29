@@ -90,7 +90,7 @@ $(document).ready(function() {
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
-                <input type="hidden" name="order_date" id="order_date" value="">
+                <input type="text" name="order_date" id="order_date" value="">
 
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
@@ -1754,7 +1754,6 @@ $(document).ready(function() {
 
         function sel_date(day, date = null) {
             if (date) {
-				alert(date);
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
