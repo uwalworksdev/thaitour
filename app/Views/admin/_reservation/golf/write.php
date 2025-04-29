@@ -765,33 +765,32 @@
     </script>
 
     <script>
-        function del_it() {
+function del_it() {
+    if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+        return;
+    }
+    $("#ajax_loader").removeClass("display-none");
 
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
+    $.ajax({
+        url: "/_reservation/delete", // 정확한 경로로 변경
+        type: "POST",
+        data: { 'order_idx[]': "<?=$order_idx?>" }, // 문자열 말고 객체로 전달
+        dataType: "json", // 서버 응답을 JSON으로 기대
+        error: function (request, status, error) {
+            alert("code : " + request.status + "\r\nmessage : " + request.responseText); // 오타 수정
+            $("#ajax_loader").addClass("display-none");
+        },
+        success: function (response) {
+            if (response.result === true) {
+                alert("정상적으로 삭제되었습니다.");
+                location.href = "/_reservation/list"; // 정확한 경로로 이동
+            } else {
+                alert(response.message || "삭제에 실패했습니다.");
             }
-            $("#ajax_loader").removeClass("display-none");
-            $.ajax({
-                url: "delete",
-                type: "POST",
-                data: "order_idx[]=<?=$order_idx?>",
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response.result == true) {
-                        alert("정상적으로 삭제되었습니다.");
-                        location.href = "list";
-                        return;
-                    } else {
-                        alert(response);
-                        return;
-                    }
-                }
-            });
         }
+    });
+}
+
 
         function fn_comment() {
 
