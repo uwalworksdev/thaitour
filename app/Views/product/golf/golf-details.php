@@ -91,6 +91,8 @@ $(document).ready(function() {
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
+
+                <input type="text" name="group_idx" id="group_idx" value="<?=$group_idx?>">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
                 <input type="hidden" name="o_caddy_due" id="o_caddy_due" value="<?=$golf_price['o_caddy_due']?>">
@@ -1573,13 +1575,15 @@ $(document).ready(function() {
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
  			
+			var goods_date = $("#order_date").val();
 			var goods_name = $(this).data('tab') + '홀';
- 			
+
 			$.ajax({
 				url: "/ajax/get_golf_option",
 				type: "POST",
 				data: {
 					product_idx : $('input[name="product_idx"]').val(),
+					goods_date  : goods_date,
 					goods_name  : goods_name
 				},
 				dataType: "json",
