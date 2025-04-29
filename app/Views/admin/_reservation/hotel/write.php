@@ -863,55 +863,9 @@
 				}
 			});	
         }
-
-        function fn_comment() {
-
-            <? if ($_SESSION["member"]["id"] != "") { ?>
-            if ($("#comment").val() == "") {
-                alert("댓글을 입력해주세요.");
-                return;
-            }
-            var queryString = $("form[name=com_form]").serialize();
-            $.ajax({
-                type: "POST",
-                url: "/AdmMaster/_include/comment_proc.php",   
-                data: queryString,
-                cache: false,
-                success: function (ret) {
-                    if (ret.trim() == "OK") {
-                        fn_comment_list();
-                        $("#comment").val("");
-                    } else {
-                        alert("등록 오류입니다." + ret);
-                    }
-                }
-            });
-            <? } else { ?>
-            alert("로그인을 해주세요.");
-            <? } ?>
-        }
-
-        function fn_comment_list() {
-
-            $.ajax({
-                type: "POST",
-                url: "/AdmMaster/_include/comment_list.ajax.php",
-                data: {
-                    "r_code": "order",
-                    "r_idx": "<?=$order_idx?>"
-                },
-                cache: false,
-                success: function (ret) {
-                    $("#comment_list").html(ret);
-                }
-            });
-
-        }
-
-        fn_comment_list();
     </script>
-    <script src="/AdmMaster/_include/comment.js"></script>
-    <script>
+
+	<script>
         $(function () {
             $.datepicker.regional['ko'] = {
                 showButtonPanel: true,
