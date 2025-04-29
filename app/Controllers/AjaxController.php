@@ -4161,11 +4161,6 @@ class AjaxController extends BaseController {
 					]);
 			}
 
-			// order_idx가 배열인지 체크
-			if (!is_array($orderIdx)) {
-				$orderIdx = [$orderIdx];
-			}
-
 			// Prepared Query로 삭제
 			$builder = $db->table('tbl_order_mst');
 			$builder->whereIn('order_idx', $orderIdx);
@@ -4180,7 +4175,7 @@ class AjaxController extends BaseController {
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
-					'result' => $deleted ? true : false,
+					'result'  => $deleted ? true : false,
 					'message' => $msg
 				]);
 		} catch (\Exception $e) {
