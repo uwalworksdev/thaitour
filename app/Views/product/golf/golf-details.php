@@ -1907,4 +1907,4 @@ $(document).ready(function() {
             setCookie('viewedProducts', JSON.stringify(viewedProducts), 1);
         }
     </script>
-<?php $this->endSection(); ?>
+<?php $this->endSection(); ?>      
