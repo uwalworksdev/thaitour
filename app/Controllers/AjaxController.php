@@ -88,18 +88,17 @@ class AjaxController extends BaseController {
 
     public function get_golf_option() {
 		$setting      = homeSetInfo();
-        $product_idx  = $this->request->getPost('product_idx');
+        $option_idx  = $this->request->getPost('option_idx');
+        $goods_date   = $this->request->getPost('goods_date');
         $goods_name   = $this->request->getPost('goods_name');
         $db           = \Config\Database::connect();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 
 		$rows = $db->table('tbl_golf_option')
-			->where('product_idx', $product_idx)
-			->where('goods_name',  $goods_name)
-			->where('group_idx >' ,  0)
+			->where('idx', $option_idx)
 			->get()
 			->getResultArray();
-write_log("get_golf_option- ". $db->getLastQuery());
+        write_log("get_golf_option- ". $db->getLastQuery());
 		foreach ($rows as $row) {
 				 
                  $option_idx        = $row['idx'];	
