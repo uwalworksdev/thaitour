@@ -38,6 +38,9 @@
     .comment_box .item .info .eval {
         margin-left: auto;
     }
+    .comment_box .item .info .eval img {
+        width: 2.5rem;
+    }
 
     .comment_box .item .info .time {
         font-size: 18px;
@@ -74,6 +77,9 @@
             font-size: 2.8rem;
             font-weight: 500;
             margin-top: 3.8rem;
+        }
+        .section6 .qa_ques .list_star img {
+            width: 2.8rem;
         }
 
         .comment_box {
@@ -113,6 +119,16 @@
         .view_detail {
         padding-bottom: 12rem;
     }
+
+    .comment_box .item .info .eval {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.comment_box .item .info .eval span {
+    margin-left: 0.7rem;
+}
     }
 </style>
 
