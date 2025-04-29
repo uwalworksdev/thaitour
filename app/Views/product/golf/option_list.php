@@ -11,8 +11,8 @@
 	    $vehicle_price1_won  = (int)($option['vehicle_price1'] * $baht_thai);
 	    $vehicle_price2_won  = (int)($option['vehicle_price2'] * $baht_thai);
 	    $vehicle_price3_won  = (int)($option['vehicle_price3'] * $baht_thai);
-		$caddy_fee_won       = (int)($option['caddie_fee'] * $baht_thai);
-		$caddy_fee_baht      = $option['caddie_fee'];
+		$caddie_fee_won      = (int)($option['caddie_fee'] * $baht_thai);
+		$caddie_fee_baht     = $option['caddie_fee'];
 		$cart_price_won      = (int)($option['cart_price'] * $baht_thai);
 		$cart_price_baht     = $option['cart_price'];
 	    $vehicle_price1_baht = $option['vehicle_price1'];
@@ -40,8 +40,8 @@
 		data-o_afternoon_yn      = "<?=$o_afternoon_yn?>"
 		data-o_night_yn          = "<?=$o_night_yn?>"
         data-option_price_baht   = "<?=$option['option_price_baht']?>"
-        data-caddie_fee_won      = "<?=$caddy_fee_won?>"
-        data-caddie_fee_baht     = "<?=$caddy_fee_baht?>"
+        data-caddie_fee_won      = "<?=$caddie_fee_won?>"
+        data-caddie_fee_baht     = "<?=$caddie_fee_baht?>"
         data-cart_price_won      = "<?=$cart_price_won?>"
         data-cart_price_baht     = "<?=$cart_price_baht?>"
         data-cart_pie_fee        = "<?=$option['cart_pie_fee']?>" onclick="selectOption(this)">
