@@ -99,7 +99,7 @@ class AjaxController extends BaseController {
 			->where('group_idx >' ,  0)
 			->get()
 			->getResultArray();
-
+write_log("get_golf_option- ". $db->getLastQuery());
 		foreach ($rows as $row) {
 				 
                  $option_idx        = $row['idx'];	
