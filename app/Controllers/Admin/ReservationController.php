@@ -733,33 +733,22 @@ class ReservationController extends BaseController
         }
     }
 
-    public function delete()
-    {
-
-        try {
-            $order_idx = $this->request->getPost('order_idx');
-            if (is_array($order_idx)) {
-                $this->db->transBegin();
-
-                foreach ($order_idx as $idx) {
-                    $this->orderModel->update($idx, [
-                        "order_status" => "D",
-                        "order_d_date" => Time::now('Asia/Seoul', 'en_US')
-                    ]);
-                }
-
-                $this->db->transCommit();
-                $resultArr['result'] = true;
-                $resultArr['message'] = "정상적으로 삭제되었습니다.";
-            }
-        } catch (Exception $err) {
-            $this->db->transRollback();
-            $resultArr['result'] = false;
-            $resultArr['message'] = $err->getMessage();
-        } finally {
-            return $this->response->setJSON($resultArr);
-        }
+public function delete()
+{
+    $orderIdxs = $this->request->getPost('order_idx');
+    if (!$orderIdxs) {
+        return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
     }
+
+    // 삭제 로직 수행 예시
+    foreach ($orderIdxs as $orderIdx) {
+        // 모델을 이용해 삭제
+        $this->orderModel->delete($orderIdx);
+    }
+
+    return $this->response->setJSON(['result' => true]);
+}
+
 
     function get_code()
     {

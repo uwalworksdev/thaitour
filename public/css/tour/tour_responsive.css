@@ -4254,7 +4254,7 @@
   }
 
   .travel_info .list_tab_head .tab {
-    padding: 1.2rem 2.9rem;
+    padding: 1.2rem 3.2rem;
     color: #757575;
     font-size: 2.6rem;
     font-weight: 500;
@@ -4268,11 +4268,291 @@
   .travel_info .list_tab_head {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 2.7rem;
     align-items: center;
     margin-bottom: 5.2rem;
     flex-wrap: wrap;
   }
+
+  .travel_info .head_list_product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .travel_info .head_list_product .total_text {
+    font-size: 2.6rem;
+    font-weight: 500;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .travel_info .head_list_product select {
+    width: 20rem;
+    height: 8.8rem;
+    border: 1px solid #dbdbdb;
+    padding: 0 2.5rem;
+    margin-left: 0;
+    background-size: 2rem;
+  }
+
+  .travel_info .head_list_product .input_search_box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #dbdbdb;
+    padding-right: 3rem;
+    margin-left: 1.5rem;
+    height: 8.8rem;
+    width: unset;
+    flex: 1;
+  }
+
+  .travel_info .head_list_product .input_search_box img {
+    cursor: pointer;
+    width: 3.6rem;
+  }
+
+  .travel_info .list_product .item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 6rem;
+    padding: 4.2rem 0;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .travel_info .list_product .item .img {
+    width: 100%;
+  }
+
+  .travel_info .list_product .item .tit {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #757575;
+    display: block;
+  }
+
+  .travel_info .list_product .item .name {
+    font-size: 3rem;
+    margin-bottom: 3.5rem;
+    font-weight: 500;
+  }
+
+  .travel_info .list_product .item .desc {
+    padding: 2.8rem;
+    background-color: #f7f7f7;
+    margin-bottom: 3.3rem;
+  }
+
+  .travel_info .list_product .item .desc_inner {
+    font-size: 2.6rem;
+    color: #757575;
+    line-height: 1.5;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .travel_info .list_product .item .info {
+    color: #757575;
+    font-size: 2.6rem;
+  }
+
+  .travel_info .list_product .item .info .date {
+    padding-right: 1.8rem;
+    border-right: 1px solid #757575;
+  }
+
+  .travel_info .list_product .item .info .author {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    border-right: 1px solid #757575;
+  }
+
+  .travel_info .list_product .item .info .view {
+    padding-left: 1.8rem;
+  }
+
+  .hot_place .sec_banner {
+    position: relative;
+    margin: 6.4rem 0 11rem;
+  }
+
+  .hot_place .sec_banner img {
+    width: 100%;
+  }
+
+  .hot_place .sec_banner .text_banner span {
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    display: block;
+  }
+
+  .hot_place .sec_banner .text_banner p {
+    font-size: 2.8rem;
+    font-weight: 400;
+  }
+
+  .hot_place .input_search_box {
+    display: flex;
+    width: 44.5rem;
+    height: 8.8rem;
+    border: 1px solid #dbdbdb;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 2.6rem;
+    margin-left: auto;
+    margin-bottom: 3rem;
+  }
+
+  .hot_place .input_search_box img {
+    width: 3.8rem;
+  }
+
+  .hot_place .list_place {
+    padding-top: 4rem;
+    padding-bottom: 5.8rem;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    display: flex;
+    gap: 4.8rem;
+    flex-wrap: wrap;
+  }
+
+  .hot_place .list_place .item {
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .hot_place .input_search_box input {
+    border: none;
+    outline: none;
+    font-size: 2.6rem;
+    height: 100%;
+  }
+
+  .hot_place .list_place .item .title {
+    margin-top: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.5rem;
+    color: #757575;
+  }
+
+  .hot_place .list_place .item .title .star {
+    color: #252525;
+    font-size: 2.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hot_place .list_place .item .title .star img {
+    width: 2.1rem;
+  }
+
+  .hot_place .list_place .item .title span {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .hot_place .list_place .item .img {
+    width: 100%;
+    height: unset;
+  }
+
+  .hot_place .list_place .item .name {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 2rem;
+  }
+
+  .hot_place .list_place .item .desc {
+    font-size: 2.6rem;
+    font-weight: 400;
+    margin-top: 3rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .hot_place .list_place .item .comt {
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: #757575;
+    margin-top: 2.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .hot_place .list_place .item .comt .acc {
+    font-weight: 500;
+    margin-right: 1.6rem;
+  }
+
+  .custom.pagination {
+    margin: 5rem 0 15rem 0 !important;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .custom .page-link {
+    display: flex;
+    margin: 0 0.6rem;
+    padding: 0;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    justify-content: center;
+    align-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .travel_info .head_list_product .input_search_box input {
+    border: none;
+    outline: none;
+    font-size: 2.6rem;
+    height: 100%;
+  }
+
+  .infographic .list_infographic {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5.2rem 3.2rem;
+    padding-bottom: 5.8rem;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .infographic .list_infographic .item {
+    width: calc((100% - calc(3.2rem * 1)) / 2);
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+
+  .infographic .list_infographic .item p {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-top: 3.5rem;
+  }
+
 
 
 }
