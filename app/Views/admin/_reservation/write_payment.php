@@ -77,7 +77,7 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="30%"/>
+                                    <col width="20%"/>
                                     <col width="*"/>
 									<!--col width="10%"/-->
                                     <col width="10%"/>
