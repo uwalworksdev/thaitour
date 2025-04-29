@@ -1319,7 +1319,37 @@ $(document).ready(function() {
 
             $("#last_price").text(number_format(last_price));
             $("#last_price_baht").text(number_format(last_price_baht));
-				
+
+			if($("#o_caddy_due").val() == "Y") {
+			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
+			   $("#caddy_yes").show();	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $('#vehicle_5').attr('data-price', 0).attr('data-price_baht', 0);
+				   $("#vehicle_5").val('0');
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").show();	
+				   $("#caddy_no").hide();	
+				}
+            } 	
+			
+			if($("#o_cart_due").val() == "Y") {
+			   $("#cart_yes").show();	
+			   $("#cart_no").hide();	
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+                   $('#vehicle_4').attr('data-price', 0).attr('data-price_baht', 0);
+    			   $("#vehicle_4").val('0');
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+				   $("#cart_yes").show();	
+				   $("#cart_no").hide();	
+				}
+            }				
         }
 
         function selectOption(obj) {
