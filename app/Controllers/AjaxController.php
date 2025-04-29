@@ -99,7 +99,7 @@ class AjaxController extends BaseController {
 			->where('group_idx >' ,  0)
 			->get()
 			->getResultArray();
-
+echo $builder->getCompiledSelect(); // 실행 전 쿼리 확인
 		foreach ($rows as $row) {
 				 
                  $option_idx        = $row['idx'];	
