@@ -491,6 +491,36 @@
                 }
             });
         }
+		
+		function payment_partial_cancel(no, pg) {
+			if (!confirm('부분 전체취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
+                return false;
+
+            let url = "";
+            if(pg == "NICEPAY") url = "/nicepay_refund";	
+            if(pg == "INICIS")  url = "/inicis_refund";	
+            var message = "";
+            $.ajax({
+
+                url: url,
+                type: "POST",
+                data: {
+                    "payment_no" : no 
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+			
+		}
     </script>
 
 	<script>
