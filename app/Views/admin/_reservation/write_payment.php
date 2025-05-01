@@ -78,7 +78,9 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="20%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                    <col width="10%"/>
                                     <col width="*"/>
 									<!--col width="10%"/-->
                                     <col width="10%"/>
@@ -92,9 +94,9 @@
 								<tr>
 									<th style="line-height:40px; text-align:center;">결제번호</th>
 									<th style="line-height:40px; text-align:center;">예약번호</th>
+									<th style="line-height:40px; text-align:center;">예약일자</th>
+									<th style="line-height:40px; text-align:center;">취소일자</th>
 									<th style="text-align:center;">상품명</th>
-									<!--th style="text-align:center;">할인전 금액(원)</th>
-									<th style="text-align:center;">할인금액(원)</th-->
 									<th style="text-align:center;">결제금액(원)</th>
 									<th style="text-align:center;">결제금액(바트)</th>
 									<th style="text-align:center;">실결제금액(원)</th>
@@ -108,6 +110,8 @@
                                 <tr>
                                     <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
+                                    <td><?=$order['order_date']?></td>
+                                    <td><?=$order['CancelDate_1']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
