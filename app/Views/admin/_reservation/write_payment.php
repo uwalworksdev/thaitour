@@ -186,6 +186,7 @@
 
                                     <th>결제금액 취소</th>
                                         <td>
+										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
@@ -214,6 +215,24 @@
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">주문취소</button>
                                         </td>
                                     </tr>
+
+<script>
+$(document).ready(function () {
+    $('.part_cancel').on('change', function () {
+        let total = 0;
+        $('.part_cancel:checked').each(function () {
+            total += parseFloat($(this).data('amt'));
+        });
+
+        let limit = parseFloat($('#cancel_amt_tot').val());
+
+        if (total > limit) {
+            alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
+            $(this).prop('checked', false); // 방금 체크한 항목을 해제
+        }
+    });
+});
+</script>
 
                                 <script>
 								function status_upd()
