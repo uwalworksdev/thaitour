@@ -476,8 +476,7 @@
                 url: url,
                 type: "POST",
                 data: {
-                    "payment_no" : no,
-                    "gubun"      : type
+                    "payment_no" : no 
                 },
                 dataType: "json",
                 async: false,
