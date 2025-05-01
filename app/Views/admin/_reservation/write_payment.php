@@ -128,7 +128,7 @@
                                 <?php } ?>
 
                                 <tr>
-									<td colspan="9" style="text-align:right;">부분취소</td>
+									<td colspan="8" style="text-align:right;">부분취소</td>
 									<td colspan="2" style="text-align:right;">123,000 원</td>
 									<td style="text-align: center;">
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('4025');">부분취소</button>
