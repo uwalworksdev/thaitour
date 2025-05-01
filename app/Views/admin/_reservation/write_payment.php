@@ -480,7 +480,8 @@
                 url: url,
                 type: "POST",
                 data: {
-                    "payment_no": no
+                    "payment_no" : no,
+                    "gubun"      : gubun
                 },
                 dataType: "json",
                 async: false,
