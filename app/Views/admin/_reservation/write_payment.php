@@ -84,6 +84,7 @@
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
+                                    <col width="5%"/>
                                     <col width="10%"/>
                                 </colgroup>
                                 <tbody>
@@ -97,6 +98,7 @@
 									<th style="text-align:center;">결제금액(바트)</th>
 									<th style="text-align:center;">실결제금액(원)</th>
 									<th style="text-align:center;">실결제금액(바트)</th>
+									<th style="text-align:center;">결제취소</th>
 									<th style="text-align:center;">예약정보</th>
 								</tr>
 
@@ -110,9 +112,13 @@
 									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
 									<td style="text-align:right;"><?=number_format($order['real_price_won'])?></td>
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
-									<!--td>-</td>
-									<td>-</td-->
-									<td><button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button></td>
+									<!--td>-</td-->
+									<td style="text-align: center;">
+									    <input type="checkbox" class="part_cancel" data-amt="<?=$order['real_price_won']?>" > 
+									</td>
+									<td style="text-align: center;">
+									    <button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button>
+									</td>
                                 </tr>
                                 <?php } ?>
 								
