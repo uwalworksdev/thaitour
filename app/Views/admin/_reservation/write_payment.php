@@ -465,9 +465,12 @@
         function payment_cancel(no, pg, type) {
 
             let gubun = "";
-			if(type == "1") gubun = "전체취소"; 
-			if(type == "2") gubun = "부분취소"; 
-
+			if(type == "1") {
+			   gubun = "전체취소"; 
+			} else {
+			   gubun = "부분취소"; 
+            }
+			
 			if (!confirm(gubun+'를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
@@ -481,7 +484,7 @@
                 type: "POST",
                 data: {
                     "payment_no" : no,
-                    "gubun"      : gubun
+                    "gubun"      : type
                 },
                 dataType: "json",
                 async: false,
