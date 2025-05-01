@@ -1022,6 +1022,7 @@ $routes->get('inicis/close', 'InicisController::close');
 $routes->post('inicis/result', 'InicisController::inicisResult');
 $routes->post('inicis/result_m', 'InicisController::inicisResult_m');
 $routes->post('inicis_refund', 'InicisController::inicisRefund');
+$routes->post('inicis_partial_refund', 'InicisController::inicisPartialRefund');
 $routes->get('travel_insurance', 'TravelController::index');
 
 $routes->get('kcp/request', 'KcpController::requestPayment');
