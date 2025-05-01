@@ -64,8 +64,7 @@
                 <input type=hidden name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="partial_cancel_amt" id="partial_cancel_amt" value='0'>
-
-
+                <input type=hidden name="add_mileage" id="add_mileage" value='<?=$add_mileage?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
