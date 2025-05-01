@@ -253,7 +253,7 @@
 										}
 										
 										$("#partial_cancel_amt").val(total);
-										$("#part_amt_txt").txt(total);
+										$("#part_amt_txt").text(total);
 										$("#part").show();
 									});
 								});
