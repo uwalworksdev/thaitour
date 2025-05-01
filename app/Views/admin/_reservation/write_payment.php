@@ -117,7 +117,7 @@
 									    <input type="checkbox" class="part_cancel" data-amt="<?=$order['real_price_won']?>" > 
 									</td>
 									<td style="text-align: center;">
-									    <button type="button" class="btn" style="width: unset;" onclick="getCoordinates();">예약보기</button>
+									    <button type="button" class="btn" style="width: unset;" onclick="orderView('<?=$order['order_idx']?>');">예약보기</button>
 									</td>
                                 </tr>
                                 <?php } ?>
@@ -216,23 +216,30 @@
                                         </td>
                                     </tr>
 
-<script>
-$(document).ready(function () {
-    $('.part_cancel').on('change', function () {
-        let total = 0;
-        $('.part_cancel:checked').each(function () {
-            total += parseFloat($(this).data('amt'));
-        });
+                                <script>
+								function orderView(idx)
+								{
+                                         location.href='/AdmMaster/_reservation/write/hotel?search_category=&search_name=&pg=1&order_idx='+idx;									
+								}	
+								</script>
+								
+								<script>
+								$(document).ready(function () {
+									$('.part_cancel').on('change', function () {
+										let total = 0;
+										$('.part_cancel:checked').each(function () {
+											total += parseFloat($(this).data('amt'));
+										});
 
-        let limit = parseFloat($('#cancel_amt_tot').val());
+										let limit = parseFloat($('#cancel_amt_tot').val());
 
-        if (total > limit) {
-            alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
-            $(this).prop('checked', false); // 방금 체크한 항목을 해제
-        }
-    });
-});
-</script>
+										if (total > limit) {
+											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
+											$(this).prop('checked', false); // 방금 체크한 항목을 해제
+										}
+									});
+								});
+								</script>
 
                                 <script>
 								function status_upd()
