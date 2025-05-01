@@ -459,6 +459,111 @@ class PaymentController extends BaseController
 		}
 	}
 
+	
+	public function nicepay_partial_refund()
+	{
+		$db = \Config\Database::connect();
+		$setting = homeSetInfo();
+
+		header("Content-Type: application/json; charset=utf-8");
+
+		// Ajax로 넘어온 payment_no 받기
+		$payment_no = $this->request->getPost('payment_no');
+		$cancelAmt  = $this->request->getPost('cancel_amt');
+		$order_nos  = $this->request->getPost('order_no');
+		$amts       = $this->request->getPost('amt');
+
+		for ($i = 0; $i < count($order_nos); $i++) {
+			$order_no = $order_nos[$i];
+			$amt = $amts[$i];
+
+			// 예: DB 처리 또는 로그
+			// cancelPartialOrder($payment_no, $order_no, $amt);
+		}
+
+		if (empty($payment_no)) {
+			return $this->response->setJSON([
+				'status'  => 'error',
+				'message' => 'payment_no가 없습니다.',
+			]);
+		}
+
+		// 결제정보 조회
+		$row = $db->table('tbl_payment_mst')
+				  ->where('payment_no', $payment_no)
+				  ->get()
+				  ->getRowArray();
+
+		if (!$row) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => '결제 정보를 찾을 수 없습니다.',
+			]);
+		}
+
+		// 각 항목을 따옴표로 감싸기
+		$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+									
+		$merchantKey = $setting['nicepay_key'];
+		$mid         = $setting['nicepay_mid'];
+		$moid        = $payment_no;
+		$cancelMsg   = "고객요청";
+
+		$tid         = $row['TID_1'];
+
+		$ediDate     = date("YmdHis");
+		$signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
+
+		try {
+			$data = [
+				'TID'               => $tid,
+				'MID'               => $mid,
+				'Moid'              => $moid,
+				'CancelAmt'         => $cancelAmt,
+				'CancelMsg'         => iconv("UTF-8", "EUC-KR", $cancelMsg),
+				'PartialCancelCode' => '1',
+				'EdiDate'           => $ediDate,
+				'SignData'          => $signData,
+				'CharSet'           => 'utf-8'
+			];
+
+			$response      = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
+			$response_data = json_decode($response, true);
+				
+			$resultCode = $responseData['ResultCode'] ?? '9999';
+			$resultMsg  = $responseData['ResultMsg']  ?? '응답 오류';
+
+			if (in_array($resultCode, ['2001', '2211'])) {
+				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');
+
+				$db->table('tbl_payment_mst')
+				   ->where('TID_1', $tid)
+				   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+
+				// 여러 주문번호에 대해 업데이트 수행
+				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+
+                // 적립포인트 삭제
+				$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ? AND order_gubun= '포인트적립'", [$payment_no]);
+				
+				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+
+			} else {
+				// 취소 실패
+				return $this->response->setJSON([
+					'status' => 'error',
+					'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
+				]);
+			}
+
+		} catch (\Exception $e) {
+			return $this->response->setJSON([
+				'status' => 'error',
+				'message' => 'API 통신 오류: ' . $e->getMessage(),
+			]);
+		}
+	}
+	
 	// Nicepay API POST 호출 함수
 	private function reqPost(array $data, $url)
 	{

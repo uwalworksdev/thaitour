@@ -494,33 +494,48 @@
 		
 		function payment_partial_cancel(no, pg) {
 			if (!confirm('부분 취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
-                return false;
+				return false;
 
-            let url = "";
-            if(pg == "NICEPAY") url = "/nicepay_partial_refund";	
-            if(pg == "INICIS")  url = "/inicis_partial_refund";	
-            var message = "";
-            $.ajax({
+			let order_no_arr = [];
+			let amt_arr      = [];
+			let cancel_amt   = 0;
 
-                url: url,
-                type: "POST",
-                data: {
-                    "payment_no" : no, 
-                    "cancel_amt" : cancel_amt 
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-			
+			$('.part_cancel:checked').each(function () {
+				const order_no = $(this).data('order_no');
+				const amt = parseFloat($(this).data('amt'));
+				cancel_amt += amt;
+
+				order_no_arr.push(order_no);
+				amt_arr.push(amt);
+			});
+
+			if (order_no_arr.length === 0) {
+				alert("부분취소할 항목을 선택하세요.");
+				return false;
+			}
+
+			let url = "";
+			if (pg === "NICEPAY") url = "/nicepay_partial_refund";
+			if (pg === "INICIS")  url = "/inicis_partial_refund";
+
+			$.ajax({
+				url: url,
+				type: "POST",
+				data: {
+					"payment_no" : no,
+					"cancel_amt" : cancel_amt,
+					"order_no"   : order_no_arr,
+					"amt"        : amt_arr
+				},
+				dataType: "json",
+				success: function (data) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + "\nmessage = " + request.responseText + "\nerror = " + error);
+				}
+			});
 		}
     </script>
 
