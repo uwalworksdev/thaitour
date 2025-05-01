@@ -119,7 +119,8 @@
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td-->
 									<td style="text-align: center;">
-									    <input type="checkbox" class="part_cancel" data-amt="<?=$order['real_price_won']?>" > 
+									    <!--input type="checkbox" class="part_cancel" data-amt="<?=$order['real_price_won']?>" --> 
+									    <input type="checkbox" class="part_cancel" data-amt="1000" > 
 									</td>
 									<td style="text-align: center;">
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('<?=$order['order_idx']?>');">예약보기</button>
@@ -129,7 +130,7 @@
 
                                 <tr id="part" style="display:none;">
 									<td colspan="8" style="text-align:right;">부분취소</td>
-									<td colspan="2" style="text-align:right;">123,000 원</td>
+									<td colspan="2" style="text-align:right;" id="part_amt_txt"></td>
 									<td style="text-align: center;">
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('4025');">부분취소</button>
 									</td>
@@ -251,6 +252,7 @@
 										}
 										
 										$("#partial_cancel_amt").val(total);
+										$("#part_amt_txt").txt(total);
 									});
 								});
 								</script>
