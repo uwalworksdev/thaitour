@@ -127,7 +127,7 @@
                                 </tr>
                                 <?php } ?>
 
-                                <tr>
+                                <tr id="part" style="display:none;">
 									<td colspan="8" style="text-align:right;">부분취소</td>
 									<td colspan="2" style="text-align:right;">123,000 원</td>
 									<td style="text-align: center;">
