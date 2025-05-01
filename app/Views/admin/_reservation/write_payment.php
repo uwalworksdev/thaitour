@@ -246,7 +246,7 @@
 
 										let limit = parseFloat($('#cancel_amt_tot').val());
 
-										if (total => limit) {
+										if (total > limit || total == limit) {
 											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
 											$(this).prop('checked', false); // 방금 체크한 항목 해제
 
