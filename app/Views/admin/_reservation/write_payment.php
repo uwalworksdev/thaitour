@@ -249,10 +249,12 @@
 										if (total > limit) {
 											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
 											$(this).prop('checked', false); // 방금 체크한 항목을 해제
+										    $("#part").hide();
 										}
 										
 										$("#partial_cancel_amt").val(total);
 										$("#part_amt_txt").txt(total);
+										$("#part").show();
 									});
 								});
 								</script>
