@@ -119,8 +119,8 @@
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td-->
 									<td style="text-align: center;">
-									    <!--input type="checkbox" class="part_cancel" data-amt="<?=$order['real_price_won']?>" --> 
-									    <input type="checkbox" class="part_cancel" data-amt="1000" > 
+									    <!--input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" --> 
+									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="1000" > 
 									</td>
 									<td style="text-align: center;">
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('<?=$order['order_idx']?>');">예약보기</button>
@@ -497,15 +497,16 @@
                 return false;
 
             let url = "";
-            if(pg == "NICEPAY") url = "/nicepay_refund";	
-            if(pg == "INICIS")  url = "/inicis_refund";	
+            if(pg == "NICEPAY") url = "/nicepay_partial_refund";	
+            if(pg == "INICIS")  url = "/inicis_partial_refund";	
             var message = "";
             $.ajax({
 
                 url: url,
                 type: "POST",
                 data: {
-                    "payment_no" : no 
+                    "payment_no" : no, 
+                    "cancel_amt" : cancel_amt 
                 },
                 dataType: "json",
                 async: false,
