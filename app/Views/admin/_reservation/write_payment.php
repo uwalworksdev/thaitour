@@ -78,15 +78,15 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
                                     <col width="*"/>
 									<!--col width="10%"/-->
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
+                                    <col width="8%"/>
                                     <col width="5%"/>
                                     <col width="10%"/>
                                 </colgroup>
