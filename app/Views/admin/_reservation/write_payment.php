@@ -63,6 +63,7 @@
 
                 <input type=hidden name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
+                <input type=hidden name="partial_cancel_amt" id="partial_cancel_amt" value='0'>
 
 
 
@@ -237,6 +238,8 @@
 											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
 											$(this).prop('checked', false); // 방금 체크한 항목을 해제
 										}
+										
+										$("#partial_cancel_amt").val(total);
 									});
 								});
 								</script>
