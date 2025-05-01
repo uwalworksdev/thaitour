@@ -181,7 +181,7 @@
                                     </td>
                                     <th>적립 포인트</th>
                                     <td>
-										<?=number_format($payment_row['used_point'])?>
+										<?=number_format($add_mileage)?>
                                     </td>
                                 </tr>
 								
