@@ -132,7 +132,7 @@
 									<td colspan="8" style="text-align:right;">부분취소 금액</td>
 									<td colspan="2" style="text-align:right;"><span id="part_amt_txt"></span>원</td>
 									<td style="text-align: center;">
-									    <button type="button" class="btn" style="width: unset;" onclick="payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>','2');">부분취소</button>
+									    <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
 									</td>
                                 </tr>								
                                 </tbody>
@@ -201,7 +201,7 @@
                                         <td>
 										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
-											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>','1')" class="btn btn-default">
+											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
 										&emsp;<?=$payment_row['payment_c_date']?>
                                         </td>
@@ -462,16 +462,9 @@
     </script>
 
     <script>
-        function payment_cancel(no, pg, type) {
+        function payment_cancel(no, pg) {
 
-            let gubun = "";
-			if(type == "1") {
-			   gubun = "전체취소"; 
-			} else {
-			   gubun = "부분취소"; 
-            }
-			
-			if (!confirm(gubun+'를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
+			if (!confirm('결제 전체취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
             let url = "";
