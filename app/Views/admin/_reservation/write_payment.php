@@ -176,8 +176,12 @@
                                 </tr>
                                 <tr>
                                     <th>실 결제금액</th>
-                                    <td colspan="3">
+                                    <td>
                                         <?=number_format($payment_row['payment_price'])?>원 
+                                    </td>
+                                    <th>적립 포인트</th>
+                                    <td>
+										<?=number_format($payment_row['used_point'])?>
                                     </td>
                                 </tr>
 								
