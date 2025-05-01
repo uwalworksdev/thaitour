@@ -128,14 +128,7 @@
                                 <?php } ?>
 
                                 <tr>
-                                    <td>P_20250429140807658</td>
-                                    <td>S20250428001</td>
-                                    <td>2025-04-28 00:08:40</td>
-                                    <td></td>
-                                    <td>그랑데 센터 포인트 수라웡 방콕</td>
-									<td style="text-align:right;">42,410</td>
-									<td style="text-align:right;">1,000</td>
-									<td style="text-align:right;">4,283</td>
+									<td colspan="9" style="text-align:right;">부분취소</td>
 									<td colspan="2" style="text-align:right;">123,000 원</td>
 									<td style="text-align: center;">
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('4025');">부분취소</button>
