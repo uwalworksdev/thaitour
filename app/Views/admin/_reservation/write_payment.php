@@ -525,10 +525,11 @@
 				url: url,
 				type: "POST",
 				data: {
-					"payment_no" : no,
-					"cancel_amt" : cancel_amt,
-					"order_no"   : order_no_arr,
-					"amt"        : amt_arr
+					"payment_no"   : no,
+					"cancel_amt"   : cancel_amt,
+					"order_no"     : order_no_arr,
+					"amt"          : amt_arr,
+					"add_mileage"  : $("#add_mileage").val()	
 				},
 				dataType: "json",
 				success: function (data) {

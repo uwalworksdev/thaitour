@@ -468,11 +468,12 @@ class PaymentController extends BaseController
 		header("Content-Type: application/json; charset=utf-8");
 
 		// Ajax로 넘어온 payment_no 받기
-		$payment_no = $this->request->getPost('payment_no');
-		$cancelAmt  = $this->request->getPost('cancel_amt');
-		$order_nos  = $this->request->getPost('order_no');
-		$amts       = $this->request->getPost('amt');
-
+		$payment_no  = $this->request->getPost('payment_no');
+		$cancelAmt   = $this->request->getPost('cancel_amt');
+		$order_nos   = $this->request->getPost('order_no');
+		$amts        = $this->request->getPost('amt');
+        $add_mileage = $this->request->getPost('add_mileage');
+		
 		for ($i = 0; $i < count($order_nos); $i++) {
 			$order_no = $order_nos[$i];
 			$amt = $amts[$i];
