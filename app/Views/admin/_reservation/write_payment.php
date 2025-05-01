@@ -493,7 +493,7 @@
         }
 		
 		function payment_partial_cancel(no, pg) {
-			if (!confirm('부분 전체취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
+			if (!confirm('부분 취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
                 return false;
 
             let url = "";
