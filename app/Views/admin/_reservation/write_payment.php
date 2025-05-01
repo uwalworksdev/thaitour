@@ -132,7 +132,7 @@
 									<td colspan="8" style="text-align:right;">부분취소 금액</td>
 									<td colspan="2" style="text-align:right;"><span id="part_amt_txt"></span>원</td>
 									<td style="text-align: center;">
-									    <button type="button" class="btn" style="width: unset;" onclick="orderView('4025');">부분취소</button>
+									    <button type="button" class="btn" style="width: unset;" onclick="payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>">부분취소</button>
 									</td>
                                 </tr>								
                                 </tbody>
