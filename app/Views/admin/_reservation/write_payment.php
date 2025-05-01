@@ -246,16 +246,27 @@
 
 										let limit = parseFloat($('#cancel_amt_tot').val());
 
-										if (total < limit) {
-											$("#partial_cancel_amt").val(total);
-											$("#part_amt_txt").text(total);
+										if (total => limit) {
+											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
+											$(this).prop('checked', false); // 방금 체크한 항목 해제
+
+											// 다시 합계 재계산
+											total = 0;
+											$('.part_cancel:checked').each(function () {
+												total += parseFloat($(this).data('amt'));
+											});
+										}
+
+										// 금액 텍스트 및 숨은 필드 값 업데이트
+										$("#partial_cancel_amt").val(total);
+										$("#part_amt_txt").text(total.toLocaleString()); // 천 단위 쉼표 포함
+
+										// 금액이 0이면 숨김
+										if (total > 0) {
 											$("#part").show();
 										} else {
-											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
-											$(this).prop('checked', false); // 방금 체크한 항목을 해제
 											$("#part").hide();
 										}
-										
 									});
 								});
 								</script>
