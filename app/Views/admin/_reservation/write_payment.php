@@ -185,7 +185,7 @@
 										<?=$payment_row['payment_c_date']?>
                                     </td>
 
-                                    <th>결제금액 취소</th>
+                                    <th>결제취소</th>
                                         <td>
 										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
