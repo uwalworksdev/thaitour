@@ -433,7 +433,7 @@ class PaymentController extends BaseController
 
 				$db->table('tbl_payment_mst')
 				   ->where('TID_1', $tid)
-				   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+				   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
 
 				// 여러 주문번호에 대해 업데이트 수행
 				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
@@ -539,7 +539,7 @@ class PaymentController extends BaseController
 
 				$db->table('tbl_payment_mst')
 				   ->where('TID_1', $tid)
-				   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+				   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
 
 				// 여러 주문번호에 대해 업데이트 수행
 				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
