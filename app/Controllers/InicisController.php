@@ -191,6 +191,7 @@ class InicisController extends BaseController
 														'AuthCode_1'    = '". $resultMap['applNum'] ."'
 														'AuthDate_1'    = '". $resultMap['AuthDate'] ."'
 														WHERE order_no IN(". $orderList .") "; 
+						write_log("inicisResult- ". $sql);								
 						$db->query($sql);
 
 						// 쿠폰, 포인트 소멸부분 추가
