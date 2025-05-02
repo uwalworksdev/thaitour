@@ -6,7 +6,7 @@ $cancelAmt = 1000;
 
 $rate = (($payment_price - $cancelAmt) / $payment_price) * 100;
 echo $rate ."<br>";
-$mileage = ($add_mileage * (($payment_price - $cancelAmt) / $payment_price)) / 100;
+$mileage = $add_mileage * $rate;
 
 echo $mileage;
 
