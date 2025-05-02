@@ -586,12 +586,12 @@ class InicisController extends BaseController
         // JSON 형식 파싱
         $response_data = json_decode($response, true); // 연관 배열로 변환
 
-		$resultCode = $responseData['resultCode'];
-		$resultMsg  = $responseData['resultMsg'];
+		$resultCode = $response_data['resultCode'];
+		$resultMsg  = $response_data['resultMsg'];
 
-		$cancelDate = $responseData['cancelDate'] ." ". $responseData['cancelTime'];
+		$cancelDate = $response_data['cancelDate'] ." ". $response_data['cancelTime'];
 
-		if ($resultCode == "0000") {
+		if ($resultCode == "00") {
 			$db->table('tbl_payment_mst')
 			   ->where('payment_no', $payment_no)
 			   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
