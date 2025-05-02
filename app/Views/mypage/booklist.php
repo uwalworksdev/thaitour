@@ -471,7 +471,7 @@ endforeach;
                                     </div>
                                     
 									<?php if($order['order_status'] == "Y") { ?>
-                                    <div class="info_reservation btn_info flex__c box" data-pg="<?=$order['payment_pg']?>"  data-tid="<?=$order['TID_1']?>">
+                                    <div class="info_reservation btn_info flex__c box" data-pg="<?=$order['order_pg']?>"  data-tid="<?=$order['TID_1']?>">
                                         <p>영수증</p>
                                     </div>
 									<?php } ?>
