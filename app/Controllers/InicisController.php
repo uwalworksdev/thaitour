@@ -594,7 +594,7 @@ class InicisController extends BaseController
 		if ($resultCode == "0000") {
 			$db->table('tbl_payment_mst')
 			   ->where('payment_no', $payment_no)
-			   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
+			   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
 
 			// 여러 주문번호에 대해 업데이트 수행
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
