@@ -591,7 +591,7 @@ class InicisController extends BaseController
 
 		$cancelDate = $responseData['cancelDate'] ." ". $responseData['cancelTime'];
 
-		if ($resultCode == "00") {
+		if ($resultCode == "0000") {
 			$db->table('tbl_payment_mst')
 			   ->where('payment_no', $payment_no)
 			   ->update(['order_status' => 'C', 'payment_c_date' => $cancelDate]);
