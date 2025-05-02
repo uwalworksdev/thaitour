@@ -469,7 +469,7 @@
     
                         </tr>
                         <tr>
-                            <th>호텔등급..</th>
+                            <th>호텔등급</th>
                             <td>
                                 <div class="list_area list_rating">
                                     <p data-code="all">등급전체</p>
