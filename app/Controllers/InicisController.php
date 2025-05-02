@@ -181,15 +181,15 @@ class InicisController extends BaseController
 						// 각 항목을 따옴표로 감싸기
 						$orderList = "'" . implode("','", $orderArr) . "'";
 
-						$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
-														,order_status   = 'Y' 
-														,payment_no     = '". $resultMap['MOID'] ."'
-														'ResultCode_1'  = '". $resultMap['resultCode'] ."'
-														'ResultMsg_1'   = '". $resultMap['resultMsg'] ."'
-														'Amt_1'         = '". $resultMap['TotPrice'] ."'
-														'TID_1'         = '". $resultMap['tid'] ."'
-														'AuthCode_1'    = '". $resultMap['applNum'] ."'
-														'AuthDate_1'    = '". $resultMap['AuthDate'] ."'
+						$sql = "UPDATE tbl_order_mst SET  order_method   = '신용카드'  
+														, order_status   = 'Y' 
+														, payment_no     = '". $resultMap['MOID'] ."'
+														, ResultCode_1   = '". $resultMap['resultCode'] ."'
+														, ResultMsg_1    = '". $resultMap['resultMsg'] ."'
+														, Amt_1          = '". $resultMap['TotPrice'] ."'
+														, TID_1          = '". $resultMap['tid'] ."'
+														, AuthCode_1     = '". $resultMap['applNum'] ."'
+														, AuthDate_1     = '". $resultMap['AuthDate'] ."'
 														WHERE order_no IN(". $orderList .") "; 
 						write_log("inicisResult- ". $sql);								
 						$db->query($sql);
