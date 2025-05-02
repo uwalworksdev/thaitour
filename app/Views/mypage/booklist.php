@@ -469,10 +469,13 @@ endforeach;
                                     <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
-
-                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
+                                    
+									<?php if($order['order_status'] == "Y") { ?>
+                                    <div class="info_reservation btn_info flex__c box" data-pg="<?=$order['payment_pg']?>"  data-tid="<?=$order['TID_1']?>">
                                         <p>영수증</p>
                                     </div>
+									<?php } ?>
+										
                                 </div>
                                 <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
