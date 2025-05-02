@@ -768,7 +768,7 @@ class InicisController extends BaseController
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
 
 			// 적립포인트 재조정
-			cancelMileage($payment_no, $cancelAmt)
+			cancelMileage($payment_no, $cancelAmt);
 
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {
