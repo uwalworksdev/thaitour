@@ -469,6 +469,10 @@ endforeach;
                                     <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
+
+                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
+                                        <p>영수증</p>
+                                    </div>
                                 </div>
                                 <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
