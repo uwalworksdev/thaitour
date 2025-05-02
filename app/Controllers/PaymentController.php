@@ -162,7 +162,8 @@ class PaymentController extends BaseController
 								// 각 항목을 따옴표로 감싸기
 								$orderList = "'" . implode("','", $orderArr) . "'";
 
-								$sql = "UPDATE tbl_order_mst SET order_method   = '신용카드'  
+								$sql = "UPDATE tbl_order_mst SET order_pg       = 'NICEPAY'  
+								                                ,order_method   = '신용카드'  
 								                                ,order_status   = 'Y' 
 																,payment_no     = '". $moid ."'
 																,ResultCode_1   = '". $respArr->ResultCode ."'
