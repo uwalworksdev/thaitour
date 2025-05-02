@@ -598,8 +598,8 @@ class InicisController extends BaseController
 			// 여러 주문번호에 대해 업데이트 수행
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
 
-			// 적립포인트 삭제
-			$db->query("DELETE FROM tbl_order_mileage WHERE payment_no = ? AND order_gubun= '포인트적립'", [$payment_no]);
+            // 적립포인트 재조정
+			cancelMileage($payment_no, 0);
 
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {

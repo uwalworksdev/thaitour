@@ -2138,21 +2138,24 @@ function cancelMileage($payment_no, $cancelAmt) {
     updateMileageSum($db, $row['m_idx'], $insertId);
 
     // 3. 비례 마일리지 재지급
-    $rate = ($payment_price - $cancelAmt) / $payment_price;
-    $adjusted_mileage = (int)($add_mileage * $rate);
+	if($cancelAmt > 0) 
+	{	
+			$rate = ($payment_price - $cancelAmt) / $payment_price;
+			$adjusted_mileage = (int)($add_mileage * $rate);
 
-    if ($adjusted_mileage > 0) {
-        $mi_title = "예약결제 후 포인트지급($payment_no)";
-        $order_mileage = $adjusted_mileage;
+			if ($adjusted_mileage > 0) {
+				$mi_title = "예약결제 후 포인트지급($payment_no)";
+				$order_mileage = $adjusted_mileage;
 
-        $db->query("INSERT INTO tbl_order_mileage SET  
-            mi_title = ?, order_idx = ?, order_no = ?, order_mileage = ?, order_gubun = '포인트지급',
-            m_idx = ?, product_idx = ?, mi_r_date = NOW(), payment_no = ?",
-            [$mi_title, $row['order_idx'], $row['order_no'], $order_mileage,
-             $row['m_idx'], $row['product_idx'], $payment_no]);
+				$db->query("INSERT INTO tbl_order_mileage SET  
+					mi_title = ?, order_idx = ?, order_no = ?, order_mileage = ?, order_gubun = '포인트지급',
+					m_idx = ?, product_idx = ?, mi_r_date = NOW(), payment_no = ?",
+					[$mi_title, $row['order_idx'], $row['order_no'], $order_mileage,
+					 $row['m_idx'], $row['product_idx'], $payment_no]);
 
-        $insertId = $db->insertID();
-        updateMileageSum($db, $row['m_idx'], $insertId);
+				$insertId = $db->insertID();
+				updateMileageSum($db, $row['m_idx'], $insertId);
+			}	
     }
 
     // 트랜잭션 종료
