@@ -327,7 +327,6 @@ endforeach;
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
                                 <div onclick="openGroupMovement('<?= esc($group['group_no']) ?>')" class="btn_group_movement">그룹이동</div>
-                                <div onclick="openGroupMovement('<?= esc($group['payment_no']) ?>')" class="btn_group_movement">영수증</div>
                             </div>
 
                         </div>
