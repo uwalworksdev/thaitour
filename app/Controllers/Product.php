@@ -1030,7 +1030,7 @@ class Product extends BaseController
                 'price_type' => $price_type,
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
-write_log("listHotel- ". $this->productModel->db->getLastQuery(););
+write_log("listHotel- ". $this->productModel->db->getLastQuery());
             foreach ($products['items'] as $key => $product) {
 
                 $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
