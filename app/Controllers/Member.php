@@ -211,7 +211,8 @@ class Member extends BaseController
             setcookie("c_userId", "", time() - 86000 * 365, '/');
         }
 
-        return redirect()->to($returnUrl ?? "/");
+        if($returnUrl == "") $returnUrl = "/";
+        return redirect()->to($returnUrl);
     }
 
     public function Logout()
