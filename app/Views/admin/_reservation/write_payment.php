@@ -183,7 +183,7 @@
 										<?=number_format($add_mileage)?>
                                     </td>
                                 </tr>
-								
+
                                 <tr>
                                     <th>예약현황</th>
                                     <td>
@@ -200,7 +200,7 @@
 										<?=$payment_row['payment_c_date']?>
 
 										<?php if($payment_row['payment_status'] == "Y") { ?>
-                                        <a href="javascript:status_upd()" class="btn btn-default">
+                                        <a href="javascript:info_receipt('<?=$payment_row['payment_pg']?>','<?=$payment_row['TID_1']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >영수증</span></a>
 										<?php } ?>
 										
@@ -237,6 +237,29 @@
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">주문취소</button>
                                         </td>
                                     </tr>
+
+<script>
+function info_receipt(pg, tid) 
+{
+        let receiptUrl = '';
+
+        switch (pg) {
+            case 'INICIS':
+            case 'inicis':
+                receiptUrl = `https://iniweb.inicis.com/app/publication/apReceipt.jsp?noTid=${tid}`;
+                break;
+            case 'NICEPAY':
+            case 'nicepay':
+                receiptUrl = `https://npg.nicepay.co.kr/issue/IssueLoader.do?type=0&TID=${tid}`;
+                break;
+            default:
+                alert('지원하지 않는 PG사입니다.');
+                return;
+        }
+
+        window.open(receiptUrl, 'receiptPopup', 'width=500,height=700,scrollbars=yes');
+}
+</script>
 
                                 <script>
 								function orderView(idx)
