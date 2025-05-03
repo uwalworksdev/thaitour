@@ -483,6 +483,7 @@ class ReservationController extends BaseController
 									 , payment_tot
 									 , payment_price
 									 , payment_pg
+									 , TID_1
 									 , payment_method
 									 , payment_status
 									 , used_coupon_money
