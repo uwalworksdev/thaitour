@@ -198,6 +198,12 @@
                                        <a href="javascript:status_upd()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
 										<?=$payment_row['payment_c_date']?>
+
+										<?php if($payment_row['payment_status'] == "Y") { ?>
+                                        <a href="javascript:status_upd()" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt" >영수증</span></a>
+										<?php } ?>
+										
                                     </td>
 
                                     <th>결제취소</th>
