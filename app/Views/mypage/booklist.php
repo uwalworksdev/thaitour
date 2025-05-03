@@ -729,6 +729,33 @@ endforeach;
 </form>
 
 <script>
+$(document).ready(function() {
+    $('.info_receipt').on('click', function() {
+        const pg = $(this).data('pg');
+        const tid = $(this).data('tid');
+
+        let receiptUrl = '';
+
+        switch (pg) {
+            case 'INICIS':
+            case 'inicis':
+                receiptUrl = `https://iniweb.inicis.com/app/publication/apReceipt.jsp?noTid=${tid}`;
+                break;
+            case 'NICEPAY':
+            case 'nicepay':
+                receiptUrl = `https://npg.nicepay.co.kr/issue/IssueLoader.do?type=0&TID=${tid}`;
+                break;
+            default:
+                alert('지원하지 않는 PG사입니다.');
+                return;
+        }
+
+        window.open(receiptUrl, 'receiptPopup', 'width=500,height=700,scrollbars=yes');
+    });
+});
+</script>
+
+<script>
 $(document).ready(function () {
     $(".btn_payment").on("click", function () {
         var dataValue = $(this).data("idx"); // 주문번호 가져오기
