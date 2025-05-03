@@ -731,7 +731,7 @@ endforeach;
 <script>
 $(document).ready(function() {
     $('.info_receipt').on('click', function() {
-        const pg = $(this).data('pg');
+        const pg  = $(this).data('pg');
         const tid = $(this).data('tid');
 
         let receiptUrl = '';
