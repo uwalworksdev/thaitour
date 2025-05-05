@@ -17,7 +17,7 @@ class Setting extends Model{
             "site_name", "domain_url", "admin_name", "admin_email", "browser_title",
             "meta_tag", "meta_keyword", "home_name", "brand_name", "home_name_en", "store_service01",
             "store_service02", "qna_email", "service_item", "zip", "addr1", "addr2", "sydney_addr",
-            "comnum", "tournum", "mallOrder", "tour_no", "com_owner", "info_owner", "custom_phone",
+            "comnum", "tournum", "tournum_thai", "desc_cont", "mallOrder", "tour_no", "com_owner", "info_owner", "custom_phone",
             "fax", "sms_phone", "email", "munnote_code", "logos", "banks", "bank_account", "ssl_chk",
             "language", "buytext", "trantext", "oversea_purchase", "og_title", "og_des", "og_url",
             "og_site", "og_img", "allim_apikey", "allim_userid", "allim_senderkey", "smtp_host",

@@ -409,10 +409,19 @@
                                 </tr>
                                 <tr>
                                     <th>긴급예약처리</th>
-                                    <td colspan="3"><input type="text" id="time_reservation" name="time_reservation"
+                                    <td><input type="text" id="time_reservation" name="time_reservation"
                                                value="<?= $row['time_reservation'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:500px" /></td>
-                                    
+                                    <th>관광사업자 등록번호</th>                
+                                    <td><input type="text" id="tournum_thai" name="tournum_thai"
+                                               value="<?= $row['tournum_thai'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:500px" /></td>
+                                </tr>
+                                <tr>
+                                    <th>설명하다</th>
+                                    <td colspan="3">
+                                        <textarea name="desc_cont" style="width:100%; height: 100px;" id="desc_cont" class="bs-input"><?= $row['desc_cont'] ?></textarea>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>통신판매번호</th>
