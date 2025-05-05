@@ -135,21 +135,25 @@ endforeach;
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li <?php if($procType == "2") echo "class='on'";?> data-menu="all">
-                                <a href="#!" onclick="go_status('2');">예약확정</a>
-                                <img src="/images/mypage/question_mark.png" alt="">
-                            </li>
-                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="all">
-                                <a href="#!" onclick="go_status('3');">이용완료</a>
+                                <a href="#!" onclick="go_status('2');">결제완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
-                                <a href="#!" onclick="go_status('4');">취소내역</a>
+                                <a href="#!" onclick="go_status('3');">예약확정</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                            </li>
+                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
+                                <a href="#!" onclick="go_status('4');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
                             <li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
-                                <a href="#!" onclick="go_status('5');">이용불가</a>
+                                <a href="#!" onclick="go_status('5');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
+                            <!--li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
+                                <a href="#!" onclick="go_status('5');">이용불가</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                            </li-->
                         </ul>
                     </div>
                 </div>
