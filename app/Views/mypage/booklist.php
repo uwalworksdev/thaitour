@@ -469,6 +469,13 @@ endforeach;
                                     <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
+                                    
+									<?php if($order['order_status'] == "Y") { ?>
+                                    <div class="info_receipt btn_info flex__c box" data-pg="<?=$order['order_pg']?>"  data-tid="<?=$order['TID_1']?>">
+                                        <p>영수증</p>
+                                    </div>
+									<?php } ?>
+										
                                 </div>
                                 <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
@@ -720,6 +727,33 @@ endforeach;
 <input type="hidden" name="payment_no" id="payment_no" value="" >
 <input type="hidden" name="dataValue"  id="dataValue"  value="" >
 </form>
+
+<script>
+$(document).ready(function() {
+    $('.info_receipt').on('click', function() {
+        const pg  = $(this).data('pg');
+        const tid = $(this).data('tid');
+
+        let receiptUrl = '';
+
+        switch (pg) {
+            case 'INICIS':
+            case 'inicis':
+                receiptUrl = `https://iniweb.inicis.com/app/publication/apReceipt.jsp?noTid=${tid}`;
+                break;
+            case 'NICEPAY':
+            case 'nicepay':
+                receiptUrl = `https://npg.nicepay.co.kr/issue/IssueLoader.do?type=0&TID=${tid}`;
+                break;
+            default:
+                alert('지원하지 않는 PG사입니다.');
+                return;
+        }
+
+        window.open(receiptUrl, 'receiptPopup', 'width=500,height=700,scrollbars=yes');
+    });
+});
+</script>
 
 <script>
 $(document).ready(function () {

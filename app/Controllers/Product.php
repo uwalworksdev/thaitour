@@ -1030,7 +1030,7 @@ class Product extends BaseController
                 'price_type' => $price_type,
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
-
+write_log("listHotel- ". $this->productModel->db->getLastQuery());
             foreach ($products['items'] as $key => $product) {
 
                 $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
@@ -2156,7 +2156,7 @@ class Product extends BaseController
         //$options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
         $sql_opt = " SELECT a.*, b.*  FROM tbl_golf_price a
-		                              LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx AND b.group_idx > '0'
+		                              LEFT JOIN tbl_golf_option b ON a.o_idx = b.idx
 								      WHERE a.product_idx = '" . $product_idx . "' 
 									  AND a.goods_name = '" . $hole_cnt . "' 
 									  AND b.group_idx  > '0'
@@ -2189,6 +2189,15 @@ class Product extends BaseController
             $options[$key]['option_price']      = $option_price_won;
             $options[$key]['option_price_baht'] = $option_price;
             $options[$key]['option_price_won']  = $option_price_won;
+			
+            $options[$key]['cart_price']        = $value['cart_price'];
+            $options[$key]['caddie_fee']        = $value['caddie_fee'];
+			
+            $options[$key]['o_cart_due']        = $value['o_cart_due'];
+            $options[$key]['o_caddy_due']       = $value['o_caddy_due'];
+            $options[$key]['o_cart_cont']       = $value['o_cart_cont'];
+            $options[$key]['o_caddy_cont']      = $value['o_caddy_cont'];
+			
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -2210,7 +2219,7 @@ class Product extends BaseController
 					   b.idx        = '". $option_idx ."' AND 
 					   a.goods_date = '". $order_date ."'";
 					   
-        //write_log("golfPriceCalculate- ". $sql);														   
+        write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
@@ -2325,37 +2334,33 @@ class Product extends BaseController
 							$total_vehicle            += $value;
 						}		
 				
-						if($vehicle_idx[$key] == "4") {
-							if($info['o_cart_cont'] != "Y") { 
-								$info['code_name']        = "카트";
-								$info['price_baht']       = $info['cart_price'];
-								$info['price_baht_total'] = $info['cart_price'] * $value;
-								$info['price']            = (int) round($info['cart_price'] * $baht_thai);
-								$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
-								$vehicle_arr[]            = $info;
+						if($vehicle_idx[$key] == "4") { 
+							$info['code_name']        = "카트";
+							$info['price_baht']       = $info['cart_price'];
+							$info['price_baht_total'] = $info['cart_price'] * $value;
+							$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-								$total_vehicle_price      += $info['price'] * $value;
-								$total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-								$total_vehicle            += $value;
-							}	
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "5") { 
-							if($info['o_caddie_cont'] != "Y") { 
-								$info['code_name']        = "캐디피";
-								$info['price_baht']       = $info['caddie_fee'];
-								$info['price_baht_total'] = $info['caddie_fee'] * $value;
-								write_log("golf option 5- ". $info['price_baht_total']);
-								$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
-								$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
-								$vehicle_arr[]            = $info;
+							$info['code_name']        = "캐디피";
+							$info['price_baht']       = $info['caddie_fee'];
+							$info['price_baht_total'] = $info['caddie_fee'] * $value;
+							write_log("golf option 5- ". $info['price_baht_total']);
+							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
+							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
+							$vehicle_arr[]            = $info;
 
-								$total_vehicle_price      += $info['price'] * $value;
-								$total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-								$total_vehicle            += $value;
-							}	
+							$total_vehicle            += $value;
 						}		
 				
 				}
@@ -2432,6 +2437,8 @@ class Product extends BaseController
         $data['order_date']       = $this->request->getVar('order_date');
 		$data['caddy_cnt']        = $this->request->getVar('caddy_cnt');
 		$data['caddy_price']      = $this->request->getVar('caddy_price');
+		$data['cart_cnt']         = $this->request->getVar('vehicle_4');
+		$data['caddie_cnt']       = $this->request->getVar('vehicle_5');
 
         $data['teeoff_hour']      = $this->request->getVar('teeoff_hour');
         $data['teeoff_min']       = $this->request->getVar('teeoff_min');
@@ -2537,7 +2544,7 @@ class Product extends BaseController
             $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'], 'encode');
             $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'], 'encode');
 			$data['order_passport_number']      = $this->request->getPost('order_passport_number') ?? "";
-            $data['order_passport_number']      = encryptField($order_passport_number, "encode");
+            $data['order_passport_number']      = encryptField($data['order_passport_number'], "encode");
 			$data['order_passport_expiry_date'] = $this->request->getPost('order_passport_expiry_date') ?? "";
             $data['vehicle_time']               = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
             $data['device_type']                = get_device();

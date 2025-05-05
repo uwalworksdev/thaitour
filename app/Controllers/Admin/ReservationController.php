@@ -483,6 +483,7 @@ class ReservationController extends BaseController
 									 , payment_tot
 									 , payment_price
 									 , payment_pg
+									 , TID_1
 									 , payment_method
 									 , payment_status
 									 , used_coupon_money
@@ -499,10 +500,16 @@ class ReservationController extends BaseController
 		write_log($sql);				
         $result1    = $this->connect->query($sql);
         $result1    = $result1->getResultArray();
+
+        $sql        = "	select * from tbl_order_mileage where order_gubun = '포인트적립' and payment_no = '". $result['payment_no'] ."' ";
+		write_log($sql);				
+        $result2    = $this->connect->query($sql);
+        $result2    = $result2->getRowArray();
 		
 		$data = [
 			      'payment_row' => $result,
-			      'order_row'   => $result1
+			      'order_row'   => $result1,
+			      'add_mileage' => $result2['order_mileage'],
 			    ];
         return view('admin/_reservation/write_payment', $data);
 		

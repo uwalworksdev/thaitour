@@ -684,7 +684,6 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_estimate_mailsend", "AjaxController::ajax_estimate_mailsend");
 	$routes->post("ajax_nicepay_cancelResult", "AjaxController::ajax_nicepay_cancelResult");
 	$routes->post("ajax_order_del", "AjaxController::ajax_order_del");
-	
 });
 
 $routes->group("api", static function ($routes) {
@@ -1012,6 +1011,7 @@ $routes->get('/payment/request', 'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
 $routes->post('/payment/nicepay_result', 'PaymentController::nicepay_result');
 $routes->post('nicepay_refund', 'PaymentController::nicepay_refund');
+$routes->post('nicepay_partial_refund', 'PaymentController::nicepay_partial_refund');
 
 $routes->get('fake-login', 'FakeLogin::index');  // 가상 로그인
 $routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
@@ -1022,6 +1022,7 @@ $routes->get('inicis/close', 'InicisController::close');
 $routes->post('inicis/result', 'InicisController::inicisResult');
 $routes->post('inicis/result_m', 'InicisController::inicisResult_m');
 $routes->post('inicis_refund', 'InicisController::inicisRefund');
+$routes->post('inicis_partial_refund', 'InicisController::inicisPartialRefund');
 $routes->get('travel_insurance', 'TravelController::index');
 
 $routes->get('kcp/request', 'KcpController::requestPayment');

@@ -103,7 +103,7 @@ function checkPlatform(ua) {
 
 </head>
 <body>
-<form name="payForm" method="post" action="<?=$returnURL?>" style="display:;">
+<form name="payForm" method="post" action="<?=$returnURL?>" style="display:none;">
 	<table>
 		<tr>
 			<th>결제 수단</th>
