@@ -100,7 +100,7 @@
 
                             <?php } else {?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                    <input type="hidden" name="p_idx[]" id="p_idx" value="<?= $p_idx ?>">
+                                    <input type="hidden" name="p_idx[]" value="<?= $p_idx ?>">
                                     <caption>
                                     </caption>
 
