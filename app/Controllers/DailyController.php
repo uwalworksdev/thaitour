@@ -22,7 +22,9 @@ class DailyController extends BaseController {
 		
 		$db     =  \Config\Database::connect();
 		$today  =  date('Y-m-d'); // 오늘 날짜
-		$sql    = "UPDATE tbl_order_mst SET order_status = 'E' WHERE order_day < ? AND order_status != 'E'";
+		$sql    = "UPDATE tbl_order_mst 
+		           SET order_status = 'E', order_r_date = now() 
+				   WHERE order_day < ? AND order_status != 'E'";
 		$result = $db->query($sql, [$today]);
         $affectedRows = $db->affectedRows();
 
@@ -42,11 +44,10 @@ class DailyController extends BaseController {
 		
 	    $db = \Config\Database::connect(); // 데이터베이스 연결
 		
-        $sql = "
-            UPDATE tbl_order_mst 
-            SET order_status = 'C' 
-            WHERE order_status = 'X' 
-              AND order_r_date < DATE_SUB(NOW(), INTERVAL 10 DAY)
+        $sql = "UPDATE tbl_order_mst 
+                SET order_status = 'C', order_r_date = now() 
+                WHERE order_status = 'X' 
+                AND order_r_date < DATE_SUB(NOW(), INTERVAL 10 DAY)
         ";
 
         $result       = $db->query($sql);
