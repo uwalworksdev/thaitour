@@ -117,7 +117,7 @@
                     <p class="p_bot_f">한국</p>
                     <p>한국 사업자번호 <?= $setting['comnum']?></p>
                     <p>통신판매업 : <?= $setting['mallOrder']?></p>
-                    <p>관광사업자 등록번호 : 제 2022-000013 호</p>
+                    <p>관광사업자 등록번호 : <?= $setting['tournum']?></p>
 
                     <p class="p_bot_f">태국</p>
                     <p>태국 사업자번호 <?= $setting['comnum_thai']?></p>

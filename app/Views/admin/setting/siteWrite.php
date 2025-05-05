@@ -368,14 +368,14 @@
                                                                                                          class="input_txt placeHolder" rel=""
                                                                                                          style="width:250px; margin-left: 5px" />_CUSTOM_SERVICE_PHONE_SYDNEY_CALL_FROM_AUSTRALIA
                                     </td> -->
-                                    <th>관광사업등록번호</th>
+                                    <th>한국 관광사업등록번호</th>
                                     <td><input type="text" id="tournum" name="tournum"
                                                value="<?= $row['tournum'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:250px" />_IT_TOUR_NO</td>
                                 </tr>
 
                                 <tr>
-                                    <th>사업자등록번호</th>
+                                    <th>한국 사업자등록번호</th>
                                     <td><input type="text" id="comnum" name="comnum"
                                                value="<?= $row['comnum'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:250px" />_IT_COMNUM</td>
@@ -412,7 +412,7 @@
                                     <td><input type="text" id="time_reservation" name="time_reservation"
                                                value="<?= $row['time_reservation'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:500px" /></td>
-                                    <th>관광사업자 등록번호</th>                
+                                    <th>태국 관광사업자등록번호</th>                
                                     <td><input type="text" id="tournum_thai" name="tournum_thai"
                                                value="<?= $row['tournum_thai'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:500px" /></td>
@@ -424,7 +424,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>통신판매번호</th>
+                                    <th>한국 통신판매번호</th>
                                     <td colspan="3"><input type="text" id="mallOrder" name="mallOrder"
                                                            value="<?= $row['mallOrder'] ?>" class="input_txt placeHolder" rel=""
                                                            style="width:500px" />_IT_MALL_ORDER</td>
