@@ -136,6 +136,32 @@
                                 <a href="/product-golf/golf-detail/<?=$product['product_idx']?>">
                                     <h2><?=$product['product_name']?></h2>
                                 </a>
+                                <!-- <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span><?=$product['review_average']?></span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span class="text-primary">생생리뷰 <strong>(<?=$product['total_review']?>)</strong></span>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="flex_b_c">
+                                <div class="sub-title">
+                                    <?php $num = count($product['codeTree']);
+                                    foreach ($product['codeTree'] as $key => $code):
+                                        ?>
+                                        <span><?=$code['code_name']?></span>
+                                        <?php if ($key < $num - 1): ?>
+                                            <img class="only_web" src="/uploads/icons/arrow_right.png"
+                                                alt="arrow_right">
+                                            <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                                alt="arrow_right_mo">
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
                                 <div class="only_web">
                                     <div class="star-container">
                                         <div class="">
@@ -147,19 +173,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="sub-title">
-                                <?php $num = count($product['codeTree']);
-                                foreach ($product['codeTree'] as $key => $code):
-                                    ?>
-                                    <span><?=$code['code_name']?></span>
-                                    <?php if ($key < $num - 1): ?>
-                                        <img class="only_web" src="/uploads/icons/arrow_right.png"
-                                            alt="arrow_right">
-                                        <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                            alt="arrow_right_mo">
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
                             </div>
                             <div class="only_mo">
                                 <div class="star-container">

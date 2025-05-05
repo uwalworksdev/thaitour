@@ -188,17 +188,6 @@
                                         <a href="/product-tours/item_view/<?= $product["product_idx"] ?>">
                                             <h2><?= viewSQ($product['product_name']) ?></h2>
                                         </a>
-                                        <div class="only_web">
-                                            <div class="star-container">
-                                                <div class="">
-                                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                                    <span><?= $product["review_average"] ?></span>
-                                                </div>
-                                                <div class="star-content">
-                                                    <span class="text-primary">생생리뷰 <strong>(<?= $product["total_review"] ?>)</strong></span>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="d_flex align_items_center justify_content_between">
                                         <div class="sub-title tour">
@@ -214,6 +203,17 @@
                                                      alt="arrow_right_mo">
                                             <?php endif; ?>
                                             <?php endforeach; ?>
+                                        </div>
+                                        <div class="only_web">
+                                            <div class="star-container">
+                                                <div class="">
+                                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                                    <span><?= $product["review_average"] ?></span>
+                                                </div>
+                                                <div class="star-content">
+                                                    <span class="text-primary">생생리뷰 <strong>(<?= $product["total_review"] ?>)</strong></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="list-item-info">
