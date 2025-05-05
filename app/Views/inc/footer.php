@@ -145,7 +145,7 @@
                     <p class="text-18">업무시간 :</p>
                     <p class="text-25 no-w"><span class="text-w"><?= $setting['time_work']?></span>
                     </p>
-                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p>
+                    <!-- <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p> -->
                     <p class="text-w text-18 p_bot_f">고객센터</p>
                     <p class="text-25">한국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_seoul']?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
                     <p class="text-25">태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai']?></span> (방콕) 로밍폰, 태국 유심폰 <br
