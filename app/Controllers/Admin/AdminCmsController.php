@@ -160,9 +160,9 @@ class AdminCmsController extends BaseController
         $policy_contents    = $_POST['policy_contents'] ?? [];
 
         foreach ($policy_types as $i => $policy_type) {
-            $p_idx      = updateSQ($p_idx_list[$i]);
-            $type       = updateSQ($policy_type);
-            $contents   = updateSQ($policy_contents[$i]);
+            $p_idx      = updateSQ($p_idx_list[$i] ?? '');
+            $type       = updateSQ($policy_type ?? '');
+            $contents   = updateSQ($policy_contents[$i] ?? '');
 
             if ($p_idx) {
                 $this->policyModel->update($p_idx, [
