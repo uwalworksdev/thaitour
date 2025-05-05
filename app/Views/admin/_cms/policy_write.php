@@ -107,14 +107,14 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" name="policy_type" id="policy_type" class="input_txt"
+                                            <input type="text" name="policy_type[]" id="policy_type" class="input_txt"
                                                 style="width:400px;height:30px;"
                                                 value="<?= isset($row) ? $row['policy_type'] : '' ?>">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                    <textarea name="policy_contents" id="policy_contents" rows="10" cols="100"
+                                    <textarea name="policy_contents[]" id="policy_contents" rows="10" cols="100"
                                             class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= isset($row) ? viewSQ($row['policy_contents']) : '' ?></textarea>
 

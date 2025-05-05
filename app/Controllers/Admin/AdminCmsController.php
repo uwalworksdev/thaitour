@@ -177,7 +177,7 @@ class AdminCmsController extends BaseController
             }
         }
 
-        // return redirect()->to("/AdmMaster/_cms/policy_list");
+        return redirect()->to("/AdmMaster/_cms/policy_list");
         // $p_idx		      = updateSQ($_POST["p_idx"]);
         // $policy_type      = updateSQ($_POST["policy_type"]);
         // $policy_contents  = updateSQ($_POST["policy_contents"]);
