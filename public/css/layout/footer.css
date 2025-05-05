@@ -7,6 +7,14 @@
     color: rgba(255, 255, 255, 0.8);
 }
 
+.footer_desc {
+    margin-bottom: 40px;
+}
+
+.footer_desc p {
+    line-height: 1.6;   
+}
+
 .ft_logo {
     margin-top: 40px;
 }

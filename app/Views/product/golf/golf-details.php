@@ -296,8 +296,8 @@ $(document).ready(function() {
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="item-tag new" style="justify-content: space-between;">
-                            <div class="flex__c">
+                        <div class="item-tag new">
+                            <div class="flex__c item-tag-select">
                                 <span class="label first">인원</span>
                                 <select class="select_custom_ active_ cus-width" onchange="changePeople()"
                                         name="people_adult_cnt" id="people_adult_cnt">
@@ -312,7 +312,7 @@ $(document).ready(function() {
                                 </select>
                             </div>
 
-                            <div class="flex_b_c">
+                            <div class="flex__c item-tag-select">
                                 <span class="label">티오프 시간 선택</span>
                                 <div class="body-box flex">
                                     <select class="box flex_1" id="hoursDay" onchange="">
@@ -412,7 +412,7 @@ $(document).ready(function() {
                     </div>
                     <div class="box-selecter flex_b_c">
                         <div class="ic_item">
-                            <div class="title">주/야간 선택</div>
+                            <div class="title first">주/야간 선택</div>
                             <div class="body-box flex">
                                 <div class="box day_option day_option_first flex_1 active" data-type="day">
                                     <p>주간</p>
@@ -425,15 +425,15 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div>
-                        <div class="ic_item" style="gap: 30px;">
+                        <div class="ic_item">
                             <div class="flex__c" style="width: 50%;">
                                 <div class="item-select" id="cart_no" style="display:none">
                                     <p>카트비는 그린피에 포함입니다.</p>	   
                                 </div>
                                 <div class="item-select" id="cart_yes" style="display:none; align-items: center; width: 100%;">
-                                    <span class="label">카트</span>
+                                    <span class="label first">카트</span>
                                     <input type="hidden" name="vehicle_idx[]" value="4">
-                                    <select id="vehicle_4" style="width: calc(100% - 50px);" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                                    <select id="vehicle_4" data-name="카트" data-idx="<?=$idx?>" data-price="<?=$cart_price?>" data-price_baht="<?=$cart_price_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                                         <option value="">선택해주세요.</option>
                                         <option value="1">1대</option>
                                         <option value="2">2대</option>
@@ -447,10 +447,10 @@ $(document).ready(function() {
                                 <div class="item-select" id="caddy_no" style="display:none">
                                     <p>캐디피는 그린피에 포함입니다.</p>	   
                                 </div>
-                                <div class="item-select" id="caddy_yes" style="display:none; align-items: center; width: 100%;">
+                                <div class="item-select second" id="caddy_yes" style="display:none; align-items: center; width: 100%;">
                                     <span class="label">캐디피</span>
                                     <input type="hidden" name="vehicle_idx[]" value="5">
-                                    <select id="vehicle_5" style="width: calc(100% - 50px);" data-name="캐디피" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                                    <select id="vehicle_5" data-name="캐디피" data-idx="<?=$idx?>" data-price="<?=$caddie_fee?>" data-price_baht="<?=$caddie_fee_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                                         <option value="">선택해주세요.</option>
                                         <option value="1">1명</option>
                                         <option value="2">2명</option>

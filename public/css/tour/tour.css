@@ -3913,6 +3913,15 @@
 
 .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: calc(50% - 40px);
+    justify-content: space-between;
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag .item-tag-select {
+    width: 50%;
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag .item-tag-select .cus-width {
+    width:  180px;
 }
 
 /* .custom-golf-detail .tag-con-below-calendar .item-tag.new .label.first {
@@ -3930,10 +3939,43 @@
     width: 120px;
 }
 
+.custom-golf-detail .tag-con-below-calendar .item-tag span.label.first {
+    width: 60px;
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag.new select {
+    width: unset;
+}
+
+.custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+    width: 60px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .item-select .cus-width {
+    width: 180px;
+}
+
+.custom-golf-detail .body-box {
+    width: calc(100% - 120px);
+    gap: 10px;
+}
+
+.custom-golf-detail .body-box .box {
+    width: 50% !important;
+}
+
 .custom-golf-detail .tag-list {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .item-select.second .label {
+    width: 120px;
+}
+
+.custom-golf-detail .box-selecter .ic_item .item-select.second .cus-width {
+    width: calc(100% - 120px);
 }
 
 .custom-golf-detail .tag-list span.tag {

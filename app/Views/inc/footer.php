@@ -110,24 +110,20 @@
                     <img src="/uploads/setting/<?= $setting['logos_footer']?>" alt="">
                 </div>
                 <div class="add_footer">
-                    <p>대표이사 : <?= $setting['com_owner']?> <br>
-                        <?= $setting['addr1']?>, <?= $setting['addr2']?><br>
-                        이메일 : <?= $setting['qna_email']?><br>
-                        통신판매업 : <?= $setting['mallOrder']?><br>
-                        한국 사업자번호 <?= $setting['comnum']?><br>
-                        태국 사업자번호 <?= $setting['comnum_thai']?></p>
+                    <p>대표이사 : <?= $setting['com_owner']?></p>
+                    <p><?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                    <p>이메일 : <?= $setting['qna_email']?></p>
+
+                    <p class="p_bot_f">한국</p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?></p>
+                    <p>통신판매업 : <?= $setting['mallOrder']?></p>
+                    <p>관광사업자 등록번호 : 제 2022-000013 호</p>
+
+                    <p class="p_bot_f">태국</p>
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?></p>
+                    <p>관광사업자 등록번호 : 14/03441</p>
                 </div>
-                <div>
-                    <div class="custom-select2">
-                        <select id="language-select-2" style="width: 100%;">
-                            <option value="kr">kr</option>
-                            <!-- Add more options here -->
-                        </select>
-                    </div>
-                </div>
-                <div class="copy_f">
-                    <p><?= $setting['copyright']?></p>
-                </div>
+
             </div>
             <div class="footer_r">
                 <div>
@@ -146,15 +142,15 @@
                     </ul>
                 </div>
                 <div class="lh-1-6">
-                    <p class="text-w text-18">고객센터</p>
+                    <p class="text-18">업무시간 :</p>
+                    <p class="text-25 no-w"><span class="text-w"><?= $setting['time_work']?></span>
+                    </p>
+                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p>
+                    <p class="text-w text-18 p_bot_f">고객센터</p>
                     <p class="text-25">한국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_seoul']?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
                     <p class="text-25">태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai']?></span> (방콕) 로밍폰, 태국 유심폰 <br
                                 class="only_mo"> 모두 <?= $setting['custom_service_phone_thai2']?> 번호만 누르면 됩니다.
                     </p>
-                    <p class="text-18 p_bot_f">업무시간 :</p>
-                    <p class="text-25 no-w"><span class="text-w"><?= $setting['time_work']?></span>
-                    </p>
-                    <p class="text-25 no-w">긴급예약처리 - <span class="text-w"><?= $setting['time_reservation']?></span></p>
                 </div>
                 <div class="btn_cus_f">
                     <button class="btn_custom_f">실시간 채팅형 간단 문의</button>
@@ -162,6 +158,22 @@
                 </div>
             </div>
         </div>
+        <div class="footer_desc">
+            <p>※ 더투어랩은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩은 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</p>
+            <p>※ 예약자는 더투어랩 태국본사와 계약하는 것이고, 더투어랩 한국지사와 계약하는 것이 아닙니다. 따라서 예약에 따른 문제 발생시 그 당사자는 한국지사가 아닌 태국 본사입니다.</p>
+        </div>
+        <div>
+            <div class="custom-select2">
+                <select id="language-select-2" style="width: 100%;">
+                    <option value="kr">kr</option>
+                    <!-- Add more options here -->
+                </select>
+            </div>
+        </div>
+        <div class="copy_f">
+            <p><?= $setting['copyright']?></p>
+        </div>
+
     </div>
 </footer>
 <script src="/js/slider_option.js"></script>
