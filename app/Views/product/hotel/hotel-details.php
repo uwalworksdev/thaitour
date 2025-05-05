@@ -1324,7 +1324,10 @@
                                     $arr_text_type[] = $category["code_name"];
                                 }
                             }
-                        ?>
+                        ?>   
+                    </div>
+
+                    <div>
                         <div class="area_info">
                             <div class="pallet child">
                                 <div class="icon">
@@ -1337,7 +1340,7 @@
                                     <?php echo implode(" · ", $arr_text_type); ?>
                                 </div>
                             </div>   
-                               
+                                
                             <div class="extent child">
                                 <div class="icon">
                                     <i></i>
@@ -1347,7 +1350,7 @@
                                     <span class="unit">m</span>
                                 </div>
                             </div>
-
+    
                             <div class="floor child">
                                 <div class="icon">
                                     <i></i>
@@ -1358,295 +1361,296 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <table class="room-table">
-                        <colgroup>
-                            <col width="30%">
-                            <col width="15%">
-                            <col width="*">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>옵션 상세</th>
-                                <th>정원</th>
-                                <th>객실 요금</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-						<?php
-							$target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
-							$filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
-								return $room['g_idx'] == $target_g_idx;
-							});
-						?>						
-						    <?php foreach ($filteredRooms as $room): ?>
-                            <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
-                                <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
-                                <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
-                                <td>
-                                    <div class="room-details">
-                                        <p class="room-p-cus-1"><?=$room['room_name']?></p>
-										<?php
-										    if($room['breakfast'] != "N") {
-											   $breakfast = "조식 포함";
-						                    } else {
-											   $breakfast = "조식 비포함";	
-						                    }   
-											
-											$option_val = explode(",", $room['option_val']);
-										?>	
-                                        <ul>
-                                            <li>
-                                                <span><?=$breakfast?></span>
-                                                <div class="view_promotion view_promotion1">
-                                                    <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                        
+                        <table class="room-table">
+                            <colgroup>
+                                <col width="30%">
+                                <col width="15%">
+                                <col width="*">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>옵션 상세</th>
+                                    <th>정원</th>
+                                    <th>객실 요금</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                $target_g_idx  = $type['g_idx']; // 원하는 g_idx 값 (예: 1번 그룹만 표시)
+                                $filteredRooms = array_filter($roomsByType, function($room) use ($target_g_idx) {
+                                    return $room['g_idx'] == $target_g_idx;
+                                });
+                            ?>						
+                                <?php foreach ($filteredRooms as $room): ?>
+                                <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
+                                    <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
+                                    <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
+                                    <td>
+                                        <div class="room-details">
+                                            <p class="room-p-cus-1"><?=$room['room_name']?></p>
+                                            <?php
+                                                if($room['breakfast'] != "N") {
+                                                   $breakfast = "조식 포함";
+                                                } else {
+                                                   $breakfast = "조식 비포함";	
+                                                }   
+                                                
+                                                $option_val = explode(",", $room['option_val']);
+                                            ?>	
+                                            <ul>
+                                                <li>
+                                                    <span><?=$breakfast?></span>
+                                                    <div class="view_promotion view_promotion1">
+                                                        <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;">
+                                                        <?php 
+                                                            if(!empty(trim($room['r_contents1']))) {
+                                                        ?>    
+                                                            <div class="layer_promotion layer_promotion1">
+                                                                <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
+                                                            </div>   
+                                                        <?php
+                                                            }
+                                                        ?>                                                    
+                                                    </div> 
+                                                </li>
+                                                <?php for($i=0;$i<count($option_val);$i++) { ?>
+                                                <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
+                                                <?php } ?>
+                                                <!--li>온라인 사전결제</li-->
+                                                <!--li><span style="color:red">환불 불가</span></li-->
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="people_qty">
+                                            <img src="/images/sub/user-iconn.png" alt="">
+                                            <p>성인 : <?=$room['adult']?>명</p>
+                                            <p>아동 : <?=$room['kids']?>명</p>
+                                            <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
+                                        </div>
+                                    </td>
+                                    
+                                    <?php
+                                           $result    = mainPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
+                                    
+                                           $price     = explode("|", $result); 
+                                           //echo $result;
+                                           $room['goods_price1'] = $price[0];
+                                           $room['goods_price2'] = $price[1];
+                                           $room['goods_price3'] = $price[2];
+                                           $room['goods_price4'] = $price[3];
+                                           $room['goods_price5'] = $price[4];
+                                           
+                                           $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
+                                           $basic_bath =  $room['goods_price1'];
+                                           
+                                           $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
+                                           $price_bath =  $room['goods_price2'] + $room['goods_price3'];
+                                           
+                                           $extra_won  =  (int)($room['goods_price5']* $room['baht_thai']);
+                                           $extra_bath =  $room['goods_price5'];
+                                           
+                                    ?>
+                                    <td>
+                                        <div class="col_wrap_room_rates">
+                                            <?php if($room['secret_price'] == "Y"){?>
+                                                <div class="price-secret">
+                                                    <span>비밀특가</span>
+                                                    <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
+                                                    <div class="layer_secret">
+                                                        <b style="color: #ef4337 ;">회원 전용 특가상품</b> 
+                                                        <br>  
+                                                        로그인 하시고 특가요금 확인하세요!
+                                                    </div>
+                                                </div>
+                                            <?php }else{ ?>
+                                                <div class="price-details">
+                                                    <p>
+                                                        <span class="price totalPrice" id="149" data-price="<?=$price_won?>" data-price_bath="<?=$price_bath?>">
+                                                            
+                                                            <?php if($room['price_view'] == "") { ?>
+                                                            <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
+                                                            <span class="price_bath">(<?=number_format($price_bath)?>바트)</span>
+                                                            <?php } ?>
+                                                            
+                                                            <?php if($room['price_view'] == "W") { ?>
+                                                            <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
+                                                            <?php } ?>
+    
+                                                            <?php if($room['price_view'] == "B") { ?>
+                                                            <span class="op_price"><?=number_format($price_bath)?>바트</span>
+                                                            <?php } ?>
+                                                        </span>
+                                                    </p>
+                                                    <span class="total" style="">
+                                                        객실금액: <span class="price-strike hotel_price_sale" data-price="<?=$basic_won?>"><?=number_format($basic_won)?>원</span>
+                                                        <span class="price-strike hotel_price_day_sale" data-price="<?=$basic_bath?>">(<?=number_format($basic_bath)?>바트)</span> 
+                                                    </span>
+                                                    <?php if($room['special_discount'] == "Y") { ?>	
+                                                    <div class="discount" style="">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
+                                                    </div>
+                                                    <?php } ?>
+                                                    
+                                                </div>
+                                            <?php
+                                                }
+                                            ?>
+                                            <div class="wrap_btn_book">
+                                                <?php if($price_won > 0) { ?>
+                                                <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
+                                                <?php } else { ?>
+                                                <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button book_btn_217">문의하기</button>
+                                                <?php } ?>
+                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
+                                            </div>
+                                        </div>
+                                        <div class="wrap_bed_type">
+                                            <div class="tit ">
+                                                <span>침대타입(요청사항)</span> 
+                                                <div class="view_promotion view_promotion2">
+                                                    <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
                                                     <?php 
-                                                        if(!empty(trim($room['r_contents1']))) {
+                                                        if(!empty(trim($room['r_contents3']))) {
                                                     ?>    
-                                                        <div class="layer_promotion layer_promotion1">
-                                                            <p style="white-space: pre-line"><?=$room['r_contents1']?></p>
+                                                        <div class="layer_promotion layer_promotion2">
+                                                            <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
                                                         </div>   
                                                     <?php
                                                         }
-                                                    ?>                                                    
-                                                </div> 
-                                            </li>
-											<?php for($i=0;$i<count($option_val);$i++) { ?>
-                                            <li><?= htmlspecialchars_decode($option_val[$i]) ?></li>
-											<?php } ?>
-                                            <!--li>온라인 사전결제</li-->
-                                            <!--li><span style="color:red">환불 불가</span></li-->
-                                        </ul>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="people_qty">
-                                        <img src="/images/sub/user-iconn.png" alt="">
-                                        <p>성인 : <?=$room['adult']?>명</p>
-                                        <p>아동 : <?=$room['kids']?>명</p>
-                                        <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
-                                    </div>
-                                </td>
-								
-								<?php
-									   $result    = mainPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
-								
-								       $price     = explode("|", $result); 
-									   //echo $result;
-								       $room['goods_price1'] = $price[0];
-								       $room['goods_price2'] = $price[1];
-								       $room['goods_price3'] = $price[2];
-									   $room['goods_price4'] = $price[3];
-									   $room['goods_price5'] = $price[4];
-									   
-								       $basic_won  =  (int)(($room['goods_price1']) * $room['baht_thai']);
-								       $basic_bath =  $room['goods_price1'];
-									   
-								       $price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $room['baht_thai']);
-								       $price_bath =  $room['goods_price2'] + $room['goods_price3'];
-									   
-								       $extra_won  =  (int)($room['goods_price5']* $room['baht_thai']);
-								       $extra_bath =  $room['goods_price5'];
-									   
-								?>
-                                <td>
-                                    <div class="col_wrap_room_rates">
-                                        <?php if($room['secret_price'] == "Y"){?>
-                                            <div class="price-secret">
-                                                <span>비밀특가</span>
-                                                <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
-                                                <div class="layer_secret">
-                                                    <b style="color: #ef4337 ;">회원 전용 특가상품</b> 
-                                                    <br>  
-                                                    로그인 하시고 특가요금 확인하세요!
+                                                    ?>
+                                                    
                                                 </div>
                                             </div>
-                                        <?php }else{ ?>
+                                                                                               
+                                            <div class="wrap_input_radio">
+                                                <?php
+                                                
+                                                      $o_sdate   = date('Y-m-d', strtotime('+1 day'));
+                                                      
+                                                      $result    = roomPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
+                                                      
+                                                      //echo "room - ". $result ."<br>";
+                                                      $arr       = explode("|", $result);
+                                                      $bed_type  = explode(",", $arr[0]);											
+                                                      $bed_price = explode(",", $arr[1]);											
+                                                      $extra_bed = explode(",", $arr[2]);											
+                                                ?>
+                                                
+                                                <?php for($i=0;$i<count($bed_type);$i++) { ?>
+                                                    <?php $real_won   = (int)($bed_price[$i]*$room['baht_thai']); ?>
+                                                    <?php $real_bath  = $bed_price[$i];?>
+    
+                                                    <?php $extra_won   = (int)($extra_bed[$i]*$room['baht_thai']); ?>
+                                                    <?php $extra_bath  = $extra_bed[$i];?>
+    
+                                                    <div class="wrap_input" style="margin-bottom: 10px;">
+                                                        <input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+                                                               data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+                                                               data-name="<?=$room['room_name']?>" 
+                                                               data-won="<?=$real_won?>" 
+                                                               data-bath="<?=$real_bath?>" 
+                                                               data-type="<?=$bed_type[$i]?>" 
+                                                               value="<?=$room['rooms_idx']?>" >
+                                                        <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
+                                                            <?php if($room['secret_price'] == "Y"){?>
+                                                                <span>비밀특가</span>
+                                                            <?php }else{ ?>
+                                                                <span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
+                                                            <?php } ?>
+                                                        </label>
+                                                    </div>
+                                                    <?php if($extra_bed) { ?>
+                                                    <div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">
+                                                        <input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+                                                               data-name="Extra베드" 
+                                                               data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
+                                                               data-won="<?=$extra_won?>" 
+                                                               data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
+                                                        <label for="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
+                                                    </div>
+                                                    <?php } ?>
+                                                <?php } ?>
+    
+                                                    
+                                                    
+                                                <!--div class="wrap_input">
+                                                    <input type="radio" name="bed_type" id="bed_type_2">
+                                                    <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
+                                                </div-->
+                                            </div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                                
+                                <!--tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
+                                    <td>
+                                        <div class="room-details">
+                                            <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
+                                            <ul>
+                                                <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
+                                                <li>대기없이 바로 확정!</li>
+                                                <li>온라인 사전결제</li>
+                                                <li style="color : red">환불 불가</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="people_qty">
+                                            <img src="/images/sub/user-iconn.png" alt="">
+                                            <p>정원 : 2명</p>
+                                            <p>아동: 1명</p>
+                                            <a href="#!" style="color : #104aa8">혜택보기 &gt;</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col_wrap_room_rates">
                                             <div class="price-details">
-                                                <p>
-                                                    <span class="price totalPrice" id="149" data-price="<?=$price_won?>" data-price_bath="<?=$price_bath?>">
-                                                        
-                                                        <?php if($room['price_view'] == "") { ?>
-                                                        <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
-                                                        <span class="price_bath">(<?=number_format($price_bath)?>바트)</span>
-                                                        <?php } ?>
-                                                        
-                                                        <?php if($room['price_view'] == "W") { ?>
-                                                        <span class="op_price"><?=number_format($price_won)?></span><span>원</span>
-                                                        <?php } ?>
-
-                                                        <?php if($room['price_view'] == "B") { ?>
-                                                        <span class="op_price"><?=number_format($price_bath)?>바트</span>
-                                                        <?php } ?>
+                                                <p style="">
+                                                    <span class="price totalPrice" id="149" data-price="67940.82" data-price_bath="1602">
+                                                        <span class="op_price">1,560,000</span>
+                                                        <span>원</span>
+                                                        <span class="price_bath">(3700바트)</span>
                                                     </span>
                                                 </p>
                                                 <span class="total" style="">
-                                                    객실금액: <span class="price-strike hotel_price_sale" data-price="<?=$basic_won?>"><?=number_format($basic_won)?>원</span>
-                                                    <span class="price-strike hotel_price_day_sale" data-price="<?=$basic_bath?>">(<?=number_format($basic_bath)?>바트)</span> 
-                                                </span>
-                                                <?php if($room['special_discount'] == "Y") { ?>	
+                                                    객실금액: <span class="price-strike hotel_price_day" data-price="131598.23">254 원</span>
+                                                    <span class="hotel_price_day_sale">170</span> 원 </span>
                                                 <div class="discount" style="">
                                                     <span class="label">특별할인</span>
-                                                    <span class="price_content"><i class="hotel_price_percent"><?=$room['discount_rate']?></i>%할인</span>
+                                                    <span class="price_content"><i class="hotel_price_percent">33.33</i>%할인</span>
                                                 </div>
-                                                <?php } ?>
-												
                                             </div>
-                                        <?php
-                                            }
-                                        ?>
-                                        <div class="wrap_btn_book">
-										    <?php if($price_won > 0) { ?>
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
-											<?php } else { ?>
-                                            <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button book_btn_217">문의하기</button>
-											<?php } ?>
-                                            <p class="wrap_btn_book_note">세금서비스비용 포함</p>
-                                        </div>
-                                    </div>
-                                    <div class="wrap_bed_type">
-                                        <div class="tit ">
-                                            <span>침대타입(요청사항)</span> 
-                                            <div class="view_promotion view_promotion2">
-                                                <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
-                                                <?php 
-                                                    if(!empty(trim($room['r_contents3']))) {
-                                                ?>    
-                                                    <div class="layer_promotion layer_promotion2">
-                                                        <p style="white-space: pre-line"><?=$room['r_contents3']?></p>
-                                                    </div>   
-                                                <?php
-                                                    }
-                                                ?>
-												
+                                            <div class="wrap_btn_book">
+                                                <button type="button" class="book-button book_btn_217">
+                                                    예약하기
+                                                </button>
+                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                             </div>
                                         </div>
-																						   
-                                        <div class="wrap_input_radio">
-											<?php
-											
-												  $o_sdate   = date('Y-m-d', strtotime('+1 day'));
-												  
-												  $result    = roomPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx']);
-												  
-											      //echo "room - ". $result ."<br>";
-											      $arr       = explode("|", $result);
-                                                  $bed_type  = explode(",", $arr[0]);											
-                                                  $bed_price = explode(",", $arr[1]);											
-                                                  $extra_bed = explode(",", $arr[2]);											
-											?>
-											
-											<?php for($i=0;$i<count($bed_type);$i++) { ?>
-												<?php $real_won   = (int)($bed_price[$i]*$room['baht_thai']); ?>
-												<?php $real_bath  = $bed_price[$i];?>
-
-												<?php $extra_won   = (int)($extra_bed[$i]*$room['baht_thai']); ?>
-												<?php $extra_bath  = $extra_bed[$i];?>
-
-												<div class="wrap_input" style="margin-bottom: 10px;">
-													<input type="radio" name="bed_type_" id="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-														   data-name="<?=$room['room_name']?>" 
-														   data-won="<?=$real_won?>" 
-														   data-bath="<?=$real_bath?>" 
-														   data-type="<?=$bed_type[$i]?>" 
-														   value="<?=$room['rooms_idx']?>" >
-													<label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
-														<?php if($room['secret_price'] == "Y"){?>
-															<span>비밀특가</span>
-														<?php }else{ ?>
-															<span style="color :coral"><?=number_format($real_won)?>원 (<?=number_format($real_bath)?>바트)</span>
-														<?php } ?>
-													</label>
-												</div>
-												<?php if($extra_bed) { ?>
-												<div class="wrap_check extra" id="chk_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">
-													<input type="checkbox" name="extra_" id="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-													       data-name="Extra베드" 
-														   data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
-														   data-won="<?=$extra_won?>" 
-														   data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
-													<label for="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
-												</div>
-												<?php } ?>
-											<?php } ?>
-
-												
-												
-                                            <!--div class="wrap_input">
-                                                <input type="radio" name="bed_type" id="bed_type_2">
-                                                <label for="bed_type_2">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div-->
-                                        </div>
-										
-                                    </div>
-                                </td>
-                            </tr>
-							<?php endforeach; ?>
-							
-                            <!--tr class="room_op_" data-room="S_149" data-opid="149" data-optype="S" data-ho_idx="217">
-                                <td>
-                                    <div class="room-details">
-                                        <p class="room-p-cus-1">킹사이즈침대 1개 무료 아침 식사, 무료 주차 대행 무료 셀프 주차</p>
-                                        <ul>
-                                            <li><span>조식포함</span> <img src="/images/sub/question-icon.png" alt="" style = "width : 14px; margin-top : 4px ; opacity: 0.6;"></li>
-                                            <li>대기없이 바로 확정!</li>
-                                            <li>온라인 사전결제</li>
-                                            <li style="color : red">환불 불가</li>
-                                        </ul>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="people_qty">
-                                        <img src="/images/sub/user-iconn.png" alt="">
-                                        <p>정원 : 2명</p>
-                                        <p>아동: 1명</p>
-                                        <a href="#!" style="color : #104aa8">혜택보기 &gt;</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col_wrap_room_rates">
-                                        <div class="price-details">
-                                            <p style="">
-                                                <span class="price totalPrice" id="149" data-price="67940.82" data-price_bath="1602">
-                                                    <span class="op_price">1,560,000</span>
-                                                    <span>원</span>
-                                                    <span class="price_bath">(3700바트)</span>
-                                                </span>
-                                            </p>
-                                            <span class="total" style="">
-                                                객실금액: <span class="price-strike hotel_price_day" data-price="131598.23">254 원</span>
-                                                <span class="hotel_price_day_sale">170</span> 원 </span>
-                                            <div class="discount" style="">
-                                                <span class="label">특별할인</span>
-                                                <span class="price_content"><i class="hotel_price_percent">33.33</i>%할인</span>
+                                        <div class="wrap_bed_type">
+                                            <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+                                            <div class="wrap_input_radio">
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="bed_type_3" id="bed_type_3" checked="">
+                                                    <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200바트)</span></label>
+                                                </div>
+                                                <div class="wrap_input">
+                                                    <input type="radio" name="bed_type_3" id="bed_type_4">
+                                                    <label for="bed_type_4">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
+                                                </div>
+    
                                             </div>
                                         </div>
-                                        <div class="wrap_btn_book">
-                                            <button type="button" class="book-button book_btn_217">
-                                                예약하기
-                                            </button>
-                                            <p class="wrap_btn_book_note">세금서비스비용 포함</p>
-                                        </div>
-                                    </div>
-                                    <div class="wrap_bed_type">
-                                        <p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
-                                        <div class="wrap_input_radio">
-                                            <div class="wrap_input">
-                                                <input type="radio" name="bed_type_3" id="bed_type_3" checked="">
-                                                <label for="bed_type_3">트윈(요청): <span style="color :coral">544,852원 (12,200바트)</span></label>
-                                            </div>
-                                            <div class="wrap_input">
-                                                <input type="radio" name="bed_type_3" id="bed_type_4">
-                                                <label for="bed_type_4">트리플(3인): <span style="color :coral">678,832원 (15,200바트)</span></label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr-->
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr-->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 											
             </div>
