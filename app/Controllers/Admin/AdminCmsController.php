@@ -161,7 +161,7 @@ class AdminCmsController extends BaseController
 
         foreach ($policy_types as $i => $policy_type) {
             $p_idx      = updateSQ($p_idx_list[$i]);
-            $type       = updateSQ($policy_type);
+            $type       = updateSQ($policy_type ?? '');
             $contents   = updateSQ($policy_contents[$i]);
 
             if ($p_idx) {
@@ -177,7 +177,7 @@ class AdminCmsController extends BaseController
             }
         }
 
-        return redirect()->to("/AdmMaster/_cms/policy_list");
+        // return redirect()->to("/AdmMaster/_cms/policy_list");
         // $p_idx		      = updateSQ($_POST["p_idx"]);
         // $policy_type      = updateSQ($_POST["policy_type"]);
         // $policy_contents  = updateSQ($_POST["policy_contents"]);
