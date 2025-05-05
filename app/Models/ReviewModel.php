@@ -167,23 +167,38 @@ class ReviewModel extends Model
 
     public function getProductReview($product_idx)
     {
+        // $builder = $this->builder();
+        // $builder->where('product_idx', $product_idx);
+        // $total_review = $builder->countAllResults(false);
+        // $avg = 0;
+
+        // if ($total_review > 0) {
+        //     $result = $builder->get()->getResultArray();
+
+        //     $sum = 0;
+        //     foreach ($result as $key => $value) {
+        //         $sum += $value['number_stars'];
+        //     }
+        //     $avg = $sum / $total_review;
+        //     $avg = round($avg, 1);
+        // }
+        // return [
+        //     'total_review' => $total_review,
+        //     'avg' => $avg
+        // ];
+
         $builder = $this->builder();
+        $builder->select('COUNT(*) as total_review, SUM(number_stars) as total_stars');
         $builder->where('product_idx', $product_idx);
-        $total_review = $builder->countAllResults(false);
+        $row = $builder->get()->getRowArray();
+
         $avg = 0;
-
-        if ($total_review > 0) {
-            $result = $builder->get()->getResultArray();
-
-            $sum = 0;
-            foreach ($result as $key => $value) {
-                $sum += $value['number_stars'];
-            }
-            $avg = $sum / $total_review;
-            $avg = round($avg, 1);
+        if ($row['total_review'] > 0) {
+            $avg = round($row['total_stars'] / $row['total_review'], 1);
         }
+
         return [
-            'total_review' => $total_review,
+            'total_review' => (int)$row['total_review'],
             'avg' => $avg
         ];
     }

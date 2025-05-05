@@ -3424,6 +3424,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
 
+                var_dump($productReview);
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
@@ -3494,7 +3495,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                 'search_product_tour' => $search_product_tour,
             ];
 
-            return $this->renderView('tours/list-tour', $data);
+            // return $this->renderView('tours/list-tour', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
