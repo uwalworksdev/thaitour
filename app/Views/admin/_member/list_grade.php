@@ -112,7 +112,7 @@ $(function() {
     $(document).on('click', '.grade_upd', function() {
         const g_idx       = $(this).val();
         const grade_name  = $('#grade_name_' + g_idx).val();
-        const amount_rate = $('#amount_rate_' + g_idx).val();
+        //const amount_rate = $('#amount_rate_' + g_idx).val();
 
 		$.ajax({
 
