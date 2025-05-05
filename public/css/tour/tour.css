@@ -1162,7 +1162,7 @@
 .content-sub-product-hotel .product-card-item-right .title-container {
     display: flex;
     justify-content: space-between;
-    /* margin-bottom: 15px; */
+    margin-bottom: 15px;
 }
 
 .content-sub-product-hotel .product-card-item-right .title-container h2 {
@@ -1241,7 +1241,7 @@
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
-    margin: 15px 0 20px 0;
+    margin: 35px 0 20px 0;
 }
 
 .content-sub-product-hotel .list-item-info .item-info.promotion_n {
