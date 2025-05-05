@@ -206,7 +206,7 @@
                                         </div>
                                         <div class="only_web">
                                             <div class="star-container">
-                                                <div class="">
+                                                <div class="flex__c">
                                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
                                                     <span><?= $product["review_average"] ?></span>
                                                 </div>
