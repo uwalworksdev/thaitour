@@ -138,7 +138,7 @@ endforeach;
                                 <a href="#!" onclick="go_status('2');">결제완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
-                            <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
+                            <li <?php if($procType == "3") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('3');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                             </li>
