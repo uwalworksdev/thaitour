@@ -10,12 +10,21 @@
                     <h2>마일리지리스트</h2>
                     <div class="menus">
                         <ul class="first">
+                            <li>
+                                <a href="write_point" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span> 
+                                    <span class="txt">항목별지급</span>
+                                </a>
+                            </li>
                         </ul>
 
                         <ul class="last">
-                            <li><a href="write" class="btn btn-primary"><span
-                                            class="glyphicon glyphicon-pencil"></span> <span
-                                            class="txt">마일리지부여</span></a></li>
+                            <li>
+                                <a href="write" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-pencil"></span> 
+                                    <span class="txt">마일리지부여</span>
+                                </a>
+                            </li>
                         </ul>
 
                     </div>

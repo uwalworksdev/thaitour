@@ -21,6 +21,7 @@ class Member extends BaseController
     private $ordersModel;
     private $coupon;
     private $orderMileage;
+    private $pointModel;
 
     public function __construct()
     {
@@ -38,6 +39,7 @@ class Member extends BaseController
         $this->coupon = model("Coupon");
         $this->couponMst = model("CouponMst");
         $this->orderMileage = model("OrderMileage");
+        $this->pointModel = model("Point");
 
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
@@ -328,20 +330,23 @@ class Member extends BaseController
         $m_idx = $this->db->insertID();
 
         //point
-        $point = 3000;
+        $point = $this->pointModel->getPoint()["member_point"] ?? 0;
         $message = "새로운 회원";
         $this->member->update($m_idx, [
             'mileage' => $point
         ]);
 
-        $this->orderMileage->insert([
-            "mi_title"          => $message,
-            "order_mileage"     => $point,
-            "m_idx"             => $m_idx,
-            "order_gubun"       => $message,
-            "mi_r_date"         => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
-            "remaining_mileage" => $point
-        ]);
+        if(!empty($point)){
+            $this->orderMileage->insert([
+                "mi_title"          => $message,
+                "order_mileage"     => $point,
+                "m_idx"             => $m_idx,
+                "order_gubun"       => $message,
+                "mi_r_date"         => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+                "remaining_mileage" => $point
+            ]);
+        }
+
 
         //coupon
         $coupon_m = $this->couponMst->getCouponTypeMember();

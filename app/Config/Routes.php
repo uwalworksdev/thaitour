@@ -463,6 +463,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "Admin\AdminMileageController::list");
         $routes->get("write", "Admin\AdminMileageController::write");
         $routes->post("write_ok", "Admin\AdminMileageController::write_ok");
+        $routes->get("write_point", "Admin\AdminMileageController::write_point");
+        $routes->post("write_point_ok", "Admin\AdminMileageController::write_point_ok");
     });
 
     $routes->group("_memberBreak", static function ($routes) {

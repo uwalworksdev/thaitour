@@ -309,7 +309,7 @@ class AdminMenus extends BaseConfig
                     'name' => '마일리지관리',
                     'code' => 'E9',
                     'url' => ['/AdmMaster/_mileage/list'],
-                    'alias' => ['AdminMileageController::list', 'AdminMileageController::write']
+                    'alias' => ['AdminMileageController::list', 'AdminMileageController::write', 'AdminMileageController::write_point']
                 ],
 
             ]

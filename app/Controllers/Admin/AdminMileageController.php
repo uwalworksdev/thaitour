@@ -9,12 +9,16 @@ use Config\CustomConstants as ConfigCustomConstants;
 class AdminMileageController extends BaseController
 {
     protected $connect;
+    protected $point;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
+
+        $this->point = model("Point");
+
         $constants = new ConfigCustomConstants();
     }
 
@@ -208,6 +212,31 @@ $result = $query->getResultArray();
 
 		echo "<script>alert('등록완료');location.href='/AdmMaster/_mileage/list';</script>";
 
+    }
+
+    public function write_point()
+    {
+        $row = $this->point->getPoint();
+
+        $data = [
+            'row' => $row ?? [],    
+        ];
+        return view('admin/_mileage/write_point', $data);
+    }
+
+    public function write_point_ok()
+    {
+        $member_point  = $this->request->getPost("member_point");
+        $review_point  = $this->request->getPost("review_point");
+        $comment_point = $this->request->getPost("comment_point");
+
+        $this->point->updateData(1, [
+            "member_point"  => $member_point,
+            "review_point"  => $review_point,
+            "comment_point" => $comment_point
+        ]);
+
+		echo "<script>alert('등록완료');location.href='/AdmMaster/_mileage/write_point';</script>";
     }
 
 }
