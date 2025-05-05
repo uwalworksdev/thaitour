@@ -53,7 +53,7 @@
 											<input type="text" name="user_level" id="user_level_<?= esc($row['g_idx']) ?>" value="<?= esc($row['user_level']) ?>" style="width:100px;text-align:right;" readonly>
 										</td>
 										<td>
-											<input type="text" name="amount_rate" id="amount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['amount_rate']) ?>" style="width:100px;text-align:right;">
+											<input type="text" name="amount_rate" class="amount_rate" id="amount_rate_<?= esc($row['g_idx']) ?>" value="<?= esc($row['amount_rate']) ?>" style="width:100px;text-align:right;">
 										</td>
 										<td><?= esc($row['upd_date']) ?></td>
 										<td><?= esc($row['reg_date']) ?></td>
@@ -89,10 +89,9 @@
     </span>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#amount_rate').on('input', function() {
+    $('.amount_rate').on('input', function() {
         let value = $(this).val();
         // 숫자와 소수점만 허용 (소수점은 한 번만)
         value = value.replace(/[^0-9.]/g, ''); // 숫자와 점(.)만 허용
@@ -112,7 +111,7 @@ $(function() {
     $(document).on('click', '.grade_upd', function() {
         const g_idx       = $(this).val();
         const grade_name  = $('#grade_name_' + g_idx).val();
-        //const amount_rate = $('#amount_rate_' + g_idx).val();
+        const amount_rate = $('#amount_rate_' + g_idx).val();
 
 		$.ajax({
 
