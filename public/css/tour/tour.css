@@ -1244,6 +1244,22 @@
     margin: 35px 0 20px 0;
 }
 
+.content-sub-product-hotel .list-item-info.tour-list .item-info {
+    margin-top: 0;
+}
+
+.content-sub-product-hotel .list-item-info.tour-list .item-info-label.flex_tour {
+    margin-bottom: 0;
+}
+
+.content-sub-product-hotel .list-item-info.golf-list .item-info {
+    margin-top: 15px;
+}
+
+.content-sub-product-hotel .list-item-info.golf-list .item-info-label {
+    margin-bottom: 0;
+}
+
 .content-sub-product-hotel .list-item-info .item-info.promotion_n {
     position: relative;
 }

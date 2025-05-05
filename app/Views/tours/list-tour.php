@@ -180,7 +180,7 @@
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
                                     <a href="/product-tours/item_view/<?= $product["product_idx"] ?>">
-                                        <img src="<?= $src ?>" alt="sub_hotel_1">
+                                        <img style="height: 100%;" src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
                                 </div>
                                 <div class="product-card-item-right">
@@ -216,7 +216,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="list-item-info">
+                                    <div class="list-item-info tour-list">
                                         <div class="item-info">
                                             <div class="item-info-label text-gray flex_tour" style="background-color: #f2f2fe;">
                                                 <!-- <?php

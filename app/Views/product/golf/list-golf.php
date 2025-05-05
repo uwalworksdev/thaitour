@@ -128,7 +128,7 @@
                     <div class="product-card-item-container">
                         <div class="product-card-item-left">
                             <a href="/product-golf/golf-detail/<?=$product['product_idx']?>">
-                                <img src="<?=getImage("/data/product/{$product['ufile1']}")?>" alt="sub_hotel_1">
+                                <img style="height: 100%;" src="<?=getImage("/data/product/{$product['ufile1']}")?>" alt="sub_hotel_1">
                             </a>
                         </div>
                         <div class="product-card-item-right">
@@ -185,13 +185,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-item-info">
+                            <div class="list-item-info golf-list">
                                 <div class="item-info">
                                     <div class="item-info-label text-gray" style="background-color: #fff7f4;"><?=nl2br($product['description'])?></div>
                                 </div>
                                 <div class="item-info">
                                     <div class="item-info">
-                                        <div class="item-price-info">
+                                        <div class="item-price-info tour-price">
                                                 <span class="main">
                                                     <?= number_format($product['product_price_won']) ?> </span>
                                             <span class="text-gray"> 원 ~</span>
