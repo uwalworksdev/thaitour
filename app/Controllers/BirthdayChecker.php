@@ -23,7 +23,7 @@ class BirthdayChecker extends Controller
                 // 이메일 발송 등의 추가 작업 가능
             }
         } else {
-            echo "오늘 생일인 사용자가 없습니다.\n";
+            write_log($today. " 오늘 생일인 사용자가 없습니다.");
         }
     }
 }
