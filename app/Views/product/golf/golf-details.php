@@ -179,7 +179,7 @@ $(document).ready(function() {
                         <a class="short_link" data-target="pickup" href="#pickup">상품예약</a>
                         <a class="short_link" data-target="product_des" href="#product_des">상품설명</a>
                         <a class="short_link" data-target="location" href="#location">위치정보</a>
-                        <a class="short_link" data-target="review" href="#section6">생생리뷰(<?= $product['total_review'] ?>
+                        <a class="short_link" data-target="section6" href="#section6">생생리뷰(<?= $product['total_review'] ?>
                             개)</a>
                         <a class="short_link" data-target="qna" href="#qna">상품 Q&A</a>
                     </div>
