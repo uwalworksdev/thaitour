@@ -22,46 +22,68 @@
         <!-- // headerContainer -->
 
         <form name="frm" id="frm" action="write_point_ok" method="post" enctype="multipart/form-data">
-            <div class="listBottom">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout: fixed;">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="150px" />
-                        <col width="35%" />
-                        <col width="150px" />
-                        <col width="*" />
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>새로운 회원</th>
-                            <td colspan="3">
-                                <input type="text" id="member_point" name="member_point"
-                                    value="<?= $row['member_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
-                                    style="width:250px" />
-                            </td>
-                        </tr>
+            <div id="contents">
+                <div class="listWrap_noline">
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout: fixed;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="150px" />
+                                <col width="35%" />
+                                <col width="150px" />
+                                <col width="*" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>새로운 회원</th>
+                                    <td colspan="3">
+                                        <input type="text" id="member_point" name="member_point"
+                                            value="<?= $row['member_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
+                                            style="width:250px" />
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <th>새로운 회원</th>
-                            <td colspan="3">
-                                <input type="text" id="review_point" name="review_point"
-                                    value="<?= $row['review_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
-                                    style="width:250px" />
-                            </td>
-                        </tr>
+                                <tr>
+                                    <th>리뷰작성</th>
+                                    <td colspan="3">
+                                        <input type="text" id="review_point" name="review_point"
+                                            value="<?= $row['review_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
+                                            style="width:250px" />
+                                    </td>
+                                </tr>
 
-                        <tr>
-                            <th>새로운 회원</th>
-                            <td colspan="3">
-                                <input type="text" id="comment_point" name="comment_point"
-                                    value="<?= $row['comment_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
-                                    style="width:250px" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                <tr>
+                                    <th>댓글 작성</th>
+                                    <td colspan="3">
+                                        <input type="text" id="comment_point" name="comment_point"
+                                            value="<?= $row['comment_point'] ?? 0 ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="input_txt placeHolder"
+                                            style="width:250px" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="tail_menu">
+                        <ul>
+                            <li class="left"></li>
+                            <li class="right_sub">
+
+                                <a href="/AdmMaster/_mileage/list" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                                <a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span
+                                        class="txt">수정</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- // listWrap -->
             </div>
+
         </form>
     </div><!-- 인쇄 영역 끝 //-->
 </div>
