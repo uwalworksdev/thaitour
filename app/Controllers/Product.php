@@ -1888,6 +1888,9 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             'facilities' => $facilities,
         ], 10, $pg, []);
 
+// 마지막 실행된 쿼리 출력
+write_log("golfList- ". $this->productModel->db->getLastQuery());
+
         foreach ($products['items'] as $key => $product) {
 
             $code = $product['product_code_1'];
