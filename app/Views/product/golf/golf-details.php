@@ -1167,11 +1167,14 @@ $(document).ready(function() {
                 total_option_price += price;
                 total_option_price_baht += price_baht;
 
-                return html.replace("[name]", p_name)
-                    .replace("[cnt]", cnt)
-                    .replace("[price]", number_format(price))
-                    .replace("[price_baht]", number_format(price_baht));
-            }).get().join('');
+                if(cnt > 0) {
+					return html.replace("[name]", p_name)
+						.replace("[cnt]", cnt)
+						.replace("[price]", number_format(price))
+						.replace("[price_baht]", number_format(price_baht));
+			    }	
+
+			}).get().join('');
 
             if (total_option_price > 0) $("#option_list_result").html(html2);
 
