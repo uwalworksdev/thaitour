@@ -41,7 +41,22 @@ class DailyController extends BaseController {
 		
 	    $db = \Config\Database::connect(); // 데이터베이스 연결
 		
-		write_log("service_cancel");
+        $sql = "
+            UPDATE tbl_order_mst 
+            SET order_status = 'C' 
+            WHERE order_status = 'X' 
+              AND order_r_date < DATE_SUB(NOW(), INTERVAL 10 DAY)
+        ";
+
+        $result = $db->query($sql);
+
+        if ($result) {
+            $msg = "10일 지난 예약건 취소 처리 완료.";
+        } else {
+            $msg = "예약건 취소 처리 중 오류 발생.";
+        }
+		
+		write_log($msg);
     }
 	
 }	
