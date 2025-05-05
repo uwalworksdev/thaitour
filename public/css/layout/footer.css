@@ -59,6 +59,7 @@
 .footer_icon {
     display: flex;
     align-items: center;
+    justify-content: end;
     gap: 10px;
     margin-top: 40px;
     margin-bottom: 40px;
