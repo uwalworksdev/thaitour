@@ -89,6 +89,22 @@
     </span>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.amount_rate').on('input', function() {
+        let value = $(this).val();
+        // 숫자와 소수점만 허용 (소수점은 한 번만)
+        value = value.replace(/[^0-9.]/g, ''); // 숫자와 점(.)만 허용
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join(''); // 소수점 하나만 유지
+        }
+        $(this).val(value);
+    });
+});
+</script>
+
 <script>
 $(function() {
 
