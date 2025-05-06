@@ -8,14 +8,14 @@ if (empty(session()->get("member")["mIdx"])) {
 }
 
 $cnt_1 = $cnt_2 = $cnt_3 = $cnt_4 = $cnt_5 = $cnt_6 = 0; 
-foreach($reservations as $order) : 
+foreach($groupedOrders as $order) : 
  
-        if($order->order_status == "W" || $order->order_status == "X") $cnt_1++;  // 예약신청
-        if($order->order_status == "X" || $order->order_status == "Z" || $order->order_status == "G" || $order->order_status == "R" || $order->order_status == "J") $cnt_2++;  // 결제대기중
-        if($order->order_status == "Y") $cnt_3++;  // 예약확정중
-        if($order->order_status == "Z") $cnt_4++;  // 예약확정
-        if($order->order_status == "N") $cnt_5++;  // 예약불가
-        if($order->order_status == "C") $cnt_6++;  // 취소완료
+        if($order['order_status'] == "W" || $order['order_status'] == "X") $cnt_1++;  // 예약신청
+        if($order['order_status'] == "X" || $order['order_status'] == "Z" || $order['order_status'] == "G" || $order['order_status'] == "R" || $order['order_status'] == "J") $cnt_2++;  // 결제대기중
+        if($order['order_status'] == "Y") $cnt_3++;  // 예약확정중
+        if($order['order_status'] == "Z") $cnt_4++;  // 예약확정
+        if($order['order_status'] == "N") $cnt_5++;  // 예약불가
+        if($order['order_status'] == "C") $cnt_6++;  // 취소완료
 
 endforeach; 
 ?>
@@ -99,7 +99,7 @@ endforeach;
                                 <span>건</span>
                             </div>
                         </div>
-                        <!--div class="num_order flex_c_c">
+                        <div class="num_order flex_c_c">
                             <img src="/images/mypage/right-arrow.png" alt="">
                         </div>
                         <div class="num_order flex_c_c">
@@ -110,7 +110,7 @@ endforeach;
                                 <p><?=$cnt_5?></p>
                                 <span>건</span>
                             </div>
-                        </div-->
+                        </div>
                     </div>
                     <div class="process flex_c_c">
                         <p>취소처리중 <span>0</span> 건 </p>
@@ -133,22 +133,47 @@ endforeach;
                             <li <?php if($procType == "1") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <?= viewSQ($policy_1['policy_contents']) ?>
+                                    <!-- <p>예약진행중 - 예약이 아직 미확정되어 <br>  예약이 진행중인 내역입니다.</p> -->
+                                    <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <li <?php if($procType == "2") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('2');">결제완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <!-- <p>결제완료 - 예약하신 상품을 해당 날짜에 결제 완료한 내역입니다</p> -->
+                                    <?= viewSQ($policy_2['policy_contents']) ?>
+                                    <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <li <?php if($procType == "3") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('3');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <!-- <p>확정된 예약건중 투숙일(이용일)이 지난건은 이용완료 탭을 누르시면 확인 가능합니다.</p> -->
+                                    <?= viewSQ($policy_3['policy_contents']) ?>
+                                    <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <li <?php if($procType == "4") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('4');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                <!-- <p>이용완료- 예약하신 상품을 해당 <br> 날짜에 이용 완료한 내역입니다.</p> -->
+                                <?= viewSQ($policy_4['policy_contents']) ?>
+                                <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('5');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <!-- <p>취소내역- 취소나 예약불가능<br>(객실만실, 예약마감 한 등)내역입니다.</p> -->
+                                    <?= viewSQ($policy_5['policy_contents']) ?>
+                                    <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <!--li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('5');">이용불가</a>
@@ -310,128 +335,188 @@ endforeach;
                     </div>
                 </form>
                 
-				<?php foreach ($groupTotals as $group): ?>
+				<?php foreach($groupCounts as $group) : ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
                                 <div class="bs-input-check">
-                                    <input type="checkbox" id="grp<?= esc($group->group_no) ?>" class="grpCheck" data-grp="<?= esc($group->group_no) ?>" value="Y">
-                                    <label for="grp<?= esc($group->group_no) ?>"> <?= esc($group->group_no) ?> (그룹번호) / 전체 <?= esc($group->group_count) ?>건 </label>
+                                    <input type="checkbox" id="grp<?= esc($group['group_no']) ?>" class="grpCheck" data-grp="<?= esc($group['group_no']) ?>" value="Y">
+                                    <label for="grp<?= esc($group['group_no']) ?>"> <?= esc($group['group_no']) ?> (그룹번호) / 전체 <?= esc($group['group_count']) ?>건 </label>
                                 </div>
                             </div>
                             <div class="group_r flex__c">
                                 <div class="total">
-                                    <p>그룹 총금액 <span><?= esc(number_format($group->group_total))?>원</span></p>
+                                    <p>그룹 총금액 <span><?= esc(number_format($group['real_price_won']))?>원</span></p>
                                 </div>
-                                <!--div onclick="openNewWindow('<?= esc($group->group_no) ?>')" class="group_print flex__c">-->
-                                <div onclick="openGroupEstimate('<?= esc($group->group_no) ?>')" class="group_print flex__c">
+                                <!--div onclick="openNewWindow('<?= esc($group['group_no']) ?>')" class="group_print flex__c">-->
+                                <div onclick="openGroupEstimate('<?= esc($group['group_no']) ?>')" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div onclick="openGroupMovement('<?= esc($group->group_no) ?>')" class="btn_group_movement">그룹이동</div>
+                                <div onclick="openGroupMovement('<?= esc($group['group_no']) ?>')" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
+
+
+                        <script>
+                            function openNewWindow() {
+                                $(".estimate_popup_wrap").show();
+                                $(".estimate_popup_content .btn_close_popup").click(function() {
+                                    $(".estimate_popup_wrap").hide();
+                                })
+                                // window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
+                            }
+                        </script>
+
+						<script>
+						function openGroupEstimate(group_no) {
+							$.ajax({
+								url: "/ajax/ajax_group_estimate",
+								type: "POST",
+								data: {
+										 "m_idx"    : $("#m_idx").val(),
+										 "group_no" : group_no  
+								},
+								success: function(res) {
+									$(".estimate_popup_wrap").html(res).show();
+
+									// 팝업 닫기 이벤트 다시 바인딩
+									$(".estimate_popup_content .btn_close_popup").click(function() {
+										$(".estimate_popup_wrap").hide();
+									})
+								},
+								error: function() {
+									alert("팝업 데이터를 불러오지 못했습니다.");
+								}
+							});
+						}
+						</script>
+						
+						<script>
+						function openGroupMovement(group_no) {
+							$.ajax({
+								url: "/ajax/ajax_group_movement",
+								type: "POST",
+								data: {
+										 "m_idx"    : $("#m_idx").val(),
+										 "group_no" : group_no  
+								},
+								success: function(res) {
+									$(".group_movement_popup_wrap").html(res).show();
+
+									// 팝업 닫기 이벤트 다시 바인딩
+									$(".group_movement_popup_wrap .btn_close_popup").click(function () {
+										$(".group_movement_popup_wrap").hide();
+									});
+								},
+								error: function() {
+									alert("팝업 데이터를 불러오지 못했습니다.");
+								}
+							});
+						}
+						</script>
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
-						foreach ($groupedOrders[$group->group_no] as $order): 
+						foreach($order_list as $order) : 
+							if ($order['group_no'] == $group['group_no']) :
 							
 						?>
                         <div class="product_detail">
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <?php 
-									       if($order->order_status == "X" || $order->order_status == "G") {
+									       if($order['order_status'] == "X" || $order['order_status'] == "G") {
 										     echo '<input type="checkbox" 
-											              data-idx="'. $order->order_no .'" 
-														  data-price="'. $order->real_price_won .'" 
-														  id="prod'.esc($order->order_idx).'" 
-														  class="pay sub'.esc($group->group_no).'" 
+											              data-idx="'. $order['order_no'] .'" 
+														  data-price="'. $order['real_price_won'] .'" 
+														  id="prod'.esc($order['order_idx']).'" 
+														  class="pay sub'.esc($group['group_no']).'" 
 														  value="Y">';
 									       } 
 									?>
 									
-                                    <label for="prod<?=esc($order->order_idx)?>"> 예약일(예약번호): <?= esc($order->order_date)?>(<?= esc(dateToYoil($order->order_r_date))?>) (<?= esc($order->order_no)?>) </label>
+                                    <label for="prod<?=esc($order['order_idx'])?>"> 예약일(예약번호): <?= esc($order['order_date'])?>(<?= esc(dateToYoil($order['order_r_date']))?>) (<?= esc($order['order_no'])?>) </label>
                                 </div>
-                                <a href="!#" class="product_tit">[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
+                                <a href="!#" class="product_tit">[<?= esc($order['code_name'])?>] <?= esc($order['product_name'])?> </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
-                                        <p><?= esc($_deli_type[$order->order_status])?></p>
+                                        <p><?= esc($_deli_type[$order['order_status']])?></p>
                                     </div>
-                                    <?php if($order->order_status == "X" || $order->order_status == "G") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
+                                    <?php if($order['order_status'] == "X" || $order['order_status'] == "G") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
                                 </div>
                                 <div class="info_user flex">
 								    <?php 
-									    if($order->order_gubun == "hotel") {
-										   echo "<p>". esc($order->start_date) ."(". dateToYoil($order->start_date) .") ~ ". esc($order->end_date) ."(". dateToYoil($order->end_date) .")</p>"; 
-						                } else if($order->order_gubun == "golf" || $order->order_gubun == "tour") {
-										   echo "<p>". esc($order->order_date) ."</p>"; 
-						                } else if($order->order_gubun == "spa" || $order->order_gubun == "ticket") {  
-										   echo "<p>". esc($order->order_day) ."(". dateToYoil($order->order_day) .")</p>"; 
+									    if($order['order_gubun'] == "hotel") {
+										   echo "<p>". esc($order['start_date']) ."(". dateToYoil($order['start_date']) .") ~ ". esc($order['end_date']) ."(". dateToYoil($order['end_date']) .")</p>"; 
+						                } else if($order['order_gubun'] == "golf" || $order['order_gubun'] == "tour") {
+										   echo "<p>". esc($order['order_date']) ."</p>"; 
+						                } else if($order['order_gubun'] == "spa" || $order['order_gubun'] == "ticket") {  
+										   echo "<p>". esc($order['order_day']) ."(". dateToYoil($order['order_day']) .")</p>"; 
 										}
 									?>	
 									
 									<?php 
-										if($order->order_gubun == "golf") {
+										if($order['order_gubun'] == "golf") {
                                            echo "<p>18홀 오전</p>";
-                                           echo "<p>성인 ". $order->people_adult_cnt ."명</p>";
+                                           echo "<p>성인 ". $order['people_adult_cnt'] ."명</p>";
 									    }
 									?>	   
-                                    <!--p><?= esc(number_format($order->real_price_won))?>원 (<?= esc(number_format($order->real_price_bath))?>바트)</p-->
-                                    <p><?= esc(number_format($order->order_price))?>원 (<?= esc(number_format($order->order_price_bath))?>바트)</p>
+                                    <p><?= esc(number_format($order['real_price_won']))?>원 (<?= esc(number_format($order['real_price_bath']))?>바트)</p>
                                 </div>
                                 <div class="info_name">
-                                    <p>여행자 이름: <?= esc($order->order_user_name);?>[<?= esc($order->order_user_first_name_en);?> <?= esc($order->order_user_last_name_en);?>]</p>
+                                    <p>여행자 이름: <?= esc($order["order_user_name"]);?>[<?= esc($order["order_user_first_name_en"]);?> <?= esc($order["order_user_last_name_en"]);?>]</p>
                                 </div>
                                 <div class="note flex__c">
                                     <img src="/images/mypage/not-allowed.png" alt="">
                                     <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
                                 </div>
-                                <div class="info_link" data-product-idx="<?= $order->product_idx ?>">본 예약건 취소규정 자세히 보기</div>
+                                <div class="info_link" data-product-idx="<?= $order['product_idx'] ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
 							    
-								<?php if($order->order_status == "X" || $order->order_status == "G") { ?>
+								<?php if($order['order_status'] == "X" || $order['order_status'] == "G") { ?>
                                 <div class="info_total_price flex__c box">
-                                    <p class="pri_won"><?= esc(number_format($order->real_price_won))?> <span>원</span></p>
-                                    <p class="pri_bath">(<?= esc(number_format($order->real_price_bath))?>바트)</p>
-                                    <div class="btn_payment" data-idx="<?=$order->order_no?>" >
+                                    <p class="pri_won"><?= esc(number_format($order['real_price_won']))?> <span>원</span></p>
+                                    <p class="pri_bath">(<?= esc(number_format($order['real_price_bath']))?>바트)</p>
+                                    <div class="btn_payment" data-idx="<?=$order['order_no']?>" >
                                         <p>결제하기</p>
                                     </div>
                                 </div>
 								<?php } ?>
 								
                                 <div class="estimate_wrap flex box">
-                                    <div class="info_estimate btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
+                                    <div class="info_estimate btn_info flex__c box" data-idx="<?=$order['order_idx']?>" data-gubun="<?=$order['order_gubun']?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
 
-                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>">
+                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order['order_gubun']?>"  data-idx="<?=$order['order_idx']?>">
                                         <p>예약정보</p>
                                     </div>
                                     
-									<?php if($order->order_status == "Y") { ?>
-                                    <div class="info_receipt btn_info flex__c box" data-pg="<?=$order->order_pg?>"  data-tid="<?=$order->TID_1?>">
+									<?php if($order['order_status'] == "Y") { ?>
+                                    <div class="info_receipt btn_info flex__c box" data-pg="<?=$order['order_pg']?>"  data-tid="<?=$order['TID_1']?>">
                                         <p>영수증</p>
                                     </div>
 									<?php } ?>
 										
                                 </div>
-                                <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
+                                <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order['order_idx']?>" >
                                     <img src="/images/mypage/delete_ic.png" alt="">
                                     <p>예약삭제</p>
                                 </div>
                             </div>
                         </div>
-					  <?php 
+						<?php 
+							endif;
 						endforeach; 
-					  endforeach; 
-					  ?>
+						endforeach; 
+						?>
 
                 <div class="booking_product" data-menu="canceled">
 
@@ -672,64 +757,6 @@ endforeach;
 <input type="hidden" name="dataValue"  id="dataValue"  value="" >
 </form>
 
-<script>
-	function openNewWindow() {
-		$(".estimate_popup_wrap").show();
-		$(".estimate_popup_content .btn_close_popup").click(function() {
-			$(".estimate_popup_wrap").hide();
-		})
-		// window.open("https://thetourlab.com/mypage/pop_estimate", "popupWindow", "width=720,height=840");
-	}
-</script>
-
-<script>
-function openGroupEstimate(group_no) {
-	$.ajax({
-		url: "/ajax/ajax_group_estimate",
-		type: "POST",
-		data: {
-				 "m_idx"    : $("#m_idx").val(),
-				 "group_no" : group_no  
-		},
-		success: function(res) {
-			$(".estimate_popup_wrap").html(res).show();
-
-			// 팝업 닫기 이벤트 다시 바인딩
-			$(".estimate_popup_content .btn_close_popup").click(function() {
-				$(".estimate_popup_wrap").hide();
-			})
-		},
-		error: function() {
-			alert("팝업 데이터를 불러오지 못했습니다.");
-		}
-	});
-}
-</script>
-
-<script>
-function openGroupMovement(group_no) {
-	$.ajax({
-		url: "/ajax/ajax_group_movement",
-		type: "POST",
-		data: {
-				 "m_idx"    : $("#m_idx").val(),
-				 "group_no" : group_no  
-		},
-		success: function(res) {
-			$(".group_movement_popup_wrap").html(res).show();
-
-			// 팝업 닫기 이벤트 다시 바인딩
-			$(".group_movement_popup_wrap .btn_close_popup").click(function () {
-				$(".group_movement_popup_wrap").hide();
-			});
-		},
-		error: function() {
-			alert("팝업 데이터를 불러오지 못했습니다.");
-		}
-	});
-}
-</script>
-						
 <script>
 $(document).ready(function() {
     $('.info_receipt').on('click', function() {
