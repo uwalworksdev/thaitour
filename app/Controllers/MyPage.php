@@ -225,8 +225,32 @@ public function reservationList() {
     $applyCommonConditions($countBuilder);
     $totalRows = $countBuilder->get()->getRow()->total;
 
+$pg = (int)($this->request->getGet('pg') ?? 1);
+$g_list_rows = 10;
+$offset = ($pg - 1) * $g_list_rows;
+
+// 데이터 조회
+$builder3 = $db->table('tbl_order_mst')
+               ->select("tbl_order_mst.*, AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name")
+               ->orderBy('order_no', 'DESC')
+               ->limit($g_list_rows, $offset);
+$applyCommonConditions($builder3);
+$pagedOrders = $builder3->get()->getResult();
+
+// 전체 갯수
+$countBuilder = $db->table('tbl_order_mst')->select('COUNT(*) AS total');
+$applyCommonConditions($countBuilder);
+$totalRows = $countBuilder->get()->getRow()->total;
+
+// 전체 페이지 수
+$nPage = ceil($totalRows / $g_list_rows);
+
     // ===== 정책 정보 =====
     $data = [
+					'nTotalCount'      => $result['nTotalCount'],
+					'nPage'            => $result['nPage'],
+					'g_list_rows'      => $g_list_rows,
+					'pg'               => $pg,
         'groupTotals'   => $groupTotals,
         'groupedOrders' => $groupedOrders,
         'pagedOrders'   => $pagedOrders,
