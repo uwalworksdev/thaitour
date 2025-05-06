@@ -99,7 +99,7 @@ endforeach;
                                 <span>건</span>
                             </div>
                         </div>
-                        <div class="num_order flex_c_c">
+                        <!--div class="num_order flex_c_c">
                             <img src="/images/mypage/right-arrow.png" alt="">
                         </div>
                         <div class="num_order flex_c_c">
@@ -110,7 +110,7 @@ endforeach;
                                 <p><?=$cnt_5?></p>
                                 <span>건</span>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                     <div class="process flex_c_c">
                         <p>취소처리중 <span>0</span> 건 </p>
