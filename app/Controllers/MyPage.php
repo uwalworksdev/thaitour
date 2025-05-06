@@ -221,7 +221,7 @@ class MyPage extends BaseController
 		$builder->groupBy('group_no');
 		$groupTotals = $builder->get()->getResult();
 
-		echo $db->getLastQuery();
+		//echo $db->getLastQuery();
 
 		$builder2 = $db->table('tbl_order_mst') 
 					->select("
