@@ -130,10 +130,75 @@ class MyPage extends BaseController
     }
 
     public function reservationList() {
+			
+		$db = \Config\Database::connect();
+
+		$statusTab = $this->request->getGet('tab'); // 예: 'all', 'progress', 'paid', 'confirmed', 'used', 'cancelled'
+
+		$startDate    = $this->request->getGet('start_date');
+		$endDate      = $this->request->getGet('end_date');
+		$productType  = $this->request->getGet('product_type');
+		$productName  = $this->request->getGet('product_name');
+
+		$builder = $db->table('tbl_order_mst');
+
+		// 날짜 필터
+		if ($startDate && $endDate) {
+			$builder->where('use_date >=', $startDate)
+					->where('use_date <=', $endDate);
+		}
+
+		if ($productType) {
+			$builder->where('product_type', $productType);
+		}
+
+		if ($productName) {
+			$builder->like('product_name', $productName);
+		}
+
+		// 상태에 따른 필터 + 그룹 처리
+		switch ($statusTab) {
+			case 'progress': // 예약진행중 (W, X)
+				$builder->whereIn('order_status', ['W', 'X']);
+				$groupField = 'group_no';
+				break;
+
+			case 'paid': // 결제완료 (Y)
+				$builder->where('order_status', 'Y');
+				$groupField = 'payment_no';
+				break;
+
+			case 'confirmed': // 예약확정 (Z)
+				$builder->where('order_status', 'Z');
+				$groupField = 'payment_no';
+				break;
+
+			case 'used': // 이용완료 (E)
+				$builder->where('order_status', 'E');
+				$groupField = 'order_no';
+				break;
+
+			case 'cancelled': // 예약취소 (C, N)
+				$builder->whereIn('order_status', ['C', 'N']);
+				$groupField = 'order_no';
+				break;
+
+			case 'all':
+			default:
+				$groupField = 'group_no'; // 전체예약내역은 group_no 기준
+				break;
+		}
+
+		// 결과 조회
+		$builder->orderBy($groupField, 'ASC');
+		$reservations = $builder->get()->getResult();
+
+		$data = [
+			'reservations' => $reservations,
+			'tab' => $statusTab,
+		];	
 		
-		   echo "reservationList";
-		$data = "";
-        return view('mypage/reservation_list', $data);
+		return view('mypage/reservation_list', $data);
 	}
 	
     public function getPolicyContents($product_idx)
