@@ -310,27 +310,27 @@ endforeach;
                     </div>
                 </form>
                 
-				<?php foreach($groupCounts as $group) : ?>
+				<?php foreach($reservations as $group) : ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
                                 <div class="bs-input-check">
-                                    <input type="checkbox" id="grp<?= esc($group['group_no']) ?>" class="grpCheck" data-grp="<?= esc($group['group_no']) ?>" value="Y">
-                                    <label for="grp<?= esc($group['group_no']) ?>"> <?= esc($group['group_no']) ?> (그룹번호) / 전체 <?= esc($group['group_count']) ?>건 </label>
+                                    <input type="checkbox" id="grp<?= esc($group->group_no) ?>" class="grpCheck" data-grp="<?= esc($group->group_no) ?>" value="Y">
+                                    <label for="grp<?= esc($group->group_no) ?>"> <?= esc($group->group_no) ?> (그룹번호) / 전체 <?= esc($group->group_count) ?>건 </label>
                                 </div>
                             </div>
                             <div class="group_r flex__c">
                                 <div class="total">
-                                    <p>그룹 총금액 <span><?= esc(number_format($group['real_price_won']))?>원</span></p>
+                                    <p>그룹 총금액 <span><?= esc(number_format($group->real_price_won))?>원</span></p>
                                 </div>
                                 <!--div onclick="openNewWindow('<?= esc($group['group_no']) ?>')" class="group_print flex__c">-->
-                                <div onclick="openGroupEstimate('<?= esc($group['group_no']) ?>')" class="group_print flex__c">
+                                <div onclick="openGroupEstimate('<?= esc($group->group_no) ?>')" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
                                     <p class="only_web">그룹 견적서</p>
                                 </div>
-                                <div onclick="openGroupMovement('<?= esc($group['group_no']) ?>')" class="btn_group_movement">그룹이동</div>
+                                <div onclick="openGroupMovement('<?= esc($group->group_no) ?>')" class="btn_group_movement">그룹이동</div>
                             </div>
 
                         </div>
