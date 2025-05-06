@@ -184,13 +184,13 @@ class AdminStatisticsController extends BaseController
             $s_status = "Y";
         }
 
-//        $total_sql = " select d.*, g.goods_name_front
-//	                 from tbl_counsel_deal d
-//					 left outer join tbl_goods g
-//					   on d.sel_goods = g.g_idx
-//					where 1=1 $strSql ";
-//        $result = $this->connect->query($total_sql);
-//        $nTotalCount = $result->getNumRows();
+        //        $total_sql = " select d.*, g.goods_name_front
+        //	                 from tbl_counsel_deal d
+        //					 left outer join tbl_goods g
+        //					   on d.sel_goods = g.g_idx
+        //					where 1=1 $strSql ";
+        //        $result = $this->connect->query($total_sql);
+        //        $nTotalCount = $result->getNumRows();
 
         $data = [
             'search_name' => $search_name,
@@ -208,27 +208,21 @@ class AdminStatisticsController extends BaseController
 
     public function statistics03_01()
     {
-        $data = [
-
-        ];
+        $data = [];
 
         return view('admin/_statistics/statistics03_01', $data);
     }
 
     public function statistics04_01()
     {
-        $data = [
-
-        ];
+        $data = [];
 
         return view('admin/_statistics/statistics04_01', $data);
     }
 
     public function statistics05_01()
     {
-        $data = [
-
-        ];
+        $data = [];
 
         return view('admin/_statistics/statistics05_01', $data);
     }
@@ -329,27 +323,494 @@ class AdminStatisticsController extends BaseController
 
     public function member_statistics()
     {
-        return view('admin/_statistics/member_statistics');
+
+        $years    = $this->request->getGet('years');
+        $months = $this->request->getGet('months');
+        $days    = $this->request->getGet('days');
+        $payin    = $this->request->getGet('payin');
+
+        if ($years == "") {
+            $years = date('Y');
+        }
+
+        if ($months == "") {
+            $months = date('m');
+        }
+
+        if ($days == "") {
+            $days = date('d');
+        }
+
+
+        $last_day = date('t', mktime(0, 0, 0, $months, 1, $years));
+
+        if ($last_day < $days) {
+            $days = "01";
+        }
+
+        $s_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $months, $days, $years));
+        $e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, $months, $days, $years));
+
+        $hour_arr = array();
+        $hour_arr2 = array();
+
+        for ($i = 0; $i <= 23; $i++) {
+            $hour_arr[$i] = 0;
+        }
+
+        for ($i = 0; $i <= 23; $i++) {
+            $hour_arr2[$i] = 0;
+        }
+
+        $builder1 = $this->connect->table('tbl_member');
+        $builder1->select('HOUR(r_date) AS hs, COUNT(*) as tcnt');
+        $builder1->where('r_date >=', $s_date);
+        $builder1->where('r_date <=', $e_date);
+        $builder1->where('status', "Y");
+        $builder1->groupBy('hs');
+        $builder1->orderBy('hs', 'ASC');
+
+        $query1 = $builder1->get();
+        $hour_arr = [];
+
+        foreach ($query1->getResultArray() as $row) {
+            $hour_arr[$row['hs']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($hour_arr);
+
+        $builder2 = $this->connect->table('tbl_member');
+        $builder2->select('HOUR(out_date) AS hs, COUNT(*) as tcnt');
+        $builder2->where('out_date >=', $s_date);
+        $builder2->where('out_date <=', $e_date);
+        $builder2->where('status', "O");
+        $builder2->groupBy('hs');
+        $builder2->orderBy('hs', 'ASC');
+
+        $query2 = $builder2->get();
+        $hour_arr2 = [];
+
+        foreach ($query2->getResultArray() as $row) {
+            $hour_arr2[$row['hs']] = $row['tcnt'];
+        }
+
+        $_total_cnt2 = array_sum($hour_arr2);
+
+        $top_banner1_arr = array();
+        $top_banner1_arr['M'] = 0;
+        $top_banner1_arr['P'] = 0;
+
+        $builder = $this->connect->table('tbl_member');
+        $builder->select('reg_device, COUNT(*) as tcnt');
+        $builder->where('r_date >=', $s_date);
+        $builder->where('r_date <=', $e_date);
+        $builder->where('status', "Y");
+        $builder->groupBy('reg_device');
+
+        $query = $builder->get();
+
+        foreach ($query->getResultArray() as $row) {
+            $top_banner1_arr[$row['reg_device']] = $row['tcnt'];
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "days" => $days,
+            "payin" => $payin,
+            "hour_arr" => $hour_arr,
+            "hour_arr2" => $hour_arr2,
+            "_total_cnt" => $_total_cnt,
+            "_total_cnt2" => $_total_cnt2,
+            "top_banner1_arr" => $top_banner1_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics', $data);
     }
 
     public function member_statistics_yoil()
     {
-        return view('admin/_statistics/member_statistics_yoil');
+        $years    = $this->request->getGet('years');
+        $months = $this->request->getGet('months');
+        $weeks    = $this->request->getGet('weeks');
+        $payin    = $this->request->getGet('payin');
+
+        if ($years == "") {
+            $years = date('Y');
+        }
+
+        if ($months == "") {
+            $months = date('m');
+        }
+
+        if ($weeks == "") {
+            $s_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $months, 1, $years));
+            $e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+        } else {
+
+
+            $week_tmp = getWeeksOfMonth($years, $months);
+            foreach ($week_tmp as $index => $week_tmp) {
+
+                if (($index + 1) == $weeks) {
+                    $s_date = $week_tmp['start'] . " 00:00:00";
+                    $e_date = $week_tmp['end'] . " 23:59:59";
+                }
+            }
+        }
+
+
+        $yoil_arr = array();
+        $yoil_arr[1] = "일";
+        $yoil_arr[2] = "월";
+        $yoil_arr[3] = "화";
+        $yoil_arr[4] = "수";
+        $yoil_arr[5] = "목";
+        $yoil_arr[6] = "금";
+        $yoil_arr[7] = "토";
+
+        $hour_arr = array();
+        $hour_arr2 = array();
+
+        for ($i = 1; $i <= 7; $i++) {
+            $hour_arr[$i] = 0;
+        }
+
+        for ($i = 1; $i <= 7; $i++) {
+            $hour_arr2[$i] = 0;
+        }
+
+        $builder1 = $this->connect->table('tbl_member');
+        $builder1->select('DAYOFWEEK(r_date) AS weekday, COUNT(*) as tcnt');
+        $builder1->where('r_date >=', $s_date);
+        $builder1->where('r_date <=', $e_date);
+        $builder1->where('status', "Y");
+        $builder1->groupBy('weekday');
+        $builder1->orderBy('weekday', 'ASC');
+
+        $query1 = $builder1->get();
+        $hour_arr = [];
+
+        foreach ($query1->getResultArray() as $row) {
+            $hour_arr[$row['weekday']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($hour_arr);
+
+        $builder2 = $this->connect->table('tbl_member');
+        $builder2->select('DAYOFWEEK(out_date) AS weekday, COUNT(*) as tcnt');
+        $builder2->where('out_date >=', $s_date);
+        $builder2->where('out_date <=', $e_date);
+        $builder2->where('status', "O");
+        $builder2->groupBy('weekday');
+        $builder2->orderBy('weekday', 'ASC');
+
+        $query2 = $builder2->get();
+        $hour_arr2 = [];
+
+        foreach ($query2->getResultArray() as $row) {
+            $hour_arr2[$row['weekday']] = $row['tcnt'];
+        }
+
+        $_total_cnt2 = array_sum($hour_arr2);
+
+        $top_banner1_arr = array();
+        $top_banner1_arr['M'] = 0;
+        $top_banner1_arr['P'] = 0;
+
+        $builder = $this->connect->table('tbl_member');
+        $builder->select('reg_device, COUNT(*) as tcnt');
+        $builder->where('r_date >=', $s_date);
+        $builder->where('r_date <=', $e_date);
+        $builder->where('status', "Y");
+        $builder->groupBy('reg_device');
+
+        $query = $builder->get();
+
+        foreach ($query->getResultArray() as $row) {
+            $top_banner1_arr[$row['reg_device']] = $row['tcnt'];
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "weeks" => $weeks,
+            "payin" => $payin,
+            "yoil_arr" => $yoil_arr,
+            "hour_arr" => $hour_arr,
+            "hour_arr2" => $hour_arr2,
+            "_total_cnt" => $_total_cnt,
+            "_total_cnt2" => $_total_cnt2,
+            "top_banner1_arr" => $top_banner1_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics_yoil', $data);
     }
 
     public function member_statistics_day()
     {
-        return view('admin/_statistics/member_statistics_day');
+        $years    = $this->request->getGet('years');
+        $months   = $this->request->getGet('months');
+        $payin    = $this->request->getGet('payin');
+
+        if ($years == "") {
+            $years = date('Y');
+        }
+
+        if ($months == "") {
+            $months = date('m');
+        }
+
+
+        $s_date = date('Y-m-01 00:00:00', mktime(0, 0, 0, $months, 1, $years));
+        $e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+
+        $hour_arr = array();
+        $hour_arr2 = array();
+
+        for ($i = 0; $i <= 31; $i++) {
+            $hour_arr[$i] = 0;
+        }
+
+        for ($i = 0; $i <= 31; $i++) {
+            $hour_arr2[$i] = 0;
+        }
+
+        $builder1 = $this->connect->table('tbl_member');
+        $builder1->select('DAY(r_date) AS days, COUNT(*) as tcnt');
+        $builder1->where("r_date >=", $s_date);
+        $builder1->where("r_date <=", $e_date);
+        $builder1->where('status', "Y");
+        $builder1->groupBy('days');
+        $builder1->orderBy('days', 'ASC');
+
+        $query1 = $builder1->get();
+        $hour_arr = [];
+
+        foreach ($query1->getResultArray() as $row) {
+            $hour_arr[$row['days']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($hour_arr);
+
+        $builder2 = $this->connect->table('tbl_member');
+        $builder2->select('DAY(out_date) AS days, COUNT(*) as tcnt');
+        $builder2->where("out_date >=", $s_date);
+        $builder2->where("out_date <=", $e_date);
+        $builder2->where('status', "O");
+        $builder2->groupBy('days');
+        $builder2->orderBy('days', 'ASC');
+
+        $query2 = $builder2->get();
+        $hour_arr2 = [];
+
+        foreach ($query2->getResultArray() as $row) {
+            $hour_arr2[$row['days']] = $row['tcnt'];
+        }
+
+        $_total_cnt2 = array_sum($hour_arr2);
+
+        $top_banner1_arr = array();
+        $top_banner1_arr['M'] = 0;
+        $top_banner1_arr['P'] = 0;
+
+        $builder = $this->connect->table('tbl_member');
+        $builder->select('reg_device, COUNT(*) as tcnt');
+        $builder->where('r_date >=', $s_date);
+        $builder->where('r_date <=', $e_date);
+        $builder->where('status', "Y");
+        $builder->groupBy('reg_device');
+
+        $query = $builder->get();
+
+        foreach ($query->getResultArray() as $row) {
+            $top_banner1_arr[$row['reg_device']] = $row['tcnt'];
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "payin" => $payin,
+            "hour_arr" => $hour_arr,
+            "hour_arr2" => $hour_arr2,
+            "_total_cnt" => $_total_cnt,
+            "_total_cnt2" => $_total_cnt2,
+            "top_banner1_arr" => $top_banner1_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics_day', $data);
     }
 
     public function member_statistics_month()
     {
-        return view('admin/_statistics/member_statistics_month');
+        $years    = $this->request->getGet('years');
+        $months   = $this->request->getGet('months');
+        $payin    = $this->request->getGet('payin');
+
+        if ($years == "") {
+            $years = date('Y');
+        }
+
+        $s_date = date('Y-m-01 00:00:00', mktime(0, 0, 0, 1, 1, $years));
+        $e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)), $years));
+
+        $hour_arr = array();
+        $hour_arr2 = array();
+
+        for ($i = 0; $i <= 12; $i++) {
+            $hour_arr[$i] = 0;
+        }
+
+        for ($i = 0; $i <= 12; $i++) {
+            $hour_arr2[$i] = 0;
+        }
+
+        $builder1 = $this->connect->table('tbl_member');
+        $builder1->select('MONTH(r_date) AS months, COUNT(*) as tcnt');
+        $builder1->where("r_date >=", $s_date);
+        $builder1->where("r_date <=", $e_date);
+        $builder1->where('status', "Y");
+        $builder1->groupBy('months');
+        $builder1->orderBy('months', 'ASC');
+
+        $query1 = $builder1->get();
+        $hour_arr = [];
+
+        foreach ($query1->getResultArray() as $row) {
+            $hour_arr[$row['months']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($hour_arr);
+
+        $builder2 = $this->connect->table('tbl_member');
+        $builder2->select('MONTH(out_date) AS months, COUNT(*) as tcnt');
+        $builder2->where("out_date >=", $s_date);
+        $builder2->where("out_date <=", $e_date);
+        $builder2->where('status', "O");
+        $builder2->groupBy('months');
+        $builder2->orderBy('months', 'ASC');
+
+        $query2 = $builder2->get();
+        $hour_arr2 = [];
+
+        foreach ($query2->getResultArray() as $row) {
+            $hour_arr2[$row['months']] = $row['tcnt'];
+        }
+
+        $_total_cnt2 = array_sum($hour_arr2);
+
+        $top_banner1_arr = array();
+        $top_banner1_arr['M'] = 0;
+        $top_banner1_arr['P'] = 0;
+
+        $builder = $this->connect->table('tbl_member');
+        $builder->select('reg_device, COUNT(*) as tcnt');
+        $builder->where('r_date >=', $s_date);
+        $builder->where('r_date <=', $e_date);
+        $builder->where('status', "Y");
+        $builder->groupBy('reg_device');
+
+        $query = $builder->get();
+
+        foreach ($query->getResultArray() as $row) {
+            $top_banner1_arr[$row['reg_device']] = $row['tcnt'];
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "payin" => $payin,
+            "hour_arr" => $hour_arr,
+            "hour_arr2" => $hour_arr2,
+            "_total_cnt" => $_total_cnt,
+            "_total_cnt2" => $_total_cnt2,
+            "top_banner1_arr" => $top_banner1_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics_month', $data);
     }
 
     public function member_statistics_year()
     {
-        return view('admin/_statistics/member_statistics_year');
+        $years_s = 2024;
+        $years_e = date('Y');
+
+        $s_date = date('Y-m-01 00:00:00', mktime(0, 0, 0, 1, 1, $years_s));
+        $e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, 12, 31, $years_e));
+
+        $hour_arr = array();
+        $hour_arr2 = array();
+
+        for ($i = $years_s; $i <= $years_e; $i++) {
+            $hour_arr[$i] = 0;
+        }
+
+        for ($i = $years_s; $i <= $years_e; $i++) {
+            $hour_arr2[$i] = 0;
+        }
+
+        $builder1 = $this->connect->table('tbl_member');
+        $builder1->select('YEAR(r_date) AS years, COUNT(*) as tcnt');
+        $builder1->where("r_date >=", $s_date);
+        $builder1->where("r_date <=", $e_date);
+        $builder1->where('status', "Y");
+        $builder1->groupBy('years');
+        $builder1->orderBy('years', 'ASC');
+
+        $query1 = $builder1->get();
+        $hour_arr = [];
+
+        foreach ($query1->getResultArray() as $row) {
+            $hour_arr[$row['years']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($hour_arr);
+
+        $builder2 = $this->connect->table('tbl_member');
+        $builder2->select('YEAR(out_date) AS years, COUNT(*) as tcnt');
+        $builder2->where("out_date >=", $s_date);
+        $builder2->where("out_date <=", $e_date);
+        $builder2->where('status', "O");
+        $builder2->groupBy('years');
+        $builder2->orderBy('years', 'ASC');
+
+        $query2 = $builder2->get();
+        $hour_arr2 = [];
+
+        foreach ($query2->getResultArray() as $row) {
+            $hour_arr2[$row['years']] = $row['tcnt'];
+        }
+
+        $_total_cnt2 = array_sum($hour_arr2);
+
+        $top_banner1_arr = array();
+        $top_banner1_arr['M'] = 0;
+        $top_banner1_arr['P'] = 0;
+
+        $builder = $this->connect->table('tbl_member');
+        $builder->select('reg_device, COUNT(*) as tcnt');
+        $builder->where('r_date >=', $s_date);
+        $builder->where('r_date <=', $e_date);
+        $builder->where('status', "Y");
+        $builder->groupBy('reg_device');
+
+        $query = $builder->get();
+
+        foreach ($query->getResultArray() as $row) {
+            $top_banner1_arr[$row['reg_device']] = $row['tcnt'];
+        }
+
+        $data = [
+            "years_s" => $years_s,
+            "years_e" => $years_e,
+            "hour_arr" => $hour_arr,
+            "hour_arr2" => $hour_arr2,
+            "_total_cnt" => $_total_cnt,
+            "_total_cnt2" => $_total_cnt2,
+            "top_banner1_arr" => $top_banner1_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics_year', $data);
     }
 
     public function member_statistics3()

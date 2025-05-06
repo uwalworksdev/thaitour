@@ -122,7 +122,7 @@ class Member extends BaseController
         $m_idx = $this->request->getPost('m_idx');
         $tot = count($m_idx);
         for ($j = 0; $j < $tot; $j++) {
-            $this->member->update($m_idx[$j], ['status' => 'O']);
+            $this->member->update($m_idx[$j], ['status' => 'O', "out_date" => date("Y-m-d H:i:s")]);
         }
         return "OK";
     }
@@ -226,6 +226,8 @@ class Member extends BaseController
     public function RegOk()
     {
         $member = session("member");
+
+        $device_type = get_device();
 
         $private_key = private_key();
 
@@ -429,6 +431,7 @@ class Member extends BaseController
 
         $this->member->set('login_count', 'login_count + 1', false);
         $this->member->set('login_date', 'NOW()', false);
+        $this->member->set('reg_device', $device_type, false);
         $this->member->where('user_id', $user_id);
         $this->member->update();
         return $this->response->setJSON(['message' => "success"]);

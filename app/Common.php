@@ -13,35 +13,46 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+function fn_avg($value, $_total_value)
+{
 
- function getWeeksOfMonth($year, $month)
- {
-     $firstDayOfMonth = new DateTime("$year-$month-01");
-     $lastDayOfMonth = new DateTime("$year-$month-" . date('t', strtotime("$year-$month-01")));
- 
-     $firstDayOfWeek = (int)$firstDayOfMonth->format('w');
-     $daysToAdd = $firstDayOfWeek;
-     $startDate = clone $firstDayOfMonth;
-     $startDate->modify("-{$daysToAdd} days");
- 
-     $weeks = [];
-     $currentDate = clone $startDate;
- 
-     while ($currentDate <= $lastDayOfMonth) {
-         $weekStart = clone $currentDate;
-         $weekEnd = clone $currentDate;
-         $weekEnd->modify('+6 days');
- 
-         $weeks[] = [
-             'start' => $weekStart->format('Y-m-d'),
-             'end' => $weekEnd->format('Y-m-d'), // 마지막 날짜를 항상 7일 뒤로 계산
-         ];
- 
-         $currentDate->modify('+7 days');
-     }
- 
-     return $weeks;
- }
+	if ($_total_value > 0) {
+		$_returns = round($value / $_total_value * 100, 2);
+	} else {
+		$_returns = 0;
+	}
+
+	return $_returns;
+}
+
+function getWeeksOfMonth($year, $month)
+{
+    $firstDayOfMonth = new DateTime("$year-$month-01");
+    $lastDayOfMonth = new DateTime("$year-$month-" . date('t', strtotime("$year-$month-01")));
+
+    $firstDayOfWeek = (int)$firstDayOfMonth->format('w');
+    $daysToAdd = $firstDayOfWeek;
+    $startDate = clone $firstDayOfMonth;
+    $startDate->modify("-{$daysToAdd} days");
+
+    $weeks = [];
+    $currentDate = clone $startDate;
+
+    while ($currentDate <= $lastDayOfMonth) {
+        $weekStart = clone $currentDate;
+        $weekEnd = clone $currentDate;
+        $weekEnd->modify('+6 days');
+
+        $weeks[] = [
+            'start' => $weekStart->format('Y-m-d'),
+            'end' => $weekEnd->format('Y-m-d'), // 마지막 날짜를 항상 7일 뒤로 계산
+        ];
+
+        $currentDate->modify('+7 days');
+    }
+
+    return $weeks;
+}
 
 function isContentEmpty($html)
 {

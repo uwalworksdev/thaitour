@@ -6,38 +6,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
-<?php
-$years    = $_GET['years'];
-$months = $_GET['months'];
-$payin    = $_GET['payin'];
-
-if ($years == "") {
-    $years = date('Y');
-}
-
-if ($months == "") {
-    $months = date('m');
-}
-
-
-$s_date = date('Y-m-01 00:00:00', mktime(0, 0, 0, $months, 1, $years));
-$e_date = date('Y-m-d 23:59:59', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
-
-
-$hour_arr = array();
-$hour_arr2 = array();
-
-for ($i = 0; $i <= 31; $i++) {
-    $hour_arr[$i] = 0;
-}
-
-for ($i = 0; $i <= 31; $i++) {
-    $hour_arr2[$i] = 0;
-}
-
-
-?>
-
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -143,13 +111,13 @@ for ($i = 0; $i <= 31; $i++) {
                             <tr>
 
                                 <td>
-                                    <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span>
-                                    <p>0</p>
-                                    <span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                    <span><i class="xi-desktop masterTooltip" title="PC"></i> <?= number_format($top_banner1_arr['P']) ?></span>
+                                    <p><?= number_format($_total_cnt) ?></p>
+                                    <span><i class="xi-tablet masterTooltip" title="모바일"></i> <?= number_format($top_banner1_arr['M']) ?></span>
                                 </td>
 
                                 <td>
-                                    <p>0</p>
+                                    <p><?= number_format($_total_cnt2) ?></p>
                                 </td>
 
                             </tr>
@@ -177,7 +145,7 @@ for ($i = 0; $i <= 31; $i++) {
                                 <?php
                                 for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
                                     $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                ?>['<?= $_tmp_date ?>', <?= $hour_arr[$i] ?>, <?= $hour_arr2[$i] ?>],
+                                ?>['<?= $_tmp_date ?>', <?= $hour_arr[$i] ?? 0 ?>, <?= $hour_arr2[$i] ?? 0 ?>],
                                 <?php } ?>
                             ]);
 
@@ -216,8 +184,8 @@ for ($i = 0; $i <= 31; $i++) {
                             ?>
                                 <tr>
                                     <td class="number"><?= $years ?>-<?= str_pad($months, 2, "0", STR_PAD_LEFT) ?>-<?= $_tmp_date ?></td>
-                                    <td class="number"><span><?= $hour_arr[$i] ?></span> <span><?= $hour_arr[$i] ?>%</span></td>
-                                    <td class="number"><span><?= $hour_arr2[$i] ?></span> <span><?= $hour_arr2[$i] ?>%</span></td>
+                                    <td class="number"><span><?= $hour_arr[$i] ?></span> <span><?=fn_avg($hour_arr[$i], $_total_cnt)?>%</span></td>
+                                    <td class="number"><span><?= $hour_arr2[$i] ?></span> <span><?=fn_avg($hour_arr2[$i], $_total_cnt2)?>%</span></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -232,7 +200,7 @@ for ($i = 0; $i <= 31; $i++) {
 <script>
     // 검색하기
     function fn_search() {
-        let frm = document.listSearchForm;
+        let frm = document.modifyForm1;
         frm.submit();
     }
 </script>

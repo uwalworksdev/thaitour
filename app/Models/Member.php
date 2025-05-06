@@ -15,7 +15,7 @@ class Member extends Model
         "user_email_yn", "sms_yn", "kakao_yn", "user_phone", "user_mobile", "zip",
         "addr1", "addr2", "job", "status", "birthday", "manager", "marriage_yn",
         "out_code", "out_etc", "out_reason", "out_date", "user_level", "visit_route",
-        "mileage", "ip_address", "gubun", "sns_key", "m_auth", "m_date", "r_date",
+        "mileage", "ip_address", "gubun", "sns_key", "m_auth", "m_date", "r_date", "reg_device",
         "company", "comnum", "fax", "user_ip", "recommender", "ufile1", "rfile1",
         "login_count", "login_date", "auth", "user_post", "encode", "mbti",
     ];
