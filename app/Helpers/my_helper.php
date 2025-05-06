@@ -629,63 +629,115 @@ function goUrl($url = "", $msg = "")
     echo "</script>";
 }
 
+// function getLoginDeviceUserChk($user_id)
+// {
+
+//     $device_type = get_device();
+//     $gTime = time() + 86400; //하루 24시간
+//     $cookieValue = "user_id_" . $user_id;
+
+//     if ($user_id != "") {
+
+//         $cookieVal = $_COOKIE[$cookieValue] ?? "";
+
+//         if ($cookieVal == "") {
+//             $sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";
+//             $row = db_connect()->query($sql)->getRowArray();
+//             $login_type_P = $row['login_type_P'];
+//             $login_type_M = $row['login_type_M'];
+
+//             if ($login_type_P == "") {
+
+//                 if ($device_type == "P") {
+//                     $login_type_P = 1;
+//                     $login_type_M = 0;
+//                 } else if ($device_type == "M") {
+//                     $login_type_P = 0;
+//                     $login_type_M = 1;
+//                 }
+
+//                 $sql = " insert into tbl_login_device set regdate = now()
+// 					, login_type_P = " . $login_type_P . "
+// 					, login_type_M = " . $login_type_M . "
+// 					, itemCnt_P = 0
+// 					, itemCnt_M = 0
+// 					";
+
+//                 db_connect()->query($sql);
+//             } else {
+
+//                 if ($device_type == "P") {
+//                     $login_type_P = $login_type_P + 1;
+//                     $sSQl = " login_type_P = " . $login_type_P;
+//                 } else if ($device_type == "M") {
+//                     $login_type_M = $login_type_M + 1;
+//                     $sSQl = " login_type_M = " . $login_type_M;
+//                 }
+
+//                 $sql = " update tbl_login_device set " . $sSQl . " where DATE(regdate) = DATE(now())";
+//                 db_connect()->query($sql);
+//             }
+//         }
+
+//         setcookie($cookieValue, $cookieValue, $gTime);
+//     }
+
+//     $out_text = "";
+
+//     return $out_text;
+// }
+
 function getLoginDeviceUserChk($user_id)
 {
+    if (empty($user_id)) {
+        return "";
+    }
 
-    $device_type = get_device();
-    $gTime = time() + 86400; //하루 24시간
+    $db = db_connect();
+    $device_type = get_device(); // Giả sử bạn đã định nghĩa hàm này và nó trả về 'P' hoặc 'M'
     $cookieValue = "user_id_" . $user_id;
+    $cookieVal = request()->getCookie($cookieValue);
 
-    if ($user_id != "") {
+    if (empty($cookieVal)) {
+        // Kiểm tra xem user đã có bản ghi hôm nay chưa
+        $sql = "SELECT * FROM tbl_login_device WHERE DATE(regdate) = CURDATE() AND user_id = ?";
+        $row = $db->query($sql, [$user_id])->getRowArray();
 
-        $cookieVal = $_COOKIE[$cookieValue] ?? "";
+        if (!$row) {
+            // Chưa có: insert mới
+            $login_type_P = ($device_type === 'P') ? 1 : 0;
+            $login_type_M = ($device_type === 'M') ? 1 : 0;
 
-        if ($cookieVal == "") {
-            $sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";
-            $row = db_connect()->query($sql)->getRowArray();
-            $login_type_P = $row['login_type_P'];
-            $login_type_M = $row['login_type_M'];
-
-            if ($login_type_P == "") {
-
-                if ($device_type == "P") {
-                    $login_type_P = 1;
-                    $login_type_M = 0;
-                } else if ($device_type == "M") {
-                    $login_type_P = 0;
-                    $login_type_M = 1;
-                }
-
-                $sql = " insert into tbl_login_device set regdate = now()
-					, login_type_P = " . $login_type_P . "
-					, login_type_M = " . $login_type_M . "
-					, itemCnt_P = 0
-					, itemCnt_M = 0
-					";
-
-                db_connect()->query($sql);
-            } else {
-
-                if ($device_type == "P") {
-                    $login_type_P = $login_type_P + 1;
-                    $sSQl = " login_type_P = " . $login_type_P;
-                } else if ($device_type == "M") {
-                    $login_type_M = $login_type_M + 1;
-                    $sSQl = " login_type_M = " . $login_type_M;
-                }
-
-                $sql = " update tbl_login_device set " . $sSQl . " where DATE(regdate) = DATE(now())";
-                db_connect()->query($sql);
+            $sql = "
+                INSERT INTO tbl_login_device (user_id, regdate, login_type_P, login_type_M, itemCnt_P, itemCnt_M)
+                VALUES (?, NOW(), ?, ?, 0, 0)
+            ";
+            $db->query($sql, [$user_id, $login_type_P, $login_type_M]);
+        } else {
+            // Đã có: update theo device
+            if ($device_type === 'P') {
+                $row['login_type_P'] += 1;
+                $sql = "UPDATE tbl_login_device SET login_type_P = ? WHERE DATE(regdate) = CURDATE() AND user_id = ?";
+                $db->query($sql, [$row['login_type_P'], $user_id]);
+            } elseif ($device_type === 'M') {
+                $row['login_type_M'] += 1;
+                $sql = "UPDATE tbl_login_device SET login_type_M = ? WHERE DATE(regdate) = CURDATE() AND user_id = ?";
+                $db->query($sql, [$row['login_type_M'], $user_id]);
             }
         }
 
-        setcookie($cookieValue, $cookieValue, $gTime);
+        // Set cookie dùng chuẩn CI4
+        response()->setCookie([
+            'name'     => $cookieValue,
+            'value'    => $cookieValue,
+            'expire'   => 86400, // 1 ngày
+            'httponly' => true,
+        ]);
     }
 
-    $out_text = "";
-
-    return $out_text;
+    return "";
 }
+
 
 function getLoginIPChk()
 {
