@@ -322,7 +322,30 @@ class MyPage extends BaseController
         $policy_4 = $this->policyModel->getByIdx("36");
         $policy_5 = $this->policyModel->getByIdx("37");
 
+		$perPage = 10; // 한 페이지당 표시할 그룹 수
+		$page    = $this->request->getGet('page') ?? 1;
+		$offset  = ($page - 1) * $perPage;
+
+		// 전체 그룹 수 계산
+		$totalBuilder = clone $builder; // groupTotals용 빌더 복제
+		$totalGroups = count($totalBuilder->get()->getResult());
+
+		// 그룹 번호만 뽑기 (페이지 적용)
+		$builder->select('group_no');
+		$builder->groupBy('group_no');
+		$builder->orderBy('MIN(order_day)', 'DESC'); // 정렬 기준은 필요에 따라 조정
+		$builder->limit($perPage, $offset);
+		$pagedGroupRows = $builder->get()->getResult();
+		$groupNos = array_column($pagedGroupRows, 'group_no');
+
+		$builder2->whereIn('group_no', $groupNos); // 페이징된 group만 조회
+		$allOrders = $builder2->get()->getResult();
+
 		$data = [
+					'groupTotals'   => $groupTotals,
+					'groupedOrders' => $groupedOrders,
+					'pager'         => $pager->makeLinks($page, $perPage, $totalGroups),
+			
 					'groupTotals'   => $groupTotals,
 					'groupedOrders' => $groupedOrders,
 					'procType'      => $procType,
