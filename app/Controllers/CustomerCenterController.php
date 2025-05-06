@@ -43,7 +43,7 @@ class CustomerCenterController extends BaseController
 
     public function reservation()
     {
-        $policy = $this->policy->getByIdx("19");
+        $policy = $this->policy->getByIdx("38");
         return view("center/reservation", ["policy" => $policy]);
     }
 }
