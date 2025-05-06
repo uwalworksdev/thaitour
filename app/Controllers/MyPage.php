@@ -147,7 +147,7 @@ class MyPage extends BaseController
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
 		$builder = $db->table('tbl_order_mst');
-		$builder->select('group_no, COUNT(group_no) as group_cnt, SUM(real_price_won) as group_total');
+		$builder->select('group_no, COUNT(group_no) as group_couny, SUM(real_price_won) as group_total');
 		//$builder->where('m_idx', $_SESSION['member']['mIdx']);
 		$builder->whereNotIn('order_status', ['B', 'D']);
 		// 날짜 필터 적용
