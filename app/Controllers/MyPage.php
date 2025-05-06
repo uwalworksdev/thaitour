@@ -248,7 +248,9 @@ class MyPage extends BaseController
 		// 결과 조회
 		$builder->orderBy($groupField, 'ASC');
 		$reservations = $builder->get()->getResult();
-write_log("reservationList- ".  $builder->getLastQuery());
+
+echo $builder->db->getLastQuery();
+
 		$data = [
 			'reservations' => $reservations,
 			'procType'     => $procType,
