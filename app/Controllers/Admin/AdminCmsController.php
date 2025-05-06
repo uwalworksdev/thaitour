@@ -141,7 +141,7 @@ class AdminCmsController extends BaseController
 
         if (!empty($row) && in_array($row['policy_code'], ['voucher', 'invoice', 'reservation'])) {
             $policy_code = $row['policy_code'];
-            $related_sql = "SELECT * FROM tbl_policy_info WHERE policy_code = '$policy_code' ORDER BY p_idx DESC";
+            $related_sql = "SELECT * FROM tbl_policy_info WHERE policy_code = '$policy_code' ORDER BY p_idx ASC";
             $related_result = $this->connect->query($related_sql);
             $related_policies = $related_result->getResultArray();
         }
