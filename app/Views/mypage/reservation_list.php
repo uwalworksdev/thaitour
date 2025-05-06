@@ -8,16 +8,17 @@ if (empty(session()->get("member")["mIdx"])) {
 }
 
 $cnt_1 = $cnt_2 = $cnt_3 = $cnt_4 = $cnt_5 = $cnt_6 = 0; 
-foreach($groupedOrders as $order) : 
- 
-        if($order->order_status == "W" || $order->order_status == "X") $cnt_1++;  // 예약신청
-        if($order->order_status == "X" || $order->order_status == "Z" || $order->order_status == "G" || $order->order_status == "R" || $order->order_status == "J") $cnt_2++;  // 결제대기중
-        if($order->order_status == "Y") $cnt_3++;  // 예약확정중
-        if($order->order_status == "Z") $cnt_4++;  // 예약확정
-        if($order->order_status == "N") $cnt_5++;  // 예약불가
-        if($order->order_status == "C") $cnt_6++;  // 취소완료
+foreach ($groupTotals as $group):
+         foreach ($groupedOrders[$group->group_no] as $order): 
+				  if($order->order_status == "W" || $order->order_status == "X") $cnt_1++;  // 예약신청
+				  if($order->order_status == "X" || $order->order_status == "Z" || $order->order_status == "G" || $order->order_status == "R" || $order->order_status == "J") $cnt_2++;  // 결제대기중
+				  if($order->order_status == "Y") $cnt_3++;  // 예약확정중
+				  if($order->order_status == "Z") $cnt_4++;  // 예약확정
+				  if($order->order_status == "N") $cnt_5++;  // 예약불가
+				  if($order->order_status == "C") $cnt_6++;  // 취소완료
+         endforeach;  
+endforeach;
 
-endforeach; 
 ?>
 
 <style>
