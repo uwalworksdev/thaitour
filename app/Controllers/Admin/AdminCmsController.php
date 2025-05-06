@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\App;
 use JkCms;
+use Exception;
 
 class AdminCmsController extends BaseController
 {
@@ -398,5 +399,29 @@ class AdminCmsController extends BaseController
         }
     }
 
+    public function delete() {
+        try {
+            $p_idx = $this->request->getPost("p_idx") ?? [];
+            if (!$p_idx) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => 'idx가 존재하지 않습니다'
+                ], 400);
+            }
 
+            for ($i = 0; $i < count($p_idx); $i++) {
+                $this->policyModel->delete($p_idx[$i]);
+            }
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "OK"
+            ], 200);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

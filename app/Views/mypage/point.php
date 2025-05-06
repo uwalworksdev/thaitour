@@ -206,13 +206,17 @@
                                 <tr>
                                     <td class="date"><?= date("Y.m.d", strtotime($row["mi_r_date"])) ?></td>
                                     <td class="history"><span><?= $row["mi_title"] ?></span></td>
-                                    <td class="used"><span><?
-                                            if ($row["order_gubun"] == "admin") {
-                                                echo "+" . $row["order_mileage"];
-                                            } else {
+                                    <td class="used">
+                                        <span>
+                                            <?php
+                                                // if ($row["order_gubun"] == "admin") {
+                                                //     echo "+" . $row["order_mileage"];
+                                                // } else {
+                                                //     echo $row["order_mileage"];
+                                                // }
                                                 echo $row["order_mileage"];
-                                            }
-                                            ?></span>
+                                            ?>
+                                        </span>
                                     </td>
                                     <td class="remaining"><span><?= $row["remaining_mileage"] ?></span></td>
                                 </tr>

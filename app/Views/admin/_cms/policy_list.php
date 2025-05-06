@@ -21,7 +21,7 @@ $_policy = explode("|", $policy);
                         </ul>
 
                         <ul class="last">
-                            <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+                            <!-- <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li> -->
                             <li><a href="policy_write" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span class="txt">신규등록</span></a>
                             </li>
@@ -163,7 +163,7 @@ $_policy = explode("|", $policy);
                                 </ul>
 
                                 <ul class="last">
-                                    <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+                                    <!-- <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li> -->
                                     <li><a href="policy_write" class="btn btn-primary"><span
                                                     class="glyphicon glyphicon-pencil"></span> <span
                                                     class="txt">신규 등록</span></a></li>
@@ -224,64 +224,30 @@ $_policy = explode("|", $policy);
 
         }
 
-        function change_it() {
-            $.ajax({
-                url: "change.php",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 변경되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-        }
+        // function change_it() {
+        //     $.ajax({
+        //         url: "change.php",
+        //         type: "POST",
+        //         data: $("#frm").serialize(),
+        //         error: function (request, status, error) {
+        //             //통신 에러 발생시 처리
+        //             alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+        //             $("#ajax_loader").addClass("display-none");
+        //         }
+        //         , success: function (response, status, request) {
+        //             if (response == "OK") {
+        //                 alert_("정상적으로 변경되었습니다.");
+        //                 location.reload();
+        //                 return;
+        //             } else {
+        //                 alert(response);
+        //                 alert_("오류가 발생하였습니다!!");
+        //                 return;
+        //             }
+        //         }
+        //     });
+        // }
 
-        function SELECT_DELETE() {
-            if ($(".code_idx").is(":checked") == false) {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
-            }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-
-            $("#ajax_loader").removeClass("display-none");
-
-            $.ajax({
-                url: "policy_delete",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-
-        }
     </script>
 
 <?= $this->endSection() ?>
