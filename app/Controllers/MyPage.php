@@ -142,7 +142,7 @@ class MyPage extends BaseController
         $searchType   = $this->request->getGet("searchType");        // 검색구분
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
-		$builder = $db->table('tbl_order_mst');
+		$builder = $db->table('tbl_order_mst') 
 			->select("
 				tbl_order_mst.*, 
 				(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
@@ -192,6 +192,24 @@ class MyPage extends BaseController
 		// 상품 유형 필터
 		if (!empty($prodType)) {
 			$builder->where('order_gubun', $prodType);
+		}
+
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
 		}
 		
 		// 상태에 따른 필터 + 그룹 처리
