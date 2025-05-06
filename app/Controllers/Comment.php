@@ -93,7 +93,7 @@ class Comment extends BaseController
             if(!empty($comment_point)) {
                 $this->orderMileage->insert([
                     'm_idx'             => $r_m_idx,
-                    'mi_title'          => '여행후기',
+                    'mi_title'          => '게시물에 댓글 달기',
                     'order_gubun'       => '게시물에 댓글 달기',
                     'order_idx'         => 0,
                     'order_mileage'     => intval($comment_point),
