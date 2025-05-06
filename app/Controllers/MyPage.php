@@ -341,6 +341,8 @@ class MyPage extends BaseController
 		$builder2->whereIn('group_no', $groupNos); // 페이징된 group만 조회
 		$allOrders = $builder2->get()->getResult();
 
+        $pager = \Config\Services::pager();
+
 		$data = [
 					'groupTotals'   => $groupTotals,
 					'groupedOrders' => $groupedOrders,
