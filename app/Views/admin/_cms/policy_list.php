@@ -193,9 +193,7 @@ $_policy = explode("|", $policy);
 
                 url: "policy_delete",
                 type: "POST",
-                data: {
-                    "p_idx": idx
-                },
+                data: "p_idx[]=" + idx,
                 dataType: "json",
                 async: false,
                 cache: false,
