@@ -191,7 +191,7 @@ $_policy = explode("|", $policy);
             var message = "";
             $.ajax({
 
-                url: "./ajax.del_it.php",
+                url: "policy_delete",
                 type: "POST",
                 data: {
                     "p_idx": idx
@@ -234,9 +234,6 @@ $_policy = explode("|", $policy);
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
                 , success: function (response, status, request) {
                     if (response == "OK") {
                         alert_("정상적으로 변경되었습니다.");
@@ -263,7 +260,7 @@ $_policy = explode("|", $policy);
             $("#ajax_loader").removeClass("display-none");
 
             $.ajax({
-                url: "del.php",
+                url: "policy_delete",
                 type: "POST",
                 data: $("#frm").serialize(),
                 error: function (request, status, error) {
@@ -271,17 +268,14 @@ $_policy = explode("|", $policy);
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
                 , success: function (response, status, request) {
                     if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
+                        alert("정상적으로 삭제되었습니다.");
                         location.reload();
                         return;
                     } else {
                         alert(response);
-                        alert_("오류가 발생하였습니다!!");
+                        alert("오류가 발생하였습니다!!");
                         return;
                     }
                 }
