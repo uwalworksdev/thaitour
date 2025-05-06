@@ -149,6 +149,7 @@ public function reservationList() {
         $dateType, $checkInDate, $checkOutDate, $productType, $productName, 
         $searchType, $search_word, $private_key
     ) {
+		$builder->where('m_idx', $_SESSION['member']['mIdx']);
         $builder->whereNotIn('order_status', ['B', 'D']);
         if ($dateType == "1" && $checkInDate && $checkOutDate) {
             $builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
