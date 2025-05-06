@@ -36,7 +36,7 @@ class MyPage extends BaseController
     protected $guideSupOptionModel;
     private $ReviewModel;
     private $Bbs;
-
+    private $policyModel;
     protected $policyCancel;
 
     public function __construct()
@@ -58,6 +58,7 @@ class MyPage extends BaseController
         $this->ReviewModel = model("ReviewModel");
         $this->policyCancel = model("PolicyCancel");
         $this->Bbs = model("Bbs");
+        $this->policyModel = model("PolicyModel");
 
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
@@ -96,6 +97,12 @@ class MyPage extends BaseController
 		$result      = $this->ordersModel->getOrdersGroup($pg, $g_list_rows,  $dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
 		$groupCounts = $this->ordersModel->getGroupCounts($dateType, $procType, $checkInDate, $checkOutDate, $payType, $prodType, $searchType, $search_word);
 		
+        $policy_1 = $this->policyModel->getByIdx("33");
+        $policy_2 = $this->policyModel->getByIdx("34");
+        $policy_3 = $this->policyModel->getByIdx("35");
+        $policy_4 = $this->policyModel->getByIdx("36");
+        $policy_5 = $this->policyModel->getByIdx("37");
+
 		$data = [
 					'nTotalCount'      => $result['nTotalCount'],
 					'nPage'            => $result['nPage'],
@@ -111,7 +118,12 @@ class MyPage extends BaseController
 					'payType'          => $payType,           
 					'prodType'         => $prodType,          
 					'searchType'       => $searchType,       
-					'search_word'      => $search_word,  
+					'search_word'      => $search_word,
+					'policy_1'         => $policy_1,  
+					'policy_2'         => $policy_2,  
+					'policy_3'         => $policy_3,  
+					'policy_4'         => $policy_4,  
+					'policy_5'         => $policy_5
 		        ];
 		
         return view('mypage/booklist', $data);

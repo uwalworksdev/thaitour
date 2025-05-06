@@ -134,7 +134,8 @@ endforeach;
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                                 <div class="popup_layer">
-                                    <p>예약진행중 - 예약이 아직 미확정되어 <br>  예약이 진행중인 내역입니다.</p>
+                                    <?= viewSQ($policy_1['policy_contents']) ?>
+                                    <!-- <p>예약진행중 - 예약이 아직 미확정되어 <br>  예약이 진행중인 내역입니다.</p> -->
                                     <div class="layer_edge"></div>
                                 </div>
                             </li>
@@ -142,7 +143,8 @@ endforeach;
                                 <a href="#!" onclick="go_status('2');">결제완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                                 <div class="popup_layer">
-                                    <p>결제완료 - 예약하신 상품을 해당 날짜에 결제 완료한 내역입니다</p>
+                                    <!-- <p>결제완료 - 예약하신 상품을 해당 날짜에 결제 완료한 내역입니다</p> -->
+                                    <?= viewSQ($policy_2['policy_contents']) ?>
                                     <div class="layer_edge"></div>
                                 </div>
                             </li>
@@ -150,7 +152,8 @@ endforeach;
                                 <a href="#!" onclick="go_status('3');">예약확정</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                                 <div class="popup_layer">
-                                    <p>확정된 예약건중 투숙일(이용일)이 지난건은 이용완료 탭을 누르시면 확인 가능합니다.</p>
+                                    <!-- <p>확정된 예약건중 투숙일(이용일)이 지난건은 이용완료 탭을 누르시면 확인 가능합니다.</p> -->
+                                    <?= viewSQ($policy_3['policy_contents']) ?>
                                     <div class="layer_edge"></div>
                                 </div>
                             </li>
@@ -158,7 +161,8 @@ endforeach;
                                 <a href="#!" onclick="go_status('4');">이용완료</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                                 <div class="popup_layer">
-                                <p>이용완료- 예약하신 상품을 해당 <br> 날짜에 이용 완료한 내역입니다.</p>
+                                <!-- <p>이용완료- 예약하신 상품을 해당 <br> 날짜에 이용 완료한 내역입니다.</p> -->
+                                <?= viewSQ($policy_4['policy_contents']) ?>
                                 <div class="layer_edge"></div>
                                 </div>
                             </li>
@@ -166,7 +170,8 @@ endforeach;
                                 <a href="#!" onclick="go_status('5');">취소내역</a>
                                 <img src="/images/mypage/question_mark.png" alt="">
                                 <div class="popup_layer">
-                                    <p>취소내역- 취소나 예약불가능<br>(객실만실, 예약마감 한 등)내역입니다.</p>
+                                    <!-- <p>취소내역- 취소나 예약불가능<br>(객실만실, 예약마감 한 등)내역입니다.</p> -->
+                                    <?= viewSQ($policy_5['policy_contents']) ?>
                                     <div class="layer_edge"></div>
                                 </div>
                             </li>
