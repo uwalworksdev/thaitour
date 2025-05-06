@@ -9,6 +9,9 @@ class Comment extends BaseController
 {
 
     private $comment;
+    private $point;
+    private $member;
+    private $orderMileage;
     protected $sessionLib;
     protected $sessionChk;
     protected $db;
@@ -16,6 +19,10 @@ class Comment extends BaseController
     public function __construct()
     {
         $this->comment = model("CommentModel");
+        $this->point = model("Point");
+        $this->orderMileage = model("OrderMileage");
+        $this->member = model("Member");
+
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -68,6 +75,37 @@ class Comment extends BaseController
         ];
 
         $result = $this->comment->addComment($data);
+
+        $comment_point = $this->point->getPoint()["comment_point"] ?? 0;
+
+        $memberData = $this->member->find($r_m_idx);
+
+        $isset_point = $this->orderMileage->getPointByType($r_idx, $r_code, "comment");
+
+        if(!empty($memberData) && empty($isset_point)) {
+            $currentMileage = $memberData['mileage'] ?? 0;
+            $newMileage = $currentMileage + intval($comment_point);
+    
+            $this->member->update($r_m_idx, ['mileage' => $newMileage]);
+    
+            $currentRemaining = $memberData['mileage'] ?? 0;
+            $newRemaining = $currentRemaining + intval($comment_point);
+            if(!empty($comment_point)) {
+                $this->orderMileage->insert([
+                    'm_idx'             => $r_m_idx,
+                    'mi_title'          => '여행후기',
+                    'order_gubun'       => '게시물에 댓글 달기',
+                    'order_idx'         => 0,
+                    'order_mileage'     => intval($comment_point),
+                    'mi_r_date'         => date('Y-m-d H:i:s'),
+                    'product_idx'       => 0,
+                    'bbs_idx'           => $r_idx,
+                    'code'              => $r_code,
+                    'point_type'        => "comment",
+                    'remaining_mileage' => $newRemaining,
+                ]);
+            }
+        }
 
         return $result;
     }

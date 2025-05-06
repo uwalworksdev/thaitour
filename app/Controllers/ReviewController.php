@@ -577,6 +577,7 @@ class ReviewController extends BaseController
                         'order_mileage'     => intval($review_point),
                         'mi_r_date'         => date('Y-m-d H:i:s'),
                         'product_idx'       => 0,
+                        'point_type'        => "review",
                         'remaining_mileage' => $newRemaining,
                     ]);
                 }

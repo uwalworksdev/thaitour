@@ -8,7 +8,20 @@ class OrderMileage extends Model
 
     protected $primaryKey = 'mi_idx';
 
-    protected $allowedFields = ["mi_title", "order_idx", "order_no", "order_mileage", "order_gubun", "m_idx", "product_idx", "mi_r_date", "remaining_mileage"];
+    protected $allowedFields = [
+        "mi_title", "order_idx", "order_no", "order_mileage"
+        , "order_gubun", "m_idx", "bbs_idx", "code", "point_type"
+        , "product_idx", "mi_r_date", "remaining_mileage"
+    ];
+
+    public function getPointByType($bbs_idx, $code, $point_type)
+    {
+        return $this->where('m_idx', $_SESSION['member']['mIdx'])
+                    ->where('bbs_idx', $bbs_idx)
+                    ->where('code', $code)
+                    ->where('point_type', $point_type)
+                    ->first();
+    }
 
     public function getPoint($s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10)
     {
@@ -47,7 +60,7 @@ class OrderMileage extends Model
 
     public function getPointMem($m_idx, $s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10)
 {
-    $builder = $this->where('m_idx', $m_idx); // Lọc theo m_idx
+    $builder = $this->where('m_idx', $m_idx);
 
     if (!empty($s_date) && !empty($e_date)) {
         $builder->where("DATE_FORMAT(mi_r_date, '%Y-%m-%d') >=", $s_date);
