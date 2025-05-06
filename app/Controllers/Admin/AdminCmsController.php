@@ -399,7 +399,7 @@ class AdminCmsController extends BaseController
         }
     }
 
-    public function delete() {
+    public function policy_delete() {
         try {
             $p_idx = $this->request->getPost("p_idx") ?? [];
             if (!$p_idx) {
