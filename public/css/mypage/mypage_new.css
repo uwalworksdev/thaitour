@@ -1570,6 +1570,48 @@ input[type="checkbox"]:checked+label {
     color: #777;
     line-height: 1.3;
     border-bottom: 1px solid #999;
+    position: relative;
+}
+
+.booklist_wrap .result_book .tab_box ul li .popup_layer {
+    display: none;
+    position: absolute;
+    border: 1px solid #888;
+    padding: 10px 15px;
+    background: #fff;
+    z-index: 1999;
+    bottom: 54px;
+    left: -3px;
+    width: 100% !important;
+    min-width: 230px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.booklist_wrap .result_book .tab_box ul li:nth-of-type(2) .layer_edge
+{
+   position: absolute;
+   width: 55px;
+   height: 20px;
+   font-size: 0;
+   left: 114px;
+   bottom: -20px;
+   background: url(/images/ico/tail_myp.png) no-repeat 0 0;
+}
+
+.layer_edge
+ {
+    position: absolute;
+    width: 55px;
+    height: 20px;
+    font-size: 0;
+    left: 104px;
+    bottom: -20px;
+    background: url(/images/ico/tail_myp.png) no-repeat 0 0;
+}
+
+.booklist_wrap .result_book .tab_box ul li img:hover + .popup_layer {
+    display: block;
 }
 
 .booklist_wrap .result_book .tab_box ul li.on {
