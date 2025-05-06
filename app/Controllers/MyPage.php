@@ -246,7 +246,6 @@ echo $db->getLastQuery();
 		$data = [
 			'groupTotals '  => $groupTotals,
 			'groupedOrders' => $groupedOrders,
-			'reservations'  => $reservations,
 			'procType'      => $procType,
 		];	
 		
