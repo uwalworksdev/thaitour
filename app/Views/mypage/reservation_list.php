@@ -381,7 +381,8 @@ endforeach;
                                            echo "<p>성인 ". $order->people_adult_cnt ."명</p>";
 									    }
 									?>	   
-                                    <p><?= esc(number_format($order->real_price_won))?>원 (<?= esc(number_format($order->real_price_bath))?>바트)</p>
+                                    <!--p><?= esc(number_format($order->real_price_won))?>원 (<?= esc(number_format($order->real_price_bath))?>바트)</p-->
+                                    <p><?= esc(number_format($order->order_price))?>원 (<?= esc(number_format($order->order_price_bath))?>바트)</p>
                                 </div>
                                 <div class="info_name">
                                     <p>여행자 이름: <?= esc($order->order_user_name);?>[<?= esc($order->order_user_first_name_en);?> <?= esc($order->order_user_last_name_en);?>]</p>
