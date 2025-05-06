@@ -316,10 +316,21 @@ class MyPage extends BaseController
 			$groupedOrders[$row->group_no][] = $row;
 		}
 
+        $policy_1 = $this->policyModel->getByIdx("33");
+        $policy_2 = $this->policyModel->getByIdx("34");
+        $policy_3 = $this->policyModel->getByIdx("35");
+        $policy_4 = $this->policyModel->getByIdx("36");
+        $policy_5 = $this->policyModel->getByIdx("37");
+
 		$data = [
-			'groupTotals'   => $groupTotals,
-			'groupedOrders' => $groupedOrders,
-			'procType'      => $procType,
+					'groupTotals'   => $groupTotals,
+					'groupedOrders' => $groupedOrders,
+					'procType'      => $procType,
+					'policy_1'      => $policy_1,  
+					'policy_2'      => $policy_2,  
+					'policy_3'      => $policy_3,  
+					'policy_4'      => $policy_4,  
+					'policy_5'      => $policy_5
 		];	
 		
 		return view('mypage/reservation_list', $data);

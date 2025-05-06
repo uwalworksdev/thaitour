@@ -166,7 +166,19 @@ endforeach;
                                 <div class="layer_edge"></div>
                                 </div>
                             </li>
-
+                            <li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
+                                <a href="#!" onclick="go_status('5');">취소내역</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <!-- <p>취소내역- 취소나 예약불가능<br>(객실만실, 예약마감 한 등)내역입니다.</p> -->
+                                    <?= viewSQ($policy_5['policy_contents']) ?>
+                                    <div class="layer_edge"></div>
+                                </div>
+                            </li>
+                            <!--li <?php if($procType == "5") echo "class='on'";?> data-menu="all">
+                                <a href="#!" onclick="go_status('5');">이용불가</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                            </li-->
                         </ul>
                     </div>
                 </div>
