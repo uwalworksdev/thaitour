@@ -249,8 +249,6 @@ class MyPage extends BaseController
 		$builder->orderBy($groupField, 'ASC');
 		$reservations = $builder->get()->getResult();
 
-echo $builder->db->getLastQuery();
-
 		$data = [
 			'reservations' => $reservations,
 			'procType'     => $procType,
