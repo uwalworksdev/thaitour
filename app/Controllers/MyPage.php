@@ -187,10 +187,12 @@ public function reservationList() {
     // ===== 2. group_no 기준 상세 예약 목록 =====
     $builder2 = $db->table('tbl_order_mst')->select("
         tbl_order_mst.*, 
-        AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+        AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS order_user_name,
+        AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),  '$private_key') AS order_user_first_name_en, 
+        AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key')  AS order_user_last_name_en, 
         AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
-        AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
-        AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email
+        AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') AS order_user_phone,
+        AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS order_user_email
     ");
     $applyCommonConditions($builder2);
     switch ($procType) {
@@ -207,10 +209,10 @@ public function reservationList() {
     }
 
     // ===== 3. order_no 기준 페이징 =====
-    $pager = \Config\Services::pager();
-    $page = (int) ($this->request->getGet('page') ?? 1);
+    $pager   = \Config\Services::pager();
+    $page    = (int) ($this->request->getGet('page') ?? 1);
     $perPage = 10;
-    $offset = ($page - 1) * $perPage;
+    $offset  = ($page - 1) * $perPage;
 
     $builder3 = $db->table('tbl_order_mst')
                    ->select("tbl_order_mst.*, AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name")
