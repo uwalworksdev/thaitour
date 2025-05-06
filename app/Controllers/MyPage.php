@@ -249,7 +249,7 @@ class MyPage extends BaseController
 		// 결과 조회
 		$builder->orderBy($groupField, 'ASC');
 		$reservations = $builder->get()->getResult();
-write_log('debug', $db->getLastQuery());
+write_log("reservationList- ".  $db->getLastQuery());
 		$data = [
 			'reservations' => $reservations,
 			'procType'     => $procType,
