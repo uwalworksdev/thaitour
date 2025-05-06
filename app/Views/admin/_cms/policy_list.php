@@ -64,17 +64,41 @@ $_policy = explode("|", $policy);
                                 <?php
                                     $voucher_policies = [];
                                     $invoice_policies = [];
+                                    $reservation_policies = [];
                                     $other_policies = [];
                                     foreach ($result as $row) {
                                         if ($row['policy_code'] === 'voucher') {
                                             $voucher_policies[] = $row;
                                         } elseif ($row['policy_code'] === 'invoice') {
                                             $invoice_policies[] = $row;
+                                        } elseif($row['policy_code'] === 'reservation') {
+                                            $reservation_policies[] = $row;
                                         } else {
                                             $other_policies[] = $row;
                                         }
                                     }
                                     ?>
+                                    <?php if (!empty($reservation_policies)) {?>
+                                    <tr style="height:50px">
+                                        <td>
+                                            <?= $reservation_policies[0]['p_idx'] ?>
+                                        </td>
+                                        <td class="tal">
+                                            <a href="policy_write?p_idx=<?= $reservation_policies[0]['p_idx'] ?>&r_code=onfo">바우처 약관및 규정 관리</a>
+                                        </td>
+                                        <td class="td_control">
+                                            <a href="policy_write?p_idx=<?= $reservation_policies[0]['p_idx'] ?>">
+                                                <img src="/images/admin/common/ico_setting2.png" class="btn_mod"
+                                                     alt="관리">
+                                            </a>
+                                            <a href="#!" onclick="del_it('<?= $reservation_policies[0]['p_idx'] ?>');">
+                                                <img src="/images/admin/common/ico_error.png" class="btn_del"
+                                                    alt="삭제">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+
                                     <?php if (!empty($voucher_policies)) {?>
                                     <tr style="height:50px">
                                         <td>
@@ -94,6 +118,7 @@ $_policy = explode("|", $policy);
                                             </a>
                                         </td>
                                     </tr>
+
                                     <?php } if (!empty($invoice_policies)) {?>
                                         <tr style="height:50px">
                                         <td>
