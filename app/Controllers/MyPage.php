@@ -129,6 +129,12 @@ class MyPage extends BaseController
         return view('mypage/booklist', $data);
     }
 
+    public function reservationList() {
+		
+		   echo "reservationList";
+		
+	}
+	
     public function getPolicyContents($product_idx)
         {
             $policy = $this->policyCancel->where('product_idx', $product_idx)->first();
