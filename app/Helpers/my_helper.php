@@ -638,10 +638,9 @@ function getLoginDeviceUserChk($user_id)
 
     if ($user_id != "") {
 
-        $cookieVal = $_COOKIE[$cookieValue] ?? "";
+        $cookieVal = cookie($cookieValue);
 
         if ($cookieVal == "") {
-
             $sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";
             $row = db_connect()->query($sql)->getRowArray();
             $login_type_P = $row['login_type_P'];
@@ -676,8 +675,6 @@ function getLoginDeviceUserChk($user_id)
                 }
 
                 $sql = " update tbl_login_device set " . $sSQl . " where DATE(regdate) = DATE(now())";
-
-
                 db_connect()->query($sql);
             }
         }
