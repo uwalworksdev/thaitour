@@ -221,6 +221,8 @@ class MyPage extends BaseController
 		$builder->groupBy('group_no');
 		$groupTotals = $builder->get()->getResult();
 
+		echo $db->getLastQuery();
+
 		$builder2 = $db->table('tbl_order_mst') 
 					->select("
 						tbl_order_mst.*, 
@@ -246,7 +248,6 @@ class MyPage extends BaseController
 			$groupedOrders[$row->group_no][] = $row;
 		}
 
-        echo $db->getLastQuery();
 		$data = [
 			'groupTotals'   => $groupTotals,
 			'groupedOrders' => $groupedOrders,
