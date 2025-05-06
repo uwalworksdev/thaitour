@@ -188,8 +188,8 @@ public function reservationList() {
     $builder2 = $db->table('tbl_order_mst')->select("
         tbl_order_mst.*, 
         AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS order_user_name,
-        AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),  '$private_key') AS order_user_first_name_en, 
-        AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key')  AS order_user_last_name_en, 
+        AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') AS order_user_first_name_en, 
+        AES_DECRYPT(UNHEX(order_user_last_name_en),   '$private_key') AS order_user_last_name_en, 
         AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
         AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') AS order_user_phone,
         AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS order_user_email
