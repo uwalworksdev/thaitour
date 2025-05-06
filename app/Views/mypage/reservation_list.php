@@ -324,7 +324,7 @@ endforeach;
                                 <div class="total">
                                     <p>그룹 총금액 <span><?= esc(number_format($group->real_price_won))?>원</span></p>
                                 </div>
-                                <!--div onclick="openNewWindow('<?= esc($group['group_no']) ?>')" class="group_print flex__c">-->
+                                <!--div onclick="openNewWindow('<?= esc($group->group_no) ?>')" class="group_print flex__c">-->
                                 <div onclick="openGroupEstimate('<?= esc($group->group_no) ?>')" class="group_print flex__c">
                                     <img src="/images/mypage/printer_ic.png" alt="" class="only_web">
                                     <img src="/images/mypage/printer_ic_m.png" alt="" class="only_mo">
