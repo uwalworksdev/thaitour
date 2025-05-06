@@ -247,20 +247,19 @@ $nPage = ceil($totalRows / $g_list_rows);
 
     // ===== 정책 정보 =====
     $data = [
-					'nTotalCount'      => $result['nTotalCount'],
-					'nPage'            => $result['nPage'],
-					'g_list_rows'      => $g_list_rows,
-					'pg'               => $pg,
-        'groupTotals'   => $groupTotals,
-        'groupedOrders' => $groupedOrders,
-        'pagedOrders'   => $pagedOrders,
-        'pager'         => $pager->makeLinks($page, $perPage, $totalRows, 'default_full'),
-        'procType'      => $procType,
-        'policy_1'      => $this->policyModel->getByIdx("33"),
-        'policy_2'      => $this->policyModel->getByIdx("34"),
-        'policy_3'      => $this->policyModel->getByIdx("35"),
-        'policy_4'      => $this->policyModel->getByIdx("36"),
-        'policy_5'      => $this->policyModel->getByIdx("37"),
+				'nPage'         => $nPage,
+				'g_list_rows'   => $g_list_rows,
+				'pg'            => $pg,
+				'groupTotals'   => $groupTotals,
+				'groupedOrders' => $groupedOrders,
+				'pagedOrders'   => $pagedOrders,
+				'pager'         => $pager->makeLinks($page, $perPage, $totalRows, 'default_full'),
+				'procType'      => $procType,
+				'policy_1'      => $this->policyModel->getByIdx("33"),
+				'policy_2'      => $this->policyModel->getByIdx("34"),
+				'policy_3'      => $this->policyModel->getByIdx("35"),
+				'policy_4'      => $this->policyModel->getByIdx("36"),
+				'policy_5'      => $this->policyModel->getByIdx("37"),
     ];
 
     return view('mypage/reservation_list', $data);
