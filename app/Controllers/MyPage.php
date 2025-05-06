@@ -132,7 +132,7 @@ class MyPage extends BaseController
     public function reservationList() {
 		
 		   echo "reservationList";
-		
+		$data = "";
         return view('mypage/reservation_list', $data);
 	}
 	
