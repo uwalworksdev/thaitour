@@ -338,6 +338,7 @@ endforeach;
 				<?php foreach($groupTotals as $group) : ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
+					    <?php if($procType == "" || $procType == "1") { ?>
                         <div class="book_group_wrap flex_b_c">
                             <div class="name_pro">
                                 <div class="bs-input-check">
@@ -359,7 +360,7 @@ endforeach;
                             </div>
 
                         </div>
-
+                        <?php } ?>
 						
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
