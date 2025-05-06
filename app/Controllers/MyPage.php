@@ -132,6 +132,7 @@ class MyPage extends BaseController
     public function reservationList() {
 			
 		$db = \Config\Database::connect();
+		$private_key  = private_key();
 
         $dateType     = $this->request->getGet("dateType");           // 날짜기준
 		$procType     = $this->request->getGet('procType'); // 예: 'all', 1:'progress', 2:'paid', 3:'confirmed', 4:'used', 5:'cancelled'
