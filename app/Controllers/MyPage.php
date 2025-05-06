@@ -133,6 +133,7 @@ class MyPage extends BaseController
 			
 		$db = \Config\Database::connect();
 
+        $dateType     = $this->request->getGet("dateType");           // 날짜기준
 		$procType     = $this->request->getGet('procType'); // 예: 'all', 1:'progress', 2:'paid', 3:'confirmed', 4:'used', 5:'cancelled'
         $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
         $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
@@ -142,11 +143,30 @@ class MyPage extends BaseController
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
 		$builder = $db->table('tbl_order_mst');
+			->select("
+				tbl_order_mst.*, 
+				(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
+				AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+				AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+				AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
+				AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+				AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
+				AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
+				AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
+				AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+				AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+				AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
+			");
 
-		// 날짜 필터
-		if ($checkInDate && $checkOutDate) {
-			$builder->where('use_date >=', $checkInDate)
-					->where('use_date <=', $checkOutDate);
+		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+        $builder->whereNotIn('order_status', ['B', 'D']);
+
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
 		}
 
 		if ($productType) {
@@ -157,6 +177,23 @@ class MyPage extends BaseController
 			$builder->like('product_name', $productName);
 		}
 
+		// 결제 상태 필터
+		$payStatusMap = [
+			"1" => ['W', 'Y', 'G', 'R', 'J'],
+			"2" => ['Z'],
+			"3" => ['E'],
+			"4" => ['C'],
+			"5" => ['N'],
+		];
+		if (!empty($procType) && isset($payStatusMap[$procType])) {
+			$builder->whereIn('order_status', $payStatusMap[$procType]);
+		}
+
+		// 상품 유형 필터
+		if (!empty($prodType)) {
+			$builder->where('order_gubun', $prodType);
+		}
+		
 		// 상태에 따른 필터 + 그룹 처리
 		switch ($procType) {
 			case '1': // 예약진행중 (W, X)
