@@ -133,6 +133,7 @@ class MyPage extends BaseController
 		
 		   echo "reservationList";
 		
+        return view('mypage/reservation_list', $data);
 	}
 	
     public function getPolicyContents($product_idx)
