@@ -133,7 +133,7 @@ class MyPage extends BaseController
 			
 		$db = \Config\Database::connect();
 
-		$statusTab = $this->request->getGet('tab'); // 예: 'all', 'progress', 'paid', 'confirmed', 'used', 'cancelled'
+		$$procType = $this->request->getGet('tab'); // 예: 'all', 'progress', 'paid', 'confirmed', 'used', 'cancelled'
 
 		$startDate    = $this->request->getGet('start_date');
 		$endDate      = $this->request->getGet('end_date');
@@ -157,33 +157,33 @@ class MyPage extends BaseController
 		}
 
 		// 상태에 따른 필터 + 그룹 처리
-		switch ($statusTab) {
-			case 'progress': // 예약진행중 (W, X)
+		switch ($procType) {
+			case '1': // 예약진행중 (W, X)
 				$builder->whereIn('order_status', ['W', 'X']);
 				$groupField = 'group_no';
 				break;
 
-			case 'paid': // 결제완료 (Y)
+			case '2': // 결제완료 (Y)
 				$builder->where('order_status', 'Y');
 				$groupField = 'payment_no';
 				break;
 
-			case 'confirmed': // 예약확정 (Z)
+			case '3': // 예약확정 (Z)
 				$builder->where('order_status', 'Z');
 				$groupField = 'payment_no';
 				break;
 
-			case 'used': // 이용완료 (E)
+			case '3': // 이용완료 (E)
 				$builder->where('order_status', 'E');
 				$groupField = 'order_no';
 				break;
 
-			case 'cancelled': // 예약취소 (C, N)
+			case '5': // 예약취소 (C, N)
 				$builder->whereIn('order_status', ['C', 'N']);
 				$groupField = 'order_no';
 				break;
 
-			case 'all':
+			case '':
 			default:
 				$groupField = 'group_no'; // 전체예약내역은 group_no 기준
 				break;
@@ -195,7 +195,7 @@ class MyPage extends BaseController
 
 		$data = [
 			'reservations' => $reservations,
-			'tab' => $statusTab,
+			'procType'     => $procType,
 		];	
 		
 		return view('mypage/reservation_list', $data);
