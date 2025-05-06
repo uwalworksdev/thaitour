@@ -144,8 +144,8 @@ class MyPage extends BaseController
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
 $builder = $db->table('tbl_order_mst');
-$builder->select('group_no, SUM(order_amount) as group_total');
-$builder->where('m_idx', $_SESSION['member']['mIdx']);
+$builder->select('group_no, SUM(order_price) as group_total');
+//$builder->where('m_idx', $_SESSION['member']['mIdx']);
 $builder->whereNotIn('order_status', ['B', 'D']);
 $builder->groupBy('group_no');
 $groupTotals = $builder->get()->getResult();
