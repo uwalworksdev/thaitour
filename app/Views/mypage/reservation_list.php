@@ -482,7 +482,7 @@ endforeach;
         </div>
     </div>
 </section>
-<?= $pager ?? '' ?>
+
 <div class="estimate_popup_wrap custom_popup">
       <div class="estimate_popup_content custom_popup_content">
          <div class="btn_close_popup">
