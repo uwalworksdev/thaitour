@@ -769,6 +769,7 @@ $routes->group("member", static function ($routes) {
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
     $routes->get("booklist", "MyPage::booklist");
+    $routes->get("reservation_list", "MyPage::reservationList");
     $routes->get("getPolicyContents/(:num)", "MyPage::getPolicyContents/$1");
     $routes->get("pop_estimate", "MyPage::pop_estimate");
     $routes->get("custom_travel", "MyPage::custom_travel");
