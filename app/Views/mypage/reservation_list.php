@@ -410,7 +410,7 @@ endforeach;
 											              data-idx="'. $order->order_no .'" 
 														  data-price="'. $order->real_price_won .'" 
 														  id="prod'.esc($order->order_idx).'" 
-														  class="pay sub'.esc($group['group_no).'" 
+														  class="pay sub'.esc($group->group_no)).'" 
 														  value="Y">';
 									       } 
 									?>
