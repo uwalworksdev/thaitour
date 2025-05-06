@@ -240,6 +240,74 @@ class MyPage extends BaseController
 					");
 		//$builder2->where('m_idx', $_SESSION['member']['mIdx']);
 		$builder2->whereNotIn('order_status', ['B', 'D']);
+		
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder2->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder2->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+
+		if ($productType) {
+			$builder2->where('product_type', $productType);
+		}
+
+		if ($productName) {
+			$builder2->like('product_name', $productName);
+		}
+
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder2->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder2->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder2->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder2->where('group_no', $search_word);
+					break;
+			}
+		}
+
+		// 상태에 따른 필터 + 그룹 처리
+		switch ($procType) {
+			case '1': // 예약진행중 (W, X)
+				$builder2->whereIn('order_status', ['W', 'X']);
+				$groupField = 'group_no';
+				break;
+
+			case '2': // 결제완료 (Y)
+				$builder2->where('order_status', 'Y');
+				$groupField = 'payment_no';
+				break;
+
+			case '3': // 예약확정 (Z)
+				$builder2->where('order_status', 'Z');
+				$groupField = 'payment_no';
+				break;
+
+			case '4': // 이용완료 (E)
+				$builder2->where('order_status', 'E');
+				$groupField = 'order_no';
+				break;
+
+			case '5': // 예약취소 (C, N)
+				$builder2->whereIn('order_status', ['C', 'N']);
+				$groupField = 'order_no';
+				break;
+
+			case '':
+			default:
+				$groupField = 'group_no'; // 전체예약내역은 group_no 기준
+				break;
+		}
+		
 		$allOrders = $builder2->get()->getResult();
 
 		// group_no 기준으로 정렬
