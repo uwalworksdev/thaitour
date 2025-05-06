@@ -84,7 +84,7 @@ $_policy = explode("|", $policy);
                                             <?= $reservation_policies[0]['p_idx'] ?>
                                         </td>
                                         <td class="tal">
-                                            <a href="policy_write?p_idx=<?= $reservation_policies[0]['p_idx'] ?>&r_code=onfo">바우처 약관및 규정 관리</a>
+                                            <a href="policy_write?p_idx=<?= $reservation_policies[0]['p_idx'] ?>&r_code=onfo">예약내역 설명</a>
                                         </td>
                                         <td class="td_control">
                                             <a href="policy_write?p_idx=<?= $reservation_policies[0]['p_idx'] ?>">
