@@ -146,106 +146,106 @@ class MyPage extends BaseController
         $searchType   = $this->request->getGet("searchType");        // 검색구분
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
-$builder = $db->table('tbl_order_mst');
-$builder->select('group_no, SUM(order_price) as group_total');
-//$builder->where('m_idx', $_SESSION['member']['mIdx']);
-$builder->whereNotIn('order_status', ['B', 'D']);
-// 날짜 필터 적용
-if ($dateType == "1" && $checkInDate && $checkOutDate) {
-	$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
-if ($dateType == "2" && $checkInDate && $checkOutDate) {
-	$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
+		$builder = $db->table('tbl_order_mst');
+		$builder->select('group_no, COUNT(group_no) as group_cnt, SUM(real_price_won) as group_total');
+		//$builder->where('m_idx', $_SESSION['member']['mIdx']);
+		$builder->whereNotIn('order_status', ['B', 'D']);
+		// 날짜 필터 적용
+		if ($dateType == "1" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
+		if ($dateType == "2" && $checkInDate && $checkOutDate) {
+			$builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+		}
 
-if ($productType) {
-	$builder->where('product_type', $productType);
-}
+		if ($productType) {
+			$builder->where('product_type', $productType);
+		}
 
-if ($productName) {
-	$builder->like('product_name', $productName);
-}
+		if ($productName) {
+			$builder->like('product_name', $productName);
+		}
 
-// 검색 필터
-if (!empty($search_word)) {
-	switch ($searchType) {
-		case "1":
-			$builder->like('product_name', $search_word);
-			break;
-		case "2":
-			$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
-			break;
-		case "3":
-			$builder->where('order_no', $search_word);
-			break;
-		case "4":
-			$builder->where('group_no', $search_word);
-			break;
-	}
-}
+		// 검색 필터
+		if (!empty($search_word)) {
+			switch ($searchType) {
+				case "1":
+					$builder->like('product_name', $search_word);
+					break;
+				case "2":
+					$builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+					break;
+				case "3":
+					$builder->where('order_no', $search_word);
+					break;
+				case "4":
+					$builder->where('group_no', $search_word);
+					break;
+			}
+		}
 
-// 상태에 따른 필터 + 그룹 처리
-switch ($procType) {
-	case '1': // 예약진행중 (W, X)
-		$builder->whereIn('order_status', ['W', 'X']);
-		$groupField = 'group_no';
-		break;
+		// 상태에 따른 필터 + 그룹 처리
+		switch ($procType) {
+			case '1': // 예약진행중 (W, X)
+				$builder->whereIn('order_status', ['W', 'X']);
+				$groupField = 'group_no';
+				break;
 
-	case '2': // 결제완료 (Y)
-		$builder->where('order_status', 'Y');
-		$groupField = 'payment_no';
-		break;
+			case '2': // 결제완료 (Y)
+				$builder->where('order_status', 'Y');
+				$groupField = 'payment_no';
+				break;
 
-	case '3': // 예약확정 (Z)
-		$builder->where('order_status', 'Z');
-		$groupField = 'payment_no';
-		break;
+			case '3': // 예약확정 (Z)
+				$builder->where('order_status', 'Z');
+				$groupField = 'payment_no';
+				break;
 
-	case '4': // 이용완료 (E)
-		$builder->where('order_status', 'E');
-		$groupField = 'order_no';
-		break;
+			case '4': // 이용완료 (E)
+				$builder->where('order_status', 'E');
+				$groupField = 'order_no';
+				break;
 
-	case '5': // 예약취소 (C, N)
-		$builder->whereIn('order_status', ['C', 'N']);
-		$groupField = 'order_no';
-		break;
+			case '5': // 예약취소 (C, N)
+				$builder->whereIn('order_status', ['C', 'N']);
+				$groupField = 'order_no';
+				break;
 
-	case '':
-	default:
-		$groupField = 'group_no'; // 전체예약내역은 group_no 기준
-		break;
-}
-		
-$builder->groupBy('group_no');
-$groupTotals = $builder->get()->getResult();
+			case '':
+			default:
+				$groupField = 'group_no'; // 전체예약내역은 group_no 기준
+				break;
+		}
+				
+		$builder->groupBy('group_no');
+		$groupTotals = $builder->get()->getResult();
 
-$builder2 = $db->table('tbl_order_mst') 
-			->select("
-				tbl_order_mst.*, 
-				(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
-				AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
-				AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
-				AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
-				AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
-				AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
-				AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
-				AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
-				AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
-				AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
-				AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
-			");
-//$builder2->where('m_idx', $_SESSION['member']['mIdx']);
-$builder2->whereNotIn('order_status', ['B', 'D']);
-$allOrders = $builder2->get()->getResult();
+		$builder2 = $db->table('tbl_order_mst') 
+					->select("
+						tbl_order_mst.*, 
+						(SELECT COUNT(*) FROM tbl_order_mst AS t2 WHERE t2.group_no = tbl_order_mst.group_no) as group_count,
+						AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+						AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+						AES_DECRYPT(UNHEX(order_user_phone), '$private_key') AS order_user_phone,
+						AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+						AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name,
+						AES_DECRYPT(UNHEX(manager_phone), '$private_key') AS manager_phone,
+						AES_DECRYPT(UNHEX(manager_email), '$private_key') AS manager_email,
+						AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+						AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+						AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
+					");
+		//$builder2->where('m_idx', $_SESSION['member']['mIdx']);
+		$builder2->whereNotIn('order_status', ['B', 'D']);
+		$allOrders = $builder2->get()->getResult();
 
-// group_no 기준으로 정렬
-$groupedOrders = [];
-foreach ($allOrders as $row) {
-    $groupedOrders[$row->group_no][] = $row;
-}
+		// group_no 기준으로 정렬
+		$groupedOrders = [];
+		foreach ($allOrders as $row) {
+			$groupedOrders[$row->group_no][] = $row;
+		}
 
-echo $db->getLastQuery();
+        echo $db->getLastQuery();
 		$data = [
 			'groupTotals'   => $groupTotals,
 			'groupedOrders' => $groupedOrders,
