@@ -133,19 +133,20 @@ class MyPage extends BaseController
 			
 		$db = \Config\Database::connect();
 
-		$$procType = $this->request->getGet('tab'); // 예: 'all', 'progress', 'paid', 'confirmed', 'used', 'cancelled'
+		$procType     = $this->request->getGet('procType'); // 예: 'all', 1:'progress', 2:'paid', 3:'confirmed', 4:'used', 5:'cancelled'
+        $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
+        $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
 
-		$startDate    = $this->request->getGet('start_date');
-		$endDate      = $this->request->getGet('end_date');
-		$productType  = $this->request->getGet('product_type');
-		$productName  = $this->request->getGet('product_name');
+		$prodType     = $this->request->getGet('prodType');
+        $searchType   = $this->request->getGet("searchType");        // 검색구분
+        $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
 		$builder = $db->table('tbl_order_mst');
 
 		// 날짜 필터
-		if ($startDate && $endDate) {
-			$builder->where('use_date >=', $startDate)
-					->where('use_date <=', $endDate);
+		if ($checkInDate && $checkOutDate) {
+			$builder->where('use_date >=', $checkInDate)
+					->where('use_date <=', $checkOutDate);
 		}
 
 		if ($productType) {
