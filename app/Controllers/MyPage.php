@@ -177,7 +177,7 @@ class MyPage extends BaseController
 		if ($productName) {
 			$builder->like('product_name', $productName);
 		}
-
+/*
 		// 결제 상태 필터
 		$payStatusMap = [
 			"1" => ['W', 'Y', 'G', 'R', 'J'],
@@ -194,7 +194,7 @@ class MyPage extends BaseController
 		if (!empty($prodType)) {
 			$builder->where('order_gubun', $prodType);
 		}
-
+*/
 		// 검색 필터
 		if (!empty($search_word)) {
 			switch ($searchType) {
