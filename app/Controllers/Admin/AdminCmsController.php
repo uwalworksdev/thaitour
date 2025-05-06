@@ -415,7 +415,7 @@ class AdminCmsController extends BaseController
 
             return $this->response->setJSON([
                 'result' => true,
-                'message' => "OK"
+                'message' => "정상적으로 삭제되었습니다."
             ], 200);
         } catch (Exception $e) {
             return $this->response->setJSON([
