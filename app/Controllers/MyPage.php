@@ -143,6 +143,26 @@ class MyPage extends BaseController
         $searchType   = $this->request->getGet("searchType");        // 검색구분
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
 
+$builder = $db->table('tbl_order_mst');
+$builder->select('group_no, SUM(order_amount) as group_total');
+$builder->where('m_idx', $_SESSION['member']['mIdx']);
+$builder->whereNotIn('order_status', ['B', 'D']);
+$builder->groupBy('group_no');
+$groupTotals = $builder->get()->getResult();
+
+$builder2 = $db->table('tbl_order_mst');
+$builder2->select('*');
+//$builder2->where('m_idx', $_SESSION['member']['mIdx']);
+$builder2->whereNotIn('order_status', ['B', 'D']);
+$allOrders = $builder2->get()->getResult();
+
+// group_no 기준으로 정렬
+$groupedOrders = [];
+foreach ($allOrders as $row) {
+    $groupedOrders[$row->group_no][] = $row;
+}
+
+
 		$builder = $db->table('tbl_order_mst') 
 			->select("
 				tbl_order_mst.*, 
@@ -251,8 +271,10 @@ class MyPage extends BaseController
 		$reservations = $builder->get()->getResult();
 echo $db->getLastQuery();
 		$data = [
-			'reservations' => $reservations,
-			'procType'     => $procType,
+			'groupTotals '  => $groupTotals,
+			'groupedOrders' => $groupedOrders,
+			'reservations'  => $reservations,
+			'procType'      => $procType,
 		];	
 		
 		return view('mypage/reservation_list', $data);

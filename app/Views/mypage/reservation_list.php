@@ -310,7 +310,7 @@ endforeach;
                     </div>
                 </form>
                 
-				<?php foreach($reservationsx as $group) : ?>
+				<?php foreach ($groupTotals as $group): ?>
                 <div class="booking_product" data-menu="all">
                     <div class="product_box">
                         <div class="book_group_wrap flex_b_c">
@@ -397,8 +397,7 @@ endforeach;
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
-						foreach($reservations as $order) : 
-							if ($order->group_no == $group->group_no) :
+						foreach ($groupedOrders[$group->group_no] as $order): 
 							
 						?>
                         <div class="product_detail">
@@ -487,11 +486,10 @@ endforeach;
                                 </div>
                             </div>
                         </div>
-						<?php 
-							endif;
+					  <?php 
 						endforeach; 
-						endforeach; 
-						?>
+					  endforeach; 
+					  ?>
 
                 <div class="booking_product" data-menu="canceled">
 
