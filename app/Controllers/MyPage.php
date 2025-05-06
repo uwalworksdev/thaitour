@@ -159,7 +159,7 @@ class MyPage extends BaseController
 				AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en
 			");
 
-		$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
+		//$builder->where('m_idx', $_SESSION["member"]["mIdx"]);
         $builder->whereNotIn('order_status', ['B', 'D']);
 
 		// 날짜 필터 적용
