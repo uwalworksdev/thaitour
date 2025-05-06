@@ -230,7 +230,7 @@ class MyPage extends BaseController
 				$groupField = 'payment_no';
 				break;
 
-			case '3': // 이용완료 (E)
+			case '4': // 이용완료 (E)
 				$builder->where('order_status', 'E');
 				$groupField = 'order_no';
 				break;
