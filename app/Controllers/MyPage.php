@@ -139,6 +139,9 @@ class MyPage extends BaseController
         $checkInDate  = $this->request->getGet("checkInDatex");       // 시작일
         $checkOutDate = $this->request->getGet("checkOutDatex");      // 종료일
 
+		$productType  = $this->request->getGet('productType');
+		$productName  = $this->request->getGet('productName');
+
 		$prodType     = $this->request->getGet('prodType');
         $searchType   = $this->request->getGet("searchType");        // 검색구분
         $search_word  = trim($this->request->getGet('search_word')); // 검색어
@@ -244,7 +247,7 @@ foreach ($allOrders as $row) {
 
 echo $db->getLastQuery();
 		$data = [
-			'groupTotals '  => $groupTotals,
+			'groupTotals'   => $groupTotals,
 			'groupedOrders' => $groupedOrders,
 			'procType'      => $procType,
 		];	
