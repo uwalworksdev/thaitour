@@ -229,13 +229,60 @@ $pg = (int)($this->request->getGet('pg') ?? 1);
 $g_list_rows = 10;
 $offset = ($pg - 1) * $g_list_rows;
 
-// 데이터 조회
 $builder3 = $db->table('tbl_order_mst')
-               ->select("tbl_order_mst.*, AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name")
-               ->orderBy('order_no', 'DESC')
-               ->limit($g_list_rows, $offset);
-$applyCommonConditions($builder3);
-$pagedOrders = $builder3->get()->getResult();
+    ->select("
+        tbl_order_mst.*, 
+        AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name
+    ")
+    ->whereNotIn('order_status', ['B', 'D'])
+    ->orderBy('order_no', 'DESC')
+    ->limit($g_list_rows, $offset);
+
+// 날짜 필터
+if ($dateType == "1" && $checkInDate && $checkOutDate) {
+    $builder3->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+}
+if ($dateType == "2" && $checkInDate && $checkOutDate) {
+    $builder3->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+}
+
+// 검색 필터
+if (!empty($search_word)) {
+    switch ($searchType) {
+        case "1":
+            $builder3->like('product_name', $search_word);
+            break;
+        case "2":
+            $builder3->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
+            break;
+        case "3":
+            $builder3->where('order_no', $search_word);
+            break;
+        case "4":
+            $builder3->where('group_no', $search_word);
+            break;
+    }
+}
+
+// 상태 조건 (예: $procType = '1'이면 예약 진행중)
+switch ($procType) {
+    case '1':
+        $builder3->whereIn('order_status', ['W', 'X']);
+        break;
+    case '2':
+        $builder3->where('order_status', 'Y');
+        break;
+    case '3':
+        $builder3->where('order_status', 'Z');
+        break;
+    case '4':
+        $builder3->where('order_status', 'E');
+        break;
+    case '5':
+        $builder3->whereIn('order_status', ['C', 'N']);
+        break;
+}
+
 
 // 전체 갯수
 $countBuilder = $db->table('tbl_order_mst')->select('COUNT(*) AS total');
