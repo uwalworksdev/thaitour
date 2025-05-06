@@ -150,7 +150,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <? echo ipageListing($pg, $nPage, $g_list_rows, $_SERVER[PHP_SELF] . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=") ?>
+                    <? echo ipageListing($pg, $nPage, $g_list_rows, $_SERVER["PHP_SELF"] . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=") ?>
 
 
                     <div id="headerContainer">
@@ -204,16 +204,13 @@
             $("#ajax_loader").removeClass("display-none");
 
             $.ajax({
-                url: "del.php",
+                url: "delete",
                 type: "POST",
                 data: $("#frm").serialize(),
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
                     if (response == "OK") {
@@ -237,7 +234,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del.php",
+                url: "delete",
                 type: "POST",
                 data: "m_idx=" + m_idx + "&mi_idx[]=" + mi_idx,
                 error: function (request, status, error) {
@@ -245,17 +242,14 @@
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
                 , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
+                    if (response.message == "OK") {
+                        alert("정상적으로 삭제되었습니다.");
                         location.reload();
                         return;
                     } else {
                         alert(response);
-                        alert_("오류가 발생하였습니다!!");
+                        alert("오류가 발생하였습니다!!");
                         return;
                     }
                 }

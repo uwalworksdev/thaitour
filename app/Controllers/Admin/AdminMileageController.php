@@ -5,11 +5,13 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
+use Exception;
 
 class AdminMileageController extends BaseController
 {
     protected $connect;
     protected $point;
+    protected $orderMileage;
 
     public function __construct()
     {
@@ -18,6 +20,7 @@ class AdminMileageController extends BaseController
         helper('alert_helper');
 
         $this->point = model("Point");
+        $this->orderMileage = model("OrderMileage");
 
         $constants = new ConfigCustomConstants();
     }
@@ -237,6 +240,32 @@ $result = $query->getResultArray();
         ]);
 
 		echo "<script>alert('등록완료');location.href='/AdmMaster/_mileage/write_point';</script>";
+    }
+
+    public function delete() {
+        try {
+            $mi_idx = $this->request->getPost("mi_idx") ?? [];
+            if (!$mi_idx) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => 'idx가 존재하지 않습니다'
+                ], 400);
+            }
+
+            for ($i = 0; $i < count($mi_idx); $i++) {
+                $this->orderMileage->delete($mi_idx[$i]);
+            }
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "OK"
+            ], 200);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
 }
