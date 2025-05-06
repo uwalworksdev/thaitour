@@ -171,7 +171,7 @@ public function reservationList() {
 
     // ===== 1. group_no 기준 합계 =====
     $builder = $db->table('tbl_order_mst')
-                ->select('group_no, COUNT(*) as group_count, SUM(order_price) as group_total');
+                ->select('group_no, COUNT(*) as group_count, SUM(real_price_won) as group_total');
     $applyCommonConditions($builder);
 
     switch ($procType) {
