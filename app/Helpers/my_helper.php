@@ -638,7 +638,7 @@ function getLoginDeviceUserChk($user_id)
 
     if ($user_id != "") {
 
-        $cookieVal = cookie($cookieValue);
+        $cookieVal = $_COOKIE[$cookieValue] ?? "";
 
         if ($cookieVal == "") {
             $sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";
