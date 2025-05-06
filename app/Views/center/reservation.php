@@ -10,7 +10,7 @@
         <div class="contentArea">
 
             <div class="content_wrap">
-                <!-- <?= viewSQ($policy['policy_contents']) ?> -->
+                <?= viewSQ($policy['policy_contents']) ?>
             </div>
 
         </div>
