@@ -769,7 +769,7 @@ if ($_paymod == "lg") {
 
 <script>
 	function go_list(pg) {
-		location.href = '/mypage/booklist?pg=' + pg
+		location.href = '/mypage/reservation_list?pg=' + pg
 	}
 	$(".change_passport").change(function (evt) {
 		if (evt.target.files?.[0]) {
