@@ -10,6 +10,10 @@ function getLocationUrl()
 
     $location = $request->getServer('HTTP_REFERER');
 
+    if (!$location) {
+        return '';
+    }
+
     $cookieValue = 'HTTP_REFERER_' . preg_replace('/[:\/\.\&=\_]/', '', $location);
 
     if (strpos($location, 'bontoshop.com') !== false) {

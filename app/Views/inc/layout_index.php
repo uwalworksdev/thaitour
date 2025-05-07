@@ -2,7 +2,7 @@
 try {
     helper(["setting", "my_helper"]);
     $setting = homeSetInfo();
-    // getLocationUrl();
+    getLocationUrl();
 } catch (\Throwable $th) {
     die("Something went wrong!");
 }

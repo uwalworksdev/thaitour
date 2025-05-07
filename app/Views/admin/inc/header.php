@@ -1,7 +1,7 @@
 <?php
 helper(['gnb', 'setting', 'my_helper']);
 
-// getLocationUrl();
+getLocationUrl();
 
 $uri = service('uri');
 $currentPath = $uri->getPath();
