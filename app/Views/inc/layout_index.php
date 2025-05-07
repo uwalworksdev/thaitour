@@ -1,7 +1,8 @@
 <?php
 try {
-    helper("setting");
+    helper(["setting", "my_helper"]);
     $setting = homeSetInfo();
+    getLocationUrl();
 } catch (\Throwable $th) {
     die("Something went wrong!");
 }
