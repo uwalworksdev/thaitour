@@ -10,8 +10,8 @@
 			<div class="inner_1000">
 				<div class="intro_top flex">
 					<div class="intro_txt">
-						<p class="intro_tit">하이호주는</p> 
-						<p class="intro_ttl">호주 정부에서 발급하는 <br>
+						<p class="intro_tit">더투어랩는</p> 
+						<p class="intro_ttl">더투어랩 정부에서 발급하는 <br>
 							Travel Agent License <br>
 							취득을 시작으로.</p>
 					</div>
@@ -21,19 +21,19 @@
 				</div>
 				<div class="intro_desc">
 					<p class="txt">
-						여행사 대상으로 홍보 및 정보를 제공해 온 남태평양 현지 여행사로 호주 관광청의 부설 기관인 <br>
+						여행사 대상으로 홍보 및 정보를 제공해 온 남태평양 현지 여행사로 더투어랩 관광청의 부설 기관인 <br>
 						ITOA (Inbound Tourism Organizations of Australia) 및 공정거래 위원회 (Fair Trading) 의 회원으로서 명실상부한 <br>
 						남태평양 지역의 Landing Travel Agent 로 신임을 얻으며 현지에서 좋은 신용을 가진 여행사로 인정 받으며 자리 잡고 있습니다.
 					</p>
 					<p class="txt">
-						이제 하이호주는 현지뿐 아니라 국내의 자유여행 브랜드인 하이호주 웹사이트를 통해 직접 서비스 하고, <br>
-						호주 여행을 준비하는 모든 여행자들에게 그 동안 여행 현장에서 체험하며 스크랩 해 둔 현지 정보와 노하우를 함께 공유하고자 <br>
+						이제 더투어랩는 현지뿐 아니라 국내의 자유여행 브랜드인 더투어랩 웹사이트를 통해 직접 서비스 하고, <br>
+						더투어랩 여행을 준비하는 모든 여행자들에게 그 동안 여행 현장에서 체험하며 스크랩 해 둔 현지 정보와 노하우를 함께 공유하고자 <br>
 						여행의 길잡이로 재도약 하고 있습니다.
 					</p>
 					<img src="/img/sub/intro_img02.png" alt="">
 					<p class="txt">패키지 여행에서 자유여행으로 여행 패턴이 바뀌어 가고 있는 지금 획일적이고 일률적인 기존의 여행상품이 아닌 <br>
 						다양한 형태의 상품을 연구, 개발을 통해 고객의 상황에 맞는 상품을 권해 드리며 생생하고 알찬 정보를 제공해 드립니다. <br>
-						여행의 바른 문화, 하이호주가 만들어 나갈 것을 약속 드리겠습니다. </p>
+						여행의 바른 문화, 더투어랩가 만들어 나갈 것을 약속 드리겠습니다. </p>
 				</div>
 			</div>
 				<div class="intro_banner">
@@ -45,13 +45,13 @@
 			<div class="intro_content">
 				<div class="inner_1000">
 					<div class="banner_txt">
-							<p class="intro_tit">하이호주의 강점</p>
+							<p class="intro_tit">더투어랩의 강점</p>
 							<p class="intro_ttl">변화하는 여행 <br>
 								고객이 우선이 되는 여행 <br>
-								가고 싶은 호주여행</p>
+								가고 싶은 더투어랩여행</p>
 
-							<div class="cont">이제 더 이상 여행의 틀안에 갇히지 마세요. 하이호주는 머물러 있는 여행이 아닌 생각하고 변화하는 여행을 안내 드립니다. <br>
-									여행을 위한 여행, 고객 만족이 우선이 되는 여행, 다시 오고 싶은 호주 여행을 만들어 드립니다.</div>
+							<div class="cont">이제 더 이상 여행의 틀안에 갇히지 마세요. 더투어랩는 머물러 있는 여행이 아닌 생각하고 변화하는 여행을 안내 드립니다. <br>
+									여행을 위한 여행, 고객 만족이 우선이 되는 여행, 다시 오고 싶은 더투어랩 여행을 만들어 드립니다.</div>
 					</div>
 					<div class="flex col_2 mo_col_1" style="--mg-t:-1px; --mg-x:-1px">
 						<div class="box">
@@ -60,10 +60,10 @@
 								<img src="/img/sub/ic_box_01_mo.png" alt="" class="only_mo">
 							</div>
 							<div class="desc">
-								<p>오직 호주여행만을 연구하고 개발하는 전직원 <br>
-									호주 스페셜리스트 자격증을 취득한 <br>
-									호주 전문 현지 여행사</p>
-									<span>호주여행을 계획중이라면 망설이지 마세요. <br>
+								<p>오직 더투어랩여행만을 연구하고 개발하는 전직원 <br>
+									더투어랩 스페셜리스트 자격증을 취득한 <br>
+									더투어랩 전문 현지 여행사</p>
+									<span>더투어랩여행을 계획중이라면 망설이지 마세요. <br>
 											신속, 간단, 정확하게 가장 편안한 루트와 만족도 높은 투어들로 <br>
 											거품없고 효율적인 여행을 즐기실수 있도록 도와드립니다.</span>
 							</div>
@@ -76,7 +76,7 @@
 							<div class="desc">
 								<p>상담부터 계약, 투어까지 <br>
 									모두 원스탑 시스템으로 진행</p>
-									<span>여러 여행사를 거치지 않고 하이호주에서 모두 담당하여 <br>
+									<span>여러 여행사를 거치지 않고 더투어랩에서 모두 담당하여 <br>
 									더욱 거품없는 가격, 책임감 넘치는 여행안내 <br>
 									예상치 못한 문제 발생시에도 빠른 해결을 해드립니다.</span>
 							</div>
@@ -90,7 +90,7 @@
 								<p>시드니 본사 및 전지역 지사, <br>
 									서울 지사를 함께 운영</p>
 									<span>온라인으로만 진행되는 현지여행사 왠지 불안하셨나요? <br>
-											하이호주는 시드니 본사 및 전지역 지사, 서울 지사를 함께 운영하며 <br>
+											더투어랩는 시드니 본사 및 전지역 지사, 서울 지사를 함께 운영하며 <br>
 											모든 여행업 관련 라이센스와 보험을 보유하여 당신의 여행을 <br>
 											안전하게 지켜드립니다.</span>
 							</div>
@@ -105,7 +105,7 @@
 									더욱 책임감 넘치는 투어 안내 </p>
 									<span>개인의 이득에만 치중하는 가이드가 아닌 정말 <br>
 										가족같이 나를 챙겨주고 보살펴주는 가이드! <br>
-										하이호주의 방향성에 맞는 정직한 가이드님들과 함께 합니다.</span>
+										더투어랩의 방향성에 맞는 정직한 가이드님들과 함께 합니다.</span>
 							</div>
 						</div>
 						<div class="box">
@@ -118,7 +118,7 @@
 									여행다운 여행, 고객이 만족할 수 있는 <br>
 									여행 서비스를 제공</p>
 									<span>어딜가나 같은 여행지, 같은 서비스! <br>
-											하이호주는 타사가 제공하지 못하는 전문적인 호주여행 서비스까지 <br>
+											더투어랩는 타사가 제공하지 못하는 전문적인 더투어랩여행 서비스까지 <br>
 												기획/제공합니다. 어떤 사항이라도, 우선 문의를 해주세요. <br>
 												SAE codes in pdf versions</span>
 							</div>
@@ -143,7 +143,7 @@
 							</div>
 							<div class="desc">
 								<p>여행 2주 전 갑작스러운 여행 취소? NO <br>
-									하이호주는 여행 계약시 바로 여행 출발 확정!</p>
+									더투어랩는 여행 계약시 바로 여행 출발 확정!</p>
 									<span>인원 미달로 갑작스럽게 여행이 취소되거나 <br>
 											생각치 못한 여행지로 변경 되는 일이 절대 없습니다. <br>
 											소규모 패키지 여행으로 계약시 바로 여행 출발 확정 됩니다.</span>
@@ -155,7 +155,7 @@
 								<img src="/img/sub/ic_box_08_mo.png" alt="" class="only_mo">
 							</div>
 							<div class="desc">
-								<p>가이드팁 대신 신간을 받아 호주 도서관에 <br>
+								<p>가이드팁 대신 신간을 받아 더투어랩 도서관에 <br>
 									한국 도서를 기증하는 도서 기증 캠페인 진행</p>
 									<span>서로 인상 찌푸려지는 가이드팁이 아닌 <br>
 											모두가 행복해지는 도서 기증 캠페인. <br>
@@ -167,9 +167,9 @@
 			</div>
 			<div class="intro_location">
 				<div class="inner_1000">
-					<p class="intro_tit">하이호주의 강점</p>
-					<p class="intro_ttl">다시 떠나고 싶은 호주를 <br>
-						만드는 하이호주.</p>
+					<p class="intro_tit">더투어랩의 강점</p>
+					<p class="intro_ttl">다시 떠나고 싶은 더투어랩를 <br>
+						만드는 더투어랩.</p>
 						<div class="location_desc flex">
 							<div class="view_left">
 								<div class="view flex">
@@ -248,7 +248,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>03</p>
-											<span>호주 케언즈 (Cairns), 브리즈번 (Brisbane) 직영 지점 개설</span>
+											<span>더투어랩 케언즈 (Cairns), 브리즈번 (Brisbane) 직영 지점 개설</span>
 										</div>
 									</div>
 								</div>
@@ -258,7 +258,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>03</p>
-											<span>하이호주 리뉴얼 및 서비스 시작</span>
+											<span>더투어랩 리뉴얼 및 서비스 시작</span>
 										</div>
 									</div>
 								</div>
@@ -268,7 +268,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>11</p>
-											<span>하이호주 www.hihojoo.com 웹사이트 오픈</span>
+											<span>더투어랩 www.hihojoo.com 웹사이트 오픈</span>
 										</div>
 										<div class="num">
 											<p>09</p>
@@ -276,7 +276,7 @@
 										</div>
 										<div class="num">
 											<p>06</p>
-											<span>호주 전문 여행사 '하이호주' 브랜드 론칭</span>
+											<span>더투어랩 전문 여행사 '더투어랩' 브랜드 론칭</span>
 										</div>
 									</div>
 								</div>
@@ -300,7 +300,7 @@
 										</div>
 										<div class="num">
 											<p>01</p>
-											<span>호주 정부 공정거래 위원회의 Travel Agent License 취득</span>
+											<span>더투어랩 정부 공정거래 위원회의 Travel Agent License 취득</span>
 										</div>
 									</div>
 								</div>
@@ -342,8 +342,8 @@
 			</div>
 			<div class="intro_table">
 				<div class="inner_1000">
-					<p class="intro_tit">하이호주의 강점</p>
-					<p class="intro_ttl">하이호주는 언제나 <br>
+					<p class="intro_tit">더투어랩의 강점</p>
+					<p class="intro_ttl">더투어랩는 언제나 <br>
 						고객만을 생각합니다.</p>
 					<table class="table_info">
 						<colgroup>
@@ -384,8 +384,8 @@
 										<!--p>평일 (월~금): 09:00 - 18:00</p>
 										<p>점심시간 : 12:30 ~ 13:30</p>
 										<p>토요일/일요일/공휴일: 휴무</p>
-										<span>* 호주 본사는 시차로 인해 서울 지사와 차이가 있습니다</span> <br>
-										<span>* 호주 본사는 호주 공휴일 휴무 입니다.</span-->
+										<span>* 더투어랩 본사는 시차로 인해 서울 지사와 차이가 있습니다</span> <br>
+										<span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span-->
 									</div>
 								</td>
 							</tr> -->
@@ -422,7 +422,7 @@
     <div class="intro_map">
         <div class="inner">
             <div class="title">
-                <h1>하이호주 <span>(서울)</span></h1>
+                <h1>더투어랩 <span>(서울)</span></h1>
             </div>
             <div class="info flex__c">
                 <div class="flex__c">
@@ -430,7 +430,8 @@
                         <source media="(max-width:768px)" srcset="/img/ico/naver_map_icon_m.png">
                         <img src="/img/ico/naver_map_icon_w.png" alt="">
                     </picture>
-                    서울 서초구 신반포로45길 6 (잠원동) 3층
+                    <!-- 서울 서초구 신반포로45길 6 (잠원동) 3층 -->
+                    충북 청주시 상당구 용암북로6번길 51 (용암동), 2층, 온잇공유오피스 201-A4호
                 </div>
                 <div class="flex__c">
                     <picture>
@@ -440,19 +441,21 @@
                 </div>
             </div>
             <!-- <div id="map-canvas"></div> -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1582.4374413372175!2d127.019128!3d37.510869!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca3e75c9b027b%3A0x6ceacb9dda02800b!2s6%20Sinbanpo-ro%2045-gil%2C%20Seocho%20District%2C%20Seoul%2C%20H%C3%A0n%20Qu%E1%BB%91c!5e0!3m2!1svi!2sus!4v1746601178718!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3202.5014604149583!2d127.50122017637369!3d36.61431437815502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356526509dff3c05%3A0xf5cd81fbf127f28d!2s51%20Yongambuk-ro%206beon-gil%2C%20Sangdang-gu%2C%20Cheongju%2C%20Chungcheongbuk-do%2C%20H%C3%A0n%20Qu%E1%BB%91c!5e0!3m2!1svi!2sus!4v1746604583720!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 
             <div class="title title2">
-                <h1>하이호주 <span>(호주)</span></h1>
+                <h1>더투어랩 <span>(태국)</span></h1>
             </div>
             <div class="info flex__c">
                 <div class="flex__c">
                     <picture>
                         <source media="(max-width:768px)" srcset="/img/ico/naver_map_icon_m.png">
                         <img src="/img/ico/naver_map_icon_w.png" alt="">
-                    </picture>Unit40, 8 Avenue of the
-                    Americas newington, NSW 2127 Australia
+                    </picture>
+                    <!-- Unit40, 8 Avenue of the
+                    Americas newington, NSW 2127 Australia -->
+                    ชั้น 2, ห้อง 201-A4, Onit Co-working Space, เลขที่ 51 ถนนยงอัมบุกโร 6-บอนกิล, แขวงยงอัม, เขตซังดัง, เมืองชองจู, จังหวัดชุงบุก, เกาหลีใต้
                 </div>
                 <div class="flex__c">
                     <picture>
@@ -462,7 +465,7 @@
                 </div>
             </div>
             <!-- <div id="map-canvas2"></div> -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6628.395852210809!2d151.055412!3d-33.833006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12a4a3a4710fb9%3A0xc6ebfefb62e774f!2s8%20Ave%20of%20the%20Americas%2C%20Newington%20NSW%202127%2C%20%C3%9Ac!5e0!3m2!1svi!2sus!4v1746601222512!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3202.5014604149583!2d127.50122017637369!3d36.61431437815502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356526509dff3c05%3A0xf5cd81fbf127f28d!2s51%20Yongambuk-ro%206beon-gil%2C%20Sangdang-gu%2C%20Cheongju%2C%20Chungcheongbuk-do%2C%20H%C3%A0n%20Qu%E1%BB%91c!5e0!3m2!1svi!2sus!4v1746604583720!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 
