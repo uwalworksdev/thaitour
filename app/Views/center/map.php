@@ -381,11 +381,11 @@
 								<th>영업시간</th>
 								<td colspan="3">
 									<div class="open"><?=nl2br(_SITE_INFORM)?>
-										<!--p>평일 (월~금): 09:00 - 18:00</p>
+										<p>평일 (월~금): 09:00 - 18:00</p>
 										<p>점심시간 : 12:30 ~ 13:30</p>
 										<p>토요일/일요일/공휴일: 휴무</p>
 										<span>* 더투어랩 본사는 시차로 인해 서울 지사와 차이가 있습니다</span> <br>
-										<span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span-->
+										<span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span>
 									</div>
 								</td>
 							</tr> -->
@@ -455,7 +455,7 @@
                     </picture>
                     <!-- Unit40, 8 Avenue of the
                     Americas newington, NSW 2127 Australia -->
-                    ชั้น 2, ห้อง 201-A4, Onit Co-working Space, เลขที่ 51 ถนนยงอัมบุกโร 6-บอนกิล, แขวงยงอัม, เขตซังดัง, เมืองชองจู, จังหวัดชุงบุก, เกาหลีใต้
+                    
                 </div>
                 <div class="flex__c">
                     <picture>
