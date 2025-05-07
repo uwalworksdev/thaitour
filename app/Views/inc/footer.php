@@ -92,7 +92,7 @@
     <div class="inner">
         <div>
             <ul class="flex_footer_top pl-10">
-                <li><a href="">회사소개</a></li>
+                <li><a href="/center/map">회사소개</a></li>
                 <li><a href="/community/customer_center">자주묻는 질문</a></li>
                 <li><a href="/center/reservation">예약변경 및 취소 정책 </a></li>
                 <li><a href="/center/privacy">개인정보처리방침 </a></li>
