@@ -85,6 +85,7 @@ class DailyController extends BaseController {
 				ORDER BY (goods_price2 + goods_price3) ASC
 				LIMIT 1
 			";
+            $row = $db->query($priceQueryToday, [$product_idx, $today])->getRowArray();
 
 			if (!empty($row['price_1']) && $row['price_1'] > 0) {
 				$price = $row['price_1'];
