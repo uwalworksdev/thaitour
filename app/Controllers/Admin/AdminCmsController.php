@@ -111,7 +111,7 @@ class AdminCmsController extends BaseController
 
     public function policy_list()
     {
-        $sql = " select * from tbl_policy_info order by p_idx desc ";
+        $sql = " select * from tbl_policy_info order by onum desc, p_idx desc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
@@ -190,6 +190,33 @@ class AdminCmsController extends BaseController
         //     $this->policyModel->insert(['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
         //     return redirect()->to("/AdmMaster/_cms/policy_list");
         // }
+    }
+
+    public function policy_change() {
+        try {
+            $p_idx = $this->request->getPost('p_idx') ?? '';
+            $onum = $this->request->getPost('onum') ?? '';
+
+            $tot = count($p_idx);
+            for ($j = 0; $j < $tot; $j++) {
+                $this->policyModel->update($p_idx[$j], ['onum' => $onum[$j]]);
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'result' => true,
+                        'message' => '수정 했습니다.'
+                    ]
+                );
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     public function policy_cancel_list() {
