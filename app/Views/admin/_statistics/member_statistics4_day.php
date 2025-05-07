@@ -41,22 +41,30 @@
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
             </div>
             <div class="content">
-
                 <div class="listLine"></div>
-                <div class="listSelect size09">
-                    <form name="modifyForm1" method="get" action="member_statistics4" autocomplete="off">
-                        <div class="period_search">
-                            <div class="period_input">
-                                <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form">
-                                <span>~</span>
-                                <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
-                            </div>
-                            <button type="submit">검색</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">1개월</button>
+                <div class="listSelect size09" style="position:relative">
+                    <form name="modifyForm1" method="get" action="member_statistics4_day" autocomplete="off">
+                        <div class="firstLine selectYear" style="padding-left:0">
+                            <select name="years" onchange="fn_search()">
+                                <?php for ($ys = 2024; $ys <= date('Y'); $ys++) { ?>
+                                    <option value="<?= $ys ?>" <?php if ($ys == $years) echo "selected"; ?>><?= $ys ?>년</option>
+                                <?php } ?>
+                            </select>
+
+                            <select name="months" onchange="fn_search()">
+                                <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
+                                    <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
+                                <?php } ?>
+                            </select>
+
+                            <select name="days" onchange="fn_search()">
+                                <?php for ($ds = 1; $ds <= date('t', mktime(0, 0, 0, $months, 1, $years)); $ds++) { ?>
+                                    <option value="<?= $ds ?>" <?php if ($ds == $days) echo "selected"; ?>><?= $ds ?>일</option>
+                                <?php } ?>
+                            </select>
+
                         </div>
+
                     </form>
                 </div>
                 <div class="listSelectR">
@@ -65,14 +73,13 @@
                             <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="member_statistics4_year">년간통계</a></li>
                             <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="member_statistics4_month">월간통계</a></li>
                             <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="member_statistics4_week">주간통계</a></li>
-                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="member_statistics4_day">일간통계</a></li>
-                            <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="member_statistics4">특정기간통계</a></li>
+                            <li class="contentMenuSub selected" data-mode="day" style="width: calc(20% - 2px);"><a href="member_statistics4_day">일간통계</a></li>
+                            <li class="contentMenuSub" data-mode="detail" style="width: calc(20% - 2px);"><a href="member_statistics4">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
                         <div class="contentBar right" style="left: 575px; display: none;"></div>
                     </div>
                 </div>
-
 
                 <div id="listArea">
                     <script>
@@ -138,6 +145,7 @@
                             chart.draw(data, options);
                         }
                     </script>
+
                     <table class="listIn fixed-header">
                         <colgroup>
                             <col width="8%"> <!-- 순위 -->
@@ -154,13 +162,13 @@
                             </tr>
                         </thead>
                         <tbody id="list_all">
-
                             <?php
                                 $tr_index = 0;
                                 foreach ($data_arr as $i => $row) {
                                     $percent = fn_avg($row['tcnt'], $total_cnt);
                                     $tr_index++;
                             ?>
+
                                 <tr>
                                     <td class="number"><?= $tr_index ?></td>
                                     <td style="text-align:left;"><?= $row['keyword'] ?></td>
@@ -178,50 +186,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="listLineB"></div>
             </div>
         </div>
     </span>
 </div>
 
 <script>
-    $(".date_form").datepicker({
-        showButtonPanel: true,
-        beforeShow: function(input) {
-            setTimeout(function() {
-                var buttonPane = $(input)
-                    .datepicker("widget")
-                    .find(".ui-datepicker-buttonpane");
-                var btn = $(
-                    '<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>'
-                );
-                btn.unbind("click").bind("click", function() {
-                    $.datepicker._clearDate(input);
-                });
-                btn.appendTo(buttonPane);
-            }, 1);
-        },
-        dateFormat: 'yy-mm-dd',
-        showOn: "both",
-        yearRange: "c-100:c+10",
-        buttonImage: "/AdmMaster/_images/common/date.png",
-        buttonImageOnly: true,
-        closeText: '닫기',
-        prevText: '이전',
-        nextText: '다음'
+    // 검색하기
+    function fn_search(){
+        let frm = document.modifyForm1;
+        frm.submit();
 
-    });
-
-
-    $(".contact_btn").click(function() {
-
-        var date1 = $(this).attr("rel");
-        var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-        $("#s_date").val(date1);
-        $("#e_date").val(date2);
-
-    });
+}
 </script>
 
 <?= $this->endSection() ?>
