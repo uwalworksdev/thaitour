@@ -9,6 +9,10 @@
 	<div class="inner">
 		<div class="contentArea">
 			<div class="content_wrap">
+                <?= viewSQ($policy['policy_contents']) ?>
+            </div>
+
+			<!-- <div class="content_wrap">
 				<p>
 					<strong>
 						<font color="#000000">&nbsp;</font>
@@ -126,7 +130,7 @@
 				<p>
 					<a href="https://www.swisswatchessite.com/" style="display:none;" target="_blank">replica watches sale</a>
 				</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>
