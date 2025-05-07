@@ -99,7 +99,7 @@ $_policy = explode("|", $policy);
                                             <a href="<?= $link ?>"><?= $title ?></a>
                                         </td>
                                         <td class="tac">
-                                            <input type="text" name="onum[]" value="0" class="input_txt" style="width:50px; text-align: center;">
+                                            <input type="text" name="onum[]" value="<?= $row['onum'] ?>" class="input_txt" style="width:50px; text-align: center;">
                                             <input type="hidden" name="p_idx[]" value="<?= $row['p_idx'] ?>" class="input_txt">
                                         </td>
                                         <td class="td_control">
@@ -200,7 +200,7 @@ $_policy = explode("|", $policy);
             }
             , success: function (response, status, request) {
                 alert(response.message);
-                if (response.status == "success") {
+                if (response.result == true) {
                     location.reload();
                     return;
                 } 

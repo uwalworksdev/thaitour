@@ -206,7 +206,7 @@ class AdminCmsController extends BaseController
                 ->setStatusCode(200)
                 ->setJSON(
                     [
-                        'status' => 'success',
+                        'result' => true,
                         'message' => '수정 했습니다.'
                     ]
                 );
