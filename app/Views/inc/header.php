@@ -107,7 +107,7 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="/mypage/booklist" class="icon-menu-item">
+                    <a href="/mypage/reservation_list" class="icon-menu-item">
                         <img src="/images/ico/icon_calen.png" alt="">
                         <p style="margin-top:5px;">예약확인</p>
                     </a>
@@ -133,7 +133,7 @@
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/booklist'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                                 <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
@@ -146,7 +146,7 @@
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/booklist'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
                                 <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
