@@ -13,6 +13,7 @@
         .list_container .sub_visual {
             min-height: auto;
             margin-bottom: 10rem;
+            background-size : cover
         }
     }
 </style>
