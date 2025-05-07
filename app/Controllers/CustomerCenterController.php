@@ -38,9 +38,15 @@ class CustomerCenterController extends BaseController
 
     public function terms()
     {
-        return view("center/terms");
+        $policy = $this->policy->getByIdx("5");
+        return view("center/terms", ['policy' => $policy]);
     }
 
+    public function safetyTip()
+    {
+        $policy = $this->policy->getByIdx('31');
+        return view("center/safety_tip" , ["policy"=> $policy]);
+    }
     public function privacy()
     {
         $policy = $this->policy->getByCode("privacy");

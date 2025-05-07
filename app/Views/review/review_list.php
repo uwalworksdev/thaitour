@@ -9,6 +9,11 @@
         .sub_visual {
             background-image: url("/data/cate_banner/<?=$bannerTop['ufile2']?>") !important;
         }
+
+        .list_container .sub_visual {
+            min-height: auto;
+            margin-bottom: 10rem;
+        }
     }
 </style>
     <div id="container" class="sub list_container ">
