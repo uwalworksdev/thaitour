@@ -123,6 +123,7 @@
                         <col width="*">
                         <col width="140px">
                         <col width="110px">
+                        <col width="50px">
                     </colgroup>
                     <thead>
                     <tr>
@@ -130,7 +131,9 @@
                         <th>구분</th>
                         <th>제목</th>
                         <th>작성자</th>
-                        <th>등록일<?= $total_cnt ?>.<?= $page ?></th>
+                        <th>등록일</th>
+                        <th></th>
+                        <!-- <th>등록일<?= $total_cnt ?>.<?= $page ?></th> -->
                     </tr>
                     </thead>
                     <tbody>
@@ -164,6 +167,7 @@
                             </td>
                             <td class="name"><?= sqlSecretConver($value["user_name"], 'decode') ?></td>
                             <td class="date"><?= date("Y.m.d", strtotime($value['r_date'])) ?></td>
+                            <td><button class="btn_report" onclick="showReport()">신고</button></td>
                         </tr>
                         <?php $no--;
                     } ?>
@@ -173,10 +177,21 @@
                     <?php echo ipageListing2($page, $total_page, $total_cnt, $currentUri . "?category=$category&search_category=" . $search_category . "&s_txt=" . $s_txt . "&page=", $deviceType) ?>
                     <a href="./review_write" class="btn btn-point btn-lg contact_btn">글쓰기</a>
                 </div>
+
+                <?php
+                    //include $_SERVER['DOCUMENT_ROOT'] . "/inc/popup_inc.php";
+                    echo view('inc/popup_inc');
+                ?>
             </div>
 
         </section>
     </div>
+
+    <script>
+        function showReport () {
+            $(".popup_wrap.report_pop").css('display' , 'block')
+        }
+    </script>
 
     <script type="text/javascript">
 
@@ -270,5 +285,7 @@
         });
 
     </script>
+    <script src="/js/comment.js"></script>
+
 
 <?php $this->endSection(); ?>
