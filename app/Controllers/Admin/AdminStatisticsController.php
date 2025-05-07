@@ -1065,17 +1065,143 @@ class AdminStatisticsController extends BaseController
 
     public function member_statistics4_day()
     {
-        return view('admin/_statistics/member_statistics4_day');
+        $years = $this->request->getGet('years') ?? date('Y');
+        $months = $this->request->getGet('months') ?? date('m');
+        $days = $this->request->getGet('days') ?? date('d');
+
+        if( $days > date('t', mktime(0, 0, 0, $months, 1, $years)) ){
+            $days = 1;
+        }
+        
+        $s_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
+        $e_date = date('Y-m-d', mktime(0, 0, 0, $months, $days, $years));
+
+        $builder = $this->connect->table('tbl_search_keyword');
+
+        $builder->select('keyword, COUNT(*) as tcnt')
+                ->where('keyword IS NOT NULL')
+                ->where('keyword !=', '')
+                ->where("DATE(regdate) >=", $s_date)
+                ->where("DATE(regdate) <=", $e_date)
+                ->groupBy('keyword')
+                ->orderBy('tcnt', 'DESC');
+    
+        $query = $builder->get();
+        $results = $query->getResultArray();
+    
+        $total_cnt = 0;
+        $data_arr = [];
+    
+        foreach ($results as $row) {
+            $total_cnt += $row['tcnt'];
+            $data_arr[] = $row;
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "days" => $days,
+            "total_cnt" => $total_cnt,
+            "data_arr" => $data_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics4_day', $data);
     }
 
     public function member_statistics4_week()
     {
-        return view('admin/_statistics/member_statistics4_week');
+        $years = $this->request->getGet('years') ?? date('Y');
+        $months = $this->request->getGet('months') ?? date('m');
+        $weeks = $this->request->getGet('weeks');
+
+        if( $weeks == "" ){
+            $week_arr = getWeeksOfMonth($years, $months);
+
+            foreach ($week_arr as $index => $week) {
+                if( date('Y-m-d') >= $week['start'] && date('Y-m-d') <= $week['end'] ){
+                    $weeks = ($index +1);
+                }
+            }
+        }
+
+        $week_tmp = getWeeksOfMonth($years, $months);
+        foreach ($week_tmp as $index => $week_tmp) {
+
+            if (($index + 1) == $weeks) {
+                $s_date = $week_tmp['start'] . " 00:00:00";
+                $e_date = $week_tmp['end'] . " 23:59:59";
+            }
+        }
+        
+        $builder = $this->connect->table('tbl_search_keyword');
+
+        $builder->select('keyword, COUNT(*) as tcnt')
+                ->where('keyword IS NOT NULL')
+                ->where('keyword !=', '')
+                ->where("DATE(regdate) >=", $s_date)
+                ->where("DATE(regdate) <=", $e_date)
+                ->groupBy('keyword')
+                ->orderBy('tcnt', 'DESC');
+    
+        $query = $builder->get();
+        $results = $query->getResultArray();
+    
+        $total_cnt = 0;
+        $data_arr = [];
+    
+        foreach ($results as $row) {
+            $total_cnt += $row['tcnt'];
+            $data_arr[] = $row;
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "weeks" => $weeks,
+            "total_cnt" => $total_cnt,
+            "data_arr" => $data_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics4_week', $data);
     }
 
     public function member_statistics4_month()
     {
-        return view('admin/_statistics/member_statistics4_month');
+        $years = $this->request->getGet('years') ?? date('Y');
+        $months = $this->request->getGet('months') ?? date('m');
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+        $e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)) , $years));
+
+        $builder = $this->connect->table('tbl_search_keyword');
+
+        $builder->select('keyword, COUNT(*) as tcnt')
+                ->where('keyword IS NOT NULL')
+                ->where('keyword !=', '')
+                ->where("DATE(regdate) >=", $s_date)
+                ->where("DATE(regdate) <=", $e_date)
+                ->groupBy('keyword')
+                ->orderBy('tcnt', 'DESC');
+    
+        $query = $builder->get();
+        $results = $query->getResultArray();
+    
+        $total_cnt = 0;
+        $data_arr = [];
+    
+        foreach ($results as $row) {
+            $total_cnt += $row['tcnt'];
+            $data_arr[] = $row;
+        }
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "total_cnt" => $total_cnt,
+            "data_arr" => $data_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics4_month', $data);
     }
 
     public function member_statistics4_year()
