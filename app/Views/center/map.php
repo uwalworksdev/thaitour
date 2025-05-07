@@ -455,6 +455,7 @@
                     </picture>
                     <!-- Unit40, 8 Avenue of the
                     Americas newington, NSW 2127 Australia -->
+                    ชั้น 2, ห้อง 201-A4, Onit Co-working Space, เลขที่ 51 ถนนยงอัมบุกโร 6-บอนกิล, แขวงยงอัม, เขตซังดัง, เมืองชองจู, จังหวัดชุงบุก, เกาหลีใต้
                     
                 </div>
                 <div class="flex__c">
