@@ -141,11 +141,9 @@
                                             <span class="sub text-gray"><?=number_format($item1_1['spa_price'])?>바트</span>
                                         <?php
                                             }else if($tab == "golf"){                                              
-											   $golf_price = golf_price($item1_1['product_idx']);
-											   $arr        = explode("|", $golf_price);
                                         ?>
-                                            <span class="main"><?=number_format($arr[0])?></span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?=number_format($arr[1])?>바트</span>
+                                            <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
+                                            <span class="sub text-gray"><?=number_format($item1_1['product_price'])?>바트</span>
                                         <?php
                                             }else{
                                         ?>
