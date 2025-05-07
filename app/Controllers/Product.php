@@ -122,6 +122,13 @@ class Product extends BaseController
 
         $sort = $this->request->getVar("sort") ?: "recommended";
 
+        if(!empty(trim($search_name))){
+            $this->db->table('tbl_search_keyword')->insert([
+                "keyword" => $search_name,
+                "regdate" => date("Y-m-d H:i:s")
+            ]);
+        }
+
         $data['search_name'] = $search_name;
         $data['tab'] = $tab;
         $data['sort'] = $sort;

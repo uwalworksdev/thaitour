@@ -12,20 +12,6 @@
     }
 </style>
 
-<?php
-$s_date = $_GET['s_date'];
-$e_date = $_GET['e_date'];
-
-
-if ($s_date == "") {
-    $s_date = date('Y-m-d');
-}
-
-if ($e_date == "") {
-    $e_date = date('Y-m-d');
-}
-?>
-
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -65,11 +51,11 @@ if ($e_date == "") {
                                 <span>~</span>
                                 <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
                             </div>
-                            <button type="submit">검색</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">1개월</button>
+                            <button type="button" onclick="fn_search()">검색</button>
+                            <button type="button" onclick="fn_search()" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
+                            <button type="button" onclick="fn_search()" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
+                            <button type="button" onclick="fn_search()" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
+                            <button type="button" onclick="fn_search()" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">1개월</button>
                         </div>
                     </form>
                 </div>
@@ -86,6 +72,7 @@ if ($e_date == "") {
                         <div class="contentBar right" style="left: 575px; display: none;"></div>
                     </div>
                 </div>
+
 
                 <div id="listArea">
                     <script>
@@ -167,18 +154,24 @@ if ($e_date == "") {
                             </tr>
                         </thead>
                         <tbody id="list_all">
-                            <tr>
-                                <td class="number">1</td>
-                                <td style="text-align:left;">abc</td>
-                                <td class="number">0</td>
-                                <td>
-                                    <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
-                                        <div class="per_line" id="chart_div_">
+
+                            <?php
+                                $tr_index = 0;
+                                foreach ($data_arr as $i => $row) {
+                                    $percent = fn_avg($row['tcnt'], $total_cnt);
+                                    $tr_index++;
+                            ?>
+                                <tr>
+                                    <td class="number"><?= $tr_index ?></td>
+                                    <td style="text-align:left;"><?= $row['keyword'] ?></td>
+                                    <td class="number"><?= number_format($row['tcnt']) ?></td>
+                                    <td>
+                                        <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
+                                            <div class="floatRight size10 fontMontserrat"><?= fn_avg($row['tcnt'], $total_cnt) ?>%</div>
                                         </div>
-                                        <div class="floatRight size10 fontMontserrat"><?= $row['tcnt'] ?>%</div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

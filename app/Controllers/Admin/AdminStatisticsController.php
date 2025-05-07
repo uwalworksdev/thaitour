@@ -1026,7 +1026,41 @@ class AdminStatisticsController extends BaseController
 
     public function member_statistics4()
     {
-        return view('admin/_statistics/member_statistics4');
+        $s_date = $this->request->getGet('s_date');
+        $e_date = $this->request->getGet('e_date');
+
+        $s_date = empty($s_date) ? date('Y-m-d') : date('Y-m-d', strtotime($s_date));
+        $e_date = empty($e_date) ? date('Y-m-d') : date('Y-m-d', strtotime($e_date));
+
+        $builder = $this->connect->table('tbl_search_keyword');
+
+        $builder->select('keyword, COUNT(*) as tcnt')
+                ->where('keyword IS NOT NULL')
+                ->where('keyword !=', '')
+                ->where("DATE(regdate) >=", $s_date)
+                ->where("DATE(regdate) <=", $e_date)
+                ->groupBy('keyword')
+                ->orderBy('tcnt', 'DESC');
+    
+        $query = $builder->get();
+        $results = $query->getResultArray();
+    
+        $total_cnt = 0;
+        $data_arr = [];
+    
+        foreach ($results as $row) {
+            $total_cnt += $row['tcnt'];
+            $data_arr[] = $row;
+        }
+
+        $data = [
+            "s_date" => $s_date,
+            "e_date" => $e_date,
+            "total_cnt" => $total_cnt,
+            "data_arr" => $data_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics4', $data);
     }
 
     public function member_statistics4_day()
