@@ -491,6 +491,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
         $routes->post("policy_delete", "Admin\AdminCmsController::policy_delete");
+        $routes->post("policy_change", "Admin\AdminCmsController::policy_change");
         $routes->get("policy_cancel_list", "Admin\AdminCmsController::policy_cancel_list");
         $routes->get("policy_cancel_write", "Admin\AdminCmsController::policy_cancel_write");
         $routes->post("policy_cancel_ok", "Admin\AdminCmsController::policy_cancel_ok");
@@ -531,7 +532,16 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("member_statistics", "Admin\AdminStatisticsController::member_statistics");
 
         $routes->get("member_statistics3", "Admin\AdminStatisticsController::member_statistics3");
+        $routes->get("member_statistics3_day", "Admin\AdminStatisticsController::member_statistics3_day");
+        $routes->get("member_statistics3_month", "Admin\AdminStatisticsController::member_statistics3_month");
+        $routes->get("member_statistics3_year", "Admin\AdminStatisticsController::member_statistics3_year");
+
         $routes->get("member_statistics4", "Admin\AdminStatisticsController::member_statistics4");
+        $routes->get("member_statistics4_day", "Admin\AdminStatisticsController::member_statistics4_day");
+        $routes->get("member_statistics4_week", "Admin\AdminStatisticsController::member_statistics4_week");
+        $routes->get("member_statistics4_month", "Admin\AdminStatisticsController::member_statistics4_month");
+        $routes->get("member_statistics4_year", "Admin\AdminStatisticsController::member_statistics4_year");
+
         $routes->get("member_statistics5", "Admin\AdminStatisticsController::member_statistics5");
 
         $routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");

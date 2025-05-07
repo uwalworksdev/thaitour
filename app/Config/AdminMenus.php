@@ -486,7 +486,16 @@ class AdminMenus extends BaseConfig
                                     'AdminStatisticsController::member_statistics_year',
 
                                     'AdminStatisticsController::member_statistics3',
+                                    'AdminStatisticsController::member_statistics3_day',
+                                    'AdminStatisticsController::member_statistics3_month',
+                                    'AdminStatisticsController::member_statistics3_year',
+
                                     'AdminStatisticsController::member_statistics4',
+                                    'AdminStatisticsController::member_statistics4_day',
+                                    'AdminStatisticsController::member_statistics4_week',
+                                    'AdminStatisticsController::member_statistics4_month',
+                                    'AdminStatisticsController::member_statistics4_year',
+
                                     'AdminStatisticsController::member_statistics5'
                                ]
                 ],

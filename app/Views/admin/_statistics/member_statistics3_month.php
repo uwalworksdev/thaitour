@@ -39,29 +39,13 @@
 
                 <div class="listLine"></div>
                 <div class="listSelect size09">
-                    <form name="modifyForm1" method="get" action="member_statistics3" autocomplete="off">
+                    <form name="modifyForm1" method="get" action="member_statistics3_month" autocomplete="off">
                         <input type="hidden" name="mode" value="time">
 
                         <div class="firstLine selectYear" style="padding-left:0">
                             <select name="years" onchange="fn_search()">
                                 <?php for ($ys = 2024; $ys <= date('Y'); $ys++) { ?>
                                     <option value="<?= $ys ?>" <?php if ($ys == $years) echo "selected"; ?>><?= $ys ?>년</option>
-                                <?php } ?>
-                            </select>
-
-                            <select name="months" onchange="fn_search()">
-                                <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
-                                    <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
-                                <?php } ?>
-                            </select>
-
-                            <select name="weeks" onchange="fn_search()">
-                                <option value="">전체</option>
-                                <?php
-                                $week_arr = getWeeksOfMonth($years, $months);
-                                foreach ($week_arr as $index => $week) {
-                                ?>
-                                    <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>><?= $index + 1 ?>주 (<?= $week['start'] ?>~<?= $week['end'] ?>)</option>
                                 <?php } ?>
                             </select>
 
@@ -80,13 +64,13 @@
                             <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);">
                                 <a href="member_statistics3_year">년별통계</a>
                             </li>
-                            <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);">
+                            <li class="contentMenuSub selected" data-mode="month" style="width: calc(20% - 2px);">
                                 <a href="member_statistics3_month">월별통계</a>
                             </li>
                             <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);">
                                 <a href="member_statistics3_day">일별통계</a>
                             </li>
-                            <li class="contentMenuSub selected" data-mode="week" style="width: calc(20% - 2px);">
+                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);">
                                 <a href="member_statistics3">요일별통계</a>
                             </li>
                         </ul>
@@ -103,6 +87,7 @@
                 </div>
 
                 <div id="listArea">
+
                     <div class="empty10">&nbsp;</div>
 
                     <div id="chart-area">
@@ -117,17 +102,15 @@
                         google.charts.setOnLoadCallback(drawChart);
 
                         function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['요일', '명'],
-                                ['일', <?= $price_arr[1] ?>],
-                                ['월', <?= $price_arr[2] ?>],
-                                ['화', <?= $price_arr[3] ?>],
-                                ['수', <?= $price_arr[4] ?>],
-                                ['목', <?= $price_arr[5] ?>],
-                                ['금', <?= $price_arr[6] ?>],
-                                ['토', <?= $price_arr[7] ?>]
-                            ]);
 
+                            var data = google.visualization.arrayToDataTable([
+                                ['월', '명'],
+
+                                <?php
+                                for ($i = 1; $i <= 12; $i++) {
+                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>],
+                                <?php } ?>
+                            ]);
 
                             var options = {
                                 title: '',
@@ -137,7 +120,7 @@
                                 },
                                 tooltip: {
                                     isHtml: true
-                                } // HTML 툴팁 사용
+                                }, // HTML 툴팁 사용
                             };
 
                             var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
@@ -153,20 +136,22 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>시간대</th>
+                                <th>월</th>
                                 <th>방문자수</th>
                             </tr>
                         </thead>
                         <tbody class="count_per" id="count_all">
-                            <?php for ($i = 1; $i <= 7; $i++) { ?>
+                            <?php
+                            for ($i = 1; $i <= 12; $i++) {
+                                $months = str_pad($i, 2, "0", STR_PAD_LEFT);
+                            ?>
                                 <tr>
-                                    <td class="number"><?= $yoil_arr[$i] ?></td>
-                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?=fn_avg($price_arr[$i], $_total_price)?>%</span></td>
+                                    <td class="number"><?= $years ?>-<?= $months ?></td>
+                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= fn_avg($price_arr[$i], $_total_price) ?>%</span></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-
                 </div>
 
                 <div class="listLineB"></div>
@@ -189,7 +174,7 @@
         }
     });
 
-    function fn_search(){
+    function fn_search() {
         let frm = document.modifyForm1;
         frm.submit();
 

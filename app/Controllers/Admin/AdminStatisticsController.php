@@ -815,12 +815,238 @@ class AdminStatisticsController extends BaseController
 
     public function member_statistics3()
     {
-        return view('admin/_statistics/member_statistics3');
+        $years  = $this->request->getGet('years') ?? date('Y');
+        $months = $this->request->getGet('months') ?? date('m');
+        $weeks  = $this->request->getGet('weeks');
+        $payin  = $this->request->getGet('payin');
+
+        $sql_select = "";
+        if (!empty($payin)) {
+            if($payin == "P") {
+                $sql_select .= "SUM(login_type_P) AS tcnt";
+            }else {
+                $sql_select .= "SUM(login_type_M) AS tcnt";
+            }
+        }else{
+            $sql_select .= "SUM(login_type_P + login_type_M) AS tcnt";
+        }
+
+        if (empty($weeks)) {
+            $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+            $e_date = date('Y-m-t', mktime(0, 0, 0, $months, 1, $years));
+        } else {
+            $weekData = getWeeksOfMonth($years, $months);
+            $targetWeek = $weekData[(int)$weeks - 1] ?? null;
+            if ($targetWeek) {
+                $s_date = $targetWeek['start'];
+                $e_date = $targetWeek['end'];
+            } 
+        }
+
+        $yoil_arr = [1 => "일", 2 => "월", 3 => "화", 4 => "수", 5 => "목", 6 => "금", 7 => "토"];
+        $price_arr = array_fill(1, 7, 0);
+
+        $sql = "
+            SELECT {$sql_select}, DAYOFWEEK(regdate) AS weekday
+            FROM tbl_login_device
+            WHERE DATE(regdate) BETWEEN " . $this->connect->escape($s_date) . " AND " . $this->connect->escape($e_date) . "
+            GROUP BY DAYOFWEEK(regdate)
+            ORDER BY weekday ASC
+        ";
+
+        $query = $this->connect->query($sql);
+        $results = $query->getResultArray();
+
+        foreach ($results as $row) {
+            $price_arr[$row['weekday']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($price_arr);
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "weeks" => $weeks,
+            "payin" => $payin,
+            "yoil_arr" => $yoil_arr,
+            "price_arr" => $price_arr,
+            "_total_cnt" => $_total_cnt
+        ];
+
+        return view('admin/_statistics/member_statistics3', $data);
+    }
+
+    public function member_statistics3_day()
+    {
+        $years  = $this->request->getGet('years') ?? date('Y');
+        $months = $this->request->getGet('months') ?? date('m');
+        $payin  = $this->request->getGet('payin');
+
+        $sql_select = "";
+        if (!empty($payin)) {
+            if($payin == "P") {
+                $sql_select .= "SUM(login_type_P) AS tcnt";
+            }else {
+                $sql_select .= "SUM(login_type_M) AS tcnt";
+            }
+        }else{
+            $sql_select .= "SUM(login_type_P + login_type_M) AS tcnt";
+        }
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+        $e_date = date('Y-m-t', mktime(0, 0, 0, $months, 1, $years));
+
+        $price_arr = array_fill(1, 31, 0);
+
+        $sql = "
+            SELECT {$sql_select}, DAY(regdate) AS days
+            FROM tbl_login_device
+            WHERE DATE(regdate) BETWEEN " . $this->connect->escape($s_date) . " AND " . $this->connect->escape($e_date) . "
+            GROUP BY DAY(regdate)
+            ORDER BY days ASC
+        ";
+
+        $query = $this->connect->query($sql);
+        $results = $query->getResultArray();
+
+        foreach ($results as $row) {
+            $price_arr[$row['days']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($price_arr);
+
+        $data = [
+            "years" => $years,
+            "months" => $months,
+            "payin" => $payin,
+            "price_arr" => $price_arr,
+            "_total_cnt" => $_total_cnt
+        ];
+
+        return view('admin/_statistics/member_statistics3_day', $data);
+    }
+
+    public function member_statistics3_month()
+    {
+        $years  = $this->request->getGet('years') ?? date('Y');
+        $payin  = $this->request->getGet('payin');
+
+        $sql_select = "";
+        if (!empty($payin)) {
+            if($payin == "P") {
+                $sql_select .= "SUM(login_type_P) AS tcnt";
+            }else {
+                $sql_select .= "SUM(login_type_M) AS tcnt";
+            }
+        }else{
+            $sql_select .= "SUM(login_type_P + login_type_M) AS tcnt";
+        }
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
+        $e_date = date('Y-m-t', mktime(0, 0, 0, 12, 1, $years));
+
+        $price_arr = array_fill(1, 12, 0);
+
+        $sql = "
+            SELECT {$sql_select}, MONTH(regdate) AS months
+            FROM tbl_login_device
+            WHERE DATE(regdate) BETWEEN " . $this->connect->escape($s_date) . " AND " . $this->connect->escape($e_date) . "
+            GROUP BY MONTH(regdate)
+            ORDER BY months ASC
+        ";
+
+        $query = $this->connect->query($sql);
+        $results = $query->getResultArray();
+
+        foreach ($results as $row) {
+            $price_arr[$row['months']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($price_arr);
+
+        $data = [
+            "years" => $years,
+            "payin" => $payin,
+            "price_arr" => $price_arr,
+            "_total_cnt" => $_total_cnt
+        ];
+
+        return view('admin/_statistics/member_statistics3_month', $data);
+    }
+
+    public function member_statistics3_year()
+    {
+        $years_s = 2024;
+        $years_e = date('Y');
+        $payin  = $this->request->getGet('payin');
+
+        $sql_select = "";
+        if (!empty($payin)) {
+            if($payin == "P") {
+                $sql_select .= "SUM(login_type_P) AS tcnt";
+            }else {
+                $sql_select .= "SUM(login_type_M) AS tcnt";
+            }
+        }else{
+            $sql_select .= "SUM(login_type_P + login_type_M) AS tcnt";
+        }
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years_s));
+        $e_date = date('Y-m-t', mktime(0, 0, 0, 12, 31, $years_e));
+
+        $price_arr = array_fill($years_s, $years_e, 0);
+
+        $sql = "
+            SELECT {$sql_select}, YEAR(regdate) AS years
+            FROM tbl_login_device
+            WHERE DATE(regdate) BETWEEN " . $this->connect->escape($s_date) . " AND " . $this->connect->escape($e_date) . "
+            GROUP BY YEAR(regdate)
+            ORDER BY years ASC
+        ";
+
+        $query = $this->connect->query($sql);
+        $results = $query->getResultArray();
+
+        foreach ($results as $row) {
+            $price_arr[$row['years']] = $row['tcnt'];
+        }
+
+        $_total_cnt = array_sum($price_arr);
+
+        $data = [
+            "years_s" => $years_s,
+            "years_e" => $years_e,
+            "payin" => $payin,
+            "price_arr" => $price_arr,
+            "_total_cnt" => $_total_cnt
+        ];
+
+        return view('admin/_statistics/member_statistics3_year', $data);
     }
 
     public function member_statistics4()
     {
         return view('admin/_statistics/member_statistics4');
+    }
+
+    public function member_statistics4_day()
+    {
+        return view('admin/_statistics/member_statistics4_day');
+    }
+
+    public function member_statistics4_week()
+    {
+        return view('admin/_statistics/member_statistics4_week');
+    }
+
+    public function member_statistics4_month()
+    {
+        return view('admin/_statistics/member_statistics4_month');
+    }
+
+    public function member_statistics4_year()
+    {
+        return view('admin/_statistics/member_statistics4_year');
     }
 
     public function member_statistics5()
