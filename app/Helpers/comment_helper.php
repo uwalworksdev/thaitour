@@ -183,6 +183,11 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
         $html .= '<button class="btn btn-point btn-lg comment_btn" type="button" onclick="handleCmtEditSubmit(event, ' . $comment['r_cmt_idx'] . ')">수정</button>';
         $html .= '</div><p class="cmt_date">' . date("Y.m.d H:i", strtotime($comment['r_reg_date'])) . '</p></td>';
         $html .= '<td class="user-operation">';
+        $html .= '<select>';
+        $html .= '<option value="0" selected="">신고접수</option>';
+        $html .= '<option value="1">계속노출</option>';
+        $html .= '<option value="2">비노출</option>';
+        $html .= '</select>';
 
         if (session('member.idx') == $comment['r_m_idx']) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
