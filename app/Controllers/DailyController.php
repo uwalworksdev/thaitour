@@ -62,38 +62,39 @@ class DailyController extends BaseController {
 		write_log($msg);
     }
 	
-	public function golf_price() {
-		
-		$db = \Config\Database::connect(); // DB 연결
+	public function hotel_price() {
+		$db = \Config\Database::connect();
 		$today = date('Y-m-d');
 
-		// 오늘 이후 가격이 존재하는 상품 목록 가져오기
+		// 판매 중인 호텔 상품 목록
 		$productQuery = "
-			SELECT DISTINCT product_idx 
-			FROM tbl_golf_price 
-			WHERE goods_date >= ? AND price_1 > 0
+			SELECT product_idx 
+			FROM tbl_product_mst  
+			WHERE product_code_1 = '1303' AND product_status = 'sale'
 		";
-		$products = $db->query($productQuery, [$today])->getResultArray();
+		$products = $db->query($productQuery)->getResultArray();
 
 		foreach ($products as $product) {
 			$product_idx = $product['product_idx'];
 
-			// 오늘 날짜 중 가장 낮은 가격
+			// 오늘 날짜의 가격 (goods_price2 + goods_price3 > 0)
 			$priceQueryToday = "
-				SELECT MIN(price_1) AS price_1 
-				FROM tbl_golf_price 
-				WHERE product_idx = ? AND goods_date = ? AND price_1 > 0
+				SELECT (goods_price2 + goods_price3) AS price_1 
+				FROM tbl_room_price 
+				WHERE product_idx = ? AND goods_date = ? AND (goods_price2 + goods_price3) > 0
+				ORDER BY goods_date ASC
+				LIMIT 1
 			";
 			$row = $db->query($priceQueryToday, [$product_idx, $today])->getRowArray();
 
 			if (!empty($row['price_1']) && $row['price_1'] > 0) {
 				$price = $row['price_1'];
 			} else {
-				// 미래 가격 중 가장 이른 날짜의 가격
+				// 미래 가격 중 가장 빠른 날짜의 가격
 				$priceQueryFuture = "
-					SELECT price_1 
-					FROM tbl_golf_price 
-					WHERE product_idx = ? AND goods_date > ? AND price_1 > 0 
+					SELECT (goods_price2 + goods_price3) AS price_1 
+					FROM tbl_room_price 
+					WHERE product_idx = ? AND goods_date > ? AND (goods_price2 + goods_price3) > 0
 					ORDER BY goods_date ASC 
 					LIMIT 1
 				";
@@ -106,5 +107,6 @@ class DailyController extends BaseController {
 			$db->query($updateSql, [$price, $product_idx]);
 		}
 	}
+
 	
 }	
