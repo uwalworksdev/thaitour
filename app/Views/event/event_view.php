@@ -140,7 +140,7 @@
         // location.href = '/event/winning_list';
         history.back();
     }
-    const r_code = "event";
+    const r_code = "<?= $event['code'] ?>";
     const r_idx = '<?= $event['bbs_idx'] ?>';
     
 </script>
