@@ -307,7 +307,7 @@
                                                     <span><?= $product["review_average"] ?></span>
                                                 </div>
                                                 <div class="star-content">
-                                                    <span class="text-primary">생생리뷰 <strong>(<?= $product["total_review"] ?>)</strong></span>
+                                                    <span class="text-primary">리얼리뷰<strong>(<?= $product["total_review"] ?>)</strong></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +341,7 @@
                                                 <span><?= $product["review_average"] ?></span>
                                             </div>
                                             <div class="star-content">
-                                                <span class="text-primary">생생리뷰 <strong>(<?= $product["total_review"] ?>)</strong></span>
+                                                <span class="text-primary">리얼리뷰<strong>(<?= $product["total_review"] ?>)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                                <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -431,7 +431,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -481,7 +481,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -498,7 +498,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -548,7 +548,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -565,7 +565,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -616,7 +616,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -633,7 +633,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -683,7 +683,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -700,7 +700,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -750,7 +750,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -767,7 +767,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -817,7 +817,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -834,7 +834,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -885,7 +885,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -902,7 +902,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -952,7 +952,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -969,7 +969,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
@@ -1020,7 +1020,7 @@
                                                 <span>4.7</span>
                                             </div>
                                             <div class="star-content">
-                                                <span>생생리뷰 <strong>(0)</strong></span>
+                                                <span>리얼리뷰<strong>(0)</strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -1037,7 +1037,7 @@
                                             <span>4.7</span>
                                         </div>
                                         <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                            <span class="text-primary">리얼리뷰<strong>(0)</strong></span>
                                         </div>
                                     </div>
                                 </div>
