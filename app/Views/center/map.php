@@ -3,6 +3,7 @@
 <link href="/css/center/center.css" rel="stylesheet" type="text/css" />
 <link href="/css/center/center_responsive.css" rel="stylesheet" type="text/css" />
 <link href="/css/center/map.css" rel="stylesheet" type="text/css" />
+<link href="/css/center/map_responsive.css" rel="stylesheet" type="text/css" />
 <?php
     $setting = homeSetInfo();
 ?>
