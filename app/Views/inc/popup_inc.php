@@ -57,7 +57,55 @@
     <div class="dim"></div>
 </div>
 
-<div class="popup_wrap report_pop">
+<div class="popup_wrap report_pop_review">
+    <div class="pop_box">
+    
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="pop_txt">
+                    <p>신고하기</p>
+                </div>
+                <div class="pop_desc">
+                    <p>신고 사유를 선택해주세요. 신고된 글은 즉시 차단되며</p>
+                    <p>신고 내용은 이용약관 및 정책에 의해 처리됩니다. </p>
+                </div>
+                    <form action="" id="report_review_frm">
+                        <input type="hidden" value="" class="review_idx" name="review_idx">
+                        <div class="pop_input wrap_check flex_s_c">
+                            <div class="check_box">
+                                <input type="radio" name="report_reason" class="security" value="부적절한 홍보 또는 비방글" id="radio_1" checked>
+                                <label for="radio_1">부적절한 홍보 또는 비방글</label>
+                            </div>
+                            <div class="check_box">
+                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="radio_2">
+                                <label for="radio_2">욕설 또는 무의미한 단어의 반복</label>
+                            </div>
+                            <div class="check_box">
+                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="radio_3">
+                                <label for="radio_3">욕설 또는 무의미한 단어의 반복</label>
+                            </div>
+                            <div class="check_box">
+                                <input type="radio" name="report_reason" class="security" value="명예훼손 및 저작권 침해 등" id="radio_4">
+                                <label for="radio_4">명예훼손 및 저작권 침해 등</label>
+                            </div>
+                            <div class="check_box">
+                                <input type="radio" name="report_reason" class="security" value="관련법 위반" id="radio_5">
+                                <label for="radio_5">관련법 위반</label>
+                            </div>
+                        </div>
+                    </form>
+                <div class="pop_input flex_c_c">
+                    <button type="button" class="default_btn" onclick="closePopup()">취소</button>      
+                    <button type="button" class="default_btn" onclick="confirmReport()" >확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
+<div class="popup_wrap report_pop" data-idx="">
     <div class="pop_box">
     
         <button type="button" class="close" onclick="closePopup()"></button>

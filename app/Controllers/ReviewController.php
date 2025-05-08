@@ -16,6 +16,7 @@ class ReviewController extends BaseController
     protected $policy;
     protected $bannerModel;
     private $pointModel;
+    private $comment;
 
 
     public function __construct()
@@ -24,6 +25,8 @@ class ReviewController extends BaseController
         $this->ReviewModel = model("ReviewModel");
         $this->bannerModel = model("Banner_model");
         $this->Bbs = model("Bbs");
+        $this->comment = model("CommentModel");
+
         $this->codeModel = new Code();
         helper('my_helper');
         helper('alert_helper');
@@ -627,4 +630,23 @@ class ReviewController extends BaseController
         }
     }
 
+    public function review_report()
+    {
+        $m_idx = session()->get("member")["idx"] ?? 0;   
+        $code = "review_article"; 
+        $r_idx = updateSQ($this->request->getPost('review_idx'));
+        $report_reason = updateSQ($this->request->getPost('report_reason'));
+
+        if (empty($m_idx)) {
+            return $this->response->setJSON([
+                "success" => false, 
+                'is_not_login' => true,
+                "msg" => "로그인을해주세요"
+            ]);
+        }
+        
+        $result = $this->comment->reportComment($code, $r_idx, 0, $report_reason, $m_idx);
+
+        return $this->response->setJSON($result);
+    }
 }

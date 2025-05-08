@@ -896,6 +896,8 @@ $routes->group("review", static function ($routes) {
     $routes->get("review_write", "ReviewController::write_review");
     $routes->post("review_write_ok", "ReviewController::save_review");
     $routes->post("review_delete", "ReviewController::review_delete");
+    $routes->post("review_report", "ReviewController::review_report");
+
 });
 $routes->group("event", static function ($routes) {
     $routes->get("event_list", "EventController::event_list");

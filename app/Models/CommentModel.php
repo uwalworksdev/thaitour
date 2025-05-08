@@ -103,6 +103,10 @@ class CommentModel extends Model
             ->where('bbs_idx', $r_idx)
             ->where('is_user_report', '');
 
+        if(!empty($r_cmt_idx)) {
+            $builder->where('cmt_idx', $r_cmt_idx);
+        }
+
         $query = $builder->get();
         $row = $query->getRow();
 

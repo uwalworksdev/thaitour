@@ -173,7 +173,7 @@
                             </td>
                             <td class="name"><?= sqlSecretConver($value["user_name"], 'decode') ?></td>
                             <td class="date"><?= date("Y.m.d", strtotime($value['r_date'])) ?></td>
-                            <td><button class="btn_report" onclick="showReport()">신고</button></td>
+                            <td><button class="btn_report" onclick="showReport(<?= $value['idx'] ?>)">신고</button></td>
                         </tr>
                         <?php $no--;
                     } ?>
@@ -194,8 +194,52 @@
     </div>
 
     <script>
-        function showReport () {
-            $(".popup_wrap.report_pop").css('display' , 'block')
+        function showReport(idx) {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+            $(".popup_wrap.report_pop_review .review_idx").val(idx)
+            $(".popup_wrap.report_pop_review").css('display' , 'block')
+        }
+
+        function confirmReport() {
+            const form = $('#report_review_frm');
+            const selectedReason = form.find('input[name="reason"]:checked');
+
+            if (!selectedReason) {
+                alert('신고 사유를 선택해주세요.');
+                return;
+            }
+            
+            $.ajax({
+                url: "/review/review_report",
+                type: "POST",
+                data: $("#report_review_frm").serialize(),
+                success: function(response) {
+
+                    if(response.is_not_login) {
+                        showOrHideLoginItem();
+                        return;
+                    }
+
+                    if (response.result == "OK") {
+                        alert("신고되었습니다");
+                        closePopup();
+                        return;
+                    } else {
+                        alert(response.msg || "Error");
+                        return;
+                    }
+                },
+                error: function() {
+                    closePopup();
+                }
+            })
         }
     </script>
 
