@@ -5811,3 +5811,11 @@ form .form_list .name_row input+input {
 .intro_cont_mo {
           display: none;
 }
+[class^="inner"] {
+          position: relative;
+          margin: 0 auto;
+          width: -webkit-calc(100% - 2rem);
+          width: -moz-calc(100% - 2rem);
+          width: calc(100% - 6rem);
+          max-width: 1200px;
+}
