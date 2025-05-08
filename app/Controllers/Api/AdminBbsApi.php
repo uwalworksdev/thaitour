@@ -26,8 +26,6 @@ class AdminBbsApi extends BaseController
         $r_name = $_SESSION['member']['name'] ?? '';
         $r_level = $_SESSION['member']['level'] ?? '';
 
-        var_dump($user_id);
-        die();
         if ($user_id == "") {
             echo "";
             exit;

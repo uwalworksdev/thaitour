@@ -123,7 +123,19 @@
             </div><!-- // listWrap -->
 
         </div><!-- // contents -->
-        <?=view("admin/_board/comment_area")?>
+        <div class="inner cmt_area">
+			<form action="" id="frm" name="com_form" class="com_form">
+				<input type="hidden" name="code" id="code" value="<?= $code ?>">
+				<input type="hidden" name="r_code" id="r_code" value="<?= $code ?>">
+				<input type="hidden" name="r_idx" id="r_idx" value="<?= $bbs_idx ?>">
+				<div class="comment_box-input flex">
+					<textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
+					<button type="button" class="btn btn-point comment_btn"
+                            onclick="fn_comment('<?= session('member.idx') ?>')">등록</button>
+				</div>
+			</form>
+			<div id="comment_list"></div>
+		</div>
 
     </span><!-- 인쇄 영역 끝 //-->
     </div><!-- // container -->
@@ -325,44 +337,47 @@
             });
         }
 
-        function fn_comment() {
+        // function fn_comment() {
 
-            <?php
-            if ($_SESSION["member"]["id"] != "") {
-            ?>
-            if ($("#comment").val() == "") {
-                alert("댓글을 입력해주세요.");
-                $("#comment").focus()
-                return;
-            }
+        //     <?php
+        //     if ($_SESSION["member"]["id"] != "") {
+        //     ?>
+        //     if ($("#comment").val() == "") {
+        //         alert("댓글을 입력해주세요.");
+        //         $("#comment").focus()
+        //         return;
+        //     }
 
-            var queryString = $("form[name=com_form]").serialize();
-            var message = "";
-            $.ajax({
+        //     var queryString = $("form[name=com_form]").serialize();
+        //     var message = "";
+        //     $.ajax({
 
-                url: "<?= route_to('admin.api.bbs.comment_proc')?>",
-                type: "POST",
-                data: queryString,
-                async: true,
-                cache: false,
-                success: function (data, textStatus) {
-                    // message = data.message;
-                    // alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    console.log(request)
-                    alert("code = " + request.status + " \n message = " + request.responseText + " \n error = " +
-                        error); // 실패 시 처리
-                }
-            });
-            <?php
-            } else {
-            ?>
-            alert("로그인을 해주세요."); <?php
-            } ?>
-        }
+        //         url: "<?= route_to('admin.api.bbs.comment_proc')?>",
+        //         type: "POST",
+        //         data: queryString,
+        //         async: true,
+        //         cache: false,
+        //         success: function (data, textStatus) {
+        //             // message = data.message;
+        //             // alert(message);
+        //             location.reload();
+        //         },
+        //         error: function (request, status, error) {
+        //             console.log(request)
+        //             alert("code = " + request.status + " \n message = " + request.responseText + " \n error = " +
+        //                 error); // 실패 시 처리
+        //         }
+        //     });
+        //     <?php
+        //     } else {
+        //     ?>
+        //     alert("로그인을 해주세요."); <?php
+        //     } ?>
+        // }
+        const r_code = "<?=$code?>";
+        const r_idx = "<?=$bbs_idx?>";
+        const role = "admin";
     </script>
-    <script src="./comment.js"></script>
+<script src="/js/comment.js"></script>
 
 <?= $this->endSection() ?>
