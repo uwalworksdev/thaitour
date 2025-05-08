@@ -31,7 +31,7 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
         </div>
         <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
         <div class="prd_info__right">
-            <span class="prd_info__right__ttl">생생리뷰</span>
+            <span class="prd_info__right__ttl">리얼리뷰</span>
             <span class="new_review_cnt">(<?= $item['total_review'] ?>)</span>
         </div>
         <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
