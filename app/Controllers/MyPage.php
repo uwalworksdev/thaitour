@@ -307,6 +307,7 @@ $nPage = ceil($totalRows / $g_list_rows);
 				'policy_3'      => $this->policyModel->getByIdx("35"),
 				'policy_4'      => $this->policyModel->getByIdx("36"),
 				'policy_5'      => $this->policyModel->getByIdx("37"),
+				'policy_6'      => $this->policyModel->getByIdx("39"),
     ];
 
     return view('mypage/reservation_list', $data);

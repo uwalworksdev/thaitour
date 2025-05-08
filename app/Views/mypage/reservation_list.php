@@ -130,6 +130,12 @@ endforeach;
                         <ul class="flex">
                             <li <?php if($procType == "") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('');">전체예약내역</a>
+                                <img src="/images/mypage/question_mark.png" alt="">
+                                <div class="popup_layer">
+                                    <?= viewSQ($policy_6['policy_contents']) ?>
+                                    <!-- <p>예약진행중 - 예약이 아직 미확정되어 <br>  예약이 진행중인 내역입니다.</p> -->
+                                    <div class="layer_edge"></div>
+                                </div>
                             </li>
                             <li <?php if($procType == "1") echo "class='on'";?> data-menu="all">
                                 <a href="#!" onclick="go_status('1');">예약진행중</a>
