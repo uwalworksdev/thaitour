@@ -350,7 +350,7 @@ class Community extends BaseController
                     'status' => 'W'
                 ];
 
-                $idx = $this->contact->insertContact($data);
+                $idx = $this->contact->insertData($data);
 
                 if($idx) {
                     $this->db->transCommit();
