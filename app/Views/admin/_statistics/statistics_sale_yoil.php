@@ -180,15 +180,14 @@
                 <div id="listArea">
                     <table class="listIn">
                         <colgroup>
-                            <col width="34%"> <!-- 총매출 -->
-                            <col width="33%"> <!-- 상품 -->
-                            <col width="33%"> <!-- CP수수료 -->
+                            <col width="50%"> <!-- 총매출 -->
+                            <col width="50%"> <!-- 상품 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
                                 <th>상품</th>
-                                <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th>
+                                <!-- <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th> -->
                             </tr>
                         </thead>
                         <tbody class="statistics">
@@ -205,12 +204,12 @@
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
-                                <td>
+                                <!-- <td>
                                     <div class="nums">0</div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -266,17 +265,16 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="16%"> <!-- 날짜 -->
-                            <col width="28%"> <!-- 총매출 -->
-                            <col width="28%"> <!-- 상품 -->
-                            <col width="28%"> <!-- CP수수료 -->
+                            <col width="30%"> <!-- 날짜 -->
+                            <col width="*%"> <!-- 총매출 -->
+                            <col width="35%"> <!-- 상품 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>요일</th>
                                 <th>매출</th>
                                 <th>상품</th>
-                                <th>CP수수료</th>
+                                <!-- <th>CP수수료</th> -->
                             </tr>
                         </thead>
                         <tbody class="count_per" id="count_all">
@@ -285,7 +283,7 @@
                                     <td class="number"><?= $yoil_arr[$i] ?></td>
                                     <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($cp_arr[$i]) ?> <span><?= $cp_arr[$i] ?>%</span></td>
+                                    <!-- <td class="number"><?= number_format($cp_arr[$i]) ?> <span><?= $cp_arr[$i] ?>%</span></td> -->
                                 </tr>
 
                             <?php } ?>
@@ -344,22 +342,18 @@
 
                     <table class="listIn">
                         <colgroup>
-                            <col width="34%"> <!-- 배송비 -->
-                            <col width="33%"> <!-- 적립금 -->
-                            <col width="33%"> <!-- 쿠폰 -->
+                            <col width="50%"> <!-- 적립금 -->
+                            <col width="50%"> <!-- 쿠폰 -->
 
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>배송비</th>
                                 <th>적립금</th>
                                 <th>쿠폰</th>
-
                             </tr>
                         </thead>
                         <tbody class="statistics">
                             <tr>
-
                                 <td>
                                     <div class="nums">0</div>
                                     <div>
@@ -373,14 +367,6 @@
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
-
-                                <td>
-                                    <div class="nums">0</div>
-                                    <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
-                                    </div>
-                                </td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -402,14 +388,14 @@
 
 
                             var data = google.visualization.arrayToDataTable([
-                                ['요일', '배송비', '적립금', '쿠폰'],
-                                ['일', <?= $delivery_arr[1] ?>, <?= $point_arr[1] ?>, <?= $coupon_arr[1] ?>],
-                                ['월', <?= $delivery_arr[2] ?>, <?= $point_arr[2] ?>, <?= $coupon_arr[2] ?>],
-                                ['화', <?= $delivery_arr[3] ?>, <?= $point_arr[3] ?>, <?= $coupon_arr[3] ?>],
-                                ['수', <?= $delivery_arr[4] ?>, <?= $point_arr[4] ?>, <?= $coupon_arr[4] ?>],
-                                ['목', <?= $delivery_arr[5] ?>, <?= $point_arr[5] ?>, <?= $coupon_arr[5] ?>],
-                                ['금', <?= $delivery_arr[6] ?>, <?= $point_arr[6] ?>, <?= $coupon_arr[6] ?>],
-                                ['토', <?= $delivery_arr[7] ?>, <?= $point_arr[7] ?>, <?= $coupon_arr[7] ?>]
+                                ['요일', '적립금', '쿠폰'],
+                                ['일', <?= $point_arr[1] ?>, <?= $coupon_arr[1] ?>],
+                                ['월', <?= $point_arr[2] ?>, <?= $coupon_arr[2] ?>],
+                                ['화', <?= $point_arr[3] ?>, <?= $coupon_arr[3] ?>],
+                                ['수', <?= $point_arr[4] ?>, <?= $coupon_arr[4] ?>],
+                                ['목', <?= $point_arr[5] ?>, <?= $coupon_arr[5] ?>],
+                                ['금', <?= $point_arr[6] ?>, <?= $coupon_arr[6] ?>],
+                                ['토', <?= $point_arr[7] ?>, <?= $coupon_arr[7] ?>]
                             ]);
 
                             var options = {
@@ -431,15 +417,13 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="16%"> <!-- 날짜 -->
-                            <col width="28%"> <!-- 배송비 -->
-                            <col width="28%"> <!-- 적립금 -->
-                            <col width="28%"> <!-- 쿠폰 -->
+                            <col width="20%"> <!-- 날짜 -->
+                            <col width="*%"> <!-- 배송비 -->
+                            <col width="35%"> <!-- 적립금 -->
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>시간대</th>
-                                <th>배송비</th>
+                                <th>날짜</th>
                                 <th>적립금</th>
                                 <th>쿠폰</th>
                             </tr>
@@ -448,7 +432,6 @@
                             <?php for ($i = 1; $i <= 7; $i++) { ?>
                                 <tr>
                                     <td class="number"><?= $yoil_arr[$i] ?></td>
-                                    <td class="number"><?= number_format($delivery_arr[$i]) ?> <span><?= $delivery_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($point_arr[$i]) ?> <span><?= $point_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
                                 </tr>

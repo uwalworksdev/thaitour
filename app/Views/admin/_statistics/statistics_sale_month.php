@@ -129,15 +129,13 @@
 
                     <table class="listIn">
                         <colgroup>
-                            <col width="34%"> <!-- 총매출 -->
-                            <col width="33%"> <!-- 상품 -->
-                            <col width="33%"> <!-- CP수수료 -->
+                            <col width="50%"> <!-- 총매출 -->
+                            <col width="50%"> <!-- 상품 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
                                 <th>상품</th>
-                                <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th>
                             </tr>
                         </thead>
                         <tbody class="statistics">
@@ -154,14 +152,6 @@
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
-
-                                <td>
-                                    <div class="nums">0</div>
-                                    <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
-                                    </div>
-                                </td>
-
                             </tr>
                         </tbody>
                     </table>
@@ -215,17 +205,15 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="16%"> <!-- 월 -->
-                            <col width="28%"> <!-- 총매출 -->
-                            <col width="28%"> <!-- 상품 -->
-                            <col width="28%"> <!-- CP수수료 -->
+                            <col width="30%"> <!-- 날짜 -->
+                            <col width="*%"> <!-- 총매출 -->
+                            <col width="35%"> <!-- 상품 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>월</th>
                                 <th>매출</th>
                                 <th>상품</th>
-                                <th>CP수수료</th>
                             </tr>
                         </thead>
                         <tbody class="count_per" id="count_all">
@@ -237,7 +225,6 @@
                                     <td class="number"><?= $years ?>-<?= $months ?></td>
                                     <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($cp_arr[$i]) ?> <span><?= $cp_arr[$i] ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
@@ -283,14 +270,12 @@
 
                     <table class="listIn">
                         <colgroup>
-                            <col width="34%"> <!-- 배송비 -->
-                            <col width="33%"> <!-- 적립금 -->
-                            <col width="33%"> <!-- 쿠폰 -->
+                            <col width="50%"> <!-- 적립금 -->
+                            <col width="50%"> <!-- 쿠폰 -->
 
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>배송비</th>
                                 <th>적립금</th>
                                 <th>쿠폰</th>
 
@@ -298,14 +283,6 @@
                         </thead>
                         <tbody class="statistics">
                             <tr>
-
-                                <td>
-                                    <div class="nums">0</div>
-                                    <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
-                                    </div>
-                                </td>
-
                                 <td>
                                     <div class="nums">0</div>
                                     <div>
@@ -338,12 +315,12 @@
 
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                                ['월', '배송비', '적립금', '쿠폰'],
+                                ['월', '적립금', '쿠폰'],
 
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
                                     $_tmp_month = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                ?>[<?= $i ?>, <?= $delivery_arr[$i] ?>, <?= $point_arr[$i] ?>, <?= $coupon_arr[$i] ?>],
+                                ?>[<?= $i ?>, <?= $point_arr[$i] ?>, <?= $coupon_arr[$i] ?>],
 
                                 <?php } ?>
                             ]);
@@ -367,15 +344,13 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="16%"> <!-- 월 -->
-                            <col width="28%"> <!-- 배송비 -->
-                            <col width="28%"> <!-- 적립금 -->
-                            <col width="28%"> <!-- 쿠폰 -->
+                            <col width="20%"> <!-- 날짜 -->
+                            <col width="*%"> <!-- 배송비 -->
+                            <col width="35%"> <!-- 적립금 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>월</th>
-                                <th>배송비</th>
                                 <th>적립금</th>
                                 <th>쿠폰</th>
                             </tr>
@@ -387,7 +362,6 @@
                             ?>
                                 <tr>
                                     <td class="number"><?= $years ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($delivery_arr[$i]) ?> <span><?= $delivery_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($point_arr[$i]) ?> <span><?= $point_arr[$i] ?>%</span></td>
                                     <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
                                 </tr>

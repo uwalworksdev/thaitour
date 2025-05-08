@@ -14,15 +14,15 @@
 
 
 <?php
-    $pay_method['Card']        = "카드결제";
+    $pay_method['Card']     = "카드결제";
     $pay_method['VBank']    = "무통장(가상계좌)";
     $pay_method['DBank']    = "실시간계좌이체	";
 
-    $addr_group = ['강원', '경기', '경남', '경북', '광주', '대구', '대전', '부산', '서울', '세종', '울산', '인천', '전남', '전북', '제주', '충남', '충북'];
+    $addr_group = $code_names;
 
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
-    $payin    = $_GET['payin'];
+    $payin  = $_GET['payin'];
 
 
     if ($s_date == "") {
@@ -256,25 +256,7 @@
 
                             <?php
 
-                            $ordered_methods = [
-                                '강원',
-                                '경기',
-                                '경남',
-                                '경북',
-                                '광주',
-                                '대구',
-                                '대전',
-                                '부산',
-                                '서울',
-                                '세종',
-                                '울산',
-                                '인천',
-                                '전남',
-                                '전북',
-                                '제주',
-                                '충남',
-                                '충북'
-                            ];
+                            $ordered_methods = $code_names;
                             $sorted_price_arr = [];
 
                             foreach ($ordered_methods as $method) {

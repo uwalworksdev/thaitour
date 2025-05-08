@@ -45,8 +45,8 @@
                     <?php if (session('member.id')) { ?>
                         <form action="" name="com_form" id="frm" class="frm">
                             <input type="hidden" name="r_idx" value="<?= $magazine['bbs_idx'] ?>">
-                            <input type="hidden" name="code" id="code" value="review">
-                            <input type="hidden" name="r_code" id="r_code" value="review">
+                            <input type="hidden" name="code" id="code" value="<?= $magazine['code'] ?>">
+                            <input type="hidden" name="r_code" id="r_code" value="<?= $magazine['code'] ?>">
                             <div class="comment_box-input flex">
                             <textarea style="resize:none" class="bs-input" name="comment" id="comment"
                                       placeholder="댓글을 입력해주세요."></textarea>

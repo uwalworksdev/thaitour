@@ -13,9 +13,10 @@
 </style>
 
 <?php
-$pay_method['Card']        = "카드결제";
+$pay_method['Card']     = "카드결제";
 $pay_method['VBank']    = "무통장(가상계좌)";
 $pay_method['DBank']    = "실시간계좌이체	";
+$pay_method['MBank']    = "통장입금";
 
 
 
@@ -39,6 +40,7 @@ $price_arr = array();
 $price_arr['Card'] = 0;
 $price_arr['VBank'] = 0;
 $price_arr['DBank'] = 0;
+$price_arr['MBank'] = 0;
 
 ?>
 
@@ -144,6 +146,7 @@ $price_arr['DBank'] = 0;
                                     ["카드결제", <?= $price_arr['Card'] ?>],
                                     ["무통장", <?= $price_arr['VBank'] ?>],
                                     ["실시간계좌이체", <?= $price_arr['DBank'] ?>],
+                                    ["통장입금", <?= $price_arr['MBank'] ?>],
                                 ]);
 
                                 var options = {
@@ -166,7 +169,8 @@ $price_arr['DBank'] = 0;
                                 var rows = [
                                     ["카드결제", <?= $price_arr['Card'] ?>, "#4285F4"],
                                     ["무통장", <?= $price_arr['VBank'] ?>, "#4285F4"],
-                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>, "#4285F4"]
+                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>, "#4285F4"],
+                                    ["통장입금", <?= $price_arr['MBank'] ?>, "#4285F4"]
                                 ];
 
                                 rows.forEach((row, index) => {
@@ -208,7 +212,7 @@ $price_arr['DBank'] = 0;
                         </thead>
                         <tbody id="list_all">
                             <?php
-                                $ordered_methods = ['Card', 'VBank', 'DBank'];
+                                $ordered_methods = ['Card', 'VBank', 'DBank', 'MBank'];
                                 $sorted_price_arr = [];
 
                                 foreach ($ordered_methods as $method) {

@@ -8,10 +8,14 @@ use CodeIgniter\Database\Config;
 class AdminStatisticsController extends BaseController
 {
     protected $connect;
+    protected $codeModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
+
+        $this->codeModel = model("Code");
+
         helper('my_helper');
         helper('alert_helper');
     }
@@ -293,27 +297,53 @@ class AdminStatisticsController extends BaseController
 
     public function statistics_sale_type3()
     {
-        return view('admin/_statistics/statistics_sale_type3');
+        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+
+        $code_names = array_column($code_list, 'code_name');
+
+        return view('admin/_statistics/statistics_sale_type3', [
+            'code_names' => $code_names
+        ]);
     }
 
     public function statistics_sale_type3_day()
     {
-        return view('admin/_statistics/statistics_sale_type3_day');
+        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+
+        $code_names = array_column($code_list, 'code_name');
+        return view('admin/_statistics/statistics_sale_type3_day',[
+            'code_names' => $code_names
+        ]);
     }
 
     public function statistics_sale_type3_week()
     {
-        return view('admin/_statistics/statistics_sale_type3_week');
+        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+
+        $code_names = array_column($code_list, 'code_name');
+        return view('admin/_statistics/statistics_sale_type3_week', [
+            'code_names' => $code_names
+        ]);
     }
 
     public function statistics_sale_type3_month()
     {
-        return view('admin/_statistics/statistics_sale_type3_month');
+        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+
+        $code_names = array_column($code_list, 'code_name');
+        return view('admin/_statistics/statistics_sale_type3_month', [
+            'code_names' => $code_names
+        ]);
     }
 
     public function statistics_sale_type3_year()
     {
-        return view('admin/_statistics/statistics_sale_type3_year');
+        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+
+        $code_names = array_column($code_list, 'code_name');
+        return view('admin/_statistics/statistics_sale_type3_year', [
+            'code_names' => $code_names
+        ]);
     }
 
     public function statistics_sale_list()
