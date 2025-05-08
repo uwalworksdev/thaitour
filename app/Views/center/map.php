@@ -3,6 +3,7 @@
 <link href="/css/center/center.css" rel="stylesheet" type="text/css" />
 <link href="/css/center/center_responsive.css" rel="stylesheet" type="text/css" />
 <link href="/css/center/map.css" rel="stylesheet" type="text/css" />
+<link href="/css/center/map_responsive.css" rel="stylesheet" type="text/css" />
 <?php
     $setting = homeSetInfo();
 ?>
@@ -87,10 +88,10 @@
 								<img src="/img/sub/ic_box_03_mo.png" alt="" class="only_mo">
 							</div>
 							<div class="desc">
-								<p>시드니 본사 및 전지역 지사, <br>
+								<p>태국 본사 및 전지역 지사, <br>
 									서울 지사를 함께 운영</p>
 									<span>온라인으로만 진행되는 현지여행사 왠지 불안하셨나요? <br>
-											더투어랩는 시드니 본사 및 전지역 지사, 서울 지사를 함께 운영하며 <br>
+											더투어랩는 태국 본사 및 전지역 지사, 서울 지사를 함께 운영하며 <br>
 											모든 여행업 관련 라이센스와 보험을 보유하여 당신의 여행을 <br>
 											안전하게 지켜드립니다.</span>
 							</div>
@@ -238,7 +239,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>03</p>
-											<span>시드니 본사 사옥 구입 및 확장 이전</span>
+											<span>태국 본사 사옥 구입 및 확장 이전</span>
 										</div>
 									</div>
 								</div>
@@ -286,7 +287,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>02</p>
-											<span>시드니 Newington 으로 회사 이전</span>
+											<span>태국 Newington 으로 회사 이전</span>
 										</div>
 									</div>
 								</div>
@@ -314,7 +315,7 @@
 										</div>
 										<div class="num">
 											<p>08</p>
-											<span>시드니 Eastwood 로 회사 이전</span>
+											<span>태국 Eastwood 로 회사 이전</span>
 										</div>
 										<div class="num">
 											<p>07</p>
@@ -328,7 +329,7 @@
 									<div class="view_cont">
 										<div class="num">
 											<p>08</p>
-											<span>시드니 Surry Hill 에서 S.S.K Tour Pty Ltd 설립</span>
+											<span>태국 Surry Hill 에서 S.S.K Tour Pty Ltd 설립</span>
 										</div>
 									</div>
 								</div>
@@ -348,7 +349,7 @@
 					<table class="table_info">
 						<colgroup>
 							<col width="145px">
-							<col width="*">
+							<col width="350px">
 							<col width="145px">
 							<col width="210px">
 						</colgroup>
@@ -366,7 +367,7 @@
 								<td><?=$setting['com_owner']?></td>
 							</tr>
 							<!-- <tr>
-								<th>시드니본사주소</th>
+								<th>태국본사주소</th>
 								<td colspan="3"><?=_SYDNEY_ADDR?></td>
 							</tr> -->
 							<tr>
