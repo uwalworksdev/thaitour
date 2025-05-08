@@ -200,3 +200,14 @@ function handleReportBad() {
         }
     })
 }
+
+function handleUpdateReportState(r_idx, r_cmt_idx, state) {
+    $.ajax({
+        url: "/comment/updateReportState",
+        type: "POST",
+        data: { r_idx: r_idx, r_cmt_idx: r_cmt_idx, state: state },
+        success: function(rs) {
+            location.reload();
+        },
+    })
+}

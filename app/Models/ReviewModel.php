@@ -45,19 +45,28 @@ class ReviewModel extends Model
         return $query->getResultArray();
     }
 
-    public function getReviews($s_txt = null, $search_category = null, $category = null, $page = 1, $scale = 10)
+    public function getReviews($s_txt = null, $search_category = null, $category = null, $page = 1, $scale = 10, $display = "user")
     {
         $private_key = private_key();
 
         $builder = $this->db->table('tbl_travel_review as A')
-            ->select('A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name')
+            ->select('A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name, D.report_reason, D.idx as report_idx, D.state as report_state')
             ->join('tbl_bbs_cmt as B', 'A.idx = B.r_idx AND B.r_code = \'review\' AND B.r_status = \'Y\' AND B.r_delYN = \'N\'', 'left')
             ->join('tbl_code as C', 'A.travel_type = C.code_no', 'left')
+            ->join('tbl_bad_list as D', 'D.bbs_idx = A.idx AND D.code = \'review_article\'', 'left')
             ->where('A.status', 'Y')
             ->groupBy('A.idx');
 
         if ($category == "best") {
             $builder->where('A.is_best', 'Y');
+        }
+
+        if ($display == "user") {
+            $builder->groupStart()
+                ->where("D.idx IS NULL")
+                ->orWhere("D.state", 0)
+                ->orWhere("D.state", 1)
+                ->groupEnd();
         }
 
         if ($s_txt && $search_category == "user_name") {

@@ -37,6 +37,8 @@ class Comment extends BaseController
         $role = updateSQ($this->request->getVar("role"));
         $commentsArray = $this->comment->getComments($r_code, $r_idx, private_key());
         if ($role == "admin") {
+            $commentsArray = $this->comment->getComments($r_code, $r_idx, private_key(), "admin");
+
             $list = generateCommentsAdminHTML($commentsArray, $r_code, $r_idx);
         } else {
             if($r_code == "time_sale"){
@@ -158,6 +160,21 @@ class Comment extends BaseController
     
         return $this->response->setJSON($result);
     }
+
+    public function updateReportState(){
+        $r_cmt_idx  = updateSQ($this->request->getPost('r_cmt_idx'));
+        $r_idx  = updateSQ($this->request->getPost('r_idx'));
+        $state  = updateSQ($this->request->getPost('state'));
+
+        $db = db_connect();
+        $builder = $db->table('tbl_bad_list');
+        $builder->where('cmt_idx', $r_cmt_idx);
+        $builder->where('bbs_idx', $r_idx);
+        $result = $builder->update(['state' => $state]);
+
+        return $this->response->setJSON($result);
+    }
+
     public function reportComment()
     {
         $code = updateSQ($this->request->getPost('code'));

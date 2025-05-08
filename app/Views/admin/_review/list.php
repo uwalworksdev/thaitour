@@ -108,7 +108,7 @@
                     </div><!-- // listTop -->
                     <form name="frm" id="frm">
                         <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable comment review">
                                 <caption></caption>
                                 <colgroup>
                                     <col width="5%"/>
@@ -117,10 +117,11 @@
                                     <col width="10%"/>
                                     <col width="15%"/>
                                     <col width="12%"/>
-                                    <col width="12%"/>
                                     <col width="5%"/>
                                     <col width="5%"/>
-                                    <col width="15%"/>
+                                    <col width="5%"/>
+                                    <col width="5%"/>
+                                    <col width="5%"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -133,6 +134,7 @@
                                     <th>노출여부</th>
                                     <th>베스트</th>
                                     <th>메인노출</th>
+                                    <th>신고상태</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
@@ -141,7 +143,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=9 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=11 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -162,9 +164,14 @@
                                         $statusStr = "노출해제";
                                     }
 
+                                    $class = '';
+
+                                    if(!empty($row["report_idx"]) && $row["report_state"] != 1){
+                                        $class = 'reported';
+                                    }
 
                                     ?>
-                                    <tr style="height:50px;">
+                                    <tr class="<?=$class?>" style="height:50px; position: relative;">
                                         <input type="hidden" name="idx_change[]" value="<?= $row['idx'] ?>">
                                         <td><input type="checkbox" name="idx[]" class="idx" value="<?= $row['idx'] ?>"
                                                    class="input_check"/></a></td>
@@ -189,6 +196,18 @@
                                                    class="input_check">
                                             <input hidden type="text" name="display[]"
                                                    value= <?= $row['display'] == "Y" ? "Y" : "N" ?>>
+                                        </td>
+                                        <td>
+                                            <select style="margin: 0 !important;" onchange="handleUpdateReportState('<?= $row['idx'] ?>', this.value)">
+                                                <option value="0" <?= ($row["report_state"] == 0 && isset($row["report_idx"])) ? 'selected' : ''?>>신고접수</option>
+                                                <option value="1" <?= ($row["report_state"] == 1 || !isset($row["report_idx"])) ? 'selected' : ''?>>계속노출</option>
+                                                <option value="2" <?= ($row["report_state"] == 2 && !empty($row["report_idx"])) ? 'selected' : ''?>>비노출</option>
+                                            </select>
+                                            <div class="row-overlay" style="display:none">
+                                                <div class="row-overlay-text">이 댓글이 신고된 댓글입니다. 
+                                                    <span style="color:red">신고사유: 부적절한 홍보 또는 비방글</span>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
                                             <a href="write?idx=<?= $row['idx'] ?>"><img
@@ -237,6 +256,18 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div><!-- // container -->
 
+    <script>
+        function handleUpdateReportState(r_idx, state) {
+            $.ajax({
+                url: "/AdmMaster/_review/updateReportState",
+                type: "POST",
+                data: { r_idx: r_idx, state: state },
+                success: function(rs) {
+                    location.reload();
+                },
+            })
+        }
+    </script>
 
     <script>
         $(".input_check").change(function (evt) {
@@ -245,7 +276,7 @@
             } else {
                 $(evt.target).siblings("input[type=text]").val("N");
             }
-        })
+        });
 
     </script>
 

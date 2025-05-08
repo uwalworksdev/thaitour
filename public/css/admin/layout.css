@@ -4902,6 +4902,37 @@ table.comment tr.reported .report_area * {
     opacity: 1;
 }
 
+table.comment.review tr.reported td * {
+    opacity: 1;
+}
+
+table.comment.review tr.reported td:not(:nth-child(11n)) {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.reported .row-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-110%, -50%);
+    font-size: 18px;
+    opacity: 1;
+    line-height: 1.2;
+    text-align: center;
+    display: block !important;
+}
+
+.reported .row-overlay-text {
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 4px;
+    color: #333;
+    font-size: 12px;
+    opacity: 1 !important;
+}
+
 table.comment tr td {
     padding: 40px 20px;
 }

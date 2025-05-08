@@ -98,7 +98,7 @@ class ReviewController extends BaseController
 
         $best_review = $this->ReviewModel->getBestReviews($s_txt, $search_category);
 
-        $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, $g_list_rows);
+        $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, $g_list_rows, "admin");
 
         return view("admin/_review/list", [
             "best_review" => $best_review,
@@ -176,6 +176,7 @@ class ReviewController extends BaseController
         ]);
     }
 
+    
     public function detail_admin()
     {
         $idx = updateSQ($_GET['idx']);
@@ -635,7 +636,7 @@ class ReviewController extends BaseController
         $m_idx = session()->get("member")["idx"] ?? 0;   
         $code = "review_article"; 
         $r_idx = updateSQ($this->request->getPost('review_idx'));
-        $report_reason = updateSQ($this->request->getPost('report_reason'));
+        $report_reason = updateSQ($this->request->getPost('r_report_reason'));
 
         if (empty($m_idx)) {
             return $this->response->setJSON([
@@ -646,6 +647,19 @@ class ReviewController extends BaseController
         }
         
         $result = $this->comment->reportComment($code, $r_idx, 0, $report_reason, $m_idx);
+
+        return $this->response->setJSON($result);
+    }
+
+    public function updateReportState(){
+        $r_idx  = updateSQ($this->request->getPost('r_idx'));
+        $state  = updateSQ($this->request->getPost('state'));
+
+        $db = db_connect();
+        $builder = $db->table('tbl_bad_list');
+        $builder->where('bbs_idx', $r_idx);
+        $builder->where('code', "review_article");
+        $result = $builder->update(['state' => $state]);
 
         return $this->response->setJSON($result);
     }

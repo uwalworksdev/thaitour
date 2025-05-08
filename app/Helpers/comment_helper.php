@@ -165,10 +165,16 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
         } else if ($comment['user_level'] == 2) {
             $avatar = "/data/member/" . $comment['user_avatar'];
         } else {
-            $avatar = "/assets/img/event/user_2.png";
+            $avatar = "/images/profile/avatar.png";
         }
 
-        $html .= '<tr style="position: relative;">';
+        $class = '';
+
+        if(!empty($comment["report_idx"]) && $comment["report_state"] != 1){
+            $class = 'reported';
+        }
+
+        $html .= '<tr class="' . $class . '" style="position: relative;">';
         $html .= '<td><div class="user_info">';
         $html .= '<img src="' . $avatar . '" class="user_avatar" width="100px" height="100px" alt="">';
         $html .= '<div class="user_info_1">';
@@ -183,17 +189,25 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
         $html .= '<button class="btn btn-point btn-lg comment_btn" type="button" onclick="handleCmtEditSubmit(event, ' . $comment['r_cmt_idx'] . ')">수정</button>';
         $html .= '</div><p class="cmt_date">' . date("Y.m.d H:i", strtotime($comment['r_reg_date'])) . '</p></td>';
         $html .= '<td class="user-operation">';
-        $html .= '<select>';
-        $html .= '<option value="0" selected="">신고접수</option>';
-        $html .= '<option value="1">계속노출</option>';
-        $html .= '<option value="2">비노출</option>';
+        $html .= '<select onchange="handleUpdateReportState('. $r_idx . ', '. $comment['r_cmt_idx'] .', this.value)">';
+        $html .= '<option value="0" '. ($comment["report_state"] == 0 ? 'selected' : '') .'>신고접수</option>';
+        $html .= '<option value="1" '. ($comment["report_state"] == 1 ? 'selected' : '') .'>계속노출</option>';
+        $html .= '<option value="2" '. ($comment["report_state"] == 2 ? 'selected' : '') .'>비노출</option>';
         $html .= '</select>';
+        $html .= '<br>';
 
         if (session('member.idx') == $comment['r_m_idx']) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
         }
         if (session('member.idx') == $comment['r_m_idx'] || session('member.id') == "admin") {
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
+        }
+
+        if(!empty($comment["report_idx"]) && $comment["report_state"] != 1){
+            $html .= '<div class="report_area">';
+            $html .=    '이 댓글이 신고된 댓글입니다. <br>';
+            $html .=    '신고사유 :"' . $comment['report_reason'] . '" ';                                                       
+            $html .= '</div>';
         }
 
         $html .= '</td></tr>';

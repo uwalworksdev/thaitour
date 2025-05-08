@@ -74,24 +74,24 @@
                         <input type="hidden" value="" class="review_idx" name="review_idx">
                         <div class="pop_input wrap_check flex_s_c">
                             <div class="check_box">
-                                <input type="radio" name="report_reason" class="security" value="부적절한 홍보 또는 비방글" id="radio_1" checked>
-                                <label for="radio_1">부적절한 홍보 또는 비방글</label>
+                                <input type="radio" name="report_reason" class="security" value="부적절한 홍보 또는 비방글" id="r_radio_1" checked>
+                                <label for="r_radio_1">부적절한 홍보 또는 비방글</label>
                             </div>
                             <div class="check_box">
-                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="radio_2">
-                                <label for="radio_2">욕설 또는 무의미한 단어의 반복</label>
+                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="r_radio_2">
+                                <label for="r_radio_2">욕설 또는 무의미한 단어의 반복</label>
                             </div>
                             <div class="check_box">
-                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="radio_3">
-                                <label for="radio_3">욕설 또는 무의미한 단어의 반복</label>
+                                <input type="radio" name="report_reason" class="security" value="욕설 또는 무의미한 단어의 반복" id="r_radio_3">
+                                <label for="r_radio_3">욕설 또는 무의미한 단어의 반복</label>
                             </div>
                             <div class="check_box">
-                                <input type="radio" name="report_reason" class="security" value="명예훼손 및 저작권 침해 등" id="radio_4">
-                                <label for="radio_4">명예훼손 및 저작권 침해 등</label>
+                                <input type="radio" name="report_reason" class="security" value="명예훼손 및 저작권 침해 등" id="r_radio_4">
+                                <label for="r_radio_4">명예훼손 및 저작권 침해 등</label>
                             </div>
                             <div class="check_box">
-                                <input type="radio" name="report_reason" class="security" value="관련법 위반" id="radio_5">
-                                <label for="radio_5">관련법 위반</label>
+                                <input type="radio" name="report_reason" class="security" value="관련법 위반" id="r_radio_5">
+                                <label for="r_radio_5">관련법 위반</label>
                             </div>
                         </div>
                     </form>

@@ -8,25 +8,27 @@ class CommentModel extends Model
     protected $primaryKey = 'r_cmt_idx';
     protected $allowedFields = ["r_idx", "r_status", "r_reg_date", "r_reg_m_idx", "r_mod_date", "r_mod_m_idx", "r_step", "r_level", "r_ref", "r_date", "r_name", "r_private", "r_passwd", "r_category", "r_title", "r_html", "r_content", "r_url", "r_file_code", "r_file_name", "r_file_list", "r_code", "r_m_idx", "r_delYN"];
 
-    public function getComments($r_code, $r_idx, $private_key)
+    public function getComments($r_code, $r_idx, $private_key, $display = "user")
     {
         $builder = $this->db->table($this->table);
         $builder->select("tbl_bbs_cmt.*, tbl_member.user_id, tbl_member.ufile1 as avt_new, tbl_member.rfile1 as avt_old, 
                          CONVERT(AES_DECRYPT(UNHEX(tbl_member.user_name), '$private_key') USING utf8) as user_name, 
                          CONVERT(AES_DECRYPT(UNHEX(tbl_member.user_email), '$private_key') USING utf8) as user_email, 
                          CONVERT(AES_DECRYPT(UNHEX(tbl_member.user_phone), '$private_key') USING utf8) as user_phone, 
-                         tbl_member.user_level");
+                         tbl_member.user_level, tbl_bad_list.report_reason, tbl_bad_list.idx as report_idx, tbl_bad_list.state as report_state");
         $builder->join("tbl_member", "tbl_member.m_idx = tbl_bbs_cmt.r_m_idx", "inner");
         $builder->join("tbl_bad_list", "tbl_bbs_cmt.r_code = tbl_bad_list.code AND tbl_bbs_cmt.r_cmt_idx = tbl_bad_list.cmt_idx", "left");
         $builder->where("tbl_bbs_cmt.r_code", $r_code);
         $builder->where("tbl_bbs_cmt.r_idx", $r_idx);
         $builder->where("tbl_bbs_cmt.r_status", 'Y');
         $builder->where("tbl_bbs_cmt.r_delYN", 'N');
-        $builder->groupStart()
-            ->where("tbl_bad_list.idx IS NULL")
-            ->orWhere("tbl_bad_list.state", 0)
-            ->orWhere("tbl_bad_list.state", 2)
-            ->groupEnd();
+        if ($display == "user") {
+            $builder->groupStart()
+                ->where("tbl_bad_list.idx IS NULL")
+                ->orWhere("tbl_bad_list.state", 0)
+                ->orWhere("tbl_bad_list.state", 1)
+                ->groupEnd();
+        }
         $builder->orderBy("tbl_bbs_cmt.r_reg_date", "DESC");
         $builder->orderBy("tbl_bbs_cmt.r_level", "ASC");
 
@@ -120,7 +122,7 @@ class CommentModel extends Model
             'code' => $code,
             'bbs_idx' => $r_idx,
             'cmt_idx' => $r_cmt_idx,
-            'state' => 1,
+            'state' => 0,
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'r_date' => date('Y-m-d H:i:s')
         ];

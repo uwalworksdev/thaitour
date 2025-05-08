@@ -30,6 +30,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("change_ajax", "ReviewController::change_ajax");
         $routes->post("del", "ReviewController::del");
         $routes->post("ajax_del", "ReviewController::ajax_del");
+        $routes->post("updateReportState", "ReviewController::updateReportState");
     });
 
     $routes->group("_member", static function ($routes) {
@@ -816,6 +817,7 @@ $routes->group("comment", static function ($routes) {
     $routes->post("cmtDel", "Comment::deleteComment");
     $routes->post("cmtEdit", "Comment::updateComment");
     $routes->post("cmtReport", "Comment::reportComment");
+    $routes->post("updateReportState", "Comment::updateReportState");
 });
 $routes->group("community", static function ($routes) {
     $routes->get("main", "Community::main");
