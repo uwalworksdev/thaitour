@@ -1,4 +1,89 @@
 <?php
+use CodeIgniter\I18n\Time;
+use Config\Services;
+
+function getLocationUrl()
+{
+    $request = Services::request();
+    $db      = db_connect();
+    $builder = $db->table('tbl_location_addr');
+
+    $location = $request->getServer('HTTP_REFERER');
+
+    if (!$location) {
+        return '';
+    }
+
+    $cookieValue = 'HTTP_REFERER_' . preg_replace('/[:\/\.\&=\_]/', '', $location);
+
+    if (strpos($location, 'bontoshop.com') !== false) {
+        $location = '';
+    }
+
+    if ($location !== '') {
+        $cookieVal = $_COOKIE[$cookieValue] ?? '';
+
+        if ($cookieVal === '') {
+            if (strpos($location, 'search.naver.com') !== false) {
+                if (strpos($location, 'm.search.naver.com') !== false) {
+                    $location = 'http://m.search.naver.com';
+                } else {
+                    $location = 'http://search.naver.com';
+                }
+            }
+
+            $row = $builder->select('cnt')
+                           ->where('location', $location)
+                           ->get()
+                           ->getRowArray();
+
+            if (empty($row)) {
+                $builder->insert([
+                    'location' => $location,
+                    'cnt'      => 1,
+                ]);
+            } else {
+                $builder->set('cnt', $row['cnt'] + 1)
+                        ->where('location', $location)
+                        ->update();
+            }
+        }
+
+        $ip         = $request->getServer('REMOTE_ADDR');
+        $user_agent = $request->getUserAgent();
+
+        $os      = getOS($user_agent);
+        $browser = getBrowserNew($user_agent);
+
+        $db->table('tbl_visit_info')->insert([
+            'url'     => $location,
+            'ip'      => $ip,
+            'os'      => $os,
+            'browser' => $browser,
+            'regdate' => Time::now()->toDateTimeString(),
+        ]);
+    }
+
+    // $device_type = get_device();
+    // $ip          = $request->getServer('REMOTE_ADDR');
+
+    // $row = $db->table('tbl_login_analysis')
+    //           ->selectCount('*', 'tcnt')
+    //           ->where('login_ip', $ip)
+    //           ->where('CAST(regdate AS DATE) = CURDATE()', null, false)
+    //           ->get()
+    //           ->getRowArray();
+
+    // if ($row['tcnt'] == 0) {
+    //     $db->table('tbl_login_analysis')->insert([
+    //         'regdate'       => Time::now()->toDateTimeString(),
+    //         'login_ip'      => $ip,
+    //         'login_device'  => $device_type,
+    //     ]);
+    // }
+
+    return '';
+}
 
 if (!function_exists('private_key')) {
     function private_key()

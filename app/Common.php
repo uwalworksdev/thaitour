@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * The goal of this file is to allow developers a location
  * where they can overwrite core procedural functions and
@@ -13,6 +14,46 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+function getOS(string $user_agent): string
+{
+    $os_array = [
+        'Windows'  => 'Windows',
+        'Mac'      => 'Macintosh',
+        'Linux'    => 'Linux',
+        'Unix'     => 'Unix',
+        'Android'  => 'Android',
+        'iOS'      => 'iPhone|iPad',
+    ];
+
+    foreach ($os_array as $os => $pattern) {
+        if (preg_match('/' . $pattern . '/i', $user_agent)) {
+            return $os;
+        }
+    }
+
+    return 'Unknown OS';
+}
+
+function getBrowserNew(string $user_agent): string
+{
+    $browser_array = [
+        'Internet Explorer' => 'MSIE|Trident',
+        'Edge'              => 'Edg',
+        'Chrome'            => 'Chrome',
+        'Firefox'           => 'Firefox',
+        'Safari'            => 'Safari',
+        'Opera'             => 'Opera|OPR',
+    ];
+
+    foreach ($browser_array as $browser => $pattern) {
+        if (preg_match('/' . $pattern . '/i', $user_agent)) {
+            return $browser;
+        }
+    }
+
+    return 'Unknown Browser';
+}
+
 function fn_avg($value, $_total_value)
 {
 

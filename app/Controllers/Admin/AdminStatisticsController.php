@@ -1206,11 +1206,79 @@ class AdminStatisticsController extends BaseController
 
     public function member_statistics4_year()
     {
-        return view('admin/_statistics/member_statistics4_year');
+        $years = $this->request->getGet('years') ?? date('Y');
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
+        $e_date = date('Y-m-d', mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)) , $years));
+
+        $builder = $this->connect->table('tbl_search_keyword');
+
+        $builder->select('keyword, COUNT(*) as tcnt')
+                ->where('keyword IS NOT NULL')
+                ->where('keyword !=', '')
+                ->where("DATE(regdate) >=", $s_date)
+                ->where("DATE(regdate) <=", $e_date)
+                ->groupBy('keyword')
+                ->orderBy('tcnt', 'DESC');
+    
+        $query = $builder->get();
+        $results = $query->getResultArray();
+    
+        $total_cnt = 0;
+        $data_arr = [];
+    
+        foreach ($results as $row) {
+            $total_cnt += $row['tcnt'];
+            $data_arr[] = $row;
+        }
+
+        $data = [
+            "years" => $years,
+            "total_cnt" => $total_cnt,
+            "data_arr" => $data_arr,
+        ];
+
+        return view('admin/_statistics/member_statistics4_year', $data);    
     }
 
     public function member_statistics5()
     {
-        return view('admin/_statistics/member_statistics5');
+        $builder    = $this->connect->table('tbl_visit_info');
+
+        $limit      = $this->request->getGet('limit') ?? 10;
+        $sort       = strtoupper($this->request->getGet('sort') ?? 'DESC');
+        $keyword    = $this->request->getGet('keyword') ?? '';
+        $s_date     = $this->request->getGet('s_date') ?? date('Y-m-d');
+        $e_date     = $this->request->getGet('e_date') ?? date('Y-m-d');
+        $pg         = (int) ($this->request->getGet('pg') ?? 1);
+
+        $builder->where("DATE(regdate) >=", $s_date);
+        $builder->where("DATE(regdate) <=", $e_date);
+
+        if ($keyword !== '') {
+            $builder->like('url', $keyword);
+        }
+
+        $total = $builder->countAllResults(false);
+
+        $offset = ($pg - 1) * $limit;
+		$num = $total - $offset;
+
+        $builder->orderBy('regdate', $sort);
+        $builder->limit($limit, $offset);
+        $query = $builder->get();
+
+        $data['visit_list']   = $query->getResultArray();
+        $data['total_count']  = $total;
+        $data['page_count']   = ceil($total / $limit);
+        $data['current_pg']   = $pg;
+        $data['limit']        = $limit;
+        $data['num']          = $num;
+        $data['keyword']      = $keyword;
+        $data['s_date']       = $s_date;
+        $data['e_date']       = $e_date;
+        $data['sort']         = $sort;
+
+        return view('admin/_statistics/member_statistics5', $data);
     }
 }

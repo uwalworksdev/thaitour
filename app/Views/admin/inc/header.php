@@ -1,5 +1,8 @@
 <?php
-helper(['gnb', 'setting']);
+helper(['gnb', 'setting', 'my_helper']);
+
+getLocationUrl();
+
 $uri = service('uri');
 $currentPath = $uri->getPath();
 $adminGnb = adminGnb();

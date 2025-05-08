@@ -906,6 +906,7 @@ $routes->group("center", static function ($routes) {
     $routes->get("insurance", "CustomerCenterController::insurance");
     $routes->get("tourterms", "CustomerCenterController::tourterms");
     $routes->get("terms", "CustomerCenterController::terms");
+    $routes->get("safety_tip", "CustomerCenterController::safetyTip");
     $routes->get("privacy", "CustomerCenterController::privacy");
     $routes->get("reservation", "CustomerCenterController::reservation");
     $routes->get("map", "CustomerCenterController::map");

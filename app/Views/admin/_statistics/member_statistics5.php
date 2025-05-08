@@ -16,20 +16,6 @@
     }
 </style>
 
-<?php
-    $s_date = $_GET['s_date'];
-    $e_date = $_GET['e_date'];
-
-
-    if ($s_date == "") {
-        $s_date = date('Y-m-d');
-    }
-
-    if ($e_date == "") {
-        $e_date = date('Y-m-d');
-    }
-?>
-
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -65,11 +51,11 @@
                     <div class="searchBox">
                         <div class="floatLeft">
                             <select name="search_type">
-                                <option value="order_num">접속경로</option>
+                                <option value="order_num" <?php if ($search_type == "order_num") echo "selected"; ?>>접속경로</option>
                             </select>
                         </div>
                         <div class="searchBoxIn">
-                            <input type="text" name="keyword" value="" data-search-btn="1" data-on-enter="1" autocomplete="off">
+                            <input type="text" name="keyword" value="<?= $keyword ?>" data-search-btn="1" data-on-enter="1" autocomplete="off">
                             <p class="searchIcon2 searchIconBtn"><i class="xi-search masterTooltip" title="검색" onclick="fn_search();"></i></p>
                         </div>
                     </div>
@@ -91,7 +77,7 @@
 
                     <div class="listTop">
                         <div class="listLeft size14">
-                            전체 : <b class="orange">0</b>건
+                            전체 : <b class="orange"><?=number_format($total_count)?></b>건
 
                         </div>
                         <div class="listRight size10">
@@ -144,21 +130,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="number">1</td>
-                                <td style="text-align:left; font-size:12px"></td>
-                                <td style="text-align:center;"></td>
-                                <td style="text-align:center;"></td>
-                                <td></td>
-                                <td class="number"></td>
-                            </tr>
+                            <?php foreach ($visit_list as $row): ?>
+                                <tr>
+                                    <td class="number"><?=$num?></td>
+                                    <td style="text-align:left; font-size:12px"><?= esc($row['url']) ?></td>
+                                    <td style="text-align:center;"><?= esc($row['os']) ?></td>
+                                    <td style="text-align:center;"><?= esc($row['browser']) ?></td>
+                                    <td><?= esc($row['ip']) ?></td>
+                                    <td class="number"><?= esc($row['regdate']) ?></td>
+                                </tr>
+                                <?php
+                                    $num = $num - 1;
+                                ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="listLineB"></div>
 
-                <?php echo ipageListing(1, 1, 10, $_SERVER['PHP_SELF'] . "?search_type=$search_type&keyword=$keyword&sort=$sort&limit=$limit&pg=") ?>
+                <?php echo ipageListing($current_pg, $page_count, $limit, $_SERVER['PHP_SELF'] . "?search_type=$search_type&keyword=$keyword&sort=$sort&limit=$limit&pg=") ?>
 
             </div>
         </div>
@@ -166,6 +157,11 @@
 </div>
 
 <script>
+    function fn_search() {
+        let frm = document.listSearchForm;
+        frm.submit();
+    }
+
     $(".date_form").datepicker({
         showButtonPanel: true,
         beforeShow: function(input) {
