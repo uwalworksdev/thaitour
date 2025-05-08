@@ -85,7 +85,7 @@ class ReviewController extends BaseController
     public function list_admin()
     {
         $deviceType = get_device();
-        $page = $this->request->getVar('page');
+        $page = $this->request->getVar('pg');
         $s_txt = $this->request->getVar('s_txt');
         $search_category = $this->request->getVar('search_category');
         $search_gubun = $this->request->getVar('search_gubun');
