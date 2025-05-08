@@ -429,9 +429,9 @@ class Member extends BaseController
 
         session()->set("member", $data);
 
-        $this->member->set('login_count', 'login_count + 1', false);
-        $this->member->set('login_date', 'NOW()', false);
-        $this->member->set('reg_device', $device_type, false);
+        $this->member->set('login_count', 'login_count + 1');
+        $this->member->set('login_date', 'NOW()');
+        $this->member->set('reg_device', $device_type);
         $this->member->where('user_id', $user_id);
         $this->member->update();
         return $this->response->setJSON(['message' => "success"]);
