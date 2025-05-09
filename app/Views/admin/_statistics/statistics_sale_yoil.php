@@ -440,8 +440,8 @@
                             <?php for ($i = 1; $i <= 7; $i++) { ?>
                                 <tr>
                                     <td class="number"><?= $yoil_arr[$i] ?></td>
-                                    <td class="number"><?= number_format($point_arr[$i]) ?> <span><?= $point_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($point_arr[$i]  * 100 / array_sum($point_arr)) ?> <span><?= $point_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($coupon_arr[$i] * 100 / array_sum($coupon_arr)) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
