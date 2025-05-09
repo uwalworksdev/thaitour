@@ -653,6 +653,7 @@ class AdminTourController extends BaseController
         $tour_onum         = $this->request->getPost('tour_onum');
         $moption_onum      = $this->request->getPost('moption_onum');
         $op_tour_onum      = $this->request->getPost('op_tour_onum');
+        $is_change_price   = $this->request->getPost('is_change_price');
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -756,6 +757,8 @@ class AdminTourController extends BaseController
         foreach ($info_ids as $key => $infoId) {
             $s_date = $o_sdate[$key];
             $e_date = $o_edate[$key];
+            $change_price = $is_change_price[$key];
+
             if(!empty($s_date) && !empty($e_date)){
                 $start = new DateTime($s_date);
                 $end   = new DateTime($e_date);
@@ -797,12 +800,12 @@ class AdminTourController extends BaseController
                     if(isset(${$yoilKey}[$key])){
                         $tours_option = $this->tourProducts->where("info_idx", $infoId)->orderBy("tours_idx", "asc")->findAll();
                         foreach($tours_option as $option){
-                            $count_op = $this->toursPrice->where("product_idx", $productIdx)
+                            $row_price = $this->toursPrice->where("product_idx", $productIdx)
                                                          ->where("info_idx", $infoId)
                                                          ->where("tours_idx", $option["tours_idx"])
-                                                         ->where("goods_date", $currentDate)->countAllResults();
+                                                         ->where("goods_date", $currentDate)->get()->getRowArray();
                             
-                            if($count_op <= 0){
+                            if(empty($row_price)){
                                 $data_price = [
                                     'product_idx'   => $productIdx,
                                     'info_idx'      => $infoId,
@@ -818,6 +821,14 @@ class AdminTourController extends BaseController
                                 ];
 
                                 $this->toursPrice->insertData($data_price);
+                            }else{
+                                if($change_price == 'Y'){
+                                    $this->toursPrice->updateData($row_price["idx"], [
+                                        'goods_price1'  => $option["tour_price"],
+                                        'goods_price2'  => $option["tour_price_kids"],
+                                        'goods_price3'  => $option["tour_price_baby"],
+                                    ]);
+                                }
                             }
                         }
                     }
