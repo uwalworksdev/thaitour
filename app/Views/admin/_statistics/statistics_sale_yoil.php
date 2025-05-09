@@ -237,7 +237,7 @@
                                         html: true
                                     }
                                 }],
-                                ['일', <?= $price_arr[1] ?>, '매출 : <?= number_format($price_arr[1]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[1]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[1]) ?>개'],
+                                ['일', <?= $price_arr[1] ?>, '매출 : <?= number_format($price_arr[1]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[1]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[1]) ?>개'],
                                 ['월', <?= $price_arr[2] ?>, '매출 : <?= number_format($price_arr[2]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[2]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[2]) ?>개'],
                                 ['화', <?= $price_arr[3] ?>, '매출 : <?= number_format($price_arr[3]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[3]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[3]) ?>개'],
                                 ['수', <?= $price_arr[4] ?>, '매출 : <?= number_format($price_arr[4]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[4]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[4]) ?>개'],
