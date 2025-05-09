@@ -41,6 +41,7 @@
         $price_arr[$vals] = 0;
     }
 
+
 ?>
 
 <div id="container">
@@ -136,34 +137,20 @@
                             google.charts.load('current', {
                                 'packages': ['corechart']
                             });
+
+                            var regions = <?=json_encode($code_names)?>
+
+                            const dataMap = {};
+
+                            const dataRows = regions.map(name => [name, dataMap[name] || 10]);
+                            
                             google.charts.setOnLoadCallback(drawPieChart);
                             google.charts.setOnLoadCallback(drawBarChart);
 
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["강원", <?= $price_arr['강원'] ?>],
-                                    ["경기", <?= $price_arr['경기'] ?>],
-                                    ["경남", <?= $price_arr['경남'] ?>],
-                                    ["강원", <?= $price_arr['강원'] ?>],
-
-                                    ["경북", <?= $price_arr['경북'] ?>],
-                                    ["광주", <?= $price_arr['광주'] ?>],
-                                    ["대구", <?= $price_arr['대구'] ?>],
-                                    ["대전", <?= $price_arr['대전'] ?>],
-
-                                    ["부산", <?= $price_arr['부산'] ?>],
-                                    ["서울", <?= $price_arr['서울'] ?>],
-                                    ["세종", <?= $price_arr['세종'] ?>],
-                                    ["울산", <?= $price_arr['울산'] ?>],
-
-                                    ["인천", <?= $price_arr['인천'] ?>],
-                                    ["전남", <?= $price_arr['전남'] ?>],
-                                    ["전북", <?= $price_arr['전북'] ?>],
-
-                                    ["제주", <?= $price_arr['제주'] ?>],
-                                    ["충남", <?= $price_arr['충남'] ?>],
-                                    ["충북", <?= $price_arr['충북'] ?>],
+                                    ...dataRows
                                 ]);
 
                                 var options = {
@@ -182,35 +169,30 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['강원'] ?> + <?= $price_arr['경기'] ?> + <?= $price_arr['경남'] ?> +
-                                    <?= $price_arr['경북'] ?> + <?= $price_arr['광주'] ?> + <?= $price_arr['대구'] ?> +
-                                    <?= $price_arr['대전'] ?> + <?= $price_arr['부산'] ?> + <?= $price_arr['서울'] ?> +
-                                    <?= $price_arr['세종'] ?> + <?= $price_arr['울산'] ?> + <?= $price_arr['인천'] ?> +
-                                    <?= $price_arr['전남'] ?> + <?= $price_arr['전북'] ?> + <?= $price_arr['제주'] ?> +
-                                    <?= $price_arr['충남'] ?> + <?= $price_arr['충북'] ?>;
+                                var total = dataRows.reduce((sum, row) => sum + row[1], 0);
                                 var rows = [
-                                    ["강원", <?= $price_arr['강원'] ?>, "#4285F4"],
-                                    ["경기", <?= $price_arr['경기'] ?>, "#4285F4"],
-                                    ["경남", <?= $price_arr['경남'] ?>, "#4285F4"],
+                                    ["강원", 10, "#4285F4"],
+                                    ["경기", 10, "#4285F4"],
+                                    ["경남", 10, "#4285F4"],
 
-                                    ["경북", <?= $price_arr['경북'] ?>, "#4285F4"],
-                                    ["광주", <?= $price_arr['광주'] ?>, "#4285F4"],
-                                    ["대구", <?= $price_arr['대구'] ?>, "#4285F4"],
+                                    ["경북", 10, "#4285F4"],
+                                    ["광주", 10, "#4285F4"],
+                                    ["대구", 10, "#4285F4"],
 
-                                    ["대전", <?= $price_arr['대전'] ?>, "#4285F4"],
-                                    ["부산", <?= $price_arr['부산'] ?>, "#4285F4"],
-                                    ["서울", <?= $price_arr['서울'] ?>, "#4285F4"],
+                                    ["대전", 10, "#4285F4"],
+                                    ["부산", 10, "#4285F4"],
+                                    ["서울", 10, "#4285F4"],
 
-                                    ["세종", <?= $price_arr['세종'] ?>, "#4285F4"],
-                                    ["울산", <?= $price_arr['울산'] ?>, "#4285F4"],
-                                    ["인천", <?= $price_arr['인천'] ?>, "#4285F4"],
+                                    ["세종", 10, "#4285F4"],
+                                    ["울산", 10, "#4285F4"],
+                                    ["인천", 10, "#4285F4"],
 
-                                    ["전남", <?= $price_arr['전남'] ?>, "#4285F4"],
-                                    ["전북", <?= $price_arr['전북'] ?>, "#4285F4"],
-                                    ["제주", <?= $price_arr['제주'] ?>, "#4285F4"],
+                                    ["전남", 10, "#4285F4"],
+                                    ["전북", 10, "#4285F4"],
+                                    ["제주", 10, "#4285F4"],
 
-                                    ["충남", <?= $price_arr['충남'] ?>, "#4285F4"],
-                                    ["충북", <?= $price_arr['충북'] ?>, "#4285F4"],
+                                    ["충남", 10, "#4285F4"],
+                                    ["충북", 10, "#4285F4"],
                                 ];
 
                                 rows.forEach((row, index) => {
