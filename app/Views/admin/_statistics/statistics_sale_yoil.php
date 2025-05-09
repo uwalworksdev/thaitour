@@ -44,24 +44,25 @@
     $yoil_arr[7] = "토";
 /*
     $price_arr = array();
+*/
+    $price_arr[1] = $pc_price_arr[1] + $mobile_price_arr[1];  // 일
+    $price_arr[2] = $pc_price_arr[2] + $mobile_price_arr[2];  // 월
+    $price_arr[3] = $pc_price_arr[3] + $mobile_price_arr[3];  // 화
+    $price_arr[4] = $pc_price_arr[4] + $mobile_price_arr[4];  // 수
+    $price_arr[5] = $pc_price_arr[5] + $mobile_price_arr[5];  // 목
+    $price_arr[6] = $pc_price_arr[6] + $mobile_price_arr[6];  // 금
+    $price_arr[7] = $pc_price_arr[7] + $mobile_price_arr[7];  // 토
 
-    $price_arr[1] = 0;  // 일
-    $price_arr[2] = 0;  // 월
-    $price_arr[3] = 0;  // 화
-    $price_arr[4] = 0;  // 수
-    $price_arr[5] = 0;  // 목
-    $price_arr[6] = 0;  // 금
-    $price_arr[7] = 0;  // 토
-
+/*
     $cnt_arr = array();
-
-    $cnt_arr[1] = 0;  // 일
-    $cnt_arr[2] = 0;  // 월
-    $cnt_arr[3] = 0;  // 화
-    $cnt_arr[4] = 0;  // 수
-    $cnt_arr[5] = 0;  // 목
-    $cnt_arr[6] = 0;  // 금
-    $cnt_arr[7] = 0;  // 토
+*/
+    $cnt_arr[1] = $pc_cnt_arr[1] + $mobile_cnt_arr[1];  // 일
+    $cnt_arr[2] = $pc_cnt_arr[2] + $mobile_cnt_arr[2];  // 월
+    $cnt_arr[3] = $pc_cnt_arr[3] + $mobile_cnt_arr[3];  // 화
+    $cnt_arr[4] = $pc_cnt_arr[4] + $mobile_cnt_arr[4];  // 수
+    $cnt_arr[5] = $pc_cnt_arr[5] + $mobile_cnt_arr[5];  // 목
+    $cnt_arr[6] = $pc_cnt_arr[6] + $mobile_cnt_arr[6];  // 금
+    $cnt_arr[7] = $pc_cnt_arr[7] + $mobile_cnt_arr[7];  // 토
 
     $cp_arr = array();
 
