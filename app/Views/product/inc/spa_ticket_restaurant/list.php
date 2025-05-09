@@ -241,12 +241,13 @@
                     <?php
                         if(empty($main_product_code)){
                     ?>
-                        <button onclick="searchSpaCode('')"
-                                class="<?= !$product_code_2 ? 'on' : '' ?>">전체
-                        </button>
+                        
                     <?php
                         }
                     ?>
+                    <button onclick="searchSpaCode('')"
+                            class="<?= !$product_code_2 && !$main_product_code ? 'on' : '' ?>">전체
+                    </button>
                     <?php foreach ($codes as $code) { ?>
                         <button style="text-wrap: nowrap;"
                                 class="<?= empty($main_product_code) ? ($product_code_2 === $code['code_no'] ? 'on' : '') : ($main_product_code === $code['code_no'] ? 'on' : '') ?>"
