@@ -130,9 +130,16 @@
                                 <?php } ?>
                             </select>
 
-                            <select name="weeks" onchange="fn_search()">
-                                <option value="">전체</option>
-                            </select>
+							<select name="weeks" onchange="fn_search()">
+								<option value="">전체</option>
+								<option value="1">월요일</option>
+								<option value="2">화요일</option>
+								<option value="3">수요일</option>
+								<option value="4">목요일</option>
+								<option value="5">금요일</option>
+								<option value="6">토요일</option>
+								<option value="7">일요일</option>
+							</select>
 
                             <!--select name="seller" onchange="fn_search()">
                                 <option value="">셀러전체</option>
