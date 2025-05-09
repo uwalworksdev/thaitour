@@ -76,7 +76,7 @@
 													<colgroup>
 														<col width="20%">
 														<col width="*">
-														<col width="11%">
+														<col width="8%">
 													</colgroup>
 													<!-- <thead>
 														<tr>
@@ -143,7 +143,7 @@
 															</td>
 															<td>
 																<div style="display: flex; gap: 5px;">
-																	<input type="text" name="tour_info_price[<?=$i?>]" placeholder="기존상품가" class="price" value="<?= number_format($info['info']['tour_info_price']) ?>" numberOnly=true>
+																	<input type="text" name="tour_info_price[<?=$i?>]" class="price" value="<?= number_format($info['info']['tour_info_price'] ?? 0) ?>" numberOnly=true>
 																	<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
@@ -363,7 +363,7 @@
 												<colgroup>
 													<col width="20%">
 													<col width="*">
-													<col width="11%">
+													<col width="8%">
 												</colgroup>
 									
 												<tbody>
@@ -410,7 +410,7 @@
 														</td>
 														<td>
 															<div style="display: flex; gap: 5px;">
-																<input type="text" name="tour_info_price[0]" class="price" placeholder="기존상품가" numberOnly=true>
+																<input type="text" name="tour_info_price[0]" class="price" value="0" numberOnly=true>
 																<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 															</div>
@@ -715,7 +715,7 @@
 					<colgroup>
 						<col width="20%">
 						<col width="*">
-						<col width="11%">
+						<col width="8%">
 					</colgroup>
 					<tbody>
 						<tr>
@@ -753,7 +753,7 @@
 							</td>
 							<td>
 								<div style="display: flex; gap: 5px;">
-									<input type="text" name="tour_info_price[${tableCount}]" class="price" placeholder="기존상품가" numberOnly=true>
+									<input type="text" name="tour_info_price[${tableCount}]" class="price" value="0" numberOnly=true>
 									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 								</div>

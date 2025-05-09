@@ -179,7 +179,7 @@
 
     $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_CONTACT_COUNT 
 	                             FROM tbl_travel_contact 
-								  WHERE isViewAdmin = 'N' ";
+								        ";
     // write_log($infoSql_1);
     $infoResult_1     = $db->query($infoSql_1);
     $info_1           = $infoResult_1->getRowArray();
@@ -205,6 +205,16 @@
     $info_1           = $infoResult_1->getRowArray();
     foreach($info_1 AS $key => $val) {
         ${$key} = number_format($val);
+    }
+
+    $infoSql_1        = " SELECT COUNT(bbs_idx) AS TOTAL_NOTICE_COUNT 
+        FROM tbl_bbs_list 
+        WHERE code = 'b2b_notice' ";
+    // write_log($infoSql_1);
+    $infoResult_1     = $db->query($infoSql_1);
+    $info_1           = $infoResult_1->getRowArray();
+    foreach($info_1 AS $key => $val) {
+      ${$key} = number_format($val);
     }
 ?>
 	<div id="container" class="main">
@@ -333,16 +343,16 @@
         </ul>
       </div>
       <div class="management_info">
-        <strong class="ico_ttl"><i></i>문의 게시판(<span style="color: red;"><? echo $TOTAL_CONTACT_COUNT + $TOTAL_QNA_COUNT + $TOTAL_INQUIRY_COUNT?></span>)</strong>
+        <strong class="ico_ttl"><i></i>문의 게시판(<span style="color: red;"><? echo $TOTAL_CONTACT_COUNT + $TOTAL_NOTICE_COUNT + $TOTAL_INQUIRY_COUNT?></span>)</strong>
         <ul class="management_list">
           <li>
-            <a class="link_go" href="/AdmMaster/_contact/list.php">여행문의<span><?=$TOTAL_CONTACT_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_qna/list">1:1 여행상담<span><?=$TOTAL_INQUIRY_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="/AdmMaster/_qna/list.php">1:1 여행상담<span><?=$TOTAL_QNA_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_contact/list">고객의 소리<span><?=$TOTAL_CONTACT_COUNT?></span></a>
           </li>
           <li>
-            <a class="link_go" href="/AdmMaster/_inquiry/list.php">맞춤문의<span><?=$TOTAL_INQUIRY_COUNT?></span></a>
+            <a class="link_go" href="/AdmMaster/_bbs/board_list?code=b2b_notice">공지사항<span><?=$TOTAL_NOTICE_COUNT?></span></a>
           </li>
         </ul>
       </div>
