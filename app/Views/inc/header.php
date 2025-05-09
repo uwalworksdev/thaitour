@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/mypage/alarm" class="text-grey flex__c">마이페이지<span class="count_like" style="color: red;">(<?=getOrderCount();?>)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__c">알림<span class="count_like" style="color: red;">(0)</span></a>
                     <?php else: ?>
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>
