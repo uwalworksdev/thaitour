@@ -2245,5 +2245,24 @@ function getCartCount() {
     return $row['cnt'] ?? 0;
 }
 
+function getOrderCount() {
+    $member = session()->get("member");
+
+    if (!isset($member['idx'])) {
+        return 0; // 로그인 안 됨
+    }
+
+    $db = \Config\Database::connect();
+
+    $builder = $db->table('tbl_order_mst');
+    $builder->selectCount('*', 'cnt');
+    $builder->where('m_idx', $member['idx']);
+    $builder->where('order_status !=', 'B');
+
+    $row = $builder->get()->getRowArray();
+
+    return $row['cnt'] ?? 0;
+}
+
 
 ?>
