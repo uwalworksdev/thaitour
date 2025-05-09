@@ -242,7 +242,7 @@ class AdminStatisticsController extends BaseController
 public function statistics_sale_yoil()
 {
     $years  = $this->request->getGet('years')  ?? date('Y');
-    $months = $this->request->getGet('months') ?? date('m');
+    $months = str_pad($this->request->getGet('months') ?? date('m'), 2, '0', STR_PAD_LEFT);
     $yoil   = $this->request->getGet('weeks');  // 요일: 1(일)~7(토)
     $payin  = $this->request->getGet('payin');  // P / M
 
