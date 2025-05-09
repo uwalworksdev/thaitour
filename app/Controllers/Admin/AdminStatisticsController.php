@@ -259,11 +259,12 @@ public function statistics_sale_yoil()
 
     // ===== PC
     if (empty($payin) || $payin === 'P') {
-        $builder = $db->table('tbl_order_mst');
-        $builder->select("DAYOFWEEK(order_date) as yoil, SUM(real_price_won) as total, COUNT(*) as count");
-        $builder->where("order_date >=", $startDate);
-        $builder->where("order_date <=", $endDate);
-        $builder->where("device_type", "P");
+		$builder = $db->table('tbl_order_mst');
+		$builder->select("DAYOFWEEK(order_date) as yoil, SUM(real_price_won) as total, COUNT(*) as count");
+		$builder->where("order_date >=", $startDate);
+		$builder->where("order_date <=", $endDate);
+		$builder->where("device_type", "P");
+		$builder->whereIn("order_status", ['Y', 'Z', 'E']);  // 추가된 조건
 		
         if (!empty($yoil)) {
             $builder->where("DAYOFWEEK(order_date)", (int)$yoil);
