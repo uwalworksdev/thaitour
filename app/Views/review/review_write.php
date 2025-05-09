@@ -651,7 +651,7 @@
 
         $("#travel_type_1").on("change", function (event) {
             $.ajax({
-                url: "/tools/get_travel_types",
+                url: "/tools/get_review_code",
                 type: "POST",
                 data: {
                     code: event.target.value,
@@ -778,7 +778,7 @@
                 })
             } else {
                 $.ajax({
-                    url: "/tools/get_list_product",
+                    url: "/tools/get_list_product_review",
                     type: "POST",
                     data: {
                         product_code: event.target.value,

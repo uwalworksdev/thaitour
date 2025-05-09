@@ -129,7 +129,7 @@
                 showOrHideLoginItem();
                 return false;
             <?php
-                }else if(count(checkOrderComplete($product['product_idx'])) <= 0) {
+                }else if(!checkOrderComplete($product['product_idx'])) {
             ?>
                 alert("상품구매시 후기 작성가능합니다");
                 return false;

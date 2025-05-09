@@ -20,13 +20,20 @@ function checkOrderComplete($product_idx = null) {
     $m_idx = session()->get("member")["idx"] ?? 0;   
 
     $order = Model("OrdersModel");
+    $member = Model("Member");
+
     $order->where("m_idx", $m_idx)->where("order_status", "E");
+    $is_review = $member->where("m_idx", $m_idx)->get()->getRowArray()["is_review"];
 
     if(!empty($product_idx)) {
         $order->where("product_idx", $product_idx);
     }
 
-    return $order->get()->getResultArray();
+    if(count($order->get()->getResultArray()) > 0 || $is_review == "Y") {
+        return true;
+    }
+
+    return false;
 }
 
 function getOS(string $user_agent): string
