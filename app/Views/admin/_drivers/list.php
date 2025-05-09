@@ -122,11 +122,11 @@
                                             <select name="is_show[]" id="is_show_<?= $row["d_idx"] ?>">
                                                 <option value="A" <?php if (isset($row["is_show"]) && $row["is_show"] === "A") {
                                                     echo "selected";
-                                                } ?>>판매중
+                                                } ?>>노출
                                                 </option>
                                                 <option value="S" <?php if (isset($row["is_show"]) && $row["is_show"] === "S") {
                                                     echo "selected";
-                                                } ?>>판매중지
+                                                } ?>>노출중지
                                                 </option>
                                             </select>
                                         </td>
