@@ -639,7 +639,7 @@
                                             <?=$number_room?> 룸 / 성인 <?= $adult?>명 아동 <?= $kids?>명
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <th>포함사항</th>
                                         <td class="info_ra">
                                             <?php
@@ -654,8 +654,8 @@
                                             <?=$bed_type?>
                                             <!--br>
                                             <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span-->
-                                        </td>
-                                    </tr>
+                                        <!--/td>
+                                    </tr-->
 									
 									<?php if($extra_won > 0) { ?>
                                     <tr>
