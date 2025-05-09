@@ -2228,7 +2228,7 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
 
 function getCartCount(){
     $connect = db_connect();
-	$sql     = "SELECT COUNT(*) AS cnt FROM tbl_order_mst WHERE m_idx = '". get("member")["idx"] ."' AND order_status = 'B' ";
+	$sql     = "SELECT COUNT(*) AS cnt FROM tbl_order_mst WHERE m_idx = '". session()->get("member")["idx"] ."' AND order_status = 'B' ";
     $query   = $connect->query($sql);
     $row     = $query->getRowArray();
 
