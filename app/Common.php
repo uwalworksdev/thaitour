@@ -2239,7 +2239,6 @@ function getCartCount() {
     $builder = $db->table('tbl_order_mst');
     $builder->selectCount('*', 'cnt');
     $builder->where('m_idx', $m_idx);
-    $builder->where('order_status', 'B');
     $row = $builder->get()->getRowArray();
 
     return $row['cnt'] ?? 0;
