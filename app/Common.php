@@ -2226,13 +2226,24 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
     $db->query("UPDATE tbl_order_mileage SET remaining_mileage = ? WHERE mi_idx = ?", [$sum_mileage, $mi_idx]);
 }
 
-function getCartCount(){
-    $connect = db_connect();
-	$sql     = "SELECT COUNT(*) AS cnt FROM tbl_order_mst WHERE m_idx = '". session()->get("member")["idx"] ."' AND order_status = 'B' ";
-    $query   = $connect->query($sql);
-    $row     = $query->getRowArray();
+function getCartCount() {
+    $member = session()->get("member");
 
-    return $row['cnt'];
+    if (!isset($member['idx'])) {
+        return 0; // 로그인 안 됨
+    }
+
+    $db = \Config\Database::connect();
+
+    $builder = $db->table('tbl_order_mst');
+    $builder->selectCount('*', 'cnt');
+    $builder->where('m_idx', $member['idx']);
+    $builder->where('order_status', 'B');
+
+    $row = $builder->get()->getRowArray();
+
+    return $row['cnt'] ?? 0;
 }
+
 
 ?>
