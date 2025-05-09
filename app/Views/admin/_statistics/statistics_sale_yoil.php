@@ -364,7 +364,7 @@
                                 <td>
                                     <div class="nums"><?=number_format(array_sum($pc_point_arr) + array_sum($mobile_point_arr));?>(원)</div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format(array_sum($pc_point_arr)?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format(array_sum($mobile_point_arr)?></span>
                                     </div>
                                 </td>
 
