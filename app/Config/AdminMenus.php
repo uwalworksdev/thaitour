@@ -95,12 +95,12 @@ class AdminMenus extends BaseConfig
 //                    'url' => ['/AdmMaster/_room/list'],
 //                    'alias' => ['AdminRoomController::list', 'AdminRoomController::write']
 //                ],
-                [
-                    'name' => '골프 픽업차량',
-                    'code' => 'B10',
-                    'url' => ['/AdmMaster/_tourRegist/golf_vehicles'],
-                    'alias' => ['GolfVehicleController::list', 'GolfVehicleController::write']
-                ],
+//                [
+//                    'name' => '골프 픽업차량',
+//                    'code' => 'B10',
+//                    'url' => ['/AdmMaster/_tourRegist/golf_vehicles'],
+//                    'alias' => ['GolfVehicleController::list', 'GolfVehicleController::write']
+//                ],
                 [
                     'name' => '쿠폰상품등록',
                     'code' => 'B11',

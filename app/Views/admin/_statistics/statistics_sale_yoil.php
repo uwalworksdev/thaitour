@@ -2,7 +2,7 @@
 <?= $this->section("body") ?>
 
 <link rel="stylesheet" href="/css/admin/statistics.css" type="text/css" />
-<link rel="stylesheet" href="/js/admin/statistics.js">
+<script src="/js/admin/statistics.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
@@ -130,13 +130,20 @@
                                 <?php } ?>
                             </select>
 
-                            <select name="weeks" onchange="fn_search()">
-                                <option value="">전체</option>
-                            </select>
+							<select name="weeks" onchange="fn_search()">
+								<option value="">전체</option>
+								<option value="1">월요일</option>
+								<option value="2">화요일</option>
+								<option value="3">수요일</option>
+								<option value="4">목요일</option>
+								<option value="5">금요일</option>
+								<option value="6">토요일</option>
+								<option value="7">일요일</option>
+							</select>
 
-                            <select name="seller" onchange="fn_search()">
+                            <!--select name="seller" onchange="fn_search()">
                                 <option value="">셀러전체</option>
-                            </select>
+                            </select-->
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
@@ -226,9 +233,9 @@
                         google.charts.load('current', {
                             'packages': ['corechart']
                         });
-                        google.charts.setOnLoadCallback(drawChart);
+                        google.charts.setOnLoadCallback(drawChart1);
 
-                        function drawChart() {
+                        function drawChart1() {
 
                             var data = google.visualization.arrayToDataTable([
                                 ['요일', '매출', {
@@ -237,13 +244,13 @@
                                         html: true
                                     }
                                 }],
-                                ['일', <?= $price_arr[1] ?>, '매출 : <?= number_format($price_arr[1]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[1]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[1]) ?>개'],
-                                ['월', <?= $price_arr[2] ?>, '매출 : <?= number_format($price_arr[2]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[2]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[2]) ?>개'],
-                                ['화', <?= $price_arr[3] ?>, '매출 : <?= number_format($price_arr[3]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[3]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[3]) ?>개'],
-                                ['수', <?= $price_arr[4] ?>, '매출 : <?= number_format($price_arr[4]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[4]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[4]) ?>개'],
-                                ['목', <?= $price_arr[5] ?>, '매출 : <?= number_format($price_arr[5]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[5]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[5]) ?>개'],
-                                ['금', <?= $price_arr[6] ?>, '매출 : <?= number_format($price_arr[6]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[6]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[6]) ?>개'],
-                                ['토', <?= $price_arr[7] ?>, '매출 : <?= number_format($price_arr[7]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[7]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[7]) ?>개']
+                                ['일', <?= $price_arr[1] ?>, '매출 : <?= number_format($price_arr[1]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[1]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[1]) ?>개'],
+                                ['월', <?= $price_arr[2] ?>, '매출 : <?= number_format($price_arr[2]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[2]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[2]) ?>개'],
+                                ['화', <?= $price_arr[3] ?>, '매출 : <?= number_format($price_arr[3]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[3]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[3]) ?>개'],
+                                ['수', <?= $price_arr[4] ?>, '매출 : <?= number_format($price_arr[4]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[4]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[4]) ?>개'],
+                                ['목', <?= $price_arr[5] ?>, '매출 : <?= number_format($price_arr[5]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[5]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[5]) ?>개'],
+                                ['금', <?= $price_arr[6] ?>, '매출 : <?= number_format($price_arr[6]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[6]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[6]) ?>개'],
+                                ['토', <?= $price_arr[7] ?>, '매출 : <?= number_format($price_arr[7]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[7]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[7]) ?>개']
                             ]);
 
                             var options = {
@@ -382,9 +389,9 @@
                         google.charts.load('current', {
                             'packages': ['corechart']
                         });
-                        google.charts.setOnLoadCallback(drawChart);
+                        google.charts.setOnLoadCallback(drawChart2);
 
-                        function drawChart() {
+                        function drawChart2() {
 
 
                             var data = google.visualization.arrayToDataTable([
