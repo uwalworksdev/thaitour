@@ -563,17 +563,18 @@
                 url: "./review_write_ok",
                 type: "POST",
                 data: formData,
+                dataType: 'json',
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    console.log(response)
                     $(window).off('beforeunload', handleUnload);
-                    if ($("#idx").val()) {
-                        alert("정상적으로 수정되었습니다!");
-                        location.href = `/review/review_detail?idx=${$("#idx").val()}`;
-                    } else {
-                        alert("정상적으로 등록되었습니다!");
-                        location.href = '/review/review_list';
+                    alert(response.msg);
+                    if(response.result) {
+                        if ($("#idx").val()) {
+                            location.href = `/review/review_detail?idx=${$("#idx").val()}`;
+                        } else {
+                            location.href = '/review/review_list';
+                        }
                     }
                 }
             })
