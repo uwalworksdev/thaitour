@@ -64,6 +64,7 @@
     $cnt_arr[6] = $pc_cnt_arr[6] + $mobile_cnt_arr[6];  // 금
     $cnt_arr[7] = $pc_cnt_arr[7] + $mobile_cnt_arr[7];  // 토
 
+/*
     $cp_arr = array();
 
     $cp_arr[1] = 0;  // 일
