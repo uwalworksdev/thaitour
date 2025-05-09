@@ -160,7 +160,7 @@
                             <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_day">일별통계</a></li>
                             <li class="contentMenuSub selected" data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_yoil">요일별통계</a></li>
                         </ul>
-                        <div class="contentBar left" style="left: 345px; display: none;"></div>
+                        <div class="contentBar left"  style="left: 345px; display: none;"></div>
                         <div class="contentBar right" style="left: 460px; display: none;"></div>
                     </div>
                 </div>
@@ -487,8 +487,7 @@
     });
 
     // 검색하기
-    function fn_search(){
-        let frm = document.modifyForm1;
-        frm.submit();
-    }
+	function fn_search() {
+		document.modifyForm1.submit();
+	}
 </script>
