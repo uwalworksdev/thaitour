@@ -167,6 +167,7 @@
                 </div>
 
                 <?php
+				/*
                     // 매출 배열
                     $top_banner1_arr = array();
                     $top_banner1_arr['P'] = 0;
@@ -181,7 +182,7 @@
                     $top_banner3_arr = array();
                     $top_banner3_arr['P'] = 0;
                     $top_banner3_arr['M'] = 0;
-
+                */
                 ?>
 
                 <div id="listArea">
@@ -298,7 +299,7 @@
                     </table>
 
                     <?php
-
+                    /* 
                         $delivery_arr = array();
 
                         $delivery_arr[1] = 0;  // 일
@@ -342,7 +343,7 @@
                         $top_banner6_arr = array();
                         $top_banner6_arr['P'] = 0;
                         $top_banner6_arr['M'] = 0;
-
+                    */ 
                     ?>
 
                     <div class="empty10" style="margin: 50px 0 50px 0;"></div>
