@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-
+/*
     $years	= $_GET['years'];
     $months = $_GET['months'];
     $seller	= $_GET['seller'];
@@ -72,7 +72,7 @@
     $cp_arr[5] = 0;  // 목
     $cp_arr[6] = 0;  // 금
     $cp_arr[7] = 0;  // 토
-
+*/
 ?>
 
 <div id="container">

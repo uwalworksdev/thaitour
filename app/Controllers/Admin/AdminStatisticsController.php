@@ -239,10 +239,50 @@ class AdminStatisticsController extends BaseController
         return $row_week;
     }
 
-    public function statistics_sale_yoil()
-    {
-        return view('admin/_statistics/statistics_sale_yoil');
+public function statistics_sale_yoil()
+{
+    $years  = $this->request->getGet('years') ?? date('Y');
+    $months = $this->request->getGet('months') ?? date('m');
+    $payin  = $this->request->getGet('payin');
+
+    $startDate = "$years-$months-01";
+    $endDate   = date('Y-m-t', strtotime($startDate));
+
+    $db = \Config\Database::connect();
+
+    $builder = $db->table('tbl_order_mst');
+    $builder->select("DAYOFWEEK(order_date) as yoil, SUM(real_price_won) as total, COUNT(*) as count");
+    $builder->where("order_date >=", $startDate);
+    $builder->where("order_date <=", $endDate);
+
+    if ($payin == "P") {
+        $builder->where("device_type", "P");
+    } elseif ($payin == "M") {
+        $builder->where("device_type", "M");
     }
+
+    $builder->groupBy("yoil");
+    $query = $builder->get();
+    $results = $query->getResult();
+
+    // 요일별 초기화
+    $price_arr = $cnt_arr = array_fill(1, 7, 0);
+
+    foreach ($results as $row) {
+        $yoil             = (int)$row->yoil;
+        $price_arr[$yoil] = (int)$row->total;
+        $cnt_arr[$yoil]   = (int)$row->count;
+    }
+
+    return view('admin/_statistics/statistics_sale_yoil', [
+        'price_arr' => $price_arr,
+        'cnt_arr'   => $cnt_arr,
+        'years'     => $years,
+        'months'    => $months,
+        'payin'     => $payin
+    ]);
+}
+
 
     public function statistics_sale_day()
     {
