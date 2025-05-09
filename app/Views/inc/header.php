@@ -124,7 +124,7 @@
                     <a href="/cart/item-list/123" class="icon-menu-item icon-menu-cart">
                         <img src="/images/ico/icon_cart.png" alt="">
                         <p style="margin-top:3px;">장바구니</p>
-                        <span class="cart_count"><?=getCartCount();?></span>
+                        <span class="cart_count"><?=//getCartCount();?></span>
                     </a>
 					
 					<?php if(session('member.id')) { ?>
