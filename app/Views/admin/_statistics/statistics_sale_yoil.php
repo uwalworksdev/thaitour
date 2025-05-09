@@ -35,13 +35,13 @@
     }
 */
     $yoil_arr = array();
-    $yoil_arr[1] = "월";
-    $yoil_arr[2] = "화";
-    $yoil_arr[3] = "수";
-    $yoil_arr[4] = "목";
-    $yoil_arr[5] = "금";
-    $yoil_arr[6] = "토";
-    $yoil_arr[7] = "일";
+    $yoil_arr[1] = "일";
+    $yoil_arr[2] = "월";
+    $yoil_arr[3] = "화";
+    $yoil_arr[4] = "수";
+    $yoil_arr[5] = "목";
+    $yoil_arr[6] = "금";
+    $yoil_arr[7] = "토";
 /*
     $price_arr = array();
 
