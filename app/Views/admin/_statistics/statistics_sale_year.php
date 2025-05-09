@@ -73,9 +73,9 @@
                 <div class="listSelect size09">
                     <form name="modifyForm1" method="get" action="statistics_sale_year" autocomplete="off">
                         <div class="firstLine selectYear" style="padding-left:0">
-                            <select name="seller" onchange="fn_search()">
+                            <!--select name="seller" onchange="fn_search()">
                                 <option value="">셀러전체</option>
-                            </select>
+                            </select-->
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
