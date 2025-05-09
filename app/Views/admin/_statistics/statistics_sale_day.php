@@ -104,9 +104,9 @@
                                 <?php } ?>
                             </select>
 
-                            <select name="seller" onchange="fn_search()">
+                            <!--select name="seller" onchange="fn_search()">
                                 <option value="">셀러전체</option> 
-                            </select>
+                            </select-->
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
