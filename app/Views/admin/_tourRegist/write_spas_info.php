@@ -76,7 +76,7 @@
 													<colgroup>
 														<col width="20%">
 														<col width="*">
-														<col width="15%">
+														<col width="11%">
 													</colgroup>
                                                     <!-- <thead>
                                                         <tr>
@@ -107,6 +107,9 @@
 																			value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
 																	
 																		<button class="btn btn-primary" type="button" onclick="write_day_price('<?= $info['info']['info_idx']?>', '<?=$product_idx?>')">날짜별 수정</button>
+
+																		<input type="checkbox" class="check_change_price">수정선택
+																		<input type="hidden" name="is_change_price[<?=$i?>]" class="is_change_price">
 																	</div>
 																	<?php
 																		$count_yoil = 0;
@@ -195,10 +198,10 @@
 																					</div>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['spas_price']) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price1'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['spas_price_kids']) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price2'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                                 </td>
          
                                                                                 <td>
@@ -355,7 +358,7 @@
                                                 <colgroup>
 													<col width="20%">
 													<col width="*">
-													<col width="15%">
+													<col width="11%">
                                                 </colgroup>
 
                                                 <tbody>
@@ -376,6 +379,9 @@
 																<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 																	<input type="text" readonly="" class="datepicker s_date" name="o_sdate[0]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 																	<input type="text" readonly="" class="datepicker e_date" name="o_edate[0]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
+
+																	<input type="checkbox" class="check_change_price">수정선택
+																	<input type="hidden" name="is_change_price[0]" class="is_change_price">
 
 																</div>
 																<div style="display: flex; align-items: center; gap: 5px;">
@@ -685,6 +691,14 @@
 		}
 	});
 
+	$(document).on("change", ".check_change_price", function() {
+		if ($(this).is(":checked")) {
+			$(this).closest("div").find(".is_change_price").val("Y");
+		} else {
+			$(this).closest("div").find(".is_change_price").val("");
+		}
+	});
+
 	$(document).on("change", ".all_yoil", function() {
 		if ($(this).is(":checked")) {
 			$(this).closest(".table_list").find(".yoil").prop("checked", true);
@@ -800,6 +814,9 @@
 									<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
 										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
 										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
+
+										<input type="checkbox" class="check_change_price">수정선택
+										<input type="hidden" name="is_change_price[${tableCount}]" class="is_change_price">
 									</div>
 									<div style="display: flex; align-items: center; gap: 5px;">
 										<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;

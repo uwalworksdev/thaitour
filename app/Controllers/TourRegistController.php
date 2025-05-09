@@ -2595,6 +2595,13 @@ class TourRegistController extends BaseController
         foreach ($results as $row) {
             $infoIndex = $row['info_idx'];
 
+            $price_today = $this->spasPrice
+                                ->select("goods_price1, goods_price2")
+                                ->where("product_idx", $product_idx)
+                                ->where("info_idx", $row['info_idx'])
+                                ->where("tours_idx", $row['tours_idx'])
+                                ->where("goods_date", date('Y-m-d'))->first();
+
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
                     'info' => $row,
@@ -2613,6 +2620,7 @@ class TourRegistController extends BaseController
                 'spas_price_kids'   => $row['spas_price_kids'],
                 'spas_price_baby'   => $row['spas_price_baby'],
                 'status'            => $row['status'],
+                'price_today'       => $price_today
             ];
 
             $groupedData[$infoIndex]['options'] = $this->spasMoption->where("info_idx", $infoIndex)->orderBy("onum", "asc")->findAll();

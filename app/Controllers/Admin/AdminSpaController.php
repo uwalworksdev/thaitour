@@ -715,8 +715,7 @@ class AdminSpaController extends BaseController
         $info_name          = $this->request->getPost('info_name');
         $is_explain         = $this->request->getPost('is_explain');
         $spas_explain       = $this->request->getPost('spas_explain');
-
-
+        $is_change_price    = $this->request->getPost('is_change_price');
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -818,6 +817,8 @@ class AdminSpaController extends BaseController
         foreach ($info_ids as $key => $infoId) {
             $s_date = $o_sdate[$key];
             $e_date = $o_edate[$key];
+            $change_price = $is_change_price[$key];
+
             if(!empty($s_date) && !empty($e_date)){
                 $start = new DateTime($s_date);
                 $end   = new DateTime($e_date);
@@ -859,12 +860,12 @@ class AdminSpaController extends BaseController
                     if(isset(${$yoilKey}[$key])){
                         $spas_option = $this->productSpas->where("info_idx", $infoId)->orderBy("spas_idx", "asc")->findAll();
                         foreach($spas_option as $option){
-                            $count_op = $this->spasPrice->where("product_idx", $productIdx)
+                            $row_price = $this->spasPrice->where("product_idx", $productIdx)
                                                          ->where("info_idx", $infoId)
                                                          ->where("spas_idx", $option["spas_idx"])
-                                                         ->where("goods_date", $currentDate)->countAllResults();
+                                                         ->where("goods_date", $currentDate)->get()->getRowArray();
                             
-                            if($count_op <= 0){
+                            if(empty($row_price)){
                                 $data_price = [
                                     'product_idx'   => $productIdx,
                                     'info_idx'      => $infoId,
@@ -880,6 +881,13 @@ class AdminSpaController extends BaseController
                                 ];
 
                                 $this->spasPrice->insertData($data_price);
+                            }else{
+                                if($change_price == 'Y'){
+                                    $this->spasPrice->updateData($row_price["idx"], [
+                                        'goods_price1'  => $option["spas_price"],
+                                        'goods_price2'  => $option["spas_price_kids"],
+                                    ]);
+                                }
                             }
                         }
                     }
