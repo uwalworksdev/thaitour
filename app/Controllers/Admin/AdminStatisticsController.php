@@ -243,8 +243,8 @@ public function statistics_sale_yoil()
 {
     $years  = $this->request->getGet('years')  ?? date('Y');
     $months = $this->request->getGet('months') ?? date('m');
-    $yoil   = $this->request->getGet('yoil');  // 요일: 1(일)~7(토)
-    $payin  = $this->request->getGet('payin'); // P / M
+    $yoil   = $this->request->getGet('weeks');  // 요일: 1(일)~7(토)
+    $payin  = $this->request->getGet('payin');  // P / M
 
     $startDate = "$years-$months-01";
     $endDate   = date('Y-m-t', strtotime($startDate));
