@@ -420,8 +420,10 @@
                             </div>   -->
                         </div>
                     </div>
+                    <button type="button" style="background-color: #fff; color: #000; border: 1px solid #dbdbdb;" class="primary-btn-calendar tour">장바구니에 담기</button>
+
                     <?php if ($product['product_status'] == 'sale'): ?>
-                        <button type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
+                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
                     <?php endif; ?>
                 </div>
             </div>
