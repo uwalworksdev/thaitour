@@ -243,45 +243,55 @@ public function statistics_sale_yoil()
 {
     $years  = $this->request->getGet('years') ?? date('Y');
     $months = $this->request->getGet('months') ?? date('m');
-    $payin  = $this->request->getGet('payin');
 
     $startDate = "$years-$months-01";
     $endDate   = date('Y-m-t', strtotime($startDate));
 
     $db = \Config\Database::connect();
 
+    // 요일별 초기화 (1~7)
+    $pc_price_arr = $pc_cnt_arr = $mobile_price_arr = $mobile_cnt_arr = array_fill(1, 7, 0);
+
+    // PC
     $builder = $db->table('tbl_order_mst');
     $builder->select("DAYOFWEEK(order_date) as yoil, SUM(real_price_won) as total, COUNT(*) as count");
     $builder->where("order_date >=", $startDate);
     $builder->where("order_date <=", $endDate);
-
-    if ($payin == "P") {
-        $builder->where("device_type", "P");
-    } elseif ($payin == "M") {
-        $builder->where("device_type", "M");
-    }
-
+    $builder->where("device_type", "P");
     $builder->groupBy("yoil");
-    $query = $builder->get();
-    $results = $query->getResult();
-
-    // 요일별 초기화
-    $price_arr = $cnt_arr = array_fill(1, 7, 0);
+    $results = $builder->get()->getResult();
 
     foreach ($results as $row) {
-        $yoil             = (int)$row->yoil;
-        $price_arr[$yoil] = (int)$row->total;
-        $cnt_arr[$yoil]   = (int)$row->count;
+        $yoil                  = (int)$row->yoil;
+        $pc_price_arr[$yoil]   = (int)$row->total;
+        $pc_cnt_arr[$yoil]     = (int)$row->count;
+    }
+
+    // Mobile
+    $builder = $db->table('tbl_order_mst');
+    $builder->select("DAYOFWEEK(order_date) as yoil, SUM(real_price_won) as total, COUNT(*) as count");
+    $builder->where("order_date >=", $startDate);
+    $builder->where("order_date <=", $endDate);
+    $builder->where("device_type", "M");
+    $builder->groupBy("yoil");
+    $results = $builder->get()->getResult();
+
+    foreach ($results as $row) {
+        $yoil                     = (int)$row->yoil;
+        $mobile_price_arr[$yoil]  = (int)$row->total;
+        $mobile_cnt_arr[$yoil]    = (int)$row->count;
     }
 
     return view('admin/_statistics/statistics_sale_yoil', [
-        'price_arr' => $price_arr,
-        'cnt_arr'   => $cnt_arr,
-        'years'     => $years,
-        'months'    => $months,
-        'payin'     => $payin
+        'years'            => $years,
+        'months'           => $months,
+        'pc_price_arr'     => $pc_price_arr,
+        'pc_cnt_arr'       => $pc_cnt_arr,
+        'mobile_price_arr' => $mobile_price_arr,
+        'mobile_cnt_arr'   => $mobile_cnt_arr
     ]);
 }
+
 
 
     public function statistics_sale_day()
