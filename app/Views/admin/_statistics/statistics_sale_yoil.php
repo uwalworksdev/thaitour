@@ -33,7 +33,7 @@
     if ($e_date == "") {
         $e_date = date('Y-m-d');
     }
-
+*/
     $yoil_arr = array();
     $yoil_arr[1] = "일";
     $yoil_arr[2] = "월";
@@ -42,7 +42,7 @@
     $yoil_arr[5] = "목";
     $yoil_arr[6] = "금";
     $yoil_arr[7] = "토";
-
+/*
     $price_arr = array();
 
     $price_arr[1] = 0;  // 일
@@ -280,8 +280,8 @@
                         <thead>
                             <tr>
                                 <th>요일</th>
-                                <th>매출</th>
-                                <th>상품</th>
+                                <th>매출(원)</th>
+                                <th>상품(건)</th>
                                 <!-- <th>CP수수료</th> -->
                             </tr>
                         </thead>
