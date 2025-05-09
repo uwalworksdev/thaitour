@@ -396,6 +396,10 @@
                 gap: 6px;
             }
 
+            .daterangepicker .drp-calendar.right {
+                padding: 20px 20px 20px 8px;
+            }
+
             .daterangepicker .calendar-table td .custom-info .allow-text {
                 font-size: 14px;
                 padding: 8px;
@@ -1271,7 +1275,7 @@
                         n = $(this).parents(".drp-calendar").hasClass("left")
                         ? picker.leftCalendar.calendar[i][s]
                         : picker.rightCalendar.calendar[i][s];
-                        const countDay = $("#countDay" + idx).val();
+                        const countDay = Number($("#countDay" + idx).val() - 1);
                         picker.setStartDate(n);
                         picker.setEndDate(n.add(Number(countDay), "days"));
                         picker.clickApply();
