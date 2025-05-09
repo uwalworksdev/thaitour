@@ -17,7 +17,7 @@ class Member extends Model
         "out_code", "out_etc", "out_reason", "out_date", "user_level", "visit_route",
         "mileage", "ip_address", "gubun", "sns_key", "m_auth", "m_date", "r_date", "reg_device",
         "company", "comnum", "fax", "user_ip", "recommender", "ufile1", "rfile1",
-        "login_count", "login_date", "auth", "user_post", "encode", "mbti",
+        "login_count", "login_date", "auth", "user_post", "encode", "mbti", "is_review"
     ];
 
     public function getByIdx($m_idx)

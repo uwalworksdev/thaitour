@@ -617,6 +617,7 @@ class Member extends BaseController
             'ip_address' => $request->getIPAddress(),
             'status' => updateSQ($request->getPost("status")),
             'mbti' => updateSQ($request->getPost("mbti")),
+            'is_review' => updateSQ($request->getPost("is_review")),
         ];
 
 		if (!empty($data['user_pw'])) {
@@ -647,6 +648,7 @@ class Member extends BaseController
             'encode' => 'Y',
             'status' => $data['status'],
             'mbti' => $data['mbti'],
+            'is_review' => $data['is_review'],
         ];
 
         $this->member->update($m_idx, $updateData, false);

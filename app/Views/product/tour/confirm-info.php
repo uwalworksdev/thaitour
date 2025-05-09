@@ -867,7 +867,7 @@
 
                 $("#order_status").val(status);
 
-                if (status == "W") {
+                if (status == "W" || status == "B") {
                     if ($("#order_user_name").val() === "") {
                         alert("한국이름을 입력해주세요.");
                         $("#order_user_name").focus();
@@ -917,6 +917,38 @@
                     } else if ($("input[name='radio_phone']:checked").val() === "thai") {
                         if ($("#phone_thai").val() === "") {
                             alert("태국번호를 입력해주세요.");
+                            return false;
+                        }
+                    }
+
+                    if($status == "B"){
+                        if ($("#local_phone").val() === "") {
+                            alert("여행시 현지 연락처 입력해주세요!");
+                            $("#local_phone").focus();
+                            return false;
+                        }
+
+                        if ($("#start_place").val() === "") {
+                            alert("미팅장소 입력해주세요!");
+                            $("#start_place").focus();
+                            return false;
+                        }
+
+                        if ($("#end_place").val() === "") {
+                            alert("종료 후 내리실 곳 입력해주세요!");
+                            $("#end_place").focus();
+                            return false;
+                        }
+
+                        if ($("#id_kakao").val() === "") {
+                            alert("카카오톡 아이디 입력해주세요!");
+                            $("#id_kakao").focus();
+                            return false;
+                        }
+
+                        if ($("#description").val() === "") {
+                            alert("기타 요청 입력해주세요!");
+                            $("#description").focus();
                             return false;
                         }
                     }

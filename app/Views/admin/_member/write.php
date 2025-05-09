@@ -132,13 +132,11 @@
                             </td>
                         </tr>
 
-                        <!-- 직업 và 생년월일 -->
                         <tr height="45">
                             <th>직업</th>
                             <td>
                                 <select class="jop_sel" name="job" id="job111">
                                     <option value="">선택</option>
-                                    <!-- Hiển thị các tùy chọn nghề nghiệp -->
                                     <?php foreach ($jobs as $job): ?>
                                         <option value="<?= esc($job['code_no']) ?>" <?= $member['job'] == $job['code_no'] ? 'selected' : '' ?>><?= esc($job['code_name']) ?></option>
                                     <?php endforeach; ?>
@@ -156,7 +154,6 @@
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <select name="bmm" id="bmm">
                                     <option value="">월선택</option>
-                                    <!-- Các tùy chọn cho tháng -->
                                     <?php for ($m = 1; $m <= 12; $m++): ?>
                                         <option value="<?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>" <?= $m == $birth[1] ? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>월</option>
                                     <?php endfor; ?>
@@ -164,7 +161,6 @@
                                 <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <select name="bdd" id="bdd">
                                     <option value="">선택</option>
-                                    <!-- Các tùy chọn cho ngày -->
                                     <?php for ($d = 1; $d <= 31; $d++): ?>
                                         <option value="<?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>" <?= $d == $birth[2] ? 'selected' : '' ?>><?= str_pad($d, 2, '0', STR_PAD_LEFT) ?>일</option>
                                     <?php endfor; ?>
@@ -272,6 +268,14 @@
                                         <option <?= $code['code_no'] == $member['mbti'] ? 'selected' : '' ?> value="<?= $code['code_no'] ?>"><?= $code['code_name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
+                            </td>
+                        </tr>
+
+                        <tr height="45">
+                            <th>후기작성</th>
+                            <td colspan="3">
+                                <input type="checkbox" name="is_review"
+                                    value="Y" <?= $member['is_review'] == "Y" ? 'checked' : '' ?>>
                             </td>
                         </tr>
 
