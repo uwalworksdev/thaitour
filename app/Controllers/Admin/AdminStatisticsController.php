@@ -290,7 +290,9 @@ public function statistics_sale_yoil()
 
         $builder->groupBy("yoil");
         $results = $builder->get()->getResult();
-echo $builder->getLastQuery();
+
+echo $db->getLastQuery();
+
         foreach ($results as $row) {
             $y = (int)$row->yoil;
             $mobile_price_arr[$y] = (int)$row->total;
