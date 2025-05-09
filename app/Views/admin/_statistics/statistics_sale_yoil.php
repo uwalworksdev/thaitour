@@ -193,15 +193,15 @@
                         <tbody class="statistics">
                             <tr>
                                 <td>
-                                    <div class="nums">1000</div>
+                                    <div class="nums">0</div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 1000</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 1000</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="nums">2000</div>
+                                    <div class="nums">0</div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 2000</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 2000</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
                                 <!-- <td>
