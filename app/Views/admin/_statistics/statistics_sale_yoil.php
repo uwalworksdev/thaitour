@@ -79,7 +79,7 @@
     <span id="print_this">
         <header id="headerContainer">
             <div class="inner">
-                <h2>매출분석</h2>
+                <h2>매출분석..</h2>
             </div>
         </header>
         <div id="contents">
