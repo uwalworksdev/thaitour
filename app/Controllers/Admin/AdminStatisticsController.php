@@ -250,6 +250,9 @@ public function statistics_sale_yoil()
     $endDate   = date('Y-m-t', strtotime($startDate));
 
     $db = \Config\Database::connect();
+    
+	$pc_query     = '';
+    $mobile_query = '';
 
     // 요일별 초기화
     $pc_price_arr = $pc_cnt_arr = $mobile_price_arr = $mobile_cnt_arr = array_fill(1, 7, 0);
@@ -261,13 +264,14 @@ public function statistics_sale_yoil()
         $builder->where("order_date >=", $startDate);
         $builder->where("order_date <=", $endDate);
         $builder->where("device_type", "P");
-
+		
         if (!empty($yoil)) {
             $builder->where("DAYOFWEEK(order_date)", (int)$yoil);
         }
 
         $builder->groupBy("yoil");
-        $results = $builder->get()->getResult();
+        $results  = $builder->get()->getResult();
+        $pc_query = $db->getLastQuery();  // PC 쿼리 저장		
 
         foreach ($results as $row) {
             $y = (int)$row->yoil;
@@ -290,8 +294,13 @@ public function statistics_sale_yoil()
 
         $builder->groupBy("yoil");
         $results = $builder->get()->getResult();
+        $mobile_query = $db->getLastQuery();  // PC 쿼리 저장		
 
-echo $db->getLastQuery();
+// 디버그 출력
+echo "<pre>";
+echo "PC QUERY:\n" .     $pc_query . "\n\n";
+echo "MOBILE QUERY:\n" . $mobile_query;
+echo "</pre>";
 
         foreach ($results as $row) {
             $y = (int)$row->yoil;
