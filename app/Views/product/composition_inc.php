@@ -130,11 +130,11 @@
                             <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
                         </div>
                     <?php endif; ?>
-                    <div class="flex">
+                    <!-- <div class="flex">
                         <button type="button" class="btn-default cart"
                                 onclick="location='#'">장바구니에 담기
                         </button>
-                    </div>
+                    </div> -->
                     <div class="flex">
                         <button type="button" class="btn-default"
                                 onclick="location='/qna/write'">상담 문의하기
