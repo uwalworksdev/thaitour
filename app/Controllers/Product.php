@@ -4429,9 +4429,9 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     {
         $search_product_name = $this->request->getVar('keyword') ?? "";
         $product_code_2 = $this->request->getVar('product_code_2') ?? "";
-        $main_product_code = $this->request->getVar('main_product_code') ?? "";
+        $main_product_code = $this->request->getVar('main_product_code');
 
-        if(!empty($main_product_code)) {
+        if(isset($main_product_code)) {
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => $code_no,
             ], 10, 1, ['onum' => 'DESC'])['items'];
