@@ -131,13 +131,13 @@
 
 							<select name="weeks" onchange="fn_search()">
 								<option value="">전체</option>
-								<option value="1">일요일</option>
-								<option value="2">월요일</option>
-								<option value="3">화요일</option>
-								<option value="4">수요일</option>
-								<option value="5">목요일</option>
-								<option value="6">금요일</option>
-								<option value="7">토요일</option>
+								<option value="1" <?php if($weeks == "1") echo "selected";?> >일요일</option>
+								<option value="2" <?php if($weeks == "2") echo "selected";?> >월요일</option>
+								<option value="3" <?php if($weeks == "3") echo "selected";?> >화요일</option>
+								<option value="4" <?php if($weeks == "4") echo "selected";?> >수요일</option>
+								<option value="5" <?php if($weeks == "5") echo "selected";?> >목요일</option>
+								<option value="6" <?php if($weeks == "6") echo "selected";?> >금요일</option>
+								<option value="7" <?php if($weeks == "7") echo "selected";?> >토요일</option>
 							</select>
 
                             <!--select name="seller" onchange="fn_search()">
@@ -146,8 +146,8 @@
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
                         </div>
                     </form>
