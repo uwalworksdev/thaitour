@@ -226,9 +226,9 @@
                         google.charts.load('current', {
                             'packages': ['corechart']
                         });
-                        google.charts.setOnLoadCallback(drawChart);
+                        google.charts.setOnLoadCallback(drawChart1);
 
-                        function drawChart() {
+                        function drawChart1() {
 
                             var data = google.visualization.arrayToDataTable([
                                 ['요일', '매출', {
@@ -382,9 +382,9 @@
                         google.charts.load('current', {
                             'packages': ['corechart']
                         });
-                        google.charts.setOnLoadCallback(drawChart);
+                        google.charts.setOnLoadCallback(drawChart2);
 
-                        function drawChart() {
+                        function drawChart2() {
 
 
                             var data = google.visualization.arrayToDataTable([
