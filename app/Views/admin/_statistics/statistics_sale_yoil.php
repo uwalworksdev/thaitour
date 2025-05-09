@@ -308,27 +308,28 @@
                         $delivery_arr[5] = 0;  // 목
                         $delivery_arr[6] = 0;  // 금
                         $delivery_arr[7] = 0;  // 토
-
+                    */
                         $point_arr = array();
 
-                        $point_arr[1] = 0;  // 일
-                        $point_arr[2] = 0;  // 월
-                        $point_arr[3] = 0;  // 화
-                        $point_arr[4] = 0;  // 수
-                        $point_arr[5] = 0;  // 목
-                        $point_arr[6] = 0;  // 금
-                        $point_arr[7] = 0;  // 토
+                        $point_arr[1] = $pc_point_arr[1] + $mobile_point_arr[1];  // 일
+                        $point_arr[2] = $pc_point_arr[2] + $mobile_point_arr[2];  // 월
+                        $point_arr[3] = $pc_point_arr[3] + $mobile_point_arr[3];  // 화
+                        $point_arr[4] = $pc_point_arr[4] + $mobile_point_arr[4];  // 수
+                        $point_arr[5] = $pc_point_arr[5] + $mobile_point_arr[5];  // 목
+                        $point_arr[6] = $pc_point_arr[6] + $mobile_point_arr[6];  // 금
+                        $point_arr[7] = $pc_point_arr[7] + $mobile_point_arr[7];  // 토
 
                         $coupon_arr = array();
 
-                        $coupon_arr[1] = 0;  // 일
-                        $coupon_arr[2] = 0;  // 월
-                        $coupon_arr[3] = 0;  // 화
-                        $coupon_arr[4] = 0;  // 수
-                        $coupon_arr[5] = 0;  // 목
-                        $coupon_arr[6] = 0;  // 금
-                        $coupon_arr[7] = 0;  // 토
-
+                        $coupon_arr[1] = $pc_coupon_arr[1] + $mobile_coupon_arr[1];  // 일
+                        $coupon_arr[2] = $pc_coupon_arr[2] + $mobile_coupon_arr[2];  // 월
+                        $coupon_arr[3] = $pc_coupon_arr[3] + $mobile_coupon_arr[3];  // 화
+                        $coupon_arr[4] = $pc_coupon_arr[4] + $mobile_coupon_arr[4];  // 수
+                        $coupon_arr[5] = $pc_coupon_arr[5] + $mobile_coupon_arr[5];  // 목
+                        $coupon_arr[6] = $pc_coupon_arr[6] + $mobile_coupon_arr[6];  // 금
+                        $coupon_arr[7] = $pc_coupon_arr[7] + $mobile_coupon_arr[7];  // 토
+                    
+					/*
                         // 배송비 배열
                         $top_banner4_arr = array();
                         $top_banner4_arr['P'] = 0;
