@@ -24,7 +24,7 @@
 <script>
 function go_payment()
 {
-         location.href='/mypage/booklist';
+         location.href='/mypage/reservation_list';
 }
 </script>
 
