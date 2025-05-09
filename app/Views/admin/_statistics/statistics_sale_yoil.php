@@ -238,12 +238,12 @@
                                     }
                                 }],
                                 ['일', <?= $price_arr[1] ?>, '매출 : <?= number_format($price_arr[1]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[1]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[1]) ?>개'],
-                                ['월', <?= $price_arr[2] ?>, '매출 : <?= number_format($price_arr[2]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[2]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[2]) ?>개'],
-                                ['화', <?= $price_arr[3] ?>, '매출 : <?= number_format($price_arr[3]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[3]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[3]) ?>개'],
-                                ['수', <?= $price_arr[4] ?>, '매출 : <?= number_format($price_arr[4]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[4]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[4]) ?>개'],
-                                ['목', <?= $price_arr[5] ?>, '매출 : <?= number_format($price_arr[5]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[5]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[5]) ?>개'],
-                                ['금', <?= $price_arr[6] ?>, '매출 : <?= number_format($price_arr[6]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[6]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[6]) ?>개'],
-                                ['토', <?= $price_arr[7] ?>, '매출 : <?= number_format($price_arr[7]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[7]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[7]) ?>개']
+                                ['월', <?= $price_arr[2] ?>, '매출 : <?= number_format($price_arr[2]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[2]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[2]) ?>개'],
+                                ['화', <?= $price_arr[3] ?>, '매출 : <?= number_format($price_arr[3]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[3]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[3]) ?>개'],
+                                ['수', <?= $price_arr[4] ?>, '매출 : <?= number_format($price_arr[4]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[4]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[4]) ?>개'],
+                                ['목', <?= $price_arr[5] ?>, '매출 : <?= number_format($price_arr[5]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[5]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[5]) ?>개'],
+                                ['금', <?= $price_arr[6] ?>, '매출 : <?= number_format($price_arr[6]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[6]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[6]) ?>개'],
+                                ['토', <?= $price_arr[7] ?>, '매출 : <?= number_format($price_arr[7]) ?>원 <br/> <!--CP수수료 : <?= number_format($cp_arr[7]) ?>원 <br/--> 상품 : <?= number_format($cnt_arr[7]) ?>개']
                             ]);
 
                             var options = {
