@@ -61,7 +61,7 @@
         <h2 class="title-sec6"><span>여행후기</span>(<?= $product['total_review'] ?? 0 ?>)</h2>
         <div class="write_new_review">
             <p class="desc_">2000 포인트 (최소 500자 이상+ 사진 1장) - 포인트는 예약 건이 있는 경우에만 적립됩니다.</p>
-            <a class="btnGoReviewPage" href="/review/review_write?product_idx=<?= $product['product_idx'] ?>">쓰기</a>
+            <a class="btnGoReviewPage" href="javascript:writeReview();">쓰기</a>
         </div>
     </div>
     <div class="rating-content">
@@ -122,6 +122,23 @@
     </div>
 
     <script>
+        function writeReview() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }else if(count(checkOrderComplete($product['product_idx'])) <= 0) {
+            ?>
+                alert("상품구매시 후기 작성가능합니다");
+                return false;
+            <?php
+                }
+            ?>
+            location.href = "/review/review_write?product_idx=<?= $product['product_idx'] ?>";
+        }
+
         function goList() {
             window.location.href = '/review/review_list';
         }

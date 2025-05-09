@@ -181,7 +181,7 @@
                 </table>
                 <div class="paging_wrap">
                     <?php echo ipageListing2($page, $total_page, $total_cnt, $currentUri . "?category=$category&search_category=" . $search_category . "&s_txt=" . $s_txt . "&page=", $deviceType) ?>
-                    <a href="./review_write" class="btn btn-point btn-lg contact_btn">글쓰기</a>
+                    <a href="javascript:writeReview();" class="btn btn-point btn-lg contact_btn">글쓰기</a>
                 </div>
 
                 <?php
@@ -194,6 +194,23 @@
     </div>
 
     <script>
+        function writeReview() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }else if(count(checkOrderComplete()) <= 0) {
+            ?>
+                alert("상품구매시 후기 작성가능합니다");
+                return false;
+            <?php
+                }
+            ?>
+            location.href = "/review/review_write";
+        }
+
         function showReport(idx) {
             <?php
                 if (empty(session()->get("member")["id"])) {

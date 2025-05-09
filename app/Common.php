@@ -1,5 +1,6 @@
 <?php
 
+use CodeIgniter\Model;
 
 /**
  * The goal of this file is to allow developers a location
@@ -14,6 +15,20 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+
+function checkOrderComplete($product_idx = null) {
+    $m_idx = session()->get("member")["idx"] ?? 0;   
+
+    $order = Model("OrdersModel");
+    $order->where("m_idx", $m_idx)->where("order_status", "E");
+
+    if(!empty($product_idx)) {
+        $order->where("product_idx", $product_idx);
+    }
+
+    return $order->get()->getResultArray();
+}
+
 function getOS(string $user_agent): string
 {
     $os_array = [

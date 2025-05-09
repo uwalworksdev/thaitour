@@ -445,6 +445,14 @@ class ReviewController extends BaseController
         $review_type = updateSQ($_POST["review_type"] ?? '');
         $user_id = $_SESSION['member']['idx'];
 
+        if(count(checkOrderComplete($product_idx)) <= 0) {
+            return json_encode(
+                array(
+                    "result" => false, 
+                    "msg" => "상품구매시 후기 작성가능합니다.")
+            );
+        }
+
         if ($role == "admin") {
             $user_email = updateSQ($_POST["user_email"] ?? '');
             $status = updateSQ($_POST["status"] ?? 'Y');
@@ -520,7 +528,11 @@ class ReviewController extends BaseController
             $this->ReviewModel->update($idx, $dataToUpdate);
 
             $this->calcReview($product_idx, $travel_type_2);
-            return alert_msg("정상적으로 수정되었습니다.", "/review/review_list");
+            return json_encode(
+                array(
+                    "result" => true, 
+                    "msg" => "정상적으로 수정되었습니다!")
+            );
         }
 
         $dataToInsert = [
@@ -587,7 +599,12 @@ class ReviewController extends BaseController
                 }
             }
         }
-        return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
+        return json_encode(
+            array(
+                "result" => true, 
+                "msg" => "정상적으로 등록되었습니다!"
+            )
+        );
     }
 
     public function review_delete()
