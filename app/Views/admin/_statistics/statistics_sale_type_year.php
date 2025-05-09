@@ -3,8 +3,8 @@
 
 <link rel="stylesheet" href="/css/admin/statistics.css" type="text/css" />
 <link rel="stylesheet" href="/js/admin/statistics.js">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <style>
     .bar-container {
@@ -134,10 +134,10 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", <?= $price_arr['Card'] ?>],
-                                    ["무통장", <?= $price_arr['VBank'] ?>],
-                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>],
-                                    ["통장입금", <?= $price_arr['MBank'] ?>],
+                                    ["카드결제", 100 ],
+                                    ["무통장",  50 ],
+                                    ["실시간계좌이체", 20],
+                                    ["통장입금", 10],
                                 ]);
 
                                 var options = {
@@ -156,12 +156,12 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = 100;
                                 var rows = [
-                                    ["카드결제", <?= $price_arr['Card'] ?>, "#4285F4"],
-                                    ["무통장", <?= $price_arr['VBank'] ?>, "#4285F4"],
-                                    ["실시간계좌이체", <?= $price_arr['DBank'] ?>, "#4285F4"],
-                                    ["통장입금", <?= $price_arr['MBank'] ?>, "#4285F4"]
+                                    ["카드결제", 100, "#4285F4"],
+                                    ["무통장", 50, "#4285F4"],
+                                    ["실시간계좌이체", 20, "#4285F4"],
+                                    ["통장입금", 10, "#4285F4"]
                                 ];
 
                                 rows.forEach((row, index) => {
