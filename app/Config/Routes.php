@@ -501,10 +501,10 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_statistics", static function ($routes) {
-        $routes->get("statistics_sale_yoil", "Admin\AdminStatisticsController::statistics_sale_yoil");
-        $routes->get("statistics_sale_day", "Admin\AdminStatisticsController::statistics_sale_day");
+        $routes->get("statistics_sale_yoil",  "Admin\AdminStatisticsController::statistics_sale_yoil");
+        $routes->get("statistics_sale_day",   "Admin\AdminStatisticsController::statistics_sale_day");
         $routes->get("statistics_sale_month", "Admin\AdminStatisticsController::statistics_sale_month");
-        $routes->get("statistics_sale_year", "Admin\AdminStatisticsController::statistics_sale_year");
+        $routes->get("statistics_sale_year",  "Admin\AdminStatisticsController::statistics_sale_year");
 
         $routes->get("statistics_sale_sales", "Admin\AdminStatisticsController::statistics_sale_sales");
 

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-
+/*
     $years	= $_GET['years'];
     $months = $_GET['months'];
     $seller	= $_GET['seller'];
@@ -33,7 +33,7 @@
     if ($e_date == "") {
         $e_date = date('Y-m-d');
     }
-
+*/
     $yoil_arr = array();
     $yoil_arr[1] = "일";
     $yoil_arr[2] = "월";
@@ -42,27 +42,26 @@
     $yoil_arr[5] = "목";
     $yoil_arr[6] = "금";
     $yoil_arr[7] = "토";
-
+ 
     $price_arr = array();
-
-    $price_arr[1] = 0;  // 일
-    $price_arr[2] = 0;  // 월
-    $price_arr[3] = 0;  // 화
-    $price_arr[4] = 0;  // 수
-    $price_arr[5] = 0;  // 목
-    $price_arr[6] = 0;  // 금
-    $price_arr[7] = 0;  // 토
+    $price_arr[1] = $pc_price_arr[1] + $mobile_price_arr[1];  // 일
+    $price_arr[2] = $pc_price_arr[2] + $mobile_price_arr[2];  // 월
+    $price_arr[3] = $pc_price_arr[3] + $mobile_price_arr[3];  // 화
+    $price_arr[4] = $pc_price_arr[4] + $mobile_price_arr[4];  // 수
+    $price_arr[5] = $pc_price_arr[5] + $mobile_price_arr[5];  // 목
+    $price_arr[6] = $pc_price_arr[6] + $mobile_price_arr[6];  // 금
+    $price_arr[7] = $pc_price_arr[7] + $mobile_price_arr[7];  // 토
 
     $cnt_arr = array();
+    $cnt_arr[1] = $pc_cnt_arr[1] + $mobile_cnt_arr[1];  // 일
+    $cnt_arr[2] = $pc_cnt_arr[2] + $mobile_cnt_arr[2];  // 월
+    $cnt_arr[3] = $pc_cnt_arr[3] + $mobile_cnt_arr[3];  // 화
+    $cnt_arr[4] = $pc_cnt_arr[4] + $mobile_cnt_arr[4];  // 수
+    $cnt_arr[5] = $pc_cnt_arr[5] + $mobile_cnt_arr[5];  // 목
+    $cnt_arr[6] = $pc_cnt_arr[6] + $mobile_cnt_arr[6];  // 금
+    $cnt_arr[7] = $pc_cnt_arr[7] + $mobile_cnt_arr[7];  // 토
 
-    $cnt_arr[1] = 0;  // 일
-    $cnt_arr[2] = 0;  // 월
-    $cnt_arr[3] = 0;  // 화
-    $cnt_arr[4] = 0;  // 수
-    $cnt_arr[5] = 0;  // 목
-    $cnt_arr[6] = 0;  // 금
-    $cnt_arr[7] = 0;  // 토
-
+/*
     $cp_arr = array();
 
     $cp_arr[1] = 0;  // 일
@@ -72,7 +71,7 @@
     $cp_arr[5] = 0;  // 목
     $cp_arr[6] = 0;  // 금
     $cp_arr[7] = 0;  // 토
-
+*/
 ?>
 
 <div id="container">
@@ -161,12 +160,13 @@
                             <li class="contentMenuSub " data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_day">일별통계</a></li>
                             <li class="contentMenuSub selected" data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_yoil">요일별통계</a></li>
                         </ul>
-                        <div class="contentBar left" style="left: 345px; display: none;"></div>
+                        <div class="contentBar left"  style="left: 345px; display: none;"></div>
                         <div class="contentBar right" style="left: 460px; display: none;"></div>
                     </div>
                 </div>
 
                 <?php
+				/*
                     // 매출 배열
                     $top_banner1_arr = array();
                     $top_banner1_arr['P'] = 0;
@@ -181,7 +181,7 @@
                     $top_banner3_arr = array();
                     $top_banner3_arr['P'] = 0;
                     $top_banner3_arr['M'] = 0;
-
+                */
                 ?>
 
                 <div id="listArea">
@@ -279,8 +279,8 @@
                         <thead>
                             <tr>
                                 <th>요일</th>
-                                <th>매출</th>
-                                <th>상품</th>
+                                <th>매출(원)</th>
+                                <th>상품(개)</th>
                                 <!-- <th>CP수수료</th> -->
                             </tr>
                         </thead>
@@ -298,7 +298,7 @@
                     </table>
 
                     <?php
-
+                    /* 
                         $delivery_arr = array();
 
                         $delivery_arr[1] = 0;  // 일
@@ -342,7 +342,7 @@
                         $top_banner6_arr = array();
                         $top_banner6_arr['P'] = 0;
                         $top_banner6_arr['M'] = 0;
-
+                    */ 
                     ?>
 
                     <div class="empty10" style="margin: 50px 0 50px 0;"></div>
@@ -452,6 +452,14 @@
     </span>
 </div>
 
+
+<script>
+// 검색하기
+function fn_search() {
+	document.modifyForm1.submit();
+}
+</script>
+
 <?= $this->endSection() ?>
 
 <script>
@@ -485,10 +493,4 @@
             dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         });
     });
-
-    // 검색하기
-    function fn_search(){
-        let frm = document.modifyForm1;
-        frm.submit();
-    }
 </script>
