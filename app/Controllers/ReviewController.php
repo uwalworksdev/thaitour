@@ -309,7 +309,11 @@ class ReviewController extends BaseController
         $privacy = $this->policy->getByCode("privacy");
         $third_paties = $this->policy->getByCode("third_paties");
 
-        $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no=13 AND depth = '2' ORDER BY onum ";
+        $sql0 = "SELECT t1.*, t2.product_name, t3.order_idx FROM tbl_code as t1 
+            LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_1
+            LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx  
+            WHERE t1.parent_code_no = 13 AND t1.depth = '2' AND t3.m_idx = '$member_Id' AND t3.order_status = 'E'
+            GROUP BY t1.code_no ORDER BY t1.onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
 
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no='4201' ORDER BY onum ";
@@ -342,7 +346,10 @@ class ReviewController extends BaseController
                 left join tbl_code t3 on t1.travel_type_2 = t3.code_no
                 left join tbl_code t4 on t1.travel_type_3 = t4.code_no
                 left join tbl_product_mst t5 on t1.product_idx = t5.product_idx
-                where t1.idx = '$idx'
+                left join tbl_order_mst t6 on t6.product_idx = t5.product_idx
+                left join tbl_member t7 on t7.m_idx = t6.m_idx
+
+                where t1.idx = '$idx' and t7.m_idx = '$member_Id' and t6.order_status = 'E'
                 ";
 
             $info = $this->db->query($sql_info)->getRowArray();
@@ -445,7 +452,7 @@ class ReviewController extends BaseController
         $review_type = updateSQ($_POST["review_type"] ?? '');
         $user_id = $_SESSION['member']['idx'];
 
-        if(count(checkOrderComplete($product_idx)) <= 0) {
+        if(!checkOrderComplete($product_idx)) {
             return json_encode(
                 array(
                     "result" => false, 

@@ -16,6 +16,8 @@ class Tools extends BaseController
     protected $sessionChk;
     protected $guideModel;
     protected $reviewModel;
+    protected $db;
+
 
     public function __construct()
     {
@@ -28,6 +30,8 @@ class Tools extends BaseController
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->guideModel = new Guides();
         $this->reviewModel = model('ReviewModel');
+        $this->db = db_connect();
+
         helper('my_helper');
     }
 
@@ -43,6 +47,35 @@ class Tools extends BaseController
         $code = $_POST['code'];
         $depth = $_POST['depth'];
         $result = $this->Code->getByParentAndDepth($code, $depth);
+        $cnt = $result->getNumRows();
+        $data = "";
+        $data .= "<option value=''>선택</option>";
+        foreach ($result->getResultArray() as $row) {
+            $data .= "<option value='$row[code_no]'>$row[code_name]</option>";
+        }
+        return json_encode([
+            "data" => $data,
+            "cnt" => $cnt
+        ]);
+    }
+
+    public function get_review_code()
+    {
+        $member_Id = session('member.idx');
+
+        $code = $_POST['code'];
+        $depth = $_POST['depth'];
+        $sql = "
+            SELECT t1.*, t2.product_name, t3.order_idx FROM tbl_code as t1 
+            LEFT JOIN tbl_product_mst as t2 ON t1.code_no = t2.product_code_2
+            LEFT JOIN tbl_order_mst as t3 ON t3.product_idx = t2.product_idx  
+            WHERE t1.parent_code_no = '$code' AND t1.depth = '$depth' AND t1.status = 'Y' AND t3.m_idx = '$member_Id' AND t3.order_status = 'E'
+            GROUP BY t1.code_no ORDER BY t1.onum ASC, t1.code_idx ASC
+        ";
+
+        $result = $this->db->query($sql);
+
+        // $result = $this->Code->getByParentAndDepth($code, $depth);
         $cnt = $result->getNumRows();
         $data = "";
         $data .= "<option value=''>선택</option>";
@@ -73,6 +106,49 @@ class Tools extends BaseController
                 ->where('product_code_2', $product_code)
                 ->orLike('product_code_list', '|' . $product_code)
                 ->groupEnd()
+                ->findAll();
+        }
+
+        $cnt = count($result);
+        $data = "";
+        if ($cnt == 0) {
+            $data .= "<option value=''>선택</option>";
+        }
+
+        foreach ($result as $row) {
+            $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"] != '' ? $row["product_name"] : $row["special_name"]) . "</option>";
+        }
+
+        return json_encode([
+            "data" => $data,
+            "cnt" => $cnt
+        ], JSON_THROW_ON_ERROR);
+    }
+
+    public function get_list_product_review() {
+        $product_code = $_POST['product_code'];
+        $s_code = $_POST['s_code'];
+        $member_Id = session('member.idx');
+
+        if ($product_code == "132404" && $s_code == "D") {
+            $result = $this->driverModel->listAll();
+        } else {
+            $result = $this->ProductModel
+                ->select('t1.*')
+                ->join('tbl_order_mst as t2', 't1.product_idx = t2.product_idx', 'left')
+                ->from('tbl_product_mst AS t1')
+                ->groupStart()
+                ->where('t1.product_status !=', 'D')
+                ->where('t1.product_status !=', 'S')
+                ->where('t1.product_status !=', 'stop')
+                ->groupEnd()
+                ->groupStart()
+                ->where('t1.product_code_2', $product_code)
+                ->orLike('t1.product_code_list', '|' . $product_code)
+                ->groupEnd()
+                ->where('t2.m_idx', $member_Id)
+                ->where('t2.order_status', 'E')
+                ->groupBy('t1.product_idx')
                 ->findAll();
         }
 

@@ -741,7 +741,11 @@ $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha', 'Tools::generate_captcha');
     $routes->get('get_list_code_type_review', 'Tools::get_list_code_type_review', ['as' => "tools.get_list_code_type_review"]);
     $routes->post('get_travel_types', 'Tools::get_travel_types');
+    $routes->post('get_review_code', 'Tools::get_review_code');
+
     $routes->post('get_list_product', 'Tools::get_list_product');
+    $routes->post('get_list_product_review', 'Tools::get_list_product_review');
+
     $routes->post('wish_set', 'Tools::wish_set');
     $routes->post('del_wish', 'Tools::del_wish');
 });
