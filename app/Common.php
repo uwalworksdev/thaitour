@@ -2227,19 +2227,38 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
 }
 
 function getCartCount() {
-    $db = \Config\Database::connect();
+    $member = session()->get("member");
 
-    $member = get('member');
-    $m_idx = $member['idx'] ?? null;
-
-    if (!$m_idx) {
-        return 0; // 로그인 안 된 사용자 처리
+    if (!isset($member['idx'])) {
+        return 0; // 로그인 안 됨
     }
+
+    $db = \Config\Database::connect();
 
     $builder = $db->table('tbl_order_mst');
     $builder->selectCount('*', 'cnt');
-    $builder->where('m_idx', $m_idx);
+    $builder->where('m_idx', $member['idx']);
     $builder->where('order_status', 'B');
+
+    $row = $builder->get()->getRowArray();
+
+    return $row['cnt'] ?? 0;
+}
+
+function getOrderCount() {
+    $member = session()->get("member");
+
+    if (!isset($member['idx'])) {
+        return 0; // 로그인 안 됨
+    }
+
+    $db = \Config\Database::connect();
+
+    $builder = $db->table('tbl_order_mst');
+    $builder->selectCount('*', 'cnt');
+    $builder->where('m_idx', $member['idx']);
+    $builder->where('order_status !=', 'B');
+
     $row = $builder->get()->getRowArray();
 
     return $row['cnt'] ?? 0;
