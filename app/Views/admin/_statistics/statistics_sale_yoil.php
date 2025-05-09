@@ -452,6 +452,14 @@
     </span>
 </div>
 
+
+<script>
+// 검색하기
+function fn_search() {
+	document.modifyForm1.submit();
+}
+</script>
+
 <?= $this->endSection() ?>
 
 <script>
@@ -485,11 +493,4 @@
             dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         });
     });
-</script>
-
-<script>
-    // 검색하기
-	function fn_search() {
-		document.modifyForm1.submit();
-	}
 </script>
