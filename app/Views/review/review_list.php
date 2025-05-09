@@ -181,7 +181,7 @@
                 </table>
                 <div class="paging_wrap">
                     <?php echo ipageListing2($page, $total_page, $total_cnt, $currentUri . "?category=$category&search_category=" . $search_category . "&s_txt=" . $s_txt . "&page=", $deviceType) ?>
-                    <a href="javascript:writeReview();" style="position: relative;" class="btn btn-point btn-lg contact_btn">글쓰기</a>
+                    <a href="javascript:writeReview();" class="btn btn-point btn-lg contact_btn">글쓰기</a>
                 </div>
 
                 <?php
