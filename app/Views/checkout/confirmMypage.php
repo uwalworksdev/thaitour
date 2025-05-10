@@ -306,14 +306,14 @@
                         <div class="item-info-r">
                             <span>포인트</span>
                             <span>
-                                -<span class="textPrice_ " id="minus_point">0</span> 원
+                                 <span class="textPrice_ " id="minus_point"> 0</span> 원
                             </span>
                         </div>
 
                         <div class="item-info-r item-info-r-border-b">
                             <span>쿠폰할인</span>
                             <span>
-                                -<span class="textPrice_ " id="minus_coupon">0</span> 원
+                                 <span class="textPrice_ " id="minus_coupon"> 0</span> 원
                             </span>
                         </div>
 
@@ -775,8 +775,8 @@ $(window).on("load", function() {
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				//$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				//$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
