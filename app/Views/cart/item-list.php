@@ -226,7 +226,7 @@
                                             <?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            <?=$item['order_date']?>
+                                            예약일: <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
 											<?php 
