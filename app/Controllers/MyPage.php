@@ -204,10 +204,24 @@ public function reservationList() {
     $builder2->orderBy('order_date', 'DESC');
     $allOrders = $builder2->get()->getResult();
 
+    // groupedOrders 구성
     $groupedOrders = [];
     foreach ($allOrders as $row) {
         $groupedOrders[$row->group_no][] = $row;
     }
+
+    // 그룹 내 정렬 (order_date DESC)
+    foreach ($groupedOrders as &$group) {
+        usort($group, fn($a, $b) => strtotime($b->order_date) <=> strtotime($a->order_date));
+    }
+    unset($group); // 참조 해제
+
+    // 그룹 자체 정렬 (가장 최근 order_date 기준)
+    uksort($groupedOrders, function($a, $b) use ($groupedOrders) {
+        $a_date = strtotime($groupedOrders[$a][0]->order_date);
+        $b_date = strtotime($groupedOrders[$b][0]->order_date);
+        return $b_date <=> $a_date;
+    });
 
     // 3. 페이징 처리
     $pg = (int)($this->request->getGet('pg') ?? 1);
@@ -248,6 +262,7 @@ public function reservationList() {
 
     return view('mypage/reservation_list', $data);
 }
+
 
 
 	
