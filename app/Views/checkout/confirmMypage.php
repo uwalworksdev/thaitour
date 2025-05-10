@@ -684,7 +684,7 @@ $('.couponApply').click(function () {
 </script>
 
 <script>
-function payment_acnt()
+function payment_acntx()
 {
 		 var coupon_idx   = $("#coupon_idx").val();
 		 var coupon_num   = $("#coupon_num").val();	
