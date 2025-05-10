@@ -711,7 +711,13 @@
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?></div>
-                                            <div class="product-date"><?=$item['order_date']?></div>
+                                            <div class="product-date">
+													예약일시: <?=$item['order_date']?><br>
+													<?php
+														$options = explode('|', $item['date_price']);
+													?>
+													숙박일수: <?=count($options)?>일												
+											</div>
                                             <p class="product-desc text-gray">
 											<?php 
 												if (!empty($item['date_price'])) {
