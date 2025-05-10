@@ -391,15 +391,21 @@ function write_log($message)
     $dir = WRITEPATH . "logs/";
 
     if (!file_exists($dir)) {
-        mkdir($dir);
+        if (!mkdir($dir, 0755, true)) {
+            log_message('error', "로그 디렉토리 생성 실패: $dir");
+            return;
+        }
     }
 
-    $myfile = fopen($dir . date("Ymd") . ".txt", "a") or die("Unable to open file!");
-    $txt = chr(13) . chr(10) . date("Y.m.d G:i:s") . "(" . $_SERVER['REMOTE_ADDR'] . ") : " . chr(13) . chr(10) . $message . chr(13) . chr(10);
-    fwrite($myfile, chr(13) . chr(10) . $txt . chr(13) . chr(10));
-    fclose($myfile);
+    $filePath = $dir . date("Ymd") . ".txt";
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'CLI';
+    $txt = PHP_EOL . date("Y.m.d G:i:s") . " ($ip): " . PHP_EOL . $message . PHP_EOL;
 
+    if (file_put_contents($filePath, $txt, FILE_APPEND) === false) {
+        log_message('error', "로그 파일 기록 실패: $filePath");
+    }
 }
+
 
 function replacePatternsSms($input, $replacementValues)
 {
