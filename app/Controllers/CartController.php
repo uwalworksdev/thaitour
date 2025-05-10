@@ -81,7 +81,6 @@ class CartController extends BaseController
 		$query         = $builder->get();
 		$golf_result   = $query->getResultArray();
 
-echo "golf- ". $db->getLastQuery();
 		// 두 번째 쿼리
 		$builder = $db->table('tbl_order_mst');
 
