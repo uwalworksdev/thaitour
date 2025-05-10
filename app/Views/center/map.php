@@ -190,10 +190,10 @@
 								<th>대표자</th>
 								<td><?=$setting['com_owner']?></td>
 							</tr>
-							<!-- <tr>
+							 <tr>
 								<th>태국본사주소</th>
 								<td colspan="3"><?=_SYDNEY_ADDR?></td>
-							</tr> -->
+							</tr> 
 							<tr>
 								<th>서울지사주소</th>
 								<td colspan="3"><?=$setting['addr1']?> <?=$setting['addr2']?></td>
@@ -202,7 +202,7 @@
 								<th>대표전화</th>
 								<td colspan="3"><?=$setting['custom_phone']?> (서울)</td>
 							</tr>
-							<!-- <tr>
+							 <tr>
 								<th>영업시간</th>
 								<td colspan="3">
 									<div class="open"><?=nl2br(_SITE_INFORM)?>
@@ -213,24 +213,24 @@
 										<span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span>
 									</div>
 								</td>
-							</tr> -->
+							</tr> 
 							<tr>
 								<th>SNS</th>
 								<td class="3">
 									<div class="ic flex__c">
-										<a href="https://blog.naver.com/hihojookim" target="_blank"  class="only_web">
+										<a href="" target="_blank"  class="only_web">
 											<img src="/img/sub/ic_sns.png" alt="">
 										</a>
-										<a href="https://www.instagram.com/hi_hojoo" target="_blank" class="only_web">
+										<a href="" target="_blank" class="only_web">
 											<img src="/img/sub/ic_insta.png" alt="">
 										</a>
-										<a href="https://www.facebook.com/hihojoome" target="_blank" class="only_web">
+										<a href="h" target="_blank" class="only_web">
 											<img src="/img/sub/ic_fb.png" alt="">
 										</a>
 
-										<a href="https://blog.naver.com/hihojookim" target="_blank" class="only_mo"><img src="/img/sub/m_ic_sns.png" alt=""></a>
-										<a href="https://www.facebook.com/hihojoome" target="_blank" class="only_mo"><img src="/img/sub/m_ic_fb.png" alt=""></a>
-										<a href="https://www.instagram.com/hi_hojoo" target="_blank" class="only_mo"><img src="/img/sub/m_ic_insta.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_sns.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_fb.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_insta.png" alt=""></a>
 									</div>
 								</td>
 							</tr>
