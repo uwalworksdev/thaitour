@@ -106,14 +106,14 @@
                                         <p class="des-p">
 											<?php 
 												if (!empty($item['options'])) {
-													$options = explode('|', $item['options']);
+													$options = explode('||', $item['options']);
 													foreach ($options as $option) {
-														$option_r = explode(":", esc($option));
-														echo $option_r[0] ."/ ". $option_r[1] ." EA / ". number_format($option_r[2]) ." 원<br>";
+														$option_r = explode(",", esc($option));
+														echo $option_r[0] ." : ". $option_r[1] ." (EA) : ". number_format($option_r[2]) ." (원)<br>";
 													}
 												}
 											?>
-                                        </p>
+										</p>
                                     </div>
                                 </div>
                                 <div class="des-space-p">
