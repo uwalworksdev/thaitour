@@ -579,7 +579,7 @@
 									<th>Device</th>
                                     <th>현황</th>									
                                     <th>상품명</th>
-                                    <th>예약일시</th>
+                                    <th>결제일시</th>
                                     <th>예약자/아이디</th>
                                     <th>연락처/이메일</th>
                                     <th>결제금액(원)</th>
@@ -634,7 +634,7 @@
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>
 												</a>
 										</td>
-                                        <td class="tac"><?= $row["payment_date"] ?></td>
+                                        <td class="tac"><?= $row["pay_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
