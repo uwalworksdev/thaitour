@@ -130,13 +130,12 @@ class MyPage extends BaseController
     }
 
 public function reservationList() {
-
     $db = \Config\Database::connect();
     $private_key = private_key();
 
-    // ===== 요청 파라미터 =====
-    $dateType     = $this->request->getGet("dateType");
+    // 요청 파라미터
     $procType     = $this->request->getGet("procType");
+    $dateType     = $this->request->getGet("dateType");
     $checkInDate  = $this->request->getGet("checkInDatex");
     $checkOutDate = $this->request->getGet("checkOutDatex");
     $productType  = $this->request->getGet("productType");
@@ -144,18 +143,24 @@ public function reservationList() {
     $searchType   = $this->request->getGet("searchType");
     $search_word  = trim($this->request->getGet('search_word'));
 
-    // ===== 조건 공통 처리 함수 =====
-    $applyCommonConditions = function($builder) use (
-        $dateType, $checkInDate, $checkOutDate, $productType, $productName, 
-        $searchType, $search_word, $private_key
+    $pg = (int) ($this->request->getGet('pg') ?? 1);
+    $perPage = 10;
+    $offset = ($pg - 1) * $perPage;
+
+    // 공통 조건 함수
+    $applyConditions = function ($builder) use (
+        $procType, $dateType, $checkInDate, $checkOutDate,
+        $productType, $productName, $searchType, $search_word, $private_key
     ) {
-		$builder->where('m_idx', $_SESSION['member']['mIdx']);
+        $builder->where('m_idx', $_SESSION['member']['mIdx']);
         $builder->whereNotIn('order_status', ['B', 'D']);
+
         if ($dateType == "1" && $checkInDate && $checkOutDate) {
             $builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
         } elseif ($dateType == "2" && $checkInDate && $checkOutDate) {
             $builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
         }
+
         if ($productType) $builder->where('product_type', $productType);
         if ($productName) $builder->like('product_name', $productName);
 
@@ -167,152 +172,80 @@ public function reservationList() {
                 case "4": $builder->where('group_no', $search_word); break;
             }
         }
+
+        switch ($procType) {
+            case '1': $builder->whereIn('order_status', ['W', 'X']); break;
+            case '2': $builder->where('order_status', 'Y'); break;
+            case '3': $builder->where('order_status', 'Z'); break;
+            case '4': $builder->where('order_status', 'E'); break;
+            case '5': $builder->whereIn('order_status', ['C', 'N']); break;
+        }
     };
 
-    // ===== 1. group_no 기준 합계 =====
-    $builder = $db->table('tbl_order_mst')
-                ->select('group_no, COUNT(*) as group_count, SUM(real_price_won) as group_total');
-    $applyCommonConditions($builder);
+    // 1. 전체 group_no 목록을 조건별로 가져옴
+    $groupNoBuilder = $db->table('tbl_order_mst')->select('group_no')->distinct();
+    $applyConditions($groupNoBuilder);
+    $groupNoBuilder->orderBy('group_no', 'DESC');
+    $allGroupNos = $groupNoBuilder->get()->getResultArray();
 
-    switch ($procType) {
-        case '1': $builder->whereIn('order_status', ['W', 'X']); break;
-        case '2': $builder->where('order_status', 'Y'); break;
-        case '3': $builder->where('order_status', 'Z'); break;
-        case '4': $builder->where('order_status', 'E'); break;
-        case '5': $builder->whereIn('order_status', ['C', 'N']); break;
+    $totalGroups = count($allGroupNos);
+    $nPage = ceil($totalGroups / $perPage);
+    $currentGroupNos = array_slice(array_column($allGroupNos, 'group_no'), $offset, $perPage);
+
+    if (empty($currentGroupNos)) {
+        $groupedOrders = [];
+        $groupTotals = [];
+    } else {
+        // 2. 선택된 group_no 들에 대한 예약 목록
+        $orderBuilder = $db->table('tbl_order_mst')->select("
+            tbl_order_mst.*, 
+            AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+            AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') AS order_user_first_name_en, 
+            AES_DECRYPT(UNHEX(order_user_last_name_en),   '$private_key') AS order_user_last_name_en, 
+            AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+            AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') AS order_user_phone,
+            AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS order_user_email
+        ");
+        $orderBuilder->whereIn('group_no', $currentGroupNos);
+        $applyConditions($orderBuilder);
+        $orderBuilder->orderBy('group_no', 'DESC')->orderBy('order_no', 'ASC');
+        $orders = $orderBuilder->get()->getResult();
+
+        // 3. group_no 별로 정리
+        $groupedOrders = [];
+        foreach ($orders as $order) {
+            $groupedOrders[$order->group_no][] = $order;
+        }
+
+        // 4. group_total 정보
+        $totalBuilder = $db->table('tbl_order_mst')
+            ->select('group_no, COUNT(*) as group_count, SUM(real_price_won) as group_total')
+            ->whereIn('group_no', $currentGroupNos);
+        $applyConditions($totalBuilder);
+        $totalBuilder->groupBy('group_no');
+        $groupTotals = [];
+        foreach ($totalBuilder->get()->getResult() as $total) {
+            $groupTotals[$total->group_no] = $total;
+        }
     }
-    $builder->orderBy('group_no', 'DESC');
-    $builder->groupBy('group_no');
-    $groupTotals = $builder->get()->getResult();
 
-    // ===== 2. group_no 기준 상세 예약 목록 =====
-    $builder2 = $db->table('tbl_order_mst')->select("
-        tbl_order_mst.*, 
-        AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS order_user_name,
-        AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') AS order_user_first_name_en, 
-        AES_DECRYPT(UNHEX(order_user_last_name_en),   '$private_key') AS order_user_last_name_en, 
-        AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
-        AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') AS order_user_phone,
-        AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS order_user_email
-    ");
-    $applyCommonConditions($builder2);
-    switch ($procType) {
-        case '1': $builder2->whereIn('order_status', ['W', 'X']); break;
-        case '2': $builder2->where('order_status', 'Y'); break;
-        case '3': $builder2->where('order_status', 'Z'); break;
-        case '4': $builder2->where('order_status', 'E'); break;
-        case '5': $builder2->whereIn('order_status', ['C', 'N']); break;
-    }
-    $allOrders = $builder2->get()->getResult();
-    $groupedOrders = [];
-    foreach ($allOrders as $row) {
-        $groupedOrders[$row->group_no][] = $row;
-    }
-
-    // ===== 3. order_no 기준 페이징 =====
-    $pager   = \Config\Services::pager();
-    $page    = (int) ($this->request->getGet('page') ?? 1);
-    $perPage = 10;
-    $offset  = ($page - 1) * $perPage;
-
-    $builder3 = $db->table('tbl_order_mst')
-                   ->select("tbl_order_mst.*, AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name")
-                   ->orderBy('order_r_date', 'DESC')
-                   ->limit($perPage, $offset);
-    $applyCommonConditions($builder3);
-    $pagedOrders = $builder3->get()->getResult();
-
-    $countBuilder = $db->table('tbl_order_mst')->select('COUNT(*) AS total');
-    $applyCommonConditions($countBuilder);
-    $totalRows = $countBuilder->get()->getRow()->total;
-
-$pg = (int)($this->request->getGet('pg') ?? 1);
-$g_list_rows = 10;
-$offset = ($pg - 1) * $g_list_rows;
-
-$builder3 = $db->table('tbl_order_mst')
-    ->select("
-        tbl_order_mst.*, 
-        AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name
-    ")
-    ->whereNotIn('order_status', ['B', 'D'])
-    ->orderBy('order_no', 'DESC')
-    ->limit($g_list_rows, $offset);
-
-// 날짜 필터
-if ($dateType == "1" && $checkInDate && $checkOutDate) {
-    $builder3->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
-}
-if ($dateType == "2" && $checkInDate && $checkOutDate) {
-    $builder3->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+    // ===== view 전달 =====
+    return view('mypage/reservation_list', [
+        'pg'            => $pg,
+        'nPage'         => $nPage,
+        'g_list_rows'   => $perPage,
+        'groupedOrders' => $groupedOrders,
+        'groupTotals'   => $groupTotals,
+        'procType'      => $procType,
+        'policy_1'      => $this->policyModel->getByIdx("33"),
+        'policy_2'      => $this->policyModel->getByIdx("34"),
+        'policy_3'      => $this->policyModel->getByIdx("35"),
+        'policy_4'      => $this->policyModel->getByIdx("36"),
+        'policy_5'      => $this->policyModel->getByIdx("37"),
+        'policy_6'      => $this->policyModel->getByIdx("39"),
+    ]);
 }
 
-// 검색 필터
-if (!empty($search_word)) {
-    switch ($searchType) {
-        case "1":
-            $builder3->like('product_name', $search_word);
-            break;
-        case "2":
-            $builder3->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'");
-            break;
-        case "3":
-            $builder3->where('order_no', $search_word);
-            break;
-        case "4":
-            $builder3->where('group_no', $search_word);
-            break;
-    }
-}
-
-// 상태 조건 (예: $procType = '1'이면 예약 진행중)
-switch ($procType) {
-    case '1':
-        $builder3->whereIn('order_status', ['W', 'X']);
-        break;
-    case '2':
-        $builder3->where('order_status', 'Y');
-        break;
-    case '3':
-        $builder3->where('order_status', 'Z');
-        break;
-    case '4':
-        $builder3->where('order_status', 'E');
-        break;
-    case '5':
-        $builder3->whereIn('order_status', ['C', 'N']);
-        break;
-}
-
-
-// 전체 갯수
-$countBuilder = $db->table('tbl_order_mst')->select('COUNT(*) AS total');
-$applyCommonConditions($countBuilder);
-$totalRows = $countBuilder->get()->getRow()->total;
-
-// 전체 페이지 수
-$nPage = ceil($totalRows / $g_list_rows);
-
-    // ===== 정책 정보 =====
-    $data = [
-				'nPage'         => $nPage,
-				'g_list_rows'   => $g_list_rows,
-				'pg'            => $pg,
-				'groupTotals'   => $groupTotals,
-				'groupedOrders' => $groupedOrders,
-				'pagedOrders'   => $pagedOrders,
-				'pager'         => $pager->makeLinks($page, $perPage, $totalRows, 'default_full'),
-				'procType'      => $procType,
-				'policy_1'      => $this->policyModel->getByIdx("33"),
-				'policy_2'      => $this->policyModel->getByIdx("34"),
-				'policy_3'      => $this->policyModel->getByIdx("35"),
-				'policy_4'      => $this->policyModel->getByIdx("36"),
-				'policy_5'      => $this->policyModel->getByIdx("37"),
-				'policy_6'      => $this->policyModel->getByIdx("39"),
-    ];
-
-    return view('mypage/reservation_list', $data);
-}
 
 	
     public function getPolicyContents($product_idx)
