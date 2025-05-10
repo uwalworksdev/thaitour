@@ -11,7 +11,7 @@
 			<div class="inner_1000">
 				<div class="intro_top flex">
 					<div class="intro_txt">
-						<p class="intro_tit">더투어랩는</p> 
+						<p class="intro_tit">더투어랩는1</p> 
 						<p class="intro_ttl">더투어랩 정부에서 발급하는 <br>
 							Travel Agent License <br>
 							취득을 시작으로.</p>
