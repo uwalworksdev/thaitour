@@ -712,7 +712,7 @@
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?></div>
                                             <div class="product-date">
-													예약일시: <?=$item['order_date']?><br>
+													예약일시: <?=$item['order_date']?>
 													<?php
 														$options = explode('|', $item['date_price']);
 													?>
