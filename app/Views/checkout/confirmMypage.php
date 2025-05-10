@@ -684,7 +684,7 @@ $('.couponApply').click(function () {
 </script>
 
 <script>
-function payment_acntx()
+function payment_acnt()
 {
 		 var coupon_idx   = $("#coupon_idx").val();
 		 var coupon_num   = $("#coupon_num").val();	
@@ -775,8 +775,8 @@ $(window).on("load", function() {
 				$("#product_sum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				$("#payment_tot").val(sum);
 				$(".paySum").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				$("#minus_coupon").text(coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
-				$("#minus_point").text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
+$("#minus_coupon").text(Math.abs(coupon_money).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+$("#minus_point").text(Math.abs(point).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 				$(".lastPrice").text(lastPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
 
 				$("#total_price_popup").text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +' 원');
