@@ -129,7 +129,6 @@ class MyPage extends BaseController
         return view('mypage/booklist', $data);
     }
 
-<?php
 public function reservationList()
 {
     $db = \Config\Database::connect();
