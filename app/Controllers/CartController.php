@@ -67,7 +67,7 @@ class CartController extends BaseController
 
 		// SELECT
 		$builder->select('a.*, c.ufile1');
-		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '||') as options");
 
 		// WHERE 조건
 		$builder->where('a.order_gubun', 'golf');
