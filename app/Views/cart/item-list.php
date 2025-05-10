@@ -237,11 +237,11 @@
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
-														$option_r  = explode(",", esc($option));
+														$option_r  = explode(":", esc($option));
 														$basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[4]);
 														$extra_bed = (int)($option_r[5] * $option_r[4]);
-														$day_info  = $option_r[0] ." ". number_format($basic_bed) ."(원).. ";
-														if($extra_bed > 0) $day_info .= number_format($basic_bed) ."(원).. ";
+														$day_info  = $option_r[0] ." ". number_format($basic_bed) ."(원) ";
+														if($extra_bed > 0) $day_info .= number_format($basic_bed) ."(원) ";
 														
 														echo $day_info."<br>";
 													}
