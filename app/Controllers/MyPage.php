@@ -202,6 +202,9 @@ public function reservationList() {
         case '4': $builder2->where('order_status', 'E'); break;
         case '5': $builder2->whereIn('order_status', ['C', 'N']); break;
     }
+	
+	$builder2->orderBy('order_date', 'DESC');
+
     $allOrders = $builder2->get()->getResult();
     $groupedOrders = [];
     foreach ($allOrders as $row) {
