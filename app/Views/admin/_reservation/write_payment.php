@@ -197,7 +197,7 @@
                                         </select>
                                        <a href="javascript:status_upd()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
-										<?=$payment_row['payment_c_date']?>
+										<?=$payment_row['payment_m_date']?>
 
 										<?php if($payment_row['payment_status'] == "Y") { ?>
                                         <a href="javascript:info_receipt('<?=$payment_row['payment_pg']?>','<?=$payment_row['TID_1']?>')" class="btn btn-default">
