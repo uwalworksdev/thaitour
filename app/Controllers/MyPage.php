@@ -194,7 +194,7 @@ public function reservationList() {
 
     if (empty($currentGroupNos)) {
         $groupedOrders = [];
-        $groupTotals = [];
+        $groupTotals   = [];
     } else {
         // 2. 선택된 group_no 들에 대한 예약 목록
         $orderBuilder = $db->table('tbl_order_mst')->select("
@@ -222,6 +222,7 @@ public function reservationList() {
             ->select('group_no, COUNT(*) as group_count, SUM(real_price_won) as group_total')
             ->whereIn('group_no', $currentGroupNos);
         $applyConditions($totalBuilder);
+        $totalBuilder->orderBy('group_no', 'DESC');
         $totalBuilder->groupBy('group_no');
         $groupTotals = [];
         foreach ($totalBuilder->get()->getResult() as $total) {
