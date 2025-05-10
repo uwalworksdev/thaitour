@@ -409,7 +409,6 @@ class PaymentController extends BaseController
 
 		$ediDate     = date("YmdHis");
 		$signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
-write_log("nicepay_refund-0 ");
 
 		try {
 			$data = [
@@ -426,11 +425,10 @@ write_log("nicepay_refund-0 ");
 
 			$response      = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
 			$response_data = json_decode($response, true);
-write_log("nicepay_refund-1 ". $response_data['ResultCode'] ." - ". $response_data['ResultMsg']);
 				
 			$resultCode = $response_data['ResultCode'] ?? '9999';
 			$resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
-write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
+
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
 
@@ -449,7 +447,7 @@ write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
 			} else {
 				// 취소 실패
 				return $this->response->setJSON([
-					'status' => 'error',
+					'status'  => 'error',
 					'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
 				]);
 			}
@@ -534,11 +532,11 @@ write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
 			$response      = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
 			$response_data = json_decode($response, true);
 				
-			$resultCode = $responseData['ResultCode'] ?? '9999';
-			$resultMsg  = $responseData['ResultMsg']  ?? '응답 오류';
+			$resultCode = $response_data['ResultCode'] ?? '9999';
+			$resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
 
 			if (in_array($resultCode, ['2001', '2211'])) {
-				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');
+				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
 
 				$db->table('tbl_payment_mst')
 				   ->where('TID_1', $tid)
@@ -562,7 +560,7 @@ write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
 
 		} catch (\Exception $e) {
 			return $this->response->setJSON([
-				'status' => 'error',
+				'status'  => 'error',
 				'message' => 'API 통신 오류: ' . $e->getMessage(),
 			]);
 		}
