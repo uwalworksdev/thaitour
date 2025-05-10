@@ -226,7 +226,11 @@
                                             <?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            예약일시: <?=$item['order_date']?>
+                                            예약일시: <?=$item['order_date']?><br>
+					                        <?php
+												$options = explode('|', $item['date_price']);
+                                            ?>
+											숙박일수: <?=count($options)?>일	
                                         </div>
                                         <p class="des-p">
 											<?php 
