@@ -12,9 +12,9 @@
 				<div class="intro_top flex">
 					<div class="intro_txt">
 						<p class="intro_tit">더투어랩는</p> 
-						<p class="intro_ttl">더투어랩 정부에서 발급하는 <br>
-							Travel Agent License <br>
-							취득을 시작으로.</p>
+						<p class="intro_ttl">더투어랩 태국여행 전문업체로서 <br>
+							현지 Travel Agent License <br>
+							취득한 여행사입니다.</p>
 					</div>
 					<div class="intro_ic">
 						<img src="/img/sub/intro_img01.png" alt="">
@@ -22,9 +22,9 @@
 				</div>
 				<div class="intro_desc">
 					<p class="txt">
-						여행사 대상으로 홍보 및 정보를 제공해 온 남태평양 현지 여행사로 더투어랩 관광청의 부설 기관인 <br>
-						ITOA (Inbound Tourism Organizations of Australia) 및 공정거래 위원회 (Fair Trading) 의 회원으로서 명실상부한 <br>
-						남태평양 지역의 Landing Travel Agent 로 신임을 얻으며 현지에서 좋은 신용을 가진 여행사로 인정 받으며 자리 잡고 있습니다.
+						여행사 대상으로 홍보 및 정보를 제공해 온 태국 현지 여행사로 더투어랩 태국 관광청의 <br>
+						공정거래 위원회 (Fair Trading) 의 회원으로서 명실상부한 태국 지역의 Landing Travel Agent 로 신임을 얻으며<br>
+						현지에서 좋은 신용을 가진 여행사로 인정 받으며 자리 잡고 있습니다.
 					</p>
 					<p class="txt">
 						이제 더투어랩는 현지뿐 아니라 국내의 자유여행 브랜드인 더투어랩 웹사이트를 통해 직접 서비스 하고, <br>
@@ -32,7 +32,7 @@
 						여행의 길잡이로 재도약 하고 있습니다.
 					</p>
 					<img src="/img/sub/intro_img02.png" alt="">
-					<p class="txt">패키지 여행에서 자유여행으로 여행 패턴이 바뀌어 가고 있는 지금 획일적이고 일률적인 기존의 여행상품이 아닌 <br>
+					<p class="txt">여행 패턴이 바뀌어 가고 있는 지금 획일적이고 일률적인 기존의 여행상품이 아닌 <br>
 						다양한 형태의 상품을 연구, 개발을 통해 고객의 상황에 맞는 상품을 권해 드리며 생생하고 알찬 정보를 제공해 드립니다. <br>
 						여행의 바른 문화, 더투어랩가 만들어 나갈 것을 약속 드리겠습니다. </p>
 				</div>
@@ -46,8 +46,8 @@
 			<div class="intro_content">
 				<div class="inner_1000">
 					<div class="banner_txt">
-							<p class="intro_tit">더투어랩의 강점</p>
-							<p class="intro_ttl">변화하는 여행 <br>
+							<p class="intro_tit">가치있는 여행의 모든 순간</p>
+							<p class="intro_ttl">변화하는 여행 트랜드 <br>
 								고객이 우선이 되는 여행 <br>
 								가고 싶은 더투어랩여행</p>
 
@@ -109,102 +109,30 @@
 										더투어랩의 방향성에 맞는 정직한 가이드님들과 함께 합니다.</span>
 							</div>
 						</div>
-						<div class="box">
-							<div class="ic">
-								<img src="/img/sub/ic_box_05.png" alt="" class="only_web">
-								<img src="/img/sub/ic_box_05_mo.png" alt="" class="only_mo">
-							</div>
-							<div class="desc">
-								<p>일률적인 여행이 아닌 개개인의 취향에 맞는 <br>
-									여행다운 여행, 고객이 만족할 수 있는 <br>
-									여행 서비스를 제공</p>
-									<span>어딜가나 같은 여행지, 같은 서비스! <br>
-											더투어랩는 타사가 제공하지 못하는 전문적인 더투어랩여행 서비스까지 <br>
-												기획/제공합니다. 어떤 사항이라도, 우선 문의를 해주세요. <br>
-												SAE codes in pdf versions</span>
-							</div>
-						</div>
-						<div class="box">
-							<div class="ic">
-								<img src="/img/sub/ic_box_06.png" alt="" class="only_web">
-								<img src="/img/sub/ic_box_06_mo.png" alt="" class="only_mo">
-							</div>
-							<div class="desc">
-								<p>모르는 사람들과 함께하는 대규모 단체여행이 <br>
-									아닌 우리끼리 즐기는 소규모 여행을 선호</p>
-									<span>가족끼리, 친구끼리 혹은 부부끼리 다니는 소규모 여행을 즐기세요. <br>
-											소중한 순간, 소중한 사람들과 즐기는 여유로운 여행으로 <br>
-											여행의 퀄리티가 다릅니다.</span>
-							</div>
-						</div>
-						<div class="box">
-							<div class="ic">
-								<img src="/img/sub/ic_box_07.png" alt="" class="only_web">
-								<img src="/img/sub/ic_box_07_mo.png" alt="" class="only_mo">
-							</div>
-							<div class="desc">
-								<p>여행 2주 전 갑작스러운 여행 취소? NO <br>
-									더투어랩는 여행 계약시 바로 여행 출발 확정!</p>
-									<span>인원 미달로 갑작스럽게 여행이 취소되거나 <br>
-											생각치 못한 여행지로 변경 되는 일이 절대 없습니다. <br>
-											소규모 패키지 여행으로 계약시 바로 여행 출발 확정 됩니다.</span>
-							</div>
-						</div>
-						<div class="box">
-							<div class="ic">
-								<img src="/img/sub/ic_box_08.png" alt="" class="only_web">
-								<img src="/img/sub/ic_box_08_mo.png" alt="" class="only_mo">
-							</div>
-							<div class="desc">
-								<p>가이드팁 대신 신간을 받아 더투어랩 도서관에 <br>
-									한국 도서를 기증하는 도서 기증 캠페인 진행</p>
-									<span>서로 인상 찌푸려지는 가이드팁이 아닌 <br>
-											모두가 행복해지는 도서 기증 캠페인. <br>
-											나눔의 기쁨을 함께해요.</span>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 			<div class="intro_location">
 				<div class="inner_1000">
-					<p class="intro_tit">더투어랩의 강점</p>
+					<p class="intro_tit">더투어랩은 회사약력입니다.</p>
 					<p class="intro_ttl">다시 떠나고 싶은 더투어랩를 <br>
 						만드는 더투어랩.</p>
 						<div class="location_desc flex">
 							<div class="view_left">
 								<div class="view flex">
-									<p class="ttl">2024
+									<p class="ttl">2025
 									</p>
 									<div class="view_cont">
 										<div class="num">
-											<p>03</p>
+											<p>05</p>
 											<span>홈페이지 리뉴얼</span>
 										</div>
 									</div>
 								</div>
+								
+								
 								<div class="view flex">
-									<p class="ttl">2018
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>09</p>
-											<span>홈페이지 리뉴얼</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2016
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>01</p>
-											<span>기업/비즈니스 여행 전문 브랜드 ‘MICEAU’ 론칭</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2014
+									<p class="ttl">2025
 									</p>
 									<div class="view_cont">
 										<div class="num">
@@ -213,28 +141,10 @@
 										</div>
 									</div>
 								</div>
+								
+								
 								<div class="view flex">
-									<p class="ttl">2012
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>05</p>
-											<span>(주)하나투어 랜드 업무 제휴</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2011
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>03</p>
-											<span>(주)에스에스케이투어 서울 사무소 개설</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2010
+									<p class="ttl">2025
 									</p>
 									<div class="view_cont">
 										<div class="num">
@@ -243,96 +153,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="view flex">
-									<p class="ttl">2009
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>03</p>
-											<span>더투어랩 케언즈 (Cairns), 브리즈번 (Brisbane) 직영 지점 개설</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2008
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>03</p>
-											<span>더투어랩 리뉴얼 및 서비스 시작</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2006
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>11</p>
-											<span>더투어랩 www.hihojoo.com 웹사이트 오픈</span>
-										</div>
-										<div class="num">
-											<p>09</p>
-											<span>㈜ 에스에스케이투어 한국내 사업자 등록</span>
-										</div>
-										<div class="num">
-											<p>06</p>
-											<span>더투어랩 전문 여행사 '더투어랩' 브랜드 론칭</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2004
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>02</p>
-											<span>태국 Newington 으로 회사 이전</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2001
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>01</p>
-											<span>ITOA (Inbound Tourism Organizations of Australia) 회원가입</span>
-										</div>
-										<div class="num">
-											<p>01</p>
-											<span>더투어랩 정부 공정거래 위원회의 Travel Agent License 취득</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">2000
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>09</p>
-											<span>Australia Tourism Compensation Fund 의 Membership 신청</span>
-										</div>
-										<div class="num">
-											<p>08</p>
-											<span>태국 Eastwood 로 회사 이전</span>
-										</div>
-										<div class="num">
-											<p>07</p>
-											<span>사세확장과 더불어 새로운 경영 이사진 구성</span>
-										</div>
-									</div>
-								</div>
-								<div class="view flex">
-									<p class="ttl">1996
-									</p>
-									<div class="view_cont">
-										<div class="num">
-											<p>08</p>
-											<span>태국 Surry Hill 에서 S.S.K Tour Pty Ltd 설립</span>
-										</div>
-									</div>
-								</div>
+								
+								
+								
+								
 							</div>
 							<div class="view_right">
 								<img src="/img/sub/intro_img03.png" alt="" class="only_web">
@@ -366,10 +190,10 @@
 								<th>대표자</th>
 								<td><?=$setting['com_owner']?></td>
 							</tr>
-							<!-- <tr>
+							 <!-- <tr>
 								<th>태국본사주소</th>
 								<td colspan="3"><?=_SYDNEY_ADDR?></td>
-							</tr> -->
+							</tr>  -->
 							<tr>
 								<th>서울지사주소</th>
 								<td colspan="3"><?=$setting['addr1']?> <?=$setting['addr2']?></td>
@@ -378,10 +202,10 @@
 								<th>대표전화</th>
 								<td colspan="3"><?=$setting['custom_phone']?> (서울)</td>
 							</tr>
-							<!-- <tr>
+							 <tr>
 								<th>영업시간</th>
 								<td colspan="3">
-									<div class="open"><?=nl2br(_SITE_INFORM)?>
+									<div class="open">
 										<p>평일 (월~금): 09:00 - 18:00</p>
 										<p>점심시간 : 12:30 ~ 13:30</p>
 										<p>토요일/일요일/공휴일: 휴무</p>
@@ -389,24 +213,24 @@
 										<span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span>
 									</div>
 								</td>
-							</tr> -->
+							</tr> 
 							<tr>
 								<th>SNS</th>
 								<td class="3">
 									<div class="ic flex__c">
-										<a href="https://blog.naver.com/hihojookim" target="_blank"  class="only_web">
+										<a href="" target="_blank"  class="only_web">
 											<img src="/img/sub/ic_sns.png" alt="">
 										</a>
-										<a href="https://www.instagram.com/hi_hojoo" target="_blank" class="only_web">
+										<a href="" target="_blank" class="only_web">
 											<img src="/img/sub/ic_insta.png" alt="">
 										</a>
-										<a href="https://www.facebook.com/hihojoome" target="_blank" class="only_web">
+										<a href="h" target="_blank" class="only_web">
 											<img src="/img/sub/ic_fb.png" alt="">
 										</a>
 
-										<a href="https://blog.naver.com/hihojookim" target="_blank" class="only_mo"><img src="/img/sub/m_ic_sns.png" alt=""></a>
-										<a href="https://www.facebook.com/hihojoome" target="_blank" class="only_mo"><img src="/img/sub/m_ic_fb.png" alt=""></a>
-										<a href="https://www.instagram.com/hi_hojoo" target="_blank" class="only_mo"><img src="/img/sub/m_ic_insta.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_sns.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_fb.png" alt=""></a>
+										<a href="" target="_blank" class="only_mo"><img src="/img/sub/m_ic_insta.png" alt=""></a>
 									</div>
 								</td>
 							</tr>
