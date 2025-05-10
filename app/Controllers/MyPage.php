@@ -181,6 +181,7 @@ public function reservationList() {
         case '4': $builder->where('order_status', 'E'); break;
         case '5': $builder->whereIn('order_status', ['C', 'N']); break;
     }
+    $builder->orderBy('group_no', 'DESC');
     $builder->groupBy('group_no');
     $groupTotals = $builder->get()->getResult();
 
