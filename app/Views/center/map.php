@@ -190,10 +190,10 @@
 								<th>대표자</th>
 								<td><?=$setting['com_owner']?></td>
 							</tr>
-							 <tr>
+							 <!-- <tr>
 								<th>태국본사주소</th>
 								<td colspan="3"><?=_SYDNEY_ADDR?></td>
-							</tr> 
+							</tr>  -->
 							<tr>
 								<th>서울지사주소</th>
 								<td colspan="3"><?=$setting['addr1']?> <?=$setting['addr2']?></td>
@@ -205,7 +205,7 @@
 							 <tr>
 								<th>영업시간</th>
 								<td colspan="3">
-									<div class="open"><?=nl2br(_SITE_INFORM)?>
+									<div class="open">
 										<p>평일 (월~금): 09:00 - 18:00</p>
 										<p>점심시간 : 12:30 ~ 13:30</p>
 										<p>토요일/일요일/공휴일: 휴무</p>
