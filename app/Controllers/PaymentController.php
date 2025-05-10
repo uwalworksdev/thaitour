@@ -428,7 +428,7 @@ class PaymentController extends BaseController
 				
 			$resultCode = $responseData['ResultCode'] ?? '9999';
 			$resultMsg  = $responseData['ResultMsg']  ?? '응답 오류';
-
+write_log($resultCode ." - ". $resultMsg);
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $responseData['CancelDate'] ?? date('Y-m-d H:i:s');
 
