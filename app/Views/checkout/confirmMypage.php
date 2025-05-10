@@ -705,9 +705,8 @@ function payment_acnt()
 		 var payment_price = payment_tot - used_coupon_money - used_point;
 		 //alert(payment_price);
 		 $("#payment_price").val(payment_price);
-$("#minus_point").text(
-    Math.abs(used_point).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-);		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		 $("#minus_point").text(used_point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+		 $("#minus_coupon").text(used_coupon_money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 $(".lastPrice").text(payment_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		 
 		 $("#Amt").val(payment_price);
