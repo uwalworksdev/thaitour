@@ -205,7 +205,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_2_mo">호텔.. :<span class="text-red"> <?=$hotel_cnt?></span>
+                            <label class="font-bold" for="group_2_mo">호텔:<span class="text-red"> <?=$hotel_cnt?></span>
                             </label>
                         </div>
                         <div class="table-container custom-mo only_mo">
@@ -723,14 +723,17 @@
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
-														$option_r = explode(",", esc($option));
-														if($option_r[0]) {
-														   echo $option_r[0] .": ". number_format($option_r[1]) ." ". number_format($option_r[2]) ." ". number_format($option_r[3]) ." ". number_format($option_r[4]) ." 바트<br>";
-														}   
+														$option_r  = explode(":", esc($option));
+														$basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
+														$extra_bed = (int)($option_r[5] * $option_r[7]);
+														$day_info  = $option_r[0] ." : ". number_format($basic_bed) ."(원) ";
+														if($extra_bed > 0) $day_info .= number_format($basic_bed) ."(원) ";
+														
+														echo $day_info."<br>";
 													}
 												}
 											?>
-                                            </p>
+											</p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_4_item<?=$i?>" class="chkHotel checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
