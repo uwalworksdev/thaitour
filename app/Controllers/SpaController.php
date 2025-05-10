@@ -499,7 +499,7 @@ class SpaController extends BaseController
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 				
                                                            ,device_type                = '". $device_type ."' 					
 														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
-			        rite_log("handlePayment - ". $sql);
+			        write_log("handlePayment - ". $sql);
 					$result = $db->query($sql);
 			}
 
