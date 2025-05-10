@@ -431,13 +431,12 @@ class PaymentController extends BaseController
 
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
-
 				$db->table('tbl_payment_mst')
 				   ->where('TID_1', $tid)
-				   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
+				   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate, 'payment_c_date' => date('Y-m-d H:i:s') ]);
 
 				// 여러 주문번호에 대해 업데이트 수행
-				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C', order_c_date = now() WHERE order_no IN ($orderList)", [$cancelDate]);
 
                 // 적립포인트 재조정
 				cancelMileage($payment_no, 0);
