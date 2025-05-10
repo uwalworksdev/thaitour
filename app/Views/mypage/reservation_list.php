@@ -373,7 +373,6 @@ endforeach;
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
 						foreach ($groupedOrders[$group->group_no] as $order): 
-							 usort($orders, fn($a, $b) => strtotime($b->order_date) <=> strtotime($a->order_date));
 						?>
                         <div class="product_detail">
                             <div class="info_product">
