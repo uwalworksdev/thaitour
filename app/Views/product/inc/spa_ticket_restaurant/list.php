@@ -312,7 +312,7 @@
                                 ?>
 
                             </div>
-                            <div class="breakcum">
+                            <!-- <div class="breakcum">
                                 <?php foreach ($product['codeTree'] as $key => $code): ?>
                                     <p class="">
                                         <?= $code['code_name'] ?>
@@ -321,7 +321,7 @@
                                         <?php endif; ?>
                                     </p>
                                 <?php endforeach; ?>
-                            </div>
+                            </div> -->
                             <div class="prd_name">
                                 <?= $product['product_name'] ?>
                             </div>
