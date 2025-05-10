@@ -335,10 +335,15 @@ endforeach;
                                 <img src="/images/mypage/filter_ic.png" alt="">
                             </div>
                         </div>
-                        <div class="details_search flex_e_c">
+						<div class="details_search flex_e_c">
+							<input type="text" name="search_word" value="" onkeydown="if(event.key === 'Enter') go_submit();">
+							<button class="search_button" type="button" onclick="go_submit();">검색</button>
+						</div>
+						
+                        <!--div class="details_search flex_e_c">
                             <input type="text" name="search_word" value="<?= esc($search_word)?>">
                             <button class="search_button" type="button" onclick="go_submit();">검색</button>
-                        </div>
+                        </div-->
                     </div>
                 </form>
                 
