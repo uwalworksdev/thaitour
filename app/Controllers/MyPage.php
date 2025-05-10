@@ -185,7 +185,6 @@ public function reservationList()
 
     // ===== 1. group_no 페이징 목록 추출 =====
     $groupBuilder = $db->table('tbl_order_mst')->select('group_no')
-        ->groupBy('group_no')
         ->orderBy('group_no', 'DESC')
         ->limit($g_list_rows, $offset);
 
