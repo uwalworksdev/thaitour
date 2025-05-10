@@ -235,7 +235,8 @@ $builder3 = $db->table('tbl_order_mst')
         AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name
     ")
     ->whereNotIn('order_status', ['B', 'D'])
-    ->orderBy('order_no', 'DESC')
+    ->orderBy('group_no', 'DESC')  // Add this line for group_no sorting
+    ->orderBy('order_no', 'DESC')  // Keep the existing order by order_no		
     ->limit($g_list_rows, $offset);
 
 // 날짜 필터
