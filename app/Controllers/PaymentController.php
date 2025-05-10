@@ -425,10 +425,11 @@ class PaymentController extends BaseController
 
 			$response      = $this->reqPost($data, "https://webapi.nicepay.co.kr/webapi/cancel_process.jsp");
 			$response_data = json_decode($response, true);
+write_log("nicepay_refund-1 ". $response_data['ResultCode'] ." - ". $response_data['ResultMsg']);
 				
 			$resultCode = $response_data['ResultCode'] ?? '9999';
 			$resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
-write_log("nicepay_refund- ". $resultCode ." - ". $resultMsg);
+write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
 
