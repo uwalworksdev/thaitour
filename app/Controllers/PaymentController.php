@@ -409,6 +409,7 @@ class PaymentController extends BaseController
 
 		$ediDate     = date("YmdHis");
 		$signData    = bin2hex(hash('sha256', $mid . $cancelAmt . $ediDate . $merchantKey, true));
+write_log("nicepay_refund-0 ");
 
 		try {
 			$data = [
