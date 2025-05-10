@@ -216,7 +216,7 @@ public function reservationList() {
 
     $builder3 = $db->table('tbl_order_mst')
                    ->select("tbl_order_mst.*, AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name")
-                   ->orderBy('order_no', 'DESC')
+                   ->orderBy('order_date', 'DESC')
                    ->limit($perPage, $offset);
     $applyCommonConditions($builder3);
     $pagedOrders = $builder3->get()->getResult();
