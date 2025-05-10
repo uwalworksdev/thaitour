@@ -72,6 +72,17 @@ class MainDispModel extends Model
             $items[$key]['tour_price_won'] = $tour_price_won;
         }
 
+        foreach ($items as $key => $value) {
+            $row_tour_price = $this->db->table('tbl_spas_price')
+                                    ->where("product_idx", $value['product_idx'])
+                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+                                    ->limit(1)->get()->getRowArray();
+            $spa_price = (float)$row_tour_price['goods_price1'] ?? 0;
+            $spa_price_won = $spa_price * $baht_thai;
+            $items[$key]['spa_price'] = $spa_price;
+            $items[$key]['spa_price_won'] = $spa_price_won;
+        }
+
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,
@@ -137,6 +148,17 @@ class MainDispModel extends Model
             $tour_price_won = $tour_price * $baht_thai;
             $items[$key]['tour_price'] = $tour_price;
             $items[$key]['tour_price_won'] = $tour_price_won;
+        }
+
+        foreach ($items as $key => $value) {
+            $row_tour_price = $this->db->table('tbl_spas_price')
+                                    ->where("product_idx", $value['product_idx'])
+                                    ->where("goods_date", $today)->orderBy("goods_price1", "asc")
+                                    ->limit(1)->get()->getRowArray();
+            $spa_price = (float)$row_tour_price['goods_price1'] ?? 0;
+            $spa_price_won = $spa_price * $baht_thai;
+            $items[$key]['spa_price'] = $spa_price;
+            $items[$key]['spa_price_won'] = $spa_price_won;
         }
 
         $data = [
