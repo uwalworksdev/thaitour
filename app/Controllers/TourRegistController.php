@@ -2599,7 +2599,7 @@ class TourRegistController extends BaseController
                                 ->select("goods_price1, goods_price2")
                                 ->where("product_idx", $product_idx)
                                 ->where("info_idx", $row['info_idx'])
-                                ->where("tours_idx", $row['tours_idx'])
+                                ->where("spas_idx", $row['spas_idx'])
                                 ->where("goods_date", date('Y-m-d'))->first();
 
             if (!isset($groupedData[$infoIndex])) {
