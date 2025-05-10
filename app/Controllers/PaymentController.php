@@ -450,7 +450,7 @@ write_log("nicepay_refund-2 ". $resultCode ." - ". $resultMsg);
 				// 취소 실패
 				return $this->response->setJSON([
 					'status' => 'error',
-					'message' => '결제 취소 실패x: ' . ($response_data['ResultMsg'] ?? '오류'),
+					'message' => '결제 취소 실패: ' . ($response_data['ResultMsg'] ?? '오류'),
 				]);
 			}
 
