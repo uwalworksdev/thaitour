@@ -634,7 +634,7 @@
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>
 												</a>
 										</td>
-                                        <td class="tac"><?= $row["pay_date"] ?></td>
+                                        <td class="tac"><?= $row["paydate"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
