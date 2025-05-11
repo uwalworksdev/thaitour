@@ -360,7 +360,7 @@ public function statistics_sale_month()
 		$builder = $db->table('tbl_order_mst');
 		$builder->select("
 			DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
-			SUM(tbl_order_mst.real_price_won) as total
+			SUM(tbl_order_mst.real_price_won) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
 		");
@@ -384,7 +384,7 @@ public function statistics_sale_month()
 		$builder = $db->table('tbl_order_mst');
 		$builder->select("
 			DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
-			SUM(tbl_order_mst.real_price_won) as total
+			SUM(tbl_order_mst.real_price_won) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
 		");
