@@ -221,8 +221,8 @@
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?></td>
-                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($array_sum($pc_price_arr[$i] + $array_sum($mobile_price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($array_sum($pc_cnt_arr[$i] + $array_sum($mobile_cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
