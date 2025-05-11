@@ -1,5 +1,10 @@
-<?= $this->extend('admin/layout') ?>
-<?= $this->section('content') ?>
+<?= $this->extend("admin/inc/layout_admin") ?>
+<?= $this->section("body") ?>
+
+<link rel="stylesheet" href="/css/admin/statistics.css" type="text/css" />
+<script src="/js/admin/statistics.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <h1 class="mb-4 text-2xl font-bold">연도별 매출 통계</h1>
 
