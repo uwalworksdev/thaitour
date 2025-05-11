@@ -347,101 +347,87 @@ public function statistics_sale_yoil()
         return view('admin/_statistics/statistics_sale_month');
     }
 
-    public function statistics_sale_year()
-    {
-		$years  = $this->request->getGet('years')  ?? date('Y');
-		$months = str_pad($this->request->getGet('months') ?? date('m'), 2, '0', STR_PAD_LEFT);
-		$yoil   = $this->request->getGet('weeks');  // 요일: 1(일)~7(토)
-		$payin  = $this->request->getGet('payin');  // P / M
+public function statistics_sale_year()
+{
+    $payin  = $this->request->getGet('payin');  // P / M
+    $db = \Config\Database::connect();
 
-		$startDate = "$years-$months-01";
-		$endDate   = date('Y-m-t', strtotime($startDate));
+    // 전체 주문의 시작/끝 날짜 자동 계산
+    $query = $db->query("SELECT MIN(order_date) as min_date, MAX(order_date) as max_date FROM tbl_order_mst");
+    $row = $query->getRow();
+    $startDate = $row->min_date ?? '2000-01-01';
+    $endDate   = $row->max_date ?? date('Y-m-d');
 
-		$db = \Config\Database::connect();
+    $pc_price_arr = $pc_cnt_arr = $pc_coupon_arr = $pc_point_arr = [];
+    $mobile_price_arr = $mobile_cnt_arr = $mobile_coupon_arr = $mobile_point_arr = [];
 
-		// 요일별 초기화
-		$pc_price_arr      = $pc_cnt_arr      = $pc_coupon_arr      = $pc_point_arr      = array_fill(1, 7, 0);
-		$mobile_price_arr  = $mobile_cnt_arr  = $mobile_coupon_arr  = $mobile_point_arr  = array_fill(1, 7, 0);
+    // ===== PC
+    if (empty($payin) || $payin === 'P') {
+        $builder = $db->table('tbl_order_mst');
+        $builder->select("
+            YEAR(tbl_order_mst.order_date) as year,
+            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+            SUM(tbl_payment_mst.used_point) as point_total,
+            COUNT(*) as count
+        ");
+        $builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
+        $builder->where("tbl_order_mst.order_date >=", $startDate);
+        $builder->where("tbl_order_mst.order_date <=", $endDate);
+        $builder->where("tbl_order_mst.device_type", "P");
+        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        $builder->groupBy("YEAR(tbl_order_mst.order_date)");
 
-		// ===== PC
-		if (empty($payin) || $payin === 'P') {
-			$builder = $db->table('tbl_order_mst');
-			$builder->select("
-				DAYOFWEEK(tbl_order_mst.order_date) as yoil,
-				SUM(tbl_order_mst.real_price_won) as total,
-				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
-				SUM(tbl_payment_mst.used_point) as point_total,
-				COUNT(*) as count
-			");
-			$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
-			$builder->where("tbl_order_mst.order_date >=", $startDate);
-			$builder->where("tbl_order_mst.order_date <=", $endDate);
-			$builder->where("tbl_order_mst.device_type", "P");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
-
-			if (!empty($yoil)) {
-				$builder->where("DAYOFWEEK(tbl_order_mst.order_date)", (int)$yoil);
-			}
-
-			$builder->groupBy("yoil");
-			$results = $builder->get()->getResult();
-
-			foreach ($results as $row) {
-				$y = (int)$row->yoil;
-				$pc_price_arr[$y]     = (int)$row->total;
-				$pc_cnt_arr[$y]       = (int)$row->count;
-				$pc_coupon_arr[$y]    = (int)$row->coupon_total;
-				$pc_point_arr[$y]     = (int)$row->point_total;
-			}
-		}
-
-		// ===== Mobile
-		if (empty($payin) || $payin === 'M') {
-			$builder = $db->table('tbl_order_mst');
-			$builder->select("
-				DAYOFWEEK(tbl_order_mst.order_date) as yoil,
-				SUM(tbl_order_mst.real_price_won) as total,
-				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
-				SUM(tbl_payment_mst.used_point) as point_total,
-				COUNT(*) as count
-			");
-			$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
-			$builder->where("tbl_order_mst.order_date >=", $startDate);
-			$builder->where("tbl_order_mst.order_date <=", $endDate);
-			$builder->where("tbl_order_mst.device_type", "M");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
-
-			if (!empty($yoil)) {
-				$builder->where("DAYOFWEEK(tbl_order_mst.order_date)", (int)$yoil);
-			}
-
-			$builder->groupBy("yoil");
-			$results = $builder->get()->getResult();
-
-			foreach ($results as $row) {
-				$y = (int)$row->yoil;
-				$mobile_price_arr[$y]    = (int)$row->total;
-				$mobile_cnt_arr[$y]      = (int)$row->count;
-				$mobile_coupon_arr[$y]   = (int)$row->coupon_total;
-				$mobile_point_arr[$y]    = (int)$row->point_total;
-			}
-		}
-
-		return view('admin/_statistics/statistics_sale_year', [
-			'years'              => $years,
-			'months'             => $months,
-			'yoil'               => $yoil,
-			'payin'              => $payin,
-			'pc_price_arr'       => $pc_price_arr,
-			'pc_cnt_arr'         => $pc_cnt_arr,
-			'pc_coupon_arr'      => $pc_coupon_arr,
-			'pc_point_arr'       => $pc_point_arr,
-			'mobile_price_arr'   => $mobile_price_arr,
-			'mobile_cnt_arr'     => $mobile_cnt_arr,
-			'mobile_coupon_arr'  => $mobile_coupon_arr,
-			'mobile_point_arr'   => $mobile_point_arr
-		]);		
+        $results = $builder->get()->getResult();
+        foreach ($results as $row) {
+            $year = (int)$row->year;
+            $pc_price_arr[$year]     = (int)$row->total;
+            $pc_cnt_arr[$year]       = (int)$row->count;
+            $pc_coupon_arr[$year]    = (int)$row->coupon_total;
+            $pc_point_arr[$year]     = (int)$row->point_total;
+        }
     }
+
+    // ===== Mobile
+    if (empty($payin) || $payin === 'M') {
+        $builder = $db->table('tbl_order_mst');
+        $builder->select("
+            YEAR(tbl_order_mst.order_date) as year,
+            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+            SUM(tbl_payment_mst.used_point) as point_total,
+            COUNT(*) as count
+        ");
+        $builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
+        $builder->where("tbl_order_mst.order_date >=", $startDate);
+        $builder->where("tbl_order_mst.order_date <=", $endDate);
+        $builder->where("tbl_order_mst.device_type", "M");
+        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        $builder->groupBy("YEAR(tbl_order_mst.order_date)");
+
+        $results = $builder->get()->getResult();
+        foreach ($results as $row) {
+            $year = (int)$row->year;
+            $mobile_price_arr[$year]    = (int)$row->total;
+            $mobile_cnt_arr[$year]      = (int)$row->count;
+            $mobile_coupon_arr[$year]   = (int)$row->coupon_total;
+            $mobile_point_arr[$year]    = (int)$row->point_total;
+        }
+    }
+
+    return view('admin/_statistics/statistics_sale_year', [
+        'payin'              => $payin,
+        'pc_price_arr'       => $pc_price_arr,
+        'pc_cnt_arr'         => $pc_cnt_arr,
+        'pc_coupon_arr'      => $pc_coupon_arr,
+        'pc_point_arr'       => $pc_point_arr,
+        'mobile_price_arr'   => $mobile_price_arr,
+        'mobile_cnt_arr'     => $mobile_cnt_arr,
+        'mobile_coupon_arr'  => $mobile_coupon_arr,
+        'mobile_point_arr'   => $mobile_point_arr
+    ]);
+}
+
 
     public function statistics_sale_sales()
     {
