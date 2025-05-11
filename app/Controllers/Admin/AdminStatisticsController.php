@@ -417,6 +417,12 @@ public function statistics_sale_month()
 			($mobile_price_arr[$month] ?? 0);
 	}
 
+	for ($m = 1; $m <= 12; $m++) {
+		$month = sprintf("%s-%02d", $years, $m);
+		$price_arr[$m] = ($pc_price_arr[$month] ?? 0) + ($mobile_price_arr[$month] ?? 0);
+		$cp_arr[$m] = 0; // 예시용, CP 수수료 값도 추가했다면 이 부분 채우세요
+	}
+
 	return view('admin/_statistics/statistics_sale_month', [
 		'years'             => $years,
 		'payin'             => $payin,
