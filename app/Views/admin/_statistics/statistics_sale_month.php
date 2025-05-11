@@ -18,7 +18,7 @@
 
     $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
     $e_date = date('Y-m-d', mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)), $years));
-
+*/
     $price_arr = array();
 
     for ($i = 1; $i <= 12; $i++) {
@@ -36,7 +36,7 @@
     for ($i = 1; $i <= 12; $i++) {
         $cp_arr[$i] = 0;
     }
-*/
+
 ?>
 
 <div id="container">
@@ -165,41 +165,44 @@
 
                     <div class="empty10">&nbsp;</div>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChart);
+                    <script type="text/javascript">
+                        google.charts.load('current', {
+                            'packages': ['corechart']
+                        });
+                        google.charts.setOnLoadCallback(drawChart);
 
-	function drawChart() {
-		var data = new google.visualization.DataTable();
-		data.addColumn('date', '월');
-		data.addColumn('number', '매출');
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['월', '매출', {
+                                    role: 'tooltip',
+                                    p: {
+                                        html: true
+                                    }
+                                }],
 
-		data.addRows([
-			<?php foreach ($price_arr as $yyyymm => $value): 
-				list($year, $month) = explode('-', $yyyymm);
-				$js_month = (int)$month - 1; // JS는 0부터 시작
-				echo "[new Date($year, $js_month), $value],\n";
-			endforeach; ?>
-		]);
+                                <?php
+                                for ($i = 1; $i <= 12; $i++) {
 
-		var options = {
-			title: '월별 매출',
-			curveType: 'function',
-			legend: { position: 'bottom' },
-			hAxis: {
-				format: 'M월',
-				gridlines: { count: 12 }
-			},
-			vAxis: {
-				format: 'decimal'
-			}
-		};
+                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($price_arr[$i]) ?>개'],
+                                <?php } ?>
+                            ]);
 
-		var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
-</script>
+                            var options = {
+                                title: '',
+                                curveType: '',
+                                legend: {
+                                    position: 'bottom'
+                                },
+                                tooltip: {
+                                    isHtml: true
+                                }, // HTML 툴팁 사용
+                            };
+
+                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+
+                            chart.draw(data, options);
+                        }
+                    </script>
 
                     <table class="listIn fixed-header">
                         <colgroup>
