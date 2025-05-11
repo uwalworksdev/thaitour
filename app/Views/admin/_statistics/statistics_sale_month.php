@@ -239,6 +239,7 @@
                             $delivery_arr[$i] = 0;
                         }
 
+                        /*
                         $point_arr = array();
 
                         for ($i = 1; $i <= 12; $i++) {
@@ -250,7 +251,8 @@
                         for ($i = 1; $i <= 12; $i++) {
                             $coupon_arr[$i] = 0;
                         }
-
+                        */
+						
                         // 배송비 배열
                         $top_banner4_arr = array();
                         $top_banner4_arr['P'] = 0;
@@ -285,14 +287,14 @@
                         <tbody class="statistics">
                             <tr>
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format(array_sum($point_arr))?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format(array_sum($coupon_arr))?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
