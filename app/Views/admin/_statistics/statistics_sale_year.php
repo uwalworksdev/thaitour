@@ -443,10 +443,11 @@
             dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         });
     });
+</script>
 
-    // 검색하기
-    function fn_search(){
-        let frm = document.modifyForm1;
-        frm.submit();
-    }
+<script>
+// 검색하기
+function fn_search() {
+	document.modifyForm1.submit();
+}
 </script>
