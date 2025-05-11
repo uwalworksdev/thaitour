@@ -358,7 +358,7 @@ public function statistics_sale_year()
     $row       = $query->getRow();
     $startDate = substr($row->min_date,0,10) ?? '2000-01-01';
     $endDate   = substr($row->max_date,0,10) ?? date('Y-m-d');
-
+echo $startDate ." - ". $endDate; 
     $pc_price_arr     = $pc_cnt_arr     = $pc_coupon_arr     = $pc_point_arr     = [];
     $mobile_price_arr = $mobile_cnt_arr = $mobile_coupon_arr = $mobile_point_arr = [];
 
