@@ -108,7 +108,7 @@
                     // 상품건수 배열
                     $top_banner2_arr = array();
                     $top_banner2_arr['P'] = array_sum($pc_cnt_arr);
-                    $top_banner2_arr['M'] = array_sum($mobile_cny_arr);
+                    $top_banner2_arr['M'] = array_sum($mobile_cnt_arr);
 
                     // CP 배열
                     $top_banner3_arr = array();
