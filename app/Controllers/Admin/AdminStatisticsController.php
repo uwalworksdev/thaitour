@@ -427,7 +427,7 @@ public function statistics_sale_yoil()
 			}
 		}
 
-		return view('admin/_statistics/statistics_sale_yea', [
+		return view('admin/_statistics/statistics_sale_year', [
 			'years'              => $years,
 			'months'             => $months,
 			'yoil'               => $yoil,
