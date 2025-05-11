@@ -34,7 +34,7 @@
 
     $price_arr = array();
 
-    $price_arr['Card'] = 0;
+    $price_arr['Card']  = 0;
     $price_arr['VBank'] = 0;
     $price_arr['DBank'] = 0;
     $price_arr['MBank'] = 0;
