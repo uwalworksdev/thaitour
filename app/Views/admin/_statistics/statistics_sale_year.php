@@ -363,7 +363,8 @@
                             for ($i = $years_s; $i <= $years_e; $i++) {
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
 								
-								$point_rate = ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / array_sum($pc_point_arr) + array_sum($mobile_point_arr);
+								$poinp_sum  = array_sum($pc_point_arr) + array_sum($mobile_point_arr);
+								$point_rate = ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / $poinp_sum;
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?>-<?= $months ?></td>
