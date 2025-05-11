@@ -24,13 +24,13 @@
     for ($i = 1; $i <= 12; $i++) {
         $price_arr[$i] = 0;
     }
-*/
+
     $cnt_arr = array();
 
     for ($i = 1; $i <= 12; $i++) {
         $cnt_arr[$i] = 0;
     }
-
+*/
     $cp_arr = array();
 
     for ($i = 1; $i <= 12; $i++) {
