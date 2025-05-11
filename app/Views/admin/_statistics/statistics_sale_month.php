@@ -376,7 +376,15 @@
     </span>
 </div>
 
+<script>
+// 검색하기
+function fn_search() {
+	document.modifyForm1.submit();
+}
+</script>
+
 <?= $this->endSection() ?>
+
 <script>
     $(document).click(function(event) {
         var heapBox = event.target.closest(".heapBox.heapBoxBo");
@@ -408,10 +416,4 @@
             dayNamesMin: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         });
     });
-
-    // 검색하기
-    function fn_search(){
-        let frm = document.modifyForm1;
-        frm.submit();
-    }
 </script>
