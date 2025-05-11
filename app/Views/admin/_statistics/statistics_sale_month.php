@@ -183,7 +183,7 @@
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
 
-                                ?>[<?= $i ?>, <?= array_sum($pc_price_arr[$i]+array_sum($mobile_price_arr[$i]) ?>, '매출 : <?= number_format(array_sum($pc_price_arr[$i]+array_sum($mobile_price_arr[$i])) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format(array_sum($pc_cnt_arr[$i]) + array_sum($mobile_cnt_arr[$i])) ?>개'],
+                                ?>[<?= $i ?>, <?= $pc_price_arr[$i] + $mobile_price_arr[$i] ?>, '매출 : <?= number_format($pc_price_arr[$i] + $mobile_price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($pc_cnt_arr[$i] + $mobile_cnt_arr[$i]) ?>개'],
                                 <?php } ?>
                             ]);
 
