@@ -19,13 +19,14 @@
     $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
     $e_date = date('Y-m-d', mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)), $years));
 
-    $price_arr = array();
 
     for ($i = 1; $i <= 12; $i++) {
         $price_arr[$i] = 0;
     }
 */
-    $cnt_arr = array();
+    $price_arr = array();
+
+	$cnt_arr = array();
 
     for ($i = 1; $i <= 12; $i++) {
         $cnt_arr[$i] = 0;
