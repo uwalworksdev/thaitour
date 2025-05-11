@@ -421,10 +421,10 @@ public function statistics_sale_month()
 		$month          = sprintf("%s-%02d", $years, $m);
 		$price_arr[$m]  = ($pc_price_arr[$month] ?? 0) + ($mobile_price_arr[$month] ?? 0);
 		$cnt_arr[$m]    = ($pc_cnt_arr[$month] ?? 0) + ($mobile_cnt_arr[$month] ?? 0);
-		$pc_point_arr[$m]  = $pc_point_arr[$month] ?? 0;
-		$mobile_point_arr[$m]  = $mobile_point_arr[$month] ?? 0;
-		$pc_coupon_arr[$m] = $pc_coupon_arr[$month] ?? 0;
-		$mobile_coupon_arr[$m] = $mobile_coupon_arr[$month] ?? 0;
+		$pc_point_arr1[$m]  = $pc_point_arr[$month] ?? 0;
+		$mobile_point_arr1[$m]  = $mobile_point_arr[$month] ?? 0;
+		$pc_coupon_arr1[$m] = $pc_coupon_arr[$month] ?? 0;
+		$mobile_coupon_arr1[$m] = $mobile_coupon_arr[$month] ?? 0;
 		$cp_arr[$m]     = 0; // 예시용, CP 수수료 값도 추가했다면 이 부분 채우세요
 	}
 
@@ -437,12 +437,12 @@ public function statistics_sale_month()
 		'cnt_arr'           => $cnt_arr,
 		'pc_price_arr'      => $pc_price_arr,
         'pc_cnt_arr'        => $pc_cnt_arr,
-        'pc_coupon_arr'     => $pc_coupon_arr,
-        'pc_point_arr'      => $pc_point_arr,
+        'pc_coupon_arr'     => $pc_coupon_arr1,
+        'pc_point_arr'      => $pc_point_arr1,
 		'mobile_price_arr'  => $mobile_price_arr,
         'mobile_cnt_arr'    => $mobile_cnt_arr,
-        'mobile_coupon_arr' => $mobile_coupon_arr,
-        'mobile_point_arr'  => $mobile_point_arr
+        'mobile_coupon_arr' => $mobile_coupon_arr1,
+        'mobile_point_arr'  => $mobile_point_arr1
 	]);
 }
 
