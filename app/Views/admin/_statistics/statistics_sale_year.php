@@ -16,7 +16,7 @@
 
     $seller    = $_GET['seller'];
     $payin    = $_GET['payin'];
-
+*/
     $price_arr = array();
 
     for ($i = $years_s; $i <= $years_e; $i++) {
@@ -34,7 +34,7 @@
     for ($i = $years_s; $i <= $years_e; $i++) {
         $cp_arr[$i] = 0;
     }
-*/
+ 
 ?>
 
 <div id="container">
