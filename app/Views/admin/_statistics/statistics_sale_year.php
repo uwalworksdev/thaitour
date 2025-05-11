@@ -363,13 +363,26 @@
                             for ($i = $years_s; $i <= $years_e; $i++) {
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
 								
-								$poinp_sum  = array_sum($pc_point_arr) + array_sum($mobile_point_arr);
-								$point_rate = ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / $poinp_sum;
+								$point_sum  = array_sum($pc_point_arr) + array_sum($mobile_point_arr);
+								
+								if($point_sum > 0) {
+								   $point_rate = ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / $point_sum;
+								} else {  
+								   $point_rate = 0;
+								}   
+								
+								$coupon_sum  = array_sum($pc_coupon_arr) + array_sum($mobile_coupon_arr);
+								
+								if($coupon_sum > 0) {
+								   $coupon_rate = ($pc_coupon_arr[$i]  + $mobile_coupon_arr[$i]) * 100 / $coupon_sum;
+								} else {  
+								   $coupon_rate = 0;
+								}   
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?>-<?= $months ?></td>
                                     <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= $point_rate ?>%</span></td>
-                                    <td class="number"><?= number_format($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) ?> <span><?= ($pc_coupon_arr[$i]  + $mobile_coupon_arr[$i]) * 100 / (array_sum($pc_coupon_arr) + array_sum($mobile_coupon_arr)) ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) ?> <span><?= $coupon_rate ?>%</span></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
