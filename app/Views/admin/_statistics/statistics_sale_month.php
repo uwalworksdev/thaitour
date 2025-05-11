@@ -364,13 +364,13 @@
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
 								
 								if(($pc_point_arr[$i] + $mobile_point_arr[$i]) > 0) {
-									$point_rate = ($pc_point_arr[$i] + $mobile_point_arr[$i]) * 100 / (array_sum($pc_point_arr) + array_sum($mobile_point_arr));
+									$point_rate = (int)(($pc_point_arr[$i] + $mobile_point_arr[$i]) * 100 / (array_sum($pc_point_arr) + array_sum($mobile_point_arr)));
 								} else {
 									$point_rate = 0;
 								}
 								
 								if(($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) > 0) {
-									$coupon_rate = ($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) * 100 / (array_sum($pc_coupon_arr) + array_sum($mobile_coupon_arr));
+									$coupon_rate = (int)(($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) * 100 / (array_sum($pc_coupon_arr) + array_sum($mobile_coupon_arr)));
 								} else {
 									$coupon_rate = 0;
 								}
