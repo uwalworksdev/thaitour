@@ -222,7 +222,7 @@
                                 <tr>
                                     <td class="number"><?= $i ?></td>
                                     <td class="number"><?= number_format($pc_price_arr[$i] + $mobile_price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($pc_cnt_arr[$i] + $mobile_cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_cnt_arr[$i]   + $mobile_cnt_arr[$i]) ?>   <span><?= $cnt_arr[$i] ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
@@ -256,13 +256,13 @@
 
                         // 적립금 배열
                         $top_banner5_arr = array();
-                        $top_banner5_arr['P'] = 0;
-                        $top_banner5_arr['M'] = 0;
+                        $top_banner5_arr['P'] = array_sum($pc_point_arr);
+                        $top_banner5_arr['M'] = array_sum($mobile_point_arr);
 
                         // 쿠폰 배열
                         $top_banner6_arr = array();
-                        $top_banner6_arr['P'] = 0;
-                        $top_banner6_arr['M'] = 0;
+                        $top_banner6_arr['P'] = array_sum($pc_coupon_arr);
+                        $top_banner6_arr['M'] = array_sum($mobile_coupon_arr);
                     ?>
 
 
@@ -284,7 +284,7 @@
                             <tr>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($top_banner5_arr['P'] + $top_banner5_arr['M'])?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
