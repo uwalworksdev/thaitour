@@ -183,7 +183,7 @@
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
 
-                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($price_arr[$i]) ?>개'],
+                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[$i]) ?>개'],
                                 <?php } ?>
                             ]);
 
