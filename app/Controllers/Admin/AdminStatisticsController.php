@@ -361,6 +361,8 @@ public function statistics_sale_month()
 		$builder->select("
 			DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
 			SUM(tbl_order_mst.real_price_won) as total
+			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+			SUM(tbl_payment_mst.used_point) as point_total,
 		");
 		$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
 		$builder->where("tbl_order_mst.order_date >=", $startDate);
@@ -371,7 +373,9 @@ public function statistics_sale_month()
 
 		$results = $builder->get()->getResult();
 		foreach ($results as $row) {
-			$pc_price_arr[$row->yyyymm] = (int)$row->total;
+			$pc_price_arr[$row->yyyymm]  = (int)$row->total;
+            $pc_coupon_arr[$row->yyyymm] = (int)$row->coupon_total;
+            $pc_point_arr[$row->yyyymm]  = (int)$row->point_total;
 		}
 	}
 
@@ -381,6 +385,8 @@ public function statistics_sale_month()
 		$builder->select("
 			DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
 			SUM(tbl_order_mst.real_price_won) as total
+			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+			SUM(tbl_payment_mst.used_point) as point_total,
 		");
 		$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
 		$builder->where("tbl_order_mst.order_date >=", $startDate);
@@ -391,7 +397,9 @@ public function statistics_sale_month()
 
 		$results = $builder->get()->getResult();
 		foreach ($results as $row) {
-			$mobile_price_arr[$row->yyyymm] = (int)$row->total;
+			$mobile_price_arr[$row->yyyymm]  = (int)$row->total;
+            $mobile_coupon_arr[$row->yyyymm] = (int)$row->coupon_total;
+            $mobile_point_arr[$row->yyyymm]  = (int)$row->point_total;
 		}
 	}
 
