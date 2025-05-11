@@ -7,8 +7,9 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-    //$years_s    = 2024;
-    //$years_e = date('Y');
+/*
+    $years_s    = 2024;
+    $years_e = date('Y');
 
     $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years_s));
     $e_date = date('Y-m-d',  mktime(0, 0, 0, 12, 31, $years_e));
@@ -33,7 +34,7 @@
     for ($i = $years_s; $i <= $years_e; $i++) {
         $cp_arr[$i] = 0;
     }
-
+*/
 ?>
 
 <div id="container">
