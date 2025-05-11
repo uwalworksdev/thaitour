@@ -416,17 +416,38 @@ public function statistics_sale_year()
         }
     }
 
-    return view('admin/_statistics/statistics_sale_year', [
-        'payin'              => $payin,
-        'pc_price_arr'       => $pc_price_arr,
-        'pc_cnt_arr'         => $pc_cnt_arr,
-        'pc_coupon_arr'      => $pc_coupon_arr,
-        'pc_point_arr'       => $pc_point_arr,
-        'mobile_price_arr'   => $mobile_price_arr,
-        'mobile_cnt_arr'     => $mobile_cnt_arr,
-        'mobile_coupon_arr'  => $mobile_coupon_arr,
-        'mobile_point_arr'   => $mobile_point_arr
-    ]);
+// 통합 배열 초기화
+$price_arr = $cnt_arr = $coupon_arr = $point_arr = [];
+
+for ($year = date('Y', strtotime($startDate)); $year <= date('Y', strtotime($endDate)); $year++) {
+    $price_arr[$year] = ($pc_price_arr[$year] ?? 0) + ($mobile_price_arr[$year] ?? 0);
+    $cnt_arr[$year] = ($pc_cnt_arr[$year] ?? 0) + ($mobile_cnt_arr[$year] ?? 0);
+    $coupon_arr[$year] = ($pc_coupon_arr[$year] ?? 0) + ($mobile_coupon_arr[$year] ?? 0);
+    $point_arr[$year] = ($pc_point_arr[$year] ?? 0) + ($mobile_point_arr[$year] ?? 0);
+}
+
+return view('admin/_statistics/statistics_sale_year', [
+    'payin'              => $payin,
+    'pc_price_arr'       => $pc_price_arr,
+    'pc_cnt_arr'         => $pc_cnt_arr,
+    'pc_coupon_arr'      => $pc_coupon_arr,
+    'pc_point_arr'       => $pc_point_arr,
+    'mobile_price_arr'   => $mobile_price_arr,
+    'mobile_cnt_arr'     => $mobile_cnt_arr,
+    'mobile_coupon_arr'  => $mobile_coupon_arr,
+    'mobile_point_arr'   => $mobile_point_arr,
+
+    // 추가된 데이터
+    'price_arr'          => $price_arr,
+    'cnt_arr'            => $cnt_arr,
+    'coupon_arr'         => $coupon_arr,
+    'point_arr'          => $point_arr,
+
+    // 년도 범위 전달
+    'years_s'            => (int)date('Y', strtotime($startDate)),
+    'years_e'            => (int)date('Y', strtotime($endDate)),
+]);
+
 }
 
     public function statistics_sale_sales()
