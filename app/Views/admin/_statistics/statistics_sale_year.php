@@ -191,9 +191,11 @@
                                 tooltip: {
                                     isHtml: true
                                 }, // HTML 툴팁 사용
-                                hAxis: {
-                                    format: '####' // 년도 형식 설정
-                                }
+
+								hAxis: {
+									title: '년도',
+									type: 'string'  // 이 부분 추가!
+								}
                             };
 
                             var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
