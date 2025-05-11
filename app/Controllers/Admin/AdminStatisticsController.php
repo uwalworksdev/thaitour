@@ -364,6 +364,7 @@ public function statistics_sale_month()
 			SUM(tbl_order_mst.real_price_won) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
+            COUNT(*) as count
 		");
 		$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
 		$builder->where("tbl_order_mst.order_date >=", $startDate);
@@ -375,6 +376,7 @@ public function statistics_sale_month()
 		$results = $builder->get()->getResult();
 		foreach ($results as $row) {
 			$pc_price_arr[$row->yyyymm]  = (int)$row->total;
+            $pc_cnt_arr[$row->yyyymm]    = (int)$row->count;
             $pc_coupon_arr[$row->yyyymm] = (int)$row->coupon_total;
             $pc_point_arr[$row->yyyymm]  = (int)$row->point_total;
 		}
@@ -388,6 +390,7 @@ public function statistics_sale_month()
 			SUM(tbl_order_mst.real_price_won) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
+            COUNT(*) as count
 		");
 		$builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
 		$builder->where("tbl_order_mst.order_date >=", $startDate);
@@ -399,6 +402,7 @@ public function statistics_sale_month()
 		$results = $builder->get()->getResult();
 		foreach ($results as $row) {
 			$mobile_price_arr[$row->yyyymm]  = (int)$row->total;
+            $mobile_cnt_arr[$row->yyyymm]    = (int)$row->count;
             $mobile_coupon_arr[$row->yyyymm] = (int)$row->coupon_total;
             $mobile_point_arr[$row->yyyymm]  = (int)$row->point_total;
 		}
@@ -416,11 +420,13 @@ public function statistics_sale_month()
 	return view('admin/_statistics/statistics_sale_month', [
 		'years'             => $years,
 		'payin'             => $payin,
-		'pc_price_arr'      => $pc_price_arr,
-		'mobile_price_arr'  => $mobile_price_arr,
 		'price_arr'         => $total_price_arr,
+		'pc_price_arr'      => $pc_price_arr,
+        'pc_cnt_arr'        => $pc_cnt_arr,
         'pc_coupon_arr'     => $pc_coupon_arr,
         'pc_point_arr'      => $pc_point_arr,
+		'mobile_price_arr'  => $mobile_price_arr,
+        'mobile_cnt_arr'    => $mobile_cnt_arr,
         'mobile_coupon_arr' => $mobile_coupon_arr,
         'mobile_point_arr'  => $mobile_point_arr
 	]);
