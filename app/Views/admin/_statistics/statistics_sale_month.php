@@ -221,11 +221,23 @@
                             <?php
                             for ($i = 1; $i <= 12; $i++) {
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
+								
+								if(array_sum($price_arr) > 0) {
+								   $price_rate =  (round)($price_arr[$i] * 100 / array_sum($price_arr));
+								} else {  
+								   $price_rate =  0;	
+								}   
+								
+								if(array_sum($cnt_arr) > 0) {
+								   $cnt_rate =  (round)($cnt_arr[$i] * 100 / array_sum($cnt_arr));
+								} else {  
+								   $cnt_rate =  0;	
+								}   
                             ?>
                                 <tr>
                                     <td class="number"><?= $years ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= (int)($price_arr[$i] * 100 / array_sum($price_arr)) ?>%</span></td>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?>   <span><?= (int)($cnt_arr[$i] * 100 / array_sum($cnt_arr)) ?>%</span></td>
+                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_rate ?>%</span></td>
+                                    <td class="number"><?= number_format($cnt_arr[$i]) ?>   <span><?= $cnt_rate ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
