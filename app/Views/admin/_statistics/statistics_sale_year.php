@@ -320,7 +320,7 @@
                                 <?php
                                     for ($i = $years_s; $i <= $years_e; $i++) {
                                 ?>
-                                    [<?= $i ?>, <?= $point_arr[$i] ?>, <?= $coupon_arr[$i] ?>],
+                                    [<?= $i ?>, <?= $pc_point_arr[$i] + $mobile_point_arr[$i] ?>, <?= $pc_coupon_arr[$i] + $mobile_coupon_arr[$i] ?>>],
 
                                 <?php } ?>
                             ]);
@@ -365,8 +365,8 @@
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($point_arr[$i]) ?> <span><?= $point_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= $point_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
