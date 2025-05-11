@@ -413,11 +413,15 @@ public function statistics_sale_month()
 	}
 
 	return view('admin/_statistics/statistics_sale_month', [
-		'years'            => $years,
-		'payin'            => $payin,
-		'pc_price_arr'     => $pc_price_arr,
-		'mobile_price_arr' => $mobile_price_arr,
-		'price_arr'        => $total_price_arr
+		'years'             => $years,
+		'payin'             => $payin,
+		'pc_price_arr'      => $pc_price_arr,
+		'mobile_price_arr'  => $mobile_price_arr,
+		'price_arr'         => $total_price_arr,
+        'pc_coupon_arr'     => $pc_coupon_arr,
+        'pc_point_arr'      => $pc_point_arr,
+        'mobile_coupon_arr' => $mobile_coupon_arr,
+        'mobile_point_arr'  => $mobile_point_arr
 	]);
 }
 
