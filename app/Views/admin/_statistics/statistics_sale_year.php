@@ -365,7 +365,7 @@
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= $point_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / (array_sum($pc_point_arr) + array_sum($mobile_point_arr)) ?>%</span></td>
                                     <td class="number"><?= number_format($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
                                 </tr>
                             <?php } ?>
