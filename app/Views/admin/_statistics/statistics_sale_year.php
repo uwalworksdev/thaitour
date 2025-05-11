@@ -101,18 +101,18 @@
                 <?php
                     // 매출 배열
                     $top_banner1_arr = array();
-                    $top_banner1_arr['P'] = 0;
-                    $top_banner1_arr['M'] = 0;
+                    $top_banner1_arr['P'] = array_sum($pc_price_arr);
+                    $top_banner1_arr['M'] = array_sum($mobile_price_arr);
 
                     // 상품 배열
                     $top_banner2_arr = array();
-                    $top_banner2_arr['P'] = 0;
-                    $top_banner2_arr['M'] = 0;
+                    $top_banner2_arr['P'] = array_sum($pc_cnt_arr);
+                    $top_banner2_arr['M'] = array_sum($mobile_cny_arr);
 
                     // CP 배열
                     $top_banner3_arr = array();
-                    $top_banner3_arr['P'] = 0;
-                    $top_banner3_arr['M'] = 0;
+                    $top_banner3_arr['P'] = array_sum($pc_price_arr);
+                    $top_banner3_arr['M'] = array_sum($pc_price_arr);
 
                 ?>
 
@@ -133,7 +133,7 @@
                             <tr>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?php number_format($top_banner1_arr['P'] + $top_banner1_arr['M'])?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
