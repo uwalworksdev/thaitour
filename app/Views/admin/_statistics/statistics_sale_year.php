@@ -362,10 +362,12 @@
                             <?php
                             for ($i = $years_s; $i <= $years_e; $i++) {
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
+								
+								$point_rate = ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / array_sum($pc_point_arr) + array_sum($mobile_point_arr);
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= ($pc_point_arr[$i]  + $mobile_point_arr[$i]) * 100 / (array_sum($pc_point_arr) + array_sum($mobile_point_arr)) ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_point_arr[$i]  + $mobile_point_arr[$i]) ?>  <span><?= $point_rate ?>%</span></td>
                                     <td class="number"><?= number_format($pc_coupon_arr[$i] + $mobile_coupon_arr[$i]) ?> <span><?= ($pc_coupon_arr[$i]  + $mobile_coupon_arr[$i]) * 100 / (array_sum($pc_coupon_arr) + array_sum($mobile_coupon_arr)) ?>%</span></td>
                                 </tr>
                             <?php } ?>
