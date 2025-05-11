@@ -323,7 +323,7 @@
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
                                     $_tmp_month = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                ?>[<?= $i ?>, <?= $point_arr[$i] ?>, <?= $coupon_arr[$i] ?>],
+                                ?>[<?= $i ?>, <?= $pc_point_arr[$i] + $mobile_point_arr[$i] ?>, <?= $pc_coupon_arr[$i] + $mobile_coupon_arr[$i] ?>],
 
                                 <?php } ?>
                             ]);
