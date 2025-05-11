@@ -142,15 +142,15 @@
                         <tbody class="statistics">
                             <tr>
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format(array_sum($price_arr))?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format(array_sum($pc_price_arr))?> </span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format(array_sum($mobile_price_arr))?></span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format(array_sum($pc_cnt_arr) + array_sum($mobile_cnt_arr))?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format(array_sum($pc_cnt_arr))?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format(array_sum($mobile_cnt_arr))?></span>
                                     </div>
                                 </td>
                             </tr>
@@ -183,7 +183,7 @@
                                 <?php
                                 for ($i = 1; $i <= 12; $i++) {
 
-                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[$i]) ?>개'],
+                                ?>[<?= $i ?>, <?= array_sum($pc_price_arr[$i]+array_sum($mobile_price_arr[$i]) ?>, '매출 : <?= number_format(array_sum($pc_price_arr[$i]+array_sum($mobile_price_arr[$i])) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format(array_sum($pc_cnt_arr[$i]) + array_sum($mobile_cnt_arr[$i])) ?>개'],
                                 <?php } ?>
                             ]);
 
