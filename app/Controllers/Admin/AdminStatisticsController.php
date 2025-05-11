@@ -349,6 +349,7 @@ public function statistics_sale_month()
 	$years  = $this->request->getGet('years');  // 연도
 	$payin  = $this->request->getGet('payin');  // P / M
 
+    if($years == "") $years = date('Y');
 	$startDate = $years . '-01-01';
 	$endDate   = $years . '-12-31';
 
