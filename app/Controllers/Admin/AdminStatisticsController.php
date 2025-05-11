@@ -426,7 +426,7 @@ public function statistics_sale_month()
 	return view('admin/_statistics/statistics_sale_month', [
 		'years'             => $years,
 		'payin'             => $payin,
-		'price_arr'         => $total_price_arr,
+		'price_arr'         => $price_arr,
 		'pc_price_arr'      => $pc_price_arr,
         'pc_cnt_arr'        => $pc_cnt_arr,
         'pc_coupon_arr'     => $pc_coupon_arr,
