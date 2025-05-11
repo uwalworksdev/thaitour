@@ -99,12 +99,12 @@
                 </div>
 
                 <?php
-                    // 매출 배열
+                    // 매출금액 배열
                     $top_banner1_arr = array();
                     $top_banner1_arr['P'] = array_sum($pc_price_arr);
                     $top_banner1_arr['M'] = array_sum($mobile_price_arr);
 
-                    // 상품 배열
+                    // 상품건수 배열
                     $top_banner2_arr = array();
                     $top_banner2_arr['P'] = array_sum($pc_cnt_arr);
                     $top_banner2_arr['M'] = array_sum($mobile_cny_arr);
@@ -177,7 +177,7 @@
 
                                 <?php
                                     for ($i = $years_s; $i <= $years_e; $i++) {
-                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[$i]) ?>개'],
+                                ?>[<?= $i ?>, <?= $pc_price_arr[$i] ?>, '매출 : <?= number_format($pc_price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($pc_cnt_arr[$i]) ?>개'],
                                 <?php } ?>
                             ]);
 
