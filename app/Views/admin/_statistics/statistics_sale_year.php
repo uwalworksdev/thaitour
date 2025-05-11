@@ -218,11 +218,27 @@
                             <?php
                             for ($i = $years_s; $i <= $years_e; $i++) {
                                 $months = str_pad($i, 2, "0", STR_PAD_LEFT);
+								
+								$price_sum  = array_sum($pc_price_arr) + array_sum($mobile_price_arr);
+								
+								if($price_sum > 0) {
+								   $price_rate = ($pc_price_arr[$i]  + $mobile_price_arr[$i]) * 100 / $price_sum;
+								} else {  
+								   $price_rate = 0;
+								}   
+								
+								$cnt_sum  = array_sum($pc_cnt_arr) + array_sum($mobile_cnt_arr);
+								
+								if($cnt_sum > 0) {
+								   $cnt_rate = ($pc_cnt_arr[$i]  + $mobile_cnt_arr[$i]) * 100 / $cnt_sum;
+								} else {  
+								   $cnt_rate = 0;
+								}   								
                             ?>
                                 <tr>
                                     <td class="number"><?= $i ?></td>
-                                    <td class="number"><?= number_format($pc_price_arr[$i] + $mobile_price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($pc_cnt_arr[$i]   + $mobile_cnt_arr[$i]) ?>   <span><?= $cnt_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_price_arr[$i] + $mobile_price_arr[$i]) ?> <span><?= $price_rate ?>%</span></td>
+                                    <td class="number"><?= number_format($pc_cnt_arr[$i]   + $mobile_cnt_arr[$i]) ?>   <span><?= $cnt_rate ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
