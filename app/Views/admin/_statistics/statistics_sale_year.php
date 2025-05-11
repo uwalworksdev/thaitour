@@ -167,37 +167,25 @@
 
                         function drawChart() {
 
-                            var data = google.visualization.arrayToDataTable([
-                                ['년', '매출', {
-                                    role: 'tooltip',
-                                    p: {
-                                        html: true
-                                    }
-                                }],
+    var data = google.visualization.arrayToDataTable([
+        ['년도', '매출', { role: 'tooltip', p: { html: true } }],
+        <?php for ($i = $years_s; $i <= $years_e; $i++): ?>
+            [<?= $i ?>, <?= $price_arr[$i] ?>, '매출: <?= number_format($price_arr[$i]) ?>원\nCP수수료: <?= number_format($cp_arr[$i]) ?>원\n상품: <?= number_format($cnt_arr[$i]) ?>개'],
+        <?php endfor; ?>
+    ]);
 
-                                <?php
-                                    for ($i = $years_s; $i <= $years_e; $i++) {
-                                ?>[<?= $i ?>, <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[$i]) ?>개'],
-                                <?php } ?>
-                            ]);
+    var options = {
+        legend: { position: 'bottom' },
+        tooltip: { isHtml: true },
+        hAxis: {
+            title: '년도',
+            format: '####' // 숫자 형태의 연도 표시
+        },
+        vAxis: { format: 'short' }
+    };
 
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                },
-                                tooltip: {
-                                    isHtml: true
-                                }, // HTML 툴팁 사용
-                                hAxis: {
-                                    format: '####' // 년도 형식 설정
-                                }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+    chart.draw(data, options);
                         }
                     </script>
 
