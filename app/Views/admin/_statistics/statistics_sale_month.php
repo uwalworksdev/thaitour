@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
+/*
     $years    = $_GET['years'];
     $seller   = $_GET['seller'];
     $payin    = $_GET['payin'];
@@ -35,7 +36,7 @@
     for ($i = 1; $i <= 12; $i++) {
         $cp_arr[$i] = 0;
     }
-
+*/
 ?>
 
 <div id="container">
