@@ -2,12 +2,11 @@
 <?= $this->section("body") ?>
 
 <link rel="stylesheet" href="/css/admin/statistics.css" type="text/css" />
-<script src="/js/admin/statistics.js"></script>
+<link rel="stylesheet" href="/js/admin/statistics.js">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-/*
     $years_s    = 2024;
     $years_e = date('Y');
 
@@ -16,7 +15,7 @@
 
     $seller    = $_GET['seller'];
     $payin    = $_GET['payin'];
-*/
+
     $price_arr = array();
 
     for ($i = $years_s; $i <= $years_e; $i++) {
@@ -34,7 +33,7 @@
     for ($i = $years_s; $i <= $years_e; $i++) {
         $cp_arr[$i] = 0;
     }
- 
+
 ?>
 
 <div id="container">
@@ -191,11 +190,9 @@
                                 tooltip: {
                                     isHtml: true
                                 }, // HTML 툴팁 사용
-
-								hAxis: {
-									title: '년도',
-									type: 'string'  // 이 부분 추가!
-								}
+                                hAxis: {
+                                    format: '####' // 년도 형식 설정
+                                }
                             };
 
                             var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
