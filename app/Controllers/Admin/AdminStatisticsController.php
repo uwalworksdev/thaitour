@@ -423,7 +423,7 @@ public function statistics_sale_month()
 		$cnt_arr[$m]    = ($pc_cnt_arr[$month] ?? 0) + ($mobile_cnt_arr[$month] ?? 0);
 		$pc_point_arr[$m]  = $pc_point_arr[$month] ?? 0;
 		$mobile_point_arr[$m]  = $mobile_point_arr[$month] ?? 0;
-		$pc_coupon_arr[$m] = ($pc_coupon_arr[$month] ?? 0;
+		$pc_coupon_arr[$m] = $pc_coupon_arr[$month] ?? 0;
 		$mobile_coupon_arr[$m] = $mobile_coupon_arr[$month] ?? 0;
 		$cp_arr[$m]     = 0; // 예시용, CP 수수료 값도 추가했다면 이 부분 채우세요
 	}
