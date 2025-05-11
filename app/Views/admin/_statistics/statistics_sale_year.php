@@ -286,14 +286,14 @@
                                 <td>
                                     <div class="nums"><?=number_format($top_banner5_arr['P'] + $top_banner5_arr['M'])?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($top_banner5_arr['P'])?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($top_banner5_arr['M'])?></span>
                                     </div>
                                 </td>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($top_banner6_arr['P'] + $top_banner6_arr['M'])?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($top_banner6_arr['P'])?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($top_banner6_arr['M'])?></span>
                                     </div>
                                 </td>
                             </tr>
