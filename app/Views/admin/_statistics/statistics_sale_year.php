@@ -320,7 +320,7 @@
                                 <?php
                                     for ($i = $years_s; $i <= $years_e; $i++) {
                                 ?>
-                                    [<?= $i ?>, <?= $pc_point_arr[$i] + $mobile_point_arr[$i] ?>, <?= $pc_coupon_arr[$i] + $mobile_coupon_arr[$i] ?>>],
+                                    [<?= $i ?>, <?= $pc_point_arr[$i] + $mobile_point_arr[$i] ?>, <?= $pc_coupon_arr[$i] + $mobile_coupon_arr[$i] ?>],
 
                                 <?php } ?>
                             ]);
