@@ -349,16 +349,17 @@ public function statistics_sale_yoil()
 
 public function statistics_sale_year()
 {
+    $db     = \Config\Database::connect();
+
     $payin  = $this->request->getGet('payin');  // P / M
-    $db = \Config\Database::connect();
 
     // 전체 주문의 시작/끝 날짜 자동 계산
-    $query = $db->query("SELECT MIN(order_date) as min_date, MAX(order_date) as max_date FROM tbl_order_mst");
-    $row = $query->getRow();
+    $query     = $db->query("SELECT MIN(order_date) as min_date, MAX(order_date) as max_date FROM tbl_order_mst");
+    $row       = $query->getRow();
     $startDate = $row->min_date ?? '2000-01-01';
     $endDate   = $row->max_date ?? date('Y-m-d');
 
-    $pc_price_arr = $pc_cnt_arr = $pc_coupon_arr = $pc_point_arr = [];
+    $pc_price_arr     = $pc_cnt_arr     = $pc_coupon_arr     = $pc_point_arr     = [];
     $mobile_price_arr = $mobile_cnt_arr = $mobile_coupon_arr = $mobile_point_arr = [];
 
     // ===== PC
@@ -427,7 +428,6 @@ public function statistics_sale_year()
         'mobile_point_arr'   => $mobile_point_arr
     ]);
 }
-
 
     public function statistics_sale_sales()
     {

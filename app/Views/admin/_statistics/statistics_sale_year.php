@@ -2,11 +2,12 @@
 <?= $this->section("body") ?>
 
 <link rel="stylesheet" href="/css/admin/statistics.css" type="text/css" />
-<link rel="stylesheet" href="/js/admin/statistics.js">
+<script src="/js/admin/statistics.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
+/*
     $years_s    = 2024;
     $years_e = date('Y');
 
@@ -33,7 +34,7 @@
     for ($i = $years_s; $i <= $years_e; $i++) {
         $cp_arr[$i] = 0;
     }
-
+*/
 ?>
 
 <div id="container">
