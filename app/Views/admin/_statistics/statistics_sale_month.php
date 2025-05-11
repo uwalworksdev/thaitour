@@ -224,8 +224,8 @@
                             ?>
                                 <tr>
                                     <td class="number"><?= $years ?>-<?= $months ?></td>
-                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
+                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] * 100 / array_sum($price_arr) ?>%</span></td>
+                                    <td class="number"><?= number_format($cnt_arr[$i]) ?>   <span><?= $cnt_arr[$i] * 100 / array_sum($cnt_arr) ?>%</span></td>
                                 </tr>
 
                             <?php } ?>
