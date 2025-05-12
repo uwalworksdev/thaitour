@@ -1042,13 +1042,14 @@ if ($mIdx != "") {
             return false;
         }
 
-        if (frm.user_id.value == "") {
-            alert("아이디를 입력해주세요.");
-            frm.user_id.focus();
-            return false;
-        }
-
         if ($("#gubun").val() == "" || $("#sns_key").val() == "") {
+
+            if (frm.user_id.value == "") {
+                alert("아이디를 입력해주세요.");
+                frm.user_id.focus();
+                return false;
+            }
+
             if (frm.id_chk.value == "") {
                 alert("아이디 중복체크를 해주세요.");
                 $("#user_id").focus();
