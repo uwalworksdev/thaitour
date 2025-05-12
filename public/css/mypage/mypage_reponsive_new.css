@@ -379,6 +379,7 @@
         padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
         height: unset;
+        min-width: 107%;
     }
 
     .mypage_container .content .travel_review_table tbody tr .des {
@@ -392,6 +393,18 @@
         padding-left: 0;
         line-height: normal;
         padding-right: 0;
+    }
+
+    .mypage_container .sub_wrap .sub_content .imfor_tb table tbody tr td input {
+        height: 8.2rem;
+        line-height: 8.2rem;
+    }
+
+    .mypage_container .money_content .user_info .user_wrap .list_select_option .type_of_reason #element_select_option_text {
+        /* margin-bottom: -10px; */
+        margin-top: 0.2rem;
+        font-size: 2.4rem;
+        height: 18rem;
     }
 
     .mypage_container .content .travel_review_table tbody tr .date {
@@ -477,6 +490,7 @@
         border-bottom: 0.1999rem solid #e5e5e5;
         padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
+        min-width: 118%;
     }
 
     .mypage_container .content .point_table tbody tr .date {
@@ -873,9 +887,10 @@
     }
 
     .color_btn_box button {
-        width: 15.1rem;
-        height: 6rem;
+        width: 21.1rem;
+        height: 7rem;
         border-radius: 0.3999rem;
+        font-size: 2.4rem;
     }
 
     .sub_wrap .sub_content.user_mange .imfor_tb .color_btn_box {
@@ -1566,20 +1581,49 @@
 
     .booklist_wrap .booking_product .product_box .book_group_wrap {
         padding: 2rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 1.5rem;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .name_pro {
+        width: 100%;
     }
 
     .booklist_wrap .bs-input-check input[type="checkbox"]+label {
-        padding-left: 4.105rem;
-        line-height: 2.5rem;
-        font-size: 2rem;
+        padding-left: 6.105rem;
+        line-height: 3rem;
+        font-size: 2.2rem;
         background: unset;
+    }
+
+    .bs-input-check input[type="checkbox"]+label::before {
+        width: 2rem;
+        height: 3rem;
+        position: absolute;
+        left: 0.5rem;
+        top: 0.3rem;
+        border-radius: 1px;
+        border: 0.66rem solid transparent;
+        border-top: none;
+        border-left: none;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .btn_group_movement {
+        font-size: 2.4rem;
+        border: 1px solid #999;
+        padding: 0.8rem;
+        border-radius: 0.4rem;
+        background-color: #fff;
+        color: #252525;
+        cursor: pointer;
     }
 
     .bs-input-check input[type="checkbox"]+label::after {
         top: 0;
         transform: translateY(0);
-        width: 2.5789rem;
-        height: 2.5789rem;
+        width: 3.5789rem;
+        height: 3.5789rem;
         background-size: 0.8421rem;
         border-radius: 0.2631rem;
     }
@@ -1597,6 +1641,8 @@
         border-radius: 0.6rem;
         background-color: #ffffff;
         border: 0.2rem solid #cdcdcd;
+        gap: 0.3rem;
+        font-size: 2.2rem;
     }
 
     .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .group_print img {
@@ -2056,5 +2102,38 @@
         content: '구분: ';
         font-size: 2.6rem;
         color: #454545;
+    }
+
+    .box_gr01 {
+        margin: 3rem 0;
+        text-align: center;
+        padding: 2.5rem 0;
+        background: #fafafa;
+        border-radius: 2rem;
+    }
+
+    .pr50 {
+        padding-right: 5rem !important;
+    }
+
+    .my_p_cont em {
+        padding: 0 1rem;
+        color: #eee;
+    }
+
+    .btn_custom {
+        margin-top: 3rem;
+    }
+
+    .b_p1020 {
+        padding: 1rem 2rem;
+    }
+
+    .f_black {
+        line-height: 1.4;
+    }
+
+    .f_black em {
+        display: none;
     }
 }
