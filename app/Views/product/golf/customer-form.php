@@ -471,6 +471,13 @@
                     $("#phone_1").val(phoneArr[0] ?? "");
                     $("#phone_2").val(phoneArr[1] ?? "");
                     $("#phone_3").val(phoneArr[2] ?? "");
+
+                    $("#gender1").val(`<?= session("member.gender") ?>`);
+                    $("#order_user_first_name_en").val(`<?= session("member.first_name_en") ?>`);
+                    $("#order_user_last_name_en").val(`<?= session("member.last_name_en") ?>`);
+                    $("#order_passport_number").val(`<?= session("member.passport_number") ?>`);
+                    $("#order_passport_expiry_date").val(`<?= session("member.passport_expiry_date") ?>`);
+                    $("#order_birth_date").val(`<?= session("member.birthday") ?>`);
                 } else {
                     $("#order_user_name").val("");
                     $("#email_1").val("");
@@ -478,6 +485,13 @@
                     $("#phone_1").val("");
                     $("#phone_2").val("");
                     $("#phone_3").val("");
+
+                    $("#gender1").val("");
+                    $("#order_user_first_name_en").val("");
+                    $("#order_user_last_name_en").val("");
+                    $("#order_passport_number").val("");
+                    $("#order_passport_expiry_date").val("");
+                    $("#order_birth_date").val("");
                 }
             });
 

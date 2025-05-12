@@ -311,10 +311,18 @@ if ($mIdx != "") {
                     </div>
                 </div>
 
-                <div class="input-wrap">
-                    <label class="label">영문 이름*</label>
-                    <div class="input-row">
-                        <input type="text" name="user_name_en" id="user_name_en" value="" class="bs-input only_en">
+                <div class="input-group-name">
+                    <div class="input-wrap">
+                        <label class="label">영문 이름(First Name)*</label>
+                        <div class="input-row">
+                            <input type="text" name="user_first_name_en" id="user_first_name_en" value="" class="bs-input only_en">
+                        </div>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">영문 성(Last Name)*</label>
+                        <div class="input-row">
+                            <input type="text" name="user_last_name_en" id="user_last_name_en" value="" class="bs-input only_en">
+                        </div>
                     </div>
                 </div>
 
@@ -328,7 +336,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">여권만기일*</label>
                     <div class="input-row ">
-                        <div class="datepick">
+                        <div class="datepick expiry">
                             <input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" class="bs-input">
                         </div>
                     </div>
@@ -349,7 +357,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">생년월일*</label>
                     <div class="input-row ">
-                        <div class="datepick"><input type="text" name="birth_day" id="birth_day" onfocus="this.blur()"
+                        <div class="datepick birth"><input type="text" name="birth_day" id="birth_day" onfocus="this.blur()"
                                 class="bs-input"></div>
                     </div>
                 </div>
@@ -513,7 +521,7 @@ if ($mIdx != "") {
         });
 
         // datepick
-        $(".datepick input").datepicker({
+        $(".birth input").datepicker({
             dateFormat: 'yy-mm-dd',
             showOn: "both",
             buttonImage: '/images/ico/datepicker_ico.png',
@@ -527,6 +535,23 @@ if ($mIdx != "") {
             changeMonth: true, // month 셀렉트박스 사용
             changeYear: true, // year 셀렉트박스 사용
             yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+        });
+
+        // datepick
+        $(".expiry input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: '/images/ico/datepicker_ico.png',
+            showMonthAfterYear: true,
+            buttonImageOnly: true,
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            changeMonth: true, // month 셀렉트박스 사용
+            changeYear: true, // year 셀렉트박스 사용
+            yearRange: 'c-100:c+50', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
         });
 
         // $('.datepick input').datepicker('setDate', 'today');
@@ -1089,9 +1114,15 @@ if ($mIdx != "") {
             return false;
         }
 
-        if (frm.user_name_en.value == "") {
-            alert("영문 이름 입력해주세요.");
-            frm.user_name_en.focus();
+        if (frm.user_first_name_en.value == "") {
+            alert("영문 이름(First Name) 입력해주세요.");
+            frm.user_first_name_en.focus();
+            return false;
+        }
+
+        if (frm.user_last_name_en.value == "") {
+            alert("영문 성(Last Name) 입력해주세요.");
+            frm.user_last_name_en.focus();
             return false;
         }
 

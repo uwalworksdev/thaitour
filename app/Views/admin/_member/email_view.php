@@ -42,9 +42,13 @@
 
 							<tbody>
 								<tr style="height:45px;">
+									<th>메일코드</th>
+									<td><input type="text" name="code" id="code" value="<?=$email['code'] ?? ""?>" style="width:100px;"></td>
+								</tr>
+								<tr style="height:45px;">
 									<th>메일항목</th>
 									<td>
-										<?= $email['title'] ?>
+										<input type="text" name="title" id="title" value="<?= $email['title'] ?? "" ?>" style="width:90%;">
 									</td>
 								</tr>
 
@@ -52,32 +56,32 @@
 									<th>구분</th>
 									<td>
 										<input type="radio" name="autosend" id="autosend" value="Y"
-											<?php if ($email['autosend'] == "Y")
+											<?php if (isset($email['autosend']) && $email['autosend'] == "Y")
 												echo "checked"; ?>>자동발송
 										<input type="radio" name="autosend" id="autosend" value="N"
-											<?php if ($email['autosend'] == "N")
+											<?php if (isset($email['autosend']) && $email['autosend'] == "N")
 												echo "checked"; ?>>자동발송안함
 									</td>
 								</tr>
 								<tr style="height:45px;">
 									<th>발송자이름</th>
 									<td><input type="text" name="send_name" id="send_name"
-											value="<?= $email['send_name'] ?>"></td>
+											value="<?= $email['send_name'] ?? "" ?>"></td>
 								</tr>
 								<tr style="height:45px;">
 									<th>발송자E-mail</th>
 									<td><input type="text" name="send_email" id="send_email"
-											value="<?= $email['send_email'] ?>"></td>
+											value="<?= $email['send_email'] ?? "" ?>"></td>
 								</tr>
 								<tr style="height:45px;">
 									<th>메일제목</th>
 									<td><input type="text" name="mail_title" id="mail_title"
-											value="<?= $email['mail_title'] ?>"></td>
+											value="<?= $email['mail_title'] ?? "" ?>"></td>
 								</tr>
 								<tr>
 									<th colspan="2">
 										<textarea name="content" id="content_" rows="10" cols="100" class="input_txt"
-											style="width:100%; height:400px; display:none;"><?= $email['content']; ?></textarea>
+											style="width:100%; height:400px; display:none;"><?= $email['content'] ?? "" ?></textarea>
 
 										<script type="text/javascript">
 											var oEditors1 = [];
@@ -109,8 +113,6 @@
 												},
 												fCreator: "createSEditor2"
 											});
-
-
 
 										</script>
 									</th>
@@ -146,10 +148,6 @@
 		</div>
 		<!-- // contents -->
 
-
-
-
-
 	</span>
 	<!-- 인쇄 영역 끝 //-->
 </div>
@@ -160,6 +158,18 @@
 <script type="text/javascript">
 	function send_it() {
 		var frm = document.frm;
+		
+		if (frm.code.value == "") {
+			alert_("메일코드 등록해주세요.");
+			frm.send_name.focus();
+			return;
+		}
+
+		if (frm.title.value == "") {
+			alert_("메일항목 등록해주세요.");
+			frm.title.focus();
+			return;
+		}
 
 		if (frm.send_name.value == "") {
 			alert_("발송자 이름을 등록해주세요.");
@@ -173,26 +183,19 @@
 			return;
 		}
 
-
 		if (frm.mail_title.value == "") {
 			alert_("메일제목을 입력해주세요.");
 			frm.mail_title.focus();
 			return;
 		}
 
-
 		oEditors1.getById["content_"].exec("UPDATE_CONTENTS_FIELD", []);
-
-
-
 
 		if (frm.content.value.length < 14) {
 			frm.content.focus();
 			alert_("내용을 입력하셔야 합니다.");
 			return;
 		}
-
-
 
 		frm.submit();
 	}

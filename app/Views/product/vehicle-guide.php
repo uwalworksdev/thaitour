@@ -1934,6 +1934,10 @@
                 $("#phone_1").val(phoneArr[0] ?? "");
                 $("#phone_2").val(phoneArr[1] ?? "");
                 $("#phone_3").val(phoneArr[2] ?? "");
+
+                $("#order_user_gender").val(`<?= session("member.gender") ?>`);
+                $("#order_user_first_name_en").val(`<?= session("member.first_name_en") ?>`);
+                $("#order_user_last_name_en").val(`<?= session("member.last_name_en") ?>`);
             } else {
                 $("#order_user_name_kor").val("");
                 $("#email_1").val("");
@@ -1941,6 +1945,10 @@
                 $("#phone_1").val("");
                 $("#phone_2").val("");
                 $("#phone_3").val("");
+
+                $("#order_user_gender").val("");
+                $("#order_user_first_name_en").val("");
+                $("#order_user_last_name_en").val("");
             }
         });
     });

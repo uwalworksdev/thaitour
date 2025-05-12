@@ -57,7 +57,7 @@
             <div class="menu_level_2 flex" style="display:none">
                 <a class="<?= $tab_5_1 ?>" href="../mypage/discount">사용 가능한 쿠폰</a>
                 <a class="<?= $tab_5_2 ?>" href="../mypage/discount_owned">지난 쿠폰</a>
-                <a class="<?= $tab_5_3 ?>" href="../mypage/discount_download">쿠폰 다운받기</a>
+                <!-- <a class="<?= $tab_5_3 ?>" href="../mypage/discount_download">쿠폰 다운받기</a> -->
             </div>
         </li>
         <!-- <li class="<?= $tab_6 ?>">

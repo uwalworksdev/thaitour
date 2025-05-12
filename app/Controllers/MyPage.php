@@ -591,6 +591,13 @@ public function reservationList() {
             $_SESSION["member"]["userName"] = "";
             setcookie("c_mIdx", "", time() - 86000 * 365, '/');
 
+            $code     = "S05";
+            $to_phone = $user_mobile;
+            $_tmp_fir_array = [
+                'MEMBER_NAME' => $user_name
+            ];
+            autoSms($code, $to_phone, $_tmp_fir_array);
+
             $msg = "OK";
 
             return $this->response->setStatusCode(200)

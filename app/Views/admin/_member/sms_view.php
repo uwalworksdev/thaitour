@@ -24,7 +24,7 @@
 		<div class="listWrap email_container email_container01">
 
 			<form name="frm" id="frm" action="sms_mod_ok" method="post" enctype="multipart/form-data" target="hiddenFrame22" >
-				<input type="hidden" name="idx" id="idx" value="<?=$sms['idx']?>" />
+				<input type="hidden" name="idx" id="idx" value="<?=$sms['idx'] ?? ""?>" />
 				<div class="listBottom">
 					<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 						<caption></caption>
@@ -35,20 +35,25 @@
 
 						<tbody>
 							<tr style="height:45px;">
+								<th>코드</th>
+								<td><input type="text" name="code" id="code" value="<?=$sms['code'] ?? ""?>" style="width:100px;"></td>
+							</tr>
+
+							<tr style="height:45px;">
 								<th>항목</th>
-								<td><?=$sms['title']?></td>
+								<td><input type="text" name="title" id="title" value="<?=$sms['title'] ?? ""?>" style="width:90%;"></td>
 							</tr>
 
 							<tr style="height:45px;">
 								<th>구분</th>
 								<td>
-									<input type="radio" name="autosend" id="autosend" value="Y" <?php if($sms['autosend'] == "Y")echo "checked";?> >사용	
-									<input type="radio" name="autosend" id="autosend" value="N" <?php if($sms['autosend'] == "N")echo "checked";?> >사용안함
+									<input type="radio" name="autosend" id="autosend" value="Y" <?php if(isset($sms['autosend']) && $sms['autosend'] == "Y")echo "checked";?> >사용	
+									<input type="radio" name="autosend" id="autosend" value="N" <?php if(isset($sms['autosend']) && $sms['autosend'] == "N")echo "checked";?> >사용안함
 								</td>
 							</tr>
 							<tr style="height:45px;">
 								<th>문자내역</th>
-								<td><input type="text" name="content" id="content" value="<?=$sms['content']?>" style="width:90%;" ></td>
+								<td><input type="text" name="content" id="content" value="<?=$sms['content'] ?? ""?>" style="width:90%;" ></td>
 							</tr>
 						</tbody>
 					</table>
@@ -78,10 +83,6 @@
 	</div>
 	<!-- // contents -->
 
-
-
-
-
 	</span>
 	<!-- 인쇄 영역 끝 //-->
 	</div>
@@ -89,18 +90,17 @@
 <iframe width="300" height="300" name="hiddenFrame22" id="hiddenFrame22" style="display:block;position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%);"></iframe>
 
 <script type="text/javascript">
-function send_it()
-{
-	var frm = document.frm;
-	
-	if (frm.content.value == "")
-	{
-		alert_("내용을 입력해주세요.");
-		frm.content.focus();
-		return;
-	}
+	function send_it() {
+		var frm = document.frm;
+		
+		if (frm.content.value == "")
+		{
+			alert_("내용을 입력해주세요.");
+			frm.content.focus();
+			return;
+		}
 
-	frm.submit();
-}
+		frm.submit();
+	}
 </script>
 <?= $this->endSection() ?>
