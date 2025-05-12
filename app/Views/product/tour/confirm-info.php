@@ -499,12 +499,14 @@
                                     </table>
                                     <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
                                     <p class="summary-tb2" id="policy_show" data-product-idx="<?= $product['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
+                                    <?php if ($product['direct_payment'] == "Y") { ?>
+							            <span style="color:red;">※ 예약확정 상품입니다.</span>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
                         <div class="container-below-tb">
                             <?php if ($product['direct_payment'] == "Y") { ?>
-							    <span style="color:red;">※ 예약확정 상품입니다.</span>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handlePayment('B')">결제하기</button>
                             <?php } else { ?>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit('W')">예약하기</button>
@@ -867,7 +869,7 @@
 
                 $("#order_status").val(status);
 
-                if (status == "W" || status == "B") {
+                if (status == "W") {
                     if ($("#order_user_name").val() === "") {
                         alert("한국이름을 입력해주세요.");
                         $("#order_user_name").focus();
@@ -922,11 +924,6 @@
                     }
 
                     if($status == "B"){
-                        if ($("#local_phone").val() === "") {
-                            alert("여행시 현지 연락처 입력해주세요!");
-                            $("#local_phone").focus();
-                            return false;
-                        }
 
                         if ($("#start_place").val() === "") {
                             alert("미팅장소 입력해주세요!");
