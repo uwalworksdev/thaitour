@@ -345,8 +345,8 @@ class AdminStatisticsController extends BaseController
 
 		if($years == "")  $years  = date('Y');
 		if($months == "") $months = date('m');
-		$startDate = $years ."-". $months '-01';
-		$endDate   = $years ."-". $months '-31';
+		$startDate = $years ."-". $months ."-01";
+		$endDate   = $years ."-". $months ."-31";
 
 		$pc_price_arr     = [];
 		$mobile_price_arr = [];
