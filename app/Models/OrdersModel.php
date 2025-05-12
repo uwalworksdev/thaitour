@@ -32,6 +32,7 @@ class OrdersModel extends Model
         , "order_passport_number", "order_passport_expiry_date", "order_birth_date"
         , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
         , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast", "group_no", "payment_no"
+		, "start_place", "end_place", "id_kakao", "description"
     ];
     protected $encryptedField = [ "order_user_name", 
 	                              "order_user_email", 

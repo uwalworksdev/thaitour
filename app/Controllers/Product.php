@@ -2988,6 +2988,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['baht_thai']                = $this->setting['baht_thai'];
             $data['group_no']                 = date('YmdHis');
 
+            $data['start_place']        = updateSQ($data['start_place']);
+            $data['end_place']          = updateSQ($data['end_place']);
+            $data['id_kakao']           = updateSQ($data['id_kakao']);
+            $data['description']        = updateSQ($data['description']);
+
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {

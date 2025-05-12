@@ -316,6 +316,7 @@ class Member extends BaseController
             $data["mIdx"]  = $member['m_idx'];
             $data['name']  = $member['user_name'];
             $data['email'] = $member['user_email'];
+            $data['phone'] = $member['user_mobile'];
             $data['level'] = 10;
             $data['gubun'] = $member['gubun'];
             $data['first_name_en'] = $member['user_first_name_en'];
@@ -493,6 +494,7 @@ class Member extends BaseController
         $data['email'] = $user_email;
         $data['level'] = 10;
         $data['gubun'] = $gubun;
+        $data['phone'] = $user_mobile;
         $data['first_name_en'] = $user_first_name_en;
         $data['last_name_en'] = $user_last_name_en;
         $data['passport_number'] = $passport_number;
@@ -936,6 +938,7 @@ class Member extends BaseController
                     'email' => $row['user_email'],
                     'level' => $row['user_level'],
                     'gubun' => $row['gubun'],
+                    'phone' => $row['user_mobile'],
                     'sns_key' => $row['sns_key'],
                     'mlevel' => $row['mem_level'],
                     'first_name_en' => $row['user_first_name_en'],
