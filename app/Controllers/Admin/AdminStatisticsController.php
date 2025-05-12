@@ -355,7 +355,7 @@ class AdminStatisticsController extends BaseController
 		if (empty($payin) || $payin === 'P') {
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
-				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
+				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
 				SUM(tbl_order_mst.real_price_won) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
@@ -381,7 +381,7 @@ class AdminStatisticsController extends BaseController
 		if (empty($payin) || $payin === 'M') {
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
-				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
+				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
 				SUM(tbl_order_mst.real_price_won) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
