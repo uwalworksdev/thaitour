@@ -433,7 +433,7 @@ endforeach;
                             </div>
                             <div class="info_price flex">
 							    
-								<?php if($order->order_status == "X" || $order->order_status == "G") { ?>
+								<?php if($order->order_status == "X") { ?>
                                 <div class="info_total_price flex__c box">
                                     <p class="pri_won"><?= esc(number_format($order->real_price_won))?> <span>원</span></p>
                                     <p class="pri_bath">(<?= esc(number_format($order->real_price_bath))?>바트)</p>
