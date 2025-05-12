@@ -7,18 +7,18 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/xpressengine/xeicon@latest/xeicon.min.css">
 
 <?php
-    $years	= $_GET['years'];
-    $months = $_GET['months'];
-    $seller	= $_GET['seller'];
-    $payin	= $_GET['payin'];
+    //$years	= $_GET['years'];
+    //$months = $_GET['months'];
+    //$seller	= $_GET['seller'];
+    //$payin	= $_GET['payin'];
 
-    if($years == ""){
-        $years = date('Y');
-    }
+    //if($years == ""){
+    //    $years = date('Y');
+    //}
     
-    if($months == ""){
-        $months = date('m');
-    }
+    //if($months == ""){
+    //    $months = date('m');
+    //}
     
     $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
     $e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)) , $years));
@@ -90,7 +90,7 @@
                     <form name="modifyForm1" method="get" action="statistics_sale_day" autocomplete="off">
 
                         <div class="firstLine selectYear" style="padding-left:0">
-                            <select name="years" onchange="fn_search()">
+                            <!--select name="years" onchange="fn_search()">
                                 <?php
                                     for ($ys = 2024; $ys <= date('Y'); $ys++) {
                                 ?>
@@ -102,7 +102,7 @@
                                 <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
                                     <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
                                 <?php } ?>
-                            </select>
+                            </select-->
 
     <select name="years" onchange="fn_search()">
         <?php foreach ($years as $y): ?>
