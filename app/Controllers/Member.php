@@ -217,6 +217,12 @@ class Member extends BaseController
         $data['email'] = $row['user_email'];
         $data['level'] = $row['user_level'];
         $data['phone'] = $row['user_mobile'];
+        $data['name_en'] = $row['user_name_en'];
+        $data['passport_number'] = $row['passport_number'];
+        $data['passport_expiry_date'] = $row['passport_expiry_date'];
+        $data['gender'] = $row['gender'];
+        $data['birthday'] = $row['birthday'];
+
 
         session()->set("member", $data);
 
@@ -253,6 +259,7 @@ class Member extends BaseController
         $user_id       = updateSQ($this->request->getPost("user_id"));
         $user_pw       = updateSQ($this->request->getPost("user_pw"));
         $user_name     = updateSQ($this->request->getPost("user_name"));
+        $user_name_en  = updateSQ($this->request->getPost("user_name_en"));
         $user_email    = updateSQ($this->request->getPost("user_email"));
         $user_mobile   = updateSQ($this->request->getPost("user_mobile"));
         $gubun         = updateSQ($this->request->getPost("gubun"));
@@ -279,9 +286,12 @@ class Member extends BaseController
                 'user_id'     => $user_id,
                 'user_pw'     => $user_pw,
                 'user_name'   => $user_name,
+                'user_name_en'=> $user_name_en,
                 'user_email'  => $user_email,
                 'user_mobile' => $user_mobile,
                 'birth_day'   => $birthday,
+                'passport_number' => $passport_number,
+                'passport_expiry_date' => $passport_expiry_date,
                 'mbti'        => $mbti,
             ];
             for ($idx  = 0; $idx < count($fields); $idx++) {
@@ -304,6 +314,12 @@ class Member extends BaseController
             $data['email'] = $member['user_email'];
             $data['level'] = 10;
             $data['gubun'] = $member['gubun'];
+            $data['name_en'] = $member['user_name_en'];
+            $data['passport_number'] = $member['passport_number'];
+            $data['passport_expiry_date'] = $member['passport_expiry_date'];
+            $data['gender'] = $member['gender'];
+            $data['birthday'] = $member['birthday'];
+
             session()->set("member", $data);
             return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
@@ -461,6 +477,11 @@ class Member extends BaseController
         $data['email'] = $user_email;
         $data['level'] = 10;
         $data['gubun'] = $gubun;
+        $data['name_en'] = $user_name_en;
+        $data['passport_number'] = $passport_number;
+        $data['passport_expiry_date'] = $passport_expiry_date;
+        $data['gender'] = $gender;
+        $data['birthday'] = $birthday;
 
         session()->set("member", $data);
 
@@ -787,6 +808,11 @@ class Member extends BaseController
                 $data['email'] = $existingMember['user_email'];
                 $data['level'] = $existingMember['user_level'];
                 $data['phone'] = $existingMember['user_mobile'];
+                $data['name_en'] = $existingMember['user_name_en'];
+                $data['passport_number'] = $existingMember['passport_number'];
+                $data['passport_expiry_date'] = $existingMember['passport_expiry_date'];
+                $data['gender'] = $existingMember['gender'];
+                $data['birthday'] = $existingMember['birthday'];
 
                 $session->set("member", $data);
 
@@ -853,11 +879,11 @@ class Member extends BaseController
             $id = $user['id'];
             $email = $user['email'];
             $name = $user['name'];
-            $db = \Config\Database::connect();
-            $builder = $db->table('tbl_member');
-            $builder->where('status', 'Y');
-            $builder->where('sns_key', $id);
-            $row = $builder->get()->getRowArray();
+            // $db = \Config\Database::connect();
+            // $builder = $db->table('tbl_member');
+            // $builder->where('status', 'Y');
+            // $builder->where('sns_key', $id);
+            $row = $this->member->getBySns($id);
             if (!$row) {
                 $session->set('sns.gubun', 'google');
                 $session->set('google.userEmail', $email);
@@ -872,6 +898,7 @@ class Member extends BaseController
                     'user_name' => $name
                 ]);
             } else {
+
                 $session->set('member', [
                     'id' => $row['user_id'],
                     'idx' => $row['m_idx'],
@@ -881,7 +908,12 @@ class Member extends BaseController
                     'level' => $row['user_level'],
                     'gubun' => $row['gubun'],
                     'sns_key' => $row['sns_key'],
-                    'mlevel' => $row['mem_level']
+                    'mlevel' => $row['mem_level'],
+                    'name_en' => $row['user_name_en'],
+                    'passport_number' => $row['passport_number'],
+                    'passport_expiry_date' => $row['passport_expiry_date'],
+                    'gender' => $row['gender'],
+                    'birthday' => $row['birthday']
                 ]);
 
                 return redirect()->to('/');

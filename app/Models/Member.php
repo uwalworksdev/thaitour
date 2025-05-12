@@ -11,7 +11,7 @@ class Member extends Model
     protected $primaryKey = 'm_idx';
 
     protected $allowedFields = [
-        "user_id", "user_pw", "user_name", "gender", "part", "position", "user_email",
+        "user_id", "user_pw", "user_name", "user_name_en", "gender", "part", "position", "user_email",
         "user_email_yn", "sms_yn", "kakao_yn", "user_phone", "user_mobile", "zip",
         "addr1", "addr2", "job", "status", "birthday", "manager", "marriage_yn",
         "out_code", "out_etc", "out_reason", "out_date", "user_level", "visit_route", "passport_number", "passport_expiry_date",
@@ -29,7 +29,9 @@ class Member extends Model
                                 , AES_DECRYPT(UNHEX(user_phone),    '$private_key') AS user_phone
                                 , AES_DECRYPT(UNHEX(zip),           '$private_key') AS zip
                                 , AES_DECRYPT(UNHEX(addr1),         '$private_key') AS addr1 
-                                , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2")
+                                , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2
+                                , AES_DECRYPT(UNHEX(user_name_en),   '$private_key') AS user_name_en
+                                , AES_DECRYPT(UNHEX(passport_number),   '$private_key') AS passport_number")
             ->where('m_idx', $m_idx)
             ->get()
             ->getRowArray();
@@ -44,7 +46,9 @@ class Member extends Model
                                 , AES_DECRYPT(UNHEX(user_phone),    '$private_key') AS user_phone
                                 , AES_DECRYPT(UNHEX(zip),           '$private_key') AS zip
                                 , AES_DECRYPT(UNHEX(addr1),         '$private_key') AS addr1 
-                                , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2")
+                                , AES_DECRYPT(UNHEX(addr2),         '$private_key') AS addr2
+                                , AES_DECRYPT(UNHEX(user_name_en),  '$private_key') AS user_name_en
+                                , AES_DECRYPT(UNHEX(passport_number), '$private_key') AS passport_number")
             ->where('user_id', $user_id)
             ->get()
             ->getRowArray();
@@ -59,7 +63,10 @@ class Member extends Model
                 , AES_DECRYPT(UNHEX(user_mobile),               '$private_key') AS user_mobile
                 , AES_DECRYPT(UNHEX(zip),                       '$private_key') AS zip
                 , AES_DECRYPT(UNHEX(addr1),                     '$private_key') AS addr1 
-                , AES_DECRYPT(UNHEX(addr2),                     '$private_key') AS addr2");
+                , AES_DECRYPT(UNHEX(addr2),                     '$private_key') AS addr2
+                , AES_DECRYPT(UNHEX(passport_number),           '$private_key') AS passport_number
+                , AES_DECRYPT(UNHEX(user_name_en),           '$private_key') AS user_name_en");
+                
         $builder->where("user_id", $user_id);
         $builder->where("user_level > ", "2");
         return $builder->get()->getRowArray();
@@ -74,7 +81,9 @@ class Member extends Model
                 , AES_DECRYPT(UNHEX(user_mobile),               '$private_key') AS user_mobile
                 , AES_DECRYPT(UNHEX(zip),                       '$private_key') AS zip
                 , AES_DECRYPT(UNHEX(addr1),                     '$private_key') AS addr1 
-                , AES_DECRYPT(UNHEX(addr2),                     '$private_key') AS addr2");
+                , AES_DECRYPT(UNHEX(addr2),                     '$private_key') AS addr2
+                , AES_DECRYPT(UNHEX(passport_number),           '$private_key') AS passport_number
+                , AES_DECRYPT(UNHEX(user_name_en),              '$private_key') AS user_name_en");
         $builder->where("sns_key", $sns_key);
         $builder->where("user_level > ", "2");
         return $builder->get()->getRowArray();
@@ -129,13 +138,18 @@ class Member extends Model
                             AES_DECRYPT(UNHEX(?), ?) AS user_name,
                             AES_DECRYPT(UNHEX(?), ?) AS user_email,
                             AES_DECRYPT(UNHEX(?), ?) AS user_mobile,
-                            AES_DECRYPT(UNHEX(?), ?) AS user_phone";
+                            AES_DECRYPT(UNHEX(?), ?) AS user_phone,
+                            AES_DECRYPT(UNHEX(?), ?) AS passport_number,
+                            AES_DECRYPT(UNHEX(?), ?) AS user_name_en";
+                            
 
                 $result_d = $this->db->query($sql_d, [
                     $row['user_name'], $private_key,
                     $row['user_email'], $private_key,
                     $row['user_mobile'], $private_key,
-                    $row['user_phone'], $private_key]);
+                    $row['user_phone'], $private_key,
+                    $row['passport_number'], $private_key,
+                    $row['user_name_en'], $private_key]);
 
                 $row_d = $result_d->getRowArray();
 
@@ -143,6 +157,8 @@ class Member extends Model
                 $row['user_email'] = $row_d['user_email'];
                 $row['user_mobile'] = $row_d['user_mobile'];
                 $row['user_phone'] = $row_d['user_phone'];
+                $row['passport_number'] = $row_d['passport_number'];
+                $row['user_name_en'] = $row_d['user_name_en'];
             }
         }
 
@@ -226,6 +242,7 @@ class Member extends Model
     public function insertMember($data)
     {
         $data['user_name']   = encryptField($data['user_name'], "encode");
+        $data['user_name_en']= encryptField($data['user_name_en'], "encode");
         $data['user_email']  = encryptField($data['user_email'], "encode");
         $data['user_mobile'] = encryptField($data['user_mobile'] ?? "", "encode");
         $data['passport_number'] = encryptField($data['passport_number'] ?? "", "encode");

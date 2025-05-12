@@ -94,7 +94,9 @@ public function callback()
                 // 회원 정보 조회
                 $sql = "SELECT *,
                                AES_DECRYPT(UNHEX(user_name),  '$private_key') AS name, 
-                               AES_DECRYPT(UNHEX(user_email), '$private_key') AS email 
+                               AES_DECRYPT(UNHEX(user_email), '$private_key') AS email,
+                               AES_DECRYPT(UNHEX(passport_number), '$private_key') AS passport_number,
+                               AES_DECRYPT(UNHEX(user_name_en), '$private_key') AS user_name_en
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
                 $row = $this->db->query($sql)->getRowArray();
                 $session = session();
@@ -129,7 +131,12 @@ public function callback()
 							'level'   => $row['user_level'],
 							'gubun'   => $row['gubun'],
 							'sns_key' => $row['sns_key'],
-							'mlevel'  => $row['user_level']
+							'mlevel'  => $row['user_level'],
+							'user_name_en'  => $row['user_name_en'],
+							'gender'  => $row['gender'],
+							'passport_number'  => $row['passport_number'],
+							'passport_expiry_date'  => $row['passport_expiry_date'],
+							'birthday'  => $row['birthday']
 						];
 
 						$session->set('member', $sessionData);
