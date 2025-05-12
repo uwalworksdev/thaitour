@@ -55,7 +55,7 @@
                                 <tbody>
                                     <?php if (empty($sms_list)): ?>
                                         <tr>
-                                            <td colspan="4" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                            <td colspan="5" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                         </tr>
                                     <?php else: ?>
                                         <?php foreach ($sms_list as $row): ?>
@@ -65,13 +65,13 @@
                                                 <td><?= esc($row['content']) ?></td>
                                                 <td><?= ($row['autosend'] == "Y") ? "사용" : "사용안함" ?></td>
                                                 <td>
-                                                        <a href="<?= site_url('/AdmMaster/_member/sms_view?idx=' . $row['idx']) ?>">
-                                                            <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
-                                                        </a>
-                                                        <a href="javascript:del_it('<?= $row['idx'] ?>');">
-                                                            <img src="/images/admin/common/ico_error.png" alt="에러"/>
-                                                        </a>
-                                                    </td>
+                                                    <a href="<?= site_url('/AdmMaster/_member/sms_view?idx=' . $row['idx']) ?>">
+                                                        <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
+                                                    </a>
+                                                    <a href="javascript:del_it('<?= $row['idx'] ?>');">
+                                                        <img src="/images/admin/common/ico_error.png" alt="에러"/>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
