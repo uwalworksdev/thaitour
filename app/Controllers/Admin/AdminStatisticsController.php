@@ -343,8 +343,9 @@ public function statistics_sale_day()
     $months = $this->request->getGet('months');
     $payin  = $this->request->getGet('payin'); // P / M
 
-    if (empty($years))  $years = date('Y');
+    if (empty($years))  $years  = date('Y');
     if (empty($months)) $months = date('m');
+    if (strlen($months) < 2) $months = "0". $months;
 
     $startDate = "{$years}-{$months}-01";
     $endDate   = date("Y-m-t", strtotime($startDate)); // 그 달의 마지막 날까지
