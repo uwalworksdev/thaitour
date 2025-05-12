@@ -320,9 +320,18 @@ class Member extends BaseController
 					'user_id'     => $user_id,
 					'user_name'   => $user_name,
 					'user_email'  => $user_email,
+					'user_email_yn' => $user_email_yn,
 					'user_mobile' => $user_mobile,
+					'sms_yn'      => $sms_yn,
 					'gubun'       => $gubun,
 					'sns_key'     => $sns_key,
+					'birthday'    => $birthday,
+                    'visit_route'   => $visit_route ?? "",
+					'recommender'   => $recommender ?? "",
+					'mbti'          => $mbti,
+					'passport_number' => $passport_number,
+					'passport_expiry_date' => $passport_expiry_date,
+					'gender' => $gender,
             ]);
         } else {
             $this->member->insertMember([
