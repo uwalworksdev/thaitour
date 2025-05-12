@@ -1344,8 +1344,36 @@ function alimTalk_send($order_no, $alimCode) {
     alimTalkSend($alimCode, $allim_replace);
 }
 
+function alimTalk_send_bank($payment_idx) {
+    
+	$connect     = db_connect();
+    $private_key = private_key();
 
-function alimTalk_send_group($payment_idx, $alimCode) {
+    $sql	     = " SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
+    $row         = $connect->query($sql)->getRowArray();	
+
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
+	                       ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+    $row_d       = $connect->query($sql_d)->getRowArray();
+
+	$order_user_name   = $row_d['order_user_name'];
+	$order_user_mobile = $row_d['order_user_mobile'];
+	$bank_no           = $row['payment_account'];	
+
+	$alimCode    = "TY_2397"; 
+
+    $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+							"#{가상계좌}" => $bank_no,
+	                        "phone"      => $order_user_mobile
+						];
+
+    alimTalkSend($alimCode, $allim_replace);	
+}	
+
+
+function alimTalk_send_group($payment_idx, $alimCode) { 
 
     $connect     = db_connect();
     $private_key = private_key();

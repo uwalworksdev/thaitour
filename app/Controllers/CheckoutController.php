@@ -596,11 +596,15 @@ class CheckoutController extends BaseController
 			// 배열을 다시 문자열로 변환
 			$output = implode(',', $quotedArray);
 
-			$sql = "UPDATE tbl_order_mst SET order_status = 'G', deposit_date = now()	WHERE order_no IN(". $output .") "; 
+			$sql = "UPDATE tbl_order_mst SET order_status = 'G'
+			                               , order_method = '계좌입금'
+										   , order_pg     = '계좌입금'
+										   , payment_no   = '". $payment_no ."'
+										   , deposit_date = now()	WHERE order_no IN(". $output .") "; 
             //write_log($sql);											   
 			$db->query($sql);
-					
-            alimTalk_send($order_no, $alimCode);
+
+            alimTalk_send_bank($row['payment_idx']); 
 
             $msg    = $payment_account ."<br>계좌로 입금해 주시기 바랍니다.";
 			
