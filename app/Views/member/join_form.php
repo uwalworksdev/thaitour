@@ -305,11 +305,19 @@ if ($mIdx != "") {
                 <?php } ?>
 
                 <div class="input-wrap">
-                    <label class="label">이름*</label>
+                    <label class="label">한국이름*</label>
                     <div class="input-row">
                         <input type="text" name="user_name" id="user_name" value="<?= $user_name ?>" class="bs-input">
                     </div>
                 </div>
+
+                <div class="input-wrap">
+                    <label class="label">영문 이름*</label>
+                    <div class="input-row">
+                        <input type="text" name="user_name" id="user_name" value="<?= $user_name ?>" class="bs-input">
+                    </div>
+                </div>
+
                 <div class="input-wrap">
                     <label class="label">생년월일*</label>
                     <div class="input-row ">

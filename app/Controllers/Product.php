@@ -3390,7 +3390,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
         $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
 
         $builder = $this->db->table('tbl_policy_info');
-		$policy = $builder->where('p_idx', 40)
+		$policy = $builder->where('p_idx', 41)
 							->get()->getRowArray();
         $data['policy'] = $policy;
 
