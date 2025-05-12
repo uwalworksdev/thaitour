@@ -766,7 +766,7 @@
                                     <div class="explain_point">
                                         <h5>유의사항</h5>
                                         <div class="txt_me01">
-                                            <?= viewSQ($hotel["product_notes"]) ?>
+                                            <?= viewSQ($policy["policy_contents"]) ?>
                                         </div>
                                     </div>
                                 </div>
