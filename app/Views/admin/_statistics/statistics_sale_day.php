@@ -197,51 +197,41 @@
 
                     <div class="empty10">&nbsp;</div>
 
-                    <script type="text/javascript">
-                        google.charts.load('current', {
-                            'packages': ['corechart']
-                        });
-                        google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
+    function drawChart() {
 
+        var data = google.visualization.arrayToDataTable([
+            ['날짜', 'PC 매출', '모바일 매출'],
+            <?php foreach ($chart_data as $row): ?>
+                ['<?= $row[0] ?>', <?= $row[1] ?>, <?= $row[2] ?>],
+            <?php endforeach; ?>
+        ]);
 
-                            var data = google.visualization.arrayToDataTable([
-                                ['요일', '매출', {
-                                    role: 'tooltip',
-                                    p: {
-                                        html: true
-                                    }
-                                }],
+        var options = {
+            title: '일별 매출 (PC / 모바일)',
+            hAxis: {
+                title: '일자'
+            },
+            vAxis: {
+                title: '매출 (원)'
+            },
+            tooltip: {
+                isHtml: true
+            },
+            legend: {
+                position: 'bottom'
+            }
+        };
 
-                                <?php
-                                for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
-                                    $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                    $tmp_day = sprintf('%04d-%02d-%02d', $years, $months, $_tmp_date);
-                                ?>[new Date('<?= $tmp_day ?>'), <?= $price_arr[$i] ?>, '매출 : <?= number_format($price_arr[$i]) ?>원 <br/> CP수수료 : <?= number_format($cp_arr[$i]) ?>원 <br/> 상품 : <?= number_format($cnt_arr[$i]) ?>개'],
-                                <?php } ?>
-                            ]);
-
-
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                },
-                                tooltip: {
-                                    isHtml: true
-                                }, // HTML 툴팁 사용
-                                hAxis: {
-                                    format: 'yyyy-MM-dd' // X축 날짜 형식 설정
-                                }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
+        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
+    }
+</script>
 
                     <table class="listIn fixed-header">
                         <colgroup>
