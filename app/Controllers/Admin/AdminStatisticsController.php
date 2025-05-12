@@ -359,6 +359,8 @@ public function statistics_sale_day()
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
             SUM(tbl_order_mst.real_price_won) as total,
+			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
         ");
         $builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
@@ -370,7 +372,10 @@ public function statistics_sale_day()
 
         $results = $builder->get()->getResult();
         foreach ($results as $row) {
-            $pc_price_arr[$row->yyyymmdd] = (int)$row->total;
+            $pc_price_arr[$row->yyyymmdd]  = (int)$row->total;
+            $pc_coupon_arr[$row->yyyymmdd] = (int)$row->coupon_total;
+            $pc_point_arr[$row->yyyymmdd]  = (int)$row->point_total;
+            $pc_count_arr[$row->yyyymmdd]  = (int)$row->count;
         }
     }
 
@@ -380,6 +385,8 @@ public function statistics_sale_day()
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
             SUM(tbl_order_mst.real_price_won) as total,
+			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
+			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
         ");
         $builder->join('tbl_payment_mst', 'tbl_order_mst.payment_no = tbl_payment_mst.payment_no', 'left');
@@ -391,7 +398,10 @@ public function statistics_sale_day()
 
         $results = $builder->get()->getResult();
         foreach ($results as $row) {
-            $mobile_price_arr[$row->yyyymmdd] = (int)$row->total;
+            $mobile_price_arr[$row->yyyymmdd]  = (int)$row->total;
+            $mobile_coupon_arr[$row->yyyymmdd] = (int)$row->coupon_total;
+            $mobile_point_arr[$row->yyyymmdd]  = (int)$row->point_total;
+            $mobile_count_arr[$row->yyyymmdd]  = (int)$row->count;
         }
     }
 
@@ -403,16 +413,28 @@ public function statistics_sale_day()
     $table_data = [];
     $max_day = date('t', strtotime($startDate));
     for ($d = 1; $d <= $max_day; $d++) {
-        $date = sprintf("%s-%02d-%02d", $years, $months, $d);
-        $pc     = $pc_price_arr[$date] ?? 0;
-        $mobile = $mobile_price_arr[$date] ?? 0;
+        $date          = sprintf("%s-%02d-%02d", $years, $months, $d);
+        $pc_price      = $pc_price_arr[$date] ?? 0;
+        $pc_coupon     = $pc_coupon_arr[$date] ?? 0;
+        $pc_point      = $pc_point_arr[$date] ?? 0;
+        $pc_count      = $pc_count_arr[$date] ?? 0;
+        $mobile_price  = $mobile_price_arr[$date] ?? 0;
+        $mobile_coupon = $mobile_coupon_arr[$date] ?? 0;
+        $mobile_point  = $mobile_point_arr[$date] ?? 0;
+        $mobile_count  = $mobile_count_arr[$date] ?? 0;
 
         $chart_data[] = [date('n/j', strtotime($date)), $pc, $mobile];
 
         $table_data[] = [
-            'date'   => $date,
-            'pc'     => $pc,
-            'mobile' => $mobile,
+            'date'          => $date,
+            'pc_price'      => $pc_price,
+            'pc_coupon'     => $pc_coupon,
+            'pc_point'      => $pc_point,
+            'pc_count'      => $pc_count,
+            'mobile_price'  => $mobile_price,
+            'mobile_coupon' => $mobile_coupon,
+            'mobile_point'  => $mobile_point,
+            'mobile_count'  => $mobile_count,
         ];
     }
 
