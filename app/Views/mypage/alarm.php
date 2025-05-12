@@ -302,7 +302,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                     <p class="my_p_cont f_black mb0">
                         <span class="pr50 f_black">※나만의 알리미는 30 일간 보관합니다.</span>
                         읽지 않은 알림 : <span class="ltsno alarm_unread_org">0</span>   
-                        <em>|</em> 
+                        <em>|</em> <br class="only_mo">
                         총 알림갯수 : <span class="ltsno">0</span>
                     </p>
                 </div>

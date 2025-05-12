@@ -12,7 +12,7 @@
                         <a href="/community/customer_center">자주 찾는 질문</a>
                     </div>
                     <div class="itembar active"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
-                    <div class="itembar"><a href="/qna/list">1 : 1 게시판</a></div>
+                    <!-- <div class="itembar"><a href="/qna/list">1 : 1 게시판</a></div> -->
                     <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                 </div>
             </div>
@@ -26,9 +26,9 @@
                     <li class="on">
                         <div class="menu_level_1 flex_b_c"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
                     </li>
-                    <li class="">
+                    <!-- <li class="">
                         <div class="menu_level_1 flex_b_c"><a href="/qna/list">1 : 1 게시판</a></div>
-                    </li>
+                    </li> -->
                     <li class="">
                         <div class="menu_level_1 flex_b_c"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                     </li>

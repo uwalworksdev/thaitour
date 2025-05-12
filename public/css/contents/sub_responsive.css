@@ -2005,6 +2005,15 @@
       max-width: 42rem;
   }
 
+  .write_container .check_box input[type="checkbox"]:checked+label, .write_container .check_box input[type="checkbox"]:not(:checked)+label {
+      position: relative;
+      padding-left: 4rem;
+      cursor: pointer;
+      line-height: 3.5rem;
+      display: inline-block;
+      color: #666;
+  }
+
   .content-sub-product-hotel .below-filter-content .search_keyword .btn_search {
     border-radius: 0.2rem !important;
     padding-right: 2rem !important;
@@ -3468,6 +3477,46 @@
   .bs_table tbody td.code_name {
       font-size: 2.4rem;
   }
+
+  .write_container .file_box .file_select {
+      gap: 0 1rem;
+  }
+
+  .write_container .file_box .file_select label {
+      font-weight: 500;
+      padding: 1.5rem 2rem;
+      border: 1px solid #252525;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      height: 8.2rem;
+      display: flex;
+      align-items: center;
+  }
+
+  .write_container .check_box input[type="checkbox"]:checked+label, .write_container .check_box input[type="checkbox"]:not(:checked)+label
+  {
+      position: relative;
+      padding-left: 4rem;
+      cursor: pointer;
+      line-height: 3.5rem;
+      display: inline-block;
+      color: #666;
+  }
+
+  .write_container .check_box input[type="checkbox"]:checked+label:before, .write_container .check_box input[type="checkbox"]:not(:checked)+label:before
+  {
+      width: 3.2rem;
+      height: 3.2rem;
+  }
+
+  .write_container .check_box input[type="checkbox"]:checked+label:after, .write_container .check_box input[type="checkbox"]:not(:checked)+label:after
+ {
+    content: "";
+    width: 1.8rem;
+    height: 1.8rem;
+    top: 0.8rem;
+    left: 0.8rem;
+}
 
   .popup_place__body .policy_top {
       margin-top: 3rem !important;
