@@ -357,7 +357,11 @@
                                 ['요일', '적립금', '쿠폰'],
 
 								<?php foreach ($table_data as $row): ?>
-									[new Date('<?= $row[date] ?>'), <?= $row[pc_point]+$row[mobile_point] ?>, <?= <?= $row[pc_coupon]+$row[mobile_coupon] ?> ?>],
+								      <?php 
+									        $point  = $row['pc_point'] + $row['mobile_point']; 	
+									        $coupon = $row['pc_coupon'] + $row['mobile_coupon'];
+									  ?>		
+									[new Date('<?= $row[date] ?>'), <?= $point ?>, <?= $coupon ?>],
 								<?php endforeach; ?>
                             ]);
 
