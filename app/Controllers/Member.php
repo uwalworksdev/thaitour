@@ -251,11 +251,15 @@ class Member extends BaseController
         $user_email_yn = updateSQ($this->request->getPost("user_email_yn"));
         $birthday      = updateSQ($this->request->getPost("birth_day"));
 
-        $zip           = updateSQ($this->request->getPost("zip"));
-        $addr1         = updateSQ($this->request->getPost("addr1"));
-        $addr2         = updateSQ($this->request->getPost("addr2"));
+        $zip           = updateSQ($this->request->getPost("zip") ?? "");
+        $addr1         = updateSQ($this->request->getPost("addr1") ?? "");
+        $addr2         = updateSQ($this->request->getPost("addr2") ?? "");
         $visit_route   = updateSQ($this->request->getPost("visit_route"));
         $recommender   = updateSQ($this->request->getPost("recommender"));
+        $gender        = updateSQ($this->request->getPost("gender") ?? "");
+        
+        $passport_number   = updateSQ($this->request->getPost("passport_number") ?? "");
+        $passport_expiry_date   = updateSQ($this->request->getPost("passport_expiry_date") ?? "");
 
         if ($gubun == "") {
             $fields = [
@@ -325,6 +329,9 @@ class Member extends BaseController
 					'visit_route'   => $visit_route ?? "",
 					'recommender'   => $recommender ?? "",
 					'mbti'          => $mbti,
+					'passport_number' => $passport_number,
+					'passport_expiry_date' => $passport_expiry_date,
+					'gender' => $gender,
             ]);
         }
 
