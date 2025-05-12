@@ -90,7 +90,7 @@
                     <form name="modifyForm1" method="get" action="statistics_sale_day" autocomplete="off">
 
                         <div class="firstLine selectYear" style="padding-left:0">
-                            <!--select name="years" onchange="fn_search()">
+                            <select name="years" onchange="fn_search()">
                                 <?php
                                     for ($ys = 2024; $ys <= date('Y'); $ys++) {
                                 ?>
@@ -102,7 +102,7 @@
                                 <?php for ($ms = 1; $ms <= 12; $ms++) { ?>
                                     <option value="<?= $ms ?>" <?php if ($ms == $months) echo "selected"; ?>><?= $ms ?>월</option>
                                 <?php } ?>
-                            </select-->
+                            </select>
 
     <select name="years" onchange="fn_search()">
         <?php foreach ($years as $y): ?>
