@@ -251,6 +251,7 @@ class Member extends Model
     {
         $data['user_name']   = encryptField($data['user_name'], "encode");
         $data['user_first_name_en']= encryptField($data['user_first_name_en'], "encode");
+        $data['user_last_name_en']= encryptField($data['user_last_name_en'], "encode");
         $data['user_email']  = encryptField($data['user_email'], "encode");
         $data['user_mobile'] = encryptField($data['user_mobile'] ?? "", "encode");
         $data['passport_number'] = encryptField($data['passport_number'] ?? "", "encode");

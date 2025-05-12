@@ -96,7 +96,8 @@ public function callback()
                                AES_DECRYPT(UNHEX(user_name),  '$private_key') AS name, 
                                AES_DECRYPT(UNHEX(user_email), '$private_key') AS email,
                                AES_DECRYPT(UNHEX(passport_number), '$private_key') AS passport_number,
-                               AES_DECRYPT(UNHEX(user_name_en), '$private_key') AS user_name_en
+                               AES_DECRYPT(UNHEX(user_first_name_en), '$private_key') AS user_first_name_en,
+                               AES_DECRYPT(UNHEX(user_last_name_en), '$private_key') AS user_last_name_en
 				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
                 $row = $this->db->query($sql)->getRowArray();
                 $session = session();
@@ -132,7 +133,8 @@ public function callback()
 							'gubun'   => $row['gubun'],
 							'sns_key' => $row['sns_key'],
 							'mlevel'  => $row['user_level'],
-							'user_name_en'  => $row['user_name_en'],
+							'first_name_en' => $row['user_first_name_en'],
+							'last_name_en'  => $row['user_last_name_en'],
 							'gender'  => $row['gender'],
 							'passport_number'  => $row['passport_number'],
 							'passport_expiry_date'  => $row['passport_expiry_date'],
