@@ -466,6 +466,13 @@ class Member extends BaseController
             autoSms($code, $to_phone, $_tmp_fir_array);
         }
 
+        $allim_replace = [
+            "#{MEMBER_NAME}"    => $user_name,
+            "phone"             => $user_mobile
+        ];
+        
+        alimTalkSend("TZ_9297", $allim_replace);
+
         // 로그인 처리 부분
         $row = $this->member->where(['user_id' => $user_id])->first();
 
