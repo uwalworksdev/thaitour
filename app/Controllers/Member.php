@@ -335,6 +335,7 @@ class Member extends BaseController
             $this->member->insertMember([
 					'user_id'     => $user_id,
 					'user_name'   => $user_name,
+					'user_name_en'=> $user_name_en,
 					'user_email'  => $user_email,
 					'user_email_yn' => $user_email_yn,
 					'user_mobile' => $user_mobile,
@@ -354,6 +355,7 @@ class Member extends BaseController
 					'user_id'       => $user_id,
 					'user_pw'       => $user_pw,
 					'user_name'     => $user_name,
+					'user_name_en'  => $user_name_en,
 					'birthday'      => $birthday,
 					'user_email'    => $user_email,
 					'user_email_yn' => $user_email_yn,
