@@ -197,49 +197,68 @@
 
                     <div class="empty10">&nbsp;</div>
 
-                    <script type="text/javascript">
-                        google.charts.load('current', {
-                            'packages': ['corechart']
-                        });
-                        google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+    google.charts.load('current', {
+        packages: ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-                        function drawChart() {
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['날짜', 'PC', 'Mobile'],
+            [new Date('2025-05-01'), 0, 0],
+            [new Date('2025-05-02'), 4241, 0],
+            [new Date('2025-05-03'), 21204, 0],
+            [new Date('2025-05-04'), 0, 0],
+            [new Date('2025-05-05'), 318074, 0],
+            [new Date('2025-05-06'), 0, 0],
+            [new Date('2025-05-07'), 0, 0],
+            [new Date('2025-05-08'), 0, 0],
+            [new Date('2025-05-09'), 469478, 0],
+            [new Date('2025-05-10'), 97969, 0],
+            [new Date('2025-05-11'), 169, 0],
+            [new Date('2025-05-12'), 559811, 0],
+            [new Date('2025-05-13'), 0, 0],
+            [new Date('2025-05-14'), 0, 0],
+            [new Date('2025-05-15'), 0, 0],
+            [new Date('2025-05-16'), 0, 0],
+            [new Date('2025-05-17'), 0, 0],
+            [new Date('2025-05-18'), 0, 0],
+            [new Date('2025-05-19'), 0, 0],
+            [new Date('2025-05-20'), 0, 0],
+            [new Date('2025-05-21'), 0, 0],
+            [new Date('2025-05-22'), 0, 0],
+            [new Date('2025-05-23'), 0, 0],
+            [new Date('2025-05-24'), 0, 0],
+            [new Date('2025-05-25'), 0, 0],
+            [new Date('2025-05-26'), 0, 0],
+            [new Date('2025-05-27'), 0, 0],
+            [new Date('2025-05-28'), 0, 0],
+            [new Date('2025-05-29'), 0, 0],
+            [new Date('2025-05-30'), 0, 0],
+            [new Date('2025-05-31'), 0, 0],
+        ]);
 
+        var options = {
+            title: '일별 매출 (PC vs Mobile)',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            hAxis: {
+                format: 'MM/dd',
+                title: '날짜'
+            },
+            vAxis: {
+                title: '매출 (원)'
+            },
+            tooltip: {
+                isHtml: false
+            }
+        };
 
-                            var data = google.visualization.arrayToDataTable([
-                                ['요일', '매출', {
-                                    role: 'tooltip',
-                                    p: {
-                                        html: true
-                                    }
-                                }],
-
-<?php foreach ($chart_data as $row): ?>
-    [new Date('<?= $row[0] ?>'), <?= $row[1] ?>, '<?= addslashes($row[2]) ?>'],
-<?php endforeach; ?>
-
-                            ]);
-
-
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                },
-                                tooltip: {
-                                    isHtml: true
-                                }, // HTML 툴팁 사용
-                                hAxis: {
-                                    format: 'yyyy-MM-dd' // X축 날짜 형식 설정
-                                }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
+    }
+</script>
 
                     <table class="listIn fixed-header">
                         <colgroup>
