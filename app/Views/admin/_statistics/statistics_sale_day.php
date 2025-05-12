@@ -399,16 +399,13 @@
                             </tr>
                         </thead>
                         <tbody class="count_per" id="count_all">
-                            <?php
-                            for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
-                                $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                            ?>
-                                <tr>
-                                    <td class="number"><?= $years ?>-<?= str_pad($months, 2, "0", STR_PAD_LEFT) ?>-<?= $_tmp_date ?></td>
-                                    <td class="number"><?= number_format($point_arr[$i]) ?> <span><?= $point_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] ?>%</span></td>
-                                </tr>
-                            <?php } ?>
+							<?php foreach ($table_data as $row): ?>
+								<tr>
+									<td class="number"><?= esc($row['date']) ?></td>
+									<td class="number"><?= number_format($row['pc_point'] + $row['mobile_point']) ?> <span><?= $point_arr[$i] ?>%</span></td
+									<td class="number"><?= number_format($row['pc_coupon'] + $row['mobile_coupon']) ?> <span><?= $point_arr[$i] ?>%</span></td
+								</tr>
+							<?php endforeach; ?>						
                         </tbody>
                     </table>
                 </div>
