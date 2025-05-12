@@ -140,11 +140,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
         $("#reason_list").val(reason_list);
 
         let frm = document.frm;
-        if (frm.user_pw.value == "") {
-            frm.user_pw.focus();
-            alert("비밀번호를 입력해주셔야 합니다.");
-            return;
-        }
+        // if (frm.user_pw.value == "") {
+        //     frm.user_pw.focus();
+        //     alert("비밀번호를 입력해주셔야 합니다.");
+        //     return;
+        // }
 
         $.ajax({
             url: "money_ok",
