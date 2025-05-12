@@ -77,7 +77,7 @@ class AutoMailController extends BaseController
         }
     }
 
-    public function sms_delete() {
+    public function email_delete() {
         try {
             $idx = $this->request->getPost("idx") ?? [];
             if (!$idx) {
