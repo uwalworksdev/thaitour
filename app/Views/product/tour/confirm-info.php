@@ -923,31 +923,32 @@
                         }
                     }
 
-                    if($status == "B"){
+                }
+                
+                if($status == "B"){
 
-                        if ($("#start_place").val() === "") {
-                            alert("미팅장소 입력해주세요!");
-                            $("#start_place").focus();
-                            return false;
-                        }
+                    if ($("#start_place").val() === "") {
+                        alert("미팅장소 입력해주세요!");
+                        $("#start_place").focus();
+                        return false;
+                    }
 
-                        if ($("#end_place").val() === "") {
-                            alert("종료 후 내리실 곳 입력해주세요!");
-                            $("#end_place").focus();
-                            return false;
-                        }
+                    if ($("#end_place").val() === "") {
+                        alert("종료 후 내리실 곳 입력해주세요!");
+                        $("#end_place").focus();
+                        return false;
+                    }
 
-                        if ($("#id_kakao").val() === "") {
-                            alert("카카오톡 아이디 입력해주세요!");
-                            $("#id_kakao").focus();
-                            return false;
-                        }
+                    if ($("#id_kakao").val() === "") {
+                        alert("카카오톡 아이디 입력해주세요!");
+                        $("#id_kakao").focus();
+                        return false;
+                    }
 
-                        if ($("#description").val() === "") {
-                            alert("기타 요청 입력해주세요!");
-                            $("#description").focus();
-                            return false;
-                        }
+                    if ($("#description").val() === "") {
+                        alert("기타 요청 입력해주세요!");
+                        $("#description").focus();
+                        return false;
                     }
                 }
 
