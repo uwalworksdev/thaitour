@@ -400,10 +400,25 @@
                         </thead>
                         <tbody class="count_per" id="count_all">
 							<?php foreach ($table_data as $row): ?>
+							    <?php
+								      if(($pc_point + $mobile_point) == 0)
+									  {
+								          $point_rate = 0;
+									  } else {	  
+								          $point_rate = (round)(($row['pc_point'] + $row['mobile_point']) * 100 / ($pc_point + $mobile_point));
+									  }
+									  
+								      if(($pc_coupon + $mobile_coupon) == 0)
+									  {
+								          $coupon_rate = 0;
+									  } else {	  
+								          $coupon_rate = (round)(($row['pc_coupon'] + $row['mobile_coupon']) * 100 / ($pc_coupon + $mobile_coupon));
+									  }	  
+								?>
 								<tr>
 									<td class="number"><?= esc($row['date']) ?></td>
-									<td class="number"><?= number_format($row['pc_point'] + $row['mobile_point']) ?> <span><?= $point_arr[$i] ?>%</span></td>
-									<td class="number"><?= number_format($row['pc_coupon'] + $row['mobile_coupon']) ?> <span><?= $point_arr[$i] ?>%</span></td>
+									<td class="number"><?= number_format($row['pc_point'] + $row['mobile_point']) ?> <span><?= $point_rate ?>%</span></td>
+									<td class="number"><?= number_format($row['pc_coupon'] + $row['mobile_coupon']) ?> <span><?= $coupon_rate ?>%</span></td>
 								</tr>
 							<?php endforeach; ?>						
                         </tbody>
