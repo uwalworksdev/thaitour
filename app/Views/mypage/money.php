@@ -163,10 +163,12 @@ if ($_SESSION["member"]["mIdx"] == "") {
                 } else if (response == "NOUSER") {
                     alert("일치하는 아이디가 없습니다.");
                     return;
-                } else if (response == "NOPASS") {
-                    alert("패스워드가 일치하지 않습니다.");
-                    return;
-                } else if (response == "NOMOBILE") {
+                } 
+                // else if (response == "NOPASS") {
+                //     alert("패스워드가 일치하지 않습니다.");
+                //     return;
+                // } 
+                else if (response == "NOMOBILE") {
                     alert("휴대폰번호가 일치하지 않습니다.");
                     return;
                 } else if (response == "NOMATCH") {
