@@ -41,7 +41,7 @@
 
 							<tr style="height:45px;">
 								<th>항목</th>
-								<td><input type="text" name="code" id="code" value="<?=$sms['title'] ?? ""?>" style="width:90%;"></td>
+								<td><input type="text" name="title" id="title" value="<?=$sms['title'] ?? ""?>" style="width:90%;"></td>
 							</tr>
 
 							<tr style="height:45px;">
