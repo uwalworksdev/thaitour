@@ -8,7 +8,12 @@
             <h2>자동메일관리</h2>
             <div class="menus">
                 <ul class="first">
-                    
+                    <li>
+                        <a href="email_view" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span> 
+                            <span class="txt">상품 등록</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
