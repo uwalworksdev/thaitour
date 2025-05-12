@@ -292,6 +292,14 @@
                         $top_banner6_arr = array();
                         $top_banner6_arr['P'] = 0;
                         $top_banner6_arr['M'] = 0;
+						
+						$pc_coupon = $mobile_coupon = $pc_point = $mobile_point = 0;
+						foreach ($table_data as $row): 
+								 $pc_point      = $pc_point + $row['pc_point'];
+								 $mobile_point  = $mobile_point + $row['mobile_point'];
+								 $pc_coupon     = $pc_coupon + $row['pc_coupon'];
+								 $mobile_coupon = $mobile_coupon + $row['mobile_coupon'];
+						endforeach;								
 
                     ?>
 
@@ -313,14 +321,14 @@
                         <tbody class="statistics">
                             <tr>
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($pc_point + $mobile_point)?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
                                 </td>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($pc_coupon + $mobile_coupon)?></div>
                                     <div>
                                         <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
                                     </div>
