@@ -205,32 +205,31 @@
 
                         function drawChart() {
 
+							var data = google.visualization.arrayToDataTable([
+								['날짜', 'PC', 'Mobile'],
+								<?php foreach (array_slice($chart_data, 1) as $row): ?>
+									[new Date('<?= $row[0] ?>'), <?= $row[1] ?>, <?= $row[2] ?>],
+								<?php endforeach; ?>
+							]);
 
-    var data = google.visualization.arrayToDataTable([
-        ['날짜', 'PC', 'Mobile'],
-        <?php foreach (array_slice($chart_data, 1) as $row): ?>
-            [new Date('<?= $row[0] ?>'), <?= $row[1] ?>, <?= $row[2] ?>],
-        <?php endforeach; ?>
-    ]);
+        var options = {
+            title: '일별 매출 (PC vs Mobile)',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            hAxis: {
+                format: 'MM/dd',
+                title: '날짜'
+            },
+            vAxis: {
+                title: '매출 (원)'
+            },
+            tooltip: {
+                isHtml: false
+            }
+        };
 
-
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                },
-                                tooltip: {
-                                    isHtml: true
-                                }, // HTML 툴팁 사용
-                                hAxis: {
-                                    format: 'yyyy-MM-dd' // X축 날짜 형식 설정
-                                }
-                            };
-
-                            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
                         }
                     </script>
 
