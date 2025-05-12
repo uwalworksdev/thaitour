@@ -307,14 +307,42 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">한국이름*</label>
                     <div class="input-row">
-                        <input type="text" name="user_name" id="user_name" value="<?= $user_name ?>" class="bs-input">
+                        <input type="text" name="user_name" id="user_name" value="<?= $user_name ?>" class="bs-input only_ko">
                     </div>
                 </div>
 
                 <div class="input-wrap">
                     <label class="label">영문 이름*</label>
                     <div class="input-row">
-                        <input type="text" name="user_name" id="user_name" value="<?= $user_name ?>" class="bs-input">
+                        <input type="text" name="user_name_en" id="user_name_en" value="" class="bs-input only_en">
+                    </div>
+                </div>
+
+                <div class="input-wrap">
+                    <label class="label">여권번호*</label>
+                    <div class="input-row">
+                        <input type="text" name="passport_number" id="passport_number" value="" class="bs-input">
+                    </div>
+                </div>
+
+                <div class="input-wrap">
+                    <label class="label">여권만기일*</label>
+                    <div class="input-row ">
+                        <div class="datepick">
+                            <input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" class="bs-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-wrap">
+                    <label class="label">성별(남성/여성) *</label>
+                    <div class="input-row ">
+                        <div class="datepick">
+                            <select name="gender" id="gender" style="width: 100%" data-label="성별" class="select-width">
+                                <option value="M">남성</option>
+                                <option value="F">여성</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -326,7 +354,7 @@ if ($mIdx != "") {
                     </div>
                 </div>
                 <div class="input-wrap">
-                    <label class="label">주소</label>
+                    <!-- <label class="label">주소</label>
                     <div class="input-row">
                         <div class="button-row">
                             <input type="text" name="zip" id="sample2_postcode" placeholder="" class="bs-input">
@@ -335,7 +363,7 @@ if ($mIdx != "") {
                         </div>
                         <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input">
                         <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input">
-                    </div>
+                    </div> -->
 
                     <label style="margin-top: 20px" for="MBTI">추천 MBTI</label>
                     <select name="mbti" id="MBTI" class="bs-select domain_list">
@@ -896,7 +924,19 @@ if ($mIdx != "") {
         var idx = $(this).parent().index();
         $('.login_find .login_form').removeClass('on');
         $('.login_find .login_form').eq(idx).addClass('on');
-    })
+    });
+
+    $('.only_ko').on('input', function () {
+        let val = $(this).val();
+        val = val.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, '');
+        $(this).val(val);
+    });
+
+    $('.only_en').on('input', function () {
+        var val = $(this).val();
+        val = val.replace(/[^a-zA-Z\s]/g, '');
+        $(this).val(val);
+    });
 
     function fn_submit() {
         var frm = document.reg_mem_fm;
@@ -1043,8 +1083,26 @@ if ($mIdx != "") {
         }
 
         if (frm.user_name.value == "") {
-            alert("이름을 입력해주세요.");
+            alert("한국이름 입력해주세요.");
             frm.user_name.focus();
+            return false;
+        }
+
+        if (frm.user_name_en.value == "") {
+            alert("영문 이름 입력해주세요.");
+            frm.user_name_en.focus();
+            return false;
+        }
+
+        if (frm.passport_number.value == "") {
+            alert("여권번호 입력해주세요.");
+            frm.passport_number.focus();
+            return false;
+        }
+
+        if (frm.passport_expiry_date.value == "") {
+            alert("여권만기일 선택해주세요.");
+            frm.passport_expiry_date.focus();
             return false;
         }
 
