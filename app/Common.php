@@ -1345,6 +1345,115 @@ function alimTalk_send($order_no, $alimCode) {
 }
 
 
+function alimTalk_send_group($payment_idx, $alimCode) {
+
+    $connect     = db_connect();
+    $private_key = private_key();
+
+    $sql	     = " SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
+    $row         = $connect->query($sql)->getRowArray();
+	
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
+	                       ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+    $row_d       = $connect->query($sql_d)->getRowArray();
+
+	$order_user_name   = $row_d['order_user_name'];
+	$order_user_mobile = $row_d['order_user_mobile'];
+    /*
+		TY_1651 예약가능
+		TY_1652 예약접수	 
+		TY_1653 예약불가능 
+		TY_1654 결제완료	 
+		TY_1655 예약확정	 	 
+		TY_1657 예약취소	 
+		TY_1659 인보이스발송	 
+		TY_1660 바우처발송	 
+		TY_2397 계좌입금대기
+		TY_.... 이용완료
+    */
+
+	if($alimCode == "TY_1651") { // 예약가능
+		
+	   $allim_replace = [
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_1652") { // 예약접수 
+		
+	   $allim_replace = [
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
+						];
+
+	} 	
+
+	if($alimCode == "TY_1653") { // 예약불가능	  
+		
+	   $allim_replace = [
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
+						];
+    } 	
+
+	if($alimCode == "TY_1654") { // 결제완료 
+		
+	   $allim_replace = [
+							"#{고객명}" => $order_user_name,
+	                        "phone"     => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_1655") { // 예약확정 
+		
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"       => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_1657") { // 예약취소 
+
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"      => $order_user_mobile
+						];
+    } 	
+
+	if($alimCode == "TY_1659") { // 인보이스발송 
+
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"      => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_1660") { // 바우처발송 
+
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+	                        "phone"      => $order_user_mobile
+						];
+	} 	
+
+	if($alimCode == "TY_2397") { // 계좌입금대기 
+
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{예약번호}" => $order_no,
+							"#{가상계좌}" => $order_no,
+	                        "phone"      => $order_user_mobile
+						];
+	} 	
+
+    alimTalkSend($alimCode, $allim_replace);
+}
+
 function alimTalkSend($tmpCode, $allim_replace) {
 	
     $connect       = db_connect();

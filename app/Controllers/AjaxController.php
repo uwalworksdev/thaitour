@@ -2204,6 +2204,26 @@ class AjaxController extends BaseController {
 		
 	}
 	
+	public function ajax_allimtalk_send1()
+	{
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+ 		
+			$payment_idx = $_POST["payment_idx"];
+			$alimCode    = $_POST["alimCode"];
+
+            $result = alimTalk_send_group($payment_idx, $alimCode);
+			
+		    $msg    = "전송완료";	
+			
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => $msg 
+				]);
+		
+	}
+	
 	public function ajax_incoiceHotel_send()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결

@@ -231,26 +231,26 @@
 								<tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
-                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?= $payment_row['payment_idx'] ?>','TY_1652');">예약접수</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_2397');">결제대기</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">결제완료</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">주문취소</button>
+                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1652');">예약접수</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_2397');">결제대기</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1654');">결제완료</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1657');">주문취소</button>
                                         </td>
                                     </tr>
 
     <script>
-	function allimtalk(order_no, alimCode)
+	function allimtalk1(payment_idx, alimCode)
 	{
 			if (!confirm('알림톡을 전송 하시겠습니까?'))
 				return false;
 
 			var message = "";
 			$.ajax({
-				url  : "/ajax/ajax_allimtalk_send",
+				url  : "/ajax/ajax_allimtalk_send1",
 				type : "POST",
 				data : {
-					"order_no"  : order_no,
-					"alimCode"  : alimCode
+					"payment_idx"  : payment_idx,
+					"alimCode"     : alimCode
 				},
 				dataType : "json",
 				async: false,
