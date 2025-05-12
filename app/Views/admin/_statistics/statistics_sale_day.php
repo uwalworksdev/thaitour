@@ -104,21 +104,6 @@
                                 <?php } ?>
                             </select>
 
-    <select name="years" onchange="fn_search()">
-        <?php foreach ($years as $y): ?>
-            <option value="<?= $y ?>" <?= ($y == $_GET['year'] ?? date('Y')) ? 'selected' : '' ?>>
-                <?= $y ?>년
-            </option>
-        <?php endforeach ?>
-    </select>
-
-    <select name="months" onchange="fn_search()">
-        <?php foreach ($months as $m): ?>
-            <option value="<?= $m ?>" <?= ($m == ($_GET['month'] ?? date('n'))) ? 'selected' : '' ?>>
-                <?= $m ?>월
-            </option>
-        <?php endforeach ?>
-    </select>
                             <!--select name="seller" onchange="fn_search()">
                                 <option value="">셀러전체</option> 
                             </select-->
