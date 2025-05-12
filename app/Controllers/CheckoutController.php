@@ -574,7 +574,7 @@ class CheckoutController extends BaseController
 			$payment_account = $setting['bank_owner'] ." ". $setting['bank_name'] ." ". $setting['bank_no']; // 계좌입금 계좌번호
 			
 			$sql = "UPDATE tbl_payment_mst SET payment_method   = '계좌입금'
-											  ,payment_status   = 'Y'
+											  ,payment_status   = 'G'
 											  ,payment_pg       = '계좌입금'
 											  ,paydate		    = '". $paydate ."'
 											  ,payment_account  = '". $payment_account ."' WHERE payment_no = '". $payment_no ."'";
@@ -600,6 +600,7 @@ class CheckoutController extends BaseController
             //write_log($sql);											   
 			$db->query($sql);
 					
+            alimTalk_send($order_no, $alimCode);
 
             $msg    = $payment_account ."<br>계좌로 입금해 주시기 바랍니다.";
 			
