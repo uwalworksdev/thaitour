@@ -215,11 +215,14 @@
                                 }],
 
                                 <?php									
-                                for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
-                                    $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                    $tmp_day = sprintf('%04d-%02d-%02d', $years, $months, $_tmp_date);
-                                ?>[new Date('2025-05-01'), 22222222, '매출 : 111,222원 <br/> CP수수료 : 333,444원 <br/> 상품 : 11개'],
-                                <?php } ?>
+									foreach ($table_data as $row):
+										$_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
+										$tmp_day = sprintf('%04d-%02d-%02d', $years, $months, $_tmp_date);
+								?>
+									    [new Date('2025-05-01'), 22222222, '매출 : 111,222원 <br/> CP수수료 : 333,444원 <br/> 상품 : 11개'],
+                                <?php 
+ 								    endforeach;				
+								?>
                             ]);
 
 
