@@ -1579,10 +1579,14 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
+            $builder = $this->db->table('tbl_policy_info');
+            $policy = $builder->where('p_idx', 40)
+                                ->get()->getRowArray();
+
             $data = [
                 'hotel'              => $hotel,
-                'hotel_option'       => $hotel_option,
-                'row_data'           => $row,
+                'hotel_option'       => $hotel_option ?? [],
+                'row_data'           => $row ?? [],
                 'price'              => $price,
                 'price_won'          => $price_won,
                 'rooms_idx'          => $rooms_idx,
@@ -1600,7 +1604,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
                 'end_day'            => $end_day,
                 'p_bedrooms'         => $p_bedrooms ?? '',
                 'fcodes'             => $fcodes,
-                'fresult4'           => $fresult4,
+                'fresult4'           => $fresult4 ?? [],
                 'inital_price'       => $inital_price,
                 'room_op_price_sale' => $room_op_price_sale,
                 'number_room'        => $number_room,
@@ -1608,11 +1612,11 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
                 'use_coupon_idx'     => $use_coupon_idx,
                 'ho_idx'             => $ho_idx,
                 'room_op_idx'        => $room_op_idx,
-                'bed_type'           => $bed_type,
                 'coupon_discount'    => $coupon_discount,
                 'used_coupon_money'  => $used_coupon_money,
                 'extra_cost'         => $extra_cost,
-                'last_price'         => $last_price
+                'last_price'         => $last_price,
+                'policy'             => $policy,
             ];
         }
 
@@ -2802,7 +2806,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
             if ($data['order_status'] == "W") {
 			    $allim_replace = [
-									"#{고객명}" => $order_user_name,
+									"#{고객명}" => $order_user_name ?? "",
 									"phone"     => $order_user_phone
 							     ];
 			    
@@ -3384,6 +3388,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
         $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
         $data['inital_price'] = $data['total_price_product'] + $total_option_price;
         $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
+
+        $builder = $this->db->table('tbl_policy_info');
+		$policy = $builder->where('p_idx', 40)
+							->get()->getRowArray();
+        $data['policy'] = $policy;
+
         return $this->renderView('/product/tour/confirm-info', $data);
     }
 
