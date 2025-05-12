@@ -144,6 +144,14 @@
                     $top_banner3_arr = array();
                     $top_banner3_arr['P'] = 0;
                     $top_banner3_arr['M'] = 0;
+					
+					$pc_price = $mobile_price = $pc_cnt = $mobile_cnt = 0;
+					foreach ($table_data as $row): 
+					         $pc_price     = $pc_price + $row['pc_price'];
+							 $mobile_price = $mobile_price + $row['mobile_price'];
+							 $pc_cnt       = $pc_cnt + $row['pc_count'];
+							 $mobile_cnt   = $mobile_cnt + $row['mobile_price'];
+					endforeach;				
 
                 ?>
 
@@ -163,17 +171,17 @@
                             <tr>
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($pc_price + $mobile_price)?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($pc_price)?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($mobile_price)?></span>
                                     </div>
                                 </td>
 
 
                                 <td>
-                                    <div class="nums">0</div>
+                                    <div class="nums"><?=number_format($pc_cnt + $mobile_cnt)?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($pc_cnt)?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($mobile_cnt)?></span>
                                     </div>
                                 </td>
 
@@ -250,17 +258,13 @@
                         </thead>
                         <tbody class="count_per" id="count_all">
 						
-							<?php 
-							    foreach ($table_data as $row): 
-							?>
+							<?php foreach ($table_data as $row): ?>
 								<tr>
 									<td><?= esc($row['date']) ?></td>
 									<td><?= number_format($row['pc_price'] + $row['mobile_price']) ?>원</td>
 									<td><?= number_format($row['pc_count'] + $row['mobile_count']) ?></td>
 								</tr>
-							<?php 
-							    endforeach; 
-							?>
+							<?php endforeach; ?>
 							
                         </tbody>
                     </table>
