@@ -402,8 +402,8 @@
 							<?php foreach ($table_data as $row): ?>
 								<tr>
 									<td class="number"><?= esc($row['date']) ?></td>
-									<td class="number"><?= number_format($row['pc_point'] + $row['mobile_point']) ?> <span><?= $point_arr[$i] ?>%</span></td
-									<td class="number"><?= number_format($row['pc_coupon'] + $row['mobile_coupon']) ?> <span><?= $point_arr[$i] ?>%</span></td
+									<td class="number"><?= number_format($row['pc_point'] + $row['mobile_point']) ?> <span><?= $point_arr[$i] ?>%</span></td>
+									<td class="number"><?= number_format($row['pc_coupon'] + $row['mobile_coupon']) ?> <span><?= $point_arr[$i] ?>%</span></td>
 								</tr>
 							<?php endforeach; ?>						
                         </tbody>
