@@ -27,9 +27,10 @@
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                         <colgroup>
                             <col width="15%" />
-                            <col width="55%" />
+                            <col width="*%" />
                             <col width="15%" />
                             <col width="15%" />
+                            <col width="7%" />
                         </colgroup>
                         <thead>
                             <tr>
@@ -37,12 +38,13 @@
                                 <th>메일명</th>
                                 <th>미리보기</th>
                                 <th>자동발송여부</th>
+                                <th>관리</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if (empty($emails)) : ?>
                                 <tr>
-                                    <td colspan="4" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan="5" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                             <?php else : ?>
                                 <?php foreach ($emails as $row) : ?>
@@ -52,6 +54,14 @@
                                         <td><a href="javascript:void(0)" class="btn_preview" rel="<?= esc($row['idx']) ?>">미리보기</a></td>
                                         <td>
                                             <?= ($row['autosend'] == "Y") ? "자동발송" : "사용안함" ?>
+                                        </td>
+                                        <td>
+                                            <a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>">
+                                                <img src="/images/admin/common/ico_setting2.png" alt="설정"/>
+                                            </a>
+                                            <a href="javascript:del_it('<?= $row['idx'] ?>');">
+                                                <img src="/images/admin/common/ico_error.png" alt="에러"/>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -84,6 +94,39 @@
         <a href="javascript:void(0)" class="close_popup">CLOSE</a>
     </div>
 </div>
+
+<script>
+    function del_it(idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            handleDel(idx);
+        }
+    }
+
+    async function handleDel(idx) {
+        let uri = '/AdmMaster/_member/sms_delete';
+
+        $("#ajax_loader").removeClass("display-none");
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: "idx[]=" + idx,
+            async: false,
+            cache: false,
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                $("#ajax_loader").addClass("display-none");
+                alert("정상적으로 삭제되었습니다.");
+                location.reload();
+                return;
+            }
+        });
+    }
+</script>
 
 <script>
     $(document).ready(function(){
