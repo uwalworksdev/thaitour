@@ -250,13 +250,17 @@
                         </thead>
                         <tbody class="count_per" id="count_all">
 						
-							<?php foreach ($table_data as $row): ?>
+							<?php 
+							    foreach ($table_data as $row): 
+							?>
 								<tr>
 									<td><?= esc($row['date']) ?></td>
 									<td><?= number_format($row['pc_price'] + $row['mobile_price']) ?>원</td>
 									<td><?= number_format($row['pc_count'] + $row['mobile_count']) ?></td>
 								</tr>
-							<?php endforeach; ?>
+							<?php 
+							    endforeach; 
+							?>
 							
                         </tbody>
                     </table>
