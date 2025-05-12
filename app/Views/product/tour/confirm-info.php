@@ -924,8 +924,8 @@
                     }
 
                 }
-                
-                if($status == "B"){
+
+                if(status == "B"){
 
                     if ($("#start_place").val() === "") {
                         alert("미팅장소 입력해주세요!");
