@@ -360,6 +360,12 @@ class Member extends BaseController
         //write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
 
+        $this->member->set('login_count', '1');
+        $this->member->set('login_date', 'NOW()');
+        $this->member->set('reg_device', $device_type);
+        $this->member->where('user_id', $user_id);
+        $this->member->update();
+
         //point
         $point = $this->pointModel->getPoint()["member_point"] ?? 0;
         $message = "새로운 회원";
@@ -458,11 +464,6 @@ class Member extends BaseController
 
         session()->set("member", $data);
 
-        $this->member->set('login_count', 'login_count + 1');
-        $this->member->set('login_date', 'NOW()');
-        $this->member->set('reg_device', $device_type);
-        $this->member->where('user_id', $user_id);
-        $this->member->update();
         return $this->response->setJSON(['message' => "success"]);
     }
 
