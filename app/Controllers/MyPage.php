@@ -547,6 +547,7 @@ public function reservationList() {
             $result = $this->db->query($total_sql);
             $row = $result->getRowArray();
             $user_name = $row["user_name"];
+            $user_phone = $row['user_mobile'];
 
             if ($_SESSION["member"]["mIdx"] == "") {
                 $msg = "";
@@ -592,7 +593,7 @@ public function reservationList() {
             setcookie("c_mIdx", "", time() - 86000 * 365, '/');
 
             $code     = "S05";
-            $to_phone = $user_mobile;
+            $to_phone = $user_phone;
             $_tmp_fir_array = [
                 'MEMBER_NAME' => $user_name
             ];
