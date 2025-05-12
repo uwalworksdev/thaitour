@@ -336,7 +336,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">여권만기일*</label>
                     <div class="input-row ">
-                        <div class="expiry">
+                        <div class="datepick expiry">
                             <input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" class="bs-input">
                         </div>
                     </div>
@@ -357,7 +357,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">생년월일*</label>
                     <div class="input-row ">
-                        <div class="datepick"><input type="text" name="birth_day" id="birth_day" onfocus="this.blur()"
+                        <div class="datepick birth"><input type="text" name="birth_day" id="birth_day" onfocus="this.blur()"
                                 class="bs-input"></div>
                     </div>
                 </div>
@@ -521,7 +521,7 @@ if ($mIdx != "") {
         });
 
         // datepick
-        $(".datepick input").datepicker({
+        $(".birth input").datepicker({
             dateFormat: 'yy-mm-dd',
             showOn: "both",
             buttonImage: '/images/ico/datepicker_ico.png',
