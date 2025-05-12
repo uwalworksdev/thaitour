@@ -323,14 +323,14 @@
                                 <td>
                                     <div class="nums"><?=number_format($pc_point + $mobile_point)?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($pc_point)?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($mobile_point)?></span>
                                     </div>
                                 </td>
 
                                 <td>
                                     <div class="nums"><?=number_format($pc_coupon + $mobile_coupon)?></div>
                                     <div>
-                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> 0</span><span><i class="xi-tablet masterTooltip" title="모바일"></i> 0</span>
+                                        <span><i class="xi-desktop masterTooltip" title="PC"></i> <?=number_format($pc_coupon)?></span><span><i class="xi-tablet masterTooltip" title="모바일"></i> <?=number_format($mobile_coupon)?></span>
                                     </div>
                                 </td>
                             </tr>
