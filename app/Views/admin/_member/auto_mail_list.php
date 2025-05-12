@@ -108,7 +108,7 @@
     }
 
     async function handleDel(idx) {
-        let uri = '/AdmMaster/_member/sms_delete';
+        let uri = '/AdmMaster/_member/email_delete';
 
         $("#ajax_loader").removeClass("display-none");
 
