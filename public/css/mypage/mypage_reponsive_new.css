@@ -1791,7 +1791,7 @@
     }
 
     .booklist_wrap .booking_product .info_price .btn_info img {
-        width: 1.8rem;
+        width: 2.8rem !important;
     }
 
     .booklist_wrap .customer-center-page .pagination {
