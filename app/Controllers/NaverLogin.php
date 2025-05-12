@@ -165,7 +165,7 @@ public function callback()
 					$data['name']    = $userName;
 					$data['email']   = $userEmail;
 
-					return $this->redirectForm('/member/join_form_sns', [
+					return $this->redirectForm('/member/join_form', [
 						'gubun'     => 'naver',
 						'sns_key'   => $sns_key,
 						'userEmail' => $userEmail,

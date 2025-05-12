@@ -152,8 +152,21 @@ class Member extends BaseController
 
     public function JoinForm()
     {
-        $mcodes = $this->code->getByParentCode('56')->getResultArray();;
-        return view("member/join_form", ['mcodes' => $mcodes]);
+        $mcodes = $this->code->getByParentCode('56')->getResultArray();
+
+        $sns_gubun = $this->request->getPost('gubun') ?? "";
+        $sns_email = $this->request->getPost('userEmail') ?? "";
+        $sns_name = $this->request->getPost('user_name') ?? "";
+        $sns_key = $this->request->getPost('sns_key') ?? "";
+
+
+        return view("member/join_form", [
+            'mcodes' => $mcodes,
+            's_gubun' => $sns_gubun,
+            's_name' => $sns_name,
+            's_email' => $sns_email,
+            's_key' => $sns_key,
+        ]);
     }
 
     public function IdCheck()
@@ -307,9 +320,18 @@ class Member extends BaseController
 					'user_id'     => $user_id,
 					'user_name'   => $user_name,
 					'user_email'  => $user_email,
+					'user_email_yn' => $user_email_yn,
 					'user_mobile' => $user_mobile,
+					'sms_yn'      => $sms_yn,
 					'gubun'       => $gubun,
 					'sns_key'     => $sns_key,
+					'birthday'    => $birthday,
+                    'visit_route'   => $visit_route ?? "",
+					'recommender'   => $recommender ?? "",
+					'mbti'          => $mbti,
+					'passport_number' => $passport_number,
+					'passport_expiry_date' => $passport_expiry_date,
+					'gender' => $gender,
             ]);
         } else {
             $this->member->insertMember([
@@ -337,6 +359,12 @@ class Member extends BaseController
 
         //write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
+
+        $this->member->set('login_count', '1');
+        $this->member->set('login_date', 'NOW()');
+        $this->member->set('reg_device', $device_type);
+        $this->member->where('user_id', $user_id);
+        $this->member->update();
 
         //point
         $point = $this->pointModel->getPoint()["member_point"] ?? 0;
@@ -436,11 +464,6 @@ class Member extends BaseController
 
         session()->set("member", $data);
 
-        $this->member->set('login_count', 'login_count + 1');
-        $this->member->set('login_date', 'NOW()');
-        $this->member->set('reg_device', $device_type);
-        $this->member->where('user_id', $user_id);
-        $this->member->update();
         return $this->response->setJSON(['message' => "success"]);
     }
 
@@ -842,7 +865,7 @@ class Member extends BaseController
                 $session->set('google.user_id', 'google_' . $id);
                 $session->set('google.sns_key', $id);
 
-                return $this->redirectForm('/member/join_form_sns', [
+                return $this->redirectForm('/member/join_form', [
                     'gubun' => 'google',
                     'sns_key' => $id,
                     'userEmail' => $email,

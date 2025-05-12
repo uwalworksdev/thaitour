@@ -9,7 +9,7 @@ $facebook = session('facebook') ?? [];
 $kakao = session('kakao') ?? [];
 $member = session('member') ?? [];
 $sns_gubun = $sns['gubun'] ?? '';
-$user_name = '';
+$user_name = $sns_name ?? "";
 
 if ($sns_gubun == "naver") {
     $gubun = $sns_gubun;
@@ -32,10 +32,10 @@ if ($sns_gubun == "naver") {
     $userId = "kakao_" . updateSQ($_POST["sns_key"] ?? "");
     $sns_key = $kakao['sns_key'];
 } else {
-    $gubun = "";
-    $userEmail = updateSQ($_POST["userEmail"] ?? "");
+    $gubun = $s_gubun ?? "";
+    $userEmail = $s_email ?? "";
     $userId = "";
-    $sns_key = "";
+    $sns_key = $s_key ?? "";
 }
 
 $email = explode("@", $userEmail);
@@ -1042,13 +1042,14 @@ if ($mIdx != "") {
             return false;
         }
 
-        if (frm.user_id.value == "") {
-            alert("아이디를 입력해주세요.");
-            frm.user_id.focus();
-            return false;
-        }
-
         if ($("#gubun").val() == "" || $("#sns_key").val() == "") {
+
+            if (frm.user_id.value == "") {
+                alert("아이디를 입력해주세요.");
+                frm.user_id.focus();
+                return false;
+            }
+
             if (frm.id_chk.value == "") {
                 alert("아이디 중복체크를 해주세요.");
                 $("#user_id").focus();
