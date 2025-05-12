@@ -790,7 +790,7 @@
 				}
 			});			
 		}
-		
+/*		
         function fn_comment() {
 
             <?php if ($_SESSION["member"]["id"] != "") { ?>
@@ -817,7 +817,7 @@
             alert("로그인을 해주세요.");
             <?php } ?>
         }
-/*
+ 
         function fn_comment_list() {
 
             $.ajax({
