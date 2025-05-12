@@ -206,12 +206,12 @@
                         function drawChart() {
 
 
-                            var data = google.visualization.arrayToDataTable([
-<?php foreach ($chart_data as $row): ?>
-    [new Date('<?= $row[0] ?>'), '<?= $row[1] ?>', '<?= $row[2] ?>'],
-<?php endforeach; ?>
-
-                            ]);
+    var data = google.visualization.arrayToDataTable([
+        ['날짜', 'PC', 'Mobile'],
+        <?php foreach (array_slice($chart_data, 1) as $row): ?>
+            [new Date('<?= $row[0] ?>'), <?= $row[1] ?>, <?= $row[2] ?>],
+        <?php endforeach; ?>
+    ]);
 
 
                             var options = {
