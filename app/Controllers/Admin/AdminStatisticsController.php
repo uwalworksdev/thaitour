@@ -423,7 +423,7 @@ public function statistics_sale_day()
         $mobile_point  = $mobile_point_arr[$date] ?? 0;
         $mobile_count  = $mobile_count_arr[$date] ?? 0;
 
-        $chart_data[] = [date('n/j', strtotime($date)), $pc, $mobile];
+        $chart_data[] = [date('n/j', strtotime($date)), $pc_price, $mobile_price];
 
         $table_data[] = [
             'date'          => $date,
