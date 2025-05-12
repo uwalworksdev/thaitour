@@ -214,15 +214,10 @@
                                     }
                                 }],
 
-                                <?php									
-									foreach ($table_data as $row):
-										//$_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-										//$tmp_day = sprintf('%04d-%02d-%02d', $years, $months, $_tmp_date);
-								?>
-									    [new Date('<?=$row[date]?>'), 22222222, '매출 : '<?=$row[pc_price]+$row[mobile_price]?>'원 <br/> CP수수료 : 333,444원 <br/> 상품 : 11개'],
-                                <?php 
- 								    endforeach;				
-								?>
+<?php foreach ($chart_data as $row): ?>
+    [new Date('<?= $row[0] ?>'), <?= $row[1] ?>, '<?= addslashes($row[2]) ?>'],
+<?php endforeach; ?>
+
                             ]);
 
 
