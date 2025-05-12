@@ -217,7 +217,8 @@ class Member extends BaseController
         $data['email'] = $row['user_email'];
         $data['level'] = $row['user_level'];
         $data['phone'] = $row['user_mobile'];
-        $data['name_en'] = $row['user_name_en'];
+        $data['first_name_en'] = $row['user_first_name_en'];
+        $data['last_name_en'] = $row['user_last_name_en'];
         $data['passport_number'] = $row['passport_number'];
         $data['passport_expiry_date'] = $row['passport_expiry_date'];
         $data['gender'] = $row['gender'];
@@ -259,7 +260,9 @@ class Member extends BaseController
         $user_id       = updateSQ($this->request->getPost("user_id"));
         $user_pw       = updateSQ($this->request->getPost("user_pw"));
         $user_name     = updateSQ($this->request->getPost("user_name"));
-        $user_name_en  = updateSQ($this->request->getPost("user_name_en"));
+        $user_first_name_en  = updateSQ($this->request->getPost("user_first_name_en"));
+        $user_last_name_en  = updateSQ($this->request->getPost("user_last_name_en"));
+
         $user_email    = updateSQ($this->request->getPost("user_email"));
         $user_mobile   = updateSQ($this->request->getPost("user_mobile"));
         $gubun         = updateSQ($this->request->getPost("gubun"));
@@ -286,7 +289,8 @@ class Member extends BaseController
                 'user_id'     => $user_id,
                 'user_pw'     => $user_pw,
                 'user_name'   => $user_name,
-                'user_name_en'=> $user_name_en,
+                'user_first_name_en'=> $user_first_name_en,
+                'user_last_name_en'=> $user_last_name_en,
                 'user_email'  => $user_email,
                 'user_mobile' => $user_mobile,
                 'birth_day'   => $birthday,
@@ -314,7 +318,8 @@ class Member extends BaseController
             $data['email'] = $member['user_email'];
             $data['level'] = 10;
             $data['gubun'] = $member['gubun'];
-            $data['name_en'] = $member['user_name_en'];
+            $data['first_name_en'] = $member['user_first_name_en'];
+            $data['last_name_en'] = $member['user_last_name_en'];
             $data['passport_number'] = $member['passport_number'];
             $data['passport_expiry_date'] = $member['passport_expiry_date'];
             $data['gender'] = $member['gender'];
@@ -335,7 +340,8 @@ class Member extends BaseController
             $this->member->insertMember([
 					'user_id'     => $user_id,
 					'user_name'   => $user_name,
-					'user_name_en'=> $user_name_en,
+					'user_first_name_en'=> $user_first_name_en,
+					'user_last_name_en'=> $user_last_name_en,
 					'user_email'  => $user_email,
 					'user_email_yn' => $user_email_yn,
 					'user_mobile' => $user_mobile,
@@ -355,7 +361,8 @@ class Member extends BaseController
 					'user_id'       => $user_id,
 					'user_pw'       => $user_pw,
 					'user_name'     => $user_name,
-					'user_name_en'  => $user_name_en,
+					'user_first_name_en'=> $user_first_name_en,
+					'user_last_name_en'=> $user_last_name_en,
 					'birthday'      => $birthday,
 					'user_email'    => $user_email,
 					'user_email_yn' => $user_email_yn,
@@ -479,7 +486,8 @@ class Member extends BaseController
         $data['email'] = $user_email;
         $data['level'] = 10;
         $data['gubun'] = $gubun;
-        $data['name_en'] = $user_name_en;
+        $data['first_name_en'] = $user_first_name_en;
+        $data['last_name_en'] = $user_last_name_en;
         $data['passport_number'] = $passport_number;
         $data['passport_expiry_date'] = $passport_expiry_date;
         $data['gender'] = $gender;
@@ -810,7 +818,8 @@ class Member extends BaseController
                 $data['email'] = $existingMember['user_email'];
                 $data['level'] = $existingMember['user_level'];
                 $data['phone'] = $existingMember['user_mobile'];
-                $data['name_en'] = $existingMember['user_name_en'];
+                $data['first_name_en'] = $existingMember['user_first_name_en'];
+                $data['last_name_en'] = $existingMember['user_last_name_en'];
                 $data['passport_number'] = $existingMember['passport_number'];
                 $data['passport_expiry_date'] = $existingMember['passport_expiry_date'];
                 $data['gender'] = $existingMember['gender'];
@@ -911,7 +920,8 @@ class Member extends BaseController
                     'gubun' => $row['gubun'],
                     'sns_key' => $row['sns_key'],
                     'mlevel' => $row['mem_level'],
-                    'name_en' => $row['user_name_en'],
+                    'first_name_en' => $row['user_first_name_en'],
+                    'last_name_en' => $row['user_last_name_en'],
                     'passport_number' => $row['passport_number'],
                     'passport_expiry_date' => $row['passport_expiry_date'],
                     'gender' => $row['gender'],

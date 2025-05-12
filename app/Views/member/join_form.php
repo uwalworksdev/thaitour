@@ -311,10 +311,18 @@ if ($mIdx != "") {
                     </div>
                 </div>
 
-                <div class="input-wrap">
-                    <label class="label">영문 이름*</label>
-                    <div class="input-row">
-                        <input type="text" name="user_name_en" id="user_name_en" value="" class="bs-input only_en">
+                <div class="input-group-name">
+                    <div class="input-wrap">
+                        <label class="label">영문 이름(First Name)*</label>
+                        <div class="input-row">
+                            <input type="text" name="user_first_name_en" id="user_first_name_en" value="" class="bs-input only_en">
+                        </div>
+                    </div>
+                    <div class="input-wrap">
+                        <label class="label">영문 성(Last Name)*</label>
+                        <div class="input-row">
+                            <input type="text" name="user_last_name_en" id="user_last_name_en" value="" class="bs-input only_en">
+                        </div>
                     </div>
                 </div>
 
@@ -1089,9 +1097,15 @@ if ($mIdx != "") {
             return false;
         }
 
-        if (frm.user_name_en.value == "") {
-            alert("영문 이름 입력해주세요.");
-            frm.user_name_en.focus();
+        if (frm.user_first_name_en.value == "") {
+            alert("영문 이름(First Name) 입력해주세요.");
+            frm.user_first_name_en.focus();
+            return false;
+        }
+
+        if (frm.user_last_name_en.value == "") {
+            alert("영문 성(Last Name) 입력해주세요.");
+            frm.user_last_name_en.focus();
             return false;
         }
 
