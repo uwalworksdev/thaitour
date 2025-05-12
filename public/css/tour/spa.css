@@ -663,6 +663,7 @@ div , p , ul, li, span {
     padding-bottom: 22px;
     border-bottom: 1px solid #dbdbdb;
     margin-bottom: 20px;
+    display: flex;
 }
 
 .customer-form-page .container-card .card-right2 .schedule.last {

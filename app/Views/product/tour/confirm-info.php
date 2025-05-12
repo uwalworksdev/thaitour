@@ -654,7 +654,7 @@
                 유의사항
             </h2>
             <div class="des-type">
-                <?= viewSQ($product['notice_comment']) ?>
+                <?= viewSQ($policy['policy_contents']) ?>
             </div>
         <?php } ?>
         <?php if ($product['etc_comment']) { ?>
