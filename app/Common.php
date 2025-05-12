@@ -1358,6 +1358,7 @@ function alimTalk_send_bank($payment_idx) {
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
+	$order_no          = $row['order_no'];	
 	$bank_no           = $row['payment_account'];	
 
 	$alimCode    = "TY_2397"; 
