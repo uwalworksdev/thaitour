@@ -336,7 +336,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">여권만기일*</label>
                     <div class="input-row ">
-                        <div class="datepick">
+                        <div class="expiry">
                             <input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" class="bs-input">
                         </div>
                     </div>
@@ -535,6 +535,23 @@ if ($mIdx != "") {
             changeMonth: true, // month 셀렉트박스 사용
             changeYear: true, // year 셀렉트박스 사용
             yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+        });
+
+        // datepick
+        $(".expiry input").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: '/images/ico/datepicker_ico.png',
+            showMonthAfterYear: true,
+            buttonImageOnly: true,
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            changeMonth: true, // month 셀렉트박스 사용
+            changeYear: true, // year 셀렉트박스 사용
+            yearRange: 'c-100:c+50', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
         });
 
         // $('.datepick input').datepicker('setDate', 'today');
