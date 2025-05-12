@@ -140,11 +140,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
         $("#reason_list").val(reason_list);
 
         let frm = document.frm;
-        // if (frm.user_pw.value == "") {
-        //     frm.user_pw.focus();
-        //     alert("비밀번호를 입력해주셔야 합니다.");
-        //     return;
-        // }
+        if (frm.user_pw.value == "") {
+            frm.user_pw.focus();
+            alert("비밀번호를 입력해주셔야 합니다.");
+            return;
+        }
 
         $.ajax({
             url: "money_ok",
@@ -163,12 +163,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
                 } else if (response == "NOUSER") {
                     alert("일치하는 아이디가 없습니다.");
                     return;
-                } 
-                // else if (response == "NOPASS") {
-                //     alert("패스워드가 일치하지 않습니다.");
-                //     return;
-                // } 
-                else if (response == "NOMOBILE") {
+                } else if (response == "NOPASS") {
+                    alert("패스워드가 일치하지 않습니다.");
+                    return;
+                } else if (response == "NOMOBILE") {
                     alert("휴대폰번호가 일치하지 않습니다.");
                     return;
                 } else if (response == "NOMATCH") {
