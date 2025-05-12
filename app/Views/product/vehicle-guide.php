@@ -3747,12 +3747,7 @@
                 return false;
             }
 
-            if($(".s_hours']").val() == "") {
-                alert("항공 도착 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_hours']").val() == "") {
+            if($(".s_hours").val() == "") {
                 alert("항공 도착 시간 선택해주세요!");
                 return false;
             }
@@ -3774,7 +3769,7 @@
                 return false;
             }
 
-            if($(".s_order_memo']").val() == "") {
+            if($(".s_order_memo").val() == "") {
                 alert("기타요철 입력해주세요!");
                 $(this).focus();
                 return false;
@@ -3785,12 +3780,12 @@
                 return false;
             }
 
-            if($(".e_hours']").val() == "") {
+            if($(".e_hours").val() == "") {
                 alert("미팅 시간 선택해주세요!");
                 return false;
             }
 
-            if($(".e_hours']").val() == "") {
+            if($(".e_hours").val() == "") {
                 alert("미팅 시간 선택해주세요!");
                 return false;
             }
@@ -3811,7 +3806,7 @@
                 return false;
             }
 
-            if($(".e_order_memo']").val() == "") {
+            if($(".e_order_memo").val() == "") {
                 alert("기타요철 입력해주세요!");
                 $(this).focus();
                 return false;
