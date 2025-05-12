@@ -60,6 +60,12 @@ class SmsSettings extends BaseController
             $this->SmsModel->update($idx, $data);
             return $this->response->setBody('<script>alert("수정되었습니다.");parent.location.reload();</script>');
         } else {
+            $row = $this->SmsModel->where('code', $code)->first();
+
+            if(!empty($row)) {
+                return $this->response->setBody('<script>alert("코드가 중복된 코드입니다.");</script>');
+            }
+
             $this->SmsModel->insert($data);
             return $this->response->setBody('<script>alert("등록되었습니다.");parent.location.reload();</script>');
         }
