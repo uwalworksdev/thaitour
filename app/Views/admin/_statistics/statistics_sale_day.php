@@ -356,13 +356,9 @@
                             var data = google.visualization.arrayToDataTable([
                                 ['요일', '적립금', '쿠폰'],
 
-                                <?php
-                                for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
-                                    $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                                    $tmp_day = sprintf('%04d-%02d-%02d', $years, $months, $_tmp_date);
-                                ?>[new Date('<?= $tmp_day ?>'), <?= $point_arr[$i] ?>, <?= $coupon_arr[$i] ?>],
-
-                                <?php } ?>
+								<?php foreach (array_slice($chart_data, 1) as $row): ?>
+									[new Date('<?= $row[date] ?>'), <?= $row[pc_point]+$row[mobile_point] ?>, <?= <?= $row[pc_coupon]+$row[mobile_coupon] ?> ?>],
+								<?php endforeach; ?>
                             ]);
 
                             var options = {
