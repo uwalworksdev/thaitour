@@ -189,6 +189,30 @@
 
                     <div class="empty10">&nbsp;</div>
 
+<script>
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable(<?= json_encode($chart_data) ?>);
+
+    var options = {
+        title: '일별 매출 통계',
+        curveType: 'function',
+        legend: { position: 'bottom' },
+        vAxis: {
+            format: 'decimal',
+            title: '금액 (원)'
+        },
+        hAxis: {
+            title: '날짜',
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
                     <script type="text/javascript">
                         google.charts.load('current', {
                             'packages': ['corechart']
