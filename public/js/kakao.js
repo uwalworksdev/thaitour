@@ -74,7 +74,7 @@ function loginWithKakao() {
                                     document.getElementById("user_name").value = name;
                                     document.getElementById("userEmail").value = email ?? "";
                                     document.getElementById("gubun").value = 'kakao';
-                                    $("#loginFrm").attr("action", "/member/join_form_sns").submit();
+                                    $("#loginFrm").attr("action", "/member/join_form").submit();
                                 }
 
                             }

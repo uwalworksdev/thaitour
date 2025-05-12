@@ -152,8 +152,21 @@ class Member extends BaseController
 
     public function JoinForm()
     {
-        $mcodes = $this->code->getByParentCode('56')->getResultArray();;
-        return view("member/join_form", ['mcodes' => $mcodes]);
+        $mcodes = $this->code->getByParentCode('56')->getResultArray();
+
+        $sns_gubun = $this->request->getPost('gubun') ?? "";
+        $sns_email = $this->request->getPost('userEmail') ?? "";
+        $sns_name = $this->request->getPost('user_name') ?? "";
+        $sns_key = $this->request->getPost('sns_key') ?? "";
+
+
+        return view("member/join_form", [
+            'mcodes' => $mcodes,
+            's_gubun' => $sns_gubun,
+            's_name' => $sns_name,
+            's_email' => $sns_email,
+            's_key' => $sns_key,
+        ]);
     }
 
     public function IdCheck()
@@ -842,7 +855,7 @@ class Member extends BaseController
                 $session->set('google.user_id', 'google_' . $id);
                 $session->set('google.sns_key', $id);
 
-                return $this->redirectForm('/member/join_form_sns', [
+                return $this->redirectForm('/member/join_form', [
                     'gubun' => 'google',
                     'sns_key' => $id,
                     'userEmail' => $email,
