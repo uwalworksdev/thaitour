@@ -208,7 +208,7 @@
 
                             var data = google.visualization.arrayToDataTable([
 <?php foreach ($chart_data as $row): ?>
-    [new Date('<?= $row[0] ?>'), '<?= $row[1] ?>', '<?= addslashes($row[2]) ?>'],
+    [new Date('<?= $row[0] ?>'), '<?= $row[1] ?>', '<?= $row[2] ?>'],
 <?php endforeach; ?>
 
                             ]);
