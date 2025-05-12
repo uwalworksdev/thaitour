@@ -3723,7 +3723,7 @@
                     $(this).focus();
                     return false;
                 }
-            }else if(code_no == "5402"){
+            }else {
                 if($(".s_departure_name").val() == "") {
                     alert("미팅 장소 입력해주세요!");
                     $(this).focus();
