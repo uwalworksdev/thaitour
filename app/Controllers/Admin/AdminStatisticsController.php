@@ -438,6 +438,28 @@ public function statistics_sale_day()
         ];
     }
 
+$chart_data = [];
+
+for ($d = 1; $d <= $max_day; $d++) {
+    $date = sprintf("%s-%02d-%02d", $years, $months, $d);
+
+    $price       = ($price_arr[$d] + $mobile_price[$dd] ?? 0);
+    $cp_fee      = ($cp_arr[$d] ?? 0);
+    $count       = ($pc_count_arr[$d] + $mobile_count_arr[$d] ?? 0);
+
+    // 툴팁 HTML 생성
+    $tooltip = "매출 : " . number_format($price) . "원<br/>" .
+               "CP수수료 : " . number_format($cp_fee) . "원<br/>" .
+               "상품 : " . number_format($count) . "개";
+
+    // chart_data 형식: [new Date('yyyy-mm-dd'), value, tooltip (html)]
+    $chart_data[] = [
+        $date,
+        $price,
+        $tooltip
+    ];
+}
+
     return view('admin/_statistics/statistics_sale_day', [
         'years'      => $years,
         'months'     => $months,
