@@ -250,24 +250,14 @@
                         </thead>
                         <tbody class="count_per" id="count_all">
 						
-        <?php foreach ($table_data as $row): ?>
-            <tr>
-                <td><?= esc($row['date']) ?></td>
-                <td><?= number_format($row['pc_price'] + $row['mobile_price']) ?>원</td>
-                <td><?= number_format($row['pc_count'] + $row['mobile_count']) ?></td>
-            </tr>
-        <?php endforeach; ?>						
-                            <?php
-                            for ($i = 1; $i <= date('t', mktime(0, 0, 0, $months, 1, $years)); $i++) {
-                                $_tmp_date = str_pad($i, 2, "0", STR_PAD_LEFT);
-                            ?>
-                                <tr>
-                                    <td class="number"><?= $years ?>-<?= str_pad($months, 2, "0", STR_PAD_LEFT) ?>-<?= $_tmp_date ?></td>
-                                    <td class="number"><?= number_format($price_arr[$i]) ?> <span><?= $price_arr[$i] ?>%</span></td>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= $cnt_arr[$i] ?>%</span></td>
-                                </tr>
-
-                            <?php } ?>
+							<?php foreach ($table_data as $row): ?>
+								<tr>
+									<td><?= esc($row['date']) ?></td>
+									<td><?= number_format($row['pc_price'] + $row['mobile_price']) ?>원</td>
+									<td><?= number_format($row['pc_count'] + $row['mobile_count']) ?></td>
+								</tr>
+							<?php endforeach; ?>
+							
                         </tbody>
                     </table>
                     <?php
