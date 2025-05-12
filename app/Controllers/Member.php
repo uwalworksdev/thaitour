@@ -721,7 +721,7 @@ class Member extends BaseController
 
         $this->member->update($m_idx, $updateData, false);
 
-        if($data == 'O') {
+        if($data['status'] == 'O') {
             $code     = "S05";
             $user_mobile = $data['user_mobile'];
             $user_name =  $data['user_email'];
