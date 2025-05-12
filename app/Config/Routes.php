@@ -659,6 +659,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("ajax_room_detail", "AjaxController::ajax_room_detail");
     $routes->post("ajax_room_delete", "AjaxController::ajax_room_delete");
     $routes->post("ajax_allimtalk_send", "AjaxController::ajax_allimtalk_send");
+    $routes->post("ajax_allimtalk_send1", "AjaxController::ajax_allimtalk_send1");
     $routes->post("ajax_incoiceHotel_send", "AjaxController::ajax_incoiceHotel_send");
     $routes->post("ajax_voucherHotel_send", "AjaxController::ajax_voucherHotel_send");
     $routes->post("ajax_open_yoil", "AjaxController::ajax_open_yoil");
