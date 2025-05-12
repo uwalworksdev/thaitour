@@ -356,7 +356,7 @@
                             var data = google.visualization.arrayToDataTable([
                                 ['요일', '적립금', '쿠폰'],
 
-								<?php foreach (array_slice($chart_data, 1) as $row): ?>
+								<?php foreach ($table_data as $row): ?>
 									[new Date('<?= $row[date] ?>'), <?= $row[pc_point]+$row[mobile_point] ?>, <?= <?= $row[pc_coupon]+$row[mobile_coupon] ?> ?>],
 								<?php endforeach; ?>
                             ]);
