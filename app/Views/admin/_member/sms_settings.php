@@ -39,7 +39,7 @@
                                 <colgroup>
                                     <col width="10%" />
                                     <col width="10%" />
-                                    <col width="70%" />
+                                    <col width="*%" />
                                     <col width="10%" />
                                     <col width="10%"/>
                                 </colgroup>
