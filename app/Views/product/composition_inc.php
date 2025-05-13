@@ -334,12 +334,12 @@ let optionCnt = $("input[name='option_cnt[]']").map(function() {
     return $(this).val();
 }).get();
 
-console.log(optionQty);
-console.log(optionIdx);
-console.log(optionName);
-console.log(optionPrice);
-console.log(optionTot);
-console.log(optionCnt);
+alert('qty'+optionQty);
+alert('idx- '+optionIdx);
+alert('name- '+optionName);
+alert('price- '+optionPrice);
+alert('tot- '+optionTot);
+alert('cnt- '+optionCnt);
 		
 		
 		$("#feeVal").val(feeVal);
