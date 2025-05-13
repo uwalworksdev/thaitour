@@ -232,7 +232,8 @@
 											<?php 
 											//[2025-05-15:12950:11850:100:11950:1800::42.41|
 											// 2025-05-16:12950:11850:100:11950:1800::42.41|
-											// Extra 베드,152676,3600]														
+											// Extra 베드,152676,3600]
+											    $day_info = $extra_info = "";
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
@@ -723,7 +724,8 @@
 											<?php 
 											//[2025-05-15:12950:11850:100:11950:1800::42.41|
 											// 2025-05-16:12950:11850:100:11950:1800::42.41|
-											// Extra 베드,152676,3600]														
+											// Extra 베드,152676,3600]	
+											    $day_info = $extra_info = "";
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
