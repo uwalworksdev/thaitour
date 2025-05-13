@@ -308,6 +308,16 @@
                 }
             }
 		});
+
+		$('input[name="option_qty[]"]').each(function () {
+			// 현재 input 태그
+			var $input = $(this);
+		    var cnt    = $input.val();             // 인원수
+			alert('cnt- '+cnt);
+			
+		});
+		
+		
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
