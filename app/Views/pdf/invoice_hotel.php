@@ -7,6 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        .invoice_cancle img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
         .ml-20 {
             margin-left: 20px !important;
         }
@@ -20,7 +27,7 @@
         }
 
         .golf_invoice {
-            padding: 20px 0 0;
+            padding: 20px 0 0 !important;
         }
 
         .golf_invoice .logo_voice {
@@ -640,7 +647,16 @@
                                         
                 </div>
             </div>
-        </section>     
+        </section>  
+        <?php
+            if($row->order_status == "C" || $row->order_status == "N"){
+        ?>  
+            <div class="invoice_cancle">
+                <img src="/images/invoice/image-removebg-preview.png" alt="img_cancle">
+            </div>
+        <?php
+            }
+        ?>   
     </div>
 </body>
 </html>
