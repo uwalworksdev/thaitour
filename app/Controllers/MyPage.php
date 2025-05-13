@@ -547,8 +547,8 @@ public function reservationList() {
             $total_sql = " select * from tbl_member where m_idx = '" . $m_idx . "' ";
             $result = $this->db->query($total_sql);
             $row = $result->getRowArray();
-            $user_name = $this->decrypt($row["user_name"], $private_key);
-            $user_phone = $this->decrypt($row['user_mobile'], $private_key);
+            $user_name = AES_DECRYPT(UNHEX($row["user_name"]), $private_key);
+            $user_phone = AES_DECRYPT(UNHEX($row['user_mobile']), $private_key);
 
             if ($_SESSION["member"]["mIdx"] == "") {
                 $msg = "";
