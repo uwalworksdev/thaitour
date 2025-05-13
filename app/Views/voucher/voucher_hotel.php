@@ -167,6 +167,15 @@ $setting = homeSetInfo();
             </div>
         </div>
     </section>
+    <?php
+        if($result->order_status == "C" || $result->order_status == "N"){
+    ?>  
+        <div class="invoice_cancle">
+            <img src="/images/invoice/image-removebg-preview.png" alt="img_cancle">
+        </div>
+    <?php
+        }
+    ?>  
 </div>
 
 <script>

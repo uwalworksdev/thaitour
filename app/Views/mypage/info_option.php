@@ -16,7 +16,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
 
-
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
 <style>
@@ -124,6 +123,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 										<img src="/img/login/new_naver_btn.png" alt="네이버로그인" class="only_web">
 									</button>
 								</a>
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+									</div>
 								<?php
 							} else if ($gubun == "kakao") {
 								?>
@@ -132,15 +134,15 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											onclick="loginWithKakao()">
 											<img src="/img/login/new_kakao_btn.png" alt="카카오로그인" class="only_web">
 										</button>
-									<?php if ($gubun == "kakao" || $gubun == 'google')
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 										</div>
 								<?php
 							} else if ($gubun == 'google') {
 								// 구글
-								$client_id = "201811301708-psla2uvr74i6mrt01a45379omt5inbdn.apps.googleusercontent.com";
-								$redirection_url = "https://{$_SERVER['HTTP_HOST']}/include/google.php";
-								$scope = "https://www.googleapis.com/auth/userinfo.email ";
+								$client_id = env('GOOGLE_LOGIN_CLIENT_ID');;
+								$redirection_url = env("GOOGLE_REDIRECT_URI");
+								$scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
 								$response_type = "code";
 
 								$_url = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -151,17 +153,19 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$_url .= "&mode=mypage";
 								$_url .= "&state=mypage";
 								?>
-										<div class='another_login' style="margin:0;justify-content:unset;">
-											<button type="button" id="customBtn" class="another_btn google"
-												onclick="location.href='<?= $_url ?>'">
-												구글로그인
-											</button>
-
-									<?php if ($gubun == "kakao" || $gubun == 'google')
-										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+										<div class='another_login join' style="margin:0;justify-content:unset;">
+											<div class="join_list">
+												<div class="google">
+													<a href="<?= $_url ?>" style="width: 280px;" id="customBtn" class="btn-default">
+														<i></i>
+														구글 가입하기
+													</a>
+												</div>
 											</div>
 
-
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+									</div>
 								<?php
 							} else {
 								?>

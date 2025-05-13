@@ -1006,9 +1006,9 @@ public function reservationList() {
         $sms_yn = updateSQ($_POST["sms_yn"]);
         $user_phone = updateSQ($_POST["phone1"]) . "-" . updateSQ($_POST["phone2"]) . "-" . updateSQ($_POST["phone3"]);
         $user_mobile = updateSQ($_POST["mobile1"]) . "-" . updateSQ($_POST["mobile2"]) . "-" . updateSQ($_POST["mobile3"]);
-        $zip = updateSQ($_POST["zip"]);
-        $addr1 = updateSQ($_POST["addr1"]);
-        $addr2 = updateSQ($_POST["addr2"]);
+        $zip = updateSQ($_POST["zip"] ?? "");
+        $addr1 = updateSQ($_POST["addr1"] ?? "");
+        $addr2 = updateSQ($_POST["addr2"] ?? "");
         $job = updateSQ($_POST["job"]);
         $birthday = updateSQ($_POST["birthday"]);
         $marriage = updateSQ($_POST["marriage"]);

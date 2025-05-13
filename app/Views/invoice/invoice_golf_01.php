@@ -198,6 +198,15 @@
             </div>
         </div>
     </section>
+    <?php
+        if($row["order_status"] == "C" || $row["order_status"] == "N"){
+    ?>  
+        <div class="invoice_cancle">
+            <img src="/images/invoice/image-removebg-preview.png" alt="img_cancle">
+        </div>
+    <?php
+        }
+    ?>
 </div>
 
 <script>

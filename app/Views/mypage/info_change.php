@@ -133,7 +133,7 @@
 											<input type="text" class="wd_md" value="<?=$mobile3?>" name="mobile3" id="mobile3">
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<th><p>주소</p></th>
 										<td>
 											<div class="input-row">
@@ -145,7 +145,7 @@
 												<input type="text" name="addr2" id="sample2_detailAddress" value="<?=$member['addr2']?>" placeholder="" class="bs-input">
 											</div>
 										</td>
-									</tr>
+									</tr> -->
 
                                     <tr>
                                         <th>

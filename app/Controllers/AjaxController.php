@@ -803,7 +803,9 @@ class AjaxController extends BaseController {
 										</div>
 										<div class="wrap_btn_detail">
                                              <a href="javascript:showPopupRoom(\'' . $type['g_idx'] . '\')">객실 상세정보 및 사진 ></a>
-                                        </div>'; 
+                                        </div>
+									</div>									
+										'; 
 
                     
                             $arr_type_room = explode("|", $row['category']);
@@ -814,7 +816,9 @@ class AjaxController extends BaseController {
                                 }
                             }
                         
-							$msg .= '<div class="area_info">
+							$msg .= '
+							<div>
+							<div class="area_info">
 								<div class="pallet child">
 									<div class="icon">
 										<i></i>
@@ -843,7 +847,6 @@ class AjaxController extends BaseController {
 									</div>
 								</div>
 							</div>
-						</div>									
 						<table class="room-table">
 							<colgroup>
 								<col width="30%">
@@ -1049,6 +1052,7 @@ class AjaxController extends BaseController {
 
 										$msg .= '</tbody>
 									</table>
+									</div>
 								</div>
 							</div>'; 
 			endforeach; 
