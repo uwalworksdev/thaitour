@@ -316,6 +316,32 @@
 			alert('cnt- '+cnt);
 			
 		});
+
+let optionIdx = $("input[name='option_idx[]']").map(function() {
+    return $(this).val();
+}).get();
+
+let optionName = $("input[name='option_name[]']").map(function() {
+    return $(this).val();
+}).get();
+
+let optionPrice = $("input[name='option_price[]']").map(function() {
+    return $(this).val();
+}).get();
+
+let optionTot = $("input[name='option_tot[]']").map(function() {
+    return $(this).val();
+}).get();
+
+let optionCnt = $("input[name='option_cnt[]']").map(function() {
+    return $(this).val();
+}).get();
+
+console.log(optionIdx);
+console.log(optionName);
+console.log(optionPrice);
+console.log(optionTot);
+console.log(optionCnt);
 		
 		
 		$("#feeVal").val(feeVal);
