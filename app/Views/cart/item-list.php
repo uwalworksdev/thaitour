@@ -704,7 +704,7 @@
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?></div>
                                             <div class="product-date">
-													예약일시: <?=$item['order_date']?>[<?=$item['date_price']?>]
+													예약일시: <?=$item['order_date']?>
 													<?php
 														$options = explode('|', $item['date_price']);
 													?>
@@ -712,9 +712,9 @@
 											</div>
                                             <p class="product-desc text-gray">
 											<?php 
-//[2025-05-15:12950:11850:100:11950:1800::42.41|
-// 2025-05-16:12950:11850:100:11950:1800::42.41|
-// Extra 베드,152676,3600]														
+											//[2025-05-15:12950:11850:100:11950:1800::42.41|
+											// 2025-05-16:12950:11850:100:11950:1800::42.41|
+											// Extra 베드,152676,3600]														
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
