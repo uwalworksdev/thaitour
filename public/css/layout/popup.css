@@ -586,7 +586,7 @@ textarea::placeholder {
 }
 
 .popup_wrap .pop_box .close {
-    position: absolute;
+    position: sticky;
     top: 20px;
     right: 20px;
     width: 23px;
