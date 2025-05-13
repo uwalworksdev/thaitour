@@ -477,7 +477,7 @@
                 $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
             }
 
-            let title = $(this).closest(".item-info-check").find("label").text().trim();
+            let title = $(this).closest(".item-info-check").find("span").text().trim();
 
             $(".reservation_pop .popup_place__head__ttl h2").text(title);
             $(".reservation_pop").show();
@@ -509,7 +509,7 @@
 
             function closePopup() {
                 $(".popup_wrap").hide();
-                $(".dim").hide();
+                // $(".dim").hide();
             }
     </script>
 	

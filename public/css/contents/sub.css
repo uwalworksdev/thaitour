@@ -3606,6 +3606,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     padding-top: 55px;
 }
 
+.popup_wrap.reservation_pop .popup_place__head {
+    padding-top: 20px;
+}
+
 .popup_place__head__ttl {
     font-size: 26px;
     font-weight: 700;
@@ -3701,6 +3705,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .popup_wrap.place_pop .pop_box {
     max-width: 900px;
+    /* padding: 0 59px; */
+}
+
+.popup_wrap.place_pop .pop_body {
     padding: 0 59px;
 }
 
