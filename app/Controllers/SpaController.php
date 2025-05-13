@@ -257,6 +257,7 @@ class SpaController extends BaseController
 				    $_val         = explode(":", $feeVal[$i]);
                     if($_val[0] == "adults") $group = "성인";
                     if($_val[0] == "kids")   $group = "아동";
+                    if($_val[0] == "option") $group = "옵션";
 					$option_type  = "spa";
 					$order_idx	  =  $orderIdx;
 					$product_idx  =  $productIdx;
