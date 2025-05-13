@@ -717,7 +717,9 @@
 // Extra 베드,152676,3600]														
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
+													$days = 0;
 													foreach ($options as $option) {
+														$days++;
 														$option_r  = explode(":", esc($option));
 														$basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
 														$extra_bed = (int)($option_r[5] * $option_r[7]);
@@ -726,6 +728,7 @@
 														
 														echo $day_info."<br>";
 													}
+													
 												}
 											?>
 											</p>
