@@ -157,6 +157,7 @@ class CartController extends BaseController
 
 		// GROUP BY
 		$builder->orderBy('b.opt_idx');
+		$builder->groupBy('a.order_no');
 
 		// 실행 및 결과 반환
 		$query      = $builder->get();
