@@ -15,7 +15,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
-
+<link href="/css/contents/member.css" rel="stylesheet" type="text/css"/>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
