@@ -15,7 +15,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/gnb_menu_reponsive.css" rel="stylesheet" type="text/css"/>
-<link href="/css/contents/member.css" rel="stylesheet" type="text/css"/>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
@@ -156,10 +155,12 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								?>
 										<div class='another_login join' style="margin:0;justify-content:unset;">
 											<div class="join_list">
-												<a href="<?= $_url ?>" id="customBtn" class="btn-default">
-													<i></i>
-													구글 가입하기
-												</a>
+												<div class="google">
+													<a href="<?= $_url ?>" id="customBtn" class="btn-default">
+														<i></i>
+														구글 가입하기
+													</a>
+												</div>
 											</div>
 
 									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
