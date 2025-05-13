@@ -2086,8 +2086,13 @@
         }else {
             $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
         }
+
+        let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+        $(".reservation_pop .popup_place__head__ttl h2").text(title);
         $(".reservation_pop").show();
     });
+
     $(document).on("click", ".vehicle_ttl__link", function() {
         let productIdx = $(this).attr("data-product-idx");
         console.log("Clicked productIdx:", productIdx);

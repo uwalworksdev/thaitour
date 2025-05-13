@@ -1767,7 +1767,6 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
                 "additional_request"       => $additional_request,
                 "ip"                       => $ipAddress,
 				"group_no"                 => $group_no,	
-				"device_type"              => $device_type,
 				"breakfast"	               => $breakfast,
 				"baht_thai"	               => $baht_thai 
             ];

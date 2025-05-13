@@ -679,6 +679,10 @@
                 }else {
                     $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
                 }
+
+                let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+                $(".reservation_pop .popup_place__head__ttl h2").text(title);
                 $(".reservation_pop").show();
             });
 
@@ -1056,6 +1060,15 @@
 							return false;
 						}
                 }
+
+                if(order_status == "B"){
+                    if ($("#extra-requests").val().trim() === "") {
+                        alert("여기에 요청 사항을 입력하세요(선택사항)!");
+                        $("#extra-requests").focus();
+                        return false;
+                    }
+                }
+
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();

@@ -1,6 +1,11 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+<style>
+    .item-clause-item .view-policy {
+        margin-right: 20px;
+    }
+</style>
     <div class="customer-form-page golf">
     <div class="navigation-section">
         <div class="body_inner">
@@ -471,6 +476,10 @@
             }else {
                 $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
             }
+
+            let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+            $(".reservation_pop .popup_place__head__ttl h2").text(title);
             $(".reservation_pop").show();
         });
     </script>
