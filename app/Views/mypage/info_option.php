@@ -138,9 +138,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								<?php
 							} else if ($gubun == 'google') {
 								// 구글
-								$client_id = "201811301708-psla2uvr74i6mrt01a45379omt5inbdn.apps.googleusercontent.com";
-								$redirection_url = "https://{$_SERVER['HTTP_HOST']}/include/google.php";
-								$scope = "https://www.googleapis.com/auth/userinfo.email ";
+								$client_id = env('GOOGLE_LOGIN_CLIENT_ID');;
+								$redirection_url = env("GOOGLE_REDIRECT_URI");
+								$scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
 								$response_type = "code";
 
 								$_url = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -157,7 +157,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 												구글로그인
 											</button>
 
-									<?php if ($gubun == "kakao" || $gubun == 'google')
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 											</div>
 
