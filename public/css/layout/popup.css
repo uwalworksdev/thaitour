@@ -175,6 +175,10 @@
     z-index: 1;
 }
 
+.popup_wrap.reservation_pop .pop_box::-webkit-scrollbar {
+    display: none;          
+}
+
 .popup_wrap.promotion_pop .pop_box {
     top: 60%;
 }
