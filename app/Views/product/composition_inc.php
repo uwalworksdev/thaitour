@@ -344,7 +344,7 @@
 		   let bath = '<?=$baht_thai_header?>';	
 		   let option_won  = optionPrice;	
 		   let option_bath = parseInt(optionPrice / bath);	
-		   feeVal += '|option:'+option_won+':'+option_bath+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+		   feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
 	    }
 		
 alert('feeVal- '+feeVal);
