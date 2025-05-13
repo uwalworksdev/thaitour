@@ -1,3 +1,9 @@
+<?php
+    helper(['setting']);
+    $setting = homeSetInfo();
+    $baht_thai_header = (float)($setting['baht_thai'] ?? 0);
+?>
+
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <div class="price-right-c">
@@ -334,8 +340,13 @@
 			return $(this).val();
 		}).get();
  
-		if(optionQty > 0) feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
-	
+		if(optionQty > 0) {
+		   let bath = '<?=$baht_thai_header?>';	
+		   let option_won  = optionPrice;	
+		   let option_bath = parseInt(optionPrice / bath);	
+		   feeVal += '|option:'+option_won+':'+option_bath+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+	    }
+		
 alert('feeVal- '+feeVal);
 
 alert('optionQty- '+optionQty);
