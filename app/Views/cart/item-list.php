@@ -723,7 +723,7 @@
 														$option_r  = explode(":", esc($option));
 														if (strpos($option_r[0], "Extra") !== false) {
 															$extra = explode(",", $option_r[0]);
-															$day_info .= $extra[0] ." : ". number_format($extra[1]) ." 원  ";
+															$extra_info = $extra[0] ." : ". number_format($extra[1]) ." 원  ";
 														} else {
 														    $basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
 														    $extra_bed = (int)($option_r[5] * $option_r[7]);
@@ -732,6 +732,7 @@
 														
 														echo $day_info."<br>";
 													}
+													echo $extra_info;
 													
 												}
 											?>
