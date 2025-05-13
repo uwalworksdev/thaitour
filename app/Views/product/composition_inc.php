@@ -347,16 +347,6 @@
 		   feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
 	    }
 		
-alert('feeVal- '+feeVal);
-
-alert('optionQty- '+optionQty);
-alert('idx- '+optionIdx);
-alert('name- '+optionName);
-alert('price- '+optionPrice);
-alert('tot- '+optionTot);
-alert('cnt- '+optionCnt);
-		
-		
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
