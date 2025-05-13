@@ -147,7 +147,7 @@ class CartController extends BaseController
 		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
 
 		// SELECT
-		$builder->select('a.*, c.ufile1');
+		$builder->select('a.*, c.ufile1, b.opt_idx');
 		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
 
 		// WHERE 조건
