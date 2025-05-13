@@ -163,7 +163,7 @@
                                             <?=$item['product_name']?>
                                         </h3>
                                         <div class="time-date-p">
-                                            에약일시x: <?=$item['order_date']?>
+                                            에약일시: <?=$item['order_date']?>
                                         </div>
                                         <p class="des-p">
 											<?php 
