@@ -138,25 +138,26 @@ class CartController extends BaseController
 		$row        = $query->getRowArray(); // 단일 행 결과
 		$tours_cnt  = isset($row['order_cnt']) ? $row['order_cnt'] : 0;
         
-$builder = $db->table('tbl_order_mst a');
+		// 스파
+		// 첫 번째 쿼리
+		$builder = $db->table('tbl_order_mst a');
 
-$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
-$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
+		$builder->join('tbl_order_option b', 'a.order_idx = b.order_idx', 'left');
+		$builder->join('tbl_product_mst c', 'a.product_idx = c.product_idx', 'left');
 
-$builder->select('a.*, c.ufile1');
-$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
-$builder->selectMin('b.opt_idx', 'min_opt_idx'); // 정렬용으로 opt_idx 최소값
+		$builder->select('a.*, c.ufile1');
+		$builder->select("GROUP_CONCAT(CONCAT(b.option_name, ':', b.option_cnt, ':', b.option_tot) SEPARATOR '|') as options");
+		$builder->selectMin('b.opt_idx', 'min_opt_idx'); // 정렬용으로 opt_idx 최소값
 
-$builder->where('a.order_gubun', 'spa');
-$builder->where('a.m_idx', $m_idx);
-$builder->where('a.order_status', 'B');
+		$builder->where('a.order_gubun', 'spa');
+		$builder->where('a.m_idx', $m_idx);
+		$builder->where('a.order_status', 'B');
 
-$builder->groupBy('a.order_no');
-$builder->orderBy('min_opt_idx', 'ASC');
+		$builder->groupBy('a.order_no');
+		$builder->orderBy('min_opt_idx', 'ASC');
 
-$query      = $builder->get();
-$spa_result = $query->getResultArray();
-
+		$query      = $builder->get();
+		$spa_result = $query->getResultArray();
 
 		// 두 번째 쿼리
 		$builder = $db->table('tbl_order_mst');
