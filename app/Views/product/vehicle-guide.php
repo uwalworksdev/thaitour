@@ -3,8 +3,16 @@
 <?php $this->section('content'); ?>
 <!-- Moment.js -->
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <style>
+    .item-info-check .view-policy {
+        margin-right: 40px;
+    }
+
+    .item-info-check:hover .view-policy {
+        background-color: #fff;
+    }
 
     .select-width {
         width: 280px;
@@ -1839,18 +1847,22 @@
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="">이용약관 동의(필수)</label>
+                                        <button type="button" data-type="1" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="terms">
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="">개인정보 처리방침(필수)</label>
+                                        <button type="button" data-type="2" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="policy">
                                     </div>
                                     <div class="item-info-check item_check_term_">
-                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                        <button type="button" data-type="3" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="information">
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <button type="button" data-type="4" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="guidelines">
                                     </div>
                                 </div>
@@ -2040,9 +2052,42 @@
         </div>
         <div class="dim" style="justify-content: space-between;"></div>
     </div>
+
+    <div class="popup_wrap place_pop reservation_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>약관동의</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
 </section>
 
 <script>
+    $(".view-policy").on("click", function (event) {
+        event.stopPropagation();
+        let type = $(this).data("type");
+        if(type == 1) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
+        }else if(type == 2) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
+        }else if(type == 3) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
+        }else {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+        }
+        $(".reservation_pop").show();
+    });
     $(document).on("click", ".vehicle_ttl__link", function() {
         let productIdx = $(this).attr("data-product-idx");
         console.log("Clicked productIdx:", productIdx);

@@ -158,6 +158,11 @@
     z-index: 9999;
 }
 
+.popup_wrap.reservation_pop .pop_box{
+    height: 700px;
+    overflow-y: auto;
+}
+
 .popup_wrap .pop_box {
     position: absolute;
     top: 50%;
@@ -181,6 +186,17 @@
     overflow-y: scroll;
     box-sizing: border-box;
     border-radius: 20px;
+}
+
+.popup_wrap.reservation_pop .pop_box ul, 
+.popup_wrap.reservation_pop .pop_box table {
+    width: 100% !important;
+}
+
+.popup_wrap.reservation_pop .pop_box table tr td,
+.popup_wrap.reservation_pop .pop_box table tr th,
+.popup_wrap.reservation_pop .pop_box table colgroup col {
+    width: fit-content !important;
 }
 
 .popup_wrap.popup_policy_room .pop_box {

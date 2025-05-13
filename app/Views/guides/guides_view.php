@@ -1,12 +1,21 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
+
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
             async defer></script>
     <style>
+        .item-info-check .view-policy {
+            margin-right: 40px;
+        }
+
+        .item-info-check:hover .view-policy {
+            background-color: #fff;
+        }
         .tours-detail .container-calendar {
             display: block;
         }
@@ -826,18 +835,22 @@
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="">이용약관 동의(필수)</label>
+                                        <button type="button" data-type="1" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="terms">
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="">개인정보 처리방침(필수)</label>
+                                        <button type="button" data-type="2" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="policy">
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="">개인정보 처리방침(필수)</label>
+                                        <button type="button" data-type="3" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="information">
                                     </div>
                                     <div class="item-info-check item_check_term_">
                                         <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <button type="button" data-type="4" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="guidelines">
                                     </div>
                                 </div>
@@ -1039,6 +1052,40 @@
             <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"></a>
         </div>
     </div>
+    <div class="popup_wrap place_pop reservation_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>약관동의</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+    <script>
+        $(".view-policy").on("click", function (event) {
+            event.stopPropagation();
+            let type = $(this).data("type");
+            if(type == 1) {
+                $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
+            }else if(type == 2) {
+                $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
+            }else if(type == 3) {
+                $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
+            }else {
+                $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+            }
+            $(".reservation_pop").show();
+        });
+    </script>
 
     <script>
         $('.item_check_term_').click(function () {
@@ -1133,7 +1180,7 @@
     <script>
         function closePopup() {
             $(".popup_wrap").hide();
-            $(".dim").hide();
+            // $(".dim").hide();
         }
 
         $("#policy_show").on("click", function () {
