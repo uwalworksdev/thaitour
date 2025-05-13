@@ -47,9 +47,15 @@ class CheckoutController extends BaseController
 
 		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 		
+		$builder1 = $this->db->table('tbl_policy_info');
+		$reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();     
+
         return view("checkout/show", [
             "result"     => $result,
-			"payment_no" => $payment_no
+			"payment_no" => $payment_no,
+			"reservaion_policy" => $reservaion_policy,
         ]);
     }
 

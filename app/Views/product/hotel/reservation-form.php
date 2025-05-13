@@ -1061,14 +1061,6 @@
 						}
                 }
 
-                if(order_status == "B"){
-                    if ($("#extra-requests").val().trim() === "") {
-                        alert("여기에 요청 사항을 입력하세요(선택사항)!");
-                        $("#extra-requests").focus();
-                        return false;
-                    }
-                }
-
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();

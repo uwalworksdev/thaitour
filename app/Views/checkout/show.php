@@ -3,6 +3,8 @@
 <?php $this->section('content'); ?>
 
 <link rel="stylesheet" href="/css/contents/checkout.css">
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
+
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -413,18 +415,22 @@
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">이용약관 동의(필수)</label>
+                            <button type="button" data-type="1" class="view-policy">[보기]</button>
                             <input type="hidden" value="N" id="terms" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">개인정보 처리방침(필수)</label>
+                            <button type="button" data-type="2" class="view-policy">[보기]</button>
                             <input type="hidden" value="N" id="policy" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                            <button type="button" data-type="3" class="view-policy">[보기]</button>
                             <input type="hidden" value="N" id="information" class="agree">
                         </div>
                         <div class="item-info-check item_check_term_">
                             <label for="guidelines">여행안전수칙 동의(필수)</label>
+                            <button type="button" data-type="4" class="view-policy">[보기]</button>
                             <input type="hidden" value="N" id="guidelines" class="agree">
                         </div>
 
@@ -456,6 +462,25 @@
         </div>
         <div class="dim"></div>
     </div>
+
+    <div class="popup_wrap place_pop reservation_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>약관동의</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
 </div>
 
 <script>
@@ -465,6 +490,25 @@ document.querySelector('form').addEventListener('submit', function() {
 </script>
 
 <script>
+    $(".view-policy").on("click", function (event) {
+        event.stopPropagation();
+        let type = $(this).data("type");
+        if(type == 1) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
+        }else if(type == 2) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
+        }else if(type == 3) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
+        }else {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+        }
+
+        let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+        $(".reservation_pop .popup_place__head__ttl h2").text(title);
+        $(".reservation_pop").show();
+    });
+
     $(document).ready(function () {
 
         $("#save_id").click(function () {
