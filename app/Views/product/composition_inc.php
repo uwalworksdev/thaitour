@@ -308,8 +308,6 @@
                 }
             }
 		});
-		
-alert('feeVal- '+feeVal);		
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
