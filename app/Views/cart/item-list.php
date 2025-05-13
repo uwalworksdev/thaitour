@@ -309,11 +309,13 @@
                                         </div>
                                         <p class="des-p">
 											<?php 
+					                            $option_amt = 0;
 												if (!empty($item['options'])) {
 													$options = explode('|', $item['options']);
 													foreach ($options as $option) {
 														$option_r = explode(":", esc($option));
 														echo $option_r[0] . $option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
+														if($option_r[0] == "옵션") $option_amt = $option_amt + $option_r[3];
 													}
 												}
 											?>
@@ -327,7 +329,7 @@
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">옵션금액</span>
-                                        <span><?=number_format($item['option_amt'])?> 원</span>
+                                        <span><?=number_format($option_amt)?> 원</span>
                                     </div>
                                     <div class="des-item">
                                         <span class="space-left">결제예정금액</span>
@@ -795,11 +797,13 @@
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
+				                                $option_amt = 0;
 												if (!empty($item['options'])) {
 													$options = explode('|', $item['options']);
 													foreach ($options as $option) {
 														$option_r = explode(":", esc($option));
 														echo $option_r[0].$option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
+														if($option_r[0] == "옵션") $option_amt = $option_amt + $option_r[3];
 													}
 												}
 											?>
@@ -811,7 +815,7 @@
                                         </div>
                                     </div>
                                 <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
+                                <td class="discount"><?=number_format($option_amt)?> 원</td>
                                 <td class="total"><?=number_format($item['order_price'])?> 원</td>
 							</tr>
 		                    <?php endforeach; ?>
