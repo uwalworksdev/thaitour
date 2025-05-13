@@ -124,6 +124,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 										<img src="/img/login/new_naver_btn.png" alt="네이버로그인" class="only_web">
 									</button>
 								</a>
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+									</div>
 								<?php
 							} else if ($gubun == "kakao") {
 								?>
@@ -132,7 +135,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											onclick="loginWithKakao()">
 											<img src="/img/login/new_kakao_btn.png" alt="카카오로그인" class="only_web">
 										</button>
-									<?php if ($gubun == "kakao" || $gubun == 'google')
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 										</div>
 								<?php
@@ -151,17 +154,17 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$_url .= "&mode=mypage";
 								$_url .= "&state=mypage";
 								?>
-										<div class='another_login' style="margin:0;justify-content:unset;">
-											<button type="button" id="customBtn" class="another_btn google"
-												onclick="location.href='<?= $_url ?>'">
-												구글로그인
-											</button>
+										<div class='another_login join' style="margin:0;justify-content:unset;">
+											<div class="join_list">
+												<a href="<?= $_url ?>" id="customBtn" class="btn-default">
+													<i></i>
+													구글 가입하기
+												</a>
+											</div>
 
 									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
-											</div>
-
-
+									</div>
 								<?php
 							} else {
 								?>
