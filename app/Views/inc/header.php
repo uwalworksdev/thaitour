@@ -133,9 +133,11 @@
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결재</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
-                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
+                                <li class="item_link" onclick="location.href='#'">일반문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1여행문의</li>
+                                <li class="item_link" onclick="location.href='#'">쿠폰함</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                                 <li class="item_link">나의 게시물</li>
                             </ul>
@@ -148,7 +150,9 @@
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
                                 <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
-                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
+                                <li class="item_link" onclick="location.href='#'">일반문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1여행문의</li>
+                                <li class="item_link" onclick="location.href='#'">쿠폰함</li>
                                 <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
                                 <li class="item_link">나의 게시물</li>
                             </ul>
