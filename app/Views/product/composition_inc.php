@@ -334,7 +334,7 @@
 			return $(this).val();
 		}).get();
  
-		if(optionQty > 0) feeVal += '|option':'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+		if(optionQty > 0) feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
 	
 alert('feeVal- '+feeVal);
 
