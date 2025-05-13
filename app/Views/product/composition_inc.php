@@ -310,9 +310,10 @@
 		});
 
 
-let optionQty = $('input[name="option_qty[]"]').each(function () {
-    return $(this).val();
-}).get();
+$(".input-qty").each(function(index) {
+    let qty = $(this).val();               // 여기서 qty는 문자열 또는 숫자
+    console.log("수량:", qty);             // 이렇게 사용해야 정상 출력됩니다
+});
 
 let optionIdx = $("input[name='option_idx[]']").map(function() {
     return $(this).val();
@@ -334,7 +335,7 @@ let optionCnt = $("input[name='option_cnt[]']").map(function() {
     return $(this).val();
 }).get();
 
-alert('qty'+optionQty);
+alert('qty'+qty);
 alert('idx- '+optionIdx);
 alert('name- '+optionName);
 alert('price- '+optionPrice);
