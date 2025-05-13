@@ -333,15 +333,11 @@
 		let optionCnt = $("input[name='option_cnt[]']").map(function() {
 			return $(this).val();
 		}).get();
-/*
-		if(cnt > 0) {
-			if(feeVal == "") {
-				feeVal = type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
-			} else {
-				feeVal += '|'+type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
-			}
-		}
-*/
+ 
+		if(optionQty > 0) feeVal += '|option':'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+	
+alert('feeVal- '+feeVal);
+
 alert('optionQty- '+optionQty);
 alert('idx- '+optionIdx);
 alert('name- '+optionName);
