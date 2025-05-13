@@ -310,10 +310,11 @@
 		});
 
 
-$(".input-qty").each(function(index) {
-    let qty = $(this).val();               // 여기서 qty는 문자열 또는 숫자
-    alert("수량:", qty);             // 이렇게 사용해야 정상 출력됩니다
-});
+let optionQty = $("input[name='option_qty[]']").map(function() {
+    return $(this).val();
+}).get();
+
+alert('optionQty- '+optionQty);
 
 let optionIdx = $("input[name='option_idx[]']").map(function() {
     return $(this).val();
