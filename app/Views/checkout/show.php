@@ -632,7 +632,7 @@ document.querySelector('form').addEventListener('submit', function() {
 
     function closePopup() {
         $(".popup_wrap").hide();
-        $(".dim").hide();
+        // $(".dim").hide();
     }
 
     $("#policy_show").on("click", function () {
