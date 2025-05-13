@@ -310,32 +310,39 @@
 		});
 
 
-let optionQty = $("input[name='option_qty[]']").map(function() {
-    return $(this).val();
-}).get();
+		let optionQty = $("input[name='option_qty[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionIdx = $("input[name='option_idx[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionName = $("input[name='option_name[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionPrice = $("input[name='option_price[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionTot = $("input[name='option_tot[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionCnt = $("input[name='option_cnt[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		if(cnt > 0) {
+			if(feeVal == "") {
+				feeVal = type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+			} else {
+				feeVal += '|'+type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+			}
+		}
 
 alert('optionQty- '+optionQty);
-
-let optionIdx = $("input[name='option_idx[]']").map(function() {
-    return $(this).val();
-}).get();
-
-let optionName = $("input[name='option_name[]']").map(function() {
-    return $(this).val();
-}).get();
-
-let optionPrice = $("input[name='option_price[]']").map(function() {
-    return $(this).val();
-}).get();
-
-let optionTot = $("input[name='option_tot[]']").map(function() {
-    return $(this).val();
-}).get();
-
-let optionCnt = $("input[name='option_cnt[]']").map(function() {
-    return $(this).val();
-}).get();
-
 alert('idx- '+optionIdx);
 alert('name- '+optionName);
 alert('price- '+optionPrice);
