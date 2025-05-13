@@ -544,11 +544,13 @@ public function reservationList() {
             $out_etc = updateSQ($_POST["out_etc"]);
             $out_reason = updateSQ($_POST["out_reason"]);
 
-            $total_sql = " select * from tbl_member where m_idx = '" . $m_idx . "' ";
+            $total_sql = " select *,  AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name,
+            AES_DECRYPT(UNHEX(user_mobile),  '$private_key') user_mobile 
+             from tbl_member where m_idx = '" . $m_idx . "' ";
             $result = $this->db->query($total_sql);
             $row = $result->getRowArray();
-            $user_name = AES_DECRYPT(UNHEX($row["user_name"]), $private_key);
-            $user_phone = AES_DECRYPT(UNHEX($row['user_mobile']), $private_key);
+            $user_name = $row["user_name"];
+            $user_phone = $row['user_mobile'];
 
             if ($_SESSION["member"]["mIdx"] == "") {
                 $msg = "";
