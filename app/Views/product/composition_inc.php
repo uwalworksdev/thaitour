@@ -309,13 +309,10 @@
             }
 		});
 
-		$('input[name="option_qty[]"]').each(function () {
-			// 현재 input 태그
-			var $input = $(this);
-		    var cnt    = $input.val();             // 인원수
-			alert('cnt- '+cnt);
-			
-		});
+
+let optionQty = $('input[name="option_qty[]"]').each(function () {
+    return $(this).val();
+}).get();
 
 let optionIdx = $("input[name='option_idx[]']").map(function() {
     return $(this).val();
@@ -337,6 +334,7 @@ let optionCnt = $("input[name='option_cnt[]']").map(function() {
     return $(this).val();
 }).get();
 
+console.log(optionQty);
 console.log(optionIdx);
 console.log(optionName);
 console.log(optionPrice);
