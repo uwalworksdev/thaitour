@@ -156,7 +156,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 										<div class='another_login join' style="margin:0;justify-content:unset;">
 											<div class="join_list">
 												<div class="google">
-													<a href="<?= $_url ?>" id="customBtn" class="btn-default">
+													<a href="<?= $_url ?>" style="width: 400px;" id="customBtn" class="btn-default">
 														<i></i>
 														구글 가입하기
 													</a>
