@@ -218,6 +218,10 @@
     width: fit-content !important;
 }
 
+.popup_wrap.reservation_pop .popup_place__body * {
+    line-height: 1.4 !important;
+}
+
 .popup_wrap.popup_policy_room .pop_box {
     max-width: 700px;
     height: 700px;
@@ -249,7 +253,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    border-bottom: ;
 }
 
 .popup_view_room .room_content .room_info .info_tit {
