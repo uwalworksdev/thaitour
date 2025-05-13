@@ -893,8 +893,8 @@ $routes->group("invoice", static function ($routes) {
 
 $routes->group("voucher", static function ($routes) {
     $routes->get("hotel/(:num)", "VoucherController::hotel/$1"); 
-    $routes->get("tour", "VoucherController::tour");
-    $routes->get("show", "VoucherController::show");
+    $routes->get("tour/(:num)", "VoucherController::tour/$1");
+    $routes->get("show/(:num)", "VoucherController::show/$1");
     $routes->get("golf/(:num)", "VoucherController::golf/$1");
     $routes->get("ticket/(:num)", "VoucherController::ticket/$1");
     

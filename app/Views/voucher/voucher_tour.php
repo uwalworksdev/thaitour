@@ -118,7 +118,7 @@ $setting = homeSetInfo();
                     <p style="font-weight: 700">• Booked by: Totobooking</p>
                 </div>
                 <div class="btns_download_print">
-                    <button type="button" class="btn_download" id="btn_pdf" data-order_idx="">PDF다운로드</button>
+                    <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="invoice_note_">
@@ -150,6 +150,15 @@ $setting = homeSetInfo();
             </div>
         </div>
     </section>
+    <?php
+        if($result->order_status == "C" || $result->order_status == "N"){
+    ?>  
+        <div class="invoice_cancle">
+            <img src="/images/invoice/image-removebg-preview.png" alt="img_cancle">
+        </div>
+    <?php
+        }
+    ?>  
 </div>
 
 <script>
