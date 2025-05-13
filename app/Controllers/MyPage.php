@@ -536,6 +536,7 @@ public function reservationList() {
     {
         try {
             $msg = '';
+            $user_name = $private_key = private_key();
 
             $m_idx = updateSQ($_SESSION["member"]["mIdx"]);
             $user_pw = updateSQ($_POST["user_pw"]);
@@ -546,8 +547,8 @@ public function reservationList() {
             $total_sql = " select * from tbl_member where m_idx = '" . $m_idx . "' ";
             $result = $this->db->query($total_sql);
             $row = $result->getRowArray();
-            $user_name = $row["user_name"];
-            $user_phone = $row['user_mobile'];
+            $user_name = $this->decrypt($row["user_name"], $private_key);
+            $user_phone = $this->decrypt($row['user_mobile'], $private_key);
 
             if ($_SESSION["member"]["mIdx"] == "") {
                 $msg = "";
