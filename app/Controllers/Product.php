@@ -1583,6 +1583,11 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $policy = $builder->where('p_idx', 40)
                                 ->get()->getRowArray();
 
+            $builder1 = $this->db->table('tbl_policy_info');
+            $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();            
+
             $data = [
                 'hotel'              => $hotel,
                 'hotel_option'       => $hotel_option ?? [],
@@ -1617,6 +1622,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
                 'extra_cost'         => $extra_cost,
                 'last_price'         => $last_price,
                 'policy'             => $policy,
+                'reservaion_policy'  => $reservaion_policy,
             ];
         }
 
@@ -1761,7 +1767,6 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
                 "additional_request"       => $additional_request,
                 "ip"                       => $ipAddress,
 				"group_no"                 => $group_no,	
-				"device_type"              => $device_type,
 				"breakfast"	               => $breakfast,
 				"baht_thai"	               => $baht_thai 
             ];
@@ -2485,6 +2490,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
         $data['game_hour'] = $data['hour'];
 
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                    ->orderBy('p_idx', 'asc')
+                                    ->get()->getResultArray();     
+
+        $data['reservaion_policy'] = $reservaion_policy;
         return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
 
@@ -3332,6 +3343,13 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
         $data['img_list'] = $this->productImg->getImg($product_idx);
         $data['tour_img_list'] = $this->tourImg->getImg($product_idx);
 
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();  
+                                
+        $data['reservaion_policy'] = $reservaion_policy;
+
         return $this->renderView('tours/tour-details', $data);
     }
 
@@ -3836,6 +3854,13 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
             $data['drivers'] = $drivers;
             $data['reviewCars'] = $reviewCars;
+
+            $builder1 = $this->db->table('tbl_policy_info');
+            $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();    
+
+            $data['reservaion_policy'] = $reservaion_policy;
 
             return $this->renderView('product/vehicle-guide', $data);
         } catch (Exception $e) {
@@ -4686,6 +4711,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
         $query = $builder->get();
         $moption = $query->getResultArray();
 
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();     
+
         $data = [
             'data_' => $rowData,
             'suggestSpas' => $suggestSpas,
@@ -4698,6 +4728,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             'product' => $product,
             'baht_thai' => $baht_thai,
             'mcodes' => $mcodes,
+            'reservaion_policy' => $reservaion_policy
         ];
 
         $code_no = '';

@@ -156,6 +156,15 @@ class TourGuideController extends BaseController
 
             
             $data['img_list'] = $img_list;
+
+            
+            $builder1 = $this->connect->table('tbl_policy_info');
+            $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();    
+
+            $data['reservaion_policy'] = $reservaion_policy;
+
             $data = array_merge($data, $data_reviews);
 
             return $this->renderView('guides/guides_view', $data);

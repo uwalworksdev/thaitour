@@ -3,6 +3,7 @@
 <?php $this->section('content'); ?>
 
 <?php echo view("/product/inc/spa_ticket_restaurant/detail.php"); ?>
+
 <script>
         function getCookie(name) {
             let cookies = document.cookie.split('; ');

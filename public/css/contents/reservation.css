@@ -1,0 +1,412 @@
+.item-info-check-first.click {
+    background-color: #686868;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.item-info-check-first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 14px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    margin-bottom: 20px;
+}
+
+.item-info-check-first img {
+    width: 25px;
+    height: 17px;
+}
+
+.item-info-check img {
+    width: 25px;
+    height: 17px;
+}
+
+.item-info-check {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    border-radius: 6px;
+    padding: 16px 14px;
+    margin: 0 !important;
+    font-size: 15px;
+}
+
+.item_check_term_all_,
+.item_check_term_ {
+    background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
+    background-size: 23px 15px;
+}
+
+.item_check_term_all_.checked_,
+.item_check_term_.checked_ {
+    background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
+    background-size: 23px 15px;
+}
+
+.item_check_term_all_ label,
+.item_check_term_ label {
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.item-info-check:hover {
+    background-color: #f3f3f3;
+    cursor: pointer;
+}
+
+.item-info-check .view-policy {
+    margin-right: 25px;
+}
+
+.item-info-check .view-policy:hover {
+    color: #17469E;
+}
+
+.item-info-check:hover .view-policy {
+    background-color: #f3f3f3;
+    cursor: pointer;
+}
+
+.summary-tb {
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.summary-tb2 {
+    font-size: 16px;
+    text-decoration: underline;
+    color: #0000cc;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.customer-form-page .container-card .card-left2 {
+    margin-bottom: 50px;
+}
+
+.card_left_end_ {
+    margin-bottom: 190px;
+}
+
+.customer-form-page .container-card .card-right2 {
+    height: auto;
+}
+
+.book_cont {
+    /*height: 0px;*/
+    /*overflow: hidden;*/
+}
+
+.book_cont.full_ {
+    /*height: auto;*/
+    /*overflow: auto;*/
+}
+
+#product_info_card_.full_ {
+    display: block;
+}
+
+.book_cont table.book_tbl {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.book_cont table.book_tbl th,
+.book_cont table.book_tbl td {
+    font-weight: 400;
+    text-align: left;
+    padding: 15px 20px;
+    position: static;
+    border: 1px solid #dcdcdc;
+}
+
+.book_cont table.book_tbl th {
+    border-top: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
+    background-color: #f5f7f9 !important;
+}
+
+.section_hotelbook+.popup_box .tbl_request th {
+    border: 1px solid #dcdcdc;
+    font-weight: 400;
+    padding: 7px 0 7px 10px;
+    background: #f5f7f9;
+    font-size: 18px;
+}
+
+.book_cont table.book_tbl td {
+    background: #fff;
+    text-align: left;
+    border: 1px solid #dcdcdc;
+    line-height: 28px;
+    font-size: 16px;
+}
+
+.book_cont table.book_tbl textarea.memo {
+    width: 95%;
+    padding: 5px;
+    height: 120px;
+}
+
+.section_hotelbook+.popup_box .tbl_request td {
+    border: 1px solid #dcdcdc;
+}
+
+.box_gr02 {
+    font-size: 15px;
+    margin-top: 30px;
+    border: 1px solid #e2e2e2;
+    background: #f6f6f6;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.explain_point {
+    margin: 20px 35px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.explain_point h5 {
+    font-size: 18px;
+    color: #777;
+    padding-bottom: 10px;
+    font-weight: 500;
+}
+
+.txt_me01 {
+    color: #7d7d7d;
+    font-size: 16px;
+}
+
+.explain_point ul {
+    margin: 20px 0 0 10px;
+    line-height: 28px;
+}
+
+.notice_ty01 li {
+    list-style-type: disc;
+    text-indent: 0 !important;
+}
+
+.f_14.f_gray {
+    font-size: 14px;
+    color: #888;
+    line-height: 18px;
+}
+
+.f_14.f_red {
+    font-size: 14px;
+    color: #db1717;
+    line-height: 18px;
+}
+
+.list_type02 {
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list_type02 .pubcheck {
+    margin-top: 10px;
+    padding-right: 30px;
+}
+
+.txt_me01,
+.product_information_ {
+    height: auto;
+    overflow: auto;
+    text-wrap: wrap;
+    white-space: wrap;
+    word-break: auto-phrase;
+}
+
+.txt_me01::-webkit-scrollbar,
+.product_information_::-webkit-scrollbar {
+    width: 4px;
+    background-color: #F5F5F5;
+    /*display: none;*/
+}
+
+.txt_me01::-webkit-scrollbar-thumb,
+.product_information_::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+}
+
+.card_relative_ {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.btn_unreadmore_,
+.btn_readmore_ {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 15px;
+    border: 1px solid #dbdbdb;
+    background-color: #FFFFFF;
+    max-width: 150px;
+    z-index: 5;
+    /*margin-bottom: 20px;*/
+    border-radius: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+
+    .btn_unreadmore_,
+    .btn_readmore_ {
+        position: absolute;
+        bottom: -7.6rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1.7rem 2.5rem;
+        border: 0.1rem solid #dbdbdb;
+        background-color: #FFFFFF;
+        max-width: 21.4rem;
+        z-index: 5;
+        /* margin-bottom: 2rem; */
+        border-radius: 5.2rem;
+        box-shadow: rgba(149, 157, 165, 0.2) 0rem 0.8rem 2.4rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        white-space: nowrap;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .btn_unreadmore_ img,
+    .btn_readmore_ img {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    .list_type02 {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .bs-input-check input[type="checkbox"]+label {
+        padding-left: 5.105rem;
+        line-height: 3.5rem;
+        font-size: 3rem;
+        width: 192px;
+        display: flex;
+        align-items: center;
+    }
+
+    .f_14.f_gray {
+        font-size: 2.4rem;
+        color: #888;
+        line-height: 1.5;
+    }
+
+    .customer-form-page .container-card .item-info-r.font-bold-cus {
+        font-size: 2.8rem;
+    }
+
+    .summary-tb {
+        font-size: 2.6rem;
+        margin-bottom: 1.6rem;
+        margin-top: 2rem;
+    }
+
+    .summary-tb2 {
+        font-size: 2.6rem;
+        text-decoration: underline;
+        color: #0000cc;
+        cursor: pointer;
+        margin-bottom: 2rem;
+    }
+
+    .item_check_term_all_ label,
+    .item_check_term_ label {
+        font-size: 2.6rem;
+    }
+
+    .customer-form-page .container-card .cart {
+        font-size: 3.2rem;
+        border-radius: 0.6rem;
+        padding: 1.2rem 5rem;
+        width: 100%;
+        margin-top: 1rem;
+        font-weight: bold;
+        height: 10rem;
+        color: var(--bs-point);
+        border: 0.2rem solid var(--bs-point);
+    }
+
+    .item_check_term_all_,
+    .item_check_term_ {
+        background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
+        background-size: 4.1rem 2.6rem;
+    }
+
+    .bs-input-check input[type="checkbox"]+label::after {
+        top: 0;
+    }
+
+    .card-left2 .bs-input-check input[type="checkbox"]+label {
+        width: 29rem;
+        padding-right: 0;
+    }
+
+    .book_cont table.book_tbl td {
+        background: #fff;
+        text-align: left;
+        border: 0.2rem solid #dcdcdc;
+        line-height: 2.8rem;
+        font-size: 2.6rem;
+        padding: 1.5rem 2rem;
+    }
+
+    .f_14.f_red {
+        font-size: 2.4rem;
+        color: #db1717;
+        line-height: 1.8rem;
+    }
+
+    .explain_point h5 {
+        font-size: 2.8rem;
+        color: #777;
+        padding-bottom: 1rem;
+        font-weight: 500;
+    }
+
+    .txt_me01 {
+        font-size: 2.6rem;
+    }
+
+    .bs-input-check input[type="checkbox"]+label::before {
+        width: 1.5rem;
+        height: 2.3rem;
+        position: absolute;
+        left: 0.3rem;
+        top: 1.3rem;
+        border-radius: 1px;
+        border: 0.6rem solid transparent;
+        border-top: none;
+        border-left: none;
+    }
+
+    .customer-form-page .container-card .item-info-r span:first-child {
+        width: 22rem;
+        line-height: 4rem;
+    }
+}

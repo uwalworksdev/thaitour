@@ -5,409 +5,7 @@
 	echo "baht_thai- ". $baht_thai;
 ?>
 <?php $this->section('content'); ?>
-    <style>
-        .item-info-check-first.click {
-            background-color: #686868;
-            margin-bottom: 16px;
-            color: #fff;
-        }
-
-        .item-info-check-first {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 14px;
-            border-radius: 6px;
-            background-color: #f3f3f3;
-            margin-bottom: 20px;
-        }
-
-        .item-info-check-first img {
-            width: 25px;
-            height: 17px;
-        }
-
-        .item-info-check img {
-            width: 25px;
-            height: 17px;
-        }
-
-        .item-info-check {
-            display: flex;
-            justify-content: space-between;
-            border-radius: 6px;
-            padding: 16px 14px;
-            margin: 0 !important;
-            font-size: 15px;
-        }
-
-        .item_check_term_all_,
-        .item_check_term_ {
-            background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
-            background-size: 23px 15px;
-        }
-
-        .item_check_term_all_.checked_,
-        .item_check_term_.checked_ {
-            background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
-            background-size: 23px 15px;
-        }
-
-        .item_check_term_all_ label,
-        .item_check_term_ label {
-            font-size: 16px;
-            line-height: 1.3;
-        }
-
-        .item-info-check:hover {
-            background-color: #f3f3f3;
-            cursor: pointer;
-        }
-
-        .summary-tb {
-            font-size: 16px;
-            margin-bottom: 8px;
-            margin-top: 20px;
-        }
-
-        .summary-tb2 {
-            font-size: 16px;
-            text-decoration: underline;
-            color: #0000cc;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .customer-form-page .container-card .card-left2 {
-            margin-bottom: 50px;
-        }
-
-        .card_left_end_ {
-            margin-bottom: 190px;
-        }
-
-        .customer-form-page .container-card .card-right2 {
-            height: auto;
-        }
-
-        .book_cont {
-            /*height: 0px;*/
-            /*overflow: hidden;*/
-        }
-
-        .book_cont.full_ {
-            /*height: auto;*/
-            /*overflow: auto;*/
-        }
-
-        #product_info_card_ {
-            display: ;
-        }
-
-        #product_info_card_.full_ {
-            display: block;
-        }
-
-        .book_cont table.book_tbl {
-            width: 100%;
-            margin: 0 auto;
-            display: block;
-        }
-      
-        .book_cont table.book_tbl th,
-        .book_cont table.book_tbl td {
-            font-weight: 400;
-            text-align: left;
-            padding: 15px 20px;
-            position: static;
-            border: 1px solid #dcdcdc;
-        }
-
-        .book_cont table.book_tbl th {
-            border-top: 1px solid #dcdcdc;
-            border-right: 1px solid #dcdcdc;
-            border-left: 1px solid #dcdcdc;
-            background-color: #f5f7f9 !important;
-        }
-
-        .section_hotelbook + .popup_box .tbl_request th {
-            border: 1px solid #dcdcdc;
-            font-weight: 400;
-            padding: 7px 0 7px 10px;
-            background: #f5f7f9;
-            font-size: 18px;
-        }
-
-        .book_cont table.book_tbl td {
-            background: #fff;
-            text-align: left;
-            border: 1px solid #dcdcdc;
-            line-height: 28px;
-            font-size: 16px;
-        }
-
-        .book_cont table.book_tbl textarea.memo {
-            width: 95%;
-            padding: 5px;
-            height: 120px;
-        }
-
-        .section_hotelbook + .popup_box .tbl_request td {
-            border: 1px solid #dcdcdc;
-        }
-
-        .box_gr02 {
-            font-size: 15px;
-            margin-top: 30px;
-            border: 1px solid #e2e2e2;
-            background: #f6f6f6;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .explain_point {
-            margin: 20px 35px;
-            font-size: 13px;
-            text-align: left;
-        }
-
-        .explain_point h5 {
-            font-size: 18px;
-            color: #777;
-            padding-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .txt_me01 {
-            color: #7d7d7d;
-            font-size: 16px;
-        }
-
-        .explain_point ul {
-            margin: 20px 0 0 10px;
-            line-height: 28px;
-        }
-
-        .notice_ty01 li {
-            list-style-type: disc;
-            text-indent: 0 !important;
-        }
-
-        .f_14.f_gray {
-            font-size: 14px;
-            color: #888;
-            line-height: 18px;
-        }
-
-        .f_14.f_red {
-            font-size: 14px;
-            color: #db1717;
-            line-height: 18px;
-        }
-
-        .list_type02 {
-            margin-bottom: 10px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .list_type02 .pubcheck {
-            margin-top: 10px;
-            padding-right: 30px;
-        }
-
-        .txt_me01, .product_information_ {
-            height: auto;
-            overflow: auto;
-            text-wrap: wrap;
-            white-space: wrap;
-            word-break: auto-phrase;
-        }
-
-        .txt_me01::-webkit-scrollbar,
-        .product_information_::-webkit-scrollbar {
-            width: 4px;
-            background-color: #F5F5F5;
-            /*display: none;*/
-        }
-
-        .txt_me01::-webkit-scrollbar-thumb,
-        .product_information_::-webkit-scrollbar-thumb {
-            background-color: #cccccc;
-        }
-
-        .card_relative_ {
-            position: relative;
-            margin-bottom: 50px;
-        }
-
-        .btn_unreadmore_,
-        .btn_readmore_ {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px 15px;
-            border: 1px solid #dbdbdb;
-            background-color: #FFFFFF;
-            max-width: 150px;
-            z-index: 5;
-            /*margin-bottom: 20px;*/
-            border-radius: 20px;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        @media screen and (max-width: 850px) {
-
-            .btn_unreadmore_,
-            .btn_readmore_ {
-                position: absolute;
-                bottom: -7.6rem;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                padding: 1.7rem 2.5rem;
-                border: 0.1rem solid #dbdbdb;
-                background-color: #FFFFFF;
-                max-width: 21.4rem;
-                z-index: 5;
-                /* margin-bottom: 2rem; */
-                border-radius: 5.2rem;
-                box-shadow: rgba(149, 157, 165, 0.2) 0rem 0.8rem 2.4rem;
-                display: flex;
-                justify-content: space-between;
-                gap: 1rem;
-                white-space: nowrap;
-                align-items: center;
-                cursor: pointer;
-            }
-
-            .btn_unreadmore_ img,
-            .btn_readmore_ img {
-                width: 1.6rem;
-                height: 1.6rem;
-            }
-
-            .list_type02 {
-                margin-bottom: 2rem;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            .bs-input-check input[type="checkbox"] + label {
-                padding-left: 5.105rem;
-                line-height: 3.5rem;
-                font-size: 3rem;
-                width: 192px;
-                display: flex;
-                align-items: center;
-            }
-
-            .f_14.f_gray {
-                font-size: 2.4rem;
-                color: #888;
-                line-height: 1.5;
-            }
-
-            .customer-form-page .container-card .item-info-r.font-bold-cus {
-                font-size: 2.8rem;
-            }
-
-            .summary-tb {
-                font-size: 2.6rem;
-                margin-bottom: 1.6rem;
-                margin-top: 2rem;
-            }
-
-            .summary-tb2 {
-                font-size: 2.6rem;
-                text-decoration: underline;
-                color: #0000cc;
-                cursor: pointer;
-                margin-bottom: 2rem;
-            }
-
-            .item_check_term_all_ label,
-            .item_check_term_ label {
-                font-size: 2.6rem;
-            }
-
-            .customer-form-page .container-card .cart {
-                font-size: 3.2rem;
-                border-radius: 0.6rem;
-                padding: 1.2rem 5rem;
-                width: 100%;
-                margin-top: 1rem;
-                font-weight: bold;
-                height: 10rem;
-                color: var(--bs-point);
-                border: 0.2rem solid var(--bs-point);
-            }
-
-            .item_check_term_all_,
-            .item_check_term_ {
-                background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
-                background-size: 4.1rem 2.6rem;
-            }
-
-            .bs-input-check input[type="checkbox"] + label::after {
-                top: 0;
-            }
-
-            .card-left2 .bs-input-check input[type="checkbox"] + label {
-                width: 29rem ;
-                padding-right: 0; 
-            }
-
-            .book_cont table.book_tbl td {
-                background: #fff;
-                text-align: left;
-                border: 0.2rem solid #dcdcdc;
-                line-height: 2.8rem;
-                font-size: 2.6rem;
-                padding: 1.5rem 2rem;
-            }
-
-            .f_14.f_red {
-                font-size: 2.4rem;
-                color: #db1717;
-                line-height: 1.8rem;
-            }
-
-            .explain_point h5 {
-                font-size: 2.8rem;
-                color: #777;
-                padding-bottom: 1rem;
-                font-weight: 500;
-            }
-
-            .txt_me01 {
-                font-size: 2.6rem;
-            }
-
-            .bs-input-check input[type="checkbox"]+label::before {
-                width: 1.5rem;
-                height: 2.3rem;
-                position: absolute;
-                left: 0.3rem;
-                top: 1.3rem;
-                border-radius: 1px;
-                border: 0.6rem solid transparent;
-                border-top: none;
-                border-left: none;
-    }
-
-    .customer-form-page .container-card .item-info-r span:first-child {
-        width: 22rem;
-        line-height: 4rem;
-    }
-        }
-    </style>
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
     <div class="customer-form-page reservation-form-cus">
     <div class="navigation-section">
         <div class="body_inner">
@@ -927,15 +525,23 @@
                             </div>
                             <div class="item-info-check item_check_term_">
                                 <label for="">이용약관 동의(필수)</label>
+                                <button type="button" data-type="1" class="view-policy">[보기]</button>
                                 <input type="hidden" value="N" id="terms">
                             </div>
                             <div class="item-info-check item_check_term_">
                                 <label for="">개인정보 처리방침(필수)</label>
+                                <button type="button" data-type="2" class="view-policy">[보기]</button>
                                 <input type="hidden" value="N" id="policy">
                             </div>
                             <div class="item-info-check item_check_term_">
-                                <label for="">개인정보 처리방침(필수)</label>
+                                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                <button type="button" data-type="3" class="view-policy">[보기]</button>
                                 <input type="hidden" value="N" id="information">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">여행안전수칙 동의(필수)</label>
+                                <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="guidelines">
                             </div>
 							<?php if($hotel['direct_payment'] == "Y") { ?>
 							<span style="color:red;">※ 예약확정 상품입니다.</span>
@@ -984,6 +590,26 @@
         </div>
         <div class="dim"></div>
     </div>
+
+    <div class="popup_wrap place_pop reservation_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>약관동의</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
     <script>
         $(".ip_only_ko").on("input", function () {
             let koreanText = $(this).val().replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, ""); 
@@ -1039,6 +665,25 @@
                     $("#order_passport_expiry_date").val("");
                     $("#order_birth_date").val("");
                 }
+            });
+
+            $(".view-policy").on("click", function (event) {
+                event.stopPropagation();
+                let type = $(this).data("type");
+                if(type == 1) {
+                    $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
+                }else if(type == 2) {
+                    $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
+                }else if(type == 3) {
+                    $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
+                }else {
+                    $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+                }
+
+                let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+                $(".reservation_pop .popup_place__head__ttl h2").text(title);
+                $(".reservation_pop").show();
             });
 
             $('.item_check_term_').click(function () {
@@ -1415,14 +1060,16 @@
 							return false;
 						}
                 }
+
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();
                 let policy = $("#policy").val().trim();
                 let information = $("#information").val().trim();
+                let guidelines = $("#guidelines").val().trim();
 
                 /* Check for agreement validation */
-                if ([fullagreement, terms, policy, information].includes("N")) {
+                if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
                     alert("모든 약관에 동의해야 합니다.");
                     return false;
                 }
@@ -1512,7 +1159,7 @@
     <script>
         function closePopup() {
             $(".popup_wrap").hide();
-            $(".dim").hide();
+            // $(".dim").hide();
         }
 
         // $("#policy_show").on("click", function () {

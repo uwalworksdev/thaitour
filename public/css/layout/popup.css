@@ -158,6 +158,11 @@
     z-index: 9999;
 }
 
+.popup_wrap.reservation_pop .pop_box{
+    height: 700px;
+    overflow-y: auto;
+}
+
 .popup_wrap .pop_box {
     position: absolute;
     top: 50%;
@@ -168,6 +173,25 @@
     background: #fff;
     border-radius: 4px;
     z-index: 1;
+}
+
+.popup_wrap.reservation_pop .pop_box::-webkit-scrollbar {
+    width: 5px;              
+    height: 5px;
+}
+
+.popup_wrap.reservation_pop .pop_box::-webkit-scrollbar-thumb {
+    background-color: #888;  
+    border-radius: 10px;
+}
+
+.popup_wrap.reservation_pop .pop_box::-webkit-scrollbar-thumb:hover {
+    background-color: #555; 
+}
+
+.popup_wrap.reservation_pop .pop_box::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px;
 }
 
 .popup_wrap.promotion_pop .pop_box {
@@ -181,6 +205,21 @@
     overflow-y: scroll;
     box-sizing: border-box;
     border-radius: 20px;
+}
+
+.popup_wrap.reservation_pop .pop_box ul, 
+.popup_wrap.reservation_pop .pop_box table {
+    width: 100% !important;
+}
+
+.popup_wrap.reservation_pop .pop_box table tr td,
+.popup_wrap.reservation_pop .pop_box table tr th,
+.popup_wrap.reservation_pop .pop_box table colgroup col {
+    width: fit-content !important;
+}
+
+.popup_wrap.reservation_pop .popup_place__body * {
+    line-height: 1.4 !important;
 }
 
 .popup_wrap.popup_policy_room .pop_box {
@@ -214,7 +253,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    border-bottom: ;
 }
 
 .popup_view_room .room_content .room_info .info_tit {
