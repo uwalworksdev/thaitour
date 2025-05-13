@@ -230,20 +230,30 @@
                                         </div>
                                         <p class="des-p">
 											<?php 
+											//[2025-05-15:12950:11850:100:11950:1800::42.41|
+											// 2025-05-16:12950:11850:100:11950:1800::42.41|
+											// Extra 베드,152676,3600]
+											    $day_info = $extra_info = "";
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
 														$option_r  = explode(":", esc($option));
-														$basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
-														$extra_bed = (int)($option_r[5] * $option_r[7]);
-														$day_info  = $option_r[0] ." : ". number_format($basic_bed) ." 원 ";
-														if($extra_bed > 0) $day_info .= number_format($basic_bed) ." 원  ";
+														if (strpos($option_r[0], "Extra") !== false) {
+															$extra = explode(",", $option_r[0]);
+															$extra_info = $extra[0] ." : ". number_format($extra[1]) ." 원  ";
+														} else {
+														    $basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
+														    $extra_bed = (int)($option_r[5] * $option_r[7]);
+														    $day_info  = $option_r[0] ." : ". number_format($basic_bed) ." 원  ";
+														    echo $day_info."<br>";
+														}
 														
-														echo $day_info."<br>";
 													}
+													echo $extra_info;
+													
 												}
 											?>
-                                        </p>
+										</p>
                                     </div>
                                 </div>
                                 <div class="des-space-p">
@@ -428,13 +438,9 @@
                                         </div>
                                         <p class="des-p">
 											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('|', $item['options']);
-													foreach ($options as $option) {
-														$option_r = explode(":", esc($option));
-														echo $option_r[0] . $option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
-													}
-												}
+				                                if($item['people_adult_cnt'] > 0) echo "성인 ". $item['people_adult_cnt'] ."명 ". number_format($item['people_adult_price']) ."원<br>";
+				                                if($item['people_kids_cnt'] > 0)  echo "아동 ". $item['people_kids_cnt'] ."명 ".  number_format($item['people_kids_price'])  ."원<br>";
+				                                if($item['people_baby_cnt'] > 0)  echo "유아 ". $item['people_baby_cnt'] ."명 ".  number_format($item['people_baby_price'])  ."원<br>";
 											?>
                                         </p>
                                     </div>
@@ -712,17 +718,27 @@
 											</div>
                                             <p class="product-desc text-gray">
 											<?php 
+											//[2025-05-15:12950:11850:100:11950:1800::42.41|
+											// 2025-05-16:12950:11850:100:11950:1800::42.41|
+											// Extra 베드,152676,3600]	
+											    $day_info = $extra_info = "";
 												if (!empty($item['date_price'])) {
 													$options = explode('|', $item['date_price']);
 													foreach ($options as $option) {
 														$option_r  = explode(":", esc($option));
-														$basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
-														$extra_bed = (int)($option_r[5] * $option_r[7]);
-														$day_info  = $option_r[0] ." : ". number_format($basic_bed) ." 원  ";
-														if($extra_bed > 0) $day_info .= number_format($basic_bed) ." 원  ";
+														if (strpos($option_r[0], "Extra") !== false) {
+															$extra = explode(",", $option_r[0]);
+															$extra_info = $extra[0] ." : ". number_format($extra[1]) ." 원  ";
+														} else {
+														    $basic_bed = (int)(($option_r[2]+$option_r[3]) * $option_r[7]);
+														    $extra_bed = (int)($option_r[5] * $option_r[7]);
+														    $day_info  = $option_r[0] ." : ". number_format($basic_bed) ." 원  ";
+														    echo $day_info."<br>";
+														}
 														
-														echo $day_info."<br>";
 													}
+													echo $extra_info;
+													
 												}
 											?>
 											</p>
@@ -905,13 +921,9 @@
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('|', $item['options']);
-													foreach ($options as $option) {
-														$option_r = explode(":", esc($option));
-														echo $option_r[0].$option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
-													}
-												}
+				                                if($item['people_adult_cnt'] > 0) echo "성인 ". $item['people_adult_cnt'] ."명 ". number_format($item['people_adult_price']) ."원<br>";
+				                                if($item['people_kids_cnt'] > 0)  echo "아동 ". $item['people_kids_cnt'] ."명 ".  number_format($item['people_kids_price'])  ."원<br>";
+				                                if($item['people_baby_cnt'] > 0)  echo "유아 ". $item['people_baby_cnt'] ."명 ".  number_format($item['people_baby_price'])  ."원<br>";
 											?>
                                             </p>
                                         </div>
