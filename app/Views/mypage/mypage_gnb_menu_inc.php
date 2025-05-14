@@ -77,7 +77,7 @@
                 <img class="btn_togle up" src="/images/ico/gnb_menu_list_w.svg" alt="">
             </div>
             <div class="menu_level_2 flex" style="display:none">
-                <?php if($gubun == "kakao" && $gubun == 'google' && $gubun == 'naver') { ?>
+                <?php if($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver') { ?>
                     <a class="<?= $tab_9_1 ?>" href="../mypage/info_change">내 정보수정</a>
                 <?php } else {?>
                     <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
