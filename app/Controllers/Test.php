@@ -6,7 +6,8 @@ class Test extends BaseController
 {
     public function ajax_temp()
     {
-        $db = \Config\Database::connect();
+        $db          = \Config\Database::connect();
+        $private_key = private_key();
 
         // 로그 남기기
         write_log("ajax_temp");
@@ -37,7 +38,7 @@ class Test extends BaseController
         $row    = $result->getRowArray();
 		
         $code       = "A17";
-        $user_email = "diana001@naver.com";
+        $user_email =  $row['user_email'];
 		
         $_tmp_fir_array = [
             'RECEIVE_NAME'   => $row['user_name'],
