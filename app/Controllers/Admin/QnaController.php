@@ -11,7 +11,7 @@ class QnaController extends BaseController
     private $qna;
     private $code;
     private $db;
-
+    private $product;
     protected $sessionLib;
     protected $sessionChk;
     private $uploadPath = ROOTPATH."public/uploads/qna/";
@@ -21,6 +21,7 @@ class QnaController extends BaseController
     {
         $this->code = model("Code");
         $this->qna = model("Qna");
+        $this->product = model("ProductModel");
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -129,6 +130,10 @@ class QnaController extends BaseController
         $sql2 = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_2' AND depth = '4' ";
         $row2 = $this->db->query($sql2)->getResultArray();
 
+        $products = $this->product->getAllProductsBySubCode("product_code_3", $travel_type_3);
+
+        $data["products"] = $products;
+
         $data["arr_type_0"] = $row0;
         $data["arr_type_1"] = $row1;
         $data["arr_type_2"] = $row2;
@@ -174,7 +179,7 @@ class QnaController extends BaseController
         $title  				= updateSQ($this->request->getPost('title'));
         $contents  				= updateSQ($this->request->getPost('contents'));
         $status					= updateSQ($this->request->getPost('status'));
-        $email_yn					= updateSQ($this->request->getPost('email_yn'));
+        $email_yn				= updateSQ($this->request->getPost('email_yn'));
         $file                   = $this->request->getFile("ufile1");
         
         $ufile1 = "";
@@ -191,8 +196,7 @@ class QnaController extends BaseController
                 WHERE idx='$idx'
             ";
             $this->db->query($sql);
-        } elseif($file)
-        {
+        } elseif($file) {
             if ($file->isValid() && !$file->hasMoved()) {
                 $fileName = $file->getClientName();
                 $rfile1 = $fileName;
@@ -205,17 +209,15 @@ class QnaController extends BaseController
                     $ufile1 = $newName;
 
                     $file->move($uploadPath, $newName);
-                }
-            }
 
-            if ($idx) {
-                $sql = "
-                    UPDATE tbl_travel_qna SET
-                    ufile1='".$ufile1."',
-                    rfile1='".$rfile1."'
-                    WHERE idx='$idx';
-                ";
-                $this->db->query($sql);
+                    $sql = "
+                            UPDATE tbl_travel_qna SET
+                            ufile1='".$ufile1."',
+                            rfile1='".$rfile1."'
+                            WHERE idx='$idx';
+                        ";
+                        $this->db->query($sql);
+                }
             }
         }
         

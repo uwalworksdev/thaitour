@@ -367,7 +367,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                     </div>
                                 </div>
                                 <div class="file_name">
-                                    <input type="text" class="bs-input" value='<?= viewSQ($ufile1) ?>' disabled>
+                                    <input type="text" class="bs-input" value='<?= viewSQ($rfile1) ?>' disabled>
                                     <i></i>
                                 </div>
                                 <span class="file_size">0kb</span>
