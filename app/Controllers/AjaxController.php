@@ -4243,7 +4243,7 @@ class AjaxController extends BaseController {
 		$db = \Config\Database::connect();
 		
 		// 3. 로그 (CI4 방식 사용)
-		wriote_log("ajax_temp");  // logs/log-*.php에 기록됨
+		write_log("ajax_temp");  // logs/log-*.php에 기록됨
 
 		// 4. 알림톡 함수 호출
 		$payment_idx = "2097";
