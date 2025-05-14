@@ -498,7 +498,7 @@
                                         </tr>
                                     </table>
                                     <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                    <p class="summary-tb2" id="policy_show" data-product-idx="<?= $product['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
+                                    <p class="summary-tb2" id="policy_show" data-product-idx="<?= $product['product_code_1'] ?>">본 예약건 취소규정 자세히보기</p>
                                     <?php if ($product['direct_payment'] == "Y") { ?>
 							            <span style="color:red;">※ 예약확정 상품입니다.</span>
                                     <?php } ?>
