@@ -13,7 +13,7 @@ class Test extends BaseController
 
         // 알림톡 함수 호출
         $payment_idx = "2097";
-        alimTalk_depisit_send($payment_idx);
+        alimTalk_deposit_send($payment_idx);
 
         echo "ajax_temp end";
     }
