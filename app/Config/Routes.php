@@ -1109,5 +1109,5 @@ $routes->group("daily", static function ($routes) {
 });
 
 $routes->get('group-move-popup', 'ReservationController::groupMoveView');
-
+$routes->get('test/ajax_temp', 'Test::ajax_temp');
 ?>
