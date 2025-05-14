@@ -36,8 +36,8 @@ class Test extends BaseController
         $result = $db->query($sql);
         $row    = $result->getRowArray();
 		
-        $code      = "A17";
-        $user_mail = $row['user_email'];
+        $code       = "A17";
+        $user_email = "diana001@naver.com";
 		
         $_tmp_fir_array = [
             'RECEIVE_NAME'   => $row['user_name'],
@@ -48,7 +48,7 @@ class Test extends BaseController
 			'PAYMENT_METHOD' => $row['payment_method'],
             'ORDER_DATE'     => $row['paydate']
         ];
-        autoEmail($code, $user_mail, $_tmp_fir_array);
+        autoEmail($code, $user_email, $_tmp_fir_array);
 		
         echo "ajax_temp end";
     }
