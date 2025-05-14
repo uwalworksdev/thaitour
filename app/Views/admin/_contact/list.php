@@ -123,8 +123,8 @@
 								<col width="4%" />
 								<col width="4%" />
 								<col width="7%" />
-								<col width="9%" />
-								<col width="7%" />
+								<!-- <col width="9%" />
+								<col width="7%" /> -->
 								<col width="9%" />
 								<col width="7%" />
                                 <col width="7%" />
@@ -136,8 +136,8 @@
 									<th>선택</th>
 									<th>번호</th>
 									<th>이름</th>
-									<th>정확성</th>
-									<th>신속성</th>
+									<!-- <th>정확성</th>
+									<th>신속성</th> -->
 									<th>신청일시</th>
                                     <th>ip</th>
 									<th>친절도</th>
@@ -152,7 +152,7 @@
 									if ($total_cnt == 0) {
 								?>
 									<tr>
-										<td colspan=10 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+										<td colspan=8 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
 									</tr>
 								<?php
 									}
@@ -186,8 +186,8 @@
 										<td class="tac">
 											<a href="write?idx=<?= $row["idx"] ?>"><p><?= sqlSecretConver($row["user_name"], 'decode') ?></p></a>
 										</td>
-										<td class="tac"><?= $row["accuracy"] ?></td>
-										<td class="tac"><?= $row["speed"] ?></td>
+										<!-- <td class="tac"><?= $row["accuracy"] ?></td>
+										<td class="tac"><?= $row["speed"] ?></td> -->
 										<td class="tac"><?= $row["r_date"] ?></td>
 										<td class="tac"><?= $row["user_ip"] ?></td>
                                         <td class="tac"><?= $row["star"] ?></td>

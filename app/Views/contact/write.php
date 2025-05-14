@@ -159,7 +159,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                         <tr>
                             <th>이름*</th>
                             <td>
-                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
+                                <input class="bs-input mx-md" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
                             </td>
                         </tr>
                         <tr>
@@ -227,7 +227,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>여행예정일</th>
                             <td>
                                 <div class="datepick_wrap flex__c">
@@ -240,8 +240,8 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                     </div>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <th>여행형태</th>
                             <td>
                                 <div class="travel_box flex__c">
@@ -307,12 +307,12 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                     ?>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>상담가능시간</th>
                             <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value="<?= $row["consultation_time"] ?? "" ?>"></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>상품명</th>
                             <td>
                                 <?php
@@ -343,7 +343,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                 }
                                 ?>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>제목*</th>
                             <td>

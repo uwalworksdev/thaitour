@@ -1,5 +1,5 @@
 function fn_comment(m_idx) {
-
+    
     if (m_idx) {
         if ($("#comment").val() == "") {
             alert("댓글을 입력해주세요.");
@@ -14,6 +14,9 @@ function fn_comment(m_idx) {
             success: function (ret) {
                 if (ret.trim() == "OK") {
                     fn_comment_list();
+                    if(r_code == "qna" && m_idx == 1){
+                        $("#qna_status").val("Y");
+                    }
                     $("#comment").val("");
                 } else {
                     alert("등록 오류입니다." + ret);

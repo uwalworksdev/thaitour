@@ -48,15 +48,16 @@ $r_code = "qna";
         </script>
         <table class="status_table">
             <colgroup>
+                <col width="7%">
                 <col width="10%">
                 <col width="*">
                 <col width="10%">
                 <col width="10%">
-
             </colgroup>
             <thead>
                 <tr>
                     <th>NO</th>
+                    <th>현황</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>등록일</th>
@@ -68,7 +69,7 @@ $r_code = "qna";
                 if ($total_cnt == 0) {
                     ?>
                     <tr>
-                        <td colspan=4 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                        <td colspan=5 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                     </tr>
                     <?php
                 }
@@ -90,6 +91,18 @@ $r_code = "qna";
                     ?>
                     <tr>
                         <td class="id_2"><?= $no ?></td>
+                        <td style="text-align: center;">
+                            <?php
+                                if ($row["status"] == "N") {
+                                    $str_status = "문의접수";
+                                    $color = "#17469E";
+                                }else {
+                                    $str_status = "답변완료";
+                                    $color = "red";
+                                }
+                            ?>
+                            <span style="color: <?=$color?>;"><?= $str_status ?></span>
+                        </td>
                         <td class="des travel_des">
                             <?php
                             if (
