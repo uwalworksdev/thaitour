@@ -1923,7 +1923,7 @@ class AjaxController extends BaseController {
 			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
 			                                     ,pay_email = '". $pay_email ."'
 												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
-            //write_log($sql);
+            write_log("payInfo_update- ". $sql);
 			$db->query($sql);
 			
 			/*
