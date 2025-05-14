@@ -216,6 +216,12 @@
 										&emsp;<?=$payment_row['payment_c_date']?>
                                         </td>
 									</tr>
+                                    <?php } else if($payment_row['payment_status'] == "C") { ?>
+                                    <th>결제취소일시</th>
+                                        <td>
+										    <?=$payment_row['CancelDate_1']?>
+                                        </td>
+									</tr>
 									<?php } else { ?>
                                     <th></th>
                                         <td></td>
