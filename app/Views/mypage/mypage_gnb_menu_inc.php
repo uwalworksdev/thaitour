@@ -77,7 +77,11 @@
                 <img class="btn_togle up" src="/images/ico/gnb_menu_list_w.svg" alt="">
             </div>
             <div class="menu_level_2 flex" style="display:none">
-                <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
+                <?php if($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver') { ?>
+                    <a class="<?= $tab_9_1 ?>" href="../mypage/info_change">내 정보수정</a>
+                <?php } else {?>
+                    <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
+                <?php }?>
                 <a class="<?= $tab_9_2 ?>" href="../mypage/user_mange">계좌정보</a>
                 <?php if($gubun !== "kakao" && $gubun !== 'google') {       
                      echo '<a class="'. $tab_9_3 .'" href="../mypage/money">회원탈퇴</a>' ;
