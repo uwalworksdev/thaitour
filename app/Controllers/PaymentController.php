@@ -151,6 +151,7 @@ class PaymentController extends BaseController
 
 								$sql = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $moid . "'";
 								$row = $db->query($sql)->getRowArray();
+						        $payment_idx = $row['payment_idx'];
 
 								$output = explode(",", $row['order_no']);
 								// 끝에 쉼표 제거
@@ -228,7 +229,7 @@ class PaymentController extends BaseController
 								$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 							    $db->query($sql);
 
-								alimTalk_deposit_send($row['payment_idx']); 
+								alimTalk_deposit_send($payment_idx); 
 
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
