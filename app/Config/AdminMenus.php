@@ -282,7 +282,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['QnaController::list', 'QnaController::write']
                 ],
                 [
-                    'name' => '고객의 소리',
+                    'name' => '문의하기',
                     'code' => 'E4',
                     'url' => ['/AdmMaster/_contact/list'],
                     'alias' => ['ContactController::list', 'ContactController::write']
