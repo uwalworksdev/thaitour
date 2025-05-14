@@ -9,9 +9,6 @@ class Test extends BaseController
         $db          = \Config\Database::connect();
         $private_key = private_key();
 
-        // 로그 남기기
-        write_log("ajax_temp");
-
         // 알림톡 함수 호출
         $payment_idx = "2097";
         alimTalk_deposit_send($payment_idx);
@@ -21,16 +18,8 @@ class Test extends BaseController
 									 , Amt_1 
 									 , payment_no 
 									 , product_name
-									 , payment_price
-									 , payment_pg
-									 , TID_1
 									 , paydate
 									 , payment_method
-									 , payment_status
-									 , used_coupon_money
-									 , used_point
-									 , payment_m_date
-									 , payment_c_date
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				
