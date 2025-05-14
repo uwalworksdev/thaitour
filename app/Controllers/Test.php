@@ -33,7 +33,7 @@ class Test extends BaseController
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
 		write_log($sql);				
-        $result = $db->connect->query($sql);
+        $result = $db->query($sql);
         $row    = $result->getRowArray();
 		
         $code      = "A17";
