@@ -1794,7 +1794,7 @@ function alimTalk_bank_send($order_no)
 }
 
 
-function alimTalk_depisit_send($payment_idx)
+function alimTalk_deposit_send($payment_idx)
 {
     $connect     = db_connect();
     $private_key = private_key();
@@ -1809,7 +1809,7 @@ function alimTalk_depisit_send($payment_idx)
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];	
-	write_log("alimTalk_depisit_send- ". $order_user_name ." - ". $order_user_mobile);
+	write_log("alimTalk_deposit_send- ". $order_user_name ." - ". $order_user_mobile);
 	$bank_no = $row['VbankBankName_1'] . $row['VbankNum_1'];
 	$allim_replace = [
 						"#{고객명}"   => $order_user_name,
