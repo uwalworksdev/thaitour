@@ -22,7 +22,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         $html .= '<div class="comment_user" style="margin-left: ' . $ww . 'px;">';
         $html .= '<div class="comment_user-avatar">';
         if ($comment['user_level'] == 1) {
-            $avt_img = "/uploads/setting/" . $seting['ufile5'];
+            $avt_img = "/uploads/setting/" . $seting['logos_consult'];
             $user_name = $seting['admin_name'];
             $user_phone = $seting['custom_phone'];
             $user_email = $seting['qna_email'];
@@ -186,7 +186,7 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
 
     foreach ($comments as $comment) {
         if ($comment['user_level'] == 1) {
-            $avatar = "/uploads/setting/" . $seting['ufile5'];
+            $avatar = "/uploads/setting/" . $seting['logos_consult'];
             $user_name = $seting['admin_name'];
             $user_phone = $seting['custom_phone'];
             $user_email = $seting['qna_email'];

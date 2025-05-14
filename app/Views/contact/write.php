@@ -146,7 +146,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
     <section class="write_sect">
         <div class="inner">
             <div class="sect_ttl_box">
-                <h2>여행 문의하기</h2>
+                <h2>문의하기</h2>
             </div>
             <form name="frm" id="frm">
                 <input type="text" name="idx" value="<?= $idx ?>" hidden>
