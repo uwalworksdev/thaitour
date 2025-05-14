@@ -2442,6 +2442,7 @@ function getOrderCount() {
 
 function completePayment($idx) {
 	
+        $db = \Config\Database::connect();
         $private_key = private_key();
 
         // 알림톡 함수 호출
