@@ -429,7 +429,7 @@ endforeach;
                                     <img src="/images/mypage/not-allowed.png" alt="">
                                     <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
                                 </div>
-                                <div class="info_link" data-product-idx="<?= $order->product_idx ?>">본 예약건 취소규정 자세히 보기</div>
+                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
 							    
