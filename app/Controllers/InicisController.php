@@ -247,6 +247,8 @@ class InicisController extends BaseController
 						$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 						$db->query($sql);
 
+                        alimTalk_depisit_send($row['payment_idx']); 
+
                     } catch (Exception $e) {
                         //    $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
                         //####################################

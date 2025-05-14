@@ -1794,34 +1794,29 @@ function alimTalk_bank_send($order_no)
 }
 
 
-function alimTalk_depisit_send($order_no)
+function alimTalk_depisit_send($payment_idx)
 {
     $connect     = db_connect();
     $private_key = private_key();
 
-    $arr = explode(",", $order_no);
+	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
 	
-	for($i=0;$i<count($arr);$i++)
-	{	
-            $sql         = "SELECT * FROM tbl_payment_mst WHERE order_no LIKE '%" . $arr[$i] . "%'";
-			
-			$row         = $connect->query($sql)->getRowArray();
-			
-			$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
-								   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-			$row_d       = $connect->query($sql_d)->getRowArray();
+	$row         = $connect->query($sql)->getRowArray();
+	
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
+						   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+	$row_d       = $connect->query($sql_d)->getRowArray();
 
-			$order_user_name   = $row_d['order_user_name'];
-			$order_user_mobile = $row_d['order_user_mobile'];	
-			
-			$bank_no = $row['VbankBankName_1'] . $row['VbankNum_1'];
-		    $allim_replace = [
-								"#{고객명}"   => $order_user_name,
-								"phone"      => $order_user_mobile
-							 ];
+	$order_user_name   = $row_d['order_user_name'];
+	$order_user_mobile = $row_d['order_user_mobile'];	
+	
+	$bank_no = $row['VbankBankName_1'] . $row['VbankNum_1'];
+	$allim_replace = [
+						"#{고객명}"   => $order_user_name,
+						"phone"      => $order_user_mobile
+					 ];
 
-			alimTalkSend("TY_1654", $allim_replace);	
-	}
+	alimTalkSend("TY_1654", $allim_replace);	
 	
 }
 
