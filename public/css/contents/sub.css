@@ -3619,6 +3619,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-top: 30px;
 }
 
+.popup_wrap.place_pop .popup_place__body * {
+    font-family: var(--bs-body-font-family), sans-serif !important;
+    line-height: 1.4 !important;
+}
+
 .info_company .popup_place__body {
     margin-top: 10px;
 }
