@@ -496,6 +496,8 @@ class CheckoutController extends BaseController
 					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status'
 					                                   ,group_no                   = '$group_no'
 													   ,baht_thai                  = '$baht_thai'
+													   ,order_memo                 = '$payment_memo'	
+													   ,local_phone                = '$local_phone'	
 													   ,order_user_name            = '$payment_user_name'	
 													   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
 													   ,order_user_last_name_en    = '$payment_user_last_name_en' 	
