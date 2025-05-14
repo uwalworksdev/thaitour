@@ -1174,7 +1174,7 @@ $(document).ready(function () {
                     const popupWidth = $popup.outerWidth();
 
                     $('.temp-popup').remove();
-                    const popupTop = rem * -10;    
+                    const popupTop = rem * -5;    
 
                     const $clonedPopup = $popup.clone().css({
                         position: 'absolute',

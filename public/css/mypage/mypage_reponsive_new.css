@@ -1530,9 +1530,13 @@
         background: #fff;
         z-index: 1999;
         bottom: unset !important;
-        top: -9rem !important;
+        top: -6rem !important;
         min-width: 40rem !important;
         border-radius: 0.6rem !important;
+        font-size: 2rem !important;
+    }
+
+    .popup_layer * {
         font-size: 2rem !important;
     }
 
