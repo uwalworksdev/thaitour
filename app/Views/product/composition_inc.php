@@ -1,3 +1,9 @@
+<?php
+    helper(['setting']);
+    $setting = homeSetInfo();
+    $baht_thai_header = (float)($setting['baht_thai'] ?? 0);
+?>
+
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <div class="price-right-c">
@@ -308,6 +314,39 @@
                 }
             }
 		});
+
+
+		let optionQty = $("input[name='option_qty[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionIdx = $("input[name='option_idx[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionName = $("input[name='option_name[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionPrice = $("input[name='option_price[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionTot = $("input[name='option_tot[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+		let optionCnt = $("input[name='option_cnt[]']").map(function() {
+			return $(this).val();
+		}).get();
+ 
+		if(optionQty > 0) {
+		   let bath = '<?=$baht_thai_header?>';	
+		   let option_won  = optionPrice;	
+		   let option_bath = parseInt(optionPrice / bath);	
+		   feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+	    }
+		
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */

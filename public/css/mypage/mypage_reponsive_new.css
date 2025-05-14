@@ -1400,6 +1400,7 @@
     /** booklist **/
     .booklist_wrap {
         width: 100%;
+        overflow: hidden;
     }
     .booklist_wrap .book_big_ttl h2 {
         font-size: 3rem;
@@ -1512,8 +1513,41 @@
         color: #454545;
     }
 
+    .booklist_wrap .result_book .tab_box ul li img:hover + .tab_box {
+        overflow: visible;
+    }
+
     .booklist_wrap .result_book .tab_box ul li img {
         width: 3.7rem;
+    }
+
+    .popup_layer {
+        display: none !important;
+        position: absolute;
+        border: 1px solid #888;
+        padding: 1rem 1.5rem !important;
+        background: #fff;
+        z-index: 1999;
+        top: unset !important;
+        bottom: 0.4rem !important;
+        min-width: 40rem !important;
+        border-radius: 0.6rem !important;
+        font-size: 2rem !important;
+    }
+
+    .tab_box .popup_layer {
+        display: none !important;
+    }
+
+    .layer_edge {
+        position: absolute;
+        width: 5.5rem;
+        height: 2rem;
+        font-size: 0;
+        left: 14.4rem;
+        bottom: -2rem;
+        background: url(/images/ico/tail_myp.png) no-repeat 0 0;
+        background-size: 5.5rem 2rem;
     }
 
     .booklist_wrap .search_form {
@@ -1773,8 +1807,8 @@
     }
 
     .booklist_wrap .booking_product .info_price .estimate_wrap {
-        flex-direction: column;
-        gap: 0.8rem;
+        flex-direction: row;
+        gap: 2rem;
     }
 
     .booklist_wrap .booking_product .info_price .info_reservation.btn_info {
