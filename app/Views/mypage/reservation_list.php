@@ -1158,46 +1158,51 @@ $(document).on('click', '.order_del', function () {
 <script>
 $(document).ready(function () {
     function bindPopupHover() {
-        $('.tab_box li img').off('mouseenter mouseleave');
+            $('.tab_box li img').off('mouseenter mouseleave');
 
-        $('.tab_box li img').hover(function () {
-            if ($(window).width() < 850) {
-                const $img = $(this);
-                const $popup = $img.siblings('.popup_layer');
+            $('.tab_box li img').hover(function () {
+                if ($(window).width() < 850) {
+                    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-                if ($popup.length === 0) return; 
+                    const $img = $(this);
+                    const $popup = $img.siblings('.popup_layer');
+                    const $container = $('.result_book'); 
 
-                const offset = $img.offset();
-                const popupWidth = $popup.outerWidth();
+                    if ($popup.length === 0 || $container.length === 0) return;
 
-                $('.temp-popup').remove();
+                    const offset = $img.offset(); 
+                    const popupWidth = $popup.outerWidth();
 
-                const $clonedPopup = $popup.clone().css({
-                    position: 'absolute',
-                    top: offset.top + $img.outerHeight(),
-                    left: offset.left,
-                    zIndex: 9999,
-                    display: 'block ',
-                    width: popupWidth,
-                    background: '#fff',
-                    border: '1px solid #ccc',
-                    padding: '10px'
-                }).addClass('temp-popup');
+                    $('.temp-popup').remove();
+                    const popupTop = rem * -10;    
 
-                $('body').append($clonedPopup);
-            }
-        }, function () {
-            if ($(window).width() < 850) {
-                $('.temp-popup').remove();
-            }
-        });
-    }
+                    const $clonedPopup = $popup.clone().css({
+                        position: 'absolute',
+                        top: popupTop, 
+                        left: offset.left - rem * 14,
+                        zIndex: 9999,
+                        display: 'block',
+                        background: '#fff',
+                        border: '1px solid #ccc',
+                        padding: '10px'
+                    }).addClass('temp-popup');
 
-    bindPopupHover();
+                    $container.append($clonedPopup);
+                }
+            }, function () {
+                if ($(window).width() < 850) {
+                    $('.temp-popup').remove();
+                }
+            });
+        }
 
-    $(window).on('resize', function () {
         bindPopupHover();
-    });
+
+        $(window).on('resize', function () {
+            bindPopupHover();
+        });
+
+
 });
 
 
