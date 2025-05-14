@@ -219,7 +219,7 @@
                                     <?php } else if($payment_row['payment_status'] == "C") { ?>
                                     <th>결제취소일시</th>
                                         <td>
-										    <?=$payment_row['CancelDate_1']?>
+										    <?=substr($payment_row['CancelDate_1'], 0, 4) . '-' . substr($payment_row['CancelDate_1'], 4, 2) . '-' . substr($payment_row['CancelDate_1'], 6, 2)?>
                                         </td>
 									</tr>
 									<?php } else { ?>
