@@ -4195,48 +4195,61 @@ class AjaxController extends BaseController {
 		return $response;
 	}
 
-public function  ajax_order_del()
-{
-    $db = \Config\Database::connect();
+	public function  ajax_order_del()
+	{
+		$db = \Config\Database::connect();
 
-    try {
-        $orderIdx = $this->request->getPost('order_idx');
+		try {
+			$orderIdx = $this->request->getPost('order_idx');
 
-        if (empty($orderIdx)) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setJSON([
-                    'result'  => false,
-                    'message' => 'order_idx not provided'
-                ]);
-        }
+			if (empty($orderIdx)) {
+				return $this->response
+					->setStatusCode(400)
+					->setJSON([
+						'result'  => false,
+						'message' => 'order_idx not provided'
+					]);
+			}
 
-        // 단일 값이 넘어왔을 경우 배열로 변환
-        if (!is_array($orderIdx)) {
-            $orderIdx = [$orderIdx];
-        }
+			// 단일 값이 넘어왔을 경우 배열로 변환
+			if (!is_array($orderIdx)) {
+				$orderIdx = [$orderIdx];
+			}
 
-        $builder = $db->table('tbl_order_mst');
-        $builder->whereIn('order_idx', $orderIdx);
-        $deleted = $builder->delete();
+			$builder = $db->table('tbl_order_mst');
+			$builder->whereIn('order_idx', $orderIdx);
+			$deleted = $builder->delete();
 
-        $msg = $deleted ? "예약 삭제 완료" : "예약 삭제 실패";
+			$msg = $deleted ? "예약 삭제 완료" : "예약 삭제 실패";
 
-        return $this->response
-            ->setStatusCode(200)
-            ->setJSON([
-                'result'  => $deleted ? true : false,
-                'message' => $msg
-            ]);
-    } catch (\Exception $e) {
-        return $this->response
-            ->setStatusCode(500)
-            ->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ]);
-    }
-}
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'result'  => $deleted ? true : false,
+					'message' => $msg
+				]);
+		} catch (\Exception $e) {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'result' => false,
+					'message' => $e->getMessage()
+				]);
+		}
+	}
 
+    public function  ajax_temp()
+	{
+		$db = \Config\Database::connect();
+		
+		// 3. 로그 (CI4 방식 사용)
+		wriote_log("ajax_temp");  // logs/log-*.php에 기록됨
 
+		// 4. 알림톡 함수 호출
+		$payment_idx = "2097";
+		alimTalk_depisit_send($payment_idx);
+		
+		echo "ajax_temp end ";
+	}
+	
 }	
