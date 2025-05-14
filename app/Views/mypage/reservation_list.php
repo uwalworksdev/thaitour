@@ -444,11 +444,14 @@ endforeach;
 								<?php } ?>
 								
                                 <div class="estimate_wrap flex box">
+								    
+									<?php if($order->order_status != "W") { ?>
                                     <div class="info_estimate btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
-
+                                    <?php } ?>
+									
                                     <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>">
                                         <p>예약정보</p>
                                     </div>
