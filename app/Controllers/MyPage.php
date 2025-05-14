@@ -251,7 +251,7 @@ public function reservationList() {
 	
     public function getPolicyContents($product_idx)
         {
-            $policy = $this->policyCancel->where('product_idx', $product_idx)->first();
+            $policy = $this->policyCancel->where('product_code', $product_idx)->first();
 
             if ($policy) {
                 return $this->response->setJSON([

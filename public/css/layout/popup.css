@@ -585,8 +585,12 @@ textarea::placeholder {
     width: calc(100% - 30px);
 }
 
-.popup_wrap .pop_box .close {
+.popup_wrap.reservation_pop .pop_box .close {
     position: sticky;
+}
+
+.popup_wrap .pop_box .close {
+    position: absolute;
     top: 20px;
     right: 20px;
     width: 23px;

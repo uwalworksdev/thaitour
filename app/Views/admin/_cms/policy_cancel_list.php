@@ -169,17 +169,17 @@
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                                 <caption></caption>
                                 <colgroup>
-                                    <col width="10%"/>
-                                    <col width="15%"/>
-                                    <col width="*"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
+                                    <col width="25%"/>
+                                    <col width="25%"/>
+                                    <!-- <col width="*"/> -->
+                                    <col width="25%"/>
+                                    <col width="25%"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th>선택</th>
                                     <th>카테고리</th>
-                                    <th>상품명</th>
+                                    <!-- <th>상품명</th> -->
                                     <th>약관명</th>
                                     <th>관리</th>
                                 </tr>
@@ -198,8 +198,11 @@
                                     <tr style="height:50px;">
                                         <td><input type="checkbox" name="p_idx[]" class="p_idx" value="<?= $row['p_idx'] ?>"
                                                    class="input_check"/></a></td>
-                                        <td class="tac"><?= $row["product_code_name"] ?> -> <?= $row["product_code_name_2"] ?></td>
-                                        <td class="tac"><?= $row['product_name'] ?>
+                                        <td class="tac"><?= $row["product_code_name"] ?> 
+                                        <!-- -> <?= $row["product_code_name_2"] ?> -->
+                                    </td>
+                                        <td class="tac" style="display:none">
+                                            <?= $row['product_name'] ?>
                                         </td>
                                         <td class="tac"><?= $row["r_date"] ?></td>
                                         <td class="td_control">

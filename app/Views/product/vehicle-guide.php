@@ -1696,7 +1696,7 @@
                         <div class="section_vehicle_2_4__head">
                             <div class="section_vehicle_2_4__head__ttl">
                                 취소 규정 : 결제후 06월26일 18시(한국시간) 이전에 취소하시면 무료취소가 가능합니다.
-                                <a class="vehicle_ttl__link" href="#!" data-product-idx="">본 예약건 취소규정 자세히 보기</a>
+                                <a class="vehicle_ttl__link" href="#!" data-product-idx="1324">본 예약건 취소규정 자세히 보기</a>
                             </div>
                         </div>
                         <table class="vehicle_list">
@@ -2217,7 +2217,7 @@
                 $(".destination_name").text(first_code_name);
 
                 get_depth_first_category();
-                $(".vehicle_ttl__link").attr("data-product-idx", '');
+                // $(".vehicle_ttl__link").attr("data-product-idx", '');
                 $("#policyContent").empty();
             }
         });
@@ -2300,7 +2300,7 @@
 
             updateDepartureDateToday();
             init_datepicker();
-            $(".vehicle_ttl__link").attr("data-product-idx", '');
+            // $(".vehicle_ttl__link").attr("data-product-idx", '');
             $("#policyContent").empty();
 
         }
@@ -3512,7 +3512,7 @@
             cp_idx = "";
         }
         $("#cp_idx").val(cp_idx);
-        $(".vehicle_ttl__link").attr("data-product-idx", product_idx_c);
+        // $(".vehicle_ttl__link").attr("data-product-idx", product_idx_c);
 
         calculatePrice();
     }
