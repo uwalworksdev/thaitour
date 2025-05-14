@@ -8,6 +8,8 @@
             <h2>자동메일관리</h2>
             <div class="menus">
                 <ul class="first">
+                    <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+
                     <li>
                         <a href="email_view" class="btn btn-primary">
                             <span class="glyphicon glyphicon-pencil"></span> 
@@ -35,6 +37,7 @@
                             <col width="*%" />
                             <col width="15%" />
                             <col width="15%" />
+                            <col width="10%" />
                             <col width="7%" />
                         </colgroup>
                         <thead>
@@ -43,6 +46,7 @@
                                 <th>메일명</th>
                                 <th>미리보기</th>
                                 <th>자동발송여부</th>
+                                <th>우선순위</th>
                                 <th>관리</th>
                             </tr>
                         </thead>
@@ -59,6 +63,10 @@
                                         <td><a href="javascript:void(0)" class="btn_preview" rel="<?= esc($row['idx']) ?>">미리보기</a></td>
                                         <td>
                                             <?= ($row['autosend'] == "Y") ? "자동발송" : "사용안함" ?>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="onum[]" value="<?= $row['onum'] ?>" class="input_txt" style="width:50px; text-align: center;">
+                                            <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>" class="input_txt">
                                         </td>
                                         <td>
                                             <a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>">

@@ -8,11 +8,12 @@ class SmsModel extends Model
     protected $table = 'tbl_auto_sms_skin';
     protected $primaryKey = 'idx'; 
 
-    protected $allowedFields = ['code', 'title', 'content', 'autosend']; 
+    protected $allowedFields = ['code', 'title', 'content', 'autosend', 'onum']; 
 
     public function getSms($offset, $limit)
     {
-        return $this->orderBy('code', 'ASC')
+        return $this->orderBy('onum', 'DESC')
+                    ->orderBy('code', 'ASC')
                     ->findAll($limit, $offset);
     }
     public function countAll()
