@@ -66,7 +66,7 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>카테고리</th>
+                                    <th>제목</th>
                                     <td class="input_box travel_box">
                                         <div class="travel_box_child" style="display: flex;gap: 10px;">
                                             <?php if ($p_idx || $product_idx) { ?>
