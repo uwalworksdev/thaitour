@@ -600,6 +600,8 @@
                                 }
 									
 								$_deli_type = get_payment_type(); 	
+								$_color_deli_type = get_color_payment_type(); 	
+
                                 foreach ($result as $row) {
 									
 										 if (str_starts_with($row['user_id'], 'naver_')) {
@@ -630,7 +632,11 @@
                                             <?php if ($row["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
                                             <?php } else { ?>
-                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
+                                                <?php
+                                                    if($row["order_status"] == "")    
+                                                ?>
+
+                                                <font color="<?= $_color_deli_type[$row["order_status"]]?>"><?= $_deli_type[$row["order_status"]] ?></font>
                                             <?php } ?>
                                             
                                         </td>

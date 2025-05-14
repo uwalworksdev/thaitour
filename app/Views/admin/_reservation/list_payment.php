@@ -602,9 +602,12 @@
                                 }
 									
 								$_deli_type = get_payment_type();
+								$_color_deli_type = get_color_payment_type(); 	
+
                                 foreach ($result as $row) {
 									
 									     $status = $_deli_type[$row['payment_status']];
+                                         $color = $_color_deli_type[$row['payment_status']];
 										 
 										 if (str_starts_with($row['user_id'], 'naver_')) {
 											 $user_id = "naver_". substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
@@ -628,7 +631,7 @@
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?></td>
-										<td class="tac"><?=$status?></td>
+										<td class="tac"><span style="color:<?=$color?>"><?=$status?></span></td>
                                         <td class="tal">
 										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>

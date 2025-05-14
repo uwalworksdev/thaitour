@@ -241,6 +241,20 @@ function get_payment_type()
     return $_deli_type;
 }
 
+function get_color_payment_type()
+{
+    $_color_deli_type['W'] = "#ff7f27";
+    $_color_deli_type['X'] = "#1eb1cf";
+    $_color_deli_type['Y'] = "#22b14c";
+    $_color_deli_type['Z'] = "#0000ff";
+    $_color_deli_type['G'] = "#8000ff";
+    $_color_deli_type['R'] = "#252525";
+    $_color_deli_type['C'] = "#ff0000";
+    $_color_deli_type['N'] = "#ff0000";
+    $_color_deli_type['E'] = "#804040";
+    return $_color_deli_type;
+}
+
 function homeSetInfo()
 {
     $Setting = model("Setting");
