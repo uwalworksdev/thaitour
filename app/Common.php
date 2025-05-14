@@ -232,13 +232,27 @@ function get_payment_type()
     $_deli_type['X'] = "예약확인";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
-    $_deli_type['G'] = "예약확인";
-    $_deli_type['R'] = "예약확인";
+    $_deli_type['G'] = "결제대기";
+    $_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "예약확인";
     $_deli_type['C'] = "예약취소";
     $_deli_type['N'] = "예약불가";
     $_deli_type['E'] = "이용완료";
     return $_deli_type;
+}
+
+function get_color_payment_type()
+{
+    $_color_deli_type['W'] = "#ff7f27";
+    $_color_deli_type['X'] = "#1eb1cf";
+    $_color_deli_type['Y'] = "#22b14c";
+    $_color_deli_type['Z'] = "#0000ff";
+    $_color_deli_type['G'] = "#8000ff";
+    $_color_deli_type['R'] = "#252525";
+    $_color_deli_type['C'] = "#ff0000";
+    $_color_deli_type['N'] = "#ff0000";
+    $_color_deli_type['E'] = "#804040";
+    return $_color_deli_type;
 }
 
 function homeSetInfo()

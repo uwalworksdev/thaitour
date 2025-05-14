@@ -513,7 +513,7 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-        <div class="nav-item" onclick="location.href='/magazines/list'">
+        <div class="nav-item" onclick="location.href='/mypage/reservation_list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
             <span class="nav-text text-grey">예약확인</span>
         </div>

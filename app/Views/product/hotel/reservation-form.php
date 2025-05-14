@@ -1162,6 +1162,10 @@
             // $(".dim").hide();
         }
 
+        $(".popup_wrap .dim").on("click", function () {
+            $(".popup_wrap").hide();
+        });
+
         // $("#policy_show").on("click", function () {
         //     $(".policy_pop, .policy_pop .dim").show();
         // });

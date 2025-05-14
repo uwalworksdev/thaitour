@@ -112,7 +112,7 @@
                     <div class="benefit_info_cover">
                         <div class="benefit_info flex__c">
                             <div class="point flex__c">
-                                <div class="point_ico"><img src="../assets/img/mypage/mypage_point_ico_w.png" alt="">
+                                <div class="point_ico"><img src="/images/mypage/mypage_point_ico_w.png" alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 포인트</p>
@@ -120,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="discount flex__c">
-                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png"
+                                <div class="discount_ico"><img src="/images/mypage/mypage_discount_ico_w.png"
                                                                alt="">
                                 </div>
                                 <div>
@@ -128,7 +128,7 @@
                                     <p class="num"><?= $c_nTotalCount ?> <span>장</span></p>
                                 </div>
                                 <a class="discount_detail_ico" href="/mypage/discount_download.php"><img
-                                            src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
+                                            src="/images/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
                             </div>
                         </div>
                     </div>

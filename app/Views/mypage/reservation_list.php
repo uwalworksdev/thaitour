@@ -1155,4 +1155,58 @@ $(document).on('click', '.order_del', function () {
         updateBookingDisplay();
     });
 </script>
+<script>
+$(document).ready(function () {
+    function bindPopupHover() {
+            $('.tab_box li img').off('mouseenter mouseleave');
+
+            $('.tab_box li img').hover(function () {
+                if ($(window).width() < 850) {
+                    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+                    const $img = $(this);
+                    const $popup = $img.siblings('.popup_layer');
+                    const $container = $('.result_book'); 
+
+                    if ($popup.length === 0 || $container.length === 0) return;
+
+                    const offset = $img.offset(); 
+                    const popupWidth = $popup.outerWidth();
+
+                    $('.temp-popup').remove();
+                    const popupTop = rem * -5;    
+
+                    const $clonedPopup = $popup.clone().css({
+                        position: 'absolute',
+                        top: popupTop, 
+                        left: offset.left - rem * 14,
+                        zIndex: 9999,
+                        display: 'block',
+                        background: '#fff',
+                        border: '1px solid #ccc',
+                        padding: '10px'
+                    }).addClass('temp-popup');
+
+                    $container.append($clonedPopup);
+                }
+            }, function () {
+                if ($(window).width() < 850) {
+                    $('.temp-popup').remove();
+                }
+            });
+        }
+
+        bindPopupHover();
+
+        $(window).on('resize', function () {
+            bindPopupHover();
+        });
+
+
+});
+
+
+
+</script>
+
 <?php $this->endSection(); ?>
