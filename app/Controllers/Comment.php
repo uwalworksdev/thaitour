@@ -84,6 +84,12 @@ class Comment extends BaseController
                 ->update(['status' => 'Y']);
         }
 
+        if($r_code == "contact" && $user_id == "admin"){
+            $this->db->table("tbl_travel_contact")
+                ->where('idx', $r_idx)
+                ->update(['status' => 'Y']);
+        }
+
         $comment_point = $this->point->getPoint()["comment_point"] ?? 0;
 
         $memberData = $this->member->find($r_m_idx);
