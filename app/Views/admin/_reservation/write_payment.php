@@ -206,6 +206,7 @@
 										
                                     </td>
 
+                                    <?php if($payment_row['payment_status'] == "Y") { ?>
                                     <th>결제취소</th>
                                         <td>
 										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
@@ -215,7 +216,12 @@
 										&emsp;<?=$payment_row['payment_c_date']?>
                                         </td>
 									</tr>
-									
+									<?php } else { ?>
+                                    <th></th>
+                                        <td></td>
+									</tr>
+									<?php } ?>
+
 								    <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
                                     <tr>
                                         <th>쿠폰번호/할인금액</th>
