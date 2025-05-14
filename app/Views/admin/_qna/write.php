@@ -150,7 +150,7 @@ $session = session();
 								<tr>
 									<th>현황</th>
 									<td>
-										<select name="status">
+										<select name="status" id="qna_status">
 											<option value="N" <?php if ($status == "N") {
 																	echo "selected";
 																} ?>>문의접수</option>
