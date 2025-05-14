@@ -228,7 +228,7 @@ class PaymentController extends BaseController
 								$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 							    $db->query($sql);
 
-								//alimTalk_depisit_send($row['order_no']); 
+								alimTalk_depisit_send($row['payment_idx']); 
 
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급

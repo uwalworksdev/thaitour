@@ -311,7 +311,7 @@
                                 </tr>
                                 <tr>
                                     <th>예약현황</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" class="select_txt">
                                             <option value="">결제현황</option>
@@ -334,10 +334,10 @@
                                         </select>
                                        <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
-										&emsp;2025-02-08 00:00
+										&emsp;<?=$order_m_date?>
                                     </td>
 
-                                    <th>결제금액 취소</th>
+                                    <!--th>결제금액 취소</th>
                                         <td>
                                             <?= $row_cou['used_coupon_no'] ?> / <?= number_format($used_coupon_money) ?>원 &emsp;
 											<a href="javascript:send_it()" class="btn btn-default">
@@ -345,7 +345,7 @@
 										&emsp;2025-02-08 00:00
                                         </td>
 									</tr>
-								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
+								    <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
                                     <tr>
                                         <th>쿠폰번호/할인금액</th>
                                         <td>
@@ -356,9 +356,9 @@
                                             <?= number_format($used_mileage_money) ?>
                                         </td>
                                     </tr>
-                                <?php } ?>
-								
-								<tr>
+                                    <?php } ?>
+								    -->
+								    <tr>
                                         <th>예약상태 문자발송(알림톡)</th>
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>

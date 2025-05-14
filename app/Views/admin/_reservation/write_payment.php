@@ -215,7 +215,8 @@
 										&emsp;<?=$payment_row['payment_c_date']?>
                                         </td>
 									</tr>
-								 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
+									
+								    <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
                                     <tr>
                                         <th>쿠폰번호/할인금액</th>
                                         <td>
@@ -226,9 +227,9 @@
                                             <?= number_format($used_mileage_money) ?>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                    <?php } ?>
 
-								<tr>
+								    <tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1652');">예약접수</button>
