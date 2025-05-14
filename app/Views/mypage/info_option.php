@@ -118,13 +118,15 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$_SESSION['naver_state'] = $state;
 								$apiURL      = "https://nid.naver.com/oauth2.0/authorize?mode=mypage&response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;
 								?>
-								<a href="<?php echo $apiURL ?>">
-									<button type="button" id="naver_id_login_anchor" class="naver_login">
-										<img src="/img/login/new_naver_btn.png" alt="네이버로그인" class="only_web">
-									</button>
-								</a>
-									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
-										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+									<div class='another_login' style="margin:0;justify-content:unset;">
+										<a href="<?php echo $apiURL ?>">
+											<button type="button" id="naver_id_login_anchor" class="naver_login">
+												<img src="/img/login/new_naver_btn.png" alt="네이버로그인" class="only_web">
+											</button>
+										</a>
+										<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+											echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+										</div>
 									</div>
 								<?php
 							} else if ($gubun == "kakao") {

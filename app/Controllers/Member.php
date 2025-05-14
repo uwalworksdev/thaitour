@@ -879,6 +879,8 @@ class Member extends BaseController
     {
         $session = session();
         $code = $this->request->getVar('code');
+        $mode = $this->request->getVar('mode');
+
         $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
         $client_secret = env('GOOGLE_LOGIN_SECRET');
         $redirect_uri = env("GOOGLE_REDIRECT_URI");
@@ -949,7 +951,11 @@ class Member extends BaseController
                     'birthday' => $row['birthday']
                 ]);
 
-                return redirect()->to('/');
+                if($mode == "mypage") {
+                    return redirect()->to('/mypage/info_change');
+                }else {
+                    return redirect()->to('/');
+                }
             }
         } else {
             return redirect()->to('/');
