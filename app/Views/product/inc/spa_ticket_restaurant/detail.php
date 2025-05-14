@@ -438,7 +438,7 @@
 
                 <div class="custom-golf-detail">
                     <div class="section6" id="section8">
-                        <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"]?>)</h2>
+                        <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
 
                         <div class="qa-section">
                             <div class="custom-area-text">
@@ -456,10 +456,10 @@
                                 foreach($product_qna["items"] as $qna){
                                     if(!empty(trim($qna["reply_content"]))){
                                         $qna_status = "Y";
-                                        $qna_text = "답변대기중";
+                                        $qna_text = "답변완료";
                                     }else{
                                         $qna_status = "N";
-                                        $qna_text = "답변완료";
+                                        $qna_text = "문의접수";
                                     }
                             ?>
                                 <li class="qa-item">

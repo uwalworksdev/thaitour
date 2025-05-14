@@ -173,12 +173,12 @@ class AdminMenus extends BaseConfig
                 //     'url' => ['/AdmMaster/_tourSuggestionSub/list'],
                 //     'alias' => ['TourSuggestionSubController::list', 'TourSuggestionSubController::write']
                 // ],
-                [
-                    'name' => '상품등급 관리',
-                    'code' => 'C11',
-                    'url' => ['/AdmMaster/_tourLevel/list'],
-                    'alias' => ['TourLevelController::list', 'TourLevelController::write']
-                ],
+                // [
+                //     'name' => '상품등급 관리',
+                //     'code' => 'C11',
+                //     'url' => ['/AdmMaster/_tourLevel/list'],
+                //     'alias' => ['TourLevelController::list', 'TourLevelController::write']
+                // ],
                 // [
                 //     'name' => '상품옵션 관리',
                 //     'code' => 'C12',

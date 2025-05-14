@@ -13,7 +13,7 @@
                     </div>
                     <div class="itembar"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
                     <!-- <div class="itembar"><a href="/qna/list">1 : 1 게시판</a></div> -->
-                    <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
+                    <!-- <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div> -->
                 </div>
             </div>
             <div class="gnb_menu only_mo">

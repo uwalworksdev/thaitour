@@ -4345,7 +4345,7 @@
 }
 
 .custom-golf-detail .qa-tag {
-    background-color: var(--bs-point);
+    background-color: red;
     color: white;
     padding: 10px 16px 8px 16px;
     border-radius: 99px;
@@ -4366,8 +4366,8 @@
 }
 
 .custom-golf-detail .load-more {
-    background-color: white;
-    color: black;
+    background-color: var(--bs-point);
+    color: white;
     padding: 8px 16px 6px 20px;
     border-radius: 99px;
     border: 1px solid black;

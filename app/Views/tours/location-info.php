@@ -145,7 +145,7 @@
 
             <?php echo view("/product/inc/review_product"); ?>
 
-            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?= $product_qna["nTotalCount"] ?>)</h2>
+            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?= $product_qna["nTotalCount"] ?? 0 ?>)</h2>
             <div class="qa-section">
                 <div class="custom-area-text">
                     <label class="custom-label" for="qa-comment">
@@ -161,12 +161,12 @@
                     <?php
                     $num_qna = $product_qna["num"];
                     foreach ($product_qna["items"] as $qna) {
-                        if (!empty(trim($qna["reply_content"]))) {
+                        if(!empty(trim($qna["reply_content"]))){
                             $qna_status = "Y";
-                            $qna_text = "답변대기중";
-                        } else {
-                            $qna_status = "N";
                             $qna_text = "답변완료";
+                        }else{
+                            $qna_status = "N";
+                            $qna_text = "문의접수";
                         }
                     ?>
                         <li class="qa-item">

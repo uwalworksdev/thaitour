@@ -625,7 +625,7 @@
 
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
-<div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail 123">
+<div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
@@ -1991,6 +1991,112 @@
 		<input type="hidden" name="searchOk" id="searchOk" value="">
 
         <?php echo view("/product/inc/review_product", ['product' => $hotel]); ?> 
+
+        <div class="section6" id="hotel_qna_wrap">
+            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
+            <div class="qa-section">
+                <div class="custom-area-text">
+                    <label class="custom-label" for="qa-comment">
+                        <textarea name="qa-comment" id="qa-comment"
+                                  class="custom-main-input-style textarea autoExpand"
+                                  placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+                    </label>
+                    <div type="submit" class="qa-submit-btn">등록</div>
+                </div>
+
+                <ul class="qa-list">
+                    <?php
+                        $num_qna = $product_qna["num"];
+                        foreach($product_qna["items"] as $qna){
+                            if(!empty(trim($qna["reply_content"]))){
+                                $qna_status = "Y";
+                                $qna_text = "답변완료";
+                            }else{
+                                $qna_status = "N";
+                                $qna_text = "문의접수";
+                            }
+                    ?>
+                        <li class="qa-item">
+                            <div class="qa-wrap">
+                                <div class="qa-question">
+                                    <span class="qa-number"><?=$num_qna--;?></span>
+                                    <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
+                                    <div class="con-cus-mo-qa">
+                                        <p class="qa-text"><?=$qna["title"]?></p>
+                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
+                                    </div>
+                                </div>
+                                <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
+                            </div>
+                            <?php
+                                if($qna_status == "Y"){
+                            ?>
+                                <div class="additional-info">
+                                    <span class="load-more">더투어랩</span>
+                                    <?=nl2br($qna["reply_content"])?>
+                                </div>
+                            <?php } ?>
+                        </li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+            </div>
+            <?php 
+                echo ipagelistingSub($product_qna["pg"], $product_qna["nPage"], $product_qna["g_list_rows"], current_url() . "?pg_qna=", '', 'golf_qna_wrap')
+            ?>
+        </div>
+
+        <script>
+            $(".qa-item .qa-wrap").on("click", function () {
+                if($(this).closest(".qa-item").find(".additional-info").length > 0){
+                    if($(this).closest(".qa-item").find(".additional-info").css("display") == "none"){
+                        $(this).closest(".qa-item").find(".additional-info").css("display", "block");
+                    }else{
+                        $(this).closest(".qa-item").find(".additional-info").css("display", "none");
+                    }
+                }
+            })
+
+            $(".qa-submit-btn").on("click", function () {
+                let title = $("#qa-comment").val();
+                <?php
+                    if(empty(session()->get("member")["id"])) {
+                ?>  
+                    // alert("로그인해주세요");
+                    // return;      
+                    showOrHideLoginItem();
+                    return false;
+                <?php
+                    }
+                ?>
+
+                if(!title){
+                    alert("상품에 대해 궁금한 점을 입력해 주세요!");
+                    return false;
+                }
+
+                $.ajax({
+                    url: "/product_qna/insert",
+                    type: "POST",
+                    data: { 
+                        title: title,
+                        product_gubun: "hotel",
+                        product_idx: <?= $hotel['product_idx'] ?? 0 ?>
+                    },
+                    error: function(request, status, error) {
+                        alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    },
+                    success: function(data, status, request) {
+                        message = data.message;
+                        alert(message);
+                        if(data.result == true){
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        </script>
 
         <div class="section7">
             <div class="d_flex justify_content_end">
