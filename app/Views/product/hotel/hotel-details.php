@@ -547,7 +547,8 @@
             border: 1px solid #dbdbdb;
             border-radius: 0.6rem;
             padding: 0 1.8rem;
-            height: 7.5rem;
+            height: 10.5rem;
+            width: 100%;
         }
 
         .content-sub-hotel-detail ._wrap_qty span {
@@ -557,7 +558,7 @@
         }
 
         .content-sub-hotel-detail ._wrap_qty .room_activity {
-            margin-right: 2rem;
+            margin-right: 7rem;
         }
 
         .content-sub-hotel-detail ._wrap_qty button {
@@ -567,8 +568,8 @@
             line-height: 1.3;
             text-align: center;
             padding: 2.4rem;
-            width: 4rem;
-            height: 5rem;
+            width: 5rem;
+            height: 6rem;
             margin-left: 0;
             border: 1px solid #dbdbdb;
             border-radius: 0;
@@ -578,7 +579,7 @@
 
         .content-sub-hotel-detail ._wrap_qty input.room_qty {
             width: 7.2rem;
-            height: 5rem;
+            height: 6rem;
             border: 1px solid #dbdbdb;
             border-radius: 0;
             padding: 0;
@@ -591,7 +592,7 @@
 
         .content-sub-hotel-detail ._wrap_qty input.day_qty {
             width: 6rem;
-            height: 4rem;
+            height: 6rem;
             font-size: 2.6rem;
         }
 		
@@ -600,7 +601,7 @@
         }
 		
 		input[type="checkbox"] {
-			display: inline-block !important;
+			/* display: inline-block !important; */
 			visibility: visible !important;
 		}
 
@@ -610,6 +611,13 @@
  
          .mySwiper .swiper-slide {
              width: 9.4rem;
+         }
+
+         #room_search {
+            line-height: 1.4;
+            padding: 1rem 3.4rem;
+            width: 10.8rem;
+            height: 6.5rem;
          }
 
     }
@@ -1386,7 +1394,7 @@
                                 <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
                                     <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
                                     <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
-                                    <td>
+                                    <td class="room_subjects">
                                         <div class="room-details">
                                             <p class="room-p-cus-1"><?=$room['room_name']?></p>
                                             <?php
@@ -1422,7 +1430,7 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="room_details">
                                         <div class="people_qty">
                                             <img src="/images/sub/user-iconn.png" alt="">
                                             <p>성인 : <?=$room['adult']?>명</p>

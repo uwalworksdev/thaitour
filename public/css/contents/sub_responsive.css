@@ -3343,6 +3343,14 @@
     font-size: 2.6rem;
   }
 
+  .bs_table.news tbody td.notice {
+    padding: 0.6436rem 0.92846rem;
+  }
+
+  .bs_table tbody td.notice {
+      width: 9rem;
+  }
+
   .bs_table tbody td.subject_travel {
     width: 100%;
   }
@@ -3427,6 +3435,10 @@
     width: 100%;
     padding-left: 0.92846rem;
     order: 1;
+  }
+
+  .bs_table.news tbody tr .subject {
+    width: unset;
   }
 
   .bs_table tbody tr .subject a {

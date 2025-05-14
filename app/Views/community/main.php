@@ -62,7 +62,7 @@
                             더보기 <i></i>
                         </a>
                     </div>
-                    <table class="bs_table">
+                    <table class="bs_table news">
                         <colgroup>
                             <?php if ($row['notice_yn'] == "Y")
                                 echo "<col width='70px'>" ?>

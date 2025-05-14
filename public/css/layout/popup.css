@@ -290,7 +290,7 @@
 
 .popup_wrap.benefit_pop .pop_box {
     max-width: 760px;
-    padding: 0 40px;
+    padding: 20px 40px 0;
 }
 
 .popup_wrap.promotion_pop .pop_box .popup_contents {
@@ -807,6 +807,10 @@ textarea::placeholder {
     max-height: calc(100% - 28px);
 }
 
+.popup_wrap.reservation_pop .pop_box ol.spe li {
+    width: 50% !important;
+}
+
 @media screen and (max-width: 850px) {
     .popup_wrap .pop_box {
         max-width: 100%;
@@ -1091,4 +1095,50 @@ textarea::placeholder {
         background-size: 2.5385rem;
 
     }
+
+    .popup_wrap.reservation_pop .pop_box {
+        height: 70rem;
+        overflow-y: auto;
+    }
+
+    .popup_wrap.reservation_pop .pop_box .close {
+        position: absolute;
+        top: 1.7692rem;
+        right: 0.7692rem;
+        width: 4.5385rem;
+        height: 3.5385rem;
+        background-size: 1.5385rem;
+        background: url(/images/ico/close_icon_popup.png) no-repeat center;
+    }
+
+    .popup_wrap.reservation_pop .pop_body {
+        padding: 0 !important;
+    }
+
+    .popup_wrap.reservation_pop .pop_box ol.spe li {
+        width: 100% !important;
+    }
+
+    .popup_wrap.reservation_pop .term_category colgroup{
+        display: none !important;
+    }
+
+    .popup_wrap.reservation_pop colgroup {
+        display: none !important;
+    }
+
+    .popup_wrap.reservation_pop .pop_box table tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .popup_wrap.reservation_pop .pop_box table tr td, .popup_wrap.reservation_pop .pop_box table tr th, .popup_wrap.reservation_pop .pop_box table colgroup col {
+        width: 100% !important;
+    }
+
+    .popup_wrap.reservation_pop .popup_place__body * {
+        line-height: 1.4 !important;
+        font-size: 2.2rem !important;
+    }
+    
 }
