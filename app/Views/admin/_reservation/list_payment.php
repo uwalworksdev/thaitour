@@ -640,8 +640,8 @@
                                         <td class="tac"><?= $row["paydate"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
-                                        <td class="tac"><?= number_format($row["payment_tot"]) ?></td>
-										<td class="tac"><?= number_format((int)($row["payment_tot"]/$row['baht_thai'])) ?></td>
+                                        <td class="tac"><?= number_format($row["payment_price"]) ?></td>
+										<td class="tac"><?= number_format((int)($row["payment_price"]/$row['baht_thai'])) ?></td>
                                         <td class="tac"><?= $row["payment_method"] ?>(<?= $row["payment_pg"] ?>)</td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
