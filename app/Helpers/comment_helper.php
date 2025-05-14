@@ -1,4 +1,7 @@
 <?php
+
+helper('setting_helper');
+
 function fetchCommentsFromDatabase($list, $parentCommentId, $level)
 {
     $filteredArray = array_filter($list ?? [], function ($value) use ($parentCommentId, $level) {
@@ -9,6 +12,9 @@ function fetchCommentsFromDatabase($list, $parentCommentId, $level)
 function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 1)
 {
     $html = '';
+    $seting_model = model('Setting');
+    $seting = $seting_model->info(1);
+
     $comments = fetchCommentsFromDatabase($list, $parentCommentId, $level);
 
     foreach ($comments as $comment) {
@@ -16,11 +22,20 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         $html .= '<div class="comment_user" style="margin-left: ' . $ww . 'px;">';
         $html .= '<div class="comment_user-avatar">';
         if ($comment['user_level'] == 1) {
-            $avt_img = "/img/ico/hi_avatar.jpg";
+            $avt_img = "/uploads/setting/" . $seting['ufile5'];
+            $user_name = $seting['admin_name'];
+            $user_phone = $seting['custom_phone'];
+            $user_email = $seting['qna_email'];
         } else if ($comment['avt_new'] != '' && $comment['user_level'] == 2) {
             $avt_img = '/data/member/' . $comment['avt_new'];
+            $user_name = $comment['r_name'];
+            $user_phone = $comment['user_phone'];
+            $user_email = $comment['user_email'];
         } else {
             $avt_img = '/images/profile/avatar.png';
+            $user_name = $comment['r_name'];
+            $user_phone = $comment['user_phone'];
+            $user_email = $comment['user_email'];
         }
         $html .= '<img src="' . $avt_img . '" alt="">';
         $html .= '</div>';
@@ -38,7 +53,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         $html .= '<button type="button" onclick="handleCmtEditSubmit(event, ' . $comment['r_cmt_idx'] . ')">수정</button>';
         $html .= '</div>';
         $html .= '<div class="comment_user-content">';
-        $html .= '<span class="comment_user-title">' . $comment['r_name'] . '</span>';
+        $html .= '<span class="comment_user-title">' . $user_name . '</span>';
         $html .= '<span class="comment_user-date">' . $comment['r_reg_date'] . '</span>';
         if ($r_code != 'order') {
 
@@ -46,8 +61,8 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
             $html .= 'onclick="showReport(`' . $r_code . '`, `' . $r_idx . '`, `' . $comment['r_cmt_idx'] . '`)">신고</span>';
         }
         if ($comment['user_level'] <= 2) {
-            $html .= '<br /><span class="comment_user-title">' . $comment['user_phone'] . '</span>';
-            $html .= '<span class="comment_user-date">' . $comment['user_email'] . '</span>';
+            $html .= '<br /><span class="comment_user-title">' . $user_phone . '</span>';
+            $html .= '<span class="comment_user-date">' . $user_email . '</span>';
         }
         $html .= '</div>';
         $html .= '<div class="comment_user-operation">';
@@ -82,7 +97,14 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
     $html = '';
     $comments = fetchCommentsFromDatabase($list, $parentCommentId, $level);
 
+    $seting_model = model('Setting');
+    $seting = $seting_model->info(1);
+
     foreach ($comments as $comment) {
+        if($comment['user_level'] == 1){
+            $user_name = $seting['admin_name'];
+        }
+
         if($level <= 1){
             $html .= '<div class="comment_el">';
         }
@@ -94,7 +116,7 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
         }
         $html .= '<div class="info">';
         $html .= '<div class="left">';
-        $html .= '<span class="user">' . $comment['r_name'] . '</span>';
+        $html .= '<span class="user">' . $user_name . '</span>';
         $html .= '<span class="date">' . $comment['r_reg_date'] . '</span>';
 
         if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
@@ -159,13 +181,26 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
     $comments = fetchCommentsFromDatabase($commentsArray, $parentCommentId, $level);
     $html = '';
 
+    $seting_model = model('Setting');
+    $seting = $seting_model->info(1);
+
     foreach ($comments as $comment) {
         if ($comment['user_level'] == 1) {
-            $avatar = "/AdmMaster/_images/hi_avatar.jpg";
+            $avatar = "/uploads/setting/" . $seting['ufile5'];
+            $user_name = $seting['admin_name'];
+            $user_phone = $seting['custom_phone'];
+            $user_email = $seting['qna_email'];
+        
         } else if ($comment['user_level'] == 2) {
             $avatar = "/data/member/" . $comment['user_avatar'];
+            $user_name = $comment['r_name'];
+            $user_phone = $comment['user_phone'];
+            $user_email = $comment['user_email'];
         } else {
             $avatar = "/images/profile/avatar.png";
+            $user_name = $comment['r_name'];
+            $user_phone = $comment['user_phone'];
+            $user_email = $comment['user_email'];
         }
 
         $class = '';
@@ -178,9 +213,9 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
         $html .= '<td><div class="user_info">';
         $html .= '<img src="' . $avatar . '" class="user_avatar" width="100px" height="100px" alt="">';
         $html .= '<div class="user_info_1">';
-        $html .= '<p class="user-name">' . $comment['user_name'];
+        $html .= '<p class="user-name">' . $user_name;
 
-        $html .= '</p><p>' . $comment['user_phone'] . '</p><p>' . $comment['user_email'] . '</p></div></div></td>';
+        $html .= '</p><p>' . $user_phone . '</p><p>' . $user_email . '</p></div></div></td>';
         $html .= '<td><div class="user-comment" id="rrp_content_' . $comment['r_cmt_idx'] . '">';
         $html .= nl2br($comment['r_content']);
         $html .= '</div><div class="comment-input write_box flex" id="rrp_edit_' . $comment['r_cmt_idx'] . '" style="display: none;" tabindex="0" onblur="handleBlurEdit(' . $comment['r_cmt_idx'] . ')">';
