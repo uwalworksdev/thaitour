@@ -1083,6 +1083,7 @@ figure.cover_img img {
   align-items: center;
   margin-top: 10px;
   flex-wrap: wrap;
+  line-height: 1.4;
 }
 .prd_info__right__ttl {
   color: #757575;
@@ -1112,5 +1113,10 @@ figure.cover_img img {
   }
   .img_box_14 {
     padding-top: calc(492% / 658 * 100);
+  }
+
+  .now_tab_text {
+    height: 9.8rem !important;
+    font-size: 3rem !important;
   }
 }

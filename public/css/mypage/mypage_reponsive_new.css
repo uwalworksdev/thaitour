@@ -1484,6 +1484,7 @@
     .booklist_wrap .result_book {
         gap: 0;
         padding-bottom: 5rem;
+        position: relative;
     }
 
     .booklist_wrap .book_big_ttl .total {
@@ -1522,16 +1523,20 @@
     }
 
     .popup_layer {
-        display: none !important;
+        display: none;
         position: absolute;
         border: 1px solid #888;
         padding: 1rem 1.5rem !important;
         background: #fff;
         z-index: 1999;
-        top: unset !important;
-        bottom: 0.4rem !important;
+        bottom: unset !important;
+        top: -6rem !important;
         min-width: 40rem !important;
         border-radius: 0.6rem !important;
+        font-size: 2rem !important;
+    }
+
+    .popup_layer * {
         font-size: 2rem !important;
     }
 

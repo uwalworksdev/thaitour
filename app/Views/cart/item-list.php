@@ -379,7 +379,7 @@
 													$options = explode('|', $item['options']);
 													foreach ($options as $option) {
 														$option_r = explode(":", esc($option));
-														echo $option_r[0] . $option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
+														echo $option_r[0] . $option_r[1] ."/ ". $option_r[2] ." 명 / ". number_format($option_r[3]) ." 원<br>";
 													}
 												}
 											?>
@@ -866,7 +866,7 @@
 													$options = explode('|', $item['options']);
 													foreach ($options as $option) {
 														$option_r = explode(":", esc($option));
-														echo $option_r[0].$option_r[1] ."/ ". $option_r[2] ." EA / ". number_format($option_r[3]) ." 원<br>";
+														echo $option_r[0].$option_r[1] ."/ ". $option_r[2] ." 명 / ". number_format($option_r[3]) ." 원<br>";
 													}
 												}
 											?>
