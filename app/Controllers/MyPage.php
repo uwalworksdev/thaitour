@@ -536,7 +536,7 @@ public function reservationList() {
     {
         try {
             $msg = '';
-            $user_name = $private_key = private_key();
+            $private_key = private_key();
 
             $m_idx = updateSQ($_SESSION["member"]["mIdx"]);
             $user_pw = updateSQ($_POST["user_pw"]);
