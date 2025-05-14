@@ -45,7 +45,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("sms_view", "SmsSettings::sms_view");
         $routes->post("sms_delete", "SmsSettings::sms_delete");
         $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
+        $routes->post("sms_change", "SmsSettings::sms_change");
+
         $routes->post("email_delete", "AutoMailController::email_delete");
+        $routes->post("email_change", "AutoMailController::email_change");
         $routes->get("email_view", "AutoMailController::email_view");
         $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
         $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");

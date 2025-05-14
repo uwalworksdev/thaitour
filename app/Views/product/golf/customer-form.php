@@ -366,7 +366,7 @@
                             <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간)
                                 이전
                             </p>
-                            <span class="cus-label-r info_link" data-product-idx="<?= $product['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+                            <span class="cus-label-r info_link" data-product-idx="<?= $product['product_code_1'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check-first item-clause-all">
                                 <span>전체동의</span>

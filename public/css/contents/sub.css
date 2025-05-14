@@ -3619,6 +3619,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-top: 30px;
 }
 
+.popup_wrap.place_pop .popup_place__body * {
+    font-family: var(--bs-body-font-family), sans-serif !important;
+    line-height: 1.4 !important;
+}
+
 .info_company .popup_place__body {
     margin-top: 10px;
 }
@@ -3704,12 +3709,26 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_wrap.place_pop .pop_box {
-    max-width: 900px;
-    /* padding: 0 59px; */
+    max-width: 1000px;
+    padding: 0 59px;
+}
+
+.popup_wrap.place_pop .popup_place__body .img_top {
+    width: 100% !important;
+} 
+
+.popup_wrap.place_pop .popup_place__body table {
+    width: 100% !important;
 }
 
 .popup_wrap.place_pop .pop_body {
-    padding: 0 59px;
+    /* padding: 0 59px; */
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.popup_wrap.place_pop .pop_body::-webkit-scrollbar {
+    display: none;
 }
 
 .meeting_time {
@@ -6898,6 +6917,31 @@ iframe::-webkit-scrollbar {
 @media screen and (max-width: 850px) {
     #iframeContainer {
         height: 460vh;
+    }
+
+    .popup_wrap.place_pop .pop_body {
+        /* padding: 0 59px; */
+        max-height: 60rem;
+        overflow-y: auto;
+    }
+
+    .popup_place__head {
+        border-bottom: 1px solid #222222;
+        padding-bottom: 2.5rem;
+        padding-top: 5.5rem;
+    }
+
+    .popup_place__body {
+        margin-top: 3rem;
+    }
+
+    #policyContent *{
+        font-size: 2rem !important;
+        line-height: 1.4 !important;
+    }
+
+    #policyContent .desc {
+        flex-direction: column;
     }
 }
 

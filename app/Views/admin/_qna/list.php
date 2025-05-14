@@ -159,13 +159,9 @@
 
 										$statusStr = "";
 										if ($row["status"] == "Y") {
-											$statusStr = "상담완료";
-										} elseif ($row["status"] == "C") {
-											$statusStr = "상담취소";
-										} elseif ($row["status"] == "W") {
+											$statusStr = "답변완료";
+										} else {
 											$statusStr = "문의접수";
-										} elseif ($row["status"] == "V") {
-											$statusStr = "문의확인";
 										}
 
 										if($row['isViewQna'] == 'N'){ 

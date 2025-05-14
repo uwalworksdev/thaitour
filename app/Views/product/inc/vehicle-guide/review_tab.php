@@ -65,7 +65,7 @@
                             </span>
                             <span class="block f_11" style="color: #999;">평균 고객평점</span>
                         </div>
-                        <div class="mt10">
+                        <div class="mt10" style="display: none">
                             <?php foreach ($reviewCars['codeReviewCars'] as $key2 => $value2): ?>
                                 <?php
                                 $review_type_arr = explode('|', $review['review_type']);
@@ -74,7 +74,7 @@
                                     <?php
                                         $percent = $review['number_stars']/5 * 100;
                                     ?>
-                                    <div class="ssrv_av f_11">
+                                    <div class="ssrv_av f_11" >
                                         <p><?= htmlspecialchars($value2['code_name']) ?></p>
                                         <p>
                                             <span class="rate_bar">

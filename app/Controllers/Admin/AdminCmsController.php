@@ -194,8 +194,8 @@ class AdminCmsController extends BaseController
 
     public function policy_change() {
         try {
-            $p_idx = $this->request->getPost('p_idx') ?? '';
-            $onum = $this->request->getPost('onum') ?? '';
+            $p_idx = $this->request->getPost('p_idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
 
             $tot = count($p_idx);
             for ($j = 0; $j < $tot; $j++) {

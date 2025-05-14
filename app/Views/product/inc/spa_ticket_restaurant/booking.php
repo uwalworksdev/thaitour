@@ -466,7 +466,7 @@
                                 이전
                             </p>
 
-                            <span class="cus-label-r info_link" data-product-idx="<?= $prod['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+                            <span class="cus-label-r info_link" data-product-idx="<?= $prod['product_code_1'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
 
                             <?php if($prod['direct_payment'] == "Y") { ?>
 							<span style="color:red;">※ 예약확정 상품입니다.</span>
