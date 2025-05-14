@@ -705,7 +705,6 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_estimate_mailsend", "AjaxController::ajax_estimate_mailsend");
 	$routes->post("ajax_nicepay_cancelResult", "AjaxController::ajax_nicepay_cancelResult");
 	$routes->post("ajax_order_del", "AjaxController::ajax_order_del");
-	$routes->post("ajax_temp", "AjaxController::ajax_temp");
 });
 
 $routes->group("api", static function ($routes) {
@@ -1110,5 +1109,5 @@ $routes->group("daily", static function ($routes) {
 });
 
 $routes->get('group-move-popup', 'ReservationController::groupMoveView');
-
+$routes->get('test/ajax_temp', 'Test::ajax_temp');
 ?>
