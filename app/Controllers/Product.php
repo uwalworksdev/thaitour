@@ -1432,6 +1432,11 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 		
             $img_list      = $this->productImg->getImg($idx);
 
+            $product_gubun = "hotel";
+            $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+            $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $idx], 10, $pg_qna);
+
             $data = [
                 'hotel'            => $hotel,
                 'img_list'         => $img_list,
@@ -1458,6 +1463,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 				'roomTypes'        => $roomTypes,
 				'roomsByType'      => $roomsByType,
 		        'allBeds'          => $allBeds,
+                'product_qna'      => $product_qna
             ];
 
             $data = array_merge($data, $review_data);
