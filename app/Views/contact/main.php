@@ -42,7 +42,8 @@
         </script>
             <table class="bs_table">
                 <colgroup>
-                <col width="80px">
+                    <col width="80px">
+                    <col width="80px">
                     <col width="*">
                     <col width="110px">
                     <col width="110px">
@@ -50,6 +51,7 @@
                 <thead>
                     <tr>
                         <th>NO</th>
+                        <th>현황</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>등록일</th>
@@ -78,6 +80,18 @@
                     ?>
                     <tr>
                         <td class="num"><?=$no?></td>
+                        <td style="text-align: center;">
+                            <?php
+                                if ($row["status"] == "N") {
+                                    $str_status = "문의접수";
+                                    $color = "#17469E";
+                                }else {
+                                    $str_status = "답변완료";
+                                    $color = "red";
+                                }
+                            ?>
+                            <span style="color: <?=$color?>;"><?= $str_status ?></span>
+                        </td>
                         <td class="subject">
                             <?php
                             if ((session('member.idx') && $row["reg_m_idx"] == session('member.idx')) 
