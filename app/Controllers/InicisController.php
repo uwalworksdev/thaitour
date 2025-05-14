@@ -168,8 +168,8 @@ class InicisController extends BaseController
 								  ->getRowArray();
 
 						// 사용자 ID 추출
-						$m_idx = $row['m_idx'];
-						
+						$m_idx       = $row['m_idx'];
+						$payment_idx = $row['payment_idx'];
 
 						$output = explode(",", $row['order_no']);
 						// 끝에 쉼표 제거
@@ -247,7 +247,7 @@ class InicisController extends BaseController
 						$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 						$db->query($sql);
 
-                        alimTalk_deposit_send($row['payment_idx']); 
+                        alimTalk_deposit_send($payment_idx); 
 
                     } catch (Exception $e) {
                         //    $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
