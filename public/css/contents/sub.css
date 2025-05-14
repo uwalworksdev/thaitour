@@ -3709,8 +3709,16 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_wrap.place_pop .pop_box {
-    max-width: 900px;
+    max-width: 1000px;
     padding: 0 59px;
+}
+
+.popup_wrap.place_pop .popup_place__body .img_top {
+    width: 100% !important;
+} 
+
+.popup_wrap.place_pop .popup_place__body table {
+    width: 100% !important;
 }
 
 .popup_wrap.place_pop .pop_body {
@@ -6930,6 +6938,10 @@ iframe::-webkit-scrollbar {
     #policyContent *{
         font-size: 2rem !important;
         line-height: 1.4 !important;
+    }
+
+    #policyContent .desc {
+        flex-direction: column;
     }
 }
 
