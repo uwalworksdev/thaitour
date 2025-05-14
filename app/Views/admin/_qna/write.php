@@ -317,7 +317,7 @@ $session = session();
 										<a href="<?= base_url('public/uploads/qna/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>답변여부를 메일로 받으시겠습니까?</th>
 									<td colspan="3">
 										<input type="radio" id="yes" name="email_yn" value="Y" <?= ($email_yn == "Y" ? "checked" : "") ?>>
@@ -325,7 +325,7 @@ $session = session();
 										<input type="radio" id="no" name="email_yn" value="N" <?= ($email_yn == "N" ? "checked" : "") ?>>
 										<label class="form_label_" for="no">아니오</label>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>

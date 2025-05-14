@@ -169,7 +169,7 @@
                                         </div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>정확성</th>
 									<td>
 										<select class="form_input_" name="accuracy" id="accuracy">
@@ -186,7 +186,7 @@
 											<option <?= $speed == "test2" ? "selected" : ""?> value="test2">test2</option>
 										</select>
 									</td>
-								</tr>
+								</tr> -->
 
 								<tr>
 									<th>이메일</th>

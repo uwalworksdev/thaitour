@@ -140,8 +140,8 @@
 							<colgroup>
 								<col width="4%" />
 								<col width="4%" />
-								<col width="10%" />
 								<col width="*%" />
+								<col width="10%" />
 								<col width="25%" />
 								<col width="10%" />
 								<col width="15%" />
@@ -151,8 +151,8 @@
 								<tr>
 									<th>선택</th>
 									<th>번호</th>
-									<th>상태</th>
 									<th>제목</th>
+									<th>상태</th>
 									<th>제품명</th>
                                     <th>등록일</th>
                                     <th>IP</th>
@@ -180,6 +180,10 @@
 									<tr style="height:50px; background-color: <?=$color?>;">
 										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row["idx"] ?>" class="input_check" /></a></td>
 										<td><?= $num-- ?></td>
+										
+										<td class="tac">
+											<a href="write?idx=<?= $row["idx"] ?>"><p><?= $row['title'] ?></p></a>
+										</td>
 										<td>
 											<?php
 												if(!empty(trim($row["reply_content"]))){
@@ -188,9 +192,6 @@
 													echo "문의접수";
 												}
 											?>
-										</td>
-										<td class="tac">
-											<a href="write?idx=<?= $row["idx"] ?>"><p><?= $row['title'] ?></p></a>
 										</td>
 										<td class="tac"><?= $row['product_name'] ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>

@@ -68,6 +68,7 @@ class ContactController extends BaseController
         $sql    = $total_sqls . " order by r_date desc, idx desc limit $start, $scale ";
 
         $result = $this->db->query($sql)->getResultArray();
+
         $num = $total_cnt - $start;
         return view("admin/_contact/list", [
             'list_contact' => $result,

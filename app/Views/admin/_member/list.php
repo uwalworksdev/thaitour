@@ -59,6 +59,7 @@
                                 <col width="70px" />
                                 <col width="150px" />
                                 <col width="150px" />
+                                <col width="150px" />
                                 <?php if ($s_status == 'Y') { ?>
                                     <col width="100px" />
                                     <col width="*" />
@@ -81,6 +82,7 @@
                                     <th>번호</th>
                                     <th>현황</th>
                                     <th>아이디</th>
+                                    <th>Sns 분리</th>
                                     <th>이름</th>
                                     <?php if ($s_status == 'Y') { ?>
                                         <th>회원등급</th>
@@ -117,6 +119,7 @@
                                         <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
                                         <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
                                         <td><?=maskNaverId(esc($row['user_id']))?></td>
+                                        <td><?=$row['gubun'] != "" ? $row['gubun'] : "일반"?></td>
                                         <td><?= esc($row['user_name']) ?></td>
                                         <?php if ($s_status == 'Y') { ?>
 										<td>
