@@ -1,6 +1,12 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
+<style>
+    div.listBottom table.listTable tbody td {
+        height: 40px;
+    }
+</style>
+
 <div id="container">
 <span id="print_this">
     <header id="headerContainer">

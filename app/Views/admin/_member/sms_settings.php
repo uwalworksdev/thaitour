@@ -1,5 +1,10 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<style>
+    div.listBottom table.listTable tbody td {
+        height: 40px;
+    }
+</style>
     <div id="container">
         <span id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -94,6 +99,26 @@
     </div><!-- // container -->
 
     <script>
+        function change_it() {
+            $.ajax({
+                url: "sms_change",
+                type: "POST",
+                data: $("#frm").serialize(),
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    alert(response.message);
+                    if (response.result == true) {
+                        location.reload();
+                        return;
+                    } 
+                }
+            });
+        }
+
         function del_it(idx) {
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
                 handleDel(idx);
@@ -124,25 +149,6 @@
                 }
             });
         }
-
-        function change_it() {
-            $.ajax({
-                url: "sms_change",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    alert(response.message);
-                    if (response.result == true) {
-                        location.reload();
-                        return;
-                    } 
-                }
-            });
-        }
+    
     </script>
     <?= $this->endSection() ?>
