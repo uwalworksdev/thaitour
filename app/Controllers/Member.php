@@ -732,7 +732,14 @@ class Member extends BaseController
             $_tmp_fir_array = [
                 'MEMBER_NAME' => $user_name
             ];
+
             autoSms($code, $to_phone, $_tmp_fir_array);
+
+            $code = "A02";
+            $_tmp_fir_array = [
+                'member_id'   => $data['user_id'],
+            ];
+            autoEmail($code, $data['user_email'], $_tmp_fir_array);
         }
         //write_log("Update member: " . json_encode($updateData));
 

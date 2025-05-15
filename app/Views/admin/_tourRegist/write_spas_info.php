@@ -92,7 +92,7 @@
 																<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																	<div style="display: flex; justify-content: center; gap: 5px;">
 																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
-																		<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
+																		<a href="javascript:add_spa(<?= $i ?>);" class="btn btn-primary">추가</a>
 																		<a href="javascript:del_spas('<?= $info['info']['info_idx']?>', '<?= $info['spas_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																	</div>
 																</div>
