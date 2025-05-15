@@ -121,7 +121,7 @@
                                         <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
                                         <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
                                         <td><?=maskNaverId(esc($row['user_id']))?></td>
-                                        <td><?=maskSnsId(esc($row['sns_key']))?></td>
+                                        <td><?=maskSnsId(esc($row['sns_key']), $row['gubun'])?></td>
                                         <td><?=$row['gubun'] != "" ? $row['gubun'] : "일반회원"?></td>
                                         <td><?= esc($row['user_name']) ?></td>
                                         <?php if ($s_status == 'Y') { ?>
