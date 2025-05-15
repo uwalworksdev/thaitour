@@ -1569,6 +1569,7 @@
 				success: function (data, textStatus) {
 					alert(data.message);
 					$(button).closest(".option_area").remove();
+					location.reload();
 				},
 				error: function (request, status, error) {
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
@@ -1606,6 +1607,7 @@
 				success: function (data, textStatus) {
 					alert(data.message);
 					$(button).closest("tr").remove();
+					location.reload();
 				},
 				error: function (request, status, error) {
 					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
