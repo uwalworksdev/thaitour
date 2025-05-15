@@ -211,7 +211,7 @@
                                                     <span><?= $product["review_average"] ?></span>
                                                 </div>
                                                 <div class="star-content">
-                                                    <span class="text-primary">생생리뷰 <strong>(<?= $product["total_review"] ?>)</strong></span>
+                                                    <span class="text-primary">리얼리뷰<strong>(<?= $product["total_review"] ?>)</strong></span>
                                                 </div>
                                             </div>
                                         </div>

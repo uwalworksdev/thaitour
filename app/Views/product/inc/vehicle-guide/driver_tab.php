@@ -47,7 +47,7 @@
                         <div class="ssrv_morelist">
                             <p class="ssrv_more">
                                 <span><b><?= number_format($driver['main_count']) ?></b>개의 생생한 회원 리뷰가 있어요. ( 평균 고객평점: <?= $driver['review_average'] ?>)</span> <span
-                                        class="ssrv_more_btn" data-idx="<?= $driver['d_idx'] ?>">생생리뷰더보기</span>
+                                        class="ssrv_more_btn" data-idx="<?= $driver['d_idx'] ?>">리얼리뷰더보기</span>
                             </p>
                             <ul>
                                 <?php foreach ($driver['lastReviews'] as $main_review): ?>
