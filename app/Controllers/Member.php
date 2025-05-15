@@ -449,15 +449,6 @@ class Member extends BaseController
             }
         }
 
-        $code = "A01";
-        $user_mail = $user_email;
-        $_tmp_fir_array = [
-            'name'         => $user_name,
-            'point_value'  => $point,
-            'coupon_value' => $coupon_value
-        ];
-        autoEmail($code, $user_mail, $_tmp_fir_array);
-
         if ($user_mobile) {
             $code     = "S04";
             $to_phone = $user_mobile;
@@ -466,6 +457,17 @@ class Member extends BaseController
             ];
             autoSms($code, $to_phone, $_tmp_fir_array);
         }
+
+        if($user_email){
+            $code = "A13";
+    $_chk_no = mt_rand(100000, 999999);
+
+    $_tmp_fir_array = [
+        'cert_num' => $_chk_no
+    ];
+            autoEmail($code, $user_email, $_tmp_fir_array);
+        }
+
 
         $allim_replace = [
             "#{MEMBER_NAME}"    => $user_name,
