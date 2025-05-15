@@ -1011,7 +1011,7 @@ public function reservationList() {
         $user_pw = updateSQ($_POST["user_pw"]);
         $user_name = updateSQ($_POST["user_name"]);
         $gender = updateSQ($_POST["gender"]);
-        $user_email = updateSQ($_POST["email1"]) . "@" . updateSQ($_POST["email2"]);
+        $user_email = updateSQ($_POST["user_email"]);
         $user_email_yn = updateSQ($_POST["user_email_yn"]);
         $sms_yn = updateSQ($_POST["sms_yn"]);
         $user_phone = updateSQ($_POST["phone1"]) . "-" . updateSQ($_POST["phone2"]) . "-" . updateSQ($_POST["phone3"]);
