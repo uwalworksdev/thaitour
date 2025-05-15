@@ -2517,17 +2517,17 @@ function cartReservation($idx) {
 	
 }
 
-function alimTalk_cart_send($payment_no)
+function alimTalk_cart_send($group_no)
 {
     $connect     = db_connect();
     $private_key = private_key();
 
-	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
+	$sql         = "SELECT * FROM tbl_order_mst WHERE group_no = '". $group_no ."' ";
 	
 	$row         = $connect->query($sql)->getRowArray();
 	
-	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
-						   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+						   ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
 	$row_d       = $connect->query($sql_d)->getRowArray();
 
 	$order_user_name   = $row_d['order_user_name'];

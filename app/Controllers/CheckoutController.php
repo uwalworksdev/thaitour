@@ -549,7 +549,7 @@ class CheckoutController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getResultArray(); // 결과 배열 반환
 
-        alimTalk_cart_send($payment_no);
+        alimTalk_cart_send($group_no);
 	
         $data = [
             'product_name' => $product_name,
