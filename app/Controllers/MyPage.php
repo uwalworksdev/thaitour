@@ -477,11 +477,12 @@ public function reservationList() {
         if ($_SESSION["member"]["mIdx"] == "") {
             return alert_msg("", "/");
         }
+        $mcodes = $this->code->getByParentCode('56')->getResultArray();
         $member = $this->member->getByIdx($_SESSION["member"]["mIdx"]);
         if ($member["user_id"] == "" || $_SESSION["member"]["mIdx"] == "") {
             return alert_msg("", "/");
         }
-        return view('mypage/info_change', ["member" => $member]);
+        return view('mypage/info_change', ["member" => $member, "mcodes" => $mcodes]);
     }
 
     public function user_mange()
@@ -1013,6 +1014,13 @@ public function reservationList() {
         $birthday = updateSQ($_POST["birthday"]);
         $marriage = updateSQ($_POST["marriage"]);
         $user_level = updateSQ($_POST["user_level"]);
+        
+        $mbti   = updateSQ($_POST["mbti"] ?? "");
+        $user_first_name_en   = updateSQ($_POST["user_first_name_en"] ?? "");
+        $user_last_name_en   = updateSQ($_POST["user_last_name_en"] ?? "");
+        $passport_number   = updateSQ($_POST["passport_number"] ?? "");
+        $passport_expiry_date   = updateSQ($_POST["passport_expiry_date"] ?? "");
+        $recommender   = updateSQ($_POST["recommender"] ?? "");
 
         $ip_address = $_SERVER['REMOTE_ADDR'];
         if ($_SESSION["member"]["mIdx"] == "") {
@@ -1037,6 +1045,13 @@ public function reservationList() {
                     ,addr2		   = HEX(AES_ENCRYPT('" . $addr2 . "' , '" . $private_key . "'))
                     ,user_mobile   = HEX(AES_ENCRYPT('" . $user_mobile . "' , '" . $private_key . "'))
                     ,user_name     = HEX(AES_ENCRYPT('" . $user_name . "' , '" . $private_key . "'))
+                    ,user_first_name_en        = HEX(AES_ENCRYPT('" . $user_first_name_en . "' , '" . $private_key . "'))
+                    ,user_last_name_en        = HEX(AES_ENCRYPT('" . $user_last_name_en . "' , '" . $private_key . "'))
+                    ,passport_number        = HEX(AES_ENCRYPT('" . $passport_number . "' , '" . $private_key . "'))
+                    ,passport_expiry_date        = '" . $passport_expiry_date . "'
+                    ,mbti        = '" . $mbti . "'
+                    ,gender        = '" . $gender . "'
+                    ,recommender        = '" . $recommender . "'
                     ,sms_yn        = '" . $sms_yn . "'
                     ,user_email_yn = '" . $user_email_yn . "'
                     ,m_date		   = now()
