@@ -422,9 +422,9 @@ class Member extends BaseController
                 if(createCouponMemberChk($coupon_m['idx'], $user_id) < 1){
 
                     if($coupon_m["dc_type"] == "P"){
-                        $coupon_value = $coupon_m["dc_value"] . "%";
+                        $coupon_value = $coupon_m["coupon_pe"] . "%";
                     }else{
-                        $coupon_value = $coupon_m["dc_value"];
+                        $coupon_value = $coupon_m["coupon_price"];
                     }
 
                     $_couponNum = createCouponNum();
@@ -459,15 +459,14 @@ class Member extends BaseController
         }
 
         if($user_email){
-            $code = "A13";
-    $_chk_no = mt_rand(100000, 999999);
-
-    $_tmp_fir_array = [
-        'cert_num' => $_chk_no
-    ];
+            $code = "A01";
+            $_tmp_fir_array = [
+                'name'         => $user_name,
+                'point_value'  => $point,
+                'coupon_value' => $coupon_value
+            ];
             autoEmail($code, $user_email, $_tmp_fir_array);
         }
-
 
         $allim_replace = [
             "#{MEMBER_NAME}"    => $user_name,
