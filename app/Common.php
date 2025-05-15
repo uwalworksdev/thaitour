@@ -2577,8 +2577,8 @@ function email_reservation_group($group_no)
 		
         $code         = "A14";
         $user_email   =  $row['user_email'];
-		$product_name = $product_name . $prod_add;
-		$order_no     = $order_no .  $prod_add;;
+		$product_name =  $row['product_name'] . $prod_add;
+		$order_no     =  $row['order_no'] .  $prod_add;;
         $_tmp_fir_array = [
             'RECEIVE_NAME'   => $row['user_name'],
             'PROD_NAME'      => $product_name,
