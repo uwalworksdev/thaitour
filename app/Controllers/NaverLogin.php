@@ -87,7 +87,7 @@ public function callback()
         if ($me_status_code == 200) {
             $me_responseArr = json_decode($me_response, true);
             if (isset($me_responseArr['response']['id'])) {
-                $mb_uid = 'naver_' . $me_responseArr['response']['id'];
+                $mb_uid =  $me_responseArr['response']['id'];
 
                 $private_key = private_key();
 				
@@ -98,14 +98,14 @@ public function callback()
                                AES_DECRYPT(UNHEX(passport_number), '$private_key') AS passport_number,
                                AES_DECRYPT(UNHEX(user_first_name_en), '$private_key') AS user_first_name_en,
                                AES_DECRYPT(UNHEX(user_last_name_en), '$private_key') AS user_last_name_en
-				        FROM tbl_member WHERE user_id = '" . $mb_uid . "'";
+				        FROM tbl_member WHERE sns_key = '" . $mb_uid . "'";
                 $row = $this->db->query($sql)->getRowArray();
                 $session = session();
 
                 if (count($row) > 0) {
 						// 멤버 DB에 토큰값 업데이트 $responseArr['access_token']
-						$asql_s = "update tbl_member set sns_key = '" . $responseArr['access_token'] . "' where user_id = '" . $mb_uid . "' ";
-						$this->db->query($asql_s);
+						// $asql_s = "update tbl_member set sns_key = '" . $responseArr['access_token'] . "' where sns_key = '" . $mb_uid . "' ";
+						// $this->db->query($asql_s);
 
 						//접속 카운트 
 						getLoginDeviceUserChk($row["user_id"]);
