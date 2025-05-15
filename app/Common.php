@@ -2560,7 +2560,8 @@ function email_reservation_group($group_no)
 		$order_price = $row['order_price'];
 		
 		if($order_cnt > 1) {
-		   $prod_add = " 외". $order_cnt - 1;
+		   $order_cnt = $order_cnt - 1;	
+		   $prod_add = " 외". $order_cnt ."건"; 
 		} else {
 		   $prod_add = "";
 		}   
