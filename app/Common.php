@@ -2571,7 +2571,7 @@ function email_reservation_group($group_no)
 				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
 				   
 		write_log($sql_d);				
-        $result = $db->query($sql);
+        $result = $db->query($sql_d);
         $row    = $result->getRowArray();
 		
         $code       = "A14";
