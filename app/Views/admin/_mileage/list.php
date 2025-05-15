@@ -84,6 +84,7 @@
                                 <colgroup>
                                     <col width="80px"/>
                                     <col width="160px"/>
+                                    <col width="160px"/>
                                     <col width="*"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
@@ -96,7 +97,8 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>적립 및 사용처</th>
+                                    <th>적립</th>
+                                    <th>사용</th>
                                     <th>내역</th>
                                     <th>회원명</th>
                                     <th>거래구분</th>
@@ -113,7 +115,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=10 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=11 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -126,10 +128,25 @@
                                         $order_mileage_str = "적립";
                                     }
 
+                                    if($row["order_gubun"] == "통합결제"){
+                                        $text_use_point = "상품결제";
+                                    }else{
+                                        if($row["point_type"] == "member"){
+                                            $text_point = "상품결제";
+                                        }else if($row["point_type"] == "comment"){
+                                            $text_point = "댓글작성";
+                                        }else if($row["point_type"] == "review"){
+                                            $text_point = "후기작성";
+                                        }else {
+                                            $text_point = "상품결제";
+                                        }
+                                    }
+
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
-                                        <td><?= $order_gubun ?></td>
+                                        <td><?= $text_point ?></td>
+                                        <td><?= $text_use_point ?></td>
                                         <td class="tal"><?= $row["mi_title"] ?></td>
                                         <td class="tac"><?=$row["user_name"]?></td>
                                         <td><?= $order_mileage_str ?></td>

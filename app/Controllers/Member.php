@@ -404,7 +404,7 @@ class Member extends BaseController
                 "mi_title"          => $message,
                 "order_mileage"     => $point,
                 "m_idx"             => $m_idx,
-                "order_gubun"       => $message,
+                "order_gubun"       => "포인트차감",
                 "point_type"        => "member",
                 "mi_r_date"         => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
                 "remaining_mileage" => $point

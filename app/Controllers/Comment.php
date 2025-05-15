@@ -108,7 +108,7 @@ class Comment extends BaseController
                 $this->orderMileage->insert([
                     'm_idx'             => $r_m_idx,
                     'mi_title'          => '게시물에 댓글 달기',
-                    'order_gubun'       => '게시물에 댓글 달기',
+                    'order_gubun'       => '포인트차감',
                     'order_idx'         => 0,
                     'order_mileage'     => intval($comment_point),
                     'mi_r_date'         => date('Y-m-d H:i:s'),
