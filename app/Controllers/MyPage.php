@@ -1054,6 +1054,7 @@ public function reservationList() {
                     ,addr2		   = HEX(AES_ENCRYPT('" . $addr2 . "' , '" . $private_key . "'))
                     ,user_mobile   = HEX(AES_ENCRYPT('" . $user_mobile . "' , '" . $private_key . "'))
                     ,user_name     = HEX(AES_ENCRYPT('" . $user_name . "' , '" . $private_key . "'))
+                    ,user_email     = HEX(AES_ENCRYPT('" . $user_email . "' , '" . $private_key . "'))
                     ,user_first_name_en        = HEX(AES_ENCRYPT('" . $user_first_name_en . "' , '" . $private_key . "'))
                     ,user_last_name_en        = HEX(AES_ENCRYPT('" . $user_last_name_en . "' , '" . $private_key . "'))
                     ,passport_number        = HEX(AES_ENCRYPT('" . $passport_number . "' , '" . $private_key . "'))
