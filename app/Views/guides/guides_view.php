@@ -639,7 +639,7 @@
                         <div class="rating-container">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
-                            <span>생생리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
+                            <span>리얼리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
                         </div>
                         <div class="list-icon only_mo">
                             <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -693,7 +693,7 @@
                             <a class="active short_link" onclick="scrollToEl('product_info')" data-target="product_info"
                                href="#!">가격/상품정보</a>
                             <a class="short_link" onclick="scrollToEl('product_des')" data-target="product_des"
-                               href="#!">생생리뷰</a>
+                               href="#!">리얼리뷰</a>
                             <a class="short_link" onclick="scrollToEl('section8')" href="#!">상품Q&A</a>
                         </div>
                     </div>

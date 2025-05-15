@@ -48,7 +48,7 @@
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                     <span><strong> <?= $data_['review_average'] ?></strong></span>
-                    <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
+                    <span>리얼리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
 
                     <?php
                     $_arr = explode("|", $data_['mbti']);
@@ -124,7 +124,7 @@
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">상품설명</p>
                         <!-- <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p> -->
                         <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
-                            생생리뷰(<?= $data_['total_review'] ?>)</p>
+                            리얼리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
                     </div>
                 </div>
