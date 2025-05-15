@@ -1494,7 +1494,7 @@
 				cache: false,
 				success: function (data, textStatus) {
 					alert(data.message);
-					$(button).closest(".option_area").remove();
+					// $(button).closest(".option_area").remove();
 					location.reload();
 				},
 				error: function (request, status, error) {
@@ -1532,7 +1532,7 @@
 				cache: false,
 				success: function (data, textStatus) {
 					alert(data.message);
-					$(button).closest("tr").remove();
+					// $(button).closest("tr").remove();
 					location.reload();
 				},
 				error: function (request, status, error) {
