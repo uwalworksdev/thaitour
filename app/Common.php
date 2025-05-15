@@ -2135,6 +2135,14 @@ function maskNaverId($userId) {
     return $userId;
 }
 
+function maskSnsId($userId, $gubun) {
+    if($gubun == "naver" || $gubun == "google") {
+        return substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    }
+    return $userId;
+}
+
+
 function golfCategory($txt) {
 	
     $connect = db_connect(); // DB 연결

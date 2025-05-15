@@ -78,7 +78,7 @@
                     <div class="rating-container">
                         <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                         <span><strong> <?= $product['review_average'] ?></strong></span>
-                        <span>생생리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
+                        <span>리얼리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
                         <?php
                         $_arr = explode("|", $product['mbti']);
 
@@ -142,7 +142,7 @@
                         <a class="short_link" data-target="product_des" href="/product-tours/item_view/<?= $product['product_idx']?>#product_des">상품설명</a>
                         <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
                         <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
-                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">생생리뷰(<?= $product['total_review'] ?>개)</a>
+                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">리얼리뷰(<?= $product['total_review'] ?>개)</a>
                         <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
                     </div>
                 </div>

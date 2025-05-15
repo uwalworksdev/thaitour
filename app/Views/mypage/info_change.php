@@ -277,18 +277,18 @@
 function send_it()
 {
 	var frm = document.frm;
-	if (frm.user_pw.value != "")
-	{
-		// if (chkPwd(frm.user_pw.value) == false)
-		// {
-		// 	return;
-		// }
-		if (frm.user_pw.value != frm.user_pw2.value )
-		{
-			alert("패스워드가 일치하지 않습니다.");
-			return;
-		}
-	}
+	// if (frm.user_pw.value != "")
+	// {
+	// 	// if (chkPwd(frm.user_pw.value) == false)
+	// 	// {
+	// 	// 	return;
+	// 	// }
+	// 	if (frm.user_pw.value != frm.user_pw2.value )
+	// 	{
+	// 		alert("패스워드가 일치하지 않습니다.");
+	// 		return;
+	// 	}
+	// }
 	// if (frm.gender[0].checked == false && frm.gender[1].checked == false )
 	// {
 	// 	frm.gender[0].focus();

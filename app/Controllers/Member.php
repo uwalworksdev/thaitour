@@ -330,12 +330,12 @@ class Member extends BaseController
             return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
 
-        if ($gubun  == "kakao")
-            $user_id = "kakao_" . $sns_key;
-        if ($gubun  == "google")
-            $user_id = "google_" . $sns_key;
-        if ($gubun  == "naver")
-            $user_id = "naver_" . $sns_key;
+        // if ($gubun  == "kakao")
+        //     $user_id = "kakao_" . $sns_key;
+        // if ($gubun  == "google")
+        //     $user_id = "google_" . $sns_key;
+        // if ($gubun  == "naver")
+        //     $user_id = "naver_" . $sns_key;
 
         if ($gubun != "") {
             $this->member->insertMember([
@@ -404,7 +404,7 @@ class Member extends BaseController
                 "mi_title"          => $message,
                 "order_mileage"     => $point,
                 "m_idx"             => $m_idx,
-                "order_gubun"       => $message,
+                "order_gubun"       => "포인트차감",
                 "point_type"        => "member",
                 "mi_r_date"         => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
                 "remaining_mileage" => $point
@@ -422,9 +422,9 @@ class Member extends BaseController
                 if(createCouponMemberChk($coupon_m['idx'], $user_id) < 1){
 
                     if($coupon_m["dc_type"] == "P"){
-                        $coupon_value = $coupon_m["dc_value"] . "%";
+                        $coupon_value = $coupon_m["coupon_pe"] . "%";
                     }else{
-                        $coupon_value = $coupon_m["dc_value"];
+                        $coupon_value = $coupon_m["coupon_price"];
                     }
 
                     $_couponNum = createCouponNum();
@@ -449,15 +449,6 @@ class Member extends BaseController
             }
         }
 
-        $code = "A01";
-        $user_mail = $user_email;
-        $_tmp_fir_array = [
-            'name'         => $user_name,
-            'point_value'  => $point,
-            'coupon_value' => $coupon_value
-        ];
-        autoEmail($code, $user_mail, $_tmp_fir_array);
-
         if ($user_mobile) {
             $code     = "S04";
             $to_phone = $user_mobile;
@@ -465,6 +456,16 @@ class Member extends BaseController
                 'MEMBER_NAME' => $user_name
             ];
             autoSms($code, $to_phone, $_tmp_fir_array);
+        }
+
+        if($user_email){
+            $code = "A01";
+            $_tmp_fir_array = [
+                'name'         => $user_name,
+                'point_value'  => $point,
+                'coupon_value' => $coupon_value
+            ];
+            autoEmail($code, $user_email, $_tmp_fir_array);
         }
 
         $allim_replace = [
@@ -763,12 +764,12 @@ class Member extends BaseController
         if (empty($tophone)) {
             return "전화번호를 입력해주세요";
         } else {
-            $isExist = $this->member->checkPhone($tophone);
+            // $isExist = $this->member->checkPhone($tophone);
 
-            if ($isExist) {
-                return "이미 가입된 전화번호입니다.";
-
-            } elseif (phone_chk($tophone)) {
+            // if ($isExist) {
+            //     return "이미 가입된 전화번호입니다.";
+            // }
+            if (phone_chk($tophone)) {
                 return "Y";
 
             } else {
