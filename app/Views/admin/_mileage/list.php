@@ -131,6 +131,7 @@
                                     if($row["order_gubun"] == "통합결제"){
                                         $text_use_point = "상품결제";
                                     }else{
+                                        $text_use_point = "";
                                         if($row["point_type"] == "member"){
                                             $text_point = "상품결제";
                                         }else if($row["point_type"] == "comment"){
