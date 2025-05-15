@@ -1215,7 +1215,7 @@
 	function remove_tours(tableListIndex, rowIndex) {
 		var targetTable = $(".table_list[data-index='" + tableListIndex + "']").find(".air_main");
     
-		if (targetTable.find(".air_list_1").length > 1) {
+		if ($(".table_list[data-index='" + tableListIndex + "']").find(".air_list_1").length > 1) {
 			targetTable.find(".air_list_1").eq(rowIndex).remove();
 		} else {
 			alert("최소 하나의 투어는 유지해야 합니다."); 
