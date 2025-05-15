@@ -83,8 +83,7 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="80px"/>
-                                    <col width="160px"/>
-                                    <col width="160px"/>
+                                    <col width="360px"/>
                                     <col width="*"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
@@ -97,9 +96,8 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>적립</th>
-                                    <th>사용</th>
-                                    <th>내역</th>
+                                    <th>적립내역</th>
+                                    <th>사용내역</th>
                                     <th>회원명</th>
                                     <th>거래구분</th>
                                     <th>마일리지</th>
@@ -115,7 +113,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=11 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=10 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -150,7 +148,6 @@
                                         <td><?= $num-- ?></td>
                                         <td><?= $text_point ?></td>
                                         <td><?= $text_use_point ?></td>
-                                        <td class="tal"><?= $row["mi_title"] ?></td>
                                         <td class="tac"><?=$row["user_name"]?></td>
                                         <td><?= $order_mileage_str ?></td>
                                         <td><?= number_format($row["order_mileage"]) ?></td>
