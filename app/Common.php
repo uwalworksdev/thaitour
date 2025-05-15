@@ -2583,7 +2583,7 @@ function email_reservation_group($group_no)
             'RECEIVE_NAME'   => $row['user_name'],
             'PROD_NAME'      => $product_name,
             'ORDER_NO'       => $order_no,
-            'ORDER_PRICE'    => $order_price 
+            'ORDER_PRICE'    => number_format($order_price) 
         ];
         autoEmail($code, $user_email, $_tmp_fir_array);		   
 	
