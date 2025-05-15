@@ -2136,10 +2136,10 @@ function maskNaverId($userId) {
 }
 
 function maskSnsId($userId, $gubun) {
-    if($gubun == "naver" || $gubun == "google") {
+    if($gubun == "naver" || $gubun == "google" || $gubun == "kakao") {
         return $gubun . "_" . substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
     }
-    return $gubun . "_" . $userId;
+    return $userId;
 }
 
 
