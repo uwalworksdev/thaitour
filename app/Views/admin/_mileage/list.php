@@ -127,8 +127,9 @@
                                     } else {
                                         $order_mileage_str = "적립";
                                     }
+                                    
                                     $text_use_point = "";
-
+                                    $text_point = "";
 
                                     if($row["order_gubun"] == "통합결제"){
                                         $text_use_point = "상품결제";
