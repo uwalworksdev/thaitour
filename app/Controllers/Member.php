@@ -330,12 +330,12 @@ class Member extends BaseController
             return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
 
-        if ($gubun  == "kakao")
-            $user_id = "kakao_" . $sns_key;
-        if ($gubun  == "google")
-            $user_id = "google_" . $sns_key;
-        if ($gubun  == "naver")
-            $user_id = "naver_" . $sns_key;
+        // if ($gubun  == "kakao")
+        //     $user_id = "kakao_" . $sns_key;
+        // if ($gubun  == "google")
+        //     $user_id = "google_" . $sns_key;
+        // if ($gubun  == "naver")
+        //     $user_id = "naver_" . $sns_key;
 
         if ($gubun != "") {
             $this->member->insertMember([
