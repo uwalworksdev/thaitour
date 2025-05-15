@@ -31,7 +31,7 @@ class ReviewController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->member = model("Member");
-        $this->milane = model("Mileage");
+        $this->milane = model("OrderMileage");
         $this->policy = model("PolicyModel");
         $this->pointModel = model("Point");
 
