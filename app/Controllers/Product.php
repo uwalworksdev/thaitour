@@ -2245,7 +2245,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 					   b.idx        = '". $option_idx ."' AND 
 					   a.goods_date = '". $order_date ."'";
 					   
-        write_log("golfPriceCalculate- ". $sql);														   
+        //write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
