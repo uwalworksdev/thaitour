@@ -2136,8 +2136,8 @@ function maskNaverId($userId) {
 }
 
 function maskSnsId($userId, $gubun) {
-    if($gubun == "naver" || $gubun == "google" || $gubun == "kakao") {
-        return $gubun . "_" . substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    if($gubun == "naver" || $gubun == "google") {
+        return substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
     }
     return $userId;
 }
@@ -2553,17 +2553,19 @@ function email_reservation_group($group_no)
         $db = \Config\Database::connect();
         $private_key = private_key();
 
-        $sql    = "SELECT count(order_no) AS cnt FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
-        $result = $db->query($sql);
-        $row    = $result->getRowArray();
-		if($row['cnt'] > 1) {
-		   $prod_add = " 외". $row['cnt'] - 1;
+        $sql         = "SELECT count(order_no) AS order_cnt, sum(order_price) AS order_price FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
+        $result      = $db->query($sql);
+        $row         = $result->getRowArray();
+		$order_cnt   = $row['order_cnt'];
+		$order_price = $row['order_price'];
+		
+		if($order_cnt > 1) {
+		   $prod_add = " 외". $order_cnt - 1;
 		} else {
 		   $prod_add = "";
 		}   
 	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') AS order_user_name
 						  ,AES_DECRYPT(UNHEX('{$row['order_user_email']}'),  '$private_key') AS order_user_email 
-						  , order_price 
 						  , order_no 
 						  , product_name
 				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
