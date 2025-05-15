@@ -125,6 +125,7 @@
                                                 if(strpos($row['user_id'], "naver") === false 
                                                     && strpos($row['user_id'], "google") === false
                                                     && strpos($row['user_id'], "kakao") === false) {
+                                                        echo $row['user_id'];
                                                 }else{
                                                     echo "";
                                                 }
