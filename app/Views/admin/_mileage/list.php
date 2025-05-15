@@ -135,7 +135,7 @@
                                         $text_use_point = "상품결제";
                                     }else{
                                         if($row["point_type"] == "member"){
-                                            $text_point = "상품결제";
+                                            $text_point = "회원가입";
                                         }else if($row["point_type"] == "comment"){
                                             $text_point = "댓글작성";
                                         }else if($row["point_type"] == "review"){

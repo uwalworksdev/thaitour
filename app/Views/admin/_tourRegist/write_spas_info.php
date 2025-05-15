@@ -1068,7 +1068,7 @@
 	
 	function remove_table(tableIndex) {
 		var targetTable = $(".table_list[data-index='" + tableIndex + "']");
-		if (targetTable.length > 0) {
+		if ($(".table_list").length > 1) {
 			targetTable.remove();
 		} else {
 			alert("최소 하나의 투어는 유지해야 합니다.");
