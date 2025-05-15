@@ -83,8 +83,8 @@
                                     <th>번호</th>
                                     <th>현황</th>
                                     <th>아이디</th>
-                                    <th>Sns id</th>
-                                    <th>Sns 분류</th>
+                                    <th>sns 아이디</th>
+                                    <th>가입분류</th>
                                     <th>이름</th>
                                     <?php if ($s_status == 'Y') { ?>
                                         <th>회원등급</th>
