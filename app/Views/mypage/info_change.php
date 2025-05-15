@@ -52,14 +52,14 @@
 									<tr>
 										<th><p>이메일</p></th>
 										<td colspan="3">
-											<p class="no_write"><?=$member['user_email']?></p>
+											<input type="text" name="user_email" id="user_email" value="<?=$member["user_email"]?>" placeholder="" class="bs-input">
 										</td>
 									</tr>
 									<tr>
 										<th><p>이름</p></th>
 										<td colspan="3">
 											<!-- <p class="no_write"><?=$member["user_name"]?></p> -->
-											<input type="text" name="user_name" id="user_name" value="<?=$member["user_name"]?>" placeholder="" class="bs-input only_en">
+											<input type="text" name="user_name" id="user_name" value="<?=$member["user_name"]?>" placeholder="" class="bs-input only_ko">
 										</td>
 									</tr>
 									<tr>
@@ -196,7 +196,7 @@
 									<tr>
 										<th><p>기타사항</p></th>
 										<td colspan="3">
-											<textarea  name="recommender" id="" value="<?= $member['recommender']?>" class="bs-textarea" placeholder=""></textarea>
+											<textarea  name="recommender" id="" value="" class="bs-textarea" placeholder=""><?= $member['recommender']?></textarea>
 										</td>
 									</tr>
 
