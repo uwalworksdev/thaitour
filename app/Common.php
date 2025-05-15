@@ -2135,14 +2135,6 @@ function maskNaverId($userId) {
     return $userId;
 }
 
-function maskSnsId($userId, $gubun) {
-    if($gubun == "naver" || $gubun == "google") {
-        return substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
-    }
-    return $userId;
-}
-
-
 function golfCategory($txt) {
 	
     $connect = db_connect(); // DB 연결
@@ -2525,17 +2517,17 @@ function cartReservation($idx) {
 	
 }
 
-function alimTalk_cart_send($payment_no)
+function alimTalk_cart_send($group_no)
 {
     $connect     = db_connect();
     $private_key = private_key();
 
-	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
+	$sql         = "SELECT * FROM tbl_order_mst WHERE group_no = '". $group_no ."' ";
 	
 	$row         = $connect->query($sql)->getRowArray();
 	
-	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
-						   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+						   ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
 	$row_d       = $connect->query($sql_d)->getRowArray();
 
 	$order_user_name   = $row_d['order_user_name'];
@@ -2545,7 +2537,7 @@ function alimTalk_cart_send($payment_no)
 						"phone"      => $order_user_mobile
 					 ];
 
-	alimTalkSend("TY_1652", $allim_replace);	
+	alimTalkSend("TY_1652", $allim_replace);	   
 	
 }
 
