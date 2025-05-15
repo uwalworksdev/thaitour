@@ -763,12 +763,12 @@ class Member extends BaseController
         if (empty($tophone)) {
             return "전화번호를 입력해주세요";
         } else {
-            $isExist = $this->member->checkPhone($tophone);
+            // $isExist = $this->member->checkPhone($tophone);
 
-            if ($isExist) {
-                return "이미 가입된 전화번호입니다.";
-
-            } elseif (phone_chk($tophone)) {
+            // if ($isExist) {
+            //     return "이미 가입된 전화번호입니다.";
+            // }
+            if (phone_chk($tophone)) {
                 return "Y";
 
             } else {

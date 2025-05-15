@@ -57,6 +57,7 @@
                                 <col width="50px" />
                                 <col width="60px" />
                                 <col width="70px" />
+                                <col width="70px" />
                                 <col width="150px" />
                                 <col width="150px" />
                                 <col width="150px" />
@@ -82,6 +83,7 @@
                                     <th>번호</th>
                                     <th>현황</th>
                                     <th>아이디</th>
+                                    <th>Sns id</th>
                                     <th>Sns 분류</th>
                                     <th>이름</th>
                                     <?php if ($s_status == 'Y') { ?>
@@ -118,6 +120,7 @@
                                         <td><input type="checkbox" class="m_idx" name="m_idx[]" value="<?= $row['m_idx'] ?>" /></td>
                                         <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
                                         <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
+                                        <td><?=maskNaverId(esc($row['sns_key']))?></td>
                                         <td><?=maskNaverId(esc($row['user_id']))?></td>
                                         <td><?=$row['gubun'] != "" ? $row['gubun'] : "일반회원"?></td>
                                         <td><?= esc($row['user_name']) ?></td>
