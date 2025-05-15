@@ -396,7 +396,7 @@ endforeach;
 									
                                     <label for="prod<?=esc($order->order_idx)?>"> 예약일(예약번호): <?= esc($order->order_date)?>(<?= esc(dateToYoil($order->order_r_date))?>) (<?= esc($order->order_no)?>) </label>
                                 </div>
-                                <a href="!#" class="info_reservation product_tit" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>" >[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
+                                <a href="#" class="info_reservation product_tit" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>" >[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
                                         <p><?= esc($_deli_type[$order->order_status])?></p>
