@@ -180,41 +180,77 @@
                                                                         </tr>
                                                                     </thead> -->
                                                                     <tbody class="air_main" data-info-idx="<?= $i ?>">
-                                                                        <?php foreach ($info['spas'] as $spa): ?>
-                                                                            <tr class="air_list_1" style="height:40px">
+																		<?php if(count($info['spas']) > 0): ?>
+																			<?php foreach ($info['spas'] as $spa): ?>
+																				<tr class="air_list_1" style="height:40px">
+																					<td>
+																						<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
+																						<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="<?= $spa['spa_onum'] ?>">
+																						<input type="hidden" name="spas_explain[<?=$i?>][]" class="spas_explain" value="<?= $spa['spas_explain'] ?>">
+																						<input type="hidden" name="is_explain[<?=$i?>][]" class="hidden_is_explain" value="<?= $spa['is_explain'] ?>">
+
+																						<div style="display: flex; gap: 5px; align-items: center;">
+																							<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																							<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																							<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
+																							<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																							<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
+																							<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
+																						</div>
+																					</td>
+																					<td>
+																						<input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price1'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+																					</td>
+																					<td>
+																						<input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price2'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+																					</td>
+			
+																					<td>
+																						<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+																							<select name="status[<?=$i?>][]">
+																								<option value="Y" <?= ($spa['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
+																								<option value="N" <?= ($spa['status'] == 'N') ? 'selected' : '' ?>>중지</option>
+																							</select>
+																							<a href="javascript:delete_spa('<?= $spa['spas_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+																						</div>
+																					</td>
+																				</tr>
+																			<?php endforeach ?>
+                                    									<?php else: ?>
+																			<tr class="air_list_1" style="height:40px">
                                                                                 <td>
-                                                                                	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="<?= $spa['spas_idx'] ?>">
-																					<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="<?= $spa['spa_onum'] ?>">
-																					<input type="hidden" name="spas_explain[<?=$i?>][]" class="spas_explain" value="<?= $spa['spas_explain'] ?>">
-																					<input type="hidden" name="is_explain[<?=$i?>][]" class="hidden_is_explain" value="<?= $spa['is_explain'] ?>">
+                                                                                	<input type="hidden" name="spas_idx[<?=$i?>][]" class="spas_idx" value="">
+																					<input type="hidden" name="spa_onum[<?=$i?>][]" class="spa_onum" value="">
+																					<input type="hidden" name="spas_explain[<?=$i?>][]" class="spas_explain" value="">
+																					<input type="hidden" name="is_explain[<?=$i?>][]" class="hidden_is_explain" value="">
 
 																					<div style="display: flex; gap: 5px; align-items: center;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																						<input type="text" name="spas_subject[<?=$i?>][]" value="<?= $spa['spas_subject'] ?>" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
-																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="<?= $spa['spas_subject_eng'] ?>" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
-																						<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y" <?= ($spa['is_explain'] == 'Y') ? 'checked' : '' ?>>
+																						<input type="text" name="spas_subject[<?=$i?>][]" value="" placeholder="상품타입 국문글씨 입력해주세요" class="spas_subject input_txt" style="width:50%" />
+																						<input type="text" name="spas_subject_eng[<?=$i?>][]" value="" placeholder="상품타입 영문글씨 입력해주세요"  class="spas_subject input_txt" style="width:50%;" />
+																						<input type="checkbox" onchange="InitPopup(this);" class="is_explain" value="Y">
 																						<label class="explain_label" onclick="InitPopup(this);" style="flex: 0 0 auto;">설명</label>
 																					</div>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price1'] ?? 0) ?>" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price[<?=$i?>][]" value="0" placeholder="성인가격(단위: 바트)" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="<?= number_format($spa['price_today']['goods_price2'] ?? 0) ?>" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                                    <input type="text" name="spas_price_kids[<?=$i?>][]" value="0" placeholder="소아가격(단위: 바트)" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
                                                                                 </td>
          
                                                                                 <td>
                                                                                     <div style="display: flex; gap: 10px; align-items: center; justify-content: center">
                                                                                         <select name="status[<?=$i?>][]">
-                                                                                            <option value="Y" <?= ($spa['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
-                                                                                            <option value="N" <?= ($spa['status'] == 'N') ? 'selected' : '' ?>>중지</option>
+                                                                                            <option value="Y" selected>판매중</option>
+                                                                                            <option value="N">중지</option>
                                                                                         </select>
-                                                                                        <a href="javascript:delete_spa('<?= $spa['spas_idx']?>', '<?= $info['info']['info_idx']?>', '<?=$product_idx?>');" class="btn btn-danger">삭제</a>
+                                                                                        <a href="javascript:remove_spas(0, 0);" class="btn btn-danger">삭제</a>
                                                                                     </div>
                                                                                 </td>
                                                                             </tr>
-                                                                        <?php endforeach ?>
+                                    									<?php endif ?>
                                                                     </tbody>
                                                                 </table>
                                                             </td>
@@ -236,10 +272,155 @@
                                                                             <td>
                                                                                 <input type="hidden" class="count_moption" value="<?=count($info['options'])?>">
                                                                                 <?php $j = 0;?>
-                                                                                <?php foreach ($info['options'] as $moption): ?>
-                                                                                    <div class="option_area">
-                                                                                        <input type="hidden" name="moption_idx[<?=$i?>][<?=$j?>]" class="moption_idx" value="<?=$moption["code_idx"]?>">
-																						<input type="hidden" name="moption_onum[<?=$i?>][<?=$j?>]" class="moption_onum" value="<?=$moption["onum"]?>">
+																				<?php if(count($info['options']) > 0) : ?>
+																					<?php foreach ($info['options'] as $moption): ?>
+																						<div class="option_area">
+																							<input type="hidden" name="moption_idx[<?=$i?>][<?=$j?>]" class="moption_idx" value="<?=$moption["code_idx"]?>">
+																							<input type="hidden" name="moption_onum[<?=$i?>][<?=$j?>]" class="moption_onum" value="<?=$moption["onum"]?>">
+																							<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+																								<colgroup>
+																									<col width="10%">
+																									<col width="90%">
+																								</colgroup>
+																								<tbody>
+																								<tr height="45">
+																									<th colspan="5">
+																										<div class="flex__c" style="gap: 5px;">
+																											옵션 <input type='text' name='moption_name[<?=$i?>][<?=$j?>]' class="moption_name"
+																														placeholder="옵션명"
+																														value="<?=$moption["moption_name"]?>" style="width:550px"/>
+																											<button type="button" class="btn btn-danger"
+																													onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
+																											</button>
+																											<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																											<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																										</div>
+																									</th>
+																								</tr>
+																								<tr height="45">
+																									<th>
+																										추가 옵션등록
+																										<div class="flex" style="margin-top:10px; gap: 5px;">
+																											<button type="button"
+																													onclick="add_sub_option(this, <?= $i ?>, <?=$j?>);"
+																													class="btn btn-primary">추가
+																											</button>
+																										</div>
+																									</th>
+																									<td>
+																										<table>
+																											<colgroup>
+																												<col width="*"></col>
+																												<col width="15%"></col>
+																												<col width="10%"></col>
+																												<col width="10%"></col>
+																												<col width="8%"></col>
+																											</colgroup>
+																											<!-- <thead>
+																											<tr>
+																												<th>옵션명 한글/영문</th>
+																												<th>가격(단위: 바트)</th>
+																												<th>적용</th>
+																												<th>순서</th>
+																												<th>삭제</th>
+																											</tr>
+																											</thead> -->
+																											<tbody>
+																												<?php if(count($moption['option_spas']) > 0) : ?>
+																													<?php foreach ($moption['option_spas'] as $option_spa): ?>
+																														<tr class="option_detail">
+																															<td>
+																																<div style="display: flex; gap: 5px;">
+																																	<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="<?=$option_spa["idx"]?>">
+																																	<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="<?=$option_spa["onum"]?>">
+																																	<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+																																	<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																																</div>
+																															</td>
+																															<td>
+																																<input type='text'
+																																		name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="<?=$option_spa["option_price"]?>" numberOnly=true/>
+																															</td>
+																															<td>
+																																<select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
+																																	<option value="Y" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
+																																		판매중
+																																	</option>
+																																	<option value="N" <?php if($option_spa["use_yn"] == "N"){ echo "selected"; }?>>
+																																		중지
+																																	</option>
+																																</select>
+																															</td>
+																															<td>
+																																<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																																	<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																																	<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																																</div>
+																															</td>
+																															<!-- <td>
+																																<input type='text' name='o_num[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["onum"]?>" numberOnly=true/>
+																															</td> -->
+																															<td>
+																																<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																																	<button type="button" class="btn btn-danger"
+																																			onclick="delOption('<?=$option_spa['idx']?>', this)">삭제
+																																	</button>
+																																</div>
+																															</td>
+																														</tr>
+																													<?php endforeach ?>
+																												<?php else: ?>
+																													<tr class="option_detail">
+																														<td>
+																															<div style="display: flex; gap: 5px;">
+																																<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="">
+																																<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="">
+																																<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+																																<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																															</div>
+																														</td>
+																														<td>
+																															<input type='text'
+																																	name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
+																														</td>
+																														<td>
+																															<select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
+																																<option value="Y" selected>
+																																	판매중
+																																</option>
+																																<option value="N">
+																																	중지
+																																</option>
+																															</select>
+																														</td>
+																														<td>
+																															<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																																<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																																<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																															</div>
+																														</td>
+																														<td>
+																															<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																																<button type="button" class="btn btn-danger"
+																																		onclick="delOption('', this)">삭제
+																																</button>
+																															</div>
+																														</td>
+																													</tr>
+																												<?php endif ?>
+																											</tbody>
+																										</table>
+																									</td>
+																								</tr>
+																								</tbody>
+																							</table>
+																						</div>
+																					<?php $j++;?>
+																					<?php endforeach ?>
+																				<?php else :?>
+																					<div class="option_area">
+                                                                                        <input type="hidden" name="moption_idx[<?=$i?>][<?=$j?>]" class="moption_idx" value="">
+																						<input type="hidden" name="moption_onum[<?=$i?>][<?=$j?>]" class="moption_onum" value="">
                                                                                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
                                                                                             <colgroup>
                                                                                                 <col width="10%">
@@ -251,9 +432,9 @@
                                                                                                     <div class="flex__c" style="gap: 5px;">
                                                                                                         옵션 <input type='text' name='moption_name[<?=$i?>][<?=$j?>]' class="moption_name"
 																													placeholder="옵션명"
-                                                                                                                    value="<?=$moption["moption_name"]?>" style="width:550px"/>
+                                                                                                                    value="" style="width:550px"/>
                                                                                                         <button type="button" class="btn btn-danger"
-                                                                                                                onclick="del_main_option('<?=$moption['code_idx']?>', this);">삭제
+                                                                                                                onclick="del_main_option('', this);">삭제
                                                                                                         </button>
 																										<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																										<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -279,59 +460,45 @@
 																											<col width="10%"></col>
 																											<col width="8%"></col>
 																										</colgroup>
-                                                                                                        <!-- <thead>
-                                                                                                        <tr>
-                                                                                                            <th>옵션명 한글/영문</th>
-                                                                                                            <th>가격(단위: 바트)</th>
-                                                                                                            <th>적용</th>
-                                                                                                            <th>순서</th>
-                                                                                                            <th>삭제</th>
-                                                                                                        </tr>
-                                                                                                        </thead> -->
+
                                                                                                         <tbody>
-        
-                                                                                                            <?php foreach ($moption['option_spas'] as $option_spa): ?>
-                                                                                                                <tr class="option_detail">
-                                                                                                                    <td>
-																														<div style="display: flex; gap: 5px;">
-                                                                                                                        	<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="<?=$option_spa["idx"]?>">
-																															<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="<?=$option_spa["onum"]?>">
-                                                                                                                        	<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name"]?>" placeholder="옵션타입 국문글씨로 입력해주세요"/>
-                                                                                                                        	<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["option_name_eng"]?>" placeholder="옵션타입 영문글씨로 입력해주세요"/>
-																														</div>
-                                                                                                                    </td>
-                                                                                                                    <td>
-                                                                                                                        <input type='text'
-                                                                                                                                name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="<?=$option_spa["option_price"]?>" numberOnly=true/>
-                                                                                                                    </td>
-                                                                                                                    <td>
-                                                                                                                        <select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
-                                                                                                                            <option value="Y" <?php if($option_spa["use_yn"] == "Y"){ echo "selected"; }?>>
-                                                                                                                                판매중
-                                                                                                                            </option>
-                                                                                                                            <option value="N" <?php if($option_spa["use_yn"] == "N"){ echo "selected"; }?>>
-                                                                                                                                중지
-                                                                                                                            </option>
-                                                                                                                        </select>
-                                                                                                                    </td>
-																													<td>
-																														<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-																															<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																															<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																														</div>
-																													</td>
-                                                                                                                    <!-- <td>
-                                                                                                                        <input type='text' name='o_num[<?=$i?>][<?= $j ?>][]' value="<?=$option_spa["onum"]?>" numberOnly=true/>
-                                                                                                                    </td> -->
-                                                                                                                    <td>
-                                                                                                                        <div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-                                                                                                                            <button type="button" class="btn btn-danger"
-                                                                                                                                    onclick="delOption('<?=$option_spa['idx']?>', this)">삭제
-                                                                                                                            </button>
-                                                                                                                        </div>
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            <?php endforeach ?>
+																											<tr class="option_detail">
+																												<td>
+																													<div style="display: flex; gap: 5px;">
+																														<input type="hidden" name="op_spa_idx[<?=$i?>][<?= $j ?>][]" class="op_spa_idx" value="">
+																														<input type="hidden" name="op_spa_onum[<?=$i?>][<?= $j ?>][]" class="op_spa_onum" value="">
+																														<input type='text' name='o_name[<?=$i?>][<?= $j ?>][]' value="" placeholder="옵션타입 국문글씨로 입력해주세요"/>
+																														<input type='text' name='o_name_eng[<?=$i?>][<?= $j ?>][]' value="" placeholder="옵션타입 영문글씨로 입력해주세요"/>
+																													</div>
+																												</td>
+																												<td>
+																													<input type='text'
+																															name='o_price[<?=$i?>][<?= $j ?>][]' placeholder="가격(단위: 바트)" value="" numberOnly=true/>
+																												</td>
+																												<td>
+																													<select name="use_yn[<?=$i?>][<?= $j ?>][]" style="width:100%">
+																														<option value="Y" selected>
+																															판매중
+																														</option>
+																														<option value="N">
+																															중지
+																														</option>
+																													</select>
+																												</td>
+																												<td>
+																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																														<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+																														<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+																													</div>
+																												</td>
+																												<td>
+																													<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+																														<button type="button" class="btn btn-danger"
+																																onclick="delOption('', this)">삭제
+																														</button>
+																													</div>
+																												</td>
+																											</tr>
                                                                                                         </tbody>
                                                                                                     </table>
                                                                                                 </td>
@@ -339,8 +506,7 @@
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
-                                                                                <?php $j++;?>
-                                                                                <?php endforeach ?>
+																				<?php endif ?>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -1377,6 +1543,15 @@
 	}
 
 	function del_main_option(idx, button){
+
+		if(!idx){
+			let el = $(button).closest("td");
+			if(el.find(".option_area").length <= 1){
+				alert("최소 하나의 투어는 유지해야 합니다.");
+				return false;
+			}
+		}
+
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 			return false;
 		}
@@ -1405,6 +1580,15 @@
 	}
 
 	function delOption(idx, button){
+
+		if(!idx){
+			let el = $(button).closest("table");
+			if(el.find(".option_detail").length <= 1){
+				alert("최소 하나의 투어는 유지해야 합니다.");
+				return false;
+			}
+		}
+
 		if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 			return false;
 		}
