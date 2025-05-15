@@ -71,7 +71,7 @@
                                     <?php if ($productSpasInfo): ?>
                                         <?php foreach ($productSpasInfo as $info): 
                                         ?>
-                                            <div class="table_list" data-info-idx="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
+                                            <div class="table_list" data-index="<?= $i ?>" style="width: 100%; margin-bottom: 20px;">
                                                 <table style="width: 100%">
 													<colgroup>
 														<col width="20%">
@@ -1295,7 +1295,7 @@
 	}
 
 	function add_spa(infoIdx) {
-		var targetTable = $(".table_list[data-info-idx='" + infoIdx + "']").find(".air_main");
+		var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
 		var rowIndex = targetTable.find(".air_list_1").length;
 
 		var newRow = `
