@@ -462,7 +462,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
         $routes->get("find_user", "Admin\AdminOperatorController::find_user");
         $routes->get("send_coupon", "Admin\AdminOperatorController::send_coupon");
-
     });
 
     $routes->group("_mileage", static function ($routes) {
