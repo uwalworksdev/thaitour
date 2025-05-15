@@ -2135,14 +2135,6 @@ function maskNaverId($userId) {
     return $userId;
 }
 
-function maskSnsId($userId, $gubun) {
-    if($gubun == "naver" || $gubun == "google") {
-        return substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
-    }
-    return $userId;
-}
-
-
 function golfCategory($txt) {
 	
     $connect = db_connect(); // DB 연결
@@ -2525,12 +2517,12 @@ function cartReservation($idx) {
 	
 }
 
-function alimTalk_cart_send($payment_idx)
+function alimTalk_cart_send($payment_no)
 {
     $connect     = db_connect();
     $private_key = private_key();
 
-	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
+	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
 	
 	$row         = $connect->query($sql)->getRowArray();
 	
