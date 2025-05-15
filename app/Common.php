@@ -2564,8 +2564,8 @@ function email_reservation_group($group_no)
 		} else {
 		   $prod_add = "";
 		}   
-	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS order_user_name
-						  ,AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS order_user_email 
+	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						  ,AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
 						  , order_no 
 						  , product_name
 				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
