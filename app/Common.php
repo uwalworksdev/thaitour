@@ -2477,7 +2477,6 @@ function completePayment($idx) {
             'RECEIVE_NAME'   => $row['user_name'],
             'PROD_NAME'      => $row['product_name'],
             'ORDER_NO'       => $row['payment_no'],
-            'ORDER_DAY'      => $row['paydate'],
             'ORDER_PRICE'    => $row['Amt_1'],
 			'PAYMENT_METHOD' => $row['payment_method'],
             'ORDER_DATE'     => $row['paydate']
@@ -2516,7 +2515,6 @@ function cartReservation($idx) {
             'RECEIVE_NAME'   => $row['user_name'],
             'PROD_NAME'      => $row['product_name'],
             'ORDER_NO'       => $row['payment_no'],
-            'ORDER_DAY'      => $row['paydate'],
             'ORDER_PRICE'    => $row['Amt_1'],
 			'PAYMENT_METHOD' => $row['payment_method'],
             'ORDER_DATE'     => $row['paydate']
@@ -2546,6 +2544,44 @@ function alimTalk_cart_send($group_no)
 					 ];
 
 	alimTalkSend("TY_1652", $allim_replace);	   
+	
+}
+
+
+function email_reservation_group($group_no)
+{
+        $db = \Config\Database::connect();
+        $private_key = private_key();
+
+        $sql    = "SELECT count(order_no) AS cnt FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
+        $result = $db->query($sql);
+        $row    = $result->getRowArray();
+		if($row['cnt'] > 1) {
+		   $prod_add = " 외". $row['cnt'] - 1;
+		} else {
+		   $prod_add = "";
+		}   
+	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') AS order_user_name
+						  ,AES_DECRYPT(UNHEX('{$row['order_user_email']}'),  '$private_key') AS order_user_email 
+						  , order_price 
+						  , order_no 
+						  , product_name
+				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
+				   
+		write_log($sql);				
+        $result = $db->query($sql);
+        $row    = $result->getRowArray();
+		
+        $code       = "A14";
+        $user_email =  $row['user_email'];
+		
+        $_tmp_fir_array = [
+            'RECEIVE_NAME'   => $row['user_name'],
+            'PROD_NAME'      => $row['product_name'].$prod_add,
+            'ORDER_NO'       => $row['order_no'].$prod_add,
+            'ORDER_PRICE'    => $row['order_price'] 
+        ];
+        autoEmail($code, $user_email, $_tmp_fir_array);		   
 	
 }
 

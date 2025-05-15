@@ -1832,7 +1832,8 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 										"phone"     => $order_user_phone
 								     ];
 				    
-					alimTalkSend("TY_1652", $allim_replace);
+					alimTalkSend("TY_1652", $allim_replace); 
+					email_reservation_group($group_no);
 
 					return $this->response->setJSON([
 						'result' => true,
