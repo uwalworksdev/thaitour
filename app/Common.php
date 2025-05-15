@@ -2135,6 +2135,14 @@ function maskNaverId($userId) {
     return $userId;
 }
 
+function maskSnsId($userId, $gubun) {
+    if($gubun == "naver" || $gubun == "google") {
+        return substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    }
+    return $userId;
+}
+
+
 function golfCategory($txt) {
 	
     $connect = db_connect(); // DB 연결
@@ -2475,69 +2483,6 @@ function completePayment($idx) {
             'ORDER_DATE'     => $row['paydate']
         ];
         autoEmail($code, $user_email, $_tmp_fir_array);	
-	
-}
-
-
-function cartReservation($idx) {
-	
-        $db = \Config\Database::connect();
-        $private_key = private_key();
-
-        // 알림톡 함수 호출
-        $payment_idx = $idx;
-        alimTalk_cart_send($payment_idx);
-
-        $sql             = "	select AES_DECRYPT(UNHEX(pay_name),  '$private_key') AS user_name
-                                 	 , AES_DECRYPT(UNHEX(pay_email), '$private_key') AS user_email
-									 , Amt_1 
-									 , payment_no 
-									 , product_name
-									 , paydate
-									 , payment_method
-									from tbl_payment_mst
-									where payment_idx = '" . $payment_idx . "'";
-		write_log($sql);				
-        $result = $db->query($sql);
-        $row    = $result->getRowArray();
-		
-        $code       = "A17";
-        $user_email =  $row['user_email'];
-		
-        $_tmp_fir_array = [
-            'RECEIVE_NAME'   => $row['user_name'],
-            'PROD_NAME'      => $row['product_name'],
-            'ORDER_NO'       => $row['payment_no'],
-            'ORDER_DAY'      => $row['paydate'],
-            'ORDER_PRICE'    => $row['Amt_1'],
-			'PAYMENT_METHOD' => $row['payment_method'],
-            'ORDER_DATE'     => $row['paydate']
-        ];
-        autoEmail($code, $user_email, $_tmp_fir_array);	
-	
-}
-
-function alimTalk_cart_send($payment_no)
-{
-    $connect     = db_connect();
-    $private_key = private_key();
-
-	$sql         = "SELECT * FROM tbl_payment_mst WHERE payment_no = '". $payment_no ."' ";
-	
-	$row         = $connect->query($sql)->getRowArray();
-	
-	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['payment_user_name']}'),    '$private_key') AS order_user_name
-						   ,AES_DECRYPT(UNHEX('{$row['payment_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-	$row_d       = $connect->query($sql_d)->getRowArray();
-
-	$order_user_name   = $row_d['order_user_name'];
-	$order_user_mobile = $row_d['order_user_mobile'];	
-	$allim_replace = [
-						"#{고객명}"   => $order_user_name,
-						"phone"      => $order_user_mobile
-					 ];
-
-	alimTalkSend("TY_1652", $allim_replace);	
 	
 }
 
