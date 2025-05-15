@@ -146,8 +146,8 @@
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
-                                        <td><?= $text_point ?></td>
                                         <td><?= $text_use_point ?></td>
+                                        <td><?= $text_point ?></td>
                                         <td class="tal"><?= $row["mi_title"] ?></td>
                                         <td class="tac"><?=$row["user_name"]?></td>
                                         <td><?= $order_mileage_str ?></td>
