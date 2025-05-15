@@ -2574,14 +2574,15 @@ function email_reservation_group($group_no)
         $result = $db->query($sql_d);
         $row    = $result->getRowArray();
 		
-        $code       = "A14";
-        $user_email =  $row['user_email'];
-		
+        $code         = "A14";
+        $user_email   =  $row['user_email'];
+		$product_name = $product_name . $prod_add;
+		$order_no     = $order_no .  $prod_add;;
         $_tmp_fir_array = [
             'RECEIVE_NAME'   => $row['user_name'],
-            'PROD_NAME'      => $row['product_name'].$prod_add,
-            'ORDER_NO'       => $row['order_no'].$prod_add,
-            'ORDER_PRICE'    => $row['order_price'] 
+            'PROD_NAME'      => $product_name,
+            'ORDER_NO'       => $order_no,
+            'ORDER_PRICE'    => $order_price 
         ];
         autoEmail($code, $user_email, $_tmp_fir_array);		   
 	
