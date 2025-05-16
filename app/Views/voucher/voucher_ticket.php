@@ -95,7 +95,7 @@ $setting = homeSetInfo();
                 </table>
 
                 <div class="info_order_txt">
-                    <p style="font-weight: bold">• Booked by: Totobooking</p>
+                    <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                 </div>
                 <div class="btns_download_print">
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>

@@ -77,10 +77,16 @@
                             </colgroup>
                             <tbody>
                                 <tr>
-                                    <th>쇼핑몰명</th>
-                                    <td><input type="text" id="site_name" name="site_name"
+                                    <th>쇼핑몰명(국문 - 영문)</th>
+                                    <td>
+                                        <input type="text" id="site_name" name="site_name"
                                                value="<?= $row['site_name'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:250px" /></td>
+                                               style="width:250px" />
+                                        -
+                                        <input type="text" id="site_name_en" name="site_name_en"
+                                               value="<?= $row['site_name_en'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:250px" />
+                                    </td>
                                     <th>환율</th>
                                     <td><input type="text" id="baht_thai" name="baht_thai"
                                                value="<?= $row['baht_thai'] ?>" class="input_txt placeHolder" rel=""
