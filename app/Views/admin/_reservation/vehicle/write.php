@@ -631,7 +631,7 @@
 												} 
 											?>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="javascript:set_status()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;<?=$order_r_date?>
 										
@@ -966,6 +966,39 @@
                 }
             });
         }
+		
+		function set_status(idx)
+		{
+			if (!confirm('예약현황을 변경 하시겠습니까?'))
+				return false;
+
+			if($("#order_status").val() == "") {
+			   alert('예약상태를 선택하세요');
+			   return false;
+			}
+
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_set_status",
+				type: "POST",
+				data: {
+					"order_idx"    : idx,
+					"order_status" : $("#order_status").val()
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		}			
     </script>
 
     <script>
