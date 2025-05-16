@@ -1247,14 +1247,14 @@
                 init_daterange($(this).data('num'));
             });
 
-            // $('.tour_calendar').removeClass('active');
-            // $('.item_check_term_').removeClass('checked_');
-            // $('.item_check_term_all_').removeClass('checked_');
-            // $('.item_check_term_').val('N');
-            // $('.item_check_term_all_').val('N');
-            // $(".calendar_container_tongle").hide();
-            // $('.calendar_header:first').next().show().parent().addClass('active');
-            // openDateRanger('.calendar_header:first');
+            $('.tour_calendar').removeClass('active');
+            $('.item_check_term_').removeClass('checked_');
+            $('.item_check_term_all_').removeClass('checked_');
+            $('.item_check_term_').val('N');
+            $('.item_check_term_all_').val('N');
+            $(".calendar_container_tongle").hide();
+            $('.calendar_header:first').next().show().parent().addClass('active');
+            openDateRanger('.calendar_header:first');
             
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
