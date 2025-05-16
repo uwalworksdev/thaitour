@@ -126,7 +126,7 @@
                         <!-- <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p> -->
                         <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
                             리얼리뷰(<?= $data_['total_review'] ?>)</p>
-                        <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
+                        <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</p>
                     </div>
                 </div>
 
@@ -439,7 +439,7 @@
 
                 <div class="custom-golf-detail">
                     <div class="section6" id="section8">
-                        <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
+                        <h2 class="title-sec6">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
 
                         <div class="qa-section">
                             <div class="custom-area-text">

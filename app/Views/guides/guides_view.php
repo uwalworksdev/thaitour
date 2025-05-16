@@ -694,7 +694,7 @@
                                href="#!">가격/상품정보</a>
                             <a class="short_link" onclick="scrollToEl('product_des')" data-target="product_des"
                                href="#!">리얼리뷰</a>
-                            <a class="short_link" onclick="scrollToEl('section8')" href="#!">상품Q&A</a>
+                            <a class="short_link" onclick="scrollToEl('section8')" href="#!">상품Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</a>
                         </div>
                     </div>
 
@@ -959,7 +959,7 @@
 
             <div class="custom-golf-detail">
                 <div class="section6" id="section8">
-                    <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
+                    <h2 class="title-sec6">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
 
                     <div class="qa-section">
                         <div class="custom-area-text">

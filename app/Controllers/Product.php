@@ -3367,6 +3367,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                                 
         $data['reservaion_policy'] = $reservaion_policy;
 
+        $product_gubun = "tour";
+        $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+        $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
+        $data['product_qna'] = $product_qna;
+
         return $this->renderView('tours/tour-details', $data);
     }
 
