@@ -39,6 +39,11 @@
         flex-direction: column;
         gap: 5px;
     }
+
+    .sec2-item-card {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
 
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
@@ -231,12 +236,13 @@
                     <?php foreach ($info['tours'] as $tour): ?>
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
-                                <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
-                                <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-
+                                <div>
+                                    <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
+                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+                                </div>
+                                <p><?=$info['info']['info_name']?></p>
                             </div>
                             <div class="text-content-2">
-                                <p><?=$info['info']['info_name']?></p>
 
                                 <div class="price-sub">
                                     <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
