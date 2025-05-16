@@ -3252,15 +3252,16 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     ->where("product_idx", $product_idx)
                     ->where("info_idx", $row['info_idx'])
                     ->where("tours_idx", $row['tours_idx'])
+                    ->where("use_yn", 'Y')
                     ->where("goods_date", date('Y-m-d'))->first();
 
-            $price_bath = $price_today['goods_price1'];
+            $price_bath = $price_today['goods_price1'] ?? 0;
             $price_won = round($price_bath * $baht_thai);
 
-            $price_baht_kids = $price_today['goods_price2'];
+            $price_baht_kids = $price_today['goods_price2'] ?? 0;
             $price_won_kids = round($price_baht_kids * $baht_thai);
 
-            $price_baht_baby = $price_today['goods_price3'];
+            $price_baht_baby = $price_today['goods_price3'] ?? 0;
             $price_won_baby = round($price_baht_baby * $baht_thai);
 
             $groupedData[$infoIndex]['tours'][] = [

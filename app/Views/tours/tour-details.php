@@ -1281,6 +1281,90 @@
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
     }
 
+    function setupQuantityUI($container, dayData) {
+        const types = ["adult", "child", "baby"];
+
+        types.forEach(type => {
+            const $typeContainer = $container.find(`.quantity-container.${type}`);
+            const $quantityDisplay = $typeContainer.find('.quantity');
+            const $increaseBtn = $typeContainer.find('.increase');
+            const $decreaseBtn = $typeContainer.find('.decrease');
+            const $price = $typeContainer.find('.price');
+            const $currency = $typeContainer.find('.currency');
+            const pricePerUnit = parseFloat($price.attr("data-price"));
+            const priceBahtPerUnit = parseFloat($currency.attr("data-price-baht"));
+
+            let quantity = parseInt($quantityDisplay.text().trim()) || 0;
+
+            if ($typeContainer.find('.des').text().includes('성인') && quantity === 0) {
+                quantity = 1;
+                adultQuantity = quantity;
+                adultTotalPrice = quantity * pricePerUnit;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+            }
+
+            $increaseBtn.off().on("click", function () {
+                quantity++;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+
+            $decreaseBtn.off().on("click", function () {
+                if (quantity > 0) {
+                    quantity--;
+                    $quantityDisplay.text(quantity);
+                }
+                if (quantity === 0) $decreaseBtn.attr('disabled', true);
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+        });
+    }
+
+    function setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx) {
+        $('.day').removeClass('active');
+        $dayDiv.addClass('active');
+        selectedDate = date;
+
+        const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
+
+        quantityContainer.find(".quantity-container.adult .quantity").text("0");
+        quantityContainer.find(".quantity-container.adult .price")
+            .text(number_format(Number(dayData.goods_price1_won)) + "원")
+            .attr("data-price", Number(dayData.goods_price1_won));
+        quantityContainer.find(".quantity-container.adult .currency")
+            .text(number_format(Number(dayData.goods_price1)) + " 바트")
+            .attr("data-price-baht", Number(dayData.goods_price1));
+
+        quantityContainer.find(".quantity-container.child .price").text("0원")
+            .attr("data-price", Number(dayData.goods_price2_won));
+        quantityContainer.find(".quantity-container.child .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData.goods_price2));
+
+        quantityContainer.find(".quantity-container.baby .price").text("0원")
+            .attr("data-price", Number(dayData.goods_price3_won));
+        quantityContainer.find(".quantity-container.baby .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData.goods_price3));
+
+        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+
+        setupQuantityUI(quantityContainer, dayData);
+
+        const total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
+        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+
+        updateTotalPeopleDisplay();
+
+        const formattedDate = formatSelectedDate(date);
+        $('.days_choose, .calendar_txt').text(formattedDate);
+        $('#order_date').val(formattedDate);
+    }
+
+
     const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
         s_date = toDateOnly(new Date(startDate));
         e_date = toDateOnly(new Date(endDate));
@@ -1337,7 +1421,11 @@
             success: function (data, textStatus) {
                 
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); 
+                today.setHours(0, 0, 0, 0);       
+                
+                let day_today = today.getDate();
+                let month_today = Number(today.getMonth()) + 1;
+                let year_today = today.getFullYear();
 
                 const currentMonthDate = new Date(year, month, today.getDate());
                 currentMonthDate.setHours(0, 0, 0, 0);
@@ -1367,9 +1455,13 @@
 
                     const dayData = data.find(d => d.goods_date === formatDate);     
                     
-                    console.log(formatDate + "  " + isWithinDateRange);
+                    if(Number(day_today) === Number(day) 
+                        && Number(month_today) === Number(month + 1) 
+                        && Number(year_today) === Number(year)) {
+                            
+                        setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
+                    }
                     
-
                     if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
                         $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                     } else {    
@@ -1391,93 +1483,7 @@
                             `);
 
                             $dayDiv.click(() => {
-                                $('.day').removeClass('active');
-                                $dayDiv.addClass('active');
-                                selectedDate = date;
-                                let quantityContainer = $(".quantity-container-fa[data-tour-index="+ t_tours_idx +"]");
-                                //adult
-                                quantityContainer.find(".quantity-container.adult").find(".quantity").text("0");
-                                quantityContainer.find(".quantity-container.adult").find(".price").text(number_format(Number(dayData.goods_price1_won)) + "원");
-                                quantityContainer.find(".quantity-container.adult").find(".price").attr("data-price", Number(dayData.goods_price1_won));
-                                quantityContainer.find(".quantity-container.adult").find(".currency").text(number_format(Number(dayData.goods_price1)) + " 바트");
-                                quantityContainer.find(".quantity-container.adult").find(".currency").attr("data-price-baht", Number(dayData.goods_price1));
-
-                                //child
-                                quantityContainer.find(".quantity-container.child").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.child").find(".price").attr("data-price", Number(dayData.goods_price2_won));
-                                quantityContainer.find(".quantity-container.child").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.child").find(".currency").attr("data-price-baht", Number(dayData.goods_price2));
-
-                                //baby
-                                quantityContainer.find(".quantity-container.baby").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.baby").find(".price").attr("data-price", Number(dayData.goods_price3_won));
-                                quantityContainer.find(".quantity-container.baby").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.baby").find(".currency").attr("data-price-baht", Number(dayData.goods_price3));
-
-                                adultQuantity = 1;
-                                childQuantity = 0;
-                                babyQuantity = 0;
-
-                                adultTotalPrice = 0;
-                                childTotalPrice = 0;
-                                babyTotalPrice = 0;
-                               
-                                let types = ["adult", "child", "baby"];
-
-                                types.forEach(type => {
-                                    let $container = quantityContainer.find(`.quantity-container.${type}`);
-                                    
-                                    let $quantityDisplay = $container.find('.quantity');
-                                    let $increaseBtn = $container.find('.increase');
-                                    let $decreaseBtn = $container.find('.decrease');
-                                    
-                                    let pricePerUnit = parseFloat($container.find('.price').attr("data-price"));
-                                    let priceBahtPerUnit = parseFloat($container.find('.currency').attr('data-price-baht'));                                    
-
-                                    let quantity = parseInt($quantityDisplay.text().trim()) || 0;
-                                    let $price = $container.find('.price');
-                                    let $currency = $container.find('.currency');
-
-                                    if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                                        quantity = 1;
-                                        adultQuantity = quantity;
-                                        adultTotalPrice = adultQuantity * pricePerUnit;
-
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                    }
-
-                                    $increaseBtn.click(function() {
-                                        quantity++;
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-
-                                    $decreaseBtn.click(function() {
-                                        if (quantity > 0) {
-                                            quantity--;
-                                            $quantityDisplay.text(quantity);
-                                        }
-                                        if (quantity === 0) {
-                                            $decreaseBtn.attr('disabled', true);
-                                        }
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-                                });
-                                
-                                let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
-
-                                $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-
-                                updateTotalPeopleDisplay();
-
-                                const formattedDate = formatSelectedDate(date);
-                                $('.days_choose').text(formattedDate);
-                                $('.calendar_txt').text(formattedDate);
-                                $('#order_date').val(formattedDate);
+                                setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
                             });
                         }
                         
@@ -1614,6 +1620,12 @@
             const selectedTourCard = $('.sec2-item-card.active');
             var priceOptionTotal = totalCost;
             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+
+            if(!adultTotalPrices) {
+                alert('총 가격은 0이 될 수 없습니다.');
+                return false;
+            }
+
             var selectedTime = $('.select-time-c').val();
             if (!selectedTime) {
                 selectedTime = $('.select-time-c option:first').val();
@@ -1645,11 +1657,11 @@
             $("#total_price_popup").text(number_format(last_price) + " 바트");
             $("#total_price").val(last_price);
             $("#total_pay").text(number_format(last_price) + " 바트");
-            console.log(selectedTourIds.join(','));
-            console.log(currentToursIdx);
-            console.log(adultTotalPrices);
-            console.log(selectedTime);
-            console.log(priceOptionTotal);
+            // console.log(selectedTourIds.join(','));
+            // console.log(currentToursIdx);
+            // console.log(adultTotalPrices);
+            // console.log(selectedTime);
+            // console.log(priceOptionTotal);
             var productIdx = document.querySelector('input[name="product_idx"]').value;
             $("#frm").submit();
         }
