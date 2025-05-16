@@ -46,7 +46,6 @@ class Product extends BaseController
     protected $productImg;
     protected $roomImg;
     protected $tourImg;
-    protected $toursPrice;
 
 /*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
@@ -84,7 +83,6 @@ class Product extends BaseController
         $this->productImg = model("ProductImg");
         $this->roomImg = model("RoomImg");
         $this->tourImg = model("TourImg");
-        $this->toursPrice = model("ToursPrice");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -1292,7 +1290,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $categories = '';
 
             $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room " .
-                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY r.g_idx ASC";
+                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o_room DESC, o_sdate DESC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
@@ -1400,7 +1398,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $product_stay = $this->db->query($sql, [$stay_idx])->getRowArray();
 
 
-            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' and roomName != '' order by onum asc, g_idx desc";
+            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' and roomName != '' order by g_idx asc";
             $roomTypes = $this->db->query($sql);
             $roomTypes = $roomTypes->getResultArray();
 
@@ -3247,30 +3245,22 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                 ];
             }
 
-            $price_today = $this->toursPrice
-                    ->select("goods_price1, goods_price2, goods_price3")
-                    ->where("product_idx", $product_idx)
-                    ->where("info_idx", $row['info_idx'])
-                    ->where("tours_idx", $row['tours_idx'])
-                    ->where("use_yn !=", 'N')
-                    ->where("goods_date", date('Y-m-d'))->first();
-
-            $price_bath = $price_today['goods_price1'] ?? 0;
+            $price_bath = $row['tour_price'];
             $price_won = round($price_bath * $baht_thai);
 
-            $price_baht_kids = $price_today['goods_price2'] ?? 0;
+            $price_baht_kids = $row['tour_price_kids'];
             $price_won_kids = round($price_baht_kids * $baht_thai);
 
-            $price_baht_baby = $price_today['goods_price3'] ?? 0;
+            $price_baht_baby = $row['tour_price_baby'];
             $price_won_baby = round($price_baht_baby * $baht_thai);
 
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx' => $row['tours_idx'],
                 'tours_subject' => $row['tours_subject'],
                 'tours_subject_eng' => $row['tours_subject_eng'],
-                'tour_price' => $price_bath,
-                'tour_price_kids' => $price_baht_kids,
-                'tour_price_baby' => $price_baht_baby,
+                'tour_price' => $row['tour_price'],
+                'tour_price_kids' => $row['tour_price_kids'],
+                'tour_price_baby' => $row['tour_price_baby'],
                 'status' => $row['status'],
                 'price_won' => $price_won,
                 'price_won_kids' => $price_won_kids,
