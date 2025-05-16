@@ -5,6 +5,7 @@
     .content-sub-hotel-detail .section3 {
         margin-top: 0px;
     }
+
 </style>
 <div class="content-sub-hotel-detail tours-detail spa-detail">
     <div class="body_inner">
@@ -709,6 +710,15 @@
 
 
     var arr_data_option = [];
+    $(document).ready(function () {
+        let currentDate = new Date();
+        let day_today = currentDate.getDate();
+        let month_today = currentDate.getMonth() + 1;
+        let year_today = currentDate.getFullYear();
+        let c_day_ = `${year_today}-${String(month_today).padStart(2, '0')}-${String(day_today).padStart(2, '0')}`;
+        
+        spaCharge(c_day_);
+    });
 
     $(document).on('click', '.allowDate', function () {
         $('.sel_date').removeClass('active_');
