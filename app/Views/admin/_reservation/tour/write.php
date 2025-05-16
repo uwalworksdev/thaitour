@@ -451,6 +451,11 @@
                                         if (!confirm('예약현황을 변경 하시겠습니까?'))
                                             return false;
 
+										if($("#order_status").val() == "") {
+										   alert('예약상태를 선택하세요');
+										   return false;
+										}
+		
                                         var message = "";
                                         $.ajax({
                                             url: "/ajax/ajax_set_status",
