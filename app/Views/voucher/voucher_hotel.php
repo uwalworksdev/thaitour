@@ -138,7 +138,7 @@ $setting = homeSetInfo();
                     <p>• Booked on: 27-Sep-2023(Wed)</p>
                 </div>
                 <div class="btns_download_print">
-                    <button class="btn_download">다운로드</button>
+                    <!-- <button class="btn_download">다운로드</button> -->
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>

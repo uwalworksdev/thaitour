@@ -120,8 +120,8 @@
                         href="/product-tours/item_view/<?= $product['product_idx'] ?>#product_des">상품설명</a>
                     <a class="short_link"
                         href="/product-tours/location_info/<?= $product['product_idx'] ?>#section2">위치정보</a>
-                    <a class="short_link active" href="/product-tours/location_info/<?= $product['product_idx'] ?>#section6">생생리뷰(<?= $product['total_review'] ?>개)</a>
-                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx'] ?>#qa-section">상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</a>
+                    <a class="short_link " href="/product-tours/location_info/<?= $product['product_idx'] ?>#section6">생생리뷰(<?= $product['total_review'] ?>개)</a>
+                    <a class="short_link active" href="/product-tours/location_info/<?= $product['product_idx'] ?>#qa-section">상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</a>
                 </div>
             </div>
         </div>
