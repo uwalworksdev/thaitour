@@ -25,6 +25,10 @@
     z-index: 10;
 }
 
+input[type="text"] {
+    height: 35px;
+}
+
 .invoice_section .ttl_img{
     background-color: #e0ecf7;
     border-radius: 20px;
