@@ -7,7 +7,7 @@
             <div class="title-container">
                 <h2>(아속출발) 아유타야 선셋 리버크루즈 반일 투어</h2>
                 <div class="list-icon only_web">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
                 </div>
@@ -22,7 +22,7 @@
                 <span>생생리뷰 <strong>(124)</strong></span>
             </div>
             <div class="list-icon only_mo">
-                <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                 <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                 <img src="/uploads/icons/share_icon.png" alt="share_icon">
             </div>
