@@ -617,8 +617,8 @@
                                 </tr>									
                                 <tr>
                                     <th>예약현황</th>
-                                    <td colspan="3">
-                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
+                                    <td>
+                                       <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
                                         <select name="order_status" id="order_status" class="select_txt">
                                             <option value="">결제현황</option>
 											<?php
@@ -634,6 +634,7 @@
                                        <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;<?=$order_r_date?>
+										
                                     </td>
                                     <th>상품금액</th>
                                     <td>
