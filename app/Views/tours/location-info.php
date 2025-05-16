@@ -146,7 +146,7 @@
             <?php echo view("/product/inc/review_product"); ?>
 
             <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?= $product_qna["nTotalCount"] ?? 0 ?>)</h2>
-            <div class="qa-section">
+            <div class="qa-section" id="qa-section">
                 <div class="custom-area-text">
                     <label class="custom-label" for="qa-comment">
                         <textarea name="qa-comment" id="qa-comment"
