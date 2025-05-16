@@ -3252,7 +3252,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     ->where("product_idx", $product_idx)
                     ->where("info_idx", $row['info_idx'])
                     ->where("tours_idx", $row['tours_idx'])
-                    ->where("use_yn", 'Y')
+                    ->where("use_yn !=", 'N')
                     ->where("goods_date", date('Y-m-d'))->first();
 
             $price_bath = $price_today['goods_price1'] ?? 0;
