@@ -648,9 +648,9 @@
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확인</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확정</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확정</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약취소</button>
                                         </td>
 										<!--th>바우쳐  금액</th>
