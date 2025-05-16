@@ -12,6 +12,10 @@
         align-items: flex-end;
     }
 
+    .tours-detail .section2 .text-content-1 h3 {
+        margin-bottom: 20px;
+    }
+
     .tours-detail .section2 .text-content-3 {
         display: flex;
         justify-content: flex-end;
