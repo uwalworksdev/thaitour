@@ -2588,5 +2588,30 @@ function email_reservation_group($group_no)
         autoEmail($code, $user_email, $_tmp_fir_array);		   
 	
 }
+/*
+function email_send($order_no, $order_status)
+{
+		$connect     = db_connect();
+		$private_key = private_key();
 
+	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						  ,AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
+				   FROM tbl_order_mst WHERE order_no = '" . $order_no . "'";
+        $result     = $db->query($sql_d);
+        $row_d      = $result->getRowArray();
+
+        $code       = "A14";
+		$user_name  = $row_d['user_name'];
+		$user_email = $row_d['user_email'];
+		
+        $_tmp_fir_array = [
+            'RECEIVE_NAME'   => $row['user_name'],
+            'PROD_NAME'      => $product_name,
+            'ORDER_NO'       => $order_no,
+            'ORDER_PRICE'    => number_format($order_price) 
+        ];
+        autoEmail($code, $user_email, $_tmp_fir_array);		   
+
+}
+*/
 ?>
