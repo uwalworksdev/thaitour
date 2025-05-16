@@ -4,6 +4,43 @@
 <?php $setting = homeSetInfo(); ?>
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
+<style>
+    .tours-detail .section2 .text-content-1 {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    .tours-detail .section2 .text-content-3 {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .tours-detail .section2 .text-content-2 .ps-right {
+        margin-left: 0;
+    }
+
+    .price-sub {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+
+    .price-sub .ps-left {
+        padding-bottom: 2px;
+    }
+
+    .price-sub .price {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 5px;
+    }
+</style>
+
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
@@ -29,7 +66,7 @@
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <!-- <div class="only_web"> -->
                         <div class="list-icon">
-                            <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                            <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                             <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
@@ -195,19 +232,25 @@
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
-                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+
                             </div>
                             <div class="text-content-2">
-                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                                <div class="price-sub" style="text-align: right;">
-                                    <span class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</span>
-                                    <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
+                                <p><?=$info['info']['info_name']?></p>
+
+                                <div class="price-sub">
+                                    <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
+
+                                    <div class="price">
+                                        <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                        <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
+                                    </div>
+                                    <div class="text-content-3" style="justify-content: space-between;">
+                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-content-3" style="justify-content: space-between;">
-                                <p><?=$info['info']['info_name']?></p>
-                                <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
-                            </div>
+                            
                         </div>
                     <?php endforeach; ?>
                 <?php endforeach;?>
@@ -1281,6 +1324,90 @@
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
     }
 
+    function setupQuantityUI($container, dayData) {
+        const types = ["adult", "child", "baby"];
+
+        types.forEach(type => {
+            const $typeContainer = $container.find(`.quantity-container.${type}`);
+            const $quantityDisplay = $typeContainer.find('.quantity');
+            const $increaseBtn = $typeContainer.find('.increase');
+            const $decreaseBtn = $typeContainer.find('.decrease');
+            const $price = $typeContainer.find('.price');
+            const $currency = $typeContainer.find('.currency');
+            const pricePerUnit = parseFloat($price.attr("data-price"));
+            const priceBahtPerUnit = parseFloat($currency.attr("data-price-baht"));
+
+            let quantity = parseInt($quantityDisplay.text().trim()) || 0;
+
+            if ($typeContainer.find('.des').text().includes('성인') && quantity === 0) {
+                quantity = 1;
+                adultQuantity = quantity;
+                adultTotalPrice = quantity * pricePerUnit;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+            }
+
+            $increaseBtn.off().on("click", function () {
+                quantity++;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+
+            $decreaseBtn.off().on("click", function () {
+                if (quantity > 0) {
+                    quantity--;
+                    $quantityDisplay.text(quantity);
+                }
+                if (quantity === 0) $decreaseBtn.attr('disabled', true);
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+        });
+    }
+
+    function setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx) {
+        $('.day').removeClass('active');
+        $dayDiv.addClass('active');
+        selectedDate = date;
+
+        const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
+
+        quantityContainer.find(".quantity-container.adult .quantity").text("0");
+        quantityContainer.find(".quantity-container.adult .price")
+            .text(number_format(Number(dayData?.goods_price1_won ?? 0)) + "원")
+            .attr("data-price", Number(dayData?.goods_price1_won ?? 0));
+        quantityContainer.find(".quantity-container.adult .currency")
+            .text(number_format(Number(dayData?.goods_price1 ?? 0)) + " 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
+
+        quantityContainer.find(".quantity-container.child .price").text("0원")
+            .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
+        quantityContainer.find(".quantity-container.child .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
+
+        quantityContainer.find(".quantity-container.baby .price").text("0원")
+            .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
+        quantityContainer.find(".quantity-container.baby .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
+
+        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+
+        setupQuantityUI(quantityContainer, dayData);
+
+        const total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
+        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+
+        updateTotalPeopleDisplay();
+
+        const formattedDate = formatSelectedDate(date);
+        $('.days_choose, .calendar_txt').text(formattedDate);
+        $('#order_date').val(formattedDate);
+    }
+
+
     const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
         s_date = toDateOnly(new Date(startDate));
         e_date = toDateOnly(new Date(endDate));
@@ -1337,7 +1464,11 @@
             success: function (data, textStatus) {
                 
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); 
+                today.setHours(0, 0, 0, 0);       
+                
+                let day_today = today.getDate();
+                let month_today = Number(today.getMonth()) + 1;
+                let year_today = today.getFullYear();
 
                 const currentMonthDate = new Date(year, month, today.getDate());
                 currentMonthDate.setHours(0, 0, 0, 0);
@@ -1367,9 +1498,13 @@
 
                     const dayData = data.find(d => d.goods_date === formatDate);     
                     
-                    console.log(formatDate + "  " + isWithinDateRange);
+                    if(Number(day_today) === Number(day) 
+                        && Number(month_today) === Number(month + 1) 
+                        && Number(year_today) === Number(year)) {
+                            
+                        setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
+                    }
                     
-
                     if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
                         $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                     } else {    
@@ -1391,93 +1526,7 @@
                             `);
 
                             $dayDiv.click(() => {
-                                $('.day').removeClass('active');
-                                $dayDiv.addClass('active');
-                                selectedDate = date;
-                                let quantityContainer = $(".quantity-container-fa[data-tour-index="+ t_tours_idx +"]");
-                                //adult
-                                quantityContainer.find(".quantity-container.adult").find(".quantity").text("0");
-                                quantityContainer.find(".quantity-container.adult").find(".price").text(number_format(Number(dayData.goods_price1_won)) + "원");
-                                quantityContainer.find(".quantity-container.adult").find(".price").attr("data-price", Number(dayData.goods_price1_won));
-                                quantityContainer.find(".quantity-container.adult").find(".currency").text(number_format(Number(dayData.goods_price1)) + " 바트");
-                                quantityContainer.find(".quantity-container.adult").find(".currency").attr("data-price-baht", Number(dayData.goods_price1));
-
-                                //child
-                                quantityContainer.find(".quantity-container.child").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.child").find(".price").attr("data-price", Number(dayData.goods_price2_won));
-                                quantityContainer.find(".quantity-container.child").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.child").find(".currency").attr("data-price-baht", Number(dayData.goods_price2));
-
-                                //baby
-                                quantityContainer.find(".quantity-container.baby").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.baby").find(".price").attr("data-price", Number(dayData.goods_price3_won));
-                                quantityContainer.find(".quantity-container.baby").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.baby").find(".currency").attr("data-price-baht", Number(dayData.goods_price3));
-
-                                adultQuantity = 1;
-                                childQuantity = 0;
-                                babyQuantity = 0;
-
-                                adultTotalPrice = 0;
-                                childTotalPrice = 0;
-                                babyTotalPrice = 0;
-                               
-                                let types = ["adult", "child", "baby"];
-
-                                types.forEach(type => {
-                                    let $container = quantityContainer.find(`.quantity-container.${type}`);
-                                    
-                                    let $quantityDisplay = $container.find('.quantity');
-                                    let $increaseBtn = $container.find('.increase');
-                                    let $decreaseBtn = $container.find('.decrease');
-                                    
-                                    let pricePerUnit = parseFloat($container.find('.price').attr("data-price"));
-                                    let priceBahtPerUnit = parseFloat($container.find('.currency').attr('data-price-baht'));                                    
-
-                                    let quantity = parseInt($quantityDisplay.text().trim()) || 0;
-                                    let $price = $container.find('.price');
-                                    let $currency = $container.find('.currency');
-
-                                    if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                                        quantity = 1;
-                                        adultQuantity = quantity;
-                                        adultTotalPrice = adultQuantity * pricePerUnit;
-
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                    }
-
-                                    $increaseBtn.click(function() {
-                                        quantity++;
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-
-                                    $decreaseBtn.click(function() {
-                                        if (quantity > 0) {
-                                            quantity--;
-                                            $quantityDisplay.text(quantity);
-                                        }
-                                        if (quantity === 0) {
-                                            $decreaseBtn.attr('disabled', true);
-                                        }
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-                                });
-                                
-                                let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
-
-                                $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-
-                                updateTotalPeopleDisplay();
-
-                                const formattedDate = formatSelectedDate(date);
-                                $('.days_choose').text(formattedDate);
-                                $('.calendar_txt').text(formattedDate);
-                                $('#order_date').val(formattedDate);
+                                setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
                             });
                         }
                         
@@ -1614,6 +1663,12 @@
             const selectedTourCard = $('.sec2-item-card.active');
             var priceOptionTotal = totalCost;
             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+
+            if(!adultTotalPrices) {
+                alert('총 가격은 0이 될 수 없습니다.');
+                return false;
+            }
+
             var selectedTime = $('.select-time-c').val();
             if (!selectedTime) {
                 selectedTime = $('.select-time-c option:first').val();
@@ -1645,11 +1700,11 @@
             $("#total_price_popup").text(number_format(last_price) + " 바트");
             $("#total_price").val(last_price);
             $("#total_pay").text(number_format(last_price) + " 바트");
-            console.log(selectedTourIds.join(','));
-            console.log(currentToursIdx);
-            console.log(adultTotalPrices);
-            console.log(selectedTime);
-            console.log(priceOptionTotal);
+            // console.log(selectedTourIds.join(','));
+            // console.log(currentToursIdx);
+            // console.log(adultTotalPrices);
+            // console.log(selectedTime);
+            // console.log(priceOptionTotal);
             var productIdx = document.querySelector('input[name="product_idx"]').value;
             $("#frm").submit();
         }

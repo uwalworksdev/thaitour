@@ -629,7 +629,7 @@
                         <h2><?= $guide['product_name'] ?></h2>
                         <div class="only_web">
                             <div class="list-icon">
-                                <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                                <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                                 <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                                 <img src="/uploads/icons/share_icon.png" alt="share_icon">
                             </div>
@@ -642,7 +642,7 @@
                             <span>리얼리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
                         </div>
                         <div class="list-icon only_mo">
-                            <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                            <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                             <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
@@ -701,8 +701,9 @@
                 </div>
                 <div class="section2" id="product_info">
                     <h4 class="title_sec2">가격/상품정보</h4>
+                    <?php $i = 0; ?>
                     <?php foreach ($options as $key => $option): ?>
-                        <div class="sec2-item-card tour_calendar">
+                        <div class="sec2-item-card tour_calendar <?php echo $i == 0 ? "active" : "" ?>">
                             <?php
                             $price_ = $option['o_sale_price'];
                             ?>
@@ -861,6 +862,7 @@
                                 </div>
                             </div>
                         </div>
+                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </div>
             </form>
@@ -1243,7 +1245,17 @@
         $(document).ready(function () {
             $(".calendar_header").each(function () {
                 init_daterange($(this).data('num'));
-            })
+            });
+
+            $('.tour_calendar').removeClass('active');
+            $('.item_check_term_').removeClass('checked_');
+            $('.item_check_term_all_').removeClass('checked_');
+            $('.item_check_term_').val('N');
+            $('.item_check_term_all_').val('N');
+            $(".calendar_container_tongle").hide();
+            $('.calendar_header:first').next().show().parent().addClass('active');
+            openDateRanger('.calendar_header:first');
+            
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
                 $('.item_check_term_').removeClass('checked_');
@@ -1264,23 +1276,17 @@
             })
 
             function openDateRanger(el) {
-                /* Get idx of option */
                 let num_idx = $(el).data('num');
 
-                /*
-                Add style for option idx
-                */
+                console.log(num_idx);
+                
+
                 $('.calendar_text_head').removeClass('open_')
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
                 $('#calendar_tab_' + num_idx).addClass('open_')
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').setStartDate('2024-12-30');
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
-            }
-
-            function get1() {
-                console.log("get1");
-                
             }
 
             function init_daterange(idx) {

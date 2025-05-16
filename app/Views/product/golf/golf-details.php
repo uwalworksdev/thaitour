@@ -90,8 +90,8 @@ $(document).ready(function() {
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
-                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                        <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
