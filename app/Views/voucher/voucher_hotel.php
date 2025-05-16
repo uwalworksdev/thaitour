@@ -48,14 +48,17 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Name</th>
                                 <td>
-                                    <?=$user_name?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$user_name?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+
                                 </td>
                             </tr>
                             <tr>
@@ -130,8 +133,14 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Guest Name</th>
                                 <td>
-                                    <?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?>
-
+                                    <?=$user_name_en?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" name="order_user_name_en_new" value="<?=$result->order_user_name_en_new?>">    
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                                 <th>Number of rooms</th>
                                 <td>
@@ -158,17 +167,32 @@ $setting = homeSetInfo();
                                     ?>
                                 </td>
                                 <th>Child Age</th>
-                                <td></td>
+                                <td>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" name="child_age_new" value="<?=$result->child_age_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Breakfast</th>
                                 <td colspan="3">
                                     <?php
-                                      if($result->breakfast == "N") {
-                                         echo "Include (No) Adult Breakfast";
-                                      } else {  	 
-                                         echo "Include (Yes) Adult Breakfast";
-                                      }
+                                        if($result->breakfast == "N") {
+                                            echo "Include (No) Adult Breakfast";
+                                        } else {  	 
+                                            echo "Include (Yes) Adult Breakfast";
+                                        }
+                                    ?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" name="breakfast_new" value="<?=$result->breakfast_new?>">    
+                                    <?php
+                                        }
                                     ?>	 
                                 </td>
     
@@ -176,9 +200,13 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Guest Request</th>
                                 <td colspan="3">
-                                    <p>Smoking Room</p>
-                                    <p>Extension Room </p>
-                                    <p>Room no: 390</p>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <textarea name="guest_request_new" id="guest_request_new" style="width: 100%; height: 100px;"><?=$result->guest_request_new?></textarea>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
     
                             </tr>
@@ -198,11 +226,25 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Remarks</th>
                                 <td colspan="3">
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Option</th>
                                 <td colspan="3">
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <textarea name="order_option_new" id="order_option_new" style="width: 100%; height: 100px;"><?=$result->order_option_new?></textarea>
+                                    <?php
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                         </tbody>

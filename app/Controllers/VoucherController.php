@@ -36,6 +36,7 @@ class VoucherController extends BaseController
 					a.*, b.*, c.*,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
 					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
 					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
@@ -61,7 +62,8 @@ class VoucherController extends BaseController
 							->get()->getResultArray();
 
 		if($type == "admin"){
-			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name = $result->order_user_name;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
 						. " " .date('d-M-Y(D)', strtotime($result->end_date))
@@ -76,7 +78,13 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
 			}else{
-				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+				$user_name = $result->order_user_name;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			}
 
 			if(!empty($result->order_user_name_new)){
@@ -135,6 +143,7 @@ class VoucherController extends BaseController
             'order_room_cnt' => $order_room_cnt,
             'order_people' => $order_people,
             'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
         ]);        
     }
 
@@ -150,6 +159,13 @@ class VoucherController extends BaseController
             $order_room_cnt_new = updateSQ($this->request->getPost('order_room_cnt_new') ?? "");
             $order_people_new = updateSQ($this->request->getPost('order_people_new') ?? "");
             $order_memo_new = updateSQ($this->request->getPost('order_memo_new') ?? "");
+            $order_user_name_en_new = updateSQ($this->request->getPost('order_user_name_en_new') ?? "");
+            $child_age_new = updateSQ($this->request->getPost('child_age_new') ?? "");
+            $breakfast_new = updateSQ($this->request->getPost('breakfast_new') ?? "");
+            $guest_request_new = updateSQ($this->request->getPost('guest_request_new') ?? "");
+            $order_remark_new = updateSQ($this->request->getPost('order_remark_new') ?? "");
+            $order_option_new = updateSQ($this->request->getPost('order_option_new') ?? "");
+
 
 			if(!empty($order_idx)) {
 				$data = [
@@ -160,7 +176,13 @@ class VoucherController extends BaseController
 					'order_user_name_new' => $order_user_name_new,
 					'order_room_cnt_new' => $order_room_cnt_new,
 					'order_people_new' => $order_people_new,
-					'order_memo_new' => $order_memo_new
+					'order_memo_new' => $order_memo_new,
+					'order_user_name_en_new' => $order_user_name_en_new,
+					'child_age_new' => $child_age_new,
+					'breakfast_new' => $breakfast_new,
+					'guest_request_new' => $guest_request_new,
+					'order_remark_new' => $order_remark_new,
+					'order_option_new' => $order_option_new
 				];
 
 				$result = $this->ordersModel->updateData($order_idx, $data);

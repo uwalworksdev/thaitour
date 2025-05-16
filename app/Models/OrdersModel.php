@@ -33,10 +33,12 @@ class OrdersModel extends Model
         , "vehicle_time", "departure_point", "order_day", "departure_area", "destination_area", "meeting_date", "return_date", "departure_hotel"
         , "destination_hotel", "ca_depth_idx", "cp_idx", "time_line", "ho_idx", "baht_thai", "breakfast", "group_no", "payment_no"
 		, "start_place", "end_place", "id_kakao", "description", "order_user_mobile_new", "order_date_new", "room_type_new", "bed_type_new"
-		, "order_user_name_new", "order_room_cnt_new", "order_people_new", "order_memo_new"
+		, "order_user_name_new", "order_room_cnt_new", "order_people_new", "order_memo_new", "order_user_name_en_new", "child_age_new"
+		, "breakfast_new", "guest_request_new", "order_remark_new", "order_option_new"
     ];
     protected $encryptedField = [ "order_user_name", 
 	                              "order_user_name_new",
+								  "order_user_name_en_new",
 	                              "order_user_email", 
 	                              "order_user_mobile",
 								  "order_user_mobile_new", 
