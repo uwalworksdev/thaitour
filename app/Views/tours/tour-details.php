@@ -4,6 +4,43 @@
 <?php $setting = homeSetInfo(); ?>
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
+<style>
+    .tours-detail .section2 .text-content-1 {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    .tours-detail .section2 .text-content-3 {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .tours-detail .section2 .text-content-2 .ps-right {
+        margin-left: 0;
+    }
+
+    .price-sub {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+
+    .price-sub .ps-left {
+        padding-bottom: 2px;
+    }
+
+    .price-sub .price {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 5px;
+    }
+</style>
+
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
@@ -195,19 +232,25 @@
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
-                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+
                             </div>
                             <div class="text-content-2">
-                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                                <div class="price-sub" style="text-align: right;">
-                                    <span class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</span>
-                                    <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
+                                <p><?=$info['info']['info_name']?></p>
+
+                                <div class="price-sub">
+                                    <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
+
+                                    <div class="price">
+                                        <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                        <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
+                                    </div>
+                                    <div class="text-content-3" style="justify-content: space-between;">
+                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-content-3" style="justify-content: space-between;">
-                                <p><?=$info['info']['info_name']?></p>
-                                <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
-                            </div>
+                            
                         </div>
                     <?php endforeach; ?>
                 <?php endforeach;?>
