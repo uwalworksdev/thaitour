@@ -1290,7 +1290,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $categories = '';
 
             $sql = "SELECT * FROM tbl_hotel_option o JOIN tbl_room r ON r.g_idx = o.o_room " .
-                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY o_room DESC, o_sdate DESC";
+                "WHERE o.goods_code = '" . $hotel['product_code'] . "' AND o.o_room != 0 ORDER BY r.g_idx ASC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
