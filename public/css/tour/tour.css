@@ -2584,7 +2584,7 @@
 .tours-detail .section2 .text-content-1 {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start !important;
     flex-direction: column;
 }
 
