@@ -259,7 +259,7 @@
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1652');">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_2397');">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1654');">결제완료</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1657');">주문취소</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1657');">예약취소</button>
                                         </td>
                                     </tr>
 
