@@ -2326,6 +2326,12 @@
     position: relative;
 }
 
+.tours-detail .section2 .sec2-item-card.tour_calendar .time_work {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
 .tours-detail .section2 .sec2-item-card.tour_calendar .time_work p {
     text-align: right;
     font-size: 18px;
@@ -2578,7 +2584,8 @@
 .tours-detail .section2 .text-content-1 {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start !important;
+    flex-direction: column;
 }
 
 .tours-detail .section2 .text-content-1 h3 {

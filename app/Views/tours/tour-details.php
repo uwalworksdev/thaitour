@@ -48,6 +48,11 @@
         display: flex;
         justify-content: space-between;
     }
+
+    .tours-detail .primary-btn-calendar.tour {
+        position: absolute;
+        bottom: 3%;
+    }
 </style>
 
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
