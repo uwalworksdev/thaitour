@@ -1277,7 +1277,8 @@ function alimTalk_send($order_no, $alimCode) {
     */
 
 	if($alimCode == "TY_1651") { // 예약가능
-		
+	
+	   $order_user_name = $order_user_name ." 상품: ". $row['product_name']; 	 
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
 	                        "phone"     => $order_user_mobile
