@@ -112,8 +112,8 @@
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['order_date']?></td>
                                     <td>
-										    <?=substr($payment_row['CancelDate_1'], 0, 4) . '-' . substr($payment_row['CancelDate_1'], 4, 2)  . '-' . substr($payment_row['CancelDate_1'], 6, 2) .' '; ?> 
-										    <?=substr($payment_row['CancelDate_1'], 9, 2) . ':' . substr($payment_row['CancelDate_1'], 11, 2) . ':' . substr($payment_row['CancelDate_1'], 13, 2)?>
+										    <?=substr($order['CancelDate_1'], 0, 4) . '-' . substr($order['CancelDate_1'], 4, 2)  . '-' . substr($order['CancelDate_1'], 6, 2) .' '; ?> 
+										    <?=substr($order['CancelDate_1'], 9, 2) . ':' . substr($order['CancelDate_1'], 11, 2) . ':' . substr($order['CancelDate_1'], 13, 2)?>
 										
                                     </td>
                                     <td><?=$order['product_name']?></td>
