@@ -12,6 +12,10 @@
         align-items: flex-end;
     }
 
+    .tours-detail .section2 .text-content-1 h3 {
+        margin-bottom: 20px;
+    }
+
     .tours-detail .section2 .text-content-3 {
         display: flex;
         justify-content: flex-end;
@@ -185,7 +189,7 @@
                         <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
                         <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
                         <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">리얼리뷰(<?= $product['total_review'] ?>개)</a>
-                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
+                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qna">상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</a>
                     </div>
                 </div>
 

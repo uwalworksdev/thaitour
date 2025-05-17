@@ -730,6 +730,8 @@
                     <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
                     <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
                         리얼리뷰(<?= $hotel['total_review'] ?>개)</p>
+                    <p class="nav-item" onclick="scrollToEl('hotel_qna_wrap')" style="cursor: pointer">
+                        상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</p>
                 </div>
                 <div class="btn-container only_web">
                     <button type="button" onclick="scrollToEl('section3')">

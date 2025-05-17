@@ -181,7 +181,7 @@ $(document).ready(function() {
                         <a class="short_link" data-target="location" href="#location">위치정보</a>
                         <a class="short_link" data-target="section6" href="#section6">리얼리뷰(<?= $product['total_review'] ?>
                             개)</a>
-                        <a class="short_link" data-target="qna" href="#qna">상품 Q&A</a>
+                        <a class="short_link" data-target="qna" href="#qna">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</a>
                     </div>
                     <div class="btn-container">
                         <a class="w-100" href="#!" data-target="#booking_area" onclick="handleShowBookingArea(this)">

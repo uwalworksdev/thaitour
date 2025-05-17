@@ -113,7 +113,7 @@ $setting = homeSetInfo();
                 </table>
 
                 <div class="info_order_txt">
-                    <p style="font-weight: 700">• Booked by: Totobooking</p>
+                    <p style="font-weight: 700">• Booked by: <?= $setting['site_name_en'] ?></p>
                 </div>
 
                 <div class="box_notifi no-break">
