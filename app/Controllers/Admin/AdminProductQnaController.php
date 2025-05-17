@@ -180,7 +180,7 @@ class AdminProductQnaController extends BaseController
 
             $idxArray = array_map('intval', $idxArray);
 
-            $data = $this->productQna->getByIdxAray($idxArray);
+            $data = $this->productQna->getByIdxArray($idxArray);
 
             if (empty($data)) {
                 return $this->response->setJSON([
