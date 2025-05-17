@@ -118,11 +118,17 @@
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td-->
 									<td style="text-align: center;">
-									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" > 
+									    <?php if($payment_row['payment_status'] != "C") { ?>
+									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" >
+										<?php } ?>
 									    <!--input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="1000" --> 
 									</td>
 									<td style="text-align: center;">
+									    <?php if($payment_row['payment_status'] == "C") { ?>
+									    <p style="color:red">예약취소</p>
+										<?php } else { ?>
 									    <button type="button" class="btn" style="width: unset;" onclick="orderView('<?=$order['order_idx']?>');">예약보기</button>
+										<?php } ?>
 									</td>
                                 </tr>
                                 <?php } ?>
