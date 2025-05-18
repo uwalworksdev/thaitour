@@ -65,6 +65,7 @@
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="partial_cancel_amt" id="partial_cancel_amt" value='0'>
                 <input type=hidden name="add_mileage" id="add_mileage" value='<?=$add_mileage?>'>
+			    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -218,7 +219,6 @@
                                     <?php if($payment_row['payment_status'] == "Y") { ?>
                                     <th>결제취소</th>
                                         <td>
-										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
