@@ -123,7 +123,7 @@
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td-->
 									<td style="text-align: center;">
-									    <?php if($payment_row['payment_status'] != "C") { ?>
+									    <?php if($order['order_status'] != "C") { ?>
 									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" >
 										<?php } else { ?>				
 									    <p style="color:red">예약취소</p>
