@@ -247,6 +247,12 @@
 </div>
 
 <script>
+  // 공통 헤더나 가장 상단에서 한 번만!
+  Kakao.init('7af820332f93a341cbfcce2456fedb73');
+  console.log('Kakao Initialized:', Kakao.isInitialized());
+</script>
+
+<script>
   function loginWithKakao() {
     Kakao.Auth.login({
       success: function(authObj) {
@@ -268,7 +274,6 @@
   }
 
   function handleKakaoUser(res) {
-	  alert('11111111111111');
     const id    = res.id;
     const email = res.kakao_account.email || '';
     const name  = res.properties.nickname || '';
