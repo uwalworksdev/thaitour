@@ -581,12 +581,16 @@ function getPgMethods()
 
 function autoEmail($code, $user_mail, $_tmp_fir_array)
 {
-
-
     $is_ssl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
     $protocol = $is_ssl ? 'https://' : 'http://';
     $domain = $_SERVER['HTTP_HOST'];
-    $http_domain_url = $protocol . $domain;
+
+    if($code == "A20"){
+        $http_domain_url = $protocol . $domain . "/voucher/". $_tmp_fir_array['gubun'] ."/" . $_tmp_fir_array['order_idx'];
+    }else{
+        $http_domain_url = $protocol . $domain;
+    }
+
 
     $infoRow = homeSetInfo();
 

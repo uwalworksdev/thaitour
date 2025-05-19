@@ -2329,8 +2329,8 @@ class AjaxController extends BaseController {
 			}
 
 			$_tmp_fir_array = [
-				
-
+				'gubun'   => "hotel",
+				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
  	            '전화번호'     => $row->user_mobile,
