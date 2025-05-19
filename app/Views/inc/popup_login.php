@@ -3,7 +3,64 @@
 </style>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript" src="/js/kakao.js"></script>
+<!--<script type="text/javascript" src="/js/kakao.js"></script>-->
+
+<script>
+  function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+        // 사용자 정보 요청
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: handleKakaoUser,
+          fail: function(err) {
+            console.error('카카오 API 실패', err);
+            alert('카카오 로그인 정보 요청에 실패했습니다.');
+          }
+        });
+      },
+      fail: function(err) {
+        console.error('카카오 로그인 실패', err);
+        alert('카카오 로그인에 실패했습니다.');
+      }
+    });
+  }
+
+  function handleKakaoUser(res) {
+    const id    = res.id;
+    const email = res.kakao_account.email || '';
+    const name  = res.properties.nickname || '';
+
+    // 폼에 값 채우기
+    $('#mode').val('true');            // 로그인 모드
+    $('#sns_key').val(id);
+    $('#userEmail').val(email);
+    $('#user_name').val(name);
+    $('#gubun').val('kakao');
+
+    // AJAX로 서버에 sns_key 확인
+    $.post({
+      url: '/member/sns_kakao_login',
+      data: { sns_key: id, mode: $('#mode').val() },
+      dataType: 'text'
+    })
+    .done(function(resp) {
+      resp = resp.trim();
+      if (resp === '2') {
+        // 이미 가입된 유저
+        alert('이미 가입된 회원입니다.');
+        location.href = '/member/login_form';
+      } else {
+        // 신규 가입 폼으로 이동
+        $('#loginFrm2').attr('action', '/member/join_form').submit();
+      }
+    })
+    .fail(function(xhr) {
+      console.error('서버 오류', xhr.responseText);
+      alert('서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+    });
+  }
+</script>
 
 <div class="popup_" id="popupLogin_">
     <div class="popup_area_">
