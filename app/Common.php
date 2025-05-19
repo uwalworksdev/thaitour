@@ -585,9 +585,11 @@ function autoEmail($code, $user_mail, $_tmp_fir_array)
     $protocol = $is_ssl ? 'https://' : 'http://';
     $domain = $_SERVER['HTTP_HOST'];
 
-    if($code == "A20"){
+    if($code == "A20" || $code == "A23" || $code == "A25" || $code == "A27" || $code == "A54" || $code == "A55" || $code == "A29" || $code == "A31") {
         $http_domain_url = $protocol . $domain . "/voucher/". $_tmp_fir_array['gubun'] ."/" . $_tmp_fir_array['order_idx'];
-    }else{
+    }else if($code == "A21" || $code == "A22" || $code == "A24" || $code == "A26" || $code == "A28" || $code == "A30" || $code == "A34" || $code == "A35") {
+        $http_domain_url = $protocol . $domain . "/invoice/". $_tmp_fir_array['gubun'] ."_01/" . $_tmp_fir_array['order_idx'];
+    }else {
         $http_domain_url = $protocol . $domain;
     }
 
