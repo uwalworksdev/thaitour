@@ -1,7 +1,7 @@
 Kakao.init(kakao_key); // JavaScript 키
 Kakao.isInitialized();
 
-
+alert(kakao_key);
 function loginWithKakao() {
     Kakao.Auth.login({
         success: function (response) {
