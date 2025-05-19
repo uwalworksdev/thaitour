@@ -169,7 +169,7 @@
                             </form>
 
                             <div class="sns_login_ttl">
-                                <span>SNS 로그인....</span>
+                                <span>SNS 로그인</span>
                             </div>
 
                             <script>
