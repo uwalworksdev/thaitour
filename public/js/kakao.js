@@ -34,6 +34,7 @@ function loginWithKakao() {
                                     alert("이미 가입된 회원입니다.");
                                     location.href = "/member/login_form";
                                 } else {
+									alert('xxxxxxxxx');
                                     document.getElementById("sns_key").value = sns_key;
                                     document.getElementById("user_name").value = name;
                                     document.getElementById("userEmail").value = email;
