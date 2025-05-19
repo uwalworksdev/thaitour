@@ -46,7 +46,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
                         </tr>
                         <tr>
                             <th>Phone</th>
