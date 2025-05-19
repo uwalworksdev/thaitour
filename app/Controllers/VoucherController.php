@@ -90,7 +90,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_mobile = $result->order_user_mobile_new;
 			}else{
-				$user_mobile = $result->order_user_mobile_new;
+				$user_mobile = $result->order_user_mobile;
 			}
 
 			if(!empty($result->order_date_new)){
