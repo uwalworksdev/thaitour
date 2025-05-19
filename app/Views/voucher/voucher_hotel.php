@@ -37,7 +37,7 @@ $setting = homeSetInfo();
                         </tbody>
                     </table>
                     <div class="top_flex flex_b_c">
-                        <h2 class="tit_top">Guest Information</h2>
+                        <h2 class="tit_top">Guest Information..</h2>
                     </div>
                     <table class="invoice_tbl">
                         <colgroup>
