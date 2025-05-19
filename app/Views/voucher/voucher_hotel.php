@@ -296,7 +296,7 @@ $setting = homeSetInfo();
                         <p><span>-</span><span>예약에 문제가 발생하거나 추가 예약이 필요하시면 다음 비상연락처로 연락주세요. 신속히 조치해 드리겠습니다.
                                 +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
                                 태국내에서 로밍폰 사용시는 지역번호나 국가번호 없이 080-000-0000만 누르시면 됩니다</span></p> -->
-                        <?= viewSQ($policy_1["policy_contents"]) ?>
+                        <?= viewSQ($policy["policy_contents"]) ?>
                     </div>
                 </div>
             </form>

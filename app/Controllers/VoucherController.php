@@ -156,6 +156,7 @@ class VoucherController extends BaseController
 
         return view("voucher/voucher_hotel", [
             'result'  => $result,
+            'policy'  => $policy[0],
             'type' => $type,
             'user_name' => $user_name,
             'user_mobile' => $user_mobile,

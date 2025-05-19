@@ -2529,7 +2529,8 @@ class AjaxController extends BaseController {
 	public function ajax_set_status()
 	{
 		    $db = \Config\Database::connect(); // 데이터베이스 연결
- 		
+ 			$private_key = private_key();
+
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
 
@@ -2542,17 +2543,192 @@ class AjaxController extends BaseController {
 		       $msg  = "예약 변경오류";	
 			}
 
-			$sql      = "SELECT order_no FROM tbl_order_mst WHERE order_idx = '". $order_idx ."' ";
+			$sql       = "SELECT   a.*, b.product_name_en
+			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
+								 , AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS user_first_name_en,
+								 , AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS user_last_name_en,
+								 FROM tbl_order_mst a
+								 LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
 			$row      = $db->query($sql)->getRow();
 			$order_no = $row->order_no;
+			$user_mail   = $row->user_email;
+    		$order_price = number_format($row->order_price);
+
+			if(!empty($row->user_name_en_new)){
+				$user_name_en = $row->user_name_en_new;
+			}else{
+				$user_name_en = $row->user_first_name_en . " " . $row->user_last_name_en;
+			}
+
+			if(!empty($row->user_mobile_new)){
+				$user_mobile = $row->user_mobile_new;
+			}else{
+				$user_mobile = $row->user_mobile;
+			}
+
+			if(!empty($row->room_type_new)){
+				$room_type = $row->room_type_new;
+			}else{
+				$room_type = $row->room_type;
+			}
+
+		    if($order_status == "W") {
+				$alimCode = "TY_1652";
 			
-		    if($order_status == "W") $alimCode = "TY_1652";  // 예약접수
-		    if($order_status == "X") $alimCode = "TY_1651";  // 예약확인
-		    if($order_status == "Y") $alimCode = "TY_1654";  // 결제완료
-		    if($order_status == "Z") $alimCode = "TY_1655";  // 예약확정
-		    if($order_status == "C") $alimCode = "TY_1657";  // 예약취소
-		    if($order_status == "N") $alimCode = "TY_1653";  // 예약불가 
-		    if($order_status == "E") $alimCode = "TY_1652";  // 이용완료.			
+				$code        = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $order_no,
+					'ORDER_PRICE' => $order_price,
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
+				
+			}  // 예약접수
+		    if($order_status == "X") { 
+				$alimCode = "TY_1651";
+
+				if($row->order_gubun == "hotel"){
+					$code = "A21";
+					$gubun = "hotel";
+				}else if($row->order_gubun == "golf"){
+					$code = "A22";
+					$gubun = "golf";
+				}else if($row->order_gubun == "tour"){
+					$code = "A24";
+					$gubun = "tour";
+				}else if($row->order_gubun == "spa"){
+					$code = "A26";		
+					$gubun = "ticket";
+				}else if($row->order_gubun == "ticket"){
+					$code = "A34";		
+					$gubun = "ticket";
+				}else if($row->order_gubun == "restaurant"){
+					$code = "A35";	
+					$gubun = "ticket";
+				}else if($row->order_gubun == "vehicle"){
+					$code = "A28";	
+					$gubun = "car";
+				}else {
+					$code = "A30";
+					$gubun = "guide";
+				}
+
+				$_tmp_fir_array = [
+					'order_idx' => $order_idx,
+					'gubun' => $gubun,
+					'예약번호' => $order_no,
+					'예약일자' => substr($row->order_r_date,0,10),
+					'회원이름' => $row->user_name,
+					'이메일' => $row->user_email,
+					'전화번호' => $row->user_mobile,
+					'이용날짜' => '',
+					'여행자성명' => $row->user_first_name_en . " " . $row->user_last_name_en,
+					'여행자연락처' => $row->user_mobile,
+					'여행자이메일' => $row->user_email,
+					'여행상품' => $row->product_name_en,
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
+
+			}  // 예약확인
+		    if($order_status == "Y") { 
+				$alimCode = "TY_1654"; 
+
+				$code = "A17";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME' => $row->user_name,
+					'PROD_NAME' => $row->product_name_en,
+					'ORDER_NO' => $order_no,
+					'ORDER_PRICE' => $order_price,
+					'PAYMENT_METHOD' => $row->order_method,
+					'ORDER_DATE' => substr($row->order_r_date,0,10),
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
+
+			}  // 결제완료
+		    if($order_status == "Z") { 
+				$alimCode = "TY_1655"; 
+
+				if($row->order_gubun == "hotel"){
+					$code = "A20";
+					$gubun = "hotel";
+				}else if($row->order_gubun == "golf"){
+					$code = "A23";
+					$gubun = "golf";
+				}else if($row->order_gubun == "tour"){
+					$code = "A25";
+					$gubun = "tour";
+				}else if($row->order_gubun == "spa"){
+					$code = "A27";		
+					$gubun = "ticket";
+				}else if($row->order_gubun == "ticket"){
+					$code = "A54";		
+					$gubun = "ticket";
+				}else if($row->order_gubun == "restaurant"){
+					$code = "A55";	
+					$gubun = "ticket";
+				}else if($row->order_gubun == "vehicle"){
+					$code = "A29";	
+					$gubun = "car";
+				}else {
+					$code = "A31";
+					$gubun = "guide";
+				}
+
+				$_tmp_fir_array = [
+					'gubun'   => $gubun,
+					'order_idx'  => $order_idx,
+					'회원이름'    => $row->user_name,
+					'이메일'      => $row->user_email,
+					'전화번호'    => $row->user_mobile,
+					'영문호텔명'   => $row->product_name_en,	
+					'영문호텔주소' => $row->stay_address,
+					'호텔전화번호' => $row->tel_no,
+
+					'고객영문이름' => $user_name_en,
+					'국가약자'    => '',
+					'휴대전화번호' => $user_mobile,
+
+					'예약번호'    => $order_no,
+					'이용날짜'    => substr($row->order_r_date,0,10),
+					'호텔상품'    => $room_type,
+
+					'여행자연락처' => $row->user_mobile,
+					'여행자이메일' => $row->user_email,
+					'총인원'      => $row->order_room_cnt ."Room",
+					'총금액'	  => $order_price,
+					'총견적금액'   => $order_price
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
+			}  // 예약확정
+		    if($order_status == "C") { 
+				$alimCode = "TY_1657"; 
+
+				$code = "A33";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME' => $row->user_name,
+					'PROD_NAME' => $row->product_name_en,
+					'ORDER_NO' => $order_no,
+					'ORDER_PRICE' => $order_price,
+					'PAYMENT_METHOD' => $row->order_method,
+					'CANCEL_DATE' => substr($row->order_c_date,0,10),
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
+			}  // 예약취소
+		    if($order_status == "N") { 
+				$alimCode = "TY_1653"; 
+			}  // 예약불가 
+		    if($order_status == "E") { 
+				$alimCode = "TY_1652"; 
+			}  // 이용완료.			
 
             alimTalk_send($order_no, $alimCode);
             //email_send($order_no, $order_status);
