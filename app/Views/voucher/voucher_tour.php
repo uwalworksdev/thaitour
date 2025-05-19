@@ -65,12 +65,12 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">144-395-444 (1)</td>
+                            <td colspan="3"><?=$result->order_no?></td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">29-Sep-2023(Fri)</td>
+                            <td style="color : red" colspan="3"><?=$result->order_date?></td>
 
                         </tr>
                         <tr>
