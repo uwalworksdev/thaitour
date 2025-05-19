@@ -68,6 +68,8 @@ function loginWithKakao() {
                                 
                                 
                                 if (response.trim() == "2") {
+                                    console.log("redirect");
+                                    
                                     location.href = returnUrl;
                                 } else {
                                     document.getElementById("sns_key").value = sns_key;
