@@ -73,7 +73,7 @@ class VoucherController extends BaseController
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			$order_memo = $result->order_memo;
-
+			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -130,6 +130,28 @@ class VoucherController extends BaseController
 			}else{
 				$order_memo = $result->order_memo;
 			}
+
+			if(!empty($result->child_age_new)){
+				$child_age = $result->child_age_new;
+			}
+
+			if(!empty($result->breakfast_new)){
+				$breakfast = $result->breakfast_new;
+			}else{
+				$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
+			}
+
+			if(!empty($result->guest_request_new)){
+				$guest_request = $result->guest_request_new;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
 		}
 
         return view("voucher/voucher_hotel", [
@@ -144,6 +166,11 @@ class VoucherController extends BaseController
             'order_people' => $order_people,
             'order_memo' => $order_memo,
 			'user_name_en' => $user_name_en,
+			'child_age' => $child_age,
+			'breakfast' => $breakfast,
+			'guest_request' => $guest_request,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option
         ]);        
     }
 

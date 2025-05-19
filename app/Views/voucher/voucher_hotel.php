@@ -196,11 +196,7 @@ $setting = homeSetInfo();
                                 <td colspan="3">
                                     <div class="flex_b_c">
                                         <?php
-                                            if($result->breakfast == "N") {
-                                                echo "Include (No) Adult Breakfast";
-                                            } else {  	 
-                                                echo "Include (Yes) Adult Breakfast";
-                                            }
+                                            echo $breakfast;
                                         ?>
                                         <?php
                                             if($type == "admin"){
@@ -216,6 +212,8 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Guest Request</th>
                                 <td colspan="3">
+                                    <?=$guest_request?>
+
                                     <?php
                                         if($type == "admin"){
                                     ?>    
@@ -242,6 +240,8 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Remarks</th>
                                 <td colspan="3">
+                                    <?=$order_remark?>
+
                                     <?php
                                         if($type == "admin"){
                                     ?>    
@@ -254,6 +254,8 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Option</th>
                                 <td colspan="3">
+                                    <?=$order_option?>
+
                                     <?php
                                         if($type == "admin"){
                                     ?>    
