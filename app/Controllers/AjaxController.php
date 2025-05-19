@@ -2557,6 +2557,9 @@ class AjaxController extends BaseController {
 			$user_mail   = $row->user_email;
     		$order_price = number_format($row->order_price);
 
+			$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+					. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
+
 			if(!empty($row->user_name_en_new)){
 				$user_name_en = $row->user_name_en_new;
 			}else{
@@ -2626,7 +2629,7 @@ class AjaxController extends BaseController {
 					'회원이름' => $row->user_name,
 					'이메일' => $row->user_email,
 					'전화번호' => $row->user_mobile,
-					'이용날짜' => '',
+					'이용날짜' => $use_day,
 					'여행자성명' => $row->user_first_name_en . " " . $row->user_last_name_en,
 					'여행자연락처' => $row->user_mobile,
 					'여행자이메일' => $row->user_email,
