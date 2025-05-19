@@ -27,6 +27,7 @@
   }
 
   function handleKakaoUser(res) {
+	  alert('11111111111111');
     const id    = res.id;
     const email = res.kakao_account.email || '';
     const name  = res.properties.nickname || '';
