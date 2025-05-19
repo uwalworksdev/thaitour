@@ -50,7 +50,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>KR 01021004474</td>
+                            <td>KR <?=$result->order_user_mobile?></td>
                         </tr>
                     </tbody>
                 </table>
