@@ -116,7 +116,7 @@ $setting = homeSetInfo();
                                         <?php
                                             if($type == "admin"){
                                         ?>    
-                                            <input type="text" name="room_type_new" value="<?=$result->room_type_new?>">    
+                                            <input type="text" style="width: 150px;" name="room_type_new" value="<?=$result->room_type_new?>">    
                                         <?php
                                             }
                                         ?>
@@ -129,7 +129,7 @@ $setting = homeSetInfo();
                                         <?php
                                             if($type == "admin"){
                                         ?>    
-                                            <input type="text" name="bed_type_new" value="<?=$result->bed_type_new?>">    
+                                            <input type="text" style="width: 150px;" name="bed_type_new" value="<?=$result->bed_type_new?>">    
                                         <?php
                                             }
                                         ?>

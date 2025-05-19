@@ -12,6 +12,7 @@ class VoucherController extends BaseController
     private $ordersModel;
     private $roomImg;
     private $CodeModel;
+    private $orderOptionModel;
 
 
     public function __construct() {
@@ -20,6 +21,8 @@ class VoucherController extends BaseController
         $this->ordersModel  = model("OrdersModel");
         $this->roomImg      = model("RoomImg");
         $this->CodeModel    = model("Code");
+        $this->orderOptionModel = model("OrderOptionModel");
+
         helper('my_helper');
 
     }
@@ -68,8 +71,8 @@ class VoucherController extends BaseController
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
 						. " " .date('d-M-Y(D)', strtotime($result->end_date))
 						. " / ".$result->order_day_cnt." night";
-			$room_type = $result->room_type_eng;
-			$bed_type = $result->bed_type_eng;
+			$room_type = $result->room_type;
+			$bed_type = $result->bed_type;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			$order_memo = $result->order_memo;
@@ -104,13 +107,13 @@ class VoucherController extends BaseController
 			if(!empty($result->room_type_new)){
 				$room_type = $result->room_type_new;
 			}else{
-				$room_type = $result->room_type_eng;
+				$room_type = $result->room_type;
 			}
 
 			if(!empty($result->bed_type_new)){
 				$bed_type = $result->bed_type_new;
 			}else{
-				$bed_type = $result->bed_type_eng;
+				$bed_type = $result->bed_type;
 			}
 
 			if(!empty($result->order_room_cnt_new)){
@@ -282,19 +285,22 @@ class VoucherController extends BaseController
     }
     public function golf($idx)
     {
-        $db = db_connect();
+        $type = $this->request->getVar('type'); 
+		$private_key = private_key(); // 복호화 키
 
-       	$private_key = private_key(); // 복호화 키
-
-        $builder = $db->table('tbl_order_mst a');
+		$db = db_connect();
+		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
 					a.*, b.*, c.*,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
 					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
 					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
 					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
 					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
 					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
@@ -309,6 +315,128 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [23])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+		$main    = explode("|", $this->orderOptionModel->getOption($result->order_idx, 'main')[0]["option_name"]);
+		// var_dump($this->orderOptionModel->getOption($result->order_idx, 'main'));
+		// die();
+        $option  = $this->orderOptionModel->getOption($result->order_idx, 'option');
+        $vehicle = $this->orderOptionModel->getOption($result->order_idx, 'vehicle');
+
+		foreach ($vehicle as $key => $item): 
+			if($item['option_name'] == "카트")   $cart  = $item['option_cnt'];
+			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'];
+		endforeach; 
+
+		$fee = "인원 :". $this->orderOptionModel->getOption($result->order_idx, 'main')[0]["option_cnt"] . "명" . " / 캐디: " . $cart . "명" . " / 카트: " . $caddy . "명";
+
+		$hole = trim(explode(":", $main[0])[1]);
+		$date = trim(explode(":", $main[1])[1]);
+		$day_time = trim(explode(":", $main[1])[0]);
+		$parts = explode(":", $main[2]);
+		$tee_time = "";
+		if(!empty($parts[1]) && !empty($parts[2])){
+			$minute = str_pad(trim($parts[1]), 2, "0", STR_PAD_LEFT);
+			$second = str_pad(trim($parts[2]), 2, "0", STR_PAD_LEFT);
+			$tee_time = $minute . " : " . $second;
+			
+		}
+		if($type == "admin"){
+			$user_name = $result->order_user_name;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
+						. " " .date('d-M-Y(D)', strtotime($result->end_date))
+						. " / ".$result->order_day_cnt." night";
+			$room_type = $result->room_type;
+			$bed_type = $result->bed_type;
+			$order_room_cnt = $result->order_room_cnt;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)";
+			$order_memo = $result->order_memo;
+			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_name;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
+						. " " .date('d-M-Y(D)', strtotime($result->end_date))
+						. " / ".$result->order_day_cnt." night";
+			}
+
+			if(!empty($result->room_type_new)){
+				$room_type = $result->room_type_new;
+			}else{
+				$room_type = $result->room_type;
+			}
+
+			if(!empty($result->bed_type_new)){
+				$bed_type = $result->bed_type_new;
+			}else{
+				$bed_type = $result->bed_type;
+			}
+
+			if(!empty($result->order_room_cnt_new)){
+				$order_room_cnt = $result->order_room_cnt_new;
+			}else{
+				$order_room_cnt = $result->order_room_cnt;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0) . " Adult(s)";
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->child_age_new)){
+				$child_age = $result->child_age_new;
+			}
+
+			if(!empty($result->breakfast_new)){
+				$breakfast = $result->breakfast_new;
+			}else{
+				$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
+			}
+
+			if(!empty($result->guest_request_new)){
+				$guest_request = $result->guest_request_new;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
+		}
+
         $builder1 = $db->table('tbl_policy_info');
 		$policy = $builder1->whereIn('p_idx', [28])
 							->orderBy('p_idx', 'asc')
@@ -316,7 +444,28 @@ class VoucherController extends BaseController
        
         return view("voucher/voucher_golf", [
             'policy_1' => $policy[0],
-            'result' => $result
+            'result' => $result,
+			'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'room_type' => $room_type,
+            'bed_type' => $bed_type,
+            'order_room_cnt' => $order_room_cnt,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'child_age' => $child_age,
+			'breakfast' => $breakfast,
+			'guest_request' => $guest_request,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'hole' => $hole,
+			'date' => $date,
+			'tee_time' => $tee_time,
+			'day_time' => $day_time,
+			'fee' => $fee,
+			'option' => $option,
         ]);
     }
 

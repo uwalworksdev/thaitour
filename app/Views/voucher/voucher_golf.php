@@ -23,15 +23,15 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">Lam Lukka Country Club</td>
+                            <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>29 Moo 7 Lamsal, Lam Luk Ka Klong 11, Pathumthani</td>
+                            <td><?=$result->stay_address?></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66 (0)2 995 2300~1</td>
+                            <td><?=$result->tel_no?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,11 +46,34 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>JEONG HEEYONG</td>
+                            <td>
+                                <div class="flex_b_c">
+                                    <?=$user_name?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>KR 01045799679</td>
+                            <td>
+                                <div class="flex_b_c">
+
+                                    <?=$user_mobile?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_user_mobile_new" id="order_user_mobile_new" value="<?=$result->order_user_mobile_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,48 +88,94 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">143-421-991 (1)</td>
+                            <td colspan="3"><?=$result->order_no?></td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">14-Feb-2020(Fri) </td>
-
+                            <td style="color : red" colspan="3">
+                                <div class="flex_b_c">
+                                    <?=$date?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td colspan="3">3 Adult(s)</td>
+                            <td colspan="3">
+                                <div class="flex_b_c">
+                                    <?=$order_people?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_people_new" value="<?=$result->order_people_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>T-off Time</th>
-                            <td>08:14</td>
+                            <td><?=$tee_time?></td>
                             <th>Hole</th>
-                            <td>18 Holes Morning</td>
+                            <td><?=$hole?> <?=$day_time?></td>
                         </tr>
                         
                         <tr>
                             <th>Fee</th>
                             <td colspan="3">
-                                <p>Green (Yes)/Caddy (Yes)/Cart (Yes)</p>
+                                <?=$fee?>
                             </td>
 
                         </tr>
                         <tr>
                             <th>Agent Memo</th>
                             <td colspan="3">
-                                <p></p>
+                                <?=$order_memo?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <textarea name="order_memo_new" id="order_memo_new" style="width: 100%; height: 100px;"><?=$result->order_memo_new?></textarea>
+                                <?php
+                                    }
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <th>Remarks</th>
                             <td colspan="3">
-                                <p></p>
+                                <?=$order_remark?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
+                                <?php
+                                    }
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <th>Option</th>
                             <td colspan="3">
-                                <p></p>
+                                <?php foreach ($option as $key => $item): ?>
+                                    <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
+                                    금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                    <?= $key == count($option) - 1 ? "" : "<br>" ?>										
+                                <?php endforeach; ?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <textarea name="order_option_new" id="order_option_new" style="width: 100%; height: 100px;"><?=$result->order_option_new?></textarea>
+                                <?php
+                                    }
+                                ?>
                             </td>
                         </tr>
                     </tbody>
