@@ -248,7 +248,7 @@
 
 <script>
   // 공통 헤더나 가장 상단에서 한 번만!
-  Kakao.init('c7f5026ce22a151a03628082a6aaeace');
+  Kakao.init('7af820332f93a341cbfcce2456fedb73');
   console.log('Kakao Initialized:', Kakao.isInitialized());
 </script>
 
