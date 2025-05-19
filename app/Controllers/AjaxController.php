@@ -2292,7 +2292,7 @@ class AjaxController extends BaseController {
  		
 			$order_no  = $_POST["order_no"];
  
-			$sql       = "SELECT   *
+			$sql       = "SELECT   a.*, b.*, c.*
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email
@@ -2301,7 +2301,10 @@ class AjaxController extends BaseController {
 								 , AES_DECRYPT(UNHEX(order_user_name_en_new),  '$private_key') AS user_name_en_new
 								 , AES_DECRYPT(UNHEX(order_user_mobile_new),  '$private_key') AS user_mobile_new   
 
-								FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+								FROM tbl_order_mst a
+								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								LEFT JOIN tbl_product_stay c ON b.stay_idx = c.stay_idx
+								WHERE order_no = '". $order_no ."' ";
 			//write_log("ajax_voucherHotel_send- ". $sql);					 
  								 
 			$row         = $db->query($sql)->getRow();
