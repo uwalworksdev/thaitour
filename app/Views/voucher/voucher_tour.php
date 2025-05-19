@@ -27,7 +27,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td><?=$result['addrs']?></td>
+                            <td><?=$result->addrs?></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
