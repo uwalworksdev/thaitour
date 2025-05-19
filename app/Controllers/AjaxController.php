@@ -2292,10 +2292,19 @@ class AjaxController extends BaseController {
  		
 			$order_no  = $_POST["order_no"];
  
-			$sql       = "SELECT   *
+			$sql       = "SELECT   a.*, b.*, c.*
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
-						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email
+								 , AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') AS user_first_name_en 
+								 , AES_DECRYPT(UNHEX(order_user_last_name_en),  '$private_key') AS user_last_name_en
+								 , AES_DECRYPT(UNHEX(order_user_name_en_new),  '$private_key') AS user_name_en_new
+								 , AES_DECRYPT(UNHEX(order_user_mobile_new),  '$private_key') AS user_mobile_new   
+
+								FROM tbl_order_mst a
+								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								LEFT JOIN tbl_product_stay c ON b.stay_idx = c.stay_idx
+								WHERE order_no = '". $order_no ."' ";
 			//write_log("ajax_voucherHotel_send- ". $sql);					 
  								 
 			$row         = $db->query($sql)->getRow();
@@ -2303,18 +2312,46 @@ class AjaxController extends BaseController {
 			$code        = "A20";
 			$user_mail   = $row->user_email;
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
+
+			if(!empty($row->user_name_en_new)){
+				$user_name_en = $row->user_name_en_new;
+			}else{
+				$user_name_en = $row->user_first_name_en . " " . $row->user_last_name_en;
+			}
+
+			if(!empty($row->user_mobile_new)){
+				$user_mobile = $row->user_mobile_new;
+			}else{
+				$user_mobile = $row->user_mobile;
+			}
+
+			if(!empty($row->room_type_new)){
+				$room_type = $row->room_type_new;
+			}else{
+				$room_type = $row->room_type;
+			}
+
 			$_tmp_fir_array = [
-				
-				'예약번호'    => $order_no,
-	            '예약일자'    => substr($row->order_r_date,0,10),
+				'gubun'   => "hotel",
+				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
  	            '전화번호'     => $row->user_mobile,
-				'체크인'	      => $checkin,
-				'여행자성명'   => $row->user_name,
+				'체크인'	   => $checkin,
+				'영문호텔명'     => $row->product_name_en,	
+				'영문호텔주소'   => $row->stay_address,
+				'호텔전화번호'   => $row->tel_no,
+
+				'고객영문이름'   => $user_name_en,
+				'국가약자'   => '',
+				'휴대전화번호'   => $user_mobile,
+
+				'예약번호'    => $order_no,
+	            '이용날짜'    => substr($row->order_r_date,0,10),
+	            '호텔상품'    => $room_type,
+
 				'여행자연락처' => $row->user_mobile,
 				'여행자이메일' => $row->user_email,
-				'여행상품'     => $row->product_name,	
 				'총인원'       => $row->order_room_cnt ."Room",
 				'총금액'	      => $order_price,
 				'총견적금액'   => $order_price

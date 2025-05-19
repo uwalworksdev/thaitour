@@ -26,10 +26,6 @@ function loginWithKakao() {
                             alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                             $("#ajax_loader").addClass("display-none");
                         }
-                        , complete: function (request, status, error) {
-
-                            //				$("#ajax_loader").addClass("display-none");
-                        }
                         , success: function (response, status, request) {
 
 							//회원가입 프로세스 절차 
@@ -67,8 +63,14 @@ function loginWithKakao() {
                             } else {
                                 //카카오 로그인 접근 시 
 								var returnUrl = $("#returnUrl").val();
+                                console.log(returnUrl + "\n");
+                                console.log(response.trim());
+                                
+                                
                                 if (response.trim() == "2") {
-                                    location.href = returnUrl;
+                                    console.log("redirect");
+                                    
+                                    window.location.href = returnUrl;
                                 } else {
                                     document.getElementById("sns_key").value = sns_key;
                                     document.getElementById("user_name").value = name;
