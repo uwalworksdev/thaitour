@@ -27,7 +27,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>112/151 Udomsuk Village, Paklok, Thalang, Phuket 83110 Thailand</td>
+                            <td><?=$result['addrs']?></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
