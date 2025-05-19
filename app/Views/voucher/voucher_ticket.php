@@ -45,11 +45,11 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>YANG HYUNGSUK</td>
+                            <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>KR 01021004474</td>
+                            <td>KR <?=$result->order_user_mobile?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -64,12 +64,12 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">145-564-957 (1)</td>
+                            <td colspan="3"><?=$result->order_no?></td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">20-Dec-2024(Fri)</td>
+                            <td style="color : red" colspan="3"><?=$result->order_day?></td>
 
                         </tr>
                         <tr>
