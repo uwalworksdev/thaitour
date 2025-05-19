@@ -14,7 +14,6 @@ function loginWithKakao() {
                     var gubun = "kakao";
                     var sns_key = list['id'];
                     var email      = list['kakao_account']['email'];
-                    alert('email- '+email);
                     var name = list['properties']?.['nickname'] ?? null;
                     var mode = document.getElementById("mode").value;
                     $.ajax({
