@@ -311,6 +311,10 @@
             margin-top: 7px !important;
             color: #454545 !important;
         }
+
+        .golf_invoice .info_order_txt {
+            margin: 10px 0 0 !important;
+        }
         
     </style>
 </head>
