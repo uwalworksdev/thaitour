@@ -14,7 +14,7 @@ function loginWithKakao() {
                     var gubun = "kakao";
                     var sns_key = list['id'];
                     var email      = list['kakao_account']['email'];
-                    // alert('email- '+email);
+                    alert('email- '+email);
                     var name = list['properties']?.['nickname'] ?? null;
                     var mode = document.getElementById("mode").value;
                     $.ajax({
@@ -34,7 +34,6 @@ function loginWithKakao() {
                                     alert("이미 가입된 회원입니다.");
                                     location.href = "/member/login_form";
                                 } else {
-									alert('xxxxxxxxx');
                                     document.getElementById("sns_key").value = sns_key;
                                     document.getElementById("user_name").value = name;
                                     document.getElementById("userEmail").value = email;
