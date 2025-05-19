@@ -1637,7 +1637,10 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 
     public function reservationFormInsert()
     {
+        
         try {
+            $private_key = private_key();
+
             $order_status       = $this->request->getPost('order_status') ?? "W";
             $product_idx        = $this->request->getPost('product_idx') ?? 0;
             $start_date         = $this->request->getPost('start_date') ?? 0;
@@ -1826,7 +1829,23 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 						'message' => "장바구니에 저장되었습니다."
 					], 200);
 				} else {
-					
+					$sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+                    $row = $this->db->query($sql)->getRow();
+                    
+                    $code = "A14";
+                    $_tmp_fir_array = [
+                        'RECEIVE_NAME'=> $row->user_name,
+                        'PROD_NAME'   => $row->product_name_en,
+                        'ORDER_NO'    => $row->order_no,
+                        'ORDER_PRICE' => number_format($row->order_price),
+                    ];
+            
+                    autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 				    $allim_replace = [
 										"#{고객명}" => $order_user_name,
 										"phone"     => $order_user_phone
@@ -2509,6 +2528,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     public function customerFormOk()
     {
         try {
+ 			$private_key = private_key();
 			
             $data = $this->request->getPost();
             $data['m_idx']            = session('member.idx') ?? "";
@@ -2823,6 +2843,23 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             }
 
             if ($data['order_status'] == "W") {
+                 $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+			    $row = $this->db->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 			    $allim_replace = [
 									"#{고객명}" => $order_user_name ?? "",
 									"phone"     => $order_user_phone
@@ -2958,6 +2995,8 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     {
         //print_r($_POST); exit;
         try {
+ 			$private_key = private_key();
+
             $data = $this->request->getPost();
 			$order_user_name = $data['order_user_name'];
             $data['m_idx'] = session('member.idx') ?? "";
@@ -3129,6 +3168,24 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                         // }
             if ($data['order_status'] == "W") {
 				
+                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+			    $row = $this->db->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
+
 			    $allim_replace = [
 									"#{고객명}" => $order_user_name,
 									"phone"     => $order_user_phone
@@ -4000,6 +4057,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     public function vehicleOrder()
     {
         try {
+ 			$private_key = private_key();
 
             if (!empty(session()->get("member")["id"])) {
                 $code_no = $this->request->getPost('code_no') ?? "";
@@ -4121,6 +4179,23 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     }
 
                     if ($order_status == "W") {
+                        $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                        , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                        FROM tbl_order_mst a
+                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+                        $row = $this->db->query($sql)->getRow();
+                        
+                        $code = "A14";
+                        $_tmp_fir_array = [
+                            'RECEIVE_NAME'=> $row->user_name,
+                            'PROD_NAME'   => $row->product_name_en,
+                            'ORDER_NO'    => $row->order_no,
+                            'ORDER_PRICE' => number_format($row->order_price),
+                        ];
+                
+                        autoEmail($code, $row->user_email, $_tmp_fir_array);
+
                         return $this->response->setJSON([
                             'result' => true,
                             'message' => "예약되었습니다."

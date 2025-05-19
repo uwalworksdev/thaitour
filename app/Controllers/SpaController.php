@@ -121,6 +121,8 @@ class SpaController extends BaseController
             $session   = Services::session();
             $memberIdx = $session->get('member')['idx'] ?? null;
 
+ 			$private_key = private_key();
+
             if (!$memberIdx) {
                 return $this->response->setJSON([
                     'result' => false,
@@ -293,6 +295,23 @@ class SpaController extends BaseController
 
             if($orderStatus == "W") {
 				
+                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $orderIdx ."' ";
+
+			    $row = $this->connect->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 			    $allim_replace = [
 									"#{고객명}" => $postData['order_user_name'],
 									"phone"     => $phone_1 . "-" . $phone_2 . "-" . $phone_3
