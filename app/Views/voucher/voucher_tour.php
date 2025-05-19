@@ -79,7 +79,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td>4 Adult(s)</td>
+                            <td><?=$result->people_adult_cnt?>: Adult(s)</td>
                             <th>Time</th>
                             <td>07:30~17:00</td>
                         </tr>
