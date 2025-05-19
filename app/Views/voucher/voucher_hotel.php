@@ -95,105 +95,121 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
-                                    <?=$order_date?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_date_new" value="<?=$result->order_date_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$order_date?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
     
                             </tr>
                             <tr>
                                 <th>Room Type</th>
                                 <td>
-                                    <?=$room_type?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="room_type_new" value="<?=$result->room_type_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$room_type?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" name="room_type_new" value="<?=$result->room_type_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                                 <th>Bed Type</th>
                                 <td>
-                                    <?=$bed_type?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="bed_type_new" value="<?=$result->bed_type_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$bed_type?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" name="bed_type_new" value="<?=$result->bed_type_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Guest Name</th>
                                 <td>
-                                    <?=$user_name_en?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_user_name_en_new" value="<?=$result->order_user_name_en_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$user_name_en?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input style="width: 150px;" type="text" name="order_user_name_en_new" value="<?=$result->order_user_name_en_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                                 <th>Number of rooms</th>
                                 <td>
-                                    <?=$order_room_cnt?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_room_cnt_new" value="<?=$result->order_room_cnt_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$order_room_cnt?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 150px;" name="order_room_cnt_new" value="<?=$result->order_room_cnt_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Total Persons</th>
                                 <td>
-                                    <?=$order_people?> 
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?=$order_people?> 
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 150px;" name="order_people_new" value="<?=$result->order_people_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                                 <th>Child Age</th>
                                 <td>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="child_age_new" value="<?=$result->child_age_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="flex_b_c">
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" name="child_age_new" value="<?=$result->child_age_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Breakfast</th>
                                 <td colspan="3">
-                                    <?php
-                                        if($result->breakfast == "N") {
-                                            echo "Include (No) Adult Breakfast";
-                                        } else {  	 
-                                            echo "Include (Yes) Adult Breakfast";
-                                        }
-                                    ?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="breakfast_new" value="<?=$result->breakfast_new?>">    
-                                    <?php
-                                        }
-                                    ?>	 
+                                    <div class="flex_b_c">
+                                        <?php
+                                            if($result->breakfast == "N") {
+                                                echo "Include (No) Adult Breakfast";
+                                            } else {  	 
+                                                echo "Include (Yes) Adult Breakfast";
+                                            }
+                                        ?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="breakfast_new" value="<?=$result->breakfast_new?>">    
+                                        <?php
+                                            }
+                                        ?>	 
+                                    </div>
                                 </td>
     
                             </tr>
