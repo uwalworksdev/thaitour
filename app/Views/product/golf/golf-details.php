@@ -4,8 +4,8 @@
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-			console.log('홀- '+dataTabValue);
-			console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			// console.log('홀- '+dataTabValue);
+			// console.log('caddie fee- '+$("#caddie_fee_sel").val());
 			
 			if($("#caddie_fee_sel").val() == "Y") {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
@@ -1005,7 +1005,7 @@ $(document).ready(function() {
 		var product_idx = document.getElementById("product_idx").value; // 상품 ID 가져오기
 		var goods_name  = document.querySelector(".tag-js.active")?.dataset.tab || ""; // 선택된 홀 개수 가져오기
 
-		console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
+		// console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
 
 		$.ajax({
 			url: "/ajax/ajax_trip_change",
@@ -1021,7 +1021,7 @@ $(document).ready(function() {
 			async: true, // 비동기 요청으로 변경
 			cache: false,
 			success: function (data) {
-				console.log("AJAX 응답:", data);
+				// console.log("AJAX 응답:", data);
 				if (data.status === "success") {
 					
 					// #vehicle_2 요소에 data-price와 data-price_baht 값 업데이트
@@ -1343,7 +1343,6 @@ $(document).ready(function() {
 					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
 					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
 					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
-                    console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
 

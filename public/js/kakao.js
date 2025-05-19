@@ -67,15 +67,15 @@ function loginWithKakao() {
                                 console.log(response.trim());
                                 
                                 
-                                // if (response.trim() == "2") {
-                                //     location.href = returnUrl;
-                                // } else {
-                                //     document.getElementById("sns_key").value = sns_key;
-                                //     document.getElementById("user_name").value = name;
-                                //     document.getElementById("userEmail").value = email ?? "";
-                                //     document.getElementById("gubun").value = 'kakao';
-                                //     $("#loginFrm").attr("action", "/member/join_form").submit();
-                                // }
+                                if (response.trim() == "2") {
+                                    location.href = returnUrl;
+                                } else {
+                                    document.getElementById("sns_key").value = sns_key;
+                                    document.getElementById("user_name").value = name;
+                                    document.getElementById("userEmail").value = email ?? "";
+                                    document.getElementById("gubun").value = 'kakao';
+                                    $("#loginFrm").attr("action", "/member/join_form").submit();
+                                }
 
                             }
                         }
