@@ -416,6 +416,10 @@ $setting = homeSetInfo();
                             margin-top: 0 !important;
                             margin-bottom: 0 !important;
                         }
+
+                        .golf_invoice .info_order_txt {
+                            margin: 10px 0 0 !important;
+                        }
                     }
                 </style>
             </head>

@@ -346,6 +346,10 @@
             padding: 9px;
             color: #7d7d7d;
         }
+
+        .golf_invoice .info_order_txt {
+            margin: 10px 0 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -478,8 +482,8 @@
                     </table>
                     <br>
                     <div class="info_order_txt" style="">
-                        <p style="font-weight: bold;">• Booked by: Totobooking</p>
-                        <p>• Booked on: 27-Sep-2023(Wed)</p>
+                        <p style="font-weight: bold;">• Booked by: <?= $setting['site_name_en'] ?></p>
+                        <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
                 </div>
             </div>
