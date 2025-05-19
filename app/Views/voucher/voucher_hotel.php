@@ -181,6 +181,7 @@ $setting = homeSetInfo();
                                 <th>Child Age</th>
                                 <td>
                                     <div class="flex_b_c">
+                                        <?=$child_age?>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
