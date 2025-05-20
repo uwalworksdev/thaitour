@@ -74,7 +74,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 100%;" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
+                <a href="/"><img class="logo_img" style="width: 100%;" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
