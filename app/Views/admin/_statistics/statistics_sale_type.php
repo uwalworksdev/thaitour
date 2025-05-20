@@ -203,8 +203,8 @@
                             <tr>
                                 <th>순위</th>
                                 <th>결제수단</th>
-                                <th>매출</th>
-                                <th>점유률</th>
+                                <th>매출(원)</th>
+                                <th>점유률(%)</th>
                             </tr>
                         </thead>
                         <tbody id="list_all">
