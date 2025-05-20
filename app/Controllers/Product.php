@@ -3489,6 +3489,13 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 							->get()->getRowArray();
         $data['policy'] = $policy;
 
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                            ->orderBy('p_idx', 'asc')
+                            ->get()->getResultArray();    
+
+        $data['reservaion_policy'] = $reservaion_policy;
+
         return $this->renderView('/product/tour/confirm-info', $data);
     }
 

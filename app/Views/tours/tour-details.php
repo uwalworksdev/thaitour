@@ -52,6 +52,16 @@
     .tours-detail .primary-btn-calendar.tour {
         position: absolute;
         bottom: 3%;
+        left: 28%;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-cart {
+        position: absolute;
+        bottom: 3%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
     }
 </style>
 
@@ -446,7 +456,7 @@
                                 <p><span class="total_all_price">0</span>원</p>
                             </div>
 
-                            <h3 class="title-second">약관동의</h3>
+                            <!-- <h3 class="title-second">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
                                 <input type="hidden" value="N" id="fullagreement">
@@ -470,7 +480,7 @@
                                 <label for="guidelines">여행안전수칙 동의(필수)</label>
                                 <button type="button" data-type="4" class="view-policy">[보기]</button>
                                 <input type="hidden" value="N" id="guidelines">
-                            </div>
+                            </div> -->
 
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
@@ -486,8 +496,9 @@
                     </div>
 
                     <?php if ($product['product_status'] == 'sale'): ?>
-                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
+                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">예약하기</button>
                     <?php endif; ?>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart">장바구니</button>
                 </div>
             </div>
         </form>
@@ -1050,7 +1061,7 @@
             $(el).closest('.schedule').remove();
             $("#option").val('');
         }
-        
+
         updateProductOption(); 
     }
 
@@ -1700,16 +1711,16 @@
             }
             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
-            let fullagreement = $("#fullagreement").val().trim();
-            let terms = $("#terms").val().trim();
-            let policy = $("#policy").val().trim();
-            let information = $("#information").val().trim();
-            let guidelines = $("#guidelines").val().trim();
+            // let fullagreement = $("#fullagreement").val().trim();
+            // let terms = $("#terms").val().trim();
+            // let policy = $("#policy").val().trim();
+            // let information = $("#information").val().trim();
+            // let guidelines = $("#guidelines").val().trim();
 
-            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                alert("모든 약관에 동의해야 합니다.");
-                return false;
-            }
+            // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+            //     alert("모든 약관에 동의해야 합니다.");
+            //     return false;
+            // }
 
             //$('#order_date').val(formattedDate);
             $('#people_adult_cnt').val(adultCnt);

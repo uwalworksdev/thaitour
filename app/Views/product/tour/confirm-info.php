@@ -4,6 +4,10 @@
 <?php $setting = homeSetInfo(); ?>
 
 <style>
+
+    .order-form-page .container-below-tb {
+        bottom: -50%;
+    }
     @media screen and (max-width : 850px) {
         .tours-detail .section2 .title-main-c {
             font-size: 3rem;
@@ -505,6 +509,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="container-below-tb">
                             <?php if ($product['direct_payment'] == "Y") { ?>
                                 <button type="button" class="primary-btn-calendar tours" onclick="handlePayment('B')">결제하기</button>
@@ -513,6 +518,35 @@
                             <?php } ?>
                             <button type="button" class="primary-btn-sub tours" onclick="handleSubmit('B')">장바구니에 담기</button>
                             <!--a href="" class="primary-btn-sub tours">장바구니에 담기</a-->
+                        </div>
+                    </div>
+                    <div class="flex_c">
+                        <div class="terms-wrap">
+                            <h3 class="title-second">약관동의</h3>
+                            <div class="item-info-check item_check_term_all_">
+                                <label for="fullagreement">전체동의</label>
+                                <input type="hidden" value="N" id="fullagreement">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">이용약관 동의(필수)</label>
+                                <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="terms">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="policy">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="information">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="guidelines">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -743,7 +777,83 @@
             <div class="dim"></div>
         </div>
 
+        <div class="popup_wrap place_pop reservation_pop">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closePopup()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>약관동의</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body">
+                            <div id="policyContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
+
         <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
+<script>
+    $(".view-policy").on("click", function (event) {
+        event.stopPropagation();
+        let type = $(this).data("type");
+        if(type == 1) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[1]["policy_contents"])?>`);
+        }else if(type == 2) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[0]["policy_contents"])?>`);
+        }else if(type == 3) {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[2]["policy_contents"])?>`);
+        }else {
+            $(".reservation_pop #policyContent").html(`<?=viewSQ($reservaion_policy[3]["policy_contents"])?>`);
+        }
+
+        let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+        $(".reservation_pop .popup_place__head__ttl h2").text(title);
+        $(".reservation_pop").show();
+    });
+
+    $('.item_check_term_').click(function () {
+        $(this).toggleClass('checked_');
+        let input = $(this).find('input');
+        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+        checkOrUncheckAll();
+    });
+
+    function checkOrUncheckAll() {
+        let allChecked = true;
+
+        $('.item_check_term_').each(function () {
+            let input = $(this).find('input');
+            if (input.val() !== 'Y') {
+                allChecked = false;
+                return false;
+            }
+        });
+
+        let allCheckbox = $('.item_check_term_all_');
+        let allInput = allCheckbox.find('input');
+        allCheckbox.toggleClass('checked_', allChecked);
+        allInput.val(allChecked ? 'Y' : 'N');
+    }
+
+    $('.item_check_term_all_').click(function () {
+        $(this).toggleClass('checked_');
+        let allChecked = $(this).hasClass('checked_');
+        let value = allChecked ? 'Y' : 'N';
+        $(this).find('input').val(value);
+
+        $('.item_check_term_').each(function () {
+            $(this).toggleClass('checked_', allChecked);
+            $(this).find('input').val(value);
+        });
+    });
+</script>
 
         <script>
 

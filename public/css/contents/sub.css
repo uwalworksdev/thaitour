@@ -4435,6 +4435,15 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     cursor: pointer;
 }
 
+.terms-wrap {
+    width: 535px;
+}
+
+.terms-wrap .title-second {
+    margin-top: 20px;
+    padding-left: 14px;
+    padding-bottom: 16px;
+}
 
 .customer-form-page .below-sub-des {
     font-size: 15px;
