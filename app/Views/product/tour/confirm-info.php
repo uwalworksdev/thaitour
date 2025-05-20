@@ -881,7 +881,7 @@
 
             function closePopup() {
                 $(".popup_wrap").hide();
-                $(".dim").hide();
+                // $(".dim").hide();
             }
         </script>
         <script>
