@@ -4445,6 +4445,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     padding-bottom: 16px;
 }
 
+.terms-wrap .view-policy {
+    margin-right: 30px;
+}
+
 .customer-form-page .below-sub-des {
     font-size: 15px;
 }
