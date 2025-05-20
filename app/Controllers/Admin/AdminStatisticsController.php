@@ -662,75 +662,76 @@ public function statistics_sale_day()
         return view('admin/_statistics/statistics_sale_sales');
     }
 
-	public function statistics_sale_type()
-	{
-		$db = \Config\Database::connect();
-		$builder = $db->table('tbl_payment_mst');
+public function statistics_sale_type()
+{
+    $db = \Config\Database::connect();
 
-		// 날짜 파라미터
-		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
-		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-		$payin  = $this->request->getGet('payin');
+    // 날짜 파라미터
+    $s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+    $e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+    $payin  = $this->request->getGet('payin');
 
-		// 필터 조건
-		$builder->where('paydate >=', $s_date . ' 00:00:00');
-		$builder->where('paydate <=', $e_date . ' 23:59:59');
-		$builder->where('payment_method IS NOT NULL');
-		$builder->where('payment_method !=', '');
+    // 기본 SQL
+    $sql = "SELECT payment_method, SUM(Amt_1) AS total 
+            FROM tbl_payment_mst 
+            WHERE paydate >= ? AND paydate <= ?
+              AND payment_method IS NOT NULL 
+              AND payment_method != ''";
 
-		if (!empty($payin)) {
-			$builder->where('DeviceType', $payin);
-		}
+    $params = [
+        $s_date . ' 00:00:00',
+        $e_date . ' 23:59:59',
+    ];
 
-		// payment_method 별 매출 합계
-		$builder->select('payment_method, SUM(Amt_1) as total', false);
-		$builder->groupBy('payment_method');
-		$builder->orderBy('total', 'DESC');
-
-write_log("statistics_sale_type- ". $builder->getCompiledSelect());		
-
-		$query  = $builder->get();
-		$result = $query->getResult();
-		
-		$price_arr = [];
-
-// 결제수단 맵핑 (DB값 => 한글 출력용)
-$method_map = [
-    '신용카드'     => '카드결제',
-    '가상계좌'     => '무통장(가상계좌)',
-    '계좌입금'     => '통장입금',
-    '실시간계좌이체' => '실시간계좌이체',
-];
-
-// 먼저 초기화
-$price_arr = [
-    '카드결제'        => 0,
-    '무통장(가상계좌)' => 0,
-    '실시간계좌이체'  => 0,
-    '통장입금'        => 0,
-];
-
-// DB 결과 적용
-foreach ($result as $row) {
-    $raw_method = $row->payment_method;
-    $method_name = $method_map[$raw_method] ?? $raw_method;  // 변환 or 그대로
-
-    // 값 누적
-    if (!isset($price_arr[$method_name])) {
-        $price_arr[$method_name] = 0;
+    // DeviceType 필터 추가
+    if (!empty($payin)) {
+        $sql .= " AND DeviceType = ?";
+        $params[] = $payin;
     }
-    $price_arr[$method_name] += (int) $row->total;
+
+    $sql .= " GROUP BY payment_method ORDER BY total DESC";
+
+    // 쿼리 실행
+    $query = $db->query($sql, $params);
+    $result = $query->getResult();
+
+    // 결제수단 매핑
+    $method_map = [
+        '신용카드'      => '카드결제',
+        '가상계좌'      => '무통장(가상계좌)',
+        '계좌입금'      => '통장입금',
+        '실시간계좌이체' => '실시간계좌이체',
+    ];
+
+    // 기본 배열 초기화
+    $price_arr = [
+        '카드결제'        => 0,
+        '무통장(가상계좌)' => 0,
+        '실시간계좌이체'  => 0,
+        '통장입금'        => 0,
+    ];
+
+    // 결과 적용
+    foreach ($result as $row) {
+        $raw_method  = $row->payment_method;
+        $method_name = $method_map[$raw_method] ?? $raw_method;
+
+        if (!isset($price_arr[$method_name])) {
+            $price_arr[$method_name] = 0;
+        }
+
+        $price_arr[$method_name] += (int) $row->total;
+    }
+
+    return view('admin/_statistics/statistics_sale_type', [
+        'result'    => $result,
+        'price_arr' => $price_arr,
+        's_date'    => $s_date,
+        'e_date'    => $e_date,
+        'payin'     => $payin,
+    ]);
 }
 
-
-		return view('admin/_statistics/statistics_sale_type', [  
-			'result'    => $result,
-			'price_arr' => $price_arr,
-			's_date'    => $s_date,
-			'e_date'    => $e_date,
-			'payin'     => $payin,
-		]);
-	}
 
     public function statistics_sale_type_day()
     {
