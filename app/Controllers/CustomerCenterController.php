@@ -35,6 +35,10 @@ class CustomerCenterController extends BaseController
         return view("center/map");
     }
 
+     public function about()
+    {
+        return view("center/about");
+    }
 
     public function terms()
     {
