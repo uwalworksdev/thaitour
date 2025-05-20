@@ -683,7 +683,7 @@ public function statistics_sale_day()
 		}
 
 		// payment_method 별 매출 합계
-		$builder->select('payment_method, SUM(Amt_1) as total');
+		$builder->select('payment_method, SUM(Amt_1) as total', false);
 		$builder->groupBy('payment_method');
 		$builder->orderBy('total', 'DESC');
 
