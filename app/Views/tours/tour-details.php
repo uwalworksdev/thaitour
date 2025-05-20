@@ -1019,6 +1019,7 @@
                                         <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
                                                     name="option_qty[]" id="input_qty" value="1">
                                         <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                        <button type="button" class="del_btn" onclick="deleteOption(this);">x</button>
                                     </div>
                                 </div>
     
@@ -1042,6 +1043,15 @@
             });
         }
         updateProductOption();
+    }
+
+    function deleteOption(el) {
+        if (confirm('선택 항목을 지우시겠습니까?')) {
+            $(el).closest('.schedule').remove();
+            $("#option").val('');
+        }
+        
+        updateProductOption(); 
     }
 
     function minusQty(el) {

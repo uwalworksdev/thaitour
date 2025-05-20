@@ -1457,6 +1457,11 @@
     flex: 0 0 auto;
 }
 
+.opt_count_box button.del_btn {
+    color: red;
+    margin-left: 40px;
+}
+
 .opt_count_box .minus_btn {
     display: flex;
     align-items: center;

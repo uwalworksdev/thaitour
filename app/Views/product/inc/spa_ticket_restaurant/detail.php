@@ -876,6 +876,14 @@
         renderItemPrice(el);
     }
 
+    function deleteOption(el) {
+        let idx = $(el).closest(".cus-count-input").data('idx');
+        let info_idx = $(el).closest(".cus-count-input").data('info_idx');
+        
+        arr_data_option[info_idx] = arr_data_option[info_idx].filter(item => item.idx !== idx);
+        removeData(el);
+    }
+
     function minusInput(el) {
         let input = $(el).parent().find('input');
         let idx = $(el).closest(".cus-count-input").data('idx');
@@ -950,6 +958,7 @@
                                 readonly="">
                             <button type="button" onclick="plusInput(this);" class="plus_btn"
                                     id="addAdult"></button>
+                            <button type="button" class="del_btn" onclick="deleteOption(this);">x</button>
                         </div>
 
                         <div class="" style="display: none">
