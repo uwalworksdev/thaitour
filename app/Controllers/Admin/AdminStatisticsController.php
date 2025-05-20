@@ -723,7 +723,7 @@ foreach ($result as $row) {
 }
 
 
-		return view('admin/_statistics/statistics_sale_type', [
+		return view('admin/_statistics/statistics_sale_type', [  
 			'result'    => $result,
 			'price_arr' => $price_arr,
 			's_date'    => $s_date,
