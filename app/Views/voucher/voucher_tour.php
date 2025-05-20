@@ -13,218 +13,237 @@ $setting = homeSetInfo();
             </div>
             <div class="invoice_ttl">
             </div>
-            <div class="invoice_table">
-                <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <td style="font-weight: 700;"><?=$result->product_name_en?></td>
-                        </tr>
-                        <tr>
-                            <th>Address</th>
-                            <td><?=$result->addrs?></td>
-                        </tr>
-                        <tr>
-                            <th>Tel</th>
-                            <td><?=$result->company_contact?></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="top_flex flex_b_c">
-                    <h2 class="tit_top">Guest Information</h2>
-                </div>
-                <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <td>
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <?=$user_name?>
+            <form action="" method="post" name="frm" id="frm">
+                <input type="hidden" name="order_idx" value="<?=$result->order_idx?>">
+                <div class="invoice_table">
+                    <table class="invoice_tbl">
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td><?=$result->addrs?></td>
+                            </tr>
+                            <tr>
+                                <th>Tel</th>
+                                <td><?=$result->company_contact?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="top_flex flex_b_c">
+                        <h2 class="tit_top">Guest Information</h2>
+                    </div>
+                    <table class="invoice_tbl">
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td>
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <?=$user_name?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                                <td>
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <?=$user_mobile?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="order_user_mobile_new" id="order_user_mobile_new" value="<?=$result->order_user_mobile_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2 class="tit_top">Booking details</h2>
+                    <table class="invoice_tbl">
+                        <colgroup>
+                            <col width="150px">
+                            <col width="35%">
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>Booking No</th>
+                                <td colspan="3"><?=$result->order_no?></td>
+    
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <td style="color : red" colspan="3">
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <p><?=$order_date?></p>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+    
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <td colspan="3">
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <p><?=$tour_type?></p>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Persons</th>
+                                <td>
+                                    <?=$order_people?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
+                                        <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
                                     <?php
                                         }
                                     ?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Phone</th>
-                            <td>
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <?=$user_mobile?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" style="width: 300px;" name="order_user_mobile_new" id="order_user_mobile_new" value="<?=$result->order_user_mobile_new?>">    
-                                    <?php
-                                        }
-                                    ?>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h2 class="tit_top">Booking details</h2>
-                <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>Booking No</th>
-                            <td colspan="3"><?=$result->order_no?></td>
-
-                        </tr>
-                        <tr>
-                            <th>Date</th>
-                            <td style="color : red" colspan="3">
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <?=$order_date?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
-                                    <?php
-                                        }
-                                    ?>
-                                </div>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>Type</th>
-                            <td colspan="3">Phi Phi-Khal-Pileh by Speed boat [Seastar]</td>
-                        </tr>
-                        <tr>
-                            <th>Persons</th>
-                            <td>
-                                <?=$order_people?>
-                                <?php
-                                    if($type == "admin"){
-                                ?>    
-                                    <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
-                                <?php
-                                    }
-                                ?>
-                            </td>
-                            <th>Time</th>
-                            <td>
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                </td>
+                                <th>Time</th>
+                                <td>
                                     <?=$time_line?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <input type="text" style="width: 150px;" name="time_line_en" value="<?=$result->time_line_en?>">    
+                                        <input type="text" name="time_line_en" value="<?=$result->time_line_en?>">    
                                     <?php
                                         }
                                     ?>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Pick up Place</th>
-                            <td>
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <?=$start_place?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Pick up Place</th>
+                                <td>
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <p><?=$start_place?></p>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 150px;" name="start_place_en" value="<?=$result->start_place_en?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+                                <th>Pick up Time</th>
+                                <td style="color: #252525; font-weight: 600;">
+                                    <?=$pick_time?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <input type="text" style="width: 150px;" name="start_place_en" value="<?=$result->start_place_en?>">    
+                                        <input type="text" name="pick_time_en" value="<?=$result->pick_time_en?>">    
                                     <?php
                                         }
                                     ?>
-                                </div>
-                            </td>
-                            <th>Pick up Time</th>
-                            <td style="color: #252525; font-weight: 600;">
-                                <?=$pick_time?>
-                                <?php
-                                    if($type == "admin"){
-                                ?>    
-                                    <input type="text" name="pick_time_en" value="<?=$result->pick_time_en?>">    
-                                <?php
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Kakao Id</th>
-                            <td colspan="3">
-                                <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <?=$id_kakao?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Kakao Id</th>
+                                <td colspan="3">
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <p><?=$id_kakao?></p>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="id_kakao_en" value="<?=$result->id_kakao_en?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>                    
+                            </tr>
+                            <tr>
+                                <th>Remarks</th>
+                                <td colspan="3">
+                                    <?=$order_remark?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <input type="text" style="width: 300px;" name="id_kakao_en" value="<?=$result->id_kakao_en?>">    
+                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
                                     <?php
                                         }
                                     ?>
-                                </div>
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <th>Remarks</th>
-                            <td colspan="3">
-                                <?=$order_remark?>
-                                <?php
-                                    if($type == "admin"){
-                                ?>    
-                                    <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
-                                <?php
-                                    }
-                                ?>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <th>Exclude</th>
-                            <td colspan="3">
-                                <!-- <p>주류, 개인경비</p> -->
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="info_order_txt">
-                    <p style="font-weight: 700">• Booked by: <?= $setting['site_name_en'] ?></p>
+                                </td>
+    
+                            </tr>
+                            <tr>
+                                <th>Exclude</th>
+                                <td colspan="3">
+                                    <!-- <p>주류, 개인경비</p> -->
+                                </td>
+    
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <div class="info_order_txt">
+                        <p style="font-weight: 700">• Booked by: <?= $setting['site_name_en'] ?></p>
+                    </div>
+                    <div class="btns_download_print">
+                        <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>
+                        <button type="button" class="btn_download" id="btn_print">프린트</button>
+                        <?php
+                            if($type == "admin"){
+                        ?>    
+                            <button type="button" style="background-color: #000000; color: #fff;" class="btn_download" id="btn_save">수정하기</button>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                    <div class="invoice_note_">
+                        <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                        <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
+                        <p><span>-</span><span>이예약확험서(바우처)를 가이드나 기사에게 제시한 후 해당 상품을 이용해 주세요.</span></p>
+                        <p><span>-</span><span>픽업이 포함된 투어는 미리 픽업장소와 시각을 정확히 알아 두세요. 픽업장소가 호텔인 경우에는 그 호텔 로비입니다.
+                                보비에 계시면 가이드나 기사가 예약확정서상의 성험으로 찾습니다.
+                                호텔 포비가 여러 개 있 때에는 1층 로비입니다.</span></p>
+                        <p><span>-</span><span>해양 스포츠 투어는 간혹 투어 당일 파도가 실해 신상위에서 안전사고가 발생할 수 있으니 안전요원의 지시사항을 각별히 준수하여 주시고, 만학의 안전사고에 대한 대비로 한국에서 미리 여행자 보험등에 가입하시기를 해드립니다. 안전 부주의로 인한 사고 발생시 여행사와 투어업체는 그 사고에 대한 책임이 있습니다.</span></p>
+                        <p><span>-</span><span>더블베드, 트윈베드의 베드타입과 고층배정, 허니문 특전, 인접한 객실 배정, 금연룸, 흡연룸 배정 등은호텔의 객실사정에 따라 달라집니다.<br> 즉, 확정사항이 아닌 요청사항일 뿐이므로 바우처에 기재해 드려도 확정되지 않는 경우가 간혹 발생합니다.
+    
+                                체크인시 다시 한번 호텔에 요청하시고, 기재된대로 요청사항이 이행되지 않더라도 여행사의 예약 잘못이 아닙니다.</span></p>
+                        <p><span>-</span><span>단독투어가 아닌 조인투어는 앞의 여름과 사랑에 따라 10~15분 정도 픽업에 늦어질 수도 있습니다.
+                                픽업 등 문제가 발생하면 아래로 연락주세요. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
+                                태국내에서 포밍폰 사용시는 지역번호나 국가번호 없이 080-709-0500만 누르시면 됩니다.</span>
+                        </p>
+    
+                    </div>
                 </div>
-                <div class="btns_download_print">
-                    <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>
-                    <button type="button" class="btn_download" id="btn_print">프린트</button>
-                </div>
-                <div class="invoice_note_">
-                    <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
-                    <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
-                    <p><span>-</span><span>이예약확험서(바우처)를 가이드나 기사에게 제시한 후 해당 상품을 이용해 주세요.</span></p>
-                    <p><span>-</span><span>픽업이 포함된 투어는 미리 픽업장소와 시각을 정확히 알아 두세요. 픽업장소가 호텔인 경우에는 그 호텔 로비입니다.
-                            보비에 계시면 가이드나 기사가 예약확정서상의 성험으로 찾습니다.
-                            호텔 포비가 여러 개 있 때에는 1층 로비입니다.</span></p>
-                    <p><span>-</span><span>해양 스포츠 투어는 간혹 투어 당일 파도가 실해 신상위에서 안전사고가 발생할 수 있으니 안전요원의 지시사항을 각별히 준수하여 주시고, 만학의 안전사고에 대한 대비로 한국에서 미리 여행자 보험등에 가입하시기를 해드립니다. 안전 부주의로 인한 사고 발생시 여행사와 투어업체는 그 사고에 대한 책임이 있습니다.</span></p>
-                    <p><span>-</span><span>더블베드, 트윈베드의 베드타입과 고층배정, 허니문 특전, 인접한 객실 배정, 금연룸, 흡연룸 배정 등은호텔의 객실사정에 따라 달라집니다.<br> 즉, 확정사항이 아닌 요청사항일 뿐이므로 바우처에 기재해 드려도 확정되지 않는 경우가 간혹 발생합니다.
-
-                            체크인시 다시 한번 호텔에 요청하시고, 기재된대로 요청사항이 이행되지 않더라도 여행사의 예약 잘못이 아닙니다.</span></p>
-                    <p><span>-</span><span>단독투어가 아닌 조인투어는 앞의 여름과 사랑에 따라 10~15분 정도 픽업에 늦어질 수도 있습니다.
-                            픽업 등 문제가 발생하면 아래로 연락주세요. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
-                            태국내에서 포밍폰 사용시는 지역번호나 국가번호 없이 080-709-0500만 누르시면 됩니다.</span>
-                    </p>
-
-                </div>
-            </div>
+            </form>
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
@@ -246,6 +265,28 @@ $setting = homeSetInfo();
         }
     ?>  
 </div>
+
+<script>
+    $("#btn_save").click(function () {
+        $.ajax({
+            url: "/voucher/tour/save",
+            type: "POST",
+            data: $("#frm").serialize(),
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            },
+            success: function (response, status, request) {
+                alert(response.message);
+                if(response.result == true){
+                    location.reload();
+                }
+                return;
+            }
+        });
+    });
+</script>
 
 <script>
     $(document).on('click', '#btn_print', function () {

@@ -49,7 +49,7 @@ $setting = homeSetInfo();
                                 <th>Name</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$user_name?>
+                                        <p><?=$user_name?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -66,7 +66,7 @@ $setting = homeSetInfo();
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
     
-                                        <?=$user_mobile?>
+                                        <p><?=$user_mobile?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -96,7 +96,7 @@ $setting = homeSetInfo();
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$order_date?>
+                                        <p><?=$order_date?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -112,7 +112,7 @@ $setting = homeSetInfo();
                                 <th>Room Type</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$room_type?>
+                                        <p><?=$room_type?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -125,7 +125,7 @@ $setting = homeSetInfo();
                                 <th>Bed Type</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$bed_type?>
+                                        <p><?=$bed_type?></p>   
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -140,7 +140,7 @@ $setting = homeSetInfo();
                                 <th>Guest Name</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$user_name_en?>
+                                        <p><?=$user_name_en?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -153,7 +153,7 @@ $setting = homeSetInfo();
                                 <th>Number of rooms</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$order_room_cnt?>
+                                        <p><?=$order_room_cnt?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -168,7 +168,7 @@ $setting = homeSetInfo();
                                 <th>Total Persons</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$order_people?> 
+                                        <p><?=$order_people?></p>    
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -181,7 +181,7 @@ $setting = homeSetInfo();
                                 <th>Child Age</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$child_age?>
+                                        <p><?=$child_age?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -196,9 +196,11 @@ $setting = homeSetInfo();
                                 <th>Breakfast</th>
                                 <td colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <p>
                                         <?php
                                             echo $breakfast;
                                         ?>
+                                        </p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
