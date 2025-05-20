@@ -32,6 +32,11 @@
 
     $price_arr = array();
 
+	$price_arr['Card']   = 0;
+	$price_arr['VBank']  = 0;
+	$price_arr['DBank']  = 0;
+	$price_arr['MBank']  = 0;
+
     foreach ($converted_result as $row) {
 			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
 			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
