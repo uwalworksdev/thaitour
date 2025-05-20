@@ -820,4 +820,60 @@ class VoucherController extends BaseController
 			'tour_type' => $tour_type,
         ]);
     }
+
+	public function ticket_save()
+	{
+		try {
+            $order_idx = updateSQ($this->request->getPost('order_idx'));
+            $order_user_name_new = updateSQ($this->request->getPost('order_user_name_new') ?? "");
+            $order_user_mobile_new = updateSQ($this->request->getPost('order_user_mobile_new') ?? "");
+            $order_date_new = updateSQ($this->request->getPost('order_date_new') ?? "");
+            $order_people_new = updateSQ($this->request->getPost('order_people_new') ?? "");
+            $tour_type_en = updateSQ($this->request->getPost('tour_type_en') ?? "");
+            $time_line_en = updateSQ($this->request->getPost('time_line_en') ?? "");
+            $start_place_en = updateSQ($this->request->getPost('start_place_en') ?? "");
+            $order_user_name_en_new = updateSQ($this->request->getPost('order_user_name_en_new') ?? "");
+            $order_remark_new = updateSQ($this->request->getPost('order_remark_new') ?? "");
+
+
+			if(!empty($order_idx)) {
+				$data = [
+					'order_user_mobile_new' => $order_user_mobile_new,
+					'order_date_new' => $order_date_new,
+					'tour_type_en' => $tour_type_en,
+					'time_line_en' => $time_line_en,
+					'order_user_name_new' => $order_user_name_new,
+					'start_place_en' => $start_place_en,
+					'order_people_new' => $order_people_new,
+					'order_user_name_en_new' => $order_user_name_en_new,
+					'order_remark_new' => $order_remark_new,
+				];
+
+				$result = $this->ordersModel->updateData($order_idx, $data);
+
+				if($result){
+					return $this->response->setJSON([
+						'result' => true,
+						'message' => "수정되었습니다.",
+					]);
+				}else {
+					return $this->response->setJSON([
+						'result' => false,
+						'message' => "오류가 발생했습니다!",
+					]);
+				}
+			}else {
+				return $this->response->setJSON([
+					'result' => false,
+					'message' => "order_idx가 존재하지 않습니다!",
+				]);
+			}
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+	}
 }

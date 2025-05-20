@@ -346,7 +346,7 @@
                                     <div class="schedule schedule_booking">
                                         <p style="font-weight: bold; width: 100%;"><?=$val?></p>
                                         <div class="schedule_wrap">
-                                            <div class="wrap-text">
+                                            <div class="wrap-text" style="width: 100%;">
                                                 <p>성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
@@ -355,7 +355,7 @@
                                             </div>
                                         </div>
                                         <div class="schedule_wrap">
-                                            <div class="wrap-text">
+                                            <div class="wrap-text" style="width: 100%;">
                                                 <p>아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
