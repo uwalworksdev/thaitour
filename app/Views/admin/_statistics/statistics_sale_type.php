@@ -37,7 +37,9 @@
 	$price_arr['DBank']  = 0;
 	$price_arr['MBank']  = 0;
 
+    $payment_tot = 0;
     foreach ($converted_result as $row) {
+		     $payment_tot = $payment_tot + $row['total'];
 			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
 			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
     }		
@@ -230,7 +232,7 @@
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $meth ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (int)($meth * 100 / $payment_tot) ?></div>
                                         </div>
                                     </td>
                                 </tr>
