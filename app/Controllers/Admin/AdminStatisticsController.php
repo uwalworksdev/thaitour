@@ -685,10 +685,11 @@ public function statistics_sale_day()
 		$builder->groupBy('payment_method');
 		$builder->orderBy('total', 'DESC');
 
+write_log("statistics_sale_type- ". $builder->getCompiledSelect());		
+
 		$query  = $builder->get();
 		$result = $query->getResult();
 		
-echo $builder->getCompiledSelect();		
 
 		// 동적으로 배열화
 		$price_arr = [];
