@@ -700,7 +700,7 @@ write_log("statistics_sale_type- ". $builder->getCompiledSelect());
 		}
 
 		// 누락 방지를 위해 미리 정해진 결제수단 추가 (필요한 경우)
-		$default_methods = ['신용카드', '가상계좌', '게좌입금', '통장입금'];
+		$default_methods = ['신용카드', '가상계좌', '계좌입금', '통장입금'];
 
 		foreach ($default_methods as $method) {
 			if (!isset($price_arr[$method])) {
