@@ -724,7 +724,7 @@ foreach ($result as $row) {
 
 
 		return view('admin/_statistics/statistics_sale_type', [
-			'price_arr' => $price_arr,
+			'price_arr' => $result,
 			's_date'    => $s_date,
 			'e_date'    => $e_date,
 			'payin'     => $payin,
