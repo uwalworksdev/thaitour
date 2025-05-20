@@ -143,7 +143,7 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", $price_arr['Card'] ],
+                                    ["카드결제", <?=$price_arr['Card']?> ],
                                     ["무통장",  50 ],
                                     ["실시간계좌이체", 20],
                                     ["통장입금", 10],
