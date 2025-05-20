@@ -141,10 +141,10 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", '<?=$chartCard?>' ],
-                                    ["무통장",  50 ],
-                                    ["실시간계좌이체", 20],
-                                    ["통장입금", 10],
+                                    ["카드결제",       '<?=$chartCard?>' ],
+                                    ["무통장",         '<?=$chartVBank?>' ],
+                                    ["실시간계좌이체", '<?=$chartDBank?>'],
+                                    ["통장입금",       '<?=$chartMBank?>'],
                                 ]);
 
                                 var options = {
