@@ -18,12 +18,11 @@ $setting = homeSetInfo();
                     <colgroup>
                         <col width="150px">
                         <col width="*">
-
                     </colgroup>
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">Phi Phi-Khai-Pileh by Speed boat [Seastar]</td>
+                            <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                         </tr>
                         <tr>
                             <th>Address</th>
@@ -31,7 +30,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66-(66) 076-350-144</td>
+                            <td><?=$result->company_contact?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -46,11 +45,33 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$user_name?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>KR <?=$result->order_user_mobile?></td>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$user_mobile?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_user_mobile_new" id="order_user_mobile_new" value="<?=$result->order_user_mobile_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -70,7 +91,18 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3"><?=$result->order_date?></td>
+                            <td style="color : red" colspan="3">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$order_date?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
 
                         </tr>
                         <tr>
@@ -79,35 +111,89 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td><?=$result->people_adult_cnt?>: Adult(s)</td>
+                            <td>
+                                <?=$order_people?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
+                                <?php
+                                    }
+                                ?>
+                            </td>
                             <th>Time</th>
-                            <td>07:30~17:00</td>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$time_line?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 150px;" name="time_line_en" value="<?=$result->time_line_en?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <th>Pick up Place</th>
-                            <td>Avani+ Mai Khao Phuket Suites & Villas</td>
+                            <td>
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$start_place?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 150px;" name="start_place_en" value="<?=$result->start_place_en?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>
                             <th>Pick up Time</th>
-                            <td style="color: #252525; font-weight: 600;">7.00 - 7.15</td>
+                            <td style="color: #252525; font-weight: 600;">
+                                <?=$pick_time?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <input type="text" name="pick_time_en" value="<?=$result->pick_time_en?>">    
+                                <?php
+                                    }
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <th>Kakao Id</th>
-                            <td>nickhwan</td>
-                            
+                            <td colspan="3">
+                                <div style="display: flex; align-items: center; justify-content: space-between;">
+                                    <?=$id_kakao?>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" style="width: 300px;" name="id_kakao_en" value="<?=$result->id_kakao_en?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </td>                    
                         </tr>
                         <tr>
                             <th>Remarks</th>
                             <td colspan="3">
-                                <p>이 투어는 호텔 픽업이 포함되어 있어요.</p>
-                                <p>조인 픽업이라 앞팀이 늦어질 경우 픽업 시간 보다 조금 더 늦어 질수 있어</p>
-                                <p>원활한 픽업을 위해 정해진 시간에 꼭 호텔 로비에서 기다려주세요!</p>
-                                <p>빠톰, 카타카론 비치를 제외한 나머지 곳들은 추가 비용이 발생합니다. 지역별 추가요금은 홈페이지 를 참고해주세요.</p>
+                                <?=$order_remark?>
+                                <?php
+                                    if($type == "admin"){
+                                ?>    
+                                    <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
+                                <?php
+                                    }
+                                ?>
                             </td>
 
                         </tr>
                         <tr>
                             <th>Exclude</th>
                             <td colspan="3">
-                                <p>주류, 개인경비</p>
+                                <!-- <p>주류, 개인경비</p> -->
                             </td>
 
                         </tr>
