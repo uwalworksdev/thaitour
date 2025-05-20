@@ -55,6 +55,7 @@
     </tbody>
 </table>
 
+<?php exit; ?>
 
 <div id="container">
     <span id="print_this">
