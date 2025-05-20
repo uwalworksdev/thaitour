@@ -32,10 +32,17 @@
 
     $price_arr = array();
 
-    $price_arr['Card'] = 0;
-    $price_arr['VBank'] = 0;
-    $price_arr['DBank'] = 0;
-    $price_arr['MBank'] = 0;
+	$price_arr['Card']   = 0;
+	$price_arr['VBank']  = 0;
+	$price_arr['DBank']  = 0;
+	$price_arr['MBank']  = 0;
+
+    $payment_tot = 0;
+    foreach ($converted_result as $row) {
+		     $payment_tot = $payment_tot + $row['total'];
+			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
+			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
+    }		
 ?>
 
 <div id="container">
@@ -136,10 +143,10 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", 100 ],
-                                    ["무통장",  50 ],
-                                    ["실시간계좌이체", 20],
-                                    ["통장입금", 10],
+                                    ["카드결제", <?=$price_arr['Card']?> ],
+                                    ["무통장",  <?=$price_arr['VBank']?> ],
+                                    ["실시간계좌이체", <?=$price_arr['DBank']?>],
+                                    ["통장입금", <?=$price_arr['MBank']?>],
                                 ]);
 
                                 var options = {
@@ -158,12 +165,12 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $payment_tot ?>;
                                 var rows = [
-                                    ["카드결제", 100, "#4285F4"],
-                                    ["무통장", 50, "#4285F4"],
-                                    ["실시간계좌이체", 20, "#4285F4"],
-                                    ["통장입금", 10, "#4285F4"]
+                                    ["카드결제", <?=$price_arr['Card']?>, "#4285F4"],
+                                    ["무통장", <?=$price_arr['VBank']?>, "#4285F4"],
+                                    ["실시간계좌이체", <?=$price_arr['DBank']?>, "#4285F4"],
+                                    ["통장입금", <?=$price_arr['MBank']?>, "#4285F4"]
                                 ];
 
                                 rows.forEach((row, index) => {
@@ -189,7 +196,7 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="8%"> <!-- 순위 -->
+                            <col width="8%">  <!-- 순위 -->
                             <col width="20%"> <!-- 결제수단 -->
                             <col width="20%"> <!-- 총매출 -->
                             <col width="52%"> <!-- 점유률 -->
@@ -198,8 +205,8 @@
                             <tr>
                                 <th>순위</th>
                                 <th>결제수단</th>
-                                <th>매출</th>
-                                <th>점유률</th>
+                                <th>매출(원)</th>
+                                <th>점유률(%)</th>
                             </tr>
                         </thead>
                         <tbody id="list_all">
@@ -225,7 +232,7 @@
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $meth ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (int)($meth * 100 / $payment_tot) ?></div>
                                         </div>
                                     </td>
                                 </tr>
