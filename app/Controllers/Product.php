@@ -4119,7 +4119,6 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
                 $data = [
                     "m_idx" => $m_idx,
-                    "device_type" => $device_type,
                     "product_idx" => $product_idx,
                     "product_cnt" => $product_cnt,
                     "product_code_1" => $parent_code_no,
@@ -4130,11 +4129,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     "product_name" => $product_name,
                     "code_name" => $code_name,
                     "order_gubun" => "vehicle",
-                    "order_user_name" => encryptField($order_user_name, "encode") ?? "",
-                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? "",
-                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? "",
-                    "order_user_email" => encryptField($order_user_email, "encode") ?? "",
-                    "order_user_mobile" => encryptField($order_user_mobile, "encode") ?? "",
+                    "order_user_name" => encryptField($order_user_name, "encode"),
+                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
+                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
+                    "order_user_email" => encryptField($order_user_email, "encode"),
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                     "order_user_gender" => $order_user_gender,
                     "people_adult_cnt" => $adult_cnt,
                     "people_kids_cnt" => $child_cnt,
@@ -4183,7 +4182,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
                     if ($order_status == "W") {
                         $sql = "SELECT a.order_no, a.order_price, b.product_name_en
-                                        , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name,
+                                        , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                         , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                         FROM tbl_order_mst a
                                         LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";

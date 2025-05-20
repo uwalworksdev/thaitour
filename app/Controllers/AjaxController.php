@@ -2556,9 +2556,7 @@ class AjaxController extends BaseController {
 			$order_no = $row->order_no;
 			$user_mail   = $row->user_email;
     		$order_price = number_format($row->order_price);
-
-			$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
-					. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
+			$use_day = $row->order_day;
 
 			if(!empty($row->user_name_en_new)){
 				$user_name_en = $row->user_name_en_new;
@@ -2598,6 +2596,8 @@ class AjaxController extends BaseController {
 				if($row->order_gubun == "hotel"){
 					$code = "A21";
 					$gubun = "hotel";
+					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+						. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
 				}else if($row->order_gubun == "golf"){
 					$code = "A22";
 					$gubun = "golf";
@@ -2616,9 +2616,12 @@ class AjaxController extends BaseController {
 				}else if($row->order_gubun == "vehicle"){
 					$code = "A28";	
 					$gubun = "car";
+					$use_day = substr($row->order_date,0,10);					
 				}else {
 					$code = "A30";
 					$gubun = "guide";
+					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+						. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
 				}
 
 				$_tmp_fir_array = [
@@ -2661,6 +2664,8 @@ class AjaxController extends BaseController {
 				if($row->order_gubun == "hotel"){
 					$code = "A20";
 					$gubun = "hotel";
+					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+						. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
 				}else if($row->order_gubun == "golf"){
 					$code = "A23";
 					$gubun = "golf";
@@ -2679,9 +2684,13 @@ class AjaxController extends BaseController {
 				}else if($row->order_gubun == "vehicle"){
 					$code = "A29";	
 					$gubun = "car";
+					$use_day = substr($row->order_date,0,10);					
+
 				}else {
 					$code = "A31";
 					$gubun = "guide";
+					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+						. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
 				}
 
 				$_tmp_fir_array = [
@@ -2701,6 +2710,9 @@ class AjaxController extends BaseController {
 					'예약번호'    => $order_no,
 					'이용날짜'    => substr($row->order_r_date,0,10),
 					'호텔상품'    => $room_type,
+					'골프상품명'  => '',
+					'제품명'     => '',
+					'영문상품명'  => $use_day,
 
 					'여행자연락처' => $row->user_mobile,
 					'여행자이메일' => $row->user_email,
