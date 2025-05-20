@@ -675,6 +675,8 @@ public function statistics_sale_day()
 		// 필터 조건
 		$builder->where('paydate >=', $s_date . ' 00:00:00');
 		$builder->where('paydate <=', $e_date . ' 23:59:59');
+		$builder->where('payment_method IS NOT NULL');
+		$builder->where('payment_method !=', '');
 
 		if (!empty($payin)) {
 			$builder->where('DeviceType', $payin);
@@ -685,10 +687,11 @@ public function statistics_sale_day()
 		$builder->groupBy('payment_method');
 		$builder->orderBy('total', 'DESC');
 
+write_log("statistics_sale_type- ". $builder->getCompiledSelect());		
+
 		$query  = $builder->get();
 		$result = $query->getResult();
 		
-echo $builder->getCompiledSelect();		
 
 		// 동적으로 배열화
 		$price_arr = [];
