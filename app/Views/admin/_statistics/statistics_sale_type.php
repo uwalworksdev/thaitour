@@ -143,7 +143,7 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", 100 ],
+                                    ["카드결제", $price_arr['Card'] ],
                                     ["무통장",  50 ],
                                     ["실시간계좌이체", 20],
                                     ["통장입금", 10],
@@ -165,7 +165,7 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $payment_tot ?>;
                                 var rows = [
                                     ["카드결제", 100, "#4285F4"],
                                     ["무통장", 50, "#4285F4"],
@@ -196,7 +196,7 @@
 
                     <table class="listIn fixed-header">
                         <colgroup>
-                            <col width="8%"> <!-- 순위 -->
+                            <col width="8%">  <!-- 순위 -->
                             <col width="20%"> <!-- 결제수단 -->
                             <col width="20%"> <!-- 총매출 -->
                             <col width="52%"> <!-- 점유률 -->
