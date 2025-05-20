@@ -49,7 +49,7 @@ $setting = homeSetInfo();
                                 <th>Name</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$user_name?>
+                                        <p><?=$user_name?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -64,7 +64,7 @@ $setting = homeSetInfo();
                                 <th>Phone</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$user_mobile?>
+                                        <p><?=$user_mobile?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -109,7 +109,18 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Type</th>
-                                <td colspan="3">Admission (08:00-16:30)</td>
+                                <td colspan="3">
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        Admission (08:00-16:30)
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Persons</th>
@@ -211,7 +222,7 @@ $setting = homeSetInfo();
 <script>
     $("#btn_save").click(function () {
         $.ajax({
-            url: "/voucher/tour/save",
+            url: "/voucher/ticket/save",
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
