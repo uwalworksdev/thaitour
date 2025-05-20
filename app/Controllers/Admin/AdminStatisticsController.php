@@ -675,6 +675,8 @@ public function statistics_sale_day()
 		// 필터 조건
 		$builder->where('paydate >=', $s_date . ' 00:00:00');
 		$builder->where('paydate <=', $e_date . ' 23:59:59');
+		$builder->where('payment_method IS NOT NULL');
+		$builder->where('payment_method !=', '');
 
 		if (!empty($payin)) {
 			$builder->where('DeviceType', $payin);
