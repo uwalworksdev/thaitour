@@ -32,10 +32,15 @@
 
     $price_arr = array();
 
-    $price_arr['Card'] = 100;
+    $price_arr['Card']  = 100;
     $price_arr['VBank'] = 200;
     $price_arr['DBank'] = 300;
     $price_arr['MBank'] = 400;
+	
+    $chartCard  = $price_arr['Card'];
+    $chartVBank = $price_arr['VBank'];
+    $chartDBank = $price_arr['DBank'];
+    $chartMBank = $price_arr['MBank'];
 ?>
 
 <div id="container">
@@ -136,7 +141,7 @@
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", 100 ],
+                                    ["카드결제", '<?=$chartCard?>' ],
                                     ["무통장",  50 ],
                                     ["실시간계좌이체", 20],
                                     ["통장입금", 10],
@@ -158,7 +163,7 @@
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?> + <?= $price_arr['MBank'] ?>;
                                 var rows = [
                                     ["카드결제", 100, "#4285F4"],
                                     ["무통장", 50, "#4285F4"],
