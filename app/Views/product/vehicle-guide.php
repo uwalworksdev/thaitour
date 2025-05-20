@@ -2709,7 +2709,7 @@
                             <th>전화번호*</th>
                             <td colspan="3">
                                 <div class="phone_number">
-                                    <input type="text" name="phone1" id="phone1"
+                                    <input type="text" name="phone1" id="phone_1"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
                                     <input type="text" name="phone2" id="phone_2"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
