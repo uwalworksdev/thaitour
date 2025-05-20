@@ -62,6 +62,12 @@ $(document).ready(function() {
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
+                <input type="hidden" name="product_code_1" id="product_code_1" value="<?= $product['product_code_1'] ?>">
+                <input type="hidden" name="product_code_2" id="product_code_2" value="<?= $product['product_code_2'] ?>">
+                <input type="hidden" name="product_code_3" value="">
+                <input type="hidden" name="product_code_4" value=""> 
+                <input type="hidden" name="order_status" id="order_status" value="B">
+
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
@@ -423,6 +429,8 @@ $(document).ready(function() {
                                         <span class="pri"
                                               rel="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>">￦<?= number_format($option['goods_price1_1'] * $baht_thai) ?></span>
                                         <input type="hidden" name="opt_idx[]" value="<?= $option['idx'] ?>">
+                                        <input type="hidden" name="opt_name[]"   value="<?= $option['goods_name'] ?>">
+
                                         <select data-name="<?= $option['goods_name'] ?>"
                                                 data-price="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>"
                                                 data-price_baht="<?= $option['goods_price1_1'] ?>"
@@ -616,9 +624,9 @@ $(document).ready(function() {
            <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
            <div class="btn-s-wrap">
                 <?php if ($product['product_status'] == 'sale'): ?>
-                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
+                    <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
                 <?php endif; ?>
-                <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit()">예약하기</button>
+                <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
            </div>                 
         </div>
         <div class="section2-sub">
@@ -1439,7 +1447,7 @@ $(document).ready(function() {
         }
 
 
-        function handleSubmit() {
+        function handleSubmit(type) {
 			
             <?php
             if (empty(session()->get("member")["id"])) {
@@ -1465,6 +1473,11 @@ $(document).ready(function() {
                 alert('본홀은 카트의무예약 홀입니다 카트를 선택해주세요.');
                 $("#vehicle_4").focus();
                 return false;
+            }
+
+            if(type == 'B'){
+                $("#frm").attr('method', 'post');
+                $("#frm").attr('action', '/product-golf/customer-form-ok');
             }
 
 			$("#frm").submit();

@@ -2558,8 +2558,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 			
 			$optName                  = $data["opt_name"];
             $optIdx                   = $data["opt_idx"];
-            $optCnt                   = $data["opt_cnt"];
-
+            $optCnt                   = !empty($data["opt_cnt"]) ? $data["opt_cnt"] : $data["option_cnt"];
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -2579,7 +2578,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                 $data['people_adult_cnt'],
                 $data['vehicle_cnt'],
                 $data['vehicle_idx'],
-                $data['opt_cnt'],
+                $optCnt,
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
 				$data['golf_date'],

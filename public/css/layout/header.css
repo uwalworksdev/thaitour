@@ -339,7 +339,7 @@
     content: "";
     display: block;
     position: absolute;
-    bottom: -16px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
     border-left: 7px solid transparent;
