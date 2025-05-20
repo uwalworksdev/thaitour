@@ -38,25 +38,6 @@
     //$price_arr['MBank'] = 0;
 ?>
 
-<table>
-    <thead>
-        <tr>
-            <th>결제수단</th>
-            <th>매출합계</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($price_arr as $method => $amount): ?>
-            <tr>
-                <td><?= esc($method) ?></td>
-                <td><?= number_format($amount) ?> 원</td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-
-<?php exit; ?>
-
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
