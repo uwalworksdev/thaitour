@@ -13,7 +13,7 @@
 </style>
 
 <?php
-    $pay_method['Card']     = "카드결제";
+    $pay_method['Card']     = "카드결제..";
     $pay_method['VBank']    = "무통장(가상계좌)";
     $pay_method['DBank']    = "실시간계좌이체";
     $pay_method['MBank']    = "통장입금";
