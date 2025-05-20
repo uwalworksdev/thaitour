@@ -32,17 +32,9 @@
 
     $price_arr = array();
 
-                                    foreach ($ordered_methods as $method) {
-                                    if (isset($price_arr[$method])) {
-                                        $sorted_price_arr[$method] = $price_arr[$method];
-                                    }
-                                    foreach ($ordered_methods as $method) {
-                                }
     foreach ($converted_result as $row) {
 			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
 			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
-			$price_arr['DBank'] = $row['total'];
-			$price_arr['MBank'] = $row['total'];
     }		
 ?>
 
