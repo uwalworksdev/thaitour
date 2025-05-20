@@ -28,6 +28,10 @@
     font-size: 18px;
 }
 
+.flex_header_top img {
+    height: 32px;
+}
+
 .flex_header_top select {
     height: 1px;
     width: 1px;
