@@ -690,9 +690,9 @@ public function statistics_sale_type()
 
     // 한글 결제수단 → 코드명 매핑
     $code_map = [
-        '신용카드'     => 'Card',
-        '가상계좌'     => 'VBank',
-        '계좌입금'     => 'VBank',  // 같은 코드로 처리
+        '신용카드'       => 'Card',
+        '가상계좌'       => 'VBank',
+        '계좌입금'       => 'MBank',  // 같은 코드로 처리
         '실시간계좌이체' => 'DBank',
     ];
 
