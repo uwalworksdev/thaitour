@@ -621,9 +621,9 @@ $(document).ready(function() {
 		
           <div class="list-select-element tour">
 		       <div class="item-select">
-                    <span class="label">승용차</span>
+                    <span class="label" style="width: unset;">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="trip_type1" name="trip_type1" style="width:unset; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
+					<select id="trip_type1" name="trip_type1" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -637,9 +637,9 @@ $(document).ready(function() {
                     </select>
                 </div>
                 <div class="item-select">
-                    <span class="label">SUV</span>
+                    <span class="label" style="width: unset;">SUV</span>
                     <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="trip_type3" name="trip_type3" style="width:unset; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
+					<select id="trip_type3" name="trip_type3" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -653,9 +653,9 @@ $(document).ready(function() {
 				</select>
                 </div>
             	<div class="item-select">
-                    <span class="label">밴 (승합차) </span>
+                    <span class="label" style="width: unset;">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="trip_type2" name="trip_type2" style="width:unset; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
+					<select id="trip_type2" name="trip_type2" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
