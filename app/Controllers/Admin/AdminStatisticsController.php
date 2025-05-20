@@ -691,36 +691,7 @@ write_log("statistics_sale_type- ". $builder->getCompiledSelect());
 
 		$query  = $builder->get();
 		$result = $query->getResult();
-		
-		$price_arr = [];
 
-// 결제수단 맵핑 (DB값 => 한글 출력용)
-$method_map = [
-    '신용카드'     => '카드결제',
-    '가상계좌'     => '무통장(가상계좌)',
-    '계좌입금'     => '통장입금',
-    '실시간계좌이체' => '실시간계좌이체',
-];
-
-// 먼저 초기화
-$price_arr = [
-    '카드결제'        => 0,
-    '무통장(가상계좌)' => 0,
-    '실시간계좌이체'  => 0,
-    '통장입금'        => 0,
-];
-
-// DB 결과 적용
-foreach ($result as $row) {
-    $raw_method = $row->payment_method;
-    $method_name = $method_map[$raw_method] ?? $raw_method;  // 변환 or 그대로
-
-    // 값 누적
-    if (!isset($price_arr[$method_name])) {
-        $price_arr[$method_name] = 0;
-    }
-    $price_arr[$method_name] += (int) $row->total;
-}
 
 
 		return view('admin/_statistics/statistics_sale_type', [
