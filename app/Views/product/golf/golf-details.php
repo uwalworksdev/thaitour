@@ -191,66 +191,7 @@ $(document).ready(function() {
                         </a>
                     </div>
                 </div>
-                <h3 class="title-size-24" id="product_info">상품 정보</h3>
-                <table class="golf-table" style="table-layout: fixed;">
-                    <colgroup>
-                        <col width="16%">
-                        <col width="*">
-                        <col width="16%">
-                        <col width="*">
-                        <col width="16%">
-                        <col width="*">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>더투어랩 평가 등급</th>
-                        <th>
-                            <div class="rating-list">
-                                <?php if ($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                            </div>
-                        </th>
-                        <th>총홀수</th>
-                        <th><?= $info['holes_number'] ?></th>
-                        <th>휴무일</th>
-                        <th><?= $info['holidays'] ?></th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray">
-                    <tr>
-                        <td>시내에서 거리 및 이동기간</td>
-                        <td><?= $info['distance_from_center'] ?></td>
-                        <td>공항에서 거리 및 이동시간</td>
-                        <td><?= $info['distance_from_airport'] ?></td>
-                        <td>팀당 라운딩 인원</td>
-                        <td><?= $info['num_of_players'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>전동카트</td>
-                        <td colspan="5"><?= $info['electric_car'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>갤러리피</td>
-                        <td colspan="5"><?= $info['caddy'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>장비렌탈</td>
-                        <td colspan="5"><?= $info['equipment_rent'] ?></td>
-                    </tr>
-                    <!-- <tr>
-                        <td>스포츠데이</td>
-                        <td colspan="5"><?= $info['sports_day'] ?></td>
-                    </tr> -->
-                    </tbody>
-                </table>
+
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
@@ -671,9 +612,17 @@ $(document).ready(function() {
 						</select>
                 </div>  
         </div>
+        <div class="section-wrap-s">
+           <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
+           <div class="btn-s-wrap">
+                <?php if ($product['product_status'] == 'sale'): ?>
+                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
+                <?php endif; ?>
+                <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit()">예약하기</button>
+           </div>                 
+        </div>
         <div class="section2-sub">
             <div class="left-main">
-                <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
                 <p>
                     <span class="l-label">일정</span>
                     <span class="l-label2 final_date"></span>
@@ -721,12 +670,70 @@ $(document).ready(function() {
                     <p class="price-text"><em id="last_price">0</em><span> 원(<em id="last_price_baht">0</em>바트)</span>
                     </p>
                 </div>
-                <?php if ($product['product_status'] == 'sale'): ?>
-                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
-                <?php endif; ?>
             </div>
         </div>
         </form>
+        <h3 class="title-size-24" id="product_info">상품 정보</h3>
+        <table class="golf-table" style="table-layout: fixed;">
+            <colgroup>
+                <col width="16%">
+                <col width="*">
+                <col width="16%">
+                <col width="*">
+                <col width="16%">
+                <col width="*">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>더투어랩 평가 등급</th>
+                <th>
+                    <div class="rating-list">
+                        <?php if ($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                    </div>
+                </th>
+                <th>총홀수</th>
+                <th><?= $info['holes_number'] ?></th>
+                <th>휴무일</th>
+                <th><?= $info['holidays'] ?></th>
+            </tr>
+            </thead>
+            <tbody class="text-gray">
+            <tr>
+                <td>시내에서 거리 및 이동기간</td>
+                <td><?= $info['distance_from_center'] ?></td>
+                <td>공항에서 거리 및 이동시간</td>
+                <td><?= $info['distance_from_airport'] ?></td>
+                <td>팀당 라운딩 인원</td>
+                <td><?= $info['num_of_players'] ?></td>
+            </tr>
+            <tr>
+                <td>전동카트</td>
+                <td colspan="5"><?= $info['electric_car'] ?></td>
+            </tr>
+            <tr>
+                <td>갤러리피</td>
+                <td colspan="5"><?= $info['caddy'] ?></td>
+            </tr>
+            <tr>
+                <td>장비렌탈</td>
+                <td colspan="5"><?= $info['equipment_rent'] ?></td>
+            </tr>
+            <!-- <tr>
+                <td>스포츠데이</td>
+                <td colspan="5"><?= $info['sports_day'] ?></td>
+            </tr> -->
+            </tbody>
+        </table>
+
         <h3 class="title-size-24" id="product_des">상품설명</h3>
         <div class="container-big-text">
             <?= viewSQ($product['tour_info']) ?>

@@ -6047,3 +6047,29 @@
     padding: 10px 0;
     line-height: 1.4;
 }
+
+.section-wrap-s {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.section-wrap-s .btn-s-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-golf-detail .section-wrap-s .btn-s-wrap .btn-price-content {
+    width: 100px;
+    height: 50px;
+    font-size: 18px !important;
+}
+
+.section-wrap-s .btn-s-wrap .btn-add-cart {
+    background-color: #fff !important;
+    color: #252525;
+    border: 1px solid #dbdbdb;
+}
+
