@@ -662,58 +662,47 @@ public function statistics_sale_day()
         return view('admin/_statistics/statistics_sale_sales');
     }
 
-	public function statistics_sale_type()
-	{
-		$db = \Config\Database::connect();
-		$builder = $db->table('tbl_payment_mst');
+public function statistics_sale_type()
+{
+    $db = \Config\Database::connect();
+    $builder = $db->table('tbl_payment_mst');
 
-		// GET 파라미터 받기
-		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
-		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+    // 날짜 파라미터
+    $s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+    $e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+    $payin  = $this->request->getGet('payin');
 
-		// 날짜 필터 (00:00:00 ~ 23:59:59 범위)
-		$builder->where('paydate >=', $s_date . ' 00:00:00');
-		$builder->where('paydate <=', $e_date . ' 23:59:59');
+    // 필터 조건
+    $builder->where('paydate >=', $s_date . ' 00:00:00');
+    $builder->where('paydate <=', $e_date . ' 23:59:59');
 
-		// 디바이스 구분 필터 (선택사항)
-		if ($payin) {
-			$builder->where('DeviceType', $payin); // DeviceType 컬럼이 존재해야 함
-		}
-
-		// 결제수단별 매출 합계 조회
-		$builder->select('payment_method, SUM(Amt_1) as total');
-		$builder->groupBy('payment_method');
-
-		$query = $builder->get();
-		$result = $query->getResult();
-
-		// 기본값 설정
-		$price_arr = [
-			'Card' => 0,
-			'VBank' => 0,
-			'DBank' => 0,
-			'MBank' => 0,
-		];
-
-		foreach ($result as $row) {
-			$method = $row->payment_method;
-			if (isset($price_arr[$method])) {
-				$price_arr[$method] = (int) $row->total;
-			}
-		}
-
-		$data = [
-			'price_arr'   => $price_arr,
-			's_date'      => $s_date,
-			'e_date'      => $e_date,
-			'payin'       => $payin,
-		];
-
-		
-        return view('admin/_statistics/statistics_sale_type', $data);
+    if (!empty($payin)) {
+        $builder->where('DeviceType', $payin);
     }
 
+    // payment_method 별 매출 합계
+    $builder->select('payment_method, SUM(Amt_1) as total');
+    $builder->groupBy('payment_method');
+    $builder->orderBy('total', 'DESC');
+
+    $query  = $builder->get();
+    $result = $query->getResult();
+
+    // 동적으로 배열화
+    $price_arr = [];
+
+    foreach ($result as $row) {
+        $method_name = $row->payment_method;
+        $price_arr[$method_name] = (int) $row->total;
+    }
+
+    return view('admin/statistics/sale_type', [
+        'price_arr' => $price_arr,
+        's_date'    => $s_date,
+        'e_date'    => $e_date,
+        'payin'     => $payin,
+    ]);
+}
 
     public function statistics_sale_type_day()
     {
