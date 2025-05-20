@@ -666,24 +666,18 @@ public function statistics_sale_type()
 {
     $db = \Config\Database::connect();
 
-    // 날짜 파라미터
     $s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
     $e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
     $payin  = $this->request->getGet('payin');
 
-    // 기본 SQL
     $sql = "SELECT payment_method, SUM(Amt_1) AS total 
             FROM tbl_payment_mst 
             WHERE paydate >= ? AND paydate <= ?
               AND payment_method IS NOT NULL 
               AND payment_method != ''";
 
-    $params = [
-        $s_date . ' 00:00:00',
-        $e_date . ' 23:59:59',
-    ];
+    $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
 
-    // DeviceType 필터 추가
     if (!empty($payin)) {
         $sql .= " AND DeviceType = ?";
         $params[] = $payin;
@@ -691,46 +685,37 @@ public function statistics_sale_type()
 
     $sql .= " GROUP BY payment_method ORDER BY total DESC";
 
-    // 쿼리 실행
-    $query = $db->query($sql, $params);
+    $query  = $db->query($sql, $params);
     $result = $query->getResult();
 
-    // 결제수단 매핑
-    $method_map = [
-        '신용카드'      => 'Card',
-        '가상계좌'      => 'VBank',
-        '계좌입금'      => 'DBank',
-        '실시간계좌이체' => 'MBank',
+    // 한글 결제수단 → 코드명 매핑
+    $code_map = [
+        '신용카드'     => 'Card',
+        '가상계좌'     => 'VBank',
+        '계좌입금'     => 'VBank',  // 같은 코드로 처리
+        '실시간계좌이체' => 'DBank',
     ];
 
-    // 기본 배열 초기화
-    $price_arr = [
-        '카드결제'        => 0,
-        '무통장(가상계좌)' => 0,
-        '실시간계좌이체'  => 0,
-        '통장입금'        => 0,
-    ];
+    $converted_result = [];
 
-    // 결과 적용
     foreach ($result as $row) {
-        $raw_method  = $row->payment_method;
-        $method_name = $method_map[$raw_method] ?? $raw_method;
+        $kor_method = $row->payment_method;
+        $code_name  = $code_map[$kor_method] ?? 'Unknown';
 
-        if (!isset($price_arr[$method_name])) {
-            $price_arr[$method_name] = 0;
-        }
-
-        $price_arr[$method_name] += (int) $row->total;
+        $converted_result[] = [
+            'method' => $code_name,
+            'total'  => (int) $row->total,
+        ];
     }
 
     return view('admin/_statistics/statistics_sale_type', [
-        'result'    => $result,
-        'price_arr' => $price_arr,
-        's_date'    => $s_date,
-        'e_date'    => $e_date,
-        'payin'     => $payin,
+        'converted_result' => $converted_result,  // 한글 → 코드명 결과
+        's_date'           => $s_date,
+        'e_date'           => $e_date,
+        'payin'            => $payin,
     ]);
 }
+
 
 
     public function statistics_sale_type_day()
