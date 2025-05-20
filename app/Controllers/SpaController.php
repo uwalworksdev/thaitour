@@ -162,10 +162,16 @@ class SpaController extends BaseController
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
             $phone_3 = updateSQ($this->request->getPost('phone_3'));
             $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
-            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+            $p_user_mobile = encryptField($payment_user_mobile, "encode");
 
             $phone_thai = updateSQ($this->request->getPost('phone_thai'));
-            $phone_thai = encryptField($phone_thai, "encode");
+            $p_phonethai = encryptField($phone_thai, "encode");
+
+            if(!empty($phone_thai)){
+                $user_mobile = $p_phonethai;
+            }else{
+                $user_mobile = $p_user_mobile;
+            }
 
             $local_phone = updateSQ($this->request->getPost('local_phone'));
             $local_phone = encryptField($local_phone, "encode");
@@ -202,8 +208,8 @@ class SpaController extends BaseController
                 'user_id'                       => $memberIdx,
                 'm_idx'                         => $memberIdx,
                 'order_day'                     => $postData['day_'] ?? '',
-                'order_user_mobile'             => $phone_thai ?? $payment_user_mobile,
-                'order_user_phone'              => $phone_thai ?? $payment_user_mobile,
+                'order_user_mobile'             => $user_mobile,
+                'order_user_phone'              => $user_mobile,
                 'local_phone'                   => $local_phone ?? '',
                 'people_adult_cnt'              => $adultQtySum,
                 'people_kids_cnt'               => $childrenQtySum,
