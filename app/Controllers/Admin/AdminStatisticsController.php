@@ -696,7 +696,7 @@ public function statistics_sale_type()
         $price_arr[$method_name] = (int) $row->total;
     }
 
-    return view('admin/statistics/statistics_sale_type', [
+    return view('admin/_statistics/statistics_sale_type', [
         'price_arr' => $price_arr,
         's_date'    => $s_date,
         'e_date'    => $e_date,
