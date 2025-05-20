@@ -1460,6 +1460,10 @@
 .opt_count_box button.del_btn {
     color: red;
     margin-left: 40px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .opt_count_box .minus_btn {
