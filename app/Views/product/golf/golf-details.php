@@ -619,11 +619,11 @@ $(document).ready(function() {
             <?php endforeach; ?>
         </div-->
 		
-          <div class="list-select-element" style="justify-content: space-between;">
+          <div class="list-select-element tour">
 		       <div class="item-select">
                     <span class="label">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="trip_type1" name="trip_type1" style="width:80px;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
+					<select id="trip_type1" name="trip_type1" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -636,10 +636,26 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
+                <div class="item-select">
+                    <span class="label">SUV</span>
+                    <input type="hidden" name="vehicle_idx[]" value="3">
+					<select id="trip_type3" name="trip_type3" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
+					</select>
+                    <select id="vehicle_3" data-name="SUV" data-idx="<?=$idx?>" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
+				</select>
+                </div>
             	<div class="item-select">
                     <span class="label">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="trip_type2" name="trip_type2" style="width:80px;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
+					<select id="trip_type2" name="trip_type2" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -653,26 +669,7 @@ $(document).ready(function() {
 								<option value="6">6대</option>
 								<option value="7">7대</option>
 						</select>
-                </div>
-            	<div class="item-select">
-                    <span class="label">SUV</span>
-                    <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="trip_type3" name="trip_type3" style="width:80px;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
-					</select>
-                    <select id="vehicle_3" data-name="SUV" data-idx="<?=$idx?>" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
-                        <option value="">선택해주세요.</option>
-						<option value="1">1대</option>
-						<option value="2">2대</option>
-						<option value="3">3대</option>
-						<option value="4">4대</option>
-						<option value="5">5대</option>
-				</select>
-                </div>
-
-			   
-			   
+                </div>  
         </div>
         <div class="section2-sub">
             <div class="left-main">

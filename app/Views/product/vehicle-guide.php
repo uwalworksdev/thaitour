@@ -2829,7 +2829,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" id="order_memo" class="other_irregularities s_order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                 </td>
@@ -2919,7 +2919,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>기타요철</th>
+                                        <th>기타요청</th>
                                         <td colspan="3">
                                             <textarea name="order_memo[]" id="order_memo" class="other_irregularities e_order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                         </td>
@@ -3097,7 +3097,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>기타요철</th>
+                                        <th>기타요청</th>
                                         <td colspan="3">
                                             <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                         </td>
@@ -3189,7 +3189,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                 </td>
@@ -3276,7 +3276,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                 </td>
@@ -3820,7 +3820,7 @@
             }
 
             if($(".s_order_memo").val() == "") {
-                alert("기타요철 입력해주세요!");
+                alert("기타요청 입력해주세요!");
                 $(this).focus();
                 return false;
             }
@@ -3857,7 +3857,7 @@
             }
 
             if($(".e_order_memo").val() == "") {
-                alert("기타요철 입력해주세요!");
+                alert("기타요청 입력해주세요!");
                 $(this).focus();
                 return false;
             }

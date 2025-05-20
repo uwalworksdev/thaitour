@@ -4115,10 +4115,15 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 33.33%;
 }
 
 .custom-golf-detail .list-select-element .item-select .select_custom_ {
     width: 230px;
+}
+
+.custom-golf-detail .list-select-element.tour .item-select .select_custom_ {
+    width: 100%;
 }
 
 .custom-golf-detail .list-select-element .item-select .vehicle_number {
@@ -4653,11 +4658,12 @@
     align-items: center;
     margin-bottom: 80px;
     gap: 30px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .custom-golf-detail .list-select-element .item-select .label {
     width: 70px;
+    flex: 0 0 auto;
 }
 
 .travel-tips .sec_banner {

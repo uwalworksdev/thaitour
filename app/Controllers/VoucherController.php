@@ -67,7 +67,7 @@ class VoucherController extends BaseController
 							->get()->getResultArray();
 
 		if($type == "admin"){
-			$user_name = $result->order_user_name;
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
@@ -83,7 +83,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
 			}else{
-				$user_name = $result->order_user_name;
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			}
 
 			if(!empty($result->order_user_name_en_new)){
@@ -278,10 +278,10 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
+		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject_eng"];
 
 		if($type == "admin"){
-			$user_name = $result->order_user_name;
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
 			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)" . ($result->people_baby_cnt ?? 0) . " Baby(s)"; 
@@ -296,7 +296,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
 			}else{
-				$user_name = $result->order_user_name;
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			}
 
 			if(!empty($result->order_user_name_en_new)){
@@ -517,7 +517,7 @@ class VoucherController extends BaseController
 			$tee_time = $minute . " : " . $second;
 		}
 		if($type == "admin"){
-			$user_name = $result->order_user_name;
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
 			$order_date = $date;
@@ -530,7 +530,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
 			}else{
-				$user_name = $result->order_user_name;
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			}
 
 			if(!empty($result->order_user_name_en_new)){
@@ -709,7 +709,7 @@ class VoucherController extends BaseController
 		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
 
 		if($type == "admin"){
-			$user_name = $result->order_user_name;
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
 			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
@@ -724,7 +724,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
 			}else{
-				$user_name = $result->order_user_name;
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			}
 
 			if(!empty($result->order_user_name_en_new)){
