@@ -2563,7 +2563,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_phone = $data['phone_thai'];
+                $order_user_phone = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
@@ -2592,11 +2592,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['ip']                         = $this->request->getIPAddress();
             $data['order_gubun']                = "golf";
             $data['code_name']                  = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name']            = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_name']            = encryptField($data['order_user_name'] ?? "", 'encode');
+            $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'] ?? "", 'encode');
+            $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'] ?? "", 'encode');
 			$data['order_passport_number']      = $this->request->getPost('order_passport_number') ?? "";
-            $data['order_passport_number']      = encryptField($data['order_passport_number'], "encode");
+            $data['order_passport_number']      = encryptField($data['order_passport_number'] ?? "", "encode");
 			$data['order_passport_expiry_date'] = $this->request->getPost('order_passport_expiry_date') ?? "";
             $data['vehicle_time']               = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
             $data['device_type']                = get_device();
@@ -2607,12 +2607,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_mobile = $data['phone_thai'];
+                $order_user_mobile = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone']       = encryptField($data['local_phone'], 'encode');
+            $data['local_phone']       = encryptField($data['local_phone'] ?? "", 'encode');
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
