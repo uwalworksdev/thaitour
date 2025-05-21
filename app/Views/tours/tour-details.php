@@ -70,11 +70,16 @@
     <div class="body_inner">
         <form name="frm" id="frm" action="/product-tours/confirm-info" class="">
             <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+            <input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+            <input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
+            <input type="hidden" name="product_code_3" value="">
+            <input type="hidden" name="product_code_4" value="">
             <input type="hidden" name="order_date" id="order_date" value="">
+            <input type="hidden" name="order_status" id="order_status" value="B">
             <input type="hidden" name="tours_idx" id="tours_idx" value="">
             <input type="hidden" name="idx" id="idx" value="">
-            <input type="hidden" id="total_price" value="">
-            <input type="hidden" id="total_price_baht" value="">
+            <input type="hidden" name="total_price" id="total_price" value="">
+            <input type="hidden" name="total_price_baht" id="total_price_baht" value="">
             <input type="hidden" name="people_adult_cnt" id="people_adult_cnt" value="">
             <input type="hidden" name="people_kids_cnt" id="people_kids_cnt" value="">
             <input type="hidden" name="people_baby_cnt" id="people_baby_cnt" value="">
@@ -85,6 +90,11 @@
             <input type="hidden" name="total_pay" id="total_pay" value="">
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
             <input type="hidden" name="final_discount" id="final_discount" value="">
+            <input type="hidden" name="start_place" id="start_place" value="">
+            <input type="hidden" name="end_place" id="end_place" value="">
+            <input type="hidden" name="id_kakao" id="id_kakao" value="">
+            <input type="hidden" name="description" id="description" value="">
+
             <div class="section1">
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
@@ -496,9 +506,9 @@
                     </div>
 
                     <?php if ($product['product_status'] == 'sale'): ?>
-                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">예약하기</button>
+                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit('W')">예약하기</button>
                     <?php endif; ?>
-                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart">장바구니</button>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="handleSubmit('B')">장바구니</button>
                 </div>
             </div>
         </form>
@@ -863,7 +873,95 @@
             </div>
             <div class="dim"></div>
         </div>
+
+        <div class="popup_wrap place_pop cart_info_pop">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closePopup()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>필수 입력사항</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body order-form-page">
+                            <table class="info-table-order info-table-cus-padding">
+                                <tbody>
+                                    <tr>
+                                        <th>미팅장소</th>
+                                        <td>
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" id="pop_start_place">
+                                            <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>종료 후 내리실 곳</th>
+                                        <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." id="pop_end_place"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>카카오톡 아이디</th>
+                                        <td>
+                                            <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." id="pop_id_kakao">
+                                            <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>기타 요청</th>
+                                        <td>
+                                            <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
+                                            <textarea class="textarea-tb" rows="5" placeholder="" id="pop_description"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="flex_c_c">
+                                <button type="button" class="btn_add_cart">
+                                    쿠폰적용
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
 <script>
+    $(".btn_add_cart").on("click", function () {
+        if ($("#pop_start_place").val() === "") {
+            alert("미팅장소 입력해주세요!");
+            $("#pop_start_place").focus();
+            return false;
+        }
+
+        if ($("#pop_end_place").val() === "") {
+            alert("종료 후 내리실 곳 입력해주세요!");
+            $("#pop_end_place").focus();
+            return false;
+        }
+
+        if ($("#pop_id_kakao").val() === "") {
+            alert("카카오톡 아이디 입력해주세요!");
+            $("#pop_id_kakao").focus();
+            return false;
+        }
+
+        if ($("#pop_description").val() === "") {
+            alert("기타 요청 입력해주세요!");
+            $("#pop_description").focus();
+            return false;
+        }
+
+        $("#start_place").val($("#pop_start_place").val());
+        $("#end_place").val($("#pop_end_place").val());
+        $("#id_kakao").val($("#pop_id_kakao").val());
+        $("#description").val($("#pop_description").val());
+
+        $("#frm").attr('method', 'post');
+        $("#frm").attr('action', '/product-tours/customer-form-ok');
+		$("#frm").submit();
+    });
+
     $(".view-policy").on("click", function (event) {
         event.stopPropagation();
         let type = $(this).data("type");
@@ -1056,9 +1154,20 @@
         updateProductOption();
     }
 
+    
+
+    var selectedOption = [];
+    var selectedTourIds = [];
+    var totalCost = 0;
+    var totalCostWon = 0;
+    var selectedTourQuantities = {};
+
     function deleteOption(el) {
+        let idx = $(el).closest('.schedule').data('idx');
+
         if (confirm('선택 항목을 지우시겠습니까?')) {
             $(el).closest('.schedule').remove();
+            selectedTourIds = selectedTourIds.filter(item => item !== idx);
             $("#option").val('');
         }
 
@@ -1066,6 +1175,7 @@
     }
 
     function minusQty(el) {
+        let idx = $(el).closest('.schedule').data('idx');
         let inp = $(el).parent().find('input.input_qty');
         let num = inp.val();
         if (Number(num) > 1) {
@@ -1074,6 +1184,7 @@
         } else {
             if (confirm('선택 항목을 지우시겠습니까?')) {
                 $(el).closest('.schedule').remove();
+                selectedTourIds = selectedTourIds.filter(item => item !== idx);
                 $("#option").val('');
             }
         }
@@ -1087,12 +1198,6 @@
         inp.val(num);
         updateProductOption();
     }
-
-    var selectedOption = [];
-    var selectedTourIds = [];
-    var totalCost = 0;
-    var totalCostWon = 0;
-    var selectedTourQuantities = {};
 
     function updateProductOption() {
         
@@ -1674,7 +1779,7 @@
     //     }
     // });
 
-    function handleSubmit() {
+    function handleSubmit(type) {
         const frm = document.frm;
 
         <?php
@@ -1709,6 +1814,10 @@
             if (!selectedTime) {
                 selectedTime = $('.select-time-c option:first').val();
             }
+
+            console.log(selectedTourIds);
+            
+
             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
             // let fullagreement = $("#fullagreement").val().trim();
@@ -1742,7 +1851,12 @@
             // console.log(selectedTime);
             // console.log(priceOptionTotal);
             var productIdx = document.querySelector('input[name="product_idx"]').value;
-            $("#frm").submit();
+
+            if(type == 'W'){
+                $("#frm").submit();
+            }else{
+                $(".cart_info_pop").show();
+            }
         }
     }
 
