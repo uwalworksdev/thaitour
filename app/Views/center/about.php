@@ -139,7 +139,7 @@ $setting = homeSetInfo();
                 </div>
                 <div class="bg_white">
                     <p class="intro_tit">더투어랩의 강점</p>
-                    <p class="intro_ttl">변화하는 여행 <br> 고객이 우선이 되는 여행 <br> 가고 싶은 태국여행
+                    <p class="intro_ttl">변화하는 여행 <br> 고객이 우선이 되는 여행 <br class="only_web"> 가고 싶은 태국여행
                     </p>
                 </div>
                 <div class="cont">더투어랩은 동남아 전문 온라인 여행사로 자유 여행객들에게 다양한 <br class="only_web">
@@ -330,13 +330,41 @@ $setting = homeSetInfo();
                         <td>@더투어랩</td>
                     </tr>
                     <tr>
+                        <?php
+                            $time_work = $setting['time_work'];
+                            $parts = explode('/', $time_work);
+
+                            $time_data = [
+                                '월-금' => '',
+                                '점심' => '',
+                                '토요일' => '',
+                                '일요일/공휴일' => ''
+                            ];
+
+                            if (isset($parts[0]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[0]), $m)) {
+                                $time_data['월-금'] = str_replace('~', '-', $m[1]);
+                            }
+
+                            if (isset($parts[1]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[1]), $m)) {
+                                $time_data['점심'] = str_replace('~', '-', $m[1]);
+                            }
+
+                            if (isset($parts[2]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[2]), $m)) {
+                                $time_data['토요일'] = str_replace('~', '-', $m[1]);
+                            }
+
+                            if (isset($parts[3]) && strpos($parts[3], ':') !== false) {
+                                list($label, $value) = explode(':', $parts[3], 2);
+                                $time_data['일요일/공휴일'] = trim($value);
+                            }
+                        ?>
                         <th>영업시간</th>
                         <td colspan="3">
                             <div class="open">
-                                <p>평일 (월~금): 11:00 - 20:00</p>
-                                <p>점심시간 : 14:00 - 15:00</p>
-                                <p>토요일 : 11:00 - 15:00</p> 
-                                <p>일요일/공휴일: 휴무</p>
+                                <p>평일 (월~금): <?= $time_data['월-금'] ?></p>
+                                <p>점심시간 : <?= $time_data['점심'] ?></p>
+                                <p>토요일 : <?= $time_data['토요일'] ?></p> 
+                                <p>일요일/공휴일: <?= $time_data['일요일/공휴일'] ?></p>
                                 <span>* 더투어랩 본사는 시차로 인해 서울 지사와 차이가 있습니다</span> <br>
                                 <span>* 더투어랩 본사는 더투어랩 공휴일 휴무 입니다.</span> <br>
                                 <span>* 더투어랩은 한국 공휴일 휴무를 적용합니다</span>
