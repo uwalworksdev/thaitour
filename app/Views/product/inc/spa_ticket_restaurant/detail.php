@@ -611,8 +611,6 @@
             url: url,
             type: "POST",
             data: formData,
-            async: false,
-            cache: false,
             processData: false,
             contentType: false,
             success: function (data, textStatus) {
