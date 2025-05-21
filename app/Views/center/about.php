@@ -49,12 +49,14 @@ $setting = homeSetInfo();
         <!-- <img src="/img/sub/intro_banner.png" alt=""> -->
         <div class="inner_1000 relative ">
             <img src="/img/center/ab-img3-text.png" alt="" class="only_web">
-            <img src="/img/center/ab-img3-text-m.png" alt="" class="only_mo">
         </div>
     </div>
     <div class="intro_content">
         <div class="inner_1000">
             <div class="banner_txt">
+                <div class="relative ">
+                    <img src="/img/center/ab-img3-text-m.png" alt="" class="only_mo">
+                </div>
                 <div class="bg_white">
                     <p class="intro_tit">더투어랩의 강점</p>
                     <p class="intro_ttl">변화하는 여행 <br> 고객이 우선이 되는 여행 <br> 가고 싶은 태국여행
