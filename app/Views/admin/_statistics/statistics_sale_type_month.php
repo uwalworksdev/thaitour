@@ -21,7 +21,7 @@ $pay_method['MBank']    = "통장입금";
 
 
 $years    = $_GET['years'];
-$months = $_GET['months'];
+$months   = $_GET['months'];
 $payin    = $_GET['payin'];
 
 if ($years == "") {
@@ -102,6 +102,7 @@ $price_arr['MBank'] = 0;
                                 <option value="P">PC</option>
                                 <option value="M">모바일</option>
                             </select>
+       	    			    <button type="submit">검색</button>
                         </div>
                     </form>
                 </div>
