@@ -43,14 +43,11 @@
 
 <style>
 button[type="submit"] {
-    background-color: #3d6cab;   /* 메인 배경색 (파란 계열) */
-    color: white;                /* 글자색 */
-    border: none;                /* 테두리 없음 */
-    padding: 8px 16px;           /* 여백 */
-    border-radius: 6px;          /* 모서리 둥글게 */
-    font-size: 14px;             /* 글자 크기 */
-    cursor: pointer;            /* 마우스 올렸을 때 포인터로 변경 */
-    transition: background-color 0.3s ease; /* 부드러운 효과 */
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 1.5px;
+    background-color: #55a0ff;
+    color: #fff;
 }
 
 button[type="submit"]:hover {
