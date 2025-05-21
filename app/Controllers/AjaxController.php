@@ -873,36 +873,41 @@ class AjaxController extends BaseController {
 												 $msg .= '<input type="hidden" class="r_contents3" value="' . $room['r_contents3'] . '">';
 										
 												 $msg .= '<td>
-															<div class="room-details">
-																<p class="room-p-cus-1">'. $room['room_name'] .'</p>';
-																
-																if($room['breakfast'] != "N") {
-																   $breakfast = "조식 포함";
-																} else {
-																   $breakfast = "조식 비포함";	
-																}   
-																
-																$option_val = explode(",", $room['option_val']);
-																
-																$msg .= '<ul>
-																	<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
-									
-																for($i=0;$i<count($option_val);$i++) { 
-																	$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
-																} 
-																	
-																$msg .= '</ul>
-																		 </div>
-														</td> 															
+																	<div class="room-details">
+																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>';
+																		
+																		if($room['breakfast'] != "N") {
+																		   $breakfast = "조식 포함";
+																		} else {
+																		   $breakfast = "조식 비포함";	
+																		}   
+																		
+																		$option_val = explode(",", $room['option_val']);
+																		
+																		$msg .= '<ul>
+																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
+											
+																		for($i=0;$i<count($option_val);$i++) { 
+																			$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
+																		} 
+																			
+																		$msg .= '</ul>
+																	             </div>
+																</td>'; 															
+ 
+												$msg .= '<td>
+													<div class="people_qty">
+														<img src="/images/sub/user-iconn.png" alt="">
+														<p>성인 : ' . $room['adult'] . '명</p>
+														<p>아동 : ' . $room['kids'] . '명</p>';
+														
+														if (!empty($room['r_contents2'])) {
+															$msg .= '<a href="javascript:viewBenefitPopup(' . $room['rooms_idx'] . ');" style="color: #104aa8">혜택보기 &gt;</a>';
+														}
 
-														<td>
-															<div class="people_qty">
-																<img src="/images/sub/user-iconn.png" alt="">
-																<p>성인 : ' . $room['adult'] . '명</p>
-																<p>아동 : ' . $room['kids'] . '명</p>
-																<a href="javascript:viewBenefitPopup(' . $room['rooms_idx'] . ');" style="color: #104aa8">혜택보기 &gt;</a>
-															</div>
-														</td>';
+												$msg .= '</div>
+													</td>';
+
 
 
 												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
