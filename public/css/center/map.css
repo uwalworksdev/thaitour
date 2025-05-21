@@ -3762,8 +3762,7 @@ form .form_list .name_row input+input {
   background-image: url('/img/center/ab-visual.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #dbdbdb;
+  background-size: 100% 100%;
 }
 
 .intro_bg {
@@ -3772,7 +3771,7 @@ form .form_list .name_row input+input {
 }
 
 .intro .intro_top {
-          padding: 115px 0 0;
+          padding: 50px 0 0;
           align-items: center;
           gap: 25px;
 }
@@ -3826,6 +3825,7 @@ form .form_list .name_row input+input {
           height: 400px;
           position: relative;
           z-index: 1;
+          background-size: 100% 100%;
 }
 
 .intro .intro_banner .relative {
@@ -3836,7 +3836,7 @@ form .form_list .name_row input+input {
 .intro .intro_banner img {
   position: absolute;
   top: 29%;
-  right: 22%;
+  right: 2%;
 }
 
 /* .intro .intro_banner {
@@ -3957,6 +3957,7 @@ form .form_list .name_row input+input {
 
 .intro .intro_content .list_img .image {
   border: 1px solid #dbdbdb;
+  width: calc(50% - 10px);
 }
 
 .intro .intro_content .list_img .image .text_ttl {
@@ -4046,8 +4047,8 @@ form .form_list .name_row input+input {
   font-size: 16px;
   margin-bottom: 10px;
   font-weight: 200;
-  color: #999;
-  
+  color: #777;
+  line-height: 1.4;
 }
 
 .intro .intro_location .cont .item  .bot {
@@ -4061,6 +4062,17 @@ form .form_list .name_row input+input {
 
 .intro .intro_location .location_desc {
           margin-top: 70px;
+}
+
+.intro .intro_location .certifi_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 92px 50px 0;
+}
+
+.intro .intro_location .certifi_list .card {
+  width: calc(33.33% - 15px);
 }
 
 .intro .intro_location .view_left {
@@ -5578,6 +5590,8 @@ form .form_list .name_row input+input {
                     grid-column: 1 / 3;
                     /* Chiếm cả hai cột */
           }
+
+         
 
 
 }
