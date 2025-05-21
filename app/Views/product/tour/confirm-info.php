@@ -325,9 +325,35 @@
                                 취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.
                             </p>
                             <p class="cus-label-r info_link" id="policy_show" style="cursor: pointer" data-product-idx="<?= $product['product_code_1'] ?>">본 예약건 취소규정</p>
-                            <?php if ($product['direct_payment'] == "Y") { ?>
-                                <span style="color:red;">※ 예약확정 상품입니다.</span>
-                            <?php } ?>
+        
+                            <div class="terms-wrap" style="width: 100%;">
+                                <h3 class="title-second">약관동의</h3>
+                                <div class="item-info-check item_check_term_all_">
+                                    <label for="fullagreement">전체동의</label>
+                                    <input type="hidden" value="N" id="fullagreement">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">이용약관 동의(필수)</label>
+                                    <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="terms">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 처리방침(필수)</label>
+                                    <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="policy">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                    <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="information">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                    <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="guidelines">
+                                </div>
+                            </div>
+
                             <?php if($prod['direct_payment'] == "Y") { ?>
 							<span style="color:red;">※ 예약확정 상품입니다.</span>
                             <button class="btn-order btnOrder" onclick="handlePayment('B');" type="button">결제하기</button>
@@ -337,29 +363,6 @@
                             <button class="btn-cancel btnOrder" onclick="handleSubmit('B');" type="button">장바구니 담기</button>
                         </div>
                     </div>
-                </div>
-                <div class="" style="display: none;">
-                    <input type="hidden" name="realTotal" id="realTotal" value="">
-
-                    <input type="hidden" name="product_idx" id="product_idx" value="<?= $data['product_idx'] ?>">
-                    <input type="hidden" name="day_" id="day_" value="<?= $day_ ?>">
-                    <input type="hidden" name="adultQty" id="adultQty" value="<?= implode(',', $adultQty ?? []) ?>">
-                    <input type="hidden" name="adultPrice" id="adultPrice" value="<?= implode(',', $adultPrice ?? []) ?>">
-
-                    <input type="hidden" name="childrenQty" id="childrenQty" value="<?= implode(',', $childrenQty ?? []) ?>">
-                    <input type="hidden" name="childrenPrice" id="childrenPrice" value="<?= implode(',', $childrenPrice ?? []) ?>">
-
-                    <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
-                    <input type="hidden" name="order_gubun" id="order_gubun" value="<?= $order_gubun ?>">
-
-                    <input type="hidden" name="discountPrice" id="discountPrice" value="0">
-                    <input type="hidden" name="pointPrice" id="pointPrice" value="0">
-                    <input type="hidden" name="lastPrice" id="lastPrice" value="<?= $totalPrice ?>">
-
-                    <input type="hidden" name="c_idx" id="c_idx" value="">
-                    <input type="hidden" name="all_point" id="all_point" value="0">
-
-                    <input type="hidden" name="coupon_no" id="coupon_no" value="">
                 </div>
             </form>
         </div>
@@ -655,16 +658,16 @@
                 }
             }
 
-            // let fullagreement = $("#fullagreement").val().trim();
-            // let terms = $("#terms").val().trim();
-            // let policy = $("#policy").val().trim();
-            // let information = $("#information").val().trim();
-            // let guidelines = $("#guidelines").val().trim();
+            let fullagreement = $("#fullagreement").val().trim();
+            let terms = $("#terms").val().trim();
+            let policy = $("#policy").val().trim();
+            let information = $("#information").val().trim();
+            let guidelines = $("#guidelines").val().trim();
 
-            // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-            //     alert("모든 약관에 동의해야 합니다.");
-            //     return false;
-            // }
+            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                alert("모든 약관에 동의해야 합니다.");
+                return false;
+            }
 
         }
 
