@@ -134,8 +134,32 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div style="display: flex; justify-content: flex-end;">
+                    <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                        <div class="meeting_time">
+                            <select name="hours" id="hours">
+                                <?php
+                                for ($i = 0; $i < 24; $i++) {
+                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                ?>
+                                    <option value="<?= $hour ?>"><?= $hour ?></option>
+                                    <?php
+                                }
+                                    ?>
+                            </select>
+                            <label for="hours">시</label>
+                            <select name="minutes" id="minutes">
+                                <?php
+                                for ($i = 0; $i < 60; $i += 1) {
+                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                ?>
+                                    <option value="<?= $minute ?>"><?= $minute ?></option>
+                                    <?php
+                                }
+                                    ?>
+                            </select>
+                            <label for="minutes">분</label>
+                        </div>
                     </div>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
@@ -167,33 +191,10 @@
                 </div>
 
                 <div class="section9">
-                    <h2 class="title-sec9">
+                    <!-- <h2 class="title-sec9">
                         예약시간
-                    </h2>
-                    <div class="meeting_time">
-                        <select name="hours[]" id="hours">
-                            <?php
-                            for ($i = 0; $i < 24; $i++) {
-                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $hour ?>"><?= $hour ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="hours">시</label>
-                        <select name="minutes[]" id="minutes">
-                            <?php
-                            for ($i = 0; $i < 60; $i += 1) {
-                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $minute ?>"><?= $minute ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="minutes">분</label>
-                    </div>
+                    </h2> -->
+                    
                     <!-- <select class="select-time-c" id="select_time_line">
                         <?php foreach ($data_["timeSegments"] as $time): ?>
                             <option value="<?= htmlspecialchars($time); ?>">
@@ -562,7 +563,73 @@
     <div class="dim"></div>
 </div>
 
+<div class="popup_wrap place_pop cart_info_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>별도 요청</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
+                        보장되지
+                        않을 수 있습니다.</p>
+                    <div class="form-group cus-form-group">
+                        <textarea id="extra-requests" placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                    </div>
+                   
+                    <div class="flex_c_c">
+                        <button type="button" class="btn_add_cart" onclick="add_cart()">
+                            장바구니 담기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 <script>
+
+    // $(document).ready(function() {
+    //     $(".btn_add_cart").on("click", function () {
+    //         // if ($("#extra-requests").val() === "") {
+    //         //     alert("여기에 요청 사항을 입력하세요!");
+    //         //     $("#extra-requests").focus();
+    //         //     return false;
+    //         // }
+            
+    //         $("#order_memo").val($("#extra-requests").val());
+    
+    //         let formData = new FormData($('#frm')[0]);
+    
+    //         $("#frm").attr('action', '<?= route_to('api.spa_.handleBooking') ?>');
+    
+    //         let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+    
+    //         $.ajax({
+    //             url: url,
+    //             type: "POST",
+    //             data: formData,
+    //             processData: false,
+    //             contentType: false,
+    //             success: function (data, textStatus) {
+    //                 alert(data.message);
+    //                 if(data.result){
+    //                     window.location.href = "/product-spa/completed-cart";
+    //                 }
+    //             },
+    //             error: function (request, status, error) {
+    //                 console.log(request);
+    //                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+    //             }
+    //         });
+    //     });
+    // });
     function showInfoCompany() {
         $(".info_company").show();
     }
@@ -1415,5 +1482,33 @@
         $('html, body').animate({
             scrollTop: $('#' + elID).offset().top - 230
         }, 'slow');
+    }
+
+    function add_cart() {
+        $("#order_memo").val($("#extra-requests").val());
+    
+        let formData = new FormData($('#frm')[0]);
+
+        $("#frm").attr('action', '<?= route_to('api.spa_.handleBooking') ?>');
+
+        let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, textStatus) {
+                alert(data.message);
+                if(data.result){
+                    window.location.href = "/product-spa/completed-cart";
+                }
+            },
+            error: function (request, status, error) {
+                console.log(request);
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            }
+        });
     }
 </script>
