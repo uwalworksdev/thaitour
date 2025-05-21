@@ -28,7 +28,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_golf">골프.. :<span class="text-red"> <?=$golf_cnt?></span>
+                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
@@ -57,7 +57,7 @@
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date">예약일시:<?=$item['order_date']?></div>
+                                            <div class="product-date">예약일시:<?=$item['order_date']?><?=$item['options']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
 												if (!empty($item['options'])) {
