@@ -2498,10 +2498,11 @@
 
             let content = $(`tr[data-room='${id}']`).find(".r_contents2").val();
             
-            if(content != '') {
-				$(".benefit_pop").find(".popup_place__body .content").html(content);
+			if (content !== null && content !== undefined && content.trim() !== '') {
+				$(".benefit_pop .popup_place__body .content").html(content);
 				$(".benefit_pop").show();
 			}
+
         }
     </script>
 
