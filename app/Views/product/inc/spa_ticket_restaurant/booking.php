@@ -350,7 +350,7 @@
                                                 <p>성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
-                                                <span><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
+                                                <span style="text-wrap: nowrap"><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
                                                 <span> 원</span>
                                             </div>
                                         </div>
@@ -359,7 +359,7 @@
                                                 <p>아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
-                                                <span><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>
+                                                <span style="text-wrap: nowrap"><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>
                                                 <span> 원</span>
                                             </div>
                                         </div>
@@ -383,7 +383,7 @@
                                                     <div class="wrap-text">
                                                         <p><?= $data['option_name'][$i] ?>(<?=number_format($data['option_price'][$i])?> 원)</p>
                                                     </div>
-                                                    <div class="wrap-btn">
+                                                    <div class="wrap-btn" style="gap: 10px;">
                                                         <img onclick="minusQty(this)" class="minusQty"
                                                             src="/images/sub/minus-ic.png"
                                                             alt="">
