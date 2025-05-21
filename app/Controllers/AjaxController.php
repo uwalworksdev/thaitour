@@ -867,38 +867,42 @@ class AjaxController extends BaseController {
 								return $room['g_idx'] == $target_g_idx;
 							});
 										
-						                foreach ($filteredRooms as $room): 
-												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">
-																<td>
-																	<div class="room-details">
-																		<p class="room-p-cus-1">'. $room['room_name'] .'</p>';
-																		
-																		if($room['breakfast'] != "N") {
-																		   $breakfast = "조식 포함";
-																		} else {
-																		   $breakfast = "조식 비포함";	
-																		}   
-																		
-																		$option_val = explode(",", $room['option_val']);
-																		
-																		$msg .= '<ul>
-																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
-											
-																		for($i=0;$i<count($option_val);$i++) { 
-																			$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
-																		} 
-																			
-																		$msg .= '</ul>
-																	             </div>
-																</td>																
-											                    <td>
-																	<div class="people_qty">
-																		<img src="/images/sub/user-iconn.png" alt="">
-																		<p>성인 : '. $room['adult'] .'명</p>
-																		<p>아동 : '. $room['kids'] .'명</p>
-																		<a href="#!" style="color : #104aa8">혜택보기 &gt;</a> 
-																	</div>
-																</td>';
+foreach ($filteredRooms as $room):
+    $msg .= '<tr class="room_op_" data-room="' . $room['rooms_idx'] . '" data-opid="149" data-optype="S" data-ho_idx="' . $row['goods_code'] . '">';
+    $msg .= '<input type="hidden" class="r_contents2" value="' . $room['r_contents2'] . '">';
+    $msg .= '<input type="hidden" class="r_contents3" value="' . $room['r_contents3'] . '">';
+
+    // 첫 번째 <td> : 객실 정보
+    $msg .= '<td>
+                <div class="room-details">
+                    <p class="room-p-cus-1">' . $room['room_name'] . '</p>';
+
+    $breakfast = ($room['breakfast'] != "N") ? "조식 포함" : "조식 비포함";
+    $option_val = explode(",", $room['option_val']);
+
+    $msg .= '<ul>
+                <li><span>' . $breakfast . '</span> 
+                    <img src="/images/sub/question-icon.png" alt="" style="width: 14px; margin-top: 4px; opacity: 0.6;">
+                </li>';
+
+    foreach ($option_val as $opt) {
+        $msg .= '<li>' . htmlspecialchars_decode($opt) . '</li>';
+    }
+
+    $msg .= '    </ul>
+                </div>
+            </td>';
+
+    // 두 번째 <td> : 인원수 정보
+    $msg .= '<td>
+                <div class="people_qty">
+                    <img src="/images/sub/user-iconn.png" alt="">
+                    <p>성인 : ' . $room['adult'] . '명</p>
+                    <p>아동 : ' . $room['kids'] . '명</p>
+                    <a href="javascript:viewBenefitPopup(' . $room['rooms_idx'] . ');" style="color: #104aa8">혜택보기 &gt;</a>
+                </div>
+            </td>';
+
 
 												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											  

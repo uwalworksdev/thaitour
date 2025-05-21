@@ -20,7 +20,7 @@
 
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
-    $payin    = $_GET['payin'];
+    $payin  = $_GET['payin'];
 
     if ($s_date == "") {
         $s_date = date('Y-m-d');
@@ -44,6 +44,53 @@
 			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
     }		
 ?>
+
+<style>
+.contact_btn.active {
+    background-color: #3d6cab !important;
+    color: white !important;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.date-range-btn');
+    const sDateInput = document.getElementById('s_date');
+    const eDateInput = document.getElementById('e_date');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const today = new Date();
+            let sDate = new Date(); // 기본: 오늘
+            const range = this.dataset.range;
+
+            // 날짜 계산
+            if (range === '3day') {
+                sDate.setDate(today.getDate() - 3);
+            } else if (range === '7day') {
+                sDate.setDate(today.getDate() - 7);
+            } else if (range === '1month') {
+                sDate.setMonth(today.getMonth() - 1);
+            }
+
+            // yyyy-mm-dd 포맷
+            const formatDate = (d) => {
+                const yyyy = d.getFullYear();
+                const mm = ('0' + (d.getMonth() + 1)).slice(-2);
+                const dd = ('0' + d.getDate()).slice(-2);
+                return `${yyyy}-${mm}-${dd}`;
+            };
+
+            sDateInput.value = formatDate(sDate);
+            eDateInput.value = formatDate(today);
+
+            // 버튼 스타일 처리
+            buttons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+</script>
 
 <div id="container">
     <span id="print_this">
@@ -86,21 +133,25 @@
                 <div class="listSelect size09" style="position:relative">
                     <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
                         <div class="period_search">
-                            <div class="period_input">
-                                <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form">
-                                <span>~</span>
-                                <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
-                            </div>
-                            <button type="submit">검색</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
-                            <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">1개월</button>
+<div class="period_input">
+    <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form"> 
+    <span>~</span>
+    <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
+</div>
+
+<button type="submit">검색</button>
+
+<!-- 날짜 버튼들 -->
+<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
+<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
+<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
+<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
+
 
                             <select name="payin" onchange="submit()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
                         </div>
 
@@ -109,10 +160,10 @@
                 <div class="listSelectR">
                     <div class="contentMenu">
                         <ul>
-                            <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type_year">년간통계</a></li>
+                            <li class="contentMenuSub " data-mode="year"  style="width: calc(20% - 2px);"><a href="statistics_sale_type_year">년간통계</a></li>
                             <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type_month">월간통계</a></li>
-                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type_week">주간통계</a></li>
-                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type_day">일간통계</a></li>
+                            <li class="contentMenuSub " data-mode="week"  style="width: calc(20% - 2px);"><a href="statistics_sale_type_week">주간통계</a></li>
+                            <li class="contentMenuSub"  data-mode="day"   style="width: calc(20% - 2px);"><a href="statistics_sale_type_day">일간통계</a></li>
                             <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
