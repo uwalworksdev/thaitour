@@ -96,6 +96,9 @@
                         </div>
                     </form>
                 </div>
+				
+				<button type="submit">검색</button>
+
                 <div class="listSelectR">
                     <div class="contentMenu">
                         <ul>
