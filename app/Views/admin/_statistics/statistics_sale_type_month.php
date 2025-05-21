@@ -13,34 +13,38 @@
 </style>
 
 <?php
-$pay_method['Card']     = "카드결제";
-$pay_method['VBank']    = "무통장(가상계좌)";
-$pay_method['DBank']    = "실시간계좌이체	";
-$pay_method['MBank']    = "통장입금";
+	$pay_method['Card']     = "카드결제";
+	$pay_method['VBank']    = "무통장(가상계좌)";
+	$pay_method['DBank']    = "실시간계좌이체	";
+	$pay_method['MBank']    = "통장입금";
 
 
 
-$years    = $_GET['years'];
-$months   = $_GET['months'];
-$payin    = $_GET['payin'];
+	$years    = $_GET['years'];
+	$months   = $_GET['months'];
+	$payin    = $_GET['payin'];
 
-if ($years == "") {
-    $years = date('Y');
-}
+	if ($years == "") {
+		$years = date('Y');
+	}
 
-if ($months == "") {
-    $months = date('m');
-}
+	if ($months == "") {
+		$months = date('m');
+	}
 
-$s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
-$e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+    $price_arr = array();
 
-$price_arr = array();
+	$price_arr['Card']   = 0;
+	$price_arr['VBank']  = 0;
+	$price_arr['DBank']  = 0;
+	$price_arr['MBank']  = 0;
 
-$price_arr['Card'] = 0;
-$price_arr['VBank'] = 0;
-$price_arr['DBank'] = 0;
-$price_arr['MBank'] = 0;
+    $payment_tot = 0;
+    foreach ($converted_result as $row) {
+		     $payment_tot = $payment_tot + $row['total'];
+			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
+			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
+    }	
 
 ?>
 
@@ -113,8 +117,8 @@ button[type="submit"]:hover {
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
        	    			    <button type="submit">검색</button>
                         </div>
@@ -158,10 +162,10 @@ button[type="submit"]:hover {
                             function drawPieChart() {
                                 var data = google.visualization.arrayToDataTable([
                                     ['수단', '매출'],
-                                    ["카드결제", 100 ],
-                                    ["무통장",  50 ],
-                                    ["실시간계좌이체", 20],
-                                    ["통장입금", 10],
+                                    ["카드결제", <?=$price_arr['Card']?> ],
+                                    ["무통장",  <?=$price_arr['VBank']?> ],
+                                    ["실시간계좌이체", <?=$price_arr['DBank']?>],
+                                    ["통장입금", <?=$price_arr['MBank']?>],
                                 ]);
 
                                 var options = {
@@ -180,12 +184,12 @@ button[type="submit"]:hover {
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $payment_tot ?>;
                                 var rows = [
-                                    ["카드결제", 100, "#4285F4"],
-                                    ["무통장", 50, "#4285F4"],
-                                    ["실시간계좌이체", 20, "#4285F4"],
-                                    ["통장입금", 10, "#4285F4"]
+                                    ["카드결제", <?=$price_arr['Card']?>, "#4285F4"],
+                                    ["무통장", <?=$price_arr['VBank']?>, "#4285F4"],
+                                    ["실시간계좌이체", <?=$price_arr['DBank']?>, "#4285F4"],
+                                    ["통장입금", <?=$price_arr['MBank']?>, "#4285F4"]
                                 ];
 
                                 rows.forEach((row, index) => {
@@ -248,7 +252,7 @@ button[type="submit"]:hover {
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $meth ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (int)($meth * 100 / $payment_tot) ?></div>
                                         </div>
                                     </td>
                                 </tr>
