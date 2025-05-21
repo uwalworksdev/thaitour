@@ -613,6 +613,9 @@
             data: formData,
             processData: false,
             contentType: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
             success: function (data, textStatus) {
                 alert(data.message);
                 if(data.result){
