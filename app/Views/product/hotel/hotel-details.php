@@ -1437,7 +1437,9 @@
                                             <img src="/images/sub/user-iconn.png" alt="">
                                             <p>성인 : <?=$room['adult']?>명</p>
                                             <p>아동 : <?=$room['kids']?>명</p>
+											<?php if($room['r_contents2']) { ?>
                                             <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
+											<?php } ?>
                                         </div>
                                     </td>
                                     
