@@ -917,7 +917,7 @@
 
                             <div class="flex_c_c">
                                 <button type="button" class="btn_add_cart">
-                                    쿠폰적용
+                                    장바구니 담기
                                 </button>
                             </div>
                         </div>
