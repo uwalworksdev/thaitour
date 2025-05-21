@@ -893,9 +893,9 @@ class AjaxController extends BaseController {
 																			
 																		$msg .= '</ul>
 																	             </div>
-																</td> 															
+																</td>'; 															
  
-													<td>
+													$msg .= '<td>
 														<div class="people_qty">
 															<img src="/images/sub/user-iconn.png" alt="">
 															<p>성인 : ' . $room['adult'] . '명</p>
