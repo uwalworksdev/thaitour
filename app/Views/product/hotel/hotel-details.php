@@ -1437,7 +1437,7 @@
                                             <img src="/images/sub/user-iconn.png" alt="">
                                             <p>성인 : <?=$room['adult']?>명</p>
                                             <p>아동 : <?=$room['kids']?>명</p>
-                                            <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기xxxx &gt;</a> 
+                                            <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
                                         </div>
                                     </td>
                                     
@@ -2357,7 +2357,7 @@
                 <div class="padding">
                     <div class="popup_place__head">
                         <div class="popup_place__head__ttl">
-                            <h2>프로모션 혜택</h2>
+                            <h2>프로모션 혜택..</h2>
                         </div>
                     </div>
                     <div class="popup_place__body">
