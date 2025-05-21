@@ -383,7 +383,7 @@
                                                     <div class="wrap-text">
                                                         <p><?= $data['option_name'][$i] ?>(<?=number_format($data['option_price'][$i])?> 원)</p>
                                                     </div>
-                                                    <div class="wrap-btn" style="gap: 10px;">
+                                                    <div class="wrap-btn" style="gap: 5px;">
                                                         <img onclick="minusQty(this)" class="minusQty"
                                                             src="/images/sub/minus-ic.png"
                                                             alt="">
