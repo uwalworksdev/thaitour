@@ -28,7 +28,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_golf" class="checkbox" data-value="">
-                            <label class="font-bold" for="group_golf">골프 :<span class="text-red"> <?=$golf_cnt?></span>
+                            <label class="font-bold" for="group_golf">골프.. :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
                         <div class="checkbox-group-2 form-group only_mo">
