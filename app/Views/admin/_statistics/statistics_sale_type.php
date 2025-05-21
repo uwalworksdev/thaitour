@@ -47,9 +47,8 @@
 
 <style>
 .contact_btn.active {
-    background-color: #333;
-    color: #fff;
-    border: 2px solid #222;
+    background-color: #3d6cab; /* 강조 색상 */
+    color: #fff;               /* 글자색 흰색 */
 }
 </style>
 
