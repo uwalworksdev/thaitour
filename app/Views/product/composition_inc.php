@@ -356,7 +356,7 @@
         }else{
             let url = '<?= route_to('api.product.processBooking') ?>';
 
-            if(Number($("#hours").val()) == 0 && Number($("#minutes").val()) == 0) {
+            if(Number($("#hours").val()) == 0 || Number($("#minutes").val()) == 0) {
                 alert("시간을 선택해줘!");
                 return false;
             }
