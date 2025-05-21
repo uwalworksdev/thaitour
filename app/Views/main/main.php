@@ -1119,10 +1119,10 @@ $searchTxt = $SearchText->List()->findAll();
 
         var swiperMainVisual = new Swiper(".main_visual_slider", {
             loop: true,
-            // autoplay: {
-            //     delay: 2000,
-            //     disableOnInteraction: false,
-            // },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
             speed: 800,
             navigation: {
                 nextEl: ".main_visual .swiper-button-next",
