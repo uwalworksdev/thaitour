@@ -895,14 +895,19 @@ class AjaxController extends BaseController {
 																	             </div>
 																</td>'; 															
  
-													$msg .= '<td>
-														<div class="people_qty">
-															<img src="/images/sub/user-iconn.png" alt="">
-															<p>성인 : ' . $room['adult'] . '명</p>
-															<p>아동 : ' . $room['kids'] . '명</p>
-															<a href="javascript:viewBenefitPopup(' . $room['rooms_idx'] . ');" style="color: #104aa8">혜택보기 &gt;</a>
-														</div>
-													</td>';
+$msg .= '<td>
+    <div class="people_qty">
+        <img src="/images/sub/user-iconn.png" alt="">
+        <p>성인 : ' . $room['adult'] . '명</p>
+        <p>아동 : ' . $room['kids'] . '명</p>';
+        
+        if (!empty($room['rooms_idx'])) {
+            $msg .= '<a href="javascript:viewBenefitPopup(' . $room['rooms_idx'] . ');" style="color: #104aa8">혜택보기 &gt;</a>';
+        }
+
+$msg .= '</div>
+    </td>';
+
 
 
 												$result    = depositPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
