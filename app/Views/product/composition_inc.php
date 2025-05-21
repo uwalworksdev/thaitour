@@ -356,11 +356,11 @@
         }else{
             let url = '<?= route_to('api.product.processBooking') ?>';
 
-            if($("#hours").val() == '' && $("#minutes").val() == '') {
+            if(Number($("#hours").val()) == 0 && Number($("#minutes").val()) == 0) {
                 alert("시간을 선택해줘!");
                 return false;
             }
-            
+
             $("#time_line").val(time_line);
 
             let formData = new FormData($('#frm')[0]);

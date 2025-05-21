@@ -630,7 +630,7 @@
             //     return false;
             // }
 
-            if($("#p_hours").val() == '' && $("#p_minutes").val() == '') {
+            if(Number($("#p_hours").val()) == 0 || Number($("#p_minutes").val()) == 0) {
                 alert("시간을 선택해줘!");
                 return false;
             }
