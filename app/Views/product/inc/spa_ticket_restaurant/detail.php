@@ -582,7 +582,7 @@
                     </div>
                    
                     <div class="flex_c_c">
-                        <button type="button" class="btn_add_cart">
+                        <button type="button" class="btn_add_cart" onclick="add_cart()">
                             장바구니 담기
                         </button>
                     </div>
@@ -594,40 +594,42 @@
 </div>
 
 <script>
-    $(".btn_add_cart").on("click", function () {
-        // if ($("#extra-requests").val() === "") {
-        //     alert("여기에 요청 사항을 입력하세요!");
-        //     $("#extra-requests").focus();
-        //     return false;
-        // }
-        
-        $("#order_memo").val($("#extra-requests").val());
 
-        let formData = new FormData($('#frm')[0]);
-
-        let url = `<?= route_to('api.spa_.handleBooking') ?>`;
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            success: function (data, textStatus) {
-                alert(data.message);
-                if(data.result){
-                    window.location.href = "/product-spa/completed-cart";
-                }
-            },
-            error: function (request, status, error) {
-                console.log(request);
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
-            }
-        });
-    });
+    // $(document).ready(function() {
+    //     $(".btn_add_cart").on("click", function () {
+    //         // if ($("#extra-requests").val() === "") {
+    //         //     alert("여기에 요청 사항을 입력하세요!");
+    //         //     $("#extra-requests").focus();
+    //         //     return false;
+    //         // }
+            
+    //         $("#order_memo").val($("#extra-requests").val());
+    
+    //         let formData = new FormData($('#frm')[0]);
+    
+    //         $("#frm").attr('action', '<?= route_to('api.spa_.handleBooking') ?>');
+    
+    //         let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+    
+    //         $.ajax({
+    //             url: url,
+    //             type: "POST",
+    //             data: formData,
+    //             processData: false,
+    //             contentType: false,
+    //             success: function (data, textStatus) {
+    //                 alert(data.message);
+    //                 if(data.result){
+    //                     window.location.href = "/product-spa/completed-cart";
+    //                 }
+    //             },
+    //             error: function (request, status, error) {
+    //                 console.log(request);
+    //                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+    //             }
+    //         });
+    //     });
+    // });
     function showInfoCompany() {
         $(".info_company").show();
     }
@@ -1480,5 +1482,33 @@
         $('html, body').animate({
             scrollTop: $('#' + elID).offset().top - 230
         }, 'slow');
+    }
+
+    function add_cart() {
+        $("#order_memo").val($("#extra-requests").val());
+    
+        let formData = new FormData($('#frm')[0]);
+
+        $("#frm").attr('action', '<?= route_to('api.spa_.handleBooking') ?>');
+
+        let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, textStatus) {
+                alert(data.message);
+                if(data.result){
+                    window.location.href = "/product-spa/completed-cart";
+                }
+            },
+            error: function (request, status, error) {
+                console.log(request);
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            }
+        });
     }
 </script>
