@@ -353,63 +353,66 @@
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
-        let url = '<?= route_to('api.product.processBooking') ?>';
 
         if(status == 'B') {
-            url = `<?= route_to('api.spa_.handleBooking') ?>`;
+            $(".cart_info_pop").show();
+            return;
+        }else{
+            let url = '<?= route_to('api.product.processBooking') ?>';
+
+            let formData = new FormData($('#frm')[0]);
+    
+            const currentUrl = window.location.href;
+            const pathName = window.location.pathname;
+    
+            let array_restaurant = [
+                '/product-restaurant/restaurant-detail',
+            ]
+            let array_ticket = [
+                '/ticket/ticket-detail/',
+            ]
+            let array_spa = [
+                '/product-spa/spa-details/',
+            ]
+    
+            /* AJAX request */
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $("#ajax_loader").addClass("display-none");
+                    if (response.result) {
+                        if(status == 'B') {
+                            window.location.href = '/product-spa/completed-cart';
+                        }else{
+                            if (array_restaurant.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/product-restaurant/restaurant-booking';
+                            }
+        
+                            if (array_spa.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/product-spa/product-booking';
+                            }
+        
+                            if (array_ticket.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/ticket/ticket-booking';
+                            }
+                        }
+                    } else {
+                        alert(response.message);
+                        window.location.href = '/member/login';
+                    }
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("오류 발생: " + request.responseText || "알 수 없는 오류");
+                    $("#ajax_loader").removeClass("display-none");
+                }
+            });
         }
 
-        let formData = new FormData($('#frm')[0]);
-
-        const currentUrl = window.location.href;
-        const pathName = window.location.pathname;
-
-        let array_restaurant = [
-            '/product-restaurant/restaurant-detail',
-        ]
-        let array_ticket = [
-            '/ticket/ticket-detail/',
-        ]
-        let array_spa = [
-            '/product-spa/spa-details/',
-        ]
-
-        /* AJAX request */
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                $("#ajax_loader").addClass("display-none");
-                if (response.result) {
-                    if(status == 'B') {
-                        window.location.href = '/product-spa/completed-cart';
-                    }else{
-                        if (array_restaurant.some(route => pathName.startsWith(route))) {
-                            window.location.href = '/product-restaurant/restaurant-booking';
-                        }
-    
-                        if (array_spa.some(route => pathName.startsWith(route))) {
-                            window.location.href = '/product-spa/product-booking';
-                        }
-    
-                        if (array_ticket.some(route => pathName.startsWith(route))) {
-                            window.location.href = '/ticket/ticket-booking';
-                        }
-                    }
-                } else {
-                    alert(response.message);
-                    window.location.href = '/member/login';
-                }
-            },
-            error: function (request, status, error) {
-                console.error("Error:", request, status, error);
-                alert("오류 발생: " + request.responseText || "알 수 없는 오류");
-                $("#ajax_loader").removeClass("display-none");
-            }
-        });
     }
 
 </script>
