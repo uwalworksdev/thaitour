@@ -724,8 +724,8 @@ public function statistics_sale_day()
         return view('admin/_statistics/statistics_sale_type_day');
     }
 
-    public function statistics_sale_type_week()
-    {
+	public function statistics_sale_type_week()
+	{
 		$db = \Config\Database::connect();
 
 		$years  = $this->request->getGet('years') ?? date('Y');
@@ -733,9 +733,25 @@ public function statistics_sale_day()
 		$weeks  = $this->request->getGet('weeks') ?? 1;
 		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
-		// 해당 연도의 시작일과 종료일 설정
-		$s_date = $years . '-'. $months .'-01';
-		$e_date = $years . '-'. $months .'-31';
+		// 월의 첫날
+		$first_day_of_month = new \DateTime("{$years}-{$months}-01");
+
+		// 해당 월의 요일 offset 계산 (0: 일요일, 1: 월요일, ...)
+		$day_of_week = (int) $first_day_of_month->format('w'); // 일:0 ~ 토:6
+
+		// N번째 주의 시작일 계산
+		$start_date = clone $first_day_of_month;
+		$start_date->modify('+' . (7 * ($weeks - 1)) . ' days');
+
+		// N번째 주의 종료일 계산
+		$end_date = clone $start_date;
+		$end_date->modify('+6 days');
+
+		// 종료일이 월을 넘기면 월 말일로 제한
+		$last_day_of_month = new \DateTime($first_day_of_month->format('Y-m-t'));
+		if ($end_date > $last_day_of_month) {
+			$end_date = $last_day_of_month;
+		}
 
 		$sql = "
 			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
@@ -746,7 +762,7 @@ public function statistics_sale_day()
 			  AND pm.payment_method != ''
 		";
 
-		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+		$params = [$start_date->format('Y-m-d') . ' 00:00:00', $end_date->format('Y-m-d') . ' 23:59:59'];
 
 		if (!empty($payin)) {
 			$sql .= " AND om.device_type = ?";
@@ -781,9 +797,14 @@ public function statistics_sale_day()
 		return view('admin/_statistics/statistics_sale_type_week', [
 			'converted_result' => $converted_result,
 			'years'            => $years,
+			'months'           => $months,
+			'weeks'            => $weeks,
 			'payin'            => $payin,
-		]);			
-    }
+			's_date'           => $start_date->format('Y-m-d'),
+			'e_date'           => $end_date->format('Y-m-d'),
+		]);
+	}
+
 
     public function statistics_sale_type_month()
     {
