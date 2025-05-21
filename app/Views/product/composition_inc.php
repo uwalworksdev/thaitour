@@ -252,8 +252,6 @@
         // let guidelines = $("#guidelines").val().trim();
         let time_line = $("#hours").val() + ":" + $("#minutes").val();
 
-        $("#time_line").val(time_line);
-
         /* Check for agreement validation */
         // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
         //     alert("모든 약관에 동의해야 합니다.");
@@ -357,6 +355,13 @@
             return false;
         }else{
             let url = '<?= route_to('api.product.processBooking') ?>';
+
+            if($("#hours").val() == '' && $("#minutes").val() == '') {
+                alert("시간을 선택해줘!");
+                return false;
+            }
+            
+            $("#time_line").val(time_line);
 
             let formData = new FormData($('#frm')[0]);
     

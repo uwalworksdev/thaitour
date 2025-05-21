@@ -5082,7 +5082,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .order-form-page .info-table-order.info-table-cus-padding td .note {
-    margin-top: 10px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .order-form-page .info-table-order.info-table-cus-padding td input {

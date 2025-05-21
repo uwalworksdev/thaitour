@@ -494,7 +494,7 @@
 
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
-                                <select class="select-time-c">
+                                <select class="select-time-c" id="select_time_line">
                                     <?php foreach ($timeSegments as $time): ?>
                                         <option value="<?= htmlspecialchars($time); ?>">
                                             <?= htmlspecialchars($time); ?>
@@ -888,6 +888,18 @@
                             <table class="info-table-order info-table-cus-padding">
                                 <tbody>
                                     <tr>
+                                        <th>예약시간</th>
+                                        <td>
+                                            <select class="select-time-c" id="pop_select_time_line" style="width: 200px;">
+                                                <?php foreach ($timeSegments as $time): ?>
+                                                    <option value="<?= htmlspecialchars($time); ?>">
+                                                        <?= htmlspecialchars($time); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th>미팅장소</th>
                                         <td>
                                             <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" id="pop_start_place">
@@ -951,6 +963,13 @@
         //     $("#pop_description").focus();
         //     return false;
         // }
+
+        var selectedTimePop = $('#pop_select_time_line').val();
+        if (!selectedTimePop) {
+            selectedTimePop = $('#pop_select_time_line option:first').val();
+        }
+
+        $("#time_line").val(selectedTimePop);
 
         $("#start_place").val($("#pop_start_place").val());
         $("#end_place").val($("#pop_end_place").val());
@@ -1810,13 +1829,10 @@
                 return false;
             }
 
-            var selectedTime = $('.select-time-c').val();
+            var selectedTime = $('#select_time_line').val();
             if (!selectedTime) {
-                selectedTime = $('.select-time-c option:first').val();
+                selectedTime = $('#select_time_line option:first').val();
             }
-
-            console.log(selectedTourIds);
-            
 
             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
@@ -1840,7 +1856,6 @@
             $('#people_baby_price').val(babyTotalPrices);
             $('#tours_idx').val(currentToursIdx);
             $('#idx').val(idxWithQuantities);
-            $('#time_line').val(selectedTime);
             $('.time_lines').text(selectedTime);
             $("#total_price_popup").text(number_format(last_price) + " 바트");
             $("#total_price").val(last_price);
@@ -1853,6 +1868,8 @@
             var productIdx = document.querySelector('input[name="product_idx"]').value;
 
             if(type == 'W'){
+                $('#time_line').val(selectedTime);
+
                 $("#frm").submit();
             }else{
                 $(".cart_info_pop").show();
