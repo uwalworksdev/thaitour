@@ -341,21 +341,14 @@ $setting = homeSetInfo();
                                 '일요일/공휴일' => ''
                             ];
 
-                            if (isset($parts[0]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[0]), $m)) {
+                            if (isset($parts[0]) && preg_match('/([\d:]+[-~][\d:]+(?:\s*\d*)?)[^\(]*\(([^)]+)\)/u', trim($parts[0]), $m)) {
                                 $time_data['월-금'] = str_replace('~', '-', $m[1]);
                             }
-
-                            if (isset($parts[1]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[1]), $m)) {
+                            if (isset($parts[1]) && preg_match('/([\d:]+[-~][\d:]+(?:\s*\d*)?)[^\(]*\(([^)]+)\)/u', trim($parts[1]), $m)) {
                                 $time_data['점심'] = str_replace('~', '-', $m[1]);
                             }
-
-                            if (isset($parts[2]) && preg_match('/([\d:]+[-~][\d:]+)\s*\(([^)]+)\)/u', trim($parts[2]), $m)) {
+                            if (isset($parts[2]) && preg_match('/([\d:]+[-~][\d:]+(?:\s*\d*)?)[^\(]*\(([^)]+)\)/u', trim($parts[2]), $m)) {
                                 $time_data['토요일'] = str_replace('~', '-', $m[1]);
-                            }
-
-                            if (isset($parts[3]) && strpos($parts[3], ':') !== false) {
-                                list($label, $value) = explode(':', $parts[3], 2);
-                                $time_data['일요일/공휴일'] = trim($value);
                             }
                         ?>
                         <th>영업시간</th>
