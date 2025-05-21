@@ -730,6 +730,7 @@ public function statistics_sale_day()
 
 		$years  = $this->request->getGet('years') ?? date('Y');
 		$months = $this->request->getGet('months') ?? date('m');
+		$weeks  = $this->request->getGet('weeks') ?? 1;
 		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
 		// 해당 연도의 시작일과 종료일 설정
