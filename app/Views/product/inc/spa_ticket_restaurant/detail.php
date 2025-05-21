@@ -134,8 +134,32 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div style="display: flex; justify-content: flex-end;">
+                    <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                        <div class="meeting_time">
+                            <select name="hours[]" id="hours">
+                                <?php
+                                for ($i = 0; $i < 24; $i++) {
+                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                ?>
+                                    <option value="<?= $hour ?>"><?= $hour ?></option>
+                                    <?php
+                                }
+                                    ?>
+                            </select>
+                            <label for="hours">시</label>
+                            <select name="minutes[]" id="minutes">
+                                <?php
+                                for ($i = 0; $i < 60; $i += 1) {
+                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                ?>
+                                    <option value="<?= $minute ?>"><?= $minute ?></option>
+                                    <?php
+                                }
+                                    ?>
+                            </select>
+                            <label for="minutes">분</label>
+                        </div>
                     </div>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
@@ -167,33 +191,10 @@
                 </div>
 
                 <div class="section9">
-                    <h2 class="title-sec9">
+                    <!-- <h2 class="title-sec9">
                         예약시간
-                    </h2>
-                    <div class="meeting_time">
-                        <select name="hours[]" id="hours">
-                            <?php
-                            for ($i = 0; $i < 24; $i++) {
-                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $hour ?>"><?= $hour ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="hours">시</label>
-                        <select name="minutes[]" id="minutes">
-                            <?php
-                            for ($i = 0; $i < 60; $i += 1) {
-                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $minute ?>"><?= $minute ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="minutes">분</label>
-                    </div>
+                    </h2> -->
+                    
                     <!-- <select class="select-time-c" id="select_time_line">
                         <?php foreach ($data_["timeSegments"] as $time): ?>
                             <option value="<?= htmlspecialchars($time); ?>">

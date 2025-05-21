@@ -141,6 +141,22 @@ class SpaController extends BaseController
             $orderStatus      = $postData['order_status'] ?? 'W';
             $orderUserEmail   = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
+            if (is_array($postData['adultQty'])) {
+                $postData['adultQty'] = implode(',', $postData['adultQty']);
+            } 
+
+            if (is_array($postData['childrenQty'])) {
+                $postData['childrenQty'] = implode(',', $postData['childrenQty']);
+            } 
+
+            if (is_array($postData['adultPrice'])) {
+                $postData['adultPrice'] = implode(',', $postData['adultPrice']);
+            } 
+
+            if (is_array($postData['childrenPrice'])) {
+                $postData['childrenPrice'] = implode(',', $postData['childrenPrice']);
+            } 
+
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
 
@@ -158,13 +174,13 @@ class SpaController extends BaseController
             $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
             $baht_thai        = $this->setting['baht_thai'];
 			
-            $phone_1 = updateSQ($this->request->getPost('phone_1'));
-            $phone_2 = updateSQ($this->request->getPost('phone_2'));
-            $phone_3 = updateSQ($this->request->getPost('phone_3'));
+            $phone_1 = updateSQ($this->request->getPost('phone_1') ?? "");
+            $phone_2 = updateSQ($this->request->getPost('phone_2') ?? "");
+            $phone_3 = updateSQ($this->request->getPost('phone_3') ?? "");
             $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
             $p_user_mobile = encryptField($payment_user_mobile, "encode");
 
-            $phone_thai = updateSQ($this->request->getPost('phone_thai'));
+            $phone_thai = updateSQ($this->request->getPost('phone_thai') ?? "");
             $p_phonethai = encryptField($phone_thai, "encode");
 
             if(!empty($phone_thai)){
@@ -173,10 +189,10 @@ class SpaController extends BaseController
                 $user_mobile = $p_user_mobile;
             }
 
-            $local_phone = updateSQ($this->request->getPost('local_phone'));
+            $local_phone = updateSQ($this->request->getPost('local_phone') ?? "");
             $local_phone = encryptField($local_phone, "encode");
 
-            $time_line      = $postData['time_line'] ?? '';
+            $time_line      = $postData['time_line'] ?? "";
 
             if($orderStatus == "W") {
                 $group_no  = date('YmdHis'); 
@@ -184,8 +200,10 @@ class SpaController extends BaseController
                 $group_no  = ""; 
             }
 
-            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
-            $data['real_price_won']    =  $data['order_price'];
+            // $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            // $data['real_price_won']    =  $data['order_price'];
+
+            $postData['lastPrice'] = !empty($postData['lastPrice']) ? $postData['lastPrice'] : $postData['totalPrice'];
 
             $real_price_bath   =  (int)($postData['lastPrice'] / $baht_thai);
             $real_price_won    =  $postData['lastPrice'];
@@ -194,23 +212,23 @@ class SpaController extends BaseController
             $order_price_bath  =  (int)($postData['lastPrice'] / $baht_thai);
 
 			$orderData = [
-                'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_name'               => encryptField($postData['order_user_name'] ?? "", 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
-                'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
-                'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
+                'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'] ?? "", 'encode') ?? $postData['order_user_first_name_en'],
+                'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'] ?? "", 'encode') ?? $postData['order_user_last_name_en'],
 				
-			    "order_passport_number"         => encryptField($postData['order_passport_number'], 'encode'),
-			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'],
-			    "order_birth_date"              => $postData['order_birth_date'],
+			    "order_passport_number"         => encryptField($postData['order_passport_number'] ?? "", 'encode'),
+			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'] ?? "",
+			    "order_birth_date"              => $postData['order_birth_date'] ?? "",
 				
-                'order_gender_list'             => $postData['companion_gender'] ?? '',
+                'order_gender_list'             => $postData['companion_gender'] ?? "",
                 'product_idx'                   => $productIdx,
                 'user_id'                       => $memberIdx,
                 'm_idx'                         => $memberIdx,
-                'order_day'                     => $postData['day_'] ?? '',
+                'order_day'                     => $postData['day_'] ?? "",
                 'order_user_mobile'             => $user_mobile,
                 'order_user_phone'              => $user_mobile,
-                'local_phone'                   => $local_phone ?? '',
+                'local_phone'                   => $local_phone ?? "",
                 'people_adult_cnt'              => $adultQtySum,
                 'people_kids_cnt'               => $childrenQtySum,
                 'inital_price'                  => $postData['totalPrice'] ?? 0,

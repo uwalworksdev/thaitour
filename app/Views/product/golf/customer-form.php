@@ -664,41 +664,41 @@
         function handleSubmit(status) {
 
             if(status == "W") {
-					if ($("#order_user_name_kor").val() === "") {
-						alert("한글명을 입력해주세요!");
-						$("#order_user_name_kor").focus();
-						return false;
-					}
+                if ($("#order_user_name_kor").val() === "") {
+                    alert("한글명을 입력해주세요!");
+                    $("#order_user_name_kor").focus();
+                    return false;
+                }
 
-					if ($("#order_user_first_name_en").val() === "") {
-						alert("영문명을 입력해주세요!");
-						$("#order_user_first_name_en").focus()
-						return false;
-					}
-					
-					if ($("#order_user_last_name_en").val() === "") {
-						alert("영문명을 입력해주세요!");
-						$("#order_user_last_name_en").focus()
-						return false;
-					}
+                if ($("#order_user_first_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+                    $("#order_user_first_name_en").focus()
+                    return false;
+                }
+                
+                if ($("#order_user_last_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+                    $("#order_user_last_name_en").focus()
+                    return false;
+                }
 
-					if ($("#order_passport_number").val() === "") {
-						alert("여권번호를 입력해주세요!");
-						$("#order_passport_number").focus();
-						return false;
-					}
+                if ($("#order_passport_number").val() === "") {
+                    alert("여권번호를 입력해주세요!");
+                    $("#order_passport_number").focus();
+                    return false;
+                }
 
-					if ($("#order_passport_expiry_date").val() === "") {
-						alert("여권만기일을 입력해주세요!");
-						$("#order_passport_expiry_date").focus();
-						return false;
-					}
+                if ($("#order_passport_expiry_date").val() === "") {
+                    alert("여권만기일을 입력해주세요!");
+                    $("#order_passport_expiry_date").focus();
+                    return false;
+                }
 
-					if ($("#order_birth_date").val() === "") {
-						alert("생년월일을 입력해주세요!");
-						$("#order_birth_date").focus()
-						return false;
-					}
+                if ($("#order_birth_date").val() === "") {
+                    alert("생년월일을 입력해주세요!");
+                    $("#order_birth_date").focus()
+                    return false;
+                }
 			}
 			
 			$("#order_status").val(status);
@@ -706,23 +706,23 @@
             let flag = true;
 
             if(status == "W") {
-					$("input[required]:not(:disabled)").each(function () {
-						if ($(this).val().trim() == "") {
-							alert($(this).attr("data-label") + "를 입력하십시오.");
-							$(this).focus();
-							flag = false;
-							return false;
-						}
-					});
+                $("input[required]:not(:disabled)").each(function () {
+                    if ($(this).val().trim() == "") {
+                        alert($(this).attr("data-label") + "를 입력하십시오.");
+                        $(this).focus();
+                        flag = false;
+                        return false;
+                    }
+                });
 
-					if (!flag) {
-						return false;
-					}
-            }
+                if (!flag) {
+                    return false;
+                }
 
-            if (!($(".item-clause-all").hasClass("click"))) {
-                alert("이용약관 동의(필수)를 선택하십시오.");
-                return false;
+                if (!($(".item-clause-all").hasClass("click"))) {
+                    alert("이용약관 동의(필수)를 선택하십시오.");
+                    return false;
+                }
             }
 			
             frm.submit();

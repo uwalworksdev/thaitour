@@ -3134,8 +3134,12 @@
     margin: 40px 0;
 }
 
-.tours-detail.spa-detail .open_time {
+/* .tours-detail.spa-detail .open_time {
     margin-bottom: 20px;
+} */
+
+.tours_time_sect {
+    margin-bottom: 30px;
 }
 
 .tours-detail p.des-type {
