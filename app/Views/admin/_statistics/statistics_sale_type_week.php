@@ -193,7 +193,7 @@ button[type="submit"]:hover {
                             }
 
                             function drawBarChart() {
-                                var total = <?= $price_arr['Card'] ?> + <?= $price_arr['VBank'] ?> + <?= $price_arr['DBank'] ?>;
+                                var total = <?= $payment_tot ?>;
                                 var rows = [
                                     ["카드결제", <?=$price_arr['Card']?>, "#4285F4"],
                                     ["무통장", <?=$price_arr['VBank']?>, "#4285F4"],
