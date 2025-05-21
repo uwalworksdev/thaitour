@@ -354,7 +354,7 @@
 
         if(status == 'B') {
             $(".cart_info_pop").show();
-            return;
+            return false;
         }else{
             let url = '<?= route_to('api.product.processBooking') ?>';
 
