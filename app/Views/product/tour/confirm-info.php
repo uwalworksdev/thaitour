@@ -691,11 +691,11 @@
                 return false;
             }
 
-            if ($("#description").val() === "") {
-                alert("기타 요청 입력해주세요!");
-                $("#description").focus();
-                return false;
-            }
+            // if ($("#description").val() === "") {
+            //     alert("기타 요청 입력해주세요!");
+            //     $("#description").focus();
+            //     return false;
+            // }
         }
 
         $("#order_frm").submit();

@@ -946,11 +946,11 @@
             return false;
         }
 
-        if ($("#pop_description").val() === "") {
-            alert("기타 요청 입력해주세요!");
-            $("#pop_description").focus();
-            return false;
-        }
+        // if ($("#pop_description").val() === "") {
+        //     alert("기타 요청 입력해주세요!");
+        //     $("#pop_description").focus();
+        //     return false;
+        // }
 
         $("#start_place").val($("#pop_start_place").val());
         $("#end_place").val($("#pop_end_place").val());
