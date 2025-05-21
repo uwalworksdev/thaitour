@@ -4273,6 +4273,23 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-bottom: 12px;
 }
 
+.cart_info_pop .title-sub-below {
+    font-size: 15px;
+    color: #757575;
+    margin-bottom: 20px;
+}
+
+.cart_info_pop .cus-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart_info_pop .cus-form-group textarea {
+    width: 100%;
+    padding: 20px;
+    height: 102px;
+}
+
 .customer-form-page .tour .container-card .item-info {
     width: 280px;
 }

@@ -563,7 +563,71 @@
     <div class="dim"></div>
 </div>
 
+<div class="popup_wrap place_pop cart_info_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>별도 요청</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
+                        보장되지
+                        않을 수 있습니다.</p>
+                    <div class="form-group cus-form-group">
+                        <textarea id="extra-requests" placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                    </div>
+                   
+                    <div class="flex_c_c">
+                        <button type="button" class="btn_add_cart">
+                            장바구니 담기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 <script>
+     $(".btn_add_cart").on("click", function () {
+        if ($("#extra-requests").val() === "") {
+            alert("여기에 요청 사항을 입력하세요!");
+            $("#extra-requests").focus();
+            return false;
+        }
+        
+        $("#order_memo").val($("#extra-requests").val());
+
+        let formData = new FormData($('#frm')[0]);
+
+        let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data, textStatus) {
+                alert(data.message);
+                if(data.result){
+                    window.location.href = "/product-spa/completed-cart";
+                }
+            },
+            error: function (request, status, error) {
+                console.log(request);
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+            }
+        });
+    });
+
     function showInfoCompany() {
         $(".info_company").show();
     }

@@ -11,6 +11,8 @@
 		<input type="hidden" name="order_status" id="order_status" value="B" >      
         <input type="hidden" name="feeVal" id="feeVal" value="">
         <input type="hidden" name="time_line" id="time_line" value="">
+        <input type="hidden" name="order_memo" id="order_memo" value="">
+
         <div class="" style="display: none">
             <input type="hidden" name="totalPrice" id="totalPrice" value="0">
         </div>
