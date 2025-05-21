@@ -49,7 +49,7 @@
 .contact_btn.active {
     background-color: #333;
     color: #fff;
-    border: 1px solid #222;
+    border: 2px solid #222;
 }
 </style>
 
