@@ -596,13 +596,12 @@
 <script>
     
     $(document).ready(function() {
-        $(".btn_add_cart").on("click", function (e) {
+        $(".btn_add_cart").on("click", function () {
             // if ($("#extra-requests").val() === "") {
             //     alert("여기에 요청 사항을 입력하세요!");
             //     $("#extra-requests").focus();
             //     return false;
             // }
-            e.preventDefault();
             $("#order_memo").val($("#extra-requests").val());
     
             let formData = new FormData($('#frm')[0]);

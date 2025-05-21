@@ -118,7 +118,7 @@ $searchTxt = $SearchText->List()->findAll();
                     <?php foreach ($bannerMain as $item): ?>
                         <div class="swiper-slide img_box img_box_1 only_web">
                             <img class="only_web" src="/data/bbs/<?= $item['ufile6'] ?>"
-                                alt="<?= $item['rfile5'] ?>" onclick="location.href='<?= !empty($item['url']) ? $item['url'] : '#' ?>" onerror="this.src='/images/main/image.svg'">
+                                alt="<?= $item['rfile5'] ?>" style="cursor: pointer;" onclick="window.location.href='<?= $item['url'] ?>'" onerror="this.src='/images/main/image.svg'">
                             <!--                        <div class="img_box_ttl_main">-->
                             <!--                            --><?php //= viewSQ($item['subject']) 
                                                                 ?>
@@ -1119,10 +1119,10 @@ $searchTxt = $SearchText->List()->findAll();
 
         var swiperMainVisual = new Swiper(".main_visual_slider", {
             loop: true,
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: false,
-            },
+            // autoplay: {
+            //     delay: 2000,
+            //     disableOnInteraction: false,
+            // },
             speed: 800,
             navigation: {
                 nextEl: ".main_visual .swiper-button-next",

@@ -233,7 +233,7 @@
 
 .main_visual_slider .img_box::before {
     transition: all 2s ease;
-    content: "";
+    /* content: ""; */
     position: absolute;
     top: 0;
     left: 0;
