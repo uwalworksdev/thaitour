@@ -668,22 +668,25 @@ public function statistics_sale_type()
 
     $s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
     $e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-    $payin  = $this->request->getGet('payin');
+    $payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
-    $sql = "SELECT payment_method, SUM(Amt_1) AS total 
-            FROM tbl_payment_mst 
-            WHERE paydate >= ? AND paydate <= ?
-              AND payment_method IS NOT NULL 
-              AND payment_method != ''";
+    $sql = "
+        SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+        FROM tbl_payment_mst pm
+        JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+        WHERE pm.paydate BETWEEN ? AND ?
+          AND pm.payment_method IS NOT NULL
+          AND pm.payment_method != ''
+    ";
 
     $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
 
     if (!empty($payin)) {
-        $sql .= " AND DeviceType = ?";
+        $sql .= " AND om.device_type = ?";
         $params[] = $payin;
     }
 
-    $sql .= " GROUP BY payment_method ORDER BY total DESC";
+    $sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
 
     $query  = $db->query($sql, $params);
     $result = $query->getResult();
@@ -692,7 +695,7 @@ public function statistics_sale_type()
     $code_map = [
         '신용카드'       => 'Card',
         '가상계좌'       => 'VBank',
-        '계좌입금'       => 'MBank',  // 같은 코드로 처리
+        '계좌입금'       => 'MBank',
         '실시간계좌이체' => 'DBank',
     ];
 
@@ -709,12 +712,13 @@ public function statistics_sale_type()
     }
 
     return view('admin/_statistics/statistics_sale_type', [
-        'converted_result' => $converted_result,  // 한글 → 코드명 결과
+        'converted_result' => $converted_result,
         's_date'           => $s_date,
         'e_date'           => $e_date,
         'payin'            => $payin,
     ]);
 }
+
 
 
 

@@ -20,7 +20,7 @@
 
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
-    $payin    = $_GET['payin'];
+    $payin  = $_GET['payin'];
 
     if ($s_date == "") {
         $s_date = date('Y-m-d');
