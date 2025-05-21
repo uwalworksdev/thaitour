@@ -117,10 +117,8 @@ $searchTxt = $SearchText->List()->findAll();
                 <div class="swiper-wrapper">
                     <?php foreach ($bannerMain as $item): ?>
                         <div class="swiper-slide img_box img_box_1 only_web">
-                            <a href="<?= $item['url'] ?? '#' ?>">
-                                <img class="only_web" src="/data/bbs/<?= $item['ufile6'] ?>"
-                                    alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                            </a>
+                            <img class="only_web" src="/data/bbs/<?= $item['ufile6'] ?>"
+                                alt="<?= $item['rfile5'] ?>" style="cursor: pointer;" onclick="location.href='<?= $item['url'] ?? '#' ?>" onerror="this.src='/images/main/image.svg'">
                             <!--                        <div class="img_box_ttl_main">-->
                             <!--                            --><?php //= viewSQ($item['subject']) 
                                                                 ?>
