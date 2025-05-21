@@ -7,6 +7,86 @@
 <?php
 $setting = homeSetInfo();
 ?>
+<style>
+    .side-bar-inc {
+            top: 60%;
+        }
+
+        .main_sale_banner {
+            top: 60%;
+        }
+
+        @media screen and (min-width: 1921px) {
+            .side-bar-inc {
+                top: 57%;
+            }
+
+            .main_sale_banner {
+                top: 57%;
+            }
+        }
+
+        @media screen and (min-width: 2400px) {
+            .side-bar-inc {
+                top: 55%;
+            }
+
+            .main_sale_banner {
+                top: 55%;
+            }
+        }
+
+        @media screen and (min-width: 2560px) {
+            .side-bar-inc {
+                top: 55%;
+            }
+
+            .main_sale_banner {
+                top: 55%;
+            }
+        }
+
+        @media screen and (min-width: 2880px) {
+            .side-bar-inc {
+                top: 53%;
+            }
+
+            .main_sale_banner {
+                top: 53%;
+            }
+        }
+
+        @media screen and (min-width: 3840px) {
+            .side-bar-inc {
+                top: 47%;
+            }
+
+            .main_sale_banner {
+                top: 47%;
+            }
+        }
+
+        @media screen and (min-width: 5760px) {
+            .side-bar-inc {
+                top: 43%;
+            }
+
+            .main_sale_banner {
+                top: 43%;
+            }
+
+        }
+
+        @media screen and (min-width: 7680px) {
+            .side-bar-inc {
+                top: 40%;
+            }
+
+            .main_sale_banner {
+                top: 40%;
+            }
+        }
+</style>
 <section id="sub_container" class="intro">
     <div class="intro_visual">
 
@@ -27,7 +107,7 @@ $setting = homeSetInfo();
         </div>
         <div class="intro_desc">
             <p class="txt">
-                더투어랩은 태국 전문 온라인 여행사로 태국 홍보 및 여행 정보를 10년 이상 여행자들에게 제공해 왔으면 <br class="only_web">
+                더투어랩은 태국 전문 온라인 여행사로 태국 홍보 및 여행 정보를 10년 이상 여행자들에게 제공해 왔으며 <br class="only_web">
                 태국 관광청의 공정거래 위원회 (Fair Trading) 의 정식 회원으로 명실상부한 태국 지역의 Landing Travel <br class="only_web">
                 Agency 로 신임을 얻으며 현지에서 좋은 신용을 가진 여행사로 자리 잡고 있습니다.
 
@@ -97,15 +177,15 @@ $setting = homeSetInfo();
                         <img src="/img/center/ab-img4.png" alt="">
                     </div>
                     <div class="image">
-                        <p class="text_ttl">호텔 예약 이벤트</p>
+                        <p class="text_ttl">최고급 골프여행</p>
                         <img src="/img/center/ab-img5.png" alt="">
                     </div>
                     <div class="image">
-                        <p class="text_ttl">호텔 예약 이벤트</p>
+                        <p class="text_ttl">장기체류 골프텔</p>
                         <img src="/img/center/ab-img6.png" alt="">
                     </div>
                     <div class="image">
-                        <p class="text_ttl">호텔 예약 이벤트</p>
+                        <p class="text_ttl">인센티브 투어</p>
                         <img src="/img/center/ab-img7.png" alt="">
                     </div>
                 </div>

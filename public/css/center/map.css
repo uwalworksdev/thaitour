@@ -3757,12 +3757,12 @@ form .form_list .name_row input+input {
 }
 
 .intro .intro_visual {
-  height: 317px;
+  height: 16.615vw;
   width: 100%;
   background-image: url('/img/center/ab-visual.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 16.615vw;
 }
 
 .intro_bg {
@@ -3771,7 +3771,7 @@ form .form_list .name_row input+input {
 }
 
 .intro .intro_top {
-          padding: 50px 0 0;
+          padding: 40px 0 0;
           align-items: center;
           gap: 25px;
 }
@@ -3786,7 +3786,7 @@ form .form_list .name_row input+input {
           letter-spacing: -1px;
           color: #757575;
           font-weight: 400;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
           font-family: "Noto Sans KR";
 }
 
@@ -3995,7 +3995,7 @@ form .form_list .name_row input+input {
 .intro .intro_location .cont {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 24px;
   margin-bottom: 56px;
 
@@ -4006,11 +4006,14 @@ form .form_list .name_row input+input {
   position: relative;
 }
 
+.intro .intro_location .cont .item:nth-child(2) {
+  padding: 0 60px;
+}
 
 .intro .intro_location .cont .item:nth-child(2)::before {
   content: "";
   position: absolute;
-  left: -70px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
   width: 31px;
@@ -4023,7 +4026,7 @@ form .form_list .name_row input+input {
 .intro .intro_location .cont .item:nth-child(2)::after {
   content: "";
   position: absolute;
-  right: -70px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   width: 31px;
