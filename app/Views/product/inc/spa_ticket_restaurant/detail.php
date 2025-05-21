@@ -137,7 +137,7 @@
                     <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
                         <div class="meeting_time">
-                            <select name="hours[]" id="hours">
+                            <select name="hours" id="hours">
                                 <?php
                                 for ($i = 0; $i < 24; $i++) {
                                     $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -148,7 +148,7 @@
                                     ?>
                             </select>
                             <label for="hours">시</label>
-                            <select name="minutes[]" id="minutes">
+                            <select name="minutes" id="minutes">
                                 <?php
                                 for ($i = 0; $i < 60; $i += 1) {
                                     $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
