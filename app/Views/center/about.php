@@ -246,8 +246,6 @@ $setting = homeSetInfo();
                     <tr>
                         <th>대표전화</th>
                         <td><?= $setting['custom_service_phone_seoul'] ?></td>
-                    </tr>
-                    <tr>
                         <th>카카오 채널</th>
                         <td>@더투어랩</td>
                     </tr>
