@@ -130,10 +130,10 @@ class SpaController extends BaseController
                 ], 400);
             }
 
-            $dataCart = $session->get('data_cart');
-            if (empty($dataCart)) {
-                return redirect()->to('/');
-            }
+            // $dataCart = $session->get('data_cart');
+            // if (empty($dataCart)) {
+            //     return redirect()->to('/');
+            // }
 
             $postData         = $this->request->getPost();
 
@@ -315,7 +315,7 @@ class SpaController extends BaseController
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
 
-            $session->remove('data_cart');
+            // $session->remove('data_cart');
 
             if($orderStatus == "W") {
 				

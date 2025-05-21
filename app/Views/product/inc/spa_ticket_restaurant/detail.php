@@ -602,6 +602,7 @@
             //     $("#extra-requests").focus();
             //     return false;
             // }
+            
             $("#order_memo").val($("#extra-requests").val());
     
             let formData = new FormData($('#frm')[0]);
@@ -612,6 +613,8 @@
                 url: url,
                 type: "POST",
                 data: formData,
+                async: false,
+                cache: false,
                 processData: false,
                 contentType: false,
                 success: function (data, textStatus) {
