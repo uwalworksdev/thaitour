@@ -347,7 +347,7 @@
                                         <p style="font-weight: bold; width: 100%;"><?=$val?></p>
                                         <div class="schedule_wrap">
                                             <div class="wrap-text" style="width: 100%;">
-                                                <p>성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
+                                                <p style="text-wrap: nowrap">성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
                                                 <span style="text-wrap: nowrap"><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
@@ -356,7 +356,7 @@
                                         </div>
                                         <div class="schedule_wrap">
                                             <div class="wrap-text" style="width: 100%;">
-                                                <p>아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
+                                                <p style="text-wrap: nowrap">아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
                                                 <span style="text-wrap: nowrap"><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>

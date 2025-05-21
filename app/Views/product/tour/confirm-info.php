@@ -199,7 +199,7 @@
 
                         <div class="card-left2 card_left_bottom_ order-form-page">
                             <h3 class="title-main-c">
-                                별도 요청
+                                필수 입력사항
                             </h3>
                             <div class="two-table-tb">
                                 <table class="info-table-order info-table-cus-padding" style="width: 100%;">
