@@ -47,12 +47,9 @@
 
 <style>
 .contact_btn.active {
-    background-color: #3d6cab;
-    color: white;
-}
-.contact_btn.selected {
-    background-color: #3d6cab;  /* 클릭된 버튼 색상 */
-    color: white;               /* 텍스트는 흰색 */
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #222;
 }
 </style>
 
