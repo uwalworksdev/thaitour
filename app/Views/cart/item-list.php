@@ -57,7 +57,7 @@
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date">예약일시:<?=$item['order_date']?><?=$item['options']?></div>
+                                            <div class="product-date">예약일시:<?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
 												if (!empty($item['options'])) {
