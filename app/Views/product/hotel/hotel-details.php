@@ -2357,7 +2357,7 @@
                 <div class="padding">
                     <div class="popup_place__head">
                         <div class="popup_place__head__ttl">
-                            <h2>프로모션 혜택..</h2>
+                            <h2>프로모션 혜택</h2>
                         </div>
                     </div>
                     <div class="popup_place__body">
