@@ -14,14 +14,14 @@
 
 
 <?php
-    $pay_method['Card']        = "카드결제";
+    $pay_method['Card']     = "카드결제";
     $pay_method['VBank']    = "무통장(가상계좌)";
     $pay_method['DBank']    = "실시간계좌이체	";
 
     $addr_group = $code_names;
 
     $years    = $_GET['years'];
-    $months = $_GET['months'];
+    $months   = $_GET['months'];
     $payin    = $_GET['payin'];
 
     if ($years == "") {
@@ -33,7 +33,7 @@
     }
 
     $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
-    $e_date = date('Y-m-d', mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+    $e_date = date('Y-m-d',  mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
 
     $price_arr = array();
 
@@ -99,9 +99,10 @@
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
+                            <button type="submit">검색</button>
                         </div>
                     </form>
                 </div>
