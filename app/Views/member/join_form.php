@@ -203,7 +203,7 @@ if ($mIdx != "") {
                                             <div class="button-row">
                                                 <input type="text" id="certi_num_2" name="certi_num_2" class="bs-input"
                                                     placeholder="">
-                                                <button type="button" class="btn cling-btn btn-outline-dark"
+                                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_email_btn"
                                                     onclick='certi_chk_2()'>인증확인</button>
                                             </div>
 
@@ -461,12 +461,12 @@ if ($mIdx != "") {
 </main>
 
 <script>
-    let is_check_phone = sessionStorage.getItem("check_phone");
+    // let is_check_phone = sessionStorage.getItem("check_phone");
 
-    if(is_check_phone) {
-        $("#chk_phone_btn").addClass("disabled");
-        $("#chk_phone_btn").attr("disabled", true);
-    }
+    // if(is_check_phone) {
+    //     $("#chk_phone_btn").addClass("disabled");
+    //     $("#chk_phone_btn").attr("disabled", true);
+    // }
 </script>
 
 <script>
@@ -677,7 +677,7 @@ if ($mIdx != "") {
                     $("#cert_yn_1").val("Y");
                     $("#chk_phone_btn").addClass("disabled");
                     $("#chk_phone_btn").attr("disabled", true);
-                    sessionStorage.setItem("check_phone", "Y");
+                    // sessionStorage.setItem("check_phone", "Y");
 
                     alert("인증되었습니다.");
                     return false;
@@ -748,6 +748,8 @@ if ($mIdx != "") {
                 response = response.trim();
                 if (response == "Y") {
                     $("#cert_yn_2").val("Y");
+                    $("#chk_email_btn").addClass("disabled");
+                    $("#chk_email_btn").attr("disabled", true);
                     alert("인증되었습니다.");
                 } else {
                     $("#cert_yn_2").val("N");
@@ -1359,8 +1361,12 @@ if ($mIdx != "") {
         }
     }
 
-    window.addEventListener("beforeunload", function () {
-        sessionStorage.removeItem("check_phone");
-    });
+    // window.addEventListener("beforeunload", function () {
+    //     const navType = performance.getEntriesByType("navigation")[0]?.type;
+
+    //     if (navType !== "reload") {
+    //         sessionStorage.removeItem("check_phone");
+    //     }
+    // });
 </script>
 <?php $this->endSection(); ?>
