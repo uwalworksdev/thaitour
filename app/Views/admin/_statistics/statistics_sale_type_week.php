@@ -13,6 +13,11 @@
 </style>
 
 <?php
+	$pay_method['Card']     = "카드결제";
+	$pay_method['VBank']    = "무통장(가상계좌)";
+	$pay_method['DBank']    = "실시간계좌이체	";
+	$pay_method['MBank']    = "통장입금";
+
 
 	$years    = $_GET['years'];
 	$months   = $_GET['months'];
@@ -27,10 +32,19 @@
 		$months = date('m');
 	}
 
-	if ($weeks == "") {
-		$weeks = "1";
-	}
+    $price_arr = array();
 
+	$price_arr['Card']   = 0;
+	$price_arr['VBank']  = 0;
+	$price_arr['DBank']  = 0;
+	$price_arr['MBank']  = 0;
+
+    $payment_tot = 0;
+    foreach ($converted_result as $row) {
+		     $payment_tot = $payment_tot + $row['total'];
+			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
+			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
+    }	
 
 ?>
 
@@ -103,11 +117,11 @@ button[type="submit"]:hover {
 
                             <select name="weeks" onchange="fn_search()">
                                 <option value="">전체</option>
-                                <option value="1" <?php if($weeks == "1") echo "selected";?> >1주</option>
-                                <option value="2" <?php if($weeks == "2") echo "selected";?> >2주</option>
-                                <option value="3" <?php if($weeks == "3") echo "selected";?> >3주</option>
-                                <option value="4" <?php if($weeks == "4") echo "selected";?> >4주</option>
-                                <option value="5" <?php if($weeks == "5") echo "selected";?> >5주</option>
+                                <option value="1" <?php if($weeks == "1") echo "selected";?> >1</option>
+                                <option value="2" <?php if($weeks == "2") echo "selected";?> >2</option>
+                                <option value="3" <?php if($weeks == "3") echo "selected";?> >3</option>
+                                <option value="4" <?php if($weeks == "4") echo "selected";?> >4</option>
+                                <option value="5" <?php if($weeks == "5") echo "selected";?> >5</option>
                             </select>
 
                             <select name="payin" onchange="fn_search()">
