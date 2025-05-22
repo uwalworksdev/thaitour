@@ -3994,7 +3994,7 @@ div#container::after {
 
 .period_search .input_radio input + label {
     display: block;
-    width: 60px;
+    width: 80px;
     height: 30px;
     border: 1px solid #cdcdcd;
     line-height: 28px;
