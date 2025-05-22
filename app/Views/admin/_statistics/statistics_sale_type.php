@@ -326,17 +326,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    $(".contact_btn").click(function() {
+$(".contact_btn").click(function() {
+    $(".contact_btn").removeClass("active");
+    $(this).addClass("active");
 
-		alert('xxxxxxxx');
-//        var range = $(this).data("range");
-        var date1 = $(this).attr("rel");
+    var range = $(this).data("range");
+    var date1 = $(this).data("start");
+    var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
 
-		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+    $("#range").val(range);
+    $("#s_date").val(date1);
+    $("#e_date").val(date2);
+});
 
-        $("#range").val(range);
-        $("#s_date").val(date1);
-        $("#e_date").val(date2);
-
-    });
 </script>
