@@ -727,7 +727,7 @@ public function statistics_sale_day()
 
 		$years  = $this->request->getGet('years') ?? date('Y');
 		$months = $this->request->getGet('months') ?? date('m');
-	    $days   = $this->request->getGet('months') ?? date('d');
+	    $days   = $this->request->getGet('days') ?? date('d');
 
 		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
