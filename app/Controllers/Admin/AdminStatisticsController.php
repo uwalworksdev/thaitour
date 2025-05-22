@@ -988,6 +988,7 @@ public function statistics_sale_type2()
 {
 	$db = \Config\Database::connect();		
 
+	$range  = $this->request->getGet('range') ?? 'today';
 	$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
 	$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
 
@@ -1033,6 +1034,7 @@ public function statistics_sale_type2()
 
 	return view('admin/_statistics/statistics_sale_type2', [
 		'result'      => $result,
+		'range'       => $range,
 		's_date'      => $s_date,
 		'e_date'      => $e_date,
 		'page'        => $page,

@@ -24,6 +24,7 @@
 <?php
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
+    $range  = $_GET['range'];
 
     if ($s_date == "") {
         $s_date = date('Y-m-d');
@@ -31,6 +32,10 @@
 
     if ($e_date == "") {
         $e_date = date('Y-m-d');
+    }
+
+    if ($range == "") {
+        $range = "today";
     }
 
     $goods_arr = array();
@@ -48,6 +53,42 @@
     text-decoration: underline;
 }
 </style>
+
+<style>
+button[type="submit"] {
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 1.5px;
+    background-color: #55a0ff;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #2f5c98;   /* 호버 시 색상 변경 */
+}
+
+.input_radio label {
+    display: flex;                /* 플렉스박스 사용 */
+    align-items: center;          /* 수직 정렬 */
+    justify-content: center;      /* 수평 정렬 */
+    height: 38px;                 /* 높이 지정 (Bootstrap 버튼 기준) */
+    padding: 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 선택된 항목 스타일 */
+.input_radio.active label {
+    border: 2px solid #007bff;
+    background-color: #e7f1ff;
+    color: #007bff;
+}
+</style>
+
 
 <div id="container">
     <span id="print_this">
@@ -89,6 +130,7 @@
             <!-- period_table -->
             <div class="period_table">
                 <form action="statistics_sale_type2" method="GET" name="search">
+				<input type="hidden" name="range" id="range" value="<?=$range?>" >
                     <table cellpadding="0" cellspacing="0" summary="">
                         <colgroup>
                             <col style="width: 150px;">
@@ -99,23 +141,23 @@
                                 <th>기간검색</th>
                                 <td>
                                     <div class="period_search">
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d') ?>">
+                                        <div class="input_radio contact_btn <?php if($range == "today") echo "active";?> " rel="<?= date('Y-m-d') ?>" data-range="today">
                                             <input type="radio" name="period" id="period01">
                                             <label for="period01">오늘</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>">
+                                        <div class="input_radio contact_btn <?php if($range == "week") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 week')); ?>" data-range="week">
                                             <input type="radio" name="period" id="period02">
                                             <label for="period02">1주일</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">
+                                        <div class="input_radio contact_btn <?php if($range == "month") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="month">
                                             <input type="radio" name="period" id="period03">
                                             <label for="period03">1개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>">
+                                        <div class="input_radio contact_btn <?php if($range == "6month") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"  data-range="6month">
                                             <input type="radio" name="period" id="period04">
                                             <label for="period04">6개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>">
+                                        <div class="input_radio contact_btn <?php if($range == "year") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="year">
                                             <input type="radio" name="period" id="period05">
                                             <label for="period05">1년</label>
                                         </div>
@@ -139,38 +181,38 @@
                 <div class="graph_area" style="height: auto;">
                     <div id="curve_chart1"></div>
 
-<script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    <?php if (!empty($result)) { ?>
-        google.charts.setOnLoadCallback(drawChart);
-    <?php } ?>
+					<script type="text/javascript">
+						google.charts.load('current', {
+							'packages': ['corechart']
+						});
+						<?php if (!empty($result)) { ?>
+							google.charts.setOnLoadCallback(drawChart);
+						<?php } ?>
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['상품명', '판매수량'],
-            <?php
-                $chartData = [];
-                foreach ($result as $arr_tmp) {
-                    $name = addslashes($arr_tmp->product_name ?? '');
-                    $cnt  = (int) ($arr_tmp->order_cnt ?? 0);
-                    $chartData[] = "['{$name}', {$cnt}]";
-                }
-                echo implode(",\n", $chartData);
-            ?>
-        ]);
+						function drawChart() {
+							var data = google.visualization.arrayToDataTable([
+								['상품명', '판매수량'],
+								<?php
+									$chartData = [];
+									foreach ($result as $arr_tmp) {
+										$name = addslashes($arr_tmp->product_name ?? '');
+										$cnt  = (int) ($arr_tmp->order_cnt ?? 0);
+										$chartData[] = "['{$name}', {$cnt}]";
+									}
+									echo implode(",\n", $chartData);
+								?>
+							]);
 
-        var options = {
-            title: '',
-            legend: { position: 'bottom' },
-            height: 400
-        };
+							var options = {
+								title: '',
+								legend: { position: 'bottom' },
+								height: 400
+							};
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
-        chart.draw(data, options);
-    }
-</script>
+							var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
+							chart.draw(data, options);
+						}
+					</script>
 
 
                 </div>
@@ -272,6 +314,9 @@
 $(document).ready(function () {
     $(".input_radio.contact_btn").click(function () {
         // 모든 라디오 비선택 처리
+		var range = $(this).data('range');
+		$("#range").val(range);
+		
         $(".input_radio input[type=radio]").prop("checked", false);
 
         // 현재 div 하위의 라디오 버튼 체크
