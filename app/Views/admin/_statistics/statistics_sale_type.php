@@ -340,6 +340,7 @@ $(document).ready(function() {
 		// 데이터 가져오기
 		var range = $(this).data("range");   // ex) "3day"
 		var date1 = $(this).data("start");   // ex) "2025-05-19"
+		alert('date1- '+date1);
 		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());  // 오늘
 
 		// 값 설정
