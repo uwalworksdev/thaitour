@@ -188,14 +188,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <script type="text/javascript">
     google.charts.load('current', { packages: ['corechart'] });
 
-    // PHP에서 전달된 데이터를 사용
-    const chartData = <?= json_encode($result) ?>; // [ ['지역명', 총합], ... ]
-    
-    // 색상 지정
-    const color = '#4285F4';
-
-    // 막대 차트용 퍼센트 계산
+    const chartData = <?= json_encode($result) ?>;
     const total = chartData.reduce((sum, row) => sum + row[1], 0);
+    const color = '#4285F4';
 
     google.charts.setOnLoadCallback(drawPieChart);
     google.charts.setOnLoadCallback(drawBarChart);
@@ -238,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 </script>
+
 
 
 
