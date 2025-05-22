@@ -84,7 +84,7 @@ button[type="submit"]:hover {
 /* 선택된 항목 스타일 */
 .input_radio.active label {
     border: 2px solid #007bff;
-    background-color: #e7f1ff;
+    background-color: #55a0ff;
     color: #007bff;
 }
 </style>
