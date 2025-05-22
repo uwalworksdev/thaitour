@@ -2552,49 +2552,83 @@
             let end_day            = $('#input_day_end_').val();
             let total_last_price   = $("#total_last_price").val();
 			
-            let data = {
-                order_status      : 'B',
-                product_idx       : product_idx,
-                room_op_idx       : room_op_idx,
-			    price             : price,
-			    price_won         : price_won,
-			    rooms_idx         : rooms_idx,
-				room              : room,	
-			    room_type         : room_type,
-                bed_type          : bed_type,
-				date_price        : date_price,
-				breakfast         : breakfast,	
-				adult             : adult,	
-				kids              : kids,	
-				total_last_price  : total_last_price,	
-				extra_won         : extra_won,
-			    extra_bath        : extra_bath,
-                ho_idx            : ho_idx,
-                optype            : optype,
-                use_coupon_idx    : use_coupon_idx,
-                used_coupon_money : used_coupon_money,
-                use_coupon_room   : use_coupon_room,
-                use_op_type       : use_op_type,
-                room_op_price_sale: room_op_price_sale,
-                inital_price      : inital_price,
-                coupon_discount   : coupon_discount,
-                coupon_type       : coupon_type,
-                last_price        : last_price,
-                number_room       : number_room,
-                number_day        : number_day,
-                start_day         : start_day,
-                end_day           : end_day,
-                end_day           : end_day,
-                order_memo        : order_memo,
-                additional_request: additional_request,
-            };
+            // let data = {
+            //     order_status      : 'B',
+            //     product_idx       : product_idx,
+            //     room_op_idx       : room_op_idx,
+			//     price             : price,
+			//     price_won         : price_won,
+			//     rooms_idx         : rooms_idx,
+			// 	room              : room,	
+			//     room_type         : room_type,
+            //     bed_type          : bed_type,
+			// 	date_price        : date_price,
+			// 	breakfast         : breakfast,	
+			// 	adult             : adult,	
+			// 	kids              : kids,	
+			// 	total_last_price  : total_last_price,	
+			// 	extra_won         : extra_won,
+			//     extra_bath        : extra_bath,
+            //     ho_idx            : ho_idx,
+            //     optype            : optype,
+            //     use_coupon_idx    : use_coupon_idx,
+            //     used_coupon_money : used_coupon_money,
+            //     use_coupon_room   : use_coupon_room,
+            //     use_op_type       : use_op_type,
+            //     room_op_price_sale: room_op_price_sale,
+            //     inital_price      : inital_price,
+            //     coupon_discount   : coupon_discount,
+            //     coupon_type       : coupon_type,
+            //     last_price        : last_price,
+            //     number_room       : number_room,
+            //     number_day        : number_day,
+            //     start_day         : start_day,
+            //     end_day           : end_day,
+            //     order_memo        : order_memo,
+            //     additional_request: additional_request,
+            // };
+
+            let formData = new FormData();
+            formData.append("order_status", "B");
+            formData.append("product_idx", product_idx);
+            formData.append("room_op_idx", room_op_idx);
+            formData.append("price", price);
+            formData.append("price_won", price_won);
+            formData.append("rooms_idx", rooms_idx);
+            formData.append("room", room);
+            formData.append("room_type", room_type);
+            formData.append("bed_type", bed_type);
+            formData.append("date_price", date_price);
+            formData.append("breakfast", breakfast);
+            formData.append("adult", adult);
+            formData.append("kids", kids);
+            formData.append("total_last_price", total_last_price);
+            formData.append("extra_won", extra_won);
+            formData.append("extra_bath", extra_bath);
+            formData.append("ho_idx", ho_idx);
+            formData.append("optype", optype);
+            formData.append("use_coupon_idx", use_coupon_idx);
+            formData.append("used_coupon_money", used_coupon_money);
+            formData.append("use_coupon_room", use_coupon_room);
+            formData.append("use_op_type", use_op_type);
+            formData.append("room_op_price_sale", room_op_price_sale);
+            formData.append("inital_price", inital_price);
+            formData.append("coupon_discount", coupon_discount);
+            formData.append("coupon_type", coupon_type);
+            formData.append("last_price", last_price);
+            formData.append("number_room", number_room);
+            formData.append("number_day", number_day);
+            formData.append("start_day", start_day);
+            formData.append("end_day", end_day);
+            formData.append("order_memo", order_memo);
+            formData.append("additional_request", additional_request);
             
             $.ajax({
                 url: "/product-hotel/reservation-form-insert",
                 type: "POST",
-                data: data,
-                // contentType: false,
-                // processData: false,
+                data: formData,
+                contentType: false,
+                processData: false,
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
