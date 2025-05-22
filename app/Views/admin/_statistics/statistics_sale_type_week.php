@@ -13,11 +13,6 @@
 </style>
 
 <?php
-	$pay_method['Card']     = "카드결제";
-	$pay_method['VBank']    = "무통장(가상계좌)";
-	$pay_method['DBank']    = "실시간계좌이체	";
-	$pay_method['MBank']    = "통장입금";
-
 
 	$years    = $_GET['years'];
 	$months   = $_GET['months'];
@@ -32,19 +27,10 @@
 		$months = date('m');
 	}
 
-    $price_arr = array();
+	if ($weeks == "") {
+		$weeks = "1";
+	}
 
-	$price_arr['Card']   = 0;
-	$price_arr['VBank']  = 0;
-	$price_arr['DBank']  = 0;
-	$price_arr['MBank']  = 0;
-
-    $payment_tot = 0;
-    foreach ($converted_result as $row) {
-		     $payment_tot = $payment_tot + $row['total'];
-			 if($row['method'] == "Card")  $price_arr['Card']  = $row['total'];
-			 if($row['method'] == "VBank") $price_arr['VBank'] = $row['total'];
-    }	
 
 ?>
 
