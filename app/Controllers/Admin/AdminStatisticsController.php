@@ -1108,8 +1108,8 @@ public function statistics_sale_day()
 		";
 
 		// 해당 연도의 시작일과 종료일 설정
-		$s_date = $years . '-'. $months .'-'. $days;
-		$e_date = $years . '-'. $months .'-'. $days;
+		$s_date = $years . $months . $days;
+		$e_date = $years . $months . $days;
 
 		$s_date = new \DateTime($s_date);
 		$e_date = new \DateTime($e_date);
