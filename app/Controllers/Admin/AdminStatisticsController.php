@@ -744,11 +744,7 @@ public function statistics_sale_day()
 			  AND pm.payment_method != ''
 		";
 
-// 날짜가 DateTime 객체라면
-$s_date_str = $s_date->format('Y-m-d');
-$e_date_str = $e_date->format('Y-m-d');
-
-$params = [$s_date_str . ' 00:00:00', $e_date_str . ' 23:59:59'];
+        $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59']; 
 
 		if (!empty($payin)) {
 			$sql .= " AND om.device_type = ?";
