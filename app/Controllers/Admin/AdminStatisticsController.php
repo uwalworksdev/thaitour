@@ -1072,32 +1072,12 @@ public function statistics_sale_type2()
 		$query  = $db->query($sql, $params);
 		$result = $query->getResult();
 
-		// 한글 결제수단 → 코드명 매핑
-		$code_map = [
-			'신용카드'       => 'Card',
-			'가상계좌'       => 'VBank',
-			'계좌입금'       => 'MBank',
-			'실시간계좌이체' => 'DBank',
-		];
-
-		$converted_result = [];
-
-		foreach ($result as $row) {
-			$kor_method = $row->payment_method;
-			$code_name  = $code_map[$kor_method] ?? 'Unknown';
-
-			$converted_result[] = [
-				'method' => $code_name,
-				'total'  => (int) $row->total,
-			];
-		}
-
 		return view('admin/_statistics/statistics_sale_type3', [
-			'converted_result' => $converted_result,
-			'range'            => $range,
-			's_date'           => $s_date,
-			'e_date'           => $e_date,
-			'payin'            => $payin,
+			'result'   => $result,
+			'range'    => $range,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
 		]);
 	}
 
