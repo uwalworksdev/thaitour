@@ -220,6 +220,35 @@
                 </form>
             </div>
 
+<div class="pagination" style="margin-top: 20px; text-align: center;">
+    <?php if ($totalPages > 1): ?>
+        <?php
+        // 이전 페이지 번호
+        $prev = max(1, $page - 1);
+        $next = min($totalPages, $page + 1);
+        $baseUrl = current_url(); // 현재 URL (쿼리 스트링 제외)
+        ?>
+
+        <!-- 이전 버튼 -->
+        <?php if ($page > 1): ?>
+            <a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $prev ?>">« 이전</a>
+        <?php endif; ?>
+
+        <!-- 페이지 숫자 -->
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $i ?>"
+               <?= ($i == $page) ? 'style="font-weight: bold; text-decoration: underline;"' : '' ?>>
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <!-- 다음 버튼 -->
+        <?php if ($page < $totalPages): ?>
+            <a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $next ?>">다음 »</a>
+        <?php endif; ?>
+    <?php endif; ?>
+</div>
+
             <?php echo $page ?>
             <?php //echo ipageListing(1, 1, 10, $_SERVER["PHP_SELF"] . "?s_date=" . $s_date . "&e_date=" . $e_date . "&pg=") ?>
         </div>
