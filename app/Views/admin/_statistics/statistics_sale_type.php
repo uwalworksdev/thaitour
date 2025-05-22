@@ -55,16 +55,16 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.date-range-btn');
+    const buttons    = document.querySelectorAll('.date-range-btn');
     const sDateInput = document.getElementById('s_date');
     const eDateInput = document.getElementById('e_date');
 
     buttons.forEach(btn => {
         btn.addEventListener('click', function () {
             const today = new Date();
-            let sDate = new Date(); // 기본: 오늘
+            let sDate   = new Date(); // 기본: 오늘
             const range = this.dataset.range;
-
+alert(range);
             // 날짜 계산
             if (range === '3day') {
                 sDate.setDate(today.getDate() - 3);
