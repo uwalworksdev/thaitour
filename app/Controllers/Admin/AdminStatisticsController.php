@@ -666,6 +666,7 @@ public function statistics_sale_day()
 	{
 		$db = \Config\Database::connect();
 
+		$range  = $this->request->getGet('range') ?? 'today';
 		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
 		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
 		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
@@ -713,6 +714,7 @@ public function statistics_sale_day()
 
 		return view('admin/_statistics/statistics_sale_type', [
 			'converted_result' => $converted_result,
+			'range'            => $range,
 			's_date'           => $s_date,
 			'e_date'           => $e_date,
 			'payin'            => $payin,

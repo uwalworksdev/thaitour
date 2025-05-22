@@ -18,6 +18,7 @@
     $pay_method['DBank']    = "실시간계좌이체";
     $pay_method['MBank']    = "통장입금";
 
+    $range  = $_GET['range'];
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
     $payin  = $_GET['payin'];
@@ -132,19 +133,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
                     <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
+					<input type="text" name="range" id="range" value="<?=$range?>"
                         <div class="period_search">
-<div class="period_input">
-    <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form"> 
-    <span>~</span>
-    <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
-</div>
+						<div class="period_input">
+							<input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form"> 
+							<span>~</span>
+							<input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
+						</div>
 
-<!-- 날짜 버튼들 -->
-<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
-<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
-<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
-<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
-
+						<!-- 날짜 버튼들 -->
+						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
+						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
+						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
+						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
 
                             <select name="payin" onchange="submit()">
                                 <option value="">통합</option>
@@ -327,9 +328,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(".contact_btn").click(function() {
 
+        var range = $(this).attr("range");
         var date1 = $(this).attr("rel");
-        var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
 
+		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+        $("#range").val(range);
         $("#s_date").val(date1);
         $("#e_date").val(date2);
 
