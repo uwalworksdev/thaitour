@@ -984,43 +984,61 @@ public function statistics_sale_day()
 		]);
 	}
 
-    public function statistics_sale_type2()
-    {
-		
-		$db = \Config\Database::connect();		
+public function statistics_sale_type2()
+{
+	$db = \Config\Database::connect();		
 
-		$s_date  = $this->request->getGet('s_date')  ?? date('Y-m-d');
-		$e_date  = $this->request->getGet('e_date')  ?? date('Y-m-d');
+	$s_date  = $this->request->getGet('s_date')  ?? date('Y-m-d');
+	$e_date  = $this->request->getGet('e_date')  ?? date('Y-m-d');
+	$page    = (int) $this->request->getGet('page') ?? 1;
+	$perPage = 10;
+	$offset  = ($page - 1) * $perPage;
 
-		$sql = "SELECT
-					RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
-					pr.product_code AS product_code,
-					pr.product_name AS product_name,
-					COUNT(o.order_no) AS order_cnt,
-					SUM(p.Amt_1) AS order_amt
-				FROM
-					tbl_order_mst o
-				JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
-				JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
-				WHERE
-					o.order_date BETWEEN ? AND ?
+	// 전체 개수 조회
+	$countSql = "
+		SELECT COUNT(DISTINCT pr.product_idx) AS total
+		FROM tbl_order_mst o
+		JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+		JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+		WHERE o.order_date BETWEEN ? AND ?
+	";
+	$totalResult = $db->query($countSql, [$s_date . ' 00:00:00', $e_date . ' 23:59:59'])->getRow();
+	$totalRows   = $totalResult->total ?? 0;
 
-				GROUP BY
-					pr.product_idx
-				ORDER BY
-					order_amt DESC ";
+	// 메인 쿼리 (LIMIT 적용)
+	$sql = "
+		SELECT
+			RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
+			pr.product_code AS product_code,
+			pr.product_name AS product_name,
+			COUNT(o.order_no) AS order_cnt,
+			SUM(p.Amt_1) AS order_amt
+		FROM
+			tbl_order_mst o
+		JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+		JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+		WHERE
+			o.order_date BETWEEN ? AND ?
+		GROUP BY
+			pr.product_idx
+		ORDER BY
+			order_amt DESC
+		LIMIT $perPage OFFSET $offset
+	";
 
-		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+	$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+	$result = $db->query($sql, $params)->getResult();
 
-		$query  = $db->query($sql, $params);
-		$result = $query->getResult();
+	return view('admin/_statistics/statistics_sale_type2', [
+		'result'     => $result,
+		's_date'     => $s_date,
+		'e_date'     => $e_date,
+		'page'       => $page,
+		'perPage'    => $perPage,
+		'totalRows'  => $totalRows,
+	]);
+}
 
-		return view('admin/_statistics/statistics_sale_type2', [
-			'result'   => $result,
-			's_date'   => $s_date,
-			'e_date'   => $e_date,
-		]);
-    }
 
     public function statistics_sale_type3()
     {
