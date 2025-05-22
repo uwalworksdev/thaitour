@@ -987,10 +987,11 @@ public function statistics_sale_day()
     public function statistics_sale_type2()
     {
 		
+		$db = \Config\Database::connect();		
+
 		$s_date  = $this->request->getGet('s_date')  ?? date('Y-m-d');
 		$e_date  = $this->request->getGet('e_date')  ?? date('Y-m-d');
 
-		$db = \Config\Database::connect();		
 		$sql = "SELECT
 					RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
 					pr.product_code AS product_code,
