@@ -24,6 +24,7 @@
 <?php
     $s_date = $_GET['s_date'];
     $e_date = $_GET['e_date'];
+    $range  = $_GET['range'];
 
     if ($s_date == "") {
         $s_date = date('Y-m-d');
@@ -31,6 +32,10 @@
 
     if ($e_date == "") {
         $e_date = date('Y-m-d');
+    }
+
+    if ($range == "") {
+        $range = "today";
     }
 
     $goods_arr = array();
@@ -47,7 +52,38 @@
 .pagination a:hover {
     text-decoration: underline;
 }
+
+.input_radio label.active {
+    border: 2px solid #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const radios = document.querySelectorAll('input[name="period"]');
+
+    radios.forEach(function (radio) {
+        if (radio.checked) {
+            // 해당 라디오와 연결된 label에 active 클래스 추가
+            const label = document.querySelector('label[for="' + radio.id + '"]');
+            if (label) {
+                label.classList.add('active');
+            }
+        }
+
+        // 클릭 시 기존 active 제거하고 새로 적용
+        radio.addEventListener('change', function () {
+            document.querySelectorAll('.input_radio label').forEach(lbl => lbl.classList.remove('active'));
+            const label = document.querySelector('label[for="' + this.id + '"]');
+            if (label) {
+                label.classList.add('active');
+            }
+        });
+    });
+});
+</script>
 
 <div id="container">
     <span id="print_this">
@@ -89,6 +125,7 @@
             <!-- period_table -->
             <div class="period_table">
                 <form action="statistics_sale_type2" method="GET" name="search">
+				<input type="text" name="range" id="range" value="<?=$rangr?>" >
                     <table cellpadding="0" cellspacing="0" summary="">
                         <colgroup>
                             <col style="width: 150px;">
@@ -273,7 +310,8 @@ $(document).ready(function () {
     $(".input_radio.contact_btn").click(function () {
         // 모든 라디오 비선택 처리
 		var range = $(this).data('range');
-		alert(range);
+		$("#range").val(range);
+		
         $(".input_radio input[type=radio]").prop("checked", false);
 
         // 현재 div 하위의 라디오 버튼 체크
