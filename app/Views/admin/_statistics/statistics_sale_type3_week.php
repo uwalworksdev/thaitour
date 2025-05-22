@@ -74,37 +74,6 @@
 
 ?>
 
-<?php
-function getWeeksOfMonthx($year, $month)
-{
-    $weeks = [];
-
-    $start = new DateTime("$year-$month-01");
-    $end = new DateTime($start->format('Y-m-t'));
-
-    $current = clone $start;
-
-    while ($current <= $end) {
-        $week_start = clone $current;
-        $week_end = clone $current;
-        $week_end->modify('+6 days');
-
-        if ($week_end > $end) {
-            $week_end = $end;
-        }
-
-        $weeks[] = [
-            'start' => $week_start,
-            'end' => $week_end,
-        ];
-
-        $current->modify('+7 days');
-    }
-
-    return $weeks;
-}
-?>
-
 <style>
 button[type="submit"] {
     height: 30px;
@@ -173,6 +142,12 @@ button[type="submit"]:hover {
                                 <?php } ?>
                             </select>
 
+                            <select name="weeks" onchange="fn_search()">
+                                <option value="">전체</option>
+                                <?php
+                                $week_arr = getWeeksOfMonth($years, $months);
+                                foreach ($week_arr as $index => $week) {
+                                ?>
 <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>>
     <?= $index + 1 ?>주 
     (
@@ -180,8 +155,8 @@ button[type="submit"]:hover {
     <?= isset($week['end']) ? $week['end']->format('Y-m-d') : 'N/A' ?>
     )
 </option>
-
-
+<?php } ?>
+                            </select>
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
