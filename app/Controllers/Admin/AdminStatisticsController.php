@@ -1052,7 +1052,7 @@ public function statistics_sale_type2()
 		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
 		$sql = "
-			SELECT cd.code_name, SUM(pm.Amt_1) AS total
+			SELECT om.product_code_2, cd.code_name, SUM(pm.Amt_1) AS total
 			FROM tbl_payment_mst pm
 			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
 			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
