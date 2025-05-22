@@ -217,4 +217,26 @@
     </span>
 </div>
 
+<script>
+$(document).ready(function () {
+    $(".input_radio.contact_btn").click(function () {
+        // 모든 라디오 비선택 처리
+        $(".input_radio input[type=radio]").prop("checked", false);
+
+        // 현재 div 하위의 라디오 버튼 체크
+        $(this).find("input[type=radio]").prop("checked", true);
+
+        // 시작일 가져오기
+        var startDate = $(this).attr("rel");
+
+        // 종료일은 오늘
+        var endDate = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+        // input 박스에 날짜 설정
+        $("#s_date").val(startDate);
+        $("#e_date").val(endDate);
+    });
+});
+</sctipt>
+
 <?= $this->endSection() ?>
