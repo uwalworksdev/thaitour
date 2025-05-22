@@ -61,6 +61,12 @@ if ($mIdx != "") {
     .bs-textarea {
         padding: 14px;
     }
+
+    .disabled {
+        background-color: #dbdbdb;
+        color: #888;
+        border: 1px solid #dbdbdb;
+    }
 </style>
 
 <main id="container" class="sub join_form member pt100" data-step-page="step02">
@@ -458,7 +464,7 @@ if ($mIdx != "") {
     let is_check_phone = sessionStorage.getItem("check_phone");
 
     if(is_check_phone) {
-        $("#chk_phone_btn").css("background-color", "#dbdbdb");
+        $("#chk_phone_btn").addClass("disabled");
         $("#chk_phone_btn").attr("disabled", true);
     }
 </script>
@@ -669,7 +675,7 @@ if ($mIdx != "") {
 
                 if (response == "Y") {
                     $("#cert_yn_1").val("Y");
-                    $("#chk_phone_btn").css("background-color", "#dbdbdb");
+                    $("#chk_phone_btn").addClass("disabled");
                     $("#chk_phone_btn").attr("disabled", true);
                     sessionStorage.setItem("check_phone", "Y");
 
