@@ -142,15 +142,10 @@ button[type="submit"]:hover {
                                 <?php } ?>
                             </select>
 
-                            <select name="weeks" onchange="fn_search()">
-                                <option value="">전체</option>
-                                <?php
-                                $week_arr = getWeeksOfMonth($years, $months);
-                                foreach ($week_arr as $index => $week) {
-                                ?>
-                                    <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>><?= $index + 1 ?>주 (<?= $week['start'] ?>~<?= $week['end'] ?>)</option>
-                                <?php } ?>
-                            </select>
+<option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>>
+    <?= $index + 1 ?>주 (<?= $week['start']->format('Y-m-d') ?>~<?= $week['end']->format('Y-m-d') ?>)
+</option>
+
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
