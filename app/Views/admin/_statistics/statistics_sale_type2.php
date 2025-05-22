@@ -152,8 +152,8 @@
                                 ['상품명', '판매수량'],
 
                                 <?php
-                                    foreach ($goods_arr as $key => $arr_tmp) {
-                                ?>["<?= $arr_tmp['goods_name'] ?>", <?= $arr_tmp['tcnt'] ?>],
+                                    foreach ($result as $key => $arr_tmp) {
+                                ?>["<?= $arr_tmp['product_name'] ?>", <?= $arr_tmp['order_cnt'] ?>],
                                 <?php } ?>
                             ]);
 
