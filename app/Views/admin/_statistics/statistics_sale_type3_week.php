@@ -75,7 +75,7 @@
 ?>
 
 <?php
-function getWeeksOfMonth($year, $month)
+function getWeeksOfMonthx($year, $month)
 {
     $weeks = [];
 
