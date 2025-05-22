@@ -458,6 +458,7 @@ if ($mIdx != "") {
     let is_check_phone = sessionStorage.getItem("check_phone");
 
     if(is_check_phone) {
+        $("#chk_phone_btn").css("background-color", "#dbdbdb");
         $("#chk_phone_btn").attr("disabled", true);
     }
 </script>
@@ -668,6 +669,7 @@ if ($mIdx != "") {
 
                 if (response == "Y") {
                     $("#cert_yn_1").val("Y");
+                    $("#chk_phone_btn").css("background-color", "#dbdbdb");
                     $("#chk_phone_btn").attr("disabled", true);
                     sessionStorage.setItem("check_phone", "Y");
 
