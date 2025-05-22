@@ -1015,7 +1015,11 @@ public function statistics_sale_day()
 		$query  = $db->query($sql, $params);
 		$result = $query->getResult();
 
-        return view('admin/_statistics/statistics_sale_type2', $result);
+		return view('admin/_statistics/statistics_sale_type2', [
+			'result'   => $result,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+		]);
     }
 
     public function statistics_sale_type3()
