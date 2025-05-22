@@ -89,6 +89,38 @@ button[type="submit"]:hover {
 }
 </style>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll('.contact_btn');
+
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            // 모든 버튼에서 active 제거
+            buttons.forEach(function (el) {
+                el.classList.remove('active');
+            });
+
+            // 현재 클릭된 버튼에 active 추가
+            this.classList.add('active');
+
+            // 날짜 갱신
+            const startDate = this.getAttribute('rel');
+            const endDate = new Date().toISOString().split('T')[0]; // 오늘 날짜
+
+            document.getElementById('s_date').value = startDate;
+            document.getElementById('e_date').value = endDate;
+
+            // period hidden input이 있다면 data-range 도 세팅
+            const range = this.getAttribute('data-range');
+            const input = document.querySelector('input[name="period"]');
+            if (input) {
+                input.value = range;
+            }
+        });
+    });
+});
+</script>
+
 
 <div id="container">
     <span id="print_this">
