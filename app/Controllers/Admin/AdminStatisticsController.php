@@ -779,6 +779,8 @@ public function statistics_sale_day()
 		return view('admin/_statistics/statistics_sale_type_day', [
 			'converted_result' => $converted_result,
 			'years'            => $years,
+			'months'           => $months,
+			'days'             => $days,
 			'payin'            => $payin,
 		]);			
     }
