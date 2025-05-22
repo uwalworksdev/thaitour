@@ -429,12 +429,12 @@ if ($mIdx != "") {
                         </div>
                     </div>
                 </div>
-                <div class="input-wrap">
+                <!-- <div class="input-wrap">
                     <label class="label">기타사항</label>
                     <div class="textarea_wrap">
                         <textarea  name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
                     </div>
-                </div>
+                </div> -->
                 <div class="input-wrap">
                     <label class="label">마케팅수신동의</label>
                     <div class="input-row">
