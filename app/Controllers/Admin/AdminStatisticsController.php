@@ -1044,14 +1044,62 @@ public function statistics_sale_type2()
 
     public function statistics_sale_type3()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
+		$range  = $this->request->getGet('range') ?? 'today';
+		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
-        return view('admin/_statistics/statistics_sale_type3', [
-            'code_names' => $code_names
-        ]);
-    }
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3', [
+			'converted_result' => $converted_result,
+			'range'            => $range,
+			's_date'           => $s_date,
+			'e_date'           => $e_date,
+			'payin'            => $payin,
+		]);
+	}
 
     public function statistics_sale_type3_day()
     {
