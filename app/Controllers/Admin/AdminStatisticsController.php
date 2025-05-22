@@ -994,7 +994,7 @@ public function statistics_sale_type2()
 	// 페이징 설정
 	$page = (int) ($this->request->getGet('page') ?? 1);
 	$page = max($page, 1); // 최소 1
-	$perPage = 10;
+	$perPage = 15;
 	$offset = ($page - 1) * $perPage;
 
 	// 총 개수 가져오기
