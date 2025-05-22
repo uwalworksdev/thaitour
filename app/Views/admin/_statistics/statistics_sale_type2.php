@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <th>기간검색</th>
                                 <td>
                                     <div class="period_search">
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d') ?>" data-range="today">
+                                        <div class="input_radio contact_btn active" rel="<?= date('Y-m-d') ?>" data-range="today">
                                             <input type="radio" name="period" id="period01">
                                             <label for="period01">오늘</label>
                                         </div>
