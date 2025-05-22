@@ -744,7 +744,11 @@ public function statistics_sale_day()
 			  AND pm.payment_method != ''
 		";
 
-		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+		$params = [
+			$s_date->format('Y-m-d') . ' 00:00:00',
+			$e_date->format('Y-m-d') . ' 23:59:59'
+		];
+
 
 		if (!empty($payin)) {
 			$sql .= " AND om.device_type = ?";
@@ -1111,7 +1115,10 @@ public function statistics_sale_day()
 		$s_date = $years . '-'. $months .'-'. $days;
 		$e_date = $years . '-'. $months .'-'. $days;
 
-        $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+		$params = [
+			$s_date->format('Y-m-d') . ' 00:00:00',
+			$e_date->format('Y-m-d') . ' 23:59:59'
+		];
 
 		if (!empty($payin)) {
 			$sql .= " AND om.device_type = ?";
