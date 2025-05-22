@@ -1120,9 +1120,7 @@ public function statistics_sale_day()
     {
 		$db = \Config\Database::connect();
 
-		$range  = $this->request->getGet('range') ?? 'today';
-		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
-		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+		$years  = $this->request->getGet('years') ?? date('Y');
 		$payin  = $this->request->getGet('payin');
 
 		$sql = "
@@ -1134,6 +1132,9 @@ public function statistics_sale_day()
 			  AND pm.payment_method IS NOT NULL
 			  AND pm.payment_method != ''
 		";
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
+        $e_date = date('Y-m-d',  mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)) , $years));
 
 		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
 
@@ -1152,7 +1153,6 @@ public function statistics_sale_day()
 
 		return view('admin/_statistics/statistics_sale_type3_year', [
 			'result'   => $result,
-			'range'    => $range,
 			's_date'   => $s_date,
 			'e_date'   => $e_date,
 			'payin'    => $payin,

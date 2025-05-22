@@ -21,15 +21,10 @@
     $addr_group = $code_names;
 
     $years    = $_GET['years'];
-    $months   = $_GET['months'];
     $payin    = $_GET['payin'];
 
     if ($years == "") {
         $years = date('Y');
-    }
-
-    if ($months == "") {
-        $months = date('m');
     }
 
     $s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
