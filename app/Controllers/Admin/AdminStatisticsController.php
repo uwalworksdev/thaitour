@@ -574,7 +574,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				YEAR(tbl_order_mst.order_date) as year,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -601,7 +601,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				YEAR(tbl_order_mst.order_date) as year,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
