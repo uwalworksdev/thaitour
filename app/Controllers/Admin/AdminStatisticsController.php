@@ -986,7 +986,35 @@ public function statistics_sale_day()
 
     public function statistics_sale_type2()
     {
-        return view('admin/_statistics/statistics_sale_type2');
+		
+		$s_date  = $this->request->getGet('s_date')  ?? date('Y-m-d');
+		$e_date  = $this->request->getGet('e_date')  ?? date('Y-m-d');
+
+		$db = \Config\Database::connect();		
+		$sql = "SELECT
+					RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
+					pr.product_code AS product_code,
+					pr.product_name AS product_name,
+					COUNT(o.order_no) AS order_cnt,
+					SUM(p.Amt_1) AS order_amt
+				FROM
+					tbl_order_mst o
+				JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+				JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+				WHERE
+					o.order_date BETWEEN ? AND ?
+
+				GROUP BY
+					pr.product_idx
+				ORDER BY
+					order_amt DESC ";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+        return view('admin/_statistics/statistics_sale_type2', $result);
     }
 
     public function statistics_sale_type3()
