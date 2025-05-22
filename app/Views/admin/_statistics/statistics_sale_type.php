@@ -331,16 +331,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-	$(document).on('click', '.contact_btn', function() {
-		$(".contact_btn").removeClass("active");
+$(document).ready(function() {
+	$(".date-range-btn").click(function() {
+		// 모든 버튼에서 active 클래스 제거 후 클릭한 버튼에 추가
+		$(".date-range-btn").removeClass("active");
 		$(this).addClass("active");
 
-		var range = $(this).data("range");  // 여기서 undefined가 아니라면 data-range가 잘 들어있다는 뜻
-		var date1 = $(this).data("start");
-		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+		// 데이터 가져오기
+		var range = $(this).data("range");   // ex) "3day"
+		var date1 = $(this).data("start");   // ex) "2025-05-19"
+		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());  // 오늘
 
+		// 값 설정
 		$("#range").val(range);
 		$("#s_date").val(date1);
 		$("#e_date").val(date2);
+
+		// 디버깅 로그 (옵션)
+		console.log("선택된 range:", range);
+		console.log("시작일:", date1);
+		console.log("종료일:", date2);
 	});
+});
+
 </script>
