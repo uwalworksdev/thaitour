@@ -1067,7 +1067,7 @@ public function statistics_sale_type2()
 			$params[] = $payin;
 		}
 
-		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+		$sql .= " GROUP BY om.product_code_2 ORDER BY total DESC";
 
 		$query  = $db->query($sql, $params);
 		$result = $query->getResult();
