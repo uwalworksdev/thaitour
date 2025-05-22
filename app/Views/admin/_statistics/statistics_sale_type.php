@@ -328,8 +328,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(".contact_btn").click(function() {
 
+		alert('xxxxxxxx');
         var range = $(this).data("range");
-		alert(range);
         var date1 = $(this).attr("rel");
 
 		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
