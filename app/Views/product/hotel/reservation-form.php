@@ -1023,44 +1023,6 @@
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 
-                if(order_status == "W") {
-						if ($("#order_user_name").val() === "") {
-							alert("한글명을 입력해주세요!");
-							$("#order_user_name").focus();
-							return false;
-						}
-
-						if ($("#order_user_first_name_en").val() === "") {
-							alert("영문명을 입력해주세요!");
-							$("#order_user_first_name_en").focus()
-							return false;
-						}
-						
-						if ($("#order_user_last_name_en").val() === "") {
-							alert("영문명을 입력해주세요!");
-							$("#order_user_last_name_en").focus()
-							return false;
-						}
-
-						if ($("#order_passport_number").val() === "") {
-							alert("여권번호를 입력해주세요!");
-							$("#order_passport_number").focus();
-							return false;
-						}
-
-						if ($("#order_passport_expiry_date").val() === "") {
-							alert("여권만기일을 입력해주세요!");
-							$("#order_passport_expiry_date").focus();
-							return false;
-						}
-
-						if ($("#order_birth_date").val() === "") {
-							alert("생년월일을 입력해주세요!");
-							$("#order_birth_date").focus()
-							return false;
-						}
-                }
-
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();
@@ -1068,10 +1030,48 @@
                 let information = $("#information").val().trim();
                 let guidelines = $("#guidelines").val().trim();
 
-                /* Check for agreement validation */
-                if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                    alert("모든 약관에 동의해야 합니다.");
-                    return false;
+                if(order_status == "W") {
+                    if ($("#order_user_name").val() === "") {
+                        alert("한글명을 입력해주세요!");
+                        $("#order_user_name").focus();
+                        return false;
+                    }
+
+                    if ($("#order_user_first_name_en").val() === "") {
+                        alert("영문명을 입력해주세요!");
+                        $("#order_user_first_name_en").focus()
+                        return false;
+                    }
+                    
+                    if ($("#order_user_last_name_en").val() === "") {
+                        alert("영문명을 입력해주세요!");
+                        $("#order_user_last_name_en").focus()
+                        return false;
+                    }
+
+                    if ($("#order_passport_number").val() === "") {
+                        alert("여권번호를 입력해주세요!");
+                        $("#order_passport_number").focus();
+                        return false;
+                    }
+
+                    if ($("#order_passport_expiry_date").val() === "") {
+                        alert("여권만기일을 입력해주세요!");
+                        $("#order_passport_expiry_date").focus();
+                        return false;
+                    }
+
+                    if ($("#order_birth_date").val() === "") {
+                        alert("생년월일을 입력해주세요!");
+                        $("#order_birth_date").focus()
+                        return false;
+                    }
+
+                    /* Check for agreement validation */
+                    if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                        alert("모든 약관에 동의해야 합니다.");
+                        return false;
+                    }
                 }
 
                 let additional_request = "";

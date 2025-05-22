@@ -1856,11 +1856,28 @@
     background-color: white;
     color: black;
     border: 1px solid #dbdbdb;
-    padding: 12px 20px;
+    padding: 12px 0;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
+    width: 90px;
     margin-top: 2px;
+}
+
+.content-sub-hotel-detail .book-add-cart {
+    background-color: white;
+    color: black;
+    border: 1px solid #dbdbdb;
+    padding: 12px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    margin-top: 2px;
+}
+
+.content-sub-hotel-detail .book-button.disabled {
+    background-color: #dbdbdb;
+    color: #888;
+    border: 1px solid #dbdbdb;
 }
 
 .content-sub-hotel-detail .book-button:disabled {
@@ -1881,12 +1898,17 @@
     margin-top: 12px;
 }
 
-
-.content-sub-hotel-detail .book-button:hover {
+.content-sub-hotel-detail .book-button.book_btn_217 {
     background-color: var(--bs-point);
     color: #fff;
     border: 1px solid var(--bs-point);
 }
+
+/* .content-sub-hotel-detail .book-button:hover {
+    background-color: var(--bs-point);
+    color: #fff;
+    border: 1px solid var(--bs-point);
+} */
 
 .content-sub-hotel-detail .book-button:disabled:hover {
     background-color: #dbdbdb;

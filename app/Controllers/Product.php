@@ -1437,12 +1437,16 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 
             $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $idx], 10, $pg_qna);
 
+            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
+            $fcodes = $this->db->query($f_sql)->getResultArray();
+
             $data = [
                 'hotel'            => $hotel,
                 'img_list'         => $img_list,
                 'fresult9'         => $fresult9,
                 'product_stay'     => $product_stay,
                 's_category_room'  => $s_category_room,
+                'fcodes'           => $fcodes,
                 'fresult4'         => $fresult4 ?? [],
                 'bresult4'         => $bresult4 ?? [],
                 'fresult5'         => $fresult5 ?? [],
