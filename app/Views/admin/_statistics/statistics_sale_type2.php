@@ -237,6 +237,6 @@ $(document).ready(function () {
         $("#e_date").val(endDate);
     });
 });
-</sctipt>
+</script>
 
 <?= $this->endSection() ?>
