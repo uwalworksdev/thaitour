@@ -1098,12 +1098,67 @@ public function statistics_sale_day()
 
     public function statistics_sale_type3_week()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
-        return view('admin/_statistics/statistics_sale_type3_week', [
-            'code_names' => $code_names
-        ]);
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$weeks  = $this->request->getGet('weeks') ?? '1';
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		// 월의 첫날
+		$first_day_of_month = new \DateTime("{$years}-{$months}-01");
+
+		// 해당 월의 요일 offset 계산 (0: 일요일, 1: 월요일, ...)
+		$day_of_week = (int) $first_day_of_month->format('w'); // 일:0 ~ 토:6
+
+		// N번째 주의 시작일 계산
+		$s_date = clone $first_day_of_month;
+		$s_date->modify('+' . (7 * ($weeks - 1)) . ' days');
+
+		// N번째 주의 종료일 계산
+		$e_date = clone $s_date;
+		$e_date->modify('+6 days');
+
+		// 종료일이 월을 넘기면 월 말일로 제한
+		$last_day_of_month = new \DateTime($first_day_of_month->format('Y-m-t'));
+		if ($e_date > $last_day_of_month) {
+			$e_date = $last_day_of_month;
+		}
+		
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3_week', [
+			'result'   => $result,
+			'years'    => $years,
+			'months'   => $months,
+			'weeks'    => $weeks,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);	
     }
 
     public function statistics_sale_type3_month()
