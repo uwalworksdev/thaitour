@@ -67,25 +67,25 @@ button[type="submit"]:hover {
     background-color: #2f5c98;   /* 호버 시 색상 변경 */
 }
 
-/* 부모 .active 가 있을 때 label 스타일링 */
+.input_radio label {
+    display: flex;                /* 플렉스박스 사용 */
+    align-items: center;          /* 수직 정렬 */
+    justify-content: center;      /* 수평 정렬 */
+    height: 38px;                 /* 높이 지정 (Bootstrap 버튼 기준) */
+    padding: 0 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 선택된 항목 스타일 */
 .input_radio.active label {
     border: 2px solid #007bff;
     background-color: #e7f1ff;
     color: #007bff;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* 일반 label 스타일 */
-.input_radio label {
-    border: 1px solid #ccc;
-    background-color: #f8f9fa;
-    padding: 6px 12px;
-    border-radius: 4px;
-    margin-right: 5px;
-    cursor: pointer;
-    display: inline-block;
 }
 </style>
 
