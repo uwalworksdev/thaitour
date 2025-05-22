@@ -185,58 +185,54 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div id="curve_chart1" style="height:500px;"></div>
                         </div>
 
-<script type="text/javascript">
-    google.charts.load('current', { packages: ['corechart'] });
+						<script type="text/javascript">
+							google.charts.load('current', { packages: ['corechart'] });
 
-    const chartData = <?= json_encode($result) ?>;
-    const total = chartData.reduce((sum, row) => sum + row[1], 0);
-    const color = '#4285F4';
+							const chartData = <?= json_encode($result) ?>;
+							const total = chartData.reduce((sum, row) => sum + row[1], 0);
+							const color = '#4285F4';
 
-    google.charts.setOnLoadCallback(drawPieChart);
-    google.charts.setOnLoadCallback(drawBarChart);
+							google.charts.setOnLoadCallback(drawPieChart);
+							google.charts.setOnLoadCallback(drawBarChart);
 
-    function drawPieChart() {
-        const data = google.visualization.arrayToDataTable([
-            ['지역', '매출'],
-            ...chartData
-        ]);
+							function drawPieChart() {
+								const data = google.visualization.arrayToDataTable([
+									['지역', '매출'],
+									...chartData
+								]);
 
-        const options = {
-            title: '',
-            legend: { position: 'bottom' },
-            tooltip: { isHtml: true },
-        };
+								const options = {
+									title: '',
+									legend: { position: 'bottom' },
+									tooltip: { isHtml: true },
+								};
 
-        const chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
-        chart.draw(data, options);
-    }
+								const chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
+								chart.draw(data, options);
+							}
 
-    function drawBarChart() {
-        chartData.forEach((row, index) => {
-            const [region, value] = row;
-            const percentage = (value / total) * 100;
+							function drawBarChart() {
+								chartData.forEach((row, index) => {
+									const [region, value] = row;
+									const percentage = (value / total) * 100;
 
-            const container = document.createElement('div');
-            container.classList.add('bar-container');
+									const container = document.createElement('div');
+									container.classList.add('bar-container');
 
-            const target = document.querySelectorAll('.per_line')[index];
-            if (target) target.appendChild(container);
+									const target = document.querySelectorAll('.per_line')[index];
+									if (target) target.appendChild(container);
 
-            if (percentage > 0) {
-                const bar = document.createElement('div');
-                bar.classList.add('bar');
-                bar.style.width = percentage + '%';
-                bar.style.height = '20px';
-                bar.style.backgroundColor = color;
-                container.appendChild(bar);
-            }
-        });
-    }
-</script>
-
-
-
-
+									if (percentage > 0) {
+										const bar = document.createElement('div');
+										bar.classList.add('bar');
+										bar.style.width = percentage + '%';
+										bar.style.height = '20px';
+										bar.style.backgroundColor = color;
+										container.appendChild(bar);
+									}
+								});
+							}
+						</script>
                     </div>
 
                     <div class="empty10">&nbsp;</div>
@@ -269,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             }
                             $tr_index = 0;
-                            foreach ($sorted_price_arr as $key => $addrs) {
+                            foreach ($result as $key => $addrs) {
                                 $tr_index++;
                             ?>
                                 <tr>
