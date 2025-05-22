@@ -265,13 +265,13 @@ document.addEventListener('DOMContentLoaded', function () {
                                 }
                             }
                             $tr_index = 0;
-                            foreach ($result as $key => $addrs) {
+                            foreach ($result as $row) {
                                 $tr_index++;
                             ?>
                                 <tr>
                                     <td class="number"><?= $tr_index ?></td>
-                                    <td style="text-align:left;"><?= $key ?></td>
-                                    <td class="number"><?= number_format($addrs) ?></td>
+                                    <td style="text-align:left;"><?= $row[0]?></td>
+                                    <td class="number"><?= number_format($row[1]) ?></td>
                                     <td>
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
