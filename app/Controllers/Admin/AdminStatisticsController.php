@@ -984,103 +984,108 @@ public function statistics_sale_day()
 		]);
 	}
 
-public function statistics_sale_type2()
-{
-	$db = \Config\Database::connect();		
-
-	$range  = $this->request->getGet('range') ?? 'today';
-	$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
-	$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-
-	// 페이징 설정
-	$page = (int) ($this->request->getGet('page') ?? 1);
-	$page = max($page, 1); // 최소 1
-	$perPage = 15;
-	$offset = ($page - 1) * $perPage;
-
-	// 총 개수 가져오기
-	$count_sql = "SELECT COUNT(DISTINCT pr.product_idx) AS total
-				  FROM tbl_order_mst o
-				  JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
-				  JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
-				  WHERE o.order_date BETWEEN ? AND ?";
-
-	$count_query = $db->query($count_sql, [$s_date . ' 00:00:00', $e_date . ' 23:59:59']);
-	$total = $count_query->getRow()->total;
-	$totalPages = ceil($total / $perPage);
-
-	// 실제 데이터 조회
-	$sql = "SELECT
-				RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
-				pr.product_code,
-				pr.product_name,
-				COUNT(o.order_no) AS order_cnt,
-				SUM(p.Amt_1) AS order_amt
-			FROM
-				tbl_order_mst o
-			JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
-			JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
-			WHERE
-				o.order_date BETWEEN ? AND ?
-			GROUP BY
-				pr.product_idx
-			ORDER BY
-				order_amt DESC
-			LIMIT $perPage OFFSET $offset";
-
-	$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
-	$query  = $db->query($sql, $params);
-	$result = $query->getResult();
-
-	return view('admin/_statistics/statistics_sale_type2', [
-		'result'      => $result,
-		'range'       => $range,
-		's_date'      => $s_date,
-		'e_date'      => $e_date,
-		'page'        => $page,
-		'totalPages'  => $totalPages,
-	]);
-}
-
-    public function statistics_sale_type3()
-    {
-		$db = \Config\Database::connect();
+	public function statistics_sale_type2()
+	{
+		$db = \Config\Database::connect();		
 
 		$range  = $this->request->getGet('range') ?? 'today';
 		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
 		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
 
-		$sql = "
-			SELECT om.product_code_2, cd.code_name, SUM(pm.Amt_1) AS total
-			FROM tbl_payment_mst pm
-			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
-			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
-			WHERE pm.paydate BETWEEN ? AND ?
-			  AND pm.payment_method IS NOT NULL
-			  AND pm.payment_method != ''
-		";
+		// 페이징 설정
+		$page = (int) ($this->request->getGet('page') ?? 1);
+		$page = max($page, 1); // 최소 1
+		$perPage = 15;
+		$offset = ($page - 1) * $perPage;
+
+		// 총 개수 가져오기
+		$count_sql = "SELECT COUNT(DISTINCT pr.product_idx) AS total
+					  FROM tbl_order_mst o
+					  JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+					  JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+					  WHERE o.order_date BETWEEN ? AND ?";
+
+		$count_query = $db->query($count_sql, [$s_date . ' 00:00:00', $e_date . ' 23:59:59']);
+		$total = $count_query->getRow()->total;
+		$totalPages = ceil($total / $perPage);
+
+		// 실제 데이터 조회
+		$sql = "SELECT
+					RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
+					pr.product_code,
+					pr.product_name,
+					COUNT(o.order_no) AS order_cnt,
+					SUM(p.Amt_1) AS order_amt
+				FROM
+					tbl_order_mst o
+				JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+				JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+				WHERE
+					o.order_date BETWEEN ? AND ?
+				GROUP BY
+					pr.product_idx
+				ORDER BY
+					order_amt DESC
+				LIMIT $perPage OFFSET $offset";
 
 		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
-
-		if (!empty($payin)) {
-			$sql .= " AND om.device_type = ?";
-			$params[] = $payin;
-		}
-
-		$sql .= " GROUP BY om.product_code_2 ORDER BY total DESC";
-
 		$query  = $db->query($sql, $params);
 		$result = $query->getResult();
 
-		return view('admin/_statistics/statistics_sale_type3', [
-			'result'   => $result,
-			'range'    => $range,
-			's_date'   => $s_date,
-			'e_date'   => $e_date,
-			'payin'    => $payin,
+		return view('admin/_statistics/statistics_sale_type2', [
+			'result'      => $result,
+			'range'       => $range,
+			's_date'      => $s_date,
+			'e_date'      => $e_date,
+			'page'        => $page,
+			'totalPages'  => $totalPages,
 		]);
 	}
+
+public function statistics_sale_type3()
+{
+	$db = \Config\Database::connect();
+
+	$range  = $this->request->getGet('range') ?? 'today';
+	$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+	$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+	$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+
+	$sql = "
+		SELECT 
+			om.product_code_2, 
+			cd.code_name, 
+			SUM(pm.Amt_1) AS total
+		FROM 
+			tbl_order_mst om
+		JOIN tbl_payment_mst pm ON pm.payment_no = om.payment_no
+		JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+		WHERE 
+			pm.paydate BETWEEN ? AND ?
+			AND pm.payment_method IS NOT NULL
+			AND pm.payment_method != ''
+	";
+
+	$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+	if (!empty($payin)) {
+		$sql .= " AND om.device_type = ?";
+		$params[] = $payin;
+	}
+
+	$sql .= " GROUP BY om.product_code_2 ORDER BY total DESC";
+
+	$query  = $db->query($sql, $params);
+	$result = $query->getResult();
+
+	return view('admin/_statistics/statistics_sale_type3', [
+		'result'   => $result,
+		'range'    => $range,
+		's_date'   => $s_date,
+		'e_date'   => $e_date,
+		'payin'    => $payin,
+	]);
+}
 
     public function statistics_sale_type3_day()
     {
