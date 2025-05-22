@@ -64,7 +64,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const today = new Date();
             let sDate   = new Date(); // 기본: 오늘
             const range = this.dataset.range;
-alert(range);
+            
+			$("#range").val(range);
+			
             // 날짜 계산
             if (range === '3day') {
                 sDate.setDate(today.getDate() - 3);
@@ -339,19 +341,13 @@ alert(range);
 			$(this).addClass("active");
 
 			// 데이터 가져오기
-			var range = $(this).data("range");   // ex) "3day"
 			var date1 = $(this).data("start");   // ex) "2025-05-19"
 			var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());  // 오늘
 
 			// 값 설정
-			$("#range").val(range);
 			$("#s_date").val(date1);
 			$("#e_date").val(date2);
 
-			// 디버깅 로그 (옵션)
-			console.log("선택된 range:", range);
-			console.log("시작일:", date1);
-			console.log("종료일:", date2);
 		});
 	});
 </script>
