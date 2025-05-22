@@ -74,6 +74,37 @@
 
 ?>
 
+<?php
+function getWeeksOfMonthx($year, $month)
+{
+    $weeks = [];
+
+    $start = new DateTime("$year-$month-01");
+    $end = new DateTime($start->format('Y-m-t'));
+
+    $current = clone $start;
+
+    while ($current <= $end) {
+        $week_start = clone $current;
+        $week_end = clone $current;
+        $week_end->modify('+6 days');
+
+        if ($week_end > $end) {
+            $week_end = $end;
+        }
+
+        $weeks[] = [
+            'start' => $week_start,
+            'end' => $week_end,
+        ];
+
+        $current->modify('+7 days');
+    }
+
+    return $weeks;
+}
+
+?>
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -131,11 +162,17 @@
                             <select name="weeks" onchange="fn_search()">
                                 <option value="">전체</option>
                                 <?php
-                                $week_arr = getWeeksOfMonth($years, $months);
+                                $week_arr = getWeeksOfMonthx($years, $months);
                                 foreach ($week_arr as $index => $week) {
                                 ?>
-                                    <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>><?= $index + 1 ?>주 (<?= $week['start'] ?>~<?= $week['end'] ?>)</option>
-                                <?php } ?>
+<option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>>
+    <?= $index + 1 ?>주 
+    (
+    <?= isset($week['start']) ? $week['start']->format('Y-m-d') : 'N/A' ?> ~ 
+    <?= isset($week['end']) ? $week['end']->format('Y-m-d') : 'N/A' ?>
+    )
+</option>
+<?php } ?>
                             </select>
 
 
