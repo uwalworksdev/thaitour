@@ -74,6 +74,37 @@
 
 ?>
 
+<?php
+function getWeeksOfMonth($year, $month)
+{
+    $weeks = [];
+
+    $start = new DateTime("$year-$month-01");
+    $end = new DateTime($start->format('Y-m-t'));
+
+    $current = clone $start;
+
+    while ($current <= $end) {
+        $week_start = clone $current;
+        $week_end = clone $current;
+        $week_end->modify('+6 days');
+
+        if ($week_end > $end) {
+            $week_end = $end;
+        }
+
+        $weeks[] = [
+            'start' => $week_start,
+            'end' => $week_end,
+        ];
+
+        $current->modify('+7 days');
+    }
+
+    return $weeks;
+}
+?>
+
 <style>
 button[type="submit"] {
     height: 30px;
@@ -143,8 +174,13 @@ button[type="submit"]:hover {
                             </select>
 
 <option value="<?= $index + 1 ?>" <?php if ($weeks == ($index + 1)) echo "selected"; ?>>
-    <?= $index + 1 ?>주 (<?= $week['start']->format('Y-m-d') ?>~<?= $week['end']->format('Y-m-d') ?>)
+    <?= $index + 1 ?>주 
+    (
+    <?= isset($week['start']) ? $week['start']->format('Y-m-d') : 'N/A' ?> ~ 
+    <?= isset($week['end']) ? $week['end']->format('Y-m-d') : 'N/A' ?>
+    )
 </option>
+
 
 
                             <select name="payin" onchange="fn_search()">
