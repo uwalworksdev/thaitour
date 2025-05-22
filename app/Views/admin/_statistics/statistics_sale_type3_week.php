@@ -299,29 +299,27 @@ button[type="submit"]:hover {
 
                             <?php
 
-                                $ordered_methods = $code_names;
-                                $sorted_price_arr = [];
+                            $ordered_methods = $code_names;
+                            $sorted_price_arr = [];
 
-                                foreach ($ordered_methods as $method) {
-                                    if (isset($price_arr[$method])) {
-                                        $sorted_price_arr[$method] = $price_arr[$method];
-                                    }
-                                }
-                                $tr_index = 0;
-                                foreach ($sorted_price_arr as $key => $addrs) {
-                                    $tr_index++;
-                                    
+                            $order_tot = 0;
+                            foreach ($result as $row) {
+                                     $order_tot = $order_tot + $row[1];  
+							}
+
+							$tr_index = 0;
+                            foreach ($result as $row) {
+                                $tr_index++;
                             ?>
-
                                 <tr>
                                     <td class="number"><?= $tr_index ?></td>
-                                    <td style="text-align:left;"><?= $key ?></td>
-                                    <td class="number"><?= number_format($addrs) ?></td>
+                                    <td style="text-align:left;"><?= $row[0]?></td>
+                                    <td class="number"><?= number_format($row[1]) ?></td>
                                     <td>
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $addrs ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (round)($row[1] * 100 / $order_tot) ?>%</div>
                                         </div>
                                     </td>
                                 </tr>
