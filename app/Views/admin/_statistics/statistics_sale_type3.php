@@ -185,86 +185,60 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div id="curve_chart1" style="height:500px;"></div>
                         </div>
 
-                        <script type="text/javascript">
-                            google.charts.load('current', {
-                                'packages': ['corechart']
-                            });
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
 
-                            var regions = <?=json_encode($code_names)?>
+    // PHP에서 전달된 데이터를 사용
+    const chartData = <?= json_encode($result) ?>; // [ ['지역명', 총합], ... ]
+    
+    // 색상 지정
+    const color = '#4285F4';
 
-                            const dataMap = {};
+    // 막대 차트용 퍼센트 계산
+    const total = chartData.reduce((sum, row) => sum + row[1], 0);
 
-                            const dataRows = regions.map(name => [name, dataMap[name] || 10]);
-                            
-                            google.charts.setOnLoadCallback(drawPieChart);
-                            google.charts.setOnLoadCallback(drawBarChart);
+    google.charts.setOnLoadCallback(drawPieChart);
+    google.charts.setOnLoadCallback(drawBarChart);
 
-                            function drawPieChart() {
-                                var data = google.visualization.arrayToDataTable([
-                                    ['수단', '매출'],
-                                    ...dataRows
-                                ]);
+    function drawPieChart() {
+        const data = google.visualization.arrayToDataTable([
+            ['지역', '매출'],
+            ...chartData
+        ]);
 
-                                var options = {
-                                    title: '',
-                                    curveType: '',
-                                    legend: {
-                                        position: 'bottom'
-                                    },
-                                    tooltip: {
-                                        isHtml: true
-                                    },
-                                };
+        const options = {
+            title: '',
+            legend: { position: 'bottom' },
+            tooltip: { isHtml: true },
+        };
 
-                                var chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
-                                chart.draw(data, options);
-                            }
+        const chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
+    }
 
-                            function drawBarChart() {
-                                var total = dataRows.reduce((sum, row) => sum + row[1], 0);
-                                var rows = [
-                                    ["강원", 10, "#4285F4"],
-                                    ["경기", 10, "#4285F4"],
-                                    ["경남", 10, "#4285F4"],
+    function drawBarChart() {
+        chartData.forEach((row, index) => {
+            const [region, value] = row;
+            const percentage = (value / total) * 100;
 
-                                    ["경북", 10, "#4285F4"],
-                                    ["광주", 10, "#4285F4"],
-                                    ["대구", 10, "#4285F4"],
+            const container = document.createElement('div');
+            container.classList.add('bar-container');
 
-                                    ["대전", 10, "#4285F4"],
-                                    ["부산", 10, "#4285F4"],
-                                    ["서울", 10, "#4285F4"],
+            const target = document.querySelectorAll('.per_line')[index];
+            if (target) target.appendChild(container);
 
-                                    ["세종", 10, "#4285F4"],
-                                    ["울산", 10, "#4285F4"],
-                                    ["인천", 10, "#4285F4"],
+            if (percentage > 0) {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.width = percentage + '%';
+                bar.style.height = '20px';
+                bar.style.backgroundColor = color;
+                container.appendChild(bar);
+            }
+        });
+    }
+</script>
 
-                                    ["전남", 10, "#4285F4"],
-                                    ["전북", 10, "#4285F4"],
-                                    ["제주", 10, "#4285F4"],
-
-                                    ["충남", 10, "#4285F4"],
-                                    ["충북", 10, "#4285F4"],
-                                ];
-
-                                rows.forEach((row, index) => {
-                                    var percentage = (row[1] / total) * 100;
-                                    var container = document.createElement('div');
-                                    container.classList.add('bar-container');
-
-                                    document.querySelectorAll('.per_line')[index].appendChild(container);
-
-                                    if (percentage > 0) {
-                                        var bar = document.createElement('div');
-                                        bar.classList.add('bar');
-                                        bar.style.width = percentage + '%';
-                                        bar.style.height = '20px';
-                                        bar.style.backgroundColor = row[2];
-                                        container.appendChild(bar);
-                                    }
-                                });
-                            }
-                        </script>
 
 
                     </div>

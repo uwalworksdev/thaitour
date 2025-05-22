@@ -21,7 +21,7 @@
     $addr_group = $code_names;
 
     $years    = $_GET['years'];
-    $months = $_GET['months'];
+    $months   = $_GET['months'];
     $payin    = $_GET['payin'];
 
     if ($years == "") {
