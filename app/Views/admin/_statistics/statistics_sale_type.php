@@ -331,16 +331,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-$(document).on('click', '.contact_btn', function() {
-	$(".contact_btn").removeClass("active");
-	$(this).addClass("active");
+	$(document).on('click', '.contact_btn', function() {
+		$(".contact_btn").removeClass("active");
+		$(this).addClass("active");
 
-	var range = $(this).data("range");  // 여기서 undefined가 아니라면 data-range가 잘 들어있다는 뜻
-	var date1 = $(this).data("start");
-	var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+		var range = $(this).data("range");  // 여기서 undefined가 아니라면 data-range가 잘 들어있다는 뜻
+		var date1 = $(this).data("start");
+		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
 
-	$("#range").val(range);
-	$("#s_date").val(date1);
-	$("#e_date").val(date2);
-});
+		$("#range").val(range);
+		$("#s_date").val(date1);
+		$("#e_date").val(date2);
+	});
 </script>
