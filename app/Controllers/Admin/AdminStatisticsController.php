@@ -1042,48 +1042,48 @@ public function statistics_sale_day()
 		]);
 	}
 
-public function statistics_sale_type3()
-{
-    $db = \Config\Database::connect();
+	public function statistics_sale_type3()
+	{
+		$db = \Config\Database::connect();
 
-    $range  = $this->request->getGet('range') ?? 'today';
-    $s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
-    $e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
-    $payin  = $this->request->getGet('payin');
+		$range  = $this->request->getGet('range') ?? 'today';
+		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+		$payin  = $this->request->getGet('payin');
 
-    $sql = "
-        SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
-        FROM tbl_payment_mst pm
-        JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
-        JOIN tbl_code cd ON om.product_code_2 = cd.code_no
-        WHERE pm.paydate BETWEEN ? AND ?
-          AND pm.payment_method IS NOT NULL
-          AND pm.payment_method != ''
-    ";
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
 
-    $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
 
-    if (!empty($payin)) {
-        $sql .= " AND om.device_type = ?";
-        $params[] = $payin;
-    }
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
 
-    $sql .= " GROUP BY cd.code_name ORDER BY total DESC";
-    $query  = $db->query($sql, $params);
-    $result = [];
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
 
-    foreach ($query->getResultArray() as $row) {
-        $result[] = [$row['region_name'], (int)$row['total']];
-    }
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
 
-    return view('admin/_statistics/statistics_sale_type3', [
-        'result'   => $result,
-        'range'    => $range,
-        's_date'   => $s_date,
-        'e_date'   => $e_date,
-        'payin'    => $payin,
-    ]);
-}
+		return view('admin/_statistics/statistics_sale_type3', [
+			'result'   => $result,
+			'range'    => $range,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);
+	}
 
 
     public function statistics_sale_type3_day()
