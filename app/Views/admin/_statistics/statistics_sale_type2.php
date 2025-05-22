@@ -118,23 +118,23 @@ button[type="submit"]:hover {
                                 <th>기간검색</th>
                                 <td>
                                     <div class="period_search">
-                                        <div class="input_radio contact_btn active" rel="<?= date('Y-m-d') ?>" data-range="today">
+                                        <div class="input_radio contact_btn <?php if($range == "today") echo "active";?> " rel="<?= date('Y-m-d') ?>" data-range="today">
                                             <input type="radio" name="period" id="period01">
                                             <label for="period01">오늘</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>" data-range="week">
+                                        <div class="input_radio contact_btn <?php if($range == "week") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 week')); ?>" data-range="week">
                                             <input type="radio" name="period" id="period02">
                                             <label for="period02">1주일</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="month">
+                                        <div class="input_radio contact_btn <?php if($range == "month") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="month">
                                             <input type="radio" name="period" id="period03">
                                             <label for="period03">1개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"  data-range="6month">
+                                        <div class="input_radio contact_btn <?php if($range == "6month") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"  data-range="6month">
                                             <input type="radio" name="period" id="period04">
                                             <label for="period04">6개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="year">
+                                        <div class="input_radio contact_btn <?php if($range == "year") echo "active";?> " rel="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="year">
                                             <input type="radio" name="period" id="period05">
                                             <label for="period05">1년</label>
                                         </div>
