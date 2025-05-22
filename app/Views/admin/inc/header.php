@@ -167,7 +167,7 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <?php //} else { 
     ?>
-    <script src="https://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <?php //} 
     ?>
 
