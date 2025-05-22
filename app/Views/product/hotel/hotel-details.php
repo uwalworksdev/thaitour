@@ -2593,8 +2593,8 @@
                 url: "/product-hotel/reservation-form-insert",
                 type: "POST",
                 data: data,
-                contentType: false,
-                processData: false,
+                // contentType: false,
+                // processData: false,
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
