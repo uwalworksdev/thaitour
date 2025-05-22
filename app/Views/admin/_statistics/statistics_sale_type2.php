@@ -186,27 +186,35 @@
                                 <th>상품코드</th>
                                 <th>상품명</th>
                                 <th>판매수량</th>
-                                <th>판매합계</th>
+                                <th>판매합계(원)</th>
                             </tr>
                         </thead>
-                        <tbody>    
+                        <tbody>  
+						<?php if (!empty($result)): ?>
+							<?php foreach ($result as $row): ?>						
                             <tr>
                                 <td class="center">
-                                    1
+                                    <?= esc($row->order_rank) ?>
                                 </td>
                                 <td class="center">
-                                    TD02130203
+                                    <?= esc($row->product_code) ?>
                                 </td>
                                 <td class="left">
-                                    uwal
+                                    <?= esc($row->product_name) ?>
                                 </td>
                                 <td>
-                                    0
+                                    <?= esc($row->order_cnt) ?>
                                 </td>
                                 <td>
-                                    0
+                                    <?= number_format($row->order_amt) ?>
                                 </td>
                             </tr>
+                           <?php endforeach; ?>
+                        <?php else: ?>
+							<tr>
+								<td colspan="5" style="text-align:center;">조회된 데이터가 없습니다.</td>
+							</tr>
+						<?php endif; ?>							
                         </tbody>
                     </table>
                 </form>
