@@ -53,38 +53,12 @@
     text-decoration: underline;
 }
 
-.input_radio.active label {
+label.active {
     border: 2px solid #007bff;
     padding: 5px 10px;
     border-radius: 4px;
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const radios = document.querySelectorAll('input[name="period"]');
-
-    function updateActiveLabel() {
-        // 모든 label에서 active 제거
-        document.querySelectorAll('.input_radio label').forEach(label => label.classList.remove('active'));
-
-        // 체크된 라디오의 label에 active 추가
-        const checkedRadio = document.querySelector('input[name="period"]:checked');
-        if (checkedRadio) {
-            const label = document.querySelector('label[for="' + checkedRadio.id + '"]');
-            if (label) {
-                label.classList.add('active');
-            }
-        }
-    }
-
-    updateActiveLabel(); // 페이지 로드시 1회
-
-    radios.forEach(radio => {
-        radio.addEventListener('change', updateActiveLabel);
-    });
-});
-</script>
 
 <div id="container">
     <span id="print_this">
