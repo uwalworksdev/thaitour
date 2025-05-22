@@ -99,23 +99,23 @@
                                 <th>기간검색</th>
                                 <td>
                                     <div class="period_search">
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d') ?>">
+                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d') ?>" data-range="today">
                                             <input type="radio" name="period" id="period01">
                                             <label for="period01">오늘</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>">
+                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 week')); ?>" data-range="week">
                                             <input type="radio" name="period" id="period02">
                                             <label for="period02">1주일</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>">
+                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="month">
                                             <input type="radio" name="period" id="period03">
                                             <label for="period03">1개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>">
+                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-6 month')); ?>"  data-range="6month">
                                             <input type="radio" name="period" id="period04">
                                             <label for="period04">6개월</label>
                                         </div>
-                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>">
+                                        <div class="input_radio contact_btn" rel="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="year">
                                             <input type="radio" name="period" id="period05">
                                             <label for="period05">1년</label>
                                         </div>
@@ -272,6 +272,8 @@
 $(document).ready(function () {
     $(".input_radio.contact_btn").click(function () {
         // 모든 라디오 비선택 처리
+		var range = $(this).data('range');
+		alert(range);
         $(".input_radio input[type=radio]").prop("checked", false);
 
         // 현재 div 하위의 라디오 버튼 체크
