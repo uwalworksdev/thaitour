@@ -91,7 +91,6 @@
                                 <span>~</span>
                                 <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
                             </div>
-                            <button type="submit">검색</button>
                             <button type="button" class="contact_btn" rel="<?= date('Y-m-d'); ?>">오늘</button>
                             <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>">3일</button>
                             <button type="button" class="contact_btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>">7일</button>
@@ -102,6 +101,7 @@
                                 <option value="P">PC</option>
                                 <option value="M">모바일</option>
                             </select>
+                            <button type="submit">검색</button>
                         </div>
 
                     </form>
