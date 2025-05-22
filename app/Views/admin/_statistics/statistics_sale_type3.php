@@ -303,14 +303,20 @@
 
     });
 
+	$(document).ready(function() {
+		$(".date-range-btn").click(function() {
+			// 모든 버튼에서 active 클래스 제거 후 클릭한 버튼에 추가
+			$(".date-range-btn").removeClass("active");
+			$(this).addClass("active");
 
-    $(".contact_btn").click(function() {
+			// 데이터 가져오기
+			var date1 = $(this).data("start");   // ex) "2025-05-19"
+			var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());  // 오늘
 
-        var date1 = $(this).attr("rel");
-        var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+			// 값 설정
+			$("#s_date").val(date1);
+			$("#e_date").val(date2);
 
-        $("#s_date").val(date1);
-        $("#e_date").val(date2);
-
-    });
+		});
+	});
 </script>
