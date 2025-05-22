@@ -53,6 +53,20 @@
 
 ?>
 
+<style>
+button[type="submit"] {
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 1.5px;
+    background-color: #55a0ff;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #2f5c98;   /* 호버 시 색상 변경 */
+}
+</style>
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -115,9 +129,10 @@
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
+                            <button type="submit">검색</button>
                         </div>
                     </form>
                 </div>

@@ -190,8 +190,6 @@ button[type="submit"]:hover {
 								</option>
 								<?php } ?>
                             </select>
-
-
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
                                 <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
