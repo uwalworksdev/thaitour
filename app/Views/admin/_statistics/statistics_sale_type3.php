@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= (int)($row[1] * 100 / $order_tot) ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (round)($row[1] * 100 / $order_tot) ?>%</div>
                                         </div>
                                     </td>
                                 </tr>
