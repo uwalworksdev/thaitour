@@ -142,10 +142,10 @@ document.addEventListener('DOMContentLoaded', function () {
 						</div>
 
 						<!-- 날짜 버튼들 -->
-<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
-<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
-<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
-<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
+						<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
+						<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
+						<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
+						<button type="button" class="contact_btn date-range-btn" data-start="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
 						
 						<!--button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
 						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
@@ -304,6 +304,21 @@ document.addEventListener('DOMContentLoaded', function () {
 <?= $this->endSection() ?>
 
 <script>
+	$(".contact_btn").click(function() {
+		$(".contact_btn").removeClass("active");
+		$(this).addClass("active");
+
+		var range = $(this).data("range");
+		var date1 = $(this).data("start");
+		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+		$("#range").val(range);
+		$("#s_date").val(date1);
+		$("#e_date").val(date2);
+	});
+</script>
+
+<script>
     $(".date_form").datepicker({
         showButtonPanel: true,
         beforeShow: function(input) {
@@ -330,18 +345,4 @@ document.addEventListener('DOMContentLoaded', function () {
         nextText: '다음'
 
     });
-
-$(".contact_btn").click(function() {
-    $(".contact_btn").removeClass("active");
-    $(this).addClass("active");
-
-    var range = $(this).data("range");
-    var date1 = $(this).data("start");
-    var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-    $("#range").val(range);
-    $("#s_date").val(date1);
-    $("#e_date").val(date2);
-});
-
 </script>
