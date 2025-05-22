@@ -66,6 +66,7 @@ if ($mIdx != "") {
         background-color: #dbdbdb;
         color: #888;
         border: 1px solid #dbdbdb;
+        cursor: not-allowed;
     }
 </style>
 
@@ -1346,6 +1347,7 @@ if ($mIdx != "") {
                         $("#user_id").focus();
                         return false;
                     } else {
+                        $("#chk_id_btn").addClass("disabled");
                         $("#chk_id_btn").attr("disabled", "true");
                         $("#id_chk").val("Y");
                         $("#user_id").val(tmp_id);
