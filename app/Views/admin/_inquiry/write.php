@@ -738,7 +738,7 @@ $air_other_matters = $row['air_other_matters'] ?? '';
 
         }
     </script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="https://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <script>
 
         $('.tick_ch input[type="radio"]').on('change', function () {

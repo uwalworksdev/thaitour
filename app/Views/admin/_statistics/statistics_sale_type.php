@@ -31,6 +31,10 @@
         $e_date = date('Y-m-d');
     }
 
+    if ($range == "") {
+        $range = "today";
+    }
+
     $price_arr = array();
 
 	$price_arr['Card']   = 0;
@@ -55,16 +59,18 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.date-range-btn');
+    const buttons    = document.querySelectorAll('.date-range-btn');
     const sDateInput = document.getElementById('s_date');
     const eDateInput = document.getElementById('e_date');
 
     buttons.forEach(btn => {
         btn.addEventListener('click', function () {
             const today = new Date();
-            let sDate = new Date(); // 기본: 오늘
+            let sDate   = new Date(); // 기본: 오늘
             const range = this.dataset.range;
-
+            
+			$("#range").val(range);
+			
             // 날짜 계산
             if (range === '3day') {
                 sDate.setDate(today.getDate() - 3);
@@ -133,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
                     <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
-					<input type="text" name="range" id="range" value="<?=$range?>"
+					<input type="hidden" name="range" id="range" value="<?=$range?>" >
                         <div class="period_search">
 						<div class="period_input">
 							<input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form"> 
@@ -142,11 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
 						</div>
 
 						<!-- 날짜 버튼들 -->
-						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
-						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
-						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
-						<button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
-
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "today")  echo "active";?> " data-start="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "3day")   echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "7day")   echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "1month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
+						
                             <select name="payin" onchange="submit()">
                                 <option value="">통합</option>
                                 <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
@@ -298,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <?= $this->endSection() ?>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(".date_form").datepicker({
         showButtonPanel: true,
@@ -326,16 +333,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    $(".contact_btn").click(function() {
+	$(document).ready(function() {
+		$(".date-range-btn").click(function() {
+			// 모든 버튼에서 active 클래스 제거 후 클릭한 버튼에 추가
+			$(".date-range-btn").removeClass("active");
+			$(this).addClass("active");
 
-        var range = $(this).attr("range");
-        var date1 = $(this).attr("rel");
+			// 데이터 가져오기
+			var date1 = $(this).data("start");   // ex) "2025-05-19"
+			var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());  // 오늘
 
-		var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
+			// 값 설정
+			$("#s_date").val(date1);
+			$("#e_date").val(date2);
 
-        $("#range").val(range);
-        $("#s_date").val(date1);
-        $("#e_date").val(date2);
-
-    });
+		});
+	});
 </script>

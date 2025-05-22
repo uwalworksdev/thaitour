@@ -37,6 +37,18 @@
 
 ?>
 
+<style>
+.pagination a {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+</style>
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -112,7 +124,7 @@
                                             <span>~</span>
                                             <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
                                         </div>
-                                        <button type="button" class="submit_btn" onclick="search_it()">검색</button>
+										<button type="submit">검색</button>
                                     </div>
                                 </td>
                             </tr>
@@ -127,37 +139,39 @@
                 <div class="graph_area" style="height: auto;">
                     <div id="curve_chart1"></div>
 
-                    <script type="text/javascript">
-                        google.charts.load('current', {
-                            'packages': ['corechart']
-                        });
-                        <?php if (sizeof($goods_arr) > 0) { ?>
-                            google.charts.setOnLoadCallback(drawChart);
-                        <?php } ?>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    <?php if (!empty($result)) { ?>
+        google.charts.setOnLoadCallback(drawChart);
+    <?php } ?>
 
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['상품명', '판매수량'],
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['상품명', '판매수량'],
+            <?php
+                $chartData = [];
+                foreach ($result as $arr_tmp) {
+                    $name = addslashes($arr_tmp->product_name ?? '');
+                    $cnt  = (int) ($arr_tmp->order_cnt ?? 0);
+                    $chartData[] = "['{$name}', {$cnt}]";
+                }
+                echo implode(",\n", $chartData);
+            ?>
+        ]);
 
-                                <?php
-                                    foreach ($goods_arr as $key => $arr_tmp) {
-                                ?>["<?= $arr_tmp['goods_name'] ?>", <?= $arr_tmp['tcnt'] ?>],
-                                <?php } ?>
-                            ]);
+        var options = {
+            title: '',
+            legend: { position: 'bottom' },
+            height: 400
+        };
 
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                }
-                            };
+        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
+    }
+</script>
 
-                            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
 
                 </div>
             </div>
@@ -186,35 +200,94 @@
                                 <th>상품코드</th>
                                 <th>상품명</th>
                                 <th>판매수량</th>
-                                <th>판매합계</th>
+                                <th>판매합계(원)</th>
                             </tr>
                         </thead>
-                        <tbody>    
+                        <tbody>  
+						<?php if (!empty($result)): ?>
+							<?php foreach ($result as $row): ?>						
                             <tr>
                                 <td class="center">
-                                    1
+                                    <?= esc($row->order_rank) ?>
                                 </td>
                                 <td class="center">
-                                    TD02130203
+                                    <?= esc($row->product_code) ?>
                                 </td>
                                 <td class="left">
-                                    uwal
+                                    <?= esc($row->product_name) ?>
                                 </td>
                                 <td>
-                                    0
+                                    <?= esc($row->order_cnt) ?>
                                 </td>
                                 <td>
-                                    0
+                                    <?= number_format($row->order_amt) ?>
                                 </td>
                             </tr>
+                           <?php endforeach; ?>
+                        <?php else: ?>
+							<tr>
+								<td colspan="5" style="text-align:center;">조회된 데이터가 없습니다.</td>
+							</tr>
+						<?php endif; ?>							
                         </tbody>
                     </table>
                 </form>
             </div>
 
-            <?php echo ipageListing(1, 1, 10, $_SERVER["PHP_SELF"] . "?s_date=" . $s_date . "&e_date=" . $e_date . "&pg=") ?>
+			<div class="pagination" style="margin-top: 20px; text-align: center;">
+				<?php if ($totalPages > 1): ?>
+					<?php
+					// 이전 페이지 번호
+					$prev = max(1, $page - 1);
+					$next = min($totalPages, $page + 1);
+					$baseUrl = current_url(); // 현재 URL (쿼리 스트링 제외)
+					?>
+
+					<!-- 이전 버튼 -->
+					<?php if ($page > 1): ?>
+						<a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $prev ?>">« 이전</a>
+					<?php endif; ?>
+
+					<!-- 페이지 숫자 -->
+					<?php for ($i = 1; $i <= $totalPages; $i++): ?>
+						<a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $i ?>"
+						   <?= ($i == $page) ? 'style="font-weight: bold; text-decoration: underline;"' : '' ?>>
+							<?= $i ?>
+						</a>
+					<?php endfor; ?>
+
+					<!-- 다음 버튼 -->
+					<?php if ($page < $totalPages): ?>
+						<a href="<?= $baseUrl ?>?s_date=<?= $s_date ?>&e_date=<?= $e_date ?>&page=<?= $next ?>">다음 »</a>
+					<?php endif; ?>
+				<?php endif; ?>
+			</div>
+
+            <?php //echo ipageListing(1, 1, 10, $_SERVER["PHP_SELF"] . "?s_date=" . $s_date . "&e_date=" . $e_date . "&pg=") ?>
         </div>
     </span>
 </div>
+
+<script>
+$(document).ready(function () {
+    $(".input_radio.contact_btn").click(function () {
+        // 모든 라디오 비선택 처리
+        $(".input_radio input[type=radio]").prop("checked", false);
+
+        // 현재 div 하위의 라디오 버튼 체크
+        $(this).find("input[type=radio]").prop("checked", true);
+
+        // 시작일 가져오기
+        var startDate = $(this).attr("rel");
+
+        // 종료일은 오늘
+        var endDate = $.datepicker.formatDate('yy-mm-dd', new Date());
+
+        // input 박스에 날짜 설정
+        $("#s_date").val(startDate);
+        $("#e_date").val(endDate);
+    });
+});
+</script>
 
 <?= $this->endSection() ?>
