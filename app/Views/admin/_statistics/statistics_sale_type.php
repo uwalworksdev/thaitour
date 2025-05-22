@@ -31,6 +31,10 @@
         $e_date = date('Y-m-d');
     }
 
+    if ($range == "") {
+        $range = "today";
+    }
+
     $price_arr = array();
 
 	$price_arr['Card']   = 0;
