@@ -44,6 +44,55 @@
 
 ?>
 
+<style>
+.contact_btn.active {
+    background-color: #3d6cab !important;
+    color: white !important;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons    = document.querySelectorAll('.date-range-btn');
+    const sDateInput = document.getElementById('s_date');
+    const eDateInput = document.getElementById('e_date');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const today = new Date();
+            let sDate   = new Date(); // 기본: 오늘
+            const range = this.dataset.range;
+            
+			$("#range").val(range);
+			
+            // 날짜 계산
+            if (range === '3day') {
+                sDate.setDate(today.getDate() - 3);
+            } else if (range === '7day') {
+                sDate.setDate(today.getDate() - 7);
+            } else if (range === '1month') {
+                sDate.setMonth(today.getMonth() - 1);
+            }
+
+            // yyyy-mm-dd 포맷
+            const formatDate = (d) => {
+                const yyyy = d.getFullYear();
+                const mm = ('0' + (d.getMonth() + 1)).slice(-2);
+                const dd = ('0' + d.getDate()).slice(-2);
+                return `${yyyy}-${mm}-${dd}`;
+            };
+
+            sDateInput.value = formatDate(sDate);
+            eDateInput.value = formatDate(today);
+
+            // 버튼 스타일 처리
+            buttons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+</script>
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
