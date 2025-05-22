@@ -139,37 +139,39 @@
                 <div class="graph_area" style="height: auto;">
                     <div id="curve_chart1"></div>
 
-                    <script type="text/javascript">
-                        google.charts.load('current', {
-                            'packages': ['corechart']
-                        });
-                        <?php if (sizeof($goods_arr) > 0) { ?>
-                            google.charts.setOnLoadCallback(drawChart);
-                        <?php } ?>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    <?php if (!empty($result)) { ?>
+        google.charts.setOnLoadCallback(drawChart);
+    <?php } ?>
 
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['상품명', '판매수량'],
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['상품명', '판매수량'],
+            <?php
+                $chartData = [];
+                foreach ($result as $arr_tmp) {
+                    $name = addslashes($arr_tmp->product_name ?? '');
+                    $cnt  = (int) ($arr_tmp->order_cnt ?? 0);
+                    $chartData[] = "['{$name}', {$cnt}]";
+                }
+                echo implode(",\n", $chartData);
+            ?>
+        ]);
 
-                                <?php
-                                    foreach ($result as $arr_tmp) {
-                                ?>["<?= $arr_tmp['product_name'] ?>", <?= $arr_tmp['order_cnt'] ?>],
-                                <?php } ?>
-                            ]);
+        var options = {
+            title: '',
+            legend: { position: 'bottom' },
+            height: 400
+        };
 
-                            var options = {
-                                title: '',
-                                curveType: '',
-                                legend: {
-                                    position: 'bottom'
-                                }
-                            };
+        var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
+        chart.draw(data, options);
+    }
+</script>
 
-                            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart1'));
-
-                            chart.draw(data, options);
-                        }
-                    </script>
 
                 </div>
             </div>
