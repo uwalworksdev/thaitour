@@ -60,31 +60,6 @@
 }
 </style>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const radios = document.querySelectorAll('input[name="period"]');
-
-    radios.forEach(function (radio) {
-        if (radio.checked) {
-            // 해당 라디오와 연결된 label에 active 클래스 추가
-            const label = document.querySelector('label[for="' + radio.id + '"]');
-            if (label) {
-                label.classList.add('active');
-            }
-        }
-
-        // 클릭 시 기존 active 제거하고 새로 적용
-        radio.addEventListener('change', function () {
-            document.querySelectorAll('.input_radio label').forEach(lbl => lbl.classList.remove('active'));
-            const label = document.querySelector('label[for="' + this.id + '"]');
-            if (label) {
-                label.classList.add('active');
-            }
-        });
-    });
-});
-</script>
-
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
