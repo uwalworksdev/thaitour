@@ -220,7 +220,7 @@
                 </form>
             </div>
 
-            <?php echo $page ?>
+            <?php echo ipageListing(1, 1, 10, $_SERVER["PHP_SELF"] . "?s_date=" . $s_date . "&e_date=" . $e_date . "&pg=") ?>
         </div>
     </span>
 </div>
