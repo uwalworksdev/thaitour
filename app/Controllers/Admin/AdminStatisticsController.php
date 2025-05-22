@@ -1069,7 +1069,6 @@ public function statistics_sale_type3()
     }
 
     $sql .= " GROUP BY cd.code_name ORDER BY total DESC";
-echo $sql;
     $query  = $db->query($sql, $params);
     $result = [];
 
