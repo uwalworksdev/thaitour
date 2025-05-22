@@ -1107,14 +1107,14 @@ public function statistics_sale_day()
 			  AND pm.payment_method != ''
 		";
 
-		// 해당 연도의 시작일과 종료일 설정
-		$s_date = $years . $months . $days;
-		$e_date = $years . $months . $days;
+$s_date = new \DateTime("{$years}-{$months}-{$days}");
+$e_date = new \DateTime("{$years}-{$months}-{$days}");
 
-		$s_date = new \DateTime($s_date);
-		$e_date = new \DateTime($e_date);
+$params = [
+    $s_date->format('Y-m-d') . ' 00:00:00',
+    $e_date->format('Y-m-d') . ' 23:59:59'
+];
 
-        $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
 
 		if (!empty($payin)) {
 			$sql .= " AND om.device_type = ?";
