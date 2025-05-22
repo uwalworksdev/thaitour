@@ -66,7 +66,30 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #2f5c98;   /* 호버 시 색상 변경 */
 }
+
+/* 부모 .active 가 있을 때 label 스타일링 */
+.input_radio.active label {
+    border: 2px solid #007bff;
+    background-color: #e7f1ff;
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 일반 label 스타일 */
+.input_radio label {
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
 </style>
+
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -107,7 +130,7 @@ button[type="submit"]:hover {
             <!-- period_table -->
             <div class="period_table">
                 <form action="statistics_sale_type2" method="GET" name="search">
-				<input type="text" name="range" id="range" value="<?=$range?>" >
+				<input type="hidden" name="range" id="range" value="<?=$range?>" >
                     <table cellpadding="0" cellspacing="0" summary="">
                         <colgroup>
                             <col style="width: 150px;">
