@@ -161,10 +161,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="listSelectR">
                     <div class="contentMenu">
                         <ul>
-                            <li class="contentMenuSub " data-mode="year" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_year">년간통계</a></li>
+                            <li class="contentMenuSub " data-mode="year"  style="width: calc(20% - 2px);"><a href="statistics_sale_type3_year">년간통계</a></li>
                             <li class="contentMenuSub " data-mode="month" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_month">월간통계</a></li>
-                            <li class="contentMenuSub " data-mode="week" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
-                            <li class="contentMenuSub" data-mode="day" style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
+                            <li class="contentMenuSub " data-mode="week"  style="width: calc(20% - 2px);"><a href="statistics_sale_type3_week">주간통계</a></li>
+                            <li class="contentMenuSub"  data-mode="day"   style="width: calc(20% - 2px);"><a href="statistics_sale_type3_day">일간통계</a></li>
                             <li class="contentMenuSub selected" data-mode="detail" style="width: calc(20% - 2px);"><a href="statistics_sale_type3">특정기간통계</a></li>
                         </ul>
                         <div class="contentBar left" style="left: 460px; display: none;"></div>
