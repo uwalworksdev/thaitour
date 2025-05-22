@@ -107,7 +107,7 @@ button[type="submit"]:hover {
             <!-- period_table -->
             <div class="period_table">
                 <form action="statistics_sale_type2" method="GET" name="search">
-				<input type="text" name="range" id="range" value="<?=$rangr?>" >
+				<input type="text" name="range" id="range" value="<?=$range?>" >
                     <table cellpadding="0" cellspacing="0" summary="">
                         <colgroup>
                             <col style="width: 150px;">
