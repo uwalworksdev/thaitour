@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="listLine"></div>
                 <div class="listSelect size09" style="position:relative">
                     <form name="modifyForm1" method="get" action="statistics_sale_type" autocomplete="off">
-					<input type="text" name="range" id="range" value="<?=$range?>" >
+					<input type="hidden" name="range" id="range" value="<?=$range?>" >
                         <div class="period_search">
 						<div class="period_input">
 							<input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" readonly class="date_form"> 
