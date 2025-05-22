@@ -583,7 +583,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "P");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("YEAR(tbl_order_mst.order_date)");
 
 			$results = $builder->get()->getResult();
@@ -610,7 +610,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "M");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("YEAR(tbl_order_mst.order_date)");
 
 			$results = $builder->get()->getResult();
