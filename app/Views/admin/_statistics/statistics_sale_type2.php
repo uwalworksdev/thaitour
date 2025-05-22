@@ -112,7 +112,7 @@
                                             <span>~</span>
                                             <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
                                         </div>
-                                        <button type="button" class="submit_btn" onclick="search_it()">검색</button>
+										<button type="submit">검색</button>
                                     </div>
                                 </td>
                             </tr>
