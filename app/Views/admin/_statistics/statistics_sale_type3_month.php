@@ -43,6 +43,20 @@
     }
 ?>
 
+<style>
+button[type="submit"] {
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 1.5px;
+    background-color: #55a0ff;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #2f5c98;   /* 호버 시 색상 변경 */
+}
+</style>
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
