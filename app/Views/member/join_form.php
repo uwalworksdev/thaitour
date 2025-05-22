@@ -66,6 +66,7 @@ if ($mIdx != "") {
         background-color: #dbdbdb;
         color: #888;
         border: 1px solid #dbdbdb;
+        cursor: not-allowed;
     }
 </style>
 
@@ -428,12 +429,12 @@ if ($mIdx != "") {
                         </div>
                     </div>
                 </div>
-                <div class="input-wrap">
+                <!-- <div class="input-wrap">
                     <label class="label">기타사항</label>
                     <div class="textarea_wrap">
                         <textarea  name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
                     </div>
-                </div>
+                </div> -->
                 <div class="input-wrap">
                     <label class="label">마케팅수신동의</label>
                     <div class="input-row">
@@ -1346,6 +1347,7 @@ if ($mIdx != "") {
                         $("#user_id").focus();
                         return false;
                     } else {
+                        $("#chk_id_btn").addClass("disabled");
                         $("#chk_id_btn").attr("disabled", "true");
                         $("#id_chk").val("Y");
                         $("#user_id").val(tmp_id);

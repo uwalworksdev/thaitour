@@ -34,7 +34,8 @@ class ProductModel extends Model
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line", "stay_idx",
         "adult_people_cnt", "people_cnt", "special_name", "slogan", "age", "exp", "language", "direct_payment", "is_won_bath", "room_guides", 
-	    "important_notes", "note_news", "worker_id", "worker_name", "description", "tour_group", "company_name", "company_contact", "company_url", "company_notes"
+	    "important_notes", "note_news", "worker_id", "worker_name", "description", "tour_group", "company_name", "company_contact", "company_url", "company_notes",
+        "use_time_line"
     ];
 
     protected function initialize()

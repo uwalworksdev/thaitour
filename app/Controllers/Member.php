@@ -278,7 +278,7 @@ class Member extends BaseController
         $addr1         = updateSQ($this->request->getPost("addr1") ?? "");
         $addr2         = updateSQ($this->request->getPost("addr2") ?? "");
         $visit_route   = updateSQ($this->request->getPost("visit_route"));
-        $recommender   = updateSQ($this->request->getPost("recommender"));
+        $recommender   = updateSQ($this->request->getPost("recommender") ?? "");
         $gender        = updateSQ($this->request->getPost("gender") ?? "");
         
         $passport_number   = updateSQ($this->request->getPost("passport_number") ?? "");
