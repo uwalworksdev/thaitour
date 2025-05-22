@@ -92,7 +92,7 @@
 																<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																	<div style="display: flex; justify-content: center; gap: 5px;">
 																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
-																		<a href="javascript:add_tour(<?= $i ?>);" class="btn btn-primary">추가</a>
+																		<a href="javascript:add_tour(<?= $i ?>, '<?= $info['info']['info_idx']?>');" class="btn btn-primary">추가</a>
 																		<a href="javascript:del_tours('<?= $info['info']['info_idx']?>', '<?= $info['tours_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																	</div>
 																</div>
@@ -1222,45 +1222,71 @@
 		}
 	}
 
-	function add_tour(infoIdx) {
+	function add_tour(infoIdx, idx) {
 		var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
 		var rowIndex = targetTable.find(".air_list_1").length;
 
-		var newRow = `
-			<tr class="air_list_1" style="height:40px">
-				<td>
-					<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
-					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
-					<div class="flex" style="gap: 5px;">
-						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-						<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
-						<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
-					</div>
-				</td>
-				<td>
-					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" placeholder="성인가격(단위: 바트)" numberOnly=true/>
-				</td>
-				<td>
-					<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" placeholder="소아가격(단위: 바트)" numberOnly=true/>
-				</td>
-				<td>
-					<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" placeholder="유아가격(단위: 바트)" numberOnly=true/>
-				</td>
-				<td>
-					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-						<select name="status[${infoIdx}][]">
-							<option value="Y" selected>판매중</option>
-							<option value="N">중지</option>
-						</select>
-						<a href="javascript:remove_tours(${infoIdx}, ${rowIndex});" class="btn btn-danger">삭제</a>
-					</div>
-				</td>
-			</tr>
-		`;
+		// var newRow = `
+		// 	<tr class="air_list_1" style="height:40px">
+		// 		<td>
+		// 			<input type="hidden" name="tour_onum[${infoIdx}][]" class="tour_onum" value="">
+		// 			<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
+		// 			<div class="flex" style="gap: 5px;">
+		// 				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 				<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width:50%" />
+		// 				<input type="text" name="tours_subject_eng[${infoIdx}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />
+		// 			</div>
+		// 		</td>
+		// 		<td>
+		// 			<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" placeholder="성인가격(단위: 바트)" numberOnly=true/>
+		// 		</td>
+		// 		<td>
+		// 			<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" placeholder="소아가격(단위: 바트)" numberOnly=true/>
+		// 		</td>
+		// 		<td>
+		// 			<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" placeholder="유아가격(단위: 바트)" numberOnly=true/>
+		// 		</td>
+		// 		<td>
+		// 			<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+		// 				<select name="status[${infoIdx}][]">
+		// 					<option value="Y" selected>판매중</option>
+		// 					<option value="N">중지</option>
+		// 				</select>
+		// 				<a href="javascript:remove_tours(${infoIdx}, ${rowIndex});" class="btn btn-danger">삭제</a>
+		// 			</div>
+		// 		</td>
+		// 	</tr>
+		// `;
 
-		targetTable.append(newRow);
-		$(".price").number(true);
+		// targetTable.append(newRow);
+		// $(".price").number(true);
+
+		if (!confirm("추가 하시겠습니까?")) {
+			return false;
+		}
+		$.ajax({
+			url: "/AdmMaster/_tours/add_tour_product",
+			type: "POST",
+			data: {
+				"info_idx": idx,
+				"product_idx": <?= $product_idx ?>,
+				"tour_onum": rowIndex,
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				if(data.result){
+					location.reload();
+				}else{
+					alert(data.message);
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+			}
+		});
 	}
 
 	function add_main_option(button, idx) {

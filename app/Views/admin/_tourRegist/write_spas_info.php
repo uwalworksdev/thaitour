@@ -92,7 +92,7 @@
 																<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 																	<div style="display: flex; justify-content: center; gap: 5px;">
 																		<input type="text" name="info_name[<?=$i?>]" placeholder="상품요금명" style="width: 250px;" value="<?= $info['info']['info_name'] ?>">
-																		<a href="javascript:add_spa(<?= $i ?>);" class="btn btn-primary">추가</a>
+																		<a href="javascript:add_spa(<?= $i ?>, '<?= $info['info']['info_idx']?>');" class="btn btn-primary">추가</a>
 																		<a href="javascript:del_spas('<?= $info['info']['info_idx']?>', '<?= $info['spas_idx_json'] ?>');" class="btn btn-danger">삭제</a>
 																	</div>
 																</div>
@@ -147,12 +147,6 @@
 																	<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
 																</div>
                                                             </td>
-                                                            <!-- <td>
-                                                                <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-                                                                    <a href="javascript:add_spa(<?= $i ?>);" class="btn btn-primary">추가</a>
-                                                                    <a href="javascript:del_spas('<?= $info['info']['info_idx']?>', '<?= $info['spas_idx_json'] ?>');" class="btn btn-danger">삭제</a>
-                                                                </div>
-                                                            </td> -->
                                                         </tr>
                                                         <tr>
                                                             <td colspan="3">
@@ -1298,47 +1292,73 @@
 		}
 	}
 
-	function add_spa(infoIdx) {
+	function add_spa(infoIdx, idx) {
 		var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
 		var rowIndex = targetTable.find(".air_list_1").length;
 
-		var newRow = `
-			<tr class="air_list_1" style="height:40px">
-				<td>
-					<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
-					<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
-					<input type="hidden" name="spas_explain[${infoIdx}][]" class="spas_explain" value="">
-					<input type="hidden" name="is_explain[${infoIdx}][]" class="hidden_is_explain" value="">
+		// var newRow = `
+		// 	<tr class="air_list_1" style="height:40px">
+		// 		<td>
+		// 			<input type="hidden" name="spa_onum[${infoIdx}][]" class="spa_onum" value="">
+		// 			<input type="hidden" name="spas_idx[${infoIdx}][]" class="spas_idx" value="new">
+		// 			<input type="hidden" name="spas_explain[${infoIdx}][]" class="spas_explain" value="">
+		// 			<input type="hidden" name="is_explain[${infoIdx}][]" class="hidden_is_explain" value="">
 
-					<div style="display: flex; gap: 5px; align-items: center;">
-						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-						<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
-						<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
-						<input type="checkbox" class="is_explain" onchange="InitPopup(event, this);" value="Y">
-						<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
-					</div>
-				</td>
-				<td>
-					<input type="text" name="spas_price[${infoIdx}][]" placeholder="성인가격(단위: 바트)" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
-				</td>
-				<td>
-					<input type="text" name="spas_price_kids[${infoIdx}][]" placeholder="소아가격(단위: 바트)" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
-				</td>
-				<td>
-					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-						<select name="status[${infoIdx}][]">
-							<option value="Y" selected>판매중</option>
-							<option value="N">중지</option>
-						</select>
-						<a href="javascript:remove_spas(${infoIdx}, ${rowIndex});" class="btn btn-danger">삭제</a>
-					</div>
-				</td>
-			</tr>
-		`;
+		// 			<div style="display: flex; gap: 5px; align-items: center;">
+		// 				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 				<input type="text" name="spas_subject[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 국문글씨 입력해주세요" style="width:50%" />
+		// 				<input type="text" name="spas_subject_eng[${infoIdx}][]" value="" class="spas_subject input_txt" placeholder="상품타입 영문글씨 입력해주세요" style="width: 50%;" />
+		// 				<input type="checkbox" class="is_explain" onchange="InitPopup(event, this);" value="Y">
+		// 				<label class="explain_label" onclick="InitPopup(event, this);" style="flex: 0 0 auto;">설명</label>
+		// 			</div>
+		// 		</td>
+		// 		<td>
+		// 			<input type="text" name="spas_price[${infoIdx}][]" placeholder="성인가격(단위: 바트)" value="" class="price spas_price input_txt" style="width:100%" numberOnly=true/>
+		// 		</td>
+		// 		<td>
+		// 			<input type="text" name="spas_price_kids[${infoIdx}][]" placeholder="소아가격(단위: 바트)" value="" class="price spas_price_kids input_txt" style="width:90%" numberOnly=true/>
+		// 		</td>
+		// 		<td>
+		// 			<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+		// 				<select name="status[${infoIdx}][]">
+		// 					<option value="Y" selected>판매중</option>
+		// 					<option value="N">중지</option>
+		// 				</select>
+		// 				<a href="javascript:remove_spas(${infoIdx}, ${rowIndex});" class="btn btn-danger">삭제</a>
+		// 			</div>
+		// 		</td>
+		// 	</tr>
+		// `;
 
-		targetTable.append(newRow);
-		$(".price").number(true);
+		// targetTable.append(newRow);
+		// $(".price").number(true);
+
+		if (!confirm("추가 하시겠습니까?")) {
+			return false;
+		}
+		$.ajax({
+			url: "<?= route_to('admin.api.spa_.add_spa_product') ?>",
+			type: "POST",
+			data: {
+				"info_idx": idx,
+				"product_idx": <?= $product_idx ?>,
+				"spa_onum": rowIndex,
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				if(data.result){
+					location.reload();
+				}else{
+					alert(data.message);
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+			}
+		});
 	}
 
 	function add_main_option(button, idx) {
