@@ -10,10 +10,10 @@
 
 				<div class="menus">
 					<ul class="first">
-						<li><a href="_statistics/member_statistics" class="btn btn_email01">회원가입통계</a></li>	
-						<li><a href="_statistics/member_statistics3" class="btn btn_email01">방문자수통계</a></li>	
-						<li><a href="_statistics/member_statistics4" class="btn btn_email01">검색어통계</a></li>	
-						<li class="mr_10"><a href="_statistics/member_statistics5" class="btn btn_email01">접속경로관리</a></li>					
+						<li><a href="/AdmMaster/_statistics/member_statistics" class="btn btn_email01">회원가입통계</a></li>	
+						<li><a href="/AdmMaster/_statistics/member_statistics3" class="btn btn_email01">방문자수통계</a></li>	
+						<li><a href="/AdmMaster/_statistics/member_statistics4" class="btn btn_email01">검색어통계</a></li>	
+						<li class="mr_10"><a href="/AdmMaster/_statistics/member_statistics5" class="btn btn_email01">접속경로관리</a></li>					
 					</ul>
 				</div>
             </div><!-- // inner -->
