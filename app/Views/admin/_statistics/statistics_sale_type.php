@@ -139,8 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
     <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" readonly class="date_form">
 </div>
 
-<button type="submit">검색</button>
-
 <!-- 날짜 버튼들 -->
 <button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d'); ?>" data-range="today">오늘</button>
 <button type="button" class="contact_btn date-range-btn" rel="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
@@ -153,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
                                 <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
+							<button type="submit">검색</button>
                         </div>
 
                     </form>
