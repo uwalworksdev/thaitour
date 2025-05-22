@@ -53,7 +53,7 @@
     text-decoration: underline;
 }
 
-label.active {
+.input_radio.active label {
     border: 2px solid #007bff;
     padding: 5px 10px;
     border-radius: 4px;
