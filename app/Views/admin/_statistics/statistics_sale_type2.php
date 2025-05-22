@@ -85,7 +85,7 @@ button[type="submit"]:hover {
 .input_radio.active label {
     border: 2px solid #007bff;
     background-color: #55a0ff;
-    color: #007bff;
+    color: #ffffff;
 }
 </style>
 
