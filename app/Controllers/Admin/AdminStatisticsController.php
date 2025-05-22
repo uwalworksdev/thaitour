@@ -358,7 +358,7 @@ public function statistics_sale_day()
         $builder = $db->table('tbl_order_mst');
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
-            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.Amt_1) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
@@ -367,7 +367,7 @@ public function statistics_sale_day()
         $builder->where("tbl_order_mst.order_date >=", $startDate);
         $builder->where("tbl_order_mst.order_date <=", $endDate);
         $builder->where("tbl_order_mst.device_type", "P");
-        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        //$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
         $builder->groupBy("yyyymmdd");
 
         $results = $builder->get()->getResult();
@@ -384,7 +384,7 @@ public function statistics_sale_day()
         $builder = $db->table('tbl_order_mst');
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
-            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.Amt_1) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
@@ -393,7 +393,7 @@ public function statistics_sale_day()
         $builder->where("tbl_order_mst.order_date >=", $startDate);
         $builder->where("tbl_order_mst.order_date <=", $endDate);
         $builder->where("tbl_order_mst.device_type", "M");
-        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        //$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
         $builder->groupBy("yyyymmdd");
 
         $results = $builder->get()->getResult();
