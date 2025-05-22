@@ -121,7 +121,7 @@ if ($mIdx != "") {
                                             <div class="button-row">
                                                 <input type="text" id="certi_num_1" name="certi_num_1" class="bs-input"
                                                     placeholder="">
-                                                <button type="button" class="btn cling-btn btn-outline-dark"
+                                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_phone_btn"
                                                     onclick="certi_chk_1()">인증확인</button>
                                             </div>
                                         </div>
@@ -266,7 +266,7 @@ if ($mIdx != "") {
                         <div class="input-row">
                             <div class="button-row">
                                 <input type="text" name="user_id" id="user_id" class="bs-input">
-                                <button type="button" class="btn cling-btn btn-outline-dark" onclick="chk_id();">아이디
+                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_id_btn" onclick="chk_id();">아이디
                                     중복체크</button>
                             </div>
                         </div>
@@ -453,6 +453,14 @@ if ($mIdx != "") {
 
     <?php  echo view("member/postcode_inc") ?>
 </main>
+
+<script>
+    let is_check_phone = sessionStorage.getItem("check_phone");
+
+    if(is_check_phone) {
+        $("#chk_phone_btn").attr("disabled", true);
+    }
+</script>
 
 <script>
     function email_sel(host) {
@@ -660,6 +668,9 @@ if ($mIdx != "") {
 
                 if (response == "Y") {
                     $("#cert_yn_1").val("Y");
+                    $("#chk_phone_btn").attr("disabled", true);
+                    sessionStorage.setItem("check_phone", "Y");
+
                     alert("인증되었습니다.");
                     return false;
                 } else {
@@ -1325,6 +1336,7 @@ if ($mIdx != "") {
                         $("#user_id").focus();
                         return false;
                     } else {
+                        $("#chk_id_btn").attr("disabled", "true");
                         $("#id_chk").val("Y");
                         $("#user_id").val(tmp_id);
                         $("#id_yes").show();
@@ -1338,5 +1350,9 @@ if ($mIdx != "") {
 
         }
     }
+
+    window.addEventListener("beforeunload", function () {
+        sessionStorage.removeItem("check_phone");
+    });
 </script>
 <?php $this->endSection(); ?>
