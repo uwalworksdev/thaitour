@@ -315,6 +315,8 @@ class AdminSpaController extends BaseController
             $company_contact = updateSQ($_POST["company_contact" ?? '']);
             $company_url = updateSQ($_POST["company_url" ?? '']);
             $company_notes = updateSQ($_POST["company_notes" ?? '']);
+            $use_time_line = updateSQ($_POST["use_time_line" ?? '']);
+
 
 //            $dataProductMore = new stdClass();
 
@@ -470,7 +472,8 @@ class AdminSpaController extends BaseController
                     'company_name' => $company_name,
                     'company_contact' => $company_contact,
                     'company_url' => $company_url,
-                    'company_notes' => $company_notes
+                    'company_notes' => $company_notes,
+                    'use_time_line' => $use_time_line
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;

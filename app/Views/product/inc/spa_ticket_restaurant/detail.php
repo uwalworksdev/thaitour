@@ -136,30 +136,36 @@
                     </h2>
                     <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
-                        <div class="meeting_time">
-                            <select name="hours" id="hours">
-                                <?php
-                                for ($i = 0; $i < 24; $i++) {
-                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                ?>
-                                    <option value="<?= $hour ?>"><?= $hour ?></option>
+                        <?php
+                            if(empty($data_['use_time_line'])){
+                        ?>
+                            <div class="meeting_time">
+                                <select name="hours" id="hours">
                                     <?php
-                                }
+                                    for ($i = 0; $i < 24; $i++) {
+                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
                                     ?>
-                            </select>
-                            <label for="hours">시</label>
-                            <select name="minutes" id="minutes">
-                                <?php
-                                for ($i = 0; $i < 60; $i += 1) {
-                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                ?>
-                                    <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <option value="<?= $hour ?>"><?= $hour ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="hours">시</label>
+                                <select name="minutes" id="minutes">
                                     <?php
-                                }
+                                    for ($i = 0; $i < 60; $i += 1) {
+                                        $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
                                     ?>
-                            </select>
-                            <label for="minutes">분</label>
-                        </div>
+                                        <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="minutes">분</label>
+                            </div>
+                        <?php
+                            }
+                        ?>
                     </div>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
@@ -576,30 +582,36 @@
                 <div class="popup_place__body">
                     <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
-                        <div class="meeting_time">
-                            <select id="p_hours">
-                                <?php
-                                for ($i = 0; $i < 24; $i++) {
-                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                ?>
-                                    <option value="<?= $hour ?>"><?= $hour ?></option>
+                        <?php
+                            if(empty($data_['use_time_line'])){
+                        ?>
+                            <div class="meeting_time">
+                                <select id="p_hours">
                                     <?php
-                                }
+                                    for ($i = 0; $i < 24; $i++) {
+                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
                                     ?>
-                            </select>
-                            <label for="p_hours">시</label>
-                            <select id="p_minutes">
-                                <?php
-                                for ($i = 0; $i < 60; $i += 1) {
-                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                ?>
-                                    <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <option value="<?= $hour ?>"><?= $hour ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="p_hours">시</label>
+                                <select id="p_minutes">
                                     <?php
-                                }
+                                    for ($i = 0; $i < 60; $i += 1) {
+                                        $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
                                     ?>
-                            </select>
-                            <label for="p_minutes">분</label>
-                        </div>
+                                        <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="p_minutes">분</label>
+                            </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                     <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
                         보장되지
@@ -630,10 +642,16 @@
             //     return false;
             // }
 
-            if(Number($("#p_hours").val()) == 0 || Number($("#p_minutes").val()) == 0) {
-                alert("시간을 선택해줘!");
-                return false;
-            }
+            <?php
+                if(empty($data_['use_time_line'])){
+            ?>
+                if(Number($("#p_hours").val()) == 0 || Number($("#p_minutes").val()) == 0) {
+                    alert("시간을 선택해줘!");
+                    return false;
+                }
+            <?php
+                }
+            ?>
 
             let time_line = $("#p_hours").val() + ":" + $("#p_minutes").val();
 

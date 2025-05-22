@@ -314,7 +314,7 @@
                                     <span><?= $day_ ?>(<span id="day_"></span>)</span>
                                 </div>
                                 <?php
-                                    if($prod["product_code_1"] == "1325" || $prod["product_code_1"] == "1320"){
+                                    if(empty($prod["use_time_line"])){
                                 ?>
                                     <div class="item-info" style="gap: 10px;">
                                         <span>예약시간: </span>
