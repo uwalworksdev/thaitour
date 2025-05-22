@@ -52,12 +52,6 @@
 .pagination a:hover {
     text-decoration: underline;
 }
-
-.input_radio.active label {
-    border: 2px solid #007bff;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
 </style>
 
 <div id="container">
