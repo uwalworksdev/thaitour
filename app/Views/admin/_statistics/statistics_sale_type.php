@@ -32,7 +32,7 @@
     }
 
     if ($range == "") {
-        $range = "1month";
+        $range = "today";
     }
 
     $price_arr = array();
