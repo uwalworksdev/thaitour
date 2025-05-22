@@ -10,10 +10,10 @@
 
 				<div class="menus">
 					<ul class="first">
-						<li><a href="statistics03_05.php" class="btn btn_email01">요일별</a></li>	
-						<li><a href="statistics03_04.php" class="btn btn_email01">IP별 검색</a></li>	
-						<li><a href="statistics03_01.php" class="btn btn_email01">접속통계</a></li>	
-						<li class="mr_10"><a href="statistics03_02.php" class="btn btn_email01">방문경로 순위</a></li>					
+						<li><a href="_statistics/member_statistics" class="btn btn_email01">회원가입통계</a></li>	
+						<li><a href="_statistics/member_statistics3" class="btn btn_email01">방문자수통계</a></li>	
+						<li><a href="_statistics/member_statistics4" class="btn btn_email01">검색어통계</a></li>	
+						<li class="mr_10"><a href="_statistics/member_statistics5" class="btn btn_email01">접속경로관리</a></li>					
 					</ul>
 				</div>
             </div><!-- // inner -->
