@@ -85,6 +85,8 @@ class Contact extends BaseController
 
         $list_code = $this->code->getCodesByParentCodeAndStatus(13, 2);
 
+        $types_code = $this->code->getCodesByParentCodeAndStatus(61, 2);
+
         if(isset($idx)) {
             $row = $this->travelContact->find($idx);
 
@@ -103,14 +105,17 @@ class Contact extends BaseController
             'code_child_1' => $code_child_1 ?? [],
             'code_child_2' => $code_child_2 ?? [],
             'products' => $products ?? [],
+            'types_code' => $types_code ?? [],
         ]);
     }
 
     public function view() {
         $idx = $this->request->getVar('idx');
         $builder = $this->db->table('tbl_travel_contact a')
-                                ->select('a.*, b.code_name')
+                                ->select('a.*, b.code_name, c.code_name as type_name')
                                 ->join('tbl_code b', 'a.travel_type_1 = b.code_no', 'left')
+                                ->join('tbl_code c', 'c.code_no = a.type_code', 'left')
+
                                 ->where('a.idx', $idx);
         $contact = $builder->get()->getRowArray();
 
@@ -148,6 +153,10 @@ class Contact extends BaseController
             $user_email = sqlSecretConver($user_email, "encode");
             $user_name = sqlSecretConver($user_name, "encode");
             $user_phone = sqlSecretConver($user_phone, "encode");
+
+            $type_code = $this->request->getPost("type_code");
+
+            $data["type_code"] = $type_code;
             $data["user_name"] = $user_name;
             $data["user_phone"] = $user_phone;
             $data["user_email"] = $user_email;

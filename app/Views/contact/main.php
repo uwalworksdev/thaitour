@@ -66,6 +66,7 @@
                 <colgroup>
                     <col width="80px">
                     <col width="80px">
+                    <col width="80px">
                     <col width="*">
                     <col width="110px">
                     <col width="110px">
@@ -74,6 +75,7 @@
                     <tr>
                         <th>NO</th>
                         <th>현황</th>
+                        <th>구분</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>등록일</th>
@@ -113,6 +115,9 @@
                                 }
                             ?>
                             <span style="color: <?=$color?>;"><?= $str_status ?></span>
+                        </td>
+                        <td>
+                            <?=$row['code_name']?>
                         </td>
                         <td class="subject">
                             <?php

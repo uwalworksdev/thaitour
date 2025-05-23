@@ -26,7 +26,10 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
 
 <style>
-
+    .login_find {
+        gap: 20px;
+        padding: 0;
+    }
     .sub_visual {
         background-color: #e0ecf7;
         border-radius: 20px;
@@ -184,6 +187,35 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                             <th>이름*</th>
                             <td>
                                 <input class="bs-input mx-md" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>구분*</th>
+                            <td>
+                                <div class="login_find flex" style="padding: 0;">
+                                    <?php
+                                        $i = 0;
+                                        foreach($types_code as $code){
+                                            $check = "";
+                                            if($idx){
+                                                if($code["code_no"] == $row["type_code"]){
+                                                    $check = "checked";
+                                                }
+                                            }else{
+                                                if($i == 0){
+                                                    $check = "checked";
+                                                }
+                                            }
+                                    ?>
+                                        <div class="bs-input-radio">
+                                            <input type="radio" name="type_code" id="type_code_<?= $code["code_no"] ?>" <?= $check ?> value="<?= $code["code_no"] ?>">
+                                            <label for="type_code_<?= $code["code_no"] ?>"><?= $code["code_name"] ?></label>
+                                        </div>
+                                    <?php
+                                        $i++;
+                                        }
+                                    ?>
+                                </div>
                             </td>
                         </tr>
                         <tr>
