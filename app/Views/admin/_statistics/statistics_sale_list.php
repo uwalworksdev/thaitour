@@ -20,10 +20,10 @@
                 <h2>매출분석</h2>
                 <div class="menus">
                     <ul class="first">
-                        <li><a href="statistics03_01" class="btn btn_email01">접속통계</a></li>
-                        <li><a href="statistics03_05" class="btn btn_email01">요일별</a></li>
-                        <li><a href="statistics03_06" class="btn btn_email01">IP별 검색</a></li>
-                        <li class="mr_10"><a href="statistics03_02" class="btn btn_email01">방문경로 순위</a></li>
+						<li><a href="/AdmMaster/_statistics/member_statistics" class="btn btn_email01">회원가입통계</a></li>	
+						<li><a href="/AdmMaster/_statistics/member_statistics3" class="btn btn_email01">방문자수통계</a></li>	
+						<li><a href="/AdmMaster/_statistics/member_statistics4" class="btn btn_email01">검색어통계</a></li>	
+						<li class="mr_10"><a href="/AdmMaster/_statistics/member_statistics5" class="btn btn_email01">접속경로관리</a></li>					
                     </ul>
                 </div>
             </div><!-- // inner -->
@@ -51,9 +51,9 @@
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
 
-                    <li class="contentMenuSub selected">
+                    <!--li class="contentMenuSub selected">
                         <a href="statistics_sale_list">매출상세내역</a>
-                    </li>
+                    </li-->
                 </ul>
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>

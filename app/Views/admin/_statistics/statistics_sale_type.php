@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 sDate.setDate(today.getDate() - 7);
             } else if (range === '1month') {
                 sDate.setMonth(today.getMonth() - 1);
+            } else if (range === '6month') {
+                sDate.setMonth(today.getMonth() - 6);
+            } else if (range === '1year') {
+                sDate.setFullYear(today.getFullYear() - 1);
             }
 
             // yyyy-mm-dd 포맷
@@ -128,9 +132,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
 
-                    <li class="contentMenuSub ">
+                    <!--li class="contentMenuSub ">
                         <a href="statistics_sale_list">매출상세내역</a>
-                    </li>
+                    </li-->
                 </ul>
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
@@ -152,6 +156,8 @@ document.addEventListener('DOMContentLoaded', function () {
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "3day")   echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-3 day')); ?>" data-range="3day">3일</button>
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "7day")   echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "1month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "6month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-6 month')); ?>" data-range="6month">6개월</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "1year")  echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="1year">1년</button>
 						
                             <select name="payin" onchange="submit()">
                                 <option value="">통합</option>

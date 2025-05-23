@@ -77,9 +77,9 @@
                     <li class="contentMenuSub ">
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
-                    <li class="contentMenuSub ">
+                    <!--li class="contentMenuSub ">
                         <a href="statistics_sale_list">매출상세내역</a>
-                    </li>
+                    </li-->
                 </ul>
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
@@ -163,7 +163,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
+                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 입니다"></i></th>
                                 <th>상품</th>
                             </tr>
                         </thead>
