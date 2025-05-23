@@ -1101,9 +1101,9 @@ $(document).ready(function() {
             $("#departure_point").val($("#pickup-location").val());
             $("#custom_req").val($("#extra-requests").val());
 
-            // $("#frm").attr('method', 'post');
-            // $("#frm").attr('action', '/product-golf/customer-form-ok');
-			// $("#frm").submit();
+            $("#frm").attr('method', 'post');
+            $("#frm").attr('action', '/product-golf/customer-form-ok');
+			$("#frm").submit();
         });
 
         function closePopup() {
@@ -1577,9 +1577,9 @@ $(document).ready(function() {
             }
 
             if(type == 'B'){
-                let num_1 = $("#vehicle_1").val() ?? 0;
-                let num_2 = $("#vehicle_2").val() ?? 0;
-                let num_3 = $("#vehicle_3").val() ?? 0;
+                let num_1 = Number($("#vehicle_1").val() ?? 0);
+                let num_2 = Number($("#vehicle_2").val() ?? 0);
+                let num_3 = Number($("#vehicle_3").val() ?? 0);
                 
                 if((num_1 + num_2 + num_3) > 0){
                     $(".cart_info_pop .number_vehicle").text(num_1 + num_2 + num_3);

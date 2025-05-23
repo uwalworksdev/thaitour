@@ -185,6 +185,8 @@
 																					<td>
 																						<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
 																						<input type="hidden" name="tour_onum[<?=$i?>][]" class="tour_onum" value="<?= $tour['tour_onum'] ?>">
+																						<input type="hidden" name="tours_desc[<?=$i?>][]" class="tours_desc" value="<?= $tour['tours_desc'] ?>">
+
 																						<div class="flex" style="gap: 5px;">
 																							<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																							<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -203,6 +205,7 @@
 																					</td>
 																					<td>
 																						<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+																							<button type="button" onclick="InitPopup(this);" class="btn_tours_desc">간단 설명</button>
 																							<select name="status[<?=$i?>][]">
 																								<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																								<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
@@ -217,6 +220,8 @@
 																				<td>
 																					<input type="hidden" name="tours_idx[<?=$i?>][]" class="tours_idx" value="">
 																					<input type="hidden" name="tour_onum[<?=$i?>][]" class="tour_onum" value="">
+																					<input type="hidden" name="tours_desc[<?=$i?>][]" class="tours_desc" value="">
+
 																					<div class="flex" style="gap: 5px;">
 																						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																						<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -235,6 +240,7 @@
 																				</td>
 																				<td>
 																					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+																						<button type="button" onclick="InitPopup(this);" class="btn_tours_desc">간단 설명</button>
 																						<select name="status[<?=$i?>][]">
 																							<option value="Y" selected>판매중</option>
 																							<option value="N">중지</option>
