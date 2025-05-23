@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 sDate.setDate(today.getDate() - 7);
             } else if (range === '1month') {
                 sDate.setMonth(today.getMonth() - 1);
+            } else if (range === '6month') {
+                sDate.setMonth(today.getMonth() - 6);
             }
 
             // yyyy-mm-dd 포맷
