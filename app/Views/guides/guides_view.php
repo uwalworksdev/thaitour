@@ -1319,7 +1319,7 @@
                     linkedCalendars: true,
                     alwaysShowCalendars: true,
                     parentEl: calendarTabElement,
-                    minDate: moment().add(1, 'days'),
+                    minDate: moment(), //moment().add(1, 'days')
                     opens: "center",
                     autoApply: true
                 }, function (start, end) {
