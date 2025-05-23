@@ -4236,6 +4236,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     width: 160px;
 }
 
+.customer-form-page .form-group-second .select-width.golf-select {
+    width: 100px;
+}
+
 .customer-form-page .mb-30 {
     margin-bottom: 30px;
 }

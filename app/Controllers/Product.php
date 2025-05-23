@@ -2571,7 +2571,10 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             }
 
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
-            $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            $data['vehicle_time'] = "";
+            if(!empty($data['vehicle_time_hour']) && !empty($data['vehicle_time_minute'])){
+                $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            }
 
 			$priceCalculate = $this->golfPriceCalculate(
                 $data['option_idx'],
@@ -2607,6 +2610,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['baht_thai']                  = $this->setting['baht_thai'];
 			$data['device_type']                = get_device();
 			$data['group_no']                   = date('YmdHis');
+			$data['departure_point']            = $this->request->getPost('departure_point') ?? "";
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
