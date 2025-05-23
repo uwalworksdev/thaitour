@@ -83,7 +83,7 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="80px"/>
-                                    <col width="160px"/>
+                                    <col width="360px"/>
                                     <col width="*"/>
                                     <col width="120px"/>
                                     <col width="120px"/>
@@ -96,8 +96,8 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>적립 및 사용처</th>
-                                    <th>내역</th>
+                                    <th>적립내역</th>
+                                    <th>사용내역</th>
                                     <th>회원명</th>
                                     <th>거래구분</th>
                                     <th>마일리지</th>
@@ -125,12 +125,29 @@
                                     } else {
                                         $order_mileage_str = "적립";
                                     }
+                                    
+                                    $text_use_point = "";
+                                    $text_point = "";
+
+                                    if($row["order_gubun"] == "통합결제"){
+                                        $text_use_point = "상품결제";
+                                    }else{
+                                        if($row["point_type"] == "member"){
+                                            $text_point = "회원가입";
+                                        }else if($row["point_type"] == "comment"){
+                                            $text_point = "댓글작성";
+                                        }else if($row["point_type"] == "review"){
+                                            $text_point = "후기작성";
+                                        }else {
+                                            $text_point = "상품결제";
+                                        }
+                                    }
 
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
-                                        <td><?= $order_gubun ?></td>
-                                        <td class="tal"><?= $row["mi_title"] ?></td>
+                                        <td><?= $text_point ?></td>
+                                        <td><?= $text_use_point ?></td>
                                         <td class="tac"><?=$row["user_name"]?></td>
                                         <td><?= $order_mileage_str ?></td>
                                         <td><?= number_format($row["order_mileage"]) ?></td>

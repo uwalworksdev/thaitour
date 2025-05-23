@@ -53,6 +53,20 @@
 
 ?>
 
+<style>
+button[type="submit"] {
+    height: 30px;
+    padding: 0 10px;
+    margin: 0 1.5px;
+    background-color: #55a0ff;
+    color: #fff;
+}
+
+button[type="submit"]:hover {
+    background-color: #2f5c98;   /* 호버 시 색상 변경 */
+}
+</style>
+
 <div id="container">
     <span id="print_this">
         <header id="headerContainer">
@@ -82,9 +96,9 @@
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
 
-                    <li class="contentMenuSub ">
+                    <!--li class="contentMenuSub ">
                         <a href="statistics_sale_list">매출상세내역</a>
-                    </li>
+                    </li-->
                 </ul>
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
@@ -115,9 +129,10 @@
 
                             <select name="payin" onchange="fn_search()">
                                 <option value="">통합</option>
-                                <option value="P">PC</option>
-                                <option value="M">모바일</option>
+                                <option value="P" <?php if($payin == "P") echo "selected";?> >PC</option>
+                                <option value="M" <?php if($payin == "M") echo "selected";?> >모바일</option>
                             </select>
+                            <button type="submit">검색</button>
                         </div>
                     </form>
                 </div>
@@ -148,85 +163,54 @@
                             <div id="curve_chart1" style="height:500px;"></div>
                         </div>
 
-                        <script type="text/javascript">
-                            google.charts.load('current', {
-                                'packages': ['corechart']
-                            });
-                            google.charts.setOnLoadCallback(drawPieChart);
-                            google.charts.setOnLoadCallback(drawBarChart);
+						<script type="text/javascript">
+							google.charts.load('current', { packages: ['corechart'] });
 
-                            var regions = <?=json_encode($code_names)?>
+							const chartData = <?= json_encode($result) ?>;
+							const total = chartData.reduce((sum, row) => sum + row[1], 0);
+							const color = '#4285F4';
 
-                            const dataMap = {};
+							google.charts.setOnLoadCallback(drawPieChart);
+							google.charts.setOnLoadCallback(drawBarChart);
 
-                            const dataRows = regions.map(name => [name, dataMap[name] || 10]);
+							function drawPieChart() {
+								const data = google.visualization.arrayToDataTable([
+									['지역', '매출'],
+									...chartData
+								]);
 
-                            function drawPieChart() {
-                                var data = google.visualization.arrayToDataTable([
-                                    ['수단', '매출'],
-                                    ...dataRows
-                                ]);
+								const options = {
+									title: '',
+									legend: { position: 'bottom' },
+									tooltip: { isHtml: true },
+								};
 
-                                var options = {
-                                    title: '',
-                                    curveType: '',
-                                    legend: {
-                                        position: 'bottom'
-                                    },
-                                    tooltip: {
-                                        isHtml: true
-                                    },
-                                };
+								const chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
+								chart.draw(data, options);
+							}
 
-                                var chart = new google.visualization.PieChart(document.getElementById('curve_chart1'));
-                                chart.draw(data, options);
-                            }
+							function drawBarChart() {
+								chartData.forEach((row, index) => {
+									const [region, value] = row;
+									const percentage = (value / total) * 100;
 
-                            function drawBarChart() {
-                                var total = dataRows.reduce((sum, row) => sum + row[1], 0);
-                                var rows = [
-                                    ["강원", <?= $price_arr['강원'] ?>, "#4285F4"],
-                                    ["경기", <?= $price_arr['경기'] ?>, "#4285F4"],
-                                    ["경남", <?= $price_arr['경남'] ?>, "#4285F4"],
+									const container = document.createElement('div');
+									container.classList.add('bar-container');
 
-                                    ["경북", <?= $price_arr['경북'] ?>, "#4285F4"],
-                                    ["광주", <?= $price_arr['광주'] ?>, "#4285F4"],
-                                    ["대구", <?= $price_arr['대구'] ?>, "#4285F4"],
+									const target = document.querySelectorAll('.per_line')[index];
+									if (target) target.appendChild(container);
 
-                                    ["대전", <?= $price_arr['대전'] ?>, "#4285F4"],
-                                    ["부산", <?= $price_arr['부산'] ?>, "#4285F4"],
-                                    ["서울", <?= $price_arr['서울'] ?>, "#4285F4"],
-
-                                    ["세종", <?= $price_arr['세종'] ?>, "#4285F4"],
-                                    ["울산", <?= $price_arr['울산'] ?>, "#4285F4"],
-                                    ["인천", <?= $price_arr['인천'] ?>, "#4285F4"],
-
-                                    ["전남", <?= $price_arr['전남'] ?>, "#4285F4"],
-                                    ["전북", <?= $price_arr['전북'] ?>, "#4285F4"],
-                                    ["제주", <?= $price_arr['제주'] ?>, "#4285F4"],
-
-                                    ["충남", <?= $price_arr['충남'] ?>, "#4285F4"],
-                                    ["충북", <?= $price_arr['충북'] ?>, "#4285F4"],
-                                ];
-
-                                rows.forEach((row, index) => {
-                                    var percentage = (row[1] / total) * 100;
-                                    var container = document.createElement('div');
-                                    container.classList.add('bar-container');
-
-                                    document.querySelectorAll('.per_line')[index].appendChild(container);
-
-                                    if (percentage > 0) {
-                                        var bar = document.createElement('div');
-                                        bar.classList.add('bar');
-                                        bar.style.width = percentage + '%';
-                                        bar.style.height = '20px';
-                                        bar.style.backgroundColor = row[2];
-                                        container.appendChild(bar);
-                                    }
-                                });
-                            }
-                        </script>
+									if (percentage > 0) {
+										const bar = document.createElement('div');
+										bar.classList.add('bar');
+										bar.style.width = percentage + '%';
+										bar.style.height = '20px';
+										bar.style.backgroundColor = color;
+										container.appendChild(bar);
+									}
+								});
+							}
+						</script>
 
 
                     </div>
@@ -250,28 +234,28 @@
                         </thead>
                         <tbody id="list_all">
                             <?php
-                                $ordered_methods = $code_names;
-                                $sorted_price_arr = [];
 
-                                foreach ($ordered_methods as $method) {
-                                    if (isset($price_arr[$method])) {
-                                        $sorted_price_arr[$method] = $price_arr[$method];
-                                    }
-                                }
-                                $tr_index = 0;
-                                foreach ($sorted_price_arr as $key => $addrs) {
-                                    $tr_index++;
+                            $ordered_methods = $code_names;
+                            $sorted_price_arr = [];
+
+                            $order_tot = 0;
+                            foreach ($result as $row) {
+                                     $order_tot = $order_tot + $row[1];  
+							}
+
+							$tr_index = 0;
+                            foreach ($result as $row) {
+                                $tr_index++;
                             ?>
-
                                 <tr>
                                     <td class="number"><?= $tr_index ?></td>
-                                    <td style="text-align:left;"><?= $key ?></td>
-                                    <td class="number"><?= number_format($addrs) ?></td>
+                                    <td style="text-align:left;"><?= $row[0]?></td>
+                                    <td class="number"><?= number_format($row[1]) ?></td>
                                     <td>
                                         <div style="display: flex; gap: 30px; align-items: center; width: 100%;">
                                             <div class="per_line">
                                             </div>
-                                            <div class="floatRight size10 fontMontserrat"><?= $addrs ?>%</div>
+                                            <div class="floatRight size10 fontMontserrat"><?= (round)($row[1] * 100 / $order_tot) ?>%</div>
                                         </div>
                                     </td>
                                 </tr>

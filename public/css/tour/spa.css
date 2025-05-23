@@ -664,6 +664,8 @@ div , p , ul, li, span {
     border-bottom: 1px solid #dbdbdb;
     margin-bottom: 20px;
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .customer-form-page .container-card .card-right2 .schedule.last {
@@ -675,6 +677,7 @@ div , p , ul, li, span {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    gap: 10px;
 }
 
 .customer-form-page .container-card .card-right2 .schedule_ttl {
@@ -697,7 +700,7 @@ div , p , ul, li, span {
 .card-right2 .schedule .wrap-text p {
     color: #252525;
     font-size: 16px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 
@@ -705,7 +708,7 @@ div , p , ul, li, span {
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .card-right2 .schedule .wrap-btn img {

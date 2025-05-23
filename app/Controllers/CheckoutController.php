@@ -508,7 +508,7 @@ class CheckoutController extends BaseController
 													   ,order_user_mobile          = '$payment_user_mobile' 
 													   ,order_user_phone           = '$payment_user_phone' 
 													   ,order_user_gender          = '$companion_gender' WHERE order_no = '". $arr[$i] ."' ";
-					//write_log("reservation_request- ". $sql_o);
+					write_log("reservation_request- ". $sql_o);
 					$result = $db->query($sql_o); 
 				}	
         }
@@ -548,6 +548,9 @@ class CheckoutController extends BaseController
 		// 쿼리 실행 및 결과 확인
 		$query  = $builder->get();
 		$result = $query->getResultArray(); // 결과 배열 반환
+
+        alimTalk_cart_send($group_no);
+		email_reservation_group($group_no);
 
         $data = [
             'product_name' => $product_name,

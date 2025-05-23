@@ -65,6 +65,7 @@
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
                 <input type=hidden name="partial_cancel_amt" id="partial_cancel_amt" value='0'>
                 <input type=hidden name="add_mileage" id="add_mileage" value='<?=$add_mileage?>'>
+			    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -79,7 +80,7 @@
                                     <col width="10%"/>
                                     <col width="8%"/>
                                     <col width="10%"/>
-                                    <col width="8%"/>
+                                    <col width="10%"/>
                                     <col width="*"/>
 									<!--col width="10%"/-->
                                     <col width="8%"/>
@@ -94,7 +95,7 @@
 									<th style="line-height:40px; text-align:center;">결제번호</th>
 									<th style="line-height:40px; text-align:center;">예약번호</th>
 									<th style="line-height:40px; text-align:center;">예약일자</th>
-									<th style="line-height:40px; text-align:center;">취소일자</th>
+									<th style="line-height:40px; text-align:center;">취소일시</th>
 									<th style="text-align:center;">상품명</th>
 									<th style="text-align:center;">결제금액(원)</th>
 									<th style="text-align:center;">결제금액(바트)</th>
@@ -105,12 +106,17 @@
 								</tr>
 
 								
-                                <?php foreach ($order_row as $order) { ?>								
+                                <?php foreach ($order_row as $order) { ?>
+								
                                 <tr>
                                     <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['order_date']?></td>
-                                    <td><?=$order['CancelDate_1']?></td>
+                                    <td>
+										    <?=substr($order['CancelDate_1'], 0, 4) . '-' . substr($order['CancelDate_1'], 4, 2)  . '-' . substr($order['CancelDate_1'], 6, 2) .' '; ?> 
+										    <?=substr($order['CancelDate_1'], 9, 2) . ':' . substr($order['CancelDate_1'], 11, 2) . ':' . substr($order['CancelDate_1'], 13, 2)?>
+										
+                                    </td>
                                     <td><?=$order['product_name']?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
@@ -118,7 +124,11 @@
 									<td style="text-align:right;"><?=number_format($order['real_price_bath'])?></td>
 									<!--td>-</td-->
 									<td style="text-align: center;">
-									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" > 
+									    <?php if($order['order_status'] != "C") { ?>
+									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" >
+										<?php } else { ?>				
+									    <p style="color:red">예약취소</p>
+										<?php }?>
 									    <!--input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="1000" --> 
 									</td>
 									<td style="text-align: center;">
@@ -193,7 +203,7 @@
                                             <option value="W" <?php if ($payment_row['payment_status'] == "W") echo "selected";?> >예약접수</option>
                                             <option value="G" <?php if ($payment_row['payment_status'] == "G" || $payment_row['payment_status'] == "R") echo "selected";?> >결제대기</option>
                                             <option value="Y" <?php if ($payment_row['payment_status'] == "Y") echo "selected";?> >결제완료</option>
-                                            <option value="C" <?php if ($payment_row['payment_status'] == "C") echo "selected";?> >주문취소</option>
+                                            <option value="C" <?php if ($payment_row['payment_status'] == "C") echo "selected";?> >예약취소</option>
                                         </select>
                                        <a href="javascript:status_upd()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt" >상태수정</span></a>
@@ -209,7 +219,6 @@
                                     <?php if($payment_row['payment_status'] == "Y") { ?>
                                     <th>결제취소</th>
                                         <td>
-										    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
@@ -219,7 +228,8 @@
                                     <?php } else if($payment_row['payment_status'] == "C") { ?>
                                     <th>결제취소일시</th>
                                         <td>
-										    <?=substr($payment_row['CancelDate_1'], 0, 4) . '-' . substr($payment_row['CancelDate_1'], 4, 2) . '-' . substr($payment_row['CancelDate_1'], 6, 2)?>
+										    <?=substr($payment_row['CancelDate_1'], 0, 4) . '-' . substr($payment_row['CancelDate_1'], 4, 2)  . '-' . substr($payment_row['CancelDate_1'], 6, 2) .' '; ?> 
+										    <?=substr($payment_row['CancelDate_1'], 9, 2) . ':' . substr($payment_row['CancelDate_1'], 11, 2) . ':' . substr($payment_row['CancelDate_1'], 13, 2)?>
                                         </td>
 									</tr>
 									<?php } else { ?>
@@ -247,7 +257,7 @@
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1652');">예약접수</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_2397');">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1654');">결제완료</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1657');">주문취소</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk1('<?= $payment_row['payment_idx'] ?>','TY_1657');">예약취소</button>
                                         </td>
                                     </tr>
 
@@ -319,7 +329,6 @@ function info_receipt(pg, tid)
 										});
 
 										let limit = parseFloat($('#cancel_amt_tot').val());
-
 										if (total > limit || total == limit) {
 											alert('선택한 취소 금액이 결제 금액을 초과했습니다.');
 											$(this).prop('checked', false); // 방금 체크한 항목 해제

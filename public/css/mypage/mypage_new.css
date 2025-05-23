@@ -1115,6 +1115,7 @@ input[type="checkbox"]:checked+label {
 .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td select.wd_sel {
     width: 120px;
     height: 45px;
+    font-size: 13px;
 }
 
 .sub_wrap .sub_content.imfor_change .imfor_tb table tbody tr td select.jop_sel {

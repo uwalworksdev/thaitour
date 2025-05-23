@@ -47,6 +47,16 @@ class AdminTourGuideController extends BaseController
 
         $data = $this->productModel->findProductPaging(['product_code_2' => '132403'], $g_list_rows, $pg, $orderByArr);
 
+        foreach ($data['items'] as $key => $value) {
+            $sql = "SELECT c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
+						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
+						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_idx = '" . $value['product_idx'] . "' group by p1.product_idx ";
+
+            $result = $this->connect->query($sql) or die ($this->connect->error);
+            $row = $result->getRowArray();
+            $data['items'][$key]['product_code_name_1'] = $row["product_code_name_1"];
+            $data['items'][$key]['product_code_name_2'] = $row["product_code_name_2"];
+        }
         $res = [
             'products' => $data['items'],
             'search_name' => $search_name,
@@ -66,6 +76,16 @@ class AdminTourGuideController extends BaseController
 
         $fresult = $this->codeModel->getByCodeNos(["1324"]);
 
+        $fsql = "select * from tbl_code where depth='3'  
+                        AND parent_code_no = '1324' 
+                        AND status='Y'  order by onum asc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult2 = $fresult2->getResultArray();
+
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product['product_code_2'] . "' and status='Y'  order by onum asc, code_idx desc";
+        $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult3 = $fresult3->getResultArray();
+
         $options = $this->guideOptionModel->getListByProductId($product_idx);
 
         $options = array_map(function ($item) {
@@ -88,6 +108,8 @@ class AdminTourGuideController extends BaseController
             'mcodes' => $mcodes,
             'product' => $product,
             'fresult' => $fresult,
+            'fresult2' => $fresult2,
+            'fresult3' => $fresult3,
             'product_idx' => $product_idx,
             'options' => $options,
             'product_code' => $product_code,
@@ -105,6 +127,16 @@ class AdminTourGuideController extends BaseController
 
         $fresult = $this->codeModel->getByCodeNos(["1324"]);
 
+        $fsql = "select * from tbl_code where depth='3'  
+                        AND parent_code_no = '1324' 
+                        AND status='Y'  order by onum asc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult2 = $fresult2->getResultArray();
+
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product['product_code_2'] . "' and status='Y'  order by onum asc, code_idx desc";
+        $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult3 = $fresult3->getResultArray();
+
         $options = $this->guideOptionModel->getListByProductId($product_idx);
 
         $options = array_map(function ($item) {
@@ -127,6 +159,8 @@ class AdminTourGuideController extends BaseController
             'mcodes' => $mcodes,
             'product' => $product,
             'fresult' => $fresult,
+            'fresult2' => $fresult2,
+            'fresult3' => $fresult3,
             'product_idx' => $product_idx,
             'options' => $options,
             'product_code' => $product_code,

@@ -4,16 +4,82 @@
 <?php $setting = homeSetInfo(); ?>
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
+<style>
+    .tours-detail .section2 .text-content-1 {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    .tours-detail .section2 .text-content-1 h3 {
+        margin-bottom: 20px;
+    }
+
+    .tours-detail .section2 .text-content-3 {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 0;
+    }
+
+    .tours-detail .section2 .text-content-2 .ps-right {
+        margin-left: 0;
+    }
+
+    .price-sub {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+    }
+
+    .price-sub .ps-left {
+        padding-bottom: 2px;
+    }
+
+    .price-sub .price {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .sec2-item-card {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tours-detail .primary-btn-calendar.tour {
+        position: absolute;
+        bottom: 3%;
+        left: 28%;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-cart {
+        position: absolute;
+        bottom: 3%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+    }
+</style>
+
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
         <form name="frm" id="frm" action="/product-tours/confirm-info" class="">
             <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+            <input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+            <input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
+            <input type="hidden" name="product_code_3" value="">
+            <input type="hidden" name="product_code_4" value="">
             <input type="hidden" name="order_date" id="order_date" value="">
+            <input type="hidden" name="order_status" id="order_status" value="B">
             <input type="hidden" name="tours_idx" id="tours_idx" value="">
             <input type="hidden" name="idx" id="idx" value="">
-            <input type="hidden" id="total_price" value="">
-            <input type="hidden" id="total_price_baht" value="">
+            <input type="hidden" name="total_price" id="total_price" value="">
+            <input type="hidden" name="total_price_baht" id="total_price_baht" value="">
             <input type="hidden" name="people_adult_cnt" id="people_adult_cnt" value="">
             <input type="hidden" name="people_kids_cnt" id="people_kids_cnt" value="">
             <input type="hidden" name="people_baby_cnt" id="people_baby_cnt" value="">
@@ -24,12 +90,17 @@
             <input type="hidden" name="total_pay" id="total_pay" value="">
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
             <input type="hidden" name="final_discount" id="final_discount" value="">
+            <input type="hidden" name="start_place" id="start_place" value="">
+            <input type="hidden" name="end_place" id="end_place" value="">
+            <input type="hidden" name="id_kakao" id="id_kakao" value="">
+            <input type="hidden" name="description" id="description" value="">
+
             <div class="section1">
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <!-- <div class="only_web"> -->
                         <div class="list-icon">
-                            <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                            <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                             <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
@@ -143,7 +214,7 @@
                         <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
                         <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
                         <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">리얼리뷰(<?= $product['total_review'] ?>개)</a>
-                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
+                        <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qna">상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</a>
                     </div>
                 </div>
 
@@ -194,20 +265,27 @@
                     <?php foreach ($info['tours'] as $tour): ?>
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
-                                <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
-                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                <div>
+                                    <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
+                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+                                </div>
+                                <p><?=$info['info']['info_name']?></p>
                             </div>
                             <div class="text-content-2">
-                                    <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                                <div class="price-sub" style="text-align: right;">
-                                    <span class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</span>
-                                    <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
+
+                                <div class="price-sub">
+                                    <p class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</p>
+
+                                    <div class="price">
+                                        <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                        <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
+                                    </div>
+                                    <div class="text-content-3" style="justify-content: space-between;">
+                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-content-3" style="justify-content: space-between;">
-                                <p><?=$info['info']['info_name']?></p>
-                                <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
-                            </div>
+                            
                         </div>
                     <?php endforeach; ?>
                 <?php endforeach;?>
@@ -388,7 +466,7 @@
                                 <p><span class="total_all_price">0</span>원</p>
                             </div>
 
-                            <h3 class="title-second">약관동의</h3>
+                            <!-- <h3 class="title-second">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
                                 <input type="hidden" value="N" id="fullagreement">
@@ -412,24 +490,25 @@
                                 <label for="guidelines">여행안전수칙 동의(필수)</label>
                                 <button type="button" data-type="4" class="view-policy">[보기]</button>
                                 <input type="hidden" value="N" id="guidelines">
-                            </div>
+                            </div> -->
 
-                            <!-- <div class="form-below-calendar">
+                            <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
-                                <select class="select-time-c">
+                                <select class="select-time-c" id="select_time_line">
                                     <?php foreach ($timeSegments as $time): ?>
                                         <option value="<?= htmlspecialchars($time); ?>">
                                             <?= htmlspecialchars($time); ?>
                                         </option>
                                     <?php endforeach; ?>
-                                    </select>
-                            </div>   -->
+                                </select>
+                            </div>  
                         </div>
                     </div>
 
                     <?php if ($product['product_status'] == 'sale'): ?>
-                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
+                        <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit('W')">예약하기</button>
                     <?php endif; ?>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="handleSubmit('B')">장바구니</button>
                 </div>
             </div>
         </form>
@@ -794,7 +873,114 @@
             </div>
             <div class="dim"></div>
         </div>
+
+        <div class="popup_wrap place_pop cart_info_pop">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closePopup()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>필수 입력사항</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body order-form-page">
+                            <table class="info-table-order info-table-cus-padding">
+                                <tbody>
+                                    <tr>
+                                        <th>예약시간</th>
+                                        <td>
+                                            <select class="select-time-c" id="pop_select_time_line" style="width: 200px;">
+                                                <?php foreach ($timeSegments as $time): ?>
+                                                    <option value="<?= htmlspecialchars($time); ?>">
+                                                        <?= htmlspecialchars($time); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>미팅장소</th>
+                                        <td>
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" id="pop_start_place">
+                                            <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>종료 후 내리실 곳</th>
+                                        <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." id="pop_end_place"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>카카오톡 아이디</th>
+                                        <td>
+                                            <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." id="pop_id_kakao">
+                                            <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>기타 요청</th>
+                                        <td>
+                                            <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
+                                            <textarea class="textarea-tb" rows="5" placeholder="" id="pop_description"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="flex_c_c">
+                                <button type="button" class="btn_add_cart">
+                                    장바구니 담기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
 <script>
+    $(".btn_add_cart").on("click", function () {
+        if ($("#pop_start_place").val() === "") {
+            alert("미팅장소 입력해주세요!");
+            $("#pop_start_place").focus();
+            return false;
+        }
+
+        if ($("#pop_end_place").val() === "") {
+            alert("종료 후 내리실 곳 입력해주세요!");
+            $("#pop_end_place").focus();
+            return false;
+        }
+
+        if ($("#pop_id_kakao").val() === "") {
+            alert("카카오톡 아이디 입력해주세요!");
+            $("#pop_id_kakao").focus();
+            return false;
+        }
+
+        // if ($("#pop_description").val() === "") {
+        //     alert("기타 요청 입력해주세요!");
+        //     $("#pop_description").focus();
+        //     return false;
+        // }
+
+        var selectedTimePop = $('#pop_select_time_line').val();
+        if (!selectedTimePop) {
+            selectedTimePop = $('#pop_select_time_line option:first').val();
+        }
+
+        $("#time_line").val(selectedTimePop);
+
+        $("#start_place").val($("#pop_start_place").val());
+        $("#end_place").val($("#pop_end_place").val());
+        $("#id_kakao").val($("#pop_id_kakao").val());
+        $("#description").val($("#pop_description").val());
+
+        $("#frm").attr('method', 'post');
+        $("#frm").attr('action', '/product-tours/customer-form-ok');
+		$("#frm").submit();
+    });
+
     $(".view-policy").on("click", function (event) {
         event.stopPropagation();
         let type = $(this).data("type");
@@ -961,6 +1147,7 @@
                                         <input style="text-align: center; display: block; width: 56px" data-price_won="${option_price_won}" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
                                                     name="option_qty[]" id="input_qty" value="1">
                                         <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                        <button type="button" class="del_btn" onclick="deleteOption(this);">x</button>
                                     </div>
                                 </div>
     
@@ -986,7 +1173,28 @@
         updateProductOption();
     }
 
+    
+
+    var selectedOption = [];
+    var selectedTourIds = [];
+    var totalCost = 0;
+    var totalCostWon = 0;
+    var selectedTourQuantities = {};
+
+    function deleteOption(el) {
+        let idx = $(el).closest('.schedule').data('idx');
+
+        if (confirm('선택 항목을 지우시겠습니까?')) {
+            $(el).closest('.schedule').remove();
+            selectedTourIds = selectedTourIds.filter(item => item !== idx);
+            $("#option").val('');
+        }
+
+        updateProductOption(); 
+    }
+
     function minusQty(el) {
+        let idx = $(el).closest('.schedule').data('idx');
         let inp = $(el).parent().find('input.input_qty');
         let num = inp.val();
         if (Number(num) > 1) {
@@ -995,6 +1203,7 @@
         } else {
             if (confirm('선택 항목을 지우시겠습니까?')) {
                 $(el).closest('.schedule').remove();
+                selectedTourIds = selectedTourIds.filter(item => item !== idx);
                 $("#option").val('');
             }
         }
@@ -1008,12 +1217,6 @@
         inp.val(num);
         updateProductOption();
     }
-
-    var selectedOption = [];
-    var selectedTourIds = [];
-    var totalCost = 0;
-    var totalCostWon = 0;
-    var selectedTourQuantities = {};
 
     function updateProductOption() {
         
@@ -1281,6 +1484,90 @@
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
     }
 
+    function setupQuantityUI($container, dayData) {
+        const types = ["adult", "child", "baby"];
+
+        types.forEach(type => {
+            const $typeContainer = $container.find(`.quantity-container.${type}`);
+            const $quantityDisplay = $typeContainer.find('.quantity');
+            const $increaseBtn = $typeContainer.find('.increase');
+            const $decreaseBtn = $typeContainer.find('.decrease');
+            const $price = $typeContainer.find('.price');
+            const $currency = $typeContainer.find('.currency');
+            const pricePerUnit = parseFloat($price.attr("data-price"));
+            const priceBahtPerUnit = parseFloat($currency.attr("data-price-baht"));
+
+            let quantity = parseInt($quantityDisplay.text().trim()) || 0;
+
+            if ($typeContainer.find('.des').text().includes('성인') && quantity === 0) {
+                quantity = 1;
+                adultQuantity = quantity;
+                adultTotalPrice = quantity * pricePerUnit;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+            }
+
+            $increaseBtn.off().on("click", function () {
+                quantity++;
+                $quantityDisplay.text(quantity);
+                $decreaseBtn.removeAttr('disabled');
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+
+            $decreaseBtn.off().on("click", function () {
+                if (quantity > 0) {
+                    quantity--;
+                    $quantityDisplay.text(quantity);
+                }
+                if (quantity === 0) $decreaseBtn.attr('disabled', true);
+                updateQuantity($typeContainer, quantity, pricePerUnit);
+                updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
+            });
+        });
+    }
+
+    function setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx) {
+        $('.day').removeClass('active');
+        $dayDiv.addClass('active');
+        selectedDate = date;
+
+        const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
+
+        quantityContainer.find(".quantity-container.adult .quantity").text("0");
+        quantityContainer.find(".quantity-container.adult .price")
+            .text(number_format(Number(dayData?.goods_price1_won ?? 0)) + "원")
+            .attr("data-price", Number(dayData?.goods_price1_won ?? 0));
+        quantityContainer.find(".quantity-container.adult .currency")
+            .text(number_format(Number(dayData?.goods_price1 ?? 0)) + " 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
+
+        quantityContainer.find(".quantity-container.child .price").text("0원")
+            .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
+        quantityContainer.find(".quantity-container.child .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
+
+        quantityContainer.find(".quantity-container.baby .price").text("0원")
+            .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
+        quantityContainer.find(".quantity-container.baby .currency").text("0 바트")
+            .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
+
+        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+
+        setupQuantityUI(quantityContainer, dayData);
+
+        const total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
+        $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
+
+        updateTotalPeopleDisplay();
+
+        const formattedDate = formatSelectedDate(date);
+        $('.days_choose, .calendar_txt').text(formattedDate);
+        $('#order_date').val(formattedDate);
+    }
+
+
     const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam, info_idx, tours_idx) => {
         s_date = toDateOnly(new Date(startDate));
         e_date = toDateOnly(new Date(endDate));
@@ -1337,7 +1624,11 @@
             success: function (data, textStatus) {
                 
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); 
+                today.setHours(0, 0, 0, 0);       
+                
+                let day_today = today.getDate();
+                let month_today = Number(today.getMonth()) + 1;
+                let year_today = today.getFullYear();
 
                 const currentMonthDate = new Date(year, month, today.getDate());
                 currentMonthDate.setHours(0, 0, 0, 0);
@@ -1367,9 +1658,13 @@
 
                     const dayData = data.find(d => d.goods_date === formatDate);     
                     
-                    console.log(formatDate + "  " + isWithinDateRange);
+                    if(Number(day_today) === Number(day) 
+                        && Number(month_today) === Number(month + 1) 
+                        && Number(year_today) === Number(year)) {
+                            
+                        setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
+                    }
                     
-
                     if (isPastDate || !isWithinDateRange || !isValidDay || !dayData) {
                         $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                     } else {    
@@ -1391,93 +1686,7 @@
                             `);
 
                             $dayDiv.click(() => {
-                                $('.day').removeClass('active');
-                                $dayDiv.addClass('active');
-                                selectedDate = date;
-                                let quantityContainer = $(".quantity-container-fa[data-tour-index="+ t_tours_idx +"]");
-                                //adult
-                                quantityContainer.find(".quantity-container.adult").find(".quantity").text("0");
-                                quantityContainer.find(".quantity-container.adult").find(".price").text(number_format(Number(dayData.goods_price1_won)) + "원");
-                                quantityContainer.find(".quantity-container.adult").find(".price").attr("data-price", Number(dayData.goods_price1_won));
-                                quantityContainer.find(".quantity-container.adult").find(".currency").text(number_format(Number(dayData.goods_price1)) + " 바트");
-                                quantityContainer.find(".quantity-container.adult").find(".currency").attr("data-price-baht", Number(dayData.goods_price1));
-
-                                //child
-                                quantityContainer.find(".quantity-container.child").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.child").find(".price").attr("data-price", Number(dayData.goods_price2_won));
-                                quantityContainer.find(".quantity-container.child").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.child").find(".currency").attr("data-price-baht", Number(dayData.goods_price2));
-
-                                //baby
-                                quantityContainer.find(".quantity-container.baby").find(".price").text("0원");
-                                quantityContainer.find(".quantity-container.baby").find(".price").attr("data-price", Number(dayData.goods_price3_won));
-                                quantityContainer.find(".quantity-container.baby").find(".currency").text("0 바트");
-                                quantityContainer.find(".quantity-container.baby").find(".currency").attr("data-price-baht", Number(dayData.goods_price3));
-
-                                adultQuantity = 1;
-                                childQuantity = 0;
-                                babyQuantity = 0;
-
-                                adultTotalPrice = 0;
-                                childTotalPrice = 0;
-                                babyTotalPrice = 0;
-                               
-                                let types = ["adult", "child", "baby"];
-
-                                types.forEach(type => {
-                                    let $container = quantityContainer.find(`.quantity-container.${type}`);
-                                    
-                                    let $quantityDisplay = $container.find('.quantity');
-                                    let $increaseBtn = $container.find('.increase');
-                                    let $decreaseBtn = $container.find('.decrease');
-                                    
-                                    let pricePerUnit = parseFloat($container.find('.price').attr("data-price"));
-                                    let priceBahtPerUnit = parseFloat($container.find('.currency').attr('data-price-baht'));                                    
-
-                                    let quantity = parseInt($quantityDisplay.text().trim()) || 0;
-                                    let $price = $container.find('.price');
-                                    let $currency = $container.find('.currency');
-
-                                    if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                                        quantity = 1;
-                                        adultQuantity = quantity;
-                                        adultTotalPrice = adultQuantity * pricePerUnit;
-
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                    }
-
-                                    $increaseBtn.click(function() {
-                                        quantity++;
-                                        $quantityDisplay.text(quantity);
-                                        $decreaseBtn.removeAttr('disabled');
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-
-                                    $decreaseBtn.click(function() {
-                                        if (quantity > 0) {
-                                            quantity--;
-                                            $quantityDisplay.text(quantity);
-                                        }
-                                        if (quantity === 0) {
-                                            $decreaseBtn.attr('disabled', true);
-                                        }
-                                        updateQuantity($container, quantity, pricePerUnit);
-                                        updatePrice(quantity, pricePerUnit, priceBahtPerUnit, $price, $currency);
-                                    });
-                                });
-                                
-                                let total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
-
-                                $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
-
-                                updateTotalPeopleDisplay();
-
-                                const formattedDate = formatSelectedDate(date);
-                                $('.days_choose').text(formattedDate);
-                                $('.calendar_txt').text(formattedDate);
-                                $('#order_date').val(formattedDate);
+                                setDaySelection($dayDiv, date, dayData, dayString, t_tours_idx);
                             });
                         }
                         
@@ -1589,7 +1798,7 @@
     //     }
     // });
 
-    function handleSubmit() {
+    function handleSubmit(type) {
         const frm = document.frm;
 
         <?php
@@ -1614,22 +1823,29 @@
             const selectedTourCard = $('.sec2-item-card.active');
             var priceOptionTotal = totalCost;
             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
-            var selectedTime = $('.select-time-c').val();
-            if (!selectedTime) {
-                selectedTime = $('.select-time-c option:first').val();
-            }
-            const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
-            let fullagreement = $("#fullagreement").val().trim();
-            let terms = $("#terms").val().trim();
-            let policy = $("#policy").val().trim();
-            let information = $("#information").val().trim();
-            let guidelines = $("#guidelines").val().trim();
-
-            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                alert("모든 약관에 동의해야 합니다.");
+            if(!adultTotalPrices) {
+                alert('총 가격은 0이 될 수 없습니다.');
                 return false;
             }
+
+            var selectedTime = $('#select_time_line').val();
+            if (!selectedTime) {
+                selectedTime = $('#select_time_line option:first').val();
+            }
+
+            const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
+
+            // let fullagreement = $("#fullagreement").val().trim();
+            // let terms = $("#terms").val().trim();
+            // let policy = $("#policy").val().trim();
+            // let information = $("#information").val().trim();
+            // let guidelines = $("#guidelines").val().trim();
+
+            // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+            //     alert("모든 약관에 동의해야 합니다.");
+            //     return false;
+            // }
 
             //$('#order_date').val(formattedDate);
             $('#people_adult_cnt').val(adultCnt);
@@ -1640,18 +1856,24 @@
             $('#people_baby_price').val(babyTotalPrices);
             $('#tours_idx').val(currentToursIdx);
             $('#idx').val(idxWithQuantities);
-            $('#time_line').val(selectedTime);
             $('.time_lines').text(selectedTime);
             $("#total_price_popup").text(number_format(last_price) + " 바트");
             $("#total_price").val(last_price);
             $("#total_pay").text(number_format(last_price) + " 바트");
-            console.log(selectedTourIds.join(','));
-            console.log(currentToursIdx);
-            console.log(adultTotalPrices);
-            console.log(selectedTime);
-            console.log(priceOptionTotal);
+            // console.log(selectedTourIds.join(','));
+            // console.log(currentToursIdx);
+            // console.log(adultTotalPrices);
+            // console.log(selectedTime);
+            // console.log(priceOptionTotal);
             var productIdx = document.querySelector('input[name="product_idx"]').value;
-            $("#frm").submit();
+
+            if(type == 'W'){
+                $('#time_line').val(selectedTime);
+
+                $("#frm").submit();
+            }else{
+                $(".cart_info_pop").show();
+            }
         }
     }
 

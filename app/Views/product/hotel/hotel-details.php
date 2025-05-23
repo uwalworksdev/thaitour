@@ -4,6 +4,8 @@
 <?php include_once APPPATH . 'Common/hotelPrice.php'; ?>
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
+<link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
+
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
@@ -380,6 +382,10 @@
 
     }
 
+    .content-sub-hotel-detail .wrap_btn_book .btn_re {
+        gap: 5px;
+    }
+
     .content-sub-hotel-detail .wrap_btn_book .wrap_btn_book_note {
         color: #757575;
         font-size : 14px;
@@ -631,8 +637,8 @@
             <div class="title-container">
                 <h2><?= $hotel['product_name'] ?> <span style="margin-left: 15px;"><?= $hotel['product_name_en'] ?></span> </h2>
                 <div class="list-icon">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
-                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                     <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
@@ -730,6 +736,8 @@
                     <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
                     <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
                         리얼리뷰(<?= $hotel['total_review'] ?>개)</p>
+                    <p class="nav-item" onclick="scrollToEl('hotel_qna_wrap')" style="cursor: pointer">
+                        상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</p>
                 </div>
                 <div class="btn-container only_web">
                     <button type="button" onclick="scrollToEl('section3')">
@@ -1435,7 +1443,9 @@
                                             <img src="/images/sub/user-iconn.png" alt="">
                                             <p>성인 : <?=$room['adult']?>명</p>
                                             <p>아동 : <?=$room['kids']?>명</p>
+											<?php if($room['r_contents2']) { ?>
                                             <a href="javascript:viewBenefitPopup(<?=$room['rooms_idx']?>);" style="color : #104aa8">혜택보기 &gt;</a> 
+											<?php } ?>
                                         </div>
                                     </td>
                                     
@@ -1507,11 +1517,14 @@
                                                 }
                                             ?>
                                             <div class="wrap_btn_book">
-                                                <?php if($price_won > 0) { ?>
-                                                <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
-                                                <?php } else { ?>
-                                                <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button book_btn_217">문의하기</button>
-                                                <?php } ?>
+                                                <div class="flex__c btn_re">
+                                                    <?php if($price_won > 0) { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
+                                                    <?php } else { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
+                                                    <?php } ?>
+                                                    <!-- <button type="button" class="reservationx book-button book_btn_217">장바구니</button> -->
+                                                </div>
                                                 <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                             </div>
                                         </div>
@@ -2428,7 +2441,217 @@
         <div class="dim"></div>
     </div>
 
+    <div class="popup_wrap place_pop cart_info_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>별도 요청</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body order-form-page">
+                        <ul class="list_type02">
+                            <?php foreach ($fcodes as $code): ?>
+                                <li class="bs-input-check fl ml5 mb5" id="li_inp_code_<?= $code['code_no'] ?>">
+                                    <input type="checkbox" name="inp_code_additional_request"
+                                            id="inp_code_<?= $code['code_no'] ?>" value="<?= $code['code_no'] ?>">
+                                    <label class="pubcheck" for="inp_code_<?= $code['code_no'] ?>">
+                                        <?= $code['code_name'] ?>
+                                    </label>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <ul class="list_type02 f_14 f_gray">
+                            <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>
+                                또한 흡연룸, 커넥팅룸 등이 없는 호텔은 요청사항을 체크하셔도 반영되지 않습니다.
+                            </li>
+                        </ul>
+                        <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가 보장되지
+                            않을 수 있습니다.</p>
+
+                        <div class="form-group cus-form-group">
+                            <textarea id="extra-requests" name="order_memo"
+                                        placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                        </div>
+
+                        <div class="flex_c_c">
+                            <button type="button" class="btn_add_cart">
+                                장바구니 담기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+
+    <script>
+        $(".btn_add_cart").on("click", function () {
+            let additional_request = "";
+            $("input[name=inp_code_additional_request]:checked").each(function () {
+                additional_request += $(this).val() + '|';
+            });
+
+            let order_memo = $("#extra-requests").val();
+
+            let date_check_in  = $("#input_day_start_").val();
+            let date_check_out = $("#input_day_end_").val();
+
+            var idx = $(this).data('idx');
+            let checkedValue = $(".sel_"+idx+":checked").val();
+
+			let coupon_discount = $("#coupon_discount").val();
+            let coupon_type     = $("#coupon_type").val();
+            let use_coupon_room = $("#use_coupon_room").val();
+            let used_op_type    = $("#use_op_type").val();
+            let use_coupon_idx  = $("#use_coupon_idx").val();
+            let room_op_idx     = $("#room_op_idx").val();
+            let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
+            let optype          = $(this).closest(".room_op_").data("optype");
+            let number_room     = $("#room_qty").val();
+            let number_day      = $("#day_qty").val();
+            let last_price      = $("#total_last_price").val();
+            let product_idx     = $("#product_idx").val();
+            let inital_price    = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
+
+			let price           = $("#price").val();
+			let price_won       = $("#price_won").val();
+			let rooms_idx       = $("#rooms_idx").val();
+            let room            = $("#room").val();
+
+			let room_type       = $("#room_type").val();
+            let bed_type        = $("#bed_type").val();
+			let date_price      = $("#date_price").val();
+			let breakfast       = $("#breakfast").val();
+			let adult           = $("#adult").val();
+			let kids            = $("#kids").val();
+
+			let extra_won       = $("#extra_won").val();
+			let extra_bath      = $("#extra_bath").val();
+
+            let room_op_price_sale = 0;
+
+            if ($(this).closest(".room_op_").find(".room_price_day_sale").length > 0) {
+                room_op_price_sale = Number($(this).closest(".room_op_").find(".room_price_day_sale").attr("data-price"));
+            }
+
+            let used_coupon_money = 0;
+            let total_price = room_op_price_sale + parseInt(number_room) * parseInt(inital_price);
+            if (coupon_type && coupon_discount) {
+                if (coupon_type == "P") {
+                    used_coupon_money = Math.round(total_price * Number(coupon_discount) / 100);
+                } else {
+                    used_coupon_money = coupon_discount;
+                }
+            }
+
+            let start_day          = $('#input_day_start_').val();
+            let end_day            = $('#input_day_end_').val();
+            let total_last_price   = $("#total_last_price").val();
+			
+            // let data = {
+            //     order_status      : 'B',
+            //     product_idx       : product_idx,
+            //     room_op_idx       : room_op_idx,
+			//     price             : price,
+			//     price_won         : price_won,
+			//     rooms_idx         : rooms_idx,
+			// 	room              : room,	
+			//     room_type         : room_type,
+            //     bed_type          : bed_type,
+			// 	date_price        : date_price,
+			// 	breakfast         : breakfast,	
+			// 	adult             : adult,	
+			// 	kids              : kids,	
+			// 	total_last_price  : total_last_price,	
+			// 	extra_won         : extra_won,
+			//     extra_bath        : extra_bath,
+            //     ho_idx            : ho_idx,
+            //     optype            : optype,
+            //     use_coupon_idx    : use_coupon_idx,
+            //     used_coupon_money : used_coupon_money,
+            //     use_coupon_room   : use_coupon_room,
+            //     use_op_type       : use_op_type,
+            //     room_op_price_sale: room_op_price_sale,
+            //     inital_price      : inital_price,
+            //     coupon_discount   : coupon_discount,
+            //     coupon_type       : coupon_type,
+            //     last_price        : last_price,
+            //     number_room       : number_room,
+            //     number_day        : number_day,
+            //     start_day         : start_day,
+            //     end_day           : end_day,
+            //     order_memo        : order_memo,
+            //     additional_request: additional_request,
+            // };
+
+            let formData = new FormData();
+            formData.append("order_status", "B");
+            formData.append("product_idx", product_idx);
+            formData.append("room_op_idx", room_op_idx);
+            formData.append("price", price);
+            formData.append("price_won", price_won);
+            formData.append("rooms_idx", rooms_idx);
+            formData.append("room", room);
+            formData.append("room_type", room_type);
+            formData.append("bed_type", bed_type);
+            formData.append("date_price", date_price);
+            formData.append("breakfast", breakfast);
+            formData.append("adult", adult);
+            formData.append("kids", kids);
+            formData.append("total_last_price", total_last_price);
+            formData.append("extra_won", extra_won);
+            formData.append("extra_bath", extra_bath);
+            formData.append("ho_idx", ho_idx);
+            formData.append("optype", optype);
+            formData.append("use_coupon_idx", use_coupon_idx);
+            formData.append("used_coupon_money", used_coupon_money);
+            formData.append("use_coupon_room", use_coupon_room);
+            formData.append("use_op_type", use_op_type);
+            formData.append("room_op_price_sale", room_op_price_sale);
+            formData.append("inital_price", inital_price);
+            formData.append("coupon_discount", coupon_discount);
+            formData.append("coupon_type", coupon_type);
+            formData.append("last_price", last_price);
+            formData.append("number_room", number_room);
+            formData.append("number_day", number_day);
+            formData.append("start_day", start_day);
+            formData.append("end_day", end_day);
+            formData.append("order_memo", order_memo);
+            formData.append("additional_request", additional_request);
+            
+            $.ajax({
+                url: "/product-hotel/reservation-form-insert",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (response, status, request) {
+                    if (response.result == true) {
+                        alert(response.message);
+                        if(response.result){
+                            window.location.href = '/product/completed-cart'
+                        }
+ 
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        });
+    </script>
     <script>  
+        function closePopup() {
+            $(".popup_wrap").hide();
+        }
+
         function nl2br(str) {
             return str.replace(/\n/g, "<br>").replace(/ /g, "&nbsp;");
         }
@@ -2496,10 +2719,11 @@
 
             let content = $(`tr[data-room='${id}']`).find(".r_contents2").val();
             
+			if (content !== null && content !== undefined && content.trim() !== '') {
+				$(".benefit_pop .popup_place__body .content").html(content);
+				$(".benefit_pop").show();
+			}
 
-            $(".benefit_pop").find(".popup_place__body .content").html(content);
-
-            $(".benefit_pop").show();
         }
     </script>
 
@@ -2676,6 +2900,39 @@
                 }
             }
         });
+
+        $(document).on("click", ".book-add-cart", function() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            let date_check_in  = $("#input_day_start_").val();
+            let date_check_out = $("#input_day_end_").val();
+
+            if (!date_check_in && !date_check_out) {
+                alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+                return false;
+            }
+
+            if ($("#searchOk").val() != "Y") {
+                alert("일자검색 후 예약해주세요!");
+                return false;
+            }
+
+            var idx = $(this).data('idx');
+            let checkedValue = $(".sel_"+idx+":checked").val();
+			if (checkedValue === undefined) {
+                alert("침대타입 선택 후 예약해주세요!");
+                return false;
+            }
+
+            $(".cart_info_pop").show();
+        })
 
         //$(".book-button").click(function() {
         $(document).on("click", ".book-button", function() {			

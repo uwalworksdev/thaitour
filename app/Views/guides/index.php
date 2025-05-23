@@ -199,7 +199,7 @@
                                     </p>
                                 </div>
                                 <div class="etc">
-                                    <?php
+                                    <!-- <?php
                                     $product_code_list = $product['product_code_list'];
                                     $_product_code_arr = explode("|", $product_code_list);
                                     $_product_code_arr = array_filter($_product_code_arr);
@@ -210,7 +210,8 @@
                                         <p> <?= get_cate_text($_tmp_code) ?></p>
                                         <?php
                                     }
-                                    ?>
+                                    ?> -->
+                                    <?= $product["product_code_name_1"] ?> / <?= $product["product_code_name_2"] ?>
                                 </div>
                                 <div class="exp">
                                     <div class="truncate_txt_">

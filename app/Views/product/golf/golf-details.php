@@ -4,8 +4,8 @@
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
-			console.log('홀- '+dataTabValue);
-			console.log('caddie fee- '+$("#caddie_fee_sel").val());
+			// console.log('홀- '+dataTabValue);
+			// console.log('caddie fee- '+$("#caddie_fee_sel").val());
 			
 			if($("#caddie_fee_sel").val() == "Y") {
 			   $("#vehicle_5").val('3'); // value가 "2"인 옵션 선택
@@ -62,6 +62,12 @@ $(document).ready(function() {
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
+                <input type="hidden" name="product_code_1" id="product_code_1" value="<?= $product['product_code_1'] ?>">
+                <input type="hidden" name="product_code_2" id="product_code_2" value="<?= $product['product_code_2'] ?>">
+                <input type="hidden" name="product_code_3" value="">
+                <input type="hidden" name="product_code_4" value=""> 
+                <input type="hidden" name="order_status" id="order_status" value="B">
+
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="<?=$idx?>">
                 <input type="hidden" name="o_cart_due" id="o_cart_due" value="<?=$golf_price['o_cart_due']?>">
@@ -77,6 +83,12 @@ $(document).ready(function() {
                 <input type="hidden" name="hour" id="hour" value="">  <!-- 주간, 오후, 야갼 -->
                 <input type="hidden" name="teeoff_hour" id="teeoff_hour" value="">
                 <input type="hidden" name="teeoff_min" id="teeoff_min" value="">
+                <input type="hidden" name="vehicle_time_hour" id="vehicle_time_hour" value="">
+                <input type="hidden" name="vehicle_time_minute" id="vehicle_time_minute" value="">
+                <input type="hidden" name="number_staff" id="number_staff" value="">
+                <input type="hidden" name="number_luggage" id="number_luggage" value="">
+                <input type="hidden" name="departure_point" id="departure_point" value="">
+                <input type="hidden" name="custom_req" id="custom_req" value="">
 
                 <!--
                 <?php foreach ($golf_price as $price) { ?>
@@ -90,8 +102,8 @@ $(document).ready(function() {
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
-                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                        <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
@@ -181,7 +193,7 @@ $(document).ready(function() {
                         <a class="short_link" data-target="location" href="#location">위치정보</a>
                         <a class="short_link" data-target="section6" href="#section6">리얼리뷰(<?= $product['total_review'] ?>
                             개)</a>
-                        <a class="short_link" data-target="qna" href="#qna">상품 Q&A</a>
+                        <a class="short_link" data-target="qna" href="#qna">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</a>
                     </div>
                     <div class="btn-container">
                         <a class="w-100" href="#!" data-target="#booking_area" onclick="handleShowBookingArea(this)">
@@ -191,66 +203,7 @@ $(document).ready(function() {
                         </a>
                     </div>
                 </div>
-                <h3 class="title-size-24" id="product_info">상품 정보</h3>
-                <table class="golf-table" style="table-layout: fixed;">
-                    <colgroup>
-                        <col width="16%">
-                        <col width="*">
-                        <col width="16%">
-                        <col width="*">
-                        <col width="16%">
-                        <col width="*">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>더투어랩 평가 등급</th>
-                        <th>
-                            <div class="rating-list">
-                                <?php if ($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                                <?php if ($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png"
-                                                                            alt="star_icon"><?php } ?>
-                            </div>
-                        </th>
-                        <th>총홀수</th>
-                        <th><?= $info['holes_number'] ?></th>
-                        <th>휴무일</th>
-                        <th><?= $info['holidays'] ?></th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray">
-                    <tr>
-                        <td>시내에서 거리 및 이동기간</td>
-                        <td><?= $info['distance_from_center'] ?></td>
-                        <td>공항에서 거리 및 이동시간</td>
-                        <td><?= $info['distance_from_airport'] ?></td>
-                        <td>팀당 라운딩 인원</td>
-                        <td><?= $info['num_of_players'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>전동카트</td>
-                        <td colspan="5"><?= $info['electric_car'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>갤러리피</td>
-                        <td colspan="5"><?= $info['caddy'] ?></td>
-                    </tr>
-                    <tr>
-                        <td>장비렌탈</td>
-                        <td colspan="5"><?= $info['equipment_rent'] ?></td>
-                    </tr>
-                    <!-- <tr>
-                        <td>스포츠데이</td>
-                        <td colspan="5"><?= $info['sports_day'] ?></td>
-                    </tr> -->
-                    </tbody>
-                </table>
+
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
@@ -482,6 +435,8 @@ $(document).ready(function() {
                                         <span class="pri"
                                               rel="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>">￦<?= number_format($option['goods_price1_1'] * $baht_thai) ?></span>
                                         <input type="hidden" name="opt_idx[]" value="<?= $option['idx'] ?>">
+                                        <input type="hidden" name="opt_name[]"   value="<?= $option['goods_name'] ?>">
+
                                         <select data-name="<?= $option['goods_name'] ?>"
                                                 data-price="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>"
                                                 data-price_baht="<?= $option['goods_price1_1'] ?>"
@@ -619,11 +574,11 @@ $(document).ready(function() {
             <?php endforeach; ?>
         </div-->
 		
-          <div class="list-select-element" style="justify-content: space-between;">
+          <div class="list-select-element tour">
 		       <div class="item-select">
-                    <span class="label">승용차</span>
+                    <span class="label" style="width: unset;">승용차</span>
                     <input type="hidden" name="vehicle_idx[]" value="1">
-					<select id="trip_type1" name="trip_type1" style="width:80px;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
+					<select id="trip_type1" name="trip_type1" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="1" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -636,10 +591,26 @@ $(document).ready(function() {
 						<option value="5">5대</option>
                     </select>
                 </div>
+                <div class="item-select">
+                    <span class="label" style="width: unset;">SUV</span>
+                    <input type="hidden" name="vehicle_idx[]" value="3">
+					<select id="trip_type3" name="trip_type3" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
+					    <option value="0">왕복</option>
+					    <option value="1">편도</option>
+					</select>
+                    <select id="vehicle_3" data-name="SUV" data-idx="<?=$idx?>" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+						<option value="1">1대</option>
+						<option value="2">2대</option>
+						<option value="3">3대</option>
+						<option value="4">4대</option>
+						<option value="5">5대</option>
+				</select>
+                </div>
             	<div class="item-select">
-                    <span class="label">밴 (승합차) </span>
+                    <span class="label" style="width: unset;">밴 (승합차) </span>
                     <input type="hidden" name="vehicle_idx[]" value="2">
-					<select id="trip_type2" name="trip_type2" style="width:80px;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
+					<select id="trip_type2" name="trip_type2" style="width:80px; flex: 0 0 auto;" data-idx="<?=$idx?>" data-car="2" onchange="trip_change(this);">
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
@@ -653,30 +624,19 @@ $(document).ready(function() {
 								<option value="6">6대</option>
 								<option value="7">7대</option>
 						</select>
-                </div>
-            	<div class="item-select">
-                    <span class="label">SUV</span>
-                    <input type="hidden" name="vehicle_idx[]" value="3">
-					<select id="trip_type3" name="trip_type3" style="width:80px;" data-idx="<?=$idx?>" data-car="3" onchange="trip_change(this);">
-					    <option value="0">왕복</option>
-					    <option value="1">편도</option>
-					</select>
-                    <select id="vehicle_3" data-name="SUV" data-idx="<?=$idx?>" data-price="<?=$vehicle_price3?>" data-price_baht="<?=$vehicle_price3_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
-                        <option value="">선택해주세요.</option>
-						<option value="1">1대</option>
-						<option value="2">2대</option>
-						<option value="3">3대</option>
-						<option value="4">4대</option>
-						<option value="5">5대</option>
-				</select>
-                </div>
-
-			   
-			   
+                </div>  
+        </div>
+        <div class="section-wrap-s">
+           <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
+           <div class="btn-s-wrap">
+                <?php if ($product['product_status'] == 'sale'): ?>
+                    <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
+                <?php endif; ?>
+                <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
+           </div>                 
         </div>
         <div class="section2-sub">
             <div class="left-main">
-                <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
                 <p>
                     <span class="l-label">일정</span>
                     <span class="l-label2 final_date"></span>
@@ -724,12 +684,70 @@ $(document).ready(function() {
                     <p class="price-text"><em id="last_price">0</em><span> 원(<em id="last_price_baht">0</em>바트)</span>
                     </p>
                 </div>
-                <?php if ($product['product_status'] == 'sale'): ?>
-                    <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
-                <?php endif; ?>
             </div>
         </div>
         </form>
+        <h3 class="title-size-24" id="product_info">상품 정보</h3>
+        <table class="golf-table" style="table-layout: fixed;">
+            <colgroup>
+                <col width="16%">
+                <col width="*">
+                <col width="16%">
+                <col width="*">
+                <col width="16%">
+                <col width="*">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>더투어랩 평가 등급</th>
+                <th>
+                    <div class="rating-list">
+                        <?php if ($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                        <?php if ($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png"
+                                                                    alt="star_icon"><?php } ?>
+                    </div>
+                </th>
+                <th>총홀수</th>
+                <th><?= $info['holes_number'] ?></th>
+                <th>휴무일</th>
+                <th><?= $info['holidays'] ?></th>
+            </tr>
+            </thead>
+            <tbody class="text-gray">
+            <tr>
+                <td>시내에서 거리 및 이동기간</td>
+                <td><?= $info['distance_from_center'] ?></td>
+                <td>공항에서 거리 및 이동시간</td>
+                <td><?= $info['distance_from_airport'] ?></td>
+                <td>팀당 라운딩 인원</td>
+                <td><?= $info['num_of_players'] ?></td>
+            </tr>
+            <tr>
+                <td>전동카트</td>
+                <td colspan="5"><?= $info['electric_car'] ?></td>
+            </tr>
+            <tr>
+                <td>갤러리피</td>
+                <td colspan="5"><?= $info['caddy'] ?></td>
+            </tr>
+            <tr>
+                <td>장비렌탈</td>
+                <td colspan="5"><?= $info['equipment_rent'] ?></td>
+            </tr>
+            <!-- <tr>
+                <td>스포츠데이</td>
+                <td colspan="5"><?= $info['sports_day'] ?></td>
+            </tr> -->
+            </tbody>
+        </table>
+
         <h3 class="title-size-24" id="product_des">상품설명</h3>
         <div class="container-big-text">
             <?= viewSQ($product['tour_info']) ?>
@@ -996,7 +1014,102 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
+
+    <div class="popup_wrap place_pop cart_info_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>별도 요청</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body customer-form-page" style="background-color: unset;">
+                        <div class="form-container">
+                            <div class="vehicle_wrap_info">
+                                <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <span class="number_vehicle"></span>대</h3>
+                                <div class="flex__c wrap-golf-info">
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="car-time-hour">차량 미팅 시간</label>
+                                        <div class="form-group time-group">
+                                            <div class="form-group-second">
+                                                <select id="car-time-hour" name="popup_vehicle_time_hour" class="select-width golf-select">
+                                                    <?php for ($i = 6; $i <= 19; $i++) { ?>
+                                                        <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <span>시</span>
+                                            </div>
+                                            <div class="form-group-second">
+                                                <select id="car-time-minute" name="popup_vehicle_time_minute" class="select-width golf-select">
+                                                    <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                        <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <span>분</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="popup_number_staff">인원</label>
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="popup_number_staff">
+                                        </div>
+                                    </div>
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="popup_number_luggage">짐갯수</label>
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="popup_number_luggage">
+                                        </div>
+                                    </div>
+                                </div> 
     
+                                <div class="form-group mb-30">
+                                    <label for="pickup-location">출발지(필요호텔)</label>
+                                    <input class="mb-10" type="text" id="pickup-location"
+                                            style="width: 100%;"
+                                            placeholder="호텔명을 영어로 적어주세요(주소불가)"/>
+                                    <span class="text-gray">※일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨줴요.</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group cus-form-group">
+                                <label for="extra-requests">기타요청</label>
+                                <textarea id="extra-requests"
+                                            placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex_c_c">
+                            <button type="button" class="btn_add_cart">
+                                장바구니 담기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+    <script>
+        $(".btn_add_cart").on("click", function () {
+            $("#vehicle_time_hour").val($("#car-time-hour").val());
+            $("#vehicle_time_minute").val($("#car-time-minute").val());
+            $("#number_staff").val($("#popup_number_staff").val());
+            $("#number_luggage").val($("#popup_number_luggage").val());
+            $("#departure_point").val($("#pickup-location").val());
+            $("#custom_req").val($("#extra-requests").val());
+
+            $("#frm").attr('method', 'post');
+            $("#frm").attr('action', '/product-golf/customer-form-ok');
+			$("#frm").submit();
+        });
+
+        function closePopup() {
+            $(".popup_wrap").hide();
+        }
+    </script>
 	<script>
 	function trip_change(selectElement) {
 		var type        = selectElement.value;       // 선택된 값 (0=왕복, 1=편도)
@@ -1005,7 +1118,7 @@ $(document).ready(function() {
 		var product_idx = document.getElementById("product_idx").value; // 상품 ID 가져오기
 		var goods_name  = document.querySelector(".tag-js.active")?.dataset.tab || ""; // 선택된 홀 개수 가져오기
 
-		console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
+		// console.log("선택된 차량: " + car + ", 선택된 타입: " + type);
 
 		$.ajax({
 			url: "/ajax/ajax_trip_change",
@@ -1021,7 +1134,7 @@ $(document).ready(function() {
 			async: true, // 비동기 요청으로 변경
 			cache: false,
 			success: function (data) {
-				console.log("AJAX 응답:", data);
+				// console.log("AJAX 응답:", data);
 				if (data.status === "success") {
 					
 					// #vehicle_2 요소에 data-price와 data-price_baht 값 업데이트
@@ -1343,7 +1456,6 @@ $(document).ready(function() {
 					var vehicle_price1_baht = $(".card-item").data('vehicle_price1_baht');
 					var vehicle_price2_baht = $(".card-item").data('vehicle_price2_baht');
 					var vehicle_price3_baht = $(".card-item").data('vehicle_price3_baht');
-                    console.log("fafafa");
 					
                     $("#option_idx").val( $(".card-item").data('idx') );
 
@@ -1436,7 +1548,7 @@ $(document).ready(function() {
         }
 
 
-        function handleSubmit() {
+        function handleSubmit(type) {
 			
             <?php
             if (empty(session()->get("member")["id"])) {
@@ -1464,7 +1576,23 @@ $(document).ready(function() {
                 return false;
             }
 
-			$("#frm").submit();
+            if(type == 'B'){
+                let num_1 = Number($("#vehicle_1").val() ?? 0);
+                let num_2 = Number($("#vehicle_2").val() ?? 0);
+                let num_3 = Number($("#vehicle_3").val() ?? 0);
+                
+                if((num_1 + num_2 + num_3) > 0){
+                    $(".cart_info_pop .number_vehicle").text(num_1 + num_2 + num_3);
+                    $(".cart_info_pop .vehicle_wrap_info").show();
+                }else{
+                    $(".cart_info_pop .vehicle_wrap_info").hide();
+                }
+
+                $(".cart_info_pop").show();
+            }else{
+                $("#frm").submit();
+            }
+
         }
 
         $(".vehicle_select").change(function () {

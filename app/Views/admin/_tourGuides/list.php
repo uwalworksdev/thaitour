@@ -106,6 +106,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px"/>
+                                <col width="200px"/>
                                 <col width="120px"/>
                                 <col width="120px"/>
                                 <col width="100px"/>
@@ -118,6 +119,7 @@
                             <thead>
                             <tr>
                                 <th>번호</th>
+                                <th>메인/상품분류</th>
                                 <th>상품코드</th>
                                 <th>구분</th>
                                 <th>이미지</th>
@@ -141,6 +143,24 @@
                                 ?>
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td><?= $num-- ?></td>
+                                    <td class="tac">
+                                        <a href="#!"
+                                            onclick="go_write('<?= $row['product_idx'] ?>');"><?= $row["product_code_name_1"] ?>
+                                            / <?= $row["product_code_name_2"] ?></a>
+                                        <?php if ($row["guide_type"] == 'I'): ?>    
+                                            <div class="flex_c_c" style="gap: 10px;">
+                                                <a href="<?php echo '/guide_view?g_idx=' . $row['product_idx'] ?>"
+                                                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                                <a href="/AdmMaster/_tour_guides/write_info?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
+                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>   
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="flex_c_c" style="gap: 10px;">
+                                                <a href="/AdmMaster/_tour_guides/write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
+                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>   
+                                            </div>
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="tac"><?= $row["product_code"] ?></td>
                                     <td>
                                         <?php if ($row["guide_type"] == 'I'): ?>

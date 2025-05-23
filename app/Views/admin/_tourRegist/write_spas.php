@@ -517,10 +517,15 @@
                                 </tr>
                                 <tr>
                                     <th>직접결제</th>
-                                    <td colspan="3">
+                                    <td>
 										<input type="checkbox" id="direct_payment" value="Y" <?php if (isset($direct_payment) && $direct_payment === "Y")
                                                 echo "checked=checked"; ?>> 
-                                    </td>								
+                                    </td>
+                                    <th>시간선택 안함</th>
+                                    <td>
+										<input type="checkbox" name="use_time_line" id="use_time_line" value="Y" 
+                                                    <?php if($use_time_line == "Y") echo "checked"; ?>>
+                                    </td>									
 								</tr>
                                 </tbody>
                             </table>

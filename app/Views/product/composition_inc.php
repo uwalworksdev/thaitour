@@ -8,8 +8,11 @@
 
 <div class="price-right-c">
     <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
+		<input type="hidden" name="order_status" id="order_status" value="B" >      
         <input type="hidden" name="feeVal" id="feeVal" value="">
         <input type="hidden" name="time_line" id="time_line" value="">
+        <input type="hidden" name="order_memo" id="order_memo" value="">
+
         <div class="" style="display: none">
             <input type="hidden" name="totalPrice" id="totalPrice" value="0">
         </div>
@@ -111,7 +114,7 @@
                         </strong>
                     </p>
                 </div>
-                <h3 class="title-r label">약관동의</h3>
+                <!-- <h3 class="title-r label">약관동의</h3>
                 <div class="item-info-check item_check_term_all_">
                     <label for="fullagreement">전체동의</label>
                     <input type="hidden" value="N" id="fullagreement">
@@ -135,18 +138,18 @@
                     <label for="guidelines">여행안전수칙 동의(필수)</label>
                     <button type="button" data-type="4" class="view-policy">[보기]</button>
                     <input type="hidden" value="N" id="guidelines">
-                </div>
+                </div> -->
                 <div class="nav_btn_wrap">
                     <?php if ($data_['product_status'] == 'sale'): ?>
                         <div data-href="/product-spa/product-booking/8386">
-                            <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                            <button type="button" class="btn-point" onclick="order_it('W');">상품 예약하기</button>
                         </div>
                     <?php endif; ?>
-                    <!-- <div class="flex">
+                    <div class="flex">
                         <button type="button" class="btn-default cart"
-                                onclick="location='#'">장바구니에 담기
+                                onclick="order_it('B');">장바구니
                         </button>
-                    </div> -->
+                    </div>
                     <div class="flex">
                         <button type="button" class="btn-default"
                                 onclick="location='/qna/write'">상담 문의하기
@@ -238,26 +241,22 @@
         });
     });
 
-    
-
-    function order_it() {
+    function order_it(status) {
         $("#ajax_loader").removeClass("display-none");
 
         /* Collect values for validation */
-        let fullagreement = $("#fullagreement").val().trim();
-        let terms = $("#terms").val().trim();
-        let policy = $("#policy").val().trim();
-        let information = $("#information").val().trim();
-        let guidelines = $("#guidelines").val().trim();
+        // let fullagreement = $("#fullagreement").val().trim();
+        // let terms = $("#terms").val().trim();
+        // let policy = $("#policy").val().trim();
+        // let information = $("#information").val().trim();
+        // let guidelines = $("#guidelines").val().trim();
         let time_line = $("#hours").val() + ":" + $("#minutes").val();
 
-        $("#time_line").val(time_line);
-
         /* Check for agreement validation */
-        if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-            alert("모든 약관에 동의해야 합니다.");
-            return false;
-        }
+        // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+        //     alert("모든 약관에 동의해야 합니다.");
+        //     return false;
+        // }
 
         // Check if day_ is provided
         let day_ = $('#day_').val().trim();
@@ -350,54 +349,79 @@
 		$("#feeVal").val(feeVal);
 
         /* Form submission setup */
-        let url = '<?= route_to('api.product.processBooking') ?>';
-        let formData = new FormData($('#frm')[0]);
 
-        const currentUrl = window.location.href;
-        const pathName = window.location.pathname;
+        if(status == 'B') {
+            $(".cart_info_pop").show();
+            return false;
+        }else{
+            let url = '<?= route_to('api.product.processBooking') ?>';
 
-        let array_restaurant = [
-            '/product-restaurant/restaurant-detail',
-        ]
-        let array_ticket = [
-            '/ticket/ticket-detail/',
-        ]
-        let array_spa = [
-            '/product-spa/spa-details/',
-        ]
-
-        /* AJAX request */
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                $("#ajax_loader").addClass("display-none");
-                if (response.result) {
-                    if (array_restaurant.some(route => pathName.startsWith(route))) {
-                        window.location.href = '/product-restaurant/restaurant-booking';
-                    }
-
-                    if (array_spa.some(route => pathName.startsWith(route))) {
-                        window.location.href = '/product-spa/product-booking';
-                    }
-
-                    if (array_ticket.some(route => pathName.startsWith(route))) {
-                        window.location.href = '/ticket/ticket-booking';
-                    }
-                } else {
-                    alert(response.message);
-                    window.location.href = '/member/login';
+            <?php
+                if(empty($data_['use_time_line'])){
+            ?>
+                if(Number($("#hours").val()) == 0 || Number($("#minutes").val()) == 0) {
+                    alert("시간을 선택해줘!");
+                    return false;
                 }
-            },
-            error: function (request, status, error) {
-                console.error("Error:", request, status, error);
-                alert("오류 발생: " + request.responseText || "알 수 없는 오류");
-                $("#ajax_loader").removeClass("display-none");
-            }
-        });
+            <?php
+                }
+            ?>
+
+            $("#time_line").val(time_line);
+
+            let formData = new FormData($('#frm')[0]);
+    
+            const currentUrl = window.location.href;
+            const pathName = window.location.pathname;
+    
+            let array_restaurant = [
+                '/product-restaurant/restaurant-detail',
+            ]
+            let array_ticket = [
+                '/ticket/ticket-detail/',
+            ]
+            let array_spa = [
+                '/product-spa/spa-details/',
+            ]
+    
+            /* AJAX request */
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $("#ajax_loader").addClass("display-none");
+                    if (response.result) {
+                        if(status == 'B') {
+                            window.location.href = '/product-spa/completed-cart';
+                        }else{
+                            if (array_restaurant.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/product-restaurant/restaurant-booking';
+                            }
+        
+                            if (array_spa.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/product-spa/product-booking';
+                            }
+        
+                            if (array_ticket.some(route => pathName.startsWith(route))) {
+                                window.location.href = '/ticket/ticket-booking';
+                            }
+                        }
+                    } else {
+                        alert(response.message);
+                        window.location.href = '/member/login';
+                    }
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("오류 발생: " + request.responseText || "알 수 없는 오류");
+                    $("#ajax_loader").removeClass("display-none");
+                }
+            });
+        }
+
     }
 
 </script>

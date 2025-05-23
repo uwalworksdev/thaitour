@@ -5,6 +5,7 @@
     .content-sub-hotel-detail .section3 {
         margin-top: 0px;
     }
+
 </style>
 <div class="content-sub-hotel-detail tours-detail spa-detail">
     <div class="body_inner">
@@ -14,7 +15,7 @@
                 <!-- <div class="only_web"> -->
 
                 <div class="list-icon">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
                 </div>
@@ -125,7 +126,7 @@
                         <!-- <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p> -->
                         <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
                             리얼리뷰(<?= $data_['total_review'] ?>)</p>
-                        <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
+                        <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</p>
                     </div>
                 </div>
 
@@ -133,8 +134,38 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div style="display: flex; justify-content: flex-end;">
+                    <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                        <?php
+                            if(empty($data_['use_time_line'])){
+                        ?>
+                            <div class="meeting_time">
+                                <select name="hours" id="hours">
+                                    <?php
+                                    for ($i = 0; $i < 24; $i++) {
+                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                    ?>
+                                        <option value="<?= $hour ?>"><?= $hour ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="hours">시</label>
+                                <select name="minutes" id="minutes">
+                                    <?php
+                                    for ($i = 0; $i < 60; $i += 1) {
+                                        $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                    ?>
+                                        <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="minutes">분</label>
+                            </div>
+                        <?php
+                            }
+                        ?>
                     </div>
 
                     <table class="price-table" id="price_table_" style="margin-bottom:30px;">
@@ -166,33 +197,10 @@
                 </div>
 
                 <div class="section9">
-                    <h2 class="title-sec9">
+                    <!-- <h2 class="title-sec9">
                         예약시간
-                    </h2>
-                    <div class="meeting_time">
-                        <select name="hours[]" id="hours">
-                            <?php
-                            for ($i = 0; $i < 24; $i++) {
-                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $hour ?>"><?= $hour ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="hours">시</label>
-                        <select name="minutes[]" id="minutes">
-                            <?php
-                            for ($i = 0; $i < 60; $i += 1) {
-                                $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
-                            ?>
-                                <option value="<?= $minute ?>"><?= $minute ?></option>
-                                <?php
-                            }
-                                ?>
-                        </select>
-                        <label for="minutes">분</label>
-                    </div>
+                    </h2> -->
+                    
                     <!-- <select class="select-time-c" id="select_time_line">
                         <?php foreach ($data_["timeSegments"] as $time): ?>
                             <option value="<?= htmlspecialchars($time); ?>">
@@ -438,7 +446,7 @@
 
                 <div class="custom-golf-detail">
                     <div class="section6" id="section8">
-                        <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
+                        <h2 class="title-sec6">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
 
                         <div class="qa-section">
                             <div class="custom-area-text">
@@ -561,7 +569,121 @@
     <div class="dim"></div>
 </div>
 
+<div class="popup_wrap place_pop cart_info_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>별도 요청</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <div class="flex_b_c tours_time_sect">
+                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                        <?php
+                            if(empty($data_['use_time_line'])){
+                        ?>
+                            <div class="meeting_time">
+                                <select id="p_hours">
+                                    <?php
+                                    for ($i = 0; $i < 24; $i++) {
+                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                    ?>
+                                        <option value="<?= $hour ?>"><?= $hour ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="p_hours">시</label>
+                                <select id="p_minutes">
+                                    <?php
+                                    for ($i = 0; $i < 60; $i += 1) {
+                                        $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                    ?>
+                                        <option value="<?= $minute ?>"><?= $minute ?></option>
+                                        <?php
+                                    }
+                                        ?>
+                                </select>
+                                <label for="p_minutes">분</label>
+                            </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                    <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
+                        보장되지
+                        않을 수 있습니다.</p>
+                    <div class="form-group cus-form-group">
+                        <textarea id="extra-requests" placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                    </div>
+                   
+                    <div class="flex_c_c">
+                        <button type="button" class="btn_add_cart">
+                            장바구니 담기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 <script>
+    
+    $(document).ready(function() {
+        $(".btn_add_cart").on("click", function () {
+            // if ($("#extra-requests").val() === "") {
+            //     alert("여기에 요청 사항을 입력하세요!");
+            //     $("#extra-requests").focus();
+            //     return false;
+            // }
+
+            <?php
+                if(empty($data_['use_time_line'])){
+            ?>
+                if(Number($("#p_hours").val()) == 0 || Number($("#p_minutes").val()) == 0) {
+                    alert("시간을 선택해줘!");
+                    return false;
+                }
+            <?php
+                }
+            ?>
+
+            let time_line = $("#p_hours").val() + ":" + $("#p_minutes").val();
+
+            $("#time_line").val(time_line);
+            
+            $("#order_memo").val($("#extra-requests").val());
+    
+            let formData = new FormData($('#frm')[0]);
+        
+            let url = `<?= route_to('api.spa_.handleBooking') ?>`;
+    
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: formData,
+                async: false,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data, textStatus) {
+                    alert(data.message);
+                    if(data.result){
+                        window.location.href = "/product-spa/completed-cart";
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request);
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                }
+            });
+        });
+    });
     function showInfoCompany() {
         $(".info_company").show();
     }
@@ -709,6 +831,15 @@
 
 
     var arr_data_option = [];
+    $(document).ready(function () {
+        let currentDate = new Date();
+        let day_today = currentDate.getDate();
+        let month_today = currentDate.getMonth() + 1;
+        let year_today = currentDate.getFullYear();
+        let c_day_ = `${year_today}-${String(month_today).padStart(2, '0')}-${String(day_today).padStart(2, '0')}`;
+        
+        spaCharge(c_day_);
+    });
 
     $(document).on('click', '.allowDate', function () {
         $('.sel_date').removeClass('active_');
@@ -866,6 +997,14 @@
         renderItemPrice(el);
     }
 
+    function deleteOption(el) {
+        let idx = $(el).closest(".cus-count-input").data('idx');
+        let info_idx = $(el).closest(".cus-count-input").data('info_idx');
+        
+        arr_data_option[info_idx] = arr_data_option[info_idx].filter(item => item.idx !== idx);
+        removeData(el);
+    }
+
     function minusInput(el) {
         let input = $(el).parent().find('input');
         let idx = $(el).closest(".cus-count-input").data('idx');
@@ -940,6 +1079,7 @@
                                 readonly="">
                             <button type="button" onclick="plusInput(this);" class="plus_btn"
                                     id="addAdult"></button>
+                            <button type="button" class="del_btn" onclick="deleteOption(this);">x</button>
                         </div>
 
                         <div class="" style="display: none">

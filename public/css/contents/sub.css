@@ -1457,6 +1457,15 @@
     flex: 0 0 auto;
 }
 
+.opt_count_box button.del_btn {
+    color: red;
+    margin-left: 40px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .opt_count_box .minus_btn {
     display: flex;
     align-items: center;
@@ -4227,6 +4236,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     width: 160px;
 }
 
+.customer-form-page .form-group-second .select-width.golf-select {
+    width: 100px;
+}
+
 .customer-form-page .mb-30 {
     margin-bottom: 30px;
 }
@@ -4260,8 +4273,25 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .item-info {
     display: flex;
-    width: 220px;
+    width: 100%;
     margin-bottom: 12px;
+}
+
+.cart_info_pop .title-sub-below {
+    font-size: 15px;
+    color: #757575;
+    margin-bottom: 20px;
+}
+
+.cart_info_pop .cus-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart_info_pop .cus-form-group textarea {
+    width: 100%;
+    padding: 20px;
+    height: 102px;
 }
 
 .customer-form-page .tour .container-card .item-info {
@@ -4426,6 +4456,19 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     cursor: pointer;
 }
 
+.terms-wrap {
+    width: 535px;
+}
+
+.terms-wrap .title-second {
+    margin-top: 20px;
+    padding-left: 14px;
+    padding-bottom: 16px;
+}
+
+.terms-wrap .view-policy {
+    margin-right: 30px;
+}
 
 .customer-form-page .below-sub-des {
     font-size: 15px;
@@ -5040,6 +5083,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .order-form-page .info-table-order.info-table-cus-padding td {
     padding: 11px;
+}
+
+.order-form-page .info-table-order.info-table-cus-padding td .note {
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .order-form-page .info-table-order.info-table-cus-padding td input {
@@ -6839,6 +6887,13 @@ iframe::-webkit-scrollbar {
     padding: 0 20px 0 5px;
 }
 
+.wrap-golf-info {
+    gap: 40px;
+}
+
+.wrap-golf-info .ip-group input {
+    width: 80px !important;
+}
 
 @media screen and (min-width: 1921px) {
     #iframeContainer {

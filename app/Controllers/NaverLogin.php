@@ -95,6 +95,7 @@ public function callback()
                 $sql = "SELECT *,
                                AES_DECRYPT(UNHEX(user_name),  '$private_key') AS name, 
                                AES_DECRYPT(UNHEX(user_email), '$private_key') AS email,
+                               AES_DECRYPT(UNHEX(user_mobile), '$private_key') AS phone,
                                AES_DECRYPT(UNHEX(passport_number), '$private_key') AS passport_number,
                                AES_DECRYPT(UNHEX(user_first_name_en), '$private_key') AS user_first_name_en,
                                AES_DECRYPT(UNHEX(user_last_name_en), '$private_key') AS user_last_name_en
@@ -128,6 +129,7 @@ public function callback()
 							'idx'     => $row['m_idx'],
 							'mIdx'    => $row['m_idx'],
 							'name'    => $row['name'],
+							'phone'   => $row['phone'],
 							'email'   => $row['email'],
 							'level'   => $row['user_level'],
 							'gubun'   => $row['gubun'],

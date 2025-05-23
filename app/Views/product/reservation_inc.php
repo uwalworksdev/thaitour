@@ -180,7 +180,7 @@
                         priceLabel = '<span class="label sold-out-text">예약마감</span>';
                         isDeadline = " deadline";
                     } else {
-                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " active_" : "";
 
                         if (!dayData) {
                             priceLabel = '<span class="label sold-out-text">예약마감</span>';

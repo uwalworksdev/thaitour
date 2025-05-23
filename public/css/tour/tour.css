@@ -1856,11 +1856,28 @@
     background-color: white;
     color: black;
     border: 1px solid #dbdbdb;
-    padding: 12px 20px;
+    padding: 12px 0;
     border-radius: 5px;
     cursor: pointer;
-    width: 120px;
+    width: 90px;
     margin-top: 2px;
+}
+
+.content-sub-hotel-detail .book-add-cart {
+    background-color: white;
+    color: black;
+    border: 1px solid #dbdbdb;
+    padding: 12px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    margin-top: 2px;
+}
+
+.content-sub-hotel-detail .book-button.disabled {
+    background-color: #dbdbdb;
+    color: #888;
+    border: 1px solid #dbdbdb;
 }
 
 .content-sub-hotel-detail .book-button:disabled {
@@ -1881,12 +1898,17 @@
     margin-top: 12px;
 }
 
-
-.content-sub-hotel-detail .book-button:hover {
+.content-sub-hotel-detail .book-button.book_btn_217 {
     background-color: var(--bs-point);
     color: #fff;
     border: 1px solid var(--bs-point);
 }
+
+/* .content-sub-hotel-detail .book-button:hover {
+    background-color: var(--bs-point);
+    color: #fff;
+    border: 1px solid var(--bs-point);
+} */
 
 .content-sub-hotel-detail .book-button:disabled:hover {
     background-color: #dbdbdb;
@@ -2326,6 +2348,12 @@
     position: relative;
 }
 
+.tours-detail .section2 .sec2-item-card.tour_calendar .time_work {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
 .tours-detail .section2 .sec2-item-card.tour_calendar .time_work p {
     text-align: right;
     font-size: 18px;
@@ -2334,7 +2362,7 @@
 }
 
 .tours-detail .section2 .sec2-item-card {
-    padding: 40px 30px 20px 30px;
+    padding: 30px 30px 20px 30px;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 6px;
     margin-bottom: 20px;
@@ -2578,7 +2606,8 @@
 .tours-detail .section2 .text-content-1 {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start !important;
+    flex-direction: column;
 }
 
 .tours-detail .section2 .text-content-1 h3 {
@@ -3127,8 +3156,12 @@
     margin: 40px 0;
 }
 
-.tours-detail.spa-detail .open_time {
+/* .tours-detail.spa-detail .open_time {
     margin-bottom: 20px;
+} */
+
+.tours_time_sect {
+    margin-bottom: 30px;
 }
 
 .tours-detail p.des-type {
@@ -4108,10 +4141,15 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 33.33%;
 }
 
 .custom-golf-detail .list-select-element .item-select .select_custom_ {
     width: 230px;
+}
+
+.custom-golf-detail .list-select-element.tour .item-select .select_custom_ {
+    width: 100%;
 }
 
 .custom-golf-detail .list-select-element .item-select .vehicle_number {
@@ -4131,6 +4169,7 @@
     box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .custom-golf-detail .section2-sub .left-main .tit-left {
@@ -4646,11 +4685,12 @@
     align-items: center;
     margin-bottom: 80px;
     gap: 30px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .custom-golf-detail .list-select-element .item-select .label {
     width: 70px;
+    flex: 0 0 auto;
 }
 
 .travel-tips .sec_banner {
@@ -6034,3 +6074,29 @@
     padding: 10px 0;
     line-height: 1.4;
 }
+
+.section-wrap-s {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.section-wrap-s .btn-s-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-golf-detail .section-wrap-s .btn-s-wrap .btn-price-content {
+    width: 300px;
+    height: 50px;
+    font-size: 18px !important;
+}
+
+.section-wrap-s .btn-s-wrap .btn-add-cart {
+    background-color: #fff !important;
+    color: #252525;
+    border: 1px solid #dbdbdb;
+}
+

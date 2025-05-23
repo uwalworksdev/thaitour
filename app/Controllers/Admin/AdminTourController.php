@@ -1241,6 +1241,53 @@ class AdminTourController extends BaseController
         }
 	}
 
+    function add_tour_product()
+    {
+        $info_idx = $this->request->getPost('info_idx');
+        $product_idx = $this->request->getPost('product_idx');
+        $tour_onum = $this->request->getPost('tour_onum');
+
+        if (!empty($info_idx)) {
+            $data = [
+                "product_idx" => $product_idx,
+                "tours_subject" => '',
+                "tours_subject_eng" => '',
+                "tour_price" => '',
+                "tour_price_kids" => '',
+                "tour_price_baby" => '',
+                "tour_price_ori" => '',
+                "tour_price_kids_ori" => '',
+                "tour_price_baby_ori" => '',
+                "tour_price_max" => '',
+                "tour_price_kids_max" => '',
+                "tour_price_baby_max" => '',
+                "tour_onum" => $tour_onum,
+                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                "group" => '',
+                "info_idx" => $info_idx
+            ];
+            
+            $insertId = $this->tourProducts->insert($data);
+
+            if($insertId) {
+                return $this->response->setJSON([
+                    'result'    => true,
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'result'    => false,
+                    'message'   => "오류가 발생했습니다."
+                ]);
+            }
+
+        }else{
+            return $this->response->setJSON([
+                'result'    => false,
+                'message'   => "idx가 존재하지 않습니다."
+            ]);
+        }
+    }
+
     function copy_last_tour()
     {
         $product_idx = $this->request->getPost('product_idx');

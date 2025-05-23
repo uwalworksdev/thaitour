@@ -218,7 +218,7 @@ function get_deli_type()
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
-    $_deli_type['R'] = "계좌발급";
+    //$_deli_type['R'] = "계좌발급";
     //$_deli_type['J'] = "입금대기";
     $_deli_type['C'] = "예약취소";
     $_deli_type['N'] = "예약불가";
@@ -233,7 +233,7 @@ function get_payment_type()
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
-    $_deli_type['R'] = "계좌발급";
+    //$_deli_type['R'] = "계좌발급";
     $_deli_type['J'] = "예약확인";
     $_deli_type['C'] = "예약취소";
     $_deli_type['N'] = "예약불가";
@@ -581,12 +581,18 @@ function getPgMethods()
 
 function autoEmail($code, $user_mail, $_tmp_fir_array)
 {
-
-
     $is_ssl = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
     $protocol = $is_ssl ? 'https://' : 'http://';
     $domain = $_SERVER['HTTP_HOST'];
-    $http_domain_url = $protocol . $domain;
+
+    if($code == "A20" || $code == "A23" || $code == "A25" || $code == "A27" || $code == "A54" || $code == "A55" || $code == "A29" || $code == "A31") {
+        $http_domain_url = $protocol . $domain . "/voucher/". $_tmp_fir_array['gubun'] ."/" . $_tmp_fir_array['order_idx'];
+    }else if($code == "A21" || $code == "A22" || $code == "A24" || $code == "A26" || $code == "A28" || $code == "A30" || $code == "A34" || $code == "A35") {
+        $http_domain_url = $protocol . $domain . "/invoice/". $_tmp_fir_array['gubun'] ."_01/" . $_tmp_fir_array['order_idx'];
+    }else {
+        $http_domain_url = $protocol . $domain;
+    }
+
 
     $infoRow = homeSetInfo();
 
@@ -1277,7 +1283,8 @@ function alimTalk_send($order_no, $alimCode) {
     */
 
 	if($alimCode == "TY_1651") { // 예약가능
-		
+	
+	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
 	   $allim_replace = [
 							"#{고객명}" => $order_user_name,
 	                        "phone"     => $order_user_mobile
@@ -2135,6 +2142,14 @@ function maskNaverId($userId) {
     return $userId;
 }
 
+function maskSnsId($userId, $gubun) {
+    if($gubun == "naver" || $gubun == "google") {
+        return $gubun . "_" . substr($userId, 0, 10) . '****'; // "naver_", "google_"(6글자) + 10자리 유지 + 마스킹
+    }
+    return $userId;
+}
+
+
 function golfCategory($txt) {
 	
     $connect = db_connect(); // DB 연결
@@ -2469,7 +2484,6 @@ function completePayment($idx) {
             'RECEIVE_NAME'   => $row['user_name'],
             'PROD_NAME'      => $row['product_name'],
             'ORDER_NO'       => $row['payment_no'],
-            'ORDER_DAY'      => $row['paydate'],
             'ORDER_PRICE'    => $row['Amt_1'],
 			'PAYMENT_METHOD' => $row['payment_method'],
             'ORDER_DATE'     => $row['paydate']
@@ -2478,4 +2492,133 @@ function completePayment($idx) {
 	
 }
 
+
+function cartReservation($idx) {
+	
+        $db = \Config\Database::connect();
+        $private_key = private_key();
+
+        // 알림톡 함수 호출
+        $payment_idx = $idx;
+        alimTalk_cart_send($payment_idx);
+
+        $sql             = "	select AES_DECRYPT(UNHEX(pay_name),  '$private_key') AS user_name
+                                 	 , AES_DECRYPT(UNHEX(pay_email), '$private_key') AS user_email
+									 , Amt_1 
+									 , payment_no 
+									 , product_name
+									 , paydate
+									 , payment_method
+									from tbl_payment_mst
+									where payment_idx = '" . $payment_idx . "'";
+		write_log($sql);				
+        $result = $db->query($sql);
+        $row    = $result->getRowArray();
+		
+        $code       = "A17";
+        $user_email =  $row['user_email'];
+		
+        $_tmp_fir_array = [
+            'RECEIVE_NAME'   => $row['user_name'],
+            'PROD_NAME'      => $row['product_name'],
+            'ORDER_NO'       => $row['payment_no'],
+            'ORDER_PRICE'    => $row['Amt_1'],
+			'PAYMENT_METHOD' => $row['payment_method'],
+            'ORDER_DATE'     => $row['paydate']
+        ];
+        autoEmail($code, $user_email, $_tmp_fir_array);	
+	
+}
+
+function alimTalk_cart_send($group_no)
+{
+    $connect     = db_connect();
+    $private_key = private_key();
+
+	$sql         = "SELECT * FROM tbl_order_mst WHERE group_no = '". $group_no ."' ";
+	
+	$row         = $connect->query($sql)->getRowArray();
+	
+	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+						   ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+	$row_d       = $connect->query($sql_d)->getRowArray();
+
+	$order_user_name   = $row_d['order_user_name'];
+	$order_user_mobile = $row_d['order_user_mobile'];	
+	$allim_replace = [
+						"#{고객명}"   => $order_user_name,
+						"phone"      => $order_user_mobile
+					 ];
+
+	alimTalkSend("TY_1652", $allim_replace);	   
+	
+}
+
+
+function email_reservation_group($group_no)
+{
+        $db = \Config\Database::connect();
+        $private_key = private_key();
+
+        $sql         = "SELECT count(order_no) AS order_cnt, sum(order_price) AS order_price FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
+        $result      = $db->query($sql);
+        $row         = $result->getRowArray();
+		$order_cnt   = $row['order_cnt'];
+		$order_price = $row['order_price'];
+		
+		if($order_cnt > 1) {
+		   $order_cnt = $order_cnt - 1;	
+		   $prod_add = " 외". $order_cnt ."건"; 
+		} else {
+		   $prod_add = "";
+		}   
+	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						  ,AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
+						  , order_no 
+						  , product_name
+				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
+				   
+		write_log($sql_d);				
+        $result = $db->query($sql_d);
+        $row    = $result->getRowArray();
+		
+        $code         = "A14";
+        $user_email   =  $row['user_email'];
+		$product_name =  $row['product_name'] . $prod_add;
+		$order_no     =  $row['order_no'] .  $prod_add;;
+        $_tmp_fir_array = [
+            'RECEIVE_NAME'   => $row['user_name'],
+            'PROD_NAME'      => $product_name,
+            'ORDER_NO'       => $order_no,
+            'ORDER_PRICE'    => number_format($order_price) 
+        ];
+        autoEmail($code, $user_email, $_tmp_fir_array);		   
+	
+}
+/*
+function email_send($order_no, $order_status)
+{
+		$connect     = db_connect();
+		$private_key = private_key();
+
+	    $sql_d  = "SELECT  AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
+						  ,AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
+				   FROM tbl_order_mst WHERE order_no = '" . $order_no . "'";
+        $result     = $db->query($sql_d);
+        $row_d      = $result->getRowArray();
+
+        $code       = "A14";
+		$user_name  = $row_d['user_name'];
+		$user_email = $row_d['user_email'];
+		
+        $_tmp_fir_array = [
+            'RECEIVE_NAME'   => $row['user_name'],
+            'PROD_NAME'      => $product_name,
+            'ORDER_NO'       => $order_no,
+            'ORDER_PRICE'    => number_format($order_price) 
+        ];
+        autoEmail($code, $user_email, $_tmp_fir_array);		   
+
+}
+*/
 ?>

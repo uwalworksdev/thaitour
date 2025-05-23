@@ -315,6 +315,8 @@ class AdminSpaController extends BaseController
             $company_contact = updateSQ($_POST["company_contact" ?? '']);
             $company_url = updateSQ($_POST["company_url" ?? '']);
             $company_notes = updateSQ($_POST["company_notes" ?? '']);
+            $use_time_line = updateSQ($_POST["use_time_line" ?? '']);
+
 
 //            $dataProductMore = new stdClass();
 
@@ -470,7 +472,8 @@ class AdminSpaController extends BaseController
                     'company_name' => $company_name,
                     'company_contact' => $company_contact,
                     'company_url' => $company_url,
-                    'company_notes' => $company_notes
+                    'company_notes' => $company_notes,
+                    'use_time_line' => $use_time_line
                 ];
 
                 $data['mbti']           = $_POST["mbti"] ?? $mbti;
@@ -1786,6 +1789,55 @@ class AdminSpaController extends BaseController
         }
 
         return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
+    }
+
+    function add_spa_product()
+    {
+        $info_idx = $this->request->getPost('info_idx');
+        $product_idx = $this->request->getPost('product_idx');
+        $spa_onum = $this->request->getPost('spa_onum');
+
+        if (!empty($info_idx)) {
+            $data = [
+                "product_idx" => $product_idx,
+                "spas_subject" => '',
+                "spas_subject_eng" => '',
+                "is_explain" => '',
+                "spas_explain" => '',
+                "spas_price" => '',
+                "spas_price_kids" => '',
+                "spas_price_baby" => '',
+                "spas_price_ori" => '',
+                "spas_price_kids_ori" => '',
+                "spas_price_baby_ori" => '',
+                "spas_price_max" => '',
+                "spas_price_kids_max" => '',
+                "spas_price_baby_max" => '',
+                "spa_onum" => $spa_onum,
+                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                "group" => '',
+                "info_idx" => $info_idx
+            ];
+            
+            $insertId = $this->productSpas->insert($data);
+
+            if($insertId) {
+                return $this->response->setJSON([
+                    'result'    => true,
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'result'    => false,
+                    'message'   => "오류가 발생했습니다."
+                ]);
+            }
+
+        }else{
+            return $this->response->setJSON([
+                'result'    => false,
+                'message'   => "idx가 존재하지 않습니다."
+            ]);
+        }
     }
 
     function copy_last_spa()

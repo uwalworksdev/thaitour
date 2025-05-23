@@ -158,6 +158,42 @@
     z-index: 9999;
 }
 
+.popup_wrap.place_pop.cart_info_pop .pop_box {
+    max-width: 800px;
+    padding: 0 30px;
+}
+
+.popup_wrap.cart_info_pop .popup_place__head {
+    border-bottom: none;
+    padding-top: 35px;
+    padding-bottom: 0;
+}
+
+.popup_wrap.cart_info_pop .popup_place__head h2 {
+    font-size: 22px;
+}
+
+.popup_wrap.cart_info_pop .lb-tb-cus {
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.popup_wrap.cart_info_pop .textarea-tb {
+    width: 100%;
+    height: 112px;
+}
+
+.popup_wrap.cart_info_pop .btn_add_cart{
+    width: 150px;
+    height: 60px;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+    color: #252525;
+    margin-top: 30px;
+}
+
 .popup_wrap.reservation_pop .pop_box{
     height: 700px;
     overflow-y: auto;

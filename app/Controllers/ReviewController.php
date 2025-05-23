@@ -31,7 +31,7 @@ class ReviewController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->member = model("Member");
-        $this->milane = model("Mileage");
+        $this->milane = model("OrderMileage");
         $this->policy = model("PolicyModel");
         $this->pointModel = model("Point");
 
@@ -595,7 +595,7 @@ class ReviewController extends BaseController
                     $this->milane->insert([
                         'm_idx'             => $m_idx,
                         'mi_title'          => '여행후기',
-                        'order_gubun'       => '여행후기 작성',
+                        'order_gubun'       => '포인트차감',
                         'order_idx'         => 0,
                         'order_mileage'     => intval($review_point),
                         'mi_r_date'         => date('Y-m-d H:i:s'),

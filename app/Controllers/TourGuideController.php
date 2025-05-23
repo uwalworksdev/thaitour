@@ -55,6 +55,17 @@ class TourGuideController extends BaseController
             $pg = updateSQ($this->request->getVar("pg") ?? '');
             $data = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'P'], $g_list_rows, $pg, ['onum' => 'desc']);
 
+            foreach ($data['items'] as $key => $value) {
+                $sql = "SELECT c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
+                            LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
+                            LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_idx = '" . $value['product_idx'] . "' group by p1.product_idx ";
+
+                $result = $this->connect->query($sql) or die ($this->connect->error);
+                $row = $result->getRowArray();
+                $data['items'][$key]['product_code_name_1'] = $row["product_code_name_1"];
+                $data['items'][$key]['product_code_name_2'] = $row["product_code_name_2"];
+            }
+
             $guides = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'I'], $g_list_rows, $pg, ['onum' => 'desc']);
 
             $product_guides = array_map(function ($item) {
@@ -300,6 +311,8 @@ class TourGuideController extends BaseController
     public function handeBooking()
     {
         try {
+ 			$private_key = private_key();
+
             $session = Services::session();
             $memberIdx = $session->get('member')['idx'] ?? null;
 
@@ -396,6 +409,24 @@ class TourGuideController extends BaseController
             $session->remove('guide_cart');
 
             if ($orderStatus === "W") {
+                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $orderIdx ."' ";
+
+                $row = $this->connect->query($sql)->getRow();
+                
+                $code = "A14";
+                $_tmp_fir_array = [
+                    'RECEIVE_NAME'=> $row->user_name,
+                    'PROD_NAME'   => $row->product_name_en,
+                    'ORDER_NO'    => $row->order_no,
+                    'ORDER_PRICE' => number_format($row->order_price),
+                ];
+        
+                autoEmail($code, $row->user_email, $_tmp_fir_array);
+
                 return $this->response->setJSON([
                     'result' => true,
                     'message' => "예약 되었습니다."
@@ -469,7 +500,7 @@ class TourGuideController extends BaseController
     private function getReviewCategories($idx)
     {
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
-        $reviewCategories = $this->connect->query($sql) or die($this->db->error);
+        $reviewCategories = $this->connect->query($sql) or die($this->connect->error);
         $reviewCategories = $reviewCategories->getResultArray();
 
         $reviewCategories = array_map(function ($item) use ($idx) {

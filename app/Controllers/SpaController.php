@@ -121,6 +121,8 @@ class SpaController extends BaseController
             $session   = Services::session();
             $memberIdx = $session->get('member')['idx'] ?? null;
 
+ 			$private_key = private_key();
+
             if (!$memberIdx) {
                 return $this->response->setJSON([
                     'result' => false,
@@ -128,16 +130,32 @@ class SpaController extends BaseController
                 ], 400);
             }
 
-            $dataCart = $session->get('data_cart');
-            if (empty($dataCart)) {
-                return redirect()->to('/');
-            }
+            // $dataCart = $session->get('data_cart');
+            // if (empty($dataCart)) {
+            //     return redirect()->to('/');
+            // }
 
             $postData         = $this->request->getPost();
 
             $productIdx       = $postData['product_idx'] ?? null;
             $orderStatus      = $postData['order_status'] ?? 'W';
             $orderUserEmail   = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
+
+            if (is_array($postData['adultQty'])) {
+                $postData['adultQty'] = implode(',', $postData['adultQty']);
+            } 
+
+            if (is_array($postData['childrenQty'])) {
+                $postData['childrenQty'] = implode(',', $postData['childrenQty']);
+            } 
+
+            if (is_array($postData['adultPrice'])) {
+                $postData['adultPrice'] = implode(',', $postData['adultPrice']);
+            } 
+
+            if (is_array($postData['childrenPrice'])) {
+                $postData['childrenPrice'] = implode(',', $postData['childrenPrice']);
+            } 
 
             $adultQtySum      = array_sum(array_map('intval', explode(',', $postData['adultQty'] ?? '')));
             $childrenQtySum   = array_sum(array_map('intval', explode(',', $postData['childrenQty'] ?? '')));
@@ -156,19 +174,25 @@ class SpaController extends BaseController
             $childrenPriceSum = array_sum(array_map(fn($qty, $price) => $qty * $price, $childrenQtyArray, $childrenPriceArray));
             $baht_thai        = $this->setting['baht_thai'];
 			
-            $phone_1 = updateSQ($this->request->getPost('phone_1'));
-            $phone_2 = updateSQ($this->request->getPost('phone_2'));
-            $phone_3 = updateSQ($this->request->getPost('phone_3'));
+            $phone_1 = updateSQ($this->request->getPost('phone_1') ?? "");
+            $phone_2 = updateSQ($this->request->getPost('phone_2') ?? "");
+            $phone_3 = updateSQ($this->request->getPost('phone_3') ?? "");
             $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
-            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+            $p_user_mobile = encryptField($payment_user_mobile, "encode");
 
-            $phone_thai = updateSQ($this->request->getPost('phone_thai'));
-            $phone_thai = encryptField($phone_thai, "encode");
+            $phone_thai = updateSQ($this->request->getPost('phone_thai') ?? "");
+            $p_phonethai = encryptField($phone_thai, "encode");
 
-            $local_phone = updateSQ($this->request->getPost('local_phone'));
+            if(!empty($phone_thai)){
+                $user_mobile = $p_phonethai;
+            }else{
+                $user_mobile = $p_user_mobile;
+            }
+
+            $local_phone = updateSQ($this->request->getPost('local_phone') ?? "");
             $local_phone = encryptField($local_phone, "encode");
 
-            $time_line      = $postData['time_line'] ?? '';
+            $time_line      = $postData['time_line'] ?? "";
 
             if($orderStatus == "W") {
                 $group_no  = date('YmdHis'); 
@@ -176,8 +200,10 @@ class SpaController extends BaseController
                 $group_no  = ""; 
             }
 
-            $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
-            $data['real_price_won']    =  $data['order_price'];
+            // $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
+            // $data['real_price_won']    =  $data['order_price'];
+
+            $postData['lastPrice'] = !empty($postData['lastPrice']) ? $postData['lastPrice'] : $postData['totalPrice'];
 
             $real_price_bath   =  (int)($postData['lastPrice'] / $baht_thai);
             $real_price_won    =  $postData['lastPrice'];
@@ -186,23 +212,23 @@ class SpaController extends BaseController
             $order_price_bath  =  (int)($postData['lastPrice'] / $baht_thai);
 
 			$orderData = [
-                'order_user_name'               => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
+                'order_user_name'               => encryptField($postData['order_user_name'] ?? "", 'encode') ?? $postData['order_user_name'],
                 'order_user_email'              => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
-                'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
-                'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'], 'encode') ?? $postData['order_user_last_name_en'],
+                'order_user_first_name_en'      => encryptField($postData['order_user_first_name_en'] ?? "", 'encode') ?? $postData['order_user_first_name_en'],
+                'order_user_last_name_en'       => encryptField($postData['order_user_last_name_en'] ?? "", 'encode') ?? $postData['order_user_last_name_en'],
 				
-			    "order_passport_number"         => encryptField($postData['order_passport_number'], 'encode'),
-			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'],
-			    "order_birth_date"              => $postData['order_birth_date'],
+			    "order_passport_number"         => encryptField($postData['order_passport_number'] ?? "", 'encode'),
+			    "order_passport_expiry_date"    => $postData['order_passport_expiry_date'] ?? "",
+			    "order_birth_date"              => $postData['order_birth_date'] ?? "",
 				
-                'order_gender_list'             => $postData['companion_gender'] ?? '',
+                'order_gender_list'             => $postData['companion_gender'] ?? "",
                 'product_idx'                   => $productIdx,
                 'user_id'                       => $memberIdx,
                 'm_idx'                         => $memberIdx,
-                'order_day'                     => $postData['day_'] ?? '',
-                'order_user_mobile'             => $phone_thai ?? $payment_user_mobile,
-                'order_user_phone'              => $phone_thai ?? $payment_user_mobile,
-                'local_phone'                   => $local_phone ?? '',
+                'order_day'                     => $postData['day_'] ?? "",
+                'order_user_mobile'             => $user_mobile,
+                'order_user_phone'              => $user_mobile,
+                'local_phone'                   => $local_phone ?? "",
                 'people_adult_cnt'              => $adultQtySum,
                 'people_kids_cnt'               => $childrenQtySum,
                 'inital_price'                  => $postData['totalPrice'] ?? 0,
@@ -213,8 +239,8 @@ class SpaController extends BaseController
                 'order_memo'                    => $postData['order_memo'] ?? '',
                 'order_r_date'                  => Time::now('Asia/Seoul', 'en_US'),
                 'order_date'                    => Time::now('Asia/Seoul', 'en_US'),
-                'used_coupon_idx'               => $postData['c_idx'] ?? null,
-                'used_coupon_no'                => $postData['coupon_no'] ?? null,
+                'used_coupon_idx'               => $postData['c_idx'] ?? '',
+                'used_coupon_no'                => $postData['coupon_no'] ?? '',
                 'used_coupon_money'             => $postData['discountPrice'] ?? 0,
                 'used_coupon_point'             => $postData['pointPrice'] ?? 0,
                 'people_adult_price'            => $adultPriceSum,
@@ -289,10 +315,28 @@ class SpaController extends BaseController
                 $this->updateCouponUsage($postData, $orderIdx, $productIdx, $memberIdx);
             }
 
-            $session->remove('data_cart');
+            // $session->remove('data_cart');
 
             if($orderStatus == "W") {
 				
+                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $orderIdx ."' ";
+
+			    $row = $this->connect->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 			    $allim_replace = [
 									"#{고객명}" => $postData['order_user_name'],
 									"phone"     => $phone_1 . "-" . $phone_2 . "-" . $phone_3
