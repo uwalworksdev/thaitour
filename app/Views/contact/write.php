@@ -26,6 +26,19 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
 
 <style>
+
+    .sub_visual {
+        background-color: #e0ecf7;
+        border-radius: 20px;
+        min-height: 260px;
+        margin-bottom: 80px;
+        background-image: url(/img/sub/PC.png) !important;
+        background-size: cover;
+    }
+
+    #container.write_container {
+        padding-top: 30px ;
+    }
     @media screen and (max-width: 850px) {
         .sect_ttl_box {
             margin: 2.1429rem 0;
@@ -140,11 +153,25 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
         width : 100%;
         height: 9rem;
     }
+    .sub_visual {
+        height: 28rem;
+        min-height: auto;
+        margin-bottom: 10rem ;
+        background-image: url(/img/sub/mo_wr.png) !important;
+    }
+    #container.write_container {
+        padding-top: 3rem;
+    }
+
+
     }
 </style>
 <div id="container" class="sub write_container">
     <section class="write_sect">
         <div class="inner">
+            <a href="" id="myLink">
+                <div class="sub_visual"></div>
+            </a>
             <div class="sect_ttl_box">
                 <h2>문의하기</h2>
             </div>

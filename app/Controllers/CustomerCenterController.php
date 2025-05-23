@@ -39,6 +39,20 @@ class CustomerCenterController extends BaseController
     {
         return view("center/about");
     }
+     public function point()
+    {
+        return view("center/point");
+    }
+
+    public function payment_guide()
+    {
+        return view("center/payment_guide");
+    }
+     public function reservation_procedure()
+    {
+        return view("center/reservation_procedure");
+    }
+    
 
     public function terms()
     {
