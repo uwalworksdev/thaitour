@@ -452,13 +452,13 @@
 									<?php if($point_arr[$i] == 0) { ?>
                                     <td class="number">0  <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($point_arr[$i]) ?>  <span><?= $point_arr[$i]  * 100 / array_sum($point_arr) ?>%</span></td>
+                                    <td class="number"><?= number_format($point_arr[$i]) ?>  <span><?= (round)($point_arr[$i]  * 100 / array_sum($point_arr)) ?>%</span></td>
 									<?php } ?>
 									
 									<?php if($coupon_arr[$i] == 0) { ?>
                                     <td class="number">0 <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] * 100 / array_sum($coupon_arr) ?>%</span></td>
+                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= (round)($coupon_arr[$i] * 100 / array_sum($coupon_arr)) ?>%</span></td>
 									<?php } ?>
                                 </tr>
                             <?php } ?>
