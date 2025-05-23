@@ -66,7 +66,7 @@
                 <colgroup>
                     <col width="80px">
                     <col width="80px">
-                    <col width="80px">
+                    <col width="100px">
                     <col width="*">
                     <col width="110px">
                     <col width="110px">
