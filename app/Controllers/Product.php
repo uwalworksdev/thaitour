@@ -2610,7 +2610,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['baht_thai']                  = $this->setting['baht_thai'];
 			$data['device_type']                = get_device();
 			$data['group_no']                   = date('YmdHis');
+			$data['custom_req']                 = $this->request->getPost('custom_req') ?? "";
 			$data['departure_point']            = $this->request->getPost('departure_point') ?? "";
+			$data['number_staff']               = $this->request->getPost('number_staff') ?? "";
+			$data['number_luggage']             = $this->request->getPost('number_luggage') ?? "";
+
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];

@@ -6891,8 +6891,8 @@ iframe::-webkit-scrollbar {
     gap: 40px;
 }
 
-.wrap-golf-info .ip-group {
-    width: 80px;
+.wrap-golf-info .ip-group input {
+    width: 80px !important;
 }
 
 @media screen and (min-width: 1921px) {
