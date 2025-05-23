@@ -297,7 +297,7 @@
 									<?php if($cnt_arr[$i] == 0) { ?>
                                     <td class="number">0 <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= number_format($cnt_arr[$i] * 100 / array_sum($cnt_arr)) ?>%</span></td>
+                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= (round)($cnt_arr[$i] * 100 / array_sum($cnt_arr)) ?>%</span></td>
 									<?php } ?>
                                     <!-- <td class="number"><?= number_format($cp_arr[$i]) ?> <span><?= $cp_arr[$i] ?>%</span></td> -->
                                 </tr>
