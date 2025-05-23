@@ -259,7 +259,7 @@
                     <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                         data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                         data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                        <?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>
+                        <?=viewSQ($info['info']['info_name'])?>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)
                     </h2>
                     <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
                     <?php foreach ($info['tours'] as $tour): ?>
@@ -269,7 +269,7 @@
                                     <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 </div>
-                                <p><?=$info['info']['info_name']?></p>
+                                <p><?= viewSQ($tour['tours_desc']) ?></p>
                             </div>
                             <div class="text-content-2">
 

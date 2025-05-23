@@ -205,7 +205,7 @@
 																					</td>
 																					<td>
 																						<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-																							<button type="button" onclick="InitPopup(this);" class="btn_tours_desc">간단 설명</button>
+																							<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
 																							<select name="status[<?=$i?>][]">
 																								<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
 																								<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
@@ -240,7 +240,7 @@
 																				</td>
 																				<td>
 																					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-																						<button type="button" onclick="InitPopup(this);" class="btn_tours_desc">간단 설명</button>
+																						<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
 																						<select name="status[<?=$i?>][]">
 																							<option value="Y" selected>판매중</option>
 																							<option value="N">중지</option>
@@ -611,6 +611,8 @@
 																		<td style="width:100px;text-align:center">
 																			<input type="hidden" name="tours_idx[0][]" class="tours_idx" value="">
 																			<input type="hidden" name="tour_onum[0][]" class="tour_onum" value="">
+																			<input type="hidden" name="tours_desc[0][]" class="tours_desc" value="">
+
 																			<div class="flex" style="gap: 5px;">
 																				<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 																				<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -629,6 +631,8 @@
 																		</td>
 																		<td>
 																			<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+																				<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
+																				
 																				<select name="status[0][]">
 																					<option value="Y" selected>판매중</option>
 																					<option value="N">중지</option>
@@ -788,6 +792,51 @@
 		</form>
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
+<div class="popup_" id="popupDesc_" data-element="">
+	<div class="popup_area_ popup_area_xl_">
+		<div class="popup_top_">
+			<p></p>
+			<p>
+				<button type="button" class="btn_close_" onclick="TogglePopup();">X</button>
+			</p>
+		</div>
+		<div class="popup_content_">
+			<textarea class="text_desc" style="width: 100%; height: 150px; resize: none;"></textarea>
+		</div>
+		<div class="popup_bottom_">
+			<button type="button" class="" onclick="TogglePopup();">취소</button>
+			<button type="button" class="" onclick="UpdateDesc();">확인</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	function TogglePopup() {
+        $("#popupDesc_").toggleClass('show_');
+    }
+
+	function resetContent() {
+		$("#popupDesc_").find(".text_desc").val("");
+	}
+
+	function InitPopup(el){
+		resetContent();
+		let content = $(el).closest(".air_list_1").find(".tours_desc").val();
+		
+		$("#popupDesc_").data("element", $(el));
+		$("#popupDesc_").find(".text_desc").val(content);
+		TogglePopup();
+	}
+
+		function UpdateDesc() {
+			const originalElement = $("#popupDesc_").data("element");
+			let content = $("#popupDesc_").find(".text_desc").val();
+
+			originalElement.closest(".air_list_1").find(".tours_desc").val(content);
+			TogglePopup();
+		}
+
+</script>
 <script>
 	var tableCount = <?= (isset($productTourInfo) && count($productTourInfo) > 0) ? (count($productTourInfo) - 1) : 0 ?>;
 	var arr_count = [];
@@ -956,6 +1005,7 @@
 											<td style="width:100px;text-align:center">
 												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
 												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
+												<input type="hidden" name="tours_desc[${tableCount}][]" class="tours_desc" value="">
 												<div class="flex" style="gap: 5px;">
 													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
 													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
@@ -974,6 +1024,8 @@
 											</td>
 											<td>
 												<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+													<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
+													
 													<select name="status[${tableCount}][]">
 														<option value="Y" selected>판매중</option>
 														<option value="N">중지</option>
@@ -1185,6 +1237,7 @@
 				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
 					<input type="hidden" name="tour_onum[${tableListIndex}][]" class="tour_onum" value="">
+					<input type="hidden" name="tours_desc[${tableListIndex}][]" class="tours_desc" value="">
 
 					<div class="flex" style="gap: 5px;">
 						<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
@@ -1204,6 +1257,8 @@
 				</td>
 				<td>
 					<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+						<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
+						
 						<select name="status[${tableListIndex}][]">
 							<option value="Y" selected>판매중</option>
 							<option value="N">중지</option>

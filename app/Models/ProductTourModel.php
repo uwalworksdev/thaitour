@@ -8,7 +8,7 @@ class ProductTourModel extends Model
 
     protected $primaryKey = 'tours_idx';
 
-    protected $allowedFields = ['product_idx', 'tours_subject', 'tours_subject_eng', 'tour_price', 'tour_price_kids'
+    protected $allowedFields = ['product_idx', 'tours_subject', 'tours_subject_eng', 'tours_desc', 'tour_price', 'tour_price_kids'
         , 'tour_price_baby', 'tour_price_ori', 'tour_price_kids_ori', 'tour_price_baby_ori', 'tour_price_max', 'tour_price_kids_max'
         , 'tour_price_baby_max', 'tour_onum', 'r_date', 'status', 'info_idx'];
 

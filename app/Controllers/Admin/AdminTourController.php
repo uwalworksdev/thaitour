@@ -654,6 +654,7 @@ class AdminTourController extends BaseController
         $moption_onum      = $this->request->getPost('moption_onum');
         $op_tour_onum      = $this->request->getPost('op_tour_onum');
         $is_change_price   = $this->request->getPost('is_change_price');
+        $tours_desc        = $this->request->getPost('tours_desc');
 
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -735,6 +736,7 @@ class AdminTourController extends BaseController
                             'product_idx'       => $productIdx,
                             'tours_subject'     => $subject,
                             'tours_subject_eng' => isset($tours_subject_eng[$index][$i]) ? $tours_subject_eng[$index][$i] : '',
+                            'tours_desc'        => isset($tours_desc[$index][$i]) ? $tours_desc[$index][$i] : '',
                             'tour_price'        => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : '',
                             'tour_price_kids'   => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : '',
                             'tour_price_baby'   => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : '',
