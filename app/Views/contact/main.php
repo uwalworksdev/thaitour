@@ -2,8 +2,27 @@
 <?php $this->section('content'); ?>
 <link href="/css/inquiry/inquiry.css" rel="stylesheet" type="text/css" />
 <link href="/css/inquiry/inquiry_responsive.css" rel="stylesheet" type="text/css" />
+<style>
+    .list_container .sub_visual {
+        background-color: #e0ecf7;
+        border-radius: 20px;
+        min-height: 260px;
+        margin-bottom: 80px;
+        background-image: url(/img/sub/PC.png) !important;
+        background-size: cover;
+    }
+
+    @media screen and (max-width : 850px) {
+        .list_container .sub_visual {
+            height: 28rem;
+            min-height: auto;
+            margin-bottom: 10rem ;
+            background-image: url(/img/sub/mo_wr.png) !important;
+        }
+    }
+</style>
 <div id="container" class="sub list_container">
-    
+     
     <section class="inquiry_section">
         <div class="inner">
             <?php if($visual['ufile6']) { ?>
@@ -11,6 +30,9 @@
 			<?php } else { ?>
                 <div class="sub_visual" style="display: none"></div>
             <?php } ?>
+            <a href="" id="myLink">
+                <div class="sub_visual"></div>
+            </a>
             <div class="sect_ttl_box">
                 <h2>문의하기</h2>
             </div>

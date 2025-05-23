@@ -169,9 +169,6 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 <div id="container" class="sub write_container">
     <section class="write_sect">
         <div class="inner">
-            <a href="" id="myLink">
-                <div class="sub_visual"></div>
-            </a>
             <div class="sect_ttl_box">
                 <h2>문의하기</h2>
             </div>
