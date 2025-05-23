@@ -211,7 +211,7 @@
                                         <?php
                                     }
                                     ?> -->
-                                    <?= $row["product_code_name_1"] ?> / <?= $row["product_code_name_2"] ?>
+                                    <?= $product["product_code_name_1"] ?> / <?= $product["product_code_name_2"] ?>
                                 </div>
                                 <div class="exp">
                                     <div class="truncate_txt_">
