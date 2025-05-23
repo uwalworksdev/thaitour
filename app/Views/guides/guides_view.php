@@ -868,37 +868,37 @@
             </form>
 
             <?php
-            $reject_dates = [];
-            $arr_date_ = explode('||||', $guide['deadline_time']);
-            foreach ($arr_date_ as $itemDate) {
-                if ($itemDate != "" && $itemDate) {
-                    $arr_date_s_ = explode('||', $itemDate);
+                // $reject_dates = [];
+                // $arr_date_ = explode('||||', $guide['deadline_time']);
+                // foreach ($arr_date_ as $itemDate) {
+                //     if ($itemDate != "" && $itemDate) {
+                //         $arr_date_s_ = explode('||', $itemDate);
 
-                    $start_date = new DateTime($arr_date_s_[0]);
-                    $end_date = new DateTime($arr_date_s_[1]);
-                    $end_date->modify('+1 day');
+                //         $start_date = new DateTime($arr_date_s_[0]);
+                //         $end_date = new DateTime($arr_date_s_[1]);
+                //         $end_date->modify('+1 day');
 
-                    $interval = new DateInterval('P1D');
-                    $daterange = new DatePeriod($start_date, $interval, $end_date);
+                //         $interval = new DateInterval('P1D');
+                //         $daterange = new DatePeriod($start_date, $interval, $end_date);
 
-                    foreach ($daterange as $date) {
-                        $reject_dates[] = $date->format('Y-m-d');
-                    }
-                }
-            }
+                //         foreach ($daterange as $date) {
+                //             $reject_dates[] = $date->format('Y-m-d');
+                //         }
+                //     }
+                // }
 
-            $available_dates = [];
-            $arr_date_ = explode('||', $guide['available_period']);
-            $start_date = new DateTime($arr_date_[0]);
-            $end_date = new DateTime($arr_date_[1]);
-            $end_date->modify('+1 day');
+                // $available_dates = [];
+                // $arr_date_ = explode('||', $guide['available_period']);
+                // $start_date = new DateTime($arr_date_[0]);
+                // $end_date = new DateTime($arr_date_[1]);
+                // $end_date->modify('+1 day');
 
-            $interval = new DateInterval('P1D');
-            $daterange = new DatePeriod($start_date, $interval, $end_date);
+                // $interval = new DateInterval('P1D');
+                // $daterange = new DatePeriod($start_date, $interval, $end_date);
 
-            foreach ($daterange as $date) {
-                $available_dates[] = $date->format('Y-m-d');
-            }
+                // foreach ($daterange as $date) {
+                //     $available_dates[] = $date->format('Y-m-d');
+                // }
             ?>
 
             <h2 class="title-sec3" id="product_des">
@@ -1247,6 +1247,18 @@
                 init_daterange($(this).data('num'));
             });
 
+            let current_idx =  $('.calendar_header:first').data('num');
+            let current_people_cnt = Number($('#people' + current_idx).val() ?? 1);
+
+            let today = new Date();
+            const date_now = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            today.setDate(today.getDate() + current_people_cnt);
+            const tomorrow = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+            $('#checkInDate' + current_idx).val(date_now);
+            $('#checkOutDate' + current_idx).val(tomorrow);
+
             $('.tour_calendar').removeClass('active');
             $('.item_check_term_').removeClass('checked_');
             $('.item_check_term_all_').removeClass('checked_');
@@ -1278,9 +1290,6 @@
             function openDateRanger(el) {
                 let num_idx = $(el).data('num');
 
-                console.log(num_idx);
-                
-
                 $('.calendar_text_head').removeClass('open_')
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
@@ -1290,8 +1299,6 @@
             }
 
             function init_daterange(idx) {
-                const enabled_dates = splitStartDate();
-                const reject_days = splitEndDate();
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
@@ -1308,10 +1315,6 @@
                         daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
                         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                         firstDay: 0
-                    },
-                    isInvalidDate: function (date) {
-                        const formattedDate = date.format('YYYY-MM-DD');
-                        return !enabled_dates.includes(formattedDate);
                     },
                     linkedCalendars: true,
                     alwaysShowCalendars: true,
@@ -1386,15 +1389,15 @@
                 });
             }
 
-            function splitEndDate() {
-                let rj = `<?= implode(',', $reject_dates) ?>`;
-                return rj.split(',');
-            }
+            // function splitEndDate() {
+            //     let rj = `<?= implode(',', $reject_dates) ?>`;
+            //     return rj.split(',');
+            // }
 
-            function splitStartDate() {
-                let rj = `<?= implode(',', $available_dates) ?>`;
-                return rj.split(',');
-            }
+            // function splitStartDate() {
+            //     let rj = `<?= implode(',', $available_dates) ?>`;
+            //     return rj.split(',');
+            // }
         });
 
         $('.count_day').on('change', function () {
