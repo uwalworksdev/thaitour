@@ -192,7 +192,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
+                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 입니다"></i></th>
                                 <th>상품</th>
                                 <!-- <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th> -->
                             </tr>

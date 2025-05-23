@@ -106,9 +106,9 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
+                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 입니다"></i></th>
                                 <th>상품</th>
-                                <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th>
+                                <!--th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th-->
                             </tr>
                         </thead>
                         <tbody class="statistics">
@@ -146,14 +146,14 @@
                             <col width="16%"> <!-- 월 -->
                             <col width="28%"> <!-- 총매출 -->
                             <col width="28%"> <!-- 상품 -->
-                            <col width="28%"> <!-- CP수수료 -->
+                            <!--col width="28%"> <!-- CP수수료 -->
                         </colgroup>
                         <thead>
                             <tr>
                                 <th>셀러</th>
                                 <th>매출</th>
                                 <th>상품</th>
-                                <th>CP수수료</th>
+                                <!--th>CP수수료</th-->
                             </tr>
                         </thead>
                         <tbody class="count_per" id="count_all">
@@ -161,7 +161,7 @@
                                 <td class="number">uwal (uwal)</td>
                                 <td class="number"><?= number_format($price_arr[0]) ?> <span><?= $price_arr[0] ?>%</span></td>
                                 <td class="number"><?= number_format($cnt_arr[0]) ?> <span><?= $cnt_arr[0] ?>%</span></td>
-                                <td class="number"><?= number_format($cp_arr[0]) ?> <span><?= $cp_arr[0] ?>%</span></td>
+                                <!--td class="number"><?= number_format($cp_arr[0]) ?> <span><?= $cp_arr[0] ?>%</span></td-->
                             </tr>
                         </tbody>
                     </table>
