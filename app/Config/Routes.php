@@ -930,6 +930,9 @@ $routes->group("center", static function ($routes) {
     $routes->get("reservation", "CustomerCenterController::reservation");
     $routes->get("map", "CustomerCenterController::map");
     $routes->get("about", "CustomerCenterController::about");
+    $routes->get("point", "CustomerCenterController::point");
+    $routes->get("payment_guide", "CustomerCenterController::payment_guide");
+    $routes->get("reservation_procedure", "CustomerCenterController::reservation_procedure");
 });
 $routes->group("custom_travel", static function ($routes) {
     $routes->get("item_list", "CustomTravelController::item_list");
