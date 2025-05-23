@@ -1253,7 +1253,7 @@
             let today = new Date();
             const date_now = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
             
-            today.setDate(today.getDate() + current_people_cnt);
+            today.setDate(today.getDate() + current_people_cnt - 1);
             const tomorrow = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
             $('#checkInDate' + current_idx).val(date_now);
