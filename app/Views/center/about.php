@@ -288,7 +288,7 @@ $setting = homeSetInfo();
                     <img src="/img/center/intro_certi05.png" alt="">
                 </div>
                 <div class="card">
-                    <img src="/img/center/intro_certi06.png" alt="">
+                    <img src="/img/center/intro_certi07.jpg" alt="">
                 </div>
 
             </div>
