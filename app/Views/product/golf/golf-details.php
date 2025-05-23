@@ -1008,7 +1008,58 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
-    
+
+    <div class="popup_wrap place_pop cart_info_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>별도 요청</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body order-form-page">
+                        <ul class="list_type02">
+                            <?php foreach ($fcodes as $code): ?>
+                                <li class="bs-input-check fl ml5 mb5" id="li_inp_code_<?= $code['code_no'] ?>">
+                                    <input type="checkbox" name="inp_code_additional_request"
+                                            id="inp_code_<?= $code['code_no'] ?>" value="<?= $code['code_no'] ?>">
+                                    <label class="pubcheck" for="inp_code_<?= $code['code_no'] ?>">
+                                        <?= $code['code_name'] ?>
+                                    </label>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <ul class="list_type02 f_14 f_gray">
+                            <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>
+                                또한 흡연룸, 커넥팅룸 등이 없는 호텔은 요청사항을 체크하셔도 반영되지 않습니다.
+                            </li>
+                        </ul>
+                        <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가 보장되지
+                            않을 수 있습니다.</p>
+
+                        <div class="form-group cus-form-group">
+                            <textarea id="extra-requests" name="order_memo"
+                                        placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                        </div>
+
+                        <div class="flex_c_c">
+                            <button type="button" class="btn_add_cart">
+                                장바구니 담기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+    <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+        }
+    </script>
 	<script>
 	function trip_change(selectElement) {
 		var type        = selectElement.value;       // 선택된 값 (0=왕복, 1=편도)

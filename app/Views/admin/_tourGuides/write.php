@@ -308,7 +308,7 @@ if ($product_idx && $product) {
                                 </tbody>
                             </table>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -382,12 +382,11 @@ if ($product_idx && $product) {
                                                     style="width: auto;height: auto; margin: 0">+
                                             </button>
                                         </div>
-                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>
 
                                 </tbody>
-                            </table>
+                            </table> -->
                             <script>
                                 $('.deadline_date').each(function () {
                                     $(this).daterangepicker({

@@ -222,7 +222,7 @@
                                     if($total_vehicle > 0){
                                 ?>
                                 <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?= $total_vehicle ?>대</h3>
-                                <div>
+                                <div class="flex__c wrap-golf-info">
                                     <div class="con-form-select form-group mb-30">
                                         <label for="car-time-hour">차량 미팅 시간</label>
                                         <div class="form-group time-group">
@@ -246,14 +246,14 @@
                                     </div>
                                     <div class="con-form-select form-group mb-30">
                                         <label for="number_staff">인원</label>
-                                        <div class="form-group time-group">
-                                            <input class="mb-10" type="text" id="number_staff" name="number_staff">
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="number_staff" name="number_staff">
                                         </div>
                                     </div>
                                     <div class="con-form-select form-group mb-30">
                                         <label for="number_luggage">짐갯수</label>
-                                        <div class="form-group time-group">
-                                            <input class="mb-10" type="text" id="number_luggage" name="number_luggage">
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="number_luggage" name="number_luggage">
                                         </div>
                                     </div>
                                 </div> 
