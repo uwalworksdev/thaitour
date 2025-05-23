@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else if (range === '6month') {
                 sDate.setMonth(today.getMonth() - 6);
             } else if (range === '1year') {
-                sDate.setYear(today.getYear() - 1);
+                sDate.setFullYear(today.getFullYear() - 1);
             }
 
             // yyyy-mm-dd 포맷
