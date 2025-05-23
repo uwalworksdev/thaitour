@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 sDate.setMonth(today.getMonth() - 1);
             } else if (range === '6month') {
                 sDate.setMonth(today.getMonth() - 6);
+            } else if (range === '1year') {
+                sDate.setYear(today.getYear() - 1);
             }
 
             // yyyy-mm-dd 포맷
@@ -155,6 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "7day")   echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-7 day')); ?>" data-range="7day">7일</button>
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "1month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-1 month')); ?>" data-range="1month">1개월</button>
 						<button type="button" class="contact_btn date-range-btn <?php if($range == "6month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-6 month')); ?>" data-range="6month">6개월</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "6month") echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-6 month')); ?>" data-range="6month">6개월</button>
+						<button type="button" class="contact_btn date-range-btn <?php if($range == "1year")  echo "active";?> " data-start="<?= date('Y-m-d', strtotime('-1 year')); ?>" data-range="6month">1년</button>
 						
                             <select name="payin" onchange="submit()">
                                 <option value="">통합</option>
