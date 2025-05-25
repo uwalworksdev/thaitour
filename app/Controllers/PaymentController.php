@@ -554,6 +554,9 @@ class PaymentController extends BaseController
                 // 적립포인트 재조정
 				cancelMileage($payment_no, $cancelAmt);
 				
+                // 부분취소 확인
+				cancelPartilal($payment_no);				
+				
 				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 
 			} else {
