@@ -2440,14 +2440,20 @@ function cancelPartilal($payment_no)
 
     $payment_price = $row['payment_price'];
 
-    // 전액 취소된 경우 결제/주문 상태 업데이트
-    if ((float)$cancel_tot >= (float)$payment_price) {
-        $sql1 = "UPDATE tbl_payment_mst SET payment_status = 'C' WHERE payment_no = ?";
-        $db->query($sql1, [$payment_no]);
+	// 전액 취소된 경우 결제/주문 상태 업데이트
+	if ((float)$cancel_tot >= (float)$payment_price) {
 
-        $sql2 = "UPDATE tbl_order_mst SET order_status = 'C' WHERE payment_no = ?";
-        $db->query($sql2, [$payment_no]);
-    }
+		// 1. 결제 상태 'C' 처리
+		$sql1 = "UPDATE tbl_payment_mst SET payment_status = 'C' WHERE payment_no = ?";
+		$db->query($sql1, [$payment_no]);
+
+		// 2. 취소일자 + 상태 업데이트 (이미 취소된 주문 제외)
+		$cancelDate = date('Y-m-d H:i:s');
+		$sql2 = "UPDATE tbl_order_mst 
+				 SET CancelDate_1 = ?, order_status = 'C', order_c_date = NOW() 
+				 WHERE order_status != 'C' AND payment_no = ?";
+		$db->query($sql2, [$cancelDate, $payment_no]);
+	}
 
     // 트랜잭션 종료
     if ($db->transStatus() === false) {
