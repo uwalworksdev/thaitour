@@ -262,6 +262,32 @@
                                     </tr>
 
     <script>
+	function orderCancel(order_idx)
+	{
+			if (!confirm('예약을 취소 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_order_cancel",
+				type : "POST",
+				data : {
+					"order_idx"  : order_idx
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});		
+	}
+	
 	function allimtalk1(payment_idx, alimCode)
 	{
 			if (!confirm('알림톡을 전송 하시겠습니까?'))
