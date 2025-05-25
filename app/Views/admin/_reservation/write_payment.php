@@ -259,7 +259,7 @@
                                         <td colspan="3">
 											<?php 
 											     foreach ($cancel_hist as $cancel) { 
-											              echo $calcel['cancel_date'] ." ". $calcel['cancel_time'] ." ". $calcel['cancel_amt'] ."<br>";
+											              echo $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." ". $cancel['cancel_amt'] ."<br>";
 											     } 
 											?> 
 										</td>
