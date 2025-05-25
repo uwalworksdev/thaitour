@@ -213,7 +213,7 @@
                                     </td>
 
                                     <?php if($payment_row['payment_status'] == "Y") { ?>
-                                    <th>결제취소</th>
+                                    <th>결제전체취소</th>
                                         <td>
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
