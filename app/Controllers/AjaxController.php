@@ -4494,4 +4494,40 @@ class AjaxController extends BaseController {
 		echo "ajax_temp end ";
 	}
 	
+	public function ajax_order_cancel()
+	{
+		$db = \Config\Database::connect();
+		$order_idx = $this->request->getPost('order_idx');
+
+		if (!$order_idx) {
+			return $this->response
+				->setStatusCode(400)
+				->setJSON([
+					'result'  => false,
+					'message' => 'order_idx가 전달되지 않았습니다.'
+				]);
+		}
+
+		// 바인딩 방식으로 SQL 실행
+		$sql = "UPDATE tbl_order_mst SET CancelDate_1 = NOW(), order_status = 'C' WHERE order_idx = ?";
+		$result = $db->query($sql, [$order_idx]);
+
+		if ($result && $db->affectedRows() > 0) {
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'result'  => true,
+					'message' => '예약취소 완료'
+				]);
+		} else {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'result'  => false,
+					'message' => '예약취소에 실패했습니다. (존재하지 않거나 이미 취소됨)'
+				]);
+		}
+	}
+
+	
 }	
