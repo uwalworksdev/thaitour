@@ -2417,6 +2417,7 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
     $db->query("UPDATE tbl_order_mileage SET remaining_mileage = ? WHERE mi_idx = ?", [$sum_mileage, $mi_idx]);
 }
 
+/*
 function cancelPartilal($payment_no)
 {
     $sql = "SELECT IFNULL(SUM(cancel_amt),0) AS cancel_tot FROM tbl_cancel_hist WHERE payment_no = ?";
@@ -2432,7 +2433,7 @@ function cancelPartilal($payment_no)
 	   $db->query($sql_u, [$payment_no])
     }
 }
-
+*/
 function getCartCount() {
     $member = session()->get("member");
 
