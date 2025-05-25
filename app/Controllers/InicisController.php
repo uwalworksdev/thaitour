@@ -661,8 +661,6 @@ class InicisController extends BaseController
 		// Ajax로 넘어온 payment_no 받기
 		$payment_no  = $this->request->getPost('payment_no');
 		$cancelAmt   = $this->request->getPost('cancel_amt');
-		$order_nos   = $this->request->getPost('order_no');
-		$amts        = $this->request->getPost('amt');
         $add_mileage = $this->request->getPost('add_mileage');
 
 		for ($i = 0; $i < count($order_nos); $i++) {
@@ -681,7 +679,8 @@ class InicisController extends BaseController
 		}
 		
 		header('Content-Type:text/html; charset=utf-8');
-
+        
+		/*
 		// 결제정보 조회
 		$row = $db->table('tbl_payment_mst')
 				  ->where('payment_no', $payment_no)
@@ -694,7 +693,8 @@ class InicisController extends BaseController
 				'message' => '결제 정보를 찾을 수 없습니다.',
 			]);
 		}		
-
+        */
+		
         //step1. 요청을 위한 파라미터 설정
 		$key       = "cjAo6CD95LpJS0S4";
         $mid       = $setting['inicis_mid'];
@@ -760,19 +760,35 @@ class InicisController extends BaseController
 		$resultCode = $responseData['resultCode'];
 		$resultMsg  = $responseData['resultMsg'];
 
-		$cancelDate = $responseData['cancelDate'] ." ". $responseData['cancelTime'];
+		$cancelDate = $responseData['cancelDate'];
+		$cancelTime = $responseData['cancelTime'];
 
 		// 각 항목을 따옴표로 감싸기
 		$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
 		if ($resultCode == "00") {
+			
+    		$tid = $responseData['tid'];
+			$sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
+													,pg	         = 'INICIS'
+													,cancel_amt	 = '". $cancelAmt ."'
+													,cancel_date = '". $cancelDate ."'	
+													,cancel_time = '". $cancelTime ."'	
+													,tid	     = '". $tid."'
+													,resultCode	 = '". $resultCode ."'
+													,ResultMsg	 = '". $resultMsg ."'	
+													,reg_date	 = now() ";
+			$db->query($sql);
+			
+		    /*
 			$db->table('tbl_payment_mst')
 			   ->where('payment_no', $payment_no)
 			   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
 
 			// 여러 주문번호에 대해 업데이트 수행
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
-
+            */
+			
 			// 적립포인트 재조정
 			cancelMileage($payment_no, $cancelAmt);
 
