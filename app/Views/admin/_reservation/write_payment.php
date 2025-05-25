@@ -112,11 +112,7 @@
                                     <td><?=$payment_row['payment_no']?></td>
                                     <td><?=$order['order_no']?></td>
                                     <td><?=$order['order_date']?></td>
-                                    <td>
-										    <?=substr($order['CancelDate_1'], 0, 4) . '-' . substr($order['CancelDate_1'], 4, 2)  . '-' . substr($order['CancelDate_1'], 6, 2) .' '; ?> 
-										    <?=substr($order['CancelDate_1'], 9, 2) . ':' . substr($order['CancelDate_1'], 11, 2) . ':' . substr($order['CancelDate_1'], 13, 2)?>
-										
-                                    </td>
+                                    <td><?=$order['CancelDate_1']?></td>
                                     <td><?=$order['product_name']?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price'])?></td>
 									<td style="text-align:right;"><?=number_format($order['order_price_bath'])?></td>
