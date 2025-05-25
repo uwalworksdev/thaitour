@@ -505,7 +505,7 @@ class ReservationController extends BaseController
         $result2    = $result2->getRowArray();
 		
 		// 에약취소 history
-        $sql        = "	select * from tbl_cancel_hist where payment_no = '". $result['payment_no'] ."' ";
+        $sql        = "	select * from tbl_cancel_hist where payment_no = '". $result['payment_no'] ."' order by id asc ";
 		write_log($sql);				
         $result3    = $this->connect->query($sql);
         $result3    = $result3->getResultArray();
