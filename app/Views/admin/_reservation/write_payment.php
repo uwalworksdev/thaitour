@@ -3,7 +3,7 @@
 <?php
 $payment_no = "P_20250525111101637";
 
-//cancelPartilal($payment_no);
+cancelPartilal($payment_no);
 ?>
     <script type="text/javascript">
         function checkForNumber(str) {
