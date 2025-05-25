@@ -247,23 +247,26 @@
                                     <?php } ?>
 
 								    <tr>
+                                        <th>결제 부분취소 이력</th>
+                                        <td colspan="3">
+											<?php 
+											     $cancel_tot = $cancel_remaind = 0;
+											     foreach ($cancel_hist as $cancel) { 
+													      $cancel_tot = $cancel_tot + $cancel['cancel_amt'];
+											              echo "취소일시: ". $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." 취소금액: ". number_format($cancel['cancel_amt']) ." 원<br>";
+											     } 
+												 $payment_row['payment_price'] = $payment_row['payment_price'] - $cancel_remaind;
+											?> 
+										</td>
+									</tr>
+									
+								    <tr>
                                         <th>결제 부분취소</th>
                                         <td colspan="3">
 										    <input type="text" name="partial_cancel_amt" id="partial_cancel_amt" class="input_txt" value="<?=$payment_row['payment_price']?>" style="width:100px;text-align:right;">
 									        <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
                                         </td>
                                     </tr>
-									
-								    <tr>
-                                        <th>결제부분 취소이력</th>
-                                        <td colspan="3">
-											<?php 
-											     foreach ($cancel_hist as $cancel) { 
-											              echo "취소일시: ". $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." 취소금액: ". number_format($cancel['cancel_amt']) ." 원<br>";
-											     } 
-											?> 
-										</td>
-									</tr>
 									
 								    <tr>
                                         <th>주문 문자발송(알림톡)</th>
