@@ -250,7 +250,7 @@
 								    <tr>
                                         <th>결제 부분취소</th>
                                         <td colspan="3">
-										    <input type="" name="" id="" value="<?=$payment_row['payment_price']?>">
+										    <input type="" name="" id="" class="input_txt" value="<?=$payment_row['payment_price']?>" style="text-align:right;">
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
 										&emsp;<?=$payment_row['payment_c_date']?>
