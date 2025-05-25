@@ -257,8 +257,11 @@
 								    <tr>
                                         <th>결제부분 취소이력</th>
                                         <td colspan="3">
-											<?php foreach ($cancel_hist as $cancel) { ?>
-											<?php } ?> 
+											<?php 
+											     foreach ($cancel_hist as $cancel) { 
+											              echo $calcel['cancel_date'] ." ". $calcel['cancel_time'] ." ". $calcel['cancel_amt'] ."<br>";
+											     } 
+											?> 
 										</td>
 									</tr>
 									
