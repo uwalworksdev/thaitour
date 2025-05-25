@@ -250,12 +250,12 @@
                                         <th>결제 부분취소 이력</th>
                                         <td colspan="3">
 											<?php 
-											     $cancel_tot = $cancel_remaind = 0;
+											     $cancel_tot = 0;
 											     foreach ($cancel_hist as $cancel) { 
 													      $cancel_tot = $cancel_tot + $cancel['cancel_amt'];
 											              echo "취소일시: ". $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." 취소금액: ". number_format($cancel['cancel_amt']) ." 원<br>";
 											     } 
-												 $payment_row['payment_price'] = $payment_row['payment_price'] - $cancel_remaind;
+												 $payment_row['payment_price'] = $payment_row['payment_price'] - $cancel_tot;
 											?> 
 										</td>
 									</tr>
