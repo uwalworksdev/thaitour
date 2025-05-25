@@ -213,7 +213,7 @@
                                     </td>
 
                                     <?php if($payment_row['payment_status'] == "Y") { ?>
-                                    <th>결제전체취소</th>
+                                    <th>결제 전체취소</th>
                                         <td>
                                             <?=number_format($payment_row['payment_price'])?>원 &emsp;
 											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
@@ -247,6 +247,17 @@
                                     </tr>
                                     <?php } ?>
 
+								    <tr>
+                                        <th>결제 부분취소</th>
+                                        <td colspan="3">
+                                        <td>
+                                            <?=number_format($payment_row['payment_price'])?>원 &emsp;
+											<a href="javascript:payment_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>')" class="btn btn-default">
+										<span class="glyphicon glyphicon-cog"></span><span class="txt">카드결제 취소</span></a>
+										&emsp;<?=$payment_row['payment_c_date']?>
+                                        </td>
+                                        </td>
+                                    </tr>
 								    <tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
