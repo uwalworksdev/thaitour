@@ -259,7 +259,7 @@
                                         <td colspan="3">
 											<?php 
 											     foreach ($cancel_hist as $cancel) { 
-											              echo $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." ". $cancel['cancel_amt'] ."<br>";
+											              echo "취소일시: ". $cancel['cancel_date'] ." ". $cancel['cancel_time'] ." 취소금액: ". number_format($cancel['cancel_amt']) ." 원<br>";
 											     } 
 											?> 
 										</td>
