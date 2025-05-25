@@ -1,10 +1,5 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<?php
-$payment_no = "P_20250525111101637";
-
-cancelPartilal($payment_no);
-?>
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
