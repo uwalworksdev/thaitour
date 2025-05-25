@@ -253,6 +253,15 @@
 									        <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
                                         </td>
                                     </tr>
+									
+								    <tr>
+                                        <th>결제부분 취소이력</th>
+                                        <td colspan="3">
+											<?php foreach ($cancel_hist as $cancel) { ?>
+											<?php } ?> 
+										</td>
+									</tr>
+									
 								    <tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
