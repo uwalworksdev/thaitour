@@ -101,7 +101,7 @@
 									<th style="text-align:center;">결제금액(바트)</th>
 									<th style="text-align:center;">실결제금액(원)</th>
 									<th style="text-align:center;">실결제금액(바트)</th>
-									<th style="text-align:center;">결제취소</th>
+									<th style="text-align:center;">에약취소</th>
 									<th style="text-align:center;">예약정보</th>
 								</tr>
 
