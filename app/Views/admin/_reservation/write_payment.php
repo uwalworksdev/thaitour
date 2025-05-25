@@ -63,7 +63,6 @@
 
                 <input type=hidden name="payment_idx" id="payment_idx" value='<?= $payment_row['payment_idx'] ?>'>
                 <input type=hidden name="order_no" id="order_no" value='<?= $payment_row['order_no'] ?>'>
-                <input type=hidden name="partial_cancel_amt" id="partial_cancel_amt" value='0'>
                 <input type=hidden name="add_mileage" id="add_mileage" value='<?=$add_mileage?>'>
 			    <input type="hidden" id="cancel_amt_tot" value="<?=$payment_row['payment_price']?>" >
 
@@ -250,7 +249,7 @@
 								    <tr>
                                         <th>결제 부분취소</th>
                                         <td colspan="3">
-										    <input type="text" name="cancel_amt" id="cancel_amt" class="input_txt" value="<?=$payment_row['payment_price']?>" style="width:100px;text-align:right;">
+										    <input type="text" name="partial_cancel_amt" id="partial_cancel_amt" class="input_txt" value="<?=$payment_row['payment_price']?>" style="width:100px;text-align:right;">
 									        <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
                                         </td>
                                     </tr>
@@ -610,8 +609,8 @@ function info_receipt(pg, tid)
 
 			let order_no_arr = [];
 			let amt_arr      = [];
-			let cancel_amt   = 0;
-
+			let cancel_amt   = $("#partial_cancel_amt").val();
+/*
 			$('.part_cancel:checked').each(function () {
 				const order_no = $(this).data('order_no');
 				const amt = parseFloat($(this).data('amt'));
@@ -625,7 +624,7 @@ function info_receipt(pg, tid)
 				alert("부분취소할 항목을 선택하세요.");
 				return false;
 			}
-
+*/
 			let url = "";
 			if (pg === "NICEPAY") url = "/nicepay_partial_refund";
 			if (pg === "INICIS")  url = "/inicis_partial_refund";
@@ -636,8 +635,6 @@ function info_receipt(pg, tid)
 				data: {
 					"payment_no"   : no,
 					"cancel_amt"   : cancel_amt,
-					"order_no"     : order_no_arr,
-					"amt"          : amt_arr,
 					"add_mileage"  : $("#add_mileage").val()	
 				},
 				dataType: "json",
