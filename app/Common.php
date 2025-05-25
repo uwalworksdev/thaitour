@@ -2420,6 +2420,8 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
 
 function cancelPartilal($payment_no)
 {
+    $db = db_connect();
+
     $sql = "SELECT SUM(cancel_amt) AS cancel_tot FROM tbl_cancel_hist WHERE payment_no = ?";
     $row = $db->query($sql, [$payment_no])->getRowArray();
     $cancel_tot = $row['cancel_tot'];  // 부분취소 금액 총액
