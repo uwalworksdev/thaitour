@@ -2421,23 +2421,45 @@ function updateMileageSum($db, $m_idx, $mi_idx) {
 function cancelPartilal($payment_no)
 {
     $db = db_connect();
+    $db->transStart(); // 트랜잭션 시작
 
-    $sql = "SELECT SUM(cancel_amt) AS cancel_tot FROM tbl_cancel_hist WHERE payment_no = ?";
+    // 부분취소 금액 총합 계산
+    $sql = "SELECT IFNULL(SUM(cancel_amt), 0) AS cancel_tot FROM tbl_cancel_hist WHERE payment_no = ?";
     $row = $db->query($sql, [$payment_no])->getRowArray();
-    $cancel_tot = $row['cancel_tot'];  // 부분취소 금액 총액
+    $cancel_tot = $row['cancel_tot'];
 
+    // 결제금액 조회
     $sql = "SELECT Amt_1 AS payment_price FROM tbl_payment_mst WHERE payment_no = ?";
     $row = $db->query($sql, [$payment_no])->getRowArray();
+
+    if (!$row) {
+        log_message('error', "결제정보 없음: payment_no = {$payment_no}");
+        $db->transRollback();
+        return false;
+    }
+
     $payment_price = $row['payment_price'];
-	
-	if($cancel_tot == $payment_price) {
-	   $sql_u = "UPDATE tbl_payment_mst SET payment_status = 'C' WHERE payment_no = ?";
-	   $db->query($sql_u, [$payment_no]);
-	   
-	   //$sql_u = "UPDATE tbl_order_mst SET order_status = 'C' WHERE payment_no = ?";
-	   //$db->query($sql_u, [$payment_no]);
+
+    // 전액 취소된 경우 결제/주문 상태 업데이트
+    if ((float)$cancel_tot >= (float)$payment_price) {
+        $sql1 = "UPDATE tbl_payment_mst SET payment_status = 'C' WHERE payment_no = ?";
+        $db->query($sql1, [$payment_no]);
+
+        $sql2 = "UPDATE tbl_order_mst SET order_status = 'C' WHERE payment_no = ?";
+        $db->query($sql2, [$payment_no]);
+    }
+
+    // 트랜잭션 종료
+    if ($db->transStatus() === false) {
+        $db->transRollback();
+        log_message('error', "부분취소 처리 중 오류 발생: payment_no = {$payment_no}");
+        return false;
+    } else {
+        $db->transCommit();
+        return true;
     }
 }
+
 
 function getCartCount() {
     $member = session()->get("member");
