@@ -125,7 +125,7 @@
 									<!--td>-</td-->
 									<td style="text-align: center;">
 									    <?php if($order['order_status'] != "C") { ?>
-									    <input type="checkbox" class="part_cancel" data-order_no="<?=$order['order_no']?>" data-amt="<?=$order['real_price_won']?>" >
+									    <button type="button" class="btn" style="width: unset;" onclick="orderCancel('<?=$order['order_idx']?>');">취소하기</button>
 										<?php } else { ?>				
 									    <p style="color:red">예약취소</p>
 										<?php }?>
