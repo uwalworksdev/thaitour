@@ -537,11 +537,14 @@ class PaymentController extends BaseController
 
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
+				$cancelTime = $response_data['CancelTime'] ?? date('Y-m-d H:i:s');
+			    $resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
 
                 $sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
 														,pg	         = 'NICEPAY'
 														,cancel_amt	 = '". $cancelAmt ."'
 														,cancel_date = '". $cancelDate ."'	
+														,cancel_time = '". $cancelTime ."'	
 														,tid	     = '". $tid."'
 														,resultCode	 = '". $resultCode ."'
 														,ResultMsg	 = '". $resultMsg ."'	
