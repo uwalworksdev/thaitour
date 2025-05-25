@@ -2432,8 +2432,8 @@ function cancelPartilal($payment_no)
 	   $sql_u = "UPDATE tbl_payment_mst SET payment_status = 'C' WHERE payment_no = ?";
 	   $db->query($sql_u, [$payment_no]);
 	   
-	   $sql_u = "UPDATE tbl_order_mst SET order_status = 'C' WHERE payment_no = ?";
-	   $db->query($sql_u, [$payment_no]);
+	   //$sql_u = "UPDATE tbl_order_mst SET order_status = 'C' WHERE payment_no = ?";
+	   //$db->query($sql_u, [$payment_no]);
     }
 }
 
