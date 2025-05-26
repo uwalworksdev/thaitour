@@ -37,32 +37,40 @@
                     <div class="category-left only_web">
                         <div class="category-left-tit flex_b_c">
                             <h1 class="title"><?= $code_name ?></h1>
-                            <div class="search-navigation flex">
-                                <div class="navigation-container-next">
-                                    <span class="font-bold"><?= $code_name ?></span>
+							
+<div class="search-navigation flex">
+    <!-- 2Depth: 방콕 -->
+    <div class="navigation-container-next">
+        <span class="font-bold"><?= $code_name ?></span>
+        <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+            <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                <?php $parent_code = 1303 ?>
+                <?= getHeaderTabSubChildNew($parent_code, $code_no); ?>
+            </ul>
+        </div>
+    </div>
+    <div class="navigation-container-next new">
+        <img class="ball_dot_icon icon_open_depth_new_" data-depth="depth_2_tools_new_"
+             src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+    </div>
 
-                                    <div class="depth_2_tools_new_" id="depth_2_tools_new_">
-                                        <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
-                                            <?php $parent_code = 1303 ?>
-                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
-                                        </ul>
-                                    </div>
+    <!-- 3Depth: 동적 출력 -->
+    <div class="navigation-container-next depth_3_container" style="display:none;">
+        <span class="font-bold depth_3_label"></span>
+        <div class="depth_3_tools_new_" id="depth_3_tools_new_">
+            <ul class="depth_3_tool_list_new_" id="depth_3_tool_list_new_"></ul>
+        </div>
+    </div>
+    <div class="navigation-container-next new depth_3_icon" style="display:none;">
+        <img class="ball_dot_icon icon_open_depth_new_" data-depth="depth_3_tools_new_"
+             src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+    </div>
+</div>
 
-                                    <div class="depth_3_tools_new_" id="depth_3_tools_new_">
-                                        <ul class="depth_3_tool_list_new_" id="depth_3_tool_list_new_">
-                                            <?php $parent_code = 1303 ?>
-                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="navigation-container-next new">
-                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
-                                         data-depth="depth_2_tools_new_"
-                                         src="/uploads/icons/ball_dot_icon.png"
-                                         alt="ball_dot_icon">
-                                </div>
-                            </div>
+							
                         </div>
+						
+						
                         <div class="category-left-list">
                             <div class="category-left-item">
                                 <div class="subtitle">
@@ -548,7 +556,7 @@
                         ?>
 
                         <?php
-                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?s_code_no=" . $code_no . "&pg=")
+                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&pg=")
                         ?>
                     </div>
                 </div>
