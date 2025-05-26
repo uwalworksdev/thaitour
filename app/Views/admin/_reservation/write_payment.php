@@ -259,12 +259,12 @@
 											?> 
 										</td>
 									</tr>
-								    <input type="text" name="cancel_tot" id="cancel_tot" value="<?=$cancel_tot?>">
 
 									<?php if($payment_row['payment_status'] != "C") { ?>
 								    <tr>
                                         <th>결제 부분취소</th>
                                         <td colspan="3">
+										    기 취소총액<input type="text" name="cancel_tot" id="cancel_tot" class="input_txt" value="<?=$cancel_tot?>" style="width:100px;text-align:right;" readonly>
 										    <input type="text" name="partial_cancel_amt" id="partial_cancel_amt" class="input_txt" value="<?=$payment_row['payment_price']?>" style="width:100px;text-align:right;">
 									        <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
                                         </td>
