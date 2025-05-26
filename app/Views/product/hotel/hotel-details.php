@@ -1310,7 +1310,7 @@
                         </div>
                         <div class="grid2_2_1_m only_mo">
                             <!-- <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1"> -->
-                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1">
+                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1" onerror="this.src='/images/share/noimg.png'">
                         </div>
 
                         <div class="wrap_btn_detail">
