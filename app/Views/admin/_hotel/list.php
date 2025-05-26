@@ -284,15 +284,15 @@
                                         $_product_code_arr = array_filter($_product_code_arr);
                                         ?>
                                         <div class="" style="padding: 0 20px">
+										    <p class="new">
                                             <?php
                                             foreach ($_product_code_arr as $_tmp_code) {
                                                 ?>
-
-                                                <p class="new"><?= get_cate_text($_tmp_code) ?>
-                                                </p>
-                                                <?php
+                                                <?= get_cate_text($_tmp_code) ?>
+                                            <?php
                                             }
                                             ?>
+											</p>
                                         </div>
                                         <div class="flex_c_c" style="gap: 10px;">
                                             <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
