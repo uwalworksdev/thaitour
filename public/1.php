@@ -27,8 +27,8 @@
 	$detail = [
 		"tid"          => "StdpayCARDthaitour3720250526131151226019",
 		"msg"          => "관리자 결제취소",
-		"price"        => 4241,    // ✅ 숫자형
-		"confirmPrice" => 1000,    // ✅ 숫자형
+		"price"        => 1000,    // ✅ 숫자형
+		"confirmPrice" => 2241,    // ✅ 숫자형
 		"currency"     => "WON",
 		"tax"          => 0,
 		"taxfree"      => 0
