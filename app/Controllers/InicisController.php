@@ -660,7 +660,8 @@ class InicisController extends BaseController
 		
 		// Ajax로 넘어온 payment_no 받기
 		$payment_no  = $this->request->getPost('payment_no');
-		$cancelAmt   = $this->request->getPost('cancel_amt');
+        $cancel_tot  = $this->request->getPost('cancel_tot');
+	    $cancelAmt   = $this->request->getPost('cancel_amt');
         $add_mileage = $this->request->getPost('add_mileage');
         
 		/*
@@ -710,7 +711,7 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 	
 	    $price        = $cancelAmt;
-		$confirmPrice = $row['Amt_1'] - $price;
+		$confirmPrice = $cancel_tot - $price;
 		
 		//// Data 상세
 		$detail = [
