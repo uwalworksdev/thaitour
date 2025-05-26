@@ -1235,7 +1235,7 @@ function product_price($idx)
          $today     = date('Y-m-d');
          $tomorrow  = date('Y-m-d', strtotime('+1 day'));
 
-         $com_price = 999999;
+         $com_price = 0;
 		 $sql       = "SELECT * FROM tbl_room_price WHERE product_idx = '". $idx ."' AND goods_date = '". $today ."' AND  goods_price2 > 0 ";
 		 //write_log("tbl_room_price seq - ". $sql);
          $result    = $connect->query($sql)->getResultArray();
