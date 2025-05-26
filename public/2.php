@@ -8,10 +8,10 @@ $clientIp  = $_SERVER['REMOTE_ADDR'];         // 또는 고정 IP
 
 // 요청 데이터 구성
 $detail = [
-    "tid"          => "StdpayCARDthaitour3720250526095858348462",
+    "tid"          => "StdpayCARDthaitour3720250526131151226019",
     "msg"          => "테스트취소",
-    "price"        => 8482,     // 전체 결제금액
-    "confirmPrice" => 5000,     // 이번 취소 금액
+    "price"        => 4241,     // 전체 결제금액
+    "confirmPrice" => 1000,     // 이번 취소 금액
     "currency"     => "WON",
     "tax"          => 0,
     "taxfree"      => 0
