@@ -838,8 +838,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="card-right2 spa-detail">
-                            <h3 class="title-r">
+                        <div class="card-right2 spa-detail">
+                            <!-- <h3 class="title-r">
                                 여행인원 및 예약금액
                             </h3>
                             <div class="list_schedule_">          
