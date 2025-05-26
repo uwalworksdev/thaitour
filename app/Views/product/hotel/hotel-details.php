@@ -659,6 +659,16 @@
                         지도에서 보기
                     </a>
                 </div>
+                <div class="list-icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
+                        onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                        onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                    <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                </div>
             </div>
             <div class="rating-container">
                 <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
@@ -702,7 +712,9 @@
                 </div>
                 <div class="grid_2_2">
                     <?php 
-                        for ($j = 2; $j < 5; $j++) {
+                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
                     ?>
                         <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                             class="grid_2_2_size imageDetailSup_"
