@@ -314,7 +314,7 @@
                                     <span><?= $day_ ?>(<span id="day_"></span>)</span>
                                 </div>
                                 <?php
-                                    if($prod["product_code_1"] == "1325" || $prod["product_code_1"] == "1320"){
+                                    if(empty($prod["use_time_line"])){
                                 ?>
                                     <div class="item-info" style="gap: 10px;">
                                         <span>예약시간: </span>
@@ -344,22 +344,22 @@
                                         }
                                     ?>
                                     <div class="schedule schedule_booking">
-                                        <p style="font-weight: bold;"><?=$val?></p>
+                                        <p style="font-weight: bold; width: 100%;"><?=$val?></p>
                                         <div class="schedule_wrap">
-                                            <div class="wrap-text">
-                                                <p>성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
+                                            <div class="wrap-text" style="width: 100%;">
+                                                <p style="text-wrap: nowrap">성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
-                                                <span><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
+                                                <span style="text-wrap: nowrap"><?= number_format((int)$adultPrice[$key] * (int)$adultQty[$key]) ?></span>
                                                 <span> 원</span>
                                             </div>
                                         </div>
                                         <div class="schedule_wrap">
-                                            <div class="wrap-text">
-                                                <p>아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
+                                            <div class="wrap-text" style="width: 100%;">
+                                                <p style="text-wrap: nowrap">아동<?= $key + 1 ?> x <?= $childrenQty[$key] ?></p>
                                             </div>
                                             <div class="wrap-btn">
-                                                <span><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>
+                                                <span style="text-wrap: nowrap"><?= number_format((int)$childrenPrice[$key] * (int)$childrenQty[$key]) ?></span>
                                                 <span> 원</span>
                                             </div>
                                         </div>
@@ -383,7 +383,7 @@
                                                     <div class="wrap-text">
                                                         <p><?= $data['option_name'][$i] ?>(<?=number_format($data['option_price'][$i])?> 원)</p>
                                                     </div>
-                                                    <div class="wrap-btn">
+                                                    <div class="wrap-btn" style="gap: 5px;">
                                                         <img onclick="minusQty(this)" class="minusQty"
                                                             src="/images/sub/minus-ic.png"
                                                             alt="">
@@ -466,10 +466,41 @@
                                 이전
                             </p>
 
-                            <span class="cus-label-r info_link" data-product-idx="<?= $prod['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+                            <span class="cus-label-r info_link" data-product-idx="<?= $prod['product_code_1'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
 
                             <?php if($prod['direct_payment'] == "Y") { ?>
 							<span style="color:red;">※ 예약확정 상품입니다.</span>
+                            <?php } ?>
+                            
+                            <div class="terms-wrap" style="width: 100%;">
+                                <h3 class="title-second">약관동의</h3>
+                                <div class="item-info-check item_check_term_all_">
+                                    <label for="fullagreement">전체동의</label>
+                                    <input type="hidden" value="N" id="fullagreement">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">이용약관 동의(필수)</label>
+                                    <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="terms">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 처리방침(필수)</label>
+                                    <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="policy">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                    <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="information">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                    <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="guidelines">
+                                </div>
+                            </div>
+
+                            <?php if($prod['direct_payment'] == "Y") { ?>
                             <button class="btn-order btnOrder" onclick="completePayment('B');" type="button">결제하기</button>
 							<?php } else { ?>
                             <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기</button>
@@ -524,6 +555,25 @@
         </div>
         <div class="dim"></div>
     </div>
+</div>
+
+<div class="popup_wrap place_pop reservation_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>약관동의</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <div id="policyContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
 </div>
 
 <div class="couponplus_pop">
@@ -614,6 +664,27 @@
         </form>
     </div>
 </div>
+<script>
+    $(".view-policy").on("click", function(event) {
+        event.stopPropagation();
+        let type = $(this).data("type");
+        if (type == 1) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[1]["policy_contents"]) ?>`);
+        } else if (type == 2) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[0]["policy_contents"]) ?>`);
+        } else if (type == 3) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[2]["policy_contents"]) ?>`);
+        } else {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[3]["policy_contents"]) ?>`);
+        }
+
+        let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+        $(".reservation_pop .popup_place__head__ttl h2").text(title);
+        $(".reservation_pop").show();
+    });
+</script>
+
 <script>
     $(document).ready(function () {
 

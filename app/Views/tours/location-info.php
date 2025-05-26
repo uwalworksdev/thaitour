@@ -7,7 +7,7 @@
             <div class="title-container">
                 <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                 <div class="list-icon">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
                 </div>
@@ -120,8 +120,8 @@
                         href="/product-tours/item_view/<?= $product['product_idx'] ?>#product_des">상품설명</a>
                     <a class="short_link"
                         href="/product-tours/location_info/<?= $product['product_idx'] ?>#section2">위치정보</a>
-                    <a class="short_link active" href="/product-tours/location_info/<?= $product['product_idx'] ?>#section6">생생리뷰(<?= $product['total_review'] ?>개)</a>
-                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx'] ?>#qa-section">상품Q&A</a>
+                    <a class="short_link " href="/product-tours/location_info/<?= $product['product_idx'] ?>#section6">생생리뷰(<?= $product['total_review'] ?>개)</a>
+                    <a class="short_link active" href="/product-tours/location_info/<?= $product['product_idx'] ?>#qna">상품Q&A(<?= $product_qna["nTotalCount"] ?? 0 ?>)</a>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
 
             <?php echo view("/product/inc/review_product"); ?>
 
-            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?= $product_qna["nTotalCount"] ?>)</h2>
+            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(<?= $product_qna["nTotalCount"] ?? 0 ?>)</h2>
             <div class="qa-section">
                 <div class="custom-area-text">
                     <label class="custom-label" for="qa-comment">
@@ -161,12 +161,12 @@
                     <?php
                     $num_qna = $product_qna["num"];
                     foreach ($product_qna["items"] as $qna) {
-                        if (!empty(trim($qna["reply_content"]))) {
+                        if(!empty(trim($qna["reply_content"]))){
                             $qna_status = "Y";
-                            $qna_text = "답변대기중";
-                        } else {
-                            $qna_status = "N";
                             $qna_text = "답변완료";
+                        }else{
+                            $qna_status = "N";
+                            $qna_text = "문의접수";
                         }
                     ?>
                         <li class="qa-item">

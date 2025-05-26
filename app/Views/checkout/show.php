@@ -322,10 +322,10 @@
                             <div class="form-group mo_mt-30">
                                 <label for="passport-name2">여행시 현지 연락처</label>
                                 <div class="form-group-flex" style="display: flex; align-items: center; gap: 20px">
-                                    <select id="car-time-hour" name="local_phone" class="select-width" style="width: 200px">
+                                    <select id="car-time-hour" name="local_phone1" class="select-width" style="width: 200px">
                                         <option value="01">TH</option>
                                     </select>
-                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone_number" placeholder="">
+                                    <input name="local_phone2" class="phone" maxlength="10" type="text" id="local_phone_number" placeholder="">
                                 </div>
                             </div>
                         </div>

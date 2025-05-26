@@ -68,6 +68,7 @@ class ContactController extends BaseController
         $sql    = $total_sqls . " order by r_date desc, idx desc limit $start, $scale ";
 
         $result = $this->db->query($sql)->getResultArray();
+
         $num = $total_cnt - $start;
         return view("admin/_contact/list", [
             'list_contact' => $result,
@@ -215,18 +216,17 @@ class ContactController extends BaseController
                     $ufile1 = $newName;
 
                     $file->move($uploadPath, $newName);
+
+                    $sql = "
+                        UPDATE tbl_travel_contact SET
+                        ufile1='".$ufile1."',
+                        rfile1='".$rfile1."'
+                        WHERE idx='$idx';
+                    ";
+                    $this->db->query($sql);
                 }
             }
 
-            if ($idx) {
-                $sql = "
-                    UPDATE tbl_travel_contact SET
-                    ufile1='".$ufile1."',
-                    rfile1='".$rfile1."'
-                    WHERE idx='$idx';
-                ";
-                $this->db->query($sql);
-            }
         }
         
         $sql = "

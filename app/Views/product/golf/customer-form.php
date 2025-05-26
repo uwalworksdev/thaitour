@@ -204,7 +204,7 @@
                             <div class="form-group mo_mt-30">
                                 <label for="passport-name2">여행시 현지 연락처</label>
                                 <div class="form-group-flex">
-                                    <select id="car-time-hour" class="select-width">
+                                    <select id="passport-name2" class="select-width">
                                         <option value="01">TH</option>
                                     </select>
                                     <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
@@ -218,30 +218,45 @@
                                 여행자 정보 입력
                             </h3>
                             <div class="form-container">
+                                <?php
+                                    if($total_vehicle > 0){
+                                ?>
                                 <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?= $total_vehicle ?>대</h3>
-                                <div class="con-form-select form-group mb-30">
-                                    <label for="car-time-hour">차량 미팅 시간</label>
-                                    <div class="form-group time-group">
-                                        <div class="form-group-second">
-                                            <select id="car-time-hour" name="vehicle_time_hour" class="select-width">
-                                                <?php for ($i = 6; $i <= 19; $i++) { ?>
-                                                    <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <span>시</span>
-                                        </div>
-                                        <div class="form-group-second">
-                                            <select id="car-time-minute" name="vehicle_time_minute"
-                                                    class="select-width">
-                                                <?php for ($i = 0; $i < 60; $i++) { ?>
-                                                    <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
-                                                <?php } ?>
-                                            </select>
-                                            <span>분</span>
+                                <div class="flex__c wrap-golf-info">
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="car-time-hour">차량 미팅 시간</label>
+                                        <div class="form-group time-group">
+                                            <div class="form-group-second">
+                                                <select id="car-time-hour" name="vehicle_time_hour" class="select-width golf-select">
+                                                    <?php for ($i = 6; $i <= 19; $i++) { ?>
+                                                        <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <span>시</span>
+                                            </div>
+                                            <div class="form-group-second">
+                                                <select id="car-time-minute" name="vehicle_time_minute" class="select-width golf-select">
+                                                    <?php for ($i = 0; $i < 60; $i++) { ?>
+                                                        <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                                <span>분</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="number_staff">인원</label>
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="number_staff" name="number_staff">
+                                        </div>
+                                    </div>
+                                    <div class="con-form-select form-group mb-30">
+                                        <label for="number_luggage">짐갯수</label>
+                                        <div class="form-group ip-group time-group">
+                                            <input type="text" id="number_luggage" name="number_luggage">
+                                        </div>
+                                    </div>
+                                </div> 
 
                                 <div class="form-group mb-30">
                                     <label for="pickup-location">출발지(필요호텔)</label>
@@ -250,13 +265,14 @@
                                            placeholder="호텔명을 영어로 적어주세요(주소불가)"/>
                                     <span class="text-gray">※일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨줴요.</span>
                                 </div>
-
+                                <?php
+                                    }
+                                ?>
 
                                 <!-- <div class="form-group mb-30">
                                     <label for="golf-club">목적지(골프장명)</label>
                                     <input type="text" id="golf-club" value="Nikanti Golf Club" readonly />
                                 </div> -->
-
 
                                 <div class="form-group cus-form-group">
                                     <label for="extra-requests">기타요청</label>
@@ -325,7 +341,7 @@
 									
 									<?php
 										if($value['code_name'] == "승용차")     $vehicle_idx = "1";
-										if($value['code_name'] == "밴(승합차)") $vehicle_idx = "2";
+										if($value['code_name'] == "밴 (승합차)") $vehicle_idx = "2";
 										if($value['code_name'] == "SUV")        $vehicle_idx = "3";
 										if($value['code_name'] == "카트")       $vehicle_idx = "4";
 										if($value['code_name'] == "캐디피")     $vehicle_idx = "5";
@@ -366,7 +382,7 @@
                             <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간)
                                 이전
                             </p>
-                            <span class="cus-label-r info_link" data-product-idx="<?= $product['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
+                            <span class="cus-label-r info_link" data-product-idx="<?= $product['product_code_1'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check-first item-clause-all">
                                 <span>전체동의</span>
@@ -664,41 +680,41 @@
         function handleSubmit(status) {
 
             if(status == "W") {
-					if ($("#order_user_name_kor").val() === "") {
-						alert("한글명을 입력해주세요!");
-						$("#order_user_name_kor").focus();
-						return false;
-					}
+                if ($("#order_user_name_kor").val() === "") {
+                    alert("한글명을 입력해주세요!");
+                    $("#order_user_name_kor").focus();
+                    return false;
+                }
 
-					if ($("#order_user_first_name_en").val() === "") {
-						alert("영문명을 입력해주세요!");
-						$("#order_user_first_name_en").focus()
-						return false;
-					}
-					
-					if ($("#order_user_last_name_en").val() === "") {
-						alert("영문명을 입력해주세요!");
-						$("#order_user_last_name_en").focus()
-						return false;
-					}
+                if ($("#order_user_first_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+                    $("#order_user_first_name_en").focus()
+                    return false;
+                }
+                
+                if ($("#order_user_last_name_en").val() === "") {
+                    alert("영문명을 입력해주세요!");
+                    $("#order_user_last_name_en").focus()
+                    return false;
+                }
 
-					if ($("#order_passport_number").val() === "") {
-						alert("여권번호를 입력해주세요!");
-						$("#order_passport_number").focus();
-						return false;
-					}
+                if ($("#order_passport_number").val() === "") {
+                    alert("여권번호를 입력해주세요!");
+                    $("#order_passport_number").focus();
+                    return false;
+                }
 
-					if ($("#order_passport_expiry_date").val() === "") {
-						alert("여권만기일을 입력해주세요!");
-						$("#order_passport_expiry_date").focus();
-						return false;
-					}
+                if ($("#order_passport_expiry_date").val() === "") {
+                    alert("여권만기일을 입력해주세요!");
+                    $("#order_passport_expiry_date").focus();
+                    return false;
+                }
 
-					if ($("#order_birth_date").val() === "") {
-						alert("생년월일을 입력해주세요!");
-						$("#order_birth_date").focus()
-						return false;
-					}
+                if ($("#order_birth_date").val() === "") {
+                    alert("생년월일을 입력해주세요!");
+                    $("#order_birth_date").focus()
+                    return false;
+                }
 			}
 			
 			$("#order_status").val(status);
@@ -706,23 +722,23 @@
             let flag = true;
 
             if(status == "W") {
-					$("input[required]:not(:disabled)").each(function () {
-						if ($(this).val().trim() == "") {
-							alert($(this).attr("data-label") + "를 입력하십시오.");
-							$(this).focus();
-							flag = false;
-							return false;
-						}
-					});
+                $("input[required]:not(:disabled)").each(function () {
+                    if ($(this).val().trim() == "") {
+                        alert($(this).attr("data-label") + "를 입력하십시오.");
+                        $(this).focus();
+                        flag = false;
+                        return false;
+                    }
+                });
 
-					if (!flag) {
-						return false;
-					}
-            }
+                if (!flag) {
+                    return false;
+                }
 
-            if (!($(".item-clause-all").hasClass("click"))) {
-                alert("이용약관 동의(필수)를 선택하십시오.");
-                return false;
+                if (!($(".item-clause-all").hasClass("click"))) {
+                    alert("이용약관 동의(필수)를 선택하십시오.");
+                    return false;
+                }
             }
 			
             frm.submit();

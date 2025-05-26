@@ -168,8 +168,8 @@ class InicisController extends BaseController
 								  ->getRowArray();
 
 						// 사용자 ID 추출
-						$m_idx = $row['m_idx'];
-						
+						$m_idx       = $row['m_idx'];
+						$payment_idx = $row['payment_idx'];
 
 						$output = explode(",", $row['order_no']);
 						// 끝에 쉼표 제거
@@ -246,6 +246,10 @@ class InicisController extends BaseController
 
 						$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 						$db->query($sql);
+
+                        //alimTalk_deposit_send($payment_idx); 
+						completePayment($payment_idx);
+
 
                     } catch (Exception $e) {
                         //    $s = $e->getMessage() . ' (오류코드:' . $e->getCode() . ')';
@@ -657,10 +661,9 @@ class InicisController extends BaseController
 		// Ajax로 넘어온 payment_no 받기
 		$payment_no  = $this->request->getPost('payment_no');
 		$cancelAmt   = $this->request->getPost('cancel_amt');
-		$order_nos   = $this->request->getPost('order_no');
-		$amts        = $this->request->getPost('amt');
         $add_mileage = $this->request->getPost('add_mileage');
-
+        
+		/*
 		for ($i = 0; $i < count($order_nos); $i++) {
 			$order_no = $order_nos[$i];
 			$amt = $amts[$i];
@@ -668,7 +671,7 @@ class InicisController extends BaseController
 			// 예: DB 처리 또는 로그
 			// cancelPartialOrder($payment_no, $order_no, $amt);
 		}
-		
+		*/
 		if (empty($payment_no)) {
 			return $this->response->setJSON([
 				'status' => 'error',
@@ -677,7 +680,8 @@ class InicisController extends BaseController
 		}
 		
 		header('Content-Type:text/html; charset=utf-8');
-
+        
+		 
 		// 결제정보 조회
 		$row = $db->table('tbl_payment_mst')
 				  ->where('payment_no', $payment_no)
@@ -690,7 +694,8 @@ class InicisController extends BaseController
 				'message' => '결제 정보를 찾을 수 없습니다.',
 			]);
 		}		
-
+         
+		
         //step1. 요청을 위한 파라미터 설정
 		$key       = "cjAo6CD95LpJS0S4";
         $mid       = $setting['inicis_mid'];
@@ -708,12 +713,12 @@ class InicisController extends BaseController
 		$detail                 = array();
 		$detail["tid"]          = $row['TID_1'];
 		$detail["msg"]          = "관리자 부분결제취소";
-		$detail["price"]        = $cancelAmt;
-		$detail["confirmPrice"] = $cancelAmt;
+		$detail["price"]        = (int)$row['payment_tot'];
+		$detail["confirmPrice"] = (int)$cancelAmt;
 		$detail["currency"]     = "WON";
 		$detail["tax"]          = "0";
 		$detail["taxfree"]      = "0";
-		
+		write_log($row['TID_1']." - ".$row['Amt_1']." - ".$cancelAmt);
 		$postdata["data"] = $detail;
 		
 		$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
@@ -756,21 +761,40 @@ class InicisController extends BaseController
 		$resultCode = $responseData['resultCode'];
 		$resultMsg  = $responseData['resultMsg'];
 
-		$cancelDate = $responseData['cancelDate'] ." ". $responseData['cancelTime'];
+		$cancelDate = $responseData['cancelDate'];
+		$cancelTime = $responseData['cancelTime'];
 
 		// 각 항목을 따옴표로 감싸기
-		$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
 		if ($resultCode == "00") {
+			
+    		$tid = $responseData['tid'];
+			$sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
+													,pg	         = 'INICIS'
+													,cancel_amt	 = '". $cancelAmt ."'
+													,cancel_date = '". $cancelDate ."'	
+													,cancel_time = '". $cancelTime ."'	
+													,tid	     = '". $tid."'
+													,resultCode	 = '". $resultCode ."'
+													,ResultMsg	 = '". $resultMsg ."'	
+													,reg_date	 = now() ";
+			$db->query($sql);
+			
+		    /*
 			$db->table('tbl_payment_mst')
 			   ->where('payment_no', $payment_no)
 			   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
 
 			// 여러 주문번호에 대해 업데이트 수행
 			$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
-
+            */
+			
 			// 적립포인트 재조정
 			cancelMileage($payment_no, $cancelAmt);
+
+            // 부분취소 확인
+    		cancelPartilal($payment_no);				
 
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {

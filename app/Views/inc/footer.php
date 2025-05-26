@@ -92,12 +92,13 @@
     <div class="inner">
         <div>
             <ul class="flex_footer_top pl-10">
-                <li><a href="/center/map">회사소개</a></li>
+                <li><a href="/center/about">회사소개</a></li>
                 <li><a href="/community/customer_center">자주묻는 질문</a></li>
                 <li><a href="/center/reservation">예약변경 및 취소 정책 </a></li>
                 <li><a href="/center/privacy">개인정보처리방침 </a></li>
                 <!-- <li><a href="/center/tourterms">여행약관</a></li> -->
                 <li><a href="/center/terms">이용약관</a></li>
+                <li><a href="/contact/write">제휴문의</a></li>
                 <!-- <li><a href="">여행사전용 윈윈트래블</a></li> -->
             </ul>
         </div>

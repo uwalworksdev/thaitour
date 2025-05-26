@@ -103,9 +103,9 @@
                         <a href="statistics_sale_type3"> 지역별매출톨계</a>
                     </li>
 
-                    <li class="contentMenuSub ">
+                    <!--li class="contentMenuSub ">
                         <a href="statistics_sale_list">매출상세내역</a>
-                    </li>
+                    </li-->
                 </ul>
                 <div class="contentBar left" style="left: 1215.55px; display: none;"></div>
                 <div class="contentBar right" style="left: 1459px; display: none;"></div>
@@ -192,7 +192,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 - CP수수료 입니다"></i></th>
+                                <th>매출 <i class="xi-help xi-x colorDGary masterTooltip" title="매출은 상품 + 배송비 - 적립금 - 쿠폰 - 할인 입니다"></i></th>
                                 <th>상품</th>
                                 <!-- <th>CP수수료 <i class="xi-help xi-x colorDGary masterTooltip" title="CP사 수수료에 대한 집계입니다."></i></th> -->
                             </tr>
@@ -297,7 +297,7 @@
 									<?php if($cnt_arr[$i] == 0) { ?>
                                     <td class="number">0 <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= number_format($cnt_arr[$i] * 100 / array_sum($cnt_arr)) ?>%</span></td>
+                                    <td class="number"><?= number_format($cnt_arr[$i]) ?> <span><?= (round)($cnt_arr[$i] * 100 / array_sum($cnt_arr)) ?>%</span></td>
 									<?php } ?>
                                     <!-- <td class="number"><?= number_format($cp_arr[$i]) ?> <span><?= $cp_arr[$i] ?>%</span></td> -->
                                 </tr>
@@ -452,13 +452,13 @@
 									<?php if($point_arr[$i] == 0) { ?>
                                     <td class="number">0  <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($point_arr[$i]) ?>  <span><?= $point_arr[$i]  * 100 / array_sum($point_arr) ?>%</span></td>
+                                    <td class="number"><?= number_format($point_arr[$i]) ?>  <span><?= (round)($point_arr[$i]  * 100 / array_sum($point_arr)) ?>%</span></td>
 									<?php } ?>
 									
 									<?php if($coupon_arr[$i] == 0) { ?>
                                     <td class="number">0 <span>0%</span></td>
 									<?php } else { ?>
-                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= $coupon_arr[$i] * 100 / array_sum($coupon_arr) ?>%</span></td>
+                                    <td class="number"><?= number_format($coupon_arr[$i]) ?> <span><?= (round)($coupon_arr[$i] * 100 / array_sum($coupon_arr)) ?>%</span></td>
 									<?php } ?>
                                 </tr>
                             <?php } ?>

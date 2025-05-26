@@ -299,10 +299,10 @@
                                         <th>예약 문자발송(알림톡)</th>
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약접수</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약확인</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약확정</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1651');">예약확인</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_2397');">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">결제완료</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약확정</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">예약취소</button>
                                         </td>
 										<!--th>바우쳐 금액</th>
@@ -372,7 +372,7 @@
                                             } ?>>인보이스 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/ticket_01/<?=$order_idx?>', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/invoice/ticket_01/<?=$order_idx?>', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
 
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -394,7 +394,7 @@
                                             } ?>>바우처 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/ticket/<?=$order_idx?>', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/ticket/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
 										
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -613,6 +613,11 @@
 		if (!confirm('예약현황을 변경 하시겠습니까?'))
 			return false;
 
+        if($("#order_status").val() == "") {
+		   alert('예약상태를 선택하세요');
+		   return false;
+		}
+		
 		var message = "";
 		$.ajax({
 			url: "/ajax/ajax_set_status",

@@ -28,7 +28,7 @@
         }
 
         .golf_invoice {
-            padding: 20px 0 100px;
+            padding: 20px 0 0 !important;
         }
 
         .golf_invoice .logo_voice {
@@ -346,6 +346,10 @@
             padding: 9px;
             color: #7d7d7d;
         }
+
+        .golf_invoice .info_order_txt {
+            margin: 10px 0 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -390,11 +394,11 @@
                         <tbody>
                             <tr>
                                 <th>Name</th>
-                                <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
+                                <td><?=$user_name?></td>
                             </tr>
                             <tr>
                                 <th>Phone</th>
-                                <td><?=$result->order_user_mobile?></td>
+                                <td><?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -415,71 +419,66 @@
                             <tr>
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
-                                    <?=date('d-M-Y(D)', strtotime($result->start_date))?>
-                                    <?=date('d-M-Y(D)', strtotime($result->end_date))?> / <?=$result->order_day_cnt?> night
+                                   <?=$order_date?>
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Room Type</th>
-                                <td><?=$result->room_type_eng?></td>
+                                <td><?=$room_type?></td>
                                 <th>Bed Type</th>
-                                <td><?=$result->bed_type_eng?></td>
+                                <td><?=$bed_type?></td>
                             </tr>
                             <tr>
                                 <th>Guest Name</th>
-                                <td><?=$result->order_user_first_name_en?> <?=$result->order_user_last_name_en?></td>
+                                <td><?=$user_name_en?></td>
                                 <th>Number of rooms</th>
-                                <td><?=$result->order_room_cnt?></td>
+                                <td><?=$order_room_cnt?></td>
                             </tr>
                             <tr>
                                 <th>Total Persons</th>
-                                <td><?=$result->adult + $result->kids?> Adult(s)</td>
+                                <td><?=$order_people?> </td>
                                 <th>Child Age</th>
-                                <td></td>
+                                <td><?=$child_age?></td>
                             </tr>
                             <tr>
                                 <th>Breakfast</th>
                                 <td colspan="3">
                                     <?php
-                                    if($result->breakfast == "N") {
-                                        echo "Include (No) Adult Breakfast";
-                                    } else {  	 
-                                        echo "Include (Yes) Adult Breakfast";
-                                    }
-                                    ?>	 
+                                        echo $breakfast;
+                                    ?>
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Guest Request</th>
                                 <td colspan="3">
-                                    <p>Smoking Room</p>
-                                    <p>Extension Room </p>
-                                    <p>Room no: 390</p>
+                                    <?=$guest_request?>
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Agent Memo</th>
-                                <td colspan="3"><?=$result->order_memo?></td>
+                                <td colspan="3"><?=$order_memo?></td>
                             </tr>
                             <tr>
                                 <th>Remarks</th>
                                 <td colspan="3">
+                                    <?=$order_remark?>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Option</th>
                                 <td colspan="3">
+                                    <?=$order_option?>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <br>
-                    <div class="info_order_txt" style="">
-                        <p style="font-weight: bold;">• Booked by: Totobooking</p>
-                        <p>• Booked on: 27-Sep-2023(Wed)</p>
+                    <div class="info_order_txt">
+                        <p style="font-weight: bold;">• Booked by: <?= $setting['site_name_en'] ?></p>
+                        <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
                 </div>
             </div>

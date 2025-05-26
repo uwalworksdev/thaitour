@@ -396,7 +396,7 @@ endforeach;
 									
                                     <label for="prod<?=esc($order->order_idx)?>"> 예약일(예약번호): <?= esc($order->order_date)?>(<?= esc(dateToYoil($order->order_r_date))?>) (<?= esc($order->order_no)?>) </label>
                                 </div>
-                                <a href="!#" class="product_tit">[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
+                                <a href="#" class="info_reservation product_tit" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>" >[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
                                 <div class="info_payment flex__c">
                                     <div class="tag">
                                         <p><?= esc($_deli_type[$order->order_status])?></p>
@@ -429,7 +429,7 @@ endforeach;
                                     <img src="/images/mypage/not-allowed.png" alt="">
                                     <p>취소 규정 : 결제후 <span>03월20일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다</p>
                                 </div>
-                                <div class="info_link" data-product-idx="<?= $order->product_idx ?>">본 예약건 취소규정 자세히 보기</div>
+                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
 							    
@@ -444,11 +444,14 @@ endforeach;
 								<?php } ?>
 								
                                 <div class="estimate_wrap flex box">
+								    
+									<?php if($order->order_status != "W") { ?>
                                     <div class="info_estimate btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
-
+                                    <?php } ?>
+									
                                     <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>">
                                         <p>예약정보</p>
                                     </div>
@@ -1155,4 +1158,58 @@ $(document).on('click', '.order_del', function () {
         updateBookingDisplay();
     });
 </script>
+<script>
+$(document).ready(function () {
+    function bindPopupHover() {
+            $('.tab_box li img').off('mouseenter mouseleave');
+
+            $('.tab_box li img').hover(function () {
+                if ($(window).width() < 850) {
+                    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+                    const $img = $(this);
+                    const $popup = $img.siblings('.popup_layer');
+                    const $container = $('.result_book'); 
+
+                    if ($popup.length === 0 || $container.length === 0) return;
+
+                    const offset = $img.offset(); 
+                    const popupWidth = $popup.outerWidth();
+
+                    $('.temp-popup').remove();
+                    const popupTop = rem * -5;    
+
+                    const $clonedPopup = $popup.clone().css({
+                        position: 'absolute',
+                        top: popupTop, 
+                        left: offset.left - rem * 14,
+                        zIndex: 9999,
+                        display: 'block',
+                        background: '#fff',
+                        border: '1px solid #ccc',
+                        padding: '10px'
+                    }).addClass('temp-popup');
+
+                    $container.append($clonedPopup);
+                }
+            }, function () {
+                if ($(window).width() < 850) {
+                    $('.temp-popup').remove();
+                }
+            });
+        }
+
+        bindPopupHover();
+
+        $(window).on('resize', function () {
+            bindPopupHover();
+        });
+
+
+});
+
+
+
+</script>
+
 <?php $this->endSection(); ?>

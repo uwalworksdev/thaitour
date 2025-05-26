@@ -2,8 +2,27 @@
 <?php $this->section('content'); ?>
 <link href="/css/inquiry/inquiry.css" rel="stylesheet" type="text/css" />
 <link href="/css/inquiry/inquiry_responsive.css" rel="stylesheet" type="text/css" />
+<style>
+    .list_container .sub_visual {
+        background-color: #e0ecf7;
+        border-radius: 20px;
+        min-height: 260px;
+        margin-bottom: 80px;
+        background-image: url(/img/sub/PC.png) !important;
+        background-size: cover;
+    }
+
+    @media screen and (max-width : 850px) {
+        .list_container .sub_visual {
+            height: 28rem;
+            min-height: auto;
+            margin-bottom: 10rem ;
+            background-image: url(/img/sub/mo_wr.png) !important;
+        }
+    }
+</style>
 <div id="container" class="sub list_container">
-    
+     
     <section class="inquiry_section">
         <div class="inner">
             <?php if($visual['ufile6']) { ?>
@@ -11,6 +30,9 @@
 			<?php } else { ?>
                 <div class="sub_visual" style="display: none"></div>
             <?php } ?>
+            <a href="" id="myLink">
+                <div class="sub_visual"></div>
+            </a>
             <div class="sect_ttl_box">
                 <h2>문의하기</h2>
             </div>
@@ -42,7 +64,9 @@
         </script>
             <table class="bs_table">
                 <colgroup>
-                <col width="80px">
+                    <col width="80px">
+                    <col width="80px">
+                    <col width="140px">
                     <col width="*">
                     <col width="110px">
                     <col width="110px">
@@ -50,6 +74,8 @@
                 <thead>
                     <tr>
                         <th>NO</th>
+                        <th>현황</th>
+                        <th>구분</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>등록일</th>
@@ -78,6 +104,21 @@
                     ?>
                     <tr>
                         <td class="num"><?=$no?></td>
+                        <td style="text-align: center;">
+                            <?php
+                                if ($row["status"] == "N") {
+                                    $str_status = "문의접수";
+                                    $color = "#17469E";
+                                }else {
+                                    $str_status = "답변완료";
+                                    $color = "red";
+                                }
+                            ?>
+                            <span style="color: <?=$color?>;"><?= $str_status ?></span>
+                        </td>
+                        <td>
+                            <?=$row['code_name']?>
+                        </td>
                         <td class="subject">
                             <?php
                             if ((session('member.idx') && $row["reg_m_idx"] == session('member.idx')) 

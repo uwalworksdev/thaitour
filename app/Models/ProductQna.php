@@ -34,7 +34,7 @@ class ProductQna extends Model
         }
 
         $builder->where('product_gubun', $gubun);
-        $builder->where('status', 'Y');
+        // $builder->where('status', 'Y');
 
         $builder->orderBy("r_date", "DESC");
         $builder->orderBy("idx", "DESC");
@@ -62,7 +62,7 @@ class ProductQna extends Model
         $builder->select('p1.*, p2.product_name');
         $builder->join('tbl_product_mst p2', 'p1.product_idx = p2.product_idx', 'left');
         $builder->where('p1.idx', $idx);
-        $builder->where('status', 'Y');
+        // $builder->where('status', 'Y');
         return $builder->get()->getRowArray();
     }
 
@@ -77,7 +77,7 @@ class ProductQna extends Model
             $builder->where('p1.idx', (int) $idx); 
         }
     
-        $builder->where('p1.status', 'Y');
+        // $builder->where('p1.status', 'Y');
     
         return $builder->get()->getResultArray();
     }

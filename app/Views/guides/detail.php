@@ -29,7 +29,7 @@
                         <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
                     </div>
                     <div class="list-icon only_mo">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                        <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon">
                     </div>

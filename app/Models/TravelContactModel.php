@@ -7,7 +7,7 @@ class TravelContactModel extends Model
     protected $table = 'tbl_travel_contact';
     protected $primaryKey = 'idx';
     protected $allowedFields = [
-        "reg_m_idx", "user_name", "user_phone", "user_email", "departure_date", "arrival_date"
+        "reg_m_idx", "user_name", "user_phone", "user_email", "departure_date", "arrival_date", "type_code"
         , "accuracy", "speed", "travel_type_1", "travel_type_2", "travel_type_3", "consultation_time"
         , "product_name", "title", "contents", "rfile1", "ufile1", "status", "passwd_yn", "passwd"
         , "r_date", "m_date", "star", "product_idx", "isViewAdmin", "user_ip"
@@ -18,8 +18,9 @@ class TravelContactModel extends Model
         $private_key = private_key();
 
         $builder = $this->db->table('tbl_travel_contact as A')
-                            ->select('A.*, COUNT(B.r_idx) AS cmt_cnt')
-                            ->join('tbl_bbs_cmt B', "A.idx = B.r_idx AND B.r_code = 'contact' AND B.r_status = 'Y' AND B.r_delYN = 'N'", 'left');
+                            ->select('A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name')
+                            ->join('tbl_bbs_cmt B', "A.idx = B.r_idx AND B.r_code = 'contact' AND B.r_status = 'Y' AND B.r_delYN = 'N'", 'left')
+                            ->join('tbl_code C', "C.code_no = A.type_code", 'left');
 
         if ($where) {
             $builder->where($where);

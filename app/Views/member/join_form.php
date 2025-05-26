@@ -14,27 +14,22 @@ $user_name = $sns_name ?? "";
 if ($sns_gubun == "naver") {
     $gubun = $sns_gubun;
     $userEmail = $naver['userEmail'];
-    $userId = $naver['user_id'];
     $sns_key = $naver['sns_key'];
 } else if ($sns_gubun == "google") {
     $gubun = $sns_gubun;
     $userEmail = $google['userEmail'];
-    $userId = $google['user_id'];
     $sns_key = $google['sns_key'];
 } else if ($sns_gubun == "facebook") {
     $gubun = $sns_gubun;
     $userEmail = $facebook['userEmail'];
-    $userId = $facebook['user_id'];
     $sns_key = $facebook['sns_key'];
 } else if ($sns_gubun == "kakao") {
     $gubun = $sns_gubun;
     $userEmail = updateSQ($_POST["userEmail"] ?? "");
-    $userId = "kakao_" . updateSQ($_POST["sns_key"] ?? "");
     $sns_key = $kakao['sns_key'];
 } else {
     $gubun = $s_gubun ?? "";
     $userEmail = $s_email ?? "";
-    $userId = "";
     $sns_key = $s_key ?? "";
 }
 
@@ -65,6 +60,13 @@ if ($mIdx != "") {
 <style>
     .bs-textarea {
         padding: 14px;
+    }
+
+    .disabled {
+        background-color: #dbdbdb;
+        color: #888;
+        border: 1px solid #dbdbdb;
+        cursor: not-allowed;
     }
 </style>
 
@@ -126,7 +128,7 @@ if ($mIdx != "") {
                                             <div class="button-row">
                                                 <input type="text" id="certi_num_1" name="certi_num_1" class="bs-input"
                                                     placeholder="">
-                                                <button type="button" class="btn cling-btn btn-outline-dark"
+                                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_phone_btn"
                                                     onclick="certi_chk_1()">인증확인</button>
                                             </div>
                                         </div>
@@ -202,7 +204,7 @@ if ($mIdx != "") {
                                             <div class="button-row">
                                                 <input type="text" id="certi_num_2" name="certi_num_2" class="bs-input"
                                                     placeholder="">
-                                                <button type="button" class="btn cling-btn btn-outline-dark"
+                                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_email_btn"
                                                     onclick='certi_chk_2()'>인증확인</button>
                                             </div>
 
@@ -248,9 +250,6 @@ if ($mIdx != "") {
             <input type="hidden" name="cert_type" id="cert_type" value="mobile">
             <input type="hidden" name="cert_yn_1" id="cert_yn_1" value="">
             <input type="hidden" name="cert_yn_2" id="cert_yn_2" value="">
-            <?php if ($gubun != "" || $sns_key != "") { ?>
-                <input type="hidden" name="user_id" id="user_id" value="<?= $userId ?>">
-            <?php } ?>
             <input type="hidden" name="gubun" id="gubun" value="<?= $gubun ?>">
             <input type="hidden" name="sns_key" id="sns_key" value="<?= $sns_key ?>">
             <input type="hidden" name="id_chk" id="id_chk" value="">
@@ -269,13 +268,12 @@ if ($mIdx != "") {
             <h3 class="mem_ttl">기본 정보입력</h3>
             <div class="input-group">
                 <!-- 아이디 -->
-                <?php if ($gubun == "" || $sns_key == "") { ?>
                     <div class="input-wrap">
                         <label class="label">아이디*</label>
                         <div class="input-row">
                             <div class="button-row">
                                 <input type="text" name="user_id" id="user_id" class="bs-input">
-                                <button type="button" class="btn cling-btn btn-outline-dark" onclick="chk_id();">아이디
+                                <button type="button" class="btn cling-btn btn-outline-dark" id="chk_id_btn" onclick="chk_id();">아이디
                                     중복체크</button>
                             </div>
                         </div>
@@ -285,6 +283,8 @@ if ($mIdx != "") {
                         <p class="caption idWarning1 red">사용 불가한 아이디입니다.</p>
                         <p class="caption idSuccess1 blue">사용 가능한 아이디입니다.</p>
                     </div>
+                <?php if ($gubun == "" || $sns_key == "") { ?>
+
                     <div class="input-wrap">
                         <label class="label">비밀번호*</label>
                         <div class="input-row">
@@ -429,12 +429,12 @@ if ($mIdx != "") {
                         </div>
                     </div>
                 </div>
-                <div class="input-wrap">
+                <!-- <div class="input-wrap">
                     <label class="label">기타사항</label>
                     <div class="textarea_wrap">
                         <textarea  name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
                     </div>
-                </div>
+                </div> -->
                 <div class="input-wrap">
                     <label class="label">마케팅수신동의</label>
                     <div class="input-row">
@@ -454,15 +454,21 @@ if ($mIdx != "") {
                 <button type="submit" class="btn btn-lg btn-point">다음</button>
             </div>
 
-
-
         </form>
-
 
     </div>
 
     <?php  echo view("member/postcode_inc") ?>
 </main>
+
+<script>
+    // let is_check_phone = sessionStorage.getItem("check_phone");
+
+    // if(is_check_phone) {
+    //     $("#chk_phone_btn").addClass("disabled");
+    //     $("#chk_phone_btn").attr("disabled", true);
+    // }
+</script>
 
 <script>
     function email_sel(host) {
@@ -558,11 +564,6 @@ if ($mIdx != "") {
 
     })
 
-
-    $(document).ready(function () {
-
-    })
-
     var num = 60 * 3;
     var myVar;
 
@@ -583,9 +584,6 @@ if ($mIdx != "") {
         num--;
     }
 
-
-
-
     var num_em = 60 * 3;
     var myVar_em;
 
@@ -605,8 +603,6 @@ if ($mIdx != "") {
         }
         num_em--;
     }
-
-
 
     function certi_send_1() {
 
@@ -639,9 +635,6 @@ if ($mIdx != "") {
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            }
-            , complete: function (request, status, error) {
-
             }
             , success: function (response, status, request) {
                 response = response.trim();
@@ -678,14 +671,15 @@ if ($mIdx != "") {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             }
-            , complete: function (request, status, error) {
-
-            }
             , success: function (response, status, request) {
                 response = response.trim();
 
                 if (response == "Y") {
                     $("#cert_yn_1").val("Y");
+                    $("#chk_phone_btn").addClass("disabled");
+                    $("#chk_phone_btn").attr("disabled", true);
+                    // sessionStorage.setItem("check_phone", "Y");
+
                     alert("인증되었습니다.");
                     return false;
                 } else {
@@ -719,9 +713,6 @@ if ($mIdx != "") {
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            }
-            , complete: function (request, status, error) {
-
             }
             , success: function (response, status, request) {
                 response = response.trim();
@@ -758,6 +749,8 @@ if ($mIdx != "") {
                 response = response.trim();
                 if (response == "Y") {
                     $("#cert_yn_2").val("Y");
+                    $("#chk_email_btn").addClass("disabled");
+                    $("#chk_email_btn").attr("disabled", true);
                     alert("인증되었습니다.");
                 } else {
                     $("#cert_yn_2").val("N");
@@ -791,8 +784,6 @@ if ($mIdx != "") {
             return;
         }
 
-
-
         var mobile = frm.user_mobile_1.value + frm.user_mobile_2.value + frm.user_mobile_3.value;
         //alert(mobile);
 
@@ -802,7 +793,6 @@ if ($mIdx != "") {
 
     function cert_it_2() {
         var frm = document.frm1;
-
 
         if (frm.user_name_2.value.length < 2) {
             alert("이름을 입력해주셔야 합니다.");
@@ -824,9 +814,6 @@ if ($mIdx != "") {
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            },
-            complete: function (request, status, error) {
-
             },
             success: function (response, status, request) {
 
@@ -885,8 +872,6 @@ if ($mIdx != "") {
                 return;
             }
 
-
-
             var mobile = frm.mobile_1.value + frm.mobile_2.value + frm.mobile_3.value;
             hiddenFrame22.location.href = "find_id_ok.php?mobile=" + mobile + "&user_name=" + frm.user_name.value +
                 "&gubun=" + gubun;
@@ -921,9 +906,6 @@ if ($mIdx != "") {
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                },
-                complete: function (request, status, error) {
-
                 },
                 success: function (response, status, request) {
 
@@ -1067,19 +1049,19 @@ if ($mIdx != "") {
             return false;
         }
 
+        if (frm.user_id.value == "") {
+            alert("아이디를 입력해주세요.");
+            frm.user_id.focus();
+            return false;
+        }
+
+        if (frm.id_chk.value == "") {
+            alert("아이디 중복체크를 해주세요.");
+            $("#user_id").focus();
+            return false;
+        }
+
         if ($("#gubun").val() == "" || $("#sns_key").val() == "") {
-
-            if (frm.user_id.value == "") {
-                alert("아이디를 입력해주세요.");
-                frm.user_id.focus();
-                return false;
-            }
-
-            if (frm.id_chk.value == "") {
-                alert("아이디 중복체크를 해주세요.");
-                $("#user_id").focus();
-                return false;
-            }
 
             if (frm.user_pw.value == "") {
                 alert("비밀번호를 입력해주세요.");
@@ -1365,6 +1347,8 @@ if ($mIdx != "") {
                         $("#user_id").focus();
                         return false;
                     } else {
+                        $("#chk_id_btn").addClass("disabled");
+                        $("#chk_id_btn").attr("disabled", "true");
                         $("#id_chk").val("Y");
                         $("#user_id").val(tmp_id);
                         $("#id_yes").show();
@@ -1378,5 +1362,13 @@ if ($mIdx != "") {
 
         }
     }
+
+    // window.addEventListener("beforeunload", function () {
+    //     const navType = performance.getEntriesByType("navigation")[0]?.type;
+
+    //     if (navType !== "reload") {
+    //         sessionStorage.removeItem("check_phone");
+    //     }
+    // });
 </script>
 <?php $this->endSection(); ?>

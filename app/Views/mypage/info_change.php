@@ -44,21 +44,22 @@
 									<col width="*">
 								</colgroup>
 								<tbody>
-									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<!-- <tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>> -->
+									<tr>
 										<th><p>아이디</p></th>
 										<td colspan="3"><p class="no_write"><?=$member["user_id"]?></p></td>
 									</tr>
 									<tr>
 										<th><p>이메일</p></th>
 										<td colspan="3">
-											<p class="no_write"><?=$member['user_email']?></p>
+											<input type="text" name="user_email" id="user_email" value="<?=$member["user_email"]?>" placeholder="" class="bs-input">
 										</td>
 									</tr>
 									<tr>
 										<th><p>이름</p></th>
 										<td colspan="3">
 											<!-- <p class="no_write"><?=$member["user_name"]?></p> -->
-											<input type="text" name="user_name" id="user_name" value="<?=$member["user_name"]?>" placeholder="" class="bs-input">
+											<input type="text" name="user_name" id="user_name" value="<?=$member["user_name"]?>" placeholder="" class="bs-input only_ko">
 										</td>
 									</tr>
 									<tr>
@@ -133,7 +134,7 @@
 											<input type="text" class="wd_md" value="<?=$mobile3?>" name="mobile3" id="mobile3">
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<th><p>주소</p></th>
 										<td>
 											<div class="input-row">
@@ -144,6 +145,58 @@
 												<input type="text" name="addr1" id="sample2_address" value="<?=$member['addr1']?>" placeholder="" class="bs-input">
 												<input type="text" name="addr2" id="sample2_detailAddress" value="<?=$member['addr2']?>" placeholder="" class="bs-input">
 											</div>
+										</td>
+									</tr> -->
+									<tr>
+										<th><p>영문 이름(First Name)</p></th>
+										<td colspan="3">
+											<input  type="text" name="user_first_name_en" id="user_first_name_en" value="<?= $member['user_first_name_en']?>" class="bs-input only_en">
+										</td>
+									</tr>
+									<tr>
+										<th><p>영문 성(Last Name)</p></th>
+										<td colspan="3">
+											<input type="text" name="user_last_name_en" id="user_last_name_en" value="<?= $member['user_last_name_en']?>"  class="bs-input only_en">
+										</td>
+									</tr>
+									<tr>
+										<th><p>여권번호</p></th>
+										<td colspan="3">
+											<input type="text" name="passport_number" id="passport_number" value="<?= $member['passport_number']?>" class="bs-input">
+										</td>
+									</tr>
+									<tr>
+										<th><p>여권만기일</p></th>
+										<td colspan="3">
+											<div class="datepick">
+												<input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" value="<?= $member['passport_expiry_date']?>" class=" bs-input">
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th><p>성별(남성/여성)</p></th>
+										<td colspan="3">
+											<select name="gender" id="gender" data-label="성별" class="wd_sel select-width">
+												<option value="M" <?php if($member['gender'] == 'M') { echo "selected"; } ?>>남성</option>
+												<option value="F" <?php if($member['gender'] == 'F') { echo "selected"; } ?>>여성</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th><p>추천 MBTI</p></th>
+										<td colspan="3">
+											<select name="mbti" id="MBTI" class="wd_sel bs-select domain_list">
+												<option value="">선택</option>
+												<?php foreach ($mcodes as $code): ?>
+													<option value="<?= $code['code_no'] ?>" <?php if($member['mbti'] == $code['code_no']) { echo "selected"; } ?>><?= $code['code_name'] ?></option>
+												<?php endforeach; ?>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th><p>기타사항</p></th>
+										<td colspan="3">
+											<textarea  name="recommender" id="" value="" class="bs-textarea" placeholder=""><?= $member['recommender']?></textarea>
 										</td>
 									</tr>
 
@@ -190,6 +243,17 @@
 
     <script>
     $(function () {
+		    $('.only_ko').on('input', function () {
+				let val = $(this).val();
+				val = val.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, '');
+				$(this).val(val);
+			});
+
+			$('.only_en').on('input', function () {
+				var val = $(this).val();
+				val = val.replace(/[^a-zA-Z\s]/g, '');
+				$(this).val(val);
+			});
         $('.email_row .domain_list').change(function () {
             $(this).find("option:selected").each(function () {
                 if ($(this).val() == '1') { //직접입력일 경우
@@ -277,18 +341,18 @@
 function send_it()
 {
 	var frm = document.frm;
-	if (frm.user_pw.value != "")
-	{
-		// if (chkPwd(frm.user_pw.value) == false)
-		// {
-		// 	return;
-		// }
-		if (frm.user_pw.value != frm.user_pw2.value )
-		{
-			alert("패스워드가 일치하지 않습니다.");
-			return;
-		}
-	}
+	// if (frm.user_pw.value != "")
+	// {
+	// 	// if (chkPwd(frm.user_pw.value) == false)
+	// 	// {
+	// 	// 	return;
+	// 	// }
+	// 	if (frm.user_pw.value != frm.user_pw2.value )
+	// 	{
+	// 		alert("패스워드가 일치하지 않습니다.");
+	// 		return;
+	// 	}
+	// }
 	// if (frm.gender[0].checked == false && frm.gender[1].checked == false )
 	// {
 	// 	frm.gender[0].focus();

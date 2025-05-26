@@ -474,9 +474,9 @@ class ReservationController extends BaseController
         $pg              = $_GET["pg"];
         $payment_idx     = $_GET["payment_idx"];
 
-        $sql             = "	select AES_DECRYPT(UNHEX(payment_user_name),   '$private_key') AS user_name
-									 , AES_DECRYPT(UNHEX(payment_user_mobile), '$private_key') AS user_mobile
-									 , AES_DECRYPT(UNHEX(payment_user_email),  '$private_key') AS user_email
+        $sql             = "	select AES_DECRYPT(UNHEX(pay_name),   '$private_key') AS user_name
+									 , AES_DECRYPT(UNHEX(pay_hp),     '$private_key') AS user_mobile
+									 , AES_DECRYPT(UNHEX(pay_email),  '$private_key') AS user_email
 									 , payment_no 
 									 , payment_idx 
 									 , order_no 
@@ -484,6 +484,7 @@ class ReservationController extends BaseController
 									 , payment_price
 									 , payment_pg
 									 , TID_1
+									 , CancelDate_1
 									 , payment_method
 									 , payment_status
 									 , used_coupon_money
@@ -492,24 +493,28 @@ class ReservationController extends BaseController
 									 , payment_c_date
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
-		write_log($sql);				
         $result     = $this->connect->query($sql);
         $result     = $result->getRowArray();
 
         $sql        = "	select * from tbl_order_mst where FIND_IN_SET (order_no, '". $result['order_no'] ."') ";
-		write_log($sql);				
         $result1    = $this->connect->query($sql);
         $result1    = $result1->getResultArray();
 
         $sql        = "	select * from tbl_order_mileage where order_gubun = '포인트적립' and payment_no = '". $result['payment_no'] ."' ";
-		write_log($sql);				
         $result2    = $this->connect->query($sql);
         $result2    = $result2->getRowArray();
 		
+		// 에약취소 history
+        $sql        = "	select * from tbl_cancel_hist where payment_no = '". $result['payment_no'] ."' order by id asc ";
+		write_log($sql);				
+        $result3    = $this->connect->query($sql);
+        $result3    = $result3->getResultArray();
+
 		$data = [
 			      'payment_row' => $result,
 			      'order_row'   => $result1,
 			      'add_mileage' => $result2['order_mileage'],
+			      'cancel_hist' => $result3,
 			    ];
         return view('admin/_reservation/write_payment', $data);
 		

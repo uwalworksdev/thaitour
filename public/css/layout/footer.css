@@ -255,6 +255,10 @@
         white-space: nowrap;
     }
 
+    .text-25.no-w {
+        white-space: normal;
+    }
+
     .btn_cus_f button {
         /* width: 30rem; */
         padding: 2rem;

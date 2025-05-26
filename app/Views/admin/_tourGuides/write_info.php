@@ -48,7 +48,6 @@ if ($product_idx && $product) {
                     <h2><?= $titleStr ?></h2>
                     <div class="menus">
                         <ul>
-
                             <li><a href="/AdmMaster/_tour_guides/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
@@ -80,8 +79,8 @@ if ($product_idx && $product) {
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
-                        <input type="hidden" name="product_code_list" id="product_code_list"
-                               value='<?= $product_code_list ?? "" ?>'>
+                        <!-- <input type="hidden" name="product_code_list" id="product_code_list"
+                               value='<?= $product_code_list ?? "" ?>'> -->
                         <input type="hidden" name="guide_type" id="guide_type" value='I'>
 
                         <div class="listBottom">
@@ -118,26 +117,62 @@ if ($product_idx && $product) {
                                                     $status_txt = "[마감]";
                                                 }
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_1']) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?>
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
                                         <select id="product_code_2" class="input_select" name="product_code_2"
                                                 onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
+                                            <?php
+                                            foreach ($fresult2 as $frow):
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_2']) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                            <?php endforeach; ?>
                                         </select>
                                         <select id="product_code_3" class="input_select" name="product_code_3">
                                             <option value="">3차분류</option>
+                                            <?php
+                                            foreach ($fresult3 as $frow):
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_3']) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                            <?php endforeach; ?>
                                         </select>
-                                        <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
+                                        <!-- <button type="button" id="btn_reg_cate" class="btn_01">등록</button> -->
                                     </td>
                                 </tr>
 
                                 <?php
-                                $_product_code_arr = explode("|", $product_code_list);
-                                $_product_code_arr = array_filter($_product_code_arr);
+                                    $_product_code_arr = explode("|", $product_code_list);
+                                    $_product_code_arr = array_filter($_product_code_arr);
                                 ?>
-                                <tr>
+                                <!-- <tr>
                                     <th>등록된 카테고리</th>
                                     <td colspan="3">
                                         <ul id="reg_cate">
@@ -153,7 +188,7 @@ if ($product_idx && $product) {
                                             ?>
                                         </ul>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>상품코드</th>

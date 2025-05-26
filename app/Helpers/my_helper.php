@@ -297,6 +297,7 @@ function getHeaderTab()
             "/product-tours/tours-list/",
             "/product-tours/item_view/",
             "/product-tours/confirm-info",
+            "/product-tours/location_info/"
         ],
         1325 => [
             "/product-spa/1325",

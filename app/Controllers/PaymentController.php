@@ -151,6 +151,7 @@ class PaymentController extends BaseController
 
 								$sql = " SELECT * from tbl_payment_mst WHERE payment_no = '" . $moid . "'";
 								$row = $db->query($sql)->getRowArray();
+						        $payment_idx = $row['payment_idx'];
 
 								$output = explode(",", $row['order_no']);
 								// 끝에 쉼표 제거
@@ -228,7 +229,8 @@ class PaymentController extends BaseController
 								$sql = "update tbl_order_mileage SET remaining_mileage = '".$sum_mileage."' where mi_idx = '".$insertId."' ";																   
 							    $db->query($sql);
 
-								//alimTalk_depisit_send($row['order_no']); 
+								//alimTalk_deposit_send($payment_idx); 
+								completePayment($payment_idx);
 
 
 		                } else if($respArr->ResultCode == "4100") // 가상계좌 발급
@@ -470,10 +472,8 @@ class PaymentController extends BaseController
 		// Ajax로 넘어온 payment_no 받기
 		$payment_no  = $this->request->getPost('payment_no');
 		$cancelAmt   = $this->request->getPost('cancel_amt');
-		$order_nos   = $this->request->getPost('order_no');
-		$amts        = $this->request->getPost('amt');
         $add_mileage = $this->request->getPost('add_mileage');
-		
+		/*
 		for ($i = 0; $i < count($order_nos); $i++) {
 			$order_no = $order_nos[$i];
 			$amt = $amts[$i];
@@ -481,7 +481,7 @@ class PaymentController extends BaseController
 			// 예: DB 처리 또는 로그
 			// cancelPartialOrder($payment_no, $order_no, $amt);
 		}
-
+        */
 		if (empty($payment_no)) {
 			return $this->response->setJSON([
 				'status'  => 'error',
@@ -503,7 +503,7 @@ class PaymentController extends BaseController
 		}
 
 		// 각 항목을 따옴표로 감싸기
-		$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 									
 		$merchantKey = $setting['nicepay_key'];
 		$mid         = $setting['nicepay_mid'];
@@ -533,19 +533,29 @@ class PaymentController extends BaseController
 				
 			$resultCode = $response_data['ResultCode'] ?? '9999';
 			$resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
+			$tid        = $response_data['TID'];
 
 			if (in_array($resultCode, ['2001', '2211'])) {
 				$cancelDate = $response_data['CancelDate'] ?? date('Y-m-d H:i:s');
+				$cancelTime = $response_data['CancelTime'] ?? date('Y-m-d H:i:s');
+			    $resultMsg  = $response_data['ResultMsg']  ?? '응답 오류';
 
-				$db->table('tbl_payment_mst')
-				   ->where('TID_1', $tid)
-				   ->update(['payment_status' => 'C', 'CancelDate_1' => $cancelDate]);
-
-				// 여러 주문번호에 대해 업데이트 수행
-				$db->query("UPDATE tbl_order_mst SET CancelDate_1 = ?, order_status = 'C' WHERE order_no IN ($orderList)", [$cancelDate]);
+                $sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
+														,pg	         = 'NICEPAY'
+														,cancel_amt	 = '". $cancelAmt ."'
+														,cancel_date = '". $cancelDate ."'	
+														,cancel_time = '". $cancelTime ."'	
+														,tid	     = '". $tid."'
+														,resultCode	 = '". $resultCode ."'
+														,ResultMsg	 = '". $resultMsg ."'	
+														,reg_date	 = now() ";
+				$db->query($sql);
 
                 // 적립포인트 재조정
 				cancelMileage($payment_no, $cancelAmt);
+				
+                // 부분취소 확인
+				cancelPartilal($payment_no);				
 				
 				return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 

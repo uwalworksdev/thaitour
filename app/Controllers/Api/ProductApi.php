@@ -558,6 +558,7 @@ class ProductApi extends BaseController
                                 ->where("info_idx", $info_idx)
                                 ->where("tours_idx", $tours_idx)
                                 ->like("goods_date", $date_pattern, "after")
+                                ->where("use_yn !=", 'N')
                                 ->get()
                                 ->getResultArray();
         foreach($days_list as $key => $day) {

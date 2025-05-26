@@ -1696,7 +1696,7 @@
                         <div class="section_vehicle_2_4__head">
                             <div class="section_vehicle_2_4__head__ttl">
                                 취소 규정 : 결제후 06월26일 18시(한국시간) 이전에 취소하시면 무료취소가 가능합니다.
-                                <a class="vehicle_ttl__link" href="#!" data-product-idx="">본 예약건 취소규정 자세히 보기</a>
+                                <a class="vehicle_ttl__link" href="#!" data-product-idx="1324">본 예약건 취소규정 자세히 보기</a>
                             </div>
                         </div>
                         <table class="vehicle_list">
@@ -2217,7 +2217,7 @@
                 $(".destination_name").text(first_code_name);
 
                 get_depth_first_category();
-                $(".vehicle_ttl__link").attr("data-product-idx", '');
+                // $(".vehicle_ttl__link").attr("data-product-idx", '');
                 $("#policyContent").empty();
             }
         });
@@ -2300,7 +2300,7 @@
 
             updateDepartureDateToday();
             init_datepicker();
-            $(".vehicle_ttl__link").attr("data-product-idx", '');
+            // $(".vehicle_ttl__link").attr("data-product-idx", '');
             $("#policyContent").empty();
 
         }
@@ -2709,7 +2709,7 @@
                             <th>전화번호*</th>
                             <td colspan="3">
                                 <div class="phone_number">
-                                    <input type="text" name="phone1" id="phone1"
+                                    <input type="text" name="phone1" id="phone_1"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
                                     <input type="text" name="phone2" id="phone_2"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
@@ -2829,7 +2829,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" id="order_memo" class="other_irregularities s_order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                 </td>
@@ -2919,7 +2919,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>기타요철</th>
+                                        <th>기타요청</th>
                                         <td colspan="3">
                                             <textarea name="order_memo[]" id="order_memo" class="other_irregularities e_order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                         </td>
@@ -3097,7 +3097,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>기타요철</th>
+                                        <th>기타요청</th>
                                         <td colspan="3">
                                             <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                         </td>
@@ -3189,7 +3189,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                 </td>
@@ -3276,7 +3276,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>기타요철</th>
+                                <th>기타요청</th>
                                 <td colspan="3">
                                     <textarea name="order_memo[]" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1 게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다." class="other_irregularities order_memo s_order_memo"></textarea>
                                 </td>
@@ -3512,7 +3512,7 @@
             cp_idx = "";
         }
         $("#cp_idx").val(cp_idx);
-        $(".vehicle_ttl__link").attr("data-product-idx", product_idx_c);
+        // $(".vehicle_ttl__link").attr("data-product-idx", product_idx_c);
 
         calculatePrice();
     }
@@ -3820,7 +3820,7 @@
             }
 
             if($(".s_order_memo").val() == "") {
-                alert("기타요철 입력해주세요!");
+                alert("기타요청 입력해주세요!");
                 $(this).focus();
                 return false;
             }
@@ -3857,7 +3857,7 @@
             }
 
             if($(".e_order_memo").val() == "") {
-                alert("기타요철 입력해주세요!");
+                alert("기타요청 입력해주세요!");
                 $(this).focus();
                 return false;
             }

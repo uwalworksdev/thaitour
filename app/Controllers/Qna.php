@@ -210,7 +210,7 @@ class Qna extends BaseController
             $this->qna->updateQna($idx, $data);
         } else {
             $data['reg_m_idx'] = session('member.idx');
-            $data['status'] = 'W';
+            $data['status'] = 'N';
             $data['r_date'] = date('Y-m-d H:i:s');
             $data['passwd'] = $pass;
             $data['user_ip'] = $this->request->getIPAddress();

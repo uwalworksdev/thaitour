@@ -97,4 +97,31 @@ class SmsSettings extends BaseController
             ], 400);
         }
     }
+
+    public function sms_change() {
+        try {
+            $idx = $this->request->getPost('idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
+
+            $tot = count($idx);
+            for ($j = 0; $j < $tot; $j++) {
+                $this->SmsModel->update($idx[$j], ['onum' => $onum[$j]]);
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'result' => true,
+                        'message' => '수정 했습니다.'
+                    ]
+                );
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

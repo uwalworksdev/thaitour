@@ -122,12 +122,12 @@
 							<colgroup>
 								<col width="4%" />
 								<col width="4%" />
-								<col width="7%" />
+								<col width="*%" />
 								<col width="9%" />
 								<col width="7%" />
 								<col width="9%" />
 								<col width="7%" />
-                                <col width="7%" />
+                                <!-- <col width="7%" /> -->
                                 <col width="7%" />
 								<col width="9%" />
 							</colgroup>
@@ -135,12 +135,12 @@
 								<tr>
 									<th>선택</th>
 									<th>번호</th>
-									<th>이름</th>
-									<th>정확성</th>
-									<th>신속성</th>
+									<th>제목</th>
+									<th>이메일</th>
+									<th>전화번호</th>
 									<th>신청일시</th>
                                     <th>ip</th>
-									<th>친절도</th>
+									<!-- <th>친절도</th> -->
 									<th>진행상태</th>
 									<th>관리</th>
 								</tr>
@@ -152,7 +152,7 @@
 									if ($total_cnt == 0) {
 								?>
 									<tr>
-										<td colspan=10 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+										<td colspan=9 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
 									</tr>
 								<?php
 									}
@@ -164,13 +164,9 @@
 
 										$statusStr = "";
 										if ($row["status"] == "Y") {
-											$statusStr = "상담완료";
-										} elseif ($row["status"] == "C") {
-											$statusStr = "상담취소";
-										} elseif ($row["status"] == "W") {
+											$statusStr = "답변완료";
+										} else {
 											$statusStr = "문의접수";
-										} elseif ($row["status"] == "V") {
-											$statusStr = "문의확인";
 										}
 
 										if($row['isViewAdmin'] == 'N'){ 
@@ -184,13 +180,13 @@
 										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row["idx"] ?>" class="input_check" /></a></td>
 										<td><?= $num-- ?></td>
 										<td class="tac">
-											<a href="write?idx=<?= $row["idx"] ?>"><p><?= sqlSecretConver($row["user_name"], 'decode') ?></p></a>
+											<a href="write?idx=<?= $row["idx"] ?>"><p><?= $row["title"] ?></p></a>
 										</td>
-										<td class="tac"><?= $row["accuracy"] ?></td>
-										<td class="tac"><?= $row["speed"] ?></td>
+										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
+										<td class="tac"><?= sqlSecretConver($row["user_phone"], 'decode') ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>
 										<td class="tac"><?= $row["user_ip"] ?></td>
-                                        <td class="tac"><?= $row["star"] ?></td>
+                                        <!-- <td class="tac"><?= $row["star"] ?></td> -->
                                         <td class="tac"><?= $statusStr ?></td>
 										<td>
 											<a href="write?idx=<?= $row["idx"] ?>"><img src="/images/admin/common/ico_setting2.png"></a>

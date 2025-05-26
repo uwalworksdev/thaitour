@@ -351,31 +351,31 @@
                         <div class="table_accounts">
                             <dl>
                                 <dt>예약접수</dt>
-                                <dd><?=number_format($tot_price1)?>원</dd>
+                                <dd style="color: #ff7f27;"><?=number_format($tot_price1)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약확인</dt>
-                                <dd class="t_green"><?=number_format($tot_price2)?>원</dd>
+                                <dd style="color: #1eb1cf;"><?=number_format($tot_price2)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>결제완료</dt>
-                                <dd class="t_orange"><?=number_format($tot_price3)?>원</dd>
+                                <dd style="color: #22b14c;"><?=number_format($tot_price3)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약확정</dt>
-                                <dd class="t_orange"><?=number_format($tot_price4)?>원</dd>
+                                <dd style="color: #0000ff;"><?=number_format($tot_price4)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약취소</dt>
-                                <dd class="t_orange"><?=number_format($tot_price5)?>원</dd>
+                                <dd style="color: #ff0000;"><?=number_format($tot_price5)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>예약불가</dt>
-                                <dd class="t_orange"><?=number_format($tot_price6)?>원</dd>
+                                <dd style="color: #ff0000;"><?=number_format($tot_price6)?>원</dd>
                             </dl>
                             <dl>
                                 <dt>이용완료</dt>
-                                <dd class="t_orange"><?=number_format($tot_price7)?>원</dd>
+                                <dd style="color: #804040;"><?=number_format($tot_price7)?>원</dd>
                             </dl>
                         </div>
                     </div>
@@ -602,9 +602,12 @@
                                 }
 									
 								$_deli_type = get_payment_type();
+								$_color_deli_type = get_color_payment_type(); 	
+
                                 foreach ($result as $row) {
 									
 									     $status = $_deli_type[$row['payment_status']];
+                                         $color = $_color_deli_type[$row['payment_status']];
 										 
 										 if (str_starts_with($row['user_id'], 'naver_')) {
 											 $user_id = "naver_". substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
@@ -628,7 +631,7 @@
                                             if ($row['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?></td>
-										<td class="tac"><?=$status?></td>
+										<td class="tac"><span style="color:<?=$color?>"><?=$status?></span></td>
                                         <td class="tal">
 										        <a href="/AdmMaster/_reservation/write_payment?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&payment_idx=<?= $row['payment_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?>

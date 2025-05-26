@@ -29,6 +29,7 @@ if ($contact) {
     $product_name = $contact['product_name'];
     $title = $contact['title'];
     $contents = $contact["contents"];
+    $type_name = $contact['type_name'];
 }
 ?>
 
@@ -248,6 +249,10 @@ if ($contact) {
                 <tr>
                     <td class="subject">이메일</td>
                     <td class="content"><?= $user_email ?></td>
+                </tr>
+                <tr>
+                    <td class="subject">구분</td>
+                    <td class="content"><?= $type_name ?></td>
                 </tr>
                 <tr>
                     <td class="subject">여행예정일</td>

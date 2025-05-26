@@ -260,7 +260,7 @@ class AdminStatisticsController extends BaseController
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				DAYOFWEEK(tbl_order_mst.order_date) as yoil,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -269,7 +269,7 @@ class AdminStatisticsController extends BaseController
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "P");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 
 			if (!empty($yoil)) {
 				$builder->where("DAYOFWEEK(tbl_order_mst.order_date)", (int)$yoil);
@@ -292,7 +292,7 @@ class AdminStatisticsController extends BaseController
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				DAYOFWEEK(tbl_order_mst.order_date) as yoil,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -301,7 +301,7 @@ class AdminStatisticsController extends BaseController
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "M");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 
 			if (!empty($yoil)) {
 				$builder->where("DAYOFWEEK(tbl_order_mst.order_date)", (int)$yoil);
@@ -358,7 +358,7 @@ public function statistics_sale_day()
         $builder = $db->table('tbl_order_mst');
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
-            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.Amt_1) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
@@ -367,7 +367,7 @@ public function statistics_sale_day()
         $builder->where("tbl_order_mst.order_date >=", $startDate);
         $builder->where("tbl_order_mst.order_date <=", $endDate);
         $builder->where("tbl_order_mst.device_type", "P");
-        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        //$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
         $builder->groupBy("yyyymmdd");
 
         $results = $builder->get()->getResult();
@@ -384,7 +384,7 @@ public function statistics_sale_day()
         $builder = $db->table('tbl_order_mst');
         $builder->select("
             DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m-%d') as yyyymmdd,
-            SUM(tbl_order_mst.real_price_won) as total,
+            SUM(tbl_payment_mst.Amt_1) as total,
 			SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 			SUM(tbl_payment_mst.used_point) as point_total,
             COUNT(*) as count
@@ -393,7 +393,7 @@ public function statistics_sale_day()
         $builder->where("tbl_order_mst.order_date >=", $startDate);
         $builder->where("tbl_order_mst.order_date <=", $endDate);
         $builder->where("tbl_order_mst.device_type", "M");
-        $builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+        //$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
         $builder->groupBy("yyyymmdd");
 
         $results = $builder->get()->getResult();
@@ -468,7 +468,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -477,7 +477,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "P");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("yyyymm");
 
 			$results = $builder->get()->getResult();
@@ -494,7 +494,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				DATE_FORMAT(tbl_order_mst.order_date, '%Y-%m') as yyyymm,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -503,7 +503,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "M");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("yyyymm");
 
 			$results = $builder->get()->getResult();
@@ -574,7 +574,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				YEAR(tbl_order_mst.order_date) as year,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -583,7 +583,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "P");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("YEAR(tbl_order_mst.order_date)");
 
 			$results = $builder->get()->getResult();
@@ -601,7 +601,7 @@ public function statistics_sale_day()
 			$builder = $db->table('tbl_order_mst');
 			$builder->select("
 				YEAR(tbl_order_mst.order_date) as year,
-				SUM(tbl_order_mst.real_price_won) as total,
+				SUM(tbl_payment_mst.Amt_1) as total,
 				SUM(tbl_payment_mst.used_coupon_money) as coupon_total,
 				SUM(tbl_payment_mst.used_point) as point_total,
 				COUNT(*) as count
@@ -610,7 +610,7 @@ public function statistics_sale_day()
 			$builder->where("tbl_order_mst.order_date >=", $startDate);
 			$builder->where("tbl_order_mst.order_date <=", $endDate);
 			$builder->where("tbl_order_mst.device_type", "M");
-			$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
+			//$builder->whereIn("tbl_order_mst.order_status", ['Y', 'Z', 'E']);
 			$builder->groupBy("YEAR(tbl_order_mst.order_date)");
 
 			$results = $builder->get()->getResult();
@@ -662,86 +662,636 @@ public function statistics_sale_day()
         return view('admin/_statistics/statistics_sale_sales');
     }
 
-    public function statistics_sale_type()
-    {
-        return view('admin/_statistics/statistics_sale_type');
-    }
+	public function statistics_sale_type()
+	{
+		$db = \Config\Database::connect();
 
+		$range  = $this->request->getGet('range') ?? 'today';
+		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type', [
+			'converted_result' => $converted_result,
+			'range'            => $range,
+			's_date'           => $s_date,
+			'e_date'           => $e_date,
+			'payin'            => $payin,
+		]);
+	}
 
     public function statistics_sale_type_day()
     {
-        return view('admin/_statistics/statistics_sale_type_day');
+		$db = \Config\Database::connect();
+
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+	    $days   = $this->request->getGet('days') ?? date('d');
+
+		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+
+		// 해당 연도의 시작일과 종료일 설정
+		$s_date = $years . '-'. $months .'-'. $days;
+		$e_date = $years . '-'. $months .'-'. $days;
+
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+        $params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59']; 
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type_day', [
+			'converted_result' => $converted_result,
+			'years'            => $years,
+			'months'           => $months,
+			'days'             => $days,
+			'payin'            => $payin,
+		]);			
     }
 
-    public function statistics_sale_type_week()
-    {
-        return view('admin/_statistics/statistics_sale_type_week');
-    }
+	public function statistics_sale_type_week()
+	{
+		$db = \Config\Database::connect();
+
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$weeks  = $this->request->getGet('weeks') ?? 1;
+		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+
+		// 월의 첫날
+		$first_day_of_month = new \DateTime("{$years}-{$months}-01");
+
+		// 해당 월의 요일 offset 계산 (0: 일요일, 1: 월요일, ...)
+		$day_of_week = (int) $first_day_of_month->format('w'); // 일:0 ~ 토:6
+
+		// N번째 주의 시작일 계산
+		$start_date = clone $first_day_of_month;
+		$start_date->modify('+' . (7 * ($weeks - 1)) . ' days');
+
+		// N번째 주의 종료일 계산
+		$end_date = clone $start_date;
+		$end_date->modify('+6 days');
+
+		// 종료일이 월을 넘기면 월 말일로 제한
+		$last_day_of_month = new \DateTime($first_day_of_month->format('Y-m-t'));
+		if ($end_date > $last_day_of_month) {
+			$end_date = $last_day_of_month;
+		}
+
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$params = [$start_date->format('Y-m-d') . ' 00:00:00', $end_date->format('Y-m-d') . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type_week', [
+			'converted_result' => $converted_result,
+			'years'            => $years,
+			'months'           => $months,
+			'weeks'            => $weeks,
+			'payin'            => $payin,
+			's_date'           => $start_date->format('Y-m-d'),
+			'e_date'           => $end_date->format('Y-m-d'),
+		]);
+	}
+
 
     public function statistics_sale_type_month()
     {
-        return view('admin/_statistics/statistics_sale_type_month');
+		$db = \Config\Database::connect();
+
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$payin  = $this->request->getGet('payin'); // 'P' or 'M'
+
+		// 해당 연도의 시작일과 종료일 설정
+		$s_date = $years . '-'. $months .'-01';
+		$e_date = $years . '-'. $months .'-31';
+
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type_month', [
+			'converted_result' => $converted_result,
+			'years'            => $years,
+			'payin'            => $payin,
+		]);		
     }
 
-    public function statistics_sale_type_year()
-    {
-        return view('admin/_statistics/statistics_sale_type_year');
-    }
+	public function statistics_sale_type_year()
+	{
+		$db = \Config\Database::connect();
 
-    public function statistics_sale_type2()
-    {
-        return view('admin/_statistics/statistics_sale_type2');
-    }
+		$years = $this->request->getGet('years') ?? date('Y');
+		$payin = $this->request->getGet('payin'); // 'P' or 'M'
 
-    public function statistics_sale_type3()
-    {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		// 해당 연도의 시작일과 종료일 설정
+		$s_date = $years . '-01-01';
+		$e_date = $years . '-12-31';
 
-        $code_names = array_column($code_list, 'code_name');
+		$sql = "
+			SELECT pm.payment_method, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			WHERE pm.paydate BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
 
-        return view('admin/_statistics/statistics_sale_type3', [
-            'code_names' => $code_names
-        ]);
-    }
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY pm.payment_method ORDER BY total DESC";
+
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		// 한글 결제수단 → 코드명 매핑
+		$code_map = [
+			'신용카드'       => 'Card',
+			'가상계좌'       => 'VBank',
+			'계좌입금'       => 'MBank',
+			'실시간계좌이체' => 'DBank',
+		];
+
+		$converted_result = [];
+
+		foreach ($result as $row) {
+			$kor_method = $row->payment_method;
+			$code_name  = $code_map[$kor_method] ?? 'Unknown';
+
+			$converted_result[] = [
+				'method' => $code_name,
+				'total'  => (int) $row->total,
+			];
+		}
+
+		return view('admin/_statistics/statistics_sale_type_year', [
+			'converted_result' => $converted_result,
+			'years'            => $years,
+			'payin'            => $payin,
+		]);
+	}
+
+	public function statistics_sale_type2()
+	{
+		$db = \Config\Database::connect();		
+
+		$range  = $this->request->getGet('range') ?? 'today';
+		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+
+		// 페이징 설정
+		$page = (int) ($this->request->getGet('page') ?? 1);
+		$page = max($page, 1); // 최소 1
+		$perPage = 15;
+		$offset = ($page - 1) * $perPage;
+
+		// 총 개수 가져오기
+		$count_sql = "SELECT COUNT(DISTINCT pr.product_idx) AS total
+					  FROM tbl_order_mst o
+					  JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+					  JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+					  WHERE o.order_date BETWEEN ? AND ?";
+
+		$count_query = $db->query($count_sql, [$s_date . ' 00:00:00', $e_date . ' 23:59:59']);
+		$total = $count_query->getRow()->total;
+		$totalPages = ceil($total / $perPage);
+
+		// 실제 데이터 조회
+		$sql = "SELECT
+					RANK() OVER (ORDER BY SUM(p.Amt_1) DESC) AS order_rank,
+					pr.product_code,
+					pr.product_name,
+					COUNT(o.order_no) AS order_cnt,
+					SUM(p.Amt_1) AS order_amt
+				FROM
+					tbl_order_mst o
+				JOIN tbl_product_mst pr ON o.product_idx = pr.product_idx
+				JOIN tbl_payment_mst p ON o.payment_no = p.payment_no
+				WHERE
+					o.order_date BETWEEN ? AND ?
+				GROUP BY
+					pr.product_idx
+				ORDER BY
+					order_amt DESC
+				LIMIT $perPage OFFSET $offset";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+		$query  = $db->query($sql, $params);
+		$result = $query->getResult();
+
+		return view('admin/_statistics/statistics_sale_type2', [
+			'result'      => $result,
+			'range'       => $range,
+			's_date'      => $s_date,
+			'e_date'      => $e_date,
+			'page'        => $page,
+			'totalPages'  => $totalPages,
+		]);
+	}
+
+	public function statistics_sale_type3()
+	{
+		$db = \Config\Database::connect();
+
+		$range  = $this->request->getGet('range') ?? 'today';
+		$s_date = $this->request->getGet('s_date') ?? date('Y-m-d');
+		$e_date = $this->request->getGet('e_date') ?? date('Y-m-d');
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3', [
+			'result'   => $result,
+			'range'    => $range,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);
+	}
+
 
     public function statistics_sale_type3_day()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
-        return view('admin/_statistics/statistics_sale_type3_day',[
-            'code_names' => $code_names
-        ]);
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$days   = $this->request->getGet('days') ?? date('d');
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+$s_date = new \DateTime("{$years}-{$months}-{$days}");
+$e_date = new \DateTime("{$years}-{$months}-{$days}");
+
+$params = [
+    $s_date->format('Y-m-d') . ' 00:00:00',
+    $e_date->format('Y-m-d') . ' 23:59:59'
+];
+
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3_day', [
+			'result'   => $result,
+			'years'    => $years,
+			'months'   => $months,
+			'days'     => $days,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);	
     }
 
     public function statistics_sale_type3_week()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
-        return view('admin/_statistics/statistics_sale_type3_week', [
-            'code_names' => $code_names
-        ]);
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$weeks  = $this->request->getGet('weeks') ?? '1';
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		// 월의 첫날
+		$first_day_of_month = new \DateTime("{$years}-{$months}-01");
+
+		// 해당 월의 요일 offset 계산 (0: 일요일, 1: 월요일, ...)
+		$day_of_week = (int) $first_day_of_month->format('w'); // 일:0 ~ 토:6
+
+		// N번째 주의 시작일 계산
+		$s_date = clone $first_day_of_month;
+		$s_date->modify('+' . (7 * ($weeks - 1)) . ' days');
+
+		// N번째 주의 종료일 계산
+		$e_date = clone $s_date;
+		$e_date->modify('+6 days');
+
+		// 종료일이 월을 넘기면 월 말일로 제한
+		$last_day_of_month = new \DateTime($first_day_of_month->format('Y-m-t'));
+		if ($e_date > $last_day_of_month) {
+			$e_date = $last_day_of_month;
+		}
+		
+		$params = [$s_date->format('Y-m-d') . ' 00:00:00', $e_date->format('Y-m-d') . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3_week', [
+			'result'   => $result,
+			'years'    => $years,
+			'months'   => $months,
+			'weeks'    => $weeks,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);	
     }
 
     public function statistics_sale_type3_month()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
-        return view('admin/_statistics/statistics_sale_type3_month', [
-            'code_names' => $code_names
-        ]);
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$months = $this->request->getGet('months') ?? date('m');
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+		$s_date = date('Y-m-01', mktime(0, 0, 0, $months, 1, $years));
+		$e_date = date('Y-m-d',  mktime(0, 0, 0, $months, date('t', mktime(0, 0, 0, $months, 1, $years)), $years));
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3_month', [
+			'result'   => $result,
+			'years'    => $years,
+			'months'   => $months,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);	
     }
 
     public function statistics_sale_type3_year()
     {
-        $code_list = $this->codeModel->getByParentCode(1303)->getResultArray();
+		$db = \Config\Database::connect();
 
-        $code_names = array_column($code_list, 'code_name');
-        return view('admin/_statistics/statistics_sale_type3_year', [
-            'code_names' => $code_names
-        ]);
+		$years  = $this->request->getGet('years') ?? date('Y');
+		$payin  = $this->request->getGet('payin');
+
+		$sql = "
+			SELECT cd.code_name AS region_name, SUM(pm.Amt_1) AS total
+			FROM tbl_payment_mst pm
+			JOIN tbl_order_mst om ON pm.payment_no = om.payment_no
+			JOIN tbl_code cd ON om.product_code_2 = cd.code_no
+			WHERE om.order_date BETWEEN ? AND ?
+			  AND pm.payment_method IS NOT NULL
+			  AND pm.payment_method != ''
+		";
+
+        $s_date = date('Y-m-01', mktime(0, 0, 0, 1, 1, $years));
+        $e_date = date('Y-m-d',  mktime(0, 0, 0, 12, date('t', mktime(0, 0, 0, 12, 1, $years)) , $years));
+
+		$params = [$s_date . ' 00:00:00', $e_date . ' 23:59:59'];
+
+		if (!empty($payin)) {
+			$sql .= " AND om.device_type = ?";
+			$params[] = $payin;
+		}
+
+		$sql .= " GROUP BY cd.code_name ORDER BY total DESC";
+		$query  = $db->query($sql, $params);
+		$result = [];
+
+		foreach ($query->getResultArray() as $row) {
+			$result[] = [$row['region_name'], (int)$row['total']];
+		}
+
+		return view('admin/_statistics/statistics_sale_type3_year', [
+			'result'   => $result,
+			's_date'   => $s_date,
+			'e_date'   => $e_date,
+			'payin'    => $payin,
+		]);		
     }
 
     public function statistics_sale_list()

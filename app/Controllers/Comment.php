@@ -53,7 +53,7 @@ class Comment extends BaseController
     public function addComment()
     {
         $r_idx = updateSQ($this->request->getPost('r_idx') ?? '0');
-        $r_code = $this->request->getPost('r_code' ?? '0');
+        $r_code = $this->request->getPost('r_code' ?? '');
         $r_content = updateSQ($this->request->getPost('comment'));
         $user_id = session('member.id');
         $r_m_idx = session('member.idx');
@@ -78,6 +78,18 @@ class Comment extends BaseController
 
         $result = $this->comment->addComment($data);
 
+        if($r_code == "qna" && $user_id == "admin"){
+            $this->db->table("tbl_travel_qna")
+                ->where('idx', $r_idx)
+                ->update(['status' => 'Y']);
+        }
+
+        if($r_code == "contact" && $user_id == "admin"){
+            $this->db->table("tbl_travel_contact")
+                ->where('idx', $r_idx)
+                ->update(['status' => 'Y']);
+        }
+
         $comment_point = $this->point->getPoint()["comment_point"] ?? 0;
 
         $memberData = $this->member->find($r_m_idx);
@@ -96,7 +108,7 @@ class Comment extends BaseController
                 $this->orderMileage->insert([
                     'm_idx'             => $r_m_idx,
                     'mi_title'          => '게시물에 댓글 달기',
-                    'order_gubun'       => '게시물에 댓글 달기',
+                    'order_gubun'       => '포인트차감',
                     'order_idx'         => 0,
                     'order_mileage'     => intval($comment_point),
                     'mi_r_date'         => date('Y-m-d H:i:s'),

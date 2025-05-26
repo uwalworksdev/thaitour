@@ -418,7 +418,7 @@ class CheckoutController extends BaseController
 		$payment_user_last_name_en  = updateSQ($this->request->getPost('order_user_last_name_en'));
         $payment_user_last_name_en  = encryptField($payment_user_last_name_en, "encode");
 
-		$order_passport_number      = updateSQ($this->request->getPost('$order_passport_number'));
+		$order_passport_number      = updateSQ($this->request->getPost('order_passport_number'));
         $order_passport_number      = encryptField($order_passport_number, "encode");
 	    $order_passport_expiry_date = updateSQ($this->request->getPost('order_passport_expiry_date'));
 	    $order_birth_date           = updateSQ($this->request->getPost('order_birth_date'));
@@ -496,6 +496,8 @@ class CheckoutController extends BaseController
 					$sql_o = "UPDATE tbl_order_mst SET  order_status               = '$order_status'
 					                                   ,group_no                   = '$group_no'
 													   ,baht_thai                  = '$baht_thai'
+													   ,order_memo                 = '$payment_memo'	
+													   ,local_phone                = '$local_phone'	
 													   ,order_user_name            = '$payment_user_name'	
 													   ,order_user_first_name_en   = '$payment_user_first_name_en' 	
 													   ,order_user_last_name_en    = '$payment_user_last_name_en' 	
@@ -506,7 +508,7 @@ class CheckoutController extends BaseController
 													   ,order_user_mobile          = '$payment_user_mobile' 
 													   ,order_user_phone           = '$payment_user_phone' 
 													   ,order_user_gender          = '$companion_gender' WHERE order_no = '". $arr[$i] ."' ";
-					//write_log("reservation_request- ". $sql_o);
+					write_log("reservation_request- ". $sql_o);
 					$result = $db->query($sql_o); 
 				}	
         }
@@ -546,6 +548,9 @@ class CheckoutController extends BaseController
 		// 쿼리 실행 및 결과 확인
 		$query  = $builder->get();
 		$result = $query->getResultArray(); // 결과 배열 반환
+
+        alimTalk_cart_send($group_no);
+		email_reservation_group($group_no);
 
         $data = [
             'product_name' => $product_name,

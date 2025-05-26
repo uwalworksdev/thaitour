@@ -166,42 +166,50 @@ class AdminProductQnaController extends BaseController
     //     }
     // }
 
-    public function delete()
-    {
-        try {
-            $idxArray = $this->request->getVar('idx');
+public function delete()
+{
+    try {
+        $idxArray = $this->request->getVar('idx');
 
-            if (!is_array($idxArray) || empty($idxArray)) {
-                return $this->response->setJSON([
-                    'result' => false,
-                    'message' => "삭제할 내용을 선택하셔야 합니다." 
-                ])->setStatusCode(400);
-            }
-
-            $idxArray = array_map('intval', $idxArray);
-
-            $data = $this->productQna->getByIdxAray($idxArray);
-
-            if (empty($data)) {
-                return $this->response->setJSON([
-                    'result' => false,
-                    'message' => "상세정보를 찾을 수 없습니다."
-                ])->setStatusCode(404);
-            }
-
-            $this->productQna->updateData($idxArray, ['status' => 'N']);
-
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => "성공적으로 삭제되었습니다.",
-                'data' => $data
-            ], 200);
-        } catch (\Exception $e) {
+        if (!is_array($idxArray) || empty($idxArray)) {
             return $this->response->setJSON([
                 'result' => false,
-                'message' => $e->getMessage()
+                'message' => "삭제할 내용을 선택하셔야 합니다."
             ])->setStatusCode(400);
         }
+
+        $idxArray = array_map('intval', $idxArray);
+
+        // 삭제 대상 데이터 확인
+        $data = $this->productQna
+            ->whereIn('idx', $idxArray)
+            ->findAll();
+
+        if (empty($data)) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => "상세정보를 찾을 수 없습니다."
+            ])->setStatusCode(404);
+        }
+
+        // 실제 DB 삭제 수행
+        $this->productQna
+            ->whereIn('idx', $idxArray)
+            ->delete();
+
+        return $this->response->setJSON([
+            'result' => true,
+            'message' => "성공적으로 삭제되었습니다.",
+            'data' => $data
+        ])->setStatusCode(200);
+
+    } catch (\Exception $e) {
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => '처리 중 오류가 발생했습니다. (' . $e->getMessage() . ')'
+        ])->setStatusCode(500);
     }
+}
+
 
 }

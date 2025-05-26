@@ -629,7 +629,7 @@
                         <h2><?= $guide['product_name'] ?></h2>
                         <div class="only_web">
                             <div class="list-icon">
-                                <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                                <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                                 <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                                 <img src="/uploads/icons/share_icon.png" alt="share_icon">
                             </div>
@@ -639,10 +639,10 @@
                         <div class="rating-container">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
-                            <span>생생리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
+                            <span>리얼리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
                         </div>
                         <div class="list-icon only_mo">
-                            <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                            <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                             <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
@@ -693,16 +693,17 @@
                             <a class="active short_link" onclick="scrollToEl('product_info')" data-target="product_info"
                                href="#!">가격/상품정보</a>
                             <a class="short_link" onclick="scrollToEl('product_des')" data-target="product_des"
-                               href="#!">생생리뷰</a>
-                            <a class="short_link" onclick="scrollToEl('section8')" href="#!">상품Q&A</a>
+                               href="#!">리얼리뷰</a>
+                            <a class="short_link" onclick="scrollToEl('section8')" href="#!">상품Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</a>
                         </div>
                     </div>
 
                 </div>
                 <div class="section2" id="product_info">
                     <h4 class="title_sec2">가격/상품정보</h4>
+                    <?php $i = 0; ?>
                     <?php foreach ($options as $key => $option): ?>
-                        <div class="sec2-item-card tour_calendar">
+                        <div class="sec2-item-card tour_calendar <?php echo $i == 0 ? "active" : "" ?>">
                             <?php
                             $price_ = $option['o_sale_price'];
                             ?>
@@ -861,42 +862,43 @@
                                 </div>
                             </div>
                         </div>
+                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </div>
             </form>
 
             <?php
-            $reject_dates = [];
-            $arr_date_ = explode('||||', $guide['deadline_time']);
-            foreach ($arr_date_ as $itemDate) {
-                if ($itemDate != "" && $itemDate) {
-                    $arr_date_s_ = explode('||', $itemDate);
+                // $reject_dates = [];
+                // $arr_date_ = explode('||||', $guide['deadline_time']);
+                // foreach ($arr_date_ as $itemDate) {
+                //     if ($itemDate != "" && $itemDate) {
+                //         $arr_date_s_ = explode('||', $itemDate);
 
-                    $start_date = new DateTime($arr_date_s_[0]);
-                    $end_date = new DateTime($arr_date_s_[1]);
-                    $end_date->modify('+1 day');
+                //         $start_date = new DateTime($arr_date_s_[0]);
+                //         $end_date = new DateTime($arr_date_s_[1]);
+                //         $end_date->modify('+1 day');
 
-                    $interval = new DateInterval('P1D');
-                    $daterange = new DatePeriod($start_date, $interval, $end_date);
+                //         $interval = new DateInterval('P1D');
+                //         $daterange = new DatePeriod($start_date, $interval, $end_date);
 
-                    foreach ($daterange as $date) {
-                        $reject_dates[] = $date->format('Y-m-d');
-                    }
-                }
-            }
+                //         foreach ($daterange as $date) {
+                //             $reject_dates[] = $date->format('Y-m-d');
+                //         }
+                //     }
+                // }
 
-            $available_dates = [];
-            $arr_date_ = explode('||', $guide['available_period']);
-            $start_date = new DateTime($arr_date_[0]);
-            $end_date = new DateTime($arr_date_[1]);
-            $end_date->modify('+1 day');
+                // $available_dates = [];
+                // $arr_date_ = explode('||', $guide['available_period']);
+                // $start_date = new DateTime($arr_date_[0]);
+                // $end_date = new DateTime($arr_date_[1]);
+                // $end_date->modify('+1 day');
 
-            $interval = new DateInterval('P1D');
-            $daterange = new DatePeriod($start_date, $interval, $end_date);
+                // $interval = new DateInterval('P1D');
+                // $daterange = new DatePeriod($start_date, $interval, $end_date);
 
-            foreach ($daterange as $date) {
-                $available_dates[] = $date->format('Y-m-d');
-            }
+                // foreach ($daterange as $date) {
+                //     $available_dates[] = $date->format('Y-m-d');
+                // }
             ?>
 
             <h2 class="title-sec3" id="product_des">
@@ -957,7 +959,7 @@
 
             <div class="custom-golf-detail">
                 <div class="section6" id="section8">
-                    <h2 class="title-sec6">상품문의(<?=$product_qna["nTotalCount"]?>)</h2>
+                    <h2 class="title-sec6">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</h2>
 
                     <div class="qa-section">
                         <div class="custom-area-text">
@@ -975,10 +977,10 @@
                             foreach($product_qna["items"] as $qna){
                                 if(!empty(trim($qna["reply_content"]))){
                                     $qna_status = "Y";
-                                    $qna_text = "답변대기중";
+                                    $qna_text = "답변완료";
                                 }else{
                                     $qna_status = "N";
-                                    $qna_text = "답변완료";
+                                    $qna_text = "문의접수";
                                 }
                         ?>
                             <li class="qa-item">
@@ -1243,7 +1245,29 @@
         $(document).ready(function () {
             $(".calendar_header").each(function () {
                 init_daterange($(this).data('num'));
-            })
+            });
+
+            let current_idx =  $('.calendar_header:first').data('num');
+            let current_people_cnt = Number($('#people' + current_idx).val() ?? 1);
+
+            let today = new Date();
+            const date_now = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            today.setDate(today.getDate() + current_people_cnt - 1);
+            const tomorrow = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+            $('#checkInDate' + current_idx).val(date_now);
+            $('#checkOutDate' + current_idx).val(tomorrow);
+
+            $('.tour_calendar').removeClass('active');
+            $('.item_check_term_').removeClass('checked_');
+            $('.item_check_term_all_').removeClass('checked_');
+            $('.item_check_term_').val('N');
+            $('.item_check_term_all_').val('N');
+            $(".calendar_container_tongle").hide();
+            $('.calendar_header:first').next().show().parent().addClass('active');
+            openDateRanger('.calendar_header:first');
+            
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
                 $('.item_check_term_').removeClass('checked_');
@@ -1264,12 +1288,8 @@
             })
 
             function openDateRanger(el) {
-                /* Get idx of option */
                 let num_idx = $(el).data('num');
 
-                /*
-                Add style for option idx
-                */
                 $('.calendar_text_head').removeClass('open_')
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
@@ -1278,14 +1298,7 @@
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
-            function get1() {
-                console.log("get1");
-                
-            }
-
             function init_daterange(idx) {
-                const enabled_dates = splitStartDate();
-                const reject_days = splitEndDate();
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
@@ -1303,14 +1316,10 @@
                         monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
                         firstDay: 0
                     },
-                    isInvalidDate: function (date) {
-                        const formattedDate = date.format('YYYY-MM-DD');
-                        return !enabled_dates.includes(formattedDate);
-                    },
                     linkedCalendars: true,
                     alwaysShowCalendars: true,
                     parentEl: calendarTabElement,
-                    minDate: moment().add(1, 'days'),
+                    minDate: moment(), //moment().add(1, 'days')
                     opens: "center",
                     autoApply: true
                 }, function (start, end) {
@@ -1380,15 +1389,15 @@
                 });
             }
 
-            function splitEndDate() {
-                let rj = `<?= implode(',', $reject_dates) ?>`;
-                return rj.split(',');
-            }
+            // function splitEndDate() {
+            //     let rj = `<?= implode(',', $reject_dates) ?>`;
+            //     return rj.split(',');
+            // }
 
-            function splitStartDate() {
-                let rj = `<?= implode(',', $available_dates) ?>`;
-                return rj.split(',');
-            }
+            // function splitStartDate() {
+            //     let rj = `<?= implode(',', $available_dates) ?>`;
+            //     return rj.split(',');
+            // }
         });
 
         $('.count_day').on('change', function () {

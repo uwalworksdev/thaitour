@@ -1457,6 +1457,15 @@
     flex: 0 0 auto;
 }
 
+.opt_count_box button.del_btn {
+    color: red;
+    margin-left: 40px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .opt_count_box .minus_btn {
     display: flex;
     align-items: center;
@@ -3619,6 +3628,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-top: 30px;
 }
 
+.popup_wrap.place_pop .popup_place__body * {
+    font-family: var(--bs-body-font-family), sans-serif !important;
+    line-height: 1.4 !important;
+}
+
 .info_company .popup_place__body {
     margin-top: 10px;
 }
@@ -3704,12 +3718,26 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_wrap.place_pop .pop_box {
-    max-width: 900px;
-    /* padding: 0 59px; */
+    max-width: 1000px;
+    padding: 0 59px;
+}
+
+.popup_wrap.place_pop .popup_place__body .img_top {
+    width: 100% !important;
+} 
+
+.popup_wrap.place_pop .popup_place__body table {
+    width: 100% !important;
 }
 
 .popup_wrap.place_pop .pop_body {
-    padding: 0 59px;
+    /* padding: 0 59px; */
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.popup_wrap.place_pop .pop_body::-webkit-scrollbar {
+    display: none;
 }
 
 .meeting_time {
@@ -4208,6 +4236,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     width: 160px;
 }
 
+.customer-form-page .form-group-second .select-width.golf-select {
+    width: 100px;
+}
+
 .customer-form-page .mb-30 {
     margin-bottom: 30px;
 }
@@ -4241,8 +4273,25 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .item-info {
     display: flex;
-    width: 220px;
+    width: 100%;
     margin-bottom: 12px;
+}
+
+.cart_info_pop .title-sub-below {
+    font-size: 15px;
+    color: #757575;
+    margin-bottom: 20px;
+}
+
+.cart_info_pop .cus-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart_info_pop .cus-form-group textarea {
+    width: 100%;
+    padding: 20px;
+    height: 102px;
 }
 
 .customer-form-page .tour .container-card .item-info {
@@ -4407,6 +4456,19 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     cursor: pointer;
 }
 
+.terms-wrap {
+    width: 535px;
+}
+
+.terms-wrap .title-second {
+    margin-top: 20px;
+    padding-left: 14px;
+    padding-bottom: 16px;
+}
+
+.terms-wrap .view-policy {
+    margin-right: 30px;
+}
 
 .customer-form-page .below-sub-des {
     font-size: 15px;
@@ -5021,6 +5083,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .order-form-page .info-table-order.info-table-cus-padding td {
     padding: 11px;
+}
+
+.order-form-page .info-table-order.info-table-cus-padding td .note {
+    display: inline-block;
+    margin-top: 5px;
 }
 
 .order-form-page .info-table-order.info-table-cus-padding td input {
@@ -6820,6 +6887,13 @@ iframe::-webkit-scrollbar {
     padding: 0 20px 0 5px;
 }
 
+.wrap-golf-info {
+    gap: 40px;
+}
+
+.wrap-golf-info .ip-group input {
+    width: 80px !important;
+}
 
 @media screen and (min-width: 1921px) {
     #iframeContainer {
@@ -6898,6 +6972,31 @@ iframe::-webkit-scrollbar {
 @media screen and (max-width: 850px) {
     #iframeContainer {
         height: 460vh;
+    }
+
+    .popup_wrap.place_pop .pop_body {
+        /* padding: 0 59px; */
+        max-height: 60rem;
+        overflow-y: auto;
+    }
+
+    .popup_place__head {
+        border-bottom: 1px solid #222222;
+        padding-bottom: 2.5rem;
+        padding-top: 5.5rem;
+    }
+
+    .popup_place__body {
+        margin-top: 3rem;
+    }
+
+    #policyContent *{
+        font-size: 2rem !important;
+        line-height: 1.4 !important;
+    }
+
+    #policyContent .desc {
+        flex-direction: column;
     }
 }
 

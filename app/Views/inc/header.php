@@ -74,7 +74,7 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img style="width: 100%;" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
+                <a href="/"><img class="logo_img" style="width: 100%;" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
@@ -133,11 +133,12 @@
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
-                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
+                                <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결재</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
-                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
-                                <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
-                                <li class="item_link">나의 게시물</li>
+                                <li class="item_link" onclick="location.href='/contact/main'">일반문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1여행문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰함</li>
+                                <li class="item_link" onclick="location.href='/mypage/info_option'">내정보수정</li>
                             </ul>
                         </a>
 					<?php } else { ?>
@@ -148,9 +149,10 @@
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
                                 <li class="item_link" onclick="location.href='/mypage/reservation_list'">예약확인/결제</li>
                                 <li class="item_link" onclick="location.href='/mypage/fav_list'">관심상품</li>
-                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1게시판</li>
-                                <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰</li>
-                                <li class="item_link">나의 게시물</li>
+                                <li class="item_link" onclick="location.href='/contact/main'">일반문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/consultation'">1:1여행문의</li>
+                                <li class="item_link" onclick="location.href='/mypage/discount'">쿠폰함</li>
+                                <li class="item_link" onclick="location.href='/mypage/info_option'">내정보수정</li>
                             </ul>
                         </a>
                     <?php } ?>
@@ -511,7 +513,7 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-        <div class="nav-item" onclick="location.href='/magazines/list'">
+        <div class="nav-item" onclick="location.href='/mypage/reservation_list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
             <span class="nav-text text-grey">예약확인</span>
         </div>

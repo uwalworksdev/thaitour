@@ -619,7 +619,7 @@
                                     <th>예약현황</th>
                                     <td>
                                        <input type="hidden" name="o_order_status" value="<?= $order_status ?>">
-                                        <select name="order_status" class="select_txt">
+                                        <select name="order_status" id="order_status" class="select_txt">
                                             <option value="">결제현황</option>
 											<?php
 												$_deli_type = get_deli_type();
@@ -631,7 +631,7 @@
 												} 
 											?>
                                         </select>
-                                       <a href="javascript:send_it()" class="btn btn-default">
+                                       <a href="javascript:set_status('<?= $order_idx ?>')" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">상태수정</span></a>
 										&emsp;<?=$order_r_date?>
 										
@@ -646,12 +646,12 @@
 								<tr>
                                         <th>예약 문자발송(알림톡)</th>
                                         <td colspan="3">
-                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약접수</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확인</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약확정</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제대기</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">결제완료</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">예약취소</button>
+                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1652');">예약접수</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1651');">예약확인</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_2397');">결제대기</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1654');">결제완료</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1655');">예약확정</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_1657');">예약취소</button>
                                         </td>
 										<!--th>바우쳐  금액</th>
 										<td>
@@ -720,7 +720,7 @@
                                             } ?>>인보이스 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/invoice/car_01/<?=$order_idx?>', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/invoice/car_01/<?=$order_idx?>', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">인보이스 보기</button>&emsp;
 
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -742,7 +742,7 @@
                                             } ?>>바우처 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" style="width: unset;" onclick="window.open('/voucher/hotel', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/hotel/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
 										
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -925,6 +925,35 @@
 		});
 	});
     </script>
+
+    <script>
+	function allimtalk(order_no, alimCode)
+	{
+			if (!confirm('알림톡을 전송 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_allimtalk_send",
+				type : "POST",
+				data : {
+					"order_no"  : order_no,
+					"alimCode"  : alimCode
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});		
+	}	
+	</script>
 	
     <script>
 
@@ -966,6 +995,39 @@
                 }
             });
         }
+		
+		function set_status(idx)
+		{
+			if (!confirm('예약현황을 변경 하시겠습니까?'))
+				return false;
+
+			if($("#order_status").val() == "") {
+			   alert('예약상태를 선택하세요');
+			   return false;
+			}
+
+			var message = "";
+			$.ajax({
+				url: "/ajax/ajax_set_status",
+				type: "POST",
+				data: {
+					"order_idx"    : idx,
+					"order_status" : $("#order_status").val()
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+			
+		}			
     </script>
 
     <script>

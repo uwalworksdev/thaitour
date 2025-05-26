@@ -233,7 +233,7 @@
 
 .main_visual_slider .img_box::before {
     transition: all 2s ease;
-    content: "";
+    /* content: ""; */
     position: absolute;
     top: 0;
     left: 0;
@@ -1317,8 +1317,16 @@
     line-height: 1.3;
     color: #454545;
     margin-bottom: 15px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     width: calc(100% - 90px);
+}
+
+.product_details .name_flex {
+    flex-wrap: wrap;
+}
+
+.product_details .name_flex .name {
+    width: 100%;
 }
 
 .side-bar-inc .popup_review_cart .popups .pop_contents .product_details p.price {

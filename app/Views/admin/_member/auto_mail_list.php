@@ -1,6 +1,12 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
+<style>
+    div.listBottom table.listTable tbody td {
+        height: 40px;
+    }
+</style>
+
 <div id="container">
 <span id="print_this">
     <header id="headerContainer">
@@ -8,6 +14,8 @@
             <h2>자동메일관리</h2>
             <div class="menus">
                 <ul class="first">
+                    <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+
                     <li>
                         <a href="email_view" class="btn btn-primary">
                             <span class="glyphicon glyphicon-pencil"></span> 
@@ -35,6 +43,7 @@
                             <col width="*%" />
                             <col width="15%" />
                             <col width="15%" />
+                            <col width="10%" />
                             <col width="7%" />
                         </colgroup>
                         <thead>
@@ -43,6 +52,7 @@
                                 <th>메일명</th>
                                 <th>미리보기</th>
                                 <th>자동발송여부</th>
+                                <th>우선순위</th>
                                 <th>관리</th>
                             </tr>
                         </thead>
@@ -59,6 +69,10 @@
                                         <td><a href="javascript:void(0)" class="btn_preview" rel="<?= esc($row['idx']) ?>">미리보기</a></td>
                                         <td>
                                             <?= ($row['autosend'] == "Y") ? "자동발송" : "사용안함" ?>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="onum[]" value="<?= $row['onum'] ?>" class="input_txt" style="width:50px; text-align: center;">
+                                            <input type="hidden" name="idx[]" value="<?= $row['idx'] ?>" class="input_txt">
                                         </td>
                                         <td>
                                             <a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>">
@@ -101,6 +115,26 @@
 </div>
 
 <script>
+    function change_it() {
+        $.ajax({
+            url: "email_change",
+            type: "POST",
+            data: $("#frm").serialize(),
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                alert(response.message);
+                if (response.result == true) {
+                    location.reload();
+                    return;
+                } 
+            }
+        });
+    }
+
     function del_it(idx) {
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
             handleDel(idx);
@@ -166,92 +200,6 @@
         }
     }
 
-    function SELECT_DELETE() {
-        if ($(".m_idx").is(":checked") == false) {
-            alert_("삭제할 내용을 선택하셔야 합니다.");
-            return;
-        }
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-
-        $("#ajax_loader").removeClass("display-none");
-
-        $.ajax({
-            url: "del_deal.php",
-            type: "POST",
-            data: $("#frm").serialize(),
-            error: function(request, status, error) {
-                alert_("code : " + request.status + "\r\nmessage : " + request.responseText);
-                $("#ajax_loader").addClass("display-none");
-            },
-            complete: function(request, status, error) {
-                // $("#ajax_loader").addClass("display-none");
-            },
-            success: function(response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                }
-            }
-        });
-    }
-
-    function del_it(idx) {
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-        $("#ajax_loader").removeClass("display-none");
-        $.ajax({
-            url: "del_deal.php",
-            type: "POST",
-            data: "idx[]=" + idx,
-            error: function(request, status, error) {
-                alert_("code : " + request.status + "\r\nmessage : " + request.responseText);
-                $("#ajax_loader").addClass("display-none");
-            },
-            complete: function(request, status, error) {
-                // $("#ajax_loader").addClass("display-none");
-            },
-            success: function(response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                }
-            }
-        });
-    }
-
-    function chg_it(idx, vals) {
-        $("#ajax_loader").removeClass("display-none");
-        $.ajax({
-            url: "chg_deal.php",
-            type: "POST",
-            data: "idx=" + idx + "&vals=" + vals,
-            error: function(request, status, error) {
-                alert_("code : " + request.status + "\r\nmessage : " + request.responseText);
-                $("#ajax_loader").addClass("display-none");
-            },
-            complete: function(request, status, error) {
-                // $("#ajax_loader").addClass("display-none");
-            },
-            success: function(response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 변경되었습니다.");
-                    location.reload();
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                }
-            }
-        });
-    }
 </script>
 
 <?= $this->endSection() ?>

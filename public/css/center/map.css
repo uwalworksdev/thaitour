@@ -3752,19 +3752,32 @@ form .form_list .name_row input+input {
 
 /* intro */
 
+.inner_1000 {
+  max-width: 1000px !important;
+}
+
+.intro .intro_visual {
+  height: 16.615vw;
+  width: 100%;
+  background-image: url('/img/center/ab-visual.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 16.615vw;
+}
+
 .intro_bg {
           background: url(/assets/img/sub/intro_visual.png) no-repeat center;
           height: 240px;
 }
 
 .intro .intro_top {
-          padding: 115px 0 0;
+          padding: 40px 0 0;
           align-items: center;
-          gap: 5px;
+          gap: 25px;
 }
 
 .intro .intro_top .intro_txt {
-          width: 395px;
+          width: auto;
 }
 
 .intro .intro_tit {
@@ -3773,7 +3786,8 @@ form .form_list .name_row input+input {
           letter-spacing: -1px;
           color: #757575;
           font-weight: 400;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
+          font-family: "Noto Sans KR";
 }
 
 .intro .intro_ttl {
@@ -3787,6 +3801,7 @@ form .form_list .name_row input+input {
 
 .intro .intro_desc {
           margin: 25px 0 60px;
+          font-family: "Noto Sans KR";
 }
 
 .intro .intro_desc .txt {
@@ -3806,10 +3821,22 @@ form .form_list .name_row input+input {
 }
 
 .intro .intro_banner {
-          background: url(/img/sub/intro_banner.png) no-repeat center;
-          height: 459px;
+          background: url(/img/center/ab-img3.png) no-repeat center;
+          height: 400px;
           position: relative;
           z-index: 1;
+          background-size: 100% 100%;
+}
+
+.intro .intro_banner .relative {
+  position: relative;
+  height: 100%;
+}
+
+.intro .intro_banner img {
+  position: absolute;
+  top: 29%;
+  right: 2%;
 }
 
 /* .intro .intro_banner {
@@ -3830,13 +3857,20 @@ form .form_list .name_row input+input {
           margin-top: -120px;
 }
 
+.intro .banner_txt .bg_white {
+  width: 468px;
+  padding: 35px 24px;
+  background-color: #fff;
+}
+
 .intro .banner_txt .cont {
           font-size: 18px;
           letter-spacing: -1px;
           line-height: 30px;
           color: #666666;
           font-weight: 400;
-          padding: 35px 0 55px;
+          padding: 4px 0 30px 24px;
+          font-family: "Noto Sans KR";
 }
 
 .intro .intro_content {
@@ -3878,22 +3912,182 @@ form .form_list .name_row input+input {
           font-weight: 400;
 }
 
+.intro .intro_content .box_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 26px;
+}
+
+.intro .intro_content .info_box {
+  width: 340px;
+}
+
+.intro .intro_content .info_box .item {
+  display: flex;
+  align-items: start;
+  gap: 22px;
+  padding: 27px 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.intro .intro_content .info_box .item:last-child {
+  border-bottom: none;
+}
+
+.intro .intro_content .info_box .item .title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 200;
+} 
+
+.intro .intro_content .info_box .item .desc {
+  font-size: 16px;
+  font-weight: 200;
+  color: #999;
+  line-height: 1.3;
+} 
+
+.intro .intro_content .list_img {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+} 
+
+.intro .intro_content .list_img .image {
+  border: 1px solid #dbdbdb;
+  width: calc(50% - 10px);
+}
+
+.intro .intro_content .list_img .image .text_ttl {
+    padding: 11px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #252525;
+}
+
+.intro .intro_content .list_img .image img {
+  width: 310px;
+  height: 153px;
+  object-fit: cover;
+  display: block;
+}
+
 .intro .intro_location {
-          padding: 115px 0 110px;
+          padding: 30px 0 110px;
           border-bottom: 1px solid #eee;
 }
+
+.intro .intro_location .logo {
+  text-align: center;
+} 
+
+
+.intro .intro_location .logo .span {
+  font-size: 22px;
+  color: #999;
+  margin-top: 10px;
+  display: block;
+}
+
+.intro .intro_location .cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 56px;
+
+}
+
+.intro .intro_location .cont .item {
+  text-align: center;
+  position: relative;
+}
+
+.intro .intro_location .cont .item:nth-child(2) {
+  padding: 0 60px;
+}
+
+.intro .intro_location .cont .item:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 31px;
+  height: 29px;
+  background-image: url(/img/center/it_ic_right.png);
+  background-size: cover;
+
+}
+
+.intro .intro_location .cont .item:nth-child(2)::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 31px;
+  height: 29px;
+  background-image: url(/img/center/it_ic_right.png);
+  background-size: cover;
+
+} 
+
+.intro .intro_location .cont .item  .time {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: 200;
+  display: block;
+  color: #777;
+
+}
+
+
+.intro .intro_location .cont .item  .desc {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 200;
+  color: #777;
+  line-height: 1.4;
+}
+
+.intro .intro_location .cont .item  .bot {
+  font-size: 17px;
+  font-weight: 200;
+  color: #777;
+  
+}
+
+
 
 .intro .intro_location .location_desc {
           margin-top: 70px;
 }
 
+.intro .intro_location .certifi_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 92px 50px 0;
+}
+
+.intro .intro_location .certifi_list .card {
+  width: calc(33.33% - 15px);
+}
+
 .intro .intro_location .view_left {
           width: 560px;
-          border-left: 1px solid #eee;
+        }
+        
+.intro .intro_location .view_left .wrap_ {
+  border-left: 1px solid #eee;
 }
 
 .intro .intro_location .view_right {
-          margin-top: -45px;
+          margin-top: -140px;
 }
 
 .intro .intro_location .view_left .view {
@@ -3909,8 +4103,8 @@ form .form_list .name_row input+input {
           letter-spacing: -1px;
           /* line-height: 52px; */
           color: #00336a;
-          font-weight: 800;
-          font-family: "Suit";
+          font-weight: 700;
+          font-family: "Noto Sans KR";
           margin-left: 32px;
           width: 65px;
 }
@@ -3936,8 +4130,8 @@ form .form_list .name_row input+input {
           font-size: 18px;
           letter-spacing: -1px;
           color: #252525;
-          font-weight: 800;
-          font-family: "Suit";
+          font-weight: 700;
+          font-family: "Noto Sans KR";
           margin: 0 25px 0 15px;
           line-height: 1.3;
 }
@@ -5399,6 +5593,8 @@ form .form_list .name_row input+input {
                     grid-column: 1 / 3;
                     /* Chiếm cả hai cột */
           }
+
+         
 
 
 }

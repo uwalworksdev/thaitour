@@ -26,6 +26,22 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
 
 <style>
+    .login_find {
+        gap: 20px;
+        padding: 0;
+    }
+    .sub_visual {
+        background-color: #e0ecf7;
+        border-radius: 20px;
+        min-height: 260px;
+        margin-bottom: 80px;
+        background-image: url(/img/sub/PC.png) !important;
+        background-size: cover;
+    }
+
+    #container.write_container {
+        padding-top: 30px ;
+    }
     @media screen and (max-width: 850px) {
         .sect_ttl_box {
             margin: 2.1429rem 0;
@@ -140,13 +156,24 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
         width : 100%;
         height: 9rem;
     }
+    .sub_visual {
+        height: 28rem;
+        min-height: auto;
+        margin-bottom: 10rem ;
+        background-image: url(/img/sub/mo_wr.png) !important;
+    }
+    #container.write_container {
+        padding-top: 3rem;
+    }
+
+
     }
 </style>
 <div id="container" class="sub write_container">
     <section class="write_sect">
         <div class="inner">
             <div class="sect_ttl_box">
-                <h2>여행 문의하기</h2>
+                <h2>문의하기</h2>
             </div>
             <form name="frm" id="frm">
                 <input type="text" name="idx" value="<?= $idx ?>" hidden>
@@ -159,7 +186,36 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                         <tr>
                             <th>이름*</th>
                             <td>
-                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
+                                <input class="bs-input mx-md" name="user_name" id="user_name" value="<?= $user_name ?>" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>구분*</th>
+                            <td>
+                                <div class="login_find flex" style="padding: 0;">
+                                    <?php
+                                        $i = 0;
+                                        foreach($types_code as $code){
+                                            $check = "";
+                                            if($idx){
+                                                if($code["code_no"] == $row["type_code"]){
+                                                    $check = "checked";
+                                                }
+                                            }else{
+                                                if($i == 0){
+                                                    $check = "checked";
+                                                }
+                                            }
+                                    ?>
+                                        <div class="bs-input-radio">
+                                            <input type="radio" name="type_code" id="type_code_<?= $code["code_no"] ?>" <?= $check ?> value="<?= $code["code_no"] ?>">
+                                            <label for="type_code_<?= $code["code_no"] ?>"><?= $code["code_name"] ?></label>
+                                        </div>
+                                    <?php
+                                        $i++;
+                                        }
+                                    ?>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -227,7 +283,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>여행예정일</th>
                             <td>
                                 <div class="datepick_wrap flex__c">
@@ -240,8 +296,8 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                     </div>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
+                        </tr> -->
+                        <!-- <tr>
                             <th>여행형태</th>
                             <td>
                                 <div class="travel_box flex__c">
@@ -307,12 +363,12 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                     ?>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>상담가능시간</th>
                             <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value="<?= $row["consultation_time"] ?? "" ?>"></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>상품명</th>
                             <td>
                                 <?php
@@ -343,7 +399,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
                                 }
                                 ?>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>제목*</th>
                             <td>

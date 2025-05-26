@@ -517,7 +517,7 @@
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
                             <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                            <p class="summary-tb2" id="policy_show" data-product-idx="<?= $hotel['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
+                            <p class="summary-tb2" id="policy_show" data-product-idx="<?= $hotel['product_code_1'] ?>">본 예약건 취소규정 자세히보기</p>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
@@ -1023,44 +1023,6 @@
                 const frm = document.order_frm;
                 let formData = new FormData($('#order_frm')[0]);
 
-                if(order_status == "W") {
-						if ($("#order_user_name").val() === "") {
-							alert("한글명을 입력해주세요!");
-							$("#order_user_name").focus();
-							return false;
-						}
-
-						if ($("#order_user_first_name_en").val() === "") {
-							alert("영문명을 입력해주세요!");
-							$("#order_user_first_name_en").focus()
-							return false;
-						}
-						
-						if ($("#order_user_last_name_en").val() === "") {
-							alert("영문명을 입력해주세요!");
-							$("#order_user_last_name_en").focus()
-							return false;
-						}
-
-						if ($("#order_passport_number").val() === "") {
-							alert("여권번호를 입력해주세요!");
-							$("#order_passport_number").focus();
-							return false;
-						}
-
-						if ($("#order_passport_expiry_date").val() === "") {
-							alert("여권만기일을 입력해주세요!");
-							$("#order_passport_expiry_date").focus();
-							return false;
-						}
-
-						if ($("#order_birth_date").val() === "") {
-							alert("생년월일을 입력해주세요!");
-							$("#order_birth_date").focus()
-							return false;
-						}
-                }
-
                 /* Collect values for validation */
                 let fullagreement = $("#fullagreement").val().trim();
                 let terms = $("#terms").val().trim();
@@ -1068,10 +1030,48 @@
                 let information = $("#information").val().trim();
                 let guidelines = $("#guidelines").val().trim();
 
-                /* Check for agreement validation */
-                if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                    alert("모든 약관에 동의해야 합니다.");
-                    return false;
+                if(order_status == "W") {
+                    if ($("#order_user_name").val() === "") {
+                        alert("한글명을 입력해주세요!");
+                        $("#order_user_name").focus();
+                        return false;
+                    }
+
+                    if ($("#order_user_first_name_en").val() === "") {
+                        alert("영문명을 입력해주세요!");
+                        $("#order_user_first_name_en").focus()
+                        return false;
+                    }
+                    
+                    if ($("#order_user_last_name_en").val() === "") {
+                        alert("영문명을 입력해주세요!");
+                        $("#order_user_last_name_en").focus()
+                        return false;
+                    }
+
+                    if ($("#order_passport_number").val() === "") {
+                        alert("여권번호를 입력해주세요!");
+                        $("#order_passport_number").focus();
+                        return false;
+                    }
+
+                    if ($("#order_passport_expiry_date").val() === "") {
+                        alert("여권만기일을 입력해주세요!");
+                        $("#order_passport_expiry_date").focus();
+                        return false;
+                    }
+
+                    if ($("#order_birth_date").val() === "") {
+                        alert("생년월일을 입력해주세요!");
+                        $("#order_birth_date").focus()
+                        return false;
+                    }
+
+                    /* Check for agreement validation */
+                    if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                        alert("모든 약관에 동의해야 합니다.");
+                        return false;
+                    }
                 }
 
                 let additional_request = "";
@@ -1161,6 +1161,10 @@
             $(".popup_wrap").hide();
             // $(".dim").hide();
         }
+
+        $(".popup_wrap .dim").on("click", function () {
+            $(".popup_wrap").hide();
+        });
 
         // $("#policy_show").on("click", function () {
         //     $(".policy_pop, .policy_pop .dim").show();

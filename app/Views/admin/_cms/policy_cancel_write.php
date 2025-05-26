@@ -66,14 +66,14 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>카테고리</th>
+                                    <th>제목</th>
                                     <td class="input_box travel_box">
                                         <div class="travel_box_child" style="display: flex;gap: 10px;">
                                             <?php if ($p_idx || $product_idx) { ?>
                                                 <input style="width: 12%" type="text" name="" value="<?= $product_code_name ?>"
                                                     disabled>
 
-                                                <?php if ($product_code_name_2): ?>
+                                                <!-- <?php if ($product_code_name_2): ?>
                                                     <input style="width: 12%" type="text" name="product_code_2"
                                                         value="<?= $product_code_name_2 ?>" disabled>
                                                 <?php endif; ?>
@@ -82,7 +82,7 @@
                                                         style="width: 12%" disabled>
                                                 <?php } ?>
                                                 <input type="text" name="" id="products" class="in_pro" value="<?= $product_name ?>"
-                                                    style="width: 12%" disabled>
+                                                    style="width: 12%" disabled> -->
                                             <?php } else {
                                                 ?>
                                                 <select name="product_code" id="product_code_1">
@@ -166,29 +166,29 @@
     </script>
 
     <script>
-        $("#product_code_1").on("change", function (event) {
-            $.ajax({
-                url: "/tools/get_travel_types",
-                type: "POST",
-                data: {
-                    code: event.target.value,
-                    depth: 3
-                },
-                success: function (res) {
-                    const data = JSON.parse(res);
-                    if (data.cnt == 0) {
-                        $("#product_code_2").hide();
-                        // $("#product_code_3").hide();
-                        $("#products").hide();
-                    } else {
-                        $("#product_code_2").html(data.data);
-                        $("#product_code_2").show();
-                        // $("#product_code_3").show();
-                        $("#products").show();
-                    }
-                }
-            })
-        })
+        // $("#product_code_1").on("change", function (event) {
+        //     $.ajax({
+        //         url: "/tools/get_travel_types",
+        //         type: "POST",
+        //         data: {
+        //             code: event.target.value,
+        //             depth: 3
+        //         },
+        //         success: function (res) {
+        //             const data = JSON.parse(res);
+        //             if (data.cnt == 0) {
+        //                 $("#product_code_2").hide();
+        //                 // $("#product_code_3").hide();
+        //                 $("#products").hide();
+        //             } else {
+        //                 $("#product_code_2").html(data.data);
+        //                 $("#product_code_2").show();
+        //                 // $("#product_code_3").show();
+        //                 $("#products").show();
+        //             }
+        //         }
+        //     })
+        // })
 
         function openListType() {
             let product_code_1 = $("#product_code_1").val();

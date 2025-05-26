@@ -147,16 +147,13 @@
 								<tr>
 									<th>현황</th>
 									<td>
-										<select name="status">
-											<option value="W" <?php if ($status == "W") {
-												echo "selected";
-											} ?>>상담접수</option>
-											<option value="V" <?php if ($status == "V") {
-												echo "selected";
-											} ?>>문의확인</option>
+										<select name="status" id="qna_status">
+											<option value="N" <?php if ($status == "N") {
+																	echo "selected";
+																} ?>>문의접수</option>
 											<option value="Y" <?php if ($status == "Y") {
-												echo "selected";
-											} ?>>답변완료</option>
+																	echo "selected";
+																} ?>>답변완료</option>
 										</select>
 									</td>
 									<th>여행자 성함</th>
@@ -172,7 +169,7 @@
                                         </div>
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>정확성</th>
 									<td>
 										<select class="form_input_" name="accuracy" id="accuracy">
@@ -189,9 +186,9 @@
 											<option <?= $speed == "test2" ? "selected" : ""?> value="test2">test2</option>
 										</select>
 									</td>
-								</tr>
+								</tr> -->
 
-								<!-- <tr>
+								<tr>
 									<th>이메일</th>
 									<td>
 										<div class="email flex__c">
@@ -207,9 +204,9 @@
 												class="s_input" name="user_phone" maxlength="13" numberonly="true">
 										</div>
 									</td>
-								</tr> -->
-								<!-- <tr>
-									<th>여행형태</th>
+								</tr>
+								<tr>
+									<!-- <th>여행형태</th>
 									<td>
 										<div class="email flex__c">
 											<div class="flex__c" style="flex-wrap: wrap">
@@ -258,15 +255,15 @@
 												</select>
 											</div>
 										</div>
-									</td>
+									</td> -->
 									<th>상담가능시간</th>
-									<td>
+									<td colspan="3">
 										<div class="phone flex gap-1">
 											<input value="<?= $consultation_time ?>" type="text" id="consultation_time"
 												class="s_input" name="consultation_time">
 										</div>
 									</td>
-								</tr> -->
+								</tr>
 								<!-- <tr>
 									<th>상품명</th>
 									<td>
@@ -297,12 +294,12 @@
 										</div>
 									</td>
 								</tr> -->
-								<!-- <tr>
+								<tr>
 									<th>제목</th>
 									<td colspan="3"><input style="width: 100%;" type="text" name="title" id="title"
 											value="<?= $title ?>" /></td>
-								</tr> -->
-								<tr>
+								</tr>
+								<!-- <tr>
 									<th>친절도</th>
 									<td colspan="3">
 										<select name="star" id="star">
@@ -323,19 +320,19 @@
 											</option>
 										</select>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<th>내용</th>
 									<td colspan="3"><textarea name="contents" id="contents"
 											rows="8" style="width: 100%;"><?= $contents ?></textarea></td>
 								</tr>
-								<!-- <tr>
+								<tr>
 									<th>첨부파일</th>
 									<td colspan="3">
 										<input type="file" name="ufile1">
-										<a href="<?= base_url('image/contact/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
+										<a href="<?= base_url('public/uploads/contact/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
 									</td>
-								</tr> -->
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -363,18 +360,19 @@
 			</div>
 			<!-- // contents -->
 		</form>
-		<!-- <div class="inner cmt_area" style="">
+		<div class="inner cmt_area">
 			<form action="" id="frm" name="com_form" class="com_form">
 				<input type="hidden" name="code" id="code" value="contact">
 				<input type="hidden" name="r_code" id="r_code" value="contact">
 				<input type="hidden" name="r_idx" id="r_idx" value="<?= $idx ?>">
 				<div class="comment_box-input flex">
 					<textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
-					<button type="button" class="btn btn-point comment_btn" onclick="fn_comment()">등록</button>
+					<button type="button" class="btn btn-point comment_btn"
+						onclick="fn_comment('<?= session('member.idx') ?>')">등록</button>
 				</div>
 			</form>
 			<div id="comment_list"></div>
-		</div> -->
+		</div>
 	</span><!-- 인쇄 영역 끝 //-->
 </div>
 <!-- // container -->
@@ -503,127 +501,9 @@
 		});
 
 	}
-
-	function fn_comment() {
-		<?php if ($session->get('member')["id"]) { ?>
-			if ($("#comment").val() == "") {
-				alert("댓글을 입력해주세요.");
-				return;
-			}
-			var queryString = $("form[name=com_form]").serialize();
-			$.ajax({
-				type: "POST",
-				url: "/comment/comment",
-				data: queryString,
-				cache: false,
-				success: function (ret) {
-					console.log(ret);
-					if (ret.trim() == "OK") {
-						fn_comment_list();
-						$("#comment").val("");
-					} else {
-						alert("등록 오류입니다." + ret);
-					}
-				}
-			});
-		<?php } else { ?>
-			alert("로그인을 해주세요.");
-		<?php } ?>
-	}
-
-	function fn_comment_list() {
-
-		$.ajax({
-			type: "GET",
-			url: "/comment/comment_list",
-			data: {
-				"r_code": "contact",
-				"r_idx": "<?= $idx ?>",
-				"role": "admin"
-			},
-			cache: false,
-			success: function (ret) {
-				$("#comment_list").html(ret);
-			}
-		});
-
-	}
-
-	function handleCmtDelete(idx) {
-		if (confirm("삭제하시겠습니까?") == false) {
-			return;
-		}
-
-		$.ajax({
-			url: "/comment/cmtDel",
-			data: { r_cmt_idx: idx },
-			dataType: "JSON",
-			type: "POST",
-			cache: false,
-			error: function (req, status, err) {
-				alert("CODE: " + req.status + "\r\nmessage: " + req.responseTxt + "\r\nerror: " + err);
-				return;
-			},
-			success: function (res, status, req) {
-				alert(res.msg)
-				if (res.result == 'OK') {
-					fn_comment_list();
-				} else {
-					return;
-				}
-			}
-		})
-	}
-
-	function handleCmtEdit(idx) {
-		const displayChk = document.querySelector("#rrp_edit_" + idx).style.display;
-		if (displayChk == '') {
-			document.querySelector("#rrp_edit_" + idx).style.display = 'none';
-			document.querySelector("#rrp_content_" + idx).style.display = '';
-			
-		} else {
-			document.querySelector("#rrp_edit_" + idx).style.display = '';
-			// document.querySelector("#rrp_edit_" + idx).focus();
-			document.querySelector("#rrp_edit_" + idx + " textarea").focus();
-			document.querySelector("#rrp_content_" + idx).style.display = 'none';
-		}
-	}
-
-	function handleCmtEditSubmit(e, idx) {
-		const comment = e.target.closest(".write_box").querySelector("textarea").value;
-		$.ajax({
-			url: "/comment/cmtEdit",
-			data: { r_cmt_idx: idx, r_content: comment },
-			dataType: "JSON",
-			type: "POST",
-			cache: false,
-			error: function (req, status, err) {
-				alert("CODE: " + req.status + "\r\nmessage: " + req.responseTxt + "\r\nerror: " + err);
-				return;
-			},
-			success: function (res, status, req) {
-				// alert(res.msg)
-				if (res.result == 'OK') {
-					fn_comment_list();
-				} else {
-					return;
-				}
-			}
-		})
-	}
-
-	function handleBlurEdit(idx) {
-		document.querySelector("#rrp_edit_" + idx).style.display = 'none';
-		document.querySelector("#rrp_content_" + idx).style.display = '';
-	}
-
-	function handleBlurEdit1(idx) {
-		document.querySelector("#rrp_edit_" + idx).focus();
-		// const child = $(event.target).siblings("button");
-		// const parent = $("#rrp_edit_" + idx);
-		// console.log(parent.has(child[0]));
-	}
-
-	fn_comment_list();
+	const r_code = "contact";
+	const r_idx = "<?= $idx ?>";
+	const role = "admin";
 </script>
+<script src="/js/comment.js"></script>
 <?= $this->endSection() ?>

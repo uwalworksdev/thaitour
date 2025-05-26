@@ -1398,7 +1398,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
             $product_stay = $this->db->query($sql, [$stay_idx])->getRowArray();
 
 
-            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' and roomName != '' order by onum asc, g_idx desc";
+            $sql       = "select * from tbl_room where hotel_code ='". $hotel['product_idx'] ."' and roomName != '' order by g_idx asc";
             $roomTypes = $this->db->query($sql);
             $roomTypes = $roomTypes->getResultArray();
 
@@ -1432,12 +1432,21 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 		
             $img_list      = $this->productImg->getImg($idx);
 
+            $product_gubun = "hotel";
+            $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+            $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $idx], 10, $pg_qna);
+
+            $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
+            $fcodes = $this->db->query($f_sql)->getResultArray();
+
             $data = [
                 'hotel'            => $hotel,
                 'img_list'         => $img_list,
                 'fresult9'         => $fresult9,
                 'product_stay'     => $product_stay,
                 's_category_room'  => $s_category_room,
+                'fcodes'           => $fcodes,
                 'fresult4'         => $fresult4 ?? [],
                 'bresult4'         => $bresult4 ?? [],
                 'fresult5'         => $fresult5 ?? [],
@@ -1458,6 +1467,7 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 				'roomTypes'        => $roomTypes,
 				'roomsByType'      => $roomsByType,
 		        'allBeds'          => $allBeds,
+                'product_qna'      => $product_qna
             ];
 
             $data = array_merge($data, $review_data);
@@ -1631,7 +1641,10 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 
     public function reservationFormInsert()
     {
+        
         try {
+            $private_key = private_key();
+
             $order_status       = $this->request->getPost('order_status') ?? "W";
             $product_idx        = $this->request->getPost('product_idx') ?? 0;
             $start_date         = $this->request->getPost('start_date') ?? 0;
@@ -1820,13 +1833,31 @@ write_log("listHotel- ". $this->productModel->db->getLastQuery());
 						'message' => "장바구니에 저장되었습니다."
 					], 200);
 				} else {
-					
+					$sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+                    $row = $this->db->query($sql)->getRow();
+                    
+                    $code = "A14";
+                    $_tmp_fir_array = [
+                        'RECEIVE_NAME'=> $row->user_name,
+                        'PROD_NAME'   => $row->product_name_en,
+                        'ORDER_NO'    => $row->order_no,
+                        'ORDER_PRICE' => number_format($row->order_price),
+                    ];
+            
+                    autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 				    $allim_replace = [
 										"#{고객명}" => $order_user_name,
 										"phone"     => $order_user_phone
 								     ];
 				    
-					alimTalkSend("TY_1652", $allim_replace);
+					alimTalkSend("TY_1652", $allim_replace); 
+					email_reservation_group($group_no);
 
 					return $this->response->setJSON([
 						'result' => true,
@@ -2238,7 +2269,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 					   b.idx        = '". $option_idx ."' AND 
 					   a.goods_date = '". $order_date ."'";
 					   
-        write_log("golfPriceCalculate- ". $sql);														   
+        //write_log("golfPriceCalculate- ". $sql);														   
         $result = $this->db->query($sql);
         $option = $result->getResultArray();
 
@@ -2353,34 +2384,34 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 							$total_vehicle            += $value;
 						}		
 				
-						if($vehicle_idx[$key] == "4") { 
-							$info['code_name']        = "카트";
-							$info['price_baht']       = $info['cart_price'];
-							$info['price_baht_total'] = $info['cart_price'] * $value;
-							$info['price']            = (int) round($info['cart_price'] * $baht_thai);
-							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
-							$vehicle_arr[]            = $info;
+						// if($vehicle_idx[$key] == "4") { 
+						// 	$info['code_name']        = "카트";
+						// 	$info['price_baht']       = $info['cart_price'];
+						// 	$info['price_baht_total'] = $info['cart_price'] * $value;
+						// 	$info['price']            = (int) round($info['cart_price'] * $baht_thai);
+						// 	$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
+						// 	$vehicle_arr[]            = $info;
 
-							$total_vehicle_price      += $info['price'] * $value;
-							$total_vehicle_price_baht += $info['price_baht'] * $value;
+						// 	$total_vehicle_price      += $info['price'] * $value;
+						// 	$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle            += $value;
-						}		
+						// 	$total_vehicle            += $value;
+						// }		
 				
-						if($vehicle_idx[$key] == "5") { 
-							$info['code_name']        = "캐디피";
-							$info['price_baht']       = $info['caddie_fee'];
-							$info['price_baht_total'] = $info['caddie_fee'] * $value;
-							write_log("golf option 5- ". $info['price_baht_total']);
-							$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
-							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
-							$vehicle_arr[]            = $info;
+						// if($vehicle_idx[$key] == "5") { 
+						// 	$info['code_name']        = "캐디피";
+						// 	$info['price_baht']       = $info['caddie_fee'];
+						// 	$info['price_baht_total'] = $info['caddie_fee'] * $value;
+						// 	write_log("golf option 5- ". $info['price_baht_total']);
+						// 	$info['price']            = (int) round($info['caddie_fee'] * $baht_thai);
+						// 	$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
+						// 	$vehicle_arr[]            = $info;
 
-							$total_vehicle_price      += $info['price'] * $value;
-							$total_vehicle_price_baht += $info['price_baht'] * $value;
+						// 	$total_vehicle_price      += $info['price'] * $value;
+						// 	$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							$total_vehicle            += $value;
-						}		
+						// 	$total_vehicle            += $value;
+						// }		
 				
 				}
 				
@@ -2502,6 +2533,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     public function customerFormOk()
     {
         try {
+ 			$private_key = private_key();
 			
             $data = $this->request->getPost();
             $data['m_idx']            = session('member.idx') ?? "";
@@ -2530,17 +2562,19 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 			
 			$optName                  = $data["opt_name"];
             $optIdx                   = $data["opt_idx"];
-            $optCnt                   = $data["opt_cnt"];
-
+            $optCnt                   = !empty($data["opt_cnt"]) ? $data["opt_cnt"] : $data["option_cnt"];
             //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_phone = $data['phone_thai'];
+                $order_user_phone = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
-            $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            $data['vehicle_time'] = "";
+            if(!empty($data['vehicle_time_hour']) && !empty($data['vehicle_time_minute'])){
+                $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            }
 
 			$priceCalculate = $this->golfPriceCalculate(
                 $data['option_idx'],
@@ -2551,7 +2585,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                 $data['people_adult_cnt'],
                 $data['vehicle_cnt'],
                 $data['vehicle_idx'],
-                $data['opt_cnt'],
+                $optCnt,
                 $data['opt_idx'],
                 $data['use_coupon_idx'],
 				$data['golf_date'],
@@ -2565,27 +2599,32 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['ip']                         = $this->request->getIPAddress();
             $data['order_gubun']                = "golf";
             $data['code_name']                  = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name']            = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_name']            = encryptField($data['order_user_name'] ?? "", 'encode');
+            $data['order_user_first_name_en']   = encryptField($data['order_user_first_name_en'] ?? "", 'encode');
+            $data['order_user_last_name_en']    = encryptField($data['order_user_last_name_en'] ?? "", 'encode');
 			$data['order_passport_number']      = $this->request->getPost('order_passport_number') ?? "";
-            $data['order_passport_number']      = encryptField($data['order_passport_number'], "encode");
+            $data['order_passport_number']      = encryptField($data['order_passport_number'] ?? "", "encode");
 			$data['order_passport_expiry_date'] = $this->request->getPost('order_passport_expiry_date') ?? "";
             $data['vehicle_time']               = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
             $data['device_type']                = get_device();
             $data['baht_thai']                  = $this->setting['baht_thai'];
 			$data['device_type']                = get_device();
 			$data['group_no']                   = date('YmdHis');
+			$data['custom_req']                 = $this->request->getPost('custom_req') ?? "";
+			$data['departure_point']            = $this->request->getPost('departure_point') ?? "";
+			$data['number_staff']               = $this->request->getPost('number_staff') ?? "";
+			$data['number_luggage']             = $this->request->getPost('number_luggage') ?? "";
+
 			
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_mobile = $data['phone_thai'];
+                $order_user_mobile = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone']       = encryptField($data['local_phone'], 'encode');
+            $data['local_phone']       = encryptField($data['local_phone'] ?? "", 'encode');
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
@@ -2816,6 +2855,24 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             }
 
             if ($data['order_status'] == "W") {
+                 $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+			    $row = $this->db->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
 			    $allim_replace = [
 									"#{고객명}" => $order_user_name ?? "",
 									"phone"     => $order_user_phone
@@ -2951,8 +3008,10 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     {
         //print_r($_POST); exit;
         try {
+ 			$private_key = private_key();
+
             $data = $this->request->getPost();
-			$order_user_name = $data['order_user_name'];
+			$order_user_name = $data['order_user_name'] ?? "";
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
 
@@ -2969,7 +3028,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_phone = $data['phone_thai'];
+                $order_user_phone = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
@@ -2992,9 +3051,9 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $data['order_date']       = date('Y-m-d H:i:s');
 
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_name'] = encryptField($data['order_user_name'] ?? "", 'encode');
+            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'] ?? "", 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'] ?? "", 'encode');
 			$data['device_type']              = get_device();
             $data['baht_thai']                = $this->setting['baht_thai'];
             $data['group_no']                 = date('YmdHis');
@@ -3007,12 +3066,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_mobile = $data['phone_thai'];
+                $order_user_mobile = $data['phone_thai'] ?? "";
             }
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+            $data['local_phone'] = encryptField($data['local_phone'] ?? "", 'encode');
 
             $data['real_price_bath']   =  (int)($data['order_price'] / $data['baht_thai']);
             $data['real_price_won']    =  $data['order_price'];
@@ -3021,7 +3080,6 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
-
 
             $option_sum = 0;
             $idx = explode(",", $data['idx']);
@@ -3122,6 +3180,25 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                         // }
             if ($data['order_status'] == "W") {
 				
+                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+			    $row = $this->db->query($sql)->getRow();
+                
+				$code = "A14";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name_en,
+					'ORDER_NO'    => $row->order_no,
+					'ORDER_PRICE' => number_format($row->order_price),
+				];
+		
+				autoEmail($code, $row->user_email, $_tmp_fir_array);
+
+
 			    $allim_replace = [
 									"#{고객명}" => $order_user_name,
 									"phone"     => $order_user_phone
@@ -3251,6 +3328,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                 'tours_idx' => $row['tours_idx'],
                 'tours_subject' => $row['tours_subject'],
                 'tours_subject_eng' => $row['tours_subject_eng'],
+                'tours_desc' => $row['tours_desc'],
                 'tour_price' => $row['tour_price'],
                 'tour_price_kids' => $row['tour_price_kids'],
                 'tour_price_baby' => $row['tour_price_baby'],
@@ -3350,6 +3428,12 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                                 
         $data['reservaion_policy'] = $reservaion_policy;
 
+        $product_gubun = "tour";
+        $pg_qna = $this->request->getVar("pg_qna") ?? 1;
+
+        $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
+        $data['product_qna'] = $product_qna;
+
         return $this->renderView('tours/tour-details', $data);
     }
 
@@ -3416,6 +3500,13 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 		$policy = $builder->where('p_idx', 41)
 							->get()->getRowArray();
         $data['policy'] = $policy;
+
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                            ->orderBy('p_idx', 'asc')
+                            ->get()->getResultArray();    
+
+        $data['reservaion_policy'] = $reservaion_policy;
 
         return $this->renderView('/product/tour/confirm-info', $data);
     }
@@ -3987,6 +4078,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
     public function vehicleOrder()
     {
         try {
+ 			$private_key = private_key();
 
             if (!empty(session()->get("member")["id"])) {
                 $code_no = $this->request->getPost('code_no') ?? "";
@@ -4045,7 +4137,6 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
                 $data = [
                     "m_idx" => $m_idx,
-                    "device_type" => $device_type,
                     "product_idx" => $product_idx,
                     "product_cnt" => $product_cnt,
                     "product_code_1" => $parent_code_no,
@@ -4056,11 +4147,11 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     "product_name" => $product_name,
                     "code_name" => $code_name,
                     "order_gubun" => "vehicle",
-                    "order_user_name" => encryptField($order_user_name, "encode") ?? "",
-                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode") ?? "",
-                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode") ?? "",
-                    "order_user_email" => encryptField($order_user_email, "encode") ?? "",
-                    "order_user_mobile" => encryptField($order_user_mobile, "encode") ?? "",
+                    "order_user_name" => encryptField($order_user_name, "encode"),
+                    "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
+                    "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
+                    "order_user_email" => encryptField($order_user_email, "encode"),
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                     "order_user_gender" => $order_user_gender,
                     "people_adult_cnt" => $adult_cnt,
                     "people_kids_cnt" => $child_cnt,
@@ -4108,6 +4199,24 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
                     }
 
                     if ($order_status == "W") {
+                        $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                                        , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
+                                        , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
+                                        FROM tbl_order_mst a
+                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
+
+                        $row = $this->db->query($sql)->getRow();
+                        
+                        $code = "A14";
+                        $_tmp_fir_array = [
+                            'RECEIVE_NAME'=> $row->user_name,
+                            'PROD_NAME'   => $row->product_name_en,
+                            'ORDER_NO'    => $row->order_no,
+                            'ORDER_PRICE' => number_format($row->order_price),
+                        ];
+                
+                        autoEmail($code, $row->user_email, $_tmp_fir_array);
+
                         return $this->response->setJSON([
                             'result' => true,
                             'message' => "예약되었습니다."

@@ -66,14 +66,21 @@
 								<tr>
 									<th>상태설정</th>
 									<td colspan="3">
-										<select name="status">
-											<option value="Y" <?php if ($status == "Y" || empty($status)) {
+										<?php
+											if(!empty(trim($reply_content))){
+												echo "답변완료";
+											}else{
+												echo "문의접수";
+											}
+										?>
+										<!-- <select name="status" disabled>
+											<option value="Y" <?php if (!empty(trim($reply_content))) {
 												echo "selected";
-											} ?>>사용</option>
-											<option value="N" <?php if ($status == "N") {
+											} ?>>답변완료</option>
+											<option value="N" <?php if (empty(trim($reply_content))) {
 												echo "selected";
-											} ?>>중지</option>
-										</select>
+											} ?>>문의접수</option>
+										</select> -->
 									</td>
 								</tr>
 								<tr>

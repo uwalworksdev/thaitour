@@ -2,230 +2,40 @@
 
 <?php $this->section('content'); ?>
 <?php $setting = homeSetInfo(); ?>
+<link rel="stylesheet" href="/css/tour/spa.css">
+<link rel="stylesheet" href="/css/tour/booking_spa.css">
 
-<style>
-    @media screen and (max-width : 850px) {
-        .tours-detail .section2 .title-main-c {
-            font-size: 3rem;
-            margin-bottom: 5rem;
-        }
-
-        .tours-detail .section2 .title-sub-c {
-            font-size: 2.8rem;
-            margin-bottom: 3rem;
-        }
-
-        .tours-detail .section2 .form-group input {
-            padding: 0 0.9375em;
-            height: 8.8rem;
-            width: 100%;
-            margin-bottom: unset;
-            display: block;
-            cursor: pointer;
-        }
-
-        .phone_wrap {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .tours-detail .sec2-item-card.card-left2 .form-group.spe .form-group-cus-4input {
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 0;
-            display: flex;
-        }
-
-        .tours-detail .section2 .form-group .email-group input {
-            width: 20rem
-        }
-
-        .tours-detail .card-left2 .cus-select-group select {
-            width: 30rem;
-        }
-
-        .tours-detail .section2 .top_order {
-            flex-direction: column;
-            gap: 3rem
-        }
-
-        .tours-detail .section2 .sec2-item-card .text_title h2 {
-            font-size: 3.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .tours-detail .section2 .sec2-item-card .text_title h3 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            color: #454545;
-            text-align: left;
-        }
-
-        .order-form-page .main-order-form-container h1 {
-            font-size: 3.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .order-form-page .main-order-form-container p {
-            font-size: 2.7rem;
-        }
-
-        .tours-detail .container-calendar {
-            display: flex;
-            margin-top: 20px;
-            border-top: 1px solid rgb(216, 216, 216);
-            padding-top: 0px;
-            position: relative;
-        }
-
-        .order-form-page .main-order-form-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: start;
-            padding: 5rem 0;
-            background-color: #fff;
-            margin-bottom: 6rem;
-            width: 100%;
-        }
-
-        .order-form-page .two-table-tb {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .order-form-page .info-table-order {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .order-form-page .info-table-order td {
-            border: 1px solid #ddd;
-            border-left: none;
-            border-right: none;
-            padding: 2rem;
-            font-size: 2.5rem;
-            line-height: 1.3;
-        }
-
-        .order-form-page .info-table-order td .flex.new {
-            gap: 10px;
-            flex-direction: column;
-
-        }
-
-        .order-form-page .info-table-order.info-table-cus-padding td input {
-            height: 9rem;
-            width: 100%;
-        }
-
-        .order-form-page .two-table-tb .textarea-tb {
-            width: 100%;
-            height: 90px;
-        }
-
-        .tours-detail .section2 .sec2-item-card:last-child {
-            padding-bottom: 20rem;
-        }
-
-
-        .order-form-page .container-below-tb {
-            position: absolute;
-            bottom: -6%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .tours-detail .primary-btn-calendar.tours {
-            position: unset !important;
-            transform: translateX(0);
-            bottom: -12%;
-            left: 0;
-            width: 26rem;
-            height: 8rem;
-            border-radius: 6px;
-            background-color: rgb(42, 69, 159);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.6rem;
-            margin: 0;
-        }
-
-        .order-form-page .container-below-tb .primary-btn-sub {
-            width: 26rem;
-            height: 8rem;
-            border-radius: 0.6rem;
-            background-color: white;
-            border: 1px solid rgb(219, 219, 219);
-            color: black;
-            font-size: 2.6rem;
-        }
-
-        .order-form-page .info-table-order th {
-            background-color: #f5f7fa;
-            width: 14rem;
-            padding: 2rem;
-            font-size: 2.5rem;
-        }
-
-        .order-form-page .two-table-tb .note {
-            font-size: 2.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .order-form-page .two-table-tb .lb-tb-cus {
-            margin-bottom: 1rem;
-            display: inline-block;
-            font-size: 2.6rem;
-        }
-
-        .order-form-page .info-table-order td .total_pay {
-            font-weight: 700;
-            font-size: 2.8rem;
-        }
-
-        .tours-detail .card-left2 .form-group label {
-            font-size: 2.6rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .order-form-page .title-above-tb {
-            font-size: 2.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .order-form-page .two-table-tb .summary-tb {
-            font-size: 2.6rem;
-            margin-bottom: 0.8rem;
-            margin-top: 2rem;
-        }
-
-        .order-form-page .two-table-tb .summary-tb2 {
-            font-size: 2.6rem;
-            margin-bottom: 0.8rem;
-        }
-    }
-</style>
-
-
-<div class="content-sub-hotel-detail tours-detail">
-    <div class="body_inner">
-        <div class="section2" id="product_info">
+<div class="customer-form-page">
+    <div class="navigation-section">
+        <div class="body_inner">
+            <div class="content-main">
+                <div class="item-n">
+                    <span class="number-n">
+                        1
+                    </span>
+                    <span class="label-n">상품선택</span>
+                    <img src="/uploads/icons/arrow_right_nav.png" alt="">
+                </div>
+                <div class="item-n">
+                    <span class="number-n">
+                        2
+                    </span>
+                    <span class="label-n">예약정보</span>
+                    <img src="/uploads/icons/arrow_right_nav.png" alt="">
+                </div>
+                <div class="item-n inactive">
+                    <span class="number-n">
+                        3
+                    </span>
+                    <span class="label-n">결제</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-section">
+        <div class="body_inner">
             <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post">
-                <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+			    <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
                 <input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
                 <input type="hidden" name="product_code_3" value=".">
@@ -247,786 +57,723 @@
                 <input type="hidden" name="final_discount" id="final_discount" value="">
                 <input type="hidden" name="moption" id="moption" value="<?= $moption ?>">
                 <input type="hidden" name="option" id="option" value="<?= $option ?>">
-
-                <div class="sec2-item-card card-left2">
-                    <div class="flex" style="gap: 20px">
-                        <h3 class="title-main-c">
-                            예약확정서 정보 입력
-                        </h3>
-                        <div class="bs-input-check">
-                            <input type="checkbox" id="save_id" name="save_id" value="Y">
-                            <label for="save_id"> 회원정보와 동일</label>
-                        </div>
-                    </div>
-                    <h3 class="title-sub-c">예약확정서 이름</h3>
-                    <div class="form-group mb-30">
-                        <label for="order_user_name">한국이름</label>
-                        <input type="text" id="order_user_name" name="order_user_name" class="ip_only_ko" required data-label="한국이름" placeholder="한국이름 작성해주세요." />
-                    </div>
-                    <div class="con-form mb-40">
-                        <div class="form-group">
-                            <label for="order_user_first_name_en">영문 이름(First Name) *</label>
-                            <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en" required data-label="영문 이름" placeholder="영어로 작성해주세요." />
-                        </div>
-                        <div class="form-group">
-                            <label for="order_user_last_name_en">영문 성(Last Name) *</label>
-                            <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en" required data-label="영문 성" placeholder="영어로 작성해주세요." />
-                        </div>
-                    </div>
-                    <script>
-                        $(".ip_only_ko").on("input", function () {
-                            let koreanText = $(this).val().replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, ""); 
-                            $(this).val(koreanText);
-                        });
-
-
-                        // $(".ip_only_en").on("input", function () {
-                        //     let inputValue = $(this).val();
-
-                        //     if (/[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(inputValue)) {
-                        //         alert("영문만 입력됩니다"); 
-                        //         $(this).val(inputValue.replace(/[가-힣ㄱ-ㅎㅏ-ㅣ]/g, "")); 
-                        //     } else {
-                        //         $(this).val(inputValue.replace(/[^a-zA-Z\s]/g, "")); 
-                        //     }
-                        // });
-
-                    </script>
+                <div class="container-card">
+                    <div class="form_booking_spa_">
+                        <div class="card-left2">
+                            <div class="flex" style="gap: 20px">
+                                <h3 class="title-main-c">
+                                    예약확정서 정보 입력
+                                </h3>
+                                <div class="bs-input-check">
+                                    <input type="checkbox" id="save_id" name="save_id" value="Y">
+                                    <label for="save_id"> 회원정보와 동일</label>
+                                </div>
+                            </div>
+                            <h3 class="title-sub-c">예약확정서 이름</h3>
+                            <div class="con-form mb-40">
+                                <div class="form-group">
+                                    <label for="order_user_name">한국이름</label>
+                                    <input type="text" id="order_user_name" name="order_user_name" class="ip_only_ko" required=""
+                                           data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                </div>
+                                <div class="form-group" style="width: 50%">
+                                    <label for="gender1">성별(남성/여성)*</label>
+                                    <select name="companion_gender" id="gender1" style="width: 100%" required=""
+                                            data-label="성별"
+                                            class="select-width">
+                                        <option value="M">남성</option>
+                                        <option value="F">여성</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="con-form mb-40">
+                                <div class="form-group">
+                                    <label for="order_user_first_name_en">영문 이름(First Name) *</label>
+                                    <input type="text" id="order_user_first_name_en" class="ip_only_en" name="order_user_first_name_en"
+                                           required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_user_last_name_en">영문 성(Last Name) *</label>
+                                    <input type="text" id="order_user_last_name_en" class="ip_only_en" name="order_user_last_name_en"
+                                           required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                </div>
+                            </div>
+                            <script>
+                                $(".ip_only_ko").on("input", function () {
+                                    let koreanText = $(this).val().replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\s]/g, ""); 
+                                    $(this).val(koreanText);
+                                });
+                            </script>
 							
-					<!-- 2025/02/10 추가부분 S: -->
-					<div class="con-form mb-40">
-						<div class="form-group">
-							<label for="order_passport_number">여권번호 *</label>
-							<input type="text" id="order_passport_number" class="" name="order_passport_number"
-								   required="" data-label="여권번호" placeholder="여권번호.">
-						</div>
-						<div class="form-group">
-							<label for="order_passport_expiry_date">여권만기일 *</label>
-							<input type="text" id="order_passport_expiry_date" class="date_form" name="order_passport_expiry_date"
-								   required="" data-label="여권만기일" placeholder="여권만기일" readonly>
-						</div>
-					</div>
-					<div class="con-form mb-40">
-						<div class="form-group">
-							<label for="order_birth_date">생년월일 *</label>
-							<input type="text" id="order_birth_date" class="date_form" name="order_birth_date"
-								   required="" data-label="생년월일" placeholder="생년월일" readonly>
-						</div>
-					</div>
-					<!-- 2025/02/10 추가부분 E: -->
-                            
-                    <h3 class="title-sub-c">연락처</h3>
-                    <div class="form-group form-cus-select">
-                        <label for="passport-name2">이메일 주소*</label>
-                        <div class="cus-select-group">
-                            <input type="text" id="email_1" name="email_1" required data-label="이메일" placeholder="이메일" />
-                            <span>@</span>
-                            <div class="email-group">
-                                <input type="text" name="email_2" id="email_2" required data-label="이메일" placeholder="" readonly>
-                                <select id="" class="select-width" onchange="handleEmail(this.value)">
-                                    <option value="">선택</option>
-                                    <option value="naver.com">naver.com</option>
-                                    <option value="hanmail.net">hanmail.net</option>
-                                    <option value="hotmail.com">hotmail.com</option>
-                                    <option value="nate.com">nate.com</option>
-                                    <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                    <option value="empas.com">empas.com</option>
-                                    <option value="dreamwiz.com">dreamwiz.com</option>
-                                    <option value="freechal.com">freechal.com</option>
-                                    <option value="lycos.co.kr">lycos.co.kr</option>
-                                    <option value="korea.com">korea.com</option>
-                                    <option value="gmail.com">gmail.com</option>
-                                    <option value="hanmir.com">hanmir.com</option>
-                                    <option value="paran.com">paran.com</option>
-                                    <option value="1">직접입력</option>
-                                </select>
+							<div class="con-form mb-40">
+								<div class="form-group">
+									<label for="order_passport_number">여권번호 *</label>
+									<input type="text" id="order_passport_number" class="" name="order_passport_number"
+										   required="" data-label="여권번호" placeholder="여권번호.">
+								</div>
+								<div class="form-group">
+									<label for="order_passport_expiry_date">여권만기일 *</label>
+									<input type="text" id="order_passport_expiry_date" class="date_form" name="order_passport_expiry_date"
+										   required="" data-label="여권만기일" placeholder="여권만기일" readonly>
+								</div>
+							</div>
+							<div class="con-form mb-40">
+								<div class="form-group">
+									<label for="order_birth_date">생년월일 *</label>
+									<input type="text" id="order_birth_date" class="date_form_birth" name="order_birth_date"
+										   required="" data-label="생년월일" placeholder="생년월일" readonly>
+								</div>
+							</div>
+							<!-- 2025/02/10 추가부분 E: -->
+					
+                            <h3 class="title-sub-c">연락처</h3>
+                            <div class="form-group form-cus-select">
+                                <label for="passport-name2">이메일 주소*</label>
+                                <div class="cus-select-group">
+                                    <input type="text" id="email_1" name="email_1" required="" data-label="이메일"
+                                           placeholder="이메일">
+                                    <span>@</span>
+                                    <div class="email-group">
+                                        <input type="text" name="email_2" id="email_2" required="" data-label="이메일"
+                                               placeholder="" readonly="">
+                                        <select id="" class="select-width" onchange="handleEmail(this.value)">
+                                            <option value="">선택</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="hanmail.net">hanmail.net</option>
+                                            <option value="hotmail.com">hotmail.com</option>
+                                            <option value="nate.com">nate.com</option>
+                                            <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                            <option value="empas.com">empas.com</option>
+                                            <option value="dreamwiz.com">dreamwiz.com</option>
+                                            <option value="freechal.com">freechal.com</option>
+                                            <option value="lycos.co.kr">lycos.co.kr</option>
+                                            <option value="korea.com">korea.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="hanmir.com">hanmir.com</option>
+                                            <option value="paran.com">paran.com</option>
+                                            <option value="1">직접입력</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="phone_wrap">
-                        <div class="phone_wrap_item form-group spe">
-                            <p>
-                                <input type="radio" id="test1" name="radio_phone" value="kor" checked>
-                                <label for="test1">한국번호*</label>
-                            </p>
-                            <div class="form-group form-group-cus-4input">
-                                <input name="phone_1" maxlength="3" class="phone_kor phone" type="text" id="phone_1" required data-label="한국번호" />
-                                <span> - </span>
-                                <input name="phone_2" maxlength="4" class="phone_kor phone" type="text" id="phone_2" required data-label="한국번호" />
-                                <span> - </span>
-                                <input name="phone_3" maxlength="4" class="phone_kor phone" type="text" id="phone_3" required data-label="한국번호" />
-                            </div>
-                        </div>
-                        <div class="phone_wrap_item form-group">
-                            <p>
-                                <input type="radio" id="test2" name="radio_phone" value="thai">
-                                <label for="test2">태국번호 *</label>
-                            </p>
-                            <div class="form-group">
-                                <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text" id="phone_thai" disabled required data-label="한국번호" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group mo_mt-30">
-                        <label for="passport-name2">여행시 현지 연락처</label>
-                        <div class="form-group-flex">
-                            <select id="car-time-hour" class="select-width">
-                                <option value="01">TH</option>
-                            </select>
-                            <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone" placeholder="" />
-                        </div>
-                    </div>
-                </div>
-                <div class="sec2-item-card order-form-page">
-                    <div class="top_order flex">
-                        <a class="btn_back flex__c" href="/product-tours/item_view/<?= $product['product_idx'] ?>">
-                            <img src="/images/ico/arrow_up_icon.png" alt="">
-                            <p>뒤로가기</p>
-                        </a>
-                        <div class="text_title">
-                            <h2><?= viewSQ($product['product_name']) ?></h2>
-                            <h3><?= viewSQ($tour['tours_subject']) ?></h3>
-                        </div>
-                    </div>
-                    <div class="container-calendar">
-                        <div class="main-order-form">
-                            <div class="main-order-form-container">
-                                <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
-                                <p class="text-grey">예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
+                            <div class="phone_wrap mb-30">
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test1" name="radio_phone" value="kor" checked="">
+                                        <label for="test1">한국번호*</label>
+                                    </p>
+                                    <div class="form-group form-group-cus-4input">
+                                        <input name="phone_1" maxlength="3" class="phone_kor phone" type="text"
+                                               id="phone_1" required="" data-label="한국번호">
+                                        <span> - </span>
+                                        <input name="phone_2" maxlength="4" class="phone_kor phone" type="text"
+                                               id="phone_2" required="" data-label="한국번호">
+                                        <span> - </span>
+                                        <input name="phone_3" maxlength="4" class="phone_kor phone" type="text"
+                                               id="phone_3" required="" data-label="한국번호">
+                                    </div>
+                                </div>
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test2" name="radio_phone" value="thai">
+                                        <label for="test2">태국번호 *</label>
+                                    </p>
+                                    <div class="form-group">
+                                        <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text"
+                                               id="phone_thai" disabled="" required="" data-label="한국번호">
+                                    </div>
+                                </div>
                             </div>
 
-                            <h2 class="title-above-tb">예약정보</h2>
-                            <div class="two-table-tb">
-                                <table class="info-table-order">
-                                    <tr>
-                                        <th>이용일시</th>
-                                        <td class="">
-                                            <p class="days_choose" id="days_choose"><?= $order_date ?></p>
-                                            <p class="time_lines" id="time_lines"><?= $time_line ?></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>상품명</th>
-                                        <td class="name_product" id="name_product"><?= $product['product_name'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>선택옵션</th>
-                                        <td>
-                                            <div class="options" id="product_options">
-                                                <?php foreach ($tour_option as $index => $option): ?>
-                                                    <div class='flex_op flex'>
-                                                        <?= $option['option_name'] ?>
-                                                        <p class='product_option_pay'> <?= number_format($option_price[$index]) ?> 원</p>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>총인원</th>
-                                        <td>
-                                            <div class="flex new">
-                                                <div class="num_people" id="num_people">
-                                                    <?= ($people_adult_cnt + $people_kids_cnt + $people_baby_cnt) . '명 (성인: ' . $people_adult_cnt . ', 소아: ' . $people_kids_cnt . ', 유아: ' . $people_baby_cnt . ')' ?>
-                                                </div>
-                                                <div class="total_price_product"><?= number_format($total_price_product) ?> 원</div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>회원등급 할인</th>
-                                        <td>없음</td>
-                                    </tr>
-                                    <tr>
-                                        <th>총금액</th>
-                                        <td>
-                                            <div class="total_pay" id="total_pay">
-                                                <?= number_format($final_price) ?> 원
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- <tr>
-                                            <th>쿠폰 적용</th>
-                                            <td class="flex_cou">
-                                                <div class="coupon">
-                                                    <input type="text" name="coupon" value="" class="bs-input discount_spe final_discount" readonly="">
-                                                </div>
-                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="showCouponPop()">쿠푼적용</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>포인트 사용</th>
-                                            <td class="flex_cou">
-                                                <div class="coupon">
-                                                    <input type="text" name="" id="" value="" class="bs-input discount_spe" readonly="">
-                                                </div>
-                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="">모두사용</button>
-                                            </td>
-                                        </tr> -->
-                                </table>
-                                <div class="">
-                                    <table class="info-table-order info-table-cus-padding">
-                                        <tr>
-                                            <th>미팅장소</th>
-                                            <td>
-                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
-                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
-                                            </td>
-                                        </tr>
-                                        <!-- <tr>
-                                                <th>미팅 시간</th>
-                                                <td><input type="text" name="metting_time" id="metting_time"></td>
-                                            </tr> -->
-                                        <tr>
-                                            <th>종료 후 내리실 곳</th>
-                                            <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>카카오톡 아이디</th>
-                                            <td>
-                                                <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." name="id_kakao" id="id_kakao">
-                                                <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>기타 요청</th>
-                                            <td>
-                                                <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
-                                                <textarea class="textarea-tb" rows="5" placeholder="" name="description" id="description"></textarea>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                    <p class="summary-tb2" id="policy_show" data-product-idx="<?= $product['product_idx'] ?>">본 예약건 취소규정 자세히보기</p>
-                                    <?php if ($product['direct_payment'] == "Y") { ?>
-							            <span style="color:red;">※ 예약확정 상품입니다.</span>
-                                    <?php } ?>
+                            <div class="form-group mo_mt-30">
+                                <label for="passport-name2">여행시 현지 연락처</label>
+                                <div class="form-group-flex" style="display: flex; align-items: center; gap: 20px">
+                                    <select id="car-time-hour" class="select-width" style="width: 200px">
+                                        <option value="01">TH</option>
+                                    </select>
+                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
+                                           placeholder="">
                                 </div>
                             </div>
                         </div>
-                        <div class="container-below-tb">
-                            <?php if ($product['direct_payment'] == "Y") { ?>
-                                <button type="button" class="primary-btn-calendar tours" onclick="handlePayment('B')">결제하기</button>
-                            <?php } else { ?>
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit('W')">예약하기</button>
-                            <?php } ?>
-                            <button type="button" class="primary-btn-sub tours" onclick="handleSubmit('B')">장바구니에 담기</button>
-                            <!--a href="" class="primary-btn-sub tours">장바구니에 담기</a-->
+
+                        <div class="card-left2 card_left_bottom_ order-form-page">
+                            <h3 class="title-main-c">
+                                필수 입력사항
+                            </h3>
+                            <div class="two-table-tb">
+                                <table class="info-table-order info-table-cus-padding" style="width: 100%;">
+                                    <tr>
+                                        <th>미팅장소</th>
+                                        <td>
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
+                                            <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>종료 후 내리실 곳</th>
+                                        <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>카카오톡 아이디</th>
+                                        <td>
+                                            <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." name="id_kakao" id="id_kakao">
+                                            <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>기타 요청</th>
+                                        <td>
+                                            <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
+                                            <textarea class="textarea-tb" style="width: 100%;" rows="5" placeholder="" name="description" id="description"></textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="card-right">
+                            <img src="/data/product/<?= $product['ufile1'] ?>" alt="customer-form.png">
+                            <div class="below-right">
+                                <h3 class="title-r"><?= $product['product_name'] ?></h3>
+                                <p class="title-sub-r text-gray">
+                                    <?= $product['addrs'] ?>
+                                </p>
+                                <h3 class="title-r">예약안내</h3>
+                                <div class="item-info" style="gap: 10px;">
+                                    <span>일정: </span>
+                                    <span><?= $order_date ?></span>
+                                </div>
+                                <div class="item-info" style="gap: 10px;">
+                                    <span>예약시간: </span>
+                                    <span><?= $time_line ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-right2 spa-detail">
+                            <h3 class="title-r">
+                                여행인원 및 예약금액
+                            </h3>
+                            <div class="list_schedule_">          
+                                <div class="schedule schedule_booking">
+                                    <p style="font-weight: bold; width: 100%;"><?= viewSQ($tour['tours_subject']) ?></p>
+                                    <div class="schedule_wrap" style="width: 100%;">
+                                        <div class="wrap-text" style="width: 100%;">
+                                            <p>성인 x <?= $people_adult_cnt ?></p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <span style="text-wrap: nowrap"><?= number_format($people_adult_price) ?></span>
+                                            <span> 원</span>
+                                        </div>
+                                    </div>
+                                    <div class="schedule_wrap" style="width: 100%;">
+                                        <div class="wrap-text" style="width: 100%;">
+                                            <p>아동 x <?= $people_kids_cnt ?></p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <span style="text-wrap: nowrap"><?= number_format($people_kids_price) ?></span>
+                                            <span> 원</span>
+                                        </div>
+                                    </div>
+                                    <div class="schedule_wrap" style="width: 100%;">
+                                        <div class="wrap-text" style="width: 100%;">
+                                            <p>유아 x <?= $people_baby_cnt ?></p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <span style="text-wrap: nowrap"><?= number_format($people_baby_price) ?></span>
+                                            <span> 원</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
+                                    <p class="schedule_ttl" style="margin-top: 0;">옵션</p>    
+                                    <?php foreach ($tour_option as $index => $option): ?>
+                                        <div class="schedule_option" id="schedule_<?= $index ?>" style="width: 100%;">
+                                            <div class="wrap-text">
+                                                <p><?= $option['option_name'] ?> x <?= $option['qty'] ?></p>
+                                            </div>
+                                            <span><?= number_format($option_price[$index]) ?> 원</span>                            
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
+                                <span>쿠폰 </span>
+                                <span>- <span class="discountPrice">0</span> 원</span>
+                            </div>
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
+                                <span>포인트 </span>
+                                <span>- <span class="pointPrice">0</span> 원</span>
+                            </div>
+                            <div class="item-info-r font-bold-cus">
+                                <span>합계</span>
+                                <span><span class="textTotalPrice lastPrice"><?= number_format($total_price_product) ?></span> 원</span>
+                            </div>
+                            <p class="below-des-price">
+                                · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
+                                업체에 확정 요청을 합니다. 즉시 확정 상품은 결제해
+                                주시면 확정 처리됩니다.
+                            </p>
+                            <div class="below-title-image">
+                                <img class="only_web" src="/uploads/icons/block_icon.png" alt="block_icon">
+                                <img class="only_mo" src="/uploads/icons/block_icon_mo.png" alt="block_icon">
+                                <span>취소규정</span>
+                            </div>
+                            <p class="below-sub-des">
+                                취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.
+                            </p>
+                            <p class="cus-label-r info_link" id="policy_show" style="cursor: pointer" data-product-idx="<?= $product['product_code_1'] ?>">본 예약건 취소규정</p>
+        
+                            <div class="terms-wrap" style="width: 100%;">
+                                <h3 class="title-second">약관동의</h3>
+                                <div class="item-info-check item_check_term_all_">
+                                    <label for="fullagreement">전체동의</label>
+                                    <input type="hidden" value="N" id="fullagreement">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">이용약관 동의(필수)</label>
+                                    <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="terms">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 처리방침(필수)</label>
+                                    <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="policy">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                    <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="information">
+                                </div>
+                                <div class="item-info-check item_check_term_">
+                                    <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                    <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                    <input type="hidden" value="N" id="guidelines">
+                                </div>
+                            </div>
+
+                            <?php if($prod['direct_payment'] == "Y") { ?>
+							<span style="color:red;">※ 예약확정 상품입니다.</span>
+                            <button class="btn-order btnOrder" onclick="handlePayment('B');" type="button">결제하기</button>
+							<?php } else { ?>
+                            <button class="btn-order btnOrder" onclick="handleSubmit('W');" type="button">예약하기</button>
+							<?php } ?>
+                            <button class="btn-cancel btnOrder" onclick="handleSubmit('B');" type="button">장바구니 담기</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <h2 class="title-sec3" id="product_des">
-            상품설명
-        </h2>
-        <?php if ($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') { ?>
-            <!-- <h3 class="title-sec2">
-                상품 포인트
-            </h3>
-            <div class="list-tag-item">
-                <?php if ($product['tours_guide'] == 'Y') { ?>
-                    <div class="tag-item">
-                        <div class="picture">
-                            <img src="/uploads/sub/tour_item_1.png" alt="tour_item_1">
-                        </div>
-                        <span class="label-tag">가이드 유</span>
-                    </div>
-                <?php }
-                if ($product['tours_ko'] == 'Y') { ?>
-                    <div class="tag-item">
-                        <div class="picture">
-                            <img src="/uploads/sub/tour_item_2.png" alt="tour_item_2">
-                        </div>
-                        <span class="label-tag">한국어</span>
-                    </div>
-                <?php }
-                if ($product['tours_join'] == 'Y') { ?>
-                    <div class="tag-item">
-                        <div class="picture">
-                            <img src="/uploads/sub/tour_item_3.png" alt="tour_item_3">
-                        </div>
-                        <span class="label-tag">조인투어</span>
-                    </div>
-                <?php }
-                if ($product['tours_total_hour'] == 'Y') { ?>
-                    <div class="tag-item">
-                        <div class="picture">
-                            <img src="/uploads/sub/tour_item_4.png" alt="tour_item_4">
-                        </div>
-                        <span class="label-tag">총 <?= $product['tours_hour'] ?>시간</span>
-                    </div>
-                <?php } ?>
-            </div> -->
-        <?php } ?>
-        <?php if ($product['tour_info']) { ?>
-            <div class="des-type">
-                <?= viewSQ($product['tour_info']) ?>
-            </div>
-        <?php } ?>
-        <?php if (!empty($imgs_tour)): ?>
-            <h2 class="title-sec2 tit-swip-pic">
-                투어 사진
-            </h2>
-            <div class="container-pic-slider">
-                <div class="swiper-container_tour_content">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($imgs_tour as $index => $img_tour): ?>
-                            <div class="swiper-slide">
-                                <img src="<?= $img_tour ?>" alt="tour_details_<?= $index + 1 ?>">
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="swiper-tour_content-pagination"></div>
-                </div>
-            </div>
-        <?php endif; ?>
-        <?php if ($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                미팅/픽업장소 안내
-            </h2>
-            <div class="des-type-1">
-                <p>
-                    <?= viewSQ($product['product_confirm']) ?>
-                </p>
-            </div>
-        <?php } ?>
-        <?php if ($totalDays) { ?>
-            <h2 class="title-sec2">
-                투어 일정표
-            </h2>
-            <?php for ($dd = 1; $dd <= $totalDays; $dd++): ?>
-                <?php
-                $schedule = $schedules[$dd] ?? null;
-                ?>
-                <span class="tit-blue"><?= $schedule['detail_title'] ?></span>
-                <ul class="timeline-con">
-                    <?php
-                    $groups = $subSchedules[$dd] ?? [];
-                    foreach ($groups as $groupKey => $group):
-                    ?>
-                        <?php foreach ($group as $row_ds): ?>
-                            <li class="timeline-item">
-                                <span class="time-l"><?= viewSQ($row_ds['detail_hour']) ?></span>
-                                <span class="des-l"><?= viewSQ($row_ds['detail_summary']) ?></span>
-                            </li>
-                        <?php endforeach; ?>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endfor; ?>
-        <?php } ?>
-        <h2 class="title-sec2">
-            포함/불포함 사항
-        </h2>
-        <?php if ($product['product_able'] && $product['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") { ?>
-            <div class="tit-blue-type-2">
-                <span class="tit-blue">포함사항</span>
-            </div>
-            <div class="des-type">
-                <?= viewSQ($product['product_able']) ?>
-            </div>
-        <?php } ?>
-        <?php if ($product['product_unable']) { ?>
-            <div class="tit-blue-type-2">
-                <span class="tit-blue">불포함 사항</span>
-            </div>
-            <div class="des-type">
-                <?= viewSQ($product['product_unable']) ?>
-            </div>
-        <?php } ?>
-        <?php if ($product['mobile_able']) { ?>
-            <h2 class="title-sec2">
-                추가정보 및 참고사항
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($product['mobile_able']) ?>
-            </div>
-        <?php } ?>
-        <?php if ($product['special_benefit']) { ?>
-            <h2 class="title-sec2">
-                어린이정책
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($product['special_benefit']) ?>
-            </div>
-        <?php } ?>
-        <?php if ($product['notice_comment']) { ?>
-            <h2 class="title-sec2">
-                유의사항
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($policy['policy_contents']) ?>
-            </div>
-        <?php } ?>
-        <?php if ($product['etc_comment']) { ?>
-            <h2 class="title-sec2">
-                더투어랩 이용방법
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($product['etc_comment']) ?>
-            </div>
-        <?php } ?>
-        <div class="steps-type">
-            <div class="step-type">
-                <div class="con-step">
-                    <img src="/uploads/sub/step_img1.png" alt="step_img1">
-                </div>
-                <span class="step-label">예약신청</span>
-                <span class="number-step">1</span>
-                <div class="cus-step-note">
-                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
-                    <span class="txt-step-note">기능유무조회</span>
-                </div>
-            </div>
-            <div class="step-type">
-                <div class="con-step">
-                    <img src="/uploads/sub/step_img2.png" alt="step_img2">
-                </div>
-                <span class="step-label">예약신청</span>
-                <span class="number-step">2</span>
-                <div class="cus-step-note">
-                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
-                    <span class="txt-step-note">결제</span>
-                </div>
-            </div>
+    </div>
+</div>
 
-            <div class="step-type">
-                <div class="con-step">
-                    <img src="/uploads/sub/step_img3.png" alt="step_img2">
+<div id="popup_img" class="on">
+    <strong id="pop_roomName"></strong>
+    <div>
+        <ul class="multiple-items">
+            <?php foreach ($imgs as $img) {
+                echo "<li><img src='" . $img . "' alt='' /></li>";
+            } ?>
+        </ul>
+    </div>
+    <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close" /></a>
+</div>
+
+<div class="popup_wrap place_pop policy_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>취소 규정</h2>
+                    </div>
                 </div>
-                <span class="step-label">예약신청</span>
-                <span class="number-step">3</span>
-                <div class="cus-step-note">
-                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
-                    <span class="txt-step-note">확정 후</span>
+                <div class="popup_place__body">
+                    <!-- <?= viewSQ(getPolicy(19)) ?> -->
+                    <div id="policyContent"></div>
                 </div>
-            </div>
-            <div class="step-type">
-                <div class="con-step">
-                    <img src="/uploads/sub/step_img4.png" alt="step_img2">
-                </div>
-                <span class="step-label">예약신청</span>
-                <span class="number-step">4</span>
             </div>
         </div>
-        <div id="dim"></div>
-        <div id="popup_img" class="on">
-            <strong id="pop_roomName"></strong>
-            <div>
-                <ul class="multiple-items">
-                    <?php foreach ($imgs as $img) {
-                        echo "<li><img src='" . $img . "' alt='' /></li>";
-                    } ?>
-                </ul>
-            </div>
-            <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close" /></a>
-        </div>
+    </div>
+    <div class="dim"></div>
+</div>
 
-        <div class="popup_wrap place_pop policy_pop">
-            <div class="pop_box">
-                <button type="button" class="close" onclick="closePopup()"></button>
-                <div class="pop_body">
-                    <div class="padding">
-                        <div class="popup_place__head">
-                            <div class="popup_place__head__ttl">
-                                <h2>취소 규정</h2>
-                            </div>
-                        </div>
-                        <div class="popup_place__body">
-                            <!-- <?= viewSQ(getPolicy(19)) ?> -->
-                            <div id="policyContent"></div>
-                        </div>
+<div class="popup_wrap place_pop reservation_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>약관동의</h2>
                     </div>
                 </div>
+                <div class="popup_place__body">
+                    <div id="policyContent"></div>
+                </div>
             </div>
-            <div class="dim"></div>
         </div>
+    </div>
+    <div class="dim"></div>
+</div>
 
-        <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
+<iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
 
-        <script>
+<script>
+    $(".view-policy").on("click", function(event) {
+        event.stopPropagation();
+        let type = $(this).data("type");
+        if (type == 1) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[1]["policy_contents"]) ?>`);
+        } else if (type == 2) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[0]["policy_contents"]) ?>`);
+        } else if (type == 3) {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[2]["policy_contents"]) ?>`);
+        } else {
+            $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[3]["policy_contents"]) ?>`);
+        }
 
-            $("#policy_show").on("click", function() {
-                let productIdx = $(this).data("product-idx");
+        let title = $(this).closest(".item-info-check").find("label").text().trim();
 
-                $.ajax({
-                    url: "/mypage/getPolicyContents/" + productIdx,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            $("#policyContent").html(response.policy_contents);
-                            $(".policy_pop, .policy_pop .dim").show();
-                        } else {
-                            $("#policyContent").html("<p>" + response.message + "</p>");
-                            $(".policy_pop, .policy_pop .dim").show();
-                        }
-                    },
-                    error: function() {
-                        $(".policy_pop, .policy_pop .dim").show();
-                    }
-                });
-            });
+        $(".reservation_pop .popup_place__head__ttl h2").text(title);
+        $(".reservation_pop").show();
+    });
 
-            function closePopup() {
-                $(".popup_wrap").hide();
-                $(".dim").hide();
+    $('.item_check_term_').click(function() {
+        $(this).toggleClass('checked_');
+        let input = $(this).find('input');
+        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+        checkOrUncheckAll();
+    });
+
+    function checkOrUncheckAll() {
+        let allChecked = true;
+
+        $('.item_check_term_').each(function() {
+            let input = $(this).find('input');
+            if (input.val() !== 'Y') {
+                allChecked = false;
+                return false;
             }
-        </script>
-        <script>
-            let swiper = new Swiper(".swiper_product_list_", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                pagination: {
-                    el: ".swiper_product_list_pagination_",
-                    clickable: true,
-                },
-                breakpoints: {
-                    850: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    }
-                }
-            });
+        });
 
-            $('.list-icon img[alt="heart_icon"]').click(function() {
-                if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-                    $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+        let allCheckbox = $('.item_check_term_all_');
+        let allInput = allCheckbox.find('input');
+        allCheckbox.toggleClass('checked_', allChecked);
+        allInput.val(allChecked ? 'Y' : 'N');
+    }
+
+    $('.item_check_term_all_').click(function() {
+        $(this).toggleClass('checked_');
+        let allChecked = $(this).hasClass('checked_');
+        let value = allChecked ? 'Y' : 'N';
+        $(this).find('input').val(value);
+
+        $('.item_check_term_').each(function() {
+            $(this).toggleClass('checked_', allChecked);
+            $(this).find('input').val(value);
+        });
+    });
+</script>
+
+<script>
+    $("#policy_show").on("click", function() {
+        let productIdx = $(this).data("product-idx");
+
+        $.ajax({
+            url: "/mypage/getPolicyContents/" + productIdx,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    $("#policyContent").html(response.policy_contents);
+                    $(".policy_pop, .policy_pop .dim").show();
                 } else {
-                    $(this).attr('src', '/uploads/icons/heart_icon.png');
+                    $("#policyContent").html("<p>" + response.message + "</p>");
+                    $(".policy_pop, .policy_pop .dim").show();
                 }
-            });
+            },
+            error: function() {
+                $(".policy_pop, .policy_pop .dim").show();
+            }
+        });
+    });
 
-            const swiper_content = new Swiper(".swiper-container_tour_content", {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 100,
-                pagination: {
-                    el: ".swiper-tour_content-pagination",
-                },
-            });
+    function closePopup() {
+        $(".popup_wrap").hide();
+        // $(".dim").hide();
+    }
+</script>
 
-			$(".date_form").datepicker({
-				dateFormat: "yy-mm-dd",
-				showOn: "focus", 	
-				//showOn: "both",
-				//buttonImage: "/images/ico/date_ico.png",
-				//buttonImageOnly: true
-			});
+<script>
+    let swiper = new Swiper(".swiper_product_list_", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        pagination: {
+            el: ".swiper_product_list_pagination_",
+            clickable: true,
+        },
+        breakpoints: {
+            850: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+            }
+        }
+    });
 
-            function number_format(number) {
-                return number.toLocaleString('ko-KR');
+    $('.list-icon img[alt="heart_icon"]').click(function() {
+        if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+            $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+        } else {
+            $(this).attr('src', '/uploads/icons/heart_icon.png');
+        }
+    });
+
+    const swiper_content = new Swiper(".swiper-container_tour_content", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 100,
+        pagination: {
+            el: ".swiper-tour_content-pagination",
+        },
+    });
+
+    $(".date_form").datepicker({
+        dateFormat: "yy-mm-dd",
+        showOn: "focus",
+        //showOn: "both",
+        //buttonImage: "/images/ico/date_ico.png",
+        //buttonImageOnly: true
+    });
+
+    function number_format(number) {
+        return number.toLocaleString('ko-KR');
+    }
+
+    function handlePayment(status) {
+
+        $("#order_status").val(status);
+
+        if (status == "B") {
+            if ($("#order_user_name").val() === "") {
+                alert("한국이름을 입력해주세요.");
+                $("#order_user_name").focus();
+                return false;
+            }
+            if ($("#order_user_first_name_en").val() === "") {
+                alert("영문 이름(First Name)을 입력해주세요.");
+                $("#order_user_first_name_en").focus();
+                return false;
             }
 
-            function handlePayment(status) {
-
-                $("#order_status").val(status);
-
-                if (status == "B") {
-                    if ($("#order_user_name").val() === "") {
-                        alert("한국이름을 입력해주세요.");
-                        $("#order_user_name").focus();
-                        return false;
-                    }
-                    if ($("#order_user_first_name_en").val() === "") {
-                        alert("영문 이름(First Name)을 입력해주세요.");
-                        $("#order_user_first_name_en").focus();
-                        return false;
-                    }
-
-                    if ($("#order_user_last_name_en").val() === "") {
-                        alert("영문 성(Last Name)을 입력해주세요.");
-                        $("#order_user_last_name_en").focus();
-                        return false;
-                    }
-
-                    if ($("#email_1").val() === "" || $("#email_2").val() === "") {
-                        alert("이메일 주소를 입력해주세요.");
-                        $("#email_1").focus();
-                        return false;
-                    }
-
-                    if ($("input[name='radio_phone']:checked").val() === "kor") {
-                        if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
-                            alert("한국번호를 입력해주세요.");
-                            return false;
-                        }
-                    } else if ($("input[name='radio_phone']:checked").val() === "thai") {
-                        if ($("#phone_thai").val() === "") {
-                            alert("태국번호를 입력해주세요.");
-                            return false;
-                        }
-                    }
-                }
-
-                $('#order_frm').attr('action', '/product-tours/tours-payment-ok');
-                $("#order_frm").submit();
+            if ($("#order_user_last_name_en").val() === "") {
+                alert("영문 성(Last Name)을 입력해주세요.");
+                $("#order_user_last_name_en").focus();
+                return false;
             }
 
-            function handleSubmit(status) {
-
-                $("#order_status").val(status);
-
-                if (status == "W") {
-                    if ($("#order_user_name").val() === "") {
-                        alert("한국이름을 입력해주세요.");
-                        $("#order_user_name").focus();
-                        return false;
-                    }
-                    if ($("#order_user_first_name_en").val() === "") {
-                        alert("영문 이름(First Name)을 입력해주세요.");
-                        $("#order_user_first_name_en").focus();
-                        return false;
-                    }
-
-                    if ($("#order_user_last_name_en").val() === "") {
-                        alert("영문 성(Last Name)을 입력해주세요.");
-                        $("#order_user_last_name_en").focus();
-                        return false;
-                    }
-
-					if ($("#order_passport_number").val() === "") {
-						alert("여권번호를 입력해주세요!");
-						$("#order_passport_number").focus();
-						return false;
-					}
-
-					if ($("#order_passport_expiry_date").val() === "") {
-						alert("여권만기일을 입력해주세요!");
-						$("#order_passport_expiry_date").focus();
-						return false;
-					}
-
-					if ($("#order_birth_date").val() === "") {
-						alert("생년월일을 입력해주세요!");
-						$("#order_birth_date").focus()
-						return false;
-					}
-			
-                    if ($("#email_1").val() === "" || $("#email_2").val() === "") {
-                        alert("이메일 주소를 입력해주세요.");
-                        $("#email_1").focus();
-                        return false;
-                    }
-
-                    if ($("input[name='radio_phone']:checked").val() === "kor") {
-                        if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
-                            alert("한국번호를 입력해주세요.");
-                            return false;
-                        }
-                    } else if ($("input[name='radio_phone']:checked").val() === "thai") {
-                        if ($("#phone_thai").val() === "") {
-                            alert("태국번호를 입력해주세요.");
-                            return false;
-                        }
-                    }
-
-                }
-
-                if(status == "B"){
-
-                    if ($("#start_place").val() === "") {
-                        alert("미팅장소 입력해주세요!");
-                        $("#start_place").focus();
-                        return false;
-                    }
-
-                    if ($("#end_place").val() === "") {
-                        alert("종료 후 내리실 곳 입력해주세요!");
-                        $("#end_place").focus();
-                        return false;
-                    }
-
-                    if ($("#id_kakao").val() === "") {
-                        alert("카카오톡 아이디 입력해주세요!");
-                        $("#id_kakao").focus();
-                        return false;
-                    }
-
-                    if ($("#description").val() === "") {
-                        alert("기타 요청 입력해주세요!");
-                        $("#description").focus();
-                        return false;
-                    }
-                }
-
-                $("#order_frm").submit();
+            if ($("#email_1").val() === "" || $("#email_2").val() === "") {
+                alert("이메일 주소를 입력해주세요.");
+                $("#email_1").focus();
+                return false;
             }
-        </script>
-        <script>
-            jQuery(document).ready(function() {
 
-                $("#save_id").click(function() {
-                    if ($(this).is(":checked")) {
-                        $("#order_user_name").val(`<?= session("member.name") ?>`);
-                        const email = `<?= session("member.email") ?>`;
-                        const emailArr = email.split("@");
-                        $("#email_1").val(emailArr[0] ?? "");
-                        $("#email_2").val(emailArr[1] ?? "");
-                        const phone = `<?= session("member.phone") ?>`;
-                        const phoneArr = phone.split("-");
-                        $("#phone_1").val(phoneArr[0] ?? "");
-                        $("#phone_2").val(phoneArr[1] ?? "");
-                        $("#phone_3").val(phoneArr[2] ?? "");
-
-                        $("#gender1").val(`<?= session("member.gender") ?>`);
-                        $("#order_user_first_name_en").val(`<?= session("member.first_name_en") ?>`);
-                        $("#order_user_last_name_en").val(`<?= session("member.last_name_en") ?>`);
-                        $("#order_passport_number").val(`<?= session("member.passport_number") ?>`);
-                        $("#order_passport_expiry_date").val(`<?= session("member.passport_expiry_date") ?>`);
-                        $("#order_birth_date").val(`<?= session("member.birthday") ?>`);
-                    } else {
-                        $("#order_user_name").val("");
-                        $("#email_1").val("");
-                        $("#email_2").val("");
-                        $("#phone_1").val("");
-                        $("#phone_2").val("");
-                        $("#phone_3").val("");
-
-                        $("#gender1").val("");
-                        $("#order_user_first_name_en").val("");
-                        $("#order_user_last_name_en").val("");
-                        $("#order_passport_number").val("");
-                        $("#order_passport_expiry_date").val("");
-                        $("#order_birth_date").val("");
-                    }
-                });
-            });
-
-            $(".phone").on("input", function() {
-                $(this).val($(this).val().replace(/[^0-9]/g, ""));
-            });
-
-            $("input[name='radio_phone'").change(function() {
-                if ($(this).val() == 'kor') {
-                    $(".phone_kor").attr("disabled", false).eq(0).focus();
-                    $(".phone_thai").attr("disabled", true);
-                } else {
-                    $(".phone_thai").attr("disabled", false).focus();
-                    $(".phone_kor").attr("disabled", true);
+            if ($("input[name='radio_phone']:checked").val() === "kor") {
+                if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
+                    alert("한국번호를 입력해주세요.");
+                    return false;
                 }
-            })
+            } else if ($("input[name='radio_phone']:checked").val() === "thai") {
+                if ($("#phone_thai").val() === "") {
+                    alert("태국번호를 입력해주세요.");
+                    return false;
+                }
+            }
+        }
 
-            function handleEmail(email) {
-                if (email == '1') {
-                    $("#email_2").val('').prop('readonly', false).focus();
-                } else {
-                    $("#email_2").val(email).prop('readonly', true);
+        $('#order_frm').attr('action', '/product-tours/tours-payment-ok');
+        $("#order_frm").submit();
+    }
+
+    function handleSubmit(status) {
+
+        $("#order_status").val(status);
+
+        if (status == "W") {
+            if ($("#order_user_name").val() === "") {
+                alert("한국이름을 입력해주세요.");
+                $("#order_user_name").focus();
+                return false;
+            }
+            if ($("#order_user_first_name_en").val() === "") {
+                alert("영문 이름(First Name)을 입력해주세요.");
+                $("#order_user_first_name_en").focus();
+                return false;
+            }
+
+            if ($("#order_user_last_name_en").val() === "") {
+                alert("영문 성(Last Name)을 입력해주세요.");
+                $("#order_user_last_name_en").focus();
+                return false;
+            }
+
+            if ($("#order_passport_number").val() === "") {
+                alert("여권번호를 입력해주세요!");
+                $("#order_passport_number").focus();
+                return false;
+            }
+
+            if ($("#order_passport_expiry_date").val() === "") {
+                alert("여권만기일을 입력해주세요!");
+                $("#order_passport_expiry_date").focus();
+                return false;
+            }
+
+            if ($("#order_birth_date").val() === "") {
+                alert("생년월일을 입력해주세요!");
+                $("#order_birth_date").focus()
+                return false;
+            }
+
+            if ($("#email_1").val() === "" || $("#email_2").val() === "") {
+                alert("이메일 주소를 입력해주세요.");
+                $("#email_1").focus();
+                return false;
+            }
+
+            if ($("input[name='radio_phone']:checked").val() === "kor") {
+                if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
+                    alert("한국번호를 입력해주세요.");
+                    return false;
+                }
+            } else if ($("input[name='radio_phone']:checked").val() === "thai") {
+                if ($("#phone_thai").val() === "") {
+                    alert("태국번호를 입력해주세요.");
+                    return false;
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', function() {
-                const links = document.querySelectorAll('.short_link');
+            let fullagreement = $("#fullagreement").val().trim();
+            let terms = $("#terms").val().trim();
+            let policy = $("#policy").val().trim();
+            let information = $("#information").val().trim();
+            let guidelines = $("#guidelines").val().trim();
 
-                links.forEach(link => {
-                    link.addEventListener('click', function() {
-                        links.forEach(link => link.classList.remove('active'));
-                        this.classList.add('active');
-                    });
-                });
+            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                alert("모든 약관에 동의해야 합니다.");
+                return false;
+            }
+
+        }
+
+        if (status == "B") {
+
+            if ($("#start_place").val() === "") {
+                alert("미팅장소 입력해주세요!");
+                $("#start_place").focus();
+                return false;
+            }
+
+            if ($("#end_place").val() === "") {
+                alert("종료 후 내리실 곳 입력해주세요!");
+                $("#end_place").focus();
+                return false;
+            }
+
+            if ($("#id_kakao").val() === "") {
+                alert("카카오톡 아이디 입력해주세요!");
+                $("#id_kakao").focus();
+                return false;
+            }
+
+            // if ($("#description").val() === "") {
+            //     alert("기타 요청 입력해주세요!");
+            //     $("#description").focus();
+            //     return false;
+            // }
+        }
+
+        $("#order_frm").submit();
+    }
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+
+        $("#save_id").click(function() {
+            if ($(this).is(":checked")) {
+                $("#order_user_name").val(`<?= session("member.name") ?>`);
+                const email = `<?= session("member.email") ?>`;
+                const emailArr = email.split("@");
+                $("#email_1").val(emailArr[0] ?? "");
+                $("#email_2").val(emailArr[1] ?? "");
+                const phone = `<?= session("member.phone") ?>`;
+                const phoneArr = phone.split("-");
+                $("#phone_1").val(phoneArr[0] ?? "");
+                $("#phone_2").val(phoneArr[1] ?? "");
+                $("#phone_3").val(phoneArr[2] ?? "");
+
+                $("#gender1").val(`<?= session("member.gender") ?>`);
+                $("#order_user_first_name_en").val(`<?= session("member.first_name_en") ?>`);
+                $("#order_user_last_name_en").val(`<?= session("member.last_name_en") ?>`);
+                $("#order_passport_number").val(`<?= session("member.passport_number") ?>`);
+                $("#order_passport_expiry_date").val(`<?= session("member.passport_expiry_date") ?>`);
+                $("#order_birth_date").val(`<?= session("member.birthday") ?>`);
+            } else {
+                $("#order_user_name").val("");
+                $("#email_1").val("");
+                $("#email_2").val("");
+                $("#phone_1").val("");
+                $("#phone_2").val("");
+                $("#phone_3").val("");
+
+                $("#gender1").val("");
+                $("#order_user_first_name_en").val("");
+                $("#order_user_last_name_en").val("");
+                $("#order_passport_number").val("");
+                $("#order_passport_expiry_date").val("");
+                $("#order_birth_date").val("");
+            }
+        });
+    });
+
+    $(".phone").on("input", function() {
+        $(this).val($(this).val().replace(/[^0-9]/g, ""));
+    });
+
+    $("input[name='radio_phone'").change(function() {
+        if ($(this).val() == 'kor') {
+            $(".phone_kor").attr("disabled", false).eq(0).focus();
+            $(".phone_thai").attr("disabled", true);
+        } else {
+            $(".phone_thai").attr("disabled", false).focus();
+            $(".phone_kor").attr("disabled", true);
+        }
+    })
+
+    function handleEmail(email) {
+        if (email == '1') {
+            $("#email_2").val('').prop('readonly', false).focus();
+        } else {
+            $("#email_2").val(email).prop('readonly', true);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.short_link');
+
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                links.forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
             });
-        </script>
+        });
+    });
+</script>
 
-        <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
