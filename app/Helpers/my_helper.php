@@ -914,6 +914,14 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
     }
 
     $start_page = ((int)(($cur_page - 1) / $page_range)) * $page_range + 1;
+    
+    if ($cur_page < 1) {
+        $cur_page = 1;
+    }
+    if ($total_page == 0) {
+        $total_page = 1;
+    }
+
     $end_page = min($start_page + $page_range - 1, $total_page);
 
     for ($k = $start_page; $k <= $end_page; $k++) {
@@ -933,6 +941,7 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
 						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
 					</a>";
     }
+
 
     if ($cur_page < $total_page) {
         $retValue .= "<a class='page-link'  href='" . $url . $total_page . "$focus_element_id' title='Go to last page'>
