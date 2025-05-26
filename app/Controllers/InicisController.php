@@ -681,7 +681,7 @@ class InicisController extends BaseController
 		
 		header('Content-Type:text/html; charset=utf-8');
         
-		/*
+		 
 		// 결제정보 조회
 		$row = $db->table('tbl_payment_mst')
 				  ->where('payment_no', $payment_no)
@@ -694,7 +694,7 @@ class InicisController extends BaseController
 				'message' => '결제 정보를 찾을 수 없습니다.',
 			]);
 		}		
-        */
+         
 		
         //step1. 요청을 위한 파라미터 설정
 		$key       = "cjAo6CD95LpJS0S4";
