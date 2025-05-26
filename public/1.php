@@ -47,7 +47,7 @@ header('Content-Type:text/html; charset=utf-8');
 	
 	//step2. 요청전문 POST 전송
 	
-    $url = "https://iniapi.inicis.com/v2/pg/refund";
+	$url = "https://iniapi.inicis.com/v2/pg/partialRefund";
     
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
