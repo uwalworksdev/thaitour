@@ -63,6 +63,29 @@
         background-color: #fff;
         color: #252525;
     }
+
+    @media screen (max-width: 850px) {
+    .sec2-item-card {
+        display: unset;
+    }
+
+    .tours-detail .primary-btn-calendar.tour {
+        position: absolute;
+        bottom: 6%;
+        left: 48%;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-cart
+    {
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+        margin-left: 0 !important;
+    }
+    }
 </style>
 
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">

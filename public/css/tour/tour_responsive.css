@@ -3416,6 +3416,8 @@
     width: 6rem;
     height: 6rem;
     text-align: center;
+    display: flex;
+    align-items: center;
   }
 
   .custom-golf-detail .page-link.cus-padding {
