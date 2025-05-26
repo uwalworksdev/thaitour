@@ -640,6 +640,7 @@
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
                             <span>리얼리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
+                            <span></span>
                         </div>
                         <div class="list-icon only_mo">
                             <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
@@ -664,7 +665,13 @@
                                  onerror="this.src='/images/share/noimg.png'">
                         </div>
                         <div class="grid_2_2">
-                            <?php for ($j = 2; $j < 5; $j++) { ?>
+
+
+                            <?php 
+                                $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                                $loop_limit = $is_mobile ? 1 : 3;
+                                for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                            ?>
                                 <img onclick="img_pops('<?= $guide['product_idx'] ?>')"
                                      class="grid_2_2_size imageDetailSup_"
                                      src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
