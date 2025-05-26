@@ -259,7 +259,8 @@
 											?> 
 										</td>
 									</tr>
-									
+								    <input type="text" name="cancel_tot" id="cancel_tot" value="<?=$cancel_tot?>">
+
 									<?php if($payment_row['payment_status'] != "C") { ?>
 								    <tr>
                                         <th>결제 부분취소</th>

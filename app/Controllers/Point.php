@@ -27,12 +27,14 @@ class Point extends BaseController
 
         $tour_list = $this->bbsModel->ListByCode("tour")->limit(3)->get()->getResultArray();
         $infographics_list = $this->bbsModel->ListByCode("infographics")->limit(5)->get()->getResultArray();
+        $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
             'infographics_list' => $infographics_list,
             'bannerTop' => $this->bannerModel->getBanners("5902", "top")[0],
             'bannerMiddle' => $this->bannerModel->getBanners("5902", "middle"),
+            'magazines' => $magazines,
         ]);
     }
 
