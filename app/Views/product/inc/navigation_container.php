@@ -92,7 +92,7 @@
             let html = "";
             for (let i = 0; i < data.length; i++) {
                 html += `<li class="depth_2_item_" data-code="${data[i].code_no}">
-                                        <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
+                                        <a href="${data[i].link_ ?? '#'}">${data[i].code_name}xxxxxxxx</a>
                                     </li>`;
             }
 
