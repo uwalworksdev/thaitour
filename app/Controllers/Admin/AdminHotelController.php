@@ -113,12 +113,13 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
+        $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
 
         $conditions = [
             "code_gubun" => 'tour',
