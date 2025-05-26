@@ -243,7 +243,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
         $routes->post("copy_last_tour", "Admin\AdminTourController::copy_last_tour", ['as' => "admin._tours.copy_last_tour"]);
         $routes->post("add_tour_product", "Admin\AdminTourController::add_tour_product", ['as' => "admin._tours.add_tour_product"]);
-        $routes->post("add_tour_product_info", "Admin\AdminTourController::add_tour_product_info", ['as' => "admin._tours.add_tour_product_info"]);
         $routes->post("tours_price_add", "Admin\AdminTourController::tours_price_add", ['as' => "admin._tours.tours_price_add"]);
         $routes->post("tour_price_update", "Admin\AdminTourController::tour_price_update", ['as' => "admin._tours.tour_price_update"]);
         $routes->post("tours_all_update", "Admin\AdminTourController::tours_all_update", ['as' => "admin._tours.tours_all_update"]);
@@ -353,7 +352,6 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("spas_all_update", "Admin\AdminSpaController::spas_all_update", ['as' => "admin.api.spa_.spas_all_update"]);
             $routes->post("copy_last_spa", "Admin\AdminSpaController::copy_last_spa", ['as' => "admin.api.spa_.copy_last_spa"]);
             $routes->post("add_spa_product", "Admin\AdminSpaController::add_spa_product", ['as' => "admin.api.spa_.add_spa_product"]);
-            $routes->post("add_spa_product_info", "Admin\AdminSpaController::add_spa_product_info", ['as' => "admin.api.spa_.add_spa_product_info"]);
             $routes->post("del_spas", "Admin\AdminSpaController::del_spas", ['as' => "admin.api.spa_.del_spas"]);
             $routes->post("del_spa_option", "Admin\AdminSpaController::del_spa_option", ['as' => "admin.api.spa_.del_spa_option"]);
             $routes->post("del_main_option", "Admin\AdminSpaController::del_main_option", ['as' => "admin.api.spa_.del_main_option"]);
@@ -709,7 +707,7 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_nicepay_cancelResult", "AjaxController::ajax_nicepay_cancelResult");
 	$routes->post("ajax_order_del", "AjaxController::ajax_order_del");
 	$routes->post("ajax_order_cancel", "AjaxController::ajax_order_cancel");
-	
+	$routes->post("ajax_order_delete", "AjaxController::ajax_order_delete");
 });
 
 $routes->group("api", static function ($routes) {
@@ -935,7 +933,6 @@ $routes->group("center", static function ($routes) {
     $routes->get("map", "CustomerCenterController::map");
     $routes->get("about", "CustomerCenterController::about");
     $routes->get("point", "CustomerCenterController::point");
-    $routes->get("mem_vip", "CustomerCenterController::mem_vip");
     $routes->get("payment_guide", "CustomerCenterController::payment_guide");
     $routes->get("reservation_procedure", "CustomerCenterController::reservation_procedure");
 });
