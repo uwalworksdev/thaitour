@@ -10,6 +10,7 @@
             </ul>
         </div>
     </div>
+
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_01 icon_open_depth_" data-depth="depth_1_tools_"
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
@@ -21,6 +22,7 @@
                 <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
             </ul>
         </div>
+
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_"></ul>
         </div>
@@ -41,98 +43,99 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('.icon_open_depth_').on('click', function (e) {
-            e.stopPropagation();
-            let depth = $(this).data("depth");
-            $('#' + depth).toggleClass('active_');
-        });
+$(document).ready(function () {
+    $('.icon_open_depth_').on('click', function (e) {
+        e.stopPropagation();
+        let depth = $(this).data("depth");
+        $('#' + depth).toggleClass('active_');
+    });
 
-        let name = $('.depth_1_item_.active_').text();
+    let name = $('.depth_1_item_.active_').text();
+    $('#depth_1_tool_title_').text(name);
+
+    $('.depth_1_item_').on('click', function () {
+        let code = $(this).data("code");
+        let href = $(this).data("href");
+        let name = $(this).text();
+
         $('#depth_1_tool_title_').text(name);
+        $('#path_1').text(name);
 
-        $('.depth_1_item_').on('click', function () {
-            let code = $(this).data("code");
-            let href = $(this).data("href");
-            let name = $(this).text();
+        $('.depth_1_item_').removeClass('active_');
+        $(this).addClass('active_');
+        $('#depth_1_tools_').removeClass('active_');
 
-            $('#depth_1_tool_title_').text(name);
-            $('#path_1').text(name);
+        window.location.href = href;
+    });
 
-            $('.depth_1_item_').removeClass('active_');
-            $(this).addClass('active_');
-            $('#depth_1_tools_').removeClass('active_');
+    // 외부 클릭 시 각 드롭다운 닫기
+    $(document).on('click', function (event) {
+        const targets = ['#depth_1_tools_', '#depth_2_tools_', '#depth_3_tools_'];
+        const triggers = ['.icon_open_depth_01', '.icon_open_depth_02', '.icon_open_depth_03'];
 
-            window.location.href = href;
-        });
+        targets.forEach((id, idx) => {
+            const $target = $(id);
+            const $trigger = $(triggers[idx]);
 
-        $(document).on('click', function (event) {
-            const targets = ['#depth_1_tools_', '#depth_2_tools_', '#depth_3_tools_'];
-            const triggers = ['.icon_open_depth_01', '.icon_open_depth_02', '.icon_open_depth_03'];
-
-            targets.forEach((id, idx) => {
-                const $target = $(id);
-                const $trigger = $(triggers[idx]);
-
-                if (!$(event.target).closest(id).length && !$(event.target).closest(triggers[idx]).length) {
-                    $target.removeClass('active_');
-                }
-            });
-        });
-
-        // ✅ 2Depth 클릭 → 3Depth Ajax 로드
-        $(document).on('click', '.depth_2_item_', function (e) {
-            e.stopPropagation();
-            let code = $(this).data("code");
-            let name = $(this).text();
-
-            $('#path_2').text(name);
-
-            $('.depth_2_item_').removeClass('active_');
-            $(this).addClass('active_');
-
-            getCodeDepth3(code, name);
-        });
-
-        // ✅ 3Depth Ajax 요청
-        async function getCodeDepth3(code, parentName) {
-            let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
-            try {
-                let response = await fetch(apiUrl);
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-                let res = await response.json();
-                renderDepthCode3(res.data.data, parentName);
-            } catch (error) {
-                console.error('Error fetching depth 3 data:', error);
-            }
-        }
-
-        function renderDepthCode3(data, parentName) {
-            let html = "";
-            for (let i = 0; i < data.length; i++) {
-                html += `<li class="depth_3_item_" data-code="${data[i].code_no}">
-                            <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
-                         </li>`;
-            }
-
-            $('#depth_3_tool_list_').html(html);
-            $('#depth_3_tools_').addClass('active_');
-        }
-
-        // ✅ 3Depth 클릭 시 active 표시 + 경로 + 이동
-        $(document).on('click', '.depth_3_item_', function () {
-            $('.depth_3_item_').removeClass('active_');
-            $(this).addClass('active_');
-
-            let code = $(this).data("code");
-            let name = $(this).text();
-            $('#path_3').text(name);
-
-            let href = $(this).find('a').attr('href');
-            if (href && href !== '#') {
-                window.location.href = href + `?depth3=${code}`;
+            if (!$(event.target).closest(id).length && !$(event.target).closest(triggers[idx]).length) {
+                $target.removeClass('active_');
             }
         });
     });
+
+    // ✅ 2Depth 클릭 → 3Depth Ajax 로드
+    $(document).on('click', '.depth_2_item_', function (e) {
+        e.stopPropagation();
+        let code = $(this).data("code");
+        let name = $(this).text();
+
+        $('#path_2').text(name);
+
+        $('.depth_2_item_').removeClass('active_');
+        $(this).addClass('active_');
+
+        getCodeDepth3(code, name);
+    });
+
+    // ✅ 3Depth Ajax 요청
+    async function getCodeDepth3(code, parentName) {
+        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+        try {
+            let response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            let res = await response.json();
+            renderDepthCode3(res.data.data, parentName);
+        } catch (error) {
+            console.error('Error fetching depth 3 data:', error);
+        }
+    }
+
+    function renderDepthCode3(data, parentName) {
+        let html = "";
+        for (let i = 0; i < data.length; i++) {
+            html += `<li class="depth_3_item_" data-code="${data[i].code_no}">
+                        <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
+                     </li>`;
+        }
+
+        $('#depth_3_tool_list_').html(html);
+        $('#depth_3_tools_').addClass('active_');
+    }
+
+    // ✅ 3Depth 클릭 시 active 표시 + 경로 + 이동
+    $(document).on('click', '.depth_3_item_', function () {
+        $('.depth_3_item_').removeClass('active_');
+        $(this).addClass('active_');
+
+        let code = $(this).data("code");
+        let name = $(this).text();
+        $('#path_3').text(name);
+
+        let href = $(this).find('a').attr('href');
+        if (href && href !== '#') {
+            window.location.href = href + `?depth3=${code}`;
+        }
+    });
+});
 </script>
