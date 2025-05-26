@@ -18,7 +18,7 @@
     $postdata["timestamp"] = $timestamp;
 	$postdata["clientIp"]  = $clientIp;
 	
-	//$mid                   = "thaitour37";
+	$mid                   = "thaitour37";
 	$type                  = "partialRefund";
 	$timestamp             = date("YmdHis");
 	$clientIp              = $_SERVER["REMOTE_ADDR"];
