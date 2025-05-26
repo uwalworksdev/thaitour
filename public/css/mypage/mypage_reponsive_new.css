@@ -1419,7 +1419,8 @@
     .booklist_wrap .book_num_order .top {
         padding: 3rem;
         gap: 6rem;
-        justify-content: flex-end;
+        /* justify-content: flex-end; */
+        justify-content: center;
         flex-wrap: wrap;
     }
 
@@ -1438,10 +1439,11 @@
 
     .booklist_wrap .book_num_order .top .num_order:nth-of-type(6) img {
         transform: rotate(90deg);
+        display : none;
     }
 
     .booklist_wrap .book_num_order .top .num_order:nth-of-type(8) img {
-        transform: rotate(180deg);
+        /* transform: rotate(180deg);    */
     }
 
     .booklist_wrap .book_num_order .top .num_order .titles {
