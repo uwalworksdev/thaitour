@@ -205,7 +205,7 @@ function get_cate_name($code)
 	$out_txt = "";
 	for($i=0;$i<count($code_arr);$i++)
 	{	
-		$fsql = "select * from tbl_code where code_no='" . $code . "' limit 1";
+		$fsql = "select * from tbl_code where code_no='" . $code_arr[$i] . "' limit 1";
 		$fresult = db_connect()->query($fsql);
 		$frow = $fresult->getRowArray();
 		if($out_txt == "") {
