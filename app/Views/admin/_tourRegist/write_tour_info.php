@@ -932,7 +932,30 @@
 	}
 
 	function add_table() {
-		console.log(next_tour_onum);
+
+		if (!confirm("추가 하시겠습니까?")) {
+			return false;
+		}
+		$.ajax({
+			url: "/AdmMaster/_tours/add_tour_product_info",
+			type: "POST",
+			data: {
+				"product_idx": <?= $product_idx ?>,
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				if(data.result){
+					location.reload();
+				}else{
+					alert(data.message);
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+			}
+		});
 		
 		// tableCount++;
 		// var newTable = `
@@ -1280,8 +1303,8 @@
 	}
 
 	function add_tour(infoIdx, idx) {
-		var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
-		var rowIndex = targetTable.find(".air_list_1").length;
+		// var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
+		// var rowIndex = targetTable.find(".air_list_1").length;
 
 		// var newRow = `
 		// 	<tr class="air_list_1" style="height:40px">
@@ -1328,7 +1351,6 @@
 			data: {
 				"info_idx": idx,
 				"product_idx": <?= $product_idx ?>,
-				"tour_onum": rowIndex,
 			},
 			dataType: "json",
 			async: false,

@@ -2564,23 +2564,12 @@ class TourRegistController extends BaseController
             $groupedData[$infoIndex]['tours_idx_json'] = htmlspecialchars(json_encode($toursIdxMap[$infoIndex]), ENT_QUOTES, 'UTF-8');
         }
 
-        $sql_last_info = "
-            SELECT pti.o_onum FROM tbl_product_tours pt 
-                LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx 
-                WHERE pt.product_idx = ? ORDER BY pti.o_onum DESC, pti.info_idx DESC LIMIT 1
-        ";
-
-        $query_last_info = $db->query($sql_last_info, [$product_idx]);
-        $l_results = $query_last_info->getResultArray();
-
-
         $data = [
             'product_idx'     => $product_idx,
             'product_name'    => $product_name,
             'productTourInfo' => $groupedData,
             'infoIndex'       => $infoIndex,
             'groupedData'     => $groupedData,
-            'last_info_onum'  => $l_results["o_onum"],
         ];
 
         return view('admin/_tourRegist/write_tour_info', $data);

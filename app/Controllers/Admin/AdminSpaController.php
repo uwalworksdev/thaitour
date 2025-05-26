@@ -1795,7 +1795,12 @@ class AdminSpaController extends BaseController
     {
         $info_idx = $this->request->getPost('info_idx');
         $product_idx = $this->request->getPost('product_idx');
-        $spa_onum = $this->request->getPost('spa_onum');
+
+        $result = $this->productSpas->where('product_idx', $product_idx)
+                                    ->where('info_idx', $info_idx)
+                                    ->orderBy('spa_onum', 'DESC')
+                                    ->limit(1)->get()->getRowArray();
+        $spa_onum = intval($result['spa_onum']) + 1;
 
         if (!empty($info_idx)) {
             $data = [
@@ -1822,6 +1827,99 @@ class AdminSpaController extends BaseController
             $insertId = $this->productSpas->insert($data);
 
             if($insertId) {
+                return $this->response->setJSON([
+                    'result'    => true,
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'result'    => false,
+                    'message'   => "오류가 발생했습니다."
+                ]);
+            }
+
+        }else{
+            return $this->response->setJSON([
+                'result'    => false,
+                'message'   => "idx가 존재하지 않습니다."
+            ]);
+        }
+    }
+
+    function add_spa_product_info()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+
+        $result = $this->productSpasInfo->where('product_idx', $product_idx)
+                                    ->orderBy('o_onum', 'DESC')
+                                    ->limit(1)->get()->getRowArray();
+        $spa_onum = intval($result['spa_onum']) + 1;
+
+        if (!empty($product_idx)) {
+            $data = [
+                "product_idx" => $product_idx,
+                "group" => '',
+                "info_name" => '',
+                "spas_info_price" => '',
+                "o_sdate" => '',
+                "o_edate" => '',
+                "yoil_0" => '',
+                "yoil_1" => '',
+                "yoil_2" => '',
+                "yoil_3" => '',
+                "yoil_4" => '',
+                "yoil_5" => '',
+                "yoil_6" => '',
+                "o_onum" => $spa_onum,
+                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ];
+            
+            $insertId = $this->productSpas->insert($data);
+
+            if($insertId) {
+
+                $data_tour = [
+                    'product_idx'       => $product_idx,
+                    'spas_subject'      => "",
+                    'spas_subject_eng'  => "",
+                    'is_explain'        => "",
+                    'spas_explain'      => "",
+                    'spas_price'        => "",
+                    'spas_price_kids'   => "",
+                    'spas_price_baby'   => "",
+                    'status'            => "",
+                    'spa_onum'         => "",
+                    'info_idx'          => $insertId,
+                    'r_date'            => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ];
+
+                $this->productSpas->insert($data_tour);
+
+                $data_op = [
+                    'info_idx' => $insertId,
+                    'product_idx' => $product_idx,
+                    'moption_name' => "",
+                    'use_yn'       => 'Y',
+                    'onum'         => 0,
+                    'rdate'        => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ];
+
+                $mop_idx = $this->spasMoption->insert($data_op);
+
+                if($mop_idx) {
+                    $data_op2 = [
+                        'code_idx'        => $mop_idx,
+                        'product_idx'     => $product_idx,
+                        'option_name'     => "",
+                        'option_name_eng' => "",
+                        'option_price'    => 0,
+                        'onum'            => 0,
+                        'use_yn'          => 'N',
+                        'rdate'           => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                    ];
+
+                    $this->spasOption->insert($data_op2);
+                }
+
                 return $this->response->setJSON([
                     'result'    => true,
                 ]);
