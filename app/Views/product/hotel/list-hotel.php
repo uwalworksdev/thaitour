@@ -36,10 +36,10 @@
 
                     <div class="category-left only_web">
                         <div class="category-left-tit flex_b_c">
-                            <h1 class="title"><?= $code_name ?></h1>
+                            <h1 class="title"><?= $code_name ?>1111</h1>
                             <div class="search-navigation flex">
                                 <div class="navigation-container-next">
-                                    <span class="font-bold"><?= $code_name ?></span>
+                                    <span class="font-bold"><?= $code_name ?>2222222</span>
 
                                     <div class="depth_2_tools_new_" id="depth_2_tools_new_">
                                         <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
@@ -48,12 +48,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <!--div class="navigation-container-next new">
+                                <div class="navigation-container-next new">
                                     <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
                                          data-depth="depth_2_tools_new_"
                                          src="/uploads/icons/ball_dot_icon.png"
                                          alt="ball_dot_icon">
-                                </div-->
+                                </div>
                             </div>
                         </div>
                         <div class="category-left-list">
