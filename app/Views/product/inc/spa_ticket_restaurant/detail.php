@@ -469,17 +469,22 @@
                             </div>
 
                             <ul class="qa-list">
-                            <?php
-                                $num_qna = $product_qna["num"];
-                                foreach($product_qna["items"] as $qna){
-                                    if(!empty(trim($qna["reply_content"]))){
-                                        $qna_status = "Y";
-                                        $qna_text = "답변완료";
-                                    }else{
-                                        $qna_status = "N";
-                                        $qna_text = "문의접수";
-                                    }
-                            ?>
+                                    <?php
+                                        $num_qna = $product_qna["num"];
+                                        if (empty($product_qna["items"])) {
+                                    ?>
+                                        <li class="qa-item no-data">게시글 없습니다</li>
+                                    <?php
+                                        } else {
+                                            foreach($product_qna["items"] as $qna){
+                                        if(!empty(trim($qna["reply_content"]))){
+                                            $qna_status = "Y";
+                                            $qna_text = "답변완료";
+                                        }else{
+                                            $qna_status = "N";
+                                            $qna_text = "문의접수";
+                                        }
+                                ?>
                                 <li class="qa-item">
                                     <div class="qa-wrap">
                                         <div class="qa-question">
@@ -487,8 +492,8 @@
                                             <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
                                             <div class="con-cus-mo-qa">
                                                 <p class="qa-text"><?=$qna["title"]?></p>
-                                                <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                             </div>
+                                            <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                         </div>
                                         <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                                     </div>
@@ -502,7 +507,7 @@
                                     <?php } ?>
                                 </li>
                             <?php
-                                }
+                                } }
                             ?>
                             </ul>
                         </div>

@@ -221,14 +221,14 @@ $(document).ready(function() {
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                            <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon_mo"
                                  class="only_mo">
                         </div>
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
                         <div class="btn_year_new">
                             <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
                                  class="only_web">
-                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
+                            <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon_mo"
                                  class="only_mo">
                         </div>
                     </div>
@@ -890,9 +890,14 @@ $(document).ready(function() {
                 </div>
 
                 <ul class="qa-list">
-                    <?php
-                        $num_qna = $product_qna["num"];
-                        foreach($product_qna["items"] as $qna){
+                        <?php
+                            $num_qna = $product_qna["num"];
+                            if (empty($product_qna["items"])) {
+                        ?>
+                            <li class="qa-item no-data">게시글 없습니다</li>
+                        <?php
+                            } else {
+                                foreach($product_qna["items"] as $qna){
                             if(!empty(trim($qna["reply_content"]))){
                                 $qna_status = "Y";
                                 $qna_text = "답변완료";
@@ -908,8 +913,8 @@ $(document).ready(function() {
                                     <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
                                     <div class="con-cus-mo-qa">
                                         <p class="qa-text"><?=$qna["title"]?></p>
-                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                     </div>
+                                    <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                 </div>
                                 <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                             </div>
@@ -923,7 +928,7 @@ $(document).ready(function() {
                             <?php } ?>
                         </li>
                     <?php
-                        }
+                        } }
                     ?>
                 </ul>
             </div>

@@ -372,6 +372,13 @@ $links = "list";
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
+                                            <?php
+                                            foreach ($category3 as $frow3) {
+											?>	
+                                                <option value="<?= $frow3["code_no"] ?>" <?php if ($frow3["code_no"] == $product_code_4) echo "selected"; ?> ><?= $frow3["code_name"] ?></option>
+                                            <?php 
+											} 
+											?>
                                         </select>
                                         <!--button type="button" id="btn_reg_cate" class="btn_01">등록</button-->
                                     </td>
@@ -2290,7 +2297,7 @@ $links = "list";
     <script>
         async function loadPage() {
             await get_code('<?= $product_code_1 ?>', 3, '<?= $product_code_2 ?>');
-            await get_codex('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
+            await get_code('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
         }
 
         loadPage();

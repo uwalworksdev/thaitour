@@ -123,7 +123,7 @@ class AdminHotelController extends BaseController
 
         $conditions = [
             "code_gubun" => 'tour',
-            "code_no" => '1303',
+            "code_no"    => '1303',
         ];
         $fresult = $this->CodeModel->getCodesByConditions($conditions);
 
@@ -185,6 +185,12 @@ class AdminHotelController extends BaseController
             "parent_code_no" => '38',
         ];
         $product_themes = $this->CodeModel->getCodesByConditions($conditions);
+
+        $conditions = [
+            "code_gubun"      => 'tour',
+            "parent_code_no"  =>  $row['product_code_2'],
+        ];
+        $category3 = $this->CodeModel->getCodesByConditions($conditions);
 
         $conditions = [
             "parent_code_no" => '39',
@@ -255,12 +261,15 @@ class AdminHotelController extends BaseController
             'product_idx' => $product_idx,
             'product_code_1' => $row['product_code_1'],
             'product_code_2' => $row['product_code_2'],
+            'product_code_3' => $row['product_code_3'],
             'product_code_no' => $product_code_no,
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
+            's_product_code_3' => $s_product_code_3,
+			'category3'     => $category3,
             'row' => $row ?? '',
             'img_list' => $img_list,
             'fresult' => $fresult,

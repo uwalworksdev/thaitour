@@ -2057,6 +2057,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
+    row-gap: 2rem;
   }
 
   .content-sub-product-hotel .page-link {
@@ -3050,7 +3052,7 @@
   .custom-golf-detail .tag-list {
     gap: 1rem;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 46rem;
   }
 
   .custom-golf-detail .item-tag-mo-cus {
@@ -3124,6 +3126,7 @@
     flex-direction: column;
     gap: 3rem;
     margin-bottom: 8rem;
+    align-items: flex-start;
   }
 
   .custom-golf-detail .list-select-element .item-select .label {
@@ -3131,7 +3134,7 @@
   }
 
   .custom-golf-detail .item-select select {
-    width: 48.5rem !important;
+    width: 65.5rem !important;
   }
 
   .custom-golf-detail .section2-sub {
@@ -3315,6 +3318,7 @@
     border-radius: 0.6rem;
     height: 12rem;
     padding: 1rem 1rem;
+    padding-top: 5rem;
   }
 
   .custom-golf-detail .qa-submit-btn {
@@ -3348,6 +3352,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     margin-bottom: 1rem;
+    word-break: break-word;
   }
 
   .custom-golf-detail .qa-meta {
@@ -3564,6 +3569,41 @@
     display: flex;
     align-items: center;
     gap: 3rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .section-wrap-s
+  {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+  }
+
+  .section-wrap-s .btn-s-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      gap: 2rem;
+  }
+
+  .custom-golf-detail .section-wrap-s .btn-s-wrap .btn-price-content
+  {
+      width: calc(50% - 1rem);
+      height: 8rem;
+      font-size: 2.8rem !important;
+  }
+
+  .content-custom-table .content-item
+  {
+      display: flex;
+      gap: 5rem;
+      padding: 3.2rem 0;
+      flex-direction: column;
   }
 
   .sub_section3__head {
@@ -3671,6 +3711,7 @@
 
     .custom-golf-detail .box-selecter .ic_item:first-of-type {
       flex-wrap: nowrap;
+      gap: 0;
     }
 
   .custom-golf-detail .box-selecter .ic_item {
@@ -3679,6 +3720,7 @@
     align-items: center;
     width: unset;
     flex-wrap: wrap;
+    gap: 2rem;
   }
 
   .custom-golf-detail .box-selecter .ic_item .flex__c {
@@ -3697,7 +3739,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .ic_item select {
-    width: 20rem !important;
+    width: 25rem !important;
   }
 
   .custom-golf-detail .flex-col-mo {
@@ -3705,7 +3747,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .item-tag.new select {
-    width: 41rem !important;
+    width: 46rem !important;
   }
 
   .custom-golf-detail .box-selecter .titles {
@@ -3726,6 +3768,7 @@
     padding-left: 5rem;
     position: relative;
     max-width: 100%;
+
   }
 
   .custom-golf-detail .qa-question .con-cus-mo-qa {
@@ -3762,11 +3805,11 @@
       width: 100%;
   }
 
-  #card_yes {
-    gap: 2rem;
+  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+      width: 20rem;
   }
 
-  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+  .custom-golf-detail .box-selecter .ic_item .item-select.second .label {
       width: 20rem;
   }
 
