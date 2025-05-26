@@ -5,7 +5,7 @@
 }
 .point_use .top_exp.mem_vip {
     padding-top: 20px;
-    background: transparent url(/globals/common/kr/img/company/mem_vip.jpg) no-repeat 100% bottom;
+    background: transparent url(/img/center/mem_vip.png) no-repeat 100% bottom;
 }
 .point_use .top_exp {
     padding: 0 45% 50px 0;
@@ -35,7 +35,7 @@ p {
     line-height: 24px;
 }
 .point_use .top_exp .mem_vip_txt {
-    background: #ff6300;
+    background: #17469E;
     color: #fff;
     border: 0;
     padding: 5px 15px;
@@ -54,13 +54,13 @@ p {
     padding-bottom: 40px;
 }
 .point_use .section h3 {
-    border-top: 1px solid #fb7622;
+    border-top: 1px solid #17469E;
     padding-top: 19px;
     margin-right: 2.5%;
     float: left;
     width: 18%;
     font-size: 18px;
-    color: #fb7622;
+    color: #17469E;
     line-height: 23px;
     letter-spacing: -1px;
 }
