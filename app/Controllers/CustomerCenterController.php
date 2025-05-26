@@ -43,6 +43,10 @@ class CustomerCenterController extends BaseController
     {
         return view("center/point");
     }
+     public function mem_vip()
+    {
+        return view("center/mem_vip");
+    }
 
     public function payment_guide()
     {
