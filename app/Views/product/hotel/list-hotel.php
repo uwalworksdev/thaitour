@@ -37,40 +37,25 @@
                     <div class="category-left only_web">
                         <div class="category-left-tit flex_b_c">
                             <h1 class="title"><?= $code_name ?></h1>
-							
-<div class="search-navigation flex">
-    <!-- 2Depth: 방콕 -->
-    <div class="navigation-container-next">
-        <span class="font-bold"><?= $code_name ?></span>
-        <div class="depth_2_tools_new_" id="depth_2_tools_new_">
-            <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
-                <?php $parent_code = 1303 ?>
-                <?= getHeaderTabSubChildNew($parent_code, $code_no); ?>
-            </ul>
-        </div>
-    </div>
-    <div class="navigation-container-next new">
-        <img class="ball_dot_icon icon_open_depth_new_" data-depth="depth_2_tools_new_"
-             src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-    </div>
+                            <div class="search-navigation flex">
+                                <div class="navigation-container-next">
+                                    <span class="font-bold"><?= $code_name ?></span>
 
-    <!-- 3Depth: 동적 출력 -->
-    <div class="navigation-container-next depth_3_container" style="display:;">
-        <span class="font-bold depth_3_label"></span>
-        <div class="depth_3_tools_new_" id="depth_3_tools_new_">
-            <ul class="depth_3_tool_list_new_" id="depth_3_tool_list_new_"></ul>
-        </div>
-    </div>
-    <div class="navigation-container-next new depth_3_icon" style="display:;">
-        <img class="ball_dot_icon icon_open_depth_new_" data-depth="depth_3_tools_new_"
-             src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-    </div>
-</div>
-
-							
+                                    <div class="depth_2_tools_new_" id="depth_2_tools_new_">
+                                        <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
+                                            <?php $parent_code = 1303 ?>
+                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="navigation-container-next new">
+                                    <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
+                                         data-depth="depth_2_tools_new_"
+                                         src="/uploads/icons/ball_dot_icon.png"
+                                         alt="ball_dot_icon">
+                                </div>
+                            </div>
                         </div>
-						
-						
                         <div class="category-left-list">
                             <div class="category-left-item">
                                 <div class="subtitle">
@@ -1173,47 +1158,48 @@
             $("body").css("overflow","unset");
         });
 
-$(document).ready(function () {
-    // 드롭다운 토글
-    $('.icon_open_depth_new_').click(function () {
-        const depthId = $(this).data("depth");
-        $('#' + depthId).toggleClass('active_');
-    });
+        $(document).ready(function () {
 
-    // depth_2 항목 클릭 시 → depth_3 로드
-    $(document).on('click', '.depth_2_item_new_', function () {
-        const code = $(this).data('code');
-        const name = $(this).text();
-        getCodeDepth(code, name);
-    });
+            $('.icon_open_depth_new_').click(function () {
+                let depth = $(this).data("depth");
+                $('#' + depth).toggleClass('active_');
+            })
+            $(window).on('click', function (event) {
 
-    async function getCodeDepth(code, parentName) {
-        const apiUrl = `/api/hotel/get_code?code=${code}`;
-        try {
-            const res = await fetch(apiUrl).then(r => r.json());
-            if (!res.data || !res.data.data || res.data.data.length === 0) return;
+                let icon_open_depth_02 = $('.icon_open_depth_02_new');
+                let depth_2_tools_ = $('#depth_2_tools_new_');
 
-            renderDepthCode(res.data.data, parentName);
-        } catch (error) {
-            console.error('하위 지역 불러오기 오류:', error);
-        }
-    }
+                if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
+                    depth_2_tools_.addClass('active_');
+                } else {
+                    depth_2_tools_.removeClass('active_');
+                }
+            });
 
-    function renderDepthCode(data, parentName) {
-        let html = "";
-        data.forEach(item => {
-            html += `<li class="depth_3_item_new_" data-code="${item.code_no}">
-                        <a href="${item.link_ ?? '#'}">${item.code_name}</a>
-                     </li>`;
-        });
-alert(html);
-        $('#depth_3_tool_list_new_').html(html);
-        $('.depth_3_label').text(`${parentName} 세부 지역`);
-        $('.depth_3_container').show();
-        $('.depth_3_icon').show();
-    }
-});
+            async function getCodeDepth(code) {
+                let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+                try {
+                    let response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
+                    let res = await response.json();
+                    renderDepthCode(res.data.data);
+                } catch (error) {
+                    console.error('Error fetching hotel data:', error);
+                }
+            }
+
+            function renderDepthCode(data) {
+                let html = "";
+                for (let i = 0; i < data.length; i++) {
+                    html += `<li class="depth_2_item_new_" data-code="${data[i].code_no}">
+                                                <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
+                                            </li>`;
+                }
+
+                $('#depth_2_tool_list_new_').html(html);
+            }
+        })
     </script>
     <div id="dim"></div>
 
