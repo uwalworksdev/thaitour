@@ -1011,4 +1011,9 @@ select, input[type="text"], input[type="password"], input[type="email"], input[t
 {
           height: 5.5rem;
 }
+
+.section6 .qa-number {
+    margin: 0;
+    font-size: 2.7rem;
+}
 }
