@@ -713,8 +713,8 @@ class InicisController extends BaseController
 		$detail                 = array();
 		$detail["tid"]          = $row['TID_1'];
 		$detail["msg"]          = "관리자 부분결제취소";
-		$detail["price"]        = $row['payment_tot'];
-		$detail["confirmPrice"] = $cancelAmt;
+		$detail["price"]        = (int)$row['payment_tot'];
+		$detail["confirmPrice"] = (int)$cancelAmt;
 		$detail["currency"]     = "WON";
 		$detail["tax"]          = "0";
 		$detail["taxfree"]      = "0";
