@@ -713,7 +713,7 @@ class InicisController extends BaseController
 		$detail                 = array();
 		$detail["tid"]          = $row['TID_1'];
 		$detail["msg"]          = "관리자 부분결제취소";
-		$detail["price"]        = (int)$row['payment_tot'];
+		$detail["price"]        = (int)$row['Amt_1'];
 		$detail["confirmPrice"] = (int)$cancelAmt;
 		$detail["currency"]     = "WON";
 		$detail["tax"]          = "0";
@@ -766,6 +766,8 @@ class InicisController extends BaseController
 
 		// 각 항목을 따옴표로 감싸기
 		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+
+        log_message('error', '이니시스 응답: ' . print_r($response_data, true));
 
 		if ($resultCode == "00") {
 			
