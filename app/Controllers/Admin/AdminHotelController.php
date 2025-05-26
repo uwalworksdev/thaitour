@@ -188,7 +188,7 @@ class AdminHotelController extends BaseController
 
         $conditions = [
             "code_gubun" => 'tour',
-            "code_no"    =>  $product_code_2,
+            "code_no"    =>  $row['product_code_2'],
         ];
         $category3 = $this->CodeModel->getCodesByConditions($conditions);
 
