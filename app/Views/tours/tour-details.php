@@ -63,6 +63,35 @@
         background-color: #fff;
         color: #252525;
     }
+
+    @media screen and (max-width: 850px) {
+    .sec2-item-card.tour_calendar {
+        display: block;
+    }
+
+    .tours-detail .primary-btn-calendar.tour {
+        position: absolute;
+        bottom: 6%;
+        left: 48%;
+        width: 92%;
+    }
+
+    .tours-detail .section2 .sec2-item-card:last-child {
+        padding-bottom: 20rem;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-cart
+    {
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+        margin-left: 0 !important;
+        width: 92%;
+    }
+    }
 </style>
 
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">

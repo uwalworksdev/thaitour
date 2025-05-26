@@ -6,6 +6,9 @@
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <style>
+    .popup_wrap.place_pop.cart_info_pop .pop_box {
+        max-width: 1000px;
+    }
     .item-info-check .view-policy {
         margin-right: 40px;
     }
@@ -1808,7 +1811,75 @@
                             <?= viewSQ(getPolicy(18)) ?>
                         </div>
                     </section>
-                    <section class="section_vehicle_2_7" style="display: none;">
+                    <form action="/vehicle/confirm-info" name="frmCar" id="frmCar" method="post">
+                        <input type="hidden" name="code_no" id="code_no" value="<?= $code_no ?>">
+                        <input type="hidden" name="type_code_no" id="type_code_no" value="">
+                        <input type="hidden" name="cp_idx" id="cp_idx" value="">
+                        <input type="hidden" name="product_cnt" id="product_cnt" value="">
+                        <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="">
+                        <input type="hidden" name="departure_area" id="departure_area" value="">
+                        <input type="hidden" name="destination_area" id="destination_area" value="">
+                        <input type="hidden" name="meeting_date" id="meeting_date" value="">
+                        <input type="hidden" name="return_date" id="return_date" value="">
+                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="1">
+                        <input type="hidden" name="child_cnt" id="child_cnt" value="">
+                        <input type="hidden" name="inital_price" id="inital_price" value="">
+                        <input type="hidden" name="order_price" id="order_price" value="">
+                        <input type="hidden" name="order_status" id="order_status" value="W">
+                        <input type="hidden" name="text_category_5401" id="text_category_5401" value="">
+                        <input type="hidden" name="ca_idx_5401" id="ca_idx_5401" value="">
+                        <input type="hidden" name="text_destination_name" id="text_destination_name" value="">
+                        <input type="hidden" name="text_departure_name" id="text_departure_name" value="">
+                        <input type="hidden" name="category_text_list" id="category_text_list" value="">
+
+
+
+                        <!-- <div class="section_vehicle_info_wrap">
+
+                        </div> -->
+
+                        <!-- <div class="policy_wrap">
+                            <h3 class="title-second">약관동의</h3>
+                            <div class="item-info-check item_check_term_all_">
+                                <label for="fullagreement">전체동의</label>
+                                <input type="hidden" value="N" id="fullagreement">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">이용약관 동의(필수)</label>
+                                <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="terms">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="policy">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="information">
+                            </div>
+                            <div class="item-info-check item_check_term_">
+                                <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                <input type="hidden" value="N" id="guidelines">
+                            </div>
+                        </div> -->
+
+                        <div class="section_vehicle_2_7__btn_wrap">
+                            <button class="btn_submit" type="button" value="W">
+                                상품 예약하기
+                            </button>
+                            <button class="btn_add_cart" id="btn_show_cart" type="button" value="B">
+                                장바구니담기
+                            </button>
+                            <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
+                                    상품 예약하기
+                                </button> -->
+                            
+                        </div>
+                    </form>
+                    <!-- <section class="section_vehicle_2_7" style="display: none;">
                         <div class="section_vehicle_2_7__head">
                             <div class="section_vehicle_2_7__head__ttl vehicle_ttl spe">
                                 예약자 정보입력
@@ -1820,67 +1891,9 @@
 
                         </div>
                         <div class="section_vehicle_2_7__body">
-                            <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
-                                <input type="hidden" name="code_no" id="code_no" value="<?= $code_no ?>">
-                                <input type="hidden" name="cp_idx" id="cp_idx" value="">
-                                <input type="hidden" name="product_cnt" id="product_cnt" value="">
-                                <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="">
-                                <input type="hidden" name="departure_area" id="departure_area" value="">
-                                <input type="hidden" name="destination_area" id="destination_area" value="">
-                                <input type="hidden" name="meeting_date" id="meeting_date" value="">
-                                <input type="hidden" name="return_date" id="return_date" value="">
-                                <input type="hidden" name="adult_cnt" id="adult_cnt" value="1">
-                                <input type="hidden" name="child_cnt" id="child_cnt" value="">
-                                <input type="hidden" name="inital_price" id="inital_price" value="">
-                                <input type="hidden" name="order_price" id="order_price" value="">
-                                <input type="hidden" name="order_status" id="order_status" value="W">
 
-                                <div class="section_vehicle_info_wrap">
-
-                                </div>
-
-                                <div class="policy_wrap">
-                                    <h3 class="title-second">약관동의</h3>
-                                    <div class="item-info-check item_check_term_all_">
-                                        <label for="fullagreement">전체동의</label>
-                                        <input type="hidden" value="N" id="fullagreement">
-                                    </div>
-                                    <div class="item-info-check item_check_term_">
-                                        <label for="">이용약관 동의(필수)</label>
-                                        <button type="button" data-type="1" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="terms">
-                                    </div>
-                                    <div class="item-info-check item_check_term_">
-                                        <label for="">개인정보 처리방침(필수)</label>
-                                        <button type="button" data-type="2" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="policy">
-                                    </div>
-                                    <div class="item-info-check item_check_term_">
-                                        <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                                        <button type="button" data-type="3" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="information">
-                                    </div>
-                                    <div class="item-info-check item_check_term_">
-                                        <label for="guidelines">여행안전수칙 동의(필수)</label>
-                                        <button type="button" data-type="4" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="guidelines">
-                                    </div>
-                                </div>
-
-                                <div class="section_vehicle_2_7__btn_wrap">
-                                    <button class="btn_add_cart" type="button" value="B">
-                                        장바구니담기
-                                    </button>
-                                    <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
-                                            상품 예약하기
-                                        </button> -->
-                                    <button class="btn_submit" type="button" value="W">
-                                        상품 예약하기
-                                    </button>
-                                </div>
-                            </form>
                         </div>
-                    </section>
+                    </section> -->
                 </div>
                 <div class="tab_content_item_ review_real " id="review_tab">
                     <?php echo view("/product/inc/vehicle-guide/review_tab.php"); ?>
@@ -1893,78 +1906,6 @@
         </div>
     </div>
 </section>
-<script>
-    $('.item_check_term_').click(function () {
-        $(this).toggleClass('checked_');
-        let input = $(this).find('input');
-        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
-
-        checkOrUncheckAll();
-    });
-
-    function checkOrUncheckAll() {
-        let allChecked = true;
-
-        $('.item_check_term_').each(function () {
-            let input = $(this).find('input');
-            if (input.val() !== 'Y') {
-                allChecked = false;
-                return false;
-            }
-        });
-
-        let allCheckbox = $('.item_check_term_all_');
-        let allInput = allCheckbox.find('input');
-        allCheckbox.toggleClass('checked_', allChecked);
-        allInput.val(allChecked ? 'Y' : 'N');
-    }
-
-    $('.item_check_term_all_').click(function () {
-        $(this).toggleClass('checked_');
-        let allChecked = $(this).hasClass('checked_');
-        let value = allChecked ? 'Y' : 'N';
-        $(this).find('input').val(value);
-
-        $('.item_check_term_').each(function () {
-            $(this).toggleClass('checked_', allChecked);
-            $(this).find('input').val(value);
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $("#save_id").click(function() {
-            if ($(this).is(":checked")) {
-                $("#order_user_name_kor").val(`<?= session("member.name") ?>`);
-                const email = `<?= session("member.email") ?>`;
-                const emailArr = email.split("@");
-                $("#email_1").val(emailArr[0] ?? "");
-                $("#email_2").val(emailArr[1] ?? "");
-                const phone = `<?= session("member.phone") ?>`;
-                const phoneArr = phone.split("-");
-                $("#phone_1").val(phoneArr[0] ?? "");
-                $("#phone_2").val(phoneArr[1] ?? "");
-                $("#phone_3").val(phoneArr[2] ?? "");
-
-                $("#order_user_gender").val(`<?= session("member.gender") ?>`);
-                $("#order_user_first_name_en").val(`<?= session("member.first_name_en") ?>`);
-                $("#order_user_last_name_en").val(`<?= session("member.last_name_en") ?>`);
-            } else {
-                $("#order_user_name_kor").val("");
-                $("#email_1").val("");
-                $("#email_2").val("");
-                $("#phone_1").val("");
-                $("#phone_2").val("");
-                $("#phone_3").val("");
-
-                $("#order_user_gender").val("");
-                $("#order_user_first_name_en").val("");
-                $("#order_user_last_name_en").val("");
-            }
-        });
-    });
-</script>
 
 <script>
     $(document).ready(function() {
@@ -2073,6 +2014,34 @@
     </div>
 </section>
 
+<div class="popup_wrap place_pop cart_info_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>별도 요청</h2>
+                    </div>
+                </div>
+                <form action="" name="frm_pop_cart" id="frm_pop_cart">
+                    <div class="popup_place__body section_vehicle_2_7__body">
+                        <div class="popup_vehicle_wrap">
+    
+                        </div>
+                        <div class="flex_c_c">
+                            <button type="button" class="btn_add_cart" id="add_cart">
+                                장바구니 담기
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 <script>
     $(".view-policy").on("click", function (event) {
         event.stopPropagation();
@@ -2095,7 +2064,6 @@
 
     $(document).on("click", ".vehicle_ttl__link", function() {
         let productIdx = $(this).attr("data-product-idx");
-        console.log("Clicked productIdx:", productIdx);
 
         $.ajax({
             url: "/mypage/getPolicyContents/" + productIdx,
@@ -2115,10 +2083,6 @@
         });
     });
 
-    function closePopup() {
-        $(".popup_wrap").hide();
-        $(".dim").hide();
-    }
 </script>
 
 <script>
@@ -2667,90 +2631,17 @@
         let last_cat_text = $(".cars_category_wrap").find(".section_vehicle_2_2__airport input[type='radio']:checked").siblings("label").text().trim();
         arr_category_text.push(last_cat_text);
 
+        $("#category_text_list").val(arr_category_text.join(", "));
+
         let form_html = ``;
         form_html += `
             <div class="section_vehicle_info">
                 선택상품 : ${arr_category_text.join(", ")}, <span id="frm_number_cars">${cnt}</span>대, 성인 <span id="frm_adult_cnt">${adult_cnt}</span>명, 아동 <span id="frm_child_cnt">${child_cnt}</span>명
             </div>
-
-            <div class="info_detail_table">
-                <table>
-                    <colgroup>
-                        <col width="150px">
-                        <col width="*">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>한국이름 *</th>
-                            <td>
-                                <input class="mb-3rem ip_only_ko" type="text" id="order_user_name_kor" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
-                            </td>
-                            <th>성별(남성/여성)*</th>
-                            <td>
-                                <select name="order_user_gender" id="order_user_gender" style="width: 100%" required="" data-label="성별" class="select-width">
-                                    <option value="M">남성</option>
-                                    <option value="F">여성</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>영문 이름 <br> (First Name) *</th>
-                            <td>
-                                <input class="mb-3rem ip_only_en" type="text" id="order_user_first_name_en" name="order_user_first_name_en" class="" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
-                            </td>
-                            <th>영문 성 <br> (Last Name) *</th>
-                            <td>
-                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" class="ip_only_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>전화번호*</th>
-                            <td colspan="3">
-                                <div class="phone_number">
-                                    <input type="text" name="phone1" id="phone_1"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="3">
-                                    <input type="text" name="phone2" id="phone_2"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
-                                    <input type="text" name="phone3" id="phone_3"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>이메일*</th>
-                            <td colspan="3">
-                                <div class="contact_email">
-                                    <input type="text" name="email_name" id="email_1">
-                                    <span>@</span>
-                                    <div class="email-group">
-                                        <input type="text" name="email_host" id="email_2" required="" data-label="이메일" placeholder="" readonly="">
-                                        <select id="" class="select-width" onchange="handleEmail(this.value)">
-                                            <option value="">선택</option>
-                                            <option value="naver.com">naver.com</option>
-                                            <option value="hanmail.net">hanmail.net</option>
-                                            <option value="hotmail.com">hotmail.com</option>
-                                            <option value="nate.com">nate.com</option>
-                                            <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                            <option value="empas.com">empas.com</option>
-                                            <option value="dreamwiz.com">dreamwiz.com</option>
-                                            <option value="freechal.com">freechal.com</option>
-                                            <option value="lycos.co.kr">lycos.co.kr</option>
-                                            <option value="korea.com">korea.com</option>
-                                            <option value="gmail.com">gmail.com</option>
-                                            <option value="hanmir.com">hanmir.com</option>
-                                            <option value="paran.com">paran.com</option>
-                                            <option value="1">직접입력</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         `;
+
+        $("#type_code_no").val(code_no);
+
         if (code_no == "5401") {
 
             form_html += `
@@ -2842,6 +2733,7 @@
             if ($(".cars_category_depth_1").siblings(".cars_category_depth_3").length > 0) {
                 let text = $(".cars_category_depth_1").siblings(".cars_category_depth_3").find("input[type='radio']:checked").siblings("label").text().trim();
 
+                $("#text_category_5401").val(text);
                 if (text == "왕복") {
                     form_html += `
                         <div class="section_vehicle_table">
@@ -3366,11 +3258,13 @@
             `;
         }
 
-        $(".section_vehicle_info_wrap").html(form_html);
+        $(".cart_info_pop .popup_vehicle_wrap").html(form_html);
 
         if (code_no == "5401") {
             let ca_idx = $(".cars_category_depth_2").children(".section_vehicle_2_2__head__tabs__item.active").data("ca_idx");
 
+            $("#ca_idx_5401").val(ca_idx);
+            
             $.ajax({
                 url: '/ajax/get_flight',
                 type: "GET",
@@ -3488,7 +3382,7 @@
         }
 
         let cp_idx = $("#cp_idx").val();
-
+        
         let product_idx_c = $(`#product_idx_${id}`).val();
 
         if ($(e).is(":checked")) {
@@ -3529,7 +3423,7 @@
 <script>
     function closePopup() {
         $(".popup_wrap").hide();
-        $(".dim").hide();
+        // $(".dim").hide();
     }
 
     function init_datepicker() {
@@ -3690,7 +3584,144 @@
 
     });
 
-    $(".btn_submit, .btn_add_cart").on("click", function() {
+    $("#add_cart").on("click", function() {
+        let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
+
+        if(code_no == "5401"){
+            if($(".s_destination_name").val() == "") {
+                alert("목적지 입력해주세요!");
+                $(this).focus();
+                return false;
+            }
+
+            if($(".e_departure_name").val() == "") {
+                alert("미팅 장소 입력해주세요!");
+                $(this).focus();
+                return false;
+            }
+        }else {
+            if($(".s_departure_name").val() == "") {
+                alert("미팅 장소 입력해주세요!");
+                $(this).focus();
+                return false;
+            }
+
+            if($(".s_destination_name").val() == "") {
+                alert("목적지 입력해주세요!");
+                $(this).focus();
+                return false;
+            }
+        }
+
+        if($(".s_airline_code").val() == "") {
+            alert("항공편 명 선택해주세요!");
+            return false;
+        }
+
+        if($(".s_date_trip").val() == "") {
+            alert("항공 도착 날짜 선택해주세요!");
+            return false;
+        }
+
+        if($(".s_hours").val() == "") {
+            alert("항공 도착 시간 선택해주세요!");
+            return false;
+        }
+
+        if($(".s_minutes").val() == "") {
+            alert("항공 도착 시간 선택해주세요!");
+            return false;
+        }
+
+        if($(".s_schedule_content").val() == "") {
+            alert("이동루트 선택해주세요!");
+            $(this).focus();
+            return false;
+        }
+
+        if($(".s_rest_name").val() == "") {
+            alert("경유지 선택해주세요!");
+            $(this).focus();
+            return false;
+        }
+
+        if($(".s_order_memo").val() == "") {
+            alert("기타요청 입력해주세요!");
+            $(this).focus();
+            return false;
+        }
+
+        if($(".e_date_trip").val() == "") {
+            alert("차량 미팅 날짜 선택해주세요!");
+            return false;
+        }
+
+        if($(".e_hours").val() == "") {
+            alert("미팅 시간 선택해주세요!");
+            return false;
+        }
+
+        if($(".e_hours").val() == "") {
+            alert("미팅 시간 선택해주세요!");
+            return false;
+        }
+
+        if($(".s_minutes").val() == "") {
+            alert("항공 도착 시간 선택해주세요!");
+            return false;
+        }
+
+        if($(".e_departure_name").val() == "") {
+            alert("미팅 장소 입력해주세요!");
+            $(this).focus();
+            return false;
+        }
+
+        if($(".e_airline_code").val() == "") {
+            alert("항공편 명 선택해주세요!");
+            return false;
+        }
+
+        if($(".e_order_memo").val() == "") {
+            alert("기타요청 입력해주세요!");
+            $(this).focus();
+            return false;
+        }
+
+        const $form1 = $('#frmCar');
+        const $form2 = $('#frm_pop_cart');
+
+        $form2.find('input[name], select[name], textarea[name]').each(function () {
+            const $original = $(this);
+            const name = $original.attr('name');
+            const value = $original.val();
+
+            $('<input>').attr({
+            type: 'hidden',
+            name: name,
+            value: value
+            }).appendTo($form1);
+        });
+
+        $.ajax({
+            url: "/vehicle-guide/vehicle-order",
+            type: "POST",
+            data: $("#frmCar").serialize(),
+            error: function(request, status, error) {
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            },
+            success: function(response, status, request) {
+                if (response.result == true) {
+                    alert(response.message);
+                    window.location.href = '/product/completed-order';
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
+    });
+
+    $(".btn_submit, #btn_show_cart").on("click", function() {
 
         <?php
         if (empty(session()->get("member")["id"])) {
@@ -3700,6 +3731,11 @@
         <?php
         }
         ?>
+
+        let departure_name = $(".place_chosen__start_pop .popup_place__list li span.active").text();
+        let destination_name = $(".place_chosen__end_pop .popup_place__list li span.active").text();
+        $("#text_destination_name").text(departure_name);
+        $("#text_departure_name").text(destination_name);
 
         $("#order_status").val($(this).val());
 
@@ -3725,171 +3761,16 @@
             return false;
         }
 
-        if ($(this).val() == "W") {
-            if (frm.order_user_name.value == "") {
-                alert("한국이름 입력해주세요!");
-                return false;
-            }
-
-            if (frm.order_user_gender.value == "") {
-                alert("성별 선택해주세요!");
-                return false;
-            }
-
-            if (frm.order_user_first_name_en.value == "") {
-                alert("영문 이름 입력해주세요!");
-                return false;
-            }
-
-            if (frm.order_user_last_name_en.value == "") {
-                alert("영문 성 입력해주세요!");
-                return false;
-            }
-
-            if (frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == "") {
-                alert("전화번호 입력해주세요!");
-                return false;
-            }
-
-            if (frm.email_name.value == "" || frm.email_host.value == "") {
-                alert("이메일 입력해주세요!");
-                return false;
-            }
-        }
+        addFormReservation();
 
         if($(this).val() == "B"){
 
-            let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
+            $(".cart_info_pop").show();
 
-            if(code_no == "5401"){
-                if($(".s_destination_name").val() == "") {
-                    alert("목적지 입력해주세요!");
-                    $(this).focus();
-                    return false;
-                }
-
-                if($(".e_departure_name").val() == "") {
-                    alert("미팅 장소 입력해주세요!");
-                    $(this).focus();
-                    return false;
-                }
-            }else {
-                if($(".s_departure_name").val() == "") {
-                    alert("미팅 장소 입력해주세요!");
-                    $(this).focus();
-                    return false;
-                }
-
-                if($(".s_destination_name").val() == "") {
-                    alert("목적지 입력해주세요!");
-                    $(this).focus();
-                    return false;
-                }
-            }
-
-            if($(".s_airline_code").val() == "") {
-                alert("항공편 명 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_date_trip").val() == "") {
-                alert("항공 도착 날짜 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_hours").val() == "") {
-                alert("항공 도착 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_minutes").val() == "") {
-                alert("항공 도착 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_schedule_content").val() == "") {
-                alert("이동루트 선택해주세요!");
-                $(this).focus();
-                return false;
-            }
-
-            if($(".s_rest_name").val() == "") {
-                alert("경유지 선택해주세요!");
-                $(this).focus();
-                return false;
-            }
-
-            if($(".s_order_memo").val() == "") {
-                alert("기타요청 입력해주세요!");
-                $(this).focus();
-                return false;
-            }
-
-            if($(".e_date_trip").val() == "") {
-                alert("차량 미팅 날짜 선택해주세요!");
-                return false;
-            }
-
-            if($(".e_hours").val() == "") {
-                alert("미팅 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".e_hours").val() == "") {
-                alert("미팅 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".s_minutes").val() == "") {
-                alert("항공 도착 시간 선택해주세요!");
-                return false;
-            }
-
-            if($(".e_departure_name").val() == "") {
-                alert("미팅 장소 입력해주세요!");
-                $(this).focus();
-                return false;
-            }
-
-            if($(".e_airline_code").val() == "") {
-                alert("항공편 명 선택해주세요!");
-                return false;
-            }
-
-            if($(".e_order_memo").val() == "") {
-                alert("기타요청 입력해주세요!");
-                $(this).focus();
-                return false;
-            }
-        }
-
-        let fullagreement = $("#fullagreement").val().trim();
-        let terms = $("#terms").val().trim();
-        let policy = $("#policy").val().trim();
-        let information = $("#information").val().trim();
-        let guidelines = $("#guidelines").val().trim();
-
-        if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-            alert("모든 약관에 동의해야 합니다.");
             return false;
         }
 
-        $.ajax({
-            url: "/vehicle-guide/vehicle-order",
-            type: "POST",
-            data: $("#frmCar").serialize(),
-            error: function(request, status, error) {
-                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            },
-            success: function(response, status, request) {
-                if (response.result == true) {
-                    alert(response.message);
-                    window.location.href = '/product/completed-order';
-                } else {
-                    alert(response.message);
-                }
-            }
-        });
+        $("#frmCar").submit();
 
     });
 </script>

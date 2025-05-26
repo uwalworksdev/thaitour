@@ -3364,7 +3364,7 @@
   .custom-golf-detail .qa-tag {
     background-color: var(--bs-point);
     color: white;
-    padding: 1rem 2rem 0.8rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
     border-radius: 99px;
     font-size: 2.5rem;
     margin-right: 4rem;
@@ -3416,6 +3416,8 @@
     width: 6rem;
     height: 6rem;
     text-align: center;
+    display: flex;
+    align-items: center;
   }
 
   .custom-golf-detail .page-link.cus-padding {

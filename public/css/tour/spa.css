@@ -666,6 +666,8 @@ div , p , ul, li, span {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    row-gap: 5px;
+    flex-direction: column;
 }
 
 .customer-form-page .container-card .card-right2 .schedule.last {
@@ -688,7 +690,7 @@ div , p , ul, li, span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .card-right2 .schedule .wrap-text span {
