@@ -590,6 +590,32 @@ function info_receipt(pg, tid)
     </script>
 
     <script>
+	    function del_it() {
+			if (!confirm('해당 결제 내역을 삭제 하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.'))
+                return false;
+			
+            var message = "";
+            $.ajax({
+
+                url: "/ajax/ajax_order_delete",
+                type: "POST",
+                data: {
+                    "order_no" : $("#order_no").val() 
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    //location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });			
+    	}
+  	
         function payment_cancel(no, pg) {
 
 			if (!confirm('결제 전체취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
