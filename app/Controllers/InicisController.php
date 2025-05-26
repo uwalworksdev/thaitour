@@ -662,7 +662,8 @@ class InicisController extends BaseController
 		$payment_no  = $this->request->getPost('payment_no');
 		$cancelAmt   = $this->request->getPost('cancel_amt');
         $add_mileage = $this->request->getPost('add_mileage');
-
+        
+		/*
 		for ($i = 0; $i < count($order_nos); $i++) {
 			$order_no = $order_nos[$i];
 			$amt = $amts[$i];
@@ -670,7 +671,7 @@ class InicisController extends BaseController
 			// 예: DB 처리 또는 로그
 			// cancelPartialOrder($payment_no, $order_no, $amt);
 		}
-		
+		*/
 		if (empty($payment_no)) {
 			return $this->response->setJSON([
 				'status' => 'error',
@@ -764,7 +765,7 @@ class InicisController extends BaseController
 		$cancelTime = $responseData['cancelTime'];
 
 		// 각 항목을 따옴표로 감싸기
-		$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
 		if ($resultCode == "00") {
 			
@@ -791,6 +792,9 @@ class InicisController extends BaseController
 			
 			// 적립포인트 재조정
 			cancelMileage($payment_no, $cancelAmt);
+
+            // 부분취소 확인
+    		cancelPartilal($payment_no);				
 
 			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
 		} else {
