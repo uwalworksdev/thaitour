@@ -1242,6 +1242,7 @@ class ProductModel extends Model
         $builder->where('h.o_edate IS NOT NULL');
         $builder->where('h.o_sdate <>', '');
         $builder->where('h.o_edate <>', '');
+        $builder->where('h.option_type', 'M');
 */		
         if ($where['day_start'] && $where['day_start'] != "") {
             $builder->where('h.o_sdate <=', $where['day_start']); 
@@ -1250,9 +1251,6 @@ class ProductModel extends Model
         if ($where['day_end'] && $where['day_end'] != "") {
             $builder->where('h.o_edate >=', $where['day_end']);
         }
-
-		
-        //$builder->where('h.option_type', 'M');
 
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
