@@ -64,7 +64,7 @@
         color: #252525;
     }
 
-    @media screen (max-width: 850px) {
+    @media screen and (max-width: 850px) {
     .sec2-item-card {
         display: unset;
     }
