@@ -22,15 +22,8 @@
                 <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
             </ul>
         </div>
-
-        <div class="depth_3_tools_" id="depth_3_tools_">
-            <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-			111111111111111111111111
-                <?php //echo getHeaderTabSubChild($parent_code, $code_no); ?>
-            </ul>
-        </div>
     </div>
-    <div class="navigation-container-next">
+    <div class="navigation-container-next">xxxxxxxxxxxx
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png"
              alt="ball_dot_icon">
