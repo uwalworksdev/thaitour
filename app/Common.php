@@ -1246,6 +1246,7 @@ function product_price($idx)
 		 }
 		 //write_log("last price- ". $com_price);
 		 
+		 if(!$result) $com_price = 0;
 		 $price     = $com_price;
 	     $price_won = (int)($price * $baht_thai);
 		 
