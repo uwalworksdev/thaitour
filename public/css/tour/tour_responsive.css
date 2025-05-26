@@ -2057,6 +2057,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-wrap: wrap;
+    row-gap: 2rem;
   }
 
   .content-sub-product-hotel .page-link {
@@ -3124,6 +3126,7 @@
     flex-direction: column;
     gap: 3rem;
     margin-bottom: 8rem;
+    align-items: flex-start;
   }
 
   .custom-golf-detail .list-select-element .item-select .label {
@@ -3131,7 +3134,7 @@
   }
 
   .custom-golf-detail .item-select select {
-    width: 48.5rem !important;
+    width: 65.5rem !important;
   }
 
   .custom-golf-detail .section2-sub {
@@ -3566,6 +3569,41 @@
     display: flex;
     align-items: center;
     gap: 3rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .section-wrap-s
+  {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+  }
+
+  .section-wrap-s .btn-s-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      gap: 2rem;
+  }
+
+  .custom-golf-detail .section-wrap-s .btn-s-wrap .btn-price-content
+  {
+      width: calc(50% - 1rem);
+      height: 8rem;
+      font-size: 2.8rem !important;
+  }
+
+  .content-custom-table .content-item
+  {
+      display: flex;
+      gap: 5rem;
+      padding: 3.2rem 0;
+      flex-direction: column;
   }
 
   .sub_section3__head {
@@ -3701,7 +3739,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .ic_item select {
-    width: 20rem !important;
+    width: 25rem !important;
   }
 
   .custom-golf-detail .flex-col-mo {
