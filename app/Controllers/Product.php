@@ -2029,7 +2029,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
 		$query = $builder->get();
 		$golf_price_result = $query->getResultArray();
-		write_log("golfDetail- ". $this->db->getLastQuery()); // 실행 후 확인);
+		//write_log("golfDetail- ". $this->db->getLastQuery()); // 실행 후 확인);
 		foreach ($golf_price_result as $golf_price):
 
 				// 결과 확인 및 데이터 처리
@@ -2211,7 +2211,7 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 									  AND a.goods_name = '" . $hole_cnt . "' 
 									  AND b.group_idx  > '0'
 									  AND a.goods_date = '" . $golf_date . "' ";
-        write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
+        //write_log("sql_opt- ".$sql_opt ." - ". $hour);																   
         $query_opt = $this->db->query($sql_opt);
         $options   = $query_opt->getResultArray();
 
