@@ -3669,6 +3669,10 @@
     align-items: flex-start;
   }
 
+    .custom-golf-detail .box-selecter .ic_item:first-of-type {
+      flex-wrap: nowrap;
+    }
+
   .custom-golf-detail .box-selecter .ic_item {
     margin-bottom: 3rem;
     display: flex;
@@ -3737,7 +3741,7 @@
   }
 
   .custom-golf-detail .body-box {
-      width: calc(100% - 18rem);
+      width: calc(100% - 20rem);
       gap: 1rem;
   }
 
@@ -3751,11 +3755,19 @@
 
   .custom-golf-detail .tag-con-below-calendar .item-tag span.label {
         font-size: 2.7rem;
-        width: 18rem !important;
+        width: 20rem !important;
     }
 
   .custom-golf-detail .tag-con-below-calendar .item-tag .item-tag-select {
       width: 100%;
+  }
+
+  #card_yes {
+    gap: 2rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+      width: 20rem;
   }
 
   .content-sub-hotel-detail .book-button {
