@@ -48,12 +48,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="navigation-container-next new">
+                                <!--div class="navigation-container-next new">
                                     <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
                                          data-depth="depth_2_tools_new_"
                                          src="/uploads/icons/ball_dot_icon.png"
                                          alt="ball_dot_icon">
-                                </div>
+                                </div-->
                             </div>
                         </div>
                         <div class="category-left-list">
