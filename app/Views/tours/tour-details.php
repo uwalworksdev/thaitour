@@ -65,7 +65,7 @@
     }
 
     @media screen and (max-width: 850px) {
-    .sec2-item-card {
+    .sec2-item-card.tour_calendar {
         display: unset;
     }
 
