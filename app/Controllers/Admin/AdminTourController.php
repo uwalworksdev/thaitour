@@ -1243,11 +1243,108 @@ class AdminTourController extends BaseController
         }
 	}
 
+    function add_tour_product_info()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+
+        $result = $this->infoProducts->where('product_idx', $product_idx)
+                                    ->orderBy('o_onum', 'DESC')
+                                    ->limit(1)->get()->getRowArray();
+        $o_onum = intval($result['o_onum']) + 1;
+
+        if (!empty($product_idx)) {
+            $data = [
+                "product_idx" => $product_idx,
+                "group" => '',
+                "info_name" => '',
+                "tour_info_price" => '',
+                "o_sdate" => '',
+                "o_edate" => '',
+                "yoil_0" => '',
+                "yoil_1" => '',
+                "yoil_2" => '',
+                "yoil_3" => '',
+                "yoil_4" => '',
+                "yoil_5" => '',
+                "yoil_6" => '',
+                "o_onum" => $o_onum,
+                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ];
+            
+            $insertId = $this->infoProducts->insert($data);
+
+            if($insertId) {
+
+                $data_tour = [
+                    'product_idx'       => $product_idx,
+                    'tours_subject'     => "",
+                    'tours_subject_eng' => "",
+                    'tours_desc'        => "",
+                    'tour_price'        => "",
+                    'tour_price_kids'   => "",
+                    'tour_price_baby'   => "",
+                    'status'            => "",
+                    'tour_onum'         => "",
+                    'info_idx'          => $insertId,
+                    'r_date'            => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ];
+
+                $this->tourProducts->insert($data_tour);
+
+                $data_op = [
+                    'info_idx' => $insertId,
+                    'product_idx' => $product_idx,
+                    'moption_name' => "",
+                    'use_yn'       => 'Y',
+                    'onum'         => 0,
+                    'rdate'        => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                ];
+
+                $mop_idx = $this->moptionModel->insert($data_op);
+
+                if($mop_idx) {
+                    $data_op2 = [
+                        'code_idx'        => $mop_idx,
+                        'product_idx'     => $product_idx,
+                        'option_name'     => "",
+                        'option_name_eng' => "",
+                        'option_price'    => 0,
+                        'onum'            => 0,
+                        'use_yn'          => 'N',
+                        'rdate'           => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                    ];
+
+                    $this->optionTourModel->insert($data_op2);
+                }
+
+                return $this->response->setJSON([
+                    'result'    => true,
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'result'    => false,
+                    'message'   => "오류가 발생했습니다."
+                ]);
+            }
+
+        }else{
+            return $this->response->setJSON([
+                'result'    => false,
+                'message'   => "idx가 존재하지 않습니다."
+            ]);
+        }
+    }
+
     function add_tour_product()
     {
         $info_idx = $this->request->getPost('info_idx');
         $product_idx = $this->request->getPost('product_idx');
-        $tour_onum = $this->request->getPost('tour_onum');
+
+        $result = $this->tourProducts->where('product_idx', $product_idx)
+                                    ->where('info_idx', $info_idx)
+                                    ->orderBy('tour_onum', 'DESC')
+                                    ->limit(1)->get()->getRowArray();
+        $tour_onum = intval($result['tour_onum']) + 1;
 
         if (!empty($info_idx)) {
             $data = [
