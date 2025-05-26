@@ -3331,12 +3331,12 @@
   .custom-golf-detail .qa-tag.normal-style {
     background-color: white;
     color: var(--bs-point);
-    padding: 1rem 1.6rem 0.8rem 1.6rem;
+    padding: 1rem 2rem 0.8rem;
     border-radius: 9.9rem;
     border: 0.21rem solid var(--bs-point);
     font-size: 2.5rem;
     margin-right: 4rem;
-    width: 14rem;
+    width: fit-content;
   }
 
   .custom-golf-detail .qa-text {
@@ -3355,11 +3355,11 @@
   .custom-golf-detail .qa-tag {
     background-color: var(--bs-point);
     color: white;
-    padding: 1rem 1.6rem 0.8rem 1.6rem;
+    padding: 1rem 2rem 0.8rem 2rem;
     border-radius: 99px;
     font-size: 2.5rem;
     margin-right: 4rem;
-    width: 14rem;
+    width: fit-content;
   }
 
   .custom-golf-detail .load-more {
