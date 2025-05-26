@@ -2270,6 +2270,10 @@
     gap: 15px;
 }
 
+.content-sub-hotel-detail .location-container .list-icon {
+    display: none ;
+}
+
 .content-sub-hotel-detail .location-container .location_conts {
     gap: 4px;
     display: flex;
