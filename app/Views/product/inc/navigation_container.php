@@ -37,6 +37,7 @@
         })
 
         let name = $('.depth_1_item_.active_').text();
+		alert(name);
         $('#depth_1_tool_title_').text(name);
 
         $('.depth_1_item_').click(function () {
