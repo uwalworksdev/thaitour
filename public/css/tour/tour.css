@@ -4380,6 +4380,7 @@
 .custom-golf-detail .qa-question {
     display: flex;
     align-items: center;
+    max-width: 80%;
 }
 
 .custom-golf-detail .qa-number {

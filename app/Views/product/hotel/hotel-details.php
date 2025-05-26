@@ -2048,8 +2048,8 @@
                                     <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
                                     <div class="con-cus-mo-qa">
                                         <p class="qa-text"><?=$qna["title"]?></p>
-                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                     </div>
+                                    <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                 </div>
                                 <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                             </div>

@@ -3324,8 +3324,10 @@
   }
 
   .custom-golf-detail .qa-number {
-    margin: 0 2.8rem;
+    margin: 0;
     font-size: 2.7rem;
+    position: absolute;
+    left: 0;
   }
 
   .custom-golf-detail .qa-tag.normal-style {
@@ -3345,11 +3347,13 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    margin-bottom: 1rem;
   }
 
   .custom-golf-detail .qa-meta {
     margin-top: 1rem;
     font-size: 2.5rem;
+    order: 3;
   }
 
   .custom-golf-detail .qa-tag {
@@ -3360,6 +3364,7 @@
     font-size: 2.5rem;
     margin-right: 4rem;
     width: 14rem;
+    order: 2;
   }
 
   .custom-golf-detail .load-more {
@@ -3702,6 +3707,21 @@
   .custom-golf-detail .qa-item {
     padding: 2.5rem 0;
   }
+
+  .custom-golf-detail .qa-question {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left: 5rem;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .custom-golf-detail .qa-question .con-cus-mo-qa {
+    order: 1;
+    width: 100%;
+  }
+
 
   .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: unset;
