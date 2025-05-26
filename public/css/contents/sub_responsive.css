@@ -4221,4 +4221,14 @@
       height: 9rem;
   }
 
+  .area-tooltip .layer_info {
+    box-shadow: 0 1px 10px 0px rgb(0 0 0 / 23%);
+    top: 5rem;
+    left: -125%;
+    padding: 2rem;
+    border: none;
+    min-width: 50rem;
+    width: auto;
+}
+
 }

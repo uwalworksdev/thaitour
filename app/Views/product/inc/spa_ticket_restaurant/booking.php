@@ -344,7 +344,7 @@
                                         }
                                     ?>
                                     <div class="schedule schedule_booking">
-                                        <p style="font-weight: bold; width: 100%;"><?=$val?></p>
+                                        <p style="font-weight: bold; width: 100%; margin-bottom: 10px;"><?=$val?></p>
                                         <div class="schedule_wrap">
                                             <div class="wrap-text" style="width: 100%;">
                                                 <p style="text-wrap: nowrap">성인<?= $key + 1 ?> x <?= $adultQty[$key] ?></p>
