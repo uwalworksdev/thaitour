@@ -5,8 +5,8 @@
 }
 .point_use .top_exp.mem_vip {
     padding-top: 20px;
-    background: transparent url(/img/center/mem_vip.png) no-repeat 100% bottom;
-    background-size: 60%;
+    background: transparent url(/img/center/mem_vip.png) no-repeat 83% bottom;
+    /* background-size: 60%; */
 }
 .point_use .top_exp {
     padding: 0 45% 50px 0;

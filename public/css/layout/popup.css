@@ -863,39 +863,43 @@ textarea::placeholder {
     }
 
     .report_pop .pop_box {
-        height: 25rem;
+        height: unset;
     }
 
     .popup_wrap .pop_box .close {
         position: absolute;
         top: 1.7692rem;
+        right: 1.7692rem;
         right: 0.7692rem;
-        width: 1.5385rem;
-        height: 1.5385rem;
+        width: 2.5385rem;
+        height: 2.5385rem;
         background-size: 1.5385rem;
         background: url('/images/ico/close_icon_popup.png') no-repeat center;
     }
 
     .popup_wrap .pop_box .pop_txt p {
-        margin-top: 1.9231rem;
+        margin-top: 2.9231rem;
         font-family: "Noto Sans KR";
         font-weight: 500;
-        font-size: 1.2308rem;
-        line-height: 1.3846rem;
+        font-size: 4.2308rem;
+        line-height: 3.3846rem;
         color: #252525;
         text-align: center;
+    
     }
 
     .popup_wrap .pop_box .pop_desc {
-        margin-top: 1.1538rem;
+        margin-top: 3.1538rem;
+        margin-bottom: 3.1538rem;
     }
 
     .popup_wrap .pop_box .pop_desc p {
         font-family: "Noto Sans KR";
-        font-size: 1rem;
-        line-height: 1.3846rem;
+        font-size: 2.6rem;
+        line-height: 3.2rem;
         color: #454545;
         text-align: center;
+    
     }
 
     .popup_wrap .pop_box .padding {
@@ -912,7 +916,7 @@ textarea::placeholder {
     }
 
     .popup_wrap .pop_box .pop_input {
-        margin-top: 2.3077rem;
+        margin-top: 5.3077rem;
     }
 
     .report_pop .pop_box .pop_input {
@@ -925,17 +929,17 @@ textarea::placeholder {
     }
 
     .popup_wrap .pop_box .pop_input.wrap_check .check_box {
-        margin-bottom: 0.7692rem;
+        margin-bottom: 1.7692rem;
     }
 
     .popup_wrap .pop_box .pop_input button {
-        padding: 0.5769rem 1.3462rem;
+        padding: 1.5769rem 3.3462rem;
         border: 1px solid #dbdbdb;
         border-radius: 4px;
         color: #454545;
         font-family: "Noto Sans KR";
-        font-size: 1rem;
-        line-height: 1.3846rem;
+        font-size: 2.4rem;
+        line-height: 2.3846rem;
     }
 
     .edit_input_pop .pop_box .pop_input {
@@ -956,10 +960,10 @@ textarea::placeholder {
 
     .popup_wrap .pop_input .check_box input[type="radio"]:checked + label,
     .popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label {
-        position: relative;
-        padding-left: 1.5385rem;
+       position: relative;
+        padding-left: 4.5385rem;
         cursor: pointer;
-        line-height: 1.1538rem;
+        line-height: 3.1538rem;
         display: inline-block;
         color: #666;
     }
@@ -970,8 +974,8 @@ textarea::placeholder {
         position: absolute;
         left: 0;
         top: 0;
-        width: 1.2308rem;
-        height: 1.2308rem;
+        width: 3.2308rem;
+        height: 3.2308rem;
         border: 1px solid #ddd;
         border-radius: 100%;
         background: #fff;
@@ -980,12 +984,12 @@ textarea::placeholder {
     .popup_wrap .pop_input .check_box input[type="radio"]:checked + label:after,
     .popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label:after {
         content: '';
-        width: 0.6923rem;
-        height: 0.6923rem;
+        width: 1.6923rem;
+        height: 1.6923rem;
         background: #2e3e92;
         position: absolute;
-        top: 0.2692rem;
-        left: 0.2692rem;
+        top: 0.692rem;
+        left: 0.792rem;
         transform: translate(-50%, -50%);
         border-radius: 100%;
         -webkit-transition: all 0.2s ease;
@@ -1005,7 +1009,7 @@ textarea::placeholder {
     }
 
     .popup_wrap .pop_input .check_box label {
-        font-size: 1rem;
+        font-size: 2.5rem;
         font-family: "Noto Sans KR";
         color: #252525;
         margin-left: 0.7692rem;

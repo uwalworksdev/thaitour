@@ -198,6 +198,28 @@ function get_cate_text($code)
     return $out_txt ?? '';
 }
 
+
+function get_cate_name($code)
+{
+	$code_arr = explode("|", $code);
+	$out_txt = "";
+	for($i=0;$i<count($code_arr);$i++)
+	{	
+		if($code_arr[$i]) {
+			$fsql = "select * from tbl_code where code_no='" . $code_arr[$i] . "' limit 1";
+			$fresult = db_connect()->query($fsql);
+			$frow = $fresult->getRowArray();
+			if($out_txt == "") {
+			   $out_txt .= $frow['code_name'];
+			} else {
+			   $out_txt .= " &gt; ". $frow['code_name'];
+			}   
+		}	
+    }
+
+    return $out_txt ?? '';
+}
+
 function getSubMenu($parent_code_no, $urls)
 {
     $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
@@ -242,11 +264,11 @@ function getSubMenuMo($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/product-spa/$parent_code_no?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/show-ticket/$parent_code_no?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant/$parent_code_no?keyword=&product_code_2=$code_no";
+            $url = "/product-restaurant/$parent_code_no?keyword=&main_product_code=$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
@@ -892,6 +914,14 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
     }
 
     $start_page = ((int)(($cur_page - 1) / $page_range)) * $page_range + 1;
+    
+    if ($cur_page < 1) {
+        $cur_page = 1;
+    }
+    if ($total_page == 0) {
+        $total_page = 1;
+    }
+
     $end_page = min($start_page + $page_range - 1, $total_page);
 
     for ($k = $start_page; $k <= $end_page; $k++) {
@@ -911,6 +941,7 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $f
 						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
 					</a>";
     }
+
 
     if ($cur_page < $total_page) {
         $retValue .= "<a class='page-link'  href='" . $url . $total_page . "$focus_element_id' title='Go to last page'>

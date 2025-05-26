@@ -60,7 +60,7 @@
         width: 100%;
         text-align: left;
         padding-left: 30px;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .point_system ._table td {
@@ -160,6 +160,43 @@
         margin-bottom: 8px;
         line-height: 1.4;
     }
+    @media screen and (max-width: 850px) {
+          .point_system .sec_title {
+                    text-align: center;
+                    font-size: 4.2rem; 
+                    font-weight: 700;
+                    margin-bottom: 1.8rem;
+          }
+          .point_system .sub_title+.sub_title {
+          margin-top: 0.8001rem;
+          font-size: 2.4rem;
+          }
+          .point_system ._table th p {
+                    position: absolute;
+                    top: 2.0001rem;
+                    width: 100%;
+                    text-align: left;
+                    padding-left: 3rem;
+                    font-size: 2.6rem; 
+                    }
+          .point_system ._table td {
+                    padding: 2.0001rem 0 2.0001rem 4.5rem;
+                    border-bottom: 0.333px solid #dbdbdb;
+          }
+          .point_system ._table .title_box {
+                    font-size: 2.6rem; 
+                    font-weight: 500;
+                    margin-bottom: 1.2rem;
+          }
+
+          p {
+                    font-size: 2.3001rem;
+          }
+          .point_system ._table .content_box p {
+                    font-size: 2.4rem;
+                    line-height: 1.4;
+          }
+}
 </style>
 
 

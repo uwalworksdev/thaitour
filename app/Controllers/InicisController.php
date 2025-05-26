@@ -660,7 +660,8 @@ class InicisController extends BaseController
 		
 		// Ajax로 넘어온 payment_no 받기
 		$payment_no  = $this->request->getPost('payment_no');
-		$cancelAmt   = $this->request->getPost('cancel_amt');
+        $cancel_tot  = $this->request->getPost('cancel_tot');
+	    $cancelAmt   = $this->request->getPost('cancel_amt');
         $add_mileage = $this->request->getPost('add_mileage');
         
 		/*
@@ -710,7 +711,7 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 	
 	    $price        = $cancelAmt;
-		$confirmPrice = $row['Amt_1'] - $price;
+		$confirmPrice = $row['Amt_1'] - $cancel_tot - $cancelAmt;
 		
 		//// Data 상세
 		$detail = [
@@ -764,25 +765,24 @@ class InicisController extends BaseController
         // JSON 형식 파싱
         $response_data = json_decode($response, true); // 연관 배열로 변환
 
-		$resultCode = $responseData['resultCode'];
-		$resultMsg  = $responseData['resultMsg'];
+		$resultCode = $response_data['resultCode'];
+		$resultMsg  = $response_data['resultMsg'];
 
-		$cancelDate = $responseData['cancelDate'];
-		$cancelTime = $responseData['cancelTime'];
+		$cancelDate = $response_data['prtcDate'];
+		$cancelTime = $response_data['prtcTime'];
 
 		// 각 항목을 따옴표로 감싸기
 		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
-        log_message('error', '이니시스 응답: ' . print_r($response_data, true));
-
 		if ($resultCode == "00") {
-			
-    		$tid = $responseData['tid'];
+			$prtcRemains = $response_data['prtcRemains'];
+    		$tid         = $response_data['tid'];
 			$sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
 													,pg	         = 'INICIS'
 													,cancel_amt	 = '". $cancelAmt ."'
 													,cancel_date = '". $cancelDate ."'	
-													,cancel_time = '". $cancelTime ."'	
+													,cancel_time = '". $cancelTime ."'
+													,prtcRemains = '". $prtcRemains ."'
 													,tid	     = '". $tid."'
 													,resultCode	 = '". $resultCode ."'
 													,ResultMsg	 = '". $resultMsg ."'	
@@ -804,7 +804,10 @@ class InicisController extends BaseController
             // 부분취소 확인
     		cancelPartilal($payment_no);				
 
-			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+			return $this->response->setJSON([
+				'status'  => 'success',
+				'message' => ($response_data['resultMsg'] ?? '오류'),
+			]);
 		} else {
 			// 취소 실패
 			return $this->response->setJSON([

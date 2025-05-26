@@ -372,15 +372,22 @@ $links = "list";
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
+                                            <?php
+                                            foreach ($category3 as $frow3) {
+											?>	
+                                                <option value="<?= $frow3["code_no"] ?>" <?php if ($frow3["code_no"] == $product_code_4) echo "selected"; ?> ><?= $frow3["code_name"] ?></option>
+                                            <?php 
+											} 
+											?>
                                         </select>
-                                        <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
+                                        <!--button type="button" id="btn_reg_cate" class="btn_01">등록</button-->
                                     </td>
                                 </tr>
                                 <?php
                                 $_product_code_arr = explode("|", $product_code_list);
                                 $_product_code_arr = array_filter($_product_code_arr);
                                 ?>
-                                <tr>
+                                <!--tr>
                                     <th>등록된 카테고리</th>
                                     <td colspan="3">
                                         <ul id="reg_cate">
@@ -397,7 +404,7 @@ $links = "list";
                                             ?>
                                         </ul>
                                     </td>
-                                </tr>
+                                </tr-->
 
                                 <tr>
                                     <th>상품코드</th>

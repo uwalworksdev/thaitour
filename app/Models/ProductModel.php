@@ -1267,7 +1267,7 @@ class ProductModel extends Model
         if ($where['keyword'] && $where['keyword'] != "") {
             $builder->like('product_name', $where['keyword']);
         }
-
+ 
         if ($where['product_code_list']) {
             $product_code_list = explode(",", $where['product_code_list']);
             $cnt_code = 1;
@@ -1282,7 +1282,7 @@ class ProductModel extends Model
             }
             $builder->groupEnd();
         }
-
+ 
         if ($where['search_product_category']) {
             if (strpos($where['search_product_category'], 'all') === false) {
                 $search_product_category = explode(",", $where['search_product_category']);

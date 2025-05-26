@@ -2270,6 +2270,10 @@
     gap: 15px;
 }
 
+.content-sub-hotel-detail .location-container .list-icon {
+    display: none ;
+}
+
 .content-sub-hotel-detail .location-container .location_conts {
     gap: 4px;
     display: flex;
@@ -4373,9 +4377,15 @@
     cursor: pointer;
 }
 
+.custom-golf-detail .qa-list .no-data {
+    margin-top: 30px;
+    text-align: center;
+}
+
 .custom-golf-detail .qa-question {
     display: flex;
     align-items: center;
+    max-width: 80%;
 }
 
 .custom-golf-detail .qa-number {

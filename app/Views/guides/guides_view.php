@@ -640,6 +640,7 @@
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
                             <span>리얼리뷰 <strong>(<?= $guide['total_review'] ?>)</strong></span>
+                            <span></span>
                         </div>
                         <div class="list-icon only_mo">
                             <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
@@ -664,7 +665,13 @@
                                  onerror="this.src='/images/share/noimg.png'">
                         </div>
                         <div class="grid_2_2">
-                            <?php for ($j = 2; $j < 5; $j++) { ?>
+
+
+                            <?php 
+                                $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                                $loop_limit = $is_mobile ? 1 : 3;
+                                for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                            ?>
                                 <img onclick="img_pops('<?= $guide['product_idx'] ?>')"
                                      class="grid_2_2_size imageDetailSup_"
                                      src="/uploads/guides/<?= $img_list[$j - 2]['ufile'] ?>"
@@ -690,7 +697,7 @@
 
                     <div class="sub-header-hotel-detail">
                         <div class="main nav-list">
-                            <a class="active short_link" onclick="scrollToEl('product_info')" data-target="product_info"
+                            <a class="short_link active" onclick="scrollToEl('product_info')" data-target="product_info"
                                href="#!">가격/상품정보</a>
                             <a class="short_link" onclick="scrollToEl('product_des')" data-target="product_des"
                                href="#!">리얼리뷰</a>
@@ -972,9 +979,14 @@
                         </div>
 
                         <ul class="qa-list">
-                        <?php
-                            $num_qna = $product_qna["num"];
-                            foreach($product_qna["items"] as $qna){
+                            <?php
+                                $num_qna = $product_qna["num"];
+                                if (empty($product_qna["items"])) {
+                            ?>
+                                <li class="qa-item no-data">게시글 없습니다</li>
+                            <?php
+                                } else {
+                                    foreach($product_qna["items"] as $qna){
                                 if(!empty(trim($qna["reply_content"]))){
                                     $qna_status = "Y";
                                     $qna_text = "답변완료";
@@ -990,8 +1002,8 @@
                                         <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
                                         <div class="con-cus-mo-qa">
                                             <p class="qa-text"><?=$qna["title"]?></p>
-                                            <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                         </div>
+                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                     </div>
                                     <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                                 </div>
@@ -1005,7 +1017,7 @@
                                 <?php } ?>
                             </li>
                         <?php
-                            }
+                            } }
                         ?>
                         </ul>
                     </div>
@@ -1472,5 +1484,11 @@
                 }
             });
         }
+    </script>
+    <script>
+          $('.short_link').on('click', function() {
+            $('.short_link').removeClass('active');
+            $(this).addClass('active');
+        });
     </script>
 <?php $this->endSection(); ?>

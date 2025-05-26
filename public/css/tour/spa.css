@@ -666,6 +666,8 @@ div , p , ul, li, span {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    row-gap: 5px;
+    flex-direction: column;
 }
 
 .customer-form-page .container-card .card-right2 .schedule.last {
@@ -688,7 +690,7 @@ div , p , ul, li, span {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .card-right2 .schedule .wrap-text span {
@@ -792,7 +794,7 @@ div , p , ul, li, span {
 
     .section4_map {
         width: 100%;
-        height: 60vh;
+        height: 40rem;
     }
 
     .section2 {
@@ -933,7 +935,7 @@ div , p , ul, li, span {
     ._wrap-info-payment {
         display: flex;
         row-gap: 2.4rem;
-        margin-bottom: 51rem;
+        margin-bottom: 20rem;
         margin-top: 4rem;
         flex-direction: column;
     }
@@ -941,7 +943,7 @@ div , p , ul, li, span {
     ._wrap-info-payment ._wrap-payment {
         flex: 1;
         padding-top: 6rem;
-        padding-bottom: 34rem;
+        padding-bottom: 0;
         border-top: 2px solid #dbdbdb;
     }
 
@@ -952,6 +954,12 @@ div , p , ul, li, span {
         padding: 0;
         margin: 0;
     }
+
+    .view_nav .scroll_box {
+          max-height: calc(100vh - 11.3333rem);
+          overflow: unset;
+          padding-right: 0px;
+          }
 
     .calendar .canl_tabel .body .day span.label span.label {
         position: absolute;
@@ -986,4 +994,28 @@ div , p , ul, li, span {
         color: var(--bs-point);
         border-color: var(--bs-point) !important;
     }
+.tours_time_sect {
+          margin-bottom: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.3333rem;
+          align-items: start;
+}
+.meeting_time {
+          display: flex;
+          align-items: center;
+          margin-left: -2.4667rem;
+}
+.moption{
+          height: 5.5rem;
+}
+select, input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"]
+{
+          height: 5.5rem;
+}
+
+.section6 .qa-number {
+    margin: 0;
+    font-size: 2.7rem;
+}
 }

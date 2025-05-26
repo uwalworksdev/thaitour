@@ -63,6 +63,29 @@
         background-color: #fff;
         color: #252525;
     }
+
+    @media screen and (max-width: 850px) {
+    .sec2-item-card.tour_calendar {
+        display: unset;
+    }
+
+    .tours-detail .primary-btn-calendar.tour {
+        position: absolute;
+        bottom: 6%;
+        left: 48%;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-cart
+    {
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+        margin-left: 0 !important;
+    }
+    }
 </style>
 
 <input type="hidden" name="product_idx" id="product_idxs" value="<?= $product['product_idx']?>">
@@ -143,6 +166,11 @@
                             지도에서 보기
                         </a>
                     </div>
+                    <div class="list-icon">
+                            <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
+                            <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                            <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                    </div>
                 </div>
                 
                 <div class="above-cus-content">
@@ -186,7 +214,9 @@
                     </div>
                     <div class="grid_2_2">
                         <?php 
-                            for ($j = 2; $j < 5; $j++) {
+                             $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                            $loop_limit = $is_mobile ? 1 : 3;
+                            for ($j = 2; $j < 2 + $loop_limit; $j++) {
                         ?>
                             <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
                                 onerror="this.src='/images/share/noimg.png'"

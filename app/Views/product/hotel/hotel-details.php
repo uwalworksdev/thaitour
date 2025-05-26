@@ -659,6 +659,16 @@
                         지도에서 보기
                     </a>
                 </div>
+                <div class="list-icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
+                        onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                        onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                    <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                </div>
             </div>
             <div class="rating-container">
                 <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
@@ -702,7 +712,9 @@
                 </div>
                 <div class="grid_2_2">
                     <?php 
-                        for ($j = 2; $j < 5; $j++) {
+                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
                     ?>
                         <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                             class="grid_2_2_size imageDetailSup_"
@@ -1298,7 +1310,7 @@
                         </div>
                         <div class="grid2_2_1_m only_mo">
                             <!-- <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1"> -->
-                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1">
+                            <img src="/uploads/rooms/<?=$type['img_list'][0]["ufile"]?>" alt="hotel_item_1_1" onerror="this.src='/images/share/noimg.png'">
                         </div>
 
                         <div class="wrap_btn_detail">
@@ -2018,9 +2030,14 @@
                 </div>
 
                 <ul class="qa-list">
-                    <?php
-                        $num_qna = $product_qna["num"];
-                        foreach($product_qna["items"] as $qna){
+                        <?php
+                            $num_qna = $product_qna["num"];
+                            if (empty($product_qna["items"])) {
+                        ?>
+                            <li class="qa-item no-data">게시글 없습니다</li>
+                        <?php
+                            } else {
+                                foreach($product_qna["items"] as $qna){
                             if(!empty(trim($qna["reply_content"]))){
                                 $qna_status = "Y";
                                 $qna_text = "답변완료";
@@ -2036,8 +2053,8 @@
                                     <span class="qa-tag <?php if($qna_status == "N"){ echo "normal-style"; }?>"><?=$qna_text?></span>
                                     <div class="con-cus-mo-qa">
                                         <p class="qa-text"><?=$qna["title"]?></p>
-                                        <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                     </div>
+                                    <div class="qa-meta text-gray only_mo"><?=$qna["r_date"]?></div>
                                 </div>
                                 <div class="qa-meta text-gray only_web"><?=$qna["r_date"]?></div>
                             </div>
@@ -2052,6 +2069,7 @@
                         </li>
                     <?php
                         }
+                    }
                     ?>
                 </ul>
             </div>
