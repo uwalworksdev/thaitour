@@ -1290,9 +1290,9 @@ class ProductModel extends Model
                 $builder->groupStart();
                 foreach ($search_product_category as $category) {
                     if ($cnt_cat > 1) {
-                        $builder->orLike('product_code_list', $category);
+                        $builder->orLike('product_code_3', $category);
                     } else {
-                        $builder->like('product_code_list', $category);
+                        $builder->like('product_code_3', $category);
                     }
                     $cnt_cat++;
                 }
