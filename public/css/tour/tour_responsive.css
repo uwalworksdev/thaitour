@@ -3333,12 +3333,12 @@
   .custom-golf-detail .qa-tag.normal-style {
     background-color: white;
     color: var(--bs-point);
-    padding: 1rem 1.6rem 0.8rem 1.6rem;
+    padding: 1rem 2rem 0.8rem;
     border-radius: 9.9rem;
     border: 0.21rem solid var(--bs-point);
     font-size: 2.5rem;
     margin-right: 4rem;
-    width: 14rem;
+    width: fit-content;
   }
 
   .custom-golf-detail .qa-text {
@@ -3359,12 +3359,14 @@
   .custom-golf-detail .qa-tag {
     background-color: var(--bs-point);
     color: white;
-    padding: 1rem 1.6rem 0.8rem 1.6rem;
+    padding: 1rem 2rem 0.8rem 2rem;
     border-radius: 99px;
     font-size: 2.5rem;
     margin-right: 4rem;
     width: 14rem;
     order: 2;
+    width: fit-content;
+
   }
 
   .custom-golf-detail .load-more {
@@ -3728,12 +3730,24 @@
   }
 
   .content-sub-hotel-detail .book-button {
-    height: 8rem;
+    height: 6rem;
     width: 100% !important;
     background-color: var(--bs-point);
     color: white;
     border-radius: 0.4rem;
     padding: 1.2rem 2rem;
+  }
+
+  .content-sub-hotel-detail .book-add-cart {
+      background-color: white;
+      color: black;
+      border: 1px solid #dbdbdb;
+      border-radius: 0.4rem;
+      padding: 1.2rem 1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.2rem;
+      height: 6rem;
   }
 
   .content-sub-hotel-detail .section3 {

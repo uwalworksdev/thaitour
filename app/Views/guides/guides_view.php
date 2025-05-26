@@ -697,7 +697,7 @@
 
                     <div class="sub-header-hotel-detail">
                         <div class="main nav-list">
-                            <a class="active short_link" onclick="scrollToEl('product_info')" data-target="product_info"
+                            <a class="short_link active" onclick="scrollToEl('product_info')" data-target="product_info"
                                href="#!">가격/상품정보</a>
                             <a class="short_link" onclick="scrollToEl('product_des')" data-target="product_des"
                                href="#!">리얼리뷰</a>
@@ -1479,5 +1479,11 @@
                 }
             });
         }
+    </script>
+    <script>
+          $('.short_link').on('click', function() {
+            $('.short_link').removeClass('active');
+            $(this).addClass('active');
+        });
     </script>
 <?php $this->endSection(); ?>

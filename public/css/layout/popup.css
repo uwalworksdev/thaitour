@@ -870,6 +870,7 @@ textarea::placeholder {
         position: absolute;
         top: 1.7692rem;
         right: 1.7692rem;
+        right: 0.7692rem;
         width: 2.5385rem;
         height: 2.5385rem;
         background-size: 1.5385rem;
