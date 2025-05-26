@@ -3717,7 +3717,7 @@
   }
 
   .content-sub-hotel-detail .room-details p:nth-child(1) {
-    margin-bottom: 1.6rem;
+    margin-bottom: 0;
   }
 
   .content-sub-hotel-detail .room-p-cus-1 {
@@ -4162,12 +4162,18 @@
 
   .content-sub-hotel-detail .room-table tr td:first-of-type {
     order: 1;
-    width: 30%;
+    width: 100%;
+  }
+
+  .content-sub-hotel-detail .room-details {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
   }
 
   .content-sub-hotel-detail .room-table tr td:nth-of-type(2) {
     order: 1;
-    width: 70%;
+    width: 100%;
     /* padding-top: 2rem; */
   }
 
@@ -4183,17 +4189,18 @@
     font-size: 2.4rem;
     position: absolute;
     left: 67%;
+    display: none;
   }
 
   .content-sub-hotel-detail .people_qty {
     text-align: left !important;
-    padding-left: 6rem;
+    padding-left: 0;
     font-size: 2.4rem;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     text-align: end !important;
-    align-items: flex-end;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .content-sub-hotel-detail .room-details p:nth-child(1) {
@@ -4222,16 +4229,17 @@
   }
 
   .content-sub-hotel-detail .people_qty>a {
-    padding-top: 1.6rem !important;
+    padding-top: 0 !important;
     font-size: 2.4rem !important;
     display: block;
     font-weight: 500;
+    margin-left: auto;
   }
 
   .content-sub-hotel-detail .people_qty img {
-    margin-bottom: 1rem !important;
+    margin-bottom: 0rem !important;
     width: 2rem !important;
-    margin-right: 7rem;
+    margin-right: 2rem;
   }
 
   .content-sub-hotel-detail .col_wrap_room_rates {

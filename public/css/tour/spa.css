@@ -941,7 +941,7 @@ div , p , ul, li, span {
     ._wrap-info-payment ._wrap-payment {
         flex: 1;
         padding-top: 6rem;
-        padding-bottom: 34rem;
+        padding-bottom: 0;
         border-top: 2px solid #dbdbdb;
     }
 
@@ -952,6 +952,12 @@ div , p , ul, li, span {
         padding: 0;
         margin: 0;
     }
+
+    .view_nav .scroll_box {
+          max-height: calc(100vh - 11.3333rem);
+          overflow: unset;
+          padding-right: 0px;
+          }
 
     .calendar .canl_tabel .body .day span.label span.label {
         position: absolute;
