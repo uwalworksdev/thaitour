@@ -28,6 +28,7 @@
             </ul>
         </div>
     </div>
+	
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png"
@@ -140,4 +141,41 @@
             $('#depth_2_tool_list_').html(html);
         }
     });
+</script>
+
+<script>
+$(document).on('click', '.depth_2_item_', function () {
+    const code = $(this).data('code'); // 현재 2Depth code_no
+
+    getDepth3Data(code); // 아래 정의
+});
+
+async function getDepth3Data(parentCode) {
+    const apiUrl = `/api/hotel/get_code?code=${parentCode}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const result = await response.json();
+        if (!result.data || !result.data.data.length) {
+            $('#depth_3_tool_list_').html('<li>하위 지역 없음</li>');
+            return;
+        }
+
+        renderDepth3(result.data.data);
+    } catch (e) {
+        console.error('3Depth 지역 불러오기 실패:', e);
+    }
+}
+
+function renderDepth3(list) {
+    let html = '';
+    list.forEach(item => {
+        html += `<li class="depth_3_item_" data-code="${item.code_no}">
+                    <a href="${item.link_ ?? '#'}">${item.code_name}</a>
+                 </li>`;
+    });
+
+    $('#depth_3_tool_list_').html(html);
+    $('#depth_3_tools_').addClass('active_'); // 자동 열기
+}
 </script>
