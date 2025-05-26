@@ -16,33 +16,42 @@ header('Content-Type:text/html; charset=utf-8');
     $postdata["timestamp"] = $timestamp;
 	$postdata["clientIp"] = $clientIp;
 	
-	//// Data 상세
-    $detail = array();
-	$detail["tid"] = "StdpayCARDthaitour3720250526095858348462";
-	$detail["msg"] = "테스트취소";
-	$detail["price"] = "8482";
-	$detail["confirmPrice"] = "5000";
-	$detail["currency"] = "WON";
-	$detail["tax"] = "0";
-	$detail["taxfree"] = "0";
-	$postdata["data"] = $detail;
-	
-	$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
+$mid       = "thaitour37";
+$type      = "partialRefund";
+$timestamp = date("YmdHis");
+$clientIp  = $_SERVER["REMOTE_ADDR"];
+$key       = "cjAo6CD95LpJS0S4"; // 이니시스 제공 키
 
-	//// Hash Encryption
-	$plainTxt = $key.$mid.$type.$timestamp.$details;
-    $hashData = hash("sha512", $plainTxt);
+$detail = [
+    "tid"          => "StdpayCARDthaitour3720250526095858348462",
+    "msg"          => "테스트취소",
+    "price"        => 8482,    // ✅ 숫자형
+    "confirmPrice" => 5000,    // ✅ 숫자형
+    "currency"     => "WON",
+    "tax"          => 0,
+    "taxfree"      => 0
+];
 
-	$postdata["hashData"] = $hashData;
+$details = json_encode($detail, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); // ✅ 중요
 
-	echo "plainTxt : ".$plainTxt."<br/><br/>"; 
-	echo "hashData : ".$hashData."<br/><br/>"; 
+$plainTxt = $key . $mid . $type . $timestamp . $details;
+$hashData = hash("sha512", $plainTxt);
 
+$postdata = [
+    "mid"       => $mid,
+    "type"      => $type,
+    "timestamp" => $timestamp,
+    "clientIp"  => $clientIp,
+    "data"      => $detail,
+    "hashData"  => $hashData
+];
 
-	$post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
-	
-	echo "**** 요청전문 **** <br/>" ; 
-	echo str_replace(',', ',<br>', $post_data)."<br/><br/>" ; 
+$post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
+
+echo "plainTxt : {$plainTxt}<br><br>";
+echo "hashData : {$hashData}<br><br>";
+echo "**** 요청전문 **** <br>" . str_replace(',', ',<br>', $post_data) . "<br><br>";
+
 	
 	
 	//step2. 요청전문 POST 전송
