@@ -89,6 +89,7 @@
         background-color: #fff;
         color: #252525;
         margin-left: 0 !important;
+        width: 92%;
     }
     }
 </style>
