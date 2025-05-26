@@ -768,20 +768,21 @@ class InicisController extends BaseController
 		$resultCode = $response_data['resultCode'];
 		$resultMsg  = $response_data['resultMsg'];
 
-		$cancelDate = $response_data['cancelDate'];
-		$cancelTime = $response_data['cancelTime'];
+		$cancelDate = $response_data['prtcDate'];
+		$cancelTime = $response_data['prtcTime'];
 
 		// 각 항목을 따옴표로 감싸기
 		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
 		if ($resultCode == "00") {
-			
-    		$tid = $response_data['tid'];
+			$prtcRemains = $response_data['prtcRemains'];
+    		$tid         = $response_data['tid'];
 			$sql = "INSERT INTO tbl_cancel_hist SET  payment_no  = '". $payment_no."'
 													,pg	         = 'INICIS'
 													,cancel_amt	 = '". $cancelAmt ."'
 													,cancel_date = '". $cancelDate ."'	
-													,cancel_time = '". $cancelTime ."'	
+													,cancel_time = '". $cancelTime ."'
+													,prtcRemains = '". $prtcRemains ."'
 													,tid	     = '". $tid."'
 													,resultCode	 = '". $resultCode ."'
 													,ResultMsg	 = '". $resultMsg ."'	
