@@ -3052,7 +3052,7 @@
   .custom-golf-detail .tag-list {
     gap: 1rem;
     flex-wrap: wrap;
-    width: 60rem;
+    width: 46rem;
   }
 
   .custom-golf-detail .item-tag-mo-cus {
@@ -3747,7 +3747,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .item-tag.new select {
-    width: 41rem !important;
+    width: 46rem !important;
   }
 
   .custom-golf-detail .box-selecter .titles {

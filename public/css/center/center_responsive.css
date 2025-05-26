@@ -214,12 +214,13 @@ and (orientation : landscape)
           .point_use .section h3 {
                     border-top: 1px solid #17469E;
                     padding-top: 1.9rem;
-                    margin-right: 2.5%;
+                    margin-right: 0;
                     float: left;
-                    width: 18%;
+                    width: 100%;
                     font-size: 2.8rem;
                     color: #17469E;
                     letter-spacing: -1px;
+                    margin-bottom: 2rem;
           }
           .point_use .section .cont h4 {
                     font-size: 2.8rem;
@@ -239,6 +240,11 @@ and (orientation : landscape)
                     padding-bottom: 1rem;
                     border-bottom: 2px solid #ddd;
                     margin-bottom: 1rem;
+          }
+          .point_use .section .cont {
+                    margin-left: 0;
+                    padding: 20px 3%;
+                    border: 3px solid #eee;
           }
 }
 /* phone (landscape) END  */
