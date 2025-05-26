@@ -718,8 +718,7 @@ class InicisController extends BaseController
 		$detail["currency"]     = "WON";
 		$detail["tax"]          = "0";
 		$detail["taxfree"]      = "0";
-		write_log("inicisPartialRefund- ". $row['TID_1']." - ".$row['Amt_1']." - ".$cancelAmt);
-		$postdata["data"] = $detail;
+		$postdata["data"]       = $detail;
 		
 		$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
 
