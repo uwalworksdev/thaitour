@@ -4544,7 +4544,7 @@ class AjaxController extends BaseController {
 		}
 
 		// 바인딩 방식으로 SQL 실행
-		$sql = "DELETE FROM tbl_order_mst SET WHERE order_no = ?";
+		$sql = "DELETE FROM tbl_order_mst WHERE order_no = ?";
 		$result = $db->query($sql, [$order_no]);
 
 		if ($result && $db->affectedRows() > 0) {
