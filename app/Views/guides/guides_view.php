@@ -979,9 +979,14 @@
                         </div>
 
                         <ul class="qa-list">
-                        <?php
-                            $num_qna = $product_qna["num"];
-                            foreach($product_qna["items"] as $qna){
+                            <?php
+                                $num_qna = $product_qna["num"];
+                                if (empty($product_qna["items"])) {
+                            ?>
+                                <li class="qa-item no-data">게시글 없습니다</li>
+                            <?php
+                                } else {
+                                    foreach($product_qna["items"] as $qna){
                                 if(!empty(trim($qna["reply_content"]))){
                                     $qna_status = "Y";
                                     $qna_text = "답변완료";
@@ -1012,7 +1017,7 @@
                                 <?php } ?>
                             </li>
                         <?php
-                            }
+                            } }
                         ?>
                         </ul>
                     </div>
