@@ -1159,7 +1159,7 @@
         });
 
         $(document).ready(function () {
-
+alert('11111111');
             $('.icon_open_depth_new_').click(function () {
                 let depth = $(this).data("depth");
                 $('#' + depth).toggleClass('active_');
