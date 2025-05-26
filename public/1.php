@@ -2,6 +2,9 @@
 
     header('Content-Type:text/html; charset=utf-8');
 
+	$session = session();
+	$setting = homeSetInfo();
+
     //step1. 요청을 위한 파라미터 설정
 	$key                   = "cjAo6CD95LpJS0S4";
 	$mid                   = $setting['inicis_mid'];
@@ -15,7 +18,7 @@
     $postdata["timestamp"] = $timestamp;
 	$postdata["clientIp"]  = $clientIp;
 	
-	$mid                   = "thaitour37";
+	//$mid                   = "thaitour37";
 	$type                  = "partialRefund";
 	$timestamp             = date("YmdHis");
 	$clientIp              = $_SERVER["REMOTE_ADDR"];
