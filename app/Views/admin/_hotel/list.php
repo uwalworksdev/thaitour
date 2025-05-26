@@ -287,6 +287,7 @@
 										    <p class="new">
                                             <?php
                                             foreach ($_product_code_arr as $_tmp_code) {
+												echo $_tmp_code ."<br>";
                                                 ?>
                                                 <?= get_cate_text($_tmp_code) ?>
                                             <?php
