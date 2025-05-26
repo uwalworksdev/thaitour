@@ -804,7 +804,10 @@ class InicisController extends BaseController
             // 부분취소 확인
     		cancelPartilal($payment_no);				
 
-			return $this->response->setJSON(['message' => "[$resultCode] $resultMsg"]);
+			return $this->response->setJSON([
+				'status'  => 'success',
+				'message' => ($response_data['resultMsg'] ?? '오류'),
+			]);
 		} else {
 			// 취소 실패
 			return $this->response->setJSON([
