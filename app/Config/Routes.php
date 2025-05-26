@@ -935,6 +935,7 @@ $routes->group("center", static function ($routes) {
     $routes->get("map", "CustomerCenterController::map");
     $routes->get("about", "CustomerCenterController::about");
     $routes->get("point", "CustomerCenterController::point");
+    $routes->get("mem_vip", "CustomerCenterController::mem_vip");
     $routes->get("payment_guide", "CustomerCenterController::payment_guide");
     $routes->get("reservation_procedure", "CustomerCenterController::reservation_procedure");
 });

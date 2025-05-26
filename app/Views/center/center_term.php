@@ -12,6 +12,7 @@
                 <li class="<?= $tab6 ?>"><a href="./point">포인트 제도 </a></li>
                 <li class="<?= $tab7 ?>"><a href="./payment_guide">결제안내</a></li>
                 <li class="<?= $tab8 ?>"><a href="./reservation_procedure">예약절차</a></li>
+                <li class="<?= $tab9 ?>"><a href="./mem_vip">회원 등급 정책</a></li>
                 <!-- <li class="<?= $tab2 ?>"><a href="./tourterms">여행약관</a></li> -->
             </ul>
         </nav>

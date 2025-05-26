@@ -1,6 +1,145 @@
 @charset "utf-8";
 
+.point_use {
+    padding: 50px 0 0;
+}
+.point_use .top_exp.mem_vip {
+    padding-top: 20px;
+    background: transparent url(/globals/common/kr/img/company/mem_vip.jpg) no-repeat 100% bottom;
+}
+.point_use .top_exp {
+    padding: 0 45% 50px 0;
+    background: transparent url(/globals/common/img/sub/top_visual_use_point.png) no-repeat 89% bottom;
+}
+.point_use .top_exp>strong {
+    font-size: 38px;
+    letter-spacing: -2px;
+    line-height: 55px;
+    display: block;
+    font-weight: 500;
+    padding-bottom: 25px;
+}
+.point_use .top_exp>em {
+    font-style: normal;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+.point_use .top_exp>p {
+    font-size: 14px;
+    padding-bottom: 14px;
+}
 
+p {
+    font-size: 13px;
+    line-height: 24px;
+}
+.point_use .top_exp .mem_vip_txt {
+    background: #ff6300;
+    color: #fff;
+    border: 0;
+    padding: 5px 15px;
+    display: inline-block;
+}
+.point_use .top_exp>span {
+    font-size: 16px;
+    font-weight: 500;
+    border: 3px solid #eee;
+    padding: 6px 0;
+    color: #333;
+    display: block;
+    text-align: center;
+}
+.point_use .section {
+    padding-bottom: 40px;
+}
+.point_use .section h3 {
+    border-top: 1px solid #fb7622;
+    padding-top: 19px;
+    margin-right: 2.5%;
+    float: left;
+    width: 18%;
+    font-size: 18px;
+    color: #fb7622;
+    line-height: 23px;
+    letter-spacing: -1px;
+}
+.point_use .section .cont {
+    overflow: hidden;
+    padding-top: 30px;
+}
+
+.point_use .section .cont {
+    margin-left: 20%;
+    padding: 20px 3%;
+    border: 3px solid #eee;
+}
+.point_use .section .cont h4 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+.point_use .section .cont .c_cont {
+    font-size: 14px;
+    line-height: 26px;
+    color: #777;
+    padding-bottom: 40px;
+}
+.point_use .section .cont h4 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+.point_use .section .cont .c_cont {
+    font-size: 14px;
+    line-height: 26px;
+    color: #777;
+    padding-bottom: 40px;
+}
+.point_use .section .cont ol {
+    margin-left: 15px;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+.point_use .section .cont ol li {
+    text-indent: -9px;
+}
+
+strong, b, h1, h2, h3, h4, h5, .f_bold {
+    font-weight: 500;
+}
+.point_use .section .cont h4 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+.point_use .section .cont .c_cont {
+    font-size: 14px;
+    line-height: 26px;
+    color: #777;
+    padding-bottom: 40px;
+}
+.point_use .section .cont h4 {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+.point_use .section .cont .c_cont {
+    font-size: 14px;
+    line-height: 26px;
+    color: #777;
+    padding-bottom: 40px;
+}
 
 /*질문과답변*/
 .sub_wrap .sub_content.qna{padding-bottom:40px;}
