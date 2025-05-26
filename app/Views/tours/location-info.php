@@ -49,6 +49,11 @@
                         지도에서 보기
                     </a>
                 </div>
+                 <div class="list-icon">
+                    <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                </div>
             </div>
 
             <div class="above-cus-content">
@@ -92,7 +97,9 @@
                 </div>
                 <div class="grid_2_2">
                     <?php
-                    for ($j = 2; $j < 5; $j++) {
+                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
                     ?>
                         <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
                             onerror="this.src='/images/share/noimg.png'"
@@ -127,7 +134,7 @@
         </div>
         <div class="section2" id="section2">
             <h3 class="title-size-24">위치정보</h3>
-            <div id="map" style="width: 100%; height: 450px;"></div>
+            <div id="map" style="width: 100%; height: 225px;"></div>
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
             <script>

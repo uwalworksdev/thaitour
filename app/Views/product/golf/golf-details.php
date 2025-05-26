@@ -858,7 +858,7 @@ $(document).ready(function() {
             <?= viewSQ($product['note_news']) ?>
         </div> -->
         <h3 class="title-size-24" id="location">위치정보</h3>
-        <div id="map" style="width: 100%; height: 450px;"></div>
+        <div id="map" style="width: 100%; height: 225px;"></div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
         <script>
