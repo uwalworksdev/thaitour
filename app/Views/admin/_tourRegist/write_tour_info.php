@@ -538,7 +538,7 @@
 											<?php $i++; ?>
 										<?php endforeach; ?>
 									<?php else: ?>
-										<div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
+										<!-- <div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
 											<table style="width: 100%">
 												<colgroup>
 													<col width="20%">
@@ -675,9 +675,6 @@
 																								옵션 <input type='text' name='moption_name[0][0]'
 																											placeholder="옵션명"
 																											value="" style="width:550px"/>
-																								<!-- <button type="button" class="btn btn-primary"
-																										onclick="upd_main_option('');">수정
-																								</button> -->
 																								<button type="button" class="btn btn-danger"
 																										onclick="del_main_option('', this);">삭제
 																								</button>
@@ -694,10 +691,6 @@
 																										onclick="add_sub_option(this, 0, 0);"
 																										class="btn btn-primary">추가
 																								</button>
-																								<!-- <button type="button"
-																										onclick="upd_sub_option('');"
-																										class="btn btn-success">등록
-																								</button> -->
 																							</div>
 																						</th>
 																						<td>
@@ -762,7 +755,7 @@
 													</tr>
 												</tbody>
 											</table>
-										</div>
+										</div> -->
 									<?php endif ?>
 								</td>
 							</tr>
@@ -839,6 +832,8 @@
 </script>
 <script>
 	var tableCount = <?= (isset($productTourInfo) && count($productTourInfo) > 0) ? (count($productTourInfo) - 1) : 0 ?>;
+	var next_tour_onum = <?= (isset($last_info_onum) && intval($last_info_onum) > 0) ? (intval($last_info_onum) + 1) : 0 ?>;
+
 	var arr_count = [];
 
 	$(document).on("change", ".all_yoil", function() {
@@ -937,221 +932,245 @@
 	}
 
 	function add_table() {
-		tableCount++;
-		var newTable = `
-			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
-				<table style="width: 100%">
-					<colgroup>
-						<col width="20%">
-						<col width="*">
-						<col width="8%">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td>
-								<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-									<div style="display: flex; justify-content: center; gap: 5px;">
-										<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
-										<input type="text" name="info_name[${tableCount}]" placeholder="상품요금명" style="width: 250px;" value="">
-										<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
-										<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
-									</div>
-									
-								</div>
-							</td>
-							<td>
-								<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
-									<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-										<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
-										<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 
-										<input type="checkbox" class="check_change_price">수정선택
-										<input type="hidden" name="is_change_price[${tableCount}]" class="is_change_price">
-									</div>
-									<div style="display: flex; align-items: center; gap: 5px;">
-										<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
-										<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
-									</div>
-								</div>
-							</td>
-							<td>
-								<div style="display: flex; gap: 5px;">
-									<input type="text" name="tour_info_price[${tableCount}]" class="price" value="0" numberOnly=true>
-									<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-									<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-								</div>
-							</td>
+		if (!confirm("추가 하시겠습니까?")) {
+			return false;
+		}
+		$.ajax({
+			url: "/AdmMaster/_tours/add_tour_product_info",
+			type: "POST",
+			data: {
+				"product_idx": <?= $product_idx ?>,
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				if(data.result){
+					location.reload();
+				}else{
+					alert(data.message);
+				}
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+			}
+		});
+		
+		// tableCount++;
+		// var newTable = `
+		// 	<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
+		// 		<table style="width: 100%">
+		// 			<colgroup>
+		// 				<col width="20%">
+		// 				<col width="*">
+		// 				<col width="8%">
+		// 			</colgroup>
+		// 			<tbody>
+		// 				<tr>
+		// 					<td>
+		// 						<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+		// 							<div style="display: flex; justify-content: center; gap: 5px;">
+		// 								<input type="hidden" name="o_onum[${tableCount}]" class="o_onum" value="">
+		// 								<input type="text" name="info_name[${tableCount}]" placeholder="상품요금명" style="width: 250px;" value="">
+		// 								<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
+		// 								<a href="javascript:remove_table(${tableCount});" class="btn btn-danger">삭제</a>
+		// 							</div>
+									
+		// 						</div>
+		// 					</td>
+		// 					<td>
+		// 						<div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+		// 							<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+		// 								<input type="text" readonly="" class="datepicker s_date" name="o_sdate[${tableCount}]" placeholder="시작기간" style="width: 120px; cursor: pointer;" value="" id=""> ~
+		// 								<input type="text" readonly="" class="datepicker e_date" name="o_edate[${tableCount}]" placeholder="종료기간" style="width: 120px; cursor: pointer;" value="" id="">
 
-						</tr>
-						<tr>
-							<td colspan="3">
-								<table style="width:100%">
-									<colgroup>
-										<col width="*">
-										<col width="12%">
-										<col width="12%">
-										<col width="12%">
-										<col width="10%">
-									</colgroup>
+		// 								<input type="checkbox" class="check_change_price">수정선택
+		// 								<input type="hidden" name="is_change_price[${tableCount}]" class="is_change_price">
+		// 							</div>
+		// 							<div style="display: flex; align-items: center; gap: 5px;">
+		// 								<input type="checkbox" class="all_yoil">전체&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_0[${tableCount}]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_1[${tableCount}]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_2[${tableCount}]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_3[${tableCount}]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_4[${tableCount}]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_5[${tableCount}]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;
+		// 								<input type="checkbox" name="yoil_6[${tableCount}]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;
+		// 							</div>
+		// 						</div>
+		// 					</td>
+		// 					<td>
+		// 						<div style="display: flex; gap: 5px;">
+		// 							<input type="text" name="tour_info_price[${tableCount}]" class="price" value="0" numberOnly=true>
+		// 							<button class="btn_move up" onclick="moveUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 							<button class="btn_move down" onclick="moveDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 						</div>
+		// 					</td>
+
+		// 				</tr>
+		// 				<tr>
+		// 					<td colspan="3">
+		// 						<table style="width:100%">
+		// 							<colgroup>
+		// 								<col width="*">
+		// 								<col width="12%">
+		// 								<col width="12%">
+		// 								<col width="12%">
+		// 								<col width="10%">
+		// 							</colgroup>
 									
-									<tbody class="air_main">
-										<tr class="air_list_1" style="height:40px">
-											<td style="width:100px;text-align:center">
-												<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
-												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
-												<input type="hidden" name="tours_desc[${tableCount}][]" class="tours_desc" value="">
-												<div class="flex" style="gap: 5px;">
-													<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-													<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-													<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
-													<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
-												</div>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" placeholder="성인가격(단위: 바트)" style="width:100%" numberOnly=true/>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" placeholder="소아가격(단위: 바트)" style="width:90%" numberOnly=true/>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" placeholder="유아가격(단위: 바트)" style="width:90%" numberOnly=true/>
-											</td>
-											<td>
-												<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-													<button type="button" onclick="InitPopup(this);" style="flex: 0 0 auto;" class="btn btn_tours_desc">간단 설명</button>
-													
-													<select name="status[${tableCount}][]">
-														<option value="Y" selected>판매중</option>
-														<option value="N">중지</option>
-													</select>
-													<a href="javascript:remove_tours(${tableCount}, 0);" class="btn btn-danger">삭제</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="3">
-								<table style="width: 100%">
-									<colgroup>
-										<col width="7%">
-										<col width="*">
-									</colgroup>
+		// 							<tbody class="air_main">
+		// 								<tr class="air_list_1" style="height:40px">
+		// 									<td style="width:100px;text-align:center">
+		// 										<input type="hidden" name="tour_onum[${tableCount}][]" class="tour_onum" value="">
+		// 										<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
+		// 										<div class="flex" style="gap: 5px;">
+		// 											<button class="btn_move up" onclick="moveTourUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 											<button class="btn_move down" onclick="moveTourDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 											<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 국문글씨로 입력해주세요" style="width: 50%" />
+		// 											<input type="text" name="tours_subject_eng[${tableCount}][]" value="" class="tours_subject input_txt" placeholder="상품타입 영문글씨로 입력해주세요" style="width: 50%;" />				
+		// 										</div>
+		// 									</td>
+		// 									<td style="text-align:center">
+		// 										<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" placeholder="성인가격(단위: 바트)" style="width:100%" numberOnly=true/>
+		// 									</td>
+		// 									<td style="text-align:center">
+		// 										<input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" placeholder="소아가격(단위: 바트)" style="width:90%" numberOnly=true/>
+		// 									</td>
+		// 									<td style="text-align:center">
+		// 										<input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" placeholder="유아가격(단위: 바트)" style="width:90%" numberOnly=true/>
+		// 									</td>
+		// 									<td>
+		// 										<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+		// 											<select name="status[${tableCount}][]">
+		// 												<option value="Y" selected>판매중</option>
+		// 												<option value="N">중지</option>
+		// 											</select>
+		// 											<a href="javascript:remove_tours(${tableCount}, 0);" class="btn btn-danger">삭제</a>
+		// 										</div>
+		// 									</td>
+		// 								</tr>
+		// 							</tbody>
+		// 						</table>
+		// 					</td>
+		// 				</tr>
+		// 				<tr>
+		// 					<td colspan="3">
+		// 						<table style="width: 100%">
+		// 							<colgroup>
+		// 								<col width="7%">
+		// 								<col width="*">
+		// 							</colgroup>
 									
-									<tbody>
-										<tr>
-											<th>
-												옵션추가
-												<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
-											</th>
-											<td>
-												<div class="option_area">
-													<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
-													<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
-													<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
-														<colgroup>
-															<col width="10%">
-															<col width="90%">
-														</colgroup>
-														<tbody>
-														<tr height="45">
-															<th colspan="5">
-																<div class="flex__c" style="gap: 5px;">
-																	옵션 <input type='text' name='moption_name[${tableCount}][0]'
-																				placeholder="옵션명"			
-																				value="" style="width:550px"/>
-																	<button type="button" class="btn btn-danger"
-																			onclick="del_main_option('', this);">삭제
-																	</button>
-																	<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																	<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																</div>
-															</th>
-														</tr>
-														<tr height="45">
-															<th>
-																추가 옵션등록
-																<div class="flex" style="margin-top:10px; gap: 5px;">
-																	<button type="button"
-																			onclick="add_sub_option(this, ${tableCount}, 0);"
-																			class="btn btn-primary">추가
-																	</button>
-																</div>
-															</th>
-															<td>
-																<table>
-																	<colgroup>
-																		<col width="*"></col>
-																		<col width="15%"></col>
-																		<col width="10%"></col>
-																		<col width="10%"></col>
-																		<col width="8%"></col>
-																	</colgroup>
-																	<tbody>
-																		<tr class="option_detail">
-																			<td>
-																				<div style="display: flex; gap: 5px;">
-																					<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
-																					<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
-																					<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" />
-																					<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />	
-																				</div>
-																			</td>
-																			<td>
-																				<input type='text'
-																						name='o_price[${tableCount}][0][]' value="" placeholder="가격(단위: 바트)" numberOnly=true/>
-																			</td>
-																			<td>
-																				<select name="use_yn[${tableCount}][0][]" style="width:100%">
-																					<option value="Y">
-																						판매중
-																					</option>
-																					<option value="N">
-																						중지
-																					</option>
-																				</select>
-																			</td>
-																			<td>
-																				<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-																					<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
-																					<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
-																				</div>
-																			</td>
-																			<td>
-																				<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
-																					<button type="button" class="btn btn-danger"
-																							onclick="delOption('', this)">삭제
-																					</button>
-																				</div>
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</td>
-														</tr>
-														</tbody>
-													</table>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		`;
-		$(".table_list:last").after(newTable);
+		// 							<tbody>
+		// 								<tr>
+		// 									<th>
+		// 										옵션추가
+		// 										<button type="button" class="btn btn-primary" onclick="add_main_option(this, ${tableCount});">추가</button>	
+		// 									</th>
+		// 									<td>
+		// 										<div class="option_area">
+		// 											<input type="hidden" name="moption_onum[${tableCount}][0]" class="moption_onum" value="">	
+		// 											<input type="hidden" name="moption_idx[${tableCount}][0]" class="moption_idx" value="">
+		// 											<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:10px;">
+		// 												<colgroup>
+		// 													<col width="10%">
+		// 													<col width="90%">
+		// 												</colgroup>
+		// 												<tbody>
+		// 												<tr height="45">
+		// 													<th colspan="5">
+		// 														<div class="flex__c" style="gap: 5px;">
+		// 															옵션 <input type='text' name='moption_name[${tableCount}][0]'
+		// 																		placeholder="옵션명"			
+		// 																		value="" style="width:550px"/>
+		// 															<button type="button" class="btn btn-danger"
+		// 																	onclick="del_main_option('', this);">삭제
+		// 															</button>
+		// 															<button class="btn_move up" onclick="moveMOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 															<button class="btn_move down" onclick="moveMOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 														</div>
+		// 													</th>
+		// 												</tr>
+		// 												<tr height="45">
+		// 													<th>
+		// 														추가 옵션등록
+		// 														<div class="flex" style="margin-top:10px; gap: 5px;">
+		// 															<button type="button"
+		// 																	onclick="add_sub_option(this, ${tableCount}, 0);"
+		// 																	class="btn btn-primary">추가
+		// 															</button>
+		// 														</div>
+		// 													</th>
+		// 													<td>
+		// 														<table>
+		// 															<colgroup>
+		// 																<col width="*"></col>
+		// 																<col width="15%"></col>
+		// 																<col width="10%"></col>
+		// 																<col width="10%"></col>
+		// 																<col width="8%"></col>
+		// 															</colgroup>
+		// 															<tbody>
+		// 																<tr class="option_detail">
+		// 																	<td>
+		// 																		<div style="display: flex; gap: 5px;">
+		// 																			<input type="hidden" name="op_tour_onum[[${tableCount}][0][]" class="op_tour_onum" value="">
+		// 																			<input type="hidden" name="op_tour_idx[${tableCount}][0][]" class="op_tour_idx" value="">
+		// 																			<input type='text' name='o_name[${tableCount}][0][]' placeholder="옵션타입 국문글씨로 입력해주세요" value="" />
+		// 																			<input type='text' name='o_name_eng[${tableCount}][0][]' placeholder="옵션타입 영문글씨로 입력해주세요" value="" />	
+		// 																		</div>
+		// 																	</td>
+		// 																	<td>
+		// 																		<input type='text'
+		// 																				name='o_price[${tableCount}][0][]' value="" placeholder="가격(단위: 바트)" numberOnly=true/>
+		// 																	</td>
+		// 																	<td>
+		// 																		<select name="use_yn[${tableCount}][0][]" style="width:100%">
+		// 																			<option value="Y">
+		// 																				판매중
+		// 																			</option>
+		// 																			<option value="N">
+		// 																				중지
+		// 																			</option>
+		// 																		</select>
+		// 																	</td>
+		// 																	<td>
+		// 																		<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+		// 																			<button class="btn_move up" onclick="moveOptionUp(this)" type="button" style="width: 30px; height: 30px;">▲</button>
+		// 																			<button class="btn_move down" onclick="moveOptionDown(this)" type="button" style="width: 30px; height: 30px;">▼</button>
+		// 																		</div>
+		// 																	</td>
+		// 																	<td>
+		// 																		<div style="display: flex; gap: 5px; justify-content: center; align-items: center">
+		// 																			<button type="button" class="btn btn-danger"
+		// 																					onclick="delOption('', this)">삭제
+		// 																			</button>
+		// 																		</div>
+		// 																	</td>
+		// 																</tr>
+		// 															</tbody>
+		// 														</table>
+		// 													</td>
+		// 												</tr>
+		// 												</tbody>
+		// 											</table>
+		// 										</div>
+		// 									</td>
+		// 								</tr>
+		// 							</tbody>
+		// 						</table>
+		// 					</td>
+		// 				</tr>
+		// 			</tbody>
+		// 		</table>
+		// 	</div>
+		// `;
+		// $(".table_list:last").after(newTable);
 		// $(".datepicker").datepicker();
+
+
 		initDatePicker();
 		$(".price").number(true);
 	}
@@ -1284,8 +1303,8 @@
 	}
 
 	function add_tour(infoIdx, idx) {
-		var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
-		var rowIndex = targetTable.find(".air_list_1").length;
+		// var targetTable = $(".table_list[data-index='" + infoIdx + "']").find(".air_main");
+		// var rowIndex = targetTable.find(".air_list_1").length;
 
 		// var newRow = `
 		// 	<tr class="air_list_1" style="height:40px">
@@ -1332,7 +1351,6 @@
 			data: {
 				"info_idx": idx,
 				"product_idx": <?= $product_idx ?>,
-				"tour_onum": rowIndex,
 			},
 			dataType: "json",
 			async: false,

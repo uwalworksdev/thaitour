@@ -2564,7 +2564,6 @@ class TourRegistController extends BaseController
             $groupedData[$infoIndex]['tours_idx_json'] = htmlspecialchars(json_encode($toursIdxMap[$infoIndex]), ENT_QUOTES, 'UTF-8');
         }
 
-
         $data = [
             'product_idx'     => $product_idx,
             'product_name'    => $product_name,
