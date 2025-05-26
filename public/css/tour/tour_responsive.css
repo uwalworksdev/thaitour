@@ -2993,7 +2993,7 @@
   }
 
   .custom-golf-detail .calendar {
-    height: 24rem;
+    height: 28rem;
     padding: 0 3rem;
     max-width: 100%;
     border-bottom: 0.21rem solid rgb(238, 238, 238);
@@ -3324,8 +3324,10 @@
   }
 
   .custom-golf-detail .qa-number {
-    margin: 0 2.8rem;
+    margin: 0;
     font-size: 2.7rem;
+    position: absolute;
+    left: 0;
   }
 
   .custom-golf-detail .qa-tag.normal-style {
@@ -3345,11 +3347,13 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    margin-bottom: 1rem;
   }
 
   .custom-golf-detail .qa-meta {
     margin-top: 1rem;
     font-size: 2.5rem;
+    order: 3;
   }
 
   .custom-golf-detail .qa-tag {
@@ -3359,7 +3363,10 @@
     border-radius: 99px;
     font-size: 2.5rem;
     margin-right: 4rem;
+    width: 14rem;
+    order: 2;
     width: fit-content;
+
   }
 
   .custom-golf-detail .load-more {
@@ -3662,11 +3669,20 @@
     align-items: flex-start;
   }
 
+    .custom-golf-detail .box-selecter .ic_item:first-of-type {
+      flex-wrap: nowrap;
+    }
+
   .custom-golf-detail .box-selecter .ic_item {
     margin-bottom: 3rem;
     display: flex;
     align-items: center;
     width: unset;
+    flex-wrap: wrap;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .flex__c {
+    width: 100% !important;
   }
 
   .custom-golf-detail .box-selecter .ic_item .body-box .box p {
@@ -3703,8 +3719,55 @@
     padding: 2.5rem 0;
   }
 
+  .custom-golf-detail .qa-question {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left: 5rem;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .custom-golf-detail .qa-question .con-cus-mo-qa {
+    order: 1;
+    width: 100%;
+  }
+
+
   .custom-golf-detail .tag-con-below-calendar .item-tag.new {
     width: unset;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .custom-golf-detail .body-box {
+      width: calc(100% - 20rem);
+      gap: 1rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box {
+      gap: 1rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .body-box .box {
+      padding: 0 2rem;
+    }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag span.label {
+        font-size: 2.7rem;
+        width: 20rem !important;
+    }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag .item-tag-select {
+      width: 100%;
+  }
+
+  #card_yes {
+    gap: 2rem;
+  }
+
+  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+      width: 20rem;
   }
 
   .content-sub-hotel-detail .book-button {
@@ -3713,7 +3776,7 @@
     background-color: var(--bs-point);
     color: white;
     border-radius: 0.4rem;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 1.5rem;
   }
 
   .content-sub-hotel-detail .book-add-cart {
@@ -3721,7 +3784,7 @@
       color: black;
       border: 1px solid #dbdbdb;
       border-radius: 0.4rem;
-      padding: 1.2rem 1rem;
+      padding: 1.2rem 1.5rem;
       cursor: pointer;
       width: 100%;
       margin-top: 0.2rem;
@@ -4309,10 +4372,26 @@
     height: 2.4rem !important;
   }
 
-  .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input:checked+label::after {
+  .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
     width: 1.6rem !important;
     height: 1.6rem !important;
     left: 0.4rem !important;
+    font-size: 2rem !important;
+    top: 38% !important;
+  }
+
+  .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::after {
+    width: 1.6rem !important;
+    height: 1.6rem !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 2rem !important;
+    top: 48% !important;
+    left: 2% !important;
+  }
+
+  .custom-golf-detail .qa-list .no-data {
+    margin-top: 3rem;
+    text-align: center;
   }
 
 
