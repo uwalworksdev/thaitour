@@ -21,7 +21,7 @@
                 <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
             </ul>
         </div>
-        <div class="depth_3_tools_ active_" id="depth_3_tools_">
+        <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_"></ul>
         </div>
     </div>
@@ -42,7 +42,8 @@
 
 <script>
     $(document).ready(function () {
-        $('.icon_open_depth_').click(function () {
+        $('.icon_open_depth_').on('click', function (e) {
+            e.stopPropagation();
             let depth = $(this).data("depth");
             $('#' + depth).toggleClass('active_');
         });
@@ -50,7 +51,7 @@
         let name = $('.depth_1_item_.active_').text();
         $('#depth_1_tool_title_').text(name);
 
-        $('.depth_1_item_').click(function () {
+        $('.depth_1_item_').on('click', function () {
             let code = $(this).data("code");
             let href = $(this).data("href");
             let name = $(this).text();
@@ -65,29 +66,18 @@
             window.location.href = href;
         });
 
-        $(window).on('click', function (event) {
-            let depth_1_tools_ = $('#depth_1_tools_');
-            let icon_open_depth_01 = $('.icon_open_depth_01');
-            let icon_open_depth_02 = $('.icon_open_depth_02');
-            let depth_3_tools_ = $('#depth_3_tools_');
-            let icon_open_depth_03 = $('.icon_open_depth_03');
+        $(document).on('click', function (event) {
+            const targets = ['#depth_1_tools_', '#depth_2_tools_', '#depth_3_tools_'];
+            const triggers = ['.icon_open_depth_01', '.icon_open_depth_02', '.icon_open_depth_03'];
 
-            if (depth_1_tools_.is(event.target) || depth_1_tools_.has(event.target).length > 0 || icon_open_depth_01.is(event.target) || icon_open_depth_01.has(event.target).length > 0) {
-                depth_1_tools_.addClass('active_');
-            } else {
-                depth_1_tools_.removeClass('active_');
-            }
+            targets.forEach((id, idx) => {
+                const $target = $(id);
+                const $trigger = $(triggers[idx]);
 
-            let depth_2_tools_ = $('#depth_2_tools_');
-            if (depth_2_tools_.is(event.target) || depth_2_tools_.has(event.target).length > 0 || icon_open_depth_02.is(event.target) || icon_open_depth_02.has(event.target).length > 0) {
-                depth_2_tools_.addClass('active_');
-            } else {
-                depth_2_tools_.removeClass('active_');
-            }
-
-            if (!(depth_3_tools_.is(event.target) || depth_3_tools_.has(event.target).length > 0 || icon_open_depth_03.is(event.target) || icon_open_depth_03.has(event.target).length > 0)) {
-                depth_3_tools_.removeClass('active_');
-            }
+                if (!$(event.target).closest(id).length && !$(event.target).closest(triggers[idx]).length) {
+                    $target.removeClass('active_');
+                }
+            });
         });
 
         // ✅ 2Depth 클릭 → 3Depth Ajax 로드
