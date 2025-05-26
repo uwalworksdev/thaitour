@@ -47,6 +47,13 @@
                                             <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
                                         </ul>
                                     </div>
+
+                                    <div class="depth_3_tools_new_" id="depth_3_tools_new_">
+                                        <ul class="depth_3_tool_list_new_" id="depth_3_tool_list_new_">
+                                            <?php $parent_code = 1303 ?>
+                                            <?php echo getHeaderTabSubChildNew($parent_code, $code_no); ?>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="navigation-container-next new">
                                     <img class="ball_dot_icon icon_open_depth_02_new icon_open_depth_new_"
@@ -1159,7 +1166,7 @@
         });
 
         $(document).ready(function () {
-alert('11111111');
+
             $('.icon_open_depth_new_').click(function () {
                 let depth = $(this).data("depth");
                 $('#' + depth).toggleClass('active_');
