@@ -3708,12 +3708,24 @@
   }
 
   .content-sub-hotel-detail .book-button {
-    height: 8rem;
+    height: 6rem;
     width: 100% !important;
     background-color: var(--bs-point);
     color: white;
     border-radius: 0.4rem;
     padding: 1.2rem 2rem;
+  }
+
+  .content-sub-hotel-detail .book-add-cart {
+      background-color: white;
+      color: black;
+      border: 1px solid #dbdbdb;
+      border-radius: 0.4rem;
+      padding: 1.2rem 1rem;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 0.2rem;
+      height: 6rem;
   }
 
   .content-sub-hotel-detail .section3 {
