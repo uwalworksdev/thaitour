@@ -186,6 +186,11 @@ class AdminHotelController extends BaseController
         ];
         $product_themes = $this->CodeModel->getCodesByConditions($conditions);
 
+		$conditions = [
+            "parent_code_no" => $s_product_code_2,
+        ];
+        $category3 = $this->CodeModel->getCodesByConditions($conditions);
+
         $conditions = [
             "parent_code_no" => '39',
         ];
@@ -261,6 +266,8 @@ class AdminHotelController extends BaseController
             'search_category' => $search_category,
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
+            's_product_code_3' => $s_product_code_3,
+			'category3'     => $category3,
             'row' => $row ?? '',
             'img_list' => $img_list,
             'fresult' => $fresult,
