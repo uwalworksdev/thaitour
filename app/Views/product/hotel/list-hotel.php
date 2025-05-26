@@ -541,7 +541,7 @@
                         ?>
 
                         <?php
-                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=" . $code_no . "&pg=")
+                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?s_code_no=" . $code_no . "&pg=")
                         ?>
                     </div>
                 </div>
