@@ -10,6 +10,7 @@ class Home extends BaseController
     private $cmsModel;
     protected $bbsModel;
     private $reviewModel;
+    private $db;
 
     public function __construct()
     {

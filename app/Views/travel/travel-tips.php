@@ -311,17 +311,20 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec"><span style="color : #29459f">더투어랩</span> 매거진 최신호</h3>
-                <a href="#!" class="more_link">더보기 +</a>
+                <a href="/magazines/list" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
                 <div class="swiper swipper_sec_06">
                     <div class="list_travel_banner swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#!" class="item">
-                                <img src="/images/sub/tra-sec-06-1.png" alt="">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
+                        <?php foreach ($magazines as $magazine): ?>
+                            <div class="swiper-slide">
+                                <a href="/magazines/detail?m_idx=<?= $magazine['bbs_idx'] ?>" class="item">
+                                    <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="">
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+
+                        <!-- <div class="swiper-slide">
                             <a href="#!" class="item">
                                 <img src="/images/sub/tra-sec-06-2.png" alt="">
                             </a>
@@ -335,7 +338,7 @@
                             <a href="#!" class="item">
                                 <img src="/images/sub/tra-sec-06-2.png" alt="">
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

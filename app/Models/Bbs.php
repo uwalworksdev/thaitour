@@ -54,7 +54,7 @@ class Bbs extends Model
         return $builder;
     }
 
-    public function List($code, $whereArr = [])
+    public function List($code, $whereArr = [], $limit = null)
     {
         $builder = $this;
         $builder->select("{$this->table}.*, 
@@ -96,6 +96,10 @@ class Bbs extends Model
             $builder->orderBy("{$this->table}.onum", "DESC");
         }
         $builder->orderBy("{$this->table}.bbs_idx", "desc");
+
+        if(!empty($limit)){
+            $builder->limit($limit);
+        }
 
         return $builder;
     }
