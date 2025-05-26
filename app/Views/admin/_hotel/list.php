@@ -288,7 +288,7 @@
                                             <?php
                                             for($i=0;$i<count($_product_code_arr);$i++) {
                                                 ?>
-                                                <?= get_cate_text($_product_code_arr[$i]) ?>
+                                                <?= $_product_code_arr[$i] ?>
                                             <?php
                                             }
                                             ?>
