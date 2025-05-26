@@ -36,10 +36,10 @@
 
                     <div class="category-left only_web">
                         <div class="category-left-tit flex_b_c">
-                            <h1 class="title"><?= $code_name ?>1111</h1>
+                            <h1 class="title"><?= $code_name ?></h1>
                             <div class="search-navigation flex">
                                 <div class="navigation-container-next">
-                                    <span class="font-bold"><?= $code_name ?>2222222</span>
+                                    <span class="font-bold"><?= $code_name ?></span>
 
                                     <div class="depth_2_tools_new_" id="depth_2_tools_new_">
                                         <ul class="depth_2_tool_list_new_" id="depth_2_tool_list_new_">
