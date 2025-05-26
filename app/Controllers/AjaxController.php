@@ -4529,5 +4529,38 @@ class AjaxController extends BaseController {
 		}
 	}
 
-	
+	public function ajax_order_delete()
+	{
+		$db = \Config\Database::connect();
+		$order_no = $this->request->getPost('order_no');
+
+		if (!$order_no) {
+			return $this->response
+				->setStatusCode(400)
+				->setJSON([
+					'result'  => false,
+					'message' => '예약번호가 전달되지 않았습니다.'
+				]);
+		}
+
+		// 바인딩 방식으로 SQL 실행
+		$sql = "DELETE FROM tbl_order_mst SET WHERE order_no = ?";
+		$result = $db->query($sql, [$order_no]);
+
+		if ($result && $db->affectedRows() > 0) {
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'result'  => true,
+					'message' => '예약삭제 완료'
+				]);
+		} else {
+			return $this->response
+				->setStatusCode(500)
+				->setJSON([
+					'result'  => false,
+					'message' => '예약삭제 실패했습니다. (존재하지 않거나 이미 삭제됨)'
+				]);
+		}
+	}		
 }	
