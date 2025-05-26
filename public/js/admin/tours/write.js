@@ -507,7 +507,7 @@ function selectCode() {
 function addCategory(code, cateText) {
     // 코드 추가 부분
     if (chkCategory(code) > -1) {
-        alert("이미 등록된 카테고리입니다......");
+        alert("이미 등록된 카테고리입니다.");
         return false;
     }
 

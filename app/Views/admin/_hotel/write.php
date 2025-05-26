@@ -366,10 +366,11 @@ $links = "list";
                                                 <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) echo "selected"; ?> ><?= $frow["code_name"] ?><?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select"
+                                                onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
-                                        <select id="product_code_3" name="product_code_3" class="input_select" onchange="get_code(this.value, 5)">
+                                        <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                         </select>
                                         <!--button type="button" id="btn_reg_cate" class="btn_01">등록</button-->
@@ -2290,7 +2291,6 @@ $links = "list";
         async function loadPage() {
             await get_code('<?= $product_code_1 ?>', 3, '<?= $product_code_2 ?>');
             await get_code('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
-            await get_code('<?= $product_code_3 ?>', 5, '<?= $product_code_4 ?>');
         }
 
         loadPage();
