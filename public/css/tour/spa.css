@@ -933,7 +933,7 @@ div , p , ul, li, span {
     ._wrap-info-payment {
         display: flex;
         row-gap: 2.4rem;
-        margin-bottom: 51rem;
+        margin-bottom: 20rem;
         margin-top: 4rem;
         flex-direction: column;
     }
@@ -997,5 +997,12 @@ div , p , ul, li, span {
           display: flex;
           align-items: center;
           margin-left: -2.4667rem;
+}
+.moption{
+          height: 5.5rem;
+}
+select, input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"]
+{
+          height: 5.5rem;
 }
 }
