@@ -710,26 +710,30 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 	
 		//// Data 상세
-		$detail                 = array();
-		$detail["tid"]          = $row['TID_1'];
-		$detail["msg"]          = "관리자 부분결제취소";
-		$detail["price"]        = (int)$row['Amt_1'];
-		$detail["confirmPrice"] = (int)$cancelAmt;
-		$detail["currency"]     = "WON";
-		$detail["tax"]          = "0";
-		$detail["taxfree"]      = "0";
-		$postdata["data"]       = $detail;
+		$detail = [
+			"tid"          =>  $row['TID_1'],
+			"msg"          =>  "관리자 결제취소",
+			"price"        =>  (int)$row['Amt_1'],    // ✅ 숫자형
+			"confirmPrice" =>  (int)$cancelAmt,    // ✅ 숫자형
+			"currency"     =>  "WON",
+			"tax"          =>  0,
+			"taxfree"      =>  0
+		];
 		
 		$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
 
 		//// Hash Encryption
-		$plainTxt = $key.$mid.$type.$timestamp.$details;
+		$plainTxt = $key . $mid . $type . $timestamp . $details;
 		$hashData = hash("sha512", $plainTxt);
 
-		$postdata["hashData"] = $hashData;
-
-	    //echo "plainTxt : ".$plainTxt."<br/><br/>"; 
-	    //echo "hashData : ".$hashData."<br/><br/>"; 
+		$postdata = [
+			"mid"       => $mid,
+			"type"      => $type,
+			"timestamp" => $timestamp,
+			"clientIp"  => $clientIp,
+			"data"      => $detail,
+			"hashData"  => $hashData
+		];
 
 	    $post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
 	
