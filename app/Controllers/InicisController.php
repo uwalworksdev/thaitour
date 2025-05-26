@@ -709,12 +709,15 @@ class InicisController extends BaseController
 		$postdata["timestamp"] = $timestamp;
 		$postdata["clientIp"]  = $clientIp;
 	
+	    $price        = $cancelAmt;
+		$confirmPrice = $row['Amt_1'] - $price;
+		
 		//// Data 상세
 		$detail = [
 			"tid"          =>  $row['TID_1'],
 			"msg"          =>  "관리자 결제취소",
-			"price"        =>  (int)$row['Amt_1'],    // ✅ 숫자형
-			"confirmPrice" =>  (int)$cancelAmt,    // ✅ 숫자형
+			"price"        =>  (int)$price,           // ✅ 숫자형
+			"confirmPrice" =>  (int)$confirmPrice,    // ✅ 숫자형
 			"currency"     =>  "WON",
 			"tax"          =>  0,
 			"taxfree"      =>  0
