@@ -2,11 +2,11 @@
     <div class="navigation-container-prev">
         <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-        <span id="depth_1_tool_title_">호텔..........</span>
+        <span id="depth_1_tool_title_">호텔</span>
 
         <div class="depth_1_tools_" id="depth_1_tools_">
             <ul class="depth_1_tool_list_" id="depth_1_tool_list_">
-                <?php echo getHeaderTabSub($parent_code); ?>
+                <?php echo getHeaderTabSubx($parent_code); ?>
             </ul>
         </div>
     </div>
