@@ -1433,13 +1433,12 @@
     }
 
     .booklist_wrap .book_num_order .top .num_order:nth-of-type(6) {
-        position: absolute;
-        right: 7rem;
+        /* position: absolute;
+        right: 7rem; */
     }
 
     .booklist_wrap .book_num_order .top .num_order:nth-of-type(6) img {
-        transform: rotate(90deg);
-        display : none;
+        /* transform: rotate(90deg); */
     }
 
     .booklist_wrap .book_num_order .top .num_order:nth-of-type(8) img {
