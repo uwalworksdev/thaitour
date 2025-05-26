@@ -774,8 +774,6 @@ class InicisController extends BaseController
 		// 각 항목을 따옴표로 감싸기
 		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
 
-        log_message('result', '이니시스 응답: ' . print_r($response_data, true));
-
 		if ($resultCode == "00") {
 			
     		$tid = $response_data['tid'];
