@@ -3671,6 +3671,7 @@
 
     .custom-golf-detail .box-selecter .ic_item:first-of-type {
       flex-wrap: nowrap;
+      gap: 0;
     }
 
   .custom-golf-detail .box-selecter .ic_item {
@@ -3679,6 +3680,7 @@
     align-items: center;
     width: unset;
     flex-wrap: wrap;
+    gap: 2rem;
   }
 
   .custom-golf-detail .box-selecter .ic_item .flex__c {
@@ -3762,11 +3764,11 @@
       width: 100%;
   }
 
-  #card_yes {
-    gap: 2rem;
+  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+      width: 20rem;
   }
 
-  .custom-golf-detail .box-selecter .ic_item .item-select .label.first {
+  .custom-golf-detail .box-selecter .ic_item .item-select.second .label {
       width: 20rem;
   }
 
