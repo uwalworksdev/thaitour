@@ -1206,7 +1206,7 @@ $(document).ready(function () {
                         <a href="${item.link_ ?? '#'}">${item.code_name}</a>
                      </li>`;
         });
-
+alert(html);
         $('#depth_3_tool_list_new_').html(html);
         $('.depth_3_label').text(`${parentName} 세부 지역`);
         $('.depth_3_container').show();
