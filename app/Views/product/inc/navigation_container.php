@@ -23,8 +23,13 @@
             </ul>
         </div>
     </div>
-    <div class="navigation-container-next">xxxxxxxxxxxx
+    <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
+             src="/uploads/icons/ball_dot_icon.png"
+             alt="ball_dot_icon">
+    </div>
+    <div class="navigation-container-next">
+        <img class="ball_dot_icon icon_open_depth_03 icon_open_depth_" data-depth="depth_3_tools_"
              src="/uploads/icons/ball_dot_icon.png"
              alt="ball_dot_icon">
     </div>
