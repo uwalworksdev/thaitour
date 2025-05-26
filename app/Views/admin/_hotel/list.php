@@ -279,7 +279,7 @@
                                     <td><?= $num-- ?></td>
                                     <td class="tac">
                                         <?php
-										$row['product_code_list'] = $row['product_code_1'] .. $row['product_code_2'] .. $row['product_code_3']; 
+										$row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
                                         $_product_code_arr = explode("|", $row['product_code_list']);
                                         $_product_code_arr = array_filter($_product_code_arr);
                                         ?>
