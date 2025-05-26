@@ -2,8 +2,6 @@
 
 header('Content-Type:text/html; charset=utf-8');
 
-	    $session = session();
-        $setting = homeSetInfo();
 
     //step1. 요청을 위한 파라미터 설정
 		$key       = "cjAo6CD95LpJS0S4";
@@ -13,7 +11,7 @@ header('Content-Type:text/html; charset=utf-8');
 	    $clientIp  = $_SERVER["REMOTE_ADDR"];
 	
 	$postdata = array();
-	$postdata["mid"] = $mid;
+	$postdata["mid"] = "thaitour37";
 	$postdata["type"] = $type;
     $postdata["timestamp"] = $timestamp;
 	$postdata["clientIp"] = $clientIp;
