@@ -590,6 +590,11 @@ function info_receipt(pg, tid)
     </script>
 
     <script>
+	    function del_it() {
+			if (!confirm('해당 결제 내역을 삭제 하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.'))
+                return false;
+    	}
+  	
         function payment_cancel(no, pg) {
 
 			if (!confirm('결제 전체취소를 하시겠습니까?\n\n한번 취소한 자료는 복구할 수 없습니다.'))
