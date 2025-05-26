@@ -497,6 +497,19 @@
     margin-left: 0;
   }
 
+  .content-sub-hotel-detail .section1 .location-container .list-icon   {
+    margin-left: auto;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .content-sub-hotel-detail .section1 .location-container .list-icon img {
+       padding: 0;
+        border-radius: unset;
+        width: 3.4rem;
+        height: 3.7rem;
+    }
+
   .content-sub-hotel-detail .section1 .list-icon img {
     height: 6.2rem;
     padding: 1.6rem 1.2rem;
