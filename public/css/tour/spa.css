@@ -986,4 +986,16 @@ div , p , ul, li, span {
         color: var(--bs-point);
         border-color: var(--bs-point) !important;
     }
+.tours_time_sect {
+          margin-bottom: 3rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.3333rem;
+          align-items: start;
+}
+.meeting_time {
+          display: flex;
+          align-items: center;
+          margin-left: -2.4667rem;
+}
 }
