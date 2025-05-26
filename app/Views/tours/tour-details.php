@@ -66,13 +66,18 @@
 
     @media screen and (max-width: 850px) {
     .sec2-item-card.tour_calendar {
-        display: unset;
+        display: block;
     }
 
     .tours-detail .primary-btn-calendar.tour {
         position: absolute;
         bottom: 6%;
         left: 48%;
+        width: 92%;
+    }
+
+    .tours-detail .section2 .sec2-item-card:last-child {
+        padding-bottom: 20rem;
     }
 
     .tours-detail .primary-btn-calendar.btn-cart
