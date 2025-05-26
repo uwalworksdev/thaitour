@@ -669,6 +669,11 @@ class SpaController extends BaseController
         $builder->where("p.goods_date =", $date);
         $builder->where("s.status !=", 'N');
         $builder->where("p.use_yn !=", 'N');
+        $builder->where("si.o_sdate !=", '0000-00-00 00:00:00');
+        $builder->where("si.o_sdate IS NOT NULL", null, false);
+        $builder->where("si.o_edate !=", '0000-00-00 00:00:00');
+        $builder->where("si.o_edate IS NOT NULL", null, false);
+
         $builder->orderBy("si.o_onum", 'asc');
         $builder->orderBy("si.info_idx", 'asc');
         $builder->orderBy("s.spa_onum", 'asc');
