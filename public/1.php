@@ -2,12 +2,15 @@
 
 header('Content-Type:text/html; charset=utf-8');
 
+	    $session = session();
+        $setting = homeSetInfo();
+
     //step1. 요청을 위한 파라미터 설정
-    $key = "ItEQKi3rY7uvDS8l";
-    $mid = "INIpayTest";
-	$type = "refund";
-	$timestamp = date("YmdHis");
-	$clientIp = "192.0.0.0";
+		$key       = "cjAo6CD95LpJS0S4";
+        $mid       = $setting['inicis_mid'];
+	    $type      = "partialRefund";
+	    $timestamp = date("YmdHis");
+	    $clientIp  = $_SERVER["REMOTE_ADDR"];
 	
 	$postdata = array();
 	$postdata["mid"] = $mid;
@@ -17,9 +20,13 @@ header('Content-Type:text/html; charset=utf-8');
 	
 	//// Data 상세
     $detail = array();
-	$detail["tid"] = "INIAPICARDINIpayTest20231012130149915207";
+	$detail["tid"] = "StdpayCARDthaitour3720250526095858348462";
 	$detail["msg"] = "테스트취소";
-
+	$detail["price"] = "8482";
+	$detail["confirmPrice"] = "5000";
+	$detail["currency"] = "WON";
+	$detail["tax"] = "0";
+	$detail["taxfree"] = "0";
 	$postdata["data"] = $detail;
 	
 	$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
