@@ -260,6 +260,7 @@
 										</td>
 									</tr>
 									
+									<?php if($payment_row['payment_status'] != "C") { ?>
 								    <tr>
                                         <th>결제 부분취소</th>
                                         <td colspan="3">
@@ -267,7 +268,8 @@
 									        <button type="button" class="btn" style="width: unset;" onclick="payment_partial_cancel('<?=$payment_row['payment_no']?>','<?=$payment_row['payment_pg']?>');">부분취소</button>
                                         </td>
                                     </tr>
-									
+									<?php } ?>
+										
 								    <tr>
                                         <th>주문 문자발송(알림톡)</th>
                                         <td colspan="3">
