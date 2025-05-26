@@ -3315,6 +3315,7 @@
     border-radius: 0.6rem;
     height: 12rem;
     padding: 1rem 1rem;
+    padding-top: 5rem;
   }
 
   .custom-golf-detail .qa-submit-btn {
@@ -3348,6 +3349,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     margin-bottom: 1rem;
+    word-break: break-word;
   }
 
   .custom-golf-detail .qa-meta {
@@ -3726,6 +3728,7 @@
     padding-left: 5rem;
     position: relative;
     max-width: 100%;
+
   }
 
   .custom-golf-detail .qa-question .con-cus-mo-qa {
