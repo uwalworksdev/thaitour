@@ -711,7 +711,7 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 	
 	    $price        = $cancelAmt;
-		$confirmPrice = $row['Amt_1'] - $cancel_tot + $cancelAmt;
+		$confirmPrice = $row['Amt_1'] - $cancel_tot - $cancelAmt;
 		
 		//// Data 상세
 		$detail = [
