@@ -2,7 +2,7 @@
     <div class="navigation-container-prev">
         <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-        <span id="depth_1_tool_title_">호텔</span>
+        <span id="depth_1_tool_title_">호텔..........</span>
 
         <div class="depth_1_tools_" id="depth_1_tools_">
             <ul class="depth_1_tool_list_" id="depth_1_tool_list_">
@@ -92,7 +92,7 @@
             let html = "";
             for (let i = 0; i < data.length; i++) {
                 html += `<li class="depth_2_item_" data-code="${data[i].code_no}">
-                                        <a href="${data[i].link_ ?? '#'}">${data[i].code_name}xxxxxxxx</a>
+                                        <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
                                     </li>`;
             }
 
