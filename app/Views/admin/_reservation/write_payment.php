@@ -679,6 +679,7 @@ function info_receipt(pg, tid)
 				data: {
 					"payment_no"   : no,
 					"cancel_amt"   : cancel_amt,
+					"cancel_tot"   : $("#cancel_tot").val(),
 					"add_mileage"  : $("#add_mileage").val()	
 				},
 				dataType: "json",
