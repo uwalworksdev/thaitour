@@ -799,7 +799,6 @@ class AjaxController extends BaseController {
 											</div>
 										</div>
 										<div class="grid2_2_1_m only_mo">
-											<img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
 											<img src="/uploads/rooms/'. $ufile1 .'" alt="hotel_item_1_1" onerror="this.src=\'/images/share/noimg.png\'">
 										</div>
 										<div class="wrap_btn_detail">
