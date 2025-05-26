@@ -281,15 +281,14 @@
                                         <?php
 										$row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
                                         $_product_code_arr = explode("|", $row['product_code_list']);
-                                        $_product_code_arr = array_filter($_product_code_arr);
+                                        //$_product_code_arr = array_filter($_product_code_arr);
                                         ?>
                                         <div class="" style="padding: 0 20px">
 										    <p class="new">
                                             <?php
-                                            foreach ($_product_code_arr as $_tmp_code) {
-												echo $_tmp_code ."<br>";
+                                            for($i=0;$i<count($_product_code_arr);$i++) {
                                                 ?>
-                                                <?= get_cate_text($_tmp_code) ?>
+                                                <?= get_cate_text($_product_code_arr[$i]) ?>
                                             <?php
                                             }
                                             ?>
