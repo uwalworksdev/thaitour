@@ -710,27 +710,30 @@ class InicisController extends BaseController
 		$postdata["clientIp"]  = $clientIp;
 	
 		//// Data 상세
-		$detail                 = array();
-		$detail["tid"]          = $row['TID_1'];
-		$detail["msg"]          = "관리자 부분결제취소";
-		$detail["price"]        = (int)$row['payment_tot'];
-		$detail["confirmPrice"] = (int)$cancelAmt;
-		$detail["currency"]     = "WON";
-		$detail["tax"]          = "0";
-		$detail["taxfree"]      = "0";
-		write_log($row['TID_1']." - ".$row['Amt_1']." - ".$cancelAmt);
-		$postdata["data"] = $detail;
+		$detail = [
+			"tid"          =>  $row['TID_1'],
+			"msg"          =>  "관리자 결제취소",
+			"price"        =>  (int)$row['Amt_1'],    // ✅ 숫자형
+			"confirmPrice" =>  (int)$cancelAmt,    // ✅ 숫자형
+			"currency"     =>  "WON",
+			"tax"          =>  0,
+			"taxfree"      =>  0
+		];
 		
 		$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
 
 		//// Hash Encryption
-		$plainTxt = $key.$mid.$type.$timestamp.$details;
+		$plainTxt = $key . $mid . $type . $timestamp . $details;
 		$hashData = hash("sha512", $plainTxt);
 
-		$postdata["hashData"] = $hashData;
-
-	    //echo "plainTxt : ".$plainTxt."<br/><br/>"; 
-	    //echo "hashData : ".$hashData."<br/><br/>"; 
+		$postdata = [
+			"mid"       => $mid,
+			"type"      => $type,
+			"timestamp" => $timestamp,
+			"clientIp"  => $clientIp,
+			"data"      => $detail,
+			"hashData"  => $hashData
+		];
 
 	    $post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
 	
@@ -766,6 +769,8 @@ class InicisController extends BaseController
 
 		// 각 항목을 따옴표로 감싸기
 		//$orderList   = "'" . implode("','", array_map('addslashes', $order_nos)) . "'";
+
+        log_message('error', '이니시스 응답: ' . print_r($response_data, true));
 
 		if ($resultCode == "00") {
 			

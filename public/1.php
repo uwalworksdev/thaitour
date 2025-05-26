@@ -1,48 +1,63 @@
 <?php
 
-header('Content-Type:text/html; charset=utf-8');
+    header('Content-Type:text/html; charset=utf-8');
+
+	//$session = session();
+	//$setting = homeSetInfo();
 
     //step1. 요청을 위한 파라미터 설정
-    $key = "ItEQKi3rY7uvDS8l";
-    $mid = "INIpayTest";
-	$type = "refund";
-	$timestamp = date("YmdHis");
-	$clientIp = "192.0.0.0";
+	$key                   = "cjAo6CD95LpJS0S4";
+	$mid                   = $setting['inicis_mid'];
+	$type                  = "partialRefund";
+	$timestamp             = date("YmdHis");
+	$clientIp              = $_SERVER["REMOTE_ADDR"];
 	
 	$postdata = array();
-	$postdata["mid"] = $mid;
-	$postdata["type"] = $type;
+	$postdata["mid"]       = "thaitour37";
+	$postdata["type"]      = $type;
     $postdata["timestamp"] = $timestamp;
-	$postdata["clientIp"] = $clientIp;
+	$postdata["clientIp"]  = $clientIp;
 	
-	//// Data 상세
-    $detail = array();
-	$detail["tid"] = "INIAPICARDINIpayTest20231012130149915207";
-	$detail["msg"] = "테스트취소";
+	$mid                   = "thaitour37";
+	$type                  = "partialRefund";
+	$timestamp             = date("YmdHis");
+	$clientIp              = $_SERVER["REMOTE_ADDR"];
+	$key                   = "cjAo6CD95LpJS0S4"; // 이니시스 제공 키
 
-	$postdata["data"] = $detail;
-	
-	$details = str_replace('\\/', '/', json_encode($detail, JSON_UNESCAPED_UNICODE));
+	$detail = [
+		"tid"          => "StdpayCARDthaitour3720250526095858348462",
+		"msg"          => "관리자 결제취소",
+		"price"        => 8482,    // ✅ 숫자형
+		"confirmPrice" => 5000,    // ✅ 숫자형
+		"currency"     => "WON",
+		"tax"          => 0,
+		"taxfree"      => 0
+	];
 
-	//// Hash Encryption
-	$plainTxt = $key.$mid.$type.$timestamp.$details;
-    $hashData = hash("sha512", $plainTxt);
+	$details = json_encode($detail, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); // ✅ 중요
 
-	$postdata["hashData"] = $hashData;
+	$plainTxt = $key . $mid . $type . $timestamp . $details;
+	$hashData = hash("sha512", $plainTxt);
 
-	echo "plainTxt : ".$plainTxt."<br/><br/>"; 
-	echo "hashData : ".$hashData."<br/><br/>"; 
-
+	$postdata = [
+		"mid"       => $mid,
+		"type"      => $type,
+		"timestamp" => $timestamp,
+		"clientIp"  => $clientIp,
+		"data"      => $detail,
+		"hashData"  => $hashData
+	];
 
 	$post_data = json_encode($postdata, JSON_UNESCAPED_UNICODE);
-	
-	echo "**** 요청전문 **** <br/>" ; 
-	echo str_replace(',', ',<br>', $post_data)."<br/><br/>" ; 
+
+	echo "plainTxt : {$plainTxt}<br><br>";
+	echo "hashData : {$hashData}<br><br>";
+	echo "**** 요청전문 **** <br>" . str_replace(',', ',<br>', $post_data) . "<br><br>";
 	
 	
 	//step2. 요청전문 POST 전송
 	
-    $url = "https://iniapi.inicis.com/v2/pg/refund";
+	$url = "https://iniapi.inicis.com/v2/pg/partialRefund";
     
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
