@@ -6,7 +6,7 @@
 
         <div class="depth_1_tools_" id="depth_1_tools_">
             <ul class="depth_1_tool_list_" id="depth_1_tool_list_">
-                <?php echo getHeaderTabSubx($parent_code); ?>
+                <?php echo getHeaderTabSub($parent_code); ?>
             </ul>
         </div>
     </div>
