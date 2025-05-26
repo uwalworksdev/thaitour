@@ -1237,12 +1237,12 @@ class ProductModel extends Model
         $builder = $this->db->table('tbl_product_mst AS p');
         $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
-/*
+ 
         $builder->where('h.o_sdate IS NOT NULL');
         $builder->where('h.o_edate IS NOT NULL');
         $builder->where('h.o_sdate <>', '');
         $builder->where('h.o_edate <>', '');
-*/		
+ 	
         if ($where['day_start'] && $where['day_start'] != "") {
             $builder->where('h.o_sdate <=', $where['day_start']); 
         }
