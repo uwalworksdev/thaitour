@@ -21,7 +21,7 @@
                 <?php echo getHeaderTabSubChild($parent_code, $code_no); ?>
             </ul>
         </div>
-        <div class="depth_3_tools_" id="depth_3_tools_">
+        <div class="depth_3_tools_ active_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_"></ul>
         </div>
     </div>
@@ -69,6 +69,8 @@
             let depth_1_tools_ = $('#depth_1_tools_');
             let icon_open_depth_01 = $('.icon_open_depth_01');
             let icon_open_depth_02 = $('.icon_open_depth_02');
+            let depth_3_tools_ = $('#depth_3_tools_');
+            let icon_open_depth_03 = $('.icon_open_depth_03');
 
             if (depth_1_tools_.is(event.target) || depth_1_tools_.has(event.target).length > 0 || icon_open_depth_01.is(event.target) || icon_open_depth_01.has(event.target).length > 0) {
                 depth_1_tools_.addClass('active_');
@@ -82,10 +84,15 @@
             } else {
                 depth_2_tools_.removeClass('active_');
             }
+
+            if (!(depth_3_tools_.is(event.target) || depth_3_tools_.has(event.target).length > 0 || icon_open_depth_03.is(event.target) || icon_open_depth_03.has(event.target).length > 0)) {
+                depth_3_tools_.removeClass('active_');
+            }
         });
 
         // ✅ 2Depth 클릭 → 3Depth Ajax 로드
-        $(document).on('click', '.depth_2_item_', function () {
+        $(document).on('click', '.depth_2_item_', function (e) {
+            e.stopPropagation();
             let code = $(this).data("code");
             let name = $(this).text();
 
