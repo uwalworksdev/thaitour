@@ -1040,8 +1040,8 @@
         $(".date_form").datepicker({
             dateFormat: "yy-mm-dd",
             showOn: "both",
-            buttonImage: "/images/ico/date_ico.png",
-            buttonImageOnly: true,
+            // buttonImage: "/images/ico/date_ico.png",
+            // buttonImageOnly: true,
             minDate: new Date('<?=$meeting_date?>')
         });
     });
