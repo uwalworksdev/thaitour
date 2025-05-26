@@ -198,6 +198,26 @@ function get_cate_text($code)
     return $out_txt ?? '';
 }
 
+
+function get_cate_name($code)
+{
+	$code_arr = explode("|", $code);
+	$out_txt = "";
+	for($i=0;$i<count($code_arr);$i++)
+	{	
+		$fsql = "select * from tbl_code where code_no='" . $code . "' limit 1";
+		$fresult = db_connect()->query($fsql);
+		$frow = $fresult->getRowArray();
+		if($out_txt == "") {
+           $out_txt .= $frow['code_name'];
+		} else {
+           $out_txt .= " &gt; ". $frow['code_name'];
+		}   
+    }
+
+    return $out_txt ?? '';
+}
+
 function getSubMenu($parent_code_no, $urls)
 {
     $sub_sql = "SELECT code_name, code_no FROM tbl_code WHERE parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";

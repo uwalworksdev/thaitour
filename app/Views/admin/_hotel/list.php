@@ -284,15 +284,7 @@
                                         //$_product_code_arr = array_filter($_product_code_arr);
                                         ?>
                                         <div class="" style="padding: 0 20px">
-										    <p class="new">
-                                            <?php
-                                            for($i=0;$i<count($_product_code_arr);$i++) {
-                                                ?>
-                                                <?= $_product_code_arr[$i] ?>
-                                            <?php
-                                            }
-                                            ?>
-											</p>
+										    <p class="new"><?= get_cate_name($row['product_code_list'])?></p>
                                         </div>
                                         <div class="flex_c_c" style="gap: 10px;">
                                             <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
