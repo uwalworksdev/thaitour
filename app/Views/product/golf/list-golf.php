@@ -84,7 +84,7 @@
 									|| empty($search_product_category)) {
 									echo "tab_active_";
 								} ?>"
-									data-idx="0" data-group="category">지역전체
+									data-idx="0" data-group="search_product_category">지역전체
 								</li>
 								<?php
 								foreach ($codes as $code) {
@@ -94,7 +94,7 @@
 										echo "tab_active_";
 									} ?>"
 										data-idx="<?= $code["code_no"] ?>"
-										data-group="category"><?= $code["code_name"] ?></li>
+										data-group="search_product_category"><?= $code["code_name"] ?></li>
 									<?php
 								}
 								?>
@@ -398,7 +398,7 @@
             const types = items.each(function () {
                 const group = $(this).data('group');
                 const idx = $(this).data('idx');
-alert(group+' - '+idx);
+ 
                 if (!grouped[group]) {
                     grouped[group] = "";
                 }
