@@ -1935,9 +1935,9 @@ class Product extends BaseController
         $products = $this->productModel->findProductGolfPaging([
             'product_code_1' => 1302,
             'product_code_2' => $code_no,
+            'product_code_3' => $search_product_category,
             'search_product_name' => $search_word,
 			'category' => $search_product_category,
-			'search_product_category' => $search_product_category,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
