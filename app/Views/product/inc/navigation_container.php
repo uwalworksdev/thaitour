@@ -33,11 +33,11 @@
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
         
-        <span class="font-bold" id="depth_3_label"></span>
+        <span class="font-bold" id="depth_3_label">지역전체</span>
         
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-                <?php echo getHeaderTabSubChild($code_no, $code_no); ?>
+        
             </ul>
         </div>
     </div>
@@ -82,6 +82,8 @@ $(document).ready(function () {
 
         window.location.href = href;
     });
+
+    getCodeDepth3('<?=$code_no?>')
 
     // 외부 클릭 시 각 드롭다운 닫기
     $(document).on('click', function (event) {
@@ -129,6 +131,12 @@ $(document).ready(function () {
     function renderDepthCode3(data, parentName) {
         let html = "";
         $("#depth_3_label").text(data[0].code_name);
+        html += `<li class="depth_3_item_">
+                    <a href="#">지역전체</a>
+                </li>`;
+        let labelWidth = $("#depth_3_label").outerWidth(true);
+        $("#depth_3_tool_list_").css("width", Number(labelWidth) + 45);
+
         for (let i = 0; i < data.length; i++) {
             html += `<li class="depth_3_item_" data-code="${data[i].code_no}">
                         <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
@@ -136,7 +144,6 @@ $(document).ready(function () {
         }
 
         $('#depth_3_tool_list_').html(html);
-        $('#depth_3_tools_').addClass('active_');
     }
 
     // ✅ 3Depth 클릭 시 active 표시 + 경로 + 이동
@@ -147,6 +154,7 @@ $(document).ready(function () {
         let code = $(this).data("code");
         let name = $(this).text();
         $('#depth_3_label').text(name);
+        $('#depth_3_tools_').addClass('active_');
 
         let href = $(this).find('a').attr('href');
         if (href && href !== '#') {
