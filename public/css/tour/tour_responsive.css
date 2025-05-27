@@ -608,6 +608,7 @@
 
   .tours-detail .calendar-left {
     width: 100%;
+    padding-top: 2rem;
   }
 
   .tours-detail .container-calendar .calendar-right {
@@ -870,6 +871,11 @@
     padding-bottom: 6rem;
   }
 
+  .tours-detail .section2 .sec2-item-card.tour_calendar .time_work {
+      position: absolute;
+      top: 3.5rem; 
+      left: 3rem ;
+  }
 
   .tours-detail .title-sec2 {
     font-size: 2.8rem;
