@@ -1901,6 +1901,9 @@ class Product extends BaseController
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
+        $code_no = $this->request->getGet('s_code_no') ?? '';
+        $s_code_no = $this->request->getGet('s_code_no') ?? '';
+			
         $green_peas = $this->request->getGet('green_peas');
         $sports_days = $this->request->getGet('sports_days');
         $slots = $this->request->getGet('slots');
@@ -1994,8 +1997,15 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 			
         }
 
+		$codes = $this->codeModel
+					  ->where('parent_code_no', $code_no)
+					  ->orderBy('code_no', 'ASC')
+					  ->get()
+					  ->getResultArray();
+			
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
+            'codes' => $codes,
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
             'green_peas' => $green_peas,
