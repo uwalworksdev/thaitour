@@ -129,7 +129,7 @@
 					
 					<?php if(session('member.id')) { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
-                            <img src="/images/ico/icon_user_mypage.png" alt="">
+                            <img src="/images/ico/icon_user_mypage_thin.png" alt="">
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
@@ -143,7 +143,7 @@
                         </a>
 					<?php } else { ?>
                         <a href="#!" class="icon-menu-item icon_my_page">
-                            <img src="/images/ico/icon_user_mypage.png" alt="">
+                            <img src="/images/ico/icon_user_mypage_thin.png" alt="">
                             <p style="margin-top:3px;">마이페이지</p>
                             <ul class="list_item">
                                 <li class="item_link" onclick="location.href='/mypage/alarm'">알림</li>
