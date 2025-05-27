@@ -176,7 +176,7 @@
     top: 2rem;
     width: 100%;
     text-align: left;
-    padding-left: 2.4rem;
+    padding-left: 1.4rem;
     font-size: 2.6rem;
 }
 .point_system ._table .title_box {
@@ -192,10 +192,21 @@
 .point_system ._table .box_coin {
     display: flex;
     flex-direction: column;
-    padding-left: 7.8rem;
-    padding-top: 12.8rem;
+    padding-left: 8.8rem;
+    padding-top: 20.8rem;
     margin-bottom: 4.6rem;
     gap: 18rem;
+}
+.point_system .box_desc_detail{
+    margin-top: 8rem;
+    padding: 3.5rem 5.5rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 1rem;
+}
+.point_system .wraper_content {
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 8.4rem 2rem;
 }
 .point_system ._table .box_coin .coin_item .coin_item_top p._ttl{
     color: #2a459f;
@@ -246,7 +257,7 @@ p {
             <tbody>
                 <tr>
                     <th rowspan="4">
-                        <p>1. 상품 예약에 따른 적립</p>
+                        <p>1. 상품<br class="only_mo"> 예약에 따른<br class="only_mo"> 적립</p>
                     </th>
                     <td>
                         <p class="title_box">적립대상</p>
