@@ -91,6 +91,22 @@
         margin-left: 0 !important;
         width: 92%;
     }
+
+    .sec2-item-card {
+        flex-wrap: wrap;
+    }
+
+    .price-sub {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-end;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .tours-detail .section2 .text-content-2 {
+        width: 100%;
+    }
     }
 </style>
 
