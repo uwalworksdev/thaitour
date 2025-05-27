@@ -48,9 +48,9 @@
 </div>
 
 <?php
-   if(substr($code_no, 0,4) == "1303") $code_name = "호텔"; 
-   if(substr($code_no, 0,4) == "1302") $code_name = "골프"; 
-   if(substr($code_no, 0,4) == "1301") $code_name = "투어"; 
+   if(substr($code_no, 0,4) == "1303") $code_name = "호텔1"; 
+   if(substr($code_no, 0,4) == "1302") $code_name = "골프2"; 
+   if(substr($code_no, 0,4) == "1301") $code_name = "투어3"; 
 ?>
 
 <!-- <div class="selected-path">
@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     // ✅ 3Depth Ajax 요청
     async function getCodeDepth3(code, status) {
-        let apiUrl = `<?= route_to('api.hotel_.get_codex') ?>?code=${code}`;
+        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
         try {
             let response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
