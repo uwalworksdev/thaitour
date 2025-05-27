@@ -665,7 +665,7 @@
                             <th>이동시간</th>
                             <td>
                                 <div class="list_area list_travel_times">
-                                    <p data-code="all">전체.....</p>
+                                    <p data-code="all">전체</p>
                                     <?php
                                         foreach($travel_times_arr as $code){
                                     ?>
