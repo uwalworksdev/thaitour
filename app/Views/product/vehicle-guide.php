@@ -3734,8 +3734,9 @@
 
         let departure_name = $(".place_chosen__start_pop .popup_place__list li span.active").text();
         let destination_name = $(".place_chosen__end_pop .popup_place__list li span.active").text();
-        $("#text_destination_name").text(departure_name);
-        $("#text_departure_name").text(destination_name);
+        
+        $("#text_destination_name").val(departure_name);
+        $("#text_departure_name").val(destination_name);
 
         $("#order_status").val($(this).val());
 
