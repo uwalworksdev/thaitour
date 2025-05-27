@@ -60,8 +60,8 @@
         background: url(/img/sub/arrow-right-blue_2.png);
     }
 
-    .list_steps .step:nth-child(3)::before,
-    .list_steps .step:nth-child(6)::before ,
+    /* .list_steps .step:nth-child(3)::before,
+    .list_steps .step:nth-child(6)::before , */
     .list_steps .step:last-child::before {
         content: '';
         display: none;
