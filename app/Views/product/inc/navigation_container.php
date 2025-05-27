@@ -23,14 +23,21 @@
             </ul>
         </div>
 
-        <div class="depth_3_tools_" id="depth_3_tools_">
+        <!-- <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_"></ul>
-        </div>
+        </div> -->
     </div>
 
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+        <span class="font-bold" id="depth_3_label"></span>
+        
+        <div class="depth_3_tools_" id="depth_3_tools_">
+            <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
+                <?php echo getHeaderTabSubChild($code_no, $code_no); ?>
+            </ul>
+        </div>
     </div>
     <div class="navigation-container-next">
         <img class="ball_dot_icon icon_open_depth_03 icon_open_depth_" data-depth="depth_3_tools_"
@@ -44,9 +51,9 @@
    if(substr($code_no, 0,4) == "1301") $code_name = "투어"; 
 ?>
 
-<div class="selected-path">
+<!-- <div class="selected-path">
     현재 위치: <span id="path_1"><?=$code_name?></span> > <span id="path_2"></span> > <span id="path_3"></span>
-</div>
+</div> -->
 
 <script>
 $(document).ready(function () {
@@ -91,7 +98,7 @@ $(document).ready(function () {
 
     // ✅ 2Depth 클릭 → 3Depth Ajax 로드
     $(document).on('click', '.depth_2_item_', function (e) {
-        e.stopPropagation();
+        e.preventDefault();
         let code = $(this).data("code");
         let name = $(this).text();
 
@@ -119,6 +126,7 @@ $(document).ready(function () {
 
     function renderDepthCode3(data, parentName) {
         let html = "";
+        $("#depth_3_label").text(data[0].code_name);
         for (let i = 0; i < data.length; i++) {
             html += `<li class="depth_3_item_" data-code="${data[i].code_no}">
                         <a href="${data[i].link_ ?? '#'}">${data[i].code_name}</a>
@@ -136,7 +144,7 @@ $(document).ready(function () {
 
         let code = $(this).data("code");
         let name = $(this).text();
-        $('#path_3').text(name);
+        $('#depth_3_label').text(name);
 
         let href = $(this).find('a').attr('href');
         if (href && href !== '#') {
