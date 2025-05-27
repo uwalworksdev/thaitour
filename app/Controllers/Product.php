@@ -999,11 +999,13 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-$codes = $this->codeModel
-              ->where('parent_code', $code_no)
-              ->orderBy('code_no', 'ASC')
-              ->get()
-              ->getResultArray();
+			
+			$codes = $this->codeModel
+						  ->where('parent_code_no', $code_no)
+						  ->orderBy('code_no', 'ASC')
+						  ->get()
+						  ->getResultArray();
+
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
