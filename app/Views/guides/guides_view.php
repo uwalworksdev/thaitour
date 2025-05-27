@@ -11,7 +11,28 @@
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
         async defer></script>
+<style>
+    .arrow_menu {
+        cursor: pointer;
+        transform: rotate(0deg);
+    }
 
+    .arrow_menu.open_ {
+        transform: rotate(180deg);
+    }
+
+    .form-container {
+        display: none;
+    }
+
+    .form-container.show_ {
+        display: block;
+    }
+
+    .customer-form-page .day_activity_ .title-sub-c {
+        margin-bottom: 0;
+    }
+</style>
 
     <div class="content-sub-hotel-detail tours-detail">
         <div class="body_inner">
@@ -479,7 +500,7 @@
         <div class="dim"></div>
     </div>
 
-    <div class="popup_wrap place_pop cart_info_pop">
+    <div class="popup_wrap place_pop cart_info_pop" data-o_idx="">
         <div class="pop_box">
             <button type="button" class="close" onclick="closePopup()"></button>
             <div class="pop_body">
@@ -489,34 +510,82 @@
                             <h2>별도 요청</h2>
                         </div>
                     </div>
-                    <div class="popup_place__body customer-form-page" style="background-color: unset;">
-                        <div class="form_guide_schedule form_booking_spa_ ">
-                            
-                        </div> 
-                        <div class="form-group cus-form-group memo">
-                            <label for="extra-requests">기타요청</label>
-                            <textarea id="extra-requests"
-                                        placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                    <form action="" name="frm_guide" id="frm_guide">
+                        <div class="popup_place__body customer-form-page" style="background-color: unset;">
+                            <div class="form_guide_schedule form_booking_spa_ ">
+                                
+                            </div> 
+                            <div class="form-group cus-form-group memo">
+                                <label for="extra-requests">기타요청</label>
+                                <textarea id="extra-requests" name="order_memo"
+                                            placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                            </div>
+    
+                            <div class="flex_c_c">
+                                <button type="button" class="btn_add_cart">
+                                    장바구니 담기
+                                </button>
+                            </div>
                         </div>
-
-                        <div class="flex_c_c">
-                            <button type="button" class="btn_add_cart">
-                                장바구니 담기
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
         <div class="dim"></div>
     </div>
-        <script>
-        $(".btn_add_cart").on("click", function () {
-            $("#custom_req").val($("#extra-requests").val());
+    <script>
+        $('.arrow_menu').click(function () {
+            $(this).toggleClass('open_');
 
-            $("#frm").attr('method', 'post');
-            // $("#frm").attr('action', '/product-golf/customer-form-ok');
-			// $("#frm").submit();
+            let container = $(this).parent().next();
+            container.toggleClass('show_')
+        });
+
+        $(".btn_add_cart").on("click", function () {
+
+            let o_idx = $(".cart_info_pop").data("o_idx");
+            let formData = new FormData();
+
+            let start_day = $('#checkInDate' + o_idx).val();
+            let end_day = $('#checkOutDate' + o_idx).val();
+            let people_cnt = $('#people' + o_idx).val();
+
+            formData.append('start_date', start_day);
+            formData.append('end_date', end_day);
+            formData.append('order_gubun', "guide");
+            formData.append('order_status', "B");
+
+            formData.append('people_cnt', people_cnt);
+
+            formData.append('option_idx', o_idx);
+            formData.append('product_idx', '<?= $guide['product_idx'] ?>');
+
+            const form2 = $('#frm_guide');
+
+            form2.find('input[name], select[name], textarea[name]').each(function () {
+                const name = $(this).attr('name');
+                const value = $(this).val();
+                formData.append(name, value);
+            });
+
+            $.ajax({
+                url: `<?= route_to('api.guide.cartBooking') ?>`,
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    window.location.href = 'guide/complete-booking';
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").removeClass("display-none");
+                }
+            });
         });
 
         function closePopup() {
@@ -881,6 +950,8 @@
             let end_day = $('#checkOutDate' + o_idx).val();
             let people_cnt = $('#people' + o_idx).val();
 
+            let count_day = $('#countDay' + o_idx).val();
+
             if (!start_day || !end_day) {
                 alert('달력 선택해주세요!');
                 return;
@@ -927,7 +998,7 @@
                 });
             }else {
                 let html = ``;
-                for(let i = 1; i <= Number(people_cnt); i++){
+                for(let i = 1; i <= Number(count_day); i++){
                     html += `
                         <div class="day_wrap_sect">
                             <div class="day_activity_ w_100 d_flex justify_content_between align_items_center">
@@ -1017,6 +1088,7 @@
                 }
 
                 $(".form_guide_schedule").html(html);
+                $(".cart_info_pop").data("o_idx", o_idx);
                 $(".cart_info_pop").show();
             }
 
