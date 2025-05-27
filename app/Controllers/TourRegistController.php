@@ -391,12 +391,10 @@ class TourRegistController extends BaseController
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $img_list = $this->productImg->getImg($product_idx);
-        
-		$conditions = [
-            "code_gubun"      => 'tour',
-            "parent_code_no"  =>  $product['product_code_2'],
-        ];
-        $category3 = $this->CodeModel->getCodesByConditions($conditions);
+
+        $sql       = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
+        $query     = $db->query($sql);
+        $category3 = $query->getResultArray();
 		
         $new_data = [
             'product_idx' => $product_idx,
