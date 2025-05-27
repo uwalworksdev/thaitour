@@ -135,7 +135,14 @@
                                     <div class=""
                                          data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
                                     <?php
-                                        if(count($option['sup_options']) > 0 || !empty($option['sup_options'][0]['s_name'])) {
+                                        $hasName = false;
+                                        foreach ($option['sup_options'] as $item) {
+                                            if (!empty($item['s_name'])) {
+                                                $hasName = true;
+                                                break;
+                                            }
+                                        }
+                                        if(count($option['sup_options']) > 0 || $hasName) {
                                     ?>
                                     <div class="desc_product_sub">
                                         <p> 옵션포함:</p>
