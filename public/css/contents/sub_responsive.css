@@ -2258,7 +2258,7 @@
 
   .coupon_list .coupon_visual .visual_txt {
     position: absolute;
-    top: 8rem;
+    top: 6rem;
     left: 3rem;
   }
 
@@ -4244,7 +4244,8 @@
   }
 
   .write_container .btn-wrap .btn {
-    max-width: 27rem;
+    /* max-width: 27rem; */
+    flex: 1;
   }
 
   .view_container .view_content-top .line {
