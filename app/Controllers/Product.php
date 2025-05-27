@@ -4081,7 +4081,9 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 
     public function vehicleConfirm() {
         $data['cp_idx'] = $this->request->getVar('cp_idx');
-        $data['product'] = $this->productModel->getProductDetails($data['cp_idx']);
+        $row_c = $this->carsPrice->find($data['cp_idx']);
+
+        $data['product'] = $this->productModel->getProductDetails($row_c['product_idx']);
         $data['code_no'] = $this->request->getVar('code_no');
         $data['type_code_no'] = $this->request->getVar('type_code_no');
         $data['text_category_5401'] = $this->request->getVar('text_category_5401');
