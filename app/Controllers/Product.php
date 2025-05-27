@@ -1901,8 +1901,7 @@ class Product extends BaseController
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
-        $code_no = $this->request->getGet('s_code_no') ?? '';
-        $s_code_no = $this->request->getGet('s_code_no') ?? '';
+        $s_code_no = $code_no;
 			
         $green_peas = $this->request->getGet('green_peas');
         $sports_days = $this->request->getGet('sports_days');
@@ -1945,8 +1944,8 @@ class Product extends BaseController
             'facilities' => $facilities,
         ], 10, $pg, []);
 
-// 마지막 실행된 쿼리 출력
-write_log("golfList- ". $this->productModel->db->getLastQuery());
+		// 마지막 실행된 쿼리 출력
+		//write_log("golfList- ". $this->productModel->db->getLastQuery());
 
         foreach ($products['items'] as $key => $product) {
 
