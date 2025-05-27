@@ -2696,7 +2696,7 @@
     height: 2.5rem;
     position: absolute;
     left: 0.5rem;
-    top: 0.3rem;
+    top: 1.3rem;
     border-radius: 1px;
     border: 0.66rem solid transparent;
     border-top: none;
@@ -3626,7 +3626,7 @@
       background-color: #fff;
       color: #252525;
       margin-top: 3rem;
-      font-size: 2.4rem;
+      font-size: 2.6rem;
   }
 
   .order-form-page .info-table-order.info-table-cus-padding td input {
@@ -4331,7 +4331,7 @@
   .cart_info_pop .cus-form-group textarea {
       width: 100%;
       padding: 2rem;
-      height: 10.2rem;
+      height: 19.2rem;
   }
 
   .popup_wrap.cart_info_pop .pop_box input

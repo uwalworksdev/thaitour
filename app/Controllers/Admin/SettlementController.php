@@ -419,7 +419,7 @@ class SettlementController extends BaseController
             'total_sql'       => $total_sql,
             'nTotalCount'     => $nTotalCount,
             'num'             => $num,
-            'result'          => $result,
+            'result_new'          => $result,
             'fresult'         => $fresult,
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
