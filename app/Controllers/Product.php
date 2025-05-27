@@ -2006,6 +2006,7 @@ class Product extends BaseController
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'codes' => $codes,
+            'category' => $search_product_category,			
             'search_product_category' => $search_product_category,			
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
