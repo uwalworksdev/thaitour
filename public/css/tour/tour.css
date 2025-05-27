@@ -690,7 +690,8 @@
 }
 
 #depth_3_label {
-    margin-left: 30px;
+    display: inline-block;
+    min-width: 40px;
 }
 
 .sub-hotel-navigation-container .depth_2_item_.active_,
@@ -4785,7 +4786,7 @@
 
 .travel-tips .content_sec .list_item {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;

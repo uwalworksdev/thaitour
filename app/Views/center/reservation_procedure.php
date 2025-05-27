@@ -113,6 +113,91 @@
         font-size: 18px;
         color: #2a459f;
     }
+    @media screen and (max-width: 850px) {
+.point_system .sec_title {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+}
+.point_system .sub_title {
+          font-size: 2.3rem;
+}
+.point_system .sub_title+.sub_title{
+    margin-top: 0.8rem;
+}
+.list_steps {
+    display: flex;
+    flex-direction: column;
+    gap: 7.5rem;
+    margin-top: 6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.list_steps .step{
+    width: calc((100% - 1.5rem * 2) / 1);
+    border: 2px solid #2a459f;
+    border-radius: 6rem;
+    padding: 2rem 3rem 3.5rem;
+    position: relative;
+}
+.list_steps .step::before{
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 21px;
+    top: unset;
+    right: unset;
+    left: 50%;
+    bottom: -6rem;
+    transform: translateX(-50%) rotate(90deg);
+    background: url(/img/sub/arrow-right-blue_2.png);
+}
+.list_steps .step .heading {
+    background-color: #2a459f;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 3.2rem;
+    width: 19rem;
+    height: 5.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2.5rem;
+}
+.list_steps .step .title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 1.7rem;
+}
+.list_steps .step .desc {
+    font-size: 2.8rem;
+}
+.list_steps .step .btn_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: #f5f7fa;
+    border-radius: 3rem;
+    border: 1px solid #2a459f;
+    margin-top: 2.3rem;
+    width: 30.1rem;
+    height: 6rem;
+    font-size: 2.8rem;
+    color: #2a459f;
+    margin-left: auto;
+    margin-right: auto;
+}
+.list_steps .step .btn_go img{
+          width: 3.1rem;
+}
+    }
 </style>
 
 
@@ -137,7 +222,8 @@
                 </p>
                 <a href="#!" class="btn_go">
                     <span>회원가입하러 가기</span>
-                    <img src="/img/btn/arrow-right-blue.png" alt="">
+                    <img class="only_web" src="/img/btn/arrow-right-blue.png" alt="">
+                    <img class="only_mo" src="/img/btn/arrow-right-blue_mo.png" alt="">
                 </a>
             </div>
             <div class="step">
