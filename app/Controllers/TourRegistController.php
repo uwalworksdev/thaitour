@@ -570,8 +570,8 @@ class TourRegistController extends BaseController
             } else {
                 $this->golfInfoModel->updateData($product_idx, $data);
             }
-log_message('debug', $this->golfInfoModel->db->getLastQuery());
-            $html = '<script>alert("수정되었습니다(Golf).");</script>';
+
+			$html = '<script>alert("수정되었습니다(Golf).");</script>';
             $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
