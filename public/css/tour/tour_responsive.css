@@ -3,6 +3,10 @@
     padding-top: calc(420% / 660 * 100);
   }
 
+  .tour-main-page .img_box_9 {
+    padding-top: 60%;
+  }
+
   .img_box_10 {
     padding-top: calc(284% / 386 * 100);
   }
@@ -102,7 +106,8 @@
   }
 
   .sub_tour_right {
-    margin-top: 5rem;
+    margin-top: 0;
+    width: 68rem;
   }
 
   .sub_swiper1 {
