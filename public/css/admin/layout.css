@@ -5115,6 +5115,61 @@ table.comment tr td:nth-last-child(1) {
     background: #fff;
 }
 
+.table_accounts.new {
+    gap: 0;
+}
+
+.table_accounts.new dl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px dashed #c6bebe;
+    border-left: unset;
+    padding: 0 5px;
+}
+
+.table_accounts.new dl i {
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: no-repeat center;
+    border-radius: 14px;
+    margin-right: 10px;
+}
+
+.table_accounts.new dl i.img01 {
+    background-color: #699ff7;
+    background-image: url(/images/admin/money.png);
+}
+
+.table_accounts.new dl i.img02 {
+    background-color: #ffa001;
+    background-image: url(/images/admin/building01.png);
+}
+
+.table_accounts.new dl i.img03 {
+    background-color: #ff6761;
+    background-image: url(/images/admin/building02.png);
+}
+
+.table_accounts.new dl i.img04 {
+    background-color: #49c49d;
+    background-image: url(/images/admin/building03.png);
+}
+
+.table_accounts.new dl i.img05 {
+    background-color: #bcbecb;
+    background-image: url(/images/admin/building04.png);
+}
+
+.table_accounts.new dt {
+    background: unset;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: unset;
+}
+
 .t_green {
     color: #01c73c !important;
 }
@@ -5194,3 +5249,43 @@ table.comment tr td:nth-last-child(1) {
     height: 40px;
     border: 1px solid rgb(204, 204, 204);
 }
+.management_info {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 0px 30px;
+  }
+.management_info .ico_ttl {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+.management_info .ico_ttl i {
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: #3a82f8 no-repeat center;
+    background-image: url(/images/admin/building05.png);
+    border-radius: 6px;
+    margin-right: 8px;
+  }
+.management_info ul {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+  }
+.management_info ul .link_go {
+    color: #454545;
+  }
+.management_info ul .link_go span {
+    color: #4280ff;
+    margin-left: 12px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+.management_info ul li + li {
+    margin-left: 60px;
+  }
