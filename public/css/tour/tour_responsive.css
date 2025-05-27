@@ -1273,6 +1273,7 @@
 
   .area_info .child .content {
     font-size: 2.4rem;
+    text-wrap: nowrap;
   }
 
   .content-sub-hotel-detail .section3 .card-item-container {
@@ -1299,6 +1300,14 @@
   .content-sub-hotel-detail .grid2_2_1_m .button-show-detail-image img {
     width: 5.8rem;
 
+  }
+
+  .cart_info_pop .custom-golf-detail select {
+    width: 26rem !important;
+  }
+
+  .custom-golf-detail .price-text.text-gray {
+    text-wrap: nowrap;
   }
 
   .content-sub-hotel-detail .grid2_2_1_sub {
@@ -2899,6 +2908,11 @@
     line-height: 3.3rem;
   }
 
+  .content-custom-table .content-item .description * {
+    line-height: 1.4 !important;
+    font-size: 2.2rem !important;
+  }
+
   .content-custom-table .content-item .label {
     min-width: 20rem;
   }
@@ -3748,7 +3762,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .ic_item select {
-    width: 25rem !important;
+    width: 46rem !important;
   }
 
   .custom-golf-detail .flex-col-mo {
