@@ -41,10 +41,10 @@
                         </a>
                     <?php endforeach; ?>
 
-                    <script>
+                    <!-- <script>
                         function updateBannerImages() {
                             const isMobile = window.innerWidth < 850;
-                            document.querySelectorAll('.item.item_1').forEach(el => {
+                            document.querySelectorAll('.only_web .item.item_1').forEach(el => {
                                 const img = isMobile ? el.dataset.mo : el.dataset.pc;
                                 el.style.backgroundImage = `url('${img}')`;
                             });
@@ -52,52 +52,22 @@
 
                         window.addEventListener('DOMContentLoaded', updateBannerImages);
                         window.addEventListener('resize', updateBannerImages);
-                    </script>
-                    <!-- <a href="#!" class="item item_1">
-                        <span>#관광명소</span>
-                    </a>
-                    <a href="#!" class="item item_2">
-                        <span>#할거리</span>
-                    </a>
-                    <a href="#!" class="item item_3">
-                        <span>#음식</span>
-                    </a>
-                    <a href="#!" class="item item_4">
-                        <span>#쇼핑</span>
-                    </a>
-                    <a href="#!" class="item item_5">
-                        <span>#나이트</span>
-                    </a> -->
+                    </script> -->
+
                 </div>
             </div>
             <div class="only_mo content_sec">
                 <div class="swiper swipper_sec_01">
                     <div class="swiper-wrapper list_item">
-                        <div class="swiper-slide">
-                            <a href="#!" class="item item_1">
-                                <span>#관광명소</span>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item item_2">
-                                <span>#할거리</span>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item item_3">
-                                <span>#음식</span>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item item_4">
-                                <span>#쇼핑</span>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#!" class="item item_5">
-                                <span>#나이트</span>
-                            </a>
-                        </div>
+                        <?php foreach($bannerMiddle as $i => $banner): 
+                            $url = !empty($banner['url']) ? $banner['url'] : "/travel-tips/theme_travel";
+                        ?>
+                            <div class="swiper-slide">
+                                <a href="<?=$url?>" class="item item_1" style="background-image: url('/data/cate_banner/<?=$banner['ufile2']?>');">
+                                    <span><?=$banner['title']?></span>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
