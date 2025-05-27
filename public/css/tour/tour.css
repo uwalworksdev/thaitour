@@ -653,7 +653,8 @@
 }
 
 .sub-hotel-navigation-container .depth_2_tools_,
-.sub-hotel-navigation-container .depth_1_tools_ {
+.sub-hotel-navigation-container .depth_1_tools_,
+.sub-hotel-navigation-container .depth_3_tools_ {
     position: absolute;
     padding: 10px 12px;
     background-color: #fff;
@@ -665,7 +666,8 @@
 }
 
 .sub-hotel-navigation-container .depth_2_tools_.active_,
-.sub-hotel-navigation-container .depth_1_tools_.active_ {
+.sub-hotel-navigation-container .depth_1_tools_.active_,
+.sub-hotel-navigation-container .depth_3_tools_.active_ {
     display: block;
 }
 
@@ -674,21 +676,32 @@
     width: 80px;
 }
 
+.sub-hotel-navigation-container .depth_3_tool_list_ {
+    width: 110px;
+}
+
 .sub-hotel-navigation-container .depth_2_item_,
-.sub-hotel-navigation-container .depth_1_item_ {
+.sub-hotel-navigation-container .depth_1_item_,
+.sub-hotel-navigation-container .depth_3_item_ {
     padding: 3px 0;
     font-size: 16px;
     margin: 5px 0;
     cursor: pointer;
 }
 
+#depth_3_label {
+    margin-left: 30px;
+}
+
 .sub-hotel-navigation-container .depth_2_item_.active_,
-.sub-hotel-navigation-container .depth_1_item_.active_ {
+.sub-hotel-navigation-container .depth_1_item_.active_,
+.sub-hotel-navigation-container .depth_3_item_.active_ {
     color: #17469E;
 }
 
 .sub-hotel-navigation-container .depth_2_item_:hover,
-.sub-hotel-navigation-container .depth_1_item_:hover {
+.sub-hotel-navigation-container .depth_1_item_:hover,
+.sub-hotel-navigation-container .depth_3_item_:hover {
     color: rgba(23, 70, 158, 0.75);
 }
 
