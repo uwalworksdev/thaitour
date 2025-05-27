@@ -3829,6 +3829,11 @@
     color: white;
     border-radius: 0.4rem;
     padding: 1.2rem 1.5rem;
+    min-width: 14rem;
+  }
+
+  .content-sub-hotel-detail .book-button:disabled {
+    padding: 1.2rem 1.5rem;
   }
 
   .content-sub-hotel-detail .book-add-cart {
@@ -4262,7 +4267,7 @@
   }
 
   .travel-tips .sec_05 .header_sec {
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
 
   }
 
@@ -4417,11 +4422,18 @@
     position: relative;
   }
 
+  .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label span {
+      font-size: 2.4rem;
+    }
+
   .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label::before {
     content: "";
     position: absolute;
     width: 2.4rem !important;
     height: 2.4rem !important;
+    top: 0.2rem !important;
+    left: 0px;
+    transform: unset !important;
   }
 
   .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
@@ -4435,10 +4447,12 @@
   .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::after {
     width: 1.6rem !important;
     height: 1.6rem !important;
-    transform: translate(-50%, -50%) !important;
+    transform: unset !important;
     font-size: 2rem !important;
-    top: 48% !important;
-    left: 2% !important;
+    top: 0.55rem !important;
+    left: 0.4rem !important;
+    min-width: 1.6rem;
+    max-width: 1.6rem;
   }
 
   .custom-golf-detail .qa-list .no-data {

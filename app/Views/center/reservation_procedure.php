@@ -197,6 +197,15 @@
 .list_steps .step .btn_go img{
           width: 3.1rem;
 }
+    .list_steps .step:nth-child(3)::before,
+    .list_steps .step:nth-child(6)::before {
+        display: block;
+        content: ''; 
+    }
+    .list_steps .step:last-child::before {
+        display: none;
+        content: '';
+    }
     }
 </style>
 

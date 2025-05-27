@@ -3560,6 +3560,62 @@
       margin-top: 4rem !important;
   }
 
+  .popup_wrap.place_pop.cart_info_pop .pop_box
+    {
+        max-width: 80rem;
+    }
+
+  .popup_wrap.cart_info_pop .popup_place__head {
+      padding-top: 3.5rem;
+  }
+
+  .order-form-page .info-table-order th, .info-table td {
+      padding: 2rem;
+      border: 1px solid #ddd;
+      font-size: 2rem;
+  }
+
+  .order-form-page .info-table-order.info-table-cus-padding td
+  {
+      padding: 1.1rem;
+  }
+
+  .order-form-page .info-table-order td {
+    font-size: 1.5rem;
+  }
+
+  .order-form-page .info-table-order.info-table-cus-padding td .note {
+      margin-top: 0.5rem;
+      font-size: 1.8rem;
+  }
+
+  .order-form-page .info-table-order .select-time-c {
+    height: 5rem;
+  }
+
+  .popup_wrap.cart_info_pop .lb-tb-cus {
+      margin-bottom: 1rem;
+      display: inline-block;
+      font-size: 1.8rem;
+  }
+
+  .popup_wrap.cart_info_pop .btn_add_cart {
+      width: 20rem;
+      height: 8rem;
+      border-radius: 0.6rem;
+      border: 1px solid #dbdbdb;
+      background-color: #fff;
+      color: #252525;
+      margin-top: 3rem;
+      font-size: 2rem;
+  }
+
+  .order-form-page .info-table-order.info-table-cus-padding td input {
+      width: 100%;
+      height: 5rem;
+      font-size: 1.8rem;
+  }
+
   .popup_wrap.place_pop .pop_box {
       padding: 0 3rem !important;
       width: calc(100% - 3rem);
@@ -4229,6 +4285,26 @@
     border: none;
     min-width: 50rem;
     width: auto;
-}
+  }
+
+  .popup_place__body .wrap-golf-info {
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  .popup_place__body .custom-golf-detail select {
+    width: 26rem !important;
+  }
+
+  .popup_place__body .wrap-golf-info .ip-group input {
+      width: 27rem !important;
+      height: 9rem;
+  }
+
+  .cart_info_pop .cus-form-group textarea {
+      width: 100%;
+      padding: 2rem;
+      height: 10.2rem;
+  }
 
 }
