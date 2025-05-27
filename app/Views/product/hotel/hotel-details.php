@@ -399,13 +399,36 @@
         margin-bottom: 10px;
     }
 
-    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label {
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]+label {
         display: block;
         margin-bottom: 5px;
         font-size: 16px;
         color: #353535;
-        padding-left: 20px;
-        position: relative
+        padding-left: 25px;
+        position: relative;
+        background: url(/images/ico/icon_radio.png) no-repeat left center;
+        background-size: 20px 20px;
+        line-height: 1.4;
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label {
+        background-image: url(/images/ico/icon_radio_selected.png);
+    }
+
+    .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]+label {
+        background: url(/images/mypage/mypage_checkbox.png) no-repeat left center;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+        color: #353535;
+        padding-left: 25px;
+        position: relative;
+        background-size: 20px 20px;
+        line-height: 1.4;
+    }
+
+        .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked + label {
+        background: url(/images/mypage/mypage_checkbox_tick.png) no-repeat left center;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]+label::before {
@@ -419,6 +442,7 @@
         transform: translateY(-50%);
         background-color: #fff;
         border: 1px solid #dbdbdb;
+        display: none;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::before {
@@ -436,6 +460,7 @@
         left: 3px;
         transform: translateY(-50%);
         border-radius: 50%;
+        display: none;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]+label::before {
@@ -449,6 +474,7 @@
         border: 1px solid #0075ff;
         background-color: #fff;
         border-radius: 3px;
+        display: none;
     }
 
     .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]:checked+label::after {
@@ -460,6 +486,7 @@
         font-size: 14px;
         color: #0075ff;
         font-weight: bold;
+        display: none;
     }
 
     .wrap_sec3_title {
@@ -625,6 +652,28 @@
             width: 10.8rem;
             height: 6.5rem;
          }
+
+         .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::before
+        {
+            border: 0.1rem solid #0075ff;
+        }
+
+        .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio label {
+            background-size: 2.4rem 2.4rem !important;
+        }
+
+        .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label {
+            background-image: url(/images/ico/radio_on30x30.png);
+        }
+
+        .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="checkbox"]+label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.24rem;
+            color: #353535;
+            position: relative;
+            background-size: 2.4rem 2.4rem;
+        }
 
     }
 

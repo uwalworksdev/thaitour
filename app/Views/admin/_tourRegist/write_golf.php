@@ -234,8 +234,16 @@
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류<?=$product['product_code_3']?></option>
                                             <?php
-                                            foreach ($caterory3 as $frow):
-											      echo "xxxxx- ". $frow['code_name'] ."<br>";
+                                            foreach ($category3 as $frow):
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product['product_code_3']) {
                                                     echo "selected";

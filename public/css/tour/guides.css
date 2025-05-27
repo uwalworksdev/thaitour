@@ -278,7 +278,8 @@
     .guide-employee-page .pic-item {
         height: 100%;
         padding: 3.4rem;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 2rem;
     }
     
     .guide-employee-page .list-pic.full_ {
@@ -397,8 +398,12 @@
     }
 
     .guide-employee-page .pic-item .pic-con {
-        width: 24rem;
+        width: 31%;
         height: 24rem;
         border-radius: 2rem;
+    }
+
+    .guide-employee-page .pic-item .right-text-des {
+        width: 68%  ;
     }
 }
