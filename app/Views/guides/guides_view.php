@@ -204,7 +204,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div style="line-height: 50px; margin-left: 10px;" class="">일</div>
+                                            <div style="line-height: 50px !important; margin-left: 10px;" class="">일</div>
                                         </td>
                                         <th>가이드 종료일</th>
                                         <td class="checkout">
@@ -924,7 +924,7 @@
             let count_day = $(this).val();
             const o_idx = $(this).attr('data-o_idx');
             let start_day = $('#checkInDate' + o_idx).val();
-
+            count_day = Number(count_day) - 1;
             if (start_day) {
                 let startDate = moment(start_day);
                 let endDate = startDate.add(Number(count_day), 'days');
