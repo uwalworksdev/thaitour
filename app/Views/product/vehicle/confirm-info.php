@@ -1059,7 +1059,7 @@
             url: '/ajax/get_flight',
             type: "GET",
             data: {
-                ca_idx : <?=$ca_idx_5401?>
+                ca_idx : '<?=$ca_idx_5401?>'
             },
             error: function(request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
