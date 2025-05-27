@@ -2400,7 +2400,7 @@
             const price_won_str = Math.round(products[i]["car_price_won"]);
 
             product_list +=
-                `<tr class="product_${products[i]["cp_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-ca_idx="${ca_idx}">
+                `<tr class="product_${products[i]["cp_idx"]}" data-product_idx="${products[i]["product_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-ca_idx="${ca_idx}">
                 <td>
                     <div class="vehicle_image">
                         <div class="img_box img_box_15">

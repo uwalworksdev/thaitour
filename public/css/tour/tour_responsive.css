@@ -1465,6 +1465,7 @@
     width: 100%;
     overflow-x: auto;
     scroll-behavior: hidden;
+    margin-bottom: 5rem;
   }
 
   .content-sub-hotel-detail .section6 .container-head img {
@@ -3314,6 +3315,7 @@
     padding: 2rem;
     box-sizing: border-box;
     margin-bottom: 2rem;
+    margin-top: 2rem;
   }
 
   .custom-golf-detail .custom-main-input-style {
@@ -3742,6 +3744,7 @@
     height: 7.5rem;
     border-radius: 0.4rem;
     border: 0.2rem solid #dbdbdb;
+    min-width: 9rem;
   }
 
   .custom-golf-detail .tag-con-below-calendar .ic_item select {
@@ -4218,7 +4221,7 @@
     font-size: 3.8rem;
     font-weight: 700;
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 
   .travel-tips .sec_05 {
@@ -4259,12 +4262,12 @@
   }
 
   .travel-tips .sec_05 .header_sec {
-    margin-bottom: 14rem;
+    margin-bottom: 8rem;
 
   }
 
   .travel-tips .sec_05 .header_sec .more_link {
-    margin-top: 8rem;
+    margin-top: 0rem;
   }
 
   .travel-tips .sec_06 .swiper-slide {
