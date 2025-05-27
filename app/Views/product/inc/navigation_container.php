@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     // ✅ 3Depth Ajax 요청
     async function getCodeDepth3(code, status) {
-        let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
+        let apiUrl = `<?= route_to('api.hotel_.get_codex') ?>?code=${code}`;
         try {
             let response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -130,7 +130,7 @@ $(document).ready(function () {
         let html = "";
         $("#depth_3_label").text("지역전체");
         html += `<li class="depth_3_item_">
-                    <a href="#">지역전체xxxx</a>
+                    <a href="#">지역전체</a>
                 </li>`;
         let labelWidth = $("#depth_3_label").outerWidth(true);
         $("#depth_3_tool_list_").css("width", Number(labelWidth) + 100);
