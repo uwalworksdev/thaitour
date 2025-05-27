@@ -30,7 +30,7 @@
 
 .flex_header_top .logo_img {
     /* height: 32px; */
-    height: 300px;
+    width: 300px;
 }
 
 .flex_header_top select {
