@@ -131,9 +131,7 @@ $(document).ready(function () {
     function renderDepthCode3(data, parentName) {
         let html = "";
         $("#depth_3_label").text(data[0].code_name);
-        html += `<li class="depth_3_item_">
-                    <a href="#">지역전체</a>
-                </li>`;
+
         let labelWidth = $("#depth_3_label").outerWidth(true);
         $("#depth_3_tool_list_").css("width", Number(labelWidth) + 45);
 
