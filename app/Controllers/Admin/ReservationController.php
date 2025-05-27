@@ -462,6 +462,10 @@ class ReservationController extends BaseController
             'arrays_paging'   => $arrays_paging
         ];
 
+        $data = [
+            'db' => \Config\Database::connect(),
+        ];
+
         return view('admin/_reservation/list', $data);
     }
 

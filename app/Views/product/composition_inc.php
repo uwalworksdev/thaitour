@@ -359,10 +359,10 @@
             <?php
                 if(empty($data_['use_time_line'])){
             ?>
-                if(Number($("#hours").val()) == 0 || Number($("#minutes").val()) == 0) {
-                    alert("시간을 선택해줘!");
-                    return false;
-                }
+                // if(Number($("#hours").val()) == 0 || Number($("#minutes").val()) == 0) {
+                //     alert("시간을 선택해줘!");
+                //     return false;
+                // }
             <?php
                 }
             ?>
