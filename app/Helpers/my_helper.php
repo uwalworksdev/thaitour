@@ -604,7 +604,7 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '')
     $html = "";
 
     $tabLinks = [
-        1303 => "/product-hotel/list-hotel?s_code_no=" + $parent_code_no + "&search_product_category=" + $code_no,
+        1303 => "/product-hotel/list-hotel?s_code_no=" + $parent_code_no + "&search_product_category=",
         1302 => "/product-golf/list-golf/",
         1301 => "/product-tours/tours-list/",
     ];
