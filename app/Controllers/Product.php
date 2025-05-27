@@ -4079,6 +4079,45 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
         }
     }
 
+    public function vehicleConfirm() {
+        $data['cp_idx'] = $this->request->getVar('cp_idx');
+        $data['product'] = $this->productModel->getProductDetails($data['cp_idx']);
+        $data['code_no'] = $this->request->getVar('code_no');
+        $data['type_code_no'] = $this->request->getVar('type_code_no');
+        $data['text_category_5401'] = $this->request->getVar('text_category_5401');
+        $data['ca_idx_5401'] = $this->request->getVar('ca_idx_5401');
+        $data['text_destination_name'] = $this->request->getVar('text_destination_name');
+        $data['text_departure_name'] = $this->request->getVar('text_departure_name');
+        $data['category_text_list'] = $this->request->getVar('category_text_list');
+
+        $data['product_cnt'] = $this->request->getVar('product_cnt');
+        
+        $data['ca_depth_idx'] = $this->request->getVar('ca_depth_idx');
+        $data['departure_area'] = $this->request->getVar('departure_area');
+        $data['destination_area'] = $this->request->getVar('destination_area');
+        $data['meeting_date'] = $this->request->getVar('meeting_date');
+        $data['return_date'] = $this->request->getVar('return_date');
+        $data['adult_cnt'] = $this->request->getVar('adult_cnt');
+        $data['child_cnt'] = $this->request->getVar('child_cnt');
+        $data['inital_price'] = $this->request->getVar('inital_price');
+        $data['order_price'] = $this->request->getVar('order_price');
+        $data['order_status'] = $this->request->getVar('order_status');
+
+        $builder = $this->db->table('tbl_policy_info');
+		$policy = $builder->where('p_idx', 41)
+							->get()->getRowArray();
+        $data['policy'] = $policy;
+
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                            ->orderBy('p_idx', 'asc')
+                            ->get()->getResultArray();    
+
+        $data['reservaion_policy'] = $reservaion_policy;
+
+        return $this->renderView('/product/vehicle/confirm-info', $data);
+    }
+
     public function vehicleOrder()
     {
         try {
