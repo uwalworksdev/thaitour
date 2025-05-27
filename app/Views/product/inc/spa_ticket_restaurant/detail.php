@@ -660,10 +660,10 @@
             <?php
                 if(empty($data_['use_time_line'])){
             ?>
-                if(Number($("#p_hours").val()) == 0 || Number($("#p_minutes").val()) == 0) {
-                    alert("시간을 선택해줘!");
-                    return false;
-                }
+                // if(Number($("#p_hours").val()) == 0) {
+                //     alert("시간을 선택해줘!");
+                //     return false;
+                // }
             <?php
                 }
             ?>
