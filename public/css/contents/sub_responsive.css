@@ -1256,6 +1256,10 @@
     margin-bottom: 0;
   }
 
+  .customer-form-page .container-card .card-left2 .form-group.spe {
+    width: 99% !important;
+  }
+
   .customer-form-page .container-card .card-right {
     width: 66rem;
     height: unset;
@@ -1386,7 +1390,8 @@
   }
 
   .customer-form-page .card-left2 .cus-select-group .email-group input {
-    width: 20rem;
+    width: 21rem;
+    height: 9rem;
   }
 
   .customer-form-page .time-group .form-group-second {
@@ -1882,7 +1887,13 @@
   }
 
   .customer-form-page .cus-select-group input:first-child {
-    width: 27rem;
+    width: 23rem;
+    max-width: 23rem;
+    height: 9rem;
+  }
+
+  .customer-form-page .card-left2 .cus-select-group .email-group select.select-width {
+    width: 31rem;
   }
 
   .reservation-form-cus .w-375 {
@@ -2241,11 +2252,13 @@
 
   .coupon_list .coupon_visual {
     position: relative;
+    width: 100%;
+    height: 20rem;
   }
 
   .coupon_list .coupon_visual .visual_txt {
     position: absolute;
-    top: 8rem;
+    top: 6rem;
     left: 3rem;
   }
 
@@ -2266,6 +2279,7 @@
 
   .coupon_list .coupon_visual img {
     width: 100%;
+    height: 100%;
   }
 
   .coupon_list .coupon_content {
@@ -3569,6 +3583,10 @@
       padding-top: 3.5rem;
   }
 
+  .order-form-page .info-table-order th {
+      width: 13.6rem;
+  }
+
   .order-form-page .info-table-order th, .info-table td {
       padding: 2rem;
       border: 1px solid #ddd;
@@ -3586,11 +3604,12 @@
 
   .order-form-page .info-table-order.info-table-cus-padding td .note {
       margin-top: 0.5rem;
-      font-size: 1.8rem;
+      font-size: 2rem;
   }
 
   .order-form-page .info-table-order .select-time-c {
-    height: 5rem;
+    height: 7rem;
+    font-size: 1.8rem;
   }
 
   .popup_wrap.cart_info_pop .lb-tb-cus {
@@ -3607,12 +3626,12 @@
       background-color: #fff;
       color: #252525;
       margin-top: 3rem;
-      font-size: 2rem;
+      font-size: 2.4rem;
   }
 
   .order-form-page .info-table-order.info-table-cus-padding td input {
       width: 100%;
-      height: 5rem;
+      height: 7rem;
       font-size: 1.8rem;
   }
 
@@ -4225,7 +4244,8 @@
   }
 
   .write_container .btn-wrap .btn {
-    max-width: 27rem;
+    /* max-width: 27rem; */
+    flex: 1;
   }
 
   .view_container .view_content-top .line {
@@ -4287,16 +4307,12 @@
     width: auto;
   }
 
-  .popup_place__body .wrap-golf-info {
+  .cart_info_pop .wrap-golf-info {
     flex-wrap: wrap;
     gap: 4rem;
   }
 
-  .popup_place__body .custom-golf-detail select {
-    width: 26rem !important;
-  }
-
-  .popup_place__body .wrap-golf-info .ip-group input {
+  .cart_info_pop .wrap-golf-info .ip-group input {
       width: 27rem !important;
       height: 9rem;
   }
@@ -4305,6 +4321,11 @@
       width: 100%;
       padding: 2rem;
       height: 10.2rem;
+  }
+
+  .popup_wrap.cart_info_pop .pop_box input
+  {
+    height: 8rem;
   }
 
 }

@@ -1011,7 +1011,7 @@ div , p , ul, li, span {
 }
 select, input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"]
 {
-          height: 5.5rem;
+          height: 9rem;
 }
 
 .section6 .qa-number {
