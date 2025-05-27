@@ -325,7 +325,7 @@ $setting = homeSetInfo();
                     </tr>
                     <tr>
                         <th>대표전화</th>
-                        <td><?= $setting['custom_service_phone_seoul'] ?></td>
+                        <td><?= $setting['custom_service_phone_seoul'] ?>(서울)</td>
                         <th>카카오 채널</th>
                         <td>@더투어랩</td>
                     </tr>
@@ -364,7 +364,7 @@ $setting = homeSetInfo();
                                 <p>일요일/공휴일: <?= $time_data['일요일/공휴일'] ?></p> -->
 
                                 <p>평일 (월~금): 11:00 - 20:00</p>
-                                <p>점심시간 : 14:00 - 20:00</p>
+                                <p>점심시간 : 14:00 - 15:00</p>
                                 <p>토요일 : 11:00 - 15:00</p> 
                                 <p>일요일/공휴일: 휴무</p>
                                 <span>* 더투어랩 본사는 시차로 인해 서울 지사와 차이가 있습니다</span> <br>
