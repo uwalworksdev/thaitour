@@ -21,8 +21,8 @@
                     <col width="10%"/>
                     <col width="10%"/>
                     <col width="10%"/>
-                    <col width="10%"/>
                     <col width="8%"/>
+                    <col width="10%"/>
                     <col width="8%"/>
                 </colgroup>
                 <thead>
@@ -30,9 +30,9 @@
                     <th style="text-align: center">옵션명</th>
                     <th style="text-align: center">최초가격</th>
                     <th style="text-align: center">판매가격</th>
-                    <th style="text-align: center">예약가능여부</th>
                     <th style="text-align: center">총인원</th>
                     <th style="text-align: center">우선순위</th>
+                    <th style="text-align: center">예약가능여부</th>
                     <th style="text-align: center">관리</th>
                 </tr>
                 </thead>

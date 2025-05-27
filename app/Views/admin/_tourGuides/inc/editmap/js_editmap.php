@@ -8,20 +8,20 @@
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
-                                    <col width="10%"/>
                                     <col width="8%"/>
+                                    <col width="10%"/>
                                     <col width="8%"/>
                                 </colgroup>
                                 <tr>
                                     <th style="text-align: center">옵션명</th>
                                     <th style="text-align: center">최초가격</th>
                                     <th style="text-align: center">판매가격</th>
-                                    <th style="text-align: center">예약가능여부</th>
                                     <th style="text-align: center">총인원</th>
                                     <th style="text-align: center">우선순위</th>
+                                    <th style="text-align: center">예약가능여부</th>
                                     <th style="text-align: center">관리</th>
                                 </tr>
-<tr>
+                <tr>
                     <td>
                         <div class='flex_c_c'>
                             <input type='hidden' name='o_idx[]'
@@ -38,10 +38,7 @@
                         <input type='text' class='number' name='o_sale_price[]'
                                value=''>
                     </td>
-                    <td>
-                        <input type='text' class='o_availability' name='o_availability[]'
-                               value=''>
-                    </td>
+
                     <td>
                         <input type='text' class='number' name='o_people_cnt[]'
                                value=''>
@@ -49,6 +46,12 @@
                     <td>
                         <input type='text' class='number' name='o_onum[]'
                                value=''>
+                    </td>
+                    <td style="text-align: center">
+                        <select name='o_availability[]' id="">
+                            <option value="Y">판매중</option>
+                            <option value="N">판매중지</option>
+                        </select>
                     </td>
                     <td class='tac'>
                         <button style='margin: 0;' type='button' class='btn_02'

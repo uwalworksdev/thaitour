@@ -26,17 +26,17 @@
                                     <col width="10%"/>
                                     <col width="10%"/>
                                     <col width="10%"/>
-                                    <col width="10%"/>
                                     <col width="8%"/>
+                                    <col width="10%"/>
                                     <col width="8%"/>
                                 </colgroup>
                                 <tr>
                                     <th style="text-align: center">옵션명</th>
                                     <th style="text-align: center">최초가격</th>
                                     <th style="text-align: center">판매가격</th>
-                                    <th style="text-align: center">예약가능여부</th>
                                     <th style="text-align: center">총인원</th>
                                     <th style="text-align: center">우선순위</th>
+                                    <th style="text-align: center">예약가능여부</th>
                                     <th style="text-align: center">관리</th>
                                 </tr>
                                 <tr>
@@ -58,11 +58,7 @@
                                                name='o_sale_price[]'
                                                value='<?= $option['o_sale_price'] ?>'>
                                     </td>
-                                    <td>
-                                        <input type='text' class='o_availability'
-                                               name='o_availability[]'
-                                               value='<?= $option['o_availability'] ?>'>
-                                    </td>
+
                                     <td>
                                         <input type='text' class='number'
                                                name='o_people_cnt[]'
@@ -71,6 +67,15 @@
                                     <td>
                                         <input type='text' class='number' name='o_onum[]'
                                                value='<?= $option['onum'] ?>'>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <select name='o_availability[]' id="">
+                                            <option value="Y" <?= $option['o_availability'] == 'Y' ? 'selected' : '' ?>>판매중</option>
+                                            <option value="N" <?= $option['o_availability'] == 'N' ? 'selected' : '' ?>>판매중지</option>
+                                        </select>
+                                        <!-- <input type='text' class='o_availability'
+                                               name='o_availability[]'
+                                               value='<?= $option['o_availability'] ?>'> -->
                                     </td>
                                     <td class='tac'>
                                         <button style='margin: 0;' type='button'

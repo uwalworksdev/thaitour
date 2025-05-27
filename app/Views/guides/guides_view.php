@@ -134,6 +134,9 @@
                                 <div class="desc_product">
                                     <div class=""
                                          data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
+                                    <?php
+                                        if(count($option['sup_options']) > 0) {
+                                    ?>
                                     <div class="desc_product_sub">
                                         <p> 옵션포함:</p>
                                         <ul>
@@ -147,8 +150,19 @@
                                             <?php endforeach; ?>
                                         </ul>
                                     </div>
+                                    <?php
+                                        }
+                                    ?>
                                     <div class="desc_product_sub">예약기능여부 : <span
-                                                style="color : #2a459f "><?= $option['o_availability'] ?></span>
+                                                style="color : #2a459f ">
+                                                <?php
+                                                    if($option['o_availability'] == 'Y'){
+                                                        echo '판매중';
+                                                    }else{
+                                                        echo '판매중지';
+                                                    }
+                                                ?>
+                                            </span>
                                     </div>
                                 </div>
 
