@@ -417,7 +417,7 @@ class TourRegistController extends BaseController
 
     public function write_golf_ok($product_idx = null)
     {
-        $data = $this->request->getPost();
+        $data = $this->request->getPost(); 
         //print_r($data); exit;
         $data['mbti']           = $_POST["mbti"] ?? '';
 
@@ -457,6 +457,9 @@ class TourRegistController extends BaseController
 		
 		$files = $this->request->getFiles();
 
+        $product_code_1 = $data['product_code_1'];
+        $product_code_2 = $data['product_code_2'];
+        $product_code_3 = $data['product_code_3'];
         $o_name         = $data['o_name'];
         $o_price1       = $data['o_price1'];
         $o_price2       = $data['o_price2'];
