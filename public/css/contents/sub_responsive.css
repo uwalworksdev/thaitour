@@ -3635,6 +3635,17 @@
       font-size: 1.8rem;
   }
 
+      .order-form-page .info-table-order.info-table-cus-padding td input {
+        width: 100%;
+        height: 7rem;
+        font-size: 2rem;
+    }
+
+    .order-form-page .two-table-tb .lb-tb-cus {
+    margin-bottom: 1.4rem;
+    display: inline-block;
+    font-size: 2.2rem;
+}
   .popup_wrap.place_pop .pop_box {
       padding: 0 3rem !important;
       width: calc(100% - 3rem);
