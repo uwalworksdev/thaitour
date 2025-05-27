@@ -76,7 +76,7 @@
                                     <input type="text" id="order_user_name" name="order_user_name" class="ip_only_ko" required=""
                                            data-label="한국이름" placeholder="한국이름 작성해주세요.">
                                 </div>
-                                <div class="form-group" style="width: 50%">
+                                <div class="form-group spe" style="width: 50%">
                                     <label for="gender1">성별(남성/여성)*</label>
                                     <select name="companion_gender" id="gender1" style="width: 100%" required=""
                                             data-label="성별"
