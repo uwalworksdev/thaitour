@@ -84,7 +84,7 @@
 									|| empty($search_product_category)) {
 									echo "tab_active_";
 								} ?>"
-									data-code="all" data-type="category">지역전체
+									data-idx="0" data-group="category">지역전체
 								</li>
 								<?php
 								foreach ($codes as $code) {
@@ -93,8 +93,8 @@
 									<?php if (strpos($search_product_category, $code["code_no"]) !== false) {
 										echo "tab_active_";
 									} ?>"
-										data-code="<?= $code["code_no"] ?>"
-										data-type="category"><?= $code["code_name"] ?></li>
+										data-idx="<?= $code["code_no"] ?>"
+										data-group="category"><?= $code["code_name"] ?></li>
 									<?php
 								}
 								?>
