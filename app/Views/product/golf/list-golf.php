@@ -20,6 +20,9 @@
                     case 2: $arr = ${"{$filter['filter_name']}"} ?? []; ?>
                     <div class="checkbox-group-golf-category">
                         <form>
+                        <input type="hidden" name="search_product_category" id="search_product_category"
+                            value="<?= $products["search_product_category"] ?>">
+						
                             <div class="form-group tab_box_js <?= count($arr) == 0 ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="0">
                                 <label for="time1">전체</label>
                             </div>
