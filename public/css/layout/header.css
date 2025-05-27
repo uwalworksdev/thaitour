@@ -19,12 +19,16 @@
     border: none !important;
 }
 
+#header_tools .flex_header_top {
+    gap: 70px;
+}
+
 .flex_header_top {
     display: flex;
     padding: 10px 0;
     align-items: center;
     justify-content: space-between;
-    gap: 70px;
+    gap: 20px;
     font-size: 18px;
 }
 
