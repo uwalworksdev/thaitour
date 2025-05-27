@@ -1902,7 +1902,7 @@ class Product extends BaseController
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
         $s_code_no = $code_no;
-			
+		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
         $green_peas = $this->request->getGet('green_peas');
         $sports_days = $this->request->getGet('sports_days');
         $slots = $this->request->getGet('slots');
@@ -1935,6 +1935,7 @@ class Product extends BaseController
             'product_code_1' => 1302,
             'product_code_2' => $code_no,
             'search_product_name' => $search_word,
+			'search_product_category' => $search_product_category,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
@@ -2005,6 +2006,7 @@ class Product extends BaseController
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'codes' => $codes,
+            'search_product_category' => $search_product_category,			
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
             'green_peas' => $green_peas,
