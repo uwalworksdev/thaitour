@@ -53,7 +53,7 @@
         width: 100%;
         text-align: left;
         padding-left: 30px;
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .point_system ._table td {
@@ -152,6 +152,77 @@
         gap: 4px;
         margin-bottom: 8px;
         line-height: 1.4;
+    }
+    @media screen and (max-width: 850px) {
+.point_system .sec_title {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+}
+.point_system .sub_title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 2.4rem;
+}
+.point_system ._table th{
+    background-color: #fafafa;
+    font-size: 2.8rem;
+    font-weight: 700;
+    position: relative;
+}
+.point_system ._table th p{
+    position: absolute;
+    top: 3rem;
+    width: 100%;
+    text-align: left;
+    padding-left: 0.4rem;
+    font-size: 2.6rem;
+}
+.point_system ._table .title_box {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+.point_system ._table .content_box p{
+    font-size: 2.7rem;
+    line-height: 1.4;
+}
+
+.point_system ._table .box_coin {
+    display: flex;
+    flex-direction: column;
+    padding-left: 7.8rem;
+    padding-top: 12.8rem;
+    margin-bottom: 4.6rem;
+    gap: 18rem;
+}
+.point_system ._table .box_coin .coin_item .coin_item_top p._ttl{
+    color: #2a459f;
+    font-size: 2.8rem;
+    font-weight: 800;
+    padding-bottom: 0.8rem;
+    padding-top: 0;
+    border-bottom: 1px solid #dbdbdb;
+}
+.point_system ._table .box_coin .coin_item .coin_item_top p{
+    font-size: 2.5rem;
+    padding-top: 1.4rem;
+}
+.point_system ._table .box_coin .coin_item .coin_item_bot {
+    margin-top: 2rem;
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.point_system .box_desc_detail .desc_title h3 {
+    font-size: 3.4rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+p {
+    font-size: 2.3rem;
+}
     }
 </style>
 

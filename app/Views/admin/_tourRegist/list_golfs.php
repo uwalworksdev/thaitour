@@ -384,11 +384,17 @@
                             foreach ($result as $row) :
                                 ?>
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
+								
+									<?php
+									$row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
+									$_product_code_arr = explode("|", $row['product_code_list']);
+									//$_product_code_arr = array_filter($_product_code_arr);
+									?>
+								
                                     <td><?= $num-- ?></td>
                                     <td class="tac">
                                         <a href="#!"
-                                           onclick="go_write('<?= $row['product_idx'] ?>');"><?= $row["product_code_name_1"] ?>
-                                            / <?= $row["product_code_name_2"] ?></a>
+                                           onclick="go_write('<?= $row['product_idx'] ?>');"><?= get_cate_name($row['product_code_list'])?></a>
                                         <div class="flex_c_c" style="gap: 10px;">
                                             <a href="<?php echo '/product-golf/golf-detail/' . $row['product_idx'] ?>"
                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
