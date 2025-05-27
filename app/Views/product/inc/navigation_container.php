@@ -28,7 +28,7 @@
         </div> -->
     </div>
 
-    <div class="navigation-container-next navigation_depth_02xxxxxxxx">
+    <div class="navigation-container-next navigation_depth_02">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
