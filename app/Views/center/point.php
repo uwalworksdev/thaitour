@@ -176,7 +176,7 @@
     top: 2rem;
     width: 100%;
     text-align: left;
-    padding-left: 2.4rem;
+    padding-left: 3rem;
     font-size: 2.6rem;
 }
 .point_system ._table .title_box {
