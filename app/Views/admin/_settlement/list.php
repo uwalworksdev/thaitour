@@ -20,8 +20,401 @@
                 </div><!-- // inner -->
 
             </header><!-- // headerContainer -->
+            <?php
+                // 전월 판매금액
+                $last_ym = date("Y-m", strtotime("-1 month", time()));
 
-            <div id="contents">
+                $area_1 = " AND SUBSTRING(ZIP,1,2) IN('01','02','03','04','05','06','07','08','09') "; // 서울
+                $area_2 = " AND SUBSTRING(ZIP,1,2) IN('10','11','12','13','14','15','16','17','18','19','20') "; // 경기도
+                $area_3 = " AND SUBSTRING(ZIP,1,2) IN('46','47','48','49') "; // 부산
+                $area_4 = " AND SUBSTRING(ZIP,1,2) IN('21','22','23') "; // 인천
+                $area_5 = " AND SUBSTRING(ZIP,1,2) IN('41','42','43') "; // 대구
+                $area_6 = " AND SUBSTRING(ZIP,1,2) IN('50','51','52','53') "; // 경상도
+                $area_7 = " AND SUBSTRING(ZIP,1,2) IN('27','28','29','31','32','33') "; // 충청도
+                $area_8 = " AND SUBSTRING(ZIP,1,2) IN('54','55','56','57','58','59','61','62') "; // 전라도
+                $area_9 = " AND SUBSTRING(ZIP,1,2) IN('63') "; // 제주도
+
+                $todate         = date('Y-m-d');
+                $curr_yymm      = date('Y-m');
+
+                $currYear       = date('Y');
+                $currMonth      = date('m');
+                $currMonth      = $currMonth - 1;
+                if($currMonth == 0) {
+                $currMonth = "12";
+                $currYear  = $currYear - 1; 
+                }
+                $last_yymm      = $currYear ."-". $currMonth;
+
+                $timestr        = strtotime($todate);
+                $week           = date('w', strtotime($todate));
+                $weekfr         = $timestr - ($week * 86400);
+                $weekla         = $weekfr + (6 * 86400);
+                $prev_frdate    = date('Y-m-d', $weekfr - (86400 * 6)); // 지난주 시작일자
+                $prev_todate    = date('Y-m-d', $weekla - (86400 * 6)); // 지난주 종료일자
+
+                $infoSql        = " SELECT 
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE())) AS TODAY_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CANCLE_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY)) AS YESTERDAY_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CANCEL_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))  AS LW_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CANCLE_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm')) AS CM_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CANCLE_COUNT,
+
+                                        (SELECT COUNT(order_IDX)   FROM tbl_order_mst WHERE order_status != 'C'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_COUNT, 
+                                        (SELECT SUM(deposit_price) FROM tbl_order_mst WHERE order_status  = 'G'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_DEPOSIT_PAYMENT, 
+                                        (SELECT SUM(order_price)   FROM tbl_order_mst WHERE order_status  = 'R'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_PAYMENT, 
+
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_SUM,
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_SUM,
+
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_W_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_G_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_R_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_Y_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_C_COUNT
+                                        FROM tbl_order_mst 
+                                    ";
+                // write_log($infoSql);
+                $db = \Config\Database::connect();
+                $infoResult     = $db->query($infoSql);
+                $info           = $infoResult->getRowArray();
+                $info['LAST_MONTH_TOTAL_PAYMENT'] = $info['LAST_MONTH_DEPOSIT_PAYMENT'] + $info['LAST_MONTH_CONFIRM_PAYMENT'];
+                foreach($info AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+                                            
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
+                                            FROM tbl_order_mst a 
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 IN ('1303','1302','1301','1325','1317','1320','1324') ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HOTEL_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1303' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_GOLF_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1302' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TOURS_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1301' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_SPA_COUNT
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1325' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TICKET_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1317' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_RESTAURANT_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1320' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_CARS_COUNT 
+                                            FROM tbl_order_mst a
+                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                            WHERE b.product_code_1 = '1324' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_CONTACT_COUNT 
+                                            FROM tbl_travel_contact 
+                                                    ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_QNA_COUNT 
+                                            FROM tbl_travel_qna 
+                                            WHERE isViewQna = 'N' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_INQUIRY_COUNT 
+                                            FROM tbl_inquiry 
+                                            WHERE isViewInquiry = 'N' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                    ${$key} = number_format($val);
+                }
+
+                $infoSql_1        = " SELECT COUNT(bbs_idx) AS TOTAL_NOTICE_COUNT 
+                    FROM tbl_bbs_list 
+                    WHERE code = 'b2b_notice' ";
+                // write_log($infoSql_1);
+                $infoResult_1     = $db->query($infoSql_1);
+                $info_1           = $infoResult_1->getRowArray();
+                foreach($info_1 AS $key => $val) {
+                ${$key} = number_format($val);
+                }
+            ?>
+                <div id="container" class="main" style="margin-top: 0;margin-left: 0;width: 100%; min-height: calc(87vh - 60px);">
+                    <span id="print_this"><!-- 인쇄영역 시작 //-->
+                    <div class="payment_info_sec main_cont">
+                        <div class="w_80">
+                        <ul class="payment_info_row">
+                            <li>
+                            <strong class="label">금일 매출액 <span>※현재기준</span></strong>
+                            <p class="all_pay"><b><?=$TODAY_CONFIRM_PAYMENT?></b>원</p>
+                            <div class="pay_detail">
+                                <dl>
+                                <dt>예약</dt>
+                                <dd><?=$TODAY_CONFIRM_COUNT?></dd>
+                                </dl>
+                                    <dl>
+                                <dt>결제</dt>
+                                <dd><?=$TODAY_PAYMENT_COUNT?></dd>
+                                </dl>
+                                <dl>
+                                <dt>취소</dt>
+                                <dd><?=$TODAY_CANCLE_COUNT?></dd>
+                                </dl>
+                            </div>
+                            </li>
+                            <li>
+                            <strong class="label">전일 매출액</strong>
+                            <p class="all_pay"><b><?=$YESTERDAY_CONFIRM_PAYMENT?></b>원</p>
+                            <div class="pay_detail">
+                                <dl>
+                                <dt>예약</dt>
+                                <dd><?=$YESTERDAY_CONFIRM_COUNT?></dd>
+                                </dl>
+                                    <dl>
+                                <dt>결제</dt>
+                                <dd><?=$YESTERDAY_PAYMENT_COUNT?></dd>
+                                </dl>
+                                <dl>
+                                <dt>취소</dt>
+                                <dd><?=$YESTERDAY_CANCEL_COUNT?></dd>
+                                </dl>
+                            </div>
+                            </li>
+                            <li>
+                            <strong class="label">전주 매출액</strong>
+                            <p class="all_pay"><b><?=$LW_CONFIRM_PAYMENT?></b>원</p>
+                            <div class="pay_detail">
+                                <dl>
+                                <dt>예약</dt>
+                                <dd><?=$LW_CONFIRM_COUNT?></dd>
+                                </dl>
+                                    <dl>
+                                <dt>결제</dt>
+                                <dd><?=$LW_PAYMENT_COUNT?></dd>
+                                </dl>
+                                <dl>
+                                <dt>취소</dt>
+                                <dd><?=$LW_CANCLE_COUNT?></dd>
+                                </dl>
+                            </div>
+                            </li>
+                            <li>
+                            <strong class="label">당월 매출액</strong>
+                            <p class="all_pay"><b><?=$CM_CONFIRM_PAYMENT?></b>원</p>
+                            <div class="pay_detail">
+                                <dl>
+                                <dt>예약</dt>
+                                <dd><?=$CM_CONFIRM_COUNT?></dd>
+                                </dl>
+                                    <dl>
+                                <dt>결제</dt>
+                                <dd><?=$CM_PAYMENT_COUNT?></dd>
+                                </dl>
+                                <dl>
+                                <dt>취소</dt>
+                                <dd><?=$CM_CANCLE_COUNT?></dd>
+                                </dl>
+                            </div>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="w_20">
+                        <div class="color_cont top">
+                            <div class="left">
+                            <p>전월 판매금액</p>
+                            <span>판매완료</span>
+                            </div>
+                            <div class="right"><b><?=$LAST_MONTH_CONFIRM_COUNT?></b>건</div>
+                        </div>
+                        <div class="color_cont bot">
+                            <div class="left">
+                            <p>전월 결제금액</p>
+                            <span>결제완료</span>
+                            </div>
+                            <div class="right"><b><?=$LAST_MONTH_TOTAL_PAYMENT?></b>원</div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="calculate_sec main_cont">
+                        <div class="w_80">
+                        <div class="graph_cont">
+                            <div>
+                            <div id="chart"></div>
+                        </div>
+                        </div>
+                        </div>
+
+                        <div class="w_20">
+                        <div class="cal_item">
+                            <div class="top">
+                            <p class="sub_ttl">판매상태 <span>최근 1주일 이내</span></p>
+                            <p class="all_pay"><b><?=$W_SALE_SUM?></b>원</p>
+                            </div>
+                            <ul class="bot_list">
+                            <li class="cont_01">
+                                <p><i></i>예약접수</p>
+                                <em><?=$W_SALE_W_COUNT?></em>
+                            </li>
+                            <li class="cont_02">
+                                <p><i></i>선금대기</p>
+                                <em><?=$W_SALE_G_COUNT?></em>
+                            </li>
+                            <li class="cont_03">
+                                <p><i></i>잔금대기</p>
+                                <em><?=$W_SALE_R_COUNT?></em>
+                            </li>
+                            <li class="cont_04">
+                                <p><i></i>결제완료</p>
+                                <em><?=$W_SALE_Y_COUNT?></em>
+                            </li>
+                            <li class="cont_05">
+                                <p><i></i>예약취소</p>
+                                <em><?=$W_SALE_C_COUNT?></em>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+
+                        <!-- // main -->
+                    </span><!-- 인쇄 영역 끝 //-->
+                </div><!-- // container -->
+
+                <?php
+                $now = strtotime("now");
+
+                $start_yy = date('Y', strtotime("-11 months", $now));
+                $start_mm = date('m', strtotime("-11 months", $now));
+
+                $oYM = [];
+                $mCnt = []; 
+                $mTot = [];
+
+                for ($i = 0; $i < 12; $i++) {
+                    $_mm = $start_mm + $i;
+                    $_yy = $start_yy;
+
+                    if ($_mm > 12) { 
+                        $_mm -= 12;
+                        $_yy++;
+                    }
+
+                    $_mm = str_pad($_mm, 2, "0", STR_PAD_LEFT);
+                    $order_ym = $_yy . "-" . $_mm;
+                    $oYM[$i] = $order_ym;
+
+                    $sql = "SELECT COUNT(*) AS cnt, SUM(order_price) AS total_payment 
+                            FROM tbl_order_mst 
+                            WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
+
+                    $result = $db->query($sql);
+                    $row = $result->getRowArray();
+
+                    $mCnt[$i] = (int)$row['cnt'];
+                    $mTot[$i] = (int)$row['total_payment'];
+                }
+                ?>
+
+
+                <div id="contents">
                 <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                         <colgroup>
@@ -244,90 +637,6 @@
 
                         </tbody>
                     </table>
-                <!--/form>
-
-                <form name="search" id="search">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
-                        <colgroup>
-                            <col width="100">
-                            <col width="*">
-                            <col width="100">
-                            <col width="*">
-                        </colgroup>
-
-                        <tbody>
-							
-                            <tr>
-                                <td style="font-weight: bold;">상품명</td>
-                                <td>
-                                   <input type="text" name="product_name" value="" placeholder="상품명">
-                                </td>
-                                <td style="font-weight: bold;">결제수단</td>
-                                <td>
-                                    <select name="payment_chker" class="state_chker" style="width: 100%;">
-                                        <option value="">결제수단 전체</option>
-                                        <?php
-                                            foreach ($_pg_Method as $key => $value) {
-                                        ?>
-                                            <option value="<?= $key ?>"><?= $value ?></option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: bold;">검색기간</td>
-                                <td class="inbox">
-                                    <div style="display: flex; gap: 5px;">
-                                        <select name="date_chker" id="date_chker" class="select_02">
-                                            <option value="order_r_date" <?php if ($date_chker == "order_r_date") echo "selected"; ?> >
-                                                예약일
-                                            </option>
-                                            <option value="deposit_date" <?php if ($date_chker == "deposit_date") echo "selected"; ?> >
-                                                선금결제일
-                                            </option>
-                                            <option value="confirm_date" <?php if ($date_chker == "confirm_date") echo "selected"; ?> >
-                                                잔금결제일
-                                            </option>
-                                            <option value="order_c_date" <?php if ($date_chker == "order_c_date") echo "selected"; ?> >
-                                                취소일
-                                            </option>
-                                        </select>&nbsp;
-                                        <div style="display: flex; gap: 5px; align-items: center;">
-                                            <input type="text" name="s_date" id="s_date" value="<?= $s_date ?>" class="date_form" placeholder="날짜 선택">
-                                            <span>~</span>
-                                            <input type="text" name="e_date" id="e_date" value="<?= $e_date ?>" class="date_form" placeholder="날짜 선택">
-                                        </div>
-
-                                        <div id="time_layer"
-                                            style="display: <?= (trim($s_time) == "" && trim($e_time) == "" ? "none" : "flex") ?>; align-items: center; gap: 5px;">
-                                            <select id="s_time" name="s_time">
-                                                <option value="">선택</option>
-                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
-                                                    <option value="<?= $t ?>" <?= ((int)($s_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
-                                                <?php } ?>
-                                            </select> ~
-                                            <select id="e_time" name="e_time">
-                                                <option value="">선택</option>
-                                                <?php for ($t = 1; $t <= 23; $t++) { ?>
-                                                    <option value="<?= $t ?>" <?= ((int)($e_time) == $t ? "selected" : "") ?> ><?= ((int)($t) < 10 ? "0" . (int)($t) : (int)($t)) ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </td>
-                                <td style="font-weight: bold;">검색어</td>
-                                <td class="inbox">
-                                    <div class="r_box">
-                                        <span>입점업체 미사용</span>
-                                        <a href="#" style="color: #48A1E5; text-decoration: underline;  text-underline-offset: 3px;">신청하기</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table-->
 
                     <div style="display: flex; align-items: center; justify-content: center;">
                         <a href="javascript:search_it()" class="btn btn-default">
@@ -370,7 +679,6 @@
                 </form>
 
                 <script>
-                    // 엑셀 다운(상품예약)
                     // function get_excel() {
                     //     var frm = document.search;
                     //     frm.action = "./excel_down.php";
@@ -514,7 +822,6 @@
                     }
                 </script>
 
-
                     <form name="frm" id="frm" method="GET">
                         <div class="listTop" style="display: flex; justify-content: space-between; align-items: center;">
                             <div class="left">
@@ -575,56 +882,56 @@
                                     </tr>
                                     <?php
                                 }
-                                foreach ($result as $row) {
+                                foreach ($result_new as $row_new) {
 									
-										 if (str_starts_with($row['user_id'], 'naver_')) {
-											 $user_id = "naver_". substr($row['user_id'], 6, 10); // 6은 'naver_' 길이
+										 if (str_starts_with($row_new['user_id'], 'naver_')) {
+											 $user_id = "naver_". substr($row_new['user_id'], 6, 10); // 6은 'naver_' 길이
 										 } else	{ 
-											 $user_id = $row['user_id'];
+											 $user_id = $row_new['user_id'];
 										 }
 									
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["group_no"] ?>
+                                            <?= $row_new["group_no"] ?>
                                         </td>
                                         <td class="tac">
-                                            <?= $row["order_no"] ?>
+                                            <?= $row_new["order_no"] ?>
                                         </td>
 										<!--td class="tac">
                                            
-                                            <?php if ($row['device_type'] == 'P') { ?>
+                                            <?php if ($row_new['device_type'] == 'P') { ?>
                                                 <span>(PC)</span>
                                             <?php }
-                                            if ($row['device_type'] == 'M') { ?>
+                                            if ($row_new['device_type'] == 'M') { ?>
                                                 <span>(Mobile)</span>
                                             <?php } ?>
                                         </td-->
                                         <td class="tac">
-                                            <?php if ($row["is_modify"] == "Y") { ?>
+                                            <?php if ($row_new["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
                                             <?php } else { ?>
-                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
+                                                <font color="blue"><?= $_deli_type[$row_new["order_status"]] ?></font>
                                             <?php } ?>
                                             
                                         </td>
 										 <td class="tac">
-                                            <?= $_isDelete ?>(<?= $row['code_name'] ?>)
+                                            <?= $_isDelete ?>(<?= $row_new['code_name'] ?>)
                                         </td>
                                         <td class="tal"><a
-                                                    href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
-                                                <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
-                                        <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row["user_name"] ?><br><?= $user_id ?></td>
-                                        <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
-                                        <td class="tac"><?=number_format($row["real_price_won"])?></td>
-                                        <td class="tac"><?=number_format($row["real_price_bath"])?></td>
+                                                    href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row_new['order_idx'] ?>"><?= viewSQ($row_new["product_name_new"]) ?>
+                                                <?= $row_new["tours_subject"] ? "/ " . $row_new["tours_subject"] : "" ?></a></td>
+                                        <td class="tac"><?= $row_new["order_r_date"] ?></td>
+                                        <td class="tac"><?= $row_new["user_name"] ?><br><?= $user_id ?></td>
+                                        <td class="tac"><?= $row_new["user_mobile"] ?><br><?= $row_new["user_email"] ?></td>
+                                        <td class="tac"><?=number_format($row_new["real_price_won"])?></td>
+                                        <td class="tac"><?=number_format($row_new["real_price_bath"])?></td>
                                         <td class="tac">카드결제</td>
                                         <td>
-                                            <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row_new['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
-                                            <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
+                                            <a href="javascript:del_it('<?= $row_new['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>
                                         </td>
                                     </tr>
@@ -711,6 +1018,208 @@
         function submitForm() {
             document.getElementById("frm").submit();
         }
+    </script>
+
+    <script src="/js/admin/apexcharts.js"></script>
+    <script>
+        
+
+    // 차트에 넣을 기간
+    let chart_caption = "";
+    let today = new Date();
+    var oneYearAgo = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate());
+    var oneYearAgoFormatted = oneYearAgo.getFullYear() + '.' + (oneYearAgo.getMonth() + 1).toString().padStart(2, '0');
+    var nowFormatted = today.getFullYear() + '.' + (today.getMonth() + 1).toString().padStart(2, '0');
+    chart_caption = oneYearAgoFormatted + "~" + nowFormatted;
+    chart_caption = '<?=$oYM[0]?>' + "~" + '<?=$oYM[11]?>';
+
+    
+    // 차트 날짜 부분 구하기
+    let chart_x = [];
+
+    // 차트에 들어갈 월별 매출 배열
+    let chart_price = [];
+
+    // 차트에 들어갈 월별 건수 배열
+    let chart_cnt = [];
+
+
+
+        var options = {
+                series: [{
+                    name: '매출내역',
+                    type: 'column',
+                    data: ['<?=$mTot[0]?>',
+                        '<?=$mTot[1]?>',
+                        '<?=$mTot[2]?>',
+                        '<?=$mTot[3]?>',
+                        '<?=$mTot[4]?>',
+                        '<?=$mTot[5]?>',
+                        '<?=$mTot[6]?>',
+                        '<?=$mTot[7]?>',
+                        '<?=$mTot[8]?>',
+                        '<?=$mTot[9]?>',
+                        '<?=$mTot[10]?>',
+                        '<?=$mTot[11]?>']
+                    //data: chart_price
+                }, {
+                    name: '매출건수',
+                    type: 'line',
+                    data: ['<?=$mCnt[0]?>',
+                        '<?=$mCnt[1]?>',
+                        '<?=$mCnt[2]?>',
+                        '<?=$mCnt[3]?>',
+                        '<?=$mCnt[4]?>',
+                        '<?=$mCnt[5]?>',
+                        '<?=$mCnt[6]?>',
+                        '<?=$mCnt[7]?>',
+                        '<?=$mCnt[8]?>',
+                        '<?=$mCnt[9]?>',
+                        '<?=$mCnt[10]?>',
+                        '<?=$mCnt[11]?>']                    //data: chart_cnt
+                }],
+                colors : ['#3a82f8', '#ff2c27'],
+                chart: {
+                    height: 460,
+                    type: 'line',
+                    stacked: false,
+                },
+                stroke: {
+                    width: [0, 4],
+                    curve: 'straight',
+                    colors: ['#3a82f8', '#ff2c27'],
+        
+                },
+                plotOptions: {
+                    bar: {
+                    borderRadius:12 ,
+                    columnWidth: '30%'
+                    }
+                },
+            
+                dataLabels: {
+                    style: {
+                    colors: ['#3a82f8', '#ff2c27']
+                    }
+                },
+        
+                fill: {
+                    opacity: [0.85, 0.25, 1],
+                    colors: ['#3a82f8', '#ff2c27'],
+                    
+                    gradient: {
+                    inverseColors: false,
+                    shade: 'light',
+                    type: "vertical",
+                    opacityFrom: 0.85,
+                    opacityTo: 0.55,
+                    stops: [0, 100, 100, 100]
+                    }
+                },
+                labels: chart_x,
+            
+                markers: {
+                    size: 4,
+                    colors: ["#ff2c27"],
+                    showNullDataPoints: true,
+                    hover: {
+                        size: undefined,
+                        sizeOffset: 3
+                    }
+        
+                },
+                xaxis: {
+                    type: 'category',
+                    labels: {
+                        datetimeFormatter: {
+                        year: 'yyyy',
+                        month: 'yyyy \'MM'
+                        }
+                    },
+                },
+                yaxis: [
+                    {
+                        title: {
+                        },
+                        labels: {
+                            formatter: function(value) {
+                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            },
+                        },
+                    },
+                    {
+                    opposite: true,
+                        title: {
+                        },
+                        labels: {
+                            formatter: function(value) {
+                            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            },
+                        },
+                    }
+                ],
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                    y: {
+
+                        /*
+                        formatter: function (y) {
+                            
+                            if (typeof y !== "undefined") {
+                                return y.toFixed(0) + " 원";
+                            }
+
+                            return y;
+                    
+                        }
+                        */
+                        formatter: function(value, { series, seriesIndex, dataPointIndex, w }) {
+                            //return value
+                            if(seriesIndex === 0){
+                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 원";
+                            }else{
+                                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " 건";
+                            }
+                            
+                        }
+                    }
+                },
+                subtitle: {
+                    text: "월별 매출액 : 최근 12개월 ("+chart_caption+")",
+                    align: 'left',
+                    margin: 10,
+                    offsetX: 0,
+                    offsetY: 0,
+                    floating: false,
+                    style: {
+                    fontSize:  '18px',
+                    fontWeight:  '500',
+                    fontFamily: 'Spoqa Han Sans Neo',
+                    color:  '#252525'
+                    },
+                },
+                toolbar: {
+                    show: false,
+                    tools: {
+                        download: false,
+                        selection: false,
+                        zoom: false,
+                        zoomin: false,
+                        zoomout: false,
+                        pan: false,
+                        reset: false,
+                        customIcons: []
+                    },
+
+                }
+        
+            };
+
+
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
     </script>
 
 <?= $this->endSection() ?>

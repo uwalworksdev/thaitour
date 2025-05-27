@@ -33,11 +33,11 @@
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
         
-        <span class="font-bold" id="depth_3_label">지역전체</span>
+        <span class="font-bold" id="depth_3_label"><?=$code_first_name?></span>
         
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-                <?php echo getHeaderTabSubChild2($parent_code, $code_no); ?>
+                <?php echo getHeaderTabSubChild2($parent_code, $code_no, $child_code_first); ?>
             </ul>
         </div>
     </div>

@@ -73,7 +73,7 @@
     ?>
     <div id="header_tools">
         <div class="inner flex_header_top">
-            <div class="flex_header_top">
+            <div class="flex_header_top spe_new">
                 <a href="/"><img class="logo_img" src="/uploads/setting/<?= $setting['logos']?>" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container" id="main-search-container">

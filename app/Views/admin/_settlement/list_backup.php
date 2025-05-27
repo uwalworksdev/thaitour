@@ -7,7 +7,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>예약내역</h2>
+                    <h2>정산관리</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
@@ -117,7 +117,7 @@
                                 <?php } ?>
                             </td>
                         </tr>
-                        <tr>
+                        <!--tr>
                             <td class="label">예약상품상태</td>
                             <td class="inbox">
                                 <?php
@@ -132,8 +132,8 @@
                                 <!--p><input name="isDelete" class="state_chker" type="checkbox"
                                           value="Y" <?php if ($isDelete == "Y") echo "checked"; ?>> 예약자삭제&nbsp;&nbsp;
                                 </p-->
-                            </td>
-                        </tr>
+                            <!--/td>
+                        </tr-->
                         <tr>
                             <td class="label">기간검색</td>
                             <td class="inbox">
@@ -227,9 +227,9 @@
                                     <input type="text" id="" name="search_name" value="<?= $search_name ?>"
                                            class="input_txt placeHolder" rel="검색어 입력" style="width:240px"/>
 
-                                    <!--a href="javascript:search_it()" class="btn btn-default"><span
+                                    <a href="javascript:search_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-search"></span> <span
-                                                class="txt">검색하기</span></a-->
+                                                class="txt">검색하기</span></a>
                                 </div>
                             </td>
                         </tr>
@@ -256,6 +256,7 @@
                         </colgroup>
 
                         <tbody>
+							
                             <tr>
                                 <td style="font-weight: bold;">상품명</td>
                                 <td>
@@ -334,251 +335,27 @@
                             <span class="txt">검색하기</span>
                         </a>
                     </div>
-                    <?php
-                    $db = \Config\Database::connect();
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
-	                             FROM tbl_order_mst a 
-	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-							     WHERE b.product_code_1 IN ('1303','1302','1301','1325','1317','1320','1324') ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
 
-                                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HOTEL_COUNT 
-	                             FROM tbl_order_mst a
-	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-								 WHERE b.product_code_1 = '1303' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_GOLF_COUNT 
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1302' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TOURS_COUNT 
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1301' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_SPA_COUNT
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1325' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TICKET_COUNT 
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1317' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_RESTAURANT_COUNT 
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1320' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_CARS_COUNT 
-                                                        FROM tbl_order_mst a
-                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                                        WHERE b.product_code_1 = '1324' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_CONTACT_COUNT 
-                                                        FROM tbl_travel_contact 
-                                                                ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_QNA_COUNT 
-                                                        FROM tbl_travel_qna 
-                                                        WHERE isViewQna = 'N' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_INQUIRY_COUNT 
-                                                        FROM tbl_inquiry 
-                                                        WHERE isViewInquiry = 'N' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                                ${$keys} = number_format($vals);
-                            }
-
-                            $infoSql_1        = " SELECT COUNT(bbs_idx) AS TOTAL_NOTICE_COUNT 
-                                FROM tbl_bbs_list 
-                                WHERE code = 'b2b_notice' ";
-                            // write_log($infoSql_1);
-                            $infoResult_1     = $db->query($infoSql_1);
-                            $info_1           = $infoResult_1->getRowArray();
-                            foreach($info_1 AS $keys => $vals) {
-                            ${$keys} = number_format($vals);
-                            }
-                    ?>
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
-                    <div class="management_info">
-                        <strong class="ico_ttl"><i></i>상품판매(<?=$TOTAL_PRODUCT_COUNT?>)</strong>
-                        <ul class="management_list">
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1303">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1302">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1301">투어<span><?=$TOTAL_TOURS_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1325">스파<span><?=$TOTAL_SPA_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1317">쇼ㆍ입장권<span><?=$TOTAL_TICKET_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1320">레스토랑<span><?=$TOTAL_RESTAURANT_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1324">차량 . 가이드<span><?=$TOTAL_CARS_COUNT?></span></a>
-                        </li>
-                        </ul>
-                    </div>
-                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
-                    <div class="management_info">
-                        <strong class="ico_ttl"><i></i>문의 게시판(<span style="color: red;"><? echo $TOTAL_CONTACT_COUNT + $TOTAL_NOTICE_COUNT + $TOTAL_INQUIRY_COUNT?></span>)</strong>
-                        <ul class="management_list">
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_qna/list">1:1 여행상담<span><?=$TOTAL_INQUIRY_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_contact/list">고객의 소리<span><?=$TOTAL_CONTACT_COUNT?></span></a>
-                        </li>
-                        <li>
-                            <a class="link_go" href="/AdmMaster/_bbs/board_list?code=b2b_notice">공지사항<span><?=$TOTAL_NOTICE_COUNT?></span></a>
-                        </li>
-                        </ul>
-                    </div>
-                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
-                    <?php 
-					   $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
-                       foreach ($fresult4 as $row4) {
-						        if($row4['status_group'] == "예약접수") $tot_price1 = $row4['total_amount'];	
-						        if($row4['status_group'] == "예약확인") $tot_price2 = $row4['total_amount'];	
-						        if($row4['status_group'] == "결제완료") $tot_price3 = $row4['total_amount'];	
-						        if($row4['status_group'] == "예약확정") $tot_price4 = $row4['total_amount'];	
-						        if($row4['status_group'] == "예약취소") $tot_price5 = $row4['total_amount'];	
-						        if($row4['status_group'] == "예약불가") $tot_price6 = $row4['total_amount'];	
-						        if($row4['status_group'] == "이용완료") $tot_price7 = $row4['total_amount'];	
-					   }
-					?>   
 
                     <div class="settlement_wrap">
-                        <h4>전체 예약내역 통계 <span style="margin-left: 30px; font-size: 13px; color: #c6bebe;">최근 1주일 이내</span></h4>
-                        <div class="table_accounts new">
+                        <h4>전체 정산대기 통계</h4>
+                        <div class="table_accounts">
                             <dl>
-                                <dt>
-                                    <i class="img01"></i>
-                                    <p>예약접수</p>
-                                </dt>
-                                <dd style="color: #ff7f27;"><?=number_format($tot_price1)?>원</dd>
+                                <dt>판매금액</dt>
+                                <dd><?=number_format($fresult4['price_tot'])?>원</dd>
                             </dl>
                             <dl>
-                                <dt>
-                                    <i class="img02"></i>
-                                    <p>예약확인</p>
-                                </dt>
-                                <dd style="color: #1eb1cf;"><?=number_format($tot_price2)?>원</dd>
+                                <dt>지출금액</dt>
+                                <dd class="t_green"><?=number_format($fresult4['exp_amt'])?>원</dd>
                             </dl>
                             <dl>
-                                <dt>
-                                    <i class="img03"></i>
-                                    <p>
-                                        결제완료
-                                    </p>
-                                </dt>
-                                <dd style="color: #22b14c;"><?=number_format($tot_price3)?>원</dd>
+                                <dt>총수익</dt>
+                                <dd class="t_orange"><?=number_format($fresult4['price_tot'] - $fresult4['exp_amt'])?>원</dd>
                             </dl>
                             <dl>
-                                <dt>
-                                    <i class="img04"></i>
-                                    <p>
-                                        예약확정
-                                    </p>
-                                </dt>
-                                <dd style="color: #0000ff;"><?=number_format($tot_price4)?>원</dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <i class="img05"></i>
-                                    <p>
-                                        예약취소
-                                    </p>
-                                </dt>
-                                <dd style="color: #ff0000;"><?=number_format($tot_price5)?>원</dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <i class="img03"></i>
-                                    <p>
-                                        예약불가
-                                    </p>
-                                </dt>
-                                <dd style="color: #ff0000;"><?=number_format($tot_price6)?>원</dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <i class="img04"></i>
-                                    <p>이용완료</p>
-                                </dt>
-                                <dd style="color: #804040;"><?=number_format($tot_price7)?>원</dd>
+                                <dt>판매갯수</dt>
+                                <dd class="t_sky"><?=$fresult4['order_cnt']?>건</dd>
                             </dl>
                         </div>
                     </div>
@@ -759,7 +536,7 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="60px"/>
-                                    <col width="130px"/>
+                                    <col width="140px"/>
 									<col width="140px"/>
                                     <col width="100px"/>
 									<col width="100px"/>
@@ -798,10 +575,6 @@
                                     </tr>
                                     <?php
                                 }
-									
-								$_deli_type = get_payment_type(); 	
-								$_color_deli_type = get_color_payment_type(); 	
-
                                 foreach ($result as $row) {
 									
 										 if (str_starts_with($row['user_id'], 'naver_')) {
@@ -832,11 +605,7 @@
                                             <?php if ($row["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
                                             <?php } else { ?>
-                                                <?php
-                                                    if($row["order_status"] == "")    
-                                                ?>
-
-                                                <font color="<?= $_color_deli_type[$row["order_status"]]?>"><?= $_deli_type[$row["order_status"]] ?></font>
+                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
                                             <?php } ?>
                                             
                                         </td>
@@ -844,16 +613,16 @@
                                             <?= $_isDelete ?>(<?= $row['code_name'] ?>)
                                         </td>
                                         <td class="tal"><a
-                                                    href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+                                                    href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 <?= $row["tours_subject"] ? "/ " . $row["tours_subject"] : "" ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row["user_name"] ?><br><?= $user_id ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?><br><?= $row["user_email"] ?></td>
                                         <td class="tac"><?=number_format($row["real_price_won"])?></td>
                                         <td class="tac"><?=number_format($row["real_price_bath"])?></td>
-                                        <td class="tac"></td>
+                                        <td class="tac">카드결제</td>
                                         <td>
-                                            <a href="/AdmMaster/_reservation/write/<?=$row['order_gubun']?>?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>
@@ -868,7 +637,7 @@
                         </div><!-- // listBottom -->
                     </form>
  
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_settlement/list') . "?product_code_1=$product_code_1&s_status=$s_status&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=" . $arrays_paging) ?>
  
 
                     <div id="headerContainer">
