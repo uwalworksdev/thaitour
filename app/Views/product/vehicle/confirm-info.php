@@ -834,7 +834,7 @@
                                 </div>
 
                                 <div class="item-info" style="gap: 10px;">
-                                    <span>성인 <?=$adult_cnt ?? 0?>명,  소아 <?=$child_cnt ?? 0?>명</span>
+                                    <span>성인 <?=!empty($adult_cnt) ? $adult_cnt : 0?>명,  소아 <?=!empty($child_cnt) ? $child_cnt : 0 ?? 0?>명</span>
                                 </div>
                             </div>
                         </div>
