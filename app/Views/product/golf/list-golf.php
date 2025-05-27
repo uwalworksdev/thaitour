@@ -398,7 +398,7 @@
             const types = items.each(function () {
                 const group = $(this).data('group');
                 const idx = $(this).data('idx');
-
+alert(group+' - '+idx);
                 if (!grouped[group]) {
                     grouped[group] = "";
                 }
