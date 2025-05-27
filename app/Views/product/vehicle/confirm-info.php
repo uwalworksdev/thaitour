@@ -114,7 +114,7 @@
 								</div>
 								<div class="form-group">
 									<label for="order_passport_expiry_date">여권만기일 *</label>
-									<input type="text" id="order_passport_expiry_date" class="date_form" name="order_passport_expiry_date"
+									<input type="text" id="order_passport_expiry_date" class="date_form_birth" name="order_passport_expiry_date"
 										   required="" data-label="여권만기일" placeholder="여권만기일" readonly>
 								</div>
 							</div>
@@ -834,7 +834,7 @@
                                 </div>
 
                                 <div class="item-info" style="gap: 10px;">
-                                    <span>성인 <?=$adult_cnt?>명,  소아 <?=$child_cnt?></span>
+                                    <span>성인 <?=$adult_cnt ?? 0?>명,  소아 <?=$child_cnt ?? 0?>명</span>
                                 </div>
                             </div>
                         </div>
@@ -1044,6 +1044,14 @@
             // buttonImageOnly: true,
             minDate: new Date('<?=$meeting_date?>')
         });
+    });
+
+    $(".date_form_birth").datepicker({
+        dateFormat: "yy-mm-dd",
+        showOn: "focus",
+        //showOn: "both",
+        //buttonImage: "/images/ico/date_ico.png",
+        //buttonImageOnly: true
     });
 
     function getFlight() {
