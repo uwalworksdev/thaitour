@@ -744,11 +744,11 @@
             swiper1 = new Swiper(".sub_swiper1", {
                 slidesPerView: 1,
                 spaceBetween: 20,
-                loop: true,
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
+                // loop: true,
+                // autoplay: {
+                //     delay: 2500,
+                //     disableOnInteraction: false,
+                // },
                 navigation: {
                     nextEl: ".sub_tour__slide__paging__next",
                     prevEl: ".sub_tour__slide__paging__prev",

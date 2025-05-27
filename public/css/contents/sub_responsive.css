@@ -3605,7 +3605,8 @@
   }
 
   .order-form-page .info-table-order .select-time-c {
-    height: 5rem;
+    height: 7rem;
+    font-size: 1.8rem;
   }
 
   .popup_wrap.cart_info_pop .lb-tb-cus {
