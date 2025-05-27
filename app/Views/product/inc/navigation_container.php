@@ -130,7 +130,7 @@ $(document).ready(function () {
         let html = "";
         $("#depth_3_label").text("지역전체");
         html += `<li class="depth_3_item_">
-                    <a href="#">지역전체</a>
+                    <a href="#">지역전체xxxx</a>
                 </li>`;
         let labelWidth = $("#depth_3_label").outerWidth(true);
         $("#depth_3_tool_list_").css("width", Number(labelWidth) + 100);
