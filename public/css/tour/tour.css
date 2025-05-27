@@ -672,9 +672,12 @@
 }
 
 .sub-hotel-navigation-container .depth_2_tool_list_,
-.sub-hotel-navigation-container .depth_1_tool_list_,
-.sub-hotel-navigation-container .depth_3_tool_list_ {
+.sub-hotel-navigation-container .depth_1_tool_list_ {
     width: 80px;
+}
+
+.sub-hotel-navigation-container .depth_3_tool_list_ {
+    width: 110px;
 }
 
 .sub-hotel-navigation-container .depth_2_item_,
@@ -684,6 +687,10 @@
     font-size: 16px;
     margin: 5px 0;
     cursor: pointer;
+}
+
+#depth_3_label {
+    margin-left: 30px;
 }
 
 .sub-hotel-navigation-container .depth_2_item_.active_,
