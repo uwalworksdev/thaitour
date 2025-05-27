@@ -999,9 +999,11 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-			$builder = $this->codeModel->getByParentCode($code_no);
-			$codes = $builder->orderBy('code_no', 'ASC')->get()->getResultArray();
-
+$codes = $this->codeModel
+              ->where('parent_code', $code_no)
+              ->orderBy('code_no', 'ASC')
+              ->get()
+              ->getResultArray();
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
@@ -1155,13 +1157,7 @@ class Product extends BaseController
                 $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
             }
 
-
-            $array = explode(',', $search_product_category);
-            $child_code_first = $array[0] ?? "";
-            $code_first_name = $this->codeModel->getCodeName($child_code_first);
-            if($code_first_name == "전체") {
-                $code_first_name = "지역전체";
-            }
+  
             $data = [
                 'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,
@@ -1178,8 +1174,6 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'tab_active' => '1',
                 'product_stay' => $product_stay,
-                'child_code_first' => $child_code_first,
-                'code_first_name' => $code_first_name,
             ];
 
             return $this->renderView('product/hotel/list-hotel', $data);
