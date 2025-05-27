@@ -19,7 +19,7 @@
     border: none !important;
 }
 
-#header_tools .flex_header_top {
+.flex_header_top.spe_new {
     gap: 70px;
 }
 
