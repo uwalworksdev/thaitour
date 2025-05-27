@@ -2435,8 +2435,8 @@
     padding: 0 0;
     border: none;
     margin-bottom: 3.2rem;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    /* overflow-x: scroll;
+    overflow-y: hidden; */
   }
 
   .content-sub-hotel-detail .main {
@@ -2446,6 +2446,9 @@
     font-weight: 500;
     font-size: 2.1rem;
     width: 120rem;
+    overflow-x: scroll;
+    overflow-y: hidden ;
+    width: 100%;
   }
 
   .content-sub-hotel-detail .btn-container.cus-mb {
@@ -3518,6 +3521,7 @@
   .content-sub-hotel-detail .main .nav-item {
     font-size: 3rem;
     position: relative;
+    white-space: nowrap;
   }
 
   .content-sub-hotel-detail .main .nav-item.active::after {

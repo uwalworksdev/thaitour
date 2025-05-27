@@ -4786,7 +4786,7 @@
 
 .travel-tips .content_sec .list_item {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: space-between;
     border-radius: 5px;
