@@ -672,12 +672,9 @@
 }
 
 .sub-hotel-navigation-container .depth_2_tool_list_,
-.sub-hotel-navigation-container .depth_1_tool_list_ {
-    width: 80px;
-}
-
+.sub-hotel-navigation-container .depth_1_tool_list_,
 .sub-hotel-navigation-container .depth_3_tool_list_ {
-    width: 100px;
+    width: 80px;
 }
 
 .sub-hotel-navigation-container .depth_2_item_,
