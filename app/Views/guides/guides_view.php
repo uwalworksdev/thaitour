@@ -142,7 +142,7 @@
                                                 break;
                                             }
                                         }
-                                        if(count($option['sup_options']) > 0 || $hasName) {
+                                        if(count($option['sup_options']) > 0 && $hasName) {
                                     ?>
                                     <div class="desc_product_sub">
                                         <p> 옵션포함:</p>
