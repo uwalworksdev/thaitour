@@ -173,10 +173,10 @@
 }
 .point_system ._table th p{
     position: absolute;
-    top: 3rem;
+    top: 2rem;
     width: 100%;
     text-align: left;
-    padding-left: 0.4rem;
+    padding-left: 2.4rem;
     font-size: 2.6rem;
 }
 .point_system ._table .title_box {
