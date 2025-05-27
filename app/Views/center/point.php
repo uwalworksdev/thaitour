@@ -192,7 +192,7 @@
 .point_system ._table .box_coin {
     display: flex;
     flex-direction: column;
-    padding-left: 1.8rem;
+    padding-left: 7.8rem;
     padding-top: 12.8rem;
     margin-bottom: 4.6rem;
     gap: 18rem;
@@ -222,6 +222,10 @@
 }
 p {
     font-size: 2.3rem;
+}
+.point_system ._table td {
+    padding: 2rem 0 2rem 1.5rem;
+    border-bottom: 1px solid #dbdbdb;
 }
     }
 </style>
