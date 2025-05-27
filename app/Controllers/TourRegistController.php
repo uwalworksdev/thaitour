@@ -391,7 +391,13 @@ class TourRegistController extends BaseController
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
 
         $img_list = $this->productImg->getImg($product_idx);
-
+        
+		$conditions = [
+            "code_gubun"      => 'tour',
+            "parent_code_no"  =>  $product['product_code_2'],
+        ];
+        $category3 = $this->CodeModel->getCodesByConditions($conditions);
+		
         $new_data = [
             'product_idx' => $product_idx,
             'product'     => $product,
@@ -401,7 +407,8 @@ class TourRegistController extends BaseController
             'vehicles'    => $vehicles,
             'filters'     => $filters,
             'mcodes'      => $mcodes,
-            'img_list' => $img_list
+			'category3'   => $category3,
+            'img_list'    => $img_list
         ];
 
         $data = array_merge($data, $new_data);
