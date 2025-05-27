@@ -593,18 +593,16 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
     return $html;
 }
 
-function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '')
+function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $child_code_first = '')
 {
     $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
-    $code_no = $fresult[0]['code_no'];
-
     $html = "";
 
     $tabLinks = [
-        1303 => "/product-hotel/list-hotel?s_code_no=" + $parent_code_no + "&search_product_category=",
+        1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no . "&search_product_category=",
         1302 => "/product-golf/list-golf/",
         1301 => "/product-tours/tours-list/",
     ];
@@ -612,7 +610,7 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '')
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
 
-        $activeClass = ($code_no == $tab_) ? "active_" : "";
+        $activeClass = ($child_code_first == $tab_) ? "active_" : "";
 
         $link = $tabLinks[$s_parent_code_no] . $tab_ ?? "!#";
 

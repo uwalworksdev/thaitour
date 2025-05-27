@@ -135,7 +135,7 @@
                                     <div class=""
                                          data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
                                     <?php
-                                        if(count($option['sup_options']) > 0) {
+                                        if(count($option['sup_options']) > 0 || !empty($option['sup_options'][0]['s_name'])) {
                                     ?>
                                     <div class="desc_product_sub">
                                         <p> 옵션포함:</p>
@@ -153,7 +153,7 @@
                                     <?php
                                         }
                                     ?>
-                                    <div class="desc_product_sub">예약기능여부 : <span
+                                    <!-- <div class="desc_product_sub">예약기능여부 : <span
                                                 style="color : #2a459f ">
                                                 <?php
                                                     if($option['o_availability'] == 'Y'){
@@ -163,7 +163,7 @@
                                                     }
                                                 ?>
                                             </span>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="box_price">

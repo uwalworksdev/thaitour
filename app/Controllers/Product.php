@@ -1153,7 +1153,13 @@ class Product extends BaseController
                 $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
             }
 
-  
+
+            $array = explode(',', $search_product_category);
+            $child_code_first = $array[0] ?? "";
+            $code_first_name = $this->codeModel->getCodeName($child_code_first);
+            if($code_first_name == "전체") {
+                $code_first_name = "지역전체";
+            }
             $data = [
                 'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,
@@ -1170,6 +1176,8 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'tab_active' => '1',
                 'product_stay' => $product_stay,
+                'child_code_first' => $child_code_first,
+                'code_first_name' => $code_first_name,
             ];
 
             return $this->renderView('product/hotel/list-hotel', $data);
