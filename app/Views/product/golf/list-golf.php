@@ -68,6 +68,37 @@
                     </div>
                 <!-- <h1 class="title"><?=$code_info['code_name']?></h1> -->
                 <div class="category-left-list">
+				
+                            <div class="category-left-item">
+                                <div class="subtitle">
+                                    <span>세부지역</span>
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+                                </div>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <li class="tab_box_element_ tab_box_js p--20 border
+                                        <?php if (strpos($products["search_product_category"], "all") !== false
+                                            || empty($products["search_product_category"])) {
+                                            echo "tab_active_";
+                                        } ?>"
+                                            data-code="all" data-type="category">지역전체
+                                        </li>
+                                        <?php
+                                        foreach ($codes as $code) {
+                                            ?>
+                                            <li class="tab_box_element_ tab_box_js p--20 border
+                                            <?php if (strpos($products["search_product_category"], $code["code_no"]) !== false) {
+                                                echo "tab_active_";
+                                            } ?>"
+                                                data-code="<?= $code["code_no"] ?>"
+                                                data-type="category"><?= $code["code_name"] ?></li>
+                                            <?php
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+							
                     <?php foreach ($filters as $key => $filter) {
                         $type = $filter['filter_name'] == "travel_times" ? 2 : 1;
                         getFilterItems($filter, $type, [
