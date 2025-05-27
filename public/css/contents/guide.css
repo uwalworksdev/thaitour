@@ -1,9 +1,22 @@
+.customer-form-page .con-form .form-group select {
+    width: 130px !important;
+}
+
+.day_wrap_sect {
+    border: 1px solid #dbdbdb;
+    padding: 30px;
+}
+
 .item-info-check .view-policy {
     margin-right: 40px;
 }
 
 .item-info-check:hover .view-policy {
     background-color: #fff;
+}
+
+.cart_info_pop .memo {
+    margin-top: 20px;
 }
 
 .tours-detail .container-calendar {

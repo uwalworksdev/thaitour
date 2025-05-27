@@ -281,6 +281,7 @@ class TourGuideController extends BaseController
         $end_timestamp = strtotime($end_day);
 
         $days_difference = ($end_timestamp - $start_timestamp) / (60 * 60 * 24);
+        $days_difference += 1; 
 
         $totalPrice = 0;
 

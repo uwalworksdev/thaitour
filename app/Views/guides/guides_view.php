@@ -3,16 +3,15 @@
 <?php $this->section('content'); ?>
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
-    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/contents/guide.css"/>
+<link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
+<link rel="stylesheet" type="text/css" href="/css/contents/guide.css"/>
+<link rel="stylesheet" href="/css/tour/spa.css">
 
-    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
-    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
-            async defer></script>
-    <style>
-        
-    </style>
+<script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+<script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+        async defer></script>
+
 
     <div class="content-sub-hotel-detail tours-detail">
         <div class="body_inner">
@@ -491,7 +490,10 @@
                         </div>
                     </div>
                     <div class="popup_place__body customer-form-page" style="background-color: unset;">
-                        <div class="form-group cus-form-group">
+                        <div class="form_guide_schedule form_booking_spa_ ">
+                            
+                        </div> 
+                        <div class="form-group cus-form-group memo">
                             <label for="extra-requests">기타요청</label>
                             <textarea id="extra-requests"
                                         placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
@@ -924,6 +926,97 @@
                     }
                 });
             }else {
+                let html = ``;
+                for(let i = 1; i <= Number(people_cnt); i++){
+                    html += `
+                        <div class="day_wrap_sect">
+                            <div class="day_activity_ w_100 d_flex justify_content_between align_items_center">
+                                <h3 class="title-sub-c">
+                                    ${i} 일차 일정을 입력해주세요
+                                </h3>
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu open_"
+                                        alt="arrow_up" style="">
+                            </div>
+                            <div class="form-container show_ mt--30">
+                                <div class="con-form">
+                                    <div class="parent-form-group mb--25">
+                                        <div class="form-group">
+                                            <label for="first-a-name-1">가이드미팅시간</label>
+                                            <div class="d_flex justify_content_between align_items_center gap_10">
+                                                <div class="fl mr5">
+                                                    <select class="selectric"
+                                                            name="guideMeetingHour[]"
+                                                            id="guideMeetingHour${i}">
+                                                        <option value="00" selected="selected">00 AM
+                                                        </option>
+                                                        <option value="01">01 AM</option>
+                                                        <option value="02">02 AM</option>
+                                                        <option value="03">03 AM</option>
+                                                        <option value="04">04 AM</option>
+                                                        <option value="05">05 AM</option>
+                                                        <option value="06">06 AM</option>
+                                                        <option value="07">07 AM</option>
+                                                        <option value="08">08 AM</option>
+                                                        <option value="09">09 AM</option>
+                                                        <option value="10">10 AM</option>
+                                                        <option value="11">11 AM</option>
+                                                        <option value="12">12 PM</option>
+                                                        <option value="13">13 PM</option>
+                                                        <option value="14">14 PM</option>
+                                                        <option value="15">15 PM</option>
+                                                        <option value="16">16 PM</option>
+                                                        <option value="17">17 PM</option>
+                                                        <option value="18">18 PM</option>
+                                                        <option value="19">19 PM</option>
+                                                        <option value="20">20 PM</option>
+                                                        <option value="21">21 PM</option>
+                                                        <option value="22">22 PM</option>
+                                                        <option value="23">23 PM</option>
+                                                    </select>
+                                                </div>
+                                                <span class="p_txt01 mr10">시</span>
+                                                <div class="fl mr5">
+                                                    <select class="selectric"
+                                                            name="guideMeetingMin[]"
+                                                            id="guideMeetingMin${i}">
+                                                        <option value="00" selected="selected">00</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="30">30</option>
+                                                        <option value="40">40</option>
+                                                        <option value="50">50</option>
+                                                    </select>
+                                                </div>
+                                                <span class="p_txt01 mr10">분</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group w_100 mb--25">
+                                        <label for="guideMeetingPlace${i}">미팅 장소</label>
+                                        <input type="text" id="guideMeetingPlace${i}" class="w_100"
+                                                name="guideMeetingPlace[]" style="width: 100%;"
+                                                placeholder="영어로 작성해주세요.">
+                                    </div>
+                                    <div class="form-group w_100 mb--25">
+                                        <label for="guideSchedule${i}">예상일정</label>
+                                        <textarea name="guideSchedule[]"
+                                                    class="w_100" id="guideSchedule${i}"
+                                                    style="padding: 5px; height: 100px"></textarea>
+                                    </div>
+                                    <div class="form-group w_100 mb--25">
+                                        <label for="requestMemo${i}">기타 요청</label>
+                                        <textarea class="w_100" name="requestMemo[]"
+                                                    style="padding: 5px; height: 100px"
+                                                    id="requestMemo${i}"
+                                                    placeholder=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                $(".form_guide_schedule").html(html);
                 $(".cart_info_pop").show();
             }
 

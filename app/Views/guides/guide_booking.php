@@ -179,7 +179,7 @@
 
                             <?php for ($i = 0; $i < $days_difference; $i++) { ?>
                                 <div class="card-left card-left-2" style="">
-                                    <div class="" style="">
+                                    <div>
                                         <div class="day_activity_ w_100 d_flex justify_content_between align_items_center">
                                             <h3 class="title-sub-c">
                                                 <?= $i + 1 ?> 일차 일정을 입력해주세요
