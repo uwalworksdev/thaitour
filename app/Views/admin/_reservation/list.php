@@ -334,7 +334,176 @@
                             <span class="txt">검색하기</span>
                         </a>
                     </div>
+                    <?php
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
+	                             FROM tbl_order_mst a 
+	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+							     WHERE b.product_code_1 IN ('1303','1302','1301','1325','1317','1320','1324') ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
 
+                                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HOTEL_COUNT 
+	                             FROM tbl_order_mst a
+	                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								 WHERE b.product_code_1 = '1303' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_GOLF_COUNT 
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1302' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TOURS_COUNT 
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1301' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_SPA_COUNT
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1325' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TICKET_COUNT 
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1317' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_RESTAURANT_COUNT 
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1320' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_CARS_COUNT 
+                                                        FROM tbl_order_mst a
+                                                        LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                                                        WHERE b.product_code_1 = '1324' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_CONTACT_COUNT 
+                                                        FROM tbl_travel_contact 
+                                                                ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_QNA_COUNT 
+                                                        FROM tbl_travel_qna 
+                                                        WHERE isViewQna = 'N' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_INQUIRY_COUNT 
+                                                        FROM tbl_inquiry 
+                                                        WHERE isViewInquiry = 'N' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                                ${$key} = number_format($val);
+                            }
+
+                            $infoSql_1        = " SELECT COUNT(bbs_idx) AS TOTAL_NOTICE_COUNT 
+                                FROM tbl_bbs_list 
+                                WHERE code = 'b2b_notice' ";
+                            // write_log($infoSql_1);
+                            $infoResult_1     = $db->query($infoSql_1);
+                            $info_1           = $infoResult_1->getRowArray();
+                            foreach($info_1 AS $key => $val) {
+                            ${$key} = number_format($val);
+                            }
+                    ?>
+                    <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
+                    <div class="management_info">
+                        <strong class="ico_ttl"><i></i>상품판매(<?=$TOTAL_PRODUCT_COUNT?>)</strong>
+                        <ul class="management_list">
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1303">호텔<span><?=$TOTAL_HOTEL_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1302">골프<span><?=$TOTAL_GOLF_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1301">투어<span><?=$TOTAL_TOURS_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1325">스파<span><?=$TOTAL_SPA_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1317">쇼ㆍ입장권<span><?=$TOTAL_TICKET_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1320">레스토랑<span><?=$TOTAL_RESTAURANT_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_reservation/list?product_code_1=1324">차량 . 가이드<span><?=$TOTAL_CARS_COUNT?></span></a>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="management_info">
+                        <strong class="ico_ttl"><i></i>문의 게시판(<span style="color: red;"><? echo $TOTAL_CONTACT_COUNT + $TOTAL_NOTICE_COUNT + $TOTAL_INQUIRY_COUNT?></span>)</strong>
+                        <ul class="management_list">
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_qna/list">1:1 여행상담<span><?=$TOTAL_INQUIRY_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_contact/list">고객의 소리<span><?=$TOTAL_CONTACT_COUNT?></span></a>
+                        </li>
+                        <li>
+                            <a class="link_go" href="/AdmMaster/_bbs/board_list?code=b2b_notice">공지사항<span><?=$TOTAL_NOTICE_COUNT?></span></a>
+                        </li>
+                        </ul>
+                    </div>
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
                     <?php 
 					   $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
