@@ -236,7 +236,7 @@
                 ${$key} = number_format($val);
                 }
             ?>
-                <div id="container" class="main" style="margin-top: 0;margin-left: 0;width: 100%;">
+                <div id="container" class="main" style="margin-top: 0;margin-left: 0;width: 100%; min-height: calc(87vh - 60px);">
                     <span id="print_this"><!-- 인쇄영역 시작 //-->
                     <div class="payment_info_sec main_cont">
                         <div class="w_80">
@@ -679,7 +679,6 @@
                 </form>
 
                 <script>
-                    // 엑셀 다운(상품예약)
                     // function get_excel() {
                     //     var frm = document.search;
                     //     frm.action = "./excel_down.php";
@@ -1081,7 +1080,7 @@
                 }],
                 colors : ['#3a82f8', '#ff2c27'],
                 chart: {
-                    height: 390,
+                    height: 460,
                     type: 'line',
                     stacked: false,
                 },
