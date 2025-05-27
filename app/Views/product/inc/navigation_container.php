@@ -28,7 +28,7 @@
         </div> -->
     </div>
 
-    <div class="navigation-container-next">
+    <div class="navigation-container-next navigation_depth_02">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
@@ -83,7 +83,7 @@ $(document).ready(function () {
         window.location.href = href;
     });
 
-    getCodeDepth3('<?=$code_no?>')
+    getCodeDepth3('<?=$code_no?>', 'hide')
 
     // 외부 클릭 시 각 드롭다운 닫기
     $(document).on('click', function (event) {
@@ -110,32 +110,32 @@ $(document).ready(function () {
 
         $('.depth_2_item_').removeClass('active_');
         $(this).addClass('active_');
-
-        getCodeDepth3(code, name);
+        
+        getCodeDepth3(code, 'show');
     });
 
     // ✅ 3Depth Ajax 요청
-    async function getCodeDepth3(code, parentName) {
+    async function getCodeDepth3(code, status) {
         let apiUrl = `<?= route_to('api.hotel_.get_code') ?>?code=${code}`;
         try {
             let response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
             let res = await response.json();
-            renderDepthCode3(res.data.data, parentName);
+            renderDepthCode3(res.data.data, status);
         } catch (error) {
             console.error('Error fetching depth 3 data:', error);
         }
     }
 
-    function renderDepthCode3(data, parentName) {
+    function renderDepthCode3(data, status) {
         let html = "";
         $("#depth_3_label").text("지역전체");
         html += `<li class="depth_3_item_">
                     <a href="#">지역전체</a>
                 </li>`;
         let labelWidth = $("#depth_3_label").outerWidth(true);
-        $("#depth_3_tool_list_").css("width", Number(labelWidth) + 45);
+        $("#depth_3_tool_list_").css("width", Number(labelWidth) + 100);
 
         for (let i = 0; i < data.length; i++) {
             html += `<li class="depth_3_item_" data-code="${data[i].code_no}">
@@ -144,6 +144,12 @@ $(document).ready(function () {
         }
 
         $('#depth_3_tool_list_').html(html);
+        if(status == 'show'){
+            $('#depth_3_tools_').addClass('active_');
+        }else{
+            $('#depth_3_tools_').removeClass('active_');
+        }
+
     }
 
     // ✅ 3Depth 클릭 시 active 표시 + 경로 + 이동
