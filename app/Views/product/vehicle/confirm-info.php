@@ -812,7 +812,7 @@
                     </div>
                     <div class="">
                         <div class="card-right">
-                            <img src="/data/product/<?= $product['ufile1'] ?>" alt="customer-form.png">
+                            <img src="/data/cars/<?= $product['ufile1'] ?>" alt="<?= $product['rfile1'] ?>">
                             <div class="below-right">
                                 <h3 class="title-r"><?= $product['product_name'] ?></h3>
                                 <p class="title-sub-r text-gray">
