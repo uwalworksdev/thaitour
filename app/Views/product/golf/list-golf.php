@@ -40,7 +40,7 @@
 <?php $this->section('content'); ?>
 <div class="content-sub-product-hotel custom-product-golf">
     <div class="body_inner">
-        <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1302, "code_name" => $code_info['code_name'], "code_no" => $code_info['code_no']]); ?>
+        <?php echo view("/cproduct/inc/navigation_container.php", ["parent_code" => 1302, "code_name" => $code_info['code_name'], "code_no" => $code_info['code_no']]); ?>
         <div class="sub-hotel-container">
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
