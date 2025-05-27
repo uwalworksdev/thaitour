@@ -4292,4 +4292,19 @@
     gap: 4rem;
   }
 
+  .popup_place__body .custom-golf-detail select {
+    width: 26rem !important;
+  }
+
+  .popup_place__body .wrap-golf-info .ip-group input {
+      width: 27rem !important;
+      height: 9rem;
+  }
+
+  .cart_info_pop .cus-form-group textarea {
+      width: 100%;
+      padding: 2rem;
+      height: 10.2rem;
+  }
+
 }

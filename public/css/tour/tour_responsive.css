@@ -3829,6 +3829,11 @@
     color: white;
     border-radius: 0.4rem;
     padding: 1.2rem 1.5rem;
+    min-width: 14rem;
+  }
+
+  .content-sub-hotel-detail .book-button:disabled {
+    padding: 1.2rem 1.5rem;
   }
 
   .content-sub-hotel-detail .book-add-cart {
