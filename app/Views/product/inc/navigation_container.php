@@ -38,8 +38,14 @@
     </div>
 </div>
 
+<?php
+   if(substr($code_no, 0,4) == "1303") $code_name = "호텔"; 
+   if(substr($code_no, 0,4) == "1302") $code_name = "골프"; 
+   if(substr($code_no, 0,4) == "1301") $code_name = "투어"; 
+?>
+
 <div class="selected-path">
-    현재 위치: <span id="path_1">호텔</span> > <span id="path_2"></span> > <span id="path_3"></span>
+    현재 위치: <span id="path_1"><?=$code_name?></span> > <span id="path_2"></span> > <span id="path_3"></span>
 </div>
 
 <script>
