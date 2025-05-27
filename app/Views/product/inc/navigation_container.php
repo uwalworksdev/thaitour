@@ -28,7 +28,7 @@
         </div> -->
     </div>
 
-    <div class="navigation-container-next navigation_depth_02">
+    <div class="navigation-container-next navigation_depth_02xxxxxxxx">
         <img class="ball_dot_icon icon_open_depth_02 icon_open_depth_" data-depth="depth_2_tools_"
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
@@ -48,9 +48,9 @@
 </div>
 
 <?php
-   if(substr($code_no, 0,4) == "1303") $code_name = "호텔1"; 
-   if(substr($code_no, 0,4) == "1302") $code_name = "골프2"; 
-   if(substr($code_no, 0,4) == "1301") $code_name = "투어3"; 
+   if(substr($code_no, 0,4) == "1303") $code_name = "호텔"; 
+   if(substr($code_no, 0,4) == "1302") $code_name = "골프"; 
+   if(substr($code_no, 0,4) == "1301") $code_name = "투어"; 
 ?>
 
 <!-- <div class="selected-path">
