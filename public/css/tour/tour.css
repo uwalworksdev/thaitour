@@ -665,6 +665,10 @@
     display: none;
 }
 
+.sub-hotel-navigation-container .depth_3_tools_  {
+    right: -120px;
+}
+
 .sub-hotel-navigation-container .depth_2_tools_.active_,
 .sub-hotel-navigation-container .depth_1_tools_.active_,
 .sub-hotel-navigation-container .depth_3_tools_.active_ {
@@ -692,6 +696,10 @@
 #depth_3_label {
     display: inline-block;
     min-width: 40px;
+}
+
+.navigation_depth_02 {
+    margin-right: 100px !important;
 }
 
 .sub-hotel-navigation-container .depth_2_item_.active_,
