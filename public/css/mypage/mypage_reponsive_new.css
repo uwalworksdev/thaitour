@@ -2203,9 +2203,9 @@
     }
 
     .custom_popup .box_select select {
-        width: 40rem !important;
+        width: 43rem !important;
         height: 8rem;
-        font-size: 2.8rem;
+        font-size: 2.7rem;
     }
 
     .custom_popup .box_select .btn_select {
@@ -2215,7 +2215,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2.8rem;
+        font-size: 2.7rem;
         color: #fff;
         cursor: pointer;
     }
@@ -2232,6 +2232,17 @@
         background-size: 3.5789rem 3.5789rem;
     }
 
+    .group_movement_popup_wrap .list_desc p {
+        font-size: 2.6rem;
+        font-weight: 600;
+        color: #252525;
+    }
+    .custom_popup .sec1 .left .img_stem {
+    position: absolute;
+    top: 68px;
+    right: 5px;
+    width: 40px;
+}
 
 
 }
