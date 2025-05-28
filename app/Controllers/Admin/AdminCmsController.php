@@ -159,21 +159,25 @@ class AdminCmsController extends BaseController
         $p_idx_list         = $_POST['p_idx'] ?? [];
         $policy_types       = $_POST['policy_type'] ?? [];
         $policy_contents    = $_POST['policy_contents'] ?? [];
+        $policy_contents_m   = $_POST['policy_contents_m'] ?? [];
 
         foreach ($policy_types as $i => $policy_type) {
             $p_idx      = updateSQ($p_idx_list[$i]);
             $type       = updateSQ($policy_type ?? '');
             $contents   = updateSQ($policy_contents[$i]);
+            $contents_m = updateSQ($policy_contents_m[$i] ?? '');
 
             if ($p_idx) {
                 $this->policyModel->update($p_idx, [
                     'policy_type' => $type,
-                    'policy_contents' => $contents
+                    'policy_contents' => $contents,
+                    'policy_contents_m' => $contents_m
                 ]);
             } else {
                 $this->policyModel->insert([
                     'policy_type' => $type,
-                    'policy_contents' => $contents
+                    'policy_contents' => $contents,
+                    'policy_contents_m' => $contents_m
                 ]);
             }
         }
