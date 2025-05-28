@@ -10,8 +10,6 @@ use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class SettlementController extends BaseController
 {
@@ -451,95 +449,6 @@ class SettlementController extends BaseController
         ];
 
         return view('admin/_settlement/list', $data);
-    }
-
-    public function get_excel()
-    {
-        $private_key = private_key();
-
-
-        $strSql = " AND a.order_status NOT IN ('B', 'D') ";
-        $_deli_type = get_deli_type();
-        $sql = "SELECT a.product_name AS product_name_new  
-                 , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
-                 , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
-                 , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
-                 , a.*
-                 , d.user_id  
-            FROM tbl_order_mst a 
-            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-            LEFT JOIN tbl_member d      ON a.m_idx = d.m_idx
-            WHERE a.is_modify='N' AND a.order_status = 'Z' $strSql 
-            GROUP BY a.order_idx 
-            ORDER BY group_no DESC, order_r_date DESC, order_idx DESC";
-
-            $result = $this->connect->query($sql)->getResultArray();
-
-            $spreadsheet = new Spreadsheet();
-            $sheet = $spreadsheet->getActiveSheet();
-
-            $headers = [
-                '번호', '그룹번호', '예약번호', '상태', '상품구분', '상품명',
-                '예약일시', '예약자/아이디', '연락처/이메일', '상품금액(원)', '상품금액(바트)', '결제방법'
-            ];
-
-            $colIndex = 'A';
-            foreach ($headers as $header) {
-                $sheet->setCellValue($colIndex . '1', $header);
-                $colIndex++;
-            }
-
-            $rowIndex = 2;
-                foreach ($result as $index => $row) {
-                
-                $sheet->setCellValue("A{$rowIndex}", $index + 1); // 번호
-                $sheet->setCellValueExplicit("B{$rowIndex}", (string)$row['group_no'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-                $sheet->setCellValue("C{$rowIndex}", $row['order_no']); // 예약번호
-                $sheet->setCellValue("D{$rowIndex}", $_deli_type[$row['order_status']]); // 상태
-                $sheet->setCellValue("E{$rowIndex}", $row['code_name']); // 상품구분
-                $sheet->setCellValue("F{$rowIndex}", $row['product_name']); // 상품명
-                $sheet->setCellValue("G{$rowIndex}", $row['order_r_date']); // 예약일시
-                $name = isset($row['user_name']) ? trim($row['user_name']) : '';
-                $id   = isset($row['user_id']) ? trim($row['user_id']) : '';
-
-                if ($name && $id) {
-                    $sheet->setCellValue("H{$rowIndex}", $name . ' / ' . $id);
-                } elseif ($name) {
-                    $sheet->setCellValue("H{$rowIndex}", $name);
-                } elseif ($id) {
-                    $sheet->setCellValue("H{$rowIndex}", $id);
-                } else {
-                    $sheet->setCellValue("H{$rowIndex}", '');
-                }
-
-                // 연락처/이메일
-                $mobile = isset($row['user_mobile']) ? trim($row['user_mobile']) : '';
-                $email  = isset($row['user_email']) ? trim($row['user_email']) : '';
-
-                if ($mobile && $email) {
-                    $sheet->setCellValue("I{$rowIndex}", $mobile . ' / ' . $email);
-                } elseif ($mobile) {
-                    $sheet->setCellValue("I{$rowIndex}", $mobile);
-                } elseif ($email) {
-                    $sheet->setCellValue("I{$rowIndex}", $email);
-                } else {
-                    $sheet->setCellValue("I{$rowIndex}", '');
-                }
-                $sheet->setCellValue("J{$rowIndex}", number_format($row['real_price_won'])); // 상품금액(원)
-                $sheet->setCellValue("K{$rowIndex}", number_format($row['real_price_bath'])); // 상품금액(바트)
-                $sheet->setCellValue("L{$rowIndex}", '카드결제'); // 결제방법
-
-                $rowIndex++;
-            }
-
-            $filename = '예약내역_' . date('Ymd_His') . '.xlsx';
-            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header("Content-Disposition: attachment;filename=\"$filename\"");
-            header('Cache-Control: max-age=0');
-
-            $writer = new Xlsx($spreadsheet);
-            $writer->save('php://output');
-            exit;
     }
 	
     public function write($gubun = null)
