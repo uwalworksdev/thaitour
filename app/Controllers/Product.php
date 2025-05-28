@@ -1163,9 +1163,18 @@ class Product extends BaseController
                 $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
             }
 
-  
-            $data = [
+	        if($search_product_category == "") {
+	           $search_area  = "전체";
+            } else {
+                $sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+                $result      = $this->db->query($sql);
+                $row         = $result->getRowArray();
+				$search_area = $row['code_name'];
+            }   
+
+			$data = [
 				'search_product_category' => $search_product_category,
+				'search_area' => $search_area,
                 'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
