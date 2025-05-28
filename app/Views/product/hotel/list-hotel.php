@@ -86,6 +86,7 @@
                                     </ul>
                                 </div>
                             </div>
+							
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>숙박유형</span>

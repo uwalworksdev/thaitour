@@ -75,17 +75,17 @@ class AdminHotelController extends BaseController
         }
 
         $result   = $this->productModel->findProductPagingAdmin($where, $g_list_rows, $pg, $orderByArr);
-        //write_log("last query- ". $this->connect->getLastQuery());
+        write_log("last query- ". $this->connect->getLastQuery());
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no in ('1303')  and status='Y' order by onum asc, code_idx desc";
+        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no in ('1303')  and status='Y' order by code_no asc";
         $fresult  = $this->connect->query($fsql);
         $fresult  = $fresult->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
+        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by code_no asc";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
+        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by code_no asc";
         $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 

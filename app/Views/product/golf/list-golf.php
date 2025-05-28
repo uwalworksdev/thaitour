@@ -20,6 +20,9 @@
                     case 2: $arr = ${"{$filter['filter_name']}"} ?? []; ?>
                     <div class="checkbox-group-golf-category">
                         <form>
+                        <input type="hidden" name="search_product_category" id="search_product_category"
+                            value="<?= $search_product_category ?>">
+						
                             <div class="form-group tab_box_js <?= count($arr) == 0 ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="0">
                                 <label for="time1">전체</label>
                             </div>
@@ -68,6 +71,37 @@
                     </div>
                 <!-- <h1 class="title"><?=$code_info['code_name']?></h1> -->
                 <div class="category-left-list">
+				
+					<div class="category-left-item">
+						<div class="subtitle">
+							<span>세부지역</span>
+							<img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
+						</div>
+						<div class="tab_box_area_">
+							<ul class="tab_box_show_">
+								<li class="tab_box_element_ tab_box_js p--20 border
+								<?php if (strpos($search_product_category, "all") !== false
+									|| empty($search_product_category)) {
+									echo "tab_active_";
+								} ?>"
+									data-idx="0" data-group="search_product_category">지역전체
+								</li>
+								<?php
+								foreach ($codes as $code) {
+									?>
+									<li class="tab_box_element_ tab_box_js p--20 border
+									<?php if (strpos($search_product_category, $code["code_no"]) !== false) {
+										echo "tab_active_";
+									} ?>"
+										data-idx="<?= $code["code_no"] ?>"
+										data-group="search_product_category"><?= $code["code_name"] ?></li>
+									<?php
+								}
+								?>
+							</ul>
+						</div>
+					</div>
+							
                     <?php foreach ($filters as $key => $filter) {
                         $type = $filter['filter_name'] == "travel_times" ? 2 : 1;
                         getFilterItems($filter, $type, [
@@ -364,7 +398,7 @@
             const types = items.each(function () {
                 const group = $(this).data('group');
                 const idx = $(this).data('idx');
-
+ 
                 if (!grouped[group]) {
                     grouped[group] = "";
                 }
