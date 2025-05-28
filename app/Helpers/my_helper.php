@@ -616,7 +616,7 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
     $link1 = $tabLinks1[$s_parent_code_no] . $tab_ ?? "!#";
 
 	$html .= "<li class='depth_3_item_ $activeClass' data-code='" . $tab_ . "'>";
-	$html .= "<a href='$link1' class=''>전체보기</a>";
+	$html .= "<a href='$link1' class=''>전체</a>";
 	$html .= "</li>";
 
     foreach ($fresult as $frow) {
