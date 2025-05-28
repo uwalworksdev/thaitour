@@ -695,8 +695,16 @@
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                     <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web" onclick="showListShare()">
                     <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                    <div class="list_share">
+                        <a href="#!" class="item kakao" >
+                            <img src="/images/btn/ic_kakao.png" alt="">
+                        </a>
+                        <a href="#!" class="item link_">
+                            <img src="/images/btn/share_link_icon1.png" alt="">
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="location-container">
@@ -3515,5 +3523,11 @@
         });
     }
 
+</script>
+
+<script>
+    function showListShare () {
+        $(".list_share").toggleClass("on");
+    }
 </script>
 <?php $this->endSection(); ?>
