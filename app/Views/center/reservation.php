@@ -14,7 +14,7 @@
                 <?= viewSQ($policy['policy_contents']); ?>
             </div>
 
-            <div class="content_wrap only_mo">
+            <div class="content_wrap spe only_mo">
                 <?= viewSQ($policy['policy_contents_m']); ?>
             </div>
 

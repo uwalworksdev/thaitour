@@ -1165,6 +1165,7 @@ class Product extends BaseController
 
   
             $data = [
+				'search_product_category' => $search_product_category,
                 'baht_thai' => $this->setting['baht_thai'],
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
