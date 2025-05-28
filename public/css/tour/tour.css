@@ -666,7 +666,7 @@
 }
 
 .sub-hotel-navigation-container .depth_3_tools_  {
-    right: -120px;
+    right: -15px;
 }
 
 .sub-hotel-navigation-container .depth_2_tools_.active_,
@@ -681,7 +681,7 @@
 }
 
 .sub-hotel-navigation-container .depth_3_tool_list_ {
-    width: 110px;
+    width: 175px;
 }
 
 .sub-hotel-navigation-container .depth_2_item_,
@@ -695,11 +695,11 @@
 
 #depth_3_label {
     display: inline-block;
-    min-width: 40px;
+    width: 200px;
 }
 
 .navigation_depth_02 {
-    margin-right: 100px !important;
+    margin-right: 0 !important;
 }
 
 .sub-hotel-navigation-container .depth_2_item_.active_,

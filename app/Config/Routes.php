@@ -1051,6 +1051,7 @@ $routes->get('guide/complete-booking', 'TourGuideController::completeBooking');
 $routes->get('guide/get-reviews', 'TourGuideController::getReviews', ['as' => "api.guide.getReviews"]);
 $routes->post('product/guide_booking', 'TourGuideController::processBooking', ['as' => "api.guide.processBooking"]);
 $routes->post('guide/hande-booking', 'TourGuideController::handeBooking', ['as' => "api.guide.handeBooking"]);
+$routes->post('guide/cart-booking', 'TourGuideController::guideCartBooking', ['as' => "api.guide.cartBooking"]);
 
 // Nicepay route
 $routes->get('/payment/request', 'PaymentController::requestPayment');

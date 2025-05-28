@@ -3,6 +3,10 @@
     padding-top: calc(420% / 660 * 100);
   }
 
+  .tour-main-page .img_box_9 {
+    padding-top: 60%;
+  }
+
   .img_box_10 {
     padding-top: calc(284% / 386 * 100);
   }
@@ -102,7 +106,8 @@
   }
 
   .sub_tour_right {
-    margin-top: 5rem;
+    margin-top: 0;
+    width: 68rem;
   }
 
   .sub_swiper1 {
@@ -603,6 +608,7 @@
 
   .tours-detail .calendar-left {
     width: 100%;
+    padding-top: 2rem;
   }
 
   .tours-detail .container-calendar .calendar-right {
@@ -865,6 +871,11 @@
     padding-bottom: 6rem;
   }
 
+  .tours-detail .section2 .sec2-item-card.tour_calendar .time_work {
+      position: absolute;
+      top: 3.5rem; 
+      left: 3rem ;
+  }
 
   .tours-detail .title-sec2 {
     font-size: 2.8rem;
@@ -1273,6 +1284,7 @@
 
   .area_info .child .content {
     font-size: 2.4rem;
+    text-wrap: nowrap;
   }
 
   .content-sub-hotel-detail .section3 .card-item-container {
@@ -1299,6 +1311,14 @@
   .content-sub-hotel-detail .grid2_2_1_m .button-show-detail-image img {
     width: 5.8rem;
 
+  }
+
+  .cart_info_pop .custom-golf-detail select {
+    width: 26rem !important;
+  }
+
+  .custom-golf-detail .price-text.text-gray {
+    text-wrap: nowrap;
   }
 
   .content-sub-hotel-detail .grid2_2_1_sub {
@@ -2899,6 +2919,11 @@
     line-height: 3.3rem;
   }
 
+  .content-custom-table .content-item .description * {
+    line-height: 1.4 !important;
+    font-size: 2.2rem !important;
+  }
+
   .content-custom-table .content-item .label {
     min-width: 20rem;
   }
@@ -3748,7 +3773,7 @@
   }
 
   .custom-golf-detail .tag-con-below-calendar .ic_item select {
-    width: 25rem !important;
+    width: 46rem !important;
   }
 
   .custom-golf-detail .flex-col-mo {
@@ -4231,7 +4256,7 @@
 
   .travel-tips .sec_05 {
     background-color: #f7f7f7;
-    padding-top: 11rem;
+    padding-top: 7rem;
     padding-bottom: 15rem;
   }
 

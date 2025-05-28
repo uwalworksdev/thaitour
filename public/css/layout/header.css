@@ -19,6 +19,10 @@
     border: none !important;
 }
 
+.flex_header_top.spe_new {
+    gap: 70px;
+}
+
 .flex_header_top {
     display: flex;
     padding: 10px 0;
@@ -29,7 +33,9 @@
 }
 
 .flex_header_top .logo_img {
-    height: 32px;
+    /* height: 32px; */
+    width: 300px;
+    padding-left: 15px;
 }
 
 .flex_header_top select {
@@ -363,8 +369,8 @@
     width: 340px;
     background-color: #fff;
     padding: 30px 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: -2%;
+    /* transform: translateX(-50%); */
     display: flex;
     flex-wrap: wrap;
     column-gap: 20px;

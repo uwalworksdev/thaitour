@@ -17,10 +17,7 @@
                         <input type='text' class='number' name='o_sale_price[]'
                                value=''>
                     </td>
-                    <td>
-                        <input type='text' class='o_availability' name='o_availability[]'
-                               value=''>
-                    </td>
+                    
                     <td>
                         <input type='text' class='number' name='o_people_cnt[]'
                                value=''>
@@ -28,6 +25,12 @@
                     <td>
                         <input type='text' class='number' name='o_onum[]'
                                value=''>
+                    </td>
+                    <td style="text-align: center">
+                        <select name='o_availability[]' id="">
+                            <option value="Y">판매중</option>
+                            <option value="N">판매중지</option>
+                        </select>
                     </td>
                     <td class='tac'>
                         <button style='margin: 0;' type='button' class='btn_02'

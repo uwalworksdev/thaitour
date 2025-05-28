@@ -533,7 +533,7 @@ function getHeaderTabMo()
 
 function getHeaderTabSub($code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY onum ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -566,7 +566,7 @@ function getHeaderTabSub($code_no = '')
 
 function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -593,9 +593,38 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
     return $html;
 }
 
+function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $child_code_first = '')
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $html = "";
+
+    $tabLinks = [
+        1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no . "&search_product_category=",
+        1302 => "/product-golf/list-golf/". $parent_code_no . "?search_product_category=",
+        1301 => "/product-tours/tours-list/",
+    ];
+
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $activeClass = ($child_code_first == $tab_) ? "active_" : "";
+
+        $link = $tabLinks[$s_parent_code_no] . $tab_ ?? "!#";
+
+        $html .= "<li class='depth_3_item_ $activeClass' data-code='" . $tab_ . "'>";
+        $html .= "<a href='$link' class=''>" . $frow['code_name'] . "</a>";
+        $html .= "</li>";
+    }
+
+    return $html;
+}
+
 function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
@@ -624,7 +653,7 @@ function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 
 function getHeaderTabMobile()
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY code_no ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 

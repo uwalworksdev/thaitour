@@ -11,7 +11,7 @@
 </style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
-            <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1303, "code_name" => $code_name, "code_no" => $code_no]); ?>
+            <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1303, "code_name" => $code_name, "code_no" => $code_no , "child_code_first" => $child_code_first, "code_first_name" => $code_first_name]); ?>
             <form name="frmSearch" id="frmSearch">
                 <div class="sub-hotel-container">
                     <input type="hidden" name="search_product_category" id="search_product_category"
@@ -86,6 +86,7 @@
                                     </ul>
                                 </div>
                             </div>
+							
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>숙박유형</span>

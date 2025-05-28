@@ -179,7 +179,7 @@ class AdminTourGuideController extends BaseController
                 'product_name', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
                 'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti", "email",
                 'product_info', 'phone', 'product_country', 'product_status', 'onum', 'product_code_list',
-                "special_name", "slogan", "age", "exp", "language", "guide_type",
+                "special_name", "slogan", "age", "exp", "language", "guide_type", "important_notes"
             ];
             $data = [];
             foreach ($fields as $field) {

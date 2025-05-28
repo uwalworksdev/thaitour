@@ -33,11 +33,11 @@
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
         
-        <span class="font-bold" id="depth_3_label">지역전체</span>
+        <span class="font-bold" id="depth_3_label"><?=$code_first_name?></span>
         
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-        
+                <?php echo getHeaderTabSubChild2($parent_code, $code_no, $child_code_first); ?>
             </ul>
         </div>
     </div>
@@ -83,8 +83,6 @@ $(document).ready(function () {
         window.location.href = href;
     });
 
-    getCodeDepth3('<?=$code_no?>', 'hide')
-
     // 외부 클릭 시 각 드롭다운 닫기
     $(document).on('click', function (event) {
         const targets = ['#depth_1_tools_', '#depth_2_tools_', '#depth_3_tools_'];
@@ -102,7 +100,7 @@ $(document).ready(function () {
 
     // ✅ 2Depth 클릭 → 3Depth Ajax 로드
     $(document).on('click', '.depth_2_item_', function (e) {
-        e.preventDefault();
+        e.stopPropagation();
         let code = $(this).data("code");
         let name = $(this).text();
 
@@ -111,7 +109,7 @@ $(document).ready(function () {
         $('.depth_2_item_').removeClass('active_');
         $(this).addClass('active_');
         
-        getCodeDepth3(code, 'show');
+        // getCodeDepth3(code, 'show');
     });
 
     // ✅ 3Depth Ajax 요청
@@ -153,19 +151,19 @@ $(document).ready(function () {
     }
 
     // ✅ 3Depth 클릭 시 active 표시 + 경로 + 이동
-    $(document).on('click', '.depth_3_item_', function () {
-        $('.depth_3_item_').removeClass('active_');
-        $(this).addClass('active_');
+    // $(document).on('click', '.depth_3_item_', function () {
+    //     $('.depth_3_item_').removeClass('active_');
+    //     $(this).addClass('active_');
 
-        let code = $(this).data("code");
-        let name = $(this).text();
-        $('#depth_3_label').text(name);
-        $('#depth_3_tools_').addClass('active_');
+    //     let code = $(this).data("code");
+    //     let name = $(this).text();
+    //     $('#depth_3_label').text(name);
+    //     $('#depth_3_tools_').addClass('active_');
 
-        let href = $(this).find('a').attr('href');
-        if (href && href !== '#') {
-            window.location.href = href + `?depth3=${code}`;
-        }
-    });
+    //     let href = $(this).find('a').attr('href');
+    //     if (href && href !== '#') {
+    //         window.location.href = href + `?depth3=${code}`;
+    //     }
+    // });
 });
 </script>

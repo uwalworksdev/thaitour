@@ -281,6 +281,7 @@ class TourGuideController extends BaseController
         $end_timestamp = strtotime($end_day);
 
         $days_difference = ($end_timestamp - $start_timestamp) / (60 * 60 * 24);
+        $days_difference += 1; 
 
         $totalPrice = 0;
 
@@ -306,6 +307,126 @@ class TourGuideController extends BaseController
         ];
 
         return view('guides/guide_booking', $res);
+    }
+
+    function guideCartBooking()
+    {
+        try {
+ 			$private_key = private_key();
+
+            $session = Services::session();
+            $memberIdx = $session->get('member')['idx'] ?? null;
+
+            if (!$memberIdx) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "로그인해주세요!"
+                ], 400);
+            }
+		    
+			$setting      = homeSetInfo();
+            $baht_thai    = (float)($setting['baht_thai'] ?? 0);
+
+            $postData = $this->request->getPost();
+
+            $productIdx = $postData['product_idx'] ?? null;
+            $orderStatus = $postData['order_status'] ?? 'W';
+            $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
+
+            $phone_1 = updateSQ($this->request->getPost('phone_1') ?? "");
+            $phone_2 = updateSQ($this->request->getPost('phone_2') ?? "");
+            $phone_3 = updateSQ($this->request->getPost('phone_3') ?? "");
+            $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            $payment_user_mobile = encryptField($payment_user_mobile, "encode");
+
+            $phone_thai = updateSQ($this->request->getPost('phone_thai') ?? "");
+            $phone_thai = encryptField($phone_thai, "encode");
+
+            $local_phone = updateSQ($this->request->getPost('local_phone') ?? "");
+            $local_phone = encryptField($local_phone, "encode");
+
+            $order_price = $postData['lastPrice'] ?? $postData['totalPrice'];
+	
+            $real_price_bath   =  (int)($order_price / $baht_thai);
+            $real_price_won    =  $order_price;
+            $order_price_bath  =  (int)($order_price / $baht_thai);
+            
+            $product = $this->productModel->find($productIdx);
+
+            $o_idx = updateSQ($this->request->getPost('option_idx'));
+
+            $option = $this->guideOptionModel->getById($o_idx);
+            $sup_options = $this->guideSupOptionModel->getListByOptionId($o_idx);
+
+            $totalPrice = 0;
+
+            $totalPrice += floatval($option['o_sale_price']);
+
+            foreach ($sup_options as $item) {
+                $totalPrice += floatval($item['s_price']);
+            }
+
+			$orderData = [
+                'order_user_name' => encryptField($postData['order_user_name'] ?? "", 'encode') ?? $postData['order_user_name'],
+                'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'] ?? "", 'encode') ?? $postData['order_user_first_name_en'],
+                'order_user_last_name_en' => encryptField($postData['order_user_last_name_en'] ?? "", 'encode') ?? $postData['order_user_last_name_en'],
+                'order_user_email' => encryptField($orderUserEmail, 'encode') ?? $orderUserEmail,
+                'order_gender_list' => $postData['companion_gender'] ?? '',
+                'product_idx' => $productIdx,
+                'order_user_mobile' => $phone_thai ?? $payment_user_mobile,
+                'order_user_phone' => $phone_thai ?? $payment_user_mobile,
+                'local_phone' => $local_phone ?? '',
+                'user_id' => $memberIdx,
+                'm_idx' => $memberIdx,
+                'yoil_idx' => $postData['option_idx'] ?? 0,
+                'inital_price' => $totalPrice ?? 0,
+                'people_adult_cnt' => $postData['people_cnt'] ?? 0,
+                'order_price' => $postData['lastPrice'] ?? $totalPrice,
+				'order_price_bath' => $order_price_bath ?? "",
+                'real_price_bath' => $real_price_bath ?? "",
+                'real_price_won' => $real_price_won ?? "",
+				'baht_thai' => $baht_thai,
+                'order_memo' => $postData['order_memo'] ?? '',
+                'start_date' => $postData['start_date'] ?? '',
+                'end_date' => $postData['end_date'] ?? '',
+                'order_r_date' => Time::now('Asia/Seoul', 'en_US'),
+                'order_date' => Time::now('Asia/Seoul', 'en_US'),
+                'used_coupon_idx' => $postData['c_idx'] ?? 0,
+                'used_coupon_no' => $postData['coupon_no'] ?? 0,
+                'used_coupon_money' => $postData['discountPrice'] ?? 0,
+                'used_coupon_point' => $postData['pointPrice'] ?? 0,
+                'order_no' => $this->orderModel->makeOrderNo(),
+                'order_status' => $orderStatus,
+                'ip' => $this->request->getIPAddress(),
+				"device_type" =>  get_device(),
+                'order_gubun' => $postData['order_gubun'] ?? 'guide',
+            ];
+
+            if ($product) {
+                $orderData['product_name'] = $product['product_name'] ?? '';
+                foreach (range(1, 4) as $i) {
+                    $key = "product_code_$i";
+                    $orderData[$key] = $product[$key] ?? '';
+                }
+                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
+            }
+
+            $this->orderModel->insert($orderData);
+            $orderIdx = $this->orderModel->getInsertID();
+
+            $this->handleSubOrders($postData, $orderIdx, $productIdx);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "장바구니에 담겼습니다."
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ])->setStatusCode(400);
+        }
     }
 
     public function handeBooking()

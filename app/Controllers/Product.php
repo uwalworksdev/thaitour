@@ -999,7 +999,13 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+			
+			$codes = $this->codeModel
+						  ->where('parent_code_no', $code_no)
+						  ->orderBy('code_no', 'ASC')
+						  ->get()
+						  ->getResultArray();
+
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
@@ -1017,7 +1023,7 @@ class Product extends BaseController
 
             $products = $this->productModel->findProductHotelPaging([
                 'product_code_1' => 1303,
-                'product_code_list' => $product_code_list,
+                /*'product_code_list' => $product_code_list,*/
                 'checkin' => $checkin,
                 'checkout' => $checkout,
                 /* Update search */
@@ -1027,7 +1033,9 @@ class Product extends BaseController
                 's_code_no' => $code_no,
                 /* End search */
                 'search_product_name' => $search_product_name,
-                'search_product_category' => $search_product_category,
+                'product_code_2' => $code_no,
+                'product_code_3' => $search_product_category,
+				'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
                 'search_product_rating' => $search_product_rating,
                 'search_product_promotion' => $search_product_promotion,
@@ -1039,6 +1047,8 @@ class Product extends BaseController
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
  
+ 		write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
+
             foreach ($products['items'] as $key => $product) {
 
                 $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
@@ -1895,6 +1905,9 @@ class Product extends BaseController
 
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
+        $s_code_no = $code_no;
+		$search_product_category = $this->request->getGet('search_product_category') ?? "";	
+		$category = $this->request->getGet('search_product_category') ?? "";	
         $green_peas = $this->request->getGet('green_peas');
         $sports_days = $this->request->getGet('sports_days');
         $slots = $this->request->getGet('slots');
@@ -1926,7 +1939,9 @@ class Product extends BaseController
         $products = $this->productModel->findProductGolfPaging([
             'product_code_1' => 1302,
             'product_code_2' => $code_no,
+            'product_code_3' => $search_product_category,
             'search_product_name' => $search_word,
+			'category' => $search_product_category,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
@@ -1936,8 +1951,8 @@ class Product extends BaseController
             'facilities' => $facilities,
         ], 10, $pg, []);
 
-// 마지막 실행된 쿼리 출력
-write_log("golfList- ". $this->productModel->db->getLastQuery());
+		// 마지막 실행된 쿼리 출력
+		//write_log("golfList- ". $this->productModel->db->getLastQuery());
 
         foreach ($products['items'] as $key => $product) {
 
@@ -1988,8 +2003,17 @@ write_log("golfList- ". $this->productModel->db->getLastQuery());
 			
         }
 
+		$codes = $this->codeModel
+					  ->where('parent_code_no', $code_no)
+					  ->orderBy('code_no', 'ASC')
+					  ->get()
+					  ->getResultArray();
+			
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
+            'codes' => $codes,
+            'category' => $search_product_category,			
+            'search_product_category' => $search_product_category,			
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
             'green_peas' => $green_peas,
