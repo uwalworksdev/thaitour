@@ -498,13 +498,13 @@ class ProductModel extends Model
         if ($where['product_code_2'] != "") {
             $builder->groupStart();
             $builder->where('product_code_2', $where['product_code_2']);
-            $builder->orLike('product_code_list', "|" .$where['product_code_2']);
+            //$builder->orLike('product_code_list', "|" .$where['product_code_2']);
             $builder->groupEnd();
         }
         if ($where['product_code_3'] != "") {
             $builder->groupStart();
             $builder->where('product_code_3', $where['product_code_3']);
-            $builder->orLike('product_code_list', "|" .$where['product_code_3']);
+            //$builder->orLike('product_code_list', "|" .$where['product_code_3']);
             $builder->groupEnd();
         }
 
