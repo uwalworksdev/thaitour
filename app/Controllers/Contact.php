@@ -88,10 +88,6 @@ class Contact extends BaseController
 
         if(isset($idx)) {
             $row = $this->travelContact->find($idx);
-
-            $code_child_1 = $this->code->getByParentCode($row["travel_type_1"])->getResultArray();
-            $code_child_2 = $this->code->getByParentCode($row["travel_type_2"])->getResultArray();
-            $products = $this->product->getAllProductsBySubCode("product_code_3", $row["travel_type_3"]);
         }
 
         return view("contact/write", [
@@ -101,9 +97,6 @@ class Contact extends BaseController
             'list_code' => $list_code,
             'privacy' => $privacy,
             'third_paties' => $third_paties,
-            'code_child_1' => $code_child_1 ?? [],
-            'code_child_2' => $code_child_2 ?? [],
-            'products' => $products ?? [],
             'types_code' => $types_code ?? [],
         ]);
     }
