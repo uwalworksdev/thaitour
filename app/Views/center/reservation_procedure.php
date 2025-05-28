@@ -25,6 +25,7 @@
 
     .point_system .sub_title {
         text-align: center;
+        font-size: 18px;
         font-weight: 500;
         color: #757575;
         line-height: 1.5;

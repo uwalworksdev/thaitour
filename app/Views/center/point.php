@@ -26,6 +26,7 @@
     .point_system .sub_title {
         text-align: center;
         font-weight: 500;
+        font-size: 18px;
     }
 
 
@@ -265,7 +266,6 @@
 
         .point_system ._table .box_coin .coin_item .coin_item_img img {
             width: 18.3rem;
-        }
     }
 </style>
 

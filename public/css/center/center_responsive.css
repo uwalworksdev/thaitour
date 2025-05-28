@@ -255,6 +255,10 @@ and (orientation : landscape)
                     padding: 20px 3%;
                     border: 3px solid #eee;
           }
+
+          .content_wrap.spe table {
+                    width: 70rem !important;
+          }
 }
 /* phone (landscape) END  */
 

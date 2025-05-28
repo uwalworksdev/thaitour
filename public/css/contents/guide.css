@@ -102,7 +102,7 @@
     font-size: 16px;
     font-weight: 600;
     margin-top: 16px;
-    width: 100%;
+    width: 160px;
     height: 40px;
     background-color: #2a459f;
 }
@@ -212,6 +212,30 @@ table.book_tbl td.label_flex label {
     align-items: center;
     margin-right: 20px;
     float: left
+}
+
+table.book_tbl .custom_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+table.book_tbl .custom_input .val_wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+table.book_tbl .custom_input .selectricHideSelect {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+table.book_tbl .custom_input .selectricWrapper select {
+    width: 80px;
 }
 
 table.book_tbl .list {

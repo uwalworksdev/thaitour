@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="box_price">
-                                    <p>
+                                    <p style="text-align: right;">
                                         <?= number_format($price_) ?>바트
                                         <i><?= number_format($price_ * $setting['baht_thai']) ?></i>원
                                     </p>
@@ -194,69 +194,57 @@
                                 <table class="book_tbl">
                                     <colgroup>
                                         <col style="width:15%">
-                                        <col style="width:18%">
+                                        <col style="width:*">
                                         <col style="width:15%">
-                                        <col style="width:15%">
                                         <col style="width:18%">
-                                        <col>
                                     </colgroup>
                                     <tbody>
-                                    <tr>
-                                        <th>가이드 시작일</th>
-                                        <td colspan="1" class="checkin">
-                                            <div class="custom_input fl mr5" style="width:150px">
-                                                <div class="val_wrap">
-                                                    <input name="checkin_date" type="text" data-key="<?= $key ?>"
-                                                           data-num="<?= $option['o_idx'] ?>"
-                                                           id="checkInDate<?= $option['o_idx'] ?>" class="hasDateranger"
-                                                           data-group="true" placeholder="체크인" readonly="readonly"
-                                                           value="" size="13">
-                                                </div>
-                                            </div>
-
-                                        </td>
-                                        <td class="count_date">
-                                            <div class="fl mr5" style="width:80px ; margin-left: 10px">
-                                                <div class="selectricWrapper selectric-selectric">
-                                                    <div class="selectricHideSelect">
-                                                        <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
-                                                                class="selectric count_day">
-                                                            <?php for ($i = 1; $i <= 31; $i++) { ?>
-                                                                <option value="<?= $i ?>"><?= $i ?></option>
-                                                            <?php } ?>
-                                                        </select>
+                                        <tr>
+                                            <th>시작일/종료일</th>
+                                            <td class="checkin">
+                                                <div class="custom_input fl mr5">
+                                                    <div class="val_wrap">
+                                                        <input name="checkin_date" type="text" data-key="<?= $key ?>"
+                                                            data-num="<?= $option['o_idx'] ?>"
+                                                            id="checkInDate<?= $option['o_idx'] ?>"
+                                                            data-group="true" placeholder="체크인" readonly="readonly"
+                                                            value="" size="13">
+                                                        ~
+                                                        <input name="checkout_date" type="text"
+                                                            id="checkOutDate<?= $option['o_idx'] ?>"
+                                                            data-key="<?= $key ?>"
+                                                            data-num="<?= $option['o_idx'] ?>"
+                                                            data-group="true" placeholder="체크아웃" readonly="readonly"
+                                                            value="" size="13">
+                                                    </div>
+                                                    <div class="fl mr5">
+                                                        <div class="selectricWrapper selectric-selectric">
+                                                            <div class="selectricHideSelect">
+                                                                <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
+                                                                        class="selectric count_day">
+                                                                    <?php for ($i = 1; $i <= 31; $i++) { ?>
+                                                                        <option value="<?= $i ?>"><?= $i ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                                <span>일</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div style="line-height: 50px !important; margin-left: 10px;" class="">일</div>
-                                        </td>
-                                        <th>가이드 종료일</th>
-                                        <td class="checkout">
-                                            <div class="custom_input fl mr5" style="width:150px">
-                                                <div class="val_wrap">
-                                                    <input name="checkout_date" type="text"
-                                                           id="checkOutDate<?= $option['o_idx'] ?>"
-                                                           class="hasDateranger" data-key="<?= $key ?>"
-                                                           data-num="<?= $option['o_idx'] ?>"
-                                                           data-group="true" placeholder="체크아웃" readonly="readonly"
-                                                           value="" size="13">
+                                            </td>
+                                            
+                                            <th>총인원</th>
+                                            <td class="people">
+                                                <div class="fl mr5" style="width:90px">
+                                                    <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
+                                                            class="selectric">
+                                                        <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
+                                                            <option value="<?= $i ?>"><?= $i ?> 명</option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr id="">
-                                        <th>총인원</th>
-                                        <td colspan="5" class="people">
-                                            <div class="fl mr5" style="width:90px">
-                                                <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
-                                                        class="selectric">
-                                                    <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
-                                                        <option value="<?= $i ?>"><?= $i ?> 명</option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
 
@@ -352,6 +340,13 @@
             </h2>
             <div class="des-type">
                 <?= viewSQ($guide['product_info']) ?>
+            </div>
+
+            <h2 class="title-sec3" id="product_des">
+                유의사항
+            </h2>
+            <div class="des-type">
+                <?= viewSQ($guide['product_notes']) ?>
             </div>
 
             <h2 class="title-sec2">
