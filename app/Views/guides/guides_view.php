@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="box_price">
-                                    <p>
+                                    <p style="text-align: right;">
                                         <?= number_format($price_) ?>바트
                                         <i><?= number_format($price_ * $setting['baht_thai']) ?></i>원
                                     </p>
