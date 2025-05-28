@@ -214,6 +214,30 @@ table.book_tbl td.label_flex label {
     float: left
 }
 
+table.book_tbl .custom_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+table.book_tbl .custom_input .val_wrap {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+table.book_tbl .custom_input .selectricHideSelect {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+table.book_tbl .custom_input .selectricWrapper select {
+    width: 80px;
+}
+
 table.book_tbl .list {
     display: block;
     overflow: hidden
