@@ -3,6 +3,9 @@
 <link href="/css/center/center.css" rel="stylesheet" type="text/css" />
 <link href="/css/center/center_responsive.css" rel="stylesheet" type="text/css" />
 <style>
+    .sub_title{
+          font-size: 18px;
+    }
     .point_system {
         background-color: #f0f2f5;
         padding-top: 1px;
