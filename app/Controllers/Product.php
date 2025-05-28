@@ -2018,11 +2018,21 @@ class Product extends BaseController
 					  ->orderBy('code_no', 'ASC')
 					  ->get()
 					  ->getResultArray();
+
+		if($search_product_category == "") {
+		   $search_area  = "전체";
+		} else {
+			$sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+			$result      = $this->db->query($sql);
+			$row         = $result->getRowArray();
+			$search_area = $row['code_name'];
+		} 
 			
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'codes' => $codes,
-            'category' => $search_product_category,			
+            'category' => $search_product_category,
+			'search_area' => $search_area, 
             'search_product_category' => $search_product_category,			
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
