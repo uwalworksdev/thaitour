@@ -185,7 +185,7 @@
                                     </tr>
                                     <tr>
                                     <td>
-                                    <textarea name="policy_contents_m[]" id="policy_contents" rows="10" cols="100"
+                                    <textarea name="policy_contents_m[]" id="policy_contents_m" rows="10" cols="100"
                                             class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= isset($row) ? viewSQ($row['policy_contents_m']) : '' ?></textarea>
 
@@ -213,7 +213,7 @@
                                                         //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
 
                                                     },
-                                                    fCreator: "createSEditor2"
+                                                    fCreator: "createSEditor3"
                                                 });
                                             </script>
                                         </td>
