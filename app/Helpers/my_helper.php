@@ -607,9 +607,9 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
         1301 => "/product-tours/tours-list/",
     ];
 
-        $html .= "<li class='depth_3_item_ $activeClass' data-code='" . $tab_ . "'>";
-        $html .= "<a href='$link' class=''>" . $frow['code_name'] . "</a>";
-        $html .= "</li>";
+	$html .= "<li class='depth_3_item_ $activeClass' data-code='" . $tab_ . "'>";
+	$html .= "<a href='$link' class=''>전체보기</a>";
+	$html .= "</li>";
 
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
