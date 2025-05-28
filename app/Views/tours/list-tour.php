@@ -56,7 +56,7 @@
                                             || empty($products["search_product_category"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="category">지역전체
+                                            data-code="all" data-type="category">투어전체
                                         </li>
                                         <?php
                                         foreach ($codes as $code) {
