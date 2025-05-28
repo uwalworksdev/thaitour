@@ -1033,6 +1033,7 @@ class Product extends BaseController
                 's_code_no' => $code_no,
                 /* End search */
                 'search_product_name' => $search_product_name,
+                'product_code_2' => $code_no,
                 'product_code_3' => $search_product_category,
 				'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
