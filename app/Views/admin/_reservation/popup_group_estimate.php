@@ -1,4 +1,5 @@
 <link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" />
+<link href="<?= base_url('css/mypage/mypage_reponsive_new.css') ?>" rel="stylesheet" />
 
       <div class="estimate_popup_content custom_popup_content">
          <div class="btn_close_popup">
