@@ -52,8 +52,8 @@
                                 <div class="tab_box_area_">
                                     <ul class="tab_box_show_">
                                         <li class="tab_box_element_ tab_box_js p--20 border
-                                        <?php if (strpos($products["search_product_category"], "all") !== false
-                                            || empty($products["search_product_category"])) {
+                                        <?php if (strpos($search_product_category, "all") !== false
+                                            || empty($search_product_category)) {
                                             echo "tab_active_";
                                         } ?>"
                                             data-code="all" data-type="category">투어전체
@@ -62,7 +62,7 @@
                                         foreach ($codes as $code) {
                                             ?>
                                             <li class="tab_box_element_ tab_box_js p--20 border
-                                            <?php if (strpos($products["search_product_category"], $code["code_no"]) !== false) {
+                                            <?php if (strpos($search_product_category, $code["code_no"]) !== false) {
                                                 echo "tab_active_";
                                             } ?>"
                                                 data-code="<?= $code["code_no"] ?>"
