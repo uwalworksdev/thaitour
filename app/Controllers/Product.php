@@ -3563,6 +3563,7 @@ class Product extends BaseController
     {
         try {
             $pg = $this->request->getVar('pg') ?? 1;
+			$search_product_category = $this->request->getVar('search_product_category') ?? "";
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
             $search_word = $this->request->getVar('search_word') ?? "";
             $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
@@ -3665,6 +3666,7 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'tab_active' => '1',
                 'keyWordAll' => $keyWordAll,
+				'search_product_category' => $search_product_category,
                 'search_keyword' => $search_keyword,
                 'keyWordActive' => $keyWordAll[$keyWordActive],
                 'productByKeyword' => $productByKeyword,
