@@ -167,6 +167,7 @@ class ExcelController extends Controller
     {
         $private_key = private_key();
 	    $db = \Config\Database::connect(); // 데이터베이스 연결
+        $strSql = "";
         $strSql = " AND a.order_status NOT IN ('B', 'D') ";
         $_deli_type = get_deli_type();
 
@@ -184,7 +185,7 @@ class ExcelController extends Controller
 						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
                         LEFT JOIN tbl_order_list  c ON c.order_idx   = a.order_idx
 						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
-						WHERE a.is_modify='N' AND order_status != '' $strSql GROUP BY a.order_idx";
+						WHERE a.is_modify='N' AND order_status != '' $strSql order by group_no desc, order_r_date desc, order_idx desc GROUP BY a.order_idx";
 
         $result = $db->query($sql)->getResultArray();
 
