@@ -1,6 +1,3 @@
-<?php
-   echo "ssbbb- ". $parent_code ." - ". $code_no ." - ". $child_code_first;
-?>
 <div class="sub-hotel-navigation-container">
     <div class="navigation-container-prev">
         <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
@@ -36,7 +33,7 @@
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
         
-        <span class="font-bold" id="depth_3_label"><?=$code_first_name?></span>
+        <!--span class="font-bold" id="depth_3_label"><?=$code_first_name?></span-->
         
         <div class="depth_3_tools_" id="depth_3_tools_">
             <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
