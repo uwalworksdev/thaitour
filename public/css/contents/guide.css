@@ -53,6 +53,7 @@
 .sec2-item-card .calendar_header .desc_product {
     font-size: 22px;
     font-weight: 600;
+    width: 65%;
 }
 
 .sec2-item-card .calendar_header .desc_product .desc_product_sub {
@@ -65,9 +66,8 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
+    word-break: break-all;
 }
-
-.sec2-item-card .calendar_header .desc_product .desc_product_sub p {}
 
 .sec2-item-card .calendar_header .desc_product .desc_product_sub ul {
     display: flex;
