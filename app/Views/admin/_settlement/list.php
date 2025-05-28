@@ -927,7 +927,7 @@
                                             
                                         </td>
 										 <td class="tac">
-                                            <?= $_isDelete ?>(<?= $row_new['code_name'] ?>)
+                                            <?= $_isDelete ?>(<?= $row_new['code_name'] ?>)123
                                         </td>
                                         <td class="tal"><a
                                                     href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row_new['order_idx'] ?>"><?= viewSQ($row_new["product_name_new"]) ?>
