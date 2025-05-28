@@ -30,6 +30,7 @@ if ($contact) {
     $title = $contact['title'];
     $contents = $contact["contents"];
     $type_name = $contact['type_name'];
+    $reg_m_idx = $contact['reg_m_idx'];
 }
 ?>
 
@@ -302,7 +303,7 @@ if ($contact) {
 
             </tbody>
         </table>
-        <?php if ($status == 'W') { ?>
+        <?php if ($_SESSION['member']['idx'] == $reg_m_idx) { ?>
             <div class="travel_edit">
                 <a href="/contact/write/<?= $contact['idx'] ?>">
                     <button type="button" class="edit btn-point">수정</button>
