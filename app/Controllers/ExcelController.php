@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use CodeIgniter\Controller;
+use PHPExcel_Cell_DataType;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/PHPExcel-1.8/Classes/PHPExcel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . "/PHPExcel-1.8/Classes/PHPExcel/IOFactory.php";
