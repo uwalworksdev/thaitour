@@ -18,3 +18,16 @@
         </nav>
     </div>
 </div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const activeTab = document.querySelector('.snb li.on');
+
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        behavior: 'smooth',  
+        inline: 'center',    
+        block: 'nearest'     
+      });
+    }
+  });
+</script>
