@@ -151,13 +151,15 @@ class ExcelController extends Controller
             $rowIndex++;
         }
 
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="reservation_list.xls"');
-        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $filename  = date('Y-m-d')." 주문관리" . '.xlsx';
 
-        $writer = \PHPExcel_IOFactory::createWriter($excel, 'Excel5');
-        $writer->save('php://output');
-        exit;
+        $response  = $this->response->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            ->setHeader('Content-Disposition', 'attachment; filename="' . $filename . '"')
+            ->setHeader('Cache-Control', 'max-age=0');
+        $objWriter->save('php://output');
+
+        return $response;
 
     }
 }
