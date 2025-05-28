@@ -176,10 +176,13 @@
                                     </div> -->
                                 </div>
 
+                                <input type="hidden" class="guide_price_bath" value="<?= $price_ ?>">
+                                <input type="hidden" class="guide_price_won" value="<?= $price_ * $setting['baht_thai'] ?>">
+
                                 <div class="box_price">
                                     <p style="text-align: right;">
-                                        <?= number_format($price_) ?>바트
-                                        <i><?= number_format($price_ * $setting['baht_thai']) ?></i>원
+                                        <span class="text_price_bath"><?= number_format($price_) ?></span>바트
+                                        <i class="text_price_won"><?= number_format($price_ * $setting['baht_thai']) ?></i>원
                                     </p>
                                     <div class="btn_oder">
                                         <button type="button">선택</button>
@@ -237,12 +240,14 @@
                                             <td class="people">
                                                 <div class="fl mr5" style="width:90px">
                                                     <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
-                                                            class="selectric">
+                                                            class="selectric people_cnt_select">
                                                         <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
                                                             <option value="<?= $i ?>"><?= $i ?> 명</option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
+
+                                                <input type="hidden" id="peopleCnt<?= $option['o_idx'] ?>" value="<?= $option['o_people_cnt'] ?>">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -531,15 +536,18 @@
                     </div>
                     <form action="" name="frm_guide" id="frm_guide">
                         <div class="popup_place__body customer-form-page" style="background-color: unset;">
+
+                            <div class="form-group cus-form-group memo">
+                                <label for="extra-requests">기타요청</label>
+                                <div class="form_time_wrap">
+
+                                </div>
+                            </div>
+
                             <div class="form_guide_schedule form_booking_spa_ ">
                                 
                             </div> 
-                            <div class="form-group cus-form-group memo">
-                                <label for="extra-requests">기타요청</label>
-                                <textarea id="extra-requests" name="order_memo"
-                                            placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
-                            </div>
-    
+                            
                             <div class="flex_c_c">
                                 <button type="button" class="btn_add_cart">
                                     장바구니 담기
@@ -553,6 +561,20 @@
         <div class="dim"></div>
     </div>
     <script>
+        $(".people_cnt_select").on("change", function () {
+            let people_cnt = Number($(this).val() ?? 1);
+            let price_bth = $(this).closest(".sec2-item-card").find(".guide_price_bath").val();
+            price_bth = Number(price_bth.replace(",", "")) ?? 0;
+            let price_won = $(this).closest(".sec2-item-card").find(".guide_price_won").val();
+            price_won = Number(price_won.replace(",", "")) ?? 0;
+
+            let price_bth_people = people_cnt * price_bth;
+            let price_won_people = people_cnt * price_won;
+
+            $(this).closest(".sec2-item-card").find(".text_price_bath").text(price_bth_people.toLocaleString('ko-KR'));
+            $(this).closest(".sec2-item-card").find(".text_price_won").text(price_won_people.toLocaleString('ko-KR'));
+        });
+
         $('.arrow_menu').click(function () {
             $(this).toggleClass('open_');
 
@@ -567,7 +589,7 @@
 
             let start_day = $('#checkInDate' + o_idx).val();
             let end_day = $('#checkOutDate' + o_idx).val();
-            let people_cnt = $('#people' + o_idx).val();
+            let people_cnt = $('#pop_people_cnt').val();
 
             formData.append('start_date', start_day);
             formData.append('end_date', end_day);
@@ -578,6 +600,7 @@
 
             formData.append('option_idx', o_idx);
             formData.append('product_idx', '<?= $guide['product_idx'] ?>');
+
 
             const form2 = $('#frm_guide');
 
@@ -860,7 +883,7 @@
                     parentEl: calendarTabElement,
                     minDate: moment(), //moment().add(1, 'days')
                     opens: "center",
-                    autoApply: true
+                    autoApply: false
                 }, function (start, end) {
 
                     $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
@@ -1016,6 +1039,25 @@
                     }
                 });
             }else {
+
+                let time_html = ``;
+
+                let total_cnt_people = $("#peopleCnt" + o_idx).val();
+                
+                time_html += `
+                    <select name="people_cnt" id="pop_people_cnt" class="pop_selectric">`;
+                        for(let i = 1; i <= Number(total_cnt_people); i++){
+                            time_html += `
+                                <option value="${i}">${i}인</option>
+                            `;
+                        }
+                time_html += 
+                `
+                    </select>
+                `;
+
+                $(".form_time_wrap").html(time_html);
+
                 let html = ``;
                 for(let i = 1; i <= Number(count_day); i++){
                     html += `
@@ -1114,7 +1156,7 @@
         }
     </script>
     <script>
-          $('.short_link').on('click', function() {
+        $('.short_link').on('click', function() {
             $('.short_link').removeClass('active');
             $(this).addClass('active');
         });
