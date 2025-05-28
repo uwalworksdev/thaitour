@@ -238,6 +238,15 @@ p {
     padding: 2rem 0 2rem 1.5rem;
     border-bottom: 1px solid #dbdbdb;
 }
+.point_system ._table .box_coin .coin_item .coin_item_top {
+    height: 20rem;
+    width: 26rem;
+    border-radius: 2.4rem;
+    background-color: #f6f6f8;
+    position: relative;
+    z-index: 2;
+    padding: 1.3rem;
+}
     }
 </style>
 
