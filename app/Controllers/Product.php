@@ -1034,6 +1034,7 @@ class Product extends BaseController
                 /* End search */
                 'search_product_name' => $search_product_name,
                 'product_code_3' => $search_product_category,
+				'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
                 'search_product_rating' => $search_product_rating,
                 'search_product_promotion' => $search_product_promotion,
