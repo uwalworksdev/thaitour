@@ -1023,7 +1023,7 @@ class Product extends BaseController
 
             $products = $this->productModel->findProductHotelPaging([
                 'product_code_1' => 1303,
-                'product_code_list' => $product_code_list,
+                /*'product_code_list' => $product_code_list,*/
                 'checkin' => $checkin,
                 'checkout' => $checkout,
                 /* Update search */
