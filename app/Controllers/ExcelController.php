@@ -66,4 +66,97 @@ class ExcelController extends Controller
 
         return $response;
     }
+
+    public function get_excel()
+    {
+        $private_key = private_key();
+	    $db = \Config\Database::connect(); // 데이터베이스 연결
+        $strSql = " AND a.order_status NOT IN ('B', 'D') ";
+        $_deli_type = get_deli_type();
+
+        $sql = "SELECT a.product_name AS product_name_new  
+                    , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
+                    , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
+                    , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
+                    , a.*
+                    , d.user_id  
+                FROM tbl_order_mst a 
+                LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                LEFT JOIN tbl_member d      ON a.m_idx = d.m_idx
+                WHERE a.is_modify='N' AND a.order_status = 'Z' $strSql 
+                GROUP BY a.order_idx 
+                ORDER BY group_no DESC, order_r_date DESC, order_idx DESC";
+
+        $result = $db->query($sql)->getResultArray();
+
+        $excel = new \PHPExcel();
+        $sheet = $excel->getActiveSheet();
+        $sheet->setTitle('예약 리스트');
+
+        $headers = ['번호', '그룹번호', '예약번호', '상태', '상품구분', '상품명', '예약일시', '예약자/아이디', '연락처/이메일', '상품금액(원)', '상품금액(바트)', '결제방법'];
+        $col = 'A';
+        foreach ($headers as $header) {
+            $sheet->setCellValue($col . '1', $header);
+            $col++;
+        }
+
+        $rowIndex = 2;
+        $index = 1;
+
+        foreach ($result as $row) {
+            $sheet->setCellValueExplicit("A{$rowIndex}", $index++, PHPExcel_Cell_DataType::TYPE_STRING);
+            $sheet->setCellValueExplicit("B{$rowIndex}", $row['group_no'], PHPExcel_Cell_DataType::TYPE_STRING);
+            $sheet->setCellValueExplicit("C{$rowIndex}", $row['order_no'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+            $sheet->setCellValue("D{$rowIndex}", isset($_deli_type[$row['order_status']]) ? $_deli_type[$row['order_status']] : '');
+            $sheet->setCellValue("E{$rowIndex}", isset($row['code_name']) ? $row['code_name'] : '');
+            $sheet->setCellValue("F{$rowIndex}", isset($row['product_name']) ? $row['product_name'] : '');
+            $sheet->setCellValue("G{$rowIndex}", isset($row['order_r_date']) ? $row['order_r_date'] : '');
+
+            $name = isset($row['user_name']) ? trim($row['user_name']) : '';
+            $id   = isset($row['user_id']) ? trim($row['user_id']) : '';
+
+            $reservation = '';
+            if ($name !== '' && $id !== '') {
+                $reservation = $name . ' / ' . $id;
+            } elseif ($name !== '') {
+                $reservation = $name;
+            } elseif ($id !== '') {
+                $reservation = $id;
+            }
+            $sheet->setCellValue("H{$rowIndex}", $reservation);
+
+            $mobile = isset($row['user_mobile']) ? trim($row['user_mobile']) : '';
+            $email  = isset($row['user_email']) ? trim($row['user_email']) : '';
+
+            $contact = '';
+            if ($mobile !== '' && $email !== '') {
+                $contact = $mobile . ' / ' . $email;
+            } elseif ($mobile !== '') {
+                $contact = $mobile;
+            } elseif ($email !== '') {
+                $contact = $email;
+            }
+            $sheet->setCellValue("I{$rowIndex}", $contact);
+
+            $price_won = isset($row['real_price_won']) ? $row['real_price_won'] : 0;
+            $sheet->setCellValue("J{$rowIndex}", number_format($price_won));
+
+            $price_bath = isset($row['real_price_bath']) ? $row['real_price_bath'] : 0;
+            $sheet->setCellValue("K{$rowIndex}", number_format($price_bath));
+
+            $sheet->setCellValue("L{$rowIndex}", '카드결제');
+
+            $rowIndex++;
+        }
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="reservation_list.xls"');
+        header('Cache-Control: max-age=0');
+
+        $writer = \PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+        $writer->save('php://output');
+        exit;
+
+    }
 }
