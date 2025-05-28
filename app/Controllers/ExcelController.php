@@ -70,7 +70,7 @@ class ExcelController extends Controller
     public function get_excel()
     {
         $private_key = private_key();
-
+	    $db = \Config\Database::connect(); // 데이터베이스 연결
         $strSql = " AND a.order_status NOT IN ('B', 'D') ";
         $_deli_type = get_deli_type();
 
@@ -87,7 +87,7 @@ class ExcelController extends Controller
                 GROUP BY a.order_idx 
                 ORDER BY group_no DESC, order_r_date DESC, order_idx DESC";
 
-        $result = $this->connect->query($sql)->getResultArray();
+        $result = $db->query($sql)->getResultArray();
 
         $excel = new \PHPExcel();
         $sheet = $excel->getActiveSheet();
