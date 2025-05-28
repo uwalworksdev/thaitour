@@ -674,6 +674,9 @@
             position: relative;
             background-size: 2.4rem 2.4rem;
         }
+        .swiper_product_list_pagination_{
+          margin-top: 2rem;
+        }
 
     }
 
@@ -1960,7 +1963,7 @@
                 </div>
                 <div class="content-item">
                     <span class="label">
-                        유아용 침대 및 엑스트라 베드
+                        유아용 침대 및<br class="only_mo"> 엑스트라 베드
                     </span>
                     <div class="description">
                         <p><?= nl2br($baby_beds ?? '') ?></p>
