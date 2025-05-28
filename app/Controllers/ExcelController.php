@@ -185,7 +185,7 @@ class ExcelController extends Controller
 						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
                         LEFT JOIN tbl_order_list  c ON c.order_idx   = a.order_idx
 						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
-						WHERE a.is_modify='N' AND order_status != '' $strSql order by a.group_no desc, a.order_r_date desc, a.order_idx desc GROUP BY a.order_idx";
+						WHERE a.is_modify='N' AND order_status != '' $strSql GROUP BY a.order_idx order by a.group_no desc, a.order_r_date desc, a.order_idx desc ";
 
         $result = $db->query($sql)->getResultArray();
 
