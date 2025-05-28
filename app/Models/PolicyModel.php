@@ -8,7 +8,7 @@ class PolicyModel extends Model
 
     protected $primaryKey = 'p_idx';
 
-    protected $allowedFields = ["policy_code", "policy_type", "policy_contents", "onum"];
+    protected $allowedFields = ["policy_code", "policy_type", "policy_contents", "policy_contents_m", "onum"];
 
     public function getByCode($code)
     {
