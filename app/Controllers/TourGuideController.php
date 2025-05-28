@@ -291,6 +291,8 @@ class TourGuideController extends BaseController
             $totalPrice += floatval($item['s_price']);
         }
 
+        $totalPrice = $totalPrice * intval($people_cnt);
+
         $totalPrice_won = $totalPrice * $this->setting['baht_thai'];
 
         $res = [
@@ -331,6 +333,8 @@ class TourGuideController extends BaseController
 
             $productIdx = $postData['product_idx'] ?? null;
             $orderStatus = $postData['order_status'] ?? 'W';
+            $people_cnt = $postData['people_cnt'] ?? 1;
+
             $orderUserEmail = ($postData['email_1'] ?? '') . '@' . ($postData['email_2'] ?? '');
 
             $phone_1 = updateSQ($this->request->getPost('phone_1') ?? "");
@@ -365,6 +369,8 @@ class TourGuideController extends BaseController
             foreach ($sup_options as $item) {
                 $totalPrice += floatval($item['s_price']);
             }
+
+            $totalPrice = $totalPrice * intval($people_cnt);
 
 			$orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'] ?? "", 'encode') ?? $postData['order_user_name'],
