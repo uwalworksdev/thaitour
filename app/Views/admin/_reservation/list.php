@@ -384,7 +384,7 @@
                     </div>
 
                     <div style="display: flex; justify-content: end; margin-top: 10px;">
-                        <button id="btn-download-excel" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
+                        <button type="button" id="btn-download-excel" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
                         <span class="txt">다운로드</span></button>
                     </div>
 
