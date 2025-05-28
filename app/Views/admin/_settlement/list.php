@@ -670,8 +670,8 @@
                     </div>
 
                     <div style="display: flex; justify-content: end; margin-top: 10px;">
-                        <a href="javascript:get_excel()" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
-                        <span class="txt">다운로드</span></a>
+                        <button type="button" id="btn-download-excel" class="btn btn-default"> <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Icon" width="24">
+                        <span class="txt">다운로드</span></button>
                     </div>
 
                     <div style="border: 1px dashed #c6bebe; margin: 20px 0;"></div>
@@ -684,6 +684,16 @@
                     //     frm.action = "./excel_down.php";
                     //     frm.submit();
                     // }
+
+                    $('#btn-download-excel').on('click', function () {
+                            var form = $('<form action="/AdmMaster/_settlement/get_excel" method="get"></form>');
+                            form.appendTo('body');
+
+                            form.append(`<input type="hidden" name="product_code_1" value="${$('#product_code_1').val()}">`);
+
+                            form.submit();
+                            form.remove();
+                    });
 
                     function get_code(strs, depth) {
                         $.ajax({
