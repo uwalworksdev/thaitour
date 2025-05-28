@@ -677,6 +677,16 @@ figure.cover_img img {
     line-height: 1.2;
   }
 
+  .snb ul li a {
+    font-size: 2.8rem !important;
+    font-weight: 500;
+    color: #999999;
+    /* display: inline-block; */
+    line-height: 8rem !important;
+    position: relative;
+    text-wrap: nowrap;
+}
+
   .main_current_slide {
   }
   .swiper-pagination-main {
