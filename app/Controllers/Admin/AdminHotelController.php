@@ -75,7 +75,7 @@ class AdminHotelController extends BaseController
         }
 
         $result   = $this->productModel->findProductPagingAdmin($where, $g_list_rows, $pg, $orderByArr);
-        //write_log("last query- ". $this->connect->getLastQuery());
+        write_log("last query- ". $this->connect->getLastQuery());
 
         $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no in ('1303')  and status='Y' order by code_no asc";
         $fresult  = $this->connect->query($fsql);
