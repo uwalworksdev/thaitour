@@ -208,8 +208,15 @@ and (orientation : landscape)
           }
           .point_use .top_exp.mem_vip {
                     padding-top: 2rem;
-                    background: transparent url(/img/center/mem_vip.png) no-repeat 86% bottom;
-                    background-size: 50%;
+                    background: transparent url(/img/center/mem_vip.png) no-repeat 50% bottom;
+                    background-size: 60%;
+          }
+          .point_use .top_exp {
+          padding: 0 0 19rem 0;
+          /* background: transparent url(/globals/common/img/sub/top_visual_use_point.png) no-repeat 89% bottom; */
+          }
+          .point_use {
+          padding: 0 0 0;
           }
           .point_use .section h3 {
                     border-top: 1px solid #17469E;

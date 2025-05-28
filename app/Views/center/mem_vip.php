@@ -12,8 +12,8 @@
                               <div class="top_exp mem_vip">
                                         <strong>더투어랩 VIP 회원제</strong>
                                         <em>더투어랩은 VIP 회원의 문턱이 낮습니다.</em>
-                                        <p>보다 많은 분들이 혜택을 누릴 수 있도록 진입 장벽을 확 낮추었습니다. <br>
-                                                  계속해서 많은 관심과 이용 부탁드립니다. <br>
+                                        <p>보다 많은 분들이 혜택을 누릴 수 있도록 진입 장벽을 확 낮추었습니다. <br class="only_web"> <br class="only_mo">
+                                                  계속해서 많은 관심과 이용 부탁드립니다. <br class="only_web">
                                         </p>
                                         <span class="mem_vip_txt" style="">2022년 7월 25일부터 개편된 회원 등급 규정이 적용됩니다. </span>
                               </div>
