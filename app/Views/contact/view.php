@@ -304,7 +304,7 @@ if ($contact) {
         </table>
         <?php if ($status == 'W') { ?>
             <div class="travel_edit">
-                <a href="./write?idx=<?= $contact['idx'] ?>">
+                <a href="/contact/write/<?= $contact['idx'] ?>">
                     <button type="button" class="edit btn-point">수정</button>
                 </a>
                 <button type="button" class="del" onclick="del_check(<?= $contact['idx'] ?>)">삭제</button>
