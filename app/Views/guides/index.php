@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="exp">
                                     <div class="truncate_txt_">
-                                        <?= viewSQ($product['product_info']) ?>
+                                        <?= viewSQ($product['important_notes']) ?>
                                     </div>
                                 </div>
                                 <div class="price_all">
