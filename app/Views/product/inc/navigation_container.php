@@ -33,10 +33,10 @@
              src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
         <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
         
-		<?php if($code_first_name == "") { ?>
+		<?php if($child_code_first == "") { ?>
         <span class="font-bold" id="depth_3_label">전체</span>
 		<?php } else { ?>
-        <span class="font-bold" id="depth_3_label"><?=$code_first_name?></span>
+        <span class="font-bold" id="depth_3_label"><?=$child_code_first?></span>
 		<?php } ?>
         
         <div class="depth_3_tools_" id="depth_3_tools_">
