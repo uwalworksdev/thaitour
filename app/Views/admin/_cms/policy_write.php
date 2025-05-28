@@ -182,7 +182,9 @@
                                                 });
                                             </script>
                                         </td>
-                                                                                <td>
+                                    </tr>
+                                    <tr>
+                                    <td>
                                     <textarea name="policy_contents_m[]" id="policy_contents" rows="10" cols="100"
                                             class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= isset($row) ? viewSQ($row['policy_contents_m']) : '' ?></textarea>
