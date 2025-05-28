@@ -124,11 +124,11 @@ function send_it() {
     // oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
     // oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
 
-    if (frm.product_code_list.value == "") {
-        alert("카테고리를 등록해주세요.");
-        frm.product_code_1.focus();
-        return;
-    }
+    //if (frm.product_code_list.value == "") {
+    //    alert("카테고리를 등록해주세요.");
+    //    frm.product_code_1.focus();
+    //    return;
+    //}
 
     // if ($("#chk_product_code").val() == "N") {
     //     alert("중복된 제품 코드를 확인하세요.");
