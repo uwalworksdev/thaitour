@@ -183,7 +183,7 @@ and (orientation : landscape)
 		overflow-x: auto;
 	}
           .point_use .top_exp>strong {
-                    font-size: 4.8rem;
+                    font-size: 4.6rem;
                     letter-spacing: -2px;
                     display: block;
                     font-weight: 500;
@@ -192,18 +192,18 @@ and (orientation : landscape)
           .point_use .top_exp>em {
                     font-style: normal;
                     padding-bottom: 1.5rem;
-                    font-size: 2.8rem;
+                    font-size: 2.6rem;
                     display: block;
           }
           .point_use .top_exp>p {
-                    font-size: 2.4rem;
+                    font-size: 2.6rem;
                     padding-bottom: 1.4rem;
           }
           .point_use .top_exp .mem_vip_txt {
                     background: #17469E;
                     color: #fff;
                     border: 0;
-                    padding: 0.5rem 1.5rem;
+                    padding: 1.5rem 1.5rem;
                     display: inline-block;
           }
           .point_use .top_exp.mem_vip {
@@ -224,25 +224,25 @@ and (orientation : landscape)
                     margin-right: 0;
                     float: left;
                     width: 100%;
-                    font-size: 2.8rem;
+                    font-size: 2.6rem;
                     color: #17469E;
                     letter-spacing: -1px;
                     margin-bottom: 2rem;
           }
           .point_use .section .cont h4 {
-                    font-size: 2.8rem;
+                    font-size: 2.6rem;
                     color: #333;
                     padding-bottom: 1rem;
                     border-bottom: 2px solid #ddd;
                     margin-bottom: 1rem;
           }
           .point_use .section .cont .c_cont {
-                    font-size: 2.4rem;
+                    font-size: 2.6rem;
                     color: #777;
                     padding-bottom: 4rem;
           }
           .point_use .section .cont h4 {
-                    font-size: 2.8rem;
+                    font-size: 2.6rem;
                     color: #333;
                     padding-bottom: 1rem;
                     border-bottom: 2px solid #ddd;
