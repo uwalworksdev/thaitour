@@ -686,7 +686,7 @@
                     // }
 
                     $('#btn-download-excel').on('click', function () {
-                            var form = $('<form action="/AdmMaster/_settlement/get_excel" method="get"></form>');
+                            var form = $('<form action="/excel/get_excel" method="get"></form>');
                             form.appendTo('body');
 
                             form.append(`<input type="hidden" name="product_code_1" value="${$('#product_code_1').val()}">`);

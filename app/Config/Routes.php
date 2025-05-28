@@ -89,7 +89,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\SettlementController::write_ok/$1");
         $routes->post("delete", "Admin\SettlementController::delete");
         $routes->get("get_code", "Admin\SettlementController::get_code");
-        $routes->get('get_excel', 'Admin\SettlementController::get_excel');
     });
 
     $routes->group("_reservationCar", static function ($routes) {
@@ -1078,6 +1077,7 @@ $routes->post('kcp/response', 'KcpController::handleResponse');
 
 // Excel dowmload
 $routes->get('excel/download', 'ExcelController::downloadExcel');
+$routes->get('excel/get_excel', 'ExcelController::get_excel');
 
 // Point
 $routes->get('point-system', 'Point::index');
