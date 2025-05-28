@@ -198,6 +198,7 @@ and (orientation : landscape)
           .point_use .top_exp>p {
                     font-size: 2.6rem;
                     padding-bottom: 1.4rem;
+					line-height: 1.4;
           }
           .point_use .top_exp .mem_vip_txt {
                     background: #17469E;
@@ -240,6 +241,7 @@ and (orientation : landscape)
                     font-size: 2.6rem;
                     color: #777;
                     padding-bottom: 4rem;
+					line-height: 1.4;
           }
           .point_use .section .cont h4 {
                     font-size: 2.6rem;

@@ -41,20 +41,24 @@ class CustomerCenterController extends BaseController
     }
      public function point()
     {
-        return view("center/point");
+        $policy = $this->policy->getByIdx("44");
+        return view("center/point", ['policy' => $policy]);
     }
      public function mem_vip()
     {
-        return view("center/mem_vip");
+        $policy = $this->policy->getByIdx("45");
+        return view("center/mem_vip", ['policy' => $policy]);
     }
 
     public function payment_guide()
     {
-        return view("center/payment_guide");
+        $policy = $this->policy->getByIdx("43");
+        return view("center/payment_guide", ['policy' => $policy]);
     }
      public function reservation_procedure()
     {
-        return view("center/reservation_procedure");
+        $policy = $this->policy->getByIdx("42");
+        return view("center/reservation_procedure", ['policy' => $policy]);
     }
     
 
