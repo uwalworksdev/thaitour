@@ -43,37 +43,6 @@
                             </div>
                         </div>
                         <div class="category-left-list">
-						
-                            <div class="category-left-item">
-                                <div class="subtitle">
-                                    <span>투어타입</span>
-                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
-                                </div>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ tab_box_js p--20 border
-                                        <?php if (strpos($search_product_category, "all") !== false
-                                            || empty($search_product_category)) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="all" data-type="category">투어전체
-                                        </li>
-                                        <?php
-                                        foreach ($codes as $code) {
-                                            ?>
-                                            <li class="tab_box_element_ tab_box_js p--20 border
-                                            <?php if (strpos($search_product_category, $code["code_no"]) !== false) {
-                                                echo "tab_active_";
-                                            } ?>"
-                                                data-code="<?= $code["code_no"] ?>"
-                                                data-type="category"><?= $code["code_name"] ?></li>
-                                            <?php
-                                        }
-                                        ?>
-                                    </ul>
-                                </div>
-                            </div>
-							
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>키워드</span>
