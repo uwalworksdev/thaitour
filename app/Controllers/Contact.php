@@ -74,9 +74,8 @@ class Contact extends BaseController
         ]);
     }
 
-    public function write() {
+    public function write($idx = null) {
 
-        $idx = $_GET['idx'];
 
         $privacy = $this->policy->getByCode("privacy");
         $third_paties = $this->policy->getByCode("third_paties");
