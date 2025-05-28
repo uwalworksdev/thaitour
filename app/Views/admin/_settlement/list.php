@@ -689,7 +689,6 @@
                             var form = $('<form action="/excel/get_excel" method="get"></form>');
                             form.appendTo('body');
 
-                            form.append(`<input type="hidden" name="product_code_1" value="${$('#product_code_1').val()}">`);
 
                             form.submit();
                             form.remove();
