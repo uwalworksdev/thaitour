@@ -82,6 +82,7 @@
                             FROM tbl_order_mst 
                         ";
     // write_log($infoSql);
+    $db = \Config\Database::connect();
     $infoResult     = $db->query($infoSql);
     $info           = $infoResult->getRowArray();
 	$info['LAST_MONTH_TOTAL_PAYMENT'] = $info['LAST_MONTH_DEPOSIT_PAYMENT'] + $info['LAST_MONTH_CONFIRM_PAYMENT'];
