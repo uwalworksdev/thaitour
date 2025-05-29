@@ -2317,9 +2317,11 @@
         <script>
             function wish_it(product_idx) {
 
-                if ($("#member_Id").val() == "") {
+                const isLoggedIn = <?= session()->has('member') ? 'true' : 'false' ?>;
+
+                if (!isLoggedIn) {
                     alert("로그인 하셔야 합니다.");
-                    location.href = '/member/login';
+                    location.href = "/member/login?returnUrl=<?= urlencode($_SERVER['REQUEST_URI']) ?>";
                 } else {
 
                     var message = "";
