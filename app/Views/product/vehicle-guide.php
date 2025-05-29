@@ -148,6 +148,14 @@
         letter-spacing: -1px;
     }
 
+    #flight_code {
+        width: 200px;
+    }
+
+    input[name="date_trip[]"] {
+        width: 200px !important;
+    }
+
     .tbl_st3 {
         width: 100%;
         border-top: 1px solid #333;
@@ -1012,12 +1020,6 @@
 
     .mr10 {
         margin-right: 10px;
-    }
-
-    #flight_code {
-        display: none;
-        margin-top: 10px;
-        width: 200px;
     }
 
     .driver_list .h-380 {
@@ -2661,16 +2663,14 @@
                             <tr>
                                 <th>항공편 명</th>
                                 <td colspan="3">
-                                    <select id="flight_arr" onchange="change_flight(this)">
-                                    </select>
                                     <input type="text" name="airline_code[]" class="s_airline_code" id="flight_code" placeholder="예) KE 657">
                                 </td>
                             </tr>
                             <tr>
                                 <th>항공 도착 날짜</th>
                                 <td colspan="3">
-                                    <div class="datepicker_wrap" style="width: 250px;">
-                                        <input type="text" name="date_trip[]" class="date_form_trip s_date_trip" readonly>
+                                    <div class="datepicker_wrap">
+                                        <input type="text" name="date_trip[]" class="date_form_trip s_date_trip">
                                     </div>
                                 </td>
                             </tr>
@@ -2752,8 +2752,8 @@
                                     <tr>
                                         <th>차량 미팅 날짜</th>
                                         <td colspan="3">
-                                            <div class="datepicker_wrap" style="width: 250px;">
-                                                <input type="text" name="date_trip[]" class="date_form e_date_trip" readonly>
+                                            <div class="datepicker_wrap">
+                                                <input type="text" name="date_trip[]" class="date_form e_date_trip">
                                             </div>
                                         </td>
                                     </tr>
@@ -2837,8 +2837,8 @@
                             <tr>
                                 <th>차량 미팅 날짜</th>
                                 <td colspan="3">
-                                    <div class="datepicker_wrap" style="width: 250px;">
-                                        <input type="text" name="date_trip[]" class="date_form s_date_trip" readonly>
+                                    <div class="datepicker_wrap">
+                                        <input type="text" name="date_trip[]" class="date_form s_date_trip">
                                     </div>
                                 </td>
                             </tr>
@@ -3306,14 +3306,14 @@
 
             let nextDate = currentDate.toISOString().split('T')[0];
 
-            $(".date_form_trip").datepicker({
-                dateFormat: "yy-mm-dd",
-                showOn: "both",
-                buttonImage: "/images/ico/date_ico.png",
-                buttonImageOnly: true,
-                minDate: new Date(selected_meeting_date),
-                maxDate: new Date(nextDate)
-            });
+            // $(".date_form_trip").datepicker({
+            //     dateFormat: "yy-mm-dd",
+            //     showOn: "both",
+            //     buttonImage: "/images/ico/date_ico.png",
+            //     buttonImageOnly: true,
+            //     minDate: new Date(selected_meeting_date),
+            //     maxDate: new Date(nextDate)
+            // });
         }
 
         $(".date_form").val(selected_meeting_date);

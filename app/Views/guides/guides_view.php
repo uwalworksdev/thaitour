@@ -830,6 +830,7 @@
             $('.calendar_header:first').next().show().parent().addClass('active');
             openDateRanger('.calendar_header:first');
             
+
             $(".calendar_header").click(function () {
                 $('.tour_calendar').removeClass('active');
                 $('.item_check_term_').removeClass('checked_');
@@ -856,7 +857,7 @@
                 $('#calendar_text_head' + num_idx).addClass('open_')
                 $('.container-calendar.tour').removeClass('open_')
                 $('#calendar_tab_' + num_idx).addClass('open_')
-                $('#daterange_guilde_detail' + num_idx).data('daterangepicker').setStartDate('2024-12-30');
+                // $('#daterange_guilde_detail' + num_idx).data('daterangepicker').setStartDate('2024-12-30');
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
@@ -889,20 +890,6 @@
                     $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
                     $('#checkOutDate' + idx).val(end.format('YYYY-MM-DD'));
 
-                }).on('show.daterangepicker', function (ev, picker) {
-                    $(picker.container).find("td.available").off("click").click(function () {
-                        var a = $(this).attr("data-title"),
-                        i = a.substr(1, 1),
-                        s = a.substr(3, 1),
-                        n = $(this).parents(".drp-calendar").hasClass("left")
-                        ? picker.leftCalendar.calendar[i][s]
-                        : picker.rightCalendar.calendar[i][s];
-                        const countDay = Number($("#countDay" + idx).val() - 1);
-                        picker.setStartDate(n);
-                        picker.setEndDate(n.add(Number(countDay), "days"));
-                        picker.clickApply();
-                        
-                    })
                 }).on('hide.daterangepicker', function (ev, picker) {
                     $(`${calendarTabElement} .daterangepicker`).show();
                     setTimeout(function () {

@@ -289,7 +289,15 @@
                         <?php foreach ($magazines as $magazine): ?>
                             <div class="swiper-slide">
                                 <a href="/magazines/detail?m_idx=<?= $magazine['bbs_idx'] ?>" class="item">
-                                    <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="">
+                                    <div class="img_box">
+                                        <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="">
+                                        <div class="img_box__shadow"></div>
+                                    </div>
+                                    <div class="magazine_content">
+                                        <div class="magazine_content_txt">
+                                            <?= $magazine['subject'] ?>                                    
+                                        </div>
+                                    </div>
                                 </a>
                             </div>
                         <?php endforeach; ?>
