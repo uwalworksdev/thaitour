@@ -488,7 +488,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
                     <input type="hidden" value="" id="hidden_captcha" />
                     <button class="re_btn" type="button" onclick="reloadCaptcha()">
-                        <img class="re_cap" src="../assets/img/reload.png" alt="">
+                        <img class="re_cap" src="/assets/img/reload.png" alt="">
                         <p>새로고침</p>
                     </button>
 
