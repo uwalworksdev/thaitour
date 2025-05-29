@@ -15,8 +15,11 @@
                 <!-- <div class="only_web"> -->
 
                 <div class="list-icon">
+                    <?php
+                            $icon_suffix = $data_['liked'] ? 'on_icon' : 'icon';
+                    ?>
                     <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                    <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" onclick="wish_it('<?= $data_['product_idx'] ?>')">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
                 </div>
                 <!-- </div> -->
@@ -46,7 +49,10 @@
                 </div>
                 <div class="list-icon">
                     <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                    <?php
+                            $icon_suffix = $data_['liked'] ? 'on_icon' : 'icon';
+                    ?>
+                    <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" onclick="wish_it('<?= $data_['product_idx'] ?>')">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
                 </div>
             </div>
@@ -646,7 +652,37 @@
     </div>
     <div class="dim"></div>
 </div>
+     <script>
+        function wish_it(product_idx) {
 
+            if ($("#member_Id").val() == "") {
+                alert("로그인 하셔야 합니다.");
+                location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+            } else {
+
+                var message = "";
+                $.ajax({
+
+                    url: "/product/like",
+                    type: "POST",
+                    data: {
+                        "product_idx": product_idx
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function(data, textStatus) {
+                        message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function(request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
+        }
+    </script>
 <script>
     
     $(document).ready(function() {
@@ -774,13 +810,13 @@
         }
     });
 
-    $('.list-icon img[alt="heart_icon"]').click(function () {
-        if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-            $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-        } else {
-            $(this).attr('src', '/uploads/icons/heart_icon.png');
-        }
-    });
+    // $('.list-icon img[alt="heart_icon"]').click(function () {
+    //     if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+    //         $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+    //     } else {
+    //         $(this).attr('src', '/uploads/icons/heart_icon.png');
+    //     }
+    // });
 
     $('.quantity-container').each(function () {
         var $container = $(this);

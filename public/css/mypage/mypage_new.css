@@ -356,6 +356,10 @@ table-layout: fixed;
     color: #757575;
 }
 
+.mypage_container .content .fav_list_table tbody tr .des {
+    padding: 0 20px;
+}
+
 .mypage_container .content .fav_list_table tbody tr .date_s,
 .mypage_container .content .fav_list_table tbody tr .date_e {
     text-align: center;

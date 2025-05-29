@@ -259,11 +259,12 @@
     .mypage_container .content .fav_list_table tbody tr {
         display: flex;
         flex-wrap: wrap;
-        height: 15.9999rem;
+        height: 17.9999rem;
         border-bottom: 0.1999rem solid #e5e5e5;
         padding: 2.9999rem 0 2.9999rem 0;
         align-items: center;
         width: 100%;
+        gap: 0.5rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .des {
@@ -292,7 +293,7 @@
     .mypage_container .content .fav_list_table tbody tr .schedule {
         color: #454545;
         order: 5;
-        margin-left: 16.64rem;
+        margin-left: 7.64rem;
     }
 
     .mypage_container .content .fav_list_table tbody tr .des span {
