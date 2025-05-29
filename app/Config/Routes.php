@@ -23,6 +23,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->post("prod_update/(:segment)", "TourRegistController::prod_update/$1", ['as' => "admin._tour.prod_update"]);
 
     $routes->get("main", "StatisticsController::main");
+    $routes->get("main_backup", "StatisticsController::main_backup");
 
     $routes->group("_review", static function ($routes) {
         $routes->get("list", "ReviewController::list_admin");
@@ -85,6 +86,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_settlement", static function ($routes) {
         $routes->get("list", "Admin\SettlementController::list");
+        $routes->get("list_backup", "Admin\SettlementController::list_backup");
         $routes->get("write", "Admin\SettlementController::write/$1");
         $routes->post("write_ok/(:segment)", "Admin\SettlementController::write_ok/$1");
         $routes->post("delete", "Admin\SettlementController::delete");

@@ -248,5 +248,9 @@ class StatisticsController extends BaseController {
         ];
         return view('admin/_statistics/main', $data);
     }
+
+    public function main_backup() {
+        return view('admin/_statistics/main_bakup');
+    }
 }
 ?>

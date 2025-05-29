@@ -450,6 +450,207 @@ class SettlementController extends BaseController
 
         return view('admin/_settlement/list', $data);
     }
+
+    public function list_backup()
+    {
+        $private_key = private_key();
+
+        $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
+        $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
+        $product_code_3  = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
+        $pg              = !empty($_GET["pg"]) ? $_GET['pg'] : "";
+        $isDelete        = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
+        $s_date          = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
+        $e_date          = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
+        $date_chker      = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
+        $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
+        $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
+        $arrays_paging   = "";
+        $strSql          = "";
+
+        $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
+        $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
+
+        if (sizeof($payment_chker) > 0) {
+
+            $strSql = $strSql . " and a.deposit_method in (";
+            $_tmp_cnt = 0;
+            foreach ($payment_chker as $vals) {
+                if ($_tmp_cnt > 0) {
+                    $strSql = $strSql . ",";
+                }
+
+                if ($vals == "CARD")  $vals = "신용카드";
+                if ($vals == "Dbank") $vals = "무통장입금";
+
+                $strSql = $strSql . " '" . $vals . "' ";
+                $_tmp_cnt++;
+                $arrays_paging .= "&payment_chker[]=" . $vals;
+            }
+
+            $strSql = $strSql . " ) ";
+        }
+
+        if (sizeof($state_chker) > 0) {
+
+            $strSql = $strSql . " and a.order_status in (";
+            $_tmp_cnt = 0;
+            foreach ($state_chker as $vals) {
+                if ($_tmp_cnt > 0) {
+                    $strSql = $strSql . ",";
+                }
+                $strSql = $strSql . " '" . $vals . "' ";
+                $_tmp_cnt++;
+                $arrays_paging .= "&state_chker[]=" . $vals;
+            }
+
+            $strSql = $strSql . " ) ";
+        }
+
+        if ($product_code_1) $strSql = $strSql . " and a.product_code_1 = '$product_code_1' ";
+        if ($product_code_2) $strSql = $strSql . " and a.product_code_list like '%|$product_code_2%'";
+        if ($product_code_3) $strSql = $strSql . " and a.product_code_list like '%|$product_code_3%'";
+
+        if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
+
+        if ($s_date != "" && $e_date != "") {
+            if ($date_chker == "order_r_date") $strSql = $strSql . " AND (DATE(a.order_r_date) >= '" . $s_date . "'       AND DATE(a.order_r_date) <= '" . $e_date . "')";
+            if ($date_chker == "deposit_date") $strSql = $strSql . " AND (DATE(a.deposit_date) >= '" . $s_date . "'       AND DATE(a.deposit_date) <= '" . $e_date . "')";
+            if ($date_chker == "confirm_date") $strSql = $strSql . " AND (DATE(a.order_confirm_date) >= '" . $s_date . "' AND DATE(a.order_confirm_date) <= '" . $e_date . "')";
+            if ($date_chker == "order_c_date") $strSql = $strSql . " AND (DATE(a.order_c_date) >= '" . $s_date . "'       AND DATE(a.order_c_date) <= '" . $e_date . "')";
+        }
+
+        // $g_list_rows = 30;
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30;
+        if ($search_name) {
+            if ($search_category == "a.order_user_name" || $search_category == "a.order_user_mobile" || $search_category == "a.order_user_email" || $search_category == "a.manager_name") {
+                $strSql = $strSql . " and CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)  LIKE '%" . $this->db->escapeString($search_name) . "%' ";
+            } else {
+                $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
+            }
+        }
+        $strSql = $strSql . " and a.order_status NOT IN ('B', 'D') ";
+
+        $total_sql = "	SELECT a.product_name AS product_name_new  
+		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
+						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
+						     , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
+						     , AES_DECRYPT(UNHEX(a.manager_name),      '$private_key') AS man_name
+						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
+						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
+                             , a.*
+		                     , d.user_id  
+                             , COUNT(c.order_idx) AS cnt_number_person
+						FROM tbl_order_mst a 
+						LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+                        LEFT JOIN tbl_order_list c  ON c.order_idx   = a.order_idx
+						LEFT JOIN tbl_member d      ON a.m_idx       = d.m_idx
+						WHERE a.is_modify='N'       AND a.order_status = 'Z' $strSql GROUP BY a.order_idx";
+		//write_log("total_sql- ". $total_sql);				
+        $result = $this->connect->query($total_sql);
+        $nTotalCount = $result->getNumRows();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum asc, code_idx desc";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum asc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql);
+        $fresult2 = $fresult2->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum asc, code_idx desc";
+        $fresult3 = $this->connect->query($fsql);
+        $fresult3 = $fresult3->getResultArray();
+
+        $fsql     = "	SELECT 
+		                 COUNT(a.order_idx)    AS order_cnt
+		                ,SUM(a.real_price_won) AS price_tot  
+						,SUM(e.exp_amt_won)    AS exp_amt
+						FROM tbl_order_mst a 
+						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
+						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
+						WHERE a.is_modify='N'        AND a.order_status = 'Z' $strSql ";
+        $fresult4 = $this->connect->query($fsql);
+        $row4     = $fresult4->getRowArray();  // 1개의 row 가져옴
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $sql = $total_sql . " order by group_no desc, order_r_date desc, order_idx desc limit $nFrom, $g_list_rows ";
+
+        $result = $this->connect->query($sql);
+        $result = $result->getResultArray();
+        $num = $nTotalCount - $nFrom;
+
+        foreach($result as $key => $value){
+            if($value["order_gubun"] == "hotel"){
+                $sql_ = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $value["room_op_idx"];
+                $room_ = $this->db->query($sql_)->getRowArray();
+                $result[$key]['room_secret'] = $room_['secret_price'];
+            }
+        }
+
+
+        /*
+		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
+						 , AES_DECRYPT(UNHEX('{$result['order_user_mobile']}'), '$private_key') order_user_mobile
+						 , AES_DECRYPT(UNHEX('{$result['manager_name']}'),      '$private_key') manager_name
+						 , AES_DECRYPT(UNHEX('{$result['manager_phone']}'),     '$private_key') manager_phone
+						 , AES_DECRYPT(UNHEX('{$result['manager_email']}'),     '$private_key') manager_email ";
+
+		$res_d = $this->connect->query($sql_d);
+		$row_d = $res_d->getResultArray();
+
+		$result['order_user_name']   = $row_d['order_user_name'];
+		$result['order_user_mobile'] = $row_d['order_user_mobile'];
+		$result['manager_name']      = $row_d['manager_name'];
+		$result['manager_phone']     = $row_d['manager_phone'];
+		$result['manager_email']     = $row_d['manager_email'];
+        */
+        $_pg_Method = getPgMethods();
+        $_deli_type = get_deli_type();
+        $s_time = '';
+        $e_time = '';
+        $s_status = '';
+        $arrays_paging = '';
+        $data = [
+            'total_sql'       => $total_sql,
+            'nTotalCount'     => $nTotalCount,
+            'num'             => $num,
+            'result'          => $result,
+            'fresult'         => $fresult,
+            'fresult2'        => $fresult2,
+            'fresult3'        => $fresult3,
+            'fresult4'        => $row4,
+            'pg'              => $pg,
+            'nPage'           => $nPage,
+            'search_category' => $search_category,
+            'search_name'     => $search_name,
+            'product_code_1'  => $product_code_1,
+            'product_code_2'  => $product_code_2,
+            'product_code_3'  => $product_code_3,
+            's_date'          => $s_date,
+            'e_date'          => $e_date,
+            'date_chker'      => $date_chker,
+            'isDelete'        => $isDelete,
+            '_isDelete'       => $isDelete,
+            'g_list_rows'     => $g_list_rows,
+            'nFrom'           => $nFrom,
+            '_pg_Method'      => $_pg_Method,
+            '_deli_type'      => $_deli_type,
+            'state_chker'     => $state_chker,
+            's_time'          => $s_time,
+            'e_time'          => $e_time,
+            'payment_chker'   => $payment_chker,
+            's_status'        => $s_status,
+            'arrays_paging'   => $arrays_paging
+        ];
+
+        return view('admin/_settlement/list_backup', $data);
+    }
 	
     public function write($gubun = null)
     {
