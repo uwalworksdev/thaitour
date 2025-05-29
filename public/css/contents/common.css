@@ -678,14 +678,19 @@ figure.cover_img img {
   }
 
   .snb ul li a {
-    font-size: 2.8rem !important;
-    font-weight: 500;
-    color: #999999;
-    /* display: inline-block; */
-    line-height: 8rem !important;
-    position: relative;
-    text-wrap: nowrap;
-}
+      font-size: 2.8rem !important;
+      font-weight: 500;
+      color: #999999;
+      /* display: inline-block; */
+      line-height: 8rem !important;
+      position: relative;
+      text-wrap: nowrap;
+  }
+
+  .snb ul li.on a::after
+  {
+      top: 166% !important;
+  }
 
   .main_current_slide {
   }

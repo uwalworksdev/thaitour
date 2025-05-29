@@ -855,6 +855,7 @@ $routes->group("contact", static function ($routes) {
     $routes->get("main", "Contact::main");
     $routes->get("view", "Contact::view");
     $routes->get("write", "Contact::write");
+    $routes->get("write/(:segment)", "Contact::write/$1");
     $routes->post("write_ok", "Contact::write_ok");
     $routes->post("delete", "Contact::delete");
 });
