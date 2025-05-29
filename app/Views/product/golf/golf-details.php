@@ -102,10 +102,13 @@ $(document).ready(function() {
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <div class="list-icon">
+                        <?php
+                            $icon_suffix = $product['liked'] ? 'on_icon' : 'icon';
+                        ?>
                         <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
+                        <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $product['product_idx'] ?>')">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo" onclick="wish_it('<?= $product['product_idx'] ?>')">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -127,8 +130,11 @@ $(document).ready(function() {
                     <div class="list-icon">
                         <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
+                        <?php
+                            $icon_suffix = $product['liked'] ? 'on_icon' : 'icon';
+                        ?>
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $product['product_idx'] ?>')">
+                        <img src="/uploads/icons/heart_<?= $icon_suffix ?>_mo.png" alt="heart_icon_mo" class="only_mo" onclick="wish_it('<?= $product['product_idx'] ?>')">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -1264,6 +1270,39 @@ $(document).ready(function() {
         });
     </script>
 
+     <script>
+        function wish_it(product_idx) {
+
+            if ($("#member_Id").val() == "") {
+                alert("로그인 하셔야 합니다.");
+                location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+            } else {
+
+                var message = "";
+                $.ajax({
+
+                    url: "/product/like",
+                    type: "POST",
+                    data: {
+                        "product_idx": product_idx
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function(data, textStatus) {
+                        message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function(request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
+        }
+    </script>
+
+
     <script>
         function handleShowBookingArea(elm) {
             const target = $(elm).data('target');
@@ -1800,13 +1839,13 @@ $(document).ready(function() {
         // Get the popup, open button, close button elements
         const $closePopupBtn = $('.close-btn');
 
-        $('.list-icon img[alt="heart_icon"]').click(function () {
-            if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-                $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-            } else {
-                $(this).attr('src', '/uploads/icons/heart_icon.png');
-            }
-        });
+        // $('.list-icon img[alt="heart_icon"]').click(function () {
+        //     if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+        //         $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+        //     } else {
+        //         $(this).attr('src', '/uploads/icons/heart_icon.png');
+        //     }
+        // });
 
         // Close the popup when the "Close" button or the "x" is clicked
         $closePopupBtn.on('click', function () {

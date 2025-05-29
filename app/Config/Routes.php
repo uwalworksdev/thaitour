@@ -1042,6 +1042,7 @@ $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
 $routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
 $routes->get('product/get-step2-by-code-no', 'Product::getStep2ByCodeNo');
 $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour');
+$routes->post('product/like', 'Product::like');
 
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);

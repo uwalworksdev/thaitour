@@ -689,11 +689,12 @@
             <div class="title-container">
                 <h2><?= $hotel['product_name'] ?> <span style="margin-left: 15px;"><?= $hotel['product_name_en'] ?></span> </h2>
                 <div class="list-icon">
+                    <?php
+                        $icon_suffix = $hotel['liked'] ? 'on_icon' : 'icon';
+                    ?>
                     <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                     <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
-                        onclick="wish_it('<?= $hotel['product_idx'] ?>')">
-                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                    <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" class="only_web"
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web" onclick="showListShare()">
                     <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
@@ -722,9 +723,12 @@
                 <div class="list-icon">
                     <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                     <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo"> -->
+                    <?php
+                        $icon_suffix = $hotel['liked'] ? 'on_icon' : 'icon';
+                    ?>
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
-                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                    <img src="/uploads/icons/heart_<?= $icon_suffix ?>_mo.png" alt="heart_icon_mo" class="only_mo"
                         onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                     <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
@@ -2311,7 +2315,7 @@
 		</script>
 
         <script>
-            function wish_it() {
+            function wish_it(product_idx) {
 
                 if ($("#member_Id").val() == "") {
                     alert("로그인 하셔야 합니다.");
@@ -2321,10 +2325,10 @@
                     var message = "";
                     $.ajax({
 
-                        url: "/item/ajax.wish_set.php",
+                        url: "/product/like",
                         type: "POST",
                         data: {
-                            "product_idx": '<?= $product_idx ?>'
+                            "product_idx": product_idx
                         },
                         dataType: "json",
                         async: false,

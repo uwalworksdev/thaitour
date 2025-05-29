@@ -254,7 +254,7 @@ $page = $_GET['pg'];
 
             $sql_wish = " select a.*, b.* from tbl_wish_list a
                                                 left join tbl_product_mst b on a.product_idx = b.product_idx 
-                                                where m_idx = '" . $_SESSION["member"]["idx"] . "'   ";
+                                                where m_idx = '" . $_SESSION["member"]["idx"] . "'  AND a.product_idx > 0 ";
 
             $g_list_rows = 10;
             $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
@@ -320,19 +320,23 @@ $page = $_GET['pg'];
                                     <td class="des"><span><?= viewSQ($frow['product_name']) ?></span></td>
 
                                     <?php
-                                    if ($frow['product_code_1'] == "1317") {
-                                        $product = "t-tours";
-                                    } else if ($frow['product_code_1'] == "1320") {
-                                        $product = "t-honeymoon";
-                                    } else if ($frow['product_code_1'] == "1324") {
-                                        $product = "t-package";
+                                    if ($frow['product_code_1'] == "1303") {
+                                        $product = "/product-hotel/hotel-detail/";
+                                    } else if ($frow['product_code_1'] == "1302") {
+                                        $product = "product-golf/golf-detail/";
+                                    } else if ($frow['product_code_1'] == "1301") {
+                                        $product = "/product-tours/item_view/";
                                     } else if ($frow['product_code_1'] == "1325") {
-                                        $product = "t-trip";
+                                        $product = "/product-spa/spa-details/";
+                                    }  else if ($frow['product_code_1'] == "1317") {
+                                        $product = "/ticket/ticket-detail/";
+                                    }  else if ($frow['product_code_1'] == "1320") {
+                                        $product = "/product-restaurant/restaurant-detail/";
                                     }
                                     ?>
 
                                     <td class="schedule"><a
-                                            href="/<?= $product ?>/item_view?product_idx=<?= $frow['product_idx'] ?>">상세보기</a>
+                                            href="<?= $product ?><?= $frow['product_idx'] ?>">상세보기</a>
                                     </td>
                                     <td class="date"><?= date("Y.m.d", strtotime($frow['wish_r_date'])) ?></td>
                                 </tr>

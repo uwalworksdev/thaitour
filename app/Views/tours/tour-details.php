@@ -145,8 +145,11 @@
                     <h2><?= viewSQ($product['product_name']) ?> <span style="margin-left: 15px;"><?= viewSQ($product['product_name_en']) ?></span></h2>
                     <!-- <div class="only_web"> -->
                         <div class="list-icon">
+                            <?php
+                                $icon_suffix = $product['liked'] ? 'on_icon' : 'icon';
+                            ?>
                             <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
-                            <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                            <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $product['product_idx'] ?>')">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                         </div>
                     <!-- </div> -->
@@ -189,8 +192,11 @@
                         </a>
                     </div>
                     <div class="list-icon">
+                            <?php
+                                $icon_suffix = $product['liked'] ? 'on_icon' : 'icon';
+                            ?>
                             <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
-                            <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                            <img src="/uploads/icons/heart_<?= $icon_suffix ?>_mo.png" alt="heart_icon" onclick="wish_it('<?= $product['product_idx'] ?>')">
                             <img src="/uploads/icons/share_icon.png" alt="share_icon">
                     </div>
                 </div>
@@ -990,6 +996,38 @@
             </div>
             <div class="dim"></div>
         </div>
+
+<script>
+        function wish_it(product_idx) {
+
+            if ($("#member_Id").val() == "") {
+                alert("로그인 하셔야 합니다.");
+                location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+            } else {
+
+                var message = "";
+                $.ajax({
+
+                    url: "/product/like",
+                    type: "POST",
+                    data: {
+                        "product_idx": product_idx
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function(data, textStatus) {
+                        message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function(request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
+        }
+    </script>
 <script>
     $(".btn_add_cart").on("click", function () {
         if ($("#pop_start_place").val() === "") {
@@ -1125,13 +1163,13 @@
         }
     });
 
-    $('.list-icon img[alt="heart_icon"]').click(function() {
-        if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-            $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-        } else {
-            $(this).attr('src', '/uploads/icons/heart_icon.png');
-        }
-    });
+    // $('.list-icon img[alt="heart_icon"]').click(function() {
+    //     if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+    //         $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+    //     } else {
+    //         $(this).attr('src', '/uploads/icons/heart_icon.png');
+    //     }
+    // });
 
     const swiper_content = new Swiper(".swiper-container_tour_content", {
         loop: true,
