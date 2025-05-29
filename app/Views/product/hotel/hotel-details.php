@@ -698,10 +698,10 @@
                     <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web" onclick="showListShare()">
                     <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     <div class="list_share">
-                        <a href="#!" class="item kakao" >
+                        <a href="#!" class="item kakao btn_share_kakao" >
                             <img src="/images/btn/ic_kakao.png" alt="">
                         </a>
-                        <a href="#!" class="item link_">
+                        <a href="#!" class="item link_" onclick="copyUrl()">
                             <img src="/images/btn/share_link_icon1.png" alt="">
                         </a>
                     </div>
@@ -3528,6 +3528,45 @@
 <script>
     function showListShare () {
         $(".list_share").toggleClass("on");
+    }
+
+    $('.btn_share_kakao').on('click', function () {
+        let img_url = 'https://odymedi.com/data/home/<?= $setting['og_img'] ?>'
+        const currentUrl = window.location.href;
+
+        Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: document.querySelector("meta[name='Title']").content,
+                description: document.querySelector("meta[name='Description']").content,
+                imageUrl: img_url,
+                link: {
+                    mobileWebUrl: currentUrl,
+                    webUrl: currentUrl
+                }
+            },
+            buttons: [
+                {
+                    title: 'Open Page',
+                    link: {
+                        mobileWebUrl: currentUrl,
+                        webUrl: currentUrl
+                    }
+                }
+            ]
+        });
+    });
+    function copyUrl() {
+        var dummy = document.createElement('input'),
+            text = window.location.href;
+
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+
+        alert('URL이 복사되었습니다.')
     }
 </script>
 <?php $this->endSection(); ?>
