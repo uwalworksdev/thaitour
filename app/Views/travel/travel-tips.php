@@ -287,7 +287,7 @@
                 <div class="swiper swipper_sec_06">
                     <div class="list_travel_banner swiper-wrapper">
                         <?php foreach ($magazines as $magazine): ?>
-                            <div class="swiper-slide">
+                            <div class="swiper-slide magazine_item_">
                                 <a href="/magazines/detail?m_idx=<?= $magazine['bbs_idx'] ?>" class="item">
                                     <div class="img_box">
                                         <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="">
