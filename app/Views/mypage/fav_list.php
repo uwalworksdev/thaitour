@@ -323,7 +323,7 @@ $page = $_GET['pg'];
                                     if ($frow['product_code_1'] == "1303") {
                                         $product = "/product-hotel/hotel-detail/";
                                     } else if ($frow['product_code_1'] == "1302") {
-                                        $product = "product-golf/golf-detail/";
+                                        $product = "/product-golf/golf-detail/";
                                     } else if ($frow['product_code_1'] == "1301") {
                                         $product = "/product-tours/item_view/";
                                     } else if ($frow['product_code_1'] == "1325") {
