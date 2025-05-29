@@ -2319,7 +2319,7 @@
 
                 if ($("#member_Id").val() == "") {
                     alert("로그인 하셔야 합니다.");
-                    location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+                    location.href = '/member/login';
                 } else {
 
                     var message = "";
@@ -2967,21 +2967,21 @@
 
         }
 
-        $('.list-icon img[alt="heart_icon"], .list-icon img[alt="heart_icon_mo"]').click(function() {
-            if ($(this).attr('src').includes('_mo')) {
-                if ($(this).attr('src') === '/uploads/icons/heart_icon_mo.png') {
-                    $(this).attr('src', '/uploads/icons/heart_on_icon_mo.png');
-                } else {
-                    $(this).attr('src', '/uploads/icons/heart_icon_mo.png');
-                }
-            } else {
-                if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-                    $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-                } else {
-                    $(this).attr('src', '/uploads/icons/heart_icon.png');
-                }
-            }
-        });
+        // $('.list-icon img[alt="heart_icon"], .list-icon img[alt="heart_icon_mo"]').click(function() {
+        //     if ($(this).attr('src').includes('_mo')) {
+        //         if ($(this).attr('src') === '/uploads/icons/heart_icon_mo.png') {
+        //             $(this).attr('src', '/uploads/icons/heart_on_icon_mo.png');
+        //         } else {
+        //             $(this).attr('src', '/uploads/icons/heart_icon_mo.png');
+        //         }
+        //     } else {
+        //         if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+        //             $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+        //         } else {
+        //             $(this).attr('src', '/uploads/icons/heart_icon.png');
+        //         }
+        //     }
+        // });
 
         $(document).on("click", ".book-add-cart", function() {
             <?php

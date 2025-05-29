@@ -1275,7 +1275,7 @@ $(document).ready(function() {
 
             if ($("#member_Id").val() == "") {
                 alert("로그인 하셔야 합니다.");
-                location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+                location.href = '/member/login';
             } else {
 
                 var message = "";
