@@ -538,7 +538,7 @@
                         <div class="popup_place__body customer-form-page" style="background-color: unset;">
 
                             <div class="form-group cus-form-group memo">
-                                <label for="extra-requests">기타요청</label>
+                                <label for="extra-requests">인원선택</label>
                                 <div class="form_time_wrap">
 
                                 </div>
@@ -600,7 +600,6 @@
 
             formData.append('option_idx', o_idx);
             formData.append('product_idx', '<?= $guide['product_idx'] ?>');
-
 
             const form2 = $('#frm_guide');
 
@@ -806,6 +805,7 @@
     <script>
         $(document).ready(function () {
             $(".calendar_header").each(function () {
+                const idx = $(this).data('num');
                 init_daterange($(this).data('num'));
             });
 
@@ -845,9 +845,9 @@
                 $(this).parent().hide()
             });
 
-            $('.hasDateranger').click(function () {
-                openDateRanger(this);
-            })
+            // $('.hasDateranger').click(function () {
+            //     openDateRanger(this);
+            // })
 
             function openDateRanger(el) {
                 let num_idx = $(el).data('num');
@@ -883,7 +883,7 @@
                     parentEl: calendarTabElement,
                     minDate: moment(), //moment().add(1, 'days')
                     opens: "center",
-                    autoApply: false
+                    autoApply: true
                 }, function (start, end) {
 
                     $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
@@ -901,6 +901,7 @@
                         picker.setStartDate(n);
                         picker.setEndDate(n.add(Number(countDay), "days"));
                         picker.clickApply();
+                        
                     })
                 }).on('hide.daterangepicker', function (ev, picker) {
                     $(`${calendarTabElement} .daterangepicker`).show();
