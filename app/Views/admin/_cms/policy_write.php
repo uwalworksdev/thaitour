@@ -50,16 +50,21 @@
                             <?php if (!empty($related_policies)) { ?>
                                 <?php foreach ($related_policies as $index => $item) { ?>
                                     <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                        <colgroup>
+                                            <col width="5%">
+                                            <col width="95%">
+                                        </colgroup>
                                         <caption>정책 <?= $item['p_idx'] ?></caption>
                                         <tbody>
                                             <tr>
-                                                <td>
+                                                <td colspan="2">
                                                     <input type="hidden" name="p_idx[]" value="<?= $item['p_idx'] ?>">
                                                     <input type="text" name="policy_type[]" class="input_txt"
                                                         value="<?= $item['policy_type'] ?>">
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <th>PC</th>
                                                 <td>
                                                 <textarea name="policy_contents[]" id="policy_contents_<?= $index ?>" rows="10" cols="100"
                                                     class="input_txt"
@@ -96,6 +101,7 @@
                                             </tr>
 
                                             <tr>
+                                                <th>모바일</th>
                                                 <td>
                                                 <textarea name="policy_contents_m[]" id="policy_contents_m_<?= $index ?>" rows="10" cols="100"
                                                     class="input_txt"
@@ -137,18 +143,23 @@
                             <?php } else {?>
                                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                     <input type="hidden" name="p_idx[]" value="<?= $p_idx ?>">
+                                        <colgroup>
+                                            <col width="5%">
+                                            <col width="95%">
+                                        </colgroup>
                                     <caption>
                                     </caption>
 
                                     <tbody>
                                     <tr>
-                                        <td>
+                                        <td colspan="2">
                                             <input type="text" name="policy_type[]" id="policy_type" class="input_txt"
                                                 style="width:400px;height:30px;"
                                                 value="<?= isset($row) ? $row['policy_type'] : '' ?>">
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>PC</th>
                                         <td>
                                     <textarea name="policy_contents[]" id="policy_contents" rows="10" cols="100"
                                             class="input_txt"
@@ -184,6 +195,7 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th>모바일</th>
                                     <td>
                                     <textarea name="policy_contents_m[]" id="policy_contents_m" rows="10" cols="100"
                                             class="input_txt"

@@ -601,11 +601,23 @@ function getHeaderTabSubChild2($s_parent_code_no = '', $parent_code_no = '', $ch
 
     $html = "";
 
+    $tabLinks1 = [
+        1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no ,
+        1302 => "/product-golf/list-golf/". $parent_code_no,
+        1301 => "/product-tours/tours-list/". $parent_code_no,
+    ];
+
     $tabLinks = [
         1303 => "/product-hotel/list-hotel?s_code_no=" . $parent_code_no . "&search_product_category=",
         1302 => "/product-golf/list-golf/". $parent_code_no . "?search_product_category=",
-        1301 => "/product-tours/tours-list/",
+        1301 => "/product-tours/tours-list/". $parent_code_no . "?search_product_category=",
     ];
+
+    $link1 = $tabLinks1[$s_parent_code_no] . $tab_ ?? "!#";
+
+	$html .= "<li class='depth_3_item_ $activeClass' data-code='" . $tab_ . "'>";
+	$html .= "<a href='$link1' class=''>전체</a>";
+	$html .= "</li>";
 
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];

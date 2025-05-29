@@ -2018,11 +2018,21 @@ class Product extends BaseController
 					  ->orderBy('code_no', 'ASC')
 					  ->get()
 					  ->getResultArray();
+
+		if($search_product_category == "") {
+		   $search_area  = "전체";
+		} else {
+			$sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+			$result      = $this->db->query($sql);
+			$row         = $result->getRowArray();
+			$search_area = $row['code_name'];
+		} 
 			
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'codes' => $codes,
-            'category' => $search_product_category,			
+            'category' => $search_product_category,
+			'search_area' => $search_area, 
             'search_product_category' => $search_product_category,			
             'code_no' => $code_no,
             'code_info' => $this->codeModel->getByCodeNo($code_no),
@@ -3553,6 +3563,7 @@ class Product extends BaseController
     {
         try {
             $pg = $this->request->getVar('pg') ?? 1;
+			$search_product_category = $this->request->getVar('search_product_category') ?? "";
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
             $search_word = $this->request->getVar('search_word') ?? "";
             $search_product_tour = $this->request->getVar('search_product_tour') ?? "";
@@ -3655,6 +3666,7 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'tab_active' => '1',
                 'keyWordAll' => $keyWordAll,
+				'search_product_category' => $search_product_category,
                 'search_keyword' => $search_keyword,
                 'keyWordActive' => $keyWordAll[$keyWordActive],
                 'productByKeyword' => $productByKeyword,

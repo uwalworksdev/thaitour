@@ -259,6 +259,15 @@ and (orientation : landscape)
           .content_wrap.spe table {
                     width: 70rem !important;
           }
+          .term_categorybox{
+                    text-size-adjust: none;
+                    margin: 2rem auto 4rem;
+                    padding: 20px;
+                    font-size: 2.4rem;
+                    border: 1px solid rgb(235, 232, 214);
+                    background: rgb(223, 243, 255);
+                    color: rgb(85, 85, 85);
+          }
 }
 /* phone (landscape) END  */
 
