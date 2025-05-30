@@ -53,61 +53,13 @@
                 $prev_frdate    = date('Y-m-d', $weekfr - (86400 * 6)); // 지난주 시작일자
                 $prev_todate    = date('Y-m-d', $weekla - (86400 * 6)); // 지난주 종료일자
 
-                $infoSql        = " SELECT 
-
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE())) AS TODAY_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CANCLE_COUNT,
-
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY)) AS YESTERDAY_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CANCEL_COUNT,
-
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))  AS LW_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CANCLE_COUNT,
-
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm')) AS CM_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CANCLE_COUNT,
-
-                                        (SELECT COUNT(order_IDX)   FROM tbl_order_mst WHERE order_status != 'C'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_COUNT, 
-                                        (SELECT SUM(deposit_price) FROM tbl_order_mst WHERE order_status  = 'G'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_DEPOSIT_PAYMENT, 
-                                        (SELECT SUM(order_price)   FROM tbl_order_mst WHERE order_status  = 'R'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_PAYMENT, 
-
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_COUNT,
-
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_SUM,
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_SUM,
-
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_W_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_G_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_R_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_Y_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_C_COUNT
-                                        FROM tbl_order_mst 
-                                    ";
-                // write_log($infoSql);
-                $db = \Config\Database::connect();
-                $infoResult     = $db->query($infoSql);
-                $info           = $infoResult->getRowArray();
                 $info['LAST_MONTH_TOTAL_PAYMENT'] = $info['LAST_MONTH_DEPOSIT_PAYMENT'] + $info['LAST_MONTH_CONFIRM_PAYMENT'];
                 foreach($info AS $key => $val) {
                     ${$key} = number_format($val);
                 }
-                                            
+
+      		    $db = \Config\Database::connect();
+											
                 $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
                                             FROM tbl_order_mst a 
                                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
@@ -243,73 +195,73 @@
                         <ul class="payment_info_row">
                             <li>
                             <strong class="label">금일 매출액 <span>※현재기준</span></strong>
-                            <p class="all_pay"><b><?=$TODAY_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['TODAY_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$TODAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$TODAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$TODAY_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">전일 매출액</strong>
-                            <p class="all_pay"><b><?=$YESTERDAY_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['YESTERDAY_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$YESTERDAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$YESTERDAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$YESTERDAY_CANCEL_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_CANCEL_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">전주 매출액</strong>
-                            <p class="all_pay"><b><?=$LW_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['LW_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$LW_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['LW_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$LW_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['LW_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$LW_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['LW_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">당월 매출액</strong>
-                            <p class="all_pay"><b><?=$CM_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['CM_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$CM_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['CM_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$CM_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['CM_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$CM_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['CM_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
@@ -321,14 +273,14 @@
                             <p>전월 판매금액</p>
                             <span>판매완료</span>
                             </div>
-                            <div class="right"><b><?=$LAST_MONTH_CONFIRM_COUNT?></b>건</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_CONFIRM_COUNT'])?></b>건</div>
                         </div>
                         <div class="color_cont bot">
                             <div class="left">
                             <p>전월 결제금액</p>
                             <span>결제완료</span>
                             </div>
-                            <div class="right"><b><?=$LAST_MONTH_TOTAL_PAYMENT?></b>원</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_TOTAL_PAYMENT'])?></b>원</div>
                         </div>
                         </div>
                     </div>
@@ -342,33 +294,55 @@
                         </div>
                         </div>
 
+						<?php 
+						   $order_sum = $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
+						   foreach ($fresult5 as $row5) {
+									if($row5['status_group'] == "예약접수") $tot_price1 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약확인") $tot_price2 = $row5['total_amount'];	
+									if($row5['status_group'] == "결제완료") $tot_price3 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약확정") $tot_price4 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약취소") $tot_price5 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약불가") $tot_price6 = $row5['total_amount'];	
+									if($row5['status_group'] == "이용완료") $tot_price7 = $row5['total_amount'];	
+						   }
+						   
+						   $order_sum = $tot_price1 + $tot_price2 + $tot_price3 + $tot_price4 + $tot_price5 + $tot_price6 + $tot_price7; 
+						?> 
                         <div class="w_20">
                         <div class="cal_item">
                             <div class="top">
                             <p class="sub_ttl">판매상태 <span>최근 1주일 이내</span></p>
-                            <p class="all_pay"><b><?=$W_SALE_SUM?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($order_sum)?></b>원</p>
                             </div>
                             <ul class="bot_list">
-                            <li class="cont_01">
-                                <p><i></i>예약접수</p>
-                                <em><?=$W_SALE_W_COUNT?></em>
-                            </li>
-                            <li class="cont_02">
-                                <p><i></i>선금대기</p>
-                                <em><?=$W_SALE_G_COUNT?></em>
-                            </li>
-                            <li class="cont_03">
-                                <p><i></i>잔금대기</p>
-                                <em><?=$W_SALE_R_COUNT?></em>
-                            </li>
-                            <li class="cont_04">
-                                <p><i></i>결제완료</p>
-                                <em><?=$W_SALE_Y_COUNT?></em>
-                            </li>
-                            <li class="cont_05">
-                                <p><i></i>예약취소</p>
-                                <em><?=$W_SALE_C_COUNT?></em>
-                            </li>
+								<li class="cont_01">
+									<p><i></i>예약접수</p>
+									<em><?=number_format($tot_price1)?></em>
+								</li>
+								<li class="cont_02">
+									<p><i></i>예약확인</p>
+									<em><?=number_format($tot_price2)?></em>
+								</li>
+								<li class="cont_03">
+									<p><i></i>결제완료</p>
+									<em><?=number_format($tot_price3)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약확정</p>
+									<em><?=number_format($tot_price4)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>예약취소</p>
+									<em><?=number_format($tot_price5)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약불가</p>
+									<em><?=number_format($tot_price6)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>이용완료</p>
+									<em><?=number_format($tot_price7)?></em>
+								</li>
                             </ul>
                         </div>
                         </div>
@@ -384,7 +358,7 @@
                 $start_yy = date('Y', strtotime("-11 months", $now));
                 $start_mm = date('m', strtotime("-11 months", $now));
 
-                $oYM = [];
+                $oYM  = [];
                 $mCnt = []; 
                 $mTot = [];
 
