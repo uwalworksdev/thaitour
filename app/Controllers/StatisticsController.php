@@ -180,6 +180,7 @@ class StatisticsController extends BaseController {
 						tbl_order_mst a
 					WHERE 
 						a.is_modify = 'N' AND a.order_status != 'G' AND a.order_status != '' $strSql
+    					AND a.order_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
 					GROUP BY 
 						status_group
 					ORDER BY 
