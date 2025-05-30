@@ -522,7 +522,11 @@ function getHeaderTabMo()
         }
 
         $links = "<div class='menu_level_1 flex_b_c'>";
+        $links .= "<div class='flex__c menu_flex'>";
+        $links .= "<i>";
+        $links .= "</i>";
         $links .= "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
+        $links .= "</div>";
         $links .= "<img src='/images/ico/gnb_select_ico_m.png' alt='' class='btn_toggle'>";
         $links .= "</div>";
         $html .= "<li class='gnb_menu_item'>" . $links . $sub_html . "</li>";
