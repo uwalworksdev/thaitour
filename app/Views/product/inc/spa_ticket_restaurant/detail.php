@@ -7,6 +7,7 @@
     }
 
 </style>
+<?php $setting = homeSetInfo(); ?>
 <div class="content-sub-hotel-detail tours-detail spa-detail">
     <div class="body_inner">
         <div class="section1">

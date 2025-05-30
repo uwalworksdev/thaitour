@@ -1,5 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
-
+<?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
 <script>
 $(document).ready(function() {
