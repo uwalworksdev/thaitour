@@ -268,7 +268,7 @@
                                             
                                             <th>총인원</th>
                                             <td class="people">
-                                                <div class="fl mr5" style="width:90px">
+                                                <div class="fl mr5 flex_c_c" style="width:100%">
                                                     <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
                                                             class="selectric people_cnt_select">
                                                         <?php for ($i = 1; $i <= $option['o_people_cnt']; $i++) { ?>
