@@ -243,7 +243,7 @@
                         <ul class="payment_info_row">
                             <li>
                             <strong class="label">금일 매출액 <span>※현재기준</span></strong>
-                            <p class="all_pay"><b><?=$info['TODAY_CONFIRM_PAYMENT']?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['TODAY_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
