@@ -141,6 +141,7 @@
     color: #757575;
     margin-left: 1.2462rem;
     position: relative;
+    order: 4;
   }
 
   .travel_section_1 tbody tr .date::before {
