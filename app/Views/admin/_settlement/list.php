@@ -811,7 +811,7 @@
     var oneYearAgoFormatted = oneYearAgo.getFullYear() + '.' + (oneYearAgo.getMonth() + 1).toString().padStart(2, '0');
     var nowFormatted = today.getFullYear() + '.' + (today.getMonth() + 1).toString().padStart(2, '0');
     chart_caption = oneYearAgoFormatted + "~" + nowFormatted;
-    chart_caption = '<?=$oYM[0]?>' + "~" + '<?=$oYM[11]?>';
+    chart_caption = '<?=$oYM[0]?>' + " ~ " + '<?=$oYM[11]?>';
 
     
     // 차트 날짜 부분 구하기
