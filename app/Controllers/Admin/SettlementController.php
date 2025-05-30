@@ -365,9 +365,11 @@ class SettlementController extends BaseController
 		                 COUNT(a.order_idx)    AS order_cnt
 		                ,SUM(a.real_price_won) AS price_tot  
 						,SUM(e.exp_amt_won)    AS exp_amt
+						,c.payment_method      AS payment_method
 						FROM tbl_order_mst a 
+						LEFT JOIN tbl_payment_mst c  ON a.payment_no    = c.payment_no
 						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
-						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
+						LEFT JOIN tbl_expense_hist e ON a.order_idx     = e.order_idx
 						WHERE a.is_modify='N'        AND a.order_status = 'Z' $strSql ";
         $fresult4 = $this->connect->query($fsql);
         $row4     = $fresult4->getRowArray();  // 1개의 row 가져옴
