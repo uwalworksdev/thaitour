@@ -393,7 +393,12 @@
                 </div>
                 <div class="popup_place__body">
                     <!-- <?= viewSQ(getPolicy(19)) ?> -->
-                    <div id="policyContent"></div>
+                         <div class="only_web">
+                             <div id="policyContent"></div>
+                         </div>
+                        <div class="only_mo">
+                             <div id="policyContent_m"></div>
+                         </div>
                 </div>
             </div>
         </div>
