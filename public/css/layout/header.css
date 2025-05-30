@@ -1064,12 +1064,19 @@
     #mobile_menu .gnb_menu_item .menu_level_2 {
         display: none;
     }
+    
+    #mobile_menu .gnb_menu_item .menu_level_2.show {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #f4f5f6;
+        justify-content: flex-start;
+    }
 
     #mobile_menu .gnb_menu_item .menu_level_2 a {
-        padding: 3rem 7rem;
-        background-color: #f4f5f6;
-        border-bottom: 1px solid #fff;
+        padding: 3rem;
+        /* border-bottom: 1px solid #fff; */
         display: block;
+        width: 33.33%;
     }
     
     #mobile_menu .gnb_menu_item .menu_level_1 img {
