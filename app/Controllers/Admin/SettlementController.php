@@ -419,51 +419,68 @@ class SettlementController extends BaseController
 		$fresult5 = $this->connect->query($fsql);
 		$fresult5 = $fresult5->getResultArray();
 
-                $infoSql        = " SELECT 
+$today         = date('Y-m-d');
+$yesterday     = date('Y-m-d', strtotime('-1 day'));
+$week_start    = date('Y-m-d', strtotime('-7 days'));
+$month_start   = date('Y-m-d', strtotime('-1 month'));
+$prev_frdate   = '2025-05-19'; // 전주 시작일
+$prev_todate   = '2025-05-25'; // 전주 종료일
+$curr_yymm     = date('Y-m');
+$last_ym       = date('Y-m', strtotime('-1 month'));
 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE())) AS TODAY_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CANCLE_COUNT,
+                $infoSql        = " 
+SELECT 
+    -- 오늘
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) = '$today') AS TODAY_CONFIRM_PAYMENT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) = '$today') AS TODAY_CONFIRM_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status IN('G','R') AND DATE(order_r_date) = '$today') AS TODAY_PAYMENT_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) = '$today') AS TODAY_CANCEL_COUNT,
 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY)) AS YESTERDAY_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CANCEL_COUNT,
+    -- 어제
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) = '$yesterday') AS YESTERDAY_CONFIRM_PAYMENT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) = '$yesterday') AS YESTERDAY_CONFIRM_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status IN('G','R') AND DATE(order_r_date) = '$yesterday') AS YESTERDAY_PAYMENT_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) = '$yesterday') AS YESTERDAY_CANCEL_COUNT,
 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))  AS LW_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CANCLE_COUNT,
+    -- 지난주
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) BETWEEN '$prev_frdate' AND '$prev_todate') AS LW_CONFIRM_PAYMENT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status != 'C' AND DATE(order_r_date) BETWEEN '$prev_frdate' AND '$prev_todate') AS LW_CONFIRM_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status IN('G','R') AND DATE(order_r_date) BETWEEN '$prev_frdate' AND '$prev_todate') AS LW_PAYMENT_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) BETWEEN '$prev_frdate' AND '$prev_todate') AS LW_CANCLE_COUNT,
 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_PAYMENT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm')) AS CM_PAYMENT_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CANCLE_COUNT,
+    -- 이번 달
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm') AS CM_CONFIRM_PAYMENT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status != 'C' AND DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm') AS CM_CONFIRM_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status IN('G','R') AND DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm') AS CM_PAYMENT_COUNT,
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status = 'C' AND DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm') AS CM_CANCEL_COUNT,
 
-                                        (SELECT COUNT(order_IDX)   FROM tbl_order_mst WHERE order_status != 'C'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_COUNT, 
-                                        (SELECT SUM(deposit_price) FROM tbl_order_mst WHERE order_status  = 'G'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_DEPOSIT_PAYMENT, 
-                                        (SELECT SUM(order_price)   FROM tbl_order_mst WHERE order_status  = 'R'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_PAYMENT, 
+    -- 지난 달
+    (SELECT COUNT(*)         FROM tbl_order_mst WHERE order_status != 'C' AND SUBSTRING(order_r_date,1,7) = '$last_ym') AS LAST_MONTH_CONFIRM_COUNT,
+    (SELECT SUM(deposit_price) FROM tbl_order_mst WHERE order_status = 'G' AND SUBSTRING(order_r_date,1,7) = '$last_ym') AS LAST_MONTH_DEPOSIT_PAYMENT,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'R' AND SUBSTRING(order_r_date,1,7) = '$last_ym') AS LAST_MONTH_CONFIRM_PAYMENT,
 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_COUNT,
+    -- 최근 1주일 상태별 건수
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'W' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_W_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'G' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_G_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'R' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_R_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'Y' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_Y_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_C_COUNT,
 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_SUM, 
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_SUM,
-                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_SUM,
+    -- 최근 1주일 상태별 금액
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_SUM,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'W' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_W_SUM,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'G' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_G_SUM,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'R' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_R_SUM,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'Y' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_Y_SUM,
+    (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) BETWEEN '$week_start' AND '$today') AS W_SALE_C_SUM,
 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_W_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_G_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_R_COUNT, 
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_Y_COUNT,
-                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_C_COUNT
-                                        FROM tbl_order_mst 
+    -- 최근 1개월 상태별 건수
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'W' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_W_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'G' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_G_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'R' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_R_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'Y' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_Y_COUNT,
+    (SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_C_COUNT
+
                                     ";
                 // write_log($infoSql);
                 $db = \Config\Database::connect();
