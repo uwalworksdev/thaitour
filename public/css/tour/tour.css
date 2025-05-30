@@ -6107,6 +6107,7 @@
 
 .tour_type_group {
     margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
