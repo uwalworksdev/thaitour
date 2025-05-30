@@ -366,6 +366,34 @@
 
                                 <span class="cus-label-r info_link" data-product-idx="<?= $product['product_idx'] ?>" style="cursor: pointer">본 예약건 취소규정</span>
 
+                                <div class="terms-wrap" style="width: 100%;">
+                                    <h3 class="title-second">약관동의</h3>
+                                    <div class="item-info-check item_check_term_all_">
+                                        <label for="fullagreement">전체동의</label>
+                                        <input type="hidden" value="N" id="fullagreement">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">이용약관 동의(필수)</label>
+                                        <button type="button" data-type="1" class="view-policy">[보기]</button>
+                                        <input type="hidden" value="N" id="terms">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <button type="button" data-type="2" class="view-policy">[보기]</button>
+                                        <input type="hidden" value="N" id="policy">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                                        <button type="button" data-type="3" class="view-policy">[보기]</button>
+                                        <input type="hidden" value="N" id="information">
+                                    </div>
+                                    <div class="item-info-check item_check_term_">
+                                        <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <button type="button" data-type="4" class="view-policy">[보기]</button>
+                                        <input type="hidden" value="N" id="guidelines">
+                                    </div>
+                                </div>
+
                                 <button class="btn-order btnOrder" onclick="completeOrder('W');" type="button">예약하기
                                 </button>
                                 <button class="btn-cancel btnCancel" onclick="completeOrder('B');" type="button">장바구니 담기
@@ -408,6 +436,81 @@
             <div class="dim"></div>
         </div>
     </div>
+    <div class="popup_wrap place_pop reservation_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>약관동의</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <div id="policyContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+    <script>
+        $(".view-policy").on("click", function(event) {
+            event.stopPropagation();
+            let type = $(this).data("type");
+            if (type == 1) {
+                $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[1]["policy_contents"]) ?>`);
+            } else if (type == 2) {
+                $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[0]["policy_contents"]) ?>`);
+            } else if (type == 3) {
+                $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[2]["policy_contents"]) ?>`);
+            } else {
+                $(".reservation_pop #policyContent").html(`<?= viewSQ($reservaion_policy[3]["policy_contents"]) ?>`);
+            }
+
+            let title = $(this).closest(".item-info-check").find("label").text().trim();
+
+            $(".reservation_pop .popup_place__head__ttl h2").text(title);
+            $(".reservation_pop").show();
+        });
+
+        $('.item_check_term_').click(function() {
+            $(this).toggleClass('checked_');
+            let input = $(this).find('input');
+            input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+            checkOrUncheckAll();
+        });
+
+        function checkOrUncheckAll() {
+            let allChecked = true;
+
+            $('.item_check_term_').each(function() {
+                let input = $(this).find('input');
+                if (input.val() !== 'Y') {
+                    allChecked = false;
+                    return false;
+                }
+            });
+
+            let allCheckbox = $('.item_check_term_all_');
+            let allInput = allCheckbox.find('input');
+            allCheckbox.toggleClass('checked_', allChecked);
+            allInput.val(allChecked ? 'Y' : 'N');
+        }
+
+        $('.item_check_term_all_').click(function() {
+            $(this).toggleClass('checked_');
+            let allChecked = $(this).hasClass('checked_');
+            let value = allChecked ? 'Y' : 'N';
+            $(this).find('input').val(value);
+
+            $('.item_check_term_').each(function() {
+                $(this).toggleClass('checked_', allChecked);
+                $(this).find('input').val(value);
+            });
+        });
+    </script>
     <script>
             $(".info_link").on("click", function() {
                 let productIdx = $(this).data("product-idx");
@@ -433,7 +536,7 @@
 
             function closePopup() {
                 $(".popup_wrap").hide();
-                $(".dim").hide();
+                // $(".dim").hide();
             }
 
         $(document).ready(function () {
@@ -553,6 +656,17 @@
 						alert('번호 입력해주세요.')
 						return;
 					}
+
+                    let fullagreement = $("#fullagreement").val().trim();
+                    let terms = $("#terms").val().trim();
+                    let policy = $("#policy").val().trim();
+                    let information = $("#information").val().trim();
+                    let guidelines = $("#guidelines").val().trim();
+
+                    if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                        alert("모든 약관에 동의해야 합니다.");
+                        return false;
+                    }
             }
 			
             if ($('input[name="guideMeetingPlace[]"]').toArray().some(input => !$.trim($(input).val()))) {
