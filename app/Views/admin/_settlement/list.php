@@ -707,7 +707,7 @@
                                         <td class="tac"><?= $row_new["user_mobile"] ?><br><?= $row_new["user_email"] ?></td>
                                         <td class="tac"><?=number_format($row_new["real_price_won"])?></td>
                                         <td class="tac"><?=number_format($row_new["real_price_bath"])?></td>
-                                        <td class="tac">카드결제</td>
+                                        <td class="tac"><?=$row_new['payment_method']?></td>
                                         <td>
                                             <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row_new['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
