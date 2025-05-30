@@ -419,7 +419,57 @@ class SettlementController extends BaseController
 		$fresult5 = $this->connect->query($fsql);
 		$fresult5 = $fresult5->getResultArray();
 
+                $infoSql        = " SELECT 
 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE())) AS TODAY_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE()))        AS TODAY_CANCLE_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R')   AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY)) AS YESTERDAY_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY))        AS YESTERDAY_CANCEL_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))  AS LW_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN '$prev_frdate' AND '$prev_todate'))       AS LW_CANCLE_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_PAYMENT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status != 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CONFIRM_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status IN('G','R') AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm')) AS CM_PAYMENT_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m') = '$curr_yymm'))      AS CM_CANCLE_COUNT,
+
+                                        (SELECT COUNT(order_IDX)   FROM tbl_order_mst WHERE order_status != 'C'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_COUNT, 
+                                        (SELECT SUM(deposit_price) FROM tbl_order_mst WHERE order_status  = 'G'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_DEPOSIT_PAYMENT, 
+                                        (SELECT SUM(order_price)   FROM tbl_order_mst WHERE order_status  = 'R'  AND SUBSTRING(order_r_date,1,7) = '$last_ym')  AS LAST_MONTH_CONFIRM_PAYMENT, 
+
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_COUNT,
+
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_W_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_G_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_R_SUM, 
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_Y_SUM,
+                                        (SELECT SUM(order_price) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE())) AS W_SALE_C_SUM,
+
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'W' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_W_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'G' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_G_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'R' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_R_COUNT, 
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'Y' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_Y_COUNT,
+                                        (SELECT COUNT(order_idx) FROM tbl_order_mst WHERE order_status  = 'C' AND (DATE_FORMAT(order_r_date, '%Y-%m-%d') BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND CURDATE())) AS M_SALE_C_COUNT
+                                        FROM tbl_order_mst 
+                                    ";
+                // write_log($infoSql);
+                $db = \Config\Database::connect();
+                $infoResult     = $db->query($infoSql);
+                $info           = $infoResult->getRowArray();
+				
         /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
 						 , AES_DECRYPT(UNHEX('{$result['order_user_mobile']}'), '$private_key') order_user_mobile
@@ -451,6 +501,7 @@ class SettlementController extends BaseController
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
             'fresult4'        => $row4,
+			'info'            => $info,
             'fresult5'        => $fresult5,
             'pg'              => $pg,
             'nPage'           => $nPage,
