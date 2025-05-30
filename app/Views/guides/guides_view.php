@@ -1081,15 +1081,12 @@
             let end_day = $('#checkOutDate' + o_idx).val();
             let people_cnt = $('#people' + o_idx).val();
 
-            let count_day = $('#countDay' + o_idx).val();
-
             if (!start_day || !end_day) {
                 alert('달력 선택해주세요!');
                 return;
             }
 
             formData.append('start_day', start_day);
-            formData.append('end_day', end_day);
             formData.append('end_day', end_day);
 
             formData.append('people_cnt', people_cnt);
@@ -1146,6 +1143,13 @@
                 `;
 
                 $(".form_time_wrap").html(time_html);
+
+                const start = moment(start_day, 'YYYY-MM-DD');
+                const end = moment(end_day, 'YYYY-MM-DD');
+
+                const days = end.diff(start, 'days'); 
+
+                const count_day = end.diff(start, 'days') + 1; 
 
                 let html = ``;
                 for(let i = 1; i <= Number(count_day); i++){

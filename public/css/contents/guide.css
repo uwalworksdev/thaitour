@@ -547,7 +547,7 @@ table.book_result b {
         width: 18rem;
     }
 
-    table.book_tbl tr td .custom_input .val_wrap .people_cnt_select {
+    table.book_tbl tr td .people_cnt_select {
         width: 39rem;
     }
 
