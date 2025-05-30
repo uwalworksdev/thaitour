@@ -62,7 +62,15 @@
                             $icon_suffix = $data_['liked'] ? 'on_icon' : 'icon';
                     ?>
                     <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" onclick="wish_it('<?= $data_['product_idx'] ?>')">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" onclick="showListShare()">
+                    <div class="list_share">
+                        <a href="#!" class="item kakao btn_share_kakao" >
+                            <img src="/images/btn/ic_kakao.png" alt="">
+                        </a>
+                        <a href="#!" class="item link_" onclick="copyUrl()">
+                            <img src="/images/btn/share_link_icon1.png" alt="">
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="above-cus-content">
