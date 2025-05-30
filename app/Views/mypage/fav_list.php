@@ -332,6 +332,8 @@ $page = $_GET['pg'];
                                         $product = "/ticket/ticket-detail/";
                                     }  else if ($frow['product_code_1'] == "1320") {
                                         $product = "/product-restaurant/restaurant-detail/";
+                                    } else if ($frow['product_code_1'] == "1324") {
+                                        $product = "/guide_view?g_idx=";
                                     }
                                     ?>
 
