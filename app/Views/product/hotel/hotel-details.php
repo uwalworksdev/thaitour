@@ -1,4 +1,5 @@
 <?php $this->extend('inc/layout_index'); ?>
+<?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
 
 <?php include_once APPPATH . 'Common/hotelPrice.php'; ?>
