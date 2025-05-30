@@ -625,7 +625,13 @@
 <script>
     $(".gnb_menu_item .menu_level_1 img").click(function () {
         $(this).toggleClass("up");
-        $(this).closest(".menu_level_1").siblings(".menu_level_2").slideToggle(100);
+        var menu = $(this).closest(".menu_level_1").siblings(".menu_level_2");
+
+        if (menu.hasClass("show")) {
+            menu.removeClass("show");
+        } else {
+            menu.addClass("show");
+        }
     })
 </script>
 

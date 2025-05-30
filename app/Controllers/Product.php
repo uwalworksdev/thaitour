@@ -47,6 +47,8 @@ class Product extends BaseController
     protected $roomImg;
     protected $tourImg;
 
+    protected $wishModel;
+
 /*************  ✨ Codeium Command 🌟  *************/
     public function __construct()
     {
@@ -83,6 +85,7 @@ class Product extends BaseController
         $this->productImg = model("ProductImg");
         $this->roomImg = model("RoomImg");
         $this->tourImg = model("TourImg");
+        $this->wishModel = model("WishModel");
 
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -1461,6 +1464,8 @@ class Product extends BaseController
             $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
+                $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
+
             $data = [
                 'hotel'            => $hotel,
                 'img_list'         => $img_list,
@@ -2050,7 +2055,7 @@ class Product extends BaseController
     public function golfDetail($product_idx)
     {
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-
+        $session = session();
         $data['product'] = $this->productModel->getProductDetails($product_idx);
         if (!$data['product']) {
             return view('errors/html/error_404');
@@ -2223,6 +2228,8 @@ class Product extends BaseController
         $data['product_qna'] = $product_qna;
 
         $data['img_list'] = $this->productImg->getImg($product_idx);
+
+        $data['product']['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $data['product']['product_idx']) > 0;
 
         return $this->renderView('product/golf/golf-details', $data);
     }
@@ -3288,6 +3295,8 @@ class Product extends BaseController
     public function index8($product_idx)
     {
         $baht_thai = $this->setting['baht_thai'] ?? 0;
+
+        $session = session();
         $data['product'] = $this->productModel->getProductDetails($product_idx);
 
         $mcodes = $this->codeModel->getByParentCode('56')->getResultArray();
@@ -3481,6 +3490,8 @@ class Product extends BaseController
 
         $product_qna = $this->productQna->getList($product_gubun, ["product_idx" => $product_idx], 10, $pg_qna);
         $data['product_qna'] = $product_qna;
+
+        $data['product']['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $data['product']['product_idx']) > 0;
 
         return $this->renderView('tours/tour-details', $data);
     }
@@ -4814,6 +4825,7 @@ class Product extends BaseController
     private function getDataDetail($product_idx, $product_code)
     {
         $baht_thai = $this->setting['baht_thai'];
+        $session = session();
         $rowData = $this->productModel->find($product_idx);
         if (!$rowData) {
             throw new Exception('존재하지 않는 상품입니다.');
@@ -4915,6 +4927,8 @@ class Product extends BaseController
         $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
                                 ->orderBy('p_idx', 'asc')
                                 ->get()->getResultArray();     
+
+        $rowData['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $rowData['product_idx']) > 0;
 
         $data = [
             'data_' => $rowData,
@@ -5724,6 +5738,42 @@ class Product extends BaseController
                     </script>
                 ");
         }
-    }	
+    }
+    
+    public function like() {
+        try {
+            $product_idx = updateSQ($this->request->getPost('product_idx') ?? 0);
+
+            $m_idx = session()->get("member")["idx"];
+
+            if(empty($m_idx)) {
+                $resultArr['result'] = false;
+                $resultArr['message'] = "로그인 하셔야 합니다.";
+            }else{
+
+                if($this->wishModel->getWishCntFromProduct($m_idx, $product_idx) > 0) {
+                    $this->wishModel->where("m_idx", $m_idx)->where("product_idx", $product_idx)->delete();
+
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "당신은 좋아요를 취소했습니다.";
+                }else{
+                    $this->wishModel->insertWish( [
+                        "m_idx" => $m_idx,
+                        'product_idx' => $product_idx,
+                        "wish_r_date" => Time::now('Asia/Seoul', 'en_US')->format('Y-m-d H:i:s')
+                    ]);
+
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "당신은 그것을 좋아했다.";
+                }
+            }
+
+        } catch (Exception $err) {
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        }
+    }
 	
 }
