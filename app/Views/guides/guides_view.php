@@ -272,8 +272,13 @@
                                 </table>
 
                                 <div class="calendar_text_head" id="calendar_text_head<?= $option['o_idx'] ?>">
-                                    <span id="day_start_txt<?= $option['o_idx'] ?>">2023년 7월</span> ~ <span
-                                            id="day_end_txt<?= $option['o_idx'] ?>">2023년 7월</span>
+                                    <?php
+                                        $nextMonth = new DateTime('first day of next month');
+                                        $next_year = $nextMonth->format('Y');
+                                        $next_month = $nextMonth->format('m');
+                                    ?>
+                                    <span id="day_start_txt<?= $option['o_idx'] ?>"><?=date("Y")?>년 <?=date("m")?>월</span> ~ <span
+                                            id="day_end_txt<?= $option['o_idx'] ?>"><?=$next_year?>년 <?=$next_month?>월</span>
                                 </div>
                                 <div class="container-calendar tour" id="calendar_tab_<?= $option['o_idx'] ?>">
                                     <input style="height: 10px" type="text"
@@ -288,28 +293,28 @@
                                 <div class="policy_wrap">
                                     <h3 class="title-second">약관동의</h3>
                                     <div class="item-info-check item_check_term_all_">
-                                        <label for="fullagreement">전체동의</label>
-                                        <input type="hidden" value="N" id="fullagreement">
+                                        <label for="fullagreement_<?= $option['o_idx'] ?>">전체동의</label>
+                                        <input type="hidden" value="N" id="fullagreement_<?= $option['o_idx'] ?>">
                                     </div>
                                     <div class="item-info-check item_check_term_">
-                                        <label for="">이용약관 동의(필수)</label>
+                                        <label for="terms_<?= $option['o_idx'] ?>">이용약관 동의(필수)</label>
                                         <button type="button" data-type="1" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="terms">
+                                        <input type="hidden" value="N" id="terms_<?= $option['o_idx'] ?>">
                                     </div>
                                     <div class="item-info-check item_check_term_">
-                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <label for="policy_<?= $option['o_idx'] ?>">개인정보 처리방침(필수)</label>
                                         <button type="button" data-type="2" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="policy">
+                                        <input type="hidden" value="N" id="policy_<?= $option['o_idx'] ?>">
                                     </div>
                                     <div class="item-info-check item_check_term_">
-                                        <label for="">개인정보 처리방침(필수)</label>
+                                        <label for="information_<?= $option['o_idx'] ?>">개인정보 처리방침(필수)</label>
                                         <button type="button" data-type="3" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="information">
+                                        <input type="hidden" value="N" id="information_<?= $option['o_idx'] ?>">
                                     </div>
                                     <div class="item-info-check item_check_term_">
-                                        <label for="guidelines">여행안전수칙 동의(필수)</label>
+                                        <label for="guidelines_<?= $option['o_idx'] ?>">여행안전수칙 동의(필수)</label>
                                         <button type="button" data-type="4" class="view-policy">[보기]</button>
-                                        <input type="hidden" value="N" id="guidelines">
+                                        <input type="hidden" value="N" id="guidelines_<?= $option['o_idx'] ?>">
                                     </div>
                                 </div>
 
@@ -884,13 +889,25 @@
             
 
             $(".calendar_header").click(function () {
+                let id = $(this).data('num');
                 $('.tour_calendar').removeClass('active');
                 $('.item_check_term_').removeClass('checked_');
                 $('.item_check_term_all_').removeClass('checked_');
                 $('.item_check_term_').val('N');
                 $('.item_check_term_all_').val('N');
+
+                $('#checkInDate' + id).val(date_now);
+                $('#checkOutDate' + id).val(tomorrow);
+                
                 $(".calendar_container_tongle").hide();
                 $(this).next().show().parent().addClass('active');
+
+                setTimeout(() => {
+                    $('html, body').animate({
+                        scrollTop: $('#calendar_tab_' + id).offset().top
+                    }, 500);
+                }, 50);
+
                 openDateRanger(this);
             });
 
@@ -917,6 +934,9 @@
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
+
+                let price_ = $(daterangepickerElement).closest(".sec2-item-card").find(".guide_price_won").val();
+                let price_w = (Number(price_) / 10000).toFixed(2);
 
                 $(daterangepickerElement).daterangepicker({
                     locale: {
@@ -976,7 +996,7 @@
                                     if (!$cell.find('.custom-info').length) {
                                         $cell.html(`<div class="custom-info">
                                 <span>${text}</span>
-                                <span class="label allow-text">0만원</span>
+                                <span class="label allow-text">${price_w}만원</span>
                                 </div>`);
                                     }
                                 });
@@ -993,6 +1013,31 @@
                     childList: true,
                     subtree: true,
                 });
+
+                // $(document).on('click', `${calendarTabElement} .daterangepicker .prev, ${calendarTabElement} .daterangepicker .next`, function () {
+                //     setTimeout(function () {
+                //         const leftCal = $(`${calendarTabElement} .daterangepicker .calendar.left`);
+                //         const rightCal = $(`${calendarTabElement} .daterangepicker .calendar.right`);
+
+                //         const getMonthYear = ($calendar) => {
+                //             const text = $calendar.find('.calendar-table thead .month').text().trim();
+                //             const match = text.match(/(\d{1,2})월\s+(\d{4})/);
+                //             if (match) {
+                //                 return match[2] + "년 " + match[1].padStart(2, '0')  + "월";
+                //             }
+                //             return "";
+                //         };     
+
+                //         const leftData = getMonthYear(leftCal);
+                //         const rightData = getMonthYear(rightCal);
+                //         let id = $(this).closest(".sec2-item-card").find(".calendar_header").data("num");
+                //         $("#day_start_txt" + id).text(leftData);
+                //         $("#day_end_txt" + id).text(rightData);
+                //         console.log("fafafa");
+                        
+                //     }, 10);
+                // });
+
             }
 
             // function splitEndDate() {
@@ -1054,11 +1099,11 @@
 
             if(status == 'W'){
 
-                let fullagreement = $("#fullagreement").val().trim();
-                let terms = $("#terms").val().trim();
-                let policy = $("#policy").val().trim();
-                let information = $("#information").val().trim();
-                let guidelines = $("#guidelines").val().trim();
+                let fullagreement = $("#fullagreement_" + o_idx).val().trim();
+                let terms = $("#terms_" + o_idx).val().trim();
+                let policy = $("#policy_" + o_idx).val().trim();
+                let information = $("#information_" + o_idx).val().trim();
+                let guidelines = $("#guidelines_" + o_idx).val().trim();
 
                 if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
                     alert("모든 약관에 동의해야 합니다.");

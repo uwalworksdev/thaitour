@@ -24,6 +24,11 @@
         .customer-form-page .day_activity_ .title-sub-c {
             margin-bottom: 0;
         }
+
+        .customer-form-page .container-card .card-right2 .schedule {
+            flex-direction: row;
+        }
+
     </style>
     <div class="customer-form-page">
         <div class="navigation-section">
@@ -296,9 +301,9 @@
                                     <h3 class="title-r">
                                         <?= $product['product_name'] ?>
                                     </h3>
-                                    <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
+                                    <!-- <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
                                         <?= $option['o_availability'] ?>
-                                    </p>
+                                    </p> -->
                                     <?php foreach ($sup_options as $item): ?>
                                         <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
                                             <?= $item['s_name'] ?>
