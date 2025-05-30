@@ -358,7 +358,7 @@
                 $start_yy = date('Y', strtotime("-11 months", $now));
                 $start_mm = date('m', strtotime("-11 months", $now));
 
-                $oYM = [];
+                $oYM  = [];
                 $mCnt = []; 
                 $mTot = [];
 
