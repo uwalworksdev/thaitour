@@ -57,7 +57,9 @@
                 foreach($info AS $key => $val) {
                     ${$key} = number_format($val);
                 }
-                                            
+
+      		    $db = \Config\Database::connect();
+											
                 $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
                                             FROM tbl_order_mst a 
                                             LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
