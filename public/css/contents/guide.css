@@ -132,7 +132,7 @@
 .calendar_note {
     display: flex;
     gap: 40px;
-    margin-top: 45px;
+    margin-top: 70px;
     font-size: 15px;
     font-weight: 500;
 }
@@ -218,7 +218,7 @@ table.book_tbl .custom_input {
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
-    gap: 30px;
+    gap: 35px;
     width: 100%;
 }
 
@@ -358,6 +358,7 @@ table.book_result b {
     align-items: center;
     gap: 10px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .calendar_submit button {

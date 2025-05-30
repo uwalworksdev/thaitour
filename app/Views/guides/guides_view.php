@@ -226,8 +226,8 @@
                                     <colgroup>
                                         <col style="width:15%">
                                         <col style="width:*">
-                                        <col style="width:15%">
-                                        <col style="width:18%">
+                                        <col style="width:20%">
+                                        <col style="width:22%">
                                     </colgroup>
                                     <tbody>
                                         <tr>
@@ -628,17 +628,20 @@
     </script>
     <script>
         $(".people_cnt_select").on("change", function () {
+            let id = $(this).closest(".calendar_container_tongle").data("num");
+
             let people_cnt = Number($(this).val() ?? 1);
-            let price_bth = $(this).closest(".sec2-item-card").find(".guide_price_bath").val();
+            let price_bth = $(".calendar_header[data-num='" + id + "']").find(".guide_price_bath").val();
             price_bth = Number(price_bth.replace(",", "")) ?? 0;
-            let price_won = $(this).closest(".sec2-item-card").find(".guide_price_won").val();
+            let price_won = $(".calendar_header[data-num='" + id + "']").find(".guide_price_won").val();
             price_won = Number(price_won.replace(",", "")) ?? 0;
 
             let price_bth_people = people_cnt * price_bth;
             let price_won_people = people_cnt * price_won;
 
-            $(this).closest(".sec2-item-card").find(".text_price_bath").text(price_bth_people.toLocaleString('ko-KR'));
-            $(this).closest(".sec2-item-card").find(".text_price_won").text(price_won_people.toLocaleString('ko-KR'));
+
+            $(".calendar_header[data-num='" + id + "']").find(".text_price_bath").text(price_bth_people.toLocaleString('ko-KR'));
+            $(".calendar_header[data-num='" + id + "']").find(".text_price_won").text(price_won_people.toLocaleString('ko-KR'));
         });
 
         $('.arrow_menu').click(function () {
