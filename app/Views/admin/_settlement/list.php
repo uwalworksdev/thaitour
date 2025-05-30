@@ -261,55 +261,55 @@
                             </li>
                             <li>
                             <strong class="label">전일 매출액</strong>
-                            <p class="all_pay"><b><?=$YESTERDAY_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($YESTERDAY_CONFIRM_PAYMENT)?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$YESTERDAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($YESTERDAY_CONFIRM_COUNT)?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$YESTERDAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($YESTERDAY_PAYMENT_COUNT)?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$YESTERDAY_CANCEL_COUNT?></dd>
+                                <dd><?=number_format($YESTERDAY_CANCEL_COUNT)?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">전주 매출액</strong>
-                            <p class="all_pay"><b><?=$LW_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($LW_CONFIRM_PAYMENT)?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$LW_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($LW_CONFIRM_COUNT)?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$LW_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($LW_PAYMENT_COUNT)?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$LW_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($LW_CANCLE_COUNT)?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">당월 매출액</strong>
-                            <p class="all_pay"><b><?=$CM_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($CM_CONFIRM_PAYMENT)?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$CM_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($CM_CONFIRM_COUNT)?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$CM_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($CM_PAYMENT_COUNT)?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$CM_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($CM_CANCLE_COUNT)?></dd>
                                 </dl>
                             </div>
                             </li>
