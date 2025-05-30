@@ -204,12 +204,16 @@
                                         <button type="button">선택</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                      
+                        </div>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
 
-                            <div class="calendar_container_tongle" style="display : none">
-                                <div class="close_btn">
+                    <?php foreach ($options as $key => $option): ?>
+                        <div class="calendar_container_tongle calendar_container_tongle_<?=$option['o_idx']?>" data-num="<?=$option['o_idx']?>" style="display : none">
+                                <!-- <div class="close_btn">
                                     <img src="/images/ico/close_ic.png" alt="">
-                                </div>
+                                </div> -->
                                 <table class="book_tbl">
                                     <colgroup>
                                         <col style="width:15%">
@@ -290,7 +294,7 @@
                                     <p class="calendar_note_maybe"> 예약가능</p>
                                 </div>
 
-                                <div class="policy_wrap">
+                                <!-- <div class="policy_wrap">
                                     <h3 class="title-second">약관동의</h3>
                                     <div class="item-info-check item_check_term_all_">
                                         <label for="fullagreement_<?= $option['o_idx'] ?>">전체동의</label>
@@ -316,15 +320,13 @@
                                         <button type="button" data-type="4" class="view-policy">[보기]</button>
                                         <input type="hidden" value="N" id="guidelines_<?= $option['o_idx'] ?>">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="calendar_submit">
                                     <button type="button" onclick="processBooking('<?= $option['o_idx'] ?>', 'W')">예약하기</button>
                                     <button type="button" class="btn-cart" onclick="processBooking('<?= $option['o_idx'] ?>', 'B')">장바구니</button>
                                 </div>
                             </div>
-                        </div>
-                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </div>
             </form>
@@ -884,8 +886,9 @@
             $('.item_check_term_').val('N');
             $('.item_check_term_all_').val('N');
             $(".calendar_container_tongle").hide();
-            $('.calendar_header:first').next().show().parent().addClass('active');
-            openDateRanger('.calendar_header:first');
+            $(".calendar_container_tongle_" + current_idx).show();
+            // $('.calendar_header:first').next().show().parent().addClass('active');
+            openDateRanger($('.calendar_container_tongle_' + current_idx));
             
 
             $(".calendar_header").click(function () {
@@ -900,7 +903,8 @@
                 $('#checkOutDate' + id).val(tomorrow);
                 
                 $(".calendar_container_tongle").hide();
-                $(this).next().show().parent().addClass('active');
+                // $(this).next().show().parent().addClass('active');
+                $(".calendar_container_tongle_" + id).show();
 
                 setTimeout(() => {
                     $('html, body').animate({
@@ -908,7 +912,7 @@
                     }, 500);
                 }, 50);
 
-                openDateRanger(this);
+                openDateRanger($('.calendar_container_tongle_' + id));
             });
 
             $(".calendar_container_tongle .close_btn").click(function () {
@@ -935,7 +939,7 @@
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
                 const calendarTabElement = '#calendar_tab_' + idx;
 
-                let price_ = $(daterangepickerElement).closest(".sec2-item-card").find(".guide_price_won").val();
+                let price_ = $(".calendar_header[data-num='" + idx + "']").find(".guide_price_won").val();
                 let price_w = (Number(price_) / 10000).toFixed(2);
 
                 $(daterangepickerElement).daterangepicker({
@@ -1096,16 +1100,16 @@
 
             if(status == 'W'){
 
-                let fullagreement = $("#fullagreement_" + o_idx).val().trim();
-                let terms = $("#terms_" + o_idx).val().trim();
-                let policy = $("#policy_" + o_idx).val().trim();
-                let information = $("#information_" + o_idx).val().trim();
-                let guidelines = $("#guidelines_" + o_idx).val().trim();
+                // let fullagreement = $("#fullagreement_" + o_idx).val().trim();
+                // let terms = $("#terms_" + o_idx).val().trim();
+                // let policy = $("#policy_" + o_idx).val().trim();
+                // let information = $("#information_" + o_idx).val().trim();
+                // let guidelines = $("#guidelines_" + o_idx).val().trim();
 
-                if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                    alert("모든 약관에 동의해야 합니다.");
-                    return false;
-                }
+                // if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+                //     alert("모든 약관에 동의해야 합니다.");
+                //     return false;
+                // }
 
                 $.ajax({
                     url: url,

@@ -421,7 +421,7 @@ table.book_result b {
 
 @media screen and (min-width: 851px) {
     .daterangepicker {
-        width: 1140px;
+        width: 100%;
         left: 0px !important;
         /* left: calc((100% - 1140px) / 2); */
         /* height: auto; */
@@ -434,7 +434,7 @@ table.book_result b {
     }
 
     .daterangepicker .calendar-table td .custom-info {
-        width: 74px;
+        width: 100%;
         height: 77px;
         font-size: 18px;
         gap: 6px;
