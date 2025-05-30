@@ -8,9 +8,13 @@
 	?>
 	<div class="inner">
 		<div class="contentArea">
-			<div class="content_wrap">
-                <?= viewSQ($policy['policy_contents']) ?>
-            </div>
+			<div class="content_wrap only_web">
+                                         <?= viewSQ($policy['policy_contents']) ?>
+                              </div>
+                              <div class="content_wrap only_mo" style="overflow: hidden">
+                                         <?= viewSQ($policy['policy_contents_m']) ?>
+                              </div>
+		</div>
 
 			<!-- <div class="content_wrap">
 				<p>
@@ -131,7 +135,6 @@
 					<a href="https://www.swisswatchessite.com/" style="display:none;" target="_blank">replica watches sale</a>
 				</p>
 			</div> -->
-		</div>
 	</div>
 </section>
 <?php $this->endSection(); ?>

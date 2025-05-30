@@ -20,174 +20,7 @@
                 </div><!-- // inner -->
 
             </header><!-- // headerContainer -->
-            <?php
-                // 전월 판매금액
-                $last_ym = date("Y-m", strtotime("-1 month", time()));
 
-                $area_1 = " AND SUBSTRING(ZIP,1,2) IN('01','02','03','04','05','06','07','08','09') "; // 서울
-                $area_2 = " AND SUBSTRING(ZIP,1,2) IN('10','11','12','13','14','15','16','17','18','19','20') "; // 경기도
-                $area_3 = " AND SUBSTRING(ZIP,1,2) IN('46','47','48','49') "; // 부산
-                $area_4 = " AND SUBSTRING(ZIP,1,2) IN('21','22','23') "; // 인천
-                $area_5 = " AND SUBSTRING(ZIP,1,2) IN('41','42','43') "; // 대구
-                $area_6 = " AND SUBSTRING(ZIP,1,2) IN('50','51','52','53') "; // 경상도
-                $area_7 = " AND SUBSTRING(ZIP,1,2) IN('27','28','29','31','32','33') "; // 충청도
-                $area_8 = " AND SUBSTRING(ZIP,1,2) IN('54','55','56','57','58','59','61','62') "; // 전라도
-                $area_9 = " AND SUBSTRING(ZIP,1,2) IN('63') "; // 제주도
-
-                $todate         = date('Y-m-d');
-                $curr_yymm      = date('Y-m');
-
-                $currYear       = date('Y');
-                $currMonth      = date('m');
-                $currMonth      = $currMonth - 1;
-                if($currMonth == 0) {
-                $currMonth = "12";
-                $currYear  = $currYear - 1; 
-                }
-                $last_yymm      = $currYear ."-". $currMonth;
-
-                $timestr        = strtotime($todate);
-                $week           = date('w', strtotime($todate));
-                $weekfr         = $timestr - ($week * 86400);
-                $weekla         = $weekfr + (6 * 86400);
-                $prev_frdate    = date('Y-m-d', $weekfr - (86400 * 6)); // 지난주 시작일자
-                $prev_todate    = date('Y-m-d', $weekla - (86400 * 6)); // 지난주 종료일자
-
-                $info['LAST_MONTH_TOTAL_PAYMENT'] = $info['LAST_MONTH_DEPOSIT_PAYMENT'] + $info['LAST_MONTH_CONFIRM_PAYMENT'];
-                foreach($info AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-      		    $db = \Config\Database::connect();
-											
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_PRODUCT_COUNT 
-                                            FROM tbl_order_mst a 
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 IN ('1303','1302','1301','1325','1317','1320','1324') ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_HOTEL_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1303' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_GOLF_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1302' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TOURS_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1301' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_SPA_COUNT
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1325' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_TICKET_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1317' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_RESTAURANT_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1320' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(a.order_idx) AS TOTAL_CARS_COUNT 
-                                            FROM tbl_order_mst a
-                                            LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
-                                            WHERE b.product_code_1 = '1324' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_CONTACT_COUNT 
-                                            FROM tbl_travel_contact 
-                                                    ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_QNA_COUNT 
-                                            FROM tbl_travel_qna 
-                                            WHERE isViewQna = 'N' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(idx) AS TOTAL_INQUIRY_COUNT 
-                                            FROM tbl_inquiry 
-                                            WHERE isViewInquiry = 'N' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                    ${$key} = number_format($val);
-                }
-
-                $infoSql_1        = " SELECT COUNT(bbs_idx) AS TOTAL_NOTICE_COUNT 
-                    FROM tbl_bbs_list 
-                    WHERE code = 'b2b_notice' ";
-                // write_log($infoSql_1);
-                $infoResult_1     = $db->query($infoSql_1);
-                $info_1           = $infoResult_1->getRowArray();
-                foreach($info_1 AS $key => $val) {
-                ${$key} = number_format($val);
-                }
-            ?>
                 <div id="container" class="main" style="margin-top: 0;margin-left: 0;width: 100%; min-height: calc(87vh - 60px);">
                     <span id="print_this"><!-- 인쇄영역 시작 //-->
                     <div class="payment_info_sec main_cont">
@@ -273,14 +106,14 @@
                             <p>전월 판매금액</p>
                             <span>판매완료</span>
                             </div>
-                            <div class="right"><b><?=number_format($LAST_MONTH_CONFIRM_COUNT)?></b>건</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_CONFIRM_COUNT'])?></b>건</div>
                         </div>
                         <div class="color_cont bot">
                             <div class="left">
                             <p>전월 결제금액</p>
                             <span>결제완료</span>
                             </div>
-                            <div class="right"><b><?=number_format($LAST_MONTH_TOTAL_PAYMENT)?></b>원</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_TOTAL_PAYMENT'])?></b>원</div>
                         </div>
                         </div>
                     </div>
@@ -351,42 +184,6 @@
                         <!-- // main -->
                     </span><!-- 인쇄 영역 끝 //-->
                 </div><!-- // container -->
-
-                <?php
-                $now = strtotime("now");
-
-                $start_yy = date('Y', strtotime("-11 months", $now));
-                $start_mm = date('m', strtotime("-11 months", $now));
-
-                $oYM  = [];
-                $mCnt = []; 
-                $mTot = [];
-
-                for ($i = 0; $i < 12; $i++) {
-                    $_mm = $start_mm + $i;
-                    $_yy = $start_yy;
-
-                    if ($_mm > 12) { 
-                        $_mm -= 12;
-                        $_yy++;
-                    }
-
-                    $_mm = str_pad($_mm, 2, "0", STR_PAD_LEFT);
-                    $order_ym = $_yy . "-" . $_mm;
-                    $oYM[$i] = $order_ym;
-
-                    $sql = "SELECT COUNT(*) AS cnt, SUM(order_price) AS total_payment 
-                            FROM tbl_order_mst 
-                            WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
-
-                    $result = $db->query($sql);
-                    $row = $result->getRowArray();
-
-                    $mCnt[$i] = (int)$row['cnt'];
-                    $mTot[$i] = (int)$row['total_payment'];
-                }
-                ?>
-
 
                 <div id="contents">
                 <form name="search" id="search">
@@ -910,7 +707,7 @@
                                         <td class="tac"><?= $row_new["user_mobile"] ?><br><?= $row_new["user_email"] ?></td>
                                         <td class="tac"><?=number_format($row_new["real_price_won"])?></td>
                                         <td class="tac"><?=number_format($row_new["real_price_bath"])?></td>
-                                        <td class="tac">카드결제</td>
+                                        <td class="tac"><?=$row_new['payment_method']?></td>
                                         <td>
                                             <a href="/AdmMaster/_settlement/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row_new['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
@@ -1014,7 +811,7 @@
     var oneYearAgoFormatted = oneYearAgo.getFullYear() + '.' + (oneYearAgo.getMonth() + 1).toString().padStart(2, '0');
     var nowFormatted = today.getFullYear() + '.' + (today.getMonth() + 1).toString().padStart(2, '0');
     chart_caption = oneYearAgoFormatted + "~" + nowFormatted;
-    chart_caption = '<?=$oYM[0]?>' + "~" + '<?=$oYM[11]?>';
+    chart_caption = '<?=$oYM[0]?>' + " ~ " + '<?=$oYM[11]?>';
 
     
     // 차트 날짜 부분 구하기
