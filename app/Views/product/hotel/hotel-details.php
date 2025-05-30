@@ -3537,7 +3537,7 @@
     }
 
     $('.btn_share_kakao').on('click', function () {
-        let img_url = 'https://thetourlab.com/data/home/<?= $setting['og_img'] ?>'
+        let img_url = 'https://thetourlab.com/uploads/setting/<?= $setting['favico'] ?>?>'
         const currentUrl = window.location.href;
 
         Kakao.Share.sendDefault({
