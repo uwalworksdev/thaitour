@@ -446,7 +446,7 @@ class SettlementController extends BaseController
 					a.is_modify = 'N'
 					AND a.order_status != 'G'
 					AND a.order_status != ''
-					AND a.order_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+					AND a.order_r_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
 				GROUP BY 
 					status_group
 				ORDER BY 
