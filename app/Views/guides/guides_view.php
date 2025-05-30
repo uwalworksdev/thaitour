@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="above-cus-content">
+                    <div class="above-cus-content location-container">
                         <div class="rating-container">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                             <span><strong> <?= $guide['review_average'] ?></strong></span>
@@ -76,7 +76,15 @@
                             ?>
                             <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
                             <img src="/uploads/icons/heart_<?= $icon_suffix ?>_mo.png" alt="heart_icon" onclick="wish_it('<?= $guide['product_idx'] ?>')">
-                            <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                            <img src="/uploads/icons/share_icon.png" alt="share_icon" onclick="showListShare()">
+                            <div class="list_share">
+                                <a href="#!" class="item kakao btn_share_kakao" >
+                                    <img src="/images/btn/ic_kakao.png" alt="">
+                                </a>
+                                <a href="#!" class="item link_" onclick="copyUrl()">
+                                    <img src="/images/btn/share_link_icon1.png" alt="">
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <?php

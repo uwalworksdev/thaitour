@@ -547,6 +547,7 @@
 .content-sub-hotel-detail .location-container .list-icon .list_share .kakao img {
     width: 5rem;
     height: auto;
+    margin: 0;
 }
 
 
@@ -3526,6 +3527,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .content-sub-hotel-detail .above-cus-content .rating-container span:last-child {
+    margin-top: 0;
+  }
+
+  .tours-detail .above-cus-content .list-icon {
+    margin-left: auto;
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+    align-items: center;
+  }
+
+  .tours-detail .above-cus-content .list-icon img {
+    margin-left: 1rem;
   }
 
   .content-sub-hotel-detail .title-sec3 {
