@@ -52,7 +52,11 @@ $(document).ready(function() {
     });
 });
 </script>
-
+<style>
+    .customer-form-page .form-group.time-group {
+        flex-wrap: wrap;
+    }
+</style>
     <form>
 		<input type="hidden" name="selDate" id="selDate" value="<?= $selDate ?>">
 		<input type="hidden" name="selPrice" id="selPrice" value="<?= $selPrice ?>">
