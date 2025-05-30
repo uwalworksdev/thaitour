@@ -48,8 +48,18 @@
                                     $icon_suffix = $guide['liked'] ? 'on_icon' : 'icon';
                                 ?>
                                 <!-- <img src="/uploads/icons/print_icon.png" alt="print_icon"> -->
+
                                 <img src="/uploads/icons/heart_<?= $icon_suffix ?>.png" alt="heart_icon" onclick="wish_it('<?= $guide['product_idx'] ?>')">
-                                <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                                <img src="/uploads/icons/share_icon.png" alt="share_icon" onclick="showListShare()">
+                                <div class="list_share">
+                                    <a href="#!" class="item kakao btn_share_kakao" >
+                                        <img src="/images/btn/ic_kakao.png" alt="">
+                                    </a>
+                                    <a href="#!" class="item link_" onclick="copyUrl()">
+                                        <img src="/images/btn/share_link_icon1.png" alt="">
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -1195,4 +1205,48 @@
             $(this).addClass('active');
         });
     </script>
+    <script>
+    function showListShare () {
+        $(".list_share").toggleClass("on");
+    }
+
+    $('.btn_share_kakao').on('click', function () {
+        let img_url = 'https://thetourlab.com/uploads/setting/<?= $setting['favico'] ?>?>'
+        const currentUrl = window.location.href;
+
+        Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: document.querySelector("meta[name='Title']").content,
+                description: document.querySelector("meta[name='Description']").content,
+                imageUrl: img_url,
+                link: {
+                    mobileWebUrl: currentUrl,
+                    webUrl: currentUrl
+                }
+            },
+            buttons: [
+                {
+                    title: 'View Page',
+                    link: {
+                        mobileWebUrl: currentUrl,
+                        webUrl: currentUrl
+                    }
+                }
+            ]
+        });
+    });
+    function copyUrl() {
+        var dummy = document.createElement('input'),
+            text = window.location.href;
+
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+
+        alert('URL이 복사되었습니다.')
+    }
+</script>
 <?php $this->endSection(); ?>
