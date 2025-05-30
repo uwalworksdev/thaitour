@@ -404,17 +404,22 @@ class SettlementController extends BaseController
 						ELSE '기타'
 					END AS status_group,
 					SUM(a.real_price_won) AS total_amount
-					FROM 
-						tbl_order_mst a
-					WHERE 
-						a.is_modify = 'N' AND a.order_status != 'G' AND a.order_status != '' $strSql
-					GROUP BY 
-						status_group
-					ORDER BY 
-						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+				FROM 
+					tbl_order_mst a
+				WHERE 
+					a.is_modify = 'N'
+					AND a.order_status != 'G'
+					AND a.order_status != ''
+					AND a.order_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+					$strSql
+				GROUP BY 
+					status_group
+				ORDER BY 
+					FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
-        $fresult5 = $this->connect->query($fsql);
-        $fresult5 = $fresult5->getResultArray();
+		$fresult5 = $this->connect->query($fsql);
+		$fresult5 = $fresult5->getResultArray();
+
 
         /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name

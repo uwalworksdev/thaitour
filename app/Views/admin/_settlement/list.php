@@ -342,33 +342,55 @@
                         </div>
                         </div>
 
+						<?php 
+						   $order_sum = $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
+						   foreach ($fresult4 as $row4) {
+									if($row4['status_group'] == "예약접수") $tot_price1 = $row4['total_amount'];	
+									if($row4['status_group'] == "예약확인") $tot_price2 = $row4['total_amount'];	
+									if($row4['status_group'] == "결제완료") $tot_price3 = $row4['total_amount'];	
+									if($row4['status_group'] == "예약확정") $tot_price4 = $row4['total_amount'];	
+									if($row4['status_group'] == "예약취소") $tot_price5 = $row4['total_amount'];	
+									if($row4['status_group'] == "예약불가") $tot_price6 = $row4['total_amount'];	
+									if($row4['status_group'] == "이용완료") $tot_price7 = $row4['total_amount'];	
+						   }
+						   
+						   $order_sum = $tot_price1 + $tot_price2 + $tot_price3 + $tot_price4 + $tot_price5 + $tot_price6 + $tot_price7; 
+						?> 
                         <div class="w_20">
                         <div class="cal_item">
                             <div class="top">
                             <p class="sub_ttl">판매상태 <span>최근 1주일 이내</span></p>
-                            <p class="all_pay"><b><?=$W_SALE_SUM?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($order_sum)?></b>원</p>
                             </div>
                             <ul class="bot_list">
-                            <li class="cont_01">
-                                <p><i></i>예약접수</p>
-                                <em><?=$W_SALE_W_COUNT?></em>
-                            </li>
-                            <li class="cont_02">
-                                <p><i></i>선금대기</p>
-                                <em><?=$W_SALE_G_COUNT?></em>
-                            </li>
-                            <li class="cont_03">
-                                <p><i></i>잔금대기</p>
-                                <em><?=$W_SALE_R_COUNT?></em>
-                            </li>
-                            <li class="cont_04">
-                                <p><i></i>결제완료</p>
-                                <em><?=$W_SALE_Y_COUNT?></em>
-                            </li>
-                            <li class="cont_05">
-                                <p><i></i>예약취소</p>
-                                <em><?=$W_SALE_C_COUNT?></em>
-                            </li>
+								<li class="cont_01">
+									<p><i></i>예약접수</p>
+									<em><?=number_format($tot_price1)?></em>
+								</li>
+								<li class="cont_02">
+									<p><i></i>예약확인</p>
+									<em><?=number_format($tot_price2)?></em>
+								</li>
+								<li class="cont_03">
+									<p><i></i>결제완료</p>
+									<em><?=number_format($tot_price3)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약확정</p>
+									<em><?=number_format($tot_price4)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>예약취소</p>
+									<em><?=number_format($tot_price5)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약불가</p>
+									<em><?=number_format($tot_price6)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>이용완료</p>
+									<em><?=number_format($tot_price7)?></em>
+								</li>
                             </ul>
                         </div>
                         </div>
