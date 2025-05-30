@@ -81,9 +81,11 @@ class ExcelController extends Controller
                     , AES_DECRYPT(UNHEX(a.order_user_email),  '$private_key') AS user_email
                     , a.*
                     , d.user_id  
+				    , e.payment_method   AS payment_method
                 FROM tbl_order_mst a 
                 LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
                 LEFT JOIN tbl_member d      ON a.m_idx = d.m_idx
+                LEFT JOIN tbl_payment_mst e ON a.payment_no = e.payment_no
                 WHERE a.is_modify='N' AND a.order_status = 'Z' $strSql 
                 GROUP BY a.order_idx 
                 ORDER BY group_no DESC, order_r_date DESC, order_idx DESC";
@@ -146,7 +148,7 @@ class ExcelController extends Controller
             $price_bath = isset($row['real_price_bath']) ? $row['real_price_bath'] : 0;
             $sheet->setCellValue("K{$rowIndex}", number_format($price_bath));
 
-            $sheet->setCellValue("L{$rowIndex}", '카드결제');
+            $sheet->setCellValue("L{$rowIndex}", $row['order_method']);
 
             $rowIndex++;
         }
