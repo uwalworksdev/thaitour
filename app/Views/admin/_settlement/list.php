@@ -352,42 +352,6 @@
                     </span><!-- 인쇄 영역 끝 //-->
                 </div><!-- // container -->
 
-                <?php
-                $now = strtotime("now");
-
-                $start_yy = date('Y', strtotime("-11 months", $now));
-                $start_mm = date('m', strtotime("-11 months", $now));
-
-                $oYM  = [];
-                $mCnt = []; 
-                $mTot = [];
-
-                for ($i = 0; $i < 12; $i++) {
-                    $_mm = $start_mm + $i;
-                    $_yy = $start_yy;
-
-                    if ($_mm > 12) { 
-                        $_mm -= 12;
-                        $_yy++;
-                    }
-
-                    $_mm = str_pad($_mm, 2, "0", STR_PAD_LEFT);
-                    $order_ym = $_yy . "-" . $_mm;
-                    $oYM[$i] = $order_ym;
-
-                    $sql = "SELECT COUNT(*) AS cnt, SUM(order_price) AS total_payment 
-                            FROM tbl_order_mst 
-                            WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
-
-                    $result = $db->query($sql);
-                    $row = $result->getRowArray();
-
-                    $mCnt[$i] = (int)$row['cnt'];
-                    $mTot[$i] = (int)$row['total_payment'];
-                }
-                ?>
-
-
                 <div id="contents">
                 <form name="search" id="search">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
