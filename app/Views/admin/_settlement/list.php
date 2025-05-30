@@ -273,14 +273,14 @@
                             <p>전월 판매금액</p>
                             <span>판매완료</span>
                             </div>
-                            <div class="right"><b><?=number_format($LAST_MONTH_CONFIRM_COUNT)?></b>건</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_CONFIRM_COUNT'])?></b>건</div>
                         </div>
                         <div class="color_cont bot">
                             <div class="left">
                             <p>전월 결제금액</p>
                             <span>결제완료</span>
                             </div>
-                            <div class="right"><b><?=number_format($LAST_MONTH_TOTAL_PAYMENT)?></b>원</div>
+                            <div class="right"><b><?=number_format($info['LAST_MONTH_TOTAL_PAYMENT'])?></b>원</div>
                         </div>
                         </div>
                     </div>
