@@ -28,6 +28,8 @@ class TourGuideController extends BaseController
     protected $productImg;
     protected $bannerModel;
 
+    protected $wishModel;
+
 
     public function __construct()
     {
@@ -45,7 +47,7 @@ class TourGuideController extends BaseController
         $this->productQna = model("ProductQna");
         $this->productImg = model("ProductImg");
         $this->bannerModel = model("Banner_model");
-
+        $this->wishModel = model("WishModel");
     }
 
     public function index($code_no)
@@ -115,6 +117,7 @@ class TourGuideController extends BaseController
     {
         try {
             $product_idx = $this->request->getVar('g_idx');
+            $session = session();
             $guide = $this->productModel->getById($product_idx);
 
             if (!$guide) {
@@ -175,6 +178,8 @@ class TourGuideController extends BaseController
                                 ->get()->getResultArray();    
 
             $data['reservaion_policy'] = $reservaion_policy;
+
+            $guide['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $guide['product_idx']) > 0;
 
             $data = array_merge($data, $data_reviews);
 
