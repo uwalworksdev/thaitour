@@ -365,9 +365,11 @@ class SettlementController extends BaseController
 		                 COUNT(a.order_idx)    AS order_cnt
 		                ,SUM(a.real_price_won) AS price_tot  
 						,SUM(e.exp_amt_won)    AS exp_amt
+						,c.payment_method      AS payment_method
 						FROM tbl_order_mst a 
+						LEFT JOIN tbl_payment_mst c  ON a.payment_no    = c.payment_no
 						LEFT JOIN tbl_product_mst b  ON a.product_idx   = b.product_idx
-						LEFT JOIN tbl_expense_hist e ON a.order_idx    = e.order_idx
+						LEFT JOIN tbl_expense_hist e ON a.order_idx     = e.order_idx
 						WHERE a.is_modify='N'        AND a.order_status = 'Z' $strSql ";
         $fresult4 = $this->connect->query($fsql);
         $row4     = $fresult4->getRowArray();  // 1개의 row 가져옴
@@ -392,6 +394,40 @@ class SettlementController extends BaseController
             }
         }
 
+        // 월별 매출액 그래프
+		$now = strtotime("now");
+
+		$start_yy = date('Y', strtotime("-11 months", $now));
+		$start_mm = date('m', strtotime("-11 months", $now));
+
+		$oYM  = [];
+		$mCnt = []; 
+		$mTot = [];
+
+		for ($i = 0; $i < 12; $i++) {
+			$_mm = $start_mm + $i;
+			$_yy = $start_yy;
+
+			if ($_mm > 12) { 
+				$_mm -= 12;
+				$_yy++;
+			}
+
+			$_mm = str_pad($_mm, 2, "0", STR_PAD_LEFT);
+			$order_ym = $_yy . "-" . $_mm;
+			$oYM[$i] = $order_ym;
+
+			$sql = "SELECT COUNT(*) AS cnt, SUM(order_price) AS total_payment 
+					FROM tbl_order_mst 
+					WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
+
+			$result0  = $this->connect->query($sql);
+			$row      = $result0->getRowArray(); 
+
+			$mCnt[$i] = (int)$row['cnt'];
+			$mTot[$i] = (int)$row['total_payment'];
+		}
+				
 		$fsql = "SELECT 
 					CASE 
 						WHEN a.order_status IS NULL OR a.order_status = '' OR a.order_status = 'W' THEN '예약접수'
@@ -416,17 +452,19 @@ class SettlementController extends BaseController
 				ORDER BY 
 					FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
-		$fresult5 = $this->connect->query($fsql);
-		$fresult5 = $fresult5->getResultArray();
+				$fresult5      = $this->connect->query($fsql);
+				$fresult5      = $fresult5->getResultArray();
 
-		$today         = date('Y-m-d');
-		$yesterday     = date('Y-m-d', strtotime('-1 day'));
-		$week_start    = date('Y-m-d', strtotime('-7 days'));
-		$month_start   = date('Y-m-d', strtotime('-1 month'));
-		$prev_frdate   = '2025-05-19'; // 전주 시작일
-		$prev_todate   = '2025-05-25'; // 전주 종료일
-		$curr_yymm     = date('Y-m');
-		$last_ym       = date('Y-m', strtotime('-1 month'));
+				$today         = date('Y-m-d');
+				$yesterday     = date('Y-m-d', strtotime('-1 day'));
+				$week_start    = date('Y-m-d', strtotime('-7 days'));
+				$month_start   = date('Y-m-d', strtotime('-1 month'));
+				
+				$last_date     =  lastWeekDay(); 
+				$prev_frdate   =  $last_date['frdate']; // 전주 시작일
+				$prev_todate   =  $last_date['todate']; // 전주 종료일
+				$curr_yymm     =  date('Y-m');
+				$last_ym       =  date('Y-m', strtotime('-1 month'));
 
                 $infoSql = " 
 							SELECT 
@@ -512,13 +550,16 @@ class SettlementController extends BaseController
             'total_sql'       => $total_sql,
             'nTotalCount'     => $nTotalCount,
             'num'             => $num,
-            'result_new'          => $result,
+            'result_new'      => $result,
             'fresult'         => $fresult,
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
             'fresult4'        => $row4,
 			'info'            => $info,
             'fresult5'        => $fresult5,
+			'oYM'             => $oYM,
+			'mCnt'            => $mCnt,
+            'mTot'            => $mTot,
             'pg'              => $pg,
             'nPage'           => $nPage,
             'search_category' => $search_category,
