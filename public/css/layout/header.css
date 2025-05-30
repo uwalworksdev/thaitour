@@ -1161,6 +1161,7 @@
     #mobile_menu .gnb_menu_item a p {
         font-size: 2.4rem;
         font-weight: 600;
+        text-align: center;
     }
 }
 
