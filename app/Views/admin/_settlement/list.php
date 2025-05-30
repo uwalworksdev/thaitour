@@ -261,7 +261,7 @@
                             </li>
                             <li>
                             <strong class="label">전일 매출액</strong>
-                            <p class="all_pay"><b><?=number_format($info['YESTERDAY_CONFIRM_PAYMENT'])?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($YESTERDAY_CONFIRM_PAYMENT)?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
