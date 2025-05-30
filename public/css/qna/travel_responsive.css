@@ -58,6 +58,7 @@
     flex-wrap: wrap;
     padding: 1.1538rem 0.7692rem;
     height: 100%;
+    gap: 0.8rem;
   }
 
   .travel_section_1 .status_table td:nth-of-type(1) {
