@@ -243,73 +243,73 @@
                         <ul class="payment_info_row">
                             <li>
                             <strong class="label">금일 매출액 <span>※현재기준</span></strong>
-                            <p class="all_pay"><b><?=$TODAY_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['TODAY_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$TODAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$TODAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$TODAY_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['TODAY_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">전일 매출액</strong>
-                            <p class="all_pay"><b><?=$YESTERDAY_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['YESTERDAY_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$YESTERDAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$YESTERDAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$YESTERDAY_CANCEL_COUNT?></dd>
+                                <dd><?=number_format($info['YESTERDAY_CANCEL_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">전주 매출액</strong>
-                            <p class="all_pay"><b><?=$LW_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['LW_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$LW_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['LW_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$LW_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['LW_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$LW_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['LW_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
                             <li>
                             <strong class="label">당월 매출액</strong>
-                            <p class="all_pay"><b><?=$CM_CONFIRM_PAYMENT?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($info['CM_CONFIRM_PAYMENT'])?></b>원</p>
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$CM_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($info['CM_CONFIRM_COUNT'])?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$CM_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($info['CM_PAYMENT_COUNT'])?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$CM_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($info['CM_CANCLE_COUNT'])?></dd>
                                 </dl>
                             </div>
                             </li>
@@ -321,14 +321,14 @@
                             <p>전월 판매금액</p>
                             <span>판매완료</span>
                             </div>
-                            <div class="right"><b><?=$LAST_MONTH_CONFIRM_COUNT?></b>건</div>
+                            <div class="right"><b><?=number_format($LAST_MONTH_CONFIRM_COUNT)?></b>건</div>
                         </div>
                         <div class="color_cont bot">
                             <div class="left">
                             <p>전월 결제금액</p>
                             <span>결제완료</span>
                             </div>
-                            <div class="right"><b><?=$LAST_MONTH_TOTAL_PAYMENT?></b>원</div>
+                            <div class="right"><b><?=number_format($LAST_MONTH_TOTAL_PAYMENT)?></b>원</div>
                         </div>
                         </div>
                     </div>
@@ -342,33 +342,55 @@
                         </div>
                         </div>
 
+						<?php 
+						   $order_sum = $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
+						   foreach ($fresult5 as $row5) {
+									if($row5['status_group'] == "예약접수") $tot_price1 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약확인") $tot_price2 = $row5['total_amount'];	
+									if($row5['status_group'] == "결제완료") $tot_price3 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약확정") $tot_price4 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약취소") $tot_price5 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약불가") $tot_price6 = $row5['total_amount'];	
+									if($row5['status_group'] == "이용완료") $tot_price7 = $row5['total_amount'];	
+						   }
+						   
+						   $order_sum = $tot_price1 + $tot_price2 + $tot_price3 + $tot_price4 + $tot_price5 + $tot_price6 + $tot_price7; 
+						?> 
                         <div class="w_20">
                         <div class="cal_item">
                             <div class="top">
                             <p class="sub_ttl">판매상태 <span>최근 1주일 이내</span></p>
-                            <p class="all_pay"><b><?=$W_SALE_SUM?></b>원</p>
+                            <p class="all_pay"><b><?=number_format($order_sum)?></b>원</p>
                             </div>
                             <ul class="bot_list">
-                            <li class="cont_01">
-                                <p><i></i>예약접수</p>
-                                <em><?=$W_SALE_W_COUNT?></em>
-                            </li>
-                            <li class="cont_02">
-                                <p><i></i>선금대기</p>
-                                <em><?=$W_SALE_G_COUNT?></em>
-                            </li>
-                            <li class="cont_03">
-                                <p><i></i>잔금대기</p>
-                                <em><?=$W_SALE_R_COUNT?></em>
-                            </li>
-                            <li class="cont_04">
-                                <p><i></i>결제완료</p>
-                                <em><?=$W_SALE_Y_COUNT?></em>
-                            </li>
-                            <li class="cont_05">
-                                <p><i></i>예약취소</p>
-                                <em><?=$W_SALE_C_COUNT?></em>
-                            </li>
+								<li class="cont_01">
+									<p><i></i>예약접수</p>
+									<em><?=number_format($tot_price1)?></em>
+								</li>
+								<li class="cont_02">
+									<p><i></i>예약확인</p>
+									<em><?=number_format($tot_price2)?></em>
+								</li>
+								<li class="cont_03">
+									<p><i></i>결제완료</p>
+									<em><?=number_format($tot_price3)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약확정</p>
+									<em><?=number_format($tot_price4)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>예약취소</p>
+									<em><?=number_format($tot_price5)?></em>
+								</li>
+								<li class="cont_04">
+									<p><i></i>예약불가</p>
+									<em><?=number_format($tot_price6)?></em>
+								</li>
+								<li class="cont_05">
+									<p><i></i>이용완료</p>
+									<em><?=number_format($tot_price7)?></em>
+								</li>
                             </ul>
                         </div>
                         </div>
