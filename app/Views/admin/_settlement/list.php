@@ -247,15 +247,15 @@
                             <div class="pay_detail">
                                 <dl>
                                 <dt>예약</dt>
-                                <dd><?=$TODAY_CONFIRM_COUNT?></dd>
+                                <dd><?=number_format($TODAY_CONFIRM_COUNT)?></dd>
                                 </dl>
                                     <dl>
                                 <dt>결제</dt>
-                                <dd><?=$TODAY_PAYMENT_COUNT?></dd>
+                                <dd><?=number_format($TODAY_PAYMENT_COUNT)?></dd>
                                 </dl>
                                 <dl>
                                 <dt>취소</dt>
-                                <dd><?=$TODAY_CANCLE_COUNT?></dd>
+                                <dd><?=number_format($TODAY_CANCLE_COUNT)?></dd>
                                 </dl>
                             </div>
                             </li>
