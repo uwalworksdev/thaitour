@@ -519,7 +519,7 @@ class SettlementController extends BaseController
 								(SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'Y' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_Y_COUNT,
 								(SELECT COUNT(*) FROM tbl_order_mst WHERE order_status = 'C' AND DATE(order_r_date) BETWEEN '$month_start' AND '$today') AS M_SALE_C_COUNT
                         ";
-		// write_log($infoSql);
+		write_log("infoSql- ". $infoSql);
 		$db = \Config\Database::connect();
 		$infoResult     = $db->query($infoSql);
 		$info           = $infoResult->getRowArray();
