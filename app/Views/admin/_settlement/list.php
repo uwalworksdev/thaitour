@@ -21,6 +21,7 @@
 
             </header><!-- // headerContainer -->
             <?php
+			/*
                 // 전월 판매금액
                 $last_ym = date("Y-m", strtotime("-1 month", time()));
 
@@ -187,6 +188,7 @@
                 foreach($info_1 AS $key => $val) {
                 ${$key} = number_format($val);
                 }
+			*/	
             ?>
                 <div id="container" class="main" style="margin-top: 0;margin-left: 0;width: 100%; min-height: calc(87vh - 60px);">
                     <span id="print_this"><!-- 인쇄영역 시작 //-->
