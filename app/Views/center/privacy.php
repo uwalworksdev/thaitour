@@ -9,8 +9,11 @@
   <div class="inner">
     <div class="contentArea">
 
-      <div class="content_wrap">
+      <div class="content_wrap only_web">
         <?= viewSQ($policy['policy_contents']) ?>
+      </div>
+      <div class="content_wrap only_mo">
+        <?= viewSQ($policy['policy_contents_m']) ?>
       </div>
 
     </div>
