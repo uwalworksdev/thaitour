@@ -555,17 +555,26 @@
                 <?php echo getHeaderTabMo(); ?>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="/mice-page">인센티브</a>
+                        <div class="menu_flex flex">
+                            <i></i>
+                            <a href="/mice-page">인센티브</a>
+                        </div>
                     </div>
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="https://tourlab.toursafe.co.kr/main/main.php" target="_blank">여행자 보험</a>
+                        <div class="menu_flex flex">
+                            <i></i>
+                            <a href="https://tourlab.toursafe.co.kr/main/main.php" target="_blank">여행자 보험</a>
+                        </div>
                     </div>
                 </li>
                 <li class="gnb_menu_item">
                     <div class="menu_level_1 flex_b_c">
-                        <a href="/travel-tips">커뮤니티</a>
+                        <div class="menu_flex flex">
+                            <i></i>
+                            <a href="/travel-tips">커뮤니티</a>
+                        </div>
                         <img src="/images/ico/gnb_select_ico_m.png" alt="" class="btn_toggle">
                     </div>
                     <div class="menu_level_2 flex_b_c">
@@ -605,7 +614,6 @@
 <!-- <div id="iframeContainer">
     <iframe id="myIframe" src="" frameborder="0"></iframe>
 </div> -->
-
 
 <script>
 
