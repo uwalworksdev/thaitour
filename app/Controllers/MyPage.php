@@ -256,7 +256,8 @@ public function reservationList() {
             if ($policy) {
                 return $this->response->setJSON([
                     'success' => true,
-                    'policy_contents' => viewSQ($policy['policy_contents'])
+                    'policy_contents' => viewSQ($policy['policy_contents']),
+                    'policy_contents_m' => viewSQ($policy['policy_contents_m']),
                 ]);
             } else {
                 return $this->response->setJSON([
