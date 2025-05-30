@@ -75,6 +75,11 @@
             .evaluate_write_section .evaluate_table .input_box .wrapper_label label {
                 font-size: 2.4rem;
             }
+
+            .evaluate_write_section .evaluate_table .travel_box .travel_box_child input:nth-of-type(3),
+            .evaluate_write_section .evaluate_table .travel_box .travel_box_child input:last-of-type {
+                width: 49.5% !important;
+            }
         }
 
     </style>
