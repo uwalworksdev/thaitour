@@ -3537,7 +3537,7 @@
     }
 
     $('.btn_share_kakao').on('click', function () {
-        let img_url = 'https://odymedi.com/data/home/<?= $setting['og_img'] ?>'
+        let img_url = 'https://thetourlab.com/data/home/<?= $setting['og_img'] ?>'
         const currentUrl = window.location.href;
 
         Kakao.Share.sendDefault({
@@ -3553,7 +3553,7 @@
             },
             buttons: [
                 {
-                    title: 'Open Page',
+                    title: 'View Page',
                     link: {
                         mobileWebUrl: currentUrl,
                         webUrl: currentUrl
