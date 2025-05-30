@@ -392,6 +392,29 @@ class SettlementController extends BaseController
             }
         }
 
+		$fsql = "SELECT 
+					CASE 
+						WHEN a.order_status IS NULL OR a.order_status = '' OR a.order_status = 'W' THEN '예약접수'
+						WHEN a.order_status = 'X' THEN '예약확인'
+						WHEN a.order_status = 'Y' THEN '결제완료'
+						WHEN a.order_status IN ('Z','G','R','J') THEN '예약확정'
+						WHEN a.order_status = 'C' THEN '예약취소'
+						WHEN a.order_status = 'N' THEN '예약불가'
+						WHEN a.order_status = 'E' THEN '이용완료'
+						ELSE '기타'
+					END AS status_group,
+					SUM(a.real_price_won) AS total_amount
+					FROM 
+						tbl_order_mst a
+					WHERE 
+						a.is_modify = 'N' AND a.order_status != 'G' AND a.order_status != '' $strSql
+					GROUP BY 
+						status_group
+					ORDER BY 
+						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+
+        $fresult5 = $this->connect->query($fsql);
+        $fresult5 = $fresult5->getResultArray();
 
         /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
@@ -424,6 +447,7 @@ class SettlementController extends BaseController
             'fresult2'        => $fresult2,
             'fresult3'        => $fresult3,
             'fresult4'        => $row4,
+            'fresult5'        => $fresult5,
             'pg'              => $pg,
             'nPage'           => $nPage,
             'search_category' => $search_category,
