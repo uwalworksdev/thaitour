@@ -201,7 +201,7 @@
                                 </div>
 
                                 <input type="hidden" class="guide_price_bath" value="<?= $price_ ?>">
-                                <input type="hidden" class="guide_price_won" value="<?= $price_ * $setting['baht_thai'] ?>">
+                                <input type="hidden" class="guide_price_won" value="<?= round($price_ * $setting['baht_thai']) ?>">
 
                                 <div class="box_price">
                                     <p style="text-align: right;">
