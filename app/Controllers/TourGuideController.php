@@ -143,6 +143,8 @@ class TourGuideController extends BaseController
                 return $option;
             }, $options);
 
+            $guide['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $guide['product_idx']) > 0;
+
             $data = [
                 "guide" => $guide,
                 "mcode" => $mcode,
@@ -178,8 +180,6 @@ class TourGuideController extends BaseController
                                 ->get()->getResultArray();    
 
             $data['reservaion_policy'] = $reservaion_policy;
-
-            $guide['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $guide['product_idx']) > 0;
 
             $data = array_merge($data, $data_reviews);
 
