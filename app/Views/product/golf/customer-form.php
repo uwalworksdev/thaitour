@@ -511,9 +511,11 @@
                     success: function(response) {
                         if (response.success) {
                             $("#policyContent").html(response.policy_contents);
+                            $("#policyContent_m").html(response.policy_contents_m);
                             $(".policy_pop, .policy_pop .dim").show();
                         } else {
                             $("#policyContent").html("<p>" + response.message + "</p>");
+                            $("#policyContent_m").html("<p>" + response.message + "</p>");
                             $(".policy_pop, .policy_pop .dim").show();
                         }
                     },
