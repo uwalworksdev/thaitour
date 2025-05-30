@@ -416,17 +416,19 @@ class SettlementController extends BaseController
 				ORDER BY 
 					FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
-		$fresult5 = $this->connect->query($fsql);
-		$fresult5 = $fresult5->getResultArray();
+				$fresult5      = $this->connect->query($fsql);
+				$fresult5      = $fresult5->getResultArray();
 
-		$today         = date('Y-m-d');
-		$yesterday     = date('Y-m-d', strtotime('-1 day'));
-		$week_start    = date('Y-m-d', strtotime('-7 days'));
-		$month_start   = date('Y-m-d', strtotime('-1 month'));
-		$prev_frdate   = '2025-05-19'; // 전주 시작일
-		$prev_todate   = '2025-05-25'; // 전주 종료일
-		$curr_yymm     = date('Y-m');
-		$last_ym       = date('Y-m', strtotime('-1 month'));
+				$today         = date('Y-m-d');
+				$yesterday     = date('Y-m-d', strtotime('-1 day'));
+				$week_start    = date('Y-m-d', strtotime('-7 days'));
+				$month_start   = date('Y-m-d', strtotime('-1 month'));
+				
+				$last_date     =  lastWeekDay();
+				$prev_frdate   =  $last_date['frdate']; // 전주 시작일
+				$prev_todate   =  $last_date['todate']; // 전주 종료일
+				$curr_yymm     =  date('Y-m');
+				$last_ym       =  date('Y-m', strtotime('-1 month'));
 
                 $infoSql = " 
 							SELECT 
