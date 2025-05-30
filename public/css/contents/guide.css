@@ -543,6 +543,14 @@ table.book_result b {
         height: 8rem;
     }
 
+    table.book_tbl tr td .custom_input .val_wrap input {
+        width: 18rem;
+    }
+
+    table.book_tbl tr td .custom_input .val_wrap .people_cnt_select {
+        width: 39rem;
+    }
+
     table.book_tbl tr td.count_date {
         display: flex;
         align-items: center;
