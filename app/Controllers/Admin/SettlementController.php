@@ -424,7 +424,7 @@ class SettlementController extends BaseController
 				$week_start    = date('Y-m-d', strtotime('-7 days'));
 				$month_start   = date('Y-m-d', strtotime('-1 month'));
 				
-				$last_date     =  lastWeekDay();
+				$last_date     =  lastWeekDay(); 
 				$prev_frdate   =  $last_date['frdate']; // 전주 시작일
 				$prev_todate   =  $last_date['todate']; // 전주 종료일
 				$curr_yymm     =  date('Y-m');
