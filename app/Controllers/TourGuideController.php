@@ -235,18 +235,12 @@ class TourGuideController extends BaseController
                 ])->setStatusCode(400);
             }
 
-            $builder1 = $this->connect->table('tbl_policy_info');
-            $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
-                                ->orderBy('p_idx', 'asc')
-                                ->get()->getResultArray();    
-
             $data = [
                 'product_idx' => $product_idx,
                 'o_idx' => $o_idx,
                 'start_day' => $start_day_,
                 'end_day' => $end_day_,
                 'people_cnt' => $people_cnt,
-                'reservaion_policy' => $reservaion_policy,
             ];
 
             $session->set('guide_cart', $data);
@@ -306,6 +300,11 @@ class TourGuideController extends BaseController
 
         $totalPrice_won = $totalPrice * $this->setting['baht_thai'];
 
+        $builder1 = $this->connect->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();    
+
         $res = [
             'product' => $product,
             'option' => $option,
@@ -317,6 +316,7 @@ class TourGuideController extends BaseController
             'start_day' => $start_day,
             'end_day' => $end_day,
             'people_cnt' => $people_cnt,
+            'reservaion_policy' => $reservaion_policy,
         ];
 
         return view('guides/guide_booking', $res);
