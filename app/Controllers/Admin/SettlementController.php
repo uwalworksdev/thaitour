@@ -555,6 +555,7 @@ class SettlementController extends BaseController
             'fresult4'        => $row4,
 			'info'            => $info,
             'fresult5'        => $fresult5,
+			'oYM'             => $oYM,
 			'mCnt'            => $mCnt,
             'mTot'            => $mTot,
             'pg'              => $pg,
