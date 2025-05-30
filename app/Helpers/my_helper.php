@@ -1557,3 +1557,29 @@ function getBannerByCategory($category_idx)
     write_log($b_sql);
     return db_connect()->query($b_sql)->getRowArray();
 }
+
+function lastWeekDay()
+{
+		// 오늘 기준
+		$today = new DateTime('now');
+
+		// 이번 주 월요일 구하기
+		$thisMonday = clone $today;
+		$thisMonday->modify('monday this week');
+
+		// 전주 월요일
+		$prev_frdate = clone $thisMonday;
+		$prev_frdate->modify('-7 days');
+
+		// 전주 일요일
+		$prev_todate = clone $thisMonday;
+		$prev_todate->modify('-1 day');
+
+		// 결과 출력
+
+		$week_day['frdate'] = $prev_frdate->format('Y-m-d');
+		$week_day['todate'] = $prev_todate->format('Y-m-d');
+		
+		return $week_day;
+	
+}
