@@ -438,7 +438,9 @@ table.book_result b {
         height: 77px;
         font-size: 18px;
         gap: 6px;
+        position: relative;
     }
+
 
     .daterangepicker .drp-calendar.right {
         padding: 20px 20px 20px 8px;
@@ -464,9 +466,9 @@ table.book_result b {
         padding-bottom: 15px;
     }
 
-    .daterangepicker .calendar-table td::after {
+    /* .daterangepicker .calendar-table td::after {
         display: none;
-    }
+    } */
 }
 
 @media screen and (max-width: 850px) {
