@@ -4339,4 +4339,37 @@
     height: 8rem;
   }
 
+  .ord_total_sec.reservation>div {
+    padding: 4rem 2rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .ord_total_sec.reservation .label {
+    font-size: 2.6rem;
+    color: #ff0000;
+  }
+
+  .ord_total_sec.reservation .left {
+    gap: 2rem;
+}
+
+.ord_total_sec.reservation .total_money p {
+    font-size: 2.6rem;
+    font-weight: 500;
+    font-family: var(--bs-font-sans-serif);
+}
+
+.ord_total_sec.reservation .detail_money p {
+    font-size: 2.6rem;
+    font-weight: 500;
+    font-family: var(--bs-font-sans-serif);
+    margin-top: 0 !important;
+}
+
+.ord_total_sec.reservation .total_money p strong {
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--bs-point);
+}
+
 }
