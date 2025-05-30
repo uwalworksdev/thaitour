@@ -420,7 +420,7 @@ class SettlementController extends BaseController
 					WHERE SUBSTRING(order_r_date, 1, 7) = '$order_ym'";
 
 			$fresult  = $this->connect->query($sql);
-			$row      = $fresult->getResultArray();
+			$row      = $fresult->getRowArray(); 
 
 			$mCnt[$i] = (int)$row['cnt'];
 			$mTot[$i] = (int)$row['total_payment'];
