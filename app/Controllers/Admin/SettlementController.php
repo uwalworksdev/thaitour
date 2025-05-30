@@ -411,7 +411,6 @@ class SettlementController extends BaseController
 					AND a.order_status != 'G'
 					AND a.order_status != ''
 					AND a.order_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-					$strSql
 				GROUP BY 
 					status_group
 				ORDER BY 
