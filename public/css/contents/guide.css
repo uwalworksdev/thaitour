@@ -319,6 +319,9 @@ table.book_result b {
     margin-top: 5px;
 }
 
+table.book_tbl tr td .people_cnt_select {
+    width: 80px;
+}
 
 .content-sub-hotel-detail .section6 .title-sec6 {
     font-size: 24px;
