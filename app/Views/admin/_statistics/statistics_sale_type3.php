@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
 									if (percentage > 0) {
 										const bar = document.createElement('div');
 										bar.classList.add('bar');
-										bar.style.width = percentage + '%...';
+										bar.style.width = percentage + '%';
 										bar.style.height = '20px';
 										bar.style.backgroundColor = color;
 										container.appendChild(bar);
