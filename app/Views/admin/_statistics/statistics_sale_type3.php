@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
 									if (percentage > 0) {
 										const bar = document.createElement('div');
 										bar.classList.add('bar');
-										bar.style.width = percentage + '%...';
+										bar.style.width = percentage + '%';
 										bar.style.height = '20px';
 										bar.style.backgroundColor = color;
 										container.appendChild(bar);
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>순위</th>
+                                <th>순위.</th>
                                 <th>지역별</th>
                                 <th>매출</th>
                                 <th>점유률</th>
