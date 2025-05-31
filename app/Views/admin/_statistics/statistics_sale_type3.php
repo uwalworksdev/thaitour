@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
 							function drawBarChart() {
 								chartData.forEach((row, index) => {
 									const [region, value] = row;
-									const percentage = Math.round((value / total) * 100);
+									const percentage = Math.round((value / total) * 100) / 10;
 
 									const container = document.createElement('div');
 									container.classList.add('bar-container');
