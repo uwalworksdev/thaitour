@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>순위.</th>
+                                <th>순위</th>
                                 <th>지역별</th>
                                 <th>매출</th>
                                 <th>점유률</th>
