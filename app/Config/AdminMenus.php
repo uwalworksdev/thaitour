@@ -84,7 +84,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
                 [
-                    'name' => '기사님 소개관리',
+                    'name' => '가이드 소개관리',
                     'code' => 'B14',
                     'url' => ['/AdmMaster/_drivers/list'],
                     'alias' => ['AdminDriverController::list', 'AdminDriverController::write']
