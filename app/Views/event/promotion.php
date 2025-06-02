@@ -24,6 +24,9 @@
   }
 
   @media screen and (max-width: 850px) {
+      .pb_5 {
+        padding-bottom: 5rem !important;
+      }
       #header_mobile {
           overflow: hidden;
       }
@@ -233,7 +236,7 @@
         </div>
     </div>
 </nav>
-<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden">
+<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden pb_5">
     <div id="hotel-section" class="mb-16">
         <div class="title-section luxury-hotel" title="럭셔리 호텔"></div>
         <div class="flex flex-wrap justify-center gap-6 hotel-list" data-id="luxury-hotel"></div>

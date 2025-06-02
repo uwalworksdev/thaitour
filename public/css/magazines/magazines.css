@@ -529,14 +529,29 @@
         margin: 6rem 0 0 0;
     }
 
-    .page-link:has(img) {
+    /* .page-link:has(img) {
         padding: 1.8rem 2rem;
         height: 5.5rem;
+    } */
+
+    .page-link {
+        margin: 0 0.5rem;
+        border-radius: 0.5rem;
     }
 
     .page-link {
         margin: 0 0.5rem;
         border-radius: 0.5rem;
+        width: 6rem;
+        height: 6rem;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page-link img {
+        height: 2.3rem;
     }
 
     .time_sale_list {
