@@ -6978,7 +6978,8 @@ iframe::-webkit-scrollbar {
 
     .popup_wrap.place_pop .pop_body {
         /* padding: 0 59px; */
-        max-height: 60rem;
+        /* max-height: 60rem; */
+        max-height: 90rem;
         overflow-y: auto;
     }
 
