@@ -4338,6 +4338,7 @@
   .popup_wrap.cart_info_pop .pop_box input
   {
     height: 8rem;
+    width: 100% !important;
   }
 
   .ord_total_sec.reservation>div {
