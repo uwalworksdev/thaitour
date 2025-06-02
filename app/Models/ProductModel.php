@@ -1529,6 +1529,7 @@ class ProductModel extends Model
             'search_product_promotion' => $where['search_product_promotion'],
             'search_product_topic' => $where['search_product_topic'],
             'search_product_bedroom' => $where['search_product_bedroom'],
+            'search_product_mbti' => $where['search_product_mbti'],
             'price_type' => $where['price_type'],
             'price_min' => $where['price_min'],
             'price_max' => $where['price_max'],

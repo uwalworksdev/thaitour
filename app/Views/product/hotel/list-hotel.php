@@ -26,6 +26,8 @@
                            value="<?= $products["search_product_topic"] ?>">
                     <input type="hidden" name="search_product_bedroom" id="search_product_bedroom"
                            value="<?= $products["search_product_bedroom"] ?>">
+                    <input type="hidden" name="search_product_mbti" id="search_product_mbti"
+                           value="<?= $products["search_product_mbti"] ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
                     <input type="hidden" name="price_type" id="price_type" value="<?= $products["price_type"] ?? "" ?>">
                     <input type="hidden" name="s_code_no" id="s_code_no" value="<?= $code_no ?>">
