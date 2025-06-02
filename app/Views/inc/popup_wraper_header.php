@@ -338,6 +338,7 @@
     $topic_arr = $codeModel->getByParentAndDepth(38, 2)->getResultArray();
     $bedroom_arr = $codeModel->getByParentAndDepth(39, 2)->getResultArray();
 
+    $mcodes = $codeModel->getByParentCode('56')->getResultArray();
     //골프
 
     $codes_golf = $codeModel->getByParentCode("1302")->getResultArray();
@@ -509,11 +510,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>프로모션</th>
+                            <th>MBTI</th>
                             <td>
-                                <div class="list_area list_promotion">
+                                <div class="list_area list_mbti">
                                     <?php
-                                        foreach ($promotion_arr as $code) {
+                                        foreach ($mcodes as $code) {
                                     ?>
                                         <p data-code="<?=$code["code_no"]?>"><?=$code["code_name"]?></p>
                                     <?php
@@ -1116,6 +1117,8 @@
             let search_product_promotion = [];
             let search_product_topic = [];
             let search_product_bedroom = [];
+            let search_product_mbti = [];
+
             let price_type = $(".popup_content." + type_category).find(".btn_fil_price.active").data("type");
             let pg = 1;
             let s_code_no = $(".popup_content." + type_category).find(".input_keyword_").data("id");
@@ -1167,9 +1170,9 @@
                 search_product_rating = [];
             }
 
-            $(".popup_content." + type_category).find(".list_promotion p.active").each(function() {
+            $(".popup_content." + type_category).find(".list_mbti p.active").each(function() {
                 let code_no = $(this).data("code");
-                search_product_promotion.push(code_no);
+                search_product_mbti.push(code_no);
             });
 
             $(".popup_content." + type_category).find(".list_topic p.active").each(function() {
@@ -1182,7 +1185,7 @@
                 search_product_bedroom.push(code_no);
             });
 
-            let url = `/product-hotel/list-hotel?search_product_category=${search_product_category.join(",")}&search_product_hotel=${search_product_hotel.join(",")}&search_product_rating=${search_product_rating.join(",")}&search_product_promotion=${search_product_promotion.join(",")}&search_product_topic=${search_product_topic.join(",")}&search_product_bedroom=${search_product_bedroom.join(",")}&pg=${pg}&price_type=${price_type}&s_code_no=${s_code_no}&price_min=${price_min}&price_max=${price_max}&day_start=${day_start}&day_end=${day_end}&keyword=${keyword}`;
+            let url = `/product-hotel/list-hotel?search_product_category=${search_product_category.join(",")}&search_product_hotel=${search_product_hotel.join(",")}&search_product_rating=${search_product_rating.join(",")}&search_product_mbti=${search_product_mbti.join(",")}&search_product_topic=${search_product_topic.join(",")}&search_product_bedroom=${search_product_bedroom.join(",")}&pg=${pg}&price_type=${price_type}&s_code_no=${s_code_no}&price_min=${price_min}&price_max=${price_max}&day_start=${day_start}&day_end=${day_end}&keyword=${keyword}`;
             window.location.href = url;
         }else if(type_category == "golf"){
             let green_peas = [];

@@ -1298,6 +1298,23 @@ class ProductModel extends Model
             }
         }
 
+        if ($where['search_product_mbti']) {
+            if (strpos($where['search_product_mbti'], 'all') === false) {
+                $search_product_mbti = explode(",", $where['search_product_mbti']);
+                $cnt_mbti = 1;
+                $builder->groupStart();
+                foreach ($search_product_mbti as $category) {
+                    if ($cnt_mbti > 1) {
+                        $builder->orLike('mbti', $category);
+                    } else {
+                        $builder->like('mbti', $category);
+                    }
+                    $cnt_mbti++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
         if ($where['search_product_hotel']) {
             if (strpos($where['search_product_hotel'], 'all') === false) {
                 $search_product_hotel = explode(",", $where['search_product_hotel']);
