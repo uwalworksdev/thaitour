@@ -948,7 +948,7 @@ div , p , ul, li, span {
     }
 
     .custom-golf-detail .pagination {
-        margin: 8rem 0 0rem 0 !important;
+        margin: 8rem 0 5rem 0 !important;
         display: flex;
         list-style: none;
         padding: 0;

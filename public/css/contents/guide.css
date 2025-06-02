@@ -482,6 +482,13 @@ table.book_tbl tr td .people_cnt_select {
 
     .sec2-item-card .calendar_header {
         padding: 2rem 2.6rem 2rem 3rem;
+        flex-direction: column;
+    }
+
+    .sec2-item-card .calendar_header .desc_product {
+        font-size: 3rem;
+        font-weight: 600;
+        width: 100%;
     }
 
     .daterangepicker .calendar-table th,
@@ -667,5 +674,49 @@ table.book_tbl tr td .people_cnt_select {
         border-radius: 0.8rem;
         width: 25rem;
         height: 6.6rem;
+    }
+
+    .calendar_note {
+        display: flex;
+        gap: 4rem;
+        margin-top: 12rem;
+        font-size: 2.6rem;
+        font-weight: 500;
+    }
+
+    .calendar_note_maybe {
+        padding-left: 3rem;
+        position: relative;
+    }
+
+    .calendar_note_maybe::before {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: #2a459f;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .calendar_note_cannot {
+        padding-left: 3rem;
+        position: relative;
+    }
+
+    .calendar_note_cannot::before {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: #cccccc;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
