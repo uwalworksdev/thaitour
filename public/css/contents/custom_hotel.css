@@ -1,6 +1,6 @@
 .date_hotel_list {
-        position: absolute;
-        top: 325px;
+    position: absolute;
+    top: 325px;
 }
 
 @media screen and (max-width: 850px) {
