@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/contents/custom_hotel.css"/>
 
     <script>
         localStorage.setItem('reject_day_', null);
@@ -219,6 +220,15 @@
         }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ hotel-main-page-cus-css-mobile">
+        <div class="date_hotel_list" style="position: relative;">
+            <button type="button" class="close" onclick="closePopupCalendar()" style="display: none;"></button>
+            <input
+                    type="text"
+                    id="daterange_hotel"
+                    class="daterange_hotel"
+            />
+
+        </div>
         <section class="sub_top_visual">
             <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
             <img class="only_mo" src="/data/cate_banner/<?= $bannerTop['ufile2'] ?>" alt="">
@@ -259,13 +269,7 @@
                             검색
                         </button>
                     </div>
-                    <div class="date_hotel_list" style="position: relative;">
-                        <input
-                                type="text"
-                                id="daterange_hotel"
-                                class="daterange_hotel"
-                        />
-                    </div>
+
                     <div class="hotel_popup_">
                         <div class="hotel_popup_content_">
                             <div class="hotel_popup_ttl_">인기 여행지</div>

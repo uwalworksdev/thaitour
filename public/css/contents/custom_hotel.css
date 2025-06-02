@@ -1,0 +1,30 @@
+.date_hotel_list {
+        position: absolute;
+        top: 325px;
+}
+
+@media screen and (max-width: 850px) {
+    .daterangepicker {
+        position: fixed;
+        top: 0px !important;
+        left: 0px !important;
+        margin-top: 0px !important;
+    }
+
+    .date_hotel_list {
+        position: fixed;
+        top: 0;
+        z-index: 999999;
+    }
+
+    .date_hotel_list .close {
+        position: fixed;
+        top: 1.7692rem;
+        left: 0;
+        width: 4.5385rem;
+        height: 3.5385rem;
+        background-size: 1.5385rem;
+        background: url(/images/ico/close_icon_popup.png) no-repeat center;
+        z-index: 999999;
+    }
+}
