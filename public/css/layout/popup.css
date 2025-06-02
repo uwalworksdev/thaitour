@@ -1146,7 +1146,7 @@ textarea::placeholder {
     }
 
     .popup_wrap.reservation_pop .pop_box {
-        height: 70rem;
+        height: 90rem;
         overflow-y: auto;
     }
 

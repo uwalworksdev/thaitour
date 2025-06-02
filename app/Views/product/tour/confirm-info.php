@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/css/tour/spa.css">
 <link rel="stylesheet" href="/css/tour/booking_spa.css">
 
+
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -782,5 +783,6 @@
         });
     });
 </script>
+
 
 <?php $this->endSection(); ?>
