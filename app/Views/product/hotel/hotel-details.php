@@ -649,7 +649,7 @@
 
          #room_search {
             line-height: 1.4;
-            padding: 1rem 3.4rem;
+            padding: 1rem 1.4rem;
             width: 10.8rem;
             height: 6.5rem;
          }
