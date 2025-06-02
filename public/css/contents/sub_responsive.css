@@ -1447,7 +1447,8 @@
   }
 
   .customer-form-page .container-card .item-info span:first-child {
-    width: 22rem;
+    /* width: 22rem; */
+    width: 10rem;
   }
 
   .customer-form-page .container-card .item-info-r.font-bold-cus {
