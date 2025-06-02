@@ -193,8 +193,8 @@
                 <!-- <img src="/img/sub/v_d_1.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="img_pops('1916')"> -->
             </div>
             <div class="grid_2_2">
-                <img class="grid_2_2_size" src="/img/sub/v_d_2.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
-                <img class="grid_2_2_size" src="/img/sub/v_d_3.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
+                <img class="grid_2_2_size only_web" src="/img/sub/v_d_2.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
+                <img class="grid_2_2_size only_web" src="/img/sub/v_d_3.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
                 <img class="grid_2_2_size" src="/img/sub/v_d_4.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
                 <!-- <img class="grid_2_2_size" src="/data/product/1729830604_d9ee4a11bfcc8fc02d1c.jpeg" alt="3.jpeg"
                              style="">
@@ -265,7 +265,7 @@
             </tbody>
         </table>
         <h3 class="title-size-24" id="location">위치정보</h3>
-        <div id="map" style="width: 100%; height: 450px; position: relative;" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
+        <div id="map" style="width: 100%; height: 250px; position: relative;" class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0">
             <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
                 <div class="leaflet-pane leaflet-tile-pane">
                     <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
