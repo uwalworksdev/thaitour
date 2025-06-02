@@ -519,11 +519,20 @@ table.book_tbl tr td .people_cnt_select {
         max-width: 8rem;
     }
 
-    table.book_tbl {
+    /* table.book_tbl {
         width: 90%;
         margin: 0 auto;
         margin-bottom: 5rem;
         border-bottom: 1px solid #dcdcdc;
+    } */
+
+    table.book_tbl {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 5rem;
+        border-bottom: 1px solid #dcdcdc;
+        display: block;
+        padding-bottom: 5rem;
     }
 
     table.book_tbl colgroup {
