@@ -32,6 +32,11 @@
     .customer-form-page .day_activity_ .title-sub-c {
         margin-bottom: 0;
     }
+
+    .daterangepicker .calendar-table td {
+        width: 81px;
+        height: 48px;
+    }
 </style>
 
     <div class="content-sub-hotel-detail tours-detail">
