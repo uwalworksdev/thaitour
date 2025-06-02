@@ -1007,6 +1007,7 @@
     margin-top: 2rem;
     margin-bottom: 6rem;
     color: #757575;
+    word-break: break-word;
   }
 
   .tours-detail .steps-type {
