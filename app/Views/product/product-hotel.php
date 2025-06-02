@@ -927,13 +927,13 @@
                 $('.main_page_01 .list_popup_item_').click(function () {
                     let ttl = $(this).text().trim();
                     let idx = $(this).data('id');
-                    $(this).closest(".main_page_01").find('#input_keyword_').val(ttl).data('id', idx);
+                    $(this).closest(".main_page_01").find('#input_keyword1_').val(ttl).data('id', idx);
                     $(this).closest(".main_page_01").find('.hotel_popup_').removeClass('show');
                 })
             })
 
             function searchProduct() {
-                let c_id = $('#input_keyword_').data('id') ?? '';
+                let c_id = $('#input_keyword1_').data('id') ?? '';
 
                 if (c_id == '') {
                     alert('호텔지역을 선택해주세요!');
@@ -1639,15 +1639,14 @@
         // }
     </script>
     <script>
-        $(document).ready(function () {
-            $('.main_page_01 #input_keyword_').on('click', function () {
-                $('.main_page_01 .hotel_popup_').addClass('show');
-            });
-        })
+        $('.main_page_01 #input_keyword1_').on('click', function () {
+            
+            $('.main_page_01 .hotel_popup_').addClass('show');
+        });
 
         $(document).on('click', function (event) {
             const $popup = $('.main_page_01 .hotel_popup_');
-            const $input_keyword_ = $('.main_page_01 #input_keyword_');
+            const $input_keyword_ = $('.main_page_01 #input_keyword1_');
             if ($input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
                 $popup.addClass('show');
             } else {
