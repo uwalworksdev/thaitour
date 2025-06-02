@@ -22,6 +22,9 @@
     align-items: center;
     gap: 3px;
   }
+  .pb_10 {
+    padding-bottom: 10rem !important;
+  }
 
   @media screen and (max-width: 850px) {
       #header_mobile {
@@ -233,7 +236,7 @@
         </div>
     </div>
 </nav>
-<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden">
+<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden pb_10">
     <div id="hotel-section" class="mb-16">
         <div class="title-section luxury-hotel" title="럭셔리 호텔"></div>
         <div class="flex flex-wrap justify-center gap-6 hotel-list" data-id="luxury-hotel"></div>

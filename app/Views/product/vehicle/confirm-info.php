@@ -835,7 +835,7 @@
                                 <p class="title-sub-r text-gray">
                                     <?= $product['addrs'] ?>
                                 </p>
-                                <div class="item-info" style="gap: 10px;">
+                                <div class="item-info w100" style="gap: 10px;">
                                     <div>
                                         <span>출발지역: </span>
                                         <span><?= $text_destination_name ?></span>
@@ -846,11 +846,11 @@
                                         <span><?= $text_departure_name ?></span>
                                     </div>
                                 </div>
-                                <div class="item-info" style="gap: 10px;">
+                                <div class="item-info w100" style="gap: 10px;">
                                     <span><?=$category_text_list?></span>
                                 </div>
 
-                                <div class="item-info" style="gap: 10px;">
+                                <div class="item-info w100" style="gap: 10px;">
                                     <span>성인 <?=!empty($adult_cnt) ? $adult_cnt : 0?>명,  소아 <?=!empty($child_cnt) ? $child_cnt : 0 ?? 0?>명</span>
                                 </div>
                             </div>
