@@ -525,6 +525,10 @@
             margin-top: 2rem;
         }
 
+        .main_page_01 .main_visual_content_ .form_element_ {
+            position: relative;
+        }
+
         .sub_tour_section5_item {
             width: calc((100% - 2rem) / 2);
         }
@@ -578,7 +582,7 @@
         .content-sub-hotel-detail ._wrap_qty {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             border: 1px solid #dbdbdb;
             border-radius: 0.6rem;
             padding: 0 1.8rem;
@@ -593,7 +597,7 @@
         }
 
         .content-sub-hotel-detail ._wrap_qty .room_activity {
-            margin-right: 7rem;
+            margin-right: 5rem;
         }
 
         .content-sub-hotel-detail ._wrap_qty button {
@@ -646,6 +650,12 @@
  
          .mySwiper .swiper-slide {
              width: 9.4rem;
+         }
+
+         .form_element_ .btn_search {
+            position: absolute;
+            right: 5rem;
+            bottom: 4rem;
          }
 
          #room_search {
@@ -881,7 +891,7 @@
                         <div class="form_input_multi_">
                             <div class="form_gr_" id="openDateRangePicker">
                                 <div class="form_input_ form_gr_item_">
-                                    <label for="input_day">체크인</label>
+                                    <!-- <label for="input_day">체크인</label> -->
                                     <input type="text" id="input_day_start_"
                                         class="input_custom_ input_ranger_date_"
                                         placeholder="체크인 선택해주세요." readonly>
@@ -890,7 +900,7 @@
                                     <span id="countDay" class="count">0</span>박
                                 </p>
                                 <div class="form_input_ form_gr_item_ form_gr_item_flex_">
-                                    <label for="input_day">체크아웃</label>
+                                    <!-- <label for="input_day">체크아웃</label> -->
                                     <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
                                         placeholder="체크아웃 선택해주세요." readonly>
                                 </div>
@@ -950,6 +960,12 @@
         </section>
 		
 		<script>
+            function closePopupCalendar() {
+                $('.date_hotel_list').hide();
+                $('.date_hotel_list .close').hide();
+                $('.hotel_data_info').hide();
+                $("body").css("overflow", "inherit");
+            }
 			$(document).ready(function(){
 				$("#room_search").click(function(){
 						let date_check_in  = $("#input_day_start_").val();

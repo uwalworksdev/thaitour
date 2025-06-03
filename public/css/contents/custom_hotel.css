@@ -25,6 +25,10 @@
         overflow-y: auto;
     }
 
+    .daterangepicker .calendar-table td {
+        max-width: 48px;
+    }
+
     .date_hotel_list {
         position: fixed;
         top: 0;
