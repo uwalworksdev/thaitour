@@ -36,9 +36,9 @@ $searchTxt = $SearchText->List()->findAll();
         top: 1%;
     }
 
-    .main_sale_banner.visible {
+    /* .main_sale_banner.visible {
         top: 1%;
-    }
+    } */
 
     .main_sale_banner {
         top: 75%;
