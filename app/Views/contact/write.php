@@ -499,7 +499,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
                 </div>
                 <div class="btn-wrap">
-                    <a href="/inquiry/main.php" class="btn btn-lg btn_cancel">취소하기</a>
+                    <a href="/contact/main" class="btn btn-lg btn_cancel">취소하기</a>
                     <button type="button" class="btn btn-lg btn-point btn_submit" id="btn_submit">문의하기</button>
                 </div>
             </form>
