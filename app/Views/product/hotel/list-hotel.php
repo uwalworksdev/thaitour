@@ -420,7 +420,7 @@
                                                 <span class="text-gray"> <?= $product['stay_city'] ?> </span>
                                             </div>
                                             <div class="location_next">
-                                                <span class="text-gray"> <?= $product['stay_city'] ?> </span>
+                                                <span class="text-gray"> <?= $product['code_sub_name'] ?> </span>
                                             </div>
                                         </div>
                                     </div>

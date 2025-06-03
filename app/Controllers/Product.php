@@ -1164,6 +1164,9 @@ class Product extends BaseController
                 $product_stay = $this->db->query($sql);
                 $product_stay = $product_stay->getRowArray();
                 $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
+
+                $products['items'][$key]['code_sub_name'] = $this->codeModel->getCodeName($product['product_code_2']);
+
             }
 
 	        if($search_product_category == "") {
