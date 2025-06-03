@@ -319,7 +319,9 @@
                             <td>
                                 <select name="product_idx" class="input_select product_idx">
                                     <option value="all">전체선텍</option>`;
-                
+                        products.forEach(product => {
+                            html += `<option value="${product["product_idx"]}">${product["product_name"]}</option>`;
+                        });                    
             html +=             `</select>
                                 <button type="button" onclick="get_product(this)" class="btn_01">추가</button>
                             </td>
