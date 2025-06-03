@@ -200,9 +200,24 @@
 
             .hotel_popup_ {
                 position: absolute;
-                top: 142px;
+                top: 23.2rem;
                 left: 0;
                 z-index: 10;
+            }
+            
+            .list_popup_list_
+            {
+                align-items: flex-start;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 1.8rem;
+            }
+
+            .list_popup_item_ {
+                font-size: 2rem;
+                padding: 1rem 1.6rem;
+                width: 25%;
+                border-radius: .4rem;
             }
 
             .hotel_popup_content_ {
@@ -221,23 +236,32 @@
     </style>
     <div class="main_page_01 page_share_ page_product_list_ hotel-main-page-cus-css-mobile">
         <div class="date_hotel_list" style="position: relative;">
-            <button type="button" class="close" onclick="closePopupCalendar()" style="display: none;"></button>
+            <button type="button" class="close" onclick="closePopupCalendar()"></button>
             <input
                     type="text"
                     id="daterange_hotel"
                     class="daterange_hotel"
             />
-            <div class="hotel_data_info" style="display: none;">
+            <div class="hotel_data_info">
+                <?php
+                    $day_now = date('d');
+                    $month_now = date('m');
+                    $week_now = dowYoil(date('Y-m-d'));
+                ?>
                 <!-- <p>체크인 및 체크아웃은 현지 시각 기준입니다.</p> -->
                 <div class="date_range_wrap flex_b_c">
                     <div class="date_range_start">
                         <p class="ttl_date">현지 시간 기준</p>
-                        <p class="cont_date"><span class="start_month"></span>월 <span class="start_date"></span>일(<span class="start_week"></span>)</p>
+                        <p class="cont_date"><span class="start_month text-bold"><?=$month_now?></span>월 <span class="start_date text-bold"><?=$day_now?></span>일(<span class="start_week"><?=$week_now?></span>)</p>
                     </div>
                     <div class="date_range_end">
                         <p class="ttl_date">현지 시간 기준</p>
-                        <p class="cont_date"><span class="end_month"></span>월 <span class="end_date"></span>일(<span class="end_week"></span>)</p>   
+                        <p class="cont_date"><span class="end_month text-bold"><?=$month_now?></span>월 <span class="end_date text-bold"><?=$day_now?></span>일(<span class="end_week"><?=$week_now?></span>)</p>  
                     </div>
+                </div>
+
+                <div class="btn_apply_wrap">
+                    <button type="button" class="btn_apply_">확인 (<span class="count_range_date">1</span>박)</button>
                 </div>
             </div>
 
@@ -665,8 +689,17 @@
                                     $("#countDay").text(days);
                                 });
 
-                            $('#openDateRangePicker').click(function () {
+                            function handleOpenDateRangePicker() {
                                 $('#daterange_hotel').click();
+                                if ($(window).width() <= 850) {
+                                    $("body").css("overflow", "hidden");
+                                    $('.date_hotel_list .close').show();
+                                    $('.hotel_data_info').show();
+                                }
+                            }
+
+                            $('#openDateRangePicker').click(function () {
+                                handleOpenDateRangePicker();
                             });
 
                             const datepickers = document.querySelectorAll('.date_hotel_list .daterangepicker');
@@ -1301,6 +1334,15 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function closePopupCalendar() {
+            $('.date_hotel_list').hide();
+            $('.date_hotel_list .close').hide();
+            $('.hotel_data_info').hide();
+            $("body").css("overflow", "inherit");
+        }
+    </script>
 
     <script>
         $("#input_hotel").keyup(function (event) {

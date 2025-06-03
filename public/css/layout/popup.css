@@ -907,6 +907,11 @@ textarea::placeholder {
     
     }
 
+    .popup_wrap.promotion_pop .pop_box {
+        max-width: 100%;
+        padding: 0 4rem;
+    }
+
     .popup_wrap .pop_box .padding {
         padding-bottom: 4.5rem;
     }
@@ -1032,7 +1037,7 @@ textarea::placeholder {
     }
 
     .popup_place__head__ttl {
-        font-size: 3.6rem;
+        font-size: 3.6rem !important;
         font-weight: 700;
     }
 

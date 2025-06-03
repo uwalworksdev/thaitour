@@ -7,13 +7,17 @@
     display: none;
 }
 
+.hotel_data_info {
+    display: none;
+}
+
 @media screen and (max-width: 850px) {
     .daterangepicker {
         position: fixed;
         top: 0px !important;
         left: 0px !important;
         margin-top: 0px !important;
-        max-height: 78vh;
+        height: calc(100% - 23rem);
         overflow-y: auto;
     }
 
@@ -24,7 +28,6 @@
     }
 
     .date_hotel_list .close {
-        display: block;
         position: fixed;
         top: 1.7692rem;
         right: 1rem;
@@ -36,6 +39,15 @@
     }
 
     .date_range_wrap {
+        padding: 1rem 2rem;
+    }
+
+    .date_range_wrap .ttl_date {
+        margin-bottom: 1rem;
+    }
+
+    .date_range_wrap .text-bold {
+        font-weight: bold;
     }
 
     .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
@@ -50,5 +62,26 @@
         z-index: 9999999;
         background-color: #fff;
         height: 23rem;
+        box-shadow: 0 -0.3rem 0.6rem rgba(0, 0, 0, 0.16);
+    }
+
+    .btn_apply_wrap {
+        padding: 0 2rem;
+    }
+
+    .hotel_data_info .btn_apply_ {
+        border-radius: 0.6rem;
+        background-color: #17469E;
+        font-size: 2.2rem;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: "Pretendard";
+        text-align: center;
+        padding: 2.4rem;
+        width: 100%;
+        height: 7rem;
+        margin-top: 2rem;
     }
 }
