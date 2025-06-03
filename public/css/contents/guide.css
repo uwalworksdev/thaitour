@@ -69,6 +69,10 @@
     word-break: break-all;
 }
 
+.sec2-item-card .calendar_header .desc_product .desc_product_sub:last-child {
+    margin-bottom: 0;
+}
+
 .sec2-item-card .calendar_header .desc_product .desc_product_sub ul {
     display: flex;
     justify-content: start;
