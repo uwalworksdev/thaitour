@@ -669,7 +669,7 @@ function getHeaderTabSubChildNew($parent_code_no = '', $code_no = '')
 
 function getHeaderTabMobile()
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY code_no ASC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum ASC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
