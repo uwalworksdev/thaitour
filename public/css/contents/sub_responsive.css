@@ -541,10 +541,20 @@
   .meeting_time select {
     width: 24.8rem;
     height: 9rem;
-    /* margin-left: 2.5rem; */
-    margin-left: 0rem;
+    margin-left: 2.5rem;
     margin-right: 1rem;
   }
+
+  .popup_wrap .meeting_time select {
+    margin-left: 0;
+  }
+
+  .popup_wrap .destination {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 
   .section_vehicle_2_7 input[type="text"] {
     height: 9rem;
@@ -4368,6 +4378,7 @@
   {
     height: 8rem;
     width: 100% !important;
+    flex: 1;
   }
 
   .ord_total_sec.reservation>div {
