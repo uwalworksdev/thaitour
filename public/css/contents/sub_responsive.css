@@ -555,6 +555,12 @@
     gap: 2rem;
 }
 
+  .popup_wrap .departure {
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+  }
+
 
   .section_vehicle_2_7 input[type="text"] {
     height: 9rem;
