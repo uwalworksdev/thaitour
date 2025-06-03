@@ -659,9 +659,14 @@
 
                     <script>
                         $(".btn_apply_").click(function () {
+
                             $('#input_day_start_').val($("#s_start_date").val());
                             $('#input_day_end_').val($("#s_end_date").val());
-                            $(".count_range_date").text(days);
+                            $("#countDay").text($(".count_range_date").text().trim());
+
+                            $('.date_hotel_list').hide();
+                            $("body").css("overflow", "inherit");
+
                         });
 
                         $(document).ready(function () {
@@ -733,15 +738,19 @@
                             });
 
                             function handleOpenDateRangePicker() {
-                                $('#daterange_hotel').click();
                                 if ($(window).width() <= 850) {
-                                    $("body").css("overflow", "hidden");
+                                    $('.date_hotel_list').show();
                                     $('.date_hotel_list .close').show();
                                     $('.hotel_data_info').show();
+                                    $("body").css("overflow", "hidden");
                                 }
+                                $('#daterange_hotel').click();
+
                             }
 
                             $('#openDateRangePicker').click(function () {
+                                console.log("fafaaf");
+                                
                                 handleOpenDateRangePicker();
                             });
 
