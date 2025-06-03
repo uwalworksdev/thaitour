@@ -892,7 +892,7 @@
                         <div class="form_input_multi_">
                             <div class="form_gr_" id="openDateRangePicker">
                                 <div class="form_input_ form_gr_item_">
-                                    <!-- <label for="input_day">체크인</label> -->
+                                    <label for="input_day" class="only_web">체크인</label>
                                     <input type="text" id="input_day_start_"
                                         class="input_custom_ input_ranger_date_"
                                         placeholder="체크인 선택해주세요." readonly>
@@ -901,7 +901,7 @@
                                     <span id="countDay" class="count">0</span>박
                                 </p>
                                 <div class="form_input_ form_gr_item_ form_gr_item_flex_">
-                                    <!-- <label for="input_day">체크아웃</label> -->
+                                    <label for="input_day" class="only_web">체크아웃</label>
                                     <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
                                         placeholder="체크아웃 선택해주세요." readonly>
                                 </div>
