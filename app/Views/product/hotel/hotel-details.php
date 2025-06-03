@@ -597,7 +597,7 @@
         }
 
         .content-sub-hotel-detail ._wrap_qty .room_activity {
-            margin-right: 5rem;
+            margin-right: 3.5rem;
         }
 
         .content-sub-hotel-detail ._wrap_qty button {
@@ -654,15 +654,16 @@
 
          .form_element_ .btn_search {
             position: absolute;
-            right: 5rem;
-            bottom: 4rem;
+            right: 4rem;
+            bottom: 4.2rem;
          }
 
          #room_search {
             line-height: 1.4;
             padding: 1rem 1.4rem;
             width: 10.8rem;
-            height: 6.5rem;
+            height: 6rem;
+            font-size: 2.4rem;
          }
 
          .content-sub-hotel-detail .wrap_bed_type .wrap_input_radio input[type="radio"]:checked+label::before
