@@ -235,7 +235,10 @@
     var tree_codes = <?=json_encode($tree_codes)?>;
     var products = <?=json_encode($products)?>;    
     var airlines = <?=json_encode($airline_list)?>;
-                                  
+    
+    console.log(products);
+    
+    
     function check_category(button, depth, code){
         let is_check = false;
         $(button).closest("tbody").children(".child_category").each(function() {
@@ -316,9 +319,7 @@
                             <td>
                                 <select name="product_idx" class="input_select product_idx">
                                     <option value="all">전체선텍</option>`;
-                        products.forEach(product => {
-                            html += `<option value="${product["product_idx"]}">${product["product_name"]}</option>`;
-                        });                    
+                
             html +=             `</select>
                                 <button type="button" onclick="get_product(this)" class="btn_01">추가</button>
                             </td>

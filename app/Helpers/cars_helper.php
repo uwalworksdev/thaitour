@@ -13,7 +13,8 @@
         $airlines = $codeModel->getByParentCode(14)->getResultArray();
 
         $products = $productModel->findProductPaging([
-                    'product_code_1' => 1324
+                    'product_code_1' => 1324,
+                    'product_code_list' => 132404,
                 ], 10000, 1, [])["items"];
 
         $html = '
