@@ -46,7 +46,7 @@
 .sec2-item-card .calendar_header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    /* padding: 20px 0; */
     cursor: pointer;
 }
 
