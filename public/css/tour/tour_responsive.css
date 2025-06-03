@@ -4574,10 +4574,12 @@
 
   .travel_info .head_list_product {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
     flex-wrap: wrap;
+    gap: 2rem;
   }
 
   .travel_info .head_list_product .total_text {
@@ -4588,13 +4590,20 @@
   }
 
   .travel_info .head_list_product select {
-    width: 20rem;
+    width: unset;
     height: 8.8rem;
     border: 1px solid #dbdbdb;
     padding: 0 2.5rem;
     margin-left: 0;
     background-size: 2rem;
+    flex: 1;
   }
+
+  .theme_travel .head_list_product .wrap_select {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
 
   .travel_info .head_list_product .input_search_box {
     display: flex;
@@ -4602,10 +4611,10 @@
     justify-content: space-between;
     border: 1px solid #dbdbdb;
     padding-right: 3rem;
-    margin-left: 1.5rem;
+    margin-left: unset;
     height: 8.8rem;
-    width: unset;
-    flex: 1;
+    width: 100%;
+    flex: unset;
   }
 
   .travel_info .head_list_product .input_search_box img {
@@ -4873,12 +4882,72 @@
 }
 
 .theme_travel .list_product .item_box {
-    width: calc((100% - 2rem) / 2);
+    width: 100%;
 }
+
 .theme_travel .list_product .item_box .img {
     width: 100%;
-    height: 25rem;
+    height: 50rem;
     position: relative;
+}
+
+.theme_travel .list_product .item_box .img .text {
+    height: 6rem;
+    line-height: 6rem;
+    padding: 0 2rem;
+    color: #fff;
+    font-size: 2.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.404);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.theme_travel .list_product .item_box .img .text img {
+  width: 1rem;
+
+}
+
+.theme_travel .list_product .item_box .title {
+    margin-top: 3.4rem;
+    margin-bottom: 2rem;
+    color: #757575;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme_travel .list_product .item_box .title img {
+    width: 1.2rem;
+} 
+
+.theme_travel .list_product .item_box .name {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.theme_travel .list_product .item_box .vote {
+    display: flex;
+    font-size: 2.6rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme_travel .list_product .item_box .vote .star img {
+  width : 3rem;
+}
+
+.theme_travel .list_product .item_box .vote span {
+    display: block;
+    margin-left: 0;
+    padding-left: 1rem;
+    border-left: 1px solid #dbdbdb;
 }
 
 
