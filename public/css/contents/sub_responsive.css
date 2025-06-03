@@ -517,14 +517,32 @@
     margin-top: 3rem;
   }
 
+  .meeting_time {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
   .meeting_time__date {
     margin-right: 2.5rem;
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 2rem;
   }
+
+  .meeting_time select:not(:nth-child(1)) {
+    margin-left: 0;
+}
+
+.meeting_time label {
+  margin-right: 2.5rem;
+}
 
   .meeting_time select {
     width: 16.8rem;
     height: 9rem;
-    margin-left: 2.5rem;
+    /* margin-left: 2.5rem; */
+    margin-left: 0rem;
     margin-right: 1rem;
   }
 
@@ -1375,7 +1393,7 @@
 
   .customer-form-page .form-group-second .select-width,
   .customer-form-page select {
-    width: 23.5rem;
+    width: 22.5rem;
     height: 9rem;
     border-width: 0.21rem;
     /* background: #fff url(/images/ico/select_ico_mo.png) right 2rem center
