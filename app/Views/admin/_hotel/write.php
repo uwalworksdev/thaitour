@@ -369,16 +369,43 @@ $links = "list";
                                         <select id="product_code_2" name="product_code_2" class="input_select"
                                                 onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
+                                            <?php
+                                            foreach ($fresult_c_1 as $frow):
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                            <?php endforeach; ?>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                             <?php
-                                            foreach ($category3 as $frow3) {
-											?>	
-                                                <option value="<?= $frow3["code_no"] ?>" <?php if ($frow3["code_no"] == $product_code_4) echo "selected"; ?> ><?= $frow3["code_name"] ?></option>
-                                            <?php 
-											} 
-											?>
+                                            foreach ($fresult_c_2 as $frow):
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+                                            <?php endforeach; ?>
                                         </select>
                                         <!--button type="button" id="btn_reg_cate" class="btn_01">등록</button-->
                                     </td>
@@ -2295,12 +2322,12 @@ $links = "list";
 <?php if (isset($product_idx) && $product_idx != ""): ?>
     <?php echo view("/admin/_hotel/inc/editmap/js_edit.php", ['stay_idx' => $stay_idx, 'product_idx' => $product_idx,]); ?>
     <script>
-        async function loadPage() {
-            await get_code('<?= $product_code_1 ?>', 3, '<?= $product_code_2 ?>');
-            await get_code('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
-        }
+        // async function loadPage() {
+        //     await get_code('<?= $product_code_1 ?>', 3, '<?= $product_code_2 ?>');
+        //     await get_code('<?= $product_code_2 ?>', 4, '<?= $product_code_3 ?>');
+        // }
 
-        loadPage();
+        // loadPage();
 
     </script>
     <!-- Create product-->

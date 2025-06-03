@@ -227,6 +227,19 @@
                     id="daterange_hotel"
                     class="daterange_hotel"
             />
+            <div class="hotel_data_info" style="display: none;">
+                <!-- <p>체크인 및 체크아웃은 현지 시각 기준입니다.</p> -->
+                <div class="date_range_wrap flex_b_c">
+                    <div class="date_range_start">
+                        <p class="ttl_date">현지 시간 기준</p>
+                        <p class="cont_date"><span class="start_month"></span>월 <span class="start_date"></span>일(<span class="start_week"></span>)</p>
+                    </div>
+                    <div class="date_range_end">
+                        <p class="ttl_date">현지 시간 기준</p>
+                        <p class="cont_date"><span class="end_month"></span>월 <span class="end_date"></span>일(<span class="end_week"></span>)</p>   
+                    </div>
+                </div>
+            </div>
 
         </div>
         <section class="sub_top_visual">

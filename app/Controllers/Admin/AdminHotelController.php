@@ -257,12 +257,24 @@ class AdminHotelController extends BaseController
 
         $img_list = $this->productImg->getImg($product_idx);
 
+        $fsql = "select * from tbl_code where depth='3'  
+                        AND parent_code_no = '" . $row['product_code_1'] . "'
+                        AND status='Y'  order by onum asc, code_idx desc";
+        $fresult_c_1 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult_c_1 = $fresult_c_1->getResultArray();
+
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $row['product_code_2'] . "' and status='Y'  order by onum asc, code_idx desc";
+        $fresult_c_2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult_c_2 = $fresult_c_2->getResultArray();
+
         $data = [
             'product_idx' => $product_idx,
             'product_code_1' => $row['product_code_1'],
             'product_code_2' => $row['product_code_2'],
             'product_code_3' => $row['product_code_3'],
             'product_code_no' => $product_code_no,
+            'fresult_c_1' => $fresult_c_1,
+            'fresult_c_2' => $fresult_c_2,
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,

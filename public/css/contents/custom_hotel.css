@@ -3,12 +3,18 @@
     top: 325px;
 }
 
+.date_hotel_list .close {
+    display: none;
+}
+
 @media screen and (max-width: 850px) {
     .daterangepicker {
         position: fixed;
         top: 0px !important;
         left: 0px !important;
         margin-top: 0px !important;
+        max-height: 78vh;
+        overflow-y: auto;
     }
 
     .date_hotel_list {
@@ -18,13 +24,31 @@
     }
 
     .date_hotel_list .close {
+        display: block;
         position: fixed;
         top: 1.7692rem;
-        left: 0;
-        width: 4.5385rem;
-        height: 3.5385rem;
+        right: 1rem;
+        width: 3.5385rem;
+        height: 2.5385rem;
         background-size: 1.5385rem;
         background: url(/images/ico/close_icon_popup.png) no-repeat center;
         z-index: 999999;
+    }
+
+    .date_range_wrap {
+    }
+
+    .daterangepicker .calendar-table th, .daterangepicker .calendar-table td {
+        font-size: 2.6rem;
+        padding: 2rem;
+    }
+
+    .hotel_data_info {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 9999999;
+        background-color: #fff;
+        height: 23rem;
     }
 }
