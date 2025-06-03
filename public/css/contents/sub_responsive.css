@@ -517,16 +517,50 @@
     margin-top: 3rem;
   }
 
+  .meeting_time {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
   .meeting_time__date {
     margin-right: 2.5rem;
+    margin-left: 0;
+    width: 100%;
+    margin-bottom: 2rem;
   }
 
+  .meeting_time select:not(:nth-child(1)) {
+    margin-left: 0;
+}
+
+.meeting_time label {
+  margin-right: 2.5rem;
+}
+
   .meeting_time select {
-    width: 16.8rem;
+    width: 24.8rem;
     height: 9rem;
     margin-left: 2.5rem;
     margin-right: 1rem;
   }
+
+  .popup_wrap .meeting_time select {
+    margin-left: 0;
+  }
+
+  .popup_wrap .destination {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+  .popup_wrap .departure {
+    gap: 2rem;
+    display: flex;
+    align-items: center;
+  }
+
 
   .section_vehicle_2_7 input[type="text"] {
     height: 9rem;
@@ -1375,7 +1409,7 @@
 
   .customer-form-page .form-group-second .select-width,
   .customer-form-page select {
-    width: 23.5rem;
+    width: 22.5rem;
     height: 9rem;
     border-width: 0.21rem;
     /* background: #fff url(/images/ico/select_ico_mo.png) right 2rem center
@@ -4350,6 +4384,7 @@
   {
     height: 8rem;
     width: 100% !important;
+    flex: 1;
   }
 
   .ord_total_sec.reservation>div {

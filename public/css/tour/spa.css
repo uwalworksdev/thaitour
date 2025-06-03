@@ -1003,9 +1003,22 @@ div , p , ul, li, span {
 }
 .meeting_time {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           margin-left: -2.4667rem;
 }
+
+    .meeting_time__date {
+        margin-right: 2.5rem;
+        width: 100%;
+        margin-left: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .meeting_time select:not(:nth-child(1)) {
+        margin-left: 2.5rem;
+    }
+
 .moption{
           height: 9rem;
 }

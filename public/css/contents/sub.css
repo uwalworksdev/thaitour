@@ -3773,7 +3773,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .departure {
     display: flex;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .departure__note {
@@ -3787,7 +3787,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .destination {
     display: flex;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .other_irregularities {
