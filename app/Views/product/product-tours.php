@@ -240,10 +240,10 @@
         <section class="banner_section_main_page">
             <div class="body_inner">
                 <a href="<?= $bannerMiddle['url'] ?>" class="banner_section_image" style="position: relative;">
-                    <!-- <div class="box-text">
+                    <div class="box-text">
                         <h3 class="title-box"><?= viewSQ($bannerMiddle['title']) ?></h3>
                         <p class="des-box"><?= viewSQ($bannerMiddle['subtitle']) ?></p>
-                    </div> -->
+                    </div>
                 </a>
             </div>
         </section>

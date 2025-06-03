@@ -258,6 +258,8 @@
                         <p class="ttl_date">현지 시간 기준</p>
                         <p class="cont_date"><span class="end_month text-bold"><?=$month_now?></span>월 <span class="end_date text-bold"><?=$day_now?></span>일(<span class="end_week"><?=$week_now?></span>)</p>  
                     </div>
+                    <input type="hidden" id="s_start_date" value="">
+                    <input type="hidden" id="s_end_date" value="">
                 </div>
 
                 <div class="btn_apply_wrap">
@@ -656,38 +658,79 @@
                     </div> -->
 
                     <script>
+                        $(".btn_apply_").click(function () {
+                            $('#input_day_start_').val($("#s_start_date").val());
+                            $('#input_day_end_').val($("#s_end_date").val());
+                            $(".count_range_date").text(days);
+                        });
+
                         $(document).ready(function () {
                             $('#daterange_hotel').daterangepicker({
-                                    locale: {
-                                        format: 'YYYY-MM-DD',
-                                        separator: ' ~ ',
-                                        applyLabel: '적용',
-                                        cancelLabel: '취소',
-                                        fromLabel: '시작일',
-                                        toLabel: '종료일',
-                                        customRangeLabel: '사용자 정의',
-                                        daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
-                                        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                                        firstDay: 0
-                                    },
-                                    parentEl: ".date_hotel_list",
-                                    linkedCalendars: true,
-                                    autoApply: true,
-                                    minDate: moment().add(1, 'days'),
-                                    opens: "center"
+                                locale: {
+                                    format: 'YYYY-MM-DD',
+                                    separator: ' ~ ',
+                                    applyLabel: '적용',
+                                    cancelLabel: '취소',
+                                    fromLabel: '시작일',
+                                    toLabel: '종료일',
+                                    customRangeLabel: '사용자 정의',
+                                    daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+                                    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                                    firstDay: 0
                                 },
-                                function (start, end) {
+                                parentEl: ".date_hotel_list",
+                                linkedCalendars: true,
+                                alwaysShowCalendars: true,
+                                autoApply: true,
+                                minDate: moment().add(1, 'days'),
+                                opens: "center"
+                            },
+                            function (start, end) {
+                                const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+                                const startDate = moment(start.format('YYYY-MM-DD'));
+                                const endDate = moment(end.format('YYYY-MM-DD'));
 
-                                    const startDate = moment(start.format('YYYY-MM-DD'));
-                                    const endDate = moment(end.format('YYYY-MM-DD'));
+                                const day_s = startDate.date();
+                                const month_s = startDate.month() + 1;
+                                const dayIndex_s = startDate.day();
+                                const dayName_s = daysOfWeek[dayIndex_s];
 
+                                const day_e = endDate.date();
+                                const month_e = endDate.month() + 1;
+                                const dayIndex_e = endDate.day();
+                                const dayName_e = daysOfWeek[dayIndex_e];
+
+                                const duration = moment.duration(endDate.diff(startDate));
+                                const days = Math.round(duration.asDays());
+
+                                if ($(window).width() > 850) {
                                     $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
                                     $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
-
-                                    const duration = moment.duration(endDate.diff(startDate));
-                                    const days = Math.round(duration.asDays());
                                     $("#countDay").text(days);
-                                });
+                                }
+
+                                $(".start_month").text(month_s);
+                                $(".start_date").text(day_s);
+                                $(".start_week").text(dayName_s);
+
+                                $(".end_month").text(month_e);
+                                $(".end_date").text(day_e);
+                                $(".end_week").text(dayName_e);
+
+                                $("#s_start_date").val(startDate.format('YYYY-MM-DD'));
+                                $("#s_end_date").val(endDate.format('YYYY-MM-DD'));
+
+                                $(".count_range_date").text(days);
+
+                                
+                            }).on('hide.daterangepicker', function (ev, picker) {
+                                if ($(window).width() <= 850) {
+                                    $('.date_hotel_list .daterangepicker').show();
+                                    setTimeout(function () {
+                                        $("#daterange_hotel").data('daterangepicker').show();
+                                    });
+                                }
+                            });
 
                             function handleOpenDateRangePicker() {
                                 $('#daterange_hotel').click();
