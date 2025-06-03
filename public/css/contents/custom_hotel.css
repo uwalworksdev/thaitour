@@ -3,6 +3,10 @@
     top: 325px;
 }
 
+.date_hotel_detail {
+    top: 930px;
+}
+
 .date_hotel_list .close {
     display: none;
 }

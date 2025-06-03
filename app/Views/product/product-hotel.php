@@ -266,7 +266,6 @@
                     <button type="button" class="btn_apply_">확인 (<span class="count_range_date">1</span>박)</button>
                 </div>
             </div>
-
         </div>
         <section class="sub_top_visual">
             <img class="only_web" src="/data/cate_banner/<?= $bannerTop['ufile1'] ?>" alt="">
@@ -748,9 +747,7 @@
 
                             }
 
-                            $('#openDateRangePicker').click(function () {
-                                console.log("fafaaf");
-                                
+                            $('#openDateRangePicker').click(function () {                                
                                 handleOpenDateRangePicker();
                             });
 

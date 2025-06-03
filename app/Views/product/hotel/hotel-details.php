@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker_custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
+<link rel="stylesheet" type="text/css" href="/css/contents/custom_hotel.css"/>
 
 <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
 <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
@@ -685,6 +686,38 @@
 </style>
 <pre><?php print_r($viewedProducts); ?></pre>
 <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail custom-golf-detail">
+    <div class="date_hotel_detail date_hotel_list" style="position: relative;">
+        <button type="button" class="close" onclick="closePopupCalendar()"></button>
+        
+        <input
+            type="text"
+            id="daterange_hotel_detail"
+            class="daterange_hotel_detail" />
+        <div class="hotel_data_info">
+            <?php
+                $day_now = date('d');
+                $month_now = date('m');
+                $week_now = dowYoil(date('Y-m-d'));
+            ?>
+            <!-- <p>체크인 및 체크아웃은 현지 시각 기준입니다.</p> -->
+            <div class="date_range_wrap flex_b_c">
+                <div class="date_range_start">
+                    <p class="ttl_date">현지 시간 기준</p>
+                    <p class="cont_date"><span class="start_month text-bold"><?=$month_now?></span>월 <span class="start_date text-bold"><?=$day_now?></span>일(<span class="start_week"><?=$week_now?></span>)</p>
+                </div>
+                <div class="date_range_end">
+                    <p class="ttl_date">현지 시간 기준</p>
+                    <p class="cont_date"><span class="end_month text-bold"><?=$month_now?></span>월 <span class="end_date text-bold"><?=$day_now?></span>일(<span class="end_week"><?=$week_now?></span>)</p>  
+                </div>
+                <input type="hidden" id="s_start_date" value="">
+                <input type="hidden" id="s_end_date" value="">
+            </div>
+
+            <div class="btn_apply_wrap">
+                <button type="button" class="btn_apply_">확인 (<span class="count_range_date">1</span>박)</button>
+            </div>
+        </div>
+    </div>
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
@@ -895,12 +928,7 @@
                                         확인
                                     </button> -->
                     </div>
-                    <div class="date_hotel_detail" style="position: relative;">
-                        <input
-                            type="text"
-                            id="daterange_hotel_detail"
-                            class="daterange_hotel_detail" />
-                    </div>
+                    
                     <div class="hotel_popup_">
                         <div class="hotel_popup_content_">
                             <div class="hotel_popup_ttl_">인기 여행지</div>
@@ -1050,6 +1078,17 @@
 		</script>
 	
         <script>
+            $(".btn_apply_").click(function () {
+
+                $('#input_day_start_').val($("#s_start_date").val());
+                $('#input_day_end_').val($("#s_end_date").val());
+                $("#countDay").text($(".count_range_date").text().trim());
+                $("#day_qty").val($(".count_range_date").text().trim());
+
+                $('.date_hotel_list').hide();
+                $("body").css("overflow", "inherit");
+
+            });
             $(document).ready(function() {
 
                 //$('.reservation').prop('disabled', true);
@@ -1097,31 +1136,72 @@
                         opens: "center"
                     },
                     function(start, end) {
-
+                        const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
                         const startDate = moment(start.format('YYYY-MM-DD'));
                         const endDate = moment(end.format('YYYY-MM-DD'));
 
-                        $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
-                        $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+                        const day_s = startDate.date();
+                        const month_s = startDate.month() + 1;
+                        const dayIndex_s = startDate.day();
+                        const dayName_s = daysOfWeek[dayIndex_s];
+
+                        const day_e = endDate.date();
+                        const month_e = endDate.month() + 1;
+                        const dayIndex_e = endDate.day();
+                        const dayName_e = daysOfWeek[dayIndex_e];
 
                         const duration = moment.duration(endDate.diff(startDate));
-
                         const days = Math.round(duration.asDays());
 
                         const disabledDates = reject_days.filter(date => {
                             const newDate = moment(date);
                             return newDate.isBetween(startDate, endDate, 'day', '[]');
-                        })
+                        });
 
-                        $("#countDay").text(days - disabledDates.length);
-                        $("#day_qty").val(days - disabledDates.length);
+                        if ($(window).width() > 850) {
+                            $('#input_day_start_').val(startDate.format('YYYY-MM-DD'));
+                            $('#input_day_end_').val(endDate.format('YYYY-MM-DD'));
+                            $("#countDay").text(days - disabledDates.length);
+                            $("#day_qty").val(days - disabledDates.length);
+                        }
+
+                        $(".start_month").text(month_s);
+                        $(".start_date").text(day_s);
+                        $(".start_week").text(dayName_s);
+
+                        $(".end_month").text(month_e);
+                        $(".end_date").text(day_e);
+                        $(".end_week").text(dayName_e);
+
+                        $("#s_start_date").val(startDate.format('YYYY-MM-DD'));
+                        $("#s_end_date").val(endDate.format('YYYY-MM-DD'));
+
+                        $(".count_range_date").text(days);
 
                         getPriceHotel(startDate.format('YYYY-MM-DD'), endDate.subtract(1, 'days').format('YYYY-MM-DD'));
 
+                    }).on('hide.daterangepicker', function (ev, picker) {
+                        if ($(window).width() <= 850) {
+                            $('.date_hotel_list .daterangepicker').show();
+                            setTimeout(function () {
+                                $("#daterange_hotel_detail").data('daterangepicker').show();
+                            });
+                        }
                     });
 
-                $('#openDateRangePicker').click(function() {
+                function handleOpenDateRangePicker() {
+                    if ($(window).width() <= 850) {
+                        $('.date_hotel_list').show();
+                        $('.date_hotel_list .close').show();
+                        $('.hotel_data_info').show();
+                        $("body").css("overflow", "hidden");
+                    }
                     $('#daterange_hotel_detail').click();
+
+                }
+
+                $('#openDateRangePicker').click(function() {
+                    handleOpenDateRangePicker();
                 });
 
                 const observer = new MutationObserver((mutations) => {
