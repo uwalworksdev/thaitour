@@ -665,6 +665,11 @@
     //         $("#search_words_list_pc").slideUp(200);
     //     }
     // })
+
+    function containsEnglish(str) {
+        return /[A-Za-z]/.test(str);
+    }
+
     let debounceTimeout;
     $("#search_input_pc__header").keyup(function(event) {
         var search_name = $(this).val().trim();
@@ -705,7 +710,12 @@
                                     url = '/product-restaurant/restaurant-detail/' + product["product_idx"];
                                 }
 
-                                html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
+                                if(containsEnglish(search_name)) {
+                                    html += `<li><a href="${url}">${product["product_name_en"]}</a></li>`;
+                                }else{
+                                    html += `<li><a href="${url}">${product["product_name"]}</a></li>`;
+                                }
+
                             });
 
                             $("#search_words_list_pc").html(html);
