@@ -1431,34 +1431,34 @@ class ProductModel extends Model
             }
         }
 
-        if (!empty($where['arr_search_txt'])) {
-            $builder->groupStart();
-            // $str_search_txt = trim($where['arr_search_txt']);
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        // if (!empty($where['arr_search_txt'])) {
+        //     $builder->groupStart();
+        //     // $str_search_txt = trim($where['arr_search_txt']);
+        //     // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-            foreach ($arr_search_txt as $index => $txt) {
+        //     foreach ($arr_search_txt as $index => $txt) {
 
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
+        //         if ($index > 0) {
+        //             $builder->orGroupStart();
+        //         }
 
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+        //         $escapedTxt = $this->db->escapeLikeString($txt);
+        //         $builder->like('product_name', $escapedTxt);
+        //         $builder->orLike('product_name_en', $escapedTxt);
+        //         $builder->orLike('keyword', $escapedTxt);
 
-                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+        //         // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+        //         // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
 
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
-            $builder->groupEnd();
-        }
+        //         if ($index > 0) {
+        //             $builder->groupEnd();
+        //         }
+        //     }
+        //     $builder->groupEnd();
+        // }
 
         if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
