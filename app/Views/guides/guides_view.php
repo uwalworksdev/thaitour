@@ -646,12 +646,12 @@
             $(".calendar_header[data-num='" + id + "']").find(".text_price_won").text(price_won_people.toLocaleString('ko-KR'));
         });
 
-        $('.arrow_menu').click(function () {
+        $(document).on("click", ".arrow_menu", function (e) {
             $(this).toggleClass('open_');
 
-            let container = $(this).parent().next();
-            container.toggleClass('show_')
-        });
+            let container = $(this).closest(".day_wrap_sect").find(".form-container");
+            container.toggleClass('show_');
+        })
 
         $(".btn_add_cart").on("click", function () {
 
