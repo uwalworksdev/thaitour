@@ -731,6 +731,10 @@
         }
 
         if (event.keyCode == 13) {
+            if(search_name.trim() == ""){
+                alert("검색어를 입력해 주세요.");
+                return false;
+            }
             location.href = "/product_search?search_name=" + search_name;
         }
     })
@@ -830,6 +834,11 @@
 
         $("#search_icon_pc").click(function() {
             var search_name = $("#search_input_pc__header").val() ?? "";
+
+            if(search_name.trim() == ""){
+                alert("검색어를 입력해 주세요.");
+                return false;
+            }
             var search_cate = $("#search_cate_pc__header").val() ?? "";
             location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
         });
