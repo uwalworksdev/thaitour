@@ -161,97 +161,95 @@ class Product extends BaseController
         }
 
 
-        $listHotel = $this->productModel->findProductHotelPaging([
-            'product_code_1' => 1303,
-            'arr_search_txt' => $search_name,
-            // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-        ], 1000, 1, $orderBy);
+        // $listHotel = $this->productModel->findProductHotelPaging([
+        //     'product_code_1' => 1303,
+        //     'arr_search_txt' => $search_name,
+        //     // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        // ], 1000, 1, $orderBy);
 
-        $listHotel['items'] = $this->getSubInfo($listHotel['items']);
+        // $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
+        // $listGolf = $this->productModel->findProductGolfPaging([
+        //     // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1302,
+        //     'arr_search_txt' => $search_name,
+        // ], 1000, 1, $orderBy);
 
+        // $listGolf['items'] = $this->getSubInfo($listGolf['items']);
 
-        $listGolf = $this->productModel->findProductGolfPaging([
-            // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1302,
-            'arr_search_txt' => $search_name,
-        ], 1000, 1, $orderBy);
+        // $listTour = $this->productModel->findProductPaging([
+        //     // 'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1301,
+        //     'arr_search_txt' => $search_name
+        // ], 1000, 1, $orderBy);
 
-        $listGolf['items'] = $this->getSubInfo($listGolf['items']);
+        // $listTour['items'] = $this->getSubInfo($listTour['items']);
 
-        $listTour = $this->productModel->findProductPaging([
-            // 'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1301,
-            'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        // $listSpa = $this->productModel->findProductPaging([
+        //     // 'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1325,
+        //     'arr_search_txt' => $search_name
+        // ], 1000, 1, $orderBy);
 
-        $listTour['items'] = $this->getSubInfo($listTour['items']);
+        // $listSpa['items'] = $this->getSubInfo($listSpa['items']);
 
-        $listSpa = $this->productModel->findProductPaging([
-            // 'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1325,
-            'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        // $listShowTicket = $this->productModel->findProductPaging([
+        //     // 'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1317,
+        //     'arr_search_txt' => $search_name
+        // ], 1000, 1, $orderBy);
 
-        $listSpa['items'] = $this->getSubInfo($listSpa['items']);
+        // $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
 
-        $listShowTicket = $this->productModel->findProductPaging([
-            // 'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1317,
-            'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        // $listRestaurant = $this->productModel->findProductPaging([
+        //     // 'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1320,
+        //     'arr_search_txt' => $search_name
+        // ], 1000, 1, $orderBy);
 
-        $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
+        // $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
 
-        $listRestaurant = $this->productModel->findProductPaging([
-            // 'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1320,
-            'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        // $listVehicle = $this->productModel->findProductPaging([
+        //     // 'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        //     'product_code_1' => 1324,
+        //     'arr_search_txt' => $search_name
+        // ], 1000, 1, $orderBy);
 
-        $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
+        // $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
-        $listVehicle = $this->productModel->findProductPaging([
-            // 'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-            'product_code_1' => 1324,
-            'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        // $data['list'] = [
+        //     'hotel' => [
+        //         'title' => "호텔",
+        //         'result' => $listHotel
+        //     ],
+        //     'golf' => [
+        //         'title' => "골프",
+        //         'result' => $listGolf
+        //     ],
+        //     'tour' => [
+        //         'title' => "투어",
+        //         'result' => $listTour
+        //     ],
+        //     'spa' => [
+        //         'title' => "스파",
+        //         'result' => $listSpa
+        //     ],
+        //     'show_ticket' => [
+        //         'title' => "쇼ㆍ입장권",
+        //         'result' => $listShowTicket
+        //     ],
+        //     'restaurant' => [
+        //         'title' => "레스토랑",
+        //         'result' => $listRestaurant
+        //     ],
+        //     'vehicle' => [
+        //         'title' => "차량ㆍ가이드",
+        //         'result' => $listVehicle
+        //     ]
+        // ];
 
-        $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
-
-        $data['list'] = [
-            'hotel' => [
-                'title' => "호텔",
-                'result' => $listHotel
-            ],
-            'golf' => [
-                'title' => "골프",
-                'result' => $listGolf
-            ],
-            'tour' => [
-                'title' => "투어",
-                'result' => $listTour
-            ],
-            'spa' => [
-                'title' => "스파",
-                'result' => $listSpa
-            ],
-            'show_ticket' => [
-                'title' => "쇼ㆍ입장권",
-                'result' => $listShowTicket
-            ],
-            'restaurant' => [
-                'title' => "레스토랑",
-                'result' => $listRestaurant
-            ],
-            'vehicle' => [
-                'title' => "차량ㆍ가이드",
-                'result' => $listVehicle
-            ]
-        ];
-
-        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount']
-            + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
+        // $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount']
+        //     + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
 
         return $this->renderView('product/product_search', $data);
     }
