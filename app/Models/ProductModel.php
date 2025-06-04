@@ -687,7 +687,7 @@ class ProductModel extends Model
             }
         }
 
-        if (trim($where['arr_search_txt']) != "") {
+        if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
@@ -985,7 +985,7 @@ class ProductModel extends Model
             }
         }
 
-        if (trim($where['arr_search_txt']) != "") {
+        if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
@@ -1431,7 +1431,7 @@ class ProductModel extends Model
             }
         }
 
-        if (trim($where['arr_search_txt']) != "") {
+        if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
             // $str_search_txt = trim($where['arr_search_txt']);
             // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
@@ -1710,7 +1710,7 @@ class ProductModel extends Model
             }
         }
 
-        if (trim($where['arr_search_txt']) != "") {
+        if (!empty($where['arr_search_txt'])) {
             $builder->groupStart();
 
             $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));

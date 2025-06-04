@@ -132,6 +132,8 @@ class Product extends BaseController
             ]);
         }
 
+
+
         $data['search_name'] = $search_name;
         $data['tab'] = $tab;
         $data['sort'] = $sort;
@@ -166,6 +168,8 @@ class Product extends BaseController
         ], 1000, 1, $orderBy);
 
         $listHotel['items'] = $this->getSubInfo($listHotel['items']);
+
+
 
         $listGolf = $this->productModel->findProductGolfPaging([
             // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
