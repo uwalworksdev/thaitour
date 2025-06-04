@@ -221,6 +221,26 @@
                                         </div>
                                     </a>
                                 </div>
+                                <div class="loc_banner swiper-slide">
+                                    <a class="">
+                                        <img src="https://i.travelapi.com/lodging/6000000/5480000/5475300/5475290/4ac60e27_z.jpg" alt="">
+                                        <div class="card" onclick="location.href='#'">
+                                            <span>파타야ㆍ푸켓</span>
+                                            <strong>씨 뷰가 매력적인 호텔</strong>
+                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="loc_banner swiper-slide">
+                                    <a class="">
+                                        <img src="https://i.travelapi.com/lodging/6000000/5480000/5475300/5475290/4ac60e27_z.jpg" alt="">
+                                        <div class="card" onclick="location.href='#'">
+                                            <span>파타야ㆍ푸켓</span>
+                                            <strong>씨 뷰가 매력적인 호텔</strong>
+                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
@@ -230,6 +250,39 @@
                 </div>
                 
             </div>
+            <div class="cr_comment_list position">
+                <h4 class="f_orange f_16">태국 내 로컬 호텔 체인</h4>
+                <form name="frmCmt" id="frmCmt" action="/user/event/write_comment_ok.php" method="post">
+                    <input type="hidden" name="board_comment/board_id" id="board_id" value="250529">
+                    <input type="hidden" name="board_comment/listOrder" id="listOrder">
+                    <input type="hidden" name="board_comment/id" id="comment_id">
+                    <input type="hidden" name="code" id="code" value="notice">
+                    <input type="hidden" name="mode" id="mode" value="add">
+                    <input type="hidden" name="mfcode" value="MjU3fDExOTA=">
+                    <input type="hidden" name="page" value="">
+                    <div id="comment_wrap" class="mb30">
+                    <input type="hidden" name="prefix" value="">
+                    <div class="comment_input mt15">
+                    <textarea name="board_comment/contentText" class="focusing fl" id="cbody" placeholder="내용을 입력해 주세요" rows="5"></textarea>
+                    <input class="custom_btn2 b_orange_2 b_p3032 fl" onclick="commentsave();" type="button" value="입력">
+                    </div>
+                    </div>	
+                </form>
+                <table class="tbl_st18">
+                    <colgroup>
+                        <col style="width:10%">	
+                        <col style="width:24px">	
+                        <col>	
+                        <col style="width:24px">	
+                        <col style="width:10%">
+                    </colgroup>
+                    <thead></thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <!-- start : common/element/user/pagination.tpl -->
+                <div class="paginate"></div>	<!-- end : common/element/user/pagination.tpl -->
+            </div>
         </div>
     </section>
 </div>
@@ -237,15 +290,15 @@
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        slidesPerGroup: 3,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
         loopFillGroupWithBlank: true,
         spaceBetween: 20,
         loop: true,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
+        // autoplay: {
+        //     delay: 3000,
+        //     disableOnInteraction: false,
+        // },
         pagination: {
             el: ".swiper-pagination",
             clickable: false,
@@ -253,6 +306,13 @@
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
+        },
+
+        breakpoints: {
+            850: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+            }
         },
     });
     $(function() {
