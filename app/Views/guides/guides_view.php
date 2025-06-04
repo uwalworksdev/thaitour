@@ -949,9 +949,6 @@
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
-            let previousStartDate = moment();
-            let previousEndDate = moment();
-
             function init_daterange(idx) {
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;

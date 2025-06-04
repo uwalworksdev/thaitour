@@ -117,9 +117,9 @@ class Product extends BaseController
 
     public function productSearch()
     {
-        $search_name = $this->request->getVar("search_name");
+        $search_name = $this->request->getVar("search_name") ?? "";
 
-        $search_cate = $this->request->getVar("search_cate");
+        $search_cate = $this->request->getVar("search_cate") ?? "";
 
         $tab = $this->request->getVar("tab") ?: $search_cate ?: "hotel";
 

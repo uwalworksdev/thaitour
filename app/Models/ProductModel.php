@@ -52,7 +52,11 @@ class ProductModel extends Model
     public function findSearchProducts($search_name, $gubun = "")
     {
         $builder = $this->builder();
+        $builder->groupStart();
         $builder->like("product_name", $search_name);
+        $builder->orLike("product_name_en", $search_name);
+        $builder->groupEnd();
+
 
         if (!empty($gubun)) {
             if ($gubun == "hotel") {
@@ -995,6 +999,7 @@ class ProductModel extends Model
 
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
 
                 if ($index > 0) {
@@ -1442,6 +1447,7 @@ class ProductModel extends Model
 
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
 
                 // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
@@ -1718,6 +1724,7 @@ class ProductModel extends Model
 
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
                 $builder->orLike('keyword', $escapedTxt);
 
                 if ($index > 0) {
