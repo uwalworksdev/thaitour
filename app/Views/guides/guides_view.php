@@ -877,6 +877,9 @@
     </script>
     <script>
         $(document).ready(function () {
+            var previousStart = {};
+            var previousEnd = {};
+
             $(".calendar_header").each(function () {
                 const idx = $(this).data('num');
                 init_daterange($(this).data('num'));
@@ -957,6 +960,11 @@
                 let price_ = $(".calendar_header[data-num='" + idx + "']").find(".guide_price_won").val();
                 let price_w = (Number(price_) / 10000).toFixed(2);
 
+                if (!previousStart[idx] || !previousEnd[idx]) {
+                    previousStart[idx] = moment();
+                    previousEnd[idx] = moment();
+                }
+
                 $(daterangepickerElement).daterangepicker({
                     locale: {
                         format: 'YYYY-MM-DD',
@@ -982,8 +990,18 @@
                     totalDays += 1;
                     if (totalDays > 10) {
                         alert("최대 10일까지 선택할 수 있습니다.");
+
+                        if (previousStart[idx] && previousEnd[idx]) {
+                            const picker = $(daterangepickerElement).data('daterangepicker');
+                            picker.setStartDate(previousStart[idx]);
+                            picker.setEndDate(previousEnd[idx]);
+                        }
+
                         return;
                     }
+
+                    previousStart[idx] = start.clone();
+                    previousEnd[idx] = end.clone();
 
                     $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
                     $('#checkOutDate' + idx).val(end.format('YYYY-MM-DD'));
