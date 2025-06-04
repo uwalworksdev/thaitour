@@ -161,13 +161,13 @@ class Product extends BaseController
         }
 
 
-        // $listHotel = $this->productModel->findProductHotelPaging([
-        //     'product_code_1' => 1303,
-        //     'arr_search_txt' => $search_name,
-        //     // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-        // ], 1000, 1, $orderBy);
+        $listHotel = $this->productModel->findProductHotelPaging([
+            'product_code_1' => 1303,
+            'arr_search_txt' => $search_name,
+            // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        ], 1000, 1, $orderBy);
 
-        // $listHotel['items'] = $this->getSubInfo($listHotel['items']);
+        $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         // $listGolf = $this->productModel->findProductGolfPaging([
         //     // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
