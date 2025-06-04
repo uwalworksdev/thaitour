@@ -163,7 +163,7 @@ class Product extends BaseController
             'product_code_1' => 1303,
             'arr_search_txt' => $search_name,
             // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
@@ -171,7 +171,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1302,
             'arr_search_txt' => $search_name,
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listGolf['items'] = $this->getSubInfo($listGolf['items']);
 
@@ -179,7 +179,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1301,
             'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listTour['items'] = $this->getSubInfo($listTour['items']);
 
@@ -187,7 +187,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1325,
             'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listSpa['items'] = $this->getSubInfo($listSpa['items']);
 
@@ -195,7 +195,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1317,
             'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
 
@@ -203,7 +203,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1320,
             'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
 
@@ -211,7 +211,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1324,
             'arr_search_txt' => $search_name
-        ], 1000, 1, $orderBy);
+        ], 200, 1, $orderBy);
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
