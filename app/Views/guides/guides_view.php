@@ -256,14 +256,12 @@
                                                     <div class="fl mr5">
                                                         <div class="selectricWrapper selectric-selectric">
                                                             <div class="selectricHideSelect">
-                                                                <input type="hidden" name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>">
-                                                                <span class="count_day"></span>
-                                                                <!-- <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
+                                                                <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
                                                                         class="selectric count_day">
-                                                                    <?php for ($i = 1; $i <= 31; $i++) { ?>
+                                                                    <?php for ($i = 1; $i <= 10; $i++) { ?>
                                                                         <option value="<?= $i ?>"><?= $i ?></option>
                                                                     <?php } ?>
-                                                                </select> -->
+                                                                </select>
                                                                 <span>일</span>
                                                             </div>
                                                         </div>
@@ -271,7 +269,7 @@
                                                 </div>
                                             </td>
                                             
-                                            <th>총인원</th>
+                                            <th>가이드</th>
                                             <td class="people">
                                                 <div class="fl mr5 flex_c_c" style="width:100%">
                                                     <select name="people_cnt" id="people<?= $option['o_idx'] ?>"
@@ -894,7 +892,7 @@
 
             $('#checkInDate' + current_idx).val(date_now);
             $('#checkOutDate' + current_idx).val(tomorrow);
-            $(".count_day").text("1");
+            $(".count_day").val("1");
 
             $('.tour_calendar').removeClass('active');
             $('.item_check_term_').removeClass('checked_');
@@ -984,7 +982,7 @@
                     let totalDays = end.diff(start, 'days') ?? 0;
                     totalDays += 1;
                    
-                    $(".count_day").text(totalDays);
+                    $(".count_day").val(totalDays);
 
                 }).on('hide.daterangepicker', function (ev, picker) {
                     $(`${calendarTabElement} .daterangepicker`).show();
@@ -1071,20 +1069,20 @@
             // }
         });
 
-        // $('.count_day').on('change', function () {
-        //     let count_day = $(this).val();
-        //     const o_idx = $(this).attr('data-o_idx');
-        //     let start_day = $('#checkInDate' + o_idx).val();
-        //     count_day = Number(count_day) - 1;
-        //     if (start_day) {
-        //         let startDate = moment(start_day);
-        //         let endDate = startDate.add(Number(count_day), 'days');
+        $('.count_day').on('change', function () {
+            let count_day = $(this).val();
+            const o_idx = $(this).attr('data-o_idx');
+            let start_day = $('#checkInDate' + o_idx).val();
+            count_day = Number(count_day) - 1;
+            if (start_day) {
+                let startDate = moment(start_day);
+                let endDate = startDate.add(Number(count_day), 'days');
 
-        //         $('#daterange_guilde_detail' + o_idx).data('daterangepicker').setEndDate(endDate);
-        //         $('#daterange_guilde_detail' + o_idx).data('daterangepicker').clickApply();
-        //     }
+                $('#daterange_guilde_detail' + o_idx).data('daterangepicker').setEndDate(endDate);
+                $('#daterange_guilde_detail' + o_idx).data('daterangepicker').clickApply();
+            }
 
-        // });
+        });
     </script>
     <script>
         function processBooking(o_idx, status) {
