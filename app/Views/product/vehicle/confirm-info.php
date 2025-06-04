@@ -29,6 +29,9 @@
         .mo_w_100 {
             width: 59rem !important;
         }
+        .popup_wrap.reservation_pop .pop_box table tr {
+            display: inherit;
+        }
     }
 
 </style>
@@ -825,7 +828,7 @@
                                     }
                                 ?>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                     <div class="">
                         <div class="card-right">
