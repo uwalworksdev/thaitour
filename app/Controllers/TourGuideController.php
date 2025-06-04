@@ -398,6 +398,7 @@ class TourGuideController extends BaseController
                 'yoil_idx' => $postData['option_idx'] ?? 0,
                 'inital_price' => $totalPrice ?? 0,
                 'people_adult_cnt' => $postData['people_cnt'] ?? 0,
+                'cus_cnt' => $postData['cus_cnt'] ?? 0,
                 'order_price' => $postData['lastPrice'] ?? $totalPrice,
 				'order_price_bath' => $order_price_bath ?? "",
                 'real_price_bath' => $real_price_bath ?? "",

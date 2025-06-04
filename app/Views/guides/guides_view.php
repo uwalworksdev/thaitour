@@ -38,7 +38,7 @@
         height: 48px;
     }
 </style>
-
+    
     <div class="content-sub-hotel-detail tours-detail">
         <div class="body_inner">
             <form name="frm" id="frm" action="#" class="">
@@ -574,7 +574,6 @@
                         <div class="popup_place__body customer-form-page" style="background-color: unset;">
 
                             <div class="form-group cus-form-group memo">
-                                <label for="extra-requests">인원선택</label>
                                 <div class="form_time_wrap">
 
                                 </div>
@@ -662,6 +661,7 @@
             let start_day = $('#checkInDate' + o_idx).val();
             let end_day = $('#checkOutDate' + o_idx).val();
             let people_cnt = $('#pop_people_cnt').val();
+            let cus_cnt = $('#pop_cus_cnt').val();
 
             formData.append('start_date', start_day);
             formData.append('end_date', end_day);
@@ -669,6 +669,7 @@
             formData.append('order_status', "B");
 
             formData.append('people_cnt', people_cnt);
+            formData.append('cus_cnt', cus_cnt);
 
             formData.append('option_idx', o_idx);
             formData.append('product_idx', '<?= $guide['product_idx'] ?>');
@@ -1147,17 +1148,38 @@
                 let time_html = ``;
 
                 let total_cnt_people = $("#peopleCnt" + o_idx).val();
-                
+                time_html += `<div class="form-time-wrap-top flex__c">`
                 time_html += `
-                    <select name="people_cnt" id="pop_people_cnt" class="pop_selectric">`;
-                        for(let i = 1; i <= Number(total_cnt_people); i++){
-                            time_html += `
-                                <option value="${i}">${i}인</option>
-                            `;
+                    <div class="form-time-wrap flex__c">
+                        <label for="">가이드</label>
+                        <select name="people_cnt" id="pop_people_cnt" class="pop_selectric">`;
+                            for(let i = 1; i <= Number(total_cnt_people); i++){
+                                time_html += `
+                                    <option value="${i}">${i}인</option>
+                                `;
                         }
                 time_html += 
+                    `
+                        </select>
+                    </div>`;
+
+                time_html += `
+                    <div class="form-time-wrap flex__c">
+                        <label for="">고객수</label>
+                        <select name="cus_cnt" id="pop_cus_cnt" class="pop_selectric">`;
+                            for(let i = 1; i <= 50; i++){
+                                time_html += `
+                                    <option value="${i}">${i}인</option>
+                                `;
+                        }
+                time_html += 
+                    `
+                        </select>
+                    </div>`;
+
+                time_html += 
                 `
-                    </select>
+                    </div>
                 `;
 
                 $(".form_time_wrap").html(time_html);

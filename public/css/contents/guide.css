@@ -427,6 +427,23 @@ table.book_tbl tr td .people_cnt_select {
     background-size: 23px 15px;
 }
 
+.customer-form-page .form-group label {
+    margin-bottom: 0;
+}
+
+.popup_wrap.cart_info_pop .pop_selectric {
+    margin-bottom: 0;
+}
+
+.form-time-wrap-top {
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.form-time-wrap-top .form-time-wrap {
+    gap: 20px;
+}
+
 @media screen and (min-width: 851px) {
     .daterangepicker {
         width: 100%;
