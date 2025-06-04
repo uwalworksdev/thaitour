@@ -1,9 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-<?php
-    // $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($search_name));
-    // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-?>
+
 <section class="item_search_section">
     <div class="body_inner">
         <div class="search__summary">
@@ -51,114 +48,7 @@
                     <option value="lowest_price" <?=$sort == "lowest_price" ? "selected" : ""?>>낮은가격순</option>
                 </select>
             </div>
-            <div class="search__result__list">
-                <?php foreach ($item['result']['items'] as $item1_1):
-                    switch ($key_gubun) {
-                        case "hotel":
-                            $href = "/product-hotel/hotel-detail/{$item1_1['product_idx']}";
-                            break;
-                        case "golf":
-                            $href = "/product-golf/golf-detail/{$item1_1['product_idx']}";
-                            break;
-                        case "tour":
-                            $href = "/product-tours/item_view/{$item1_1['product_idx']}";
-                            break;
-                        case "spa":
-                            $href = "/product-spa/spa-details/{$item1_1['product_idx']}";
-                            break;
-                        case "show_ticket":
-                            $href = "/ticket/ticket-detail/{$item1_1['product_idx']}";
-                            break;
-                        case "restaurant":
-                            $href = "/product-restaurant/restaurant-detail/{$item1_1['product_idx']}";
-                            break;
-                        case "vehicle":
-                            $href = "#!";
-                            break;
-                        default:
-                            $href = "#!";
-                    }
 
-                    ?>
-                    <a href="<?=$href?>" class="product-card-item-container">
-                        <div class="product-card-item-left">
-                            <span>
-                                <img src="<?=getImage("/data/product/{$item1_1['ufile1']}")?>" alt="sub_hotel_1">
-                            </span>
-                        </div>
-                        <div class="product-card-item-right">
-                            <div class="title-container">
-                                <div>
-                                    <h2><?=$item1_1['product_name']?></h2>
-                                    <div class="sub-title">
-                                        <?php $num = count($item1_1['codeTree']);
-                                        foreach ($item1_1['codeTree'] as $key => $code):
-                                            ?>
-                                            <span><?=$code['code_name']?></span>
-                                            <?php if ($key < $num - 1): ?>
-                                                <img class="only_web" src="/uploads/icons/arrow_right.png"
-                                                    alt="arrow_right">
-                                                <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                                    alt="arrow_right_mo">
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    </div>
-                                </div>
-                                <div class="star-container">
-                                    <div class="star-left">
-                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                        <span><?=$item1_1['review_average']?></span>
-                                    </div>
-                                    <div class="star-content">
-                                        <span class="text-primary">생생리뷰 <strong>(<?=$item1_1['total_review']?>)</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-item-info">
-                                <div class="item-info">
-                                    <div class="item-info-label text-gray">
-                                        <?php
-                                            $arr_keyword = explode(",", $item1_1['keyword']);
-                                            $arr_keyword = array_filter($arr_keyword);
-                                        ?>
-                                        <?php foreach ($arr_keyword as $key => $keyword): ?>
-                                            <?=$key > 0 ? '&nbsp;&nbsp;' : ''?>
-                                            #<?= $keyword?>
-                                        <?php endforeach;?>
-                                    </div>
-                                </div>
-                                <div class="item-info">
-                                    <div class="item-price-info">
-                                        <?php 
-                                            if($tab == "tour"){
-                                        ?>
-                                            <span class="main"><?=number_format($item1_1['tour_price_won'])?></span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?=number_format($item1_1['tour_price'])?>바트</span>
-                                        <?php
-                                            }else if($tab == "spa" || $tab == "show_ticket" || $tab == "restaurant"){                                              
-                                        ?>
-                                            <span class="main"><?=number_format($item1_1['spa_price_won'])?></span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?=number_format($item1_1['spa_price'])?>바트</span>
-                                        <?php
-                                            }else if($tab == "golf"){                                              
-                                        ?>
-                                            <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?=number_format($item1_1['product_price'])?>바트</span>
-                                        <?php
-                                            }else{
-                                        ?>
-                                            <span class="main"><?=number_format($item1_1['product_price_won'])?></span class="text-gray"> 원 ~</span>
-                                            <span class="sub text-gray"><?=number_format($item1_1['product_price'])?>바트</span>
-                                        <?php
-                                            }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
-            </div>
         </div>
         <?php endforeach; ?>
     </div>
