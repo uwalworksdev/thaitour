@@ -444,7 +444,7 @@ table.book_tbl tr td .people_cnt_select {
     gap: 20px;
 }
 
-@media screen and (min-width: 851px) {
+@media screen and (min-width: 850px) {
     .daterangepicker {
         width: 100%;
         left: 0px !important;
@@ -452,6 +452,15 @@ table.book_tbl tr td .people_cnt_select {
         /* height: auto; */
         /* display: block !important; */
         /* position: static !important; */
+    }
+
+    .form-time-wrap-top .form-time-wrap {
+        gap: 2rem;
+    }
+
+    .form-time-wrap-top {
+        gap: 4rem;
+        margin-bottom: 3rem;
     }
 
     .daterangepicker .drp-calendar.left {

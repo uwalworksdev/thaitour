@@ -949,6 +949,9 @@
                 $('#daterange_guilde_detail' + num_idx).data('daterangepicker').show();
             }
 
+            let previousStartDate = moment();
+            let previousEndDate = moment();
+
             function init_daterange(idx) {
 
                 const daterangepickerElement = '#daterange_guilde_detail' + idx;
@@ -978,14 +981,20 @@
                     autoApply: true
                 }, function (start, end) {
 
-                    $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
-                    $('#checkOutDate' + idx).val(end.format('YYYY-MM-DD'));
                     let totalDays = end.diff(start, 'days') ?? 0;
                     totalDays += 1;
-                   
+                    if (totalDays > 10) {
+                        alert("최대 10일까지 선택할 수 있습니다.");
+                        return;
+                    }
+
+                    $('#checkInDate' + idx).val(start.format('YYYY-MM-DD'));
+                    $('#checkOutDate' + idx).val(end.format('YYYY-MM-DD'));
+
                     $(".count_day").val(totalDays);
 
-                }).on('hide.daterangepicker', function (ev, picker) {
+                })
+                .on('hide.daterangepicker', function (ev, picker) {
                     $(`${calendarTabElement} .daterangepicker`).show();
                     setTimeout(function () {
                         $(daterangepickerElement).data('daterangepicker').show();
