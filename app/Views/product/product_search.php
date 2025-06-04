@@ -1,8 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($search_name));
-    $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+    // $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($search_name));
+    // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 ?>
 <section class="item_search_section">
     <div class="body_inner">
