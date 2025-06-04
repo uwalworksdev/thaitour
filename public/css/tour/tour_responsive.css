@@ -1973,6 +1973,73 @@
     align-items: center;
   }
 
+  .sub-hotel-navigation-container .depth_2_item_,
+  .sub-hotel-navigation-container .depth_1_item_,
+  .sub-hotel-navigation-container .depth_3_item_ {
+    padding: 0.5rem 0;
+    font-size: 2.4rem;
+    margin: 0.6rem 0;
+    cursor: pointer;
+}
+
+#depth_2_label {
+    display: inline-block;
+    width: 18rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#depth_3_label {
+  display: inline-block;
+  width: 22rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.sub-hotel-navigation-container .depth_2_tool_list_ {
+    width: 18rem;
+}
+
+.sub-hotel-navigation-container .depth_1_tool_list_ {
+    width: 10rem;
+}
+
+
+.sub-hotel-navigation-container .depth_1_tools_ ,
+.sub-hotel-navigation-container .depth_2_tools_,
+.sub-hotel-navigation-container .depth_3_tools_ {
+    position: absolute;
+    padding: 1rem 1.2rem;
+    background-color: #fff;
+    top: 4rem;
+    right: -7rem;
+    border: 1px solid #dbdbdb;
+    z-index: 5;
+    display: none;
+}
+
+.sub-hotel-navigation-container .depth_2_tools_ {
+   position: absolute;
+    padding: 1rem 1.2rem;
+    background-color: #fff;
+    top: 4rem;
+    right: -3rem;
+    border: 1px solid #dbdbdb;
+    z-index: 5;
+    display: none;
+}
+
+.sub-hotel-navigation-container .depth_3_tool_list_ {
+    width: 21rem;
+}
+
+.sub-hotel-navigation-container .depth_3_tools_ {
+    right: -2rem;
+}
+
+
   .sub-hotel-navigation-container .icon_home {
     width: 2.2rem;
     height: 2rem;
@@ -1991,7 +2058,7 @@
   .sub-hotel-navigation-container .navigation-container-next {
     display: flex;
     gap: 0.8rem;
-    margin-right: 6rem;
+    margin-right: 1rem;
     align-items: center;
   }
 
