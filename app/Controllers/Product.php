@@ -217,36 +217,36 @@ class Product extends BaseController
 
         // $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
-        // $data['list'] = [
-        //     'hotel' => [
-        //         'title' => "호텔",
-        //         'result' => $listHotel
-        //     ],
-        //     'golf' => [
-        //         'title' => "골프",
-        //         'result' => $listGolf
-        //     ],
-        //     'tour' => [
-        //         'title' => "투어",
-        //         'result' => $listTour
-        //     ],
-        //     'spa' => [
-        //         'title' => "스파",
-        //         'result' => $listSpa
-        //     ],
-        //     'show_ticket' => [
-        //         'title' => "쇼ㆍ입장권",
-        //         'result' => $listShowTicket
-        //     ],
-        //     'restaurant' => [
-        //         'title' => "레스토랑",
-        //         'result' => $listRestaurant
-        //     ],
-        //     'vehicle' => [
-        //         'title' => "차량ㆍ가이드",
-        //         'result' => $listVehicle
-        //     ]
-        // ];
+        $data['list'] = [
+            'hotel' => [
+                'title' => "호텔",
+                'result' => $listHotel
+            ],
+            // 'golf' => [
+            //     'title' => "골프",
+            //     'result' => $listGolf
+            // ],
+            // 'tour' => [
+            //     'title' => "투어",
+            //     'result' => $listTour
+            // ],
+            // 'spa' => [
+            //     'title' => "스파",
+            //     'result' => $listSpa
+            // ],
+            // 'show_ticket' => [
+            //     'title' => "쇼ㆍ입장권",
+            //     'result' => $listShowTicket
+            // ],
+            // 'restaurant' => [
+            //     'title' => "레스토랑",
+            //     'result' => $listRestaurant
+            // ],
+            // 'vehicle' => [
+            //     'title' => "차량ㆍ가이드",
+            //     'result' => $listVehicle
+            // ]
+        ];
 
         // $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount']
         //     + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
