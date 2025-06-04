@@ -659,12 +659,16 @@
     padding: 10px 12px;
     background-color: #fff;
     top: 20px;
-    right: -70px;
+    right: -57px;
     border: 1px solid #dbdbdb;
     z-index: 5;
     display: none;
 }
 
+.sub-hotel-navigation-container .depth_2_tools_ {
+    right: -47px;
+
+}
 .sub-hotel-navigation-container .depth_3_tools_  {
     right: -15px;
 }
@@ -675,9 +679,13 @@
     display: block;
 }
 
-.sub-hotel-navigation-container .depth_2_tool_list_,
+
 .sub-hotel-navigation-container .depth_1_tool_list_ {
     width: 80px;
+}
+
+.sub-hotel-navigation-container .depth_2_tool_list_{
+    width: 120px;
 }
 
 .sub-hotel-navigation-container .depth_3_tool_list_ {
@@ -691,6 +699,11 @@
     font-size: 16px;
     margin: 5px 0;
     cursor: pointer;
+}
+
+#depth_2_label {
+    display: inline-block;
+    width: 130px;
 }
 
 #depth_3_label {
@@ -733,7 +746,7 @@
 .sub-hotel-navigation-container .navigation-container-next {
     display: flex;
     gap: 8px;
-    margin-right: 60px;
+    margin-right: 30px;
     align-items: center;
     position: relative;
 }
@@ -758,6 +771,7 @@
 
 .content-sub-product-hotel .body_inner {
     overflow: unset;
+    z-index: 1;
 }
 
 .content-sub-product-hotel .body_inner.spe {
