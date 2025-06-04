@@ -479,7 +479,20 @@ table.book_tbl tr td .people_cnt_select {
     } */
 }
 
+@media screen and (max-width: 400px) {
+    .tours-detail .container-calendar.tour.open_ {
+        min-height: 125rem;
+    }
+}
 @media screen and (max-width: 850px) {
+    .section2 {
+        overflow: inherit;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+
     .tours-detail .section2 .sec2-item-card {
         padding: 3.6rem 0 3.6rem 0;
     }
@@ -554,11 +567,12 @@ table.book_tbl tr td .people_cnt_select {
     }
 
     table.book_tbl tr td {
-        /* width: 100%; */
+        width: 100%;
         padding: 1.5rem !important;
         font-size: 2.4rem;
         position: relative;
         padding-left: 15rem !important;
+        padding-right: 0 !important;
     }
 
     table.book_tbl tr td input,
@@ -568,11 +582,11 @@ table.book_tbl tr td .people_cnt_select {
     }
 
     table.book_tbl tr td .custom_input .val_wrap input {
-        width: 18rem;
+        width: 50%;
     }
 
     table.book_tbl tr td .people_cnt_select {
-        width: 39rem;
+        width: 100%;
     }
 
     table.book_tbl tr td.count_date {
@@ -675,6 +689,12 @@ table.book_tbl tr td .people_cnt_select {
 
     .calendar_submit {
         margin-top: 5rem;
+        margin-bottom: 8rem;
+    }
+
+    table.book_tbl .custom_input {
+        gap: 3.5rem;
+        flex-wrap: wrap;
     }
 
     .calendar_submit button {
@@ -731,5 +751,15 @@ table.book_tbl tr td .people_cnt_select {
         left: 0;
         top: 50%;
         transform: translateY(-50%);
+    }
+
+    table.book_tbl .custom_input .selectricWrapper select {
+        width: 100%;
+    }
+
+    table.book_tbl .custom_input .selectricHideSelect {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
     }
 }
