@@ -94,22 +94,22 @@ class Product extends BaseController
     private function getSubInfo($items)
     {
         foreach ($items as $key => $item) {
-            $hotel_codes = explode("|", $item['product_code_list']);
-            $hotel_codes = array_values(array_filter($hotel_codes));
+            // $hotel_codes = explode("|", $item['product_code_list']);
+            // $hotel_codes = array_values(array_filter($hotel_codes));
 
-            if ($hotel_codes['0']) $code = $hotel_codes['0'];
-            if (!$code) $code = $item['product_code_3'];
-            if (!$code) $code = $item['product_code_2'];
-            if (!$code) $code = $item['product_code_1'];
+            // if ($hotel_codes['0']) $code = $hotel_codes['0'];
+            // if (!$code) $code = $item['product_code_3'];
+            // if (!$code) $code = $item['product_code_2'];
+            // if (!$code) $code = $item['product_code_1'];
 
-            $codeTree = $this->codeModel->getCodeTree($code);
+            // $codeTree = $this->codeModel->getCodeTree($code);
 
-            $items[$key]['codeTree'] = $codeTree;
+            // $items[$key]['codeTree'] = $codeTree;
 
-            $itemReview = $this->reviewModel->getProductReview($item['product_idx']);
+            // $itemReview = $this->reviewModel->getProductReview($item['product_idx']);
 
-            $items[$key]['total_review'] = $itemReview['total_review'];
-            $items[$key]['review_average'] = $itemReview['avg'];
+            // $items[$key]['total_review'] = $itemReview['total_review'];
+            // $items[$key]['review_average'] = $itemReview['avg'];
         }
 
         return $items;
@@ -167,7 +167,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
         ], 1000, 1, $orderBy);
 
-        // $listHotel['items'] = $this->getSubInfo($listHotel['items']);
+        $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         // $listGolf = $this->productModel->findProductGolfPaging([
         //     // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
