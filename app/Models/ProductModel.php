@@ -1249,224 +1249,224 @@ class ProductModel extends Model
         $builder->where('h.o_edate <>', '');
         $builder->where('h.option_type', 'M');
 */		
-        // if ($where['day_start'] && $where['day_start'] != "") {
-        //     $builder->where('h.o_sdate <=', $where['day_start']); 
-        // }
+        if ($where['day_start'] && $where['day_start'] != "") {
+            $builder->where('h.o_sdate <=', $where['day_start']); 
+        }
 
-        // if ($where['day_end'] && $where['day_end'] != "") {
-        //     $builder->where('h.o_edate >=', $where['day_end']);
-        // }
+        if ($where['day_end'] && $where['day_end'] != "") {
+            $builder->where('h.o_edate >=', $where['day_end']);
+        }
 
-        // if ($where['product_code_1'] != "") {
-        //     $builder->where('product_code_1', $where['product_code_1']);
-        // }
-        // if ($where['product_code_2'] != "") {
-        //     $builder->where('product_code_2', $where['product_code_2']);
-        // }
-        // if ($where['product_code_3'] != "") {
-        //     $builder->where('product_code_3', $where['product_code_3']);
-        // }
+        if ($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if ($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if ($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
 
-        // if ($where['keyword'] && $where['keyword'] != "") {
-        //     $builder->like('product_name', $where['keyword']);
-        // }
+        if ($where['keyword'] && $where['keyword'] != "") {
+            $builder->like('product_name', $where['keyword']);
+        }
  
-        // if ($where['product_code_list']) {
-        //     $product_code_list = explode(",", $where['product_code_list']);
-        //     $cnt_code = 1;
-        //     $builder->groupStart();
-        //     foreach ($product_code_list as $code) {
-        //         if ($cnt_code > 1) {
-        //             $builder->orLike('product_code_list', $code);
-        //         } else {
-        //             $builder->like('product_code_list', $code);
-        //         }
-        //         $cnt_code++;
-        //     }
-        //     $builder->groupEnd();
-        // }
+        if ($where['product_code_list']) {
+            $product_code_list = explode(",", $where['product_code_list']);
+            $cnt_code = 1;
+            $builder->groupStart();
+            foreach ($product_code_list as $code) {
+                if ($cnt_code > 1) {
+                    $builder->orLike('product_code_list', $code);
+                } else {
+                    $builder->like('product_code_list', $code);
+                }
+                $cnt_code++;
+            }
+            $builder->groupEnd();
+        }
  
-        // if ($where['search_product_category']) {
-        //     if (strpos($where['search_product_category'], 'all') === false) {
-        //         $search_product_category = explode(",", $where['search_product_category']);
-        //         $cnt_cat = 1;
-        //         $builder->groupStart();
-        //         foreach ($search_product_category as $category) {
-        //             if ($cnt_cat > 1) {
-        //                 $builder->orLike('product_code_3', $category);
-        //             } else {
-        //                 $builder->like('product_code_3', $category);
-        //             }
-        //             $cnt_cat++;
-        //         }
-        //         $builder->groupEnd();
-        //     }
-        // }
+        if ($where['search_product_category']) {
+            if (strpos($where['search_product_category'], 'all') === false) {
+                $search_product_category = explode(",", $where['search_product_category']);
+                $cnt_cat = 1;
+                $builder->groupStart();
+                foreach ($search_product_category as $category) {
+                    if ($cnt_cat > 1) {
+                        $builder->orLike('product_code_3', $category);
+                    } else {
+                        $builder->like('product_code_3', $category);
+                    }
+                    $cnt_cat++;
+                }
+                $builder->groupEnd();
+            }
+        }
 
-        // if ($where['search_product_mbti']) {
-        //     if (strpos($where['search_product_mbti'], 'all') === false) {
-        //         $search_product_mbti = explode(",", $where['search_product_mbti']);
-        //         $cnt_mbti = 1;
-        //         $builder->groupStart();
-        //         foreach ($search_product_mbti as $category) {
-        //             if ($cnt_mbti > 1) {
-        //                 $builder->orLike('mbti', $category);
-        //             } else {
-        //                 $builder->like('mbti', $category);
-        //             }
-        //             $cnt_mbti++;
-        //         }
-        //         $builder->groupEnd();
-        //     }
-        // }
+        if ($where['search_product_mbti']) {
+            if (strpos($where['search_product_mbti'], 'all') === false) {
+                $search_product_mbti = explode(",", $where['search_product_mbti']);
+                $cnt_mbti = 1;
+                $builder->groupStart();
+                foreach ($search_product_mbti as $category) {
+                    if ($cnt_mbti > 1) {
+                        $builder->orLike('mbti', $category);
+                    } else {
+                        $builder->like('mbti', $category);
+                    }
+                    $cnt_mbti++;
+                }
+                $builder->groupEnd();
+            }
+        }
 
-        // if ($where['search_product_hotel']) {
-        //     if (strpos($where['search_product_hotel'], 'all') === false) {
-        //         $search_product_hotel = explode(",", $where['search_product_hotel']);
-        //         $cnt_type = 1;
-        //         $builder->groupStart();
-        //         foreach ($search_product_hotel as $type) {
-        //             if ($cnt_type > 1) {
-        //                 $builder->orLike('product_type', $type);
-        //             } else {
-        //                 $builder->like('product_type', $type);
-        //             }
-        //             $cnt_type++;
-        //         }
-        //         $builder->groupEnd();
-        //     }
-        // }
+        if ($where['search_product_hotel']) {
+            if (strpos($where['search_product_hotel'], 'all') === false) {
+                $search_product_hotel = explode(",", $where['search_product_hotel']);
+                $cnt_type = 1;
+                $builder->groupStart();
+                foreach ($search_product_hotel as $type) {
+                    if ($cnt_type > 1) {
+                        $builder->orLike('product_type', $type);
+                    } else {
+                        $builder->like('product_type', $type);
+                    }
+                    $cnt_type++;
+                }
+                $builder->groupEnd();
+            }
+        }
 
-        // if ($where['search_product_rating']) {
-        //     if (strpos($where['search_product_rating'], 'all') === false) {
-        //         $search_product_rating = explode(",", $where['search_product_rating']);
-        //         $cnt_rating = 1;
-        //         $builder->groupStart();
-        //         foreach ($search_product_rating as $rating) {
-        //             if ($cnt_rating > 1) {
-        //                 $builder->orWhere('product_level', $rating);
-        //             } else {
-        //                 $builder->where('product_level', $rating);
-        //             }
-        //             $cnt_rating++;
-        //         }
-        //         $builder->groupEnd();
-        //     }
-        // }
+        if ($where['search_product_rating']) {
+            if (strpos($where['search_product_rating'], 'all') === false) {
+                $search_product_rating = explode(",", $where['search_product_rating']);
+                $cnt_rating = 1;
+                $builder->groupStart();
+                foreach ($search_product_rating as $rating) {
+                    if ($cnt_rating > 1) {
+                        $builder->orWhere('product_level', $rating);
+                    } else {
+                        $builder->where('product_level', $rating);
+                    }
+                    $cnt_rating++;
+                }
+                $builder->groupEnd();
+            }
+        }
 
-        // if (!empty($where['price_max'])) {
-        //     if (empty($where['price_type']) || $where['price_type'] == "W") {
-        //         $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
-        //         $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
-        //     } else {
-        //         $builder->where("product_price > ", (float)$where['price_min']);
-        //         $builder->where("product_price < ", (float)$where['price_max']);
-        //     }
-        // }
+        if (!empty($where['price_max'])) {
+            if (empty($where['price_type']) || $where['price_type'] == "W") {
+                $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
+                $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
+            } else {
+                $builder->where("product_price > ", (float)$where['price_min']);
+                $builder->where("product_price < ", (float)$where['price_max']);
+            }
+        }
 
-        // if ($where['search_product_promotion']) {
-        //     $search_product_promotion = explode(",", $where['search_product_promotion']);
-        //     $cnt_promotion = 1;
-        //     $builder->groupStart();
-        //     foreach ($search_product_promotion as $promotion) {
-        //         if ($cnt_promotion > 1) {
-        //             $builder->orLike('product_promotions', $promotion);
-        //         } else {
-        //             $builder->like('product_promotions', $promotion);
-        //         }
-        //         $cnt_promotion++;
-        //     }
-        //     $builder->groupEnd();
-        // }
+        if ($where['search_product_promotion']) {
+            $search_product_promotion = explode(",", $where['search_product_promotion']);
+            $cnt_promotion = 1;
+            $builder->groupStart();
+            foreach ($search_product_promotion as $promotion) {
+                if ($cnt_promotion > 1) {
+                    $builder->orLike('product_promotions', $promotion);
+                } else {
+                    $builder->like('product_promotions', $promotion);
+                }
+                $cnt_promotion++;
+            }
+            $builder->groupEnd();
+        }
 
-        // if ($where['search_product_topic']) {
-        //     $search_product_topic = explode(",", $where['search_product_topic']);
-        //     $cnt_theme = 1;
-        //     $builder->groupStart();
-        //     foreach ($search_product_topic as $theme) {
-        //         if ($cnt_theme > 1) {
-        //             $builder->orLike('product_theme', $theme);
-        //         } else {
-        //             $builder->like('product_theme', $theme);
-        //         }
-        //         $cnt_theme++;
-        //     }
-        //     $builder->groupEnd();
-        // }
+        if ($where['search_product_topic']) {
+            $search_product_topic = explode(",", $where['search_product_topic']);
+            $cnt_theme = 1;
+            $builder->groupStart();
+            foreach ($search_product_topic as $theme) {
+                if ($cnt_theme > 1) {
+                    $builder->orLike('product_theme', $theme);
+                } else {
+                    $builder->like('product_theme', $theme);
+                }
+                $cnt_theme++;
+            }
+            $builder->groupEnd();
+        }
 
-        // if ($where['search_product_bedroom']) {
-        //     $search_product_bedroom = explode(",", $where['search_product_bedroom']);
-        //     $cnt_bedroom = 1;
-        //     $builder->groupStart();
-        //     foreach ($search_product_bedroom as $bedroom) {
-        //         if ($cnt_bedroom > 1) {
-        //             $builder->orLike('product_bedrooms', $bedroom);
-        //         } else {
-        //             $builder->like('product_bedrooms', $bedroom);
-        //         }
-        //         $cnt_bedroom++;
-        //     }
-        //     $builder->groupEnd();
-        // }
+        if ($where['search_product_bedroom']) {
+            $search_product_bedroom = explode(",", $where['search_product_bedroom']);
+            $cnt_bedroom = 1;
+            $builder->groupStart();
+            foreach ($search_product_bedroom as $bedroom) {
+                if ($cnt_bedroom > 1) {
+                    $builder->orLike('product_bedrooms', $bedroom);
+                } else {
+                    $builder->like('product_bedrooms', $bedroom);
+                }
+                $cnt_bedroom++;
+            }
+            $builder->groupEnd();
+        }
 
-        // if (!empty($where['checkin']) && !empty($where['checkout'])) {
-        //     $builder->groupStart();
-        //     $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
-        //     $builder->orWhere('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
-        //     $builder->groupEnd();
-        // }
+        if (!empty($where['checkin']) && !empty($where['checkout'])) {
+            $builder->groupStart();
+            $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
+            $builder->orWhere('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+            $builder->groupEnd();
+        }
 
-        // if ($where['search_product_name']) {
-        //     $builder->like('product_name', $where['search_product_name']);
-        // }
+        if ($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
+        }
 
-        // if ($where['search_txt'] != "") {
-        //     if ($where['search_category'] != "") {
-        //         $builder->like($where['search_category'], $where['search_txt']);
-        //     } else {
-        //         $builder->groupStart();
-        //         $builder->like('product_name', $where['search_txt']);
-        //         $builder->orLike('keyword', $where['search_txt']);
-        //         $builder->groupEnd();
-        //     }
-        // }
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+                $builder->groupEnd();
+            }
+        }
 
-        // if (!empty($where['arr_search_txt'])) {
-        //     $builder->groupStart();
-        //     // $str_search_txt = trim($where['arr_search_txt']);
-        //     // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+        if (!empty($where['arr_search_txt'])) {
+            $builder->groupStart();
+            // $str_search_txt = trim($where['arr_search_txt']);
+            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-        //     $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-        //     $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
 
-        //     foreach ($arr_search_txt as $index => $txt) {
+            foreach ($arr_search_txt as $index => $txt) {
 
-        //         if ($index > 0) {
-        //             $builder->orGroupStart();
-        //         }
+                if ($index > 0) {
+                    $builder->orGroupStart();
+                }
 
-        //         $escapedTxt = $this->db->escapeLikeString($txt);
-        //         $builder->like('product_name', $escapedTxt);
-        //         $builder->orLike('product_name_en', $escapedTxt);
-        //         $builder->orLike('keyword', $escapedTxt);
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $builder->like('product_name', $escapedTxt);
+                $builder->orLike('product_name_en', $escapedTxt);
+                $builder->orLike('keyword', $escapedTxt);
 
-        //         // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-        //         // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
+                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
 
-        //         if ($index > 0) {
-        //             $builder->groupEnd();
-        //         }
-        //     }
-        //     $builder->groupEnd();
-        // }
+                if ($index > 0) {
+                    $builder->groupEnd();
+                }
+            }
+            $builder->groupEnd();
+        }
 
-        // if ($where['is_view'] != "") {
-        //     $builder->where("is_view", $where['is_view']);
-        // }
+        if ($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
 
-        // if ($where['special_price'] != "") {
-        //     $builder->where("special_price", $where['special_price']);
-        // }
+        if ($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
 
 //        if ($where['product_status'] != "") {
 //            $builder->where("product_status", $where['product_status']);

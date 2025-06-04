@@ -167,7 +167,7 @@ class Product extends BaseController
             // 'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
         ], 1000, 1, $orderBy);
 
-        $listHotel['items'] = $this->getSubInfo($listHotel['items']);
+        // $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         // $listGolf = $this->productModel->findProductGolfPaging([
         //     // 'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
