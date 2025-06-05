@@ -403,6 +403,7 @@ $(document).ready(function() {
                     <div class="box-selecter flex_b_c">
                         <div class="ic_item">
                             <div class="title first">주/야간 선택</div>
+							<?php if (!empty($hole_cnt_arr)) : ?>
                             <div class="body-box flex">
                                 <div class="box day_option day_option_first flex_1 active" data-type="day">
                                     <p>주간</p>
@@ -414,6 +415,7 @@ $(document).ready(function() {
                                     <p>야간</p>
                                 </div>
                             </div>
+							<?php endif; ?>
                         </div>
                         <div class="ic_item">
                             <div class="flex__c" style="width: 50%;">
