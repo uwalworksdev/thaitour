@@ -4641,29 +4641,29 @@
 
   .travel_info .head_list_product {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 2rem;
   }
 
   .travel_info .head_list_product .total_text {
     font-size: 2.6rem;
     font-weight: 500;
-    width: 100%;
-    margin-bottom: 3rem;
+    width: 70%;
+    /* margin-bottom: 3rem; */
   }
 
   .travel_info .head_list_product select {
-    width: unset;
+    width: 70%;
     height: 8.8rem;
     border: 1px solid #dbdbdb;
     padding: 0 2.5rem;
     margin-left: 0;
     background-size: 2rem;
-    flex: 1;
+    /* flex: 1; */
   }
 
   .theme_travel .head_list_product .wrap_select {

@@ -222,7 +222,7 @@
                                     if($total_vehicle > 0){
                                 ?>
                                 <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?= $total_vehicle ?>대</h3>
-                                <div class="flex__c wrap-golf-info">
+                                <div class="flex__c wrap-golf-info flex_wrap_mo">
                                     <div class="con-form-select form-group mb-30">
                                         <label for="car-time-hour">차량 미팅 시간</label>
                                         <div class="form-group time-group">
