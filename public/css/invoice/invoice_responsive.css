@@ -576,7 +576,8 @@
         text-align: left;
         padding-left: 13rem;
         display: block;
-        height: 3.2692rem;
+        /* height: 3.2692rem; */
+        height: 7.2692rem;
         position: relative;
         border-bottom: 2px solid #dbdbdb;
         line-height: 3.4615rem;
@@ -604,7 +605,7 @@
         height: 3.2692rem;
         background-color: #fff;
         border-right: 2px solid #dbdbdb;
-        border-bottom: 2px solid #dbdbdb;
+        /* border-bottom: 2px solid #dbdbdb; */
         text-align: left;
         padding-left: 0.7692rem;
     }

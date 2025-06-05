@@ -1671,6 +1671,11 @@
 
     .booklist_wrap .booking_product .product_box .book_group_wrap .group_r {
         gap: 2rem;
+        width: 100%;
+    }
+
+    .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total {
+        margin-right: auto;
     }
 
     .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total p {
