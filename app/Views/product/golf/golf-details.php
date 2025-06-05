@@ -281,9 +281,13 @@ $(document).ready(function() {
                         <div class="item-tag">
                             <span class="label">홀수</span>
                             <div class="tag-list">
+							    <?php if (!empty($hole_cnt_arr)) { ?>
                                 <?php foreach ($hole_cnt_arr as $hole) : ?>
                                     <span class="tag tag-js" data-tab="<?= $hole ?>"><?= $hole ?>홀</span>
                                 <?php endforeach; ?>
+								<?php } else { ?>
+								<span style="color:red;">홀 미등록</span>	
+								<?php } ?> 
                             </div>
                         </div>
                         <div class="item-tag new">
