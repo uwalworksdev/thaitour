@@ -415,6 +415,10 @@ $(document).ready(function() {
                                     <p>야간</p>
                                 </div>
                             </div>
+							<?php } else { ?>
+                            <div class="body-box flex">
+							     <span style="color:red;">홀등록 미등록</span>
+                            </div>
 							<?php } ?>
                         </div>
                         <div class="ic_item">
