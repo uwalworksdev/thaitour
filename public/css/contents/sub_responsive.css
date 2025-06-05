@@ -4420,4 +4420,25 @@
     color: var(--bs-point);
 }
 
+
+.flex_wrap_mo {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.customer-form-page .wrap-golf-info {
+  gap: 0rem 4rem;
+}
+
+.customer-form-page .wrap-golf-info .con-form-select {
+  width: 100%
+
+}
+
+.customer-form-page .wrap-golf-info input {
+    width: 100% !important;
+  }
+
+
+
 }
