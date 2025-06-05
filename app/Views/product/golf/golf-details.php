@@ -417,7 +417,7 @@ $(document).ready(function() {
                             </div>
 							<?php } else { ?>
                             <div class="body-box flex">
-							     <span style="color:red;">홀등록 미등록</span>
+							     <span style="color:red;">홀 미등록</span>
                             </div>
 							<?php } ?>
                         </div>
