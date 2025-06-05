@@ -4388,8 +4388,13 @@
   }
 
   .ord_total_sec.reservation>div {
+    /* padding: 4rem 2rem;
+    border-bottom: 1px solid #e5e5e5; */
     padding: 4rem 2rem;
     border-bottom: 1px solid #e5e5e5;
+    flex-direction: column;
+    align-items: self-start;
+    gap: 2rem;
   }
 
   .ord_total_sec.reservation .label {

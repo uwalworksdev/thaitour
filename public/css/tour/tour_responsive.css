@@ -4652,12 +4652,12 @@
   .travel_info .head_list_product .total_text {
     font-size: 2.6rem;
     font-weight: 500;
-    width: 70%;
+    width: 41%;
     /* margin-bottom: 3rem; */
   }
 
   .travel_info .head_list_product select {
-    width: 70%;
+    width: 49%;
     height: 8.8rem;
     border: 1px solid #dbdbdb;
     padding: 0 2.5rem;
