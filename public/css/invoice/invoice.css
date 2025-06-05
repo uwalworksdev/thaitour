@@ -9,6 +9,10 @@
     padding-bottom: 120px;
 }
 
+.btn_wrap_member {
+    margin-top: 20px;
+}
+
 /* .invoice_cancle {
     position: fixed;
     left: 0;

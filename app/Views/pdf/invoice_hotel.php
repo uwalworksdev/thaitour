@@ -646,8 +646,9 @@
                             </tr>
                         </tbody>
                     </table> -->
-                    
-                    <?=viewSQ($policy_1["policy_contents"])?>
+                    <div>
+                        <?=viewSQ($policy_1["policy_contents"])?>
+                    </div>
                                         
                 </div>
             </div>
