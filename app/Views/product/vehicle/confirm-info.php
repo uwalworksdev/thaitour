@@ -492,8 +492,12 @@
 
                                             $currentDate = clone $startDate;
 
-                                            for ($i = 1; $currentDate <= $endDate; $i++) {
-                                                $day = $arr_days[$currentDate->format('w')];
+                                            // for ($i = 1; $currentDate <= $endDate; $i++) {
+                                            //     $day = $arr_days[$currentDate->format('w')];
+                                                    $i = 1;
+
+                                                while ($currentDate <= $endDate) {
+                                                    $day = $arr_days[$currentDate->format('w')];
                                 ?>
                                     <div class="section_vehicle_table">
                                         <div class="section_vehicle_2_7__head__ttl vehicle_ttl">
@@ -515,8 +519,8 @@
                                                             <span class="meeting_time__date"><?=$currentDate->format('Y-m-d') . "(" . $day . ")"?></span>
                                                             <select name="hours[]" class="s_hours" id="hours">
                                                                 <?php
-                                                                for ($i = 0; $i < 24; $i++) {
-                                                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                                for ($h = 0; $h < 24; $h++) {
+                                                                    $hour = str_pad($h, 2, '0', STR_PAD_LEFT);
                                                                 ?>
                                                                     <option value="<?= $hour ?>"><?= $hour ?></option>
                                                                     <?php
@@ -526,8 +530,8 @@
                                                             <label for="hours">시</label>
                                                             <select name="minutes[]" class="s_minutes" id="minutes">
                                                                 <?php
-                                                                for ($i = 0; $i < 60; $i += 5) {
-                                                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                                                for ($m = 0; $m < 60; $m += 5) {
+                                                                    $minute = str_pad($m, 2, '0', STR_PAD_LEFT);
                                                                 ?>
                                                                     <option value="<?= $minute ?>"><?= $minute ?></option>
                                                                     <?php
@@ -573,6 +577,7 @@
                                     </div>
                                 <?php
                                                 $currentDate->modify('+1 day');
+                                                $i++;
                                             } 
                                         }
                                     }else if($type_code_no == "5404"){
