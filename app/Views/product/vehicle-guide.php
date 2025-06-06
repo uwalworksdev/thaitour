@@ -3430,6 +3430,7 @@
         let today = new Date();
         let departureDate = new Date($("#meeting_date").val());
         let destinationDate = new Date($("#return_date").val());
+        let code_no = $(".cars_category_depth_1").children(".section_vehicle_2_2__head__tabs__item.active").data("code");
 
         $("#departure_date").datepicker({
             dateFormat: "yy-mm-dd",
@@ -3437,15 +3438,14 @@
             onSelect: function(dateText, inst) {
                 departureDate = $(this).datepicker('getDate');
 
-                var date = $(this).datepicker('getDate');
-                const year = String(date.getFullYear()).slice(-2);
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const dayOfWeek = daysOfWeek[date.getDay()];
+                const year = String(departureDate.getFullYear()).slice(-2);
+                const month = String(departureDate.getMonth() + 1).padStart(2, '0');
+                const day = String(departureDate.getDate()).padStart(2, '0');
+                const dayOfWeek = daysOfWeek[departureDate.getDay()];
 
                 $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
-                $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
-                $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
+                $(".meeting_time__date").text(`${departureDate.getFullYear()}-${month}-${day}(${dayOfWeek})`);
+                $("#meeting_date").val(`${departureDate.getFullYear()}-${month}-${day}`);
 
                 $("#destination_date").datepicker('option', 'minDate', departureDate);
                 calculate_days(departureDate, destinationDate);
@@ -3466,16 +3466,16 @@
             minDate: today,
             onSelect: function(dateText, inst) {
                 destinationDate = $(this).datepicker('getDate');
-                var date = $(this).datepicker('getDate');
-                const year = String(date.getFullYear()).slice(-2);
-                const month = String(date.getMonth() + 1).padStart(2, '0');
-                const day = String(date.getDate()).padStart(2, '0');
-                const dayOfWeek = daysOfWeek[date.getDay()];
+
+                const year = String(destinationDate.getFullYear()).slice(-2);
+                const month = String(destinationDate.getMonth() + 1).padStart(2, '0');
+                const day = String(destinationDate.getDate()).padStart(2, '0');
+                const dayOfWeek = daysOfWeek[destinationDate.getDay()];
 
                 $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
-                $("#return_date").val(`${date.getFullYear()}-${month}-${day}`);
+                $("#return_date").val(`${destinationDate.getFullYear()}-${month}-${day}`);
 
-                $("#departure_date").datepicker('option', 'minDate', destinationDate);
+                $("#departure_date").datepicker('option', 'minDate', null);
 
                 calculate_days(departureDate, destinationDate);
 
@@ -3483,16 +3483,12 @@
                 addFormReservation();
             },
             beforeShowDay: function(date) {
-                // if (departureDate && date < departureDate) {
-                //     return [false, 'ui-state-disabled'];
-                // }
-                if (code_no != "5404" && destinationDate && date > destinationDate) {
+                if (departureDate && date < departureDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
             }
         });
-
     }
 
     function calculate_days(departureDate, destinationDate) {
