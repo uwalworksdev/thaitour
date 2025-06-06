@@ -7017,6 +7017,10 @@ iframe::-webkit-scrollbar {
     #policyContent .desc {
         flex-direction: column;
     }
+
+    #policyContent .d-inherit table tr {
+        display: inherit !important;
+    }
 }
 
 @media screen and (max-width: 690px) {
