@@ -1022,8 +1022,6 @@ class Member extends BaseController
         } else {
             $existingMember = $this->member->getBySns($sns_key);
 
-            var_dump($existingMember);
-            die();
             if (!$existingMember) {
                 $session->set('sns.gubun', 'apple');
                 $session->set('apple.userEmail', $userEmail);
