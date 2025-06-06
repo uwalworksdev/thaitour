@@ -405,7 +405,6 @@
         var order_no = $("#order_no").val();
         var url = "";
 
-        // Điều kiện để kiểm tra tiền tố và chọn file PHP phù hợp
         if (order_no.startsWith("S")) {
             url = "/ajax/ajax.order_inq.php";
         } else if (order_no.startsWith("R")) {
