@@ -1083,7 +1083,8 @@ small {
     border-radius: 3px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3)
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    z-index: 99 !important;
 }
 
 .ui-datepicker .ui-widget-header {

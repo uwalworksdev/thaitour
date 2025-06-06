@@ -5,7 +5,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!--<script type="text/javascript" src="/js/kakao.js"></script>-->
 
-
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 
 <div class="popup_" id="popupLogin_">
     <div class="popup_area_">
@@ -234,7 +234,7 @@
                                         onclick="location.href='<?=$_url?>'">
                                     구글로그인
                                 </button>
-                                <button type="button" id="" class="another_btn apple" onclick="location.href='#!'">         
+                                <button type="button" id="" class="another_btn apple" onclick="signInWithApple();">         
                                     애플로 로그인
                                 </button>
                             </div>
@@ -459,5 +459,36 @@
             }
         });
 
+    }
+</script>
+
+<script>
+    AppleID.auth.init({
+        clientId: 'com.thetourlab.webapp',
+        scope: 'name email',
+        redirectURI: window.location.origin,
+        state: Date.now().toString(),
+        usePopup: true
+    });
+
+
+    function signInWithApple() {
+        AppleID.auth.signIn().then(response => {
+            console.log(response);
+            const { name = {}, email } = response?.user || {};
+            const { id_token } = response?.authorization || {};
+            const { firstName, lastName } = name;
+
+            document.getElementById("sns_key").value = id_token;
+            document.getElementById("user_name").value = name;
+            document.getElementById("userEmail").value = email;
+            document.getElementById("gubun").value = 'apple';
+            var form = document.loginForm2;
+            form.action = "/member/apple_login";
+            form.submit();
+
+        }).catch(error => {
+            console.error('Error signing in with Apple:', error);
+        });
     }
 </script>

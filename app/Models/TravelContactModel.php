@@ -77,6 +77,7 @@ class TravelContactModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $builder->orderBy('t.r_date', 'desc')
+                ->groupBy('t.idx')
                 ->limit($g_list_rows, $nFrom);
 
         $travel_contact = $builder->get()->getResultArray();
