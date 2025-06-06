@@ -253,7 +253,7 @@
                                                             data-group="true" placeholder="체크아웃" readonly="readonly"
                                                             value="" size="13">
                                                     </div>
-                                                    <div class="fl mr5 wg-100">
+                                                    <div class="fl mr5 wg-40">
                                                         <div class="selectricWrapper selectric-selectric">
                                                             <div class="selectricHideSelect">
                                                                 <select name="count_day" data-o_idx="<?= $option['o_idx'] ?>" id="countDay<?= $option['o_idx'] ?>"
