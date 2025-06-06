@@ -1915,7 +1915,7 @@ $links = "list";
                                                 <?php
                                                     $i = 2;
                                                     foreach ($img_list as $img) :
-                                                        $s_img = "/data/product/" . $img["ufile"];
+                                                        $s_img = get_img($img["ufile"], "/data/product/", "600", "440");
                                                 ?>
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
