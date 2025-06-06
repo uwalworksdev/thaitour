@@ -1642,6 +1642,13 @@ $(document).ready(function() {
             }
             ?>
 
+			<?php 
+			if (empty($hole_cnt_arr)) { 
+			?>
+                alert('홀 미등록 상품입니다\n다른 상품을 선택하세요.');
+                return false;
+            }
+
 			if ($("#order_date").val() == "") {
                 alert('에약일자를 선탹하세요.');
                 return false;
