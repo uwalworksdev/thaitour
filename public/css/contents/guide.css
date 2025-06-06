@@ -519,6 +519,10 @@ table.book_tbl tr td .people_cnt_select {
         width: 100%;
     }
 
+    .wg-40 {
+        width: 40%;
+    }
+
     .tours-detail .section2 .sec2-item-card {
         padding: 3.6rem 0 3.6rem 0;
     }
@@ -549,7 +553,7 @@ table.book_tbl tr td .people_cnt_select {
     }
 
     .calendar_container_tongle {
-        padding-top: 5rem;
+        padding-top: 9rem;
         border-top: 1px solid #dbdbdb;
         position: relative;
     }
@@ -597,22 +601,33 @@ table.book_tbl tr td .people_cnt_select {
         padding: 1.5rem !important;
         font-size: 2.4rem;
         position: relative;
-        padding-left: 15rem !important;
+        /* padding-left: 15rem !important; */
+        padding-left: 0rem !important;
         padding-right: 0 !important;
+        margin-bottom: 6rem;
+    }
+
+    table.book_tbl tr td.people>div {
+        justify-content: flex-start;
     }
 
     table.book_tbl tr td input,
     select {
         width: 37rem;
-        height: 8rem;
+        height: 9rem;
     }
 
     table.book_tbl tr td .custom_input .val_wrap input {
+    
         width: 50%;
     }
 
+    table.book_tbl tr td .custom_input .val_wrap select {
+        width: 40%;
+    }
+
     table.book_tbl tr td .people_cnt_select {
-        width: 100%;
+        width: 30%;
     }
 
     table.book_tbl tr td.count_date {
@@ -626,10 +641,11 @@ table.book_tbl tr td .people_cnt_select {
     }
 
     table.book_tbl tr td.checkin::before {
-        content: "가이드 시작일: ";
+        /* content: "가이드 시작일: "; */
+        content: "시작일/종료일 : ";
         position: absolute;
         left: 0;
-        top: 50%;
+        top: -2rem;
         transform: translateY(-50%);
     }
 
@@ -642,10 +658,11 @@ table.book_tbl tr td .people_cnt_select {
     }
 
     table.book_tbl tr td.people::before {
-        content: "총인원: ";
+        /* content: "총인원: "; */
+        content: "가이드 : ";
         position: absolute;
         left: 0;
-        top: 50%;
+        top: -2rem;
         transform: translateY(-50%);
     }
 
@@ -720,7 +737,7 @@ table.book_tbl tr td .people_cnt_select {
 
     table.book_tbl .custom_input {
         gap: 3.5rem;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
 
     .calendar_submit button {
