@@ -6,6 +6,9 @@ AppleID.auth.init({
     usePopup: true
 });
 
+console.log(window.location.origin);
+
+
 function signInWithApple() {
     AppleID.auth.signIn().then(response => {
         console.log(response);
