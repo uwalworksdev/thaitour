@@ -119,8 +119,11 @@ try {
     $time_sale_list = getTimeSale()->findAll();
 
     $currentDateTime = new DateTime();
-    
-    session()->set('redirect_url', current_url());
+
+    $currentUrl = current_url();
+    $queryString = $_SERVER['QUERY_STRING'] ?? '';
+    $fullUrl = $queryString ? $currentUrl . '?' . $queryString : $currentUrl;
+    session()->set('redirect_url', $fullUrl);
 
 ?>
 
