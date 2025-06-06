@@ -144,31 +144,33 @@ $deli_types = get_deli_type();
 							<span>아동: <span>
 									<?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원<br>
 								</span></span> 
-							<span>유아: <span>
+							<!-- <span>유아: <span>
 									<?= $people_baby_cnt ?>명 <?=number_format($people_baby_price)?>원
-								</span></span>
+								</span></span> -->
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
+						<td class="subject">예약일자</td>
 
 
 						<td class="content">
-							<p>
+							<!-- <p>
 								<?= $start_date . "(" . dowYoil($start_date) . ") ~ " . DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
 								<em>
 									<?= $product_period ?>
 								</em>
 								</span>
-							</p>
+							</p> -->
+							<?= $order_date ?>
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">일정</td>
+						<td class="subject">스파일자</td>
 
 
 						<td class="content">
-							<p>
+							<?= $order_day ?>
+							<!-- <p>
 								<span>한국출발
 									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
 								</span>
@@ -183,7 +185,7 @@ $deli_types = get_deli_type();
 								<span>한국도착
 									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
 								</span>
-							</p>
+							</p> -->
 						</td>
 					</tr>
 					<tr>
@@ -222,7 +224,7 @@ $deli_types = get_deli_type();
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / 	$baht_thai)?>바트)
+									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / $baht_thai)?>바트)
 								</p>
 					</div>
 				</div>
