@@ -3454,7 +3454,7 @@
                 addFormReservation();
             },
             beforeShowDay: function(date) {
-                if (destinationDate && date > destinationDate) {
+                if (code_no != "5403" && destinationDate && date > destinationDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
@@ -3483,7 +3483,7 @@
                 addFormReservation();
             },
             beforeShowDay: function(date) {
-                if (departureDate && date < departureDate) {
+                if (code_no != "5403" && departureDate && date < departureDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
