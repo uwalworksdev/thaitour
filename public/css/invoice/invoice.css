@@ -1031,7 +1031,7 @@ input[type="text"] {
         }
 
         .golf_invoice .invoice_ttl p {
-            font-size: 3.6rem;
+            font-size: 2.6rem;
             color: #000;
             text-align: center;
             line-height: 1.4;
@@ -1078,7 +1078,8 @@ input[type="text"] {
         }
 
         .golf_invoice .invoice_table .invoice_tbl {
-            width: 100%;
+            width: 100% !important;
+
         }
 
         .golf_invoice .invoice_table .invoice_tbl colgroup {
@@ -1089,6 +1090,7 @@ input[type="text"] {
             max-height: 100%;
             display: flex;
             flex-direction: column;
+            max-height: unset !important;
         }
 
         .golf_invoice .invoice_table .invoice_tbl.spe {
@@ -1111,7 +1113,7 @@ input[type="text"] {
         }
 
         .golf_invoice .invoice_table .invoice_tbl tr td {
-            height: 6rem;
+            height: unset !important;
             border: unset;
             border-right: unset;
             border-left: unset;
