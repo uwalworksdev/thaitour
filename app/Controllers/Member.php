@@ -233,7 +233,10 @@ class Member extends BaseController
             setcookie("c_userId", "", time() - 86000 * 365, '/');
         }
 
-        if($returnUrl == "") $returnUrl = "/";
+        if($returnUrl == "" || strpos($returnUrl, "/member/login") !== false) {
+            $returnUrl = "/";
+        }
+            
         return redirect()->to($returnUrl);
     }
 
@@ -962,7 +965,13 @@ class Member extends BaseController
                 if($state == "mypage") {
                     return redirect()->to('/mypage/info_change');
                 }else {
-                    return redirect()->to('/');
+                    $redirect_url = $session->get('redirect_url') ?? '/dashboard';
+                    $session->remove('redirect_url'); // 세션에서 제거
+                    if (strpos($redirect_url, "/member/login") !== false) {
+                        return redirect()->to('/');
+                    } else {
+                        return redirect()->to($redirect_url);
+                    }
                 }
             }
         } else {

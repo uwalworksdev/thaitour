@@ -62,14 +62,9 @@ function loginWithKakao() {
                                 }
                             } else {
                                 //카카오 로그인 접근 시 
-								var returnUrl = $("#returnUrl").val();
-                                console.log(returnUrl + "\n");
-                                console.log(response.trim());
+								var returnUrl = $("#returnUrl").val();                               
                                 
-                                
-                                if (response.trim() == "2") {
-                                    console.log("redirect");
-                                    
+                                if (response.trim() == "2") {                                    
                                     window.location.href = returnUrl;
                                 } else {
                                     document.getElementById("sns_key").value = sns_key;
