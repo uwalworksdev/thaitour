@@ -78,7 +78,7 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">추천 여행지</h3>
-                <a href="/travel-tips/hot-place" class="more_link">더보기 +</a>
+                <a href="/travel-tips/locguide_theme_list" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
                 <div class="relative">

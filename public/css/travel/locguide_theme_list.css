@@ -1,0 +1,101 @@
+.theme_list{
+          padding-top: 50px;
+          padding-bottom: 80px;
+}
+.loctheme_list{
+          margin-top: 30px;
+}
+.loctheme_top{
+    padding: 10px 0;
+    /* width: 1000px; */
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.loctheme_tit {
+    font-size: 30px;
+    color: #17469E;
+    padding-left: 10px;
+    font-weight: 500;
+}
+.tab_loctheme {
+    display: flex;
+    gap: .5rem;
+}
+.tab_loctheme li.on{
+    font-weight: 500;
+    color: #fff;
+    background: #17469E;
+    border: 1px solid #17469E;
+}
+.tab_loctheme li {
+    font-size: 16px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem 1.5rem;
+}
+.loctheme_banner .title {
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    display: block;
+    padding-bottom: 10px;
+    margin-top: 100px;
+}
+.loctheme_banner .desc{
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    display: block;
+}
+.loctheme_list{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+}
+.loctheme_list .theme_list_li{
+          width: calc(50% - 10px);
+}
+.loctheme_list .theme_list_li .loctheme_banner img{
+          width: 100%;
+}
+.loctheme_banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.loctheme_banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.loctheme_boxinfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); 
+  background-size: 20px 20px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.loctheme_boxinfo .title {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.loctheme_boxinfo .desc {
+  font-size: 17px;
+  display: block;
+}
