@@ -4808,6 +4808,11 @@ class Product extends BaseController
             $coupons[$key] = $coupon;
         }
 
+        $builder1 = $this->db->table('tbl_policy_info');
+        $reservaion_policy = $builder1->whereIn('p_idx', [2, 5, 15, 31])
+                                ->orderBy('p_idx', 'asc')
+                                ->get()->getResultArray();  
+
         return [
             'prod' => $prod,
             'day_' => $day_,
@@ -4822,6 +4827,7 @@ class Product extends BaseController
             'totalPrice' => $totalPrice,
             'coupons' => $coupons,
             'data' => $data,
+            'reservaion_policy' => $reservaion_policy,
         ];
     }
 

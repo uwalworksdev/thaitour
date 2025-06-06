@@ -872,7 +872,7 @@
 
     function closePopup() {
         $(".popup_wrap").hide();
-        $(".dim").hide();
+        // $(".dim").hide();
     }
 
     $('.item_check_term_').click(function () {

@@ -979,6 +979,92 @@ class Member extends BaseController
         }
     }
 
+    private function base64UrlDecode($data) {
+        $remainder = strlen($data) % 4;
+        if ($remainder) {
+            $data .= str_repeat('=', 4 - $remainder);
+        }
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+
+    private function decodeJWT($jwt) {
+        list($headerEncoded, $payloadEncoded, $signatureEncoded) = explode('.', $jwt);
+    
+        $header = json_decode($this->base64UrlDecode($headerEncoded), true);
+        $payload = json_decode($this->base64UrlDecode($payloadEncoded), true);
+    
+        return [
+            'header' => $header,
+            'payload' => $payload,
+            'signature' => $signatureEncoded
+        ];
+    }
+
+    public function apple_login()
+    {
+        $session = session();
+        $user_name = $this->request->getPost('user_name');
+        $userEmail = $this->request->getPost('userEmail');
+        $id_token = $this->request->getPost('sns_key');
+        $mode = updateSQ($this->request->getPost('mode'));
+
+        $decoded = $this->decodeJWT($id_token);
+
+        $sns_key = $decoded['payload']['sub'];
+
+        $session->set('sns.gubun', 'apple');
+
+        if ($mode == "false" || $mode == "mypage") {
+            $existingMember = $this->member->getBySns($sns_key);
+            if ($existingMember) {
+                return redirect()->to('/mypage/info_change');
+            }
+        } else {
+            $existingMember = $this->member->getBySns($sns_key);
+            if (!$existingMember) {
+                $session->set('sns.gubun', 'apple');
+                $session->set('apple.userEmail', $userEmail);
+                $session->set('apple.userName', $user_name);
+                $session->set('apple.user_id', 'apple_' . $sns_key);
+                $session->set('apple.sns_key', $sns_key);
+
+                return $this->redirectForm('/member/join_form', [
+                    'gubun' => 'apple',
+                    'sns_key' => $sns_key,
+                    'userEmail' => $userEmail,
+                    'user_name' => $user_name
+                ]);
+            }else {
+                $session->set('member', [
+                    'id' => $existingMember['user_id'],
+                    'idx' => $existingMember['m_idx'],
+                    'mIdx' => $existingMember['m_idx'],
+                    'name' => $existingMember['user_name'],
+                    'email' => $existingMember['user_email'],
+                    'level' => $existingMember['user_level'],
+                    'gubun' => $existingMember['gubun'],
+                    'phone' => $existingMember['user_mobile'],
+                    'sns_key' => $existingMember['sns_key'],
+                    'mlevel' => $existingMember['mem_level'],
+                    'first_name_en' => $existingMember['user_first_name_en'],
+                    'last_name_en' => $existingMember['user_last_name_en'],
+                    'passport_number' => $existingMember['passport_number'],
+                    'passport_expiry_date' => $existingMember['passport_expiry_date'],
+                    'gender' => $existingMember['gender'],
+                    'birthday' => $existingMember['birthday']
+                ]);
+
+                $redirect_url = $session->get('redirect_url') ?? '/dashboard';
+                $session->remove('redirect_url'); // 세션에서 제거
+                if (strpos($redirect_url, "/member/login") !== false) {
+                    return redirect()->to('/');
+                } else {
+                    return redirect()->to($redirect_url);
+                }
+            }
+        }
+    }
+
     private function redirectForm($url, $data)
     {
 
