@@ -3447,6 +3447,17 @@
                 $(".meeting_time__date").text(`${departureDate.getFullYear()}-${month}-${day}(${dayOfWeek})`);
                 $("#meeting_date").val(`${departureDate.getFullYear()}-${month}-${day}`);
 
+                let returnDateVal = $("#return_date").val();
+                let returnDate = returnDateVal ? new Date(returnDateVal) : null;
+
+                if (returnDate < departureDate) {
+                    destinationDate = new Date(departureDate);
+                    const fullYear = departureDate.getFullYear();
+                    $("#return_date").val(`${fullYear}-${month}-${day}`);
+                    $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+                    $("#destination_date").datepicker('setDate', destinationDate);
+                }
+
                 $("#destination_date").datepicker('option', 'minDate', departureDate);
                 calculate_days(departureDate, destinationDate);
 
@@ -3454,7 +3465,7 @@
                 addFormReservation();
             },
             beforeShowDay: function(date) {
-                if (code_no != "5403" && destinationDate && date > destinationDate) {
+                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406" &&code_no != "" && destinationDate && date > destinationDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
@@ -3486,7 +3497,8 @@
                 if (date < today) {
                     return [false, 'ui-state-disabled'];
                 }
-                if (code_no != "5403" && departureDate && date < departureDate) {
+                if (code_no != "5403" && code_no != "5401" && code_no != "5402" && code_no != "5404" && code_no != "5405" && code_no != "5406" 
+                && departureDate && date < departureDate) {
                     return [false, 'ui-state-disabled'];
                 }
                 return [true, ''];
