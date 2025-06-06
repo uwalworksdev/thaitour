@@ -1645,7 +1645,7 @@ $(document).ready(function() {
 			<?php 
 			if (empty($hole_cnt_arr)) { 
 			?>
-                alert('홀 미등록 상품입니다\n다른 상품을 선택하세요.');
+                alert('홀 미등록 상품입니다. 다른 상품을 선택하세요.');
                 return false;
 			<?php	
             }
