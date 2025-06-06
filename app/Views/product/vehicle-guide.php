@@ -3475,7 +3475,7 @@
                 $("#destination_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
                 $("#return_date").val(`${destinationDate.getFullYear()}-${month}-${day}`);
 
-                $("#departure_date").datepicker('option', 'minDate', null);
+                $("#departure_date").datepicker('option', 'maxDate', null);
 
                 calculate_days(departureDate, destinationDate);
 
@@ -3483,6 +3483,9 @@
                 addFormReservation();
             },
             beforeShowDay: function(date) {
+                if (date < today) {
+                    return [false, 'ui-state-disabled'];
+                }
                 if (code_no != "5403" && departureDate && date < departureDate) {
                     return [false, 'ui-state-disabled'];
                 }
