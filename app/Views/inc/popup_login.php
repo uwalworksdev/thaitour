@@ -36,7 +36,6 @@
                     <!--                    </div>-->
 
                     <section class="login_cont">
-
                         <!-- 회원 -->
                         <div class="login_box on">
                             <form action="/member/login_check" method="post" name="loginForm2" id="loginFrm2"
@@ -295,8 +294,12 @@
       resp = resp.trim();
       if (resp === '2') {
         // 이미 가입된 유저
+		var returnUrl = $("#returnUrl").val();                               
+
         alert('이미 가입된 회원입니다.');
-        location.href = '/member/login_form';
+        window.location.href = returnUrl;
+
+        // location.href = '/member/login_form';
       } else {
         // 신규 가입 폼으로 이동
         $('#loginFrm2').attr('action', '/member/join_form').submit();
