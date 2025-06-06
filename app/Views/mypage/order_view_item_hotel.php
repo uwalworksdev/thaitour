@@ -132,7 +132,7 @@ $deli_types = get_deli_type();
 						<td class="subject">예약번호</td>
 						<td class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 					</tr>
@@ -140,12 +140,10 @@ $deli_types = get_deli_type();
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
+									<?= $adult ?>
 								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+									<?= $kids ?>
+								</span></span> 
 						</td>
 					</tr>
 					<tr>
