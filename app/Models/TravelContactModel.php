@@ -66,7 +66,8 @@ class TravelContactModel extends Model
         $builder = $this->db->table('tbl_travel_contact t')
                             ->select('t.idx, c.code_name, c.code_no, t.product_name, t.title, t.status, t.r_date')
                             ->join('tbl_code c', 't.travel_type_1 = c.code_no', 'left')
-                            ->where('t.reg_m_idx', $_SESSION['member']['mIdx']);
+                            ->where('t.reg_m_idx', $_SESSION['member']['mIdx'])
+                            ->groupBy('t.idx');
 
         $nTotalCount = $builder->countAllResults(false);
 
