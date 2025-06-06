@@ -177,7 +177,7 @@
             top: 2rem;
             width: 100%;
             text-align: left;
-            padding-left: 3rem;
+            padding-left: 1rem;
             font-size: 2.6rem;
             line-height: 1.5;
         }

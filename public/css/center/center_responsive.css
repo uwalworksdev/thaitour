@@ -268,6 +268,9 @@ and (orientation : landscape)
                     background: rgb(223, 243, 255);
                     color: rgb(85, 85, 85);
           }
+          .center_term_box{
+	margin-top: 8rem;
+          }
 }
 /* phone (landscape) END  */
 
