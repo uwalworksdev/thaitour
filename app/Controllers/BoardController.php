@@ -120,11 +120,13 @@ class BoardController extends BaseController
         $data['list_code2'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
         $data['list_code_faq'] = $this->codeModel->getCodesByGubunDepthAndStatus('faq', '2');
 
-        if($data['code'] == "tour" || $data['code'] == "infographics"){
+        if($data['code'] == "tour" || $data['code'] == "infographics" || $data['code'] == "trip"){
             if($data['code'] == "tour"){
                 $code_no = "6001";
-            }else{
+            }else if($data['code'] == "infographics"){
                 $code_no = "6002";
+            } else if($data['code'] == "trip"){
+                $code_no = "6003";
             }
             $data['code_list'] = $this->codeModel->getByParentCode($code_no)->getResultArray();
         }

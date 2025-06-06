@@ -234,6 +234,9 @@
                                         onclick="location.href='<?=$_url?>'">
                                     구글로그인
                                 </button>
+                                <button type="button" id="" class="another_btn apple" onclick="location.href='#!'">         
+                                    애플로 로그인
+                                </button>
                             </div>
 
                         </div>

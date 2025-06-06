@@ -95,7 +95,7 @@
                             <select name="category" class="input_select">
                                 <option value="">선택</option>
                                 <?php
-                                    if($code == "tour" || $code == "infographics") {
+                                    if($code == "tour" || $code == "infographics" || $code == "trip") {
                                 ?>       
                                     <?php foreach ($code_list as $frow): ?>
                                         <option value="<?= $frow['code_idx'] ?>" <?= $frow['code_idx'] == $scategory ? 'selected' : '' ?>>
