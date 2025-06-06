@@ -138,7 +138,7 @@ $deli_types = get_deli_type();
 						<td class="subject">예약번호</td>
 						<td class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 					</tr>
@@ -146,13 +146,13 @@ $deli_types = get_deli_type();
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>명 <?=number_format($people_adult_price)?>원<br>
+									<?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원<br>
 								</span></span> 
 							<span>아동: <span>
-									<?= $row["people_kids_cnt"] ?>명 <?=number_format($people_kids_price)?>원<br>
+									<?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원<br>
 								</span></span> 
 							<span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>명 <?=number_format($people_baby_price)?>원
+									<?= $people_baby_cnt ?>명 <?=number_format($people_baby_price)?>원
 								</span></span>
 						</td>
 					</tr>
