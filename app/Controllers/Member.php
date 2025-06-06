@@ -1012,9 +1012,6 @@ class Member extends BaseController
 
         $sns_key = $decoded['payload']['sub'];
 
-        var_dump($decoded['payload']['sub']);
-        die();
-
         $session->set('sns.gubun', 'apple');
 
         if ($mode == "false" || $mode == "mypage") {
@@ -1024,6 +1021,9 @@ class Member extends BaseController
             }
         } else {
             $existingMember = $this->member->getBySns($sns_key);
+
+            var_dump($existingMember);
+            die();
             if (!$existingMember) {
                 $session->set('sns.gubun', 'apple');
                 $session->set('apple.userEmail', $userEmail);
