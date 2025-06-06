@@ -2,6 +2,8 @@
 <?php $this->section('content'); ?>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/js/kakao.js"></script>
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+<script type="text/javascript" src="/js/apple.js"></script>
 
 <script>
 var id = "<?=session('member.id')?>";
@@ -79,7 +81,7 @@ $returnUrl = "";
                 <a href="<?= $_url ?>" id="customBtn" class="btn-default"><i></i> 구글 가입하기</a>
             </li>
             <li class="apple">
-                <a href="#!" id="" class="btn-default"><i></i> 애플 가입하기</a>
+                <a href="#!" onclick="signInWithApple();" id="" class="btn-default"><i></i> 애플 가입하기</a>
             </li>
         </ul>
     </div>

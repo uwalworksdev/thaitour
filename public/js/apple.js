@@ -14,10 +14,10 @@ function signInWithApple() {
         const { id_token } = response?.authorization || {};
         const { firstName, lastName } = name;
         
-        if(!firstName || !lastName) {
-            alert("이름은 찾을 수 없습니다. 다시 시도해주세요.");
-            return;
-        }
+        // if(!firstName || !lastName) {
+        //     alert("이름은 찾을 수 없습니다. 다시 시도해주세요.");
+        //     return;
+        // }
 
         document.getElementById("sns_key").value = id_token;
         document.getElementById("user_name").value = name;
