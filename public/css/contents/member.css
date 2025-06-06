@@ -1033,6 +1033,12 @@ form .form_list .ch_area [type="checkbox"]+label {
         margin: 10.0001rem 0 6rem;
     }
 
+    #popupLogin_ .sns_login_ttl {
+        margin: 6rem 0 5rem;
+        position: relative;
+        text-align: center;
+    }
+
     .sns_login_ttl span {
         padding: 0 4.0001rem;
         font-size: 2.6rem;
