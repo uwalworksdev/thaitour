@@ -281,9 +281,13 @@ $(document).ready(function() {
                         <div class="item-tag">
                             <span class="label">홀수</span>
                             <div class="tag-list">
+							    <?php if (!empty($hole_cnt_arr)) { ?>
                                 <?php foreach ($hole_cnt_arr as $hole) : ?>
                                     <span class="tag tag-js" data-tab="<?= $hole ?>"><?= $hole ?>홀</span>
                                 <?php endforeach; ?>
+								<?php } else { ?>
+								<span style="color:red;">홀 미등록</span>	
+								<?php } ?> 
                             </div>
                         </div>
                         <div class="item-tag new">
@@ -403,6 +407,7 @@ $(document).ready(function() {
                     <div class="box-selecter flex_b_c">
                         <div class="ic_item">
                             <div class="title first">주/야간 선택</div>
+							<?php if (!empty($hole_cnt_arr)) { ?>
                             <div class="body-box flex">
                                 <div class="box day_option day_option_first flex_1 active" data-type="day">
                                     <p>주간</p>
@@ -414,6 +419,7 @@ $(document).ready(function() {
                                     <p>야간</p>
                                 </div>
                             </div>
+							<?php } ?>
                         </div>
                         <div class="ic_item">
                             <div class="flex__c" style="width: 50%;">
