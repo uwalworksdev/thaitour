@@ -30,7 +30,7 @@
             width: 59rem !important;
         }
         .popup_wrap.reservation_pop .pop_box table tr {
-            display: inherit;
+            /* display: inherit; */
         }
     }
 

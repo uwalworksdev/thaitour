@@ -6595,7 +6595,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .popup_area_ {
     height: auto;
-    max-height: 90vh;
+    max-height: 80vh;
     overflow: auto;
     background-color: #FFFFFF;
     width: 100%;
@@ -6650,6 +6650,22 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-top: 12px;
     width: 100%;
     font-size: 18px;
+}
+
+#popupLogin_ .sup_button {
+    width: 49%;
+}
+
+
+#popupLogin_ .btn-wrap {
+    display: flex ;
+    justify-content: space-between;
+}
+
+#popupLogin_  .sns_login_ttl {
+    margin: 50px 0 40px;
+    position: relative;
+    text-align: center;
 }
 
 .item_login_ {

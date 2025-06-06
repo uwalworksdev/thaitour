@@ -1676,6 +1676,7 @@
 
     .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total {
         margin-right: auto;
+        padding-left: 6.105rem;
     }
 
     .booklist_wrap .booking_product .product_box .book_group_wrap .group_r .total p {
