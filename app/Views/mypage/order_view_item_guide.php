@@ -195,18 +195,18 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p>
 								<span>한국출발
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
+									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
 								</span>
 								<span>현지도착
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
+									<?= $away_arrive_date . "(" . dowYoil($away_arrive_date) . ")" ?>
 								</span>
 							</p>
 							<p>
 								<span>현지출발
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
+									<?= $away_depart_date . "(" . dowYoil($away_depart_date) . ")" ?>
 								</span>
 								<span>한국도착
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
+									<?= $home_arrive_date . "(" . dowYoil($home_arrive_date) . ")" ?>
 								</span>
 							</p>
 						</td>

@@ -157,45 +157,19 @@ $deli_types = get_deli_type();
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
-
+						<td class="subject">예약일자</td>
 
 						<td class="content">
-							<p>
-								<?= $start_date . "(" . dowYoil($start_date) . ") ~ " . DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								<em>
-									<?= $product_period ?>
-								</em>
-								</span>
-							</p>
+							<?= $order_date ?>
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">일정</td>
-
+						<td class="subject">투어일자</td>
 
 						<td class="content">
-							<p>
-								<span>한국출발
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-								<span>한국도착
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-							</p>
+							<span><?= $order_day ?></span>
 						</td>
 					</tr>
-					<tr>
-
-
 				</tbody>
 			</table>
 		</div>
@@ -538,7 +512,6 @@ $deli_types = get_deli_type();
 						<td col width="12%" class="subject">현지전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<td col width="15%" class="subject">여권번호</td>
-
 					</tr>
 					<tr>
 
@@ -562,19 +535,65 @@ $deli_types = get_deli_type();
 							<?= $order_user_email ?>
 						</td>
 
-
 						<td class="content">
 							<?=$order_passport_number ?>
 						</td>
-
-
-
 
 				</tbody>
 			</table>
 		</div>
 
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>예약자 정보</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">이름</td>
+						<td class="content">
+							<?= $order_user_name?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">생년월일</td>
+						<td class="content">
+							<?= $order_birth_date ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">휴대번호</td>
 
+						<td class="content">
+							<?= $order_user_mobile ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">현지전화번호</td>
+
+						<td class="content">
+							<?= $local_phone ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">이메일</td>
+
+						<td class="content">
+							<?= $order_user_email ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">여권번호</td>
+						<td class="content">
+							<?=$row_d['order_passport_number'] ?>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
 
 		<div class="invoice_table">
 			<h2>요청사항</h2>

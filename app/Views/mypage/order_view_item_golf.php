@@ -137,44 +137,33 @@ $deli_types = get_deli_type();
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
+						<td class="subject">예약일자</td>
+
+
+						<td class="content">
+							<span>
+								<?= $order_date ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">라운딩 일자</td>
+
+
+						<td class="content">
+							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">예약정보</td>
 
 
 						<td class="content">
 							<p>
-								<?= $start_date . "(" . dowYoil($start_date) . ") ~ " . DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								<em>
-									<?= $product_period ?>
-								</em>
-								</span>
+								<span><?=$option['option_name']?></span> 
 							</p>
 						</td>
 					</tr>
-					<tr>
-						<td class="subject">일정</td>
-
-
-						<td class="content">
-							<p>
-								<span>한국출발
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-								<span>한국도착
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-							</p>
-						</td>
-					</tr>
-					<tr>
-
 
 				</tbody>
 			</table>

@@ -137,7 +137,7 @@ $deli_types = get_deli_type();
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행인원</td>
+						<td class="subject">숙박인원</td>
 						<td class="content">
 							<span>성인: <span>
 									<?= $adult ?>
@@ -147,43 +147,45 @@ $deli_types = get_deli_type();
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
+						<td class="subject">예약일자</td>
+
+						<td class="content">
+							<span>
+								<?= $order_date ?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">숙박기간</td>
 
 
 						<td class="content">
 							<p>
-								<?= $start_date . "(" . dowYoil($start_date) . ") ~ " . DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
+								<span>
+									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
+								</span>
+								<span>
+									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
+								</span>
 								<em>
-									<?= $product_period ?>
+									<?= $order_day_cnt ?>박
 								</em>
-								</span>
 							</p>
+							
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">일정</td>
+						<td class="subject">룸타입/프로모션</td>
 
 
 						<td class="content">
 							<p>
-								<span>한국출발
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
+								<span><?=$room?></span> /
+								<span><?=$room_type?><br>[침대타입: <?=$bed_type?>]</span>
 							</p>
-							<p>
-								<span>현지출발
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-								<span>한국도착
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-							</p>
+							
 						</td>
 					</tr>
-					<tr>
 
 
 				</tbody>
@@ -566,11 +568,12 @@ $deli_types = get_deli_type();
 
 
 						<td class="content">
-							<?=$order_passport_number ?>
+							<?=$row_d['order_passport_number'] ?>
 						</td>
 				</tbody>
 			</table>
 		</div>
+		
 
 		<!-- 예약자 정보 모바일 -->
 		<div class="invoice_table invoice_table_new only_mo">
@@ -613,7 +616,7 @@ $deli_types = get_deli_type();
 
 					<tr>
 						<td class="subject">여권번호</td>
-						<td class="content"><?=$order_passport_number ?></td>
+						<td class="content"><?=$row_d['order_passport_number'] ?></td>
 					</tr>
 				</tbody>
 			</table>

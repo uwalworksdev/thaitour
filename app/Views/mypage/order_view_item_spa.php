@@ -266,20 +266,20 @@ $deli_types = get_deli_type();
 					</tr>
 					
 					<?php
-					    foreach ($option_order as $row)  
+					    foreach ($option_order as $row_o)  
 						{
-							 if($row['option_type'] == "main") {
-								$option_price = $row['option_tot'] / $row['option_cnt'];
+							 if($row_o['option_type'] == "main") {
+								$option_price = $row_o['option_tot'] / $row_o['option_cnt'];
 							 } else	{
-								$option_price = $row['option_price'];
+								$option_price = $row_o['option_price'];
 							 }	
 							 
 					?>		
 							<tr>
-								<td class="content"><?=$row['option_name']?></td>
+								<td class="content"><?=$row_o['option_name']?></td>
 								<td class="content"><?=number_format($option_price)?></td>
-								<td class="content"><?=number_format($row['option_cnt'])?></td>
-								<td class="content"><?=number_format($row['option_tot'])?></td>
+								<td class="content"><?=number_format($row_o['option_cnt'])?></td>
+								<td class="content"><?=number_format($row_o['option_tot'])?></td>
 							</tr>
 					<?php
 						}
@@ -498,6 +498,152 @@ $deli_types = get_deli_type();
 			</table>
 		</div>
 
+		<!-- <div class="invoice_table invoice_table_new only_mo">
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<?php if ($row["order_status"] == "W") { ?>
+						<tr>
+							<td></td>
+							<td class="content">예약 준비중</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "C") { ?>
+						<tr>
+							<td></td>
+							<td class="content">예약 취소</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
+						<tr>
+							<td class="subject">예약상태</td>
+
+							<td class="content">
+								선금
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제상태</td>
+
+							<td class="content">
+								선금 입금대기
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제방법</td>
+
+							<td class="content">
+								<?= $row['deposit_method'] ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제금액</td>
+
+							<td class="content">
+								<?= number_format($row['deposit_price']) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제일</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+
+						<tr>
+							<td class="content ">
+								<?php if ($row['deposit_method'] == "") { ?>
+									잔금
+								<?php } ?>
+							</td>
+							<td class="content link">
+								<?php if ($row['deposit_method'] == "") { ?>
+									준비중
+								<?php } ?>
+							</td>
+						</tr>
+
+					<?php } ?>
+
+					<?php if ($row["order_status"] == "R") { ?>
+						<tr>
+							<td col width="8%" class="content">
+								선금
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									결제완료
+								<?php } else { ?>
+									<?= $row['ResultMsg_1'] ?>
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_method'] ?>
+								<?php } else { ?>
+									신용카드
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php } else { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php }
+								?>
+							</td>
+
+							<td class="content link">
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_date'] ?>
+								<?php } else { ?>
+									<?= date($row['order_confirm_date']); ?>
+								<?php } ?>
+							</td>
+						</tr>
+						<tr>
+							<td col width="8%" class="content">
+								잔금
+							</td>
+
+							<td class="content">
+								잔금 입금 대기
+							</td>
+
+							<td class="content">
+								<?= $row['confirm_method'] ?>
+							</td>
+
+							<td class="content">
+								<?= number_format($row['order_confirm_price']) ?>원
+							</td>
+
+							<td class="content">
+							</td>
+						</tr>
+					<?php } ?>
+					
+				</tbody>
+			</table>
+		</div> -->
+
 		<section class="earn_pops my_pops" style="display:none;">
 			<div class="pay_pops_inner pay_count02" style="display:none;">
 				<div class="pay_h">
@@ -561,13 +707,62 @@ $deli_types = get_deli_type();
 							<?=$row_d['order_passport_number'] ?>
 						</td>
 
-
-
-
 				</tbody>
 			</table>
 		</div>
 
+
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>예약자 정보</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">이름</td>
+						<td class="content">
+							<?= $order_user_name?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">생년월일</td>
+						<td class="content">
+							<?= $order_birth_date ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">휴대번호</td>
+
+						<td class="content">
+							<?= $order_user_mobile ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">현지전화번호</td>
+
+						<td class="content">
+							<?= $local_phone ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">이메일</td>
+
+						<td class="content">
+							<?= $order_user_email ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">여권번호</td>
+						<td class="content">
+							<?=$row_d['order_passport_number'] ?>
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
 
 
 		<div class="invoice_table">
