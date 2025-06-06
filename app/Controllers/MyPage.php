@@ -233,6 +233,7 @@ public function reservationList() {
     // ===== view 전달 =====
     return view('mypage/reservation_list', [
         'pg'            => $pg,
+        'nTotalCount'   => $totalGroups,
         'nPage'         => $nPage,
         'g_list_rows'   => $perPage,
         'groupedOrders' => $groupedOrders,
