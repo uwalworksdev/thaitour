@@ -239,6 +239,12 @@ class AdminMenus extends BaseConfig
                     'url' => ['/AdmMaster/_bbs/board_list?code=infographics'],
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
+                [
+                    'name' => '추천여행',
+                    'code' => 'D6',
+                    'url' => ['/AdmMaster/_bbs/board_list?code=trip'],
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
+                ],
             ]
         ],
         [
