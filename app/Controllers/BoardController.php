@@ -50,7 +50,7 @@ class BoardController extends BaseController
 
         $pg = $this->request->getGet('pg') ?? 1;
 
-        if($code == "tour" || $code == "infographics") {
+        if($code == "tour" || $code == "infographics" || $code == "trip") {
             $builder = $this->bbsModel->ListByCode($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory]);
         }else {
             $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory, 'type' => $type]);
@@ -86,11 +86,13 @@ class BoardController extends BaseController
             'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code, $type),
         ];
 
-        if($code == "tour" || $code == "infographics"){
+        if($code == "tour" || $code == "infographics" || $code=="trip"){
             if($code == "tour"){
                 $code_no = "6001";
-            }else{
+            }else if($code == "infographics"){
                 $code_no = "6002";
+            } else if($code == "trip"){
+                $code_no = "6003";
             }
             $data['code_list'] = $this->codeModel->getByParentCode($code_no)->getResultArray();
         }
