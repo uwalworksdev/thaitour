@@ -7,6 +7,8 @@ $naver = session('naver') ?? [];
 $google = session('google') ?? [];
 $facebook = session('facebook') ?? [];
 $kakao = session('kakao') ?? [];
+$apple = session('apple') ?? [];
+
 $member = session('member') ?? [];
 $sns_gubun = $sns['gubun'] ?? '';
 $user_name = $sns_name ?? "";
@@ -27,6 +29,10 @@ if ($sns_gubun == "naver") {
     $gubun = $sns_gubun;
     $userEmail = updateSQ($_POST["userEmail"] ?? "");
     $sns_key = $kakao['sns_key'];
+} else if ($sns_gubun == "apple") {
+    $gubun = $sns_gubun;
+    $userEmail = updateSQ($_POST["userEmail"] ?? "");
+    $sns_key = $apple['sns_key'];
 } else {
     $gubun = $s_gubun ?? "";
     $userEmail = $s_email ?? "";
