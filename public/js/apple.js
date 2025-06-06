@@ -1,5 +1,5 @@
 AppleID.auth.init({
-    clientId: "thetourlab.com",
+    clientId: 'thetourlab.com',
     scope: 'name email',
     redirectURI: window.location.origin,
     state: Date.now().toString(),
