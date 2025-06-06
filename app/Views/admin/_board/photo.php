@@ -57,7 +57,7 @@
                     </p>
                 </a>
                 <?php
-                    if($code != "infographics" && $code != "tour"){
+                    if($code != "infographics" && $code != "tour" && $code != "trip"){
                 ?>
                     <input type="text" name="onum[]" value="<?= $row['onum'] ?>" style="width:60px;"/>
                 <?php

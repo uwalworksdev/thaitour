@@ -338,6 +338,35 @@ $infographics['titles'][5]        = "이미지첨부";
 $infographics['names'][5]         = "ufile1";
 $infographics['inputTypes'][5]    = "files";
 
+//trip
+
+$trip["titles"][0]        = "구분";
+$trip["names"][0]         = "category";
+$trip["inputTypes"][0]    = "select";
+$trip["widths"][0]        = "150px";
+
+$trip['titles'][1]        = "작성자";
+$trip['names'][1]         = "writer";
+$trip['inputTypes'][1]    = "text";
+$trip['widths'][1]        = "150px";
+
+$trip['titles'][2]        = "조회";
+$trip['names'][2]         = "hit";
+$trip['inputTypes'][2]    = "text";
+$trip['widths'][2]        = "150px";
+
+$trip['titles'][3]        = "제목";
+$trip['names'][3]         = "subject";
+$trip['inputTypes'][3]    = "text";
+$trip['widths'][3]        = "100%";
+
+$trip['titles'][4]        = "내용";
+$trip['names'][4]         = "contents";
+$trip['inputTypes'][4]    = "summernote";
+
+$trip['titles'][5]        = "이미지첨부";
+$trip['names'][5]         = "ufile1";
+$trip['inputTypes'][5]    = "files";
 define("BBS_WRITE_CONFIG", [
     "b2b_notice"    => $b2b_notice,
     "faq"           => $faq,
@@ -347,7 +376,8 @@ define("BBS_WRITE_CONFIG", [
     'magazines'     => $magazines,
     'time_sale'     => $time_sale,
     'tour'          => $tour,
-    'infographics'  => $infographics
+    'infographics'  => $infographics,
+    'trip'  => $trip,
 ]);
 
 $b2b_notice_list['skin'] = "list";
@@ -469,6 +499,34 @@ $tour_list['titles'][5] = "등록일";
 $tour_list['names'][5] = "r_date";
 $tour_list['widths'][5] = "15%";
 
+//trip
+$trip_list['skin'] = "list";
+
+$trip_list['titles'][0] = "구분";
+$trip_list['names'][0] = "category_code_name";
+$trip_list['widths'][0] = "8%";
+
+$trip_list['titles'][1] = "썸네일이미지";
+$trip_list['names'][1] = "ufile1";
+$trip_list["showTypes"][1] = "image";
+$trip_list['widths'][1] = "10%";
+
+$trip_list['titles'][2] = "제목";
+$trip_list['names'][2] = "subject";
+$trip_list['widths'][2] = "*";
+
+$trip_list['titles'][3] = "작성자";
+$trip_list['names'][3] = "writer";
+$trip_list['widths'][3] = "10%";
+
+$trip_list['titles'][4] = "조회";
+$trip_list['names'][4] = "hit";
+$trip_list['widths'][4] = "7%";
+
+$trip_list['titles'][5] = "등록일";
+$trip_list['names'][5] = "r_date";
+$trip_list['widths'][5] = "15%";
+
 //infographics
 $infographics_list['skin'] = "photo";
 
@@ -486,6 +544,7 @@ define("BBS_LIST_CONFIG", [
     'magazines' => $magazines_list,
     'time_sale' => $time_sale_list,
     'tour' => $tour_list,
+    'trip' => $trip_list,
     'infographics' => $infographics_list
 ]);
 

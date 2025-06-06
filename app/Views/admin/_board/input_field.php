@@ -45,7 +45,7 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
  
         <?php if($name == "category") { ?>
       
-            <?php if($code != "faq" && $code != "tour" && $code != "infographics"){ ?>
+            <?php if($code != "faq" && $code != "tour" && $code != "infographics" && $code != "trip"){ ?>
 
                 <?php foreach ($list_category as $frow) { ?>
                     <option value="<?= $frow["tbc_idx"] ?>" <?= ($frow["tbc_idx"] == $info[$name]) ? "selected" : ""?> >
