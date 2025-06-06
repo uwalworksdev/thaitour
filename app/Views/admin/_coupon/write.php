@@ -331,7 +331,8 @@
                                             <?php
                                                 $i = 2;
                                                 foreach ($img_list as $img) :
-                                                    $s_img = get_img($img["ufile"], "/data/coupon/", "600", "440");
+                                                    // $s_img = get_img($img["ufile"], "/data/coupon/", "600", "440");
+                                                    $s_img = "/data/coupon/" . $img["ufile"];
                                             ?>
                                             <div class="file_input_wrap">
                                                 <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
