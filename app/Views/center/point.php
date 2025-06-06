@@ -208,7 +208,7 @@
         .point_system .wraper_content {
             background-color: #fff;
             border-radius: 1rem;
-            padding: 8.4rem 2rem;
+            padding: 8.4rem 0rem;
         }
         .point_system ._table .box_coin .coin_item .coin_item_top p._ttl{
             color: #2a459f;
