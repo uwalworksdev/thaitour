@@ -44,7 +44,7 @@
 									<col width="*">
 								</colgroup>
 								<tbody>
-									<!-- <tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>> -->
+									<!-- <tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google" || $member["gubun"] == "apple") {echo "style='display:none'";} ?>> -->
 									<tr>
 										<th><p>아이디</p></th>
 										<td colspan="3"><p class="no_write"><?=$member["user_id"]?></p></td>
@@ -70,7 +70,7 @@
 										</div>
 										</td>
 									</tr>
-									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google" || $member["gubun"] == "apple") {echo "style='display:none'";} ?>>
 										<th><p>신규 비밀번호</p></th>
 										<td colspan="3" class="wrap_pass">
 											<input type="password" class="pass_input" name="user_pw" maxlength="20">
@@ -80,7 +80,7 @@
 											</p> -->
 										</td>
 									</tr>
-									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google" || $member["gubun"] == "apple") {echo "style='display:none'";} ?>>
 										<th><p class="pass_confirm">신규 비밀번호 확인</p></th>
 										<td colspan="3">
 											<input type="password" class="pass_input" name="user_pw2" maxlength="20">
