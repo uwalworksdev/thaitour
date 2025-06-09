@@ -183,7 +183,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											<div class="apple">
 												<a href="<?= $_url ?>" style="width: 280px;" id="customBtn" class="btn-default">
 													<i></i>
-													구글 가입하기
+													애플 가입하기
 												</a>
 											</div>
 										</div>
