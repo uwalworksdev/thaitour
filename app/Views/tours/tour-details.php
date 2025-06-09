@@ -416,7 +416,7 @@
                                     <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
                                         <div class="quantity-container adult">
                                             <div class="quantity-info-con">
-                                                <span class="des">성인, Adult (키 120cm 이상1)</span>
+                                                <span class="des">성인, Adult (키 120cm 이상)</span>
                                                 <div class="quantity-info">
                                                     <span class="price" data-price="<?= $tour['price_won'] ?>"><?= number_format($tour['price_won']) ?>원</span>
                                                     <span class="currency" data-price-baht="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>바트</span>
