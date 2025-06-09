@@ -13,6 +13,9 @@ $member = session('member') ?? [];
 $sns_gubun = $sns['gubun'] ?? '';
 $user_name = $sns_name ?? "";
 
+var_dump($sns_gubun);
+die();
+
 if ($sns_gubun == "naver") {
     $gubun = $sns_gubun;
     $userEmail = $naver['userEmail'];
