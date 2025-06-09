@@ -227,7 +227,7 @@
                                 <button type="button" class="another_btn naver" onclick="fnNaverLogin2();">
                                     네이버로그인
                                 </button>
-                                <button type="button" class="another_btn kakao" onclick="loginWithKakao()">
+                                <button type="button" class="another_btn kakao" onclick="loginWithKakaoPop()">
                                     카카오로그인
                                 </button>
                                 <button type="button" id="customBtn" class="another_btn google"
@@ -255,7 +255,7 @@
 </script>
 
 <script>
-  function loginWithKakao() {
+  function loginWithKakaoPop() {
     Kakao.Auth.login({
       success: function(authObj) {
         // 사용자 정보 요청
@@ -351,14 +351,6 @@
         } else {
             handleSupLogin();
         }
-    }
-
-    function submitNoMember() {
-
-    }
-
-    function login_nomember_login() {
-
     }
 
     function login_it2() {
