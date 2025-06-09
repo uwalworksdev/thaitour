@@ -39,8 +39,8 @@ function loginWithKakao() {
                                     document.getElementById("userEmail").value = email;
                                     document.getElementById("gubun").value = 'kakao';
                                     var form = document.loginForm;
-                                    form.action = "/member/join_form";
-                                    form.submit();
+                                    // form.action = "/member/join_form";
+                                    // form.submit();
                                 }
                             } else if (mode == "mypage") {
                                 if (response.trim() == "2") {
@@ -48,7 +48,7 @@ function loginWithKakao() {
                                     document.getElementById("sns_key").value = sns_key;
                                     //var form=document.loginForm;
                                     //form.action="/mypage/mypage_user_info.php";
-                                    $("#loginForm").submit();
+                                    // $("#loginForm").submit();
 
                                 } else {
 
@@ -57,8 +57,8 @@ function loginWithKakao() {
                                     document.getElementById("userEmail").value = email;
                                     document.getElementById("gubun").value = 'kakao';
                                     var form = document.loginForm;
-                                    form.action = "/member/join_form";
-                                    form.submit();
+                                    // form.action = "/member/join_form";
+                                    // form.submit();
                                 }
                             } else {
                                 //카카오 로그인 접근 시 
@@ -71,7 +71,7 @@ function loginWithKakao() {
                                     document.getElementById("user_name").value = name;
                                     document.getElementById("userEmail").value = email ?? "";
                                     document.getElementById("gubun").value = 'kakao';
-                                    $("#loginFrm").attr("action", "/member/join_form").submit();
+                                    // $("#loginFrm").attr("action", "/member/join_form").submit();
                                 }
 
                             }
