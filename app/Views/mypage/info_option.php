@@ -177,7 +177,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 									<div class='another_login join' style="margin:0;justify-content:unset;">
 										<div class="join_list">
 											<div class="apple">
-												<a href="<?= $_url ?>" style="width: 280px;" id="customBtn" class="btn-default">
+												<a href="javascript:signInWithApple();" style="width: 280px;" id="customBtn" class="btn-default">
 													<i></i>
 													애플 가입하기
 												</a>
