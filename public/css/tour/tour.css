@@ -1414,6 +1414,10 @@
     border-color: var(--bs-point);
 }
 
+.content-sub-hotel-detail span {
+    font-family: "Pretendard" !important;
+}
+
 .content-sub-hotel-detail .title-container {
     margin-top: 32px;
     display: flex;
@@ -2162,6 +2166,10 @@
 
 .content-sub-hotel-detail .section4 {
     margin: 64px 0 32px;
+}
+
+.content-sub-hotel-detail .section4 span {
+    font-family: "Pretendard" !important;
 }
 
 .content-sub-hotel-detail .section5 .title-sec5 {
@@ -3749,6 +3757,10 @@
     gap: 12px;
 }
 
+.custom-golf-detail .content-custom-table .description span {
+    font-family: "Pretendard" !important;
+}
+
 .content-custom-table {
     padding: 0 50px;
     border: 1px solid #ccc;
@@ -4361,6 +4373,10 @@
 
 .custom-golf-detail .container-big-text {
     line-height: 1.3rem;
+}
+
+.custom-golf-detail .container-big-text span {
+    font-family: "Pretendard" !important;
 }
 
 .custom-golf-detail .container-big-text .sub-title-18 {
