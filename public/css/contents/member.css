@@ -254,10 +254,11 @@
     height: 32px;
     background-image: url(/images/ico/join_google_ico.png);
 }
+
 .join .join_list .apple a i {
     width: 31px;
     height: 32px;
-    background-image: url(/img/sub/ic-apple.png);
+    background-image: url(/img/sub/app-ic.png);
 }
 
 .join_step {
