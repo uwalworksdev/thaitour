@@ -19,8 +19,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
 
-<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-<script type="text/javascript" src="/js/apple.js"></script>
 <style>
 	.mypage_container .slide_tab .slide_tab_btn {
 		height: 3.0769rem;

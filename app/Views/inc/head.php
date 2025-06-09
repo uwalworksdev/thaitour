@@ -44,6 +44,10 @@
     <script src="/lib/slick/slick.min.js"></script>
     <script src="/lib/summernote/summernote-lite.js"></script>
     <script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
+
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+    <script type="text/javascript" src="/js/apple.js"></script>
+    
     <title><?= $setting['site_name'] ?></title>
     <script>
         var kakao_key = '<?=env("KAKAO_KEY")?>';

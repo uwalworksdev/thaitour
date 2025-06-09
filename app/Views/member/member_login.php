@@ -3,8 +3,6 @@
 <!-- 구글로그인버튼 -->
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-<script type="text/javascript" src="/js/apple.js"></script>
 
 <!-- 구글로그인버튼 -->
 

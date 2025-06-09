@@ -5,8 +5,6 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!--<script type="text/javascript" src="/js/kakao.js"></script>-->
 
-<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-
 <div class="popup_" id="popupLogin_">
     <div class="popup_area_">
         <div class="popup_top_">
@@ -234,7 +232,7 @@
                                         onclick="location.href='<?=$_url?>'">
                                     구글로그인
                                 </button>
-                                <button type="button" id="" class="another_btn apple" onclick="signInWithApple();">         
+                                <button type="button" id="" class="another_btn apple" onclick="signInWithApplePop();">         
                                     애플로 로그인
                                 </button>
                             </div>
@@ -455,16 +453,8 @@
 </script>
 
 <script>
-    AppleID.auth.init({
-        clientId: 'com.thetourlab.webapp',
-        scope: 'name email',
-        redirectURI: window.location.origin,
-        state: Date.now().toString(),
-        usePopup: true
-    });
 
-
-    function signInWithApple() {
+    function signInWithApplePop() {
         AppleID.auth.signIn().then(response => {
             console.log(response);
             const { name = {}, email } = response?.user || {};

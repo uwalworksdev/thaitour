@@ -2,8 +2,6 @@
 <?php $this->section('content'); ?>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/js/kakao.js"></script>
-<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
-<script type="text/javascript" src="/js/apple.js"></script>
 
 <script>
 var id = "<?=session('member.id')?>";
