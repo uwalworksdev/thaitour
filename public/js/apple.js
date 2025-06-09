@@ -17,10 +17,7 @@ function signInWithApple() {
         // if(!firstName || !lastName) {
         //     alert("이름은 찾을 수 없습니다. 다시 시도해주세요.");
         //     return;
-        // }
-
-        console.log(id_token);
-        
+        // }        
 
         // document.getElementById("sns_key").value = id_token;
         // document.getElementById("user_name").value = name;
