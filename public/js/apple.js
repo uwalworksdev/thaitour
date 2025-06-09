@@ -19,13 +19,13 @@ function signInWithApple() {
         //     return;
         // }        
 
-        // document.getElementById("sns_key").value = id_token;
-        // document.getElementById("user_name").value = name;
-        // document.getElementById("userEmail").value = email;
-        // document.getElementById("gubun").value = 'apple';
-        // var form = document.loginForm;
-        // form.action = "/member/apple_login";
-        // form.submit();
+        document.getElementById("sns_key").value = id_token;
+        document.getElementById("user_name").value = name;
+        document.getElementById("userEmail").value = email;
+        document.getElementById("gubun").value = 'apple';
+        var form = document.loginForm;
+        form.action = "/member/apple_login";
+        form.submit();
 
     }).catch(error => {
         console.error('Error signing in with Apple:', error);
