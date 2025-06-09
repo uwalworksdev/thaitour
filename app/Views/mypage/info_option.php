@@ -18,6 +18,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/member/kakao.js"></script>
+
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+<script type="text/javascript" src="/js/apple.js"></script>
 <style>
 	.mypage_container .slide_tab .slide_tab_btn {
 		height: 3.0769rem;
@@ -124,7 +127,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 												<img src="/img/login/new_naver_btn.png" alt="네이버로그인" class="only_web">
 											</button>
 										</a>
-										<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+										<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver' || $gubun == 'apple')
 											echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 										</div>
 									</div>
@@ -136,7 +139,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											onclick="loginWithKakao()">
 											<img src="/img/login/new_kakao_btn.png" alt="카카오로그인" class="only_web">
 										</button>
-									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver' || $gubun == 'apple')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 										</div>
 								<?php
@@ -165,12 +168,28 @@ if ($_SESSION["member"]["mIdx"] == "") {
 												</div>
 											</div>
 
-									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver')
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver' || $gubun == 'apple')
 										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
 									</div>
 								<?php
+							} else if ($gubun == 'apple') {
+								?>
+									
+								<?php
 							} else {
 								?>
+								<div class='another_login join' style="margin:0;justify-content:unset;">
+										<div class="join_list">
+											<div class="apple">
+												<a href="<?= $_url ?>" style="width: 280px;" id="customBtn" class="btn-default">
+													<i></i>
+													구글 가입하기
+												</a>
+											</div>
+										</div>
+									<?php if ($gubun == "kakao" || $gubun == 'google' || $gubun == 'naver' || $gubun == 'apple')
+										echo "연결해제를 원하실경우 SNS 해당 계정에서 연결해제를 하시면 됩니다." ?>
+									</div>
 										<fieldset>
 											<legend>회원 정보 수정</legend>
 											<table>
