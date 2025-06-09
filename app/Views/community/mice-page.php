@@ -233,13 +233,13 @@
             background-color: rgb(243, 247, 250);
         }
 
-        .section_5 .contact {
+        .custom.contact {
             gap: 10px;
             margin-top: 80px;
             margin-bottom: 120px;
         }
 
-        .section_5 .contact button:first-child {
+        .custom.contact button:first-child {
             width: 273px;
             height: 66px;
             border-radius: 4px;
@@ -250,8 +250,8 @@
             line-height: 26px;
         }
 
-        .section_5 .contact button:nth-child(2),
-        .section_5 .contact button.contact_11 {
+        .custom.contact button:nth-child(2),
+        .custom.contact button.contact_11 {
             width: 273px;
             height: 66px;
             border-radius: 4px;
@@ -557,13 +557,13 @@
                 /* text-align: center; */
             }
 
-            .section_5 .contact {
+            .custom.contact {
                 gap: 0.769rem;
                 margin-top: 7.077rem;
                 margin-bottom: 10.615rem;
             }
 
-            .section_5 .contact button:first-child {
+            .custom.contact button:first-child {
                 width: 100%;
                 height: 3.462rem;
                 border-radius: 4px;
@@ -588,8 +588,8 @@
                 right: 0;
             }
 
-            .section_5 .contact button:nth-child(2),
-            .section_5 .contact button.contact_11 {
+            .custom.contact button:nth-child(2),
+            .custom.contact button.contact_11 {
                 width: 100%;
                 height: 7.462rem;
                 border-radius: 4px;
@@ -666,6 +666,10 @@
                         <img class="only_mo" src="/img/sub/group_section_2_icon1_m.png" alt="">
                         <img class="only_mo" src="/img/sub/group_section_2_icon2_m.png" alt="">
                         <img class="only_mo" src="/img/sub/group_section_2_icon3_m.png" alt="">
+                    </div>
+                    <div class="custom contact flex_c_c">
+                        <!-- <button>취소하기</button> -->
+                        <button class="contact_11" onclick="location='/qna/list'">1:1 여행상담</button>
                     </div>
                 </div>
             </div>
@@ -1020,7 +1024,7 @@
                     </div>
                   </div>
                 </div> -->
-                <div class="contact flex_c_c">
+                <div class="custom contact flex_c_c">
                     <!-- <button>취소하기</button> -->
                     <button class="contact_11" onclick="location='/qna/list'">1:1 여행상담</button>
                 </div>
