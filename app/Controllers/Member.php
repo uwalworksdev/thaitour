@@ -1012,9 +1012,6 @@ class Member extends BaseController
 
         $sns_key = $decoded['payload']['sub'];
 
-        var_dump($decoded['payload']['sub']);
-        die();
-
         $session->set('sns.gubun', 'apple');
 
         if ($mode == "false" || $mode == "mypage") {
