@@ -958,7 +958,7 @@
                 const calendarTabElement = '#calendar_tab_' + idx;
 
                 let price_ = $(".calendar_header[data-num='" + idx + "']").find(".guide_price_won").val();
-                let price_w = (Number(price_) / 10000).toFixed(2);
+                let price_w = (Number(price_) / 10000).toFixed(1);
 
                 if (!previousStart[idx] || !previousEnd[idx]) {
                     previousStart[idx] = moment();

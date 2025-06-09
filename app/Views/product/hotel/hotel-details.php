@@ -2631,7 +2631,7 @@
         <div class="dim"></div>
     </div>
 
-    <div class="popup_wrap place_pop cart_info_pop">
+    <div class="popup_wrap place_pop cart_info_pop" data-element="">
         <div class="pop_box">
             <button type="button" class="close" onclick="closePopup()"></button>
             <div class="pop_body">
@@ -2681,6 +2681,8 @@
     <script>
         $(".btn_add_cart").on("click", function () {
             let additional_request = "";
+            let element = $(".cart_info_pop").data("element");
+
             $("input[name=inp_code_additional_request]:checked").each(function () {
                 additional_request += $(this).val() + '|';
             });
@@ -2690,22 +2692,19 @@
             let date_check_in  = $("#input_day_start_").val();
             let date_check_out = $("#input_day_end_").val();
 
-            var idx = $(this).data('idx');
-            let checkedValue = $(".sel_"+idx+":checked").val();
-
 			let coupon_discount = $("#coupon_discount").val();
             let coupon_type     = $("#coupon_type").val();
             let use_coupon_room = $("#use_coupon_room").val();
             let used_op_type    = $("#use_op_type").val();
             let use_coupon_idx  = $("#use_coupon_idx").val();
             let room_op_idx     = $("#room_op_idx").val();
-            let ho_idx          = $(this).closest(".room_op_").data("ho_idx");
-            let optype          = $(this).closest(".room_op_").data("optype");
+            let ho_idx          = $(element).closest(".room_op_").data("ho_idx");
+            let optype          = $(element).closest(".room_op_").data("optype");
             let number_room     = $("#room_qty").val();
             let number_day      = $("#day_qty").val();
             let last_price      = $("#total_last_price").val();
             let product_idx     = $("#product_idx").val();
-            let inital_price    = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
+            let inital_price    = $(element).closest(".room_op_").find(".totalPrice").attr("data-price");
 
 			let price           = $("#price").val();
 			let price_won       = $("#price_won").val();
@@ -2724,8 +2723,8 @@
 
             let room_op_price_sale = 0;
 
-            if ($(this).closest(".room_op_").find(".room_price_day_sale").length > 0) {
-                room_op_price_sale = Number($(this).closest(".room_op_").find(".room_price_day_sale").attr("data-price"));
+            if ($(element).closest(".room_op_").find(".room_price_day_sale").length > 0) {
+                room_op_price_sale = Number($(element).closest(".room_op_").find(".room_price_day_sale").attr("data-price"));
             }
 
             let used_coupon_money = 0;
@@ -2741,42 +2740,6 @@
             let start_day          = $('#input_day_start_').val();
             let end_day            = $('#input_day_end_').val();
             let total_last_price   = $("#total_last_price").val();
-			
-            // let data = {
-            //     order_status      : 'B',
-            //     product_idx       : product_idx,
-            //     room_op_idx       : room_op_idx,
-			//     price             : price,
-			//     price_won         : price_won,
-			//     rooms_idx         : rooms_idx,
-			// 	room              : room,	
-			//     room_type         : room_type,
-            //     bed_type          : bed_type,
-			// 	date_price        : date_price,
-			// 	breakfast         : breakfast,	
-			// 	adult             : adult,	
-			// 	kids              : kids,	
-			// 	total_last_price  : total_last_price,	
-			// 	extra_won         : extra_won,
-			//     extra_bath        : extra_bath,
-            //     ho_idx            : ho_idx,
-            //     optype            : optype,
-            //     use_coupon_idx    : use_coupon_idx,
-            //     used_coupon_money : used_coupon_money,
-            //     use_coupon_room   : use_coupon_room,
-            //     use_op_type       : use_op_type,
-            //     room_op_price_sale: room_op_price_sale,
-            //     inital_price      : inital_price,
-            //     coupon_discount   : coupon_discount,
-            //     coupon_type       : coupon_type,
-            //     last_price        : last_price,
-            //     number_room       : number_room,
-            //     number_day        : number_day,
-            //     start_day         : start_day,
-            //     end_day           : end_day,
-            //     order_memo        : order_memo,
-            //     additional_request: additional_request,
-            // };
 
             let formData = new FormData();
             formData.append("order_status", "B");
@@ -2808,10 +2771,11 @@
             formData.append("last_price", last_price);
             formData.append("number_room", number_room);
             formData.append("number_day", number_day);
-            formData.append("start_day", start_day);
-            formData.append("end_day", end_day);
+            formData.append("start_date", start_day);
+            formData.append("end_date", end_day);
             formData.append("order_memo", order_memo);
             formData.append("additional_request", additional_request);
+        
             
             $.ajax({
                 url: "/product-hotel/reservation-form-insert",
@@ -3121,6 +3085,7 @@
                 return false;
             }
 
+            $(".cart_info_pop").data("element", $(this));
             $(".cart_info_pop").show();
         })
 

@@ -25,6 +25,10 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->get("main", "StatisticsController::main");
     $routes->get("main_backup", "StatisticsController::main_backup");
 
+    $routes->group("_theme", static function ($routes) {
+        $routes->get("list", "ThemeController::list");
+    });
+
     $routes->group("_review", static function ($routes) {
         $routes->get("list", "ReviewController::list_admin");
         $routes->get("write", "ReviewController::write_admin");
