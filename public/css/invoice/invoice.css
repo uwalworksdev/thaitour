@@ -983,6 +983,10 @@ input[type="text"] {
     gap: 5px;
 }
 
+.policy_wrap_cont {
+    margin-top: 30px;
+}
+
 @media screen and (max-width: 850px) {
     .invoice_paid .invoice_table_new table tr .btn_payment {
         padding: 0.3333rem 0.6667rem;

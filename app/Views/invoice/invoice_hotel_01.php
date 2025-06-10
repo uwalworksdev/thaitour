@@ -289,7 +289,9 @@ $setting = homeSetInfo();
                     </tbody>
                 </table> -->
 
-                <?=viewSQ($policy_2["policy_contents"])?>
+                <div class="policy_wrap_cont">
+                    <?=viewSQ($policy_2["policy_contents"])?>
+                </div>
 
                 <div class="btns_download_print flex_c_c">
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
