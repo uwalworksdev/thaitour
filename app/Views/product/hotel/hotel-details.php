@@ -1034,7 +1034,7 @@
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
 					var extra_won     = parseInt($("#extra_won").val());
-					var total_last_price = (price + extra_won) * room_qty;
+					var total_last_price = price + extra_won;
 
 					var data_won      = $(this).data('won'); 
 					var data_bath     = $(this).data('bath'); 
