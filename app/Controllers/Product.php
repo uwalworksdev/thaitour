@@ -1819,6 +1819,16 @@ class Product extends BaseController
                 $order_no = $this->orderModel->makeOrderNo();
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
+
+                // CREATE ALARM
+                    $content_alarm = "호텔 예약접수 가 되었습니다.";
+                    $sql_alarm = "INSERT tbl_alarm SET contents = '$content_alarm',
+                                                        m_idx = '$m_idx',
+                                                        r_date = now()
+                    ";
+                    $this->db->query($sql_alarm);
+                // END CREATE ALARM
+
                 if (!empty($use_coupon_idx)) {
                     $this->coupon->update($use_coupon_idx, ["status" => "E"]);
 
