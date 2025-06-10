@@ -290,92 +290,12 @@
                 </table> -->
 
                 <div class="policy_wrap_cont">
-                    <?=viewSQ($policy_2["policy_contents"])?>
+                    <?=viewSQ($policy_1["policy_contents"])?>
                 </div>
 
                 <div class="btns_download_print flex_c_c">
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
-                </div>
-                <div class="table_wrapper invoice_table">
-                    <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
-                        따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
-                        견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
-                    </p>
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="20%">
-                            <col width="*">
-                        </colgroup>
-                        <tbody>
-                            <tr>
-                                <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;"><img style="opacity: 0.7;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>가상계좌</td>
-                                <td>윈윈트래블 사이트에서 고유통장번호를 받아 입금 포인트 3~4% 적립. 공인인증서 무조건 필요.</td>
-                            </tr>
-                            <tr>
-                                <td>실시간계좌이체</td>
-                                <td>공인인증서 무조건 필요.</td>
-                            </tr>
-                            <tr>
-                                <td>무통장 원화 송금</td>
-                                <td>
-                                    <p>예약자, 입금자가 다를 경우 연락주시기 바랍니다. 포인트 3~4% 적립. 공인인증서 불필요.</p>
-                                    <p>- 한국 계좌 : <b>국민은행 636101-01-301315 (주)도도부킹</b></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>바트화 송금</td>
-                                <td>
-                                    <p>태국계좌 입금의 경우 입금후 꼭~ 유선상으로 또는 게시판을 통해 알려주셔야 입금확인됩니다.</p>
-                                    <p>- 태국 계좌:<b> Kasikorn Bank 895-2-19850-6 (Totobooking)</b></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>신용카드</td>
-                                <td>공인인증서 30만원 이상시 필요.</td>
-                            </tr>
-                            <tr>
-                                <td>ARS 카드</td>
-                                <td>
-                                    <p>마이페이지 예약확인/결제 창에서 결제 상품 선택 후 결제방법 신용카드-ARS 선택.</p>
-                                    <p>이 후 결제자 정보에 결제자 휴대전화번호를 입력 후 결제하기를 클릭해주시면 SMS 인증번호가 발송 됩니다.</p>
-                                    <p> 인증번호를 메모하시고, SMS 발송번호로 전화하셔서 결제를 진행하시기 바랍니다</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>수기결제</td>
-                                <td>불가피한 경우 관리자에게 카드번호와 유효기간을 알려주시면 결제대행 해드립니다. 공인인증서 불 필요.</td>
-                            </tr>
-                            <tr>
-                                <td>휴대폰</td>
-                                <td>한도 30만원 기본 (사용자 신용도에 따라 한도가 달라집니다.) 공인인증서 불필요.</td>
-                            </tr>
-                            <tr>
-                                <td>포인트</td>
-                                <td>포인트로 금액 결제, 공인인증서 불필요.</td>
-                            </tr>
-                            <tr>
-
-                                <td style="background-color: #f2f2f2;" colspan="2">
-                                    <p>- 결제 전에는 예약이 확정된 상태가 아닙니다. 결제 후 예약 확정 절차가 진행됩니다.</p>
-                                    <p>- 결제가 글 예약 확정이 아님을 주의하세요! 간혹 여러 가지 사유로 예약이 불발될 수 있습니다.</p>
-                                    <p>- 예약자와 결제자가 동일하지 않아도 되며, 무통장 입금시 예약자와 입금자명이 다르거나, 바트화 입금 시에는 꼭 확인 요청해 주시기 바랍니다.</p>
-                                    <p>- 결제 후 마이페이지 > 예약확인/결제에서 예약 상태와 결제 정보를 통해 결제가 정상적으로 되었는지 직접 확인 할 수 있습니다.</p>
-                                    <p>- 결제 후 예약확정서를 받으셔야 예약이 최종 확정된 것입니다.</p>
-                                    <p>- 견적서는 예약 또는 실제 이용 당사자에게 결제 점구용으로 발행된 문서로 해당 견적서를 다른 목적으로</p>
-                                    <p>사용할 경우(호텔 또는 제3자에게 최저가 보장을 요구하기 위한 목적 등) 민/형사상의 불이익을 당할 수 있습니다.</p>
-                                    <p style="margin-top : 10px ">※ 결재와 동시에 예약확정을 원하시면 윈윈트래블 실시간 예약을 이용하세요.</p>
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table> -->
                 </div>
 
             </div>
@@ -384,8 +304,8 @@
                 <div class="inquiry_info">
                     <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
                         (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
-                        번호만 누르면 됩니다. | 이메일 : <?= $setting['mallOrder']?><br>
-                        주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
+                        번호만 누르면 됩니다. | 이메일 : <?= $setting['qna_email']?><br>
+                        주소 : </p>
                     <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                 </div>
                 <div class="note_qna">
