@@ -264,17 +264,19 @@
                                 <tr style="height:100px">
                                     <th>별도 요청(영문입력)</th>
                                     <td colspan="3">
+                                        <!-- <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
+                                                  style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea> -->
                                         <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
-                                                  style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea>
+                                                  style="width:90%;height:80px">
                                     </td>
                                 </tr>
-								<tr style="height:100px">
+								<!-- <tr style="height:100px">
                                     <th>중요안내</th>
                                     <td colspan="3">
                                         <textarea id="custom_req" name="custom_req" class="input_txt"
                                                   style="width:90%;height:80px"><?php echo $custom_req ? $custom_req : $order_memo ?></textarea>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr style="height:100px">
                                     <th>관리자 메모</th>
                                     <td colspan="3">
