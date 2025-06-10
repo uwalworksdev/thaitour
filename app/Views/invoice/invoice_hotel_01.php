@@ -372,7 +372,7 @@
                             border: none !important;
                         }
 
-                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                        .btns_download_print, .table_wrapper {
                             display: none !important;
                         }
 
