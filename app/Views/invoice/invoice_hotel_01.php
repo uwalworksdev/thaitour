@@ -1,6 +1,6 @@
 <?php
-helper('setting_helper');
-$setting = homeSetInfo();
+    helper('setting_helper');
+    $setting = homeSetInfo();
 ?>
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
@@ -298,7 +298,6 @@ $setting = homeSetInfo();
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
                 <div class="table_wrapper invoice_table">
-                    <?=viewSQ($policy_1["policy_contents"])?>
                     <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
@@ -383,11 +382,15 @@ $setting = homeSetInfo();
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai']?></span> 
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. | 이메일 : <?= $setting['mallOrder']?><br>
                         주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
-                    <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                 </div>
-                <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
