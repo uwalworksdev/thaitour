@@ -2548,7 +2548,7 @@ class AjaxController extends BaseController {
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
 
-            $sql      = "	UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
+            $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
 			$result   = $db->query($sql);
 			
 			if($result) {
@@ -2566,11 +2566,25 @@ class AjaxController extends BaseController {
 								 FROM tbl_order_mst a
 								 LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
 
+
 			$row      = $db->query($sql)->getRow();
 			$order_no = $row->order_no;
 			$user_mail   = $row->user_email;
     		$order_price = number_format($row->order_price);
 			$use_day = $row->order_day;
+
+
+			// CREATE ALARM
+			 $m_idx = $row->m_idx;
+			 $_deli_type = get_deli_type();
+			 $status_text = $_deli_type[$row->order_status];
+			 $content_alarm = "호텔" . $status_text . "가 되었습니다.";
+			 $sql_alarm = "INSERT tbl_alarm SET contents = '$content_alarm',
+												m_idx = '$m_idx',
+												r_date = now()
+			 ";
+			 $db->query($sql_alarm);
+			// END CREATE ALARM
 
 			if(!empty($row->user_name_en_new)){
 				$user_name_en = $row->user_name_en_new;

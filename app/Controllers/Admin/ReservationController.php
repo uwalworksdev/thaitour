@@ -527,21 +527,30 @@ class ReservationController extends BaseController
         $pg              = updateSQ($_GET["pg"] ?? '');
         $order_idx       = updateSQ($_GET["order_idx"] ?? '');
         $titleStr        = "예약관리";
+
+        
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
-
             $titleStr = "일정 및 결제정보";
         }
+
+       
 
         $sql_cou    = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
         $result_cou = $this->connect->query($sql_cou);
         $row_cou    = $result_cou->getRowArray();
 
+         
+
         $fresult    = $this->orderSubModel->getOrderSub($order_idx);
+
+       
 
         $additional_request       = $row['additional_request'] ?? '';
         $_arr_additional_request  = explode("|", $additional_request);
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
+
+        
 
         if($list__additional_request == "") {
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' order by onum asc, code_idx desc";
@@ -549,7 +558,10 @@ class ReservationController extends BaseController
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
         }
 
+         
+
 		$fcodes = $this->db->query($sql)->getResultArray();
+        
 
         $data['fcodes'] = $fcodes;
 
@@ -570,10 +582,12 @@ class ReservationController extends BaseController
         ];
 
         if ($gubun == 'hotel') {
-            $sql_  = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . $row["room_op_idx"];
+            $sql_  = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = " . (int)$row["room_op_idx"];
             $room_ = $this->db->query($sql_)->getRowArray();
             $data['price_secret'] = $room_["secret_price"];
         }
+
+        
 
         if ($gubun == 'golf') {
             $data['main']    = $this->orderOptionModel->getOption($order_idx, 'main');
