@@ -147,7 +147,7 @@ $setting = homeSetInfo();
 
 										foreach ($datePrice as $priceData) {
 											$dayTot = 0;
-											$price = explode(",", $priceData);
+											$price = explode(":", $priceData);
 
 											// 배열 요소가 충분한지 확인 후 값 할당
 											$p1 = isset($price[1]) ? (int)$price[1] : 0;
