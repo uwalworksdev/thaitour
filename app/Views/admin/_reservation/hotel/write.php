@@ -266,8 +266,8 @@
                                     <td colspan="3">
                                         <!-- <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
                                                   style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea> -->
-                                        <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
-                                                  style="width:90%;height:80px">
+                                            <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
+                                                  style="width:90%;height:80px"></textarea>
                                     </td>
                                 </tr>
 								<!-- <tr style="height:100px">
