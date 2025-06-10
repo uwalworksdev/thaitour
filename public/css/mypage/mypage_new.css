@@ -1859,7 +1859,7 @@ input[type="checkbox"]:checked+label {
 }
 
 .booklist_wrap .booking_product .info_price .info_total_price .btn_payment {
-    padding: 8px 4px;
+    padding: 10px 25px;
     background-color: #f6f6f6;
     border-radius: 4px;
     border: 1px solid #dbdbdb;
