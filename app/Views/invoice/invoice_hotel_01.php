@@ -139,7 +139,6 @@ $setting = homeSetInfo();
 							<th>객실당 단가</th>
 							<td>
 								<?php
-									$roomTot = 0;
 
 									// $row->date_price가 존재하는지 확인
 									if (!empty($row->date_price)) {
@@ -154,8 +153,7 @@ $setting = homeSetInfo();
 											$p2 = isset($price[2]) ? (int)$price[2] : 0;
 											$p3 = isset($price[3]) ? (int)$price[3] : 0;
 
-											$dayTot = $p1 + $p2 + $p3;
-											$roomTot += $dayTot;
+											$dayTot = $p2 + $p3;
 
 											if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
 										}
@@ -166,7 +164,11 @@ $setting = homeSetInfo();
 							</td>
 
                             <th>객실 금액</th>
-                            <td><?= number_format($roomTot) ?>바트 (<?=number_format($roomTot / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
+                            <td>
+                                <?= number_format($price) ?>바트 (<?=number_format($price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
+                                <br>
+                                + Extra: <?=$extra_bath?>바트
+                            </td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
