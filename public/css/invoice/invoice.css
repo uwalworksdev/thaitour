@@ -802,7 +802,7 @@ input[type="text"] {
 
 .golf_invoice .inquiry_qna .inquiry_info {
     margin: 20px 0 10px;
-    padding-left: 50px;
+    padding-left: 0px;
 }
 
 .golf_invoice .inquiry_qna .inquiry_info p {
@@ -1234,7 +1234,7 @@ input[type="text"] {
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 2rem 0 1rem;
-            padding-left: 5rem;
+            padding-left: 0;
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
