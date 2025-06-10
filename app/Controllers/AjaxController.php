@@ -2270,7 +2270,8 @@ class AjaxController extends BaseController {
 			$user_mail   = $row->user_email;
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
 			$_tmp_fir_array = [
-				
+				'gubun'   => $row->order_gubun,
+				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
 	            '예약일자'    => substr($row->order_r_date,0,10),
 	            '회원이름'    => $row->user_name,
@@ -2283,7 +2284,8 @@ class AjaxController extends BaseController {
 				'여행상품'     => $row->product_name,	
 				'총인원'       => $row->order_room_cnt ."Room",
 				'총금액'	      => $order_price,
-				'총견적금액'   => $order_price
+				'총견적금액'   => $order_price,
+				
 			];
 	
 			autoEmail($code, $user_mail, $_tmp_fir_array);
