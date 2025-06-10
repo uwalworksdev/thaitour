@@ -278,7 +278,6 @@ $deli_types = get_deli_type();
 					</tr>
 					<?php
 						$arr = explode("|", $date_price);
-						var_dump($arr);
 						for($i=0;$i<count($arr);$i++)
 						{
 							$arr1 = explode(":", $arr[$i]);
