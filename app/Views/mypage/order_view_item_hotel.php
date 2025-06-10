@@ -278,13 +278,13 @@ $deli_types = get_deli_type();
 					</tr>
 					<?php
 						$arr = explode("|", $date_price);
+						var_dump($arr);
 						for($i=0;$i<count($arr);$i++)
 						{
 							$arr1 = explode(",", $arr[$i]);
 							$amt1 = $arr1[2] + $arr1[3];
 							$amt2 = $arr1[4];
 
-							var_dump($arr1[0]);
 					?>		
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
