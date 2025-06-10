@@ -382,7 +382,7 @@
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai']?></span> 
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
                         (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
                         번호만 누르면 됩니다. | 이메일 : <?= $setting['mallOrder']?><br>
                         주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
