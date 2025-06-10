@@ -277,6 +277,7 @@ $deli_types = get_deli_type();
 						<td class="subject">Extra 베드(원)</td>
 					</tr>
 					<?php
+					var_dump($date_price);
 						$arr = explode("|", $date_price);
 						for($i=0;$i<count($arr);$i++)
 						{
