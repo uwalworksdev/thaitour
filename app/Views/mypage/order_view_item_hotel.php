@@ -238,7 +238,7 @@ $deli_types = get_deli_type();
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($price_won) ?></span></strong> 원(<?=number_format($price)?>바트)
+									<?= number_format($price_won + $extra_won) ?></span></strong> 원(<?=number_format($price + $extra_bath)?>바트)
 								</p>
 					</div>
 				</div>
@@ -281,15 +281,15 @@ $deli_types = get_deli_type();
 						for($i=0;$i<count($arr);$i++)
 						{
 							$arr1 = explode(":", $arr[$i]);
-							$amt1 = $arr1[2] + $arr1[3];
-							$amt2 = $arr1[4];
+							$amt1 = ($arr1[2] + $arr1[3]) * $order_room_cnt;
+							$amt2 = $arr1[5] * $order_room_cnt;
 
 					?>		
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
 								<td class="content"><?=$arr1[0]?>(<?=dateToYoil($arr1[0])?>)</td>
-								<td class="content"><?=number_format($amt1 * $baht_thai)?></td>
-								<td class="content"><?=number_format($amt2 * $baht_thai)?></td>
+								<td class="content"><?=number_format(round($amt1 * $baht_thai))?></td>
+								<td class="content"><?=number_format(round($amt2 * $baht_thai))?></td>
 							</tr>
 					<?php } ?>		
 					<?php
