@@ -359,8 +359,8 @@
                     <div class="top_flex">
                         <table width="100%">
                             <tr>
-                                <td style="width: 20%;"><p class="tit_top">예약내역</p></td>
-                                <td style="width: 80%; text-align: right;"><span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span></td>
+                                <td style="width: *%;"><p class="tit_top">예약내역</p></td>
+                                <!-- <td style="width: 80%; text-align: right;"><span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span></td> -->
                             </tr>
                         </table>
                     </div>
@@ -652,7 +652,10 @@
                     <div class="inquiry_info">
                         <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
                             (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
-                            번호만 누르면 됩니다. | 이메일 : <?= $setting['qna_email']?><br>
+                            번호만 누르면 됩니다. 
+                            <br>
+                            이메일 : <?= $setting['qna_email']?>
+                            <br>
                             주소 : </p>
                         <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                     </div>
