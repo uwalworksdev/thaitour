@@ -245,11 +245,11 @@
             <?php if (!empty($related_policies)) { ?>
                 var totalEditors = <?= count($related_policies) ?>;
                 for (var i = 0; i < totalEditors; i++) {
-                    if (window['oEditors' + i] && window['oEditors' + i]) {
-                        window['oEditors' + i].exec("UPDATE_CONTENTS_FIELD", []);
+                    if (window['oEditors' + i][0] && window['oEditors' + i][0]) {
+                        window['oEditors' + i][0].exec("UPDATE_CONTENTS_FIELD", []);
                     }
-                    if (window['oEditors_m' + i] && window['oEditors_m' + i]) {
-                        window['oEditors_m' + i].exec("UPDATE_CONTENTS_FIELD", []);
+                    if (window['oEditors_m' + i][0] && window['oEditors_m' + i][0]) {
+                        window['oEditors_m' + i][0].exec("UPDATE_CONTENTS_FIELD", []);
                     }
                 }
             <?php } else { ?>
