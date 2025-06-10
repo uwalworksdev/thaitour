@@ -340,23 +340,18 @@
                         </colgroup>
                         <?php foreach ($result as $row) : ?>
                         <tbody>
-                        <?php 
-                                $weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
-                                $timestamp = strtotime(substr($row->order_m_date,0,10)); // 문자열 날짜를 타임스탬프로 변환
-                                $weekday   = $weekdays[date("w", $timestamp)];
 
-                            ?> 
                             <tr>
                                 <th>예약번호</th>
                                 <td><?= esc($row->order_no) ?></td>
                                 <th>예약날짜</th>
-                                <td><?= esc(substr($row->order_date,0,10)) ?>(<?=$weekday?>)</td>
+                                <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                             </tr>
                             <tr>
                                 <th>여행사(담당자)</th>
-                                <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                                <td><?=$row->order_user_name?></td>
                                 <th>이메일</th>
-                                <td>thaitouradventure@gmail.com</td>
+                                <td><?=$row->order_user_email?></td>
                             </tr>
                         </tbody>
                         <?php endforeach; ?>
@@ -397,11 +392,11 @@
                             </tr>
                             <tr>
                                 <th>예약가능 룸타입</th>
-                                <td colspan="3" style="color: red">클래식 오션 뷰 일반 더블</td>
+                                <td colspan="3" style="color: red"><?=$row->room?></td>
                             </tr>
                             <tr>
                                 <th>베드타입</th>
-                                <td><?=$row->room?>[<?=$row->room_type?>]]</td>
+                                <td><?=$row->bed_type?></td>
                                 <th>객실수</th>
                                 <td><?= $row->order_room_cnt ?> Room</td>
                             </tr>
@@ -435,7 +430,6 @@
                                 <th>객실당 단가</th>
                                 <td>
                                     <?php
-                                        $roomTot = 0;
 
                                         // $row->date_price가 존재하는지 확인
                                         if (!empty($row->date_price)) {
@@ -443,17 +437,16 @@
 
                                             foreach ($datePrice as $priceData) {
                                                 $dayTot = 0;
-                                                $price = explode(",", $priceData);
+                                                $price = explode(":", $priceData);
 
                                                 // 배열 요소가 충분한지 확인 후 값 할당
                                                 $p1 = isset($price[1]) ? (int)$price[1] : 0;
                                                 $p2 = isset($price[2]) ? (int)$price[2] : 0;
                                                 $p3 = isset($price[3]) ? (int)$price[3] : 0;
 
-                                                $dayTot = $p1 + $p2 + $p3;
-                                                $roomTot += $dayTot;
+                                                $dayTot = $p2 + $p3;
 
-                                                if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트<br>";
+                                                if($dayTot > 0) echo htmlspecialchars($price[0]) . " " . number_format($dayTot) . " 바트 Χ ". $row->order_room_cnt ."룸<br>";
                                             }
                                         } else {
                                             echo "가격 정보 없음";
@@ -462,18 +455,22 @@
                                 </td>
 
                                 <th>객실 금액</th>
-                                <td><?= number_format($roomTot * $row->order_room_cnt) ?>바트 (<?=number_format($roomTot)?>바트 x <?=$row->order_room_cnt?>룸)</td>
+                                <td>
+                                    <?= number_format($row->price) ?>바트 (<?=number_format((int)$row->price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
+                                    <br>
+                                    + Extra: <?=$row->extra_bath?>바트
+                                </td>
                             </tr>
                             <tr>
                                 <th>추가내역</th>
                                 <td>0바트</td>
                                 <th>총금액</th>
-                                <td><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</td>
+                                <td><?= number_format((int)$row->price_won + (int)$row->extra_won) ?>원</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="invoice_golf_total">
-                        <p style="margin-bottom: 0 !important;">총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
+                        <p style="margin-bottom: 0 !important;">총 인보이스 금액 : <span><?= number_format((int)$row->price_won + (int)$row->extra_won) ?>원</span> (<?= number_format((int)$row->price + (int)$row->extra_bath) ?>바트)</p>
                     </div>
                     <!-- <table class="invoice_tbl spe">
                         <tbody>
@@ -646,15 +643,27 @@
                             </tr>
                         </tbody>
                     </table> -->
-                    <div>
+                    <div class="policy_wrap_cont">
                         <?=viewSQ($policy_1["policy_contents"])?>
+                    </div>             
+                </div>
+                <div class="inquiry_qna">
+                    <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                    <div class="inquiry_info">
+                        <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                            (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                            번호만 누르면 됩니다. | 이메일 : <?= $setting['qna_email']?><br>
+                            주소 : </p>
+                        <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                     </div>
-                                        
+                    <div class="note_qna">
+                        <?=nl2br($setting['desc_cont'])?>
+                    </div>
                 </div>
             </div>
         </section>  
         <?php
-            if($row->order_status == "C" || $row->order_status == "N"){
+            if($row->order_status == "C" || $row->order_status == "N") {
         ?>  
             <div class="invoice_cancle">
                 <img src="/images/invoice/image-removebg-preview.png" alt="img_cancle">
