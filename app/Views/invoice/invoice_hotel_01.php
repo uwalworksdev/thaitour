@@ -166,18 +166,18 @@ $setting = homeSetInfo();
 							</td>
 
                             <th>객실 금액</th>
-                            <td><?= number_format($roomTot * $row->order_room_cnt) ?>바트 (<?=number_format($roomTot)?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
+                            <td><?= number_format($roomTot) ?>바트 (<?=number_format($roomTot / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)</td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</td>
+                            <td><?= number_format($roomTot * $row->baht_thai) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->order_room_cnt * $row->baht_thai) ?>원</span> (<?= number_format($roomTot * $row->order_room_cnt) ?>바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->baht_thai) ?>원</span> (<?= number_format($roomTot) ?>바트)</p>
                 </div>
                 <!-- <table class="invoice_tbl spe">
                     <tbody>
