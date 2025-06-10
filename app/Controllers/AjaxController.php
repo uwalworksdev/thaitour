@@ -885,7 +885,7 @@ class AjaxController extends BaseController {
 																		$option_val = explode(",", $room['option_val']);
 																		
 																		$msg .= '<ul>
-																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
+																			<li><span>'. $breakfast .'</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px; height : 14px; margin-top : 4px ; opacity: 0.6;"></li>';
 											
 																		for($i=0;$i<count($option_val);$i++) { 
 																			$msg .= '<li>'. htmlspecialchars_decode($option_val[$i]) .'</li>';
