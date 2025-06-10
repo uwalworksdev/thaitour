@@ -725,6 +725,7 @@ class AjaxController extends BaseController {
 		    $date_check_in  = $_POST['date_check_in'];
 		    $date_check_out = $_POST['date_check_out'];
 		    $days           = $_POST['days'];
+		    $room_qty       = $_POST['room_qty'];
 
 	        $sql            = "SELECT distinct(g_idx) AS g_idx FROM tbl_hotel_rooms
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
@@ -920,11 +921,11 @@ class AjaxController extends BaseController {
 												$room['goods_price5']  = $arr[4];											
                                                 $baht_thai             = $arr[5];
 												
-												$basic_won  =  (int)($room['goods_price1'] * $baht_thai);
-												$basic_bath =  $room['goods_price1'];
+												$basic_won  =  (int)($room['goods_price1'] * (int)($room_qty) * $baht_thai);
+												$basic_bath =  $room['goods_price1'] * (int)($room_qty);
 											
-												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * $baht_thai);
-												$price_bath =  $room['goods_price2'] + $room['goods_price3'];
+												$price_won  =  (int)(($room['goods_price2'] + $room['goods_price3']) * (int)($room_qty) * $baht_thai);
+												$price_bath =  ($room['goods_price2'] + $room['goods_price3']) * (int)($room_qty);
 															
 												$msg .= '<td>
 														<div class="col_wrap_room_rates">';

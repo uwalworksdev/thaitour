@@ -967,48 +967,55 @@
                 $('.hotel_data_info').hide();
                 $("body").css("overflow", "inherit");
             }
+
+            function renderCanlendar() {
+                let date_check_in  = $("#input_day_start_").val();
+                let date_check_out = $("#input_day_end_").val();
+                let room_qty = $("#room_qty").val();
+
+                if (!date_check_in && !date_check_out) {
+                    alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+                    return false;
+                }				
+                
+                if (date_check_in == date_check_out) {
+                    alert("체크인 날짜와 체크아웃 날짜를 확인해주세요!");
+                    return false;
+                }				
+                
+                var message = "";
+                $.ajax({
+
+                    url: "/ajax/hotel_room_search",
+                    type: "POST",
+                    data: {
+                            "product_idx"   : $("#product_idx").val(),
+                            "date_check_in" : date_check_in,
+                            "date_check_out": date_check_out,
+                            "days"          : $("#day_qty").val(),
+                            "room_qty"      : room_qty
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        message = data.message;
+                        $("#room_main").html(message);
+                        $("input[type=radio]").prop("disabled", false);
+                        $("#searchOk").val('Y');
+                        $("#extra_won").val('0');
+                        $("#extra_bath").val('0');
+                        $("#total_last_price").val('0');
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });						
+            }
+
 			$(document).ready(function(){
 				$("#room_search").click(function(){
-						let date_check_in  = $("#input_day_start_").val();
-						let date_check_out = $("#input_day_end_").val();
-
-						if (!date_check_in && !date_check_out) {
-							alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
-							return false;
-						}				
-						
-						if (date_check_in == date_check_out) {
-							alert("체크인 날짜와 체크아웃 날짜를 확인해주세요!");
-							return false;
-						}				
-						
-						var message = "";
-						$.ajax({
-
-							url: "/ajax/hotel_room_search",
-							type: "POST",
-							data: {
-									"product_idx"   : $("#product_idx").val(),
-									"date_check_in" : date_check_in,
-									"date_check_out": date_check_out,
-									"days"          : $("#day_qty").val()
-							},
-							dataType: "json",
-							async: false,
-							cache: false,
-							success: function (data, textStatus) {
-								message = data.message;
-								$("#room_main").html(message);
-								$("input[type=radio]").prop("disabled", false);
-								$("#searchOk").val('Y');
-								$("#extra_won").val('0');
-								$("#extra_bath").val('0');
-								$("#total_last_price").val('0');
-							},
-							error: function (request, status, error) {
-								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							}
-						});						
+					renderCanlendar();	
 			    });
 				
                 $(document).on('click', 'input[name="bed_type_"]', function() {		
@@ -3253,7 +3260,9 @@
             }
             inp.val(qty);
 
+            renderCanlendar();
             changeDataOptionPriceBk(inp);
+
         });
 
         $('.btnPlus').click(function() {
@@ -3262,6 +3271,8 @@
             qty = parseInt(qty);
             qty++;
             inp.val(qty);
+
+            renderCanlendar();
             changeDataOptionPriceBk(inp);
         });
 

@@ -54,17 +54,11 @@ $setting = homeSetInfo();
                     </colgroup>
 					<?php foreach ($result as $row) : ?>
                     <tbody>
-					   <?php 
-							$weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
-							$timestamp = strtotime(substr($row->order_m_date,0,10)); // 문자열 날짜를 타임스탬프로 변환
-							$weekday   = $weekdays[date("w", $timestamp)];
-
-                        ?> 
                         <tr>
                             <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
                             <th>예약날짜</th>
-                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=$weekday?>)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
@@ -107,11 +101,11 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>예약가능 룸타입</th>
-                            <td colspan="3" style="color: red">클래식 오션 뷰 일반 더블</td>
+                            <td colspan="3" style="color: red"><?=$row->room?></td>
                         </tr>
                         <tr>
                             <th>베드타입</th>
-                            <td><?=$row->room?>[<?=$row->room_type?>]]</td>
+                            <td><?=$row->room?>[<?=$row->room_type?>]</td>
                             <th>객실수</th>
                             <td><?= $row->order_room_cnt ?> Room</td>
                         </tr>
