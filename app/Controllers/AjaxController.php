@@ -1002,9 +1002,9 @@ class AjaxController extends BaseController {
 		                                        {	 
 													 $_room     =  explode(":", $arr[$i]);
 													 $baht_thai =  $_room[6];
-													 $real_won  =  (int)(($_room[3] + $_room[4]) * $baht_thai);
+													 $real_won  =  (int)(($_room[3] + $_room[4]) * (int)($room_qty) * $baht_thai);
 													 //$extra_won =  $_room[5];
-													 $real_bath =  $_room[3] + $_room[4];
+													 $real_bath =  ($_room[3] + $_room[4]) * (int)($room_qty);
 													 $bed_idx   =  $_room[1];
 													 write_log("AjaxCFontroller- ". $room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
 													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
@@ -1035,8 +1035,8 @@ class AjaxController extends BaseController {
 													 $msg .= '</div>';
 													 
 													 if($_room[5] > 0) {
-														  $extra_won  = (int)($_room[5] * $baht_thai);
-														  $extra_bath = $_room[5];	  
+														  $extra_won  = (int)($_room[5] * (int)($room_qty) * $baht_thai);
+														  $extra_bath = $_room[5] * (int)($room_qty);	  
 												    	  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
 													      $msg .= '<input type="checkbox" 
 														            name="extra_" 
