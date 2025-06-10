@@ -41,7 +41,7 @@
                 <div class="listWrap_noline">
                     <form name="frm" id="frm" action="policy_ok" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="idx" value="<?=$p_idx?>">
-                        
+
                         <div class="listBottom">
                             <?php if (!empty($related_policies)) { ?>
                                 <?php foreach ($related_policies as $index => $item) { ?>
@@ -104,13 +104,13 @@
                                                     style="width:100%; height:400px; display:none;"><?= isset($item) ? viewSQ($item['policy_contents_m']) : '' ?></textarea>
 
                                                     <script type="text/javascript">
-                                                        var oEditors<?= $index ?> = [];
+                                                        var oEditors_m<?= $index ?> = [];
 
                                                         // 추가 글꼴 목록
                                                         //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
                                                         nhn.husky.EZCreator.createInIFrame({
-                                                            oAppRef: oEditors<?= $index ?>,
+                                                            oAppRef: oEditors_m<?= $index ?>,
                                                             elPlaceHolder: "policy_contents_m_<?= $index ?>",
                                                             sSkinURI: "/smarteditor/SmartEditor2Skin.html",
                                                             htParams: {
@@ -245,11 +245,11 @@
             <?php if (!empty($related_policies)) { ?>
                 var totalEditors = <?= count($related_policies) ?>;
                 for (var i = 0; i < totalEditors; i++) {
-                    if (window['oEditors' + i] && window['oEditors' + i][0]) {
-                        window['oEditors' + i][0].exec("UPDATE_CONTENTS_FIELD", []);
+                    if (window['oEditors' + i] && window['oEditors' + i]) {
+                        window['oEditors' + i].exec("UPDATE_CONTENTS_FIELD", []);
                     }
-                    if (window['oEditors' + i] && window['oEditors' + i][1]) {
-                        window['oEditors' + i][1].exec("UPDATE_CONTENTS_FIELD", []);
+                    if (window['oEditors_m' + i] && window['oEditors_m' + i]) {
+                        window['oEditors_m' + i].exec("UPDATE_CONTENTS_FIELD", []);
                     }
                 }
             <?php } else { ?>
