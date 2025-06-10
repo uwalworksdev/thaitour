@@ -40,12 +40,8 @@
             <div id="contents">
                 <div class="listWrap_noline">
                     <form name="frm" id="frm" action="policy_ok" method="post" enctype="multipart/form-data">
-
-
-
-                        <?php
-
-                        ?>
+                        <input type="hidden" name="idx" value="<?=$p_idx?>">
+                        
                         <div class="listBottom">
                             <?php if (!empty($related_policies)) { ?>
                                 <?php foreach ($related_policies as $index => $item) { ?>

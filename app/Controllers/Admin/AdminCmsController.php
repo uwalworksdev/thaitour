@@ -160,6 +160,7 @@ class AdminCmsController extends BaseController
         $policy_types       = $_POST['policy_type'] ?? [];
         $policy_contents    = $_POST['policy_contents'] ?? [];
         $policy_contents_m   = $_POST['policy_contents_m'] ?? [];
+        $idx = $_POST['idx'] ?? '';
 
         foreach ($policy_types as $i => $policy_type) {
             $p_idx      = updateSQ($p_idx_list[$i]);
@@ -182,7 +183,11 @@ class AdminCmsController extends BaseController
             }
         }
 
-        return redirect()->to("/AdmMaster/_cms/policy_list");
+        if(!empty($idx)){
+            return redirect()->to("/AdmMaster/_cms/policy_write?p_idx=". $idx ."&r_code=onfo");
+        }else{
+            return redirect()->to("/AdmMaster/_cms/policy_list");
+        }
         // $p_idx		      = updateSQ($_POST["p_idx"]);
         // $policy_type      = updateSQ($_POST["policy_type"]);
         // $policy_contents  = updateSQ($_POST["policy_contents"]);
