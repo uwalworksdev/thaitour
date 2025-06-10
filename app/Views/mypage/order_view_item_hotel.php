@@ -281,7 +281,7 @@ $deli_types = get_deli_type();
 						var_dump($arr);
 						for($i=0;$i<count($arr);$i++)
 						{
-							$arr1 = explode(",", $arr[$i]);
+							$arr1 = explode(":", $arr[$i]);
 							$amt1 = $arr1[2] + $arr1[3];
 							$amt2 = $arr1[4];
 
