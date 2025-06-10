@@ -110,7 +110,7 @@ $searchTxt = $SearchText->List()->findAll();
     }
 </style>
 
-<div class="body_container main_body_container main-page-cus-css-mobile 123">
+<div class="body_container main_body_container main-page-cus-css-mobile 123456">
     <section class="main_visual">
         <div class="relative">
             <div class="main_visual_slider only_web">
