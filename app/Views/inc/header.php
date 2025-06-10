@@ -1,5 +1,14 @@
 <?php
     $setting = homeSetInfo();
+
+    $db = \Config\Database::connect();
+    $m_idx = $_SESSION['member']['mIdx'];
+    $count_alarm = 0;
+    if($m_idx){
+        $sql_alarm = "SELECT COUNT(*) AS total FROM tbl_alarm where m_idx = '$m_idx' and status = '0'";
+        $query = $db->query($sql_alarm);
+        $count_alarm = $query->getRow()->total;
+    }
 ?>
 <header id="header" class="only_web">
     <div class="inner flex_header_top">
@@ -22,7 +31,7 @@
                 </li>
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/mypage/alarm" class="text-grey flex__c">알림<span class="count_like" style="color: red;">(0)</span></a>
+                        <a href="/mypage/alarm" class="text-grey flex__c">알림<span class="count_like" style="color: red;">(<?=$count_alarm?>)</span></a>
                     <?php else: ?>
                         <a href="/member/join_choice" class="text-grey">회원가입</a>
                     <?php endif; ?>

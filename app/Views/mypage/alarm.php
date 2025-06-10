@@ -5,6 +5,20 @@ if ($_SESSION["member"]["mIdx"] == "") {
     alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
     exit();
 }
+
+$m_idx = $_SESSION['member']['mIdx'];
+$db = \Config\Database::connect();
+$sql = "SELECT 
+            COUNT(*) AS total,
+            SUM(CASE WHEN status = '0' THEN 1 ELSE 0 END) AS count_status_0
+        FROM tbl_alarm 
+        WHERE m_idx = '$m_idx'";
+
+$result = $db->query($sql)->getRow();
+$count_all = $result->total ?? 0;
+$count_status_0 = $result->count_status_0 ?? 0;
+
+$list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->get()->getResultArray();
 ?>
 <style>
     .cancel .btn.btn-lg {
@@ -14,6 +28,17 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
     .cancel a.btn.btn-lg {
         line-height: 45px;
+    }
+
+    .ch_visit input[type="radio"], .ch_visit input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    display: block;
+    }
+    
+    .text_bold td{
+        font-weight: 700;
     }
 
     @media screen and (max-width: 850px) {
@@ -288,8 +313,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
-<!--<script src="/mypage/mypage.js" type="text/javascript"></script>-->
-
+<script src="/mypage/mypage.js" type="text/javascript"></script>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
@@ -301,11 +325,12 @@ if ($_SESSION["member"]["mIdx"] == "") {
                 <div class="box_gr01 clearfix">
                     <p class="my_p_cont f_black mb0">
                         <span class="pr50 f_black">※나만의 알리미는 30 일간 보관합니다.</span>
-                        읽지 않은 알림 : <span class="ltsno alarm_unread_org">0</span>   
+                        읽지 않은 알림 : <span class="ltsno alarm_unread_org"><?=$count_all?></span>   
                         <em>|</em> <br class="only_mo">
-                        총 알림갯수 : <span class="ltsno">0</span>
+                        총 알림갯수 : <span class="ltsno"><?=$count_status_0?></span>
                     </p>
                 </div>
+                <form id="alarmForm"></form>
                 <table class="details_table mo">
                     <colgroup>
                         <col width="5%">
@@ -314,7 +339,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                     </colgroup>
                     <thead>
                         <tr>
-                            <th>
+                            <th style="">
                                 <div class="ch_visit">
                                     <input type="checkbox" id="agree1" class="agree1" name="agree">
                                     <label for="agree1"></label>
@@ -325,23 +350,156 @@ if ($_SESSION["member"]["mIdx"] == "") {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="text-align: center; vertical-align: middle">
+                        <?php if($count_all == 0):?>
+                        <tr style="text-align:center">
                             <td colspan="3" class="none_data">알림이 존재하지 않습니다.</td>
                         </tr>
+                        <?php else:?>
+                            <?php foreach($list_alarm as $item):?>
+                                 <tr style="text-align: center; vertical-align: middle" class="<?= $item['status'] == 0 ? 'text_bold' : ''?>">
+                                    <td class="check">
+                                        <div class="ch_visit">
+                                                <input type="checkbox" id="<?= $item['idx'] ?>" class="agree" name="agree">
+                                                <label for="<?= $item['idx'] ?>"></label>
+                                        </div>
+                                    </td>
+                                    <td><?=$item['contents']?></td>
+                                    <td><?=date('Y.m.d H:i', strtotime($item['r_date']))?></td>
+                                </tr>
+                            <?php endforeach?>
+                        <?php endif;?>
                     </tbody>
                 </table>
+                </form>
                 <?php echo ipageListing2($page, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?pg=") ?>
 
                 <div class="btn_custom flex_b_c">
-                    <button class="custom_btn1 b_white b_p1020">읽음 표시</button>
+                    <button class="custom_btn1 b_white b_p1020" onclick="check_readen()">읽음 표시</button>
                     <div class="flex__c" style="gap: 5px;">
-                        <button class="custom_btn1 b_white b_p1020">전체삭제</button>
-                        <button class="custom_btn1 b_white b_p1020">선택삭제</button>
-                        <button class="custom_btn1 b_white b_p1020">읽은 알림 삭제</button>
+                        <button class="custom_btn1 b_white b_p1020" onclick="del_all()">전체삭제</button>
+                        <button class="custom_btn1 b_white b_p1020" onclick="del_select()">선택삭제</button>
+                        <button class="custom_btn1 b_white b_p1020" onclick="deL_readen()">읽은 알림 삭제</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    $('#agree1').click(function() {
+        var x = [];
+        x = document.getElementsByClassName("agree");
+        var y = document.getElementById("agree1");
+        if (y.checked == true) {
+            for (let i = 0; i < x.length; i++) {
+                x[i].checked = true;
+            }
+        } else {
+            for (let i = 0; i < x.length; i++) {
+                x[i].checked = false;
+            }
+        }
+    });
+
+    function check_readen(){
+        var x = [],
+            y = [];
+        x = document.getElementsByClassName("agree");
+        a = document.getElementById("agree1");
+        for (let i = 0; i < x.length; i++) {
+            if (x[i].checked == true) {
+                y.push(x[i].id);
+            }
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url: '/api/alarm/mark-read',
+            data: {
+                data: y
+            },
+            success: function(response) {
+                if(response.success ==  true){
+                    alert("업데이트 성공!");
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                alert("ERROR!");
+            }
+        });
+    }
+
+    function del_all(){
+        if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/api/alarm/del-all',
+            success: function(response) {
+                if(response.success ==  true){
+                    alert("삭제되었습니다!");
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                alert("ERROR!");
+            }
+        });
+    }
+
+    function del_select(){
+         if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            return;
+        }
+        var x = [],
+            y = [];
+        x = document.getElementsByClassName("agree");
+        a = document.getElementById("agree1");
+        for (let i = 0; i < x.length; i++) {
+            if (x[i].checked == true) {
+                y.push(x[i].id);
+            }
+        }
+        
+        $.ajax({
+            type: 'POST',
+            url: '/api/alarm/del-select',
+            data: {
+                data: y
+            },
+            success: function(response) {
+                if(response.success ==  true){
+                    alert("삭제되었습니다!");
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                alert("ERROR!");
+            }
+        });
+    }
+
+    function deL_readen(){
+         if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            return;
+        }
+       
+        $.ajax({
+            type: 'POST',
+            url: '/api/alarm/del-readen',
+            success: function(response) {
+                if(response.success ==  true){
+                    alert("삭제되었습니다!");
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                alert("ERROR!");
+            }
+        });
+    }
+</script>
 <?php $this->endSection(); ?>
