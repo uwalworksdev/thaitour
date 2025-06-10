@@ -123,6 +123,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("delete", "Admin\ContactController::delete");
     });
 
+    $routes->group("_alarm", static function ($routes) {
+        $routes->get("list", "Admin\AlarmController::list");
+        $routes->get("write", "Admin\AlarmController::write");
+        $routes->post("write_ok", "Admin\AlarmController::write_ok");
+        $routes->post("delete", "Admin\AlarmController::delete");
+    });
+
     $routes->group("_code", static function ($routes) {
         $routes->get("list", "CodeController::list_admin");
         $routes->get("write", "CodeController::write_admin");
@@ -744,6 +751,16 @@ $routes->group("api", static function ($routes) {
         $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
         $routes->get("get_code", "Api\ProductApi::getCode", ['as' => "api.hotel_.get_code"]);
     });
+
+    $routes->group("alarm", function ($routes) {
+        $routes->post("mark-read", "AlarmController::markRead");
+        $routes->post("del-all", "AlarmController::delAll");
+        $routes->post("del-select", "AlarmController::delSelect");
+        $routes->post("del-readen", "AlarmController::delReaden");
+        
+    });
+
+    
 
     $routes->group("golf_", function ($routes) {
         $routes->post("ajax_change_golf", "Api\ProductApi::ajax_change_golf", ['as' => "api.golf_.ajax_change_golf"]);
