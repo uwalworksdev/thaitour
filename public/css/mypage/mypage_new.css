@@ -1842,7 +1842,7 @@ input[type="checkbox"]:checked+label {
 }
 
 .booklist_wrap .booking_product .info_price .info_total_price {
-    gap: 8px;
+    gap: 9px;
     flex-direction: column;
 }
 
