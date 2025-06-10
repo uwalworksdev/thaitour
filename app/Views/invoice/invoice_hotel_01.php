@@ -165,21 +165,21 @@ $setting = homeSetInfo();
 
                             <th>객실 금액</th>
                             <td>
-                                <?= number_format($price) ?>바트 (<?=number_format((int)$price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
+                                <?= number_format($row->price) ?>바트 (<?=number_format((int)$row->price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
                                 <br>
-                                + Extra: <?=$extra_bath?>바트
+                                + Extra: <?=$row->extra_bath?>바트
                             </td>
                         </tr>
                         <tr>
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format((int)$price_won + (int)$extra_won) ?>원</td>
+                            <td><?= number_format((int)$row->price_won + (int)$row->extra_won) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span><?= number_format((int)$price_won + (int)$extra_won) ?>원</span> (<?= number_format((int)$price + (int)$extra_bath) ?>바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format((int)$row->price_won + (int)$row->extra_won) ?>원</span> (<?= number_format((int)$row->price + (int)$row->extra_bath) ?>바트)</p>
                 </div>
                 <!-- <table class="invoice_tbl spe">
                     <tbody>
