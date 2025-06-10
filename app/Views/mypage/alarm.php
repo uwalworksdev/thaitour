@@ -18,7 +18,7 @@ $result = $db->query($sql)->getRow();
 $count_all = $result->total ?? 0;
 $count_status_0 = $result->count_status_0 ?? 0;
 
-$list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->get()->getResultArray();
+$list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->orderBy('r_date', 'DESC')->get()->getResultArray();
 ?>
 <style>
     .cancel .btn.btn-lg {
@@ -325,9 +325,9 @@ $list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->get()->getResultA
                 <div class="box_gr01 clearfix">
                     <p class="my_p_cont f_black mb0">
                         <span class="pr50 f_black">※나만의 알리미는 30 일간 보관합니다.</span>
-                        읽지 않은 알림 : <span class="ltsno alarm_unread_org"><?=$count_all?></span>   
+                        읽지 않은 알림 : <span class="ltsno alarm_unread_org"><?=$count_status_0?></span>   
                         <em>|</em> <br class="only_mo">
-                        총 알림갯수 : <span class="ltsno"><?=$count_status_0?></span>
+                        총 알림갯수 : <span class="ltsno"><?=$count_all?></span>
                     </p>
                 </div>
                 <form id="alarmForm"></form>
