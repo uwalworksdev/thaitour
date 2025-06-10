@@ -1749,21 +1749,6 @@ class Product extends BaseController
             $real_price_won    =  $order_price;
 			
 			$order_price_bath  =  (int)($order_price / $baht_thai);
-			
-            $setting            = homeSetInfo();
-
-            if(empty($order_price)){
-                $type_extra_cost = $setting["type_extra_cost"];
-                if (!empty($setting["extra_cost"])) {
-                    if ($type_extra_cost == "P") {
-                        $extra_cost = round(intval($last_price) * floatval($setting["extra_cost"]) / 100);
-                    } else {
-                        $extra_cost = $setting["extra_cost"];
-                    }
-                }
-
-                $order_price = intval($last_price) + intval($extra_cost);
-            }
 
             $data = [
                 "m_idx"                    => $m_idx,

@@ -2769,6 +2769,7 @@
             formData.append("coupon_discount", coupon_discount);
             formData.append("coupon_type", coupon_type);
             formData.append("last_price", last_price);
+            formData.append("order_price", last_price);
             formData.append("number_room", number_room);
             formData.append("number_day", number_day);
             formData.append("start_date", start_day);
