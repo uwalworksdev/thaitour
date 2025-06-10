@@ -277,13 +277,14 @@ $deli_types = get_deli_type();
 						<td class="subject">Extra 베드(원)</td>
 					</tr>
 					<?php
-					var_dump($date_price);
 						$arr = explode("|", $date_price);
 						for($i=0;$i<count($arr);$i++)
 						{
 							$arr1 = explode(",", $arr[$i]);
 							$amt1 = $arr1[2] + $arr1[3];
 							$amt2 = $arr1[4];
+
+							var_dump($arr1[0]);
 					?>		
 					<?php if(isDateFormat($arr1[0])) { ?>
 							<tr>
