@@ -1889,8 +1889,10 @@ input[type="checkbox"]:checked+label {
     font-size: 14px;
     color: #2e3e92;
     font-weight: 600;
-    width: fit-content;
+    /* width: fit-content; */
+    width: unset;
     height: fit-content;
+    justify-content: center;
 }
 
 .booklist_wrap .customer-center-page .pagination {
