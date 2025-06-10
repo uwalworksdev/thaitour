@@ -165,7 +165,7 @@ $setting = homeSetInfo();
 
                             <th>객실 금액</th>
                             <td>
-                                <?= number_format($price) ?>바트 (<?=number_format($price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
+                                <?= number_format($price) ?>바트 (<?=number_format((int)$price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
                                 <br>
                                 + Extra: <?=$extra_bath?>바트
                             </td>
