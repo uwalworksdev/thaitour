@@ -172,12 +172,12 @@ $setting = homeSetInfo();
                             <th>추가내역</th>
                             <td>0바트</td>
                             <th>총금액</th>
-                            <td><?= number_format($roomTot * $row->baht_thai) ?>원</td>
+                            <td><?= number_format($price_won + $extra_won) ?>원</td>
                         </tr>
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 인보이스 금액 : <span><?= number_format($roomTot * $row->baht_thai) ?>원</span> (<?= number_format($roomTot) ?>바트)</p>
+                    <p>총 인보이스 금액 : <span><?= number_format($price_won + $extra_won) ?>원</span> (<?= number_format($price + $extra_bath) ?>바트)</p>
                 </div>
                 <!-- <table class="invoice_tbl spe">
                     <tbody>
