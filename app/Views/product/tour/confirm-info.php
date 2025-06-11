@@ -609,6 +609,10 @@
     }
 
     function handleSubmit(status) {
+        const $btn = $(document.activeElement);
+
+        if ($btn.prop("disabled")) return;
+        $btn.prop("disabled", true);
 
         $("#order_status").val(status);
 
@@ -616,52 +620,61 @@
             if ($("#order_user_name").val() === "") {
                 alert("한국이름을 입력해주세요.");
                 $("#order_user_name").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
             if ($("#order_user_first_name_en").val() === "") {
                 alert("영문 이름(First Name)을 입력해주세요.");
                 $("#order_user_first_name_en").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_user_last_name_en").val() === "") {
                 alert("영문 성(Last Name)을 입력해주세요.");
                 $("#order_user_last_name_en").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_passport_number").val() === "") {
                 alert("여권번호를 입력해주세요!");
                 $("#order_passport_number").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_passport_expiry_date").val() === "") {
                 alert("여권만기일을 입력해주세요!");
                 $("#order_passport_expiry_date").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_birth_date").val() === "") {
                 alert("생년월일을 입력해주세요!");
                 $("#order_birth_date").focus()
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#email_1").val() === "" || $("#email_2").val() === "") {
                 alert("이메일 주소를 입력해주세요.");
                 $("#email_1").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("input[name='radio_phone']:checked").val() === "kor") {
                 if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
                     alert("한국번호를 입력해주세요.");
+                    $btn.prop("disabled", false);
                     return false;
                 }
             } else if ($("input[name='radio_phone']:checked").val() === "thai") {
                 if ($("#phone_thai").val() === "") {
                     alert("태국번호를 입력해주세요.");
+                    $btn.prop("disabled", false);
                     return false;
                 }
             }
@@ -674,6 +687,7 @@
 
             if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
                 alert("모든 약관에 동의해야 합니다.");
+                $btn.prop("disabled", false);
                 return false;
             }
 
@@ -684,18 +698,21 @@
             if ($("#start_place").val() === "") {
                 alert("미팅장소 입력해주세요!");
                 $("#start_place").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#end_place").val() === "") {
                 alert("종료 후 내리실 곳 입력해주세요!");
                 $("#end_place").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#id_kakao").val() === "") {
                 alert("카카오톡 아이디 입력해주세요!");
                 $("#id_kakao").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 

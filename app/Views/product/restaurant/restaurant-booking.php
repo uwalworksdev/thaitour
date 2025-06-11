@@ -6,6 +6,10 @@
 
     <script>
         function completeOrder(status) {
+			const $btn = $(document.activeElement); 
+            if ($btn.prop("disabled")) return;
+            $btn.prop("disabled", true);
+
             $("#ajax_loader").removeClass("display-none");
 
             $("#order_status").val(status);
@@ -33,6 +37,7 @@
 					}   
                 },
                 error: function (request, status, error) {
+					$btn.prop("disabled", false); 
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
