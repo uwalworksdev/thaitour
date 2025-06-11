@@ -204,13 +204,34 @@
                             </h3>
                             <div class="two-table-tb">
                                 <table class="info-table-order info-table-cus-padding" style="width: 100%;">
-                                    <tr>
-                                        <th>미팅장소</th>
-                                        <td>
-                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
-                                            <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
-                                        </td>
-                                    </tr>
+                                    <?php if(strpos($product['field_more'], '1') !== false):?>
+                                        <tr>
+                                            <th>픽업장소</th>
+                                            <td>
+                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="pickup_place" id="pickup_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(strpos($product['field_more'], '2') !== false):?>
+                                        <tr>
+                                            <th>샌딩장소</th>
+                                            <td>
+                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="sanding_place" id="sanding_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(strpos($product['field_more'], '3') !== false):?>
+                                        <tr>
+                                            <th>미팅장소</th>
+                                            <td>
+                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
+                                    
                                     <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>

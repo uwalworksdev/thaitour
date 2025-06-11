@@ -170,6 +170,16 @@ class AdminTourController extends BaseController
             $company_contact = updateSQ($_POST["company_contact" ?? '']);
             $company_url = updateSQ($_POST["company_url" ?? '']);
             $company_notes = updateSQ($_POST["company_notes" ?? '']);
+            $field_more_arr = $_POST["field_more"] ?? [];
+
+            $field_more = "";
+            for($j =0; $j< count($field_more_arr); $j++){
+                if($j == 0){
+                    $field_more .= $field_more_arr[$j];
+                } else{
+                    $field_more .= "," .$field_more_arr[$j];
+                }
+            }
 
             if (!is_array($arr)) {
                 $arr = [];
@@ -343,6 +353,7 @@ class AdminTourController extends BaseController
 							,description            = '" . $description . "'
 			                ,worker_id              = '" . session()->get('member')['id'] ."'
 			                ,worker_name            = '" . session()->get('member')['name'] ."'
+                            ,field_more            = '" . $field_more ."'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -539,7 +550,7 @@ class AdminTourController extends BaseController
                             
                             ,mbti                   = '" . $mbti . "'
 							,description            = '" . $description . "'
-                            
+                            ,field_more         = '" . $field_more . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";

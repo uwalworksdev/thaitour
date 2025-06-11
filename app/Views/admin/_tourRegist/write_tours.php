@@ -825,6 +825,21 @@
                                 </tr>
 
                                 <tr>
+                                    <th>필수 필드 더 보기</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" name="field_more[]"
+                                               class="yoil" <?php if (isset($field_more) && (strpos($field_more, "1") !== false)) echo "checked"; ?> value="1">
+                                               픽업장소 &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="field_more[]"
+                                               class="yoil" <?php if (isset($field_more) && (strpos($field_more, "2") !== false)) echo "checked"; ?> value="2">
+                                               샌딩장소 &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="field_more[]"
+                                               class="yoil" <?php if (isset($field_more) && (strpos($field_more, "3") !== false)) echo "checked"; ?> value="3">
+                                               미팅장소 &nbsp;&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>업체 정보</th>
                                     <td colspan="3">
                                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
