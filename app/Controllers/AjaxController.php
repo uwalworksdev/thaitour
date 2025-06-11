@@ -2331,6 +2331,12 @@ class AjaxController extends BaseController {
 			$user_mail   = $row->user_email;
 			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
 
+			$sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $row->room_g_idx ."' ";
+			$r_result = $db->query($sql);
+			$row_r    = $r_result->getRowArray();
+
+			$roomName_eng = $row_r["roomName_eng"];
+
 			if(!empty($row->user_name_en_new)){
 				$user_name_en = $row->user_name_en_new;
 			}else{
@@ -2346,7 +2352,7 @@ class AjaxController extends BaseController {
 			if(!empty($row->room_type_new)){
 				$room_type = $row->room_type_new;
 			}else{
-				$room_type = $row->room_type;
+				$room_type = $roomName_eng;
 			}
 
 			$_tmp_fir_array = [
