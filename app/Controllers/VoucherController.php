@@ -66,6 +66,21 @@ class VoucherController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
+		$arr_req = explode("|", $result->additional_request ?? []);	
+		$arr_text_req = [];
+		$arr_text_req_en = [];
+
+		foreach($arr_req as $code){
+			$row_code = $this->CodeModel->getByCodeNo($code);
+			$code_name = $row_code["code_name"];
+			$code_name_en = $row_code["code_name_en"];
+			array_push($arr_text_req, $code_name);
+			array_push($arr_text_req_en, $code_name_en);
+		}
+
+		$str_req = implode(", ", $arr_text_req);
+		$str_req_en = implode(", ", $arr_text_req_en);
+
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -79,6 +94,8 @@ class VoucherController extends BaseController
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			$order_memo = $result->order_memo;
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
+			$guest_request = $str_req;
+
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -148,6 +165,8 @@ class VoucherController extends BaseController
 
 			if(!empty($result->guest_request_new)){
 				$guest_request = $result->guest_request_new;
+			}else{
+				$guest_request = $str_req_en;
 			}
 
 			if(!empty($result->order_remark_new)){
