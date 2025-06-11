@@ -4317,6 +4317,13 @@ class Product extends BaseController
 
                 $order_idx = $this->orderModel->insert($data);
                 if ($order_idx) {
+                    // CREATE ALARM
+                    $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '호텔예약접수가 되었습니다.', r_date = now()";
+                    $this->db->query($sql_alarm);
+                    // END
+
+
+
                     $order_no = $this->orderModel->makeOrderNo();
                     $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
