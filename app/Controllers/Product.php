@@ -2625,7 +2625,7 @@ class Product extends BaseController
 		    $trip_type3               = $data['trip_type3'];
             $teeoff_hour              = $data['teeoff_hour']; // 티오프 시
             $teeoff_min               = $data['teeoff_min'];  // 티오프 분			
-			
+
 			$optName                  = $data["opt_name"];
             $optIdx                   = $data["opt_idx"];
             $optCnt                   = !empty($data["opt_cnt"]) ? $data["opt_cnt"] : $data["option_cnt"];
@@ -2744,6 +2744,7 @@ class Product extends BaseController
             }
 
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
+
 			$option_tot         = $priceCalculate['total_price'];
 			$option_tot_bath    = (int)($option_tot / $data['baht_thai']); 
 			$option_price       = $option_tot / $data['people_adult_cnt']; 
