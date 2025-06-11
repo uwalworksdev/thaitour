@@ -391,53 +391,53 @@
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th style="max-width: 20px">Name</th>
+                                <th style="width: 150px">Name</th>
                                 <td><?=$user_name?></td>
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Phone</th>
+                                <th style="width: 150px">Phone</th>
                                 <td><?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th style="max-width: 20px">Booking No</th>
+                                <th style="width: 150px">Booking No</th>
                                 <td colspan="3"><?=$result->order_no?></td>
 
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Date</th>
+                                <th style="width: 150px">Date</th>
                                 <td style="color : red" colspan="3">
                                    <?=$order_date?>
                                 </td>
 
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Room Type</th>
+                                <th style="width: 150px">Room Type</th>
                                 <td><?=$room_type?></td>
-                                <th style="max-width: 20px">Bed Type</th>
+                                <th style="width: 150px">Bed Type</th>
                                 <td><?=$bed_type?></td>
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Guest Name</th>
+                                <th style="width: 150px">Guest Name</th>
                                 <td><?=$user_name_en?></td>
-                                <th style="max-width: 20px">Number of rooms</th>
+                                <th style="width: 150px">Number of rooms</th>
                                 <td><?=$order_room_cnt?></td>
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Total Persons</th>
+                                <th style="width: 150px">Total Persons</th>
                                 <td><?=$order_people?> </td>
-                                <th style="max-width: 20px">Child Age</th>
+                                <th style="width: 150px">Child Age</th>
                                 <td><?=$child_age?></td>
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Breakfast</th>
+                                <th style="width: 150px">Breakfast</th>
                                 <td colspan="3">
                                     <?php
                                         echo $breakfast;
@@ -446,18 +446,18 @@
 
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Guest Request</th>
+                                <th style="width: 150px">Guest Request</th>
                                 <td colspan="3">
                                     <?=$guest_request?>
                                 </td>
 
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Agent Memo</th>
+                                <th style="width: 150px">Agent Memo</th>
                                 <td colspan="3"><?=$order_memo?></td>
                             </tr>
                             <tr>
-                                <th style="max-width: 20px">Remarks</th>
+                                <th style="width: 150px">Remarks</th>
                                 <td colspan="3">
                                     <?=$order_remark?>
                                 </td>
