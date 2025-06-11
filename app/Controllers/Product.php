@@ -1526,6 +1526,7 @@ class Product extends BaseController
             $price              = $cart_arr["price"] ?? 0;            // 상품가(바트)
             $price_won          = $cart_arr["price_won"] ?? 0;        // 상품가(원)
             $rooms_idx          = $cart_arr["rooms_idx"] ?? 0;
+            $room_g_idx         = $cart_arr["room_g_idx"] ?? 0;
             $room               = $cart_arr["room"] ?? "";            // 룸
             $room_type          = $cart_arr["room_type"] ?? "";       // 룸타입
             $bed_type           = $cart_arr["bed_type"] ?? "";        // 침대타입
@@ -1634,6 +1635,7 @@ class Product extends BaseController
                 'price'              => $price,
                 'price_won'          => $price_won,
                 'rooms_idx'          => $rooms_idx,
+                'room_g_idx'         => $room_g_idx,
                 'room'               => $room,
                 'room_type'          => $room_type,
                 'bed_type'           => $bed_type,
@@ -1684,9 +1686,11 @@ class Product extends BaseController
 			$price              = $this->request->getPost('price') ?? 0;
 			$price_won          = $this->request->getPost('price_won') ?? 0;
 			$room               = $this->request->getPost('room') ?? 0;
+			$rooms_idx          = $this->request->getPost('rooms_idx') ?? 0;
+			$room_g_idx         = $this->request->getPost('room_g_idx') ?? 0;
+
 			$room_type          = $this->request->getPost('room_type') ?? 0;
 			$bed_type           = $this->request->getPost('bed_type') ?? 0;
-			$rooms_idx          = $this->request->getPost('ho_idx') ?? 0;
 			$date_price         = $this->request->getPost('date_price') ?? 0;				
 			$extra_won          = $this->request->getPost('extra_won') ?? 0;				
 			$extra_bath         = $this->request->getPost('extra_bath') ?? 0;	
@@ -1791,6 +1795,8 @@ class Product extends BaseController
 				"date_price"               => $date_price,	
 				"adult"                    => $adult,		
 				"kids"                     => $kids,
+				"rooms_idx"                => $rooms_idx,
+				"room_g_idx"               => $room_g_idx,
 				"last_price"               => $last_price,	
 				"extra_cost"               => $extra_cost,
                 "real_price_bath"          => $order_price_bath,
