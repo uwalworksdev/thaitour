@@ -258,7 +258,6 @@ $setting = homeSetInfo();
         frameDoc.write(`
             <html>
             <head>
-                <title></title>
                 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
                 <style>
                     @media print {
