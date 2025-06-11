@@ -586,8 +586,8 @@ class PdfController extends BaseController
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
 						. " " .date('d-M-Y(D)', strtotime($result->end_date))
 						. " / ".$result->order_day_cnt." night";
-			$room_type = $result->room_type_eng;
-			$bed_type = $result->bed_type_eng;
+			$room_type = $result->room_type;
+			$bed_type = $result->bed_type;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			if(!empty($result->admin_memo)){
