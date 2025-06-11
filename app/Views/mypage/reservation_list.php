@@ -981,11 +981,12 @@ $(document).on('click', '.info_estimate', function () {
 		if(gubun == "spa")    url = "/invoice/ticket_01/"+idx; 
 		if(gubun == "golf")   url = "/invoice/golf_01/"+idx; 
 		if(gubun == "ticket") url = "/invoice/ticket_01/"+idx; 
+		if(gubun == "vehicle") url = "/invoice/car_01/"+idx; 
 		
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
 		// $('.confirm_depart').show();
-});
+}); 
 
 $(document).on('click', '.info_voucher', function () {
     var idx   = $(this).data('idx');  

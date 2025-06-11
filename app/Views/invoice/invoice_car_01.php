@@ -9,7 +9,7 @@ $setting = homeSetInfo();
 <?php foreach ($result as $row): ?>
 <?php endforeach; ?>
 
-<div id="container_voice">
+<div id="container_voice"> 
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
@@ -35,7 +35,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어) carrr</td>
                             <th>이메일</th>
                             <td>thaitouradventure@gmail.com</td>
                         </tr>
