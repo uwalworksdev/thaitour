@@ -579,6 +579,19 @@ class PdfController extends BaseController
 		$str_req = implode(", ", $arr_text_req);
 		$str_req_en = implode(", ", $arr_text_req_en);
 
+        $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $result->room_g_idx ."' ";
+		$r_result = $db->query($sql);
+		$row    = $r_result->getRowArray();
+
+		$roomName_eng = $row["roomName_eng"];
+		$roomName = $row["roomName"];
+
+		$sql            = "SELECT * FROM tbl_room_beds WHERE bed_idx = '". $result->bed_idx ."' ";
+		$roomsByType    = $db->query($sql);
+		$roomsByType    = $roomsByType->getRowArray();
+
+		$bed_type_en = $roomsByType["bed_type_eng"];
+
         if($type == "admin"){
 			$user_name = $result->order_user_name;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -586,8 +599,8 @@ class PdfController extends BaseController
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
 						. " " .date('d-M-Y(D)', strtotime($result->end_date))
 						. " / ".$result->order_day_cnt." night";
-			$room_type = $result->room_type_eng;
-			$bed_type = $result->bed_type_eng;
+			$room_type = $roomName_eng;
+			$bed_type = $bed_type_en;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			if(!empty($result->admin_memo)){
@@ -633,13 +646,13 @@ class PdfController extends BaseController
 			if(!empty($result->room_type_new)){
 				$room_type = $result->room_type_new;
 			}else{
-				$room_type = $result->room_type_eng;
+				$room_type = $roomName_eng;;
 			}
 
 			if(!empty($result->bed_type_new)){
 				$bed_type = $result->bed_type_new;
 			}else{
-				$bed_type = $result->bed_type_eng;
+				$bed_type = $bed_type_en;
 			}
 
 			if(!empty($result->order_room_cnt_new)){
