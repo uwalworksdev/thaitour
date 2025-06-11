@@ -61,6 +61,19 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
+		$sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $result->room_g_idx ."' ";
+		$r_result = $db->query($sql);
+		$row    = $r_result->getRowArray();
+
+		$roomName_eng = $row["roomName_eng"];
+		$roomName = $row["roomName"];
+
+		$sql            = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = '". $result->rooms_idx ."' ";
+		$roomsByType    = $db->query($sql);
+		$roomsByType    = $roomsByType->getResultArray();
+
+		$bed_type_en = $roomsByType[0]["bed_type_eng"];
+
         $builder = $db->table('tbl_policy_info');
 		$policy = $builder->whereIn('p_idx', [23])
 							->orderBy('p_idx', 'asc')
@@ -88,8 +101,8 @@ class VoucherController extends BaseController
 			$order_date = date('d-M-Y(D)', strtotime($result->start_date)) 
 						. " " .date('d-M-Y(D)', strtotime($result->end_date))
 						. " / ".$result->order_day_cnt." night";
-			$room_type = $result->room_type;
-			$bed_type = $result->bed_type;
+			$room_type = $roomName_eng;
+			$bed_type = $bed_type_en;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
 			$order_memo = $result->admin_memo;
@@ -127,13 +140,13 @@ class VoucherController extends BaseController
 			if(!empty($result->room_type_new)){
 				$room_type = $result->room_type_new;
 			}else{
-				$room_type = $result->room_type;
+				$room_type = $roomName_eng;
 			}
 
 			if(!empty($result->bed_type_new)){
 				$bed_type = $result->bed_type_new;
 			}else{
-				$bed_type = $result->bed_type;
+				$bed_type = $bed_type_en;
 			}
 
 			if(!empty($result->order_room_cnt_new)){
