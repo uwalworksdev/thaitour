@@ -1050,7 +1050,7 @@ class Product extends BaseController
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
  
- 		write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
+ 		    //write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
 
             foreach ($products['items'] as $key => $product) {
 
