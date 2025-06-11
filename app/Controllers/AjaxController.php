@@ -2580,7 +2580,7 @@ class AjaxController extends BaseController {
 			 $m_idx = $row->m_idx;
 			 $_deli_type = get_deli_type();
 			 $status_text = $_deli_type[$row->order_status];
-			 $content_alarm = "호텔" . $status_text . "가 되었습니다.";
+			 $content_alarm = $row['code_name'] . $status_text . "가 되었습니다.";
 			 $sql_alarm = "INSERT tbl_alarm SET contents = '$content_alarm',
 												m_idx = '$m_idx',
 												r_date = now()
