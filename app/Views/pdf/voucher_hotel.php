@@ -480,6 +480,10 @@
                         <p style="font-weight: bold;">• Booked by: <?= $setting['site_name_en'] ?></p>
                         <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
+                    <div class="invoice_note_">
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                        <?= viewSQ($policy["policy_contents"]) ?>
+                    </div>
                 </div>
                 <div class="inquiry_qna">
                     <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>

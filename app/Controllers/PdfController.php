@@ -559,6 +559,11 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
+        $builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [23])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
         $arr_req = array_filter(explode("|", $result->additional_request ?? ''), fn($v) => trim($v) !== '');
 		$arr_text_req = [];
 		$arr_text_req_en = [];
@@ -690,6 +695,7 @@ class PdfController extends BaseController
 			'breakfast' => $breakfast,
 			'guest_request' => $guest_request,
 			'order_remark' => $order_remark,
+            'policy'  => $policy[0],
         ]);
         
         $pdf->WriteHTML($html);

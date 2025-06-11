@@ -396,7 +396,7 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
-                        .btns_download_print, .invoice_note_, .inquiry_qna {
+                        .btns_download_print {
                             display: none !important;
                         }
 
