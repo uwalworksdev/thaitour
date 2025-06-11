@@ -559,6 +559,21 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
+        $arr_req = array_filter(explode("|", $result->additional_request ?? ''), fn($v) => trim($v) !== '');
+		$arr_text_req = [];
+		$arr_text_req_en = [];
+
+		foreach($arr_req as $code){
+			$row_code = $this->CodeModel->getByCodeNo($code);
+			$code_name = $row_code["code_name"];
+			$code_name_en = $row_code["code_name_en"];
+			array_push($arr_text_req, $code_name);
+			array_push($arr_text_req_en, $code_name_en);
+		}
+
+		$str_req = implode(", ", $arr_text_req);
+		$str_req_en = implode(", ", $arr_text_req_en);
+
         if($type == "admin"){
 			$user_name = $result->order_user_name;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -570,8 +585,11 @@ class PdfController extends BaseController
 			$bed_type = $result->bed_type_eng;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
-			$order_memo = $result->order_memo;
+			$order_memo = $result->admin_memo;
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
+			$guest_request = $str_req;
+			$order_remark = $result->custom_req_eng;
+
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -626,7 +644,7 @@ class PdfController extends BaseController
 			if(!empty($result->order_memo_new)){
 				$order_memo = $result->order_memo_new;
 			}else{
-				$order_memo = $result->order_memo;
+				$order_memo = $result->admin_memo;
 			}
 
 			if(!empty($result->child_age_new)){
@@ -641,14 +659,18 @@ class PdfController extends BaseController
 
 			if(!empty($result->guest_request_new)){
 				$guest_request = $result->guest_request_new;
+			}else{
+				$guest_request = $str_req_en;
 			}
 
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}
 
-			if(!empty($result->order_option_new)){
-				$order_option = $result->order_option_new;
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}else{
+				$order_remark = $result->custom_req_eng;
 			}
 		}
 
@@ -668,7 +690,6 @@ class PdfController extends BaseController
 			'breakfast' => $breakfast,
 			'guest_request' => $guest_request,
 			'order_remark' => $order_remark,
-			'order_option' => $order_option
         ]);
         
         $pdf->WriteHTML($html);

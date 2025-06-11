@@ -95,7 +95,7 @@ class VoucherController extends BaseController
 			$order_memo = $result->admin_memo;
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
 			$guest_request = $str_req;
-
+			$order_remark = $result->custom_req_eng;
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -171,10 +171,8 @@ class VoucherController extends BaseController
 
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
-			}
-
-			if(!empty($result->order_option_new)){
-				$order_option = $result->order_option_new;
+			}else{
+				$order_remark = $result->custom_req_eng;
 			}
 		}
 
@@ -195,7 +193,6 @@ class VoucherController extends BaseController
 			'breakfast' => $breakfast,
 			'guest_request' => $guest_request,
 			'order_remark' => $order_remark,
-			'order_option' => $order_option
         ]);        
     }
 
