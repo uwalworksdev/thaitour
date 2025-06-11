@@ -92,10 +92,18 @@ class VoucherController extends BaseController
 			$bed_type = $result->bed_type;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
-			$order_memo = $result->admin_memo;
+			if(!empty($result->admin_memo)){
+				$order_memo = $result->admin_memo;
+			}else{
+				$order_memo = "없음";
+			}
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
 			$guest_request = $str_req;
-			$order_remark = $result->custom_req_eng;
+			if(!empty($result->custom_req_eng)){
+				$order_remark = $result->custom_req_eng;
+			}else{
+				$order_remark = "없음";
+			}
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -176,7 +184,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}else{
-				if(!empty($result->admin_memo)){
+				if(!empty($result->custom_req_eng)){
 					$order_remark = $result->custom_req_eng;
 				}else{
 					$order_remark = "없음";
