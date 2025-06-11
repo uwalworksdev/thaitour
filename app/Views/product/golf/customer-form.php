@@ -686,40 +686,50 @@
     <script>
         function handleSubmit(status) {
 
+            const $btn = $(".btn-order"); 
+            if ($btn.prop("disabled")) return; 
+            $btn.prop("disabled", true); 
+
             if(status == "W") {
                 if ($("#order_user_name_kor").val() === "") {
                     alert("한글명을 입력해주세요!");
                     $("#order_user_name_kor").focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if ($("#order_user_first_name_en").val() === "") {
                     alert("영문명을 입력해주세요!");
                     $("#order_user_first_name_en").focus()
+                    $btn.prop("disabled", false);
                     return false;
                 }
                 
                 if ($("#order_user_last_name_en").val() === "") {
                     alert("영문명을 입력해주세요!");
                     $("#order_user_last_name_en").focus()
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if ($("#order_passport_number").val() === "") {
                     alert("여권번호를 입력해주세요!");
                     $("#order_passport_number").focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if ($("#order_passport_expiry_date").val() === "") {
                     alert("여권만기일을 입력해주세요!");
                     $("#order_passport_expiry_date").focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if ($("#order_birth_date").val() === "") {
                     alert("생년월일을 입력해주세요!");
                     $("#order_birth_date").focus()
+                    $btn.prop("disabled", false);
                     return false;
                 }
 			}
@@ -739,11 +749,13 @@
                 });
 
                 if (!flag) {
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if (!($(".item-clause-all").hasClass("click"))) {
                     alert("이용약관 동의(필수)를 선택하십시오.");
+                    $btn.prop("disabled", false);
                     return false;
                 }
             }
