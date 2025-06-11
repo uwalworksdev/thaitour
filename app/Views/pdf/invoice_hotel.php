@@ -30,6 +30,10 @@
             margin-top: 20px;
         }
 
+        .golf_invoice * {
+            font-family: "Pretendard" !important;
+        }
+
         .golf_invoice {
             padding: 20px 0 0 !important;
         }
