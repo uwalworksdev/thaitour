@@ -56,7 +56,7 @@
                                 <?php
                                     if($s_parent_code_no == "53"){
                                 ?>
-                                    <col width="150px"/>
+                                    <col width="200px"/>
                                 <?php
                                     }
                                 ?>
