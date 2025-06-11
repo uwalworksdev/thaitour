@@ -150,7 +150,11 @@ class VoucherController extends BaseController
 			if(!empty($result->order_memo_new)){
 				$order_memo = $result->order_memo_new;
 			}else{
-				$order_memo = $result->admin_memo;
+				if(!empty($result->admin_memo)){
+					$order_memo = $result->admin_memo;
+				}else{
+					$order_memo = "없음";
+				}
 			}
 
 			if(!empty($result->child_age_new)){
@@ -172,7 +176,11 @@ class VoucherController extends BaseController
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}else{
-				$order_remark = $result->custom_req_eng;
+				if(!empty($result->admin_memo)){
+					$order_remark = $result->custom_req_eng;
+				}else{
+					$order_remark = "없음";
+				}
 			}
 		}
 
