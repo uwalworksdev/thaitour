@@ -14,6 +14,7 @@ class Code extends Model
         "code_gubun",
         "code_no",
         "code_name",
+        "code_name_en",
         "code_memo",
         "ufile1",
         "rfile1",

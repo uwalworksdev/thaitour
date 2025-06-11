@@ -99,6 +99,17 @@
                                            class="input_txt" style="width:90%"/>
                                 </td>
                             </tr>
+
+                            <?php if ($parent_code_no === '53') : ?>
+                                <tr>
+                                    <th>영문</th>
+                                    <td>
+                                        <input type="text" id="code_name_en" name="code_name_en" value="<?= $code_name_en ?>"
+                                               class="input_txt"/>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+
                             <?php if ($parent_code_no === '35' || $parent_code_no === '4403') : ?>
                                 <tr>
                                     <th>거리</th>

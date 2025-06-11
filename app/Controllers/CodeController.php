@@ -76,6 +76,7 @@ class CodeController extends BaseController
             $row = $this->CodeModel->getCodeByIdx($code_idx);
             $code_no = $row['code_no'];
             $code_name = $row['code_name'];
+            $code_name_en = $row['code_name_en'];
             $init_oil_price = $row['init_oil_price'];
             $ufile1 = $row['ufile1'];
             $rfile1 = $row['rfile1'];
@@ -112,6 +113,7 @@ class CodeController extends BaseController
             "yoil_idx" => $yoil_idx,
             "code_no" => $code_no,
             "code_name" => $code_name ?? "",
+            "code_name_en" => $code_name_en ?? "",
             "init_oil_price" => $init_oil_price ?? "",
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
@@ -134,6 +136,7 @@ class CodeController extends BaseController
         $code_gubun = $this->request->getPost('code_gubun');
         $code_no = $this->request->getPost('code_no');
         $code_name = $this->request->getPost('code_name');
+        $code_name_en = $this->request->getPost('code_name_en');
         $code_memo = $this->request->getPost('code_memo') ?? '';
         $parent_code_no = $this->request->getPost('parent_code_no');
         $depth = $this->request->getPost('depth');
@@ -157,6 +160,7 @@ class CodeController extends BaseController
         if ($code_idx) {
             $data = [
                 'code_name' => $code_name,
+                'code_name_en' => $code_name_en,
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
@@ -204,6 +208,7 @@ class CodeController extends BaseController
                 'code_gubun' => $code_gubun,
                 'code_no' => $code_no,
                 'code_name' => $code_name,
+                'code_name_en' => $code_name_en,
                 'parent_code_no' => $parent_code_no,
                 'depth' => $depth,
                 'status' => $status,
