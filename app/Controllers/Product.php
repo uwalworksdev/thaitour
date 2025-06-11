@@ -3076,7 +3076,6 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-        //print_r($_POST); exit;
         try {
  			$private_key = private_key();
 
@@ -3128,6 +3127,8 @@ class Product extends BaseController
             $data['baht_thai']                = $this->setting['baht_thai'];
             $data['group_no']                 = date('YmdHis');
 
+            $data['pickup_place']        = updateSQ($data['pickup_place']);
+            $data['sanding_place']        = updateSQ($data['sanding_place']);
             $data['start_place']        = updateSQ($data['start_place']);
             $data['end_place']          = updateSQ($data['end_place']);
             $data['id_kakao']           = updateSQ($data['id_kakao']);
@@ -3521,7 +3522,6 @@ class Product extends BaseController
     public function confirmInfo()
     {
         //print_r($_GET); exit;
-
         $data['product_idx'] = $this->request->getVar('product_idx');
         $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
         $data['tours_idx'] = $this->request->getVar('tours_idx');
