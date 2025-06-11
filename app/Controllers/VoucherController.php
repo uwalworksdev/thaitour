@@ -66,7 +66,7 @@ class VoucherController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
-		$arr_req = explode("|", $result->additional_request ?? []);	
+		$arr_req = array_filter(explode("|", $result->additional_request ?? ''), fn($v) => trim($v) !== '');
 		$arr_text_req = [];
 		$arr_text_req_en = [];
 
