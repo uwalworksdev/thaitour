@@ -13,6 +13,7 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
     $bed_type  = "";
     $bed_price = "";
     $extra_bed = "";
+	$bed_idx   = "";
     $price1    = "";
     $result    = "";
 
@@ -47,9 +48,11 @@ function roomPrice($db, $rooms_idx, $baht_thai, $product_idx, $g_idx, $o_sdate, 
         $bed_price .= ($bed_price === "") ? $price_baht : "," . $price_baht;
         $extra_bed .= ($extra_bed === "") ? $extra_bed : ","  . $extra_bed;
         $price1    .= ($price1    === "") ? $price1 : ","  . $price1;
+        $bed_idx .= ($bed_idx === "") ? $row['bed_idx'] : ","  . $row['bed_idx'];
+
     }
 
-    $result = $bed_type . "|" . $bed_price . "|" . $extra_bed . "|" . $price1;
+    $result = $bed_type . "|" . $bed_price . "|" . $extra_bed . "|" . $price1 . "|" . $bed_idx;
     return $result; // 성공적으로 처리된 경우
 }
 

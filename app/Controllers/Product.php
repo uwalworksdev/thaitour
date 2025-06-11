@@ -1530,6 +1530,7 @@ class Product extends BaseController
             $room               = $cart_arr["room"] ?? "";            // 룸
             $room_type          = $cart_arr["room_type"] ?? "";       // 룸타입
             $bed_type           = $cart_arr["bed_type"] ?? "";        // 침대타입
+            $bed_idx            = $cart_arr["bed_idx"] ?? "";       
             $date_price         = $cart_arr["date_price"] ?? "";      // 일자별 금액 "2025-03-10,5000,3000,10000|2025-03-11,5000,3000,10000|2025-03-12,5000,3000,10000|"
             $breakfast          = $cart_arr["breakfast"] ?? "";       // 조식포함(N:불포함)
             $adult              = $cart_arr["adult"] ?? "";           // 성인
@@ -1639,6 +1640,7 @@ class Product extends BaseController
                 'room'               => $room,
                 'room_type'          => $room_type,
                 'bed_type'           => $bed_type,
+                'bed_idx'            => $bed_idx,
                 'date_price'         => $date_price,
                 'adult'              => $adult,
                 'kids'               => $kids,
@@ -1691,6 +1693,8 @@ class Product extends BaseController
 
 			$room_type          = $this->request->getPost('room_type') ?? 0;
 			$bed_type           = $this->request->getPost('bed_type') ?? 0;
+			$bed_idx            = $this->request->getPost('bed_idx') ?? 0;
+
 			$date_price         = $this->request->getPost('date_price') ?? 0;				
 			$extra_won          = $this->request->getPost('extra_won') ?? 0;				
 			$extra_bath         = $this->request->getPost('extra_bath') ?? 0;	
@@ -1792,6 +1796,7 @@ class Product extends BaseController
 				"room"                     => $room,
 				"room_type"                => $room_type,
 				"bed_type"                 => $bed_type,
+				"bed_idx"                  => $bed_idx,
 				"date_price"               => $date_price,	
 				"adult"                    => $adult,		
 				"kids"                     => $kids,

@@ -72,7 +72,7 @@ class VoucherController extends BaseController
 		$roomsByType    = $db->query($sql);
 		$roomsByType    = $roomsByType->getResultArray();
 
-		$bed_type_en = [$roomsByType[0]["bed_type_eng"]];
+		$bed_type_en = $roomsByType[0]["bed_type_eng"];
 
         $builder = $db->table('tbl_policy_info');
 		$policy = $builder->whereIn('p_idx', [23])

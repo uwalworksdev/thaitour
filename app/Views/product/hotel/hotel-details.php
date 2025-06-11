@@ -1030,6 +1030,7 @@
 
 					var room_op_idx   = $(this).val();
 					var bed_type      = $(this).data('type');
+					var bed_idx      = $(this).data('bed_idx');
 					var price         = parseInt($(this).data('won'));
 					var room_qty      = parseInt($("#room_qty").val());
 					var day_qty       = parseInt($("#day_qty").val());
@@ -1038,7 +1039,6 @@
 
 					var data_won      = $(this).data('won'); 
 					var data_bath     = $(this).data('bath'); 
-					var bed_type      = $(this).data('type');
 					var rooms_idx     = $(this).val();
 					var room_g_idx    = $(this).data('g_idx');
 
@@ -1052,6 +1052,7 @@
 					//alert(date_price+'-'+data_won+'-'+data_bath+'-'+bed_type+'-'+rooms_idx);
 					
 					$("#bed_type").val(bed_type);
+					$("#bed_idx").val(bed_idx);
 					$("#price").val(data_bath);
 					$("#price_won").val(data_won);
 					$("#rooms_idx").val(rooms_idx);
@@ -1749,7 +1750,8 @@
                                                       $arr       = explode("|", $result);
                                                       $bed_type  = explode(",", $arr[0]);											
                                                       $bed_price = explode(",", $arr[1]);											
-                                                      $extra_bed = explode(",", $arr[2]);											
+                                                      $extra_bed = explode(",", $arr[2]);
+                                                      $bed_idx = explode(",", $arr[3]);											
                                                 ?>
                                                 
                                                 <?php for($i=0;$i<count($bed_type);$i++) { ?>
@@ -1766,6 +1768,7 @@
                                                                data-won="<?=$real_won?>" 
                                                                data-bath="<?=$real_bath?>" 
                                                                data-type="<?=$bed_type[$i]?>" 
+                                                               data-bed_idx="<?=$bed_idx[$i]?>" 
                                                                data-g_idx="<?=$room['g_idx']?>"
                                                                value="<?=$room['rooms_idx']?>" >
                                                         <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
@@ -2184,6 +2187,7 @@
 		<input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
 		<input type="hidden" name="room_op_idx" id="room_op_idx" value="">
 		<input type="hidden" name="bed_type" id="bed_type" value="">
+		<input type="hidden" name="bed_idx" id="bed_idx" value="">
 		<input type="hidden" name="price" id="price" value="">
 		<input type="hidden" name="price_won" id="price_won" value="">
 		<input type="hidden" name="extra_won" id="extra_won" value="">
@@ -2407,11 +2411,13 @@
 			var data_won  = $(this).data('won'); 
 			var data_bath = $(this).data('bath'); 
 			var bed_type  = $(this).data('type');
+			var bed_idx  = $(this).data('bed_idx');
 			var rooms_idx = $(this).val();
 			var room_g_idx = $(this).data('g_idx');
 			var room_name = $(this).data('name');
 			
 			$("#bed_type").val(bed_type);
+			$("#bed_idx").val(bed_idx);
 			$("#price").val(data_bath);
 			$("#price_won").val(data_won);
 			$("#rooms_idx").val(rooms_idx);
@@ -2729,6 +2735,7 @@
 
 			let room_type       = $("#room_type").val();
             let bed_type        = $("#bed_type").val();
+            let bed_idx        = $("#bed_idx").val();
 			let date_price      = $("#date_price").val();
 			let breakfast       = $("#breakfast").val();
 			let adult           = $("#adult").val();
@@ -2768,6 +2775,7 @@
             formData.append("room", room);
             formData.append("room_type", room_type);
             formData.append("bed_type", bed_type);
+            formData.append("bed_idx", bed_idx);
             formData.append("date_price", date_price);
             formData.append("breakfast", breakfast);
             formData.append("adult", adult);
@@ -3165,6 +3173,7 @@
 
 			let room_type       = $("#room_type").val();
             let bed_type        = $("#bed_type").val();
+            let bed_idx        = $("#bed_idx").val();
 			let date_price      = $("#date_price").val();
 			let breakfast       = $("#breakfast").val();
 			let adult           = $("#adult").val();
@@ -3203,6 +3212,7 @@
 				room              : room,	
 			    room_type         : room_type,
                 bed_type          : bed_type,
+                bed_idx          : bed_idx,
 				date_price        : date_price,
 				breakfast         : breakfast,	
 				adult             : adult,	

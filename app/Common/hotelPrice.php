@@ -56,6 +56,8 @@ function roomPrice($db, $product_idx, $g_idx, $rooms_idx)
 		$bed_type  = "";
 		$bed_price = "";
 		$extra_bed = "";
+		$bed_idx   = "";
+
 		$price1    = "";
 		$result    = "";
 
@@ -86,9 +88,10 @@ function roomPrice($db, $product_idx, $g_idx, $rooms_idx)
 			// bed_price 문자열 조합
 			$bed_price .= ($bed_price === "") ? $price : "," . $price;
 			$extra_bed .= ($extra_bed === "") ? $extra_price : ","  . $extra_price;
+			$bed_idx .= ($bed_idx === "") ? $row['bed_idx'] : ","  . $row['bed_idx'];
 		}
 
-		$result = $bed_type . "|" . $bed_price . "|" . $extra_bed;
+		$result = $bed_type . "|" . $bed_price . "|" . $extra_bed . "|" . $bed_idx;
 		return $result; // 성공적으로 처리된 경우
 }
 
