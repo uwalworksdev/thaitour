@@ -254,7 +254,7 @@ $setting = homeSetInfo();
         frameDoc.write(`
             <html>
             <head>
-                <title>요청하신 예약이 가능하여 인보이스가 발송되었습니다</title>
+                <title>더투어랩</title>
                 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
                 <style>
                     @media print {
