@@ -239,7 +239,7 @@
 									<col width="7%">
 									<col width="10%">
 									<col width="10%">
-									<col width="6%">
+									<col width="5%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
