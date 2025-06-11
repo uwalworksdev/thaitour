@@ -2279,7 +2279,7 @@ class AjaxController extends BaseController {
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
  	            '전화번호'     => $row->user_mobile,
-				'체크인'	      => $checkin,
+				'이용날짜'	   => $checkin,
 				'여행자성명'   => $row->user_name,
 				'여행자연락처' => $row->user_mobile,
 				'여행자이메일' => $row->user_email,
