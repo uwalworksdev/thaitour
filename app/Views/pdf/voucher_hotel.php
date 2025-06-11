@@ -367,23 +367,18 @@
                 <div class="invoice_ttl">
                 </div>
                 <div class="invoice_table">
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="*">
-
-                        </colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>Name</th>
+                                <th style="width: 150px">Name</th>
                                 <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
-                                <th>Address</th>
+                                <th style="width: 150px">Address</th>
                                 <td style="font-family: 'Pretendard' !important;"><?=$result->stay_address?></td>
                             </tr>
                             <tr>
-                                <th>Tel</th>
+                                <th style="width: 150px">Tel</th>
                                 <td><?=$result->tel_no?></td>
                             </tr>
                         </tbody>
