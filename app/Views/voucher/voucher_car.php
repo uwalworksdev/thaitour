@@ -258,7 +258,7 @@ $setting = homeSetInfo();
         frameDoc.write(`
             <html>
             <head>
-                <title></title>
+                <title>더투어랩</title>
                 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
                 <style>
                     @media print {
