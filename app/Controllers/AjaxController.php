@@ -3005,7 +3005,7 @@ class AjaxController extends BaseController {
 																,goods_price4 = '". $goods_price4 ."'
 																,use_yn	= ''	
 																,reg_date = now() ";	
-						//write_log("객실가격정보-1 : " . $sql_c);
+						write_log("객실가격정보-1 : " . $sql_c);
 						$db->query($sql_c);
 					}
 			}
