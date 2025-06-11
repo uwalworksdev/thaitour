@@ -1273,6 +1273,9 @@
     }
 
     function handleSubmit(status) {
+        const $btn = $(document.activeElement); 
+        if ($btn.prop("disabled")) return;
+        $btn.prop("disabled", true);
 
         $("#order_status").val(status);
 
@@ -1280,52 +1283,61 @@
             if ($("#order_user_name").val() === "") {
                 alert("한국이름을 입력해주세요.");
                 $("#order_user_name").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
             if ($("#order_user_first_name_en").val() === "") {
                 alert("영문 이름(First Name)을 입력해주세요.");
                 $("#order_user_first_name_en").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_user_last_name_en").val() === "") {
                 alert("영문 성(Last Name)을 입력해주세요.");
                 $("#order_user_last_name_en").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_passport_number").val() === "") {
                 alert("여권번호를 입력해주세요!");
                 $("#order_passport_number").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_passport_expiry_date").val() === "") {
                 alert("여권만기일을 입력해주세요!");
                 $("#order_passport_expiry_date").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#order_birth_date").val() === "") {
                 alert("생년월일을 입력해주세요!");
                 $("#order_birth_date").focus()
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("#email_1").val() === "" || $("#email_2").val() === "") {
                 alert("이메일 주소를 입력해주세요.");
                 $("#email_1").focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if ($("input[name='radio_phone']:checked").val() === "kor") {
                 if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
                     alert("한국번호를 입력해주세요.");
+                    $btn.prop("disabled", false);
                     return false;
                 }
             } else if ($("input[name='radio_phone']:checked").val() === "thai") {
                 if ($("#phone_thai").val() === "") {
                     alert("태국번호를 입력해주세요.");
+                    $btn.prop("disabled", false);
                     return false;
                 }
             }
@@ -1338,6 +1350,7 @@
 
             if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
                 alert("모든 약관에 동의해야 합니다.");
+                $btn.prop("disabled", false);
                 return false;
             }
 
@@ -1351,12 +1364,14 @@
                 if($(".s_destination_name").val() == "") {
                     alert("목적지 입력해주세요!");
                     $(this).focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if($(".e_departure_name").val() == "") {
                     alert("미팅 장소 입력해주세요!");
                     $(this).focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
             <?php
@@ -1365,12 +1380,14 @@
                 if($(".s_departure_name").val() == "") {
                     alert("미팅 장소 입력해주세요!");
                     $(this).focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
 
                 if($(".s_destination_name").val() == "") {
                     alert("목적지 입력해주세요!");
                     $(this).focus();
+                    $btn.prop("disabled", false);
                     return false;
                 }
             <?php
@@ -1379,76 +1396,90 @@
 
             if($(".s_airline_code").val() == "") {
                 alert("항공편 명 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_date_trip").val() == "") {
                 alert("항공 도착 날짜 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_hours").val() == "") {
                 alert("항공 도착 시간 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_minutes").val() == "") {
                 alert("항공 도착 시간 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_schedule_content").val() == "") {
                 alert("이동루트 선택해주세요!");
                 $(this).focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_rest_name").val() == "") {
                 alert("경유지 선택해주세요!");
                 $(this).focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_order_memo").val() == "") {
                 alert("기타요청 입력해주세요!");
                 $(this).focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_date_trip").val() == "") {
                 alert("차량 미팅 날짜 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_hours").val() == "") {
                 alert("미팅 시간 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_hours").val() == "") {
                 alert("미팅 시간 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".s_minutes").val() == "") {
                 alert("항공 도착 시간 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_departure_name").val() == "") {
                 alert("미팅 장소 입력해주세요!");
                 $(this).focus();
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_airline_code").val() == "") {
                 alert("항공편 명 선택해주세요!");
+                $btn.prop("disabled", false);
                 return false;
             }
 
             if($(".e_order_memo").val() == "") {
                 alert("기타요청 입력해주세요!");
                 $(this).focus();
+                $btn.prop("disabled", false);
                 return false;
             }
         }
@@ -1459,12 +1490,14 @@
             data: $("#frmCar").serialize(),
             error: function(request, status, error) {
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $btn.prop("disabled", false);
             },
             success: function(response, status, request) {
                 if (response.result == true) {
                     alert(response.message);
                     window.location.href = '/product/completed-order';
                 } else {
+                    $btn.prop("disabled", false);
                     alert(response.message);
                 }
             }
