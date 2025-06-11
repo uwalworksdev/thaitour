@@ -1040,7 +1040,7 @@
 					var data_bath     = $(this).data('bath'); 
 					var bed_type      = $(this).data('type');
 					var rooms_idx     = $(this).val();
-					var room_g_idx    = $(this).data('room_g_idx');
+					var room_g_idx    = $(this).data('g_idx');
 
 					var room          = $(this).data('room');
 					var room_type     = $(this).data('roomtype');
@@ -2408,7 +2408,7 @@
 			var data_bath = $(this).data('bath'); 
 			var bed_type  = $(this).data('type');
 			var rooms_idx = $(this).val();
-			var room_g_idx = $(this).data('room_g_idx');
+			var room_g_idx = $(this).data('g_idx');
 			var room_name = $(this).data('name');
 			
 			$("#bed_type").val(bed_type);
