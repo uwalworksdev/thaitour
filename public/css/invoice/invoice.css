@@ -572,6 +572,10 @@ input[type="text"] {
     padding: 20px 0 100px;
 }
 
+.golf_invoice * {
+    font-family: "Pretendard" !important;
+}
+
 .golf_invoice .logo_voice {
     padding-bottom: 20px;
     border-bottom: 6px solid #1e73e7;
