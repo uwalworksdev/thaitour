@@ -869,7 +869,7 @@ class AjaxController extends BaseController {
 							});
 										
 						                foreach ($filteredRooms as $room): 
-												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">';
+												 $msg .= '<tr class="room_op_" data-room="'. $room['rooms_idx'] .'" data-g_idx="'. $room['g_idx'] .'" data-opid="149" data-optype="S" data-ho_idx="'. $row['goods_code'] .'">';
 												 $msg .= '<input type="hidden" class="r_contents2" value="' . $room['r_contents2'] . '">';
 												 $msg .= '<input type="hidden" class="r_contents3" value="' . $room['r_contents3'] . '">';
 										
@@ -1023,6 +1023,7 @@ class AjaxController extends BaseController {
 																  data-bath="'. $real_bath .'" 
 																  data-type="'. $_room[0] .'" 
 																  data-bed_idx="'. $_room[1] .'" 
+																  data-g_idx="'. $room['g_idx'] .'" 
 																  value="'. $room['rooms_idx'] .'" 
 																  class="sel_'. $room['rooms_idx'] .'">
 															  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $bed_idx .'">'.$_room[0] .':';
@@ -1042,6 +1043,7 @@ class AjaxController extends BaseController {
 														            name="extra_" 
 																	id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
 																	data-id="'.$room['g_idx'].$room['rooms_idx'].$bed_idx .'"
+																	data-g_idx="'.$room['g_idx'].'"
 																    data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
 													      $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
 													      $msg .= '</div>';

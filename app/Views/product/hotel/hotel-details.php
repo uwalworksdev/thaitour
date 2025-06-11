@@ -1040,6 +1040,8 @@
 					var data_bath     = $(this).data('bath'); 
 					var bed_type      = $(this).data('type');
 					var rooms_idx     = $(this).val();
+					var room_g_idx    = $(this).data('room_g_idx');
+
 					var room          = $(this).data('room');
 					var room_type     = $(this).data('roomtype');
 					var date_price    = $(this).data('price');
@@ -1053,6 +1055,7 @@
 					$("#price").val(data_bath);
 					$("#price_won").val(data_won);
 					$("#rooms_idx").val(rooms_idx);
+					$("#room_g_idx").val(room_g_idx);
 					$("#room").val(room);
 					$("#room_type").val(room_type);
 			        $("#date_price").val(date_price);
@@ -1588,7 +1591,7 @@
                                 });
                             ?>						
                                 <?php foreach ($filteredRooms as $room): ?>
-                                <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
+                                <tr class="room_op_" data-room="<?=$room['rooms_idx']?>" data-g_idx="<?=$room['g_idx']?>" data-opid="149" data-optype="S" data-ho_idx="<?=$row['goods_code']?>">
                                     <input type="hidden" class="r_contents2" value="<?=$room['r_contents2']?>">
                                     <input type="hidden" class="r_contents3" value="<?=$room['r_contents3']?>">
                                     <td class="room_subjects">
@@ -1763,6 +1766,7 @@
                                                                data-won="<?=$real_won?>" 
                                                                data-bath="<?=$real_bath?>" 
                                                                data-type="<?=$bed_type[$i]?>" 
+                                                               data-g_idx="<?=$room['g_idx']?>"
                                                                value="<?=$room['rooms_idx']?>" >
                                                         <label for="bed_type_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>"><?=$bed_type[$i]?>: 
                                                             <?php if($room['secret_price'] == "Y"){?>
@@ -1778,6 +1782,7 @@
                                                                data-name="Extra베드" 
                                                                data-id="<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>" 
                                                                data-won="<?=$extra_won?>" 
+                                                               data-g_idx="<?=$room['g_idx']?>"
                                                                data-bath="<?=$extra_bath?>" value="<?=$room['rooms_idx']?>">
                                                         <label for="extra_<?=$room['g_idx']?><?=$room['rooms_idx']?><?=$i?>">Extra 베드: <span style="color :coral"><?=number_format($extra_won)?>원 (<?=number_format($extra_bath)?>바트)</span></label>
                                                     </div>
@@ -2186,6 +2191,7 @@
 		<input type="hidden" name="room"      id="room" value="">
 		<input type="hidden" name="room_type" id="room_type" value="">
 		<input type="hidden" name="rooms_idx" id="rooms_idx" value="">
+		<input type="hidden" name="room_g_idx" id="room_g_idx" value="">
 		<input type="hidden" name="date_price" id="date_price" value="">
 		<input type="hidden" name="breakfast"  id="breakfast" value="">
 		<input type="hidden" name="adult"      id="adult" value="">
@@ -2402,12 +2408,14 @@
 			var data_bath = $(this).data('bath'); 
 			var bed_type  = $(this).data('type');
 			var rooms_idx = $(this).val();
+			var room_g_idx = $(this).data('room_g_idx');
 			var room_name = $(this).data('name');
 			
 			$("#bed_type").val(bed_type);
 			$("#price").val(data_bath);
 			$("#price_won").val(data_won);
 			$("#rooms_idx").val(rooms_idx);
+			$("#room_g_idx").val(room_g_idx);
 			$("#room_name").val(room_name);
 		 	
 		});
@@ -2716,6 +2724,7 @@
 			let price           = $("#price").val();
 			let price_won       = $("#price_won").val();
 			let rooms_idx       = $("#rooms_idx").val();
+			let room_g_idx       = $("#room_g_idx").val();
             let room            = $("#room").val();
 
 			let room_type       = $("#room_type").val();
@@ -2755,6 +2764,7 @@
             formData.append("price", price);
             formData.append("price_won", price_won);
             formData.append("rooms_idx", rooms_idx);
+            formData.append("room_g_idx", room_g_idx);
             formData.append("room", room);
             formData.append("room_type", room_type);
             formData.append("bed_type", bed_type);
@@ -3150,6 +3160,7 @@
 			let price           = $("#price").val();
 			let price_won       = $("#price_won").val();
 			let rooms_idx       = $("#rooms_idx").val();
+			let room_g_idx       = $("#room_g_idx").val();
             let room            = $("#room").val();
 
 			let room_type       = $("#room_type").val();
@@ -3188,6 +3199,7 @@
 			    price             : price,
 			    price_won         : price_won,
 			    rooms_idx         : rooms_idx,
+			    room_g_idx        : room_g_idx,
 				room              : room,	
 			    room_type         : room_type,
                 bed_type          : bed_type,
