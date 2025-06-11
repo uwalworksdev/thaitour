@@ -208,7 +208,7 @@
                                         <tr>
                                             <th>픽업장소</th>
                                             <td>
-                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="pickup_place" id="pickup_place">
+                                                <input type="text" placeholder="픽업장소을 영어로 적어주세요(주소불가)" name="pickup_place" id="pickup_place">
                                                 <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
                                             </td>
                                         </tr>
@@ -217,7 +217,7 @@
                                         <tr>
                                             <th>샌딩장소</th>
                                             <td>
-                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="sanding_place" id="sanding_place">
+                                                <input type="text" placeholder="샌딩장소을 영어로 적어주세요(주소불가)" name="sanding_place" id="sanding_place">
                                                 <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
                                             </td>
                                         </tr>
@@ -226,7 +226,7 @@
                                         <tr>
                                             <th>미팅장소</th>
                                             <td>
-                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
+                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
                                                 <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
                                             </td>
                                         </tr>

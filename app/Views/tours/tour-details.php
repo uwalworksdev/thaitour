@@ -135,7 +135,9 @@
             <input type="hidden" name="total_pay" id="total_pay" value="">
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
             <input type="hidden" name="final_discount" id="final_discount" value="">
-            <input type="hidden" name="start_place" id="start_place" value="">
+            <input type="hidden" name="sanding_place" id="start_place" value="">
+            <input type="hidden" name="pickup_place" id="pickup_place" value="">
+            <input type="hidden" name="sanding_place" id="start_place" value="">
             <input type="hidden" name="end_place" id="end_place" value="">
             <input type="hidden" name="id_kakao" id="id_kakao" value="">
             <input type="hidden" name="description" id="description" value="">
@@ -973,13 +975,40 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>미팅장소</th>
                                         <td>
                                             <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" id="pop_start_place">
                                             <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
                                         </td>
-                                    </tr>
+                                    </tr> -->
+                                    <?php if(strpos($product['field_more'], '1') !== false):?>
+                                        <tr>
+                                            <th>픽업장소</th>
+                                            <td>
+                                                <input type="text" placeholder="픽업장소을 영어로 적어주세요(주소불가)"  id="pop_pickup_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(strpos($product['field_more'], '2') !== false):?>
+                                        <tr>
+                                            <th>샌딩장소</th>
+                                            <td>
+                                                <input type="text" placeholder="샌딩장소을 영어로 적어주세요(주소불가)" id="pop_sanding_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(strpos($product['field_more'], '3') !== false):?>
+                                        <tr>
+                                            <th>미팅장소</th>
+                                            <td>
+                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" id="pop_start_place">
+                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                            </td>
+                                        </tr>
+                                    <?php endif?>
                                     <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." id="pop_end_place"></td>
@@ -1054,6 +1083,18 @@
             return false;
         }
 
+        if ($("#pop_pickup_place").val() === "") {
+            alert("픽업장소 입력해주세요!");
+            $("#pop_pickup_place").focus();
+            return false;
+        }
+
+        if ($("#pop_sanding_place").val() === "") {
+            alert("샌딩장소 입력해주세요!");
+            $("#pop_sanding_place").focus();
+            return false;
+        }
+
         if ($("#pop_end_place").val() === "") {
             alert("종료 후 내리실 곳 입력해주세요!");
             $("#pop_end_place").focus();
@@ -1079,6 +1120,8 @@
 
         $("#time_line").val(selectedTimePop);
 
+        $("#pickup_place").val($("#pop_pickup_place").val());
+        $("#sanding_place").val($("#pop_sanding_place").val());
         $("#start_place").val($("#pop_start_place").val());
         $("#end_place").val($("#pop_end_place").val());
         $("#id_kakao").val($("#pop_id_kakao").val());

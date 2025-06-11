@@ -173,6 +173,10 @@
     text-align: left;
 }
 
+.explain_point span {
+    font-family: "Pretendard" !important;
+}
+
 .explain_point h5 {
     font-size: 18px;
     color: #777;
@@ -193,6 +197,7 @@
 .notice_ty01 li {
     list-style-type: disc;
     text-indent: 0 !important;
+    font-family: "Pretendard" !important;
 }
 
 .f_14.f_gray {
@@ -225,6 +230,11 @@
     text-wrap: wrap;
     white-space: wrap;
     word-break: auto-phrase;
+}
+
+.product_information_ b ,
+.product_information_ span {
+    font-family: "Pretendard" !important;
 }
 
 .txt_me01::-webkit-scrollbar,
