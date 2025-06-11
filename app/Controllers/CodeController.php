@@ -76,6 +76,7 @@ class CodeController extends BaseController
             $row = $this->CodeModel->getCodeByIdx($code_idx);
             $code_no = $row['code_no'];
             $code_name = $row['code_name'];
+            $code_name_en = $row['code_name_en'];
             $init_oil_price = $row['init_oil_price'];
             $ufile1 = $row['ufile1'];
             $rfile1 = $row['rfile1'];
@@ -112,6 +113,7 @@ class CodeController extends BaseController
             "yoil_idx" => $yoil_idx,
             "code_no" => $code_no,
             "code_name" => $code_name ?? "",
+            "code_name_en" => $code_name_en ?? "",
             "init_oil_price" => $init_oil_price ?? "",
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
