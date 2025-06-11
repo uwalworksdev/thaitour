@@ -68,11 +68,11 @@ class VoucherController extends BaseController
 		$roomName_eng = $row["roomName_eng"];
 		$roomName = $row["roomName"];
 
-		$sql            = "SELECT * FROM tbl_hotel_rooms WHERE rooms_idx = '". $result->rooms_idx ."' ";
+		$sql            = "SELECT * FROM tbl_room_beds WHERE bed_idx = '". $result->bed_idx ."' ";
 		$roomsByType    = $db->query($sql);
-		$roomsByType    = $roomsByType->getResultArray();
+		$roomsByType    = $roomsByType->getRowArray();
 
-		$bed_type_en = $roomsByType[0]["bed_type_eng"];
+		$bed_type_en = $roomsByType["bed_type_eng"];
 
         $builder = $db->table('tbl_policy_info');
 		$policy = $builder->whereIn('p_idx', [23])
