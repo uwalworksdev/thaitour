@@ -173,6 +173,10 @@
     text-align: left;
 }
 
+.explain_point span {
+    font-family: "Pretendard" !important;
+}
+
 .explain_point h5 {
     font-size: 18px;
     color: #777;
