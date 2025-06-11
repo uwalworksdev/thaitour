@@ -1550,31 +1550,16 @@ class TourRegistController extends BaseController
         if ($s_date) $o_sdate = $s_date; 
         if ($e_date) $o_edate = $e_date;
 
-$builder = $this->connect->table('tbl_room_price a');
-$builder->select('a.*, b.bed_idx, b.bed_type, b.bed_seq');
-$builder->join('tbl_room_beds b', 'a.bed_idx = b.bed_idx', 'left');
-
-// 기본 필터링 조건
-$builder->where('a.product_idx', $product_idx);
-$builder->where('a.bed_idx !=', 0); // bed_idx가 숫자라고 가정
-$builder->where('a.bed_idx IS NOT NULL');
-
-// $search1이 동적 조건이라면 배열 형태로 미리 구성해 적용
-if (!empty($search1)) {
-    $builder->where($search1); // 또는 수동 where() 추가
-}
-
-// 날짜 조건
-if ($s_date && $e_date) {
-    $builder->where("a.goods_date >=", $s_date);
-    $builder->where("a.goods_date <=", $e_date);
-} else {
-    $builder->where("a.goods_date >=", $today);
-}
-
-$query = $builder->get();
-$result = $query->getResultArray();
-
+        if ($s_date && $e_date) {
+            $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
+			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
+									WHERE a.product_idx = '" . $product_idx . "' $search1 AND a.bed_idx != '' AND a.bed_idx != '0' AND a.goods_date BETWEEN '$s_date' AND '$e_date' ";
+        } else {
+            $sql = "SELECT a.*, b.bed_idx, b.bed_type, b.bed_seq FROM tbl_room_price a
+			                        LEFT JOIN tbl_room_beds b ON a.bed_idx = b.bed_idx 
+			                        WHERE goods_date >= '". $today ."' AND a.bed_idx != ''  AND a.bed_idx != '0' AND product_idx = '" . $product_idx . "' $search1 ";
+        }
+        $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
         $nPage = ceil($nTotalCount / $g_list_rows);
