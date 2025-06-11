@@ -460,9 +460,9 @@
 
                                 <th>객실 금액</th>
                                 <td>
-                                    <?= number_format($row->price) ?>바트 (<?=number_format((int)$row->price / $row->order_room_cnt)?>바트 Χ <?=$row->order_room_cnt?>룸)
+                                    <?= number_format($row->price) ?>바트 (<?=number_format((int)$row->price / $row->order_room_cnt)?>바트 x <?=$row->order_room_cnt?>룸)
                                     <br>
-                                    + Extra: <?=$row->extra_bath?>바트
+                                    + Extra: <?=number_format($row->extra_bath)?>바트
                                 </td>
                             </tr>
                             <tr>
