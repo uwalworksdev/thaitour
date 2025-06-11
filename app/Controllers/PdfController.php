@@ -113,7 +113,7 @@ class PdfController extends BaseController
 
 		$html = view('pdf/invoice_hotel', [
             'result' => $result,
-            'policy_1' 	=> $policy[1],
+            'policy_1' 	=> $policy[0],
         ]);
 
         $pdf->WriteHTML($html);

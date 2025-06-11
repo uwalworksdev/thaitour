@@ -23,7 +23,11 @@
         }
 
         p {
-            margin-top: 0 !important;
+            margin: 0 !important;
+        }
+
+        .policy_wrap_cont {
+            margin-top: 20px;
         }
 
         .golf_invoice {
