@@ -450,12 +450,12 @@ endforeach;
                                         <img src="/images/mypage/document_ic.png" alt="">
                                         <p>견적서</p>
                                     </div>
-                                    <?php } ?>
-									
-                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>">
-                                        <p>예약정보</p>
+                                    <div class="info_voucher btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
+                                        <img src="/images/mypage/document_ic.png" alt="">
+                                        <p>견적서</p>
                                     </div>
-                                    
+                                    <?php } ?>
+									                                   
 									<?php if($order->order_status == "Y") { ?>
                                     <div class="info_receipt btn_info flex__c box" data-pg="<?=$order->order_pg?>"  data-tid="<?=$order->TID_1?>">
                                         <p>영수증</p>
@@ -463,9 +463,14 @@ endforeach;
 									<?php } ?>
 										
                                 </div>
-                                <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
-                                    <img src="/images/mypage/delete_ic.png" alt="">
-                                    <p>예약삭제</p>
+                                <div class="estimate_wrap flex box">
+                                    <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
+                                        <img src="/images/mypage/delete_ic.png" alt="">
+                                        <p>예약삭제</p>
+                                    </div>
+                                    <div class="info_reservation btn_info flex__c box" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>">
+                                        <p>예약정보</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -980,6 +985,19 @@ $(document).on('click', '.info_estimate', function () {
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
 		// $('.confirm_depart').show();
+});
+
+$(document).on('click', '.info_voucher', function () {
+    var idx   = $(this).data('idx');  
+    var gubun = $(this).data('gubun');  
+    let url   = "";
+    
+    if(gubun == "hotel")  url = "/voucher/hotel/"+idx; 
+    if(gubun == "tour")   url = "/voucher/tour/"+idx; 
+    if(gubun == "spa")    url = "/voucher/ticket/"+idx; 
+    if(gubun == "golf")   url = "/voucher/golf/"+idx; 
+    
+    window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 });
 
 $(document).on('click', '.info_reservation', function () {
