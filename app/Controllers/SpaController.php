@@ -22,9 +22,12 @@ class SpaController extends BaseController
     protected $spasOption;
     private $spasPrice;
 
+     private $db;
+
 
     public function __construct()
     {
+        $this->db = db_connect();
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -268,6 +271,9 @@ class SpaController extends BaseController
             $this->orderModel->insert($orderData);
             $orderIdx = $this->orderModel->getInsertID();
 
+            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$memberIdx', contents = '호텔예약접수가 되었습니다.', r_date = now()";
+            $this->db->query($sql_alarm);
+
             $this->handleSubOrders($postData, $orderIdx, $productIdx);
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);
 
@@ -472,6 +478,11 @@ class SpaController extends BaseController
 
             $this->orderModel->insert($orderData);
             $orderIdx = $this->orderModel->getInsertID();
+
+            // CREATE ALARM
+            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '호텔예약접수가 되었습니다.', r_date = now()";
+            $this->db->query($sql_alarm);
+            // END
 
             $this->handleSubOrders($postData, $orderIdx, $productIdx);
             $this->handleOrderOptions($postData, $orderIdx, $productIdx);

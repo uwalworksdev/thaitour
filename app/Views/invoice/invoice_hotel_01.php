@@ -401,7 +401,7 @@
                         }
 
                         p {
-                            margin-top: 0 !important;
+                            margin: 0 !important;
                         }
                     }
                 </style>
