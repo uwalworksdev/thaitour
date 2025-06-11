@@ -350,6 +350,11 @@
         .golf_invoice .info_order_txt {
             margin: 10px 0 0 !important;
         }
+
+        #container_voice *{
+            font-family: "Pretendard" !important;
+            line-height: 1.4 !important;
+        }
     </style>
 </head>
 <body>
@@ -357,7 +362,7 @@
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                 </div>
@@ -375,7 +380,7 @@
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td><?=$result->stay_address?></td>
+                                <td style="font-family: 'Pretendard' !important;"><?=$result->stay_address?></td>
                             </tr>
                             <tr>
                                 <th>Tel</th>
@@ -480,8 +485,8 @@
                         <p style="font-weight: bold;">• Booked by: <?= $setting['site_name_en'] ?></p>
                         <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
-                    <div class="invoice_note_">
-                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                    <div class="invoice_note_" style="font-family: 'Pretendard' !important; line-height: 1.6 !important; font-size: 16px !important;">
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 15px;" src="/images/sub/warning-icon.png" alt=""><span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span><span style="padding-left: 30px; padding-bottom: 10px; font-size: 20px; font-weight: 600;">참고사항</span></p>
                         <?= viewSQ($policy["policy_contents"]) ?>
                     </div>
                 </div>
