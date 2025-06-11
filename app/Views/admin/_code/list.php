@@ -53,6 +53,13 @@
                                 <col width="70px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
+                                <?php
+                                    if($s_parent_code_no == "53"){
+                                ?>
+                                    <col width="150px"/>
+                                <?php
+                                    }
+                                ?>
                                 <col width="120px"/>
                                 <col width="120px"/>
                                 <col width="120px"/>
@@ -65,6 +72,13 @@
                                 <th>번호</th>
                                 <th>코드번호</th>
                                 <th>코드명</th>
+                                <?php
+                                    if($s_parent_code_no == "53"){
+                                ?>
+                                    <th>영문</th>
+                                <?php
+                                    }
+                                ?>
                                 <th>이미지</th>
                                 <th>DEPTH</th>
                                 <th>하위갯수</th>
@@ -89,6 +103,9 @@
                                     <td class="tac"><?= $row["code_no"] ?></td>
                                     <td class="tal">
                                         <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"><?= $row["code_name"] ?></a>
+                                    </td>
+                                    <td class="tal">
+                                        <?= $row["code_name_en"] ?>
                                     </td>
                                     <td class="tac"><?php if ($row['ufile1'] && $row['rfile1']) echo "<img src='/data/code/" . $row['ufile1'] . "'>"; ?></td>
                                     <td class="tac"><?= $row["depth"] ?></td>
