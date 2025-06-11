@@ -227,6 +227,11 @@
     word-break: auto-phrase;
 }
 
+.product_information_ b ,
+.product_information_ span {
+    font-family: "Pretendard" !important;
+}
+
 .txt_me01::-webkit-scrollbar,
 .product_information_::-webkit-scrollbar {
     width: 4px;
