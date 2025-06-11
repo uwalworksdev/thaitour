@@ -17,7 +17,7 @@ class OrdersModel extends Model
         , "product_period", "tour_period", "people_adult_cnt", "people_adult_price", "people_kids_cnt", "people_kids_price"
         , "people_baby_cnt", "people_baby_price", "oil_price", "inital_price", "order_price", "order_price_bath", "option_amt", "extra_cost", "order_confirm_price"
 		, "real_price_bath", "real_price_won", "voucher_price_bath", "voucher_price_won"
-	    , "price", "price_won", "extra_won", "extra_bath","room", "room_type", "bed_type", "date_price", "adult", "kids", "last_price" , "rooms_idx", "room_g_idx"			
+	    , "price", "price_won", "extra_won", "extra_bath","room", "room_type", "bed_type", "date_price", "adult", "kids", "last_price" , "rooms_idx", "room_g_idx", "bed_idx"		
         , "order_confirm_date", "confirm_method", "deposit_price", "deposit_date", "deposit_method", "order_pg", "order_method", "used_op_type", "room_op_price_sale"
         , "used_coupon_idx", "used_coupon_no", "used_coupon_point", "used_coupon_money", "product_mileage", "used_mileage_money"
         , "order_mileage", "order_status", "order_m_date", "order_r_date", "order_d_date", "order_c_date", "is_modify"
