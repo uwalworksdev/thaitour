@@ -1023,6 +1023,11 @@
             });
 			
             $(".btn-order, .btn-cart").click(function () {
+                var $btn = $(this);
+                if ($btn.prop("disabled")) return; 
+                $btn.prop("disabled", true);
+
+
                 var order_status = $(this).val();
                 $("#order_status").val(order_status);
                 const frm = document.order_frm;
@@ -1112,6 +1117,7 @@
                     error: function (request, status, error) {
                         //통신 에러 발생시 처리
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                        $btn.prop("disabled", false);
                     },
                     success: function (response, status, request) {
                         if (response.result == true) {
@@ -1123,6 +1129,7 @@
 							}   
                         } else {
                             alert(response.message);
+                            $btn.prop("disabled", false);
                         }
                     }
                 });
