@@ -410,9 +410,9 @@
                     <h2 class="tit_top">Booking details</h2>
                     <table class="invoice_tbl">
                         <colgroup>
-                            <col width="150px">
+                            <col width="100px">
                             <col width="35%">
-                            <col width="150px">
+                            <col width="100px">
                             <col width="*">
                         </colgroup>
                         <tbody>
