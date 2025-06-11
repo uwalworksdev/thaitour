@@ -254,7 +254,7 @@ $setting = homeSetInfo();
                                     ?>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th>Option</th>
                                 <td colspan="3">
                                     <?=$order_option?>
@@ -267,7 +267,7 @@ $setting = homeSetInfo();
                                         }
                                     ?>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
     
