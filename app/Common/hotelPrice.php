@@ -271,7 +271,7 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
     }, $dateRows);
 
     // 로그 기록
-    write_log("room_r - " . implode("|", $room_r));
+    //write_log("room_r - " . implode("|", $room_r));
 
     // 결과 반환
     return implode("|", $room_r);
