@@ -350,6 +350,11 @@
         .golf_invoice .info_order_txt {
             margin: 10px 0 0 !important;
         }
+
+        #container_voice *{
+            font-family: "Pretendard" !important;
+            line-height: 1.4 !important;
+        }
     </style>
 </head>
 <body>
@@ -357,7 +362,7 @@
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                 </div>
