@@ -380,7 +380,7 @@
                             </tr>
                             <tr>
                                 <th>Address</th>
-                                <td><?=$result->stay_address?></td>
+                                <td style=" font-family: 'Pretendard' !important;"><?=$result->stay_address?></td>
                             </tr>
                             <tr>
                                 <th>Tel</th>
@@ -486,7 +486,7 @@
                         <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
                     <div class="invoice_note_">
-                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 30px; margin-top: 10px; font-size: 20px; font-weight: 600;">참고사항</span></p>
                         <?= viewSQ($policy["policy_contents"]) ?>
                     </div>
                 </div>
