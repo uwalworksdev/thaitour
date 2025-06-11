@@ -840,6 +840,7 @@ class VoucherController extends BaseController
         ]);
     }
 
+
 	public function ticket_save()
 	{
 		try {
@@ -895,4 +896,151 @@ class VoucherController extends BaseController
             ]);
         }
 	}
+
+	public function car($idx)
+    {
+		$type = $this->request->getVar('type'); 
+		$private_key = private_key(); // 복호화 키
+
+		$db = db_connect();
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->select("
+					a.*, b.*, c.*,
+					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
+					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
+					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
+					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
+					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
+					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
+					AES_DECRYPT(UNHEX(a.order_addr2), '$private_key') AS order_addr2,
+					AES_DECRYPT(UNHEX(a.manager_name), '$private_key') AS manager_name
+		");
+
+		$builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
+		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
+		$builder->where('a.order_idx', $idx);
+
+		$query  = $builder->get();
+		$result = $query->getRow();
+
+		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
+
+		if($type == "admin"){
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+			$order_memo = $result->order_memo;
+			$order_date = $result->order_day;
+			$time_line = $result->time_line;
+			$start_place = $result->start_place;
+			$pick_time = $result->description;
+			$id_kakao = $result->id_kakao;
+			$tour_type = $tour_prod_name;
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = $result->order_day;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+			}
+
+			if(!empty($result->time_line_en)){
+				$time_line = $result->time_line_en;
+			}else{
+				$time_line = $result->time_line;
+			}
+
+			if(!empty($result->tour_type_en)){
+				$tour_type = $result->tour_type_en;
+			}else{
+				$tour_type = $tour_prod_name;
+			}
+
+			if(!empty($result->start_place_en)){
+				$start_place = $result->start_place_en;
+			}else{
+				$start_place = $result->start_place;
+			}
+
+			if(!empty($result->id_kakao_en)){
+				$id_kakao = $result->id_kakao_en;
+			}else{
+				$id_kakao = $result->id_kakao;
+			}
+
+			if(!empty($result->pick_time_en)){
+				$pick_time = $result->pick_time_en;
+			}else{
+				$pick_time = $result->description;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
+		}
+
+        $builder1 = $db->table('tbl_policy_info');
+		$policy = $builder1->whereIn('p_idx', [25])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+        return view("voucher/voucher_car", [
+            'policy_1' => $policy[0],
+            'result' => $result,
+			'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'start_place' => $start_place,
+			'pick_time' => $pick_time,
+			'id_kakao' => $id_kakao,
+			'time_line' => $time_line,
+			'tour_type' => $tour_type,
+        ]);
+    }
 }

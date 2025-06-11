@@ -997,6 +997,8 @@ $(document).on('click', '.info_voucher', function () {
     if(gubun == "tour")   url = "/voucher/tour/"+idx; 
     if(gubun == "spa")    url = "/voucher/ticket/"+idx; 
     if(gubun == "golf")   url = "/voucher/golf/"+idx; 
+    if(gubun == "vehicle")    url = "/voucher/car/"+idx; 
+
     
     window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 });
