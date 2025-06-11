@@ -485,8 +485,8 @@
                         <p style="font-weight: bold;">• Booked by: <?= $setting['site_name_en'] ?></p>
                         <!-- <p>• Booked on: 27-Sep-2023(Wed)</p> -->
                     </div>
-                    <div class="invoice_note_" style="position: relative">
-                        <p  style="display: grid; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="padding-left: 30px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                    <div class="invoice_note_">
+                        <div  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 20px;  font-size: 20px; font-weight: 600;">참고사항</span></div>
                         <?= viewSQ($policy["policy_contents"]) ?>
                     </div>
                 </div>
