@@ -92,7 +92,7 @@ class VoucherController extends BaseController
 			$bed_type = $result->bed_type;
 			$order_room_cnt = $result->order_room_cnt;
 			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
-			$order_memo = $result->order_memo;
+			$order_memo = $result->admin_memo;
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
 			$guest_request = $str_req;
 
@@ -150,7 +150,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_memo_new)){
 				$order_memo = $result->order_memo_new;
 			}else{
-				$order_memo = $result->order_memo;
+				$order_memo = $result->admin_memo;
 			}
 
 			if(!empty($result->child_age_new)){
