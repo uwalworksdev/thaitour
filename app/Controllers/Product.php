@@ -2702,7 +2702,7 @@ class Product extends BaseController
             $order_idx = $this->orderModel->getInsertID();
 
             $m_idx = session('member.idx') ?? "";
-            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '호텔예약접수가 되었습니다.', r_date = now()";
+            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '골프예약접수가 되었습니다.', r_date = now()";
             $this->db->query($sql_alarm);
 
             foreach ($data['companion_name'] as $key => $value) {
@@ -3150,7 +3150,7 @@ class Product extends BaseController
             $this->orderModel->save($data);
 
             $m_idx = session('member.idx') ?? "";
-            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '호텔예약접수가 되었습니다.', r_date = now()";
+            $sql_alarm    = "INSERT tbl_alarm SET m_idx = '$m_idx', contents = '투어예약접수가 되었습니다.', r_date = now()";
             $this->db->query($sql_alarm);
 
             $order_idx = $this->orderModel->getInsertID();
