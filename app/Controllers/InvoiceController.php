@@ -48,7 +48,7 @@ class InvoiceController extends BaseController
 		$product_idx = $row["product_idx"];
 
 		$builder = $db->table('tbl_product_mst');
-		$builder->select("notice_comment");
+		$builder->select("notice_comment, not_included_product, guide_contents");
 		$query  = $builder->where('product_idx', $product_idx)->get();
 		$result = $query->getRowArray();
 		$notice_contents = $result["notice_comment"];
@@ -163,7 +163,7 @@ class InvoiceController extends BaseController
 				$product_idx = $firstRow->product_idx;
 		
 				$builder = $db->table('tbl_product_mst');
-				$builder->select("notice_comment, not_included_product, guide_contents");
+				$builder->select("notice_comment");
 				$query  = $builder->where('product_idx', $product_idx)->get();
 				$result = $query->getRowArray();
 				$notice_contents = $result["notice_comment"];
