@@ -248,7 +248,7 @@ class CheckoutController extends BaseController
         $m_idx      =  $memberIdx;
         $payment_no =  updateSQ($this->request->getPost('payment_no'));				// 가맹점 결제번호
 		$order_no 	=  updateSQ($this->request->getPost('dataValue'));				// 가맹점 주문번호
-		write_log("confirmMypage- ". $product_name ." - ". $order_no);
+		//write_log("confirmMypage- ". $product_name ." - ". $order_no);
 
         $payment_price = 0;
         $group_no      = date('YmdHis');
@@ -508,7 +508,7 @@ class CheckoutController extends BaseController
 													   ,order_user_mobile          = '$payment_user_mobile' 
 													   ,order_user_phone           = '$payment_user_phone' 
 													   ,order_user_gender          = '$companion_gender' WHERE order_no = '". $arr[$i] ."' ";
-					write_log("reservation_request- ". $sql_o);
+					//write_log("reservation_request- ". $sql_o);
 					$result = $db->query($sql_o); 
 				}	
         }

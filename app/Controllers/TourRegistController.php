@@ -222,7 +222,7 @@ class TourRegistController extends BaseController
 					SELECT p1.*, c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
 						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
 						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_status != 'D' $strSql group by p1.product_idx ";
-        write_log("qwqwqwqw- ". $total_sql); 
+        //write_log("qwqwqwqw- ". $total_sql); 
 
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
         $nTotalCount = $result->getNumRows();
@@ -312,7 +312,7 @@ class TourRegistController extends BaseController
 
         // 홀 update
         $sql_h     = "select distinct(goods_name) as hole from tbl_golf_price where product_idx = '". $product_idx ."' and use_yn != 'N' order by hole asc ";
-		write_log($sql_h);
+		//write_log($sql_h);
         $result_h  = $db->query($sql_h) or die ($db->error);
         $fresult_h = $result_h->getResultArray();
 		
@@ -393,7 +393,7 @@ class TourRegistController extends BaseController
         $img_list = $this->productImg->getImg($product_idx);
 
         $sql       = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
-		write_log("xxx- ". $sql);
+		//write_log("xxx- ". $sql);
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
 		
@@ -1459,7 +1459,7 @@ class TourRegistController extends BaseController
         } else {
             $sql = "SELECT * FROM tbl_golf_price WHERE product_idx = '" . $product_idx . "' $search ";
         }
-		write_log("zzzz- ". $sql);
+		//write_log("zzzz- ". $sql);
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
 
@@ -1480,7 +1480,7 @@ class TourRegistController extends BaseController
 		$hquery  = $this->connect->query($hsql, [$product_idx, $group_idx]);
 		$hresult = $hquery->getResultArray();
 
-        write_log("SELECT DISTINCT(goods_name) AS goods_name- " . $this->connect->getLastQuery());
+        //write_log("SELECT DISTINCT(goods_name) AS goods_name- " . $this->connect->getLastQuery());
 
         $data = [
             "num"          => $num,
@@ -1646,12 +1646,12 @@ class TourRegistController extends BaseController
         $db = $this->connect;
 
         $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum ASC";
-		write_log("write_spas- ". $sql_c);
+		//write_log("write_spas- ". $sql_c);
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
         $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
-		write_log($sql);
+		//write_log($sql);
         $query = $db->query($sql);
         $product = $query->getRowArray();
 		
@@ -1750,7 +1750,7 @@ class TourRegistController extends BaseController
         $db = $this->connect;
 
         $sql = "SELECT * FROM tbl_product_mst WHERE product_idx = '" . $product_idx . "' ";
-		write_log($sql);
+		//write_log($sql);
         $query = $db->query($sql);
         $product = $query->getRowArray();
 

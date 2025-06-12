@@ -192,7 +192,7 @@ class InicisController extends BaseController
 														, AuthCode_1     = '". $resultMap['applNum'] ."'
 														, AuthDate_1     = '". $resultMap['AuthDate'] ."'
 														WHERE order_no IN(". $orderList .") "; 
-						write_log("inicisResult- ". $sql);								
+						//write_log("inicisResult- ". $sql);								
 						$db->query($sql);
 
 						// 쿠폰, 포인트 소멸부분 추가
@@ -416,7 +416,7 @@ class InicisController extends BaseController
 													,AuthCode_1     = '". $out['P_AUTH_NO'] ."'
 													,AuthDate_1     = '". $out["P_AUTH_DT"] ."' 
 													WHERE order_no IN(". $orderList .") "; 
-					write_log("Inicis-1 ". $sql);								
+					//write_log("Inicis-1 ". $sql);								
 					$db->query($sql);
 								
 
@@ -439,7 +439,7 @@ class InicisController extends BaseController
 														   , m_idx             = '". $row['m_idx']."'
 														   , product_idx       = ''
 														   , mi_r_date         = now() ";
-    				   write_log("Inicis-2 ". $sql);								
+    				   //write_log("Inicis-2 ". $sql);								
 					   $db->query($sql);
 					   
 						// 포인트 지급
@@ -459,7 +459,7 @@ class InicisController extends BaseController
 															 ,m_idx             = '". $row['m_idx'] ."'
 															 ,mi_r_date         = now()
 															 ,remaining_mileage = '' ";
-     				    write_log("Inicis-3 ". $sql);								
+     				    //write_log("Inicis-3 ". $sql);								
 						$db->query($sql_m);
 						$insertId    = $db->insertID();
 						

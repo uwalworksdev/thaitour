@@ -34,7 +34,7 @@ class DailyController extends BaseController {
 			$msg = $today . " 이용완료 오류";
 		} 
 		
-		write_log($msg);
+		//write_log($msg);
 
     }
 	
@@ -59,7 +59,7 @@ class DailyController extends BaseController {
             $msg = "예약건 취소 처리 중 오류 발생.";
         }
 		
-		write_log($msg);
+		//write_log($msg);
     }
 	
 	public function hotel_price() {

@@ -320,7 +320,7 @@ class PaymentController extends BaseController
 									$db->table('tbl_order_mileage')->insert($data);
 
 									// 로그 기록
-									write_log("3- Mileage updated: " . json_encode($data));
+									//write_log("3- Mileage updated: " . json_encode($data));
 
 									// 마일리지 업데이트 함수 호출
 									set_all_mileage($row['m_idx']);

@@ -1435,7 +1435,7 @@ class Product extends BaseController
 
 
             $sql           = "select * from tbl_hotel_rooms where goods_code ='". $hotel['product_idx'] ."' and room_name != '' order by rooms_idx asc";
-			write_log($sql);
+			//write_log($sql);
             $roomsByType   = $this->db->query($sql);
             $roomsByType   = $roomsByType->getResultArray();
 
@@ -2400,7 +2400,7 @@ class Product extends BaseController
                 //$info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
 				
 				$sql    = "SELECT * FROM tbl_golf_option WHERE idx = '$option_idx' ";
-				write_log("golf option- ". $sql);
+				//write_log("golf option- ". $sql);
 				$result0 = $this->db->query($sql);
 				$result = $result0->getResultArray();
 				foreach($result as $info)
@@ -5255,7 +5255,7 @@ class Product extends BaseController
 			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
 			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-			write_log($sql);
+			//write_log($sql);
 			$row = $db->query($sql)->getRowArray();
 
 			if($row['cnt'] == 0) {
@@ -5286,7 +5286,7 @@ class Product extends BaseController
 														   ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 
 														   ,device_type                = '". $device_type ."' 
 														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
-					write_log("INSERT INTO tbl_payment_mst- ". $sql);
+					//write_log("INSERT INTO tbl_payment_mst- ". $sql);
 					$result = $db->query($sql);
 			}
 
@@ -5482,7 +5482,7 @@ class Product extends BaseController
 			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
 			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-			write_log($sql);
+			//write_log($sql);
 			$row = $db->query($sql)->getRowArray();
 
 			if($row['cnt'] == 0) {
@@ -5507,7 +5507,7 @@ class Product extends BaseController
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
                                                            ,device_type                = '". $device_type ."' 					
 														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
-					write_log("custHotelPaymentOk - ". $sql);
+					//write_log("custHotelPaymentOk - ". $sql);
 					$result = $db->query($sql);
 			}
 
@@ -5703,7 +5703,7 @@ class Product extends BaseController
 			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
 			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-			write_log($sql);
+			//write_log($sql);
 			$row = $db->query($sql)->getRowArray();
 
 			if($row['cnt'] == 0) {
@@ -5728,7 +5728,7 @@ class Product extends BaseController
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 			
                                                            ,device_type                = '". $device_type ."' 					
 														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
-					write_log("tourPaymentOk- ". $sql);
+					//write_log("tourPaymentOk- ". $sql);
 					$result = $db->query($sql);
 			}
 

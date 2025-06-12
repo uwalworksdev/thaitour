@@ -228,7 +228,7 @@ class AjaxController extends BaseController {
             }
 
             $sql = "insert into tbl_block_ip set ip = '$blockip', reg_date = now() ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
             if (isset($result) && $result) {
@@ -271,7 +271,7 @@ class AjaxController extends BaseController {
             }
 
             $sql = "delete from tbl_block_ip where m_idx = '$m_idx'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
             if (isset($result) && $result) {
@@ -309,7 +309,7 @@ class AjaxController extends BaseController {
             {
 					if ($m_idx[$j]) {
 						$sql = "delete from tbl_block_ip where m_idx = '". $m_idx[$j] ."'  ";
-						write_log($sql);
+						//write_log($sql);
 						$result = $db->query($sql);
 
 						if (isset($result) && $result) {
@@ -360,7 +360,7 @@ class AjaxController extends BaseController {
 			$r_content  = $_POST['r_content'];
 			$r_url      = $_POST['r_url'];
 
-			write_log("popup update");
+			//write_log("popup update");
 
 			if ($r_idx == "") {
 				$sql = "insert into tbl_cms set r_status  = '$r_status'  
@@ -382,7 +382,7 @@ class AjaxController extends BaseController {
 											   ,r_url     = '$r_url' where r_idx = '$r_idx' ";
             }
 			
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -414,7 +414,7 @@ class AjaxController extends BaseController {
 			                                 , goods_price2 = '". $goods_price2 ."'
 											 , use_yn       = '". $use_yn ."'
 											 , upd_date     = now() WHERE idx = '". $idx ."'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -438,7 +438,7 @@ class AjaxController extends BaseController {
             $idx          = $_POST['idx'];
 			
 			$sql = "DELETE FROM tbl_hotel_price WHERE idx = '". $idx ."'  ";
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1151,7 +1151,7 @@ class AjaxController extends BaseController {
 												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
 //			}
 
-			write_log($sql);
+			//write_log($sql);
 			$result = $db->query($sql);
 
 			if (isset($result) && $result) {
@@ -1291,7 +1291,7 @@ class AjaxController extends BaseController {
 						AND goods_date >= '". $s_date ."'
 						AND goods_date <= '". $e_date ."' ";
 			
-			write_log("golf_dow_charge- ". $sql);
+			//write_log("golf_dow_charge- ". $sql);
 			$result = $db->query($sql);
 
 			if($result) {
@@ -1461,7 +1461,7 @@ class AjaxController extends BaseController {
 													 ,caddy_fee    = ''
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
-                write_log($sql_p); 													 
+                //write_log($sql_p); 													 
 				$result = $db->query($sql_p);
 			} 
  
@@ -1939,7 +1939,7 @@ class AjaxController extends BaseController {
 			$sql    = "UPDATE tbl_payment_mst SET pay_name  = '". $pay_name."'
 			                                     ,pay_email = '". $pay_email ."'
 												 ,pay_hp    = '". $pay_hp ."' WHERE payment_no = '". $payment_no ."' ";
-            write_log("payInfo_update- ". $sql);
+            //write_log("payInfo_update- ". $sql);
 			$db->query($sql);
 			
 			/*
@@ -3005,7 +3005,7 @@ class AjaxController extends BaseController {
 																,goods_price4 = '". $goods_price4 ."'
 																,use_yn	= ''	
 																,reg_date = now() ";	
-						write_log("객실가격정보-1 : " . $sql_c);
+						//write_log("객실가격정보-1 : " . $sql_c);
 						$db->query($sql_c);
 					}
 			}
@@ -3119,7 +3119,7 @@ class AjaxController extends BaseController {
  
 			$sql_o = "UPDATE tbl_hotel_rooms  SET o_sdate = '". $from_date."'   
 										  	    , o_edate = '". $to_date ."' WHERE rooms_idx = '". $rooms_idx ."' "; 
-            write_log("ajax_bedPrice_insert- ". $sql_o);											   
+            //write_log("ajax_bedPrice_insert- ". $sql_o);											   
 			$result = $this->db->query($sql_o);
 			
 			if ($result) {
@@ -3401,7 +3401,7 @@ class AjaxController extends BaseController {
 			];
 
 			// 로그 출력
-			write_log("골프가격정보-1 : " . json_encode($data, JSON_UNESCAPED_UNICODE));
+			//write_log("골프가격정보-1 : " . json_encode($data, JSON_UNESCAPED_UNICODE));
 
 			// insert 실행
 			$result = $builder->insert($data);
@@ -3480,7 +3480,7 @@ class AjaxController extends BaseController {
 													 ,caddy_fee    = ''
 													 ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
-                write_log($sql_p); 													 
+                //write_log($sql_p); 													 
 				$result = $db->query($sql_p);
 			} 
 	
@@ -3799,7 +3799,7 @@ class AjaxController extends BaseController {
 
 			$success = $builder->update();
             
-			write_log("ajax_golf_upd_y- ". $db->getLastQuery());
+			//write_log("ajax_golf_upd_y- ". $db->getLastQuery());
 			
 			// 실행된 SQL 확인 (디버깅용)
 			log_message('debug', $db->getLastQuery()); // 로그로 저장
@@ -3853,7 +3853,7 @@ class AjaxController extends BaseController {
 							AND upd_yn     != 'Y'";
 
 					$result = $db->query($sql, [$group_idx, $product_idx]);
-					write_log('LAST QUERY: ' . $db->getLastQuery());
+					//write_log('LAST QUERY: ' . $db->getLastQuery());
             
             }
 
@@ -4010,7 +4010,7 @@ class AjaxController extends BaseController {
 							                                         product_idx  = '". $product_idx. "' AND 
 						                                             group_idx    = '". $group_idx ."'   AND 
 						                                             goods_name   = '". $o_name ."'"; 
-						write_log("sql_1- ". $sql_1);
+						//write_log("sql_1- ". $sql_1);
 						$cnt_1 = $db->query($sql_1)->getNumRows();
 						
 						if($cnt_1 == 0) {
@@ -4026,7 +4026,7 @@ class AjaxController extends BaseController {
 																	, price_3	  = '" . $price3 . "'	
 																	, use_yn	  = ''	
 																	, reg_date    = now() ";
-						    write_log("sql_c- ". $sql_c);
+						    //write_log("sql_c- ". $sql_c);
 							$db->query($sql_c);
 					    }		
 					}
@@ -4510,7 +4510,7 @@ class AjaxController extends BaseController {
 		$db = \Config\Database::connect();
 		
 		// 3. 로그 (CI4 방식 사용)
-		write_log("ajax_temp");  // logs/log-*.php에 기록됨
+		//write_log("ajax_temp");  // logs/log-*.php에 기록됨
 
 		// 4. 알림톡 함수 호출
 		$payment_idx = "2097";

@@ -838,7 +838,7 @@ public function reservationList() {
 							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
 
         $row = $connect->query($sql)->getRowArray();
-        write_log("order_view_item- ". $order_idx."-".$row['order_gubun']);
+        //write_log("order_view_item- ". $order_idx."-".$row['order_gubun']);
         $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
         
         $row_d = $connect->query($sql_d)->getRowArray();
@@ -927,7 +927,7 @@ public function reservationList() {
             if ($gubun == "tour") {
 
                 $sql_tour = " select * from tbl_order_option where order_idx = '" . $order_idx . "' and option_type in('tour') order by opt_idx asc ";
-                write_log("sql_tour- ". $sql_tour);
+                //write_log("sql_tour- ". $sql_tour);
                 $data['tour_option'] = $this->db->query($sql_tour)->getResultArray();
                 $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
                 $optionsIdx = $data['tour_orders']['options_idx'];

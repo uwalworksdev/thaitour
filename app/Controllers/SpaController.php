@@ -532,7 +532,7 @@ class SpaController extends BaseController
 			$payment_no = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
 
 			$sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
-			write_log($sql);
+			//write_log($sql);
 			$row = $db->query($sql)->getRowArray();
 
 			if($row['cnt'] == 0) {
@@ -557,7 +557,7 @@ class SpaController extends BaseController
                                                            ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 				
                                                            ,device_type                = '". $device_type ."' 					
 														   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
-			        write_log("handlePayment - ". $sql);
+			        //write_log("handlePayment - ". $sql);
 					$result = $db->query($sql);
 			}
 

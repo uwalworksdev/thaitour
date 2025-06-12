@@ -105,7 +105,7 @@ class TourStayController extends BaseController
 
 		$router = service('router');
 		$currentController = $router->controllerName();
-		write_log($currentController ." - ". $sql);
+		//write_log($currentController ." - ". $sql);
 
 		$result = $this->connect->query($sql) or die ($this->connect->error);
         $num = $nTotalCount - $nFrom;
