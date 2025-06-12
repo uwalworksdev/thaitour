@@ -594,6 +594,8 @@ class ReservationController extends BaseController
 
         if ($gubun == 'tour') {
             $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+            // var_dump($this->orderTours->findByOrderIdx($order_idx));
+            // die();
             $optionsIdx  = $data['tour_orders']['options_idx'];
 
             $options_idx = explode(',', $optionsIdx);
