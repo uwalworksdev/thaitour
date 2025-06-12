@@ -1041,7 +1041,7 @@ function sqlSecretConver($value, $way)
     } else if ($way == "decode") {
 
         $sql = " SELECT CONVERT( AES_DECRYPT( UNHEX( FROM_BASE64('" . $value . "') ), '" . $private_key . "') using UTF8) as pass FROM dual ";
-		write_log($sql);
+		//write_log($sql);
         $row = $connect->query($sql)->getRowArray();
 
         $outText = $row['pass'];
@@ -1817,7 +1817,7 @@ function alimTalk_deposit_send($payment_idx)
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];	
-	write_log("alimTalk_deposit_send- ". $order_user_name ." - ". $order_user_mobile);
+	//write_log("alimTalk_deposit_send- ". $order_user_name ." - ". $order_user_mobile);
 	$bank_no = $row['VbankBankName_1'] . $row['VbankNum_1'];
 	$allim_replace = [
 						"#{고객명}"   => $order_user_name,
@@ -2524,7 +2524,7 @@ function completePayment($idx) {
 									 , payment_method
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
-		write_log($sql);				
+		//write_log($sql);				
         $result = $db->query($sql);
         $row    = $result->getRowArray();
 		
@@ -2562,7 +2562,7 @@ function cartReservation($idx) {
 									 , payment_method
 									from tbl_payment_mst
 									where payment_idx = '" . $payment_idx . "'";
-		write_log($sql);				
+		//write_log($sql);				
         $result = $db->query($sql);
         $row    = $result->getRowArray();
 		
@@ -2629,7 +2629,7 @@ function email_reservation_group($group_no)
 						  , product_name
 				   FROM tbl_order_mst WHERE group_no = '" . $group_no . "'";
 				   
-		write_log($sql_d);				
+		//write_log($sql_d);				
         $result = $db->query($sql_d);
         $row    = $result->getRowArray();
 		
