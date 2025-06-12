@@ -117,7 +117,7 @@
                         </tr>					
                         <tr>
                             <th>그린피</th>
-                            <td><?=$golf_info['option_price']?></td>
+                            <td><?=number_format($golf_info['option_price'])?></td>
                             <td><?=$golf_info['option_cnt']?></td>
                             <th><?=number_format($golf_info['option_tot'])?></th>
                             <td><?=number_format($golf_info['option_tot_bath'])?></td>
@@ -125,7 +125,7 @@
 						<?php foreach ($golf_option as $data) { ?>
                         <tr>
                             <th><?=$data['option_name']?></th>
-                            <td><?=$data['option_price']?></td>
+                            <td><?=number_format($data['option_price'])?></td>
                             <td><?=$data['option_cnt']?></td>
                             <th><?=number_format($data['option_tot'])?></th>
                             <td><?=number_format($data['option_tot_bath'])?></td>
