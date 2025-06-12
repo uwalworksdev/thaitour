@@ -23,7 +23,7 @@
         }
 
         p {
-            margin-top: 0 !important;
+            margin: 0 !important;
         }
         .golf_invoice {
             padding: 20px 0 0;
