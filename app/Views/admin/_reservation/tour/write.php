@@ -238,6 +238,16 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>픽업장소</th>
+                                    <td>
+                                        <input type="text" name="pickup_place" value="<?= $tour_orders['pickup_place'] ?>">
+                                    </td>
+                                    <th>샌딩장소</th>
+                                    <td>
+                                        <input type="text" name="sanding_place" style="width:45%;" value="<?= $tour_orders['sanding_place'] ?>">
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>종료 후 내리실 곳</th>
                                     <td>
                                         <input type="text" name="end_place" value="<?= $tour_orders['end_place'] ?>">
@@ -247,6 +257,7 @@
                                         <input type="text" name="id_kakao" style="width:45%;" value="<?= $tour_orders['id_kakao'] ?>">
                                     </td>
                                 </tr>
+                                
                                 <tr style="height:100px">
                                     <th>기타 요청</th>
                                     <td colspan="3">
