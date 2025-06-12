@@ -5145,7 +5145,7 @@ class Product extends BaseController
             $data['order_price_bath']  =  (int)($data['order_price'] / $data['baht_thai']);
 
             $this->orderModel->save($data);
-           // write_log("last orderModel query- " . $this->connect->getLastQuery());
+            // write_log("last orderModel query- " . $this->connect->getLastQuery());
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
