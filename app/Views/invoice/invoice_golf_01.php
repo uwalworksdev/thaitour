@@ -41,9 +41,9 @@
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Sea Adventure Co.,Ltd. (파타야 씨 어드벤처)</td>
+                            <td><?=$row["order_user_name"]?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row["order_user_email"]?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -188,13 +188,20 @@
                 <?=viewSQ($policy_1["policy_contents"])?>
             </div>
             <div class="inquiry_qna">
-                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
-                    주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
-                    <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                 </div>
-                <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
@@ -249,7 +256,7 @@
                             border: none !important;
                         }
 
-                        .btn_wrap_member, .invoice_note, .invoice_info, .tit_note, .inquiry_qna {
+                        .btn_wrap_member {
                             display: none !important;
                         }
 
@@ -271,7 +278,7 @@
                         }
 
                         p {
-                            margin-top: 0 !important;
+                            margin: 0 !important;
                         }
                     }
                 </style>

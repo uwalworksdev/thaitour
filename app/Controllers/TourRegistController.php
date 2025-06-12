@@ -485,6 +485,9 @@ class TourRegistController extends BaseController
         $option_type    = $data['option_type'];
         $o_soldout      = $data['o_soldout'];
         $data['direct_payment'] = updateSQ($_POST["direct_payment"] ?? 'N');
+        $data['not_included_product'] = updateSQ($_POST["not_included_product"] ?? '');
+        $data['guide_contents'] = updateSQ($_POST["guide_contents"] ?? '');
+
 
         // $afternoon_y = explode(",", $data['afternoon_y']);
         // $afternoon_n = explode(",", $data['afternoon_n']);

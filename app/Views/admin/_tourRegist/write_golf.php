@@ -1457,7 +1457,76 @@
                                         </script>
 
                                     </td>									
-                                </tr> 							  
+                                </tr> 	
+                                
+                                <tr>
+                                    <th>상품에서 불포함</th>
+                                    <td>
+
+								    <textarea name="not_included_product" id="not_included_product" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($not_included_product) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors13 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors13,
+                                                elPlaceHolder: "not_included_product",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>
+                                    <th>안내사항 추가해서 연동</th>
+                                    <td>
+
+								    <textarea name="guide_contents" id="guide_contents" rows="10" cols="100" class="input_txt"
+                                              style="width:100%; height:200px; display:none;"><?= viewSQ($guide_contents) ?></textarea>
+                                        <script type="text/javascript">
+                                            var oEditors14 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors14,
+                                                elPlaceHolder: "guide_contents",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+
+                                    </td>									
+                                </tr> 
                               
                                <?php
                                 $deadline_date = explode(",", $golf_info["deadline_date"]);
@@ -2775,6 +2844,9 @@
                 oEditors10.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);  // 어린이 정책
                 oEditors11.getById["product_able"].exec("UPDATE_CONTENTS_FIELD", []);     // 골프텔 정보
                 oEditors12.getById["notice_comment"].exec("UPDATE_CONTENTS_FIELD", []);   // 중요 공지사항
+                oEditors13.getById["not_included_product"].exec("UPDATE_CONTENTS_FIELD", []);
+                oEditors14.getById["guide_contents"].exec("UPDATE_CONTENTS_FIELD", []);
+
                 let _code_mbtis = '';
                 $("input[name=_code_mbti]:checked").each(function () {
                     _code_mbtis += $(this).val() + '|';
