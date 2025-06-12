@@ -603,12 +603,62 @@ $deli_types = get_deli_type();
 					<col width="*">
 				</colgroup>
 				<tbody>
-					<tr>
-						<td class="subject">요청사항</td>
-						<td class="content">
-							<?= $custom_req ?>
-						</td>
-					</tr>
+									 <?php if(!empty($pickup_place)):?>
+                                        <tr>
+                                            <td>픽업장소</td>
+											<td class="content">
+												<?= $pickup_place ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(!empty($sanding_place)):?>
+                                        <tr>
+                                            <td>샌딩장소</td>
+                                            <td class="content">
+												<?= $sanding_place ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+                                    <?php if(!empty($start_place)):?>
+                                        <tr>
+                                            <td>미팅장소</td>
+                                            <td class="content">
+												<?= $start_place ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+									 <?php if(!empty($end_place)):?>
+                                        <tr>
+                                            <td>종료 후 내리실 곳</td>
+                                            <td class="content">
+												<?= $end_place ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+									 <?php if(!empty($id_kakao)):?>
+                                        <tr>
+                                            <td>카카오톡 아이디</td>
+                                            <td class="content">
+												<?= $id_kakao ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+									<?php if(!empty($description)):?>
+                                        <tr>
+                                            <td>기타 요청</td>
+                                            <td class="content">
+												<?= $description ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
+									 <?php if(!empty($custom_req)):?>
+                                        <tr>
+                                            <td>요청사항</td>
+                                            <td class="content">
+												<?= $custom_req ?>
+											</td>
+                                        </tr>
+                                    <?php endif?>
 				</tbody>
 			</table>
 		</div>
