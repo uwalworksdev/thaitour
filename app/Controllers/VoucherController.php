@@ -108,7 +108,7 @@ class VoucherController extends BaseController
 			$order_memo = $result->admin_memo;
 
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
-			$guest_request = $str_req;
+			$guest_request = $str_req_en;
 			$order_remark = $result->custom_req_eng;
 		}else{
 			if(!empty($result->order_user_name_new)){
