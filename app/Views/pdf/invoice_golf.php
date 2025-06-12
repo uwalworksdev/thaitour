@@ -26,7 +26,11 @@
             margin-top: 0 !important;
         }
         .golf_invoice {
-            padding: 20px 0 100px;
+            padding: 20px 0 0;
+        }
+
+        .golf_invoice * {
+            font-family: "Pretendard" !important;
         }
 
         .golf_invoice .logo_voice {
@@ -259,7 +263,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            padding-left: 0;
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
