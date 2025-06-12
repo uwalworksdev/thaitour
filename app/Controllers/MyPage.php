@@ -948,12 +948,6 @@ public function reservationList() {
                 $result_cou = $connect->query($sql_cou);
                 $row_cou = $result_cou->getRowArray();
                 $data['row_cou'] = $row_cou;
-
-
-                $product_idx = $data['product_idx'];
-                $sql_product = "select * form tbl_product_mst where product_idx = '$product_idx'";
-                $product_result = $connect->query($sql_product);
-                $data['product'] = $product_result->getRowArray();
             }
 
             if ($gubun == 'vehicle') {
