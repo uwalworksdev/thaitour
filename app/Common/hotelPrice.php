@@ -197,9 +197,9 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 
 		// 실행된 쿼리 확인 (디버깅 용도)
 		
-		if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
-		   write_log("detailPrice - " . $db->getLastQuery());
-        }
+		//if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
+		//   write_log("detailPrice - " . $db->getLastQuery());
+        //}
 		
         $room_r = "";
         foreach ($priceRows as $row) :
@@ -252,9 +252,9 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
     $dateRows = $query->getResultArray(); // 여러 개의 행을 가져옴
 
     // 실행된 SQL 로그 출력 (디버깅)
-    if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
-        write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
-    }
+    //if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
+    //    write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
+    //}
 
     // 결과값 조합
     $room_r = array_map(function ($row) use ($baht_thai) {
