@@ -233,36 +233,42 @@
                                     </td>
                                     <th>미팅(장소/시간)</th>
                                     <td>
-                                        <input type="text" name="start_place" style="width:45%;" value="<?= $tour_orders['start_place'] ?>">
-										<input type="text" name="metting_time" style="width:35%;" value="<?= $tour_orders['metting_time'] ?>">
+                                        <!-- <input type="text" name="start_place" style="width:45%;" value="<?= $tour_orders['start_place'] ?>">
+										<input type="text" name="metting_time" style="width:35%;" value="<?= $tour_orders['metting_time'] ?>"> -->
+                                        <input type="text" name="start_place" style="width:45%;" value="<?= $start_place ?>">
+										<input type="text" name="metting_time" style="width:35%;" value="<?= $metting_time ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>픽업장소</th>
                                     <td>
-                                        <input type="text" name="pickup_place" value="<?= $tour_orders['pickup_place'] ?>">
+                                        <input type="text" name="pickup_place" value="<?= $pickup_place ?>">
                                     </td>
                                     <th>샌딩장소</th>
                                     <td>
-                                        <input type="text" name="sanding_place" style="width:45%;" value="<?= $tour_orders['sanding_place'] ?>">
+                                        <input type="text" name="sanding_place" style="width:45%;" value="<?= $sanding_place ?>">
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>종료 후 내리실 곳</th>
                                     <td>
-                                        <input type="text" name="end_place" value="<?= $tour_orders['end_place'] ?>">
+                                        <!-- <input type="text" name="end_place" value="<?= $tour_orders['end_place'] ?>"> -->
+                                        <input type="text" name="end_place" value="<?= $end_place ?>">
                                     </td>
                                     <th>카카오톡 아이디</th>
                                     <td>
-                                        <input type="text" name="id_kakao" style="width:45%;" value="<?= $tour_orders['id_kakao'] ?>">
+                                        <!-- <input type="text" name="id_kakao" style="width:45%;" value="<?= $tour_orders['id_kakao'] ?>"> -->
+                                         <input type="text" name="id_kakao" style="width:45%;" value="<?= $id_kakao?>">
                                     </td>
                                 </tr>
                                 
                                 <tr style="height:100px">
                                     <th>기타 요청</th>
                                     <td colspan="3">
-                                        <textarea id="description" name="description" class="input_txt"
-                                                  style="width:90%;height:80px"><?php echo $tour_orders['description'] ? $tour_orders['description'] : '' ?></textarea>
+                                        <!-- <textarea id="description" name="description" class="input_txt"
+                                                  style="width:90%;height:80px"><?php echo $tour_orders['description'] ? $tour_orders['description'] : '' ?></textarea> -->
+                                            <textarea id="description" name="description" class="input_txt"
+                                                  style="width:90%;height:80px"><?php echo $description ? $description : '' ?></textarea>
                                     </td>
                                 </tr>
                                 </tbody>
