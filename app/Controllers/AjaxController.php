@@ -2268,18 +2268,15 @@ class AjaxController extends BaseController {
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
-			$code        = "A21";
-			$user_mail   = $row->user_email;
-			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
+			
 			$_tmp_fir_array = [
 				'gubun'   => $row->order_gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
-	            '예약일자'    => substr($row->order_r_date,0,10),
-	            '회원이름'    => $row->user_name,
- 	            '이메일'      => $row->user_email,
- 	            '전화번호'     => $row->user_mobile,
-				'이용날짜'	   => $checkin,
+				'예약일자'    => substr($row->order_r_date,0,10),
+				'회원이름'    => $row->user_name,
+				'이메일'      => $row->user_email,
+				'전화번호'     => $row->user_mobile,
 				'여행자성명'   => $row->user_name,
 				'여행자연락처' => $row->user_mobile,
 				'여행자이메일' => $row->user_email,
@@ -2287,9 +2284,24 @@ class AjaxController extends BaseController {
 				'총인원'       => $row->order_room_cnt ."Room",
 				'총금액'	      => $order_price,
 				'총견적금액'   => $order_price,
-				
 			];
-	
+
+			if($row->order_gubun == "hotel") {
+				$code        = "A21";
+				$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
+
+				$_tmp_fir_array['이용날짜'] = $checkin;
+				$_tmp_fir_array['총인원'] = $row->order_room_cnt ."Room";
+				$_tmp_fir_array['총금액'] = $order_price;
+				$_tmp_fir_array['총금액'] = $order_price;
+			}else if($row->order_gubun == "golf"){
+				$code        = "A22";
+
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}
+			
+			$user_mail   = $row->user_email;
+			
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
 		    $msg    = "전송완료";	
