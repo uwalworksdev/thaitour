@@ -528,13 +528,10 @@ class ReservationController extends BaseController
         $order_idx       = updateSQ($_GET["order_idx"] ?? '');
         $titleStr        = "예약관리";
 
-        
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
             $titleStr = "일정 및 결제정보";
         }
-
-       
 
         $sql_cou    = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
         $result_cou = $this->connect->query($sql_cou);
