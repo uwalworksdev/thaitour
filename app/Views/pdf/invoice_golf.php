@@ -320,9 +320,9 @@
                             </tr>
                             <tr>
                                 <th>여행사(담당자)</th>
-                                <td>Pattaya Sea Adventure Co.,Ltd. (파타야 씨 어드벤처)</td>
+                                <td><?=$row["order_user_name"]?></td>
                                 <th>이메일</th>
-                                <td>thaitouradventure@gmail.com</td>
+                                <td><?=$row["order_user_email"]?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -373,11 +373,11 @@
                             </tr>
                             <tr>
                                 <th>불포함</th>
-                                <td colspan="3">캐디팁</td>
+                                <td colspan="3"><?=viewSQ($not_included_product)?></td>
                             </tr>
                             <tr>
                                 <th>안내사항</th>
-                                <td colspan="3">available afternoon</td>
+                                <td colspan="3"><?=viewSQ($guide_contents)?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -400,7 +400,7 @@
                             </tr>					
                             <tr>
                                 <th>그린피</th>
-                                <td><?=$golf_info['option_price']?></td>
+                                <td><?=number_format($golf_info['option_price'])?></td>
                                 <td><?=$golf_info['option_cnt']?></td>
                                 <th><?=number_format($golf_info['option_tot'])?></th>
                                 <td><?=number_format($golf_info['option_tot_bath'])?></td>
@@ -408,7 +408,7 @@
                             <?php foreach ($golf_option as $data) { ?>
                             <tr>
                                 <th><?=$data['option_name']?></th>
-                                <td><?=$data['option_price']?></td>
+                                <td><?=number_format($data['option_price'])?></td>
                                 <td><?=$data['option_cnt']?></td>
                                 <th><?=number_format($data['option_tot'])?></th>
                                 <td><?=number_format($data['option_tot_bath'])?></td>
@@ -439,6 +439,23 @@
                     <?=viewSQ($cancle_contents)?>
                     <!-- <p class="cancle_txt">
                     </p> -->
+                    <?=viewSQ($policy_1["policy_contents"])?>
+                </div>
+                <div class="inquiry_qna">
+                    <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                    <div class="inquiry_info">
+                        <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                            (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                            번호만 누르면 됩니다. 
+                            <br>
+                            이메일 : <?= $setting['qna_email']?>
+                            <br>
+                            주소 : </p>
+                        <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                    </div>
+                    <div class="note_qna">
+                        <?=nl2br($setting['desc_cont'])?>
+                    </div>
                 </div>
             </div>
         </section>
