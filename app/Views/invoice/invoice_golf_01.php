@@ -90,11 +90,11 @@
                         </tr>
                         <tr>
                             <th>불포함</th>
-                            <td colspan="3">캐디팁</td>
+                            <td colspan="3"><?=viewSQ($not_included_product)?></td>
                         </tr>
                         <tr>
                             <th>안내사항</th>
-                            <td colspan="3">available afternoon</td>
+                            <td colspan="3"><?=viewSQ($guide_contents)?></td>
                         </tr>
                     </tbody>
                 </table>

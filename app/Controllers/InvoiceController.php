@@ -163,6 +163,9 @@ class InvoiceController extends BaseController
 				$query  = $builder->where('product_idx', $product_idx)->get();
 				$result = $query->getRowArray();
 				$notice_contents = $result["notice_comment"];
+				$not_included_product = $result["not_included_product"];
+				$guide_contents = $result["guide_contents"];
+
 		
 				$builder = $db->table('tbl_policy_cancel');
 				$builder->select("policy_contents");
@@ -178,6 +181,8 @@ class InvoiceController extends BaseController
 				return view("invoice/invoice_ticket_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
+					'not_included_product' => $not_included_product,
+					'guide_contents' => $guide_contents,
 					'cancle_contents' => $cancle_contents,
 					'policy_1' 	=> $policy[0]
 				]);

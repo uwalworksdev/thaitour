@@ -1460,7 +1460,7 @@
                                 </tr> 	
                                 
                                 <tr>
-                                    <th>상품에서 불포함</th>
+                                    <th>불포함</th>
                                     <td>
 
 								    <textarea name="not_included_product" id="not_included_product" rows="10" cols="100" class="input_txt"
@@ -1493,7 +1493,7 @@
                                         </script>
 
                                     </td>
-                                    <th>안내사항 추가해서 연동</th>
+                                    <th>안내사항</th>
                                     <td>
 
 								    <textarea name="guide_contents" id="guide_contents" rows="10" cols="100" class="input_txt"
