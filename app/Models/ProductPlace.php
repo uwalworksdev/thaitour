@@ -45,14 +45,14 @@ class ProductPlace extends Model
     public function getById($idx)
     {
         $sql = " select * from tbl_product_around_place where idx = '" . $idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 
     public function getByProductId($product_idx)
     {
         $sql = " select * from tbl_product_around_place where product_idx = '" . $product_idx . "' order by onum asc, idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
@@ -62,7 +62,7 @@ class ProductPlace extends Model
             $_arr_ = explode(',', $place_ids);
             $list__idx = rtrim(implode(',', $_arr_), ',');
             $sql = "SELECT * FROM tbl_product_around_place WHERE idx IN ($list__idx) ORDER BY onum ASC, idx DESC";
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql)->getResultArray();
         }
         return [];
@@ -71,7 +71,7 @@ class ProductPlace extends Model
     public function listAll()
     {
         $sql = " select * from tbl_product_around_place order by onum asc, idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 

@@ -65,14 +65,14 @@ class GuideOptions extends Model
             $str_sql = "and o_availability != 'N'";
         }
         $sql = " select * from tbl_guide_options where product_idx = '$product_idx' $str_sql order by onum asc, o_idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
     public function getById($idx)
     {
         $sql = " select * from tbl_guide_options where o_idx = '" . $idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 

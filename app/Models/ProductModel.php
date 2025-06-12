@@ -45,7 +45,7 @@ class ProductModel extends Model
     public function getById($product_idx)
     {
         $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 
@@ -1859,21 +1859,21 @@ class ProductModel extends Model
     public function delProductYoil($product_idx)
     {
         $sql = " delete from tbl_product_yoil where product_idx='" . $product_idx . "' ";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql);
     }
 
     public function delProductAir($product_idx)
     {
         $sql = " delete from tbl_product_air where product_idx='" . $product_idx . "' ";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql);
     }
 
     public function delProductDay($product_idx)
     {
         $sql = " delete from tbl_product_day_detail where product_idx='" . $product_idx . "' ";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql);
     }
 

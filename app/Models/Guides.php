@@ -49,7 +49,7 @@ class Guides extends Model
     public function getList()
     {
         $sql = " select * from tbl_guide_mst where status != 'D' order by onum asc, guide_idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
@@ -59,7 +59,7 @@ class Guides extends Model
             FROM tbl_guide_mst 
             WHERE status != 'D' AND status != 'S' 
             ORDER BY onum ASC, guide_idx DESC";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
@@ -104,7 +104,7 @@ class Guides extends Model
     public function selectById($idx)
     {
         $sql = " select * from tbl_guide_mst where guide_idx = '" . $idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 

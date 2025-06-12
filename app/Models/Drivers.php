@@ -47,28 +47,28 @@ class Drivers extends Model
     public function getById($d_idx)
     {
         $sql = " select * from tbl_driver_mst where d_idx = '" . $d_idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 
     public function getByProductId($vehicle_idx)
     {
         $sql = " select * from tbl_driver_mst where vehicle_idx = '" . $vehicle_idx . "' order by onum asc, d_idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
     public function listAdminAll()
     {
         $sql = " select * from tbl_driver_mst order by onum asc, d_idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 
     public function listAll($is_show = 'A')
     {
         $sql = " select * from tbl_driver_mst where is_show = '$is_show' order by onum asc, d_idx desc";
-        write_log($sql);
+        //write_log($sql);
         $result = $this->db->query($sql)->getResultArray();
 
         $result  = array_map(function ($item) {

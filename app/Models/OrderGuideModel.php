@@ -46,7 +46,7 @@ class OrderGuideModel extends Model
     public function getListByOrderIdx($o_idx)
     {
         $sql = " select * from tbl_order_guide where order_idx = '" . $o_idx . "' order by idx desc";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 }

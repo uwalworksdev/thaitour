@@ -20,7 +20,7 @@ class BbsCommentModel extends Model
     public function getList($bbs_idx)
     {
         $sql = "SELECT * FROM tbl_bbs_comment WHERE bbs_idx = " . $bbs_idx . " ORDER BY r_date DESC";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
 

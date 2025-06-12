@@ -45,7 +45,7 @@ class ToursMoption extends Model
     public function getById($product_idx)
     {
         $sql = " select * from tbl_tours_moption where product_idx = '" . $product_idx . "'";
-        write_log($sql);
+        //write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 

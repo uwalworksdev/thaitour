@@ -47,10 +47,10 @@ class ProductCharge extends Model
     {
         try {
             $sql = " select * from tbl_product_charge where charge_idx = '" . $charge_idx . "' ";
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql)->getRowArray();
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }
@@ -62,10 +62,10 @@ class ProductCharge extends Model
             if ($orderby) {
                 $sql .= " order by " . $orderby . " " . $sort;
             }
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql)->getResultArray();
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }
@@ -113,14 +113,14 @@ class ProductCharge extends Model
         try {
             if ($type == 'up') {
                 $sql = "UPDATE tbl_product_charge SET seq = seq + 1.5 WHERE charge_idx = " . $charge_idx;
-                write_log($sql);
+                //write_log($sql);
             } else {
                 $sql = "UPDATE tbl_product_charge SET seq = seq - 1.5 WHERE charge_idx = " . $charge_idx;
-                write_log($sql);
+                //write_log($sql);
             }
             return $this->db->query($sql);
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }
@@ -129,10 +129,10 @@ class ProductCharge extends Model
     {
         try {
             $sql = "UPDATE tbl_product_charge SET seq = '" . $seq . "' WHERE charge_idx = " . $charge_idx;
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql);
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }
@@ -141,10 +141,10 @@ class ProductCharge extends Model
     {
         try {
             $sql = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '" . $product_idx . "' ORDER BY seq ASC";
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql);
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }

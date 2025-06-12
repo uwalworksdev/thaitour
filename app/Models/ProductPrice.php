@@ -48,10 +48,10 @@ class ProductPrice extends Model
     {
         try {
             $sql = " select * from tbl_product_price where p_idx = '" . $p_idx . "'";
-            write_log($sql);
+            //write_log($sql);
             return $this->db->query($sql)->getRowArray();
         } catch (\Exception $e) {
-            write_log($e->getMessage());
+            //write_log($e->getMessage());
             return false;
         }
     }
