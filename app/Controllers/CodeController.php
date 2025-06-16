@@ -136,7 +136,7 @@ class CodeController extends BaseController
         $code_gubun = $this->request->getPost('code_gubun');
         $code_no = $this->request->getPost('code_no');
         $code_name = $this->request->getPost('code_name');
-        $code_name_en = $this->request->getPost('code_name_en');
+        $code_name_en = $this->request->getPost('code_name_en') ?? '';
         $code_memo = $this->request->getPost('code_memo') ?? '';
         $parent_code_no = $this->request->getPost('parent_code_no');
         $depth = $this->request->getPost('depth');
