@@ -5,9 +5,7 @@ $setting = homeSetInfo();
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
-<?php
-var_dump($this->setting['baht_thai']);
-?>
+
 
 <?php foreach ($result as $row): ?>
 <?php endforeach; ?>
