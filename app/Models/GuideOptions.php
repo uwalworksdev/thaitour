@@ -13,7 +13,7 @@ class GuideOptions extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        "o_name", "o_price", "o_sale_price", "o_people_cnt",
+        "o_name", "o_price", "o_sale_price", "o_people_cnt", "o_contents",
         "o_availability", "product_idx", "onum", "r_date", "m_date",
     ];
 

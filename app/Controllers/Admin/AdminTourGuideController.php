@@ -303,7 +303,7 @@ class AdminTourGuideController extends BaseController
             }
 
             $arr_in_arr = [
-                'o_idx', 'o_name', 'o_price', 'o_sale_price', 'o_people_cnt', 'o_availability', 'o_onum',
+                'o_idx', 'o_name', 'o_price', 'o_sale_price', 'o_contents', 'o_people_cnt', 'o_availability', 'o_onum',
             ];
             $newData = [];
             foreach ($arr_in_arr as $field) {
@@ -321,6 +321,7 @@ class AdminTourGuideController extends BaseController
                     'o_sale_price' => $newData['o_sale_price'][$j],
                     'o_people_cnt' => $newData['o_people_cnt'][$j],
                     'o_availability' => $newData['o_availability'][$j],
+                    'o_contents' => $newData['o_contents'][$j],
                     'onum' => $newData['o_onum'][$j],
                 ];
 

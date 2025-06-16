@@ -21,45 +21,51 @@
                                     <th style="text-align: center">예약가능여부</th>
                                     <th style="text-align: center">관리</th>
                                 </tr>
-                <tr>
-                    <td>
-                        <div class='flex_c_c'>
-                            <input type='hidden' name='o_idx[]'
-                                   value=''>
-                            <input type='text' class='o_name' name='o_name[]'
-                                   value=''>
-                        </div>
-                    </td>
-                    <td>
-                        <input type='text' class='number' name='o_price[]'
-                               value=''>
-                    </td>
-                    <td>
-                        <input type='text' class='number' name='o_sale_price[]'
-                               value=''>
-                    </td>
+                                <tr>
+                                    <td>
+                                        <div class='flex_c_c'>
+                                            <input type='hidden' name='o_idx[]'
+                                                value=''>
+                                            <input type='text' class='o_name' name='o_name[]'
+                                                value=''>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type='text' class='number' name='o_price[]'
+                                            value=''>
+                                    </td>
+                                    <td>
+                                        <input type='text' class='number' name='o_sale_price[]'
+                                            value=''>
+                                    </td>
 
-                    <td>
-                        <input type='text' class='number' name='o_people_cnt[]'
-                               value=''>
-                    </td>
-                    <td>
-                        <input type='text' class='number' name='o_onum[]'
-                               value=''>
-                    </td>
-                    <td style="text-align: center">
-                        <select name='o_availability[]' id="">
-                            <option value="Y">판매중</option>
-                            <option value="N">판매중지</option>
-                        </select>
-                    </td>
-                    <td class='tac'>
-                        <button style='margin: 0;' type='button' class='btn_02'
-                                onclick='delOption("", "P", this);'>
-                            삭제
-                        </button>
-                    </td>
-                </tr></table>
+                                    <td>
+                                        <input type='text' class='number' name='o_people_cnt[]'
+                                            value=''>
+                                    </td>
+                                    <td>
+                                        <input type='text' class='number' name='o_onum[]'
+                                            value=''>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <select name='o_availability[]' id="">
+                                            <option value="Y">판매중</option>
+                                            <option value="N">판매중지</option>
+                                        </select>
+                                    </td>
+                                    <td class='tac'>
+                                        <button style='margin: 0;' type='button' class='btn_02'
+                                                onclick='delOption("", "P", this);'>
+                                            삭제
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        <textarea name="o_contents[]" class="textarea_contents" style="width: 100%; height: 100px;"></textarea>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>`;
 
