@@ -16,44 +16,41 @@ $(document).ready(function() {
 </script>
 
 <script>
-    function showHideCaddy() {
-        if($("#o_caddy_due").val() == "Y") {
-            //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
-            $("#caddy_yes").css("display", "flex");	
-            $("#caddy_no").hide();	
-        } else {
-            if($("#o_caddy_cont").val() == "Y") {
-                $("#vehicle_5").val('1');
-                $("#caddy_no").show();	
-                $("#caddy_yes").hide();	
-            } else {   
-                $("#caddy_yes").css("display", "flex");		
-                $("#caddy_no").hide();	
+$(document).ready(function() {
+    // 페이지 어디든 클릭 시 실행
+    $(document).on('click', function(event) {
+			if($("#o_caddy_due").val() == "Y") {
+			   //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
+			   $("#caddy_yes").css("display", "flex");	
+			   $("#caddy_no").hide();	
+			} else {
+				if($("#o_caddy_cont").val() == "Y") {
+				   $("#vehicle_5").val('0');
+				   $("#caddy_no").show();	
+				   $("#caddy_yes").hide();	
+				} else {   
+				   $("#caddy_yes").css("display", "flex");		
+				   $("#caddy_no").hide();	
+				}
+            } 	
+			
+			if($("#o_cart_due").val() == "Y") {
+			   $("#cart_yes").css("display", "flex");	
+			   $("#cart_no").hide();	
+			} else {	
+				if($("#o_cart_cont").val() == "Y") {
+    			   $("#vehicle_4").val('0');
+				   $("#cart_no").show();	
+				   $("#cart_yes").hide();	
+				} else {   
+                   $("#cart_yes").css("display", "flex");	
+				   $("#cart_no").hide();	
+				}
             }
-        } 	
-        
-        if($("#o_cart_due").val() == "Y") {
-            $("#cart_yes").css("display", "flex");	
-            $("#cart_no").hide();	
-        } else {	
-            if($("#o_cart_cont").val() == "Y") {
-                $("#vehicle_4").val('');
-                $("#cart_no").show();	
-                $("#cart_yes").hide();	
-            } else {   
-                $("#cart_yes").css("display", "flex");	
-                $("#cart_no").hide();	
-            }
-        }
-    }
-
-    $(document).ready(function() {
-        // 페이지 어디든 클릭 시 실행
-        $(document).on('click', function(event) {
-            showHideCaddy();
+			
             calculatePrice();			
-        });
     });
+});
 </script>
 <style>
     .customer-form-page .form-group.time-group {
@@ -660,7 +657,7 @@ $(document).ready(function() {
 					    <option value="0">왕복</option>
 					    <option value="1">편도</option>
 					</select>
-                    <select id="vehicle_2" data-name="밴(승합차)" data-idx="<?=$idx?>" data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
+                    <select id="vehicle_2" data-name="밴 (승합차)" data-idx="<?=$idx?>" data-price="<?=$vehicle_price2?>" data-price_baht="<?=$vehicle_price2_baht?>" class="vehicle_select select_custom_ active_ cus-width" name="vehicle_cnt[]">
                         <option value="">선택해주세요.</option>
 								<option value="1">1대</option>
 								<option value="2">2대</option>
@@ -1351,9 +1348,6 @@ $(document).ready(function() {
             let total_option_price      = 0;
             let total_option_price_baht = 0;
             let cnt                     = 0;
-
-            $("#option_list_result").html("");
-
 			let html = `<div class="item-right">
 							<p><span class="text-gray">추가옵션 - </span>[name] x [cnt]대</p>
 							<span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
@@ -1609,8 +1603,6 @@ $(document).ready(function() {
                         $("#time_type").text('야간');
                     }
 
-                    showHideCaddy();
-
                     calculatePrice();
                 }
             })
@@ -1843,10 +1835,7 @@ $(document).ready(function() {
 					var $selectElement = $('#vehicle_5');
 					// 동적으로 data 속성 변경
 					$selectElement.attr('data-price', res.caddie_fee);
-					$selectElement.attr('data-price_baht', res.caddie_fee_ba);	                                        
-                    
-                    getOptions();
-                    calculatePrice();
+					$selectElement.attr('data-price_baht', res.caddie_fee_ba);					
 				}
 			})
 			/* 	
@@ -1856,7 +1845,9 @@ $(document).ready(function() {
 			$("#vehicle_4").val(""); // 기본값으로 리셋
 			$("#vehicle_5").val(""); // 기본값으로 리셋
             */
-           
+			
+            getOptions();
+			calculatePrice();
         });
 
         $('.tag-list .tag-js2').on('click', function () {
