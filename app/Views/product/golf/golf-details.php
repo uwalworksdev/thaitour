@@ -1800,6 +1800,9 @@ $(document).ready(function() {
 					alert(res.caddie_fee); 
 					*/
 
+                    console.log(res);
+                    
+
 					// 요소 선택
 					$("#option_idx").val(res.option_idx);
 					$("#o_cart_due").val(res.o_cart_due); 	
