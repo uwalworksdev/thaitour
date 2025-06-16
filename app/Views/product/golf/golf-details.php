@@ -1845,8 +1845,7 @@ $(document).ready(function() {
 					$selectElement.attr('data-price', res.caddie_fee);
 					$selectElement.attr('data-price_baht', res.caddie_fee_ba);	                                        
                     
-                    getOptions();
-                    calculatePrice();
+
 				}
 			})
 			/* 	
@@ -1856,7 +1855,8 @@ $(document).ready(function() {
 			$("#vehicle_4").val(""); // 기본값으로 리셋
 			$("#vehicle_5").val(""); // 기본값으로 리셋
             */
-           
+            getOptions();
+            calculatePrice();
         });
 
         $('.tag-list .tag-js2').on('click', function () {
