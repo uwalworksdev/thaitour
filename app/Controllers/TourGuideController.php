@@ -383,6 +383,8 @@ class TourGuideController extends BaseController
 
             $totalPrice = $totalPrice * intval($people_cnt);
 
+            $group_no = date('YmdHis');
+
 			$orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'] ?? "", 'encode') ?? $postData['order_user_name'],
                 'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'] ?? "", 'encode') ?? $postData['order_user_first_name_en'],
@@ -418,6 +420,7 @@ class TourGuideController extends BaseController
                 'ip' => $this->request->getIPAddress(),
 				"device_type" =>  get_device(),
                 'order_gubun' => $postData['order_gubun'] ?? 'guide',
+				"group_no" => $group_no
             ];
 
             if ($product) {
@@ -493,7 +496,8 @@ class TourGuideController extends BaseController
             $real_price_bath   =  (int)($order_price / $baht_thai);
             $real_price_won    =  $order_price;
             $order_price_bath  =  (int)($order_price / $baht_thai);
-            
+            $group_no          = date('YmdHis');
+
 			$orderData = [
                 'order_user_name' => encryptField($postData['order_user_name'], 'encode') ?? $postData['order_user_name'],
                 'order_user_first_name_en' => encryptField($postData['order_user_first_name_en'], 'encode') ?? $postData['order_user_first_name_en'],
@@ -528,6 +532,7 @@ class TourGuideController extends BaseController
                 'ip' => $this->request->getIPAddress(),
 				"device_type" =>  get_device(),
                 'order_gubun' => $postData['order_gubun'] ?? 'guide',
+				"group_no" => $group_no
             ];
 
             $product = $this->productModel->find($productIdx);
