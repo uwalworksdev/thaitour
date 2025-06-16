@@ -426,7 +426,7 @@ class TourGuideController extends BaseController
                     $key = "product_code_$i";
                     $orderData[$key] = $product[$key] ?? '';
                 }
-                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
+                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_2'])['code_name'] ?? '';
             }
 
             $this->orderModel->insert($orderData);
@@ -537,7 +537,7 @@ class TourGuideController extends BaseController
                     $key = "product_code_$i";
                     $orderData[$key] = $product[$key] ?? '';
                 }
-                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_1'])['code_name'] ?? '';
+                $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_2'])['code_name'] ?? '';
             }
 
             $this->orderModel->insert($orderData);
