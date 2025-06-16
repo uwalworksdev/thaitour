@@ -20,6 +20,8 @@ $(document).ready(function() {
 
         if($("#o_caddy_due").val() == "Y") {
             //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
+            $("#vehicle_5").val('1');
+
             $("#caddy_yes").css("display", "flex");	
             $("#caddy_no").hide();	
         } else {
