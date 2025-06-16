@@ -2468,10 +2468,10 @@ class Product extends BaseController
 							$info['price_total']      = (int) round($info['cart_price'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
-							// $total_vehicle_price      += $info['price'] * $value;
-							// $total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							// $total_vehicle            += $value;
+							$total_vehicle            += $value;
 						}		
 				
 						if($vehicle_idx[$key] == "5") { 
@@ -2483,10 +2483,10 @@ class Product extends BaseController
 							$info['price_total']      = (int) round($info['caddie_fee'] * $baht_thai * $value);
 							$vehicle_arr[]            = $info;
 
-							// $total_vehicle_price      += $info['price'] * $value;
-							// $total_vehicle_price_baht += $info['price_baht'] * $value;
+							$total_vehicle_price      += $info['price'] * $value;
+							$total_vehicle_price_baht += $info['price_baht'] * $value;
 
-							// $total_vehicle            += $value;
+							$total_vehicle            += $value;
 						}		
 				
 				}
