@@ -104,9 +104,15 @@
                                     <td class="tal">
                                         <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"><?= $row["code_name"] ?></a>
                                     </td>
+                                    <?php
+                                        if($s_parent_code_no == "53"){
+                                    ?>
                                     <td class="tal">
                                         <?= $row["code_name_en"] ?>
                                     </td>
+                                    <?php
+                                        }
+                                    ?>
                                     <td class="tac"><?php if ($row['ufile1'] && $row['rfile1']) echo "<img src='/data/code/" . $row['ufile1'] . "'>"; ?></td>
                                     <td class="tac"><?= $row["depth"] ?></td>
                                     <td class="tac"><?= $row["cnt"] ?></td>
