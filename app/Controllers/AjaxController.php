@@ -95,11 +95,11 @@ class AjaxController extends BaseController {
         $goods_date   = $this->request->getPost('goods_date');
         $goods_name   = $this->request->getPost('goods_name');
 
-		$sql = "SELEWCT a.*. b.* FROM tbl_golf_option a 
+		$sql = "SELECT a.*, b.* FROM tbl_golf_option a 
 		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
-								 WHERE product_idx = '". $product_idx ."' 
+								 WHERE a.product_idx = '". $product_idx ."' 
 								 AND goods_date = '". $goods_date ."' 
-								 AND goods_name = '". $goods_name ."' "; 
+								 AND a.goods_name = '". $goods_name ."' "; 
 		$rows = $db->query($sql)->getResultArray();
 		foreach ($rows as $row) {
 				 
