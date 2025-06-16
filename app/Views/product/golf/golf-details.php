@@ -17,16 +17,20 @@ $(document).ready(function() {
 
 <script>
     function showHideCaddy() {
+
         if($("#o_caddy_due").val() == "Y") {
             //$('#vehicle_5').val($("#people_adult_cnt").val()).prop('disabled', true);
             $("#caddy_yes").css("display", "flex");	
             $("#caddy_no").hide();	
         } else {
+
             if($("#o_caddy_cont").val() == "Y") {
-                $("#vehicle_5").val('1');
+                $("#vehicle_5").val('');
                 $("#caddy_no").show();	
                 $("#caddy_yes").hide();	
             } else {   
+                
+                $("#vehicle_5").val('1');
                 $("#caddy_yes").css("display", "flex");		
                 $("#caddy_no").hide();	
             }
@@ -41,6 +45,7 @@ $(document).ready(function() {
                 $("#cart_no").show();	
                 $("#cart_yes").hide();	
             } else {   
+                $("#vehicle_4").val('');
                 $("#cart_yes").css("display", "flex");	
                 $("#cart_no").hide();	
             }
@@ -1396,8 +1401,14 @@ $(document).ready(function() {
                             <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
+            let o_cart_due = $("#o_cart_due").val();
+            let o_caddy_due = $("#o_caddy_due").val();
+            let o_cart_cont = $("#o_cart_cont").val();
+            let o_caddy_cont = $("#o_caddy_cont").val();
+
+
             const html2 = $(".vehicle_select").filter(function () {
-                return $(this).val() !== "";
+                return $(this).val() !== "" && $(this).val() !== "0";
             }).map(function () {
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
@@ -1487,7 +1498,7 @@ $(document).ready(function() {
             const vehiclePrice = setListVehicle();
 
             const optionPrice  = setOptionArea();
-            const optionPrice1 = setGolfOption();
+            const optionPrice1 = setGolfOption();                        
 
             let last_price      = vehiclePrice.total_vehicle_price + optionPrice.final_price + optionPrice1.total_option_price;
             let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht + optionPrice1.total_option_price_baht;
