@@ -546,9 +546,6 @@ class TourGuideController extends BaseController
                 $orderData['code_name'] = $this->codeModel->getByCodeNo($product['product_code_2'])['code_name'] ?? '';
             }
 
-                        var_dump($orderData);
-            die();
-
             $this->orderModel->insert($orderData);
             $orderIdx = $this->orderModel->getInsertID();
 

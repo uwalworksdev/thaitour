@@ -685,10 +685,10 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
-                    // console.log(response);
-                    // alert(response.message);
-                    // $("#ajax_loader").addClass("display-none");
-                    // window.location.href = 'guide/complete-booking';
+                    console.log(response);
+                    alert(response.message);
+                    $("#ajax_loader").addClass("display-none");
+                    window.location.href = 'guide/complete-booking';
                 },
                 error: function (request, status, error) {
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
