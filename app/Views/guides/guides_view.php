@@ -164,7 +164,7 @@
                                     <div class=""
                                          data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
                                     <div class="desc_product_sub">
-                                        <?= viewSQ($guide['important_notes']) ?>
+                                        <?= viewSQ($option['o_contents']) ?>
                                     </div> 
                                     <?php
                                         $hasName = false;
