@@ -229,6 +229,10 @@ class InvoiceController extends BaseController
 				// 주문 객체에 옵션 정보 추가
 				foreach ($orderResult as $order) {
 					$order->options = $optionResult; // options 키에 옵션 배열 추가
+					$order->adult_price_bath = round($order->people_adult_price / $this->setting['baht_thai']);
+					$order->kids_price_bath = round($order->people_kids_price / $this->setting['baht_thai']);
+					$order->baby_price_bath = round($order->people_baby_price / $this->setting['baht_thai']);
+					$order->real_price_bath = round($order->real_price_won / $this->setting['baht_thai']);
 				}
 
 				$firstRow = $orderResult[0] ?? null;

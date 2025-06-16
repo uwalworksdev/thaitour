@@ -6,6 +6,7 @@ $setting = homeSetInfo();
 <?php $this->section('content'); ?>
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
 
+
 <?php foreach ($result as $row): ?>
 <?php endforeach; ?>
 
@@ -31,13 +32,13 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= isset($row->order_r_date) ? date('Y-m-d', strtotime($row->order_r_date)) : "" ?></td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -54,7 +55,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td><?= isset($row->order_date) ? date('Y-m-d', strtotime($row->order_date)) : "" ?></td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -68,15 +69,37 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>시작시간</th>
-                            <td>08:00~16:30</td>
+                            <td><?=$row->time_line ?? ""?></td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td>
+                                <span style="margin-right: 10px">성인 : <?=$row->people_adult_cnt ?? 0?>명;</span>
+                                <span style="margin-right: 10px">아동 : <?=$row->people_kids_cnt ?? 0?>명;</span>
+                                <span style="margin-right: 10px">유아 : <?=$row->people_baby_cnt ?? 0?>명;</span>
+                            </td>
                         </tr>
-                        <tr>
+                        <td?>
                             <th>픽업포함여부</th>
-                            <td>불포함</td>
+                            <?php
+                                $have_data = true;
+                                if(empty($row->pickup_place) && empty($row->sanding_place) && empty($row->start_place)) $have_data = false;
+                            ?>
+                            <?php if(!$have_data):?>
+                                <td>불포함</td>
+                            <?php else :?>
+                                <td>포함</td>
+                            <?php endif;?>
                             <th>미팅 장소</th>
-                            <td>개별이동</td>
+                            <td>
+                                <?php if(!empty($row->start_place)):?>
+                                    <p>픽업장소: <?=$row->start_place?></p>
+                                <?php endif;?>
+                                 <?php if(!empty($row->pickup_place)):?>
+                                    <p>샌딩장소: <?=$row->pickup_place?></p>
+                                <?php endif;?>
+                                 <?php if(!empty($row->sanding_place)):?>
+                                    <p>종료 후 내리실 곳: <?=$row->sanding_place?></p>
+                                <?php endif;?>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -89,16 +112,42 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
+                        <?php if($row->people_adult_cnt > 0): ?>
                         <tr>
-                            <th>1인당 금액</th>
-                            <td colspan="3">성인400바트</td>
+                            <th>1성인 금액</th>
+                            <td colspan="3"><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
                             
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
+                            <td colspan = "3"><?=number_format($row->adult_price_bath)?></td>
                             
                         </tr>
+                        <?php endif?>
+                        <?php if($row->people_kids_cnt > 0): ?>
+                        <tr>
+                            <th>1성인 금액</th>
+                            <td colspan="3"><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>금액</th>
+                            <td colspan = "3"><?=number_format($row->kids_price_bath)?></td>
+                            
+                        </tr>
+                        <?php endif?>
+                         <?php if($row->people_baby_cnt > 0): ?>
+                        <tr>
+                            <th>1성인 금액</th>
+                            <td colspan="3"><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
+                            
+                        </tr>
+                        <tr>
+                            <th>금액</th>
+                            <td colspan = "3"><?=number_format($row->baby_price_bath)?></td>
+                            
+                        </tr>
+                        <?php endif?>
                         <tr>
                             <th>추가내역</th>
                             <td>0바트</td>
