@@ -483,6 +483,10 @@ class TourGuideController extends BaseController
             $phone_2 = updateSQ($this->request->getPost('phone_2'));
             $phone_3 = updateSQ($this->request->getPost('phone_3'));
             $payment_user_mobile = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+
+            var_dump($payment_user_mobile);
+            die();
+
             $payment_user_mobile = encryptField($payment_user_mobile, "encode");
 
             $phone_thai = updateSQ($this->request->getPost('phone_thai'));
