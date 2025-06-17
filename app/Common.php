@@ -1279,8 +1279,6 @@ function alimTalk_send($order_no, $alimCode) {
 	$order_user_mobile = $row_d['order_user_mobile'];
 	
 	//$order_no       = $allim_replace["#{예약번호}"];
-	$order_link     = "https://thetourlab.com/order/" . $order_no;
-	$voucher_link   = "https://thetourlab.com/voucher/" . $order_no;
 
     /*
 		TY_1651 예약가능
@@ -1297,6 +1295,9 @@ function alimTalk_send($order_no, $alimCode) {
 
 	if($alimCode == "UA_5319") { // 예약 가능(확인)   
 	
+       $order_link    = "https://thetourlab.com/order/" . $order_no;
+	   $voucher_link  = "https://thetourlab.com/invoice/". $invoice;
+	   
 	   $allim_replace = [
 							"#{고객명}"   => $order_user_name,
 							"#{상품명}"   => $product_name,   
