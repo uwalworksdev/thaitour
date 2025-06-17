@@ -124,7 +124,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td>
+                                <td colspan="3">
                                     <?=$order_people?>
                                     <?php
                                         if($type == "admin"){
@@ -134,7 +134,7 @@ $setting = homeSetInfo();
                                         }
                                     ?>
                                 </td>
-                                <th>Time</th>
+                                <!-- <th>Time</th>
                                 <td>
                                     <?=$time_line?>
                                     <?php
@@ -144,7 +144,7 @@ $setting = homeSetInfo();
                                     <?php
                                         }
                                     ?>
-                                </td>
+                                </td> -->
                             </tr>
                             <tr>
                                 <th>Pick up Place</th>
@@ -161,12 +161,12 @@ $setting = homeSetInfo();
                                     </div>
                                 </td>
                                 <th>Pick up Time</th>
-                                <td style="color: #252525; font-weight: 600;">
-                                    <?=$pick_time?>
+                                <td>
+                                    <?=$time_line?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <input type="text" name="pick_time_en" value="<?=$result->pick_time_en?>">    
+                                        <input type="text" name="time_line_en" value="<?=$result->time_line_en?>">    
                                     <?php
                                         }
                                     ?>
