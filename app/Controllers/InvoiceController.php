@@ -218,7 +218,7 @@ class InvoiceController extends BaseController
 
 				// 옵션 정보 가져오기
 				$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, baht_thai");
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
 				$query = $builder->where('order_idx', $idx)->get();
 				$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -229,6 +229,17 @@ class InvoiceController extends BaseController
 					$order->kids_price_bath = round($order->people_kids_price / $this->setting['baht_thai']);
 					$order->baby_price_bath = round($order->people_baby_price / $this->setting['baht_thai']);
 					$order->real_price_bath = round($order->real_price_won / $this->setting['baht_thai']);
+
+					$totalOptionBath = 0;
+					foreach ($optionResult as $option) {
+						$totalOptionBath += $option->option_cnt * $option->option_price;
+					}
+					$order->total_options = $totalOptionBath;
+					$order->total_bath = $order->real_price_bath + $totalOptionBath;
+
+					$order->total_options_won = round($totalOptionBath * $this->setting['baht_thai']);
+					$order->total_won = round($order->total_bath * $this->setting['baht_thai']);
+					
 				}
 
 				$firstRow = $orderResult[0] ?? null;
