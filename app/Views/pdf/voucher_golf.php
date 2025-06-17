@@ -362,12 +362,12 @@ $setting = homeSetInfo();
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                 </div>
                 <div class="invoice_table">
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <colgroup>
                             <col width="150px">
                             <col width="*">
@@ -391,7 +391,7 @@ $setting = homeSetInfo();
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <colgroup>
                             <col width="150px">
                             <col width="*">
@@ -408,7 +408,7 @@ $setting = homeSetInfo();
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <colgroup>
                             <col width="150px">
                             <col width="35%">
