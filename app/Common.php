@@ -1292,7 +1292,7 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
 		TY_2397 계좌입금대기
-		TY_.... 이용완료
+		TY_.... 이용완료   
     */
 
 	if($alimCode == "UA_5319") { // 예약 가능(확인)
