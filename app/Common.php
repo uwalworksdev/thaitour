@@ -1282,7 +1282,7 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_2397 계좌입금대기
 		TY_.... 이용완료
     */
-
+     
 	if($alimCode == "TY_1651") { // 예약가능
 	
 	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
