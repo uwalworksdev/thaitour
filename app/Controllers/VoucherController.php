@@ -620,7 +620,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}else{
-				$order_memo = $result->custom_req;
+				$order_remark = $result->custom_req;
 			}
 
 		}
