@@ -1654,7 +1654,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						]
+						],
 						(object)[
 							"ordering"     => 3,
 							"name"         => "견적서 확인하기",
@@ -1674,7 +1674,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						],					
+						] 					
 					];
     
 				} else {
