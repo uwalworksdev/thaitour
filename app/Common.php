@@ -1647,7 +1647,13 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"linkPc"       => "",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						],
+						] 
+					];
+						
+				} else {
+					
+					// 버튼 배열 구성
+					$buttons = [
 						(object) [
 							"ordering"     => 2,
 							"name"         => "더투어랩",
@@ -1657,13 +1663,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						] 
-					];
-						
-				} else {
-					
-					// 버튼 배열 구성
-					$buttons = [
+						],
 						(object)[
 							"ordering"     => 3,
 							"name"         => "견적서 확인하기",
