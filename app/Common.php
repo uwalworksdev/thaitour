@@ -1295,7 +1295,7 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_.... 이용완료   
     */
 
-	if($alimCode == "UA_5319") { // 예약 가능(확인)
+	if($alimCode == "UA_5319") { // 예약 가능(확인)   
 	
 	   $allim_replace = [
 							"#{고객명}"   => $order_user_name,
