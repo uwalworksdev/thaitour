@@ -2754,7 +2754,10 @@ class Product extends BaseController
                 $option_tot_bath   = $price_3 * $data['people_adult_cnt'];
             }
 
+            $hole_en = preg_replace('/(\d+)홀/u', '$1-Hole', $hole);
+
 			$option_name = "홀수 : ". $hole ."|". $hour_gubun ." : ". $golf_date ."| 티오프시간 : ". $teeoff_hour .":". $teeoff_min;
+			$option_name_eng = "Hole : ". $hole_en ."|". $data['hour'] ." : ". $golf_date ."| Tee off time : ". $teeoff_hour .":". $teeoff_min;
 
 			$option_tot         = $priceCalculate['total_price'];
 			$option_tot_bath    = (int)($option_tot / $data['baht_thai']); 
@@ -2766,6 +2769,7 @@ class Product extends BaseController
                 'product_idx'       => $data['product_idx'],
                 //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
                 'option_name'       => $option_name,
+                'option_name_eng'   => $option_name_eng,
                 'option_idx'        => $data['option_idx'],
                 'option_tot'        => $option_tot,
                 'option_tot_bath'   => $option_tot_bath,

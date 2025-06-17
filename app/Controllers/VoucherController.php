@@ -526,7 +526,7 @@ class VoucherController extends BaseController
 
 		$main_op = $this->orderOptionModel->getOption($result->order_idx, 'main')[0];
 
-		$main    = explode("|", $main_op["option_name"]);
+		$main    = explode("|", $main_op["option_name_eng"]);
 		// var_dump($this->orderOptionModel->getOption($result->order_idx, 'main'));
 		// die();
         $option  = $this->orderOptionModel->getOption($result->order_idx, 'option');
