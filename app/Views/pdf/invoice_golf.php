@@ -302,13 +302,7 @@
                 </div>
                 <div class="invoice_table">
                     <h2 class="tit_top">예약자정보</h2>
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">  
-                            <col width="*">
-                        </colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                         <?php 
                                 $weekdays  = ["일", "월", "화", "수", "목", "금", "토"];
@@ -317,15 +311,15 @@
 
                             ?> 
                             <tr>
-                                <th>예약번호</th>
+                                <th style="width: 150px">예약번호</th>
                                 <td><?= esc($row['order_no']) ?></td>
-                                <th>예약날짜</th>
+                                <th style="width: 150px">예약날짜</th>
                                 <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                             </tr>
                             <tr>
-                                <th>여행사(담당자)</th>
+                                <th style="width: 150px">여행사(담당자)</th>
                                 <td><?=$row["order_user_name"]?></td>
-                                <th>이메일</th>
+                                <th style="width: 150px">이메일</th>
                                 <td><?=$row["order_user_email"]?></td>
                             </tr>
                         </tbody>
