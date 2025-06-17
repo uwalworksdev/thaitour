@@ -537,7 +537,7 @@ class VoucherController extends BaseController
 			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'] ?? 0;
 		endforeach; 
 
-		$fee = "인원 :". $main_op["option_cnt"] . "명" . " / 캐디: " . $cart . "명" . " / 카트: " . $caddy . "명";
+		$fee = "Total :". $main_op["option_cnt"] . " / Cart: " . $cart . " / Caddy: " . $caddy;
 
 		$hole = trim(explode(":", $main[0])[1]);
 		$date = trim(explode(":", $main[1])[1]);
