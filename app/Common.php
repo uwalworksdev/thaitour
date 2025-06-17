@@ -1665,7 +1665,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						],					];
-
+    
 				} else {
 					
 					// 버튼 배열 구성
