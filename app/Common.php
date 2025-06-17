@@ -1694,7 +1694,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 				$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
 		}
 
-		write_log($button->linkType);
+		write_log($_variables['button_1']);
 
 /*    
 		-----------------------------------------------------------------
