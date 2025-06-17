@@ -1663,7 +1663,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 					$buttons = [
 						(object)[
 							"ordering"     => 1,
-							"name"         => "예약확인",
+							"name"         => "견적서 확인하기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
 							"linkMo"       => $order_link,
@@ -1673,7 +1673,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 						],
 						(object)[
 							"ordering"     => 2,
-							"name"         => "바우처보기",
+							"name"         => "나의 예약현황 바로가기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
 							"linkMo"       => $voucher_link,
