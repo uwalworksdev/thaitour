@@ -1675,7 +1675,6 @@ $buttons = [
     ]
 ];
 
-$_variables['button_1'] = json_encode(['button' => $buttons], JSON_UNESCAPED_UNICODE);
 
 
 				// JSON 변환 후 변수에 할당
