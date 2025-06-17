@@ -28,7 +28,16 @@ class OrderOptionModel extends Model
 
     public function getOption($order_idx, $option_type)
     {
-        return $this->where('order_idx', $order_idx)->where('option_type', $option_type)->findAll();
+        $result = $this->where('order_idx', $order_idx)->where('option_type', $option_type)->findAll();
+
+        foreach($result as $key => $value) {
+            $sql_opt = " SELECT * FROM tbl_golf_option WHERE idx = '" . $value['option_idx'] . "' AND group_idx = '' AND option_type = 'S' AND o_sale = 'Y' ";
+            $query_opt = $this->db->query($sql_opt);
+            $result_opt = $query_opt->getRowArray();
+            $result[$key]['op_name_en'] = $result_opt['goods_name_eng'];
+        }
+
+        return $result;
     }
 
     public function insertData($data)

@@ -24,7 +24,11 @@ $setting = homeSetInfo();
                         <tbody>
                             <tr>
                                 <th>Name</th>
-                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
+                                <?php if(!empty($result->product_name_en)):?>
+                                <td style="font-weight: 700;"><?= $result->product_name_en ?></td>
+                                <?php else: ?>
+                                <td style="font-weight: 700;"><?= $result->product_name ?></td>
+                                <?php endif?>
                             </tr>
                             <tr>
                                 <th>Address</th>
@@ -32,7 +36,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Tel</th>
-                                <td><?=$result->company_contact?></td>
+                                <td><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -154,7 +158,8 @@ $setting = homeSetInfo();
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
+                                        <!-- <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea> -->
+                                         <textarea name="order_memo" id="order_memo" style="width: 100%; height: 100px;"><?=$result->order_memo?></textarea>
                                     <?php
                                         }
                                     ?>
@@ -197,7 +202,7 @@ $setting = homeSetInfo();
                     </div>
                 </div>
             </form>
-            <div class="inquiry_qna">
+            <!-- <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
                     <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
@@ -205,6 +210,22 @@ $setting = homeSetInfo();
                     <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
                 </div>
                 <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+            </div> -->
+            <div class="inquiry_qna">
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                <div class="inquiry_info">
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                </div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
@@ -285,7 +306,7 @@ $setting = homeSetInfo();
                         }
 
                         .btns_download_print, .invoice_note_, .inquiry_qna {
-                            display: none !important;
+                            
                         }
 
                         table {

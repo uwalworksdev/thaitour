@@ -526,7 +526,7 @@ class VoucherController extends BaseController
 
 		$main_op = $this->orderOptionModel->getOption($result->order_idx, 'main')[0];
 
-		$main    = explode("|", $main_op["option_name"]);
+		$main    = explode("|", $main_op["option_name_eng"]);
 		// var_dump($this->orderOptionModel->getOption($result->order_idx, 'main'));
 		// die();
         $option  = $this->orderOptionModel->getOption($result->order_idx, 'option');
@@ -537,7 +537,7 @@ class VoucherController extends BaseController
 			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'] ?? 0;
 		endforeach; 
 
-		$fee = "인원 :". $main_op["option_cnt"] . "명" . " / 캐디: " . $cart . "명" . " / 카트: " . $caddy . "명";
+		$fee = "Total :". $main_op["option_cnt"] . " / Cart: " . ($cart ?? 0) . " / Caddy: " . ($caddy ?? 0);
 
 		$hole = trim(explode(":", $main[0])[1]);
 		$date = trim(explode(":", $main[1])[1]);
@@ -620,7 +620,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}else{
-				$order_memo = $result->custom_req;
+				$order_remark = $result->custom_req;
 			}
 
 		}
@@ -737,7 +737,7 @@ class VoucherController extends BaseController
 		$builder->where('a.order_idx', $idx);
 
 		$query  = $builder->get();
-		$result = $query->getRow();
+		$result = $query->getRow();	
 
 		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
 

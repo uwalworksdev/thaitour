@@ -655,10 +655,8 @@
             <div class="inner">
                 <div class="top_content">
                     <h1 class="title">전문적이지 않다면 그 어느것도 보장할 수 없습니다.<br class="only_web">비즈니스 투어의 기본은 전문성</h1>
-                    <p class="description">더투어랩은 시드니 현지에서 20년 이상을 오직 더투어랩만을 연구, 개발, 기획한 노하우로 직접 계약부터 투어까지<br
-                                class="only_web">원스톱
-                        시스템으로 진행하여 고민, 시간,
-                        비용을 절감한 효율적인 여행을 완벽히 구현해 냅니다.</p>
+                    <p class="description">더투어랩은 태국 현지에서 10년 이상 축적한 경험과 전문성을 바탕으로<br
+                                class="only_web">고객의 니즈와 예산에 최적화된 여행 서비스를 제공합니다</p>
                     <div class="list_img flex_c_c">
                         <img class="only_web" src="/img/sub/group_section_2_icon1_w.png" alt="">
                         <img class="only_web" src="/img/sub/group_section_2_icon2_w.png" alt="">

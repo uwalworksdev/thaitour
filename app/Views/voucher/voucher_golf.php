@@ -202,8 +202,8 @@ $setting = homeSetInfo();
                                             }else{
                                     ?>
                                         <?php foreach ($option as $key => $item): ?>
-                                            <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
-                                            금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                            <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
+                                            Total (<?= number_format($item['option_tot'])?>Won) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
                                             <?= $key == count($option) - 1 ? "" : "<br>" ?>										
                                         <?php endforeach; ?>
                                     <?php
@@ -211,8 +211,8 @@ $setting = homeSetInfo();
                                         }else{
                                     ?>
                                         <?php foreach ($option as $key => $item): ?>
-                                            <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
-                                            금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                            <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
+                                            Total (<?= number_format($item['option_tot'])?>Won) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
                                             <?= $key == count($option) - 1 ? "" : "<br>" ?>										
                                         <?php endforeach; ?>
                                     <?php
@@ -234,7 +234,7 @@ $setting = homeSetInfo();
                         <p style="font-weight: 700">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
     
-                    <div class="no-break">
+                    <div>
                         <!-- <p class="tit">주요공지</p>
                         <span style="color : #7d7d7d; margin-bottom: 8px">2018년10월01일~2020년 12월31일</span>
                         <div style="background-color: #eee;" class="desc">

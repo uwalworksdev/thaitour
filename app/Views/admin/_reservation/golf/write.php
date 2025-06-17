@@ -120,8 +120,7 @@
                                     <td>
                                         <?= $order_no ?>
                                     </td>
-                                </tr>
-                                
+                                </tr>                                
                                 
                                 <tr>
                                     <th>주문자명</th>
@@ -157,9 +156,14 @@
                                 </tr>
                                 <tr>
                                     <th>생년월일</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
                                                value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
+                                    </td>
+                                    <th>생년월일</th>
+                                    <td>
+                                         <p><span>그린피 : </span><em><?=number_format($main[0]["option_tot"])?></em> 원
+                                            (<em><?=number_format($main[0]["option_tot_bath"])?></em>바트 X <em><?=number_format($main[0]["option_cnt"])?></em>인)</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -186,7 +190,7 @@
 									<?php foreach ($main as $key => $item): ?>
                                     <td><?=str_replace("|", " | ", $item['option_name']);?></td>
                                     <th>인원/캐디/카트</th>
-                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy?>명 &emsp;|&emsp; 카트 : <?=$cart?>대</td>
+                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy ?? 0?>명 &emsp;|&emsp; 카트 : <?=$cart ?? 0?>대</td>
                                     <?php endforeach; ?>
                                 </tr>
 

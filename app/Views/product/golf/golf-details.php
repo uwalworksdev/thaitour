@@ -489,6 +489,7 @@ $(document).ready(function() {
                                               rel="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>">￦<?= number_format($option['goods_price1_1'] * $baht_thai) ?></span>
                                         <input type="hidden" name="opt_idx[]" value="<?= $option['idx'] ?>">
                                         <input type="hidden" name="opt_name[]"   value="<?= $option['goods_name'] ?>">
+                                        <input type="hidden" name="opt_name_en[]"   value="<?= $option['goods_name_eng'] ?>">
 
                                         <select data-name="<?= $option['goods_name'] ?>"
                                                 data-price="<?= (int)($option['goods_price1_1'] * $baht_thai) ?>"

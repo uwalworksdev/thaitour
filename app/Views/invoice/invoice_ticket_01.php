@@ -37,7 +37,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
                             <td><?=$row->order_user_email?></td>
                         </tr>
@@ -80,12 +80,12 @@ $setting = homeSetInfo();
                             <th>총인원</th>
                             <td>성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>픽업포함여부</th>
                             <td>불포함</td>
                             <th>미팅 장소</th>
                             <td>개별이동</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
@@ -139,11 +139,11 @@ $setting = homeSetInfo();
                         </tr>
                     </tbody>
                 </table>
-                <div class="note_no_entry"> 
+                <!-- <div class="note_no_entry"> 
                     <img style="width: 18px; opacity:0.7" src="/images/sub/forbidden-sign-icon.png" alt=""> 
-                    <!-- <p style="color: #7d7d7d; font-size: 14px;">취소 규정: 결제 후 <span style="color : #17469E">24년 12월 18일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.</p> -->
+                    <p style="color: #7d7d7d; font-size: 14px;">취소 규정: 결제 후 <span style="color : #17469E">24년 12월 18일 18시(한국시간)</span> 이전에 취소하시면 무료취소가 가능합니다.</p>
                     <?=viewSQ($cancle_contents)?>
-                </div>
+                </div> -->
                 <div class="btns_download_print">
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
@@ -231,7 +231,7 @@ $setting = homeSetInfo();
                 </div>
 
             </div>
-            <div class="inquiry_qna">
+            <!-- <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
                     <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
@@ -239,6 +239,22 @@ $setting = homeSetInfo();
                     <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
                 </div>
                 <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+            </div> -->
+            <div class="inquiry_qna">
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                <div class="inquiry_info">
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                </div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
