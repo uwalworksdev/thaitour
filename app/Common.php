@@ -1270,6 +1270,8 @@ function alimTalk_send($order_no, $alimCode) {
 
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
+	$order_date        = $row['order_date'];
+	$people_cnt        = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] + "명";
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1282,6 +1284,21 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_2397 계좌입금대기
 		TY_.... 이용완료
     */
+
+	if($alimCode == "UA_5319") { // 예약 가능(확인)
+	
+	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $order_user_name, 
+							"#{상품타입}" => $order_user_name,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
 
 	if($alimCode == "TY_1651") { // 예약가능
 	
