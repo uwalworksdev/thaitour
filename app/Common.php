@@ -1650,8 +1650,8 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"name"         => "견적서 확인하기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
-							"linkMo"       => $order_link,
-							"linkPc"       => $order_link,
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						],
@@ -1660,8 +1660,8 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"name"         => "나의 예약현황 바로가기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
-							"linkMo"       => $voucher_link,
-							"linkPc"       => $voucher_link,
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						],					];
