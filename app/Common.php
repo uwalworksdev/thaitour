@@ -1263,6 +1263,9 @@ function alimTalk_send($order_no, $alimCode) {
 
     $sql	      = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
     $row          = $connect->query($sql)->getRowArray();
+	$product_name = $row['product_name'];
+	$order_date   = $row['order_date'];
+	$people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] + "명";
 	
 	$sql_d        = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
 	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
@@ -1276,9 +1279,6 @@ function alimTalk_send($order_no, $alimCode) {
 	
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
-	$product_name      = $row['product_name'];
-	$order_date        = $row['order_date'];
-	$people_cnt        = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] + "명";
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
