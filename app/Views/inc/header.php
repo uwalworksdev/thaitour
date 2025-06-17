@@ -3,6 +3,7 @@
 
     $db = \Config\Database::connect();
     $m_idx = $_SESSION['member']['mIdx'];
+
     $count_alarm = 0;
     if($m_idx){
         $sql_alarm = "SELECT COUNT(*) AS total FROM tbl_alarm where m_idx = '$m_idx' and status = '0'";
@@ -22,6 +23,11 @@
         </div>
         <div>
             <ul class="flex_header_top">
+               <li>
+                 <?php if (session("member")): ?>
+                    <p class="count_like"><strong style="color: #17469E"><?=$_SESSION['member']['name']?></strong> 안녕하세요!</p>
+                <?php endif?>
+               </li>
                 <li>
                     <?php if (session("member")): ?>
                         <a href="/member/logout" class="text-grey">로그아웃</a>
