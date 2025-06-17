@@ -530,8 +530,8 @@ class VoucherController extends BaseController
         $vehicle = $this->orderOptionModel->getOption($result->order_idx, 'vehicle');
 
 		foreach ($vehicle as $key => $item): 
-			if($item['option_name'] == "카트")   $cart  = $item['option_cnt'];
-			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'];
+			if($item['option_name'] == "카트")   $cart  = $item['option_cnt'] ?? 0;
+			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'] ?? 0;
 		endforeach; 
 
 		$fee = "인원 :". $main_op["option_cnt"] . "명" . " / 캐디: " . $cart . "명" . " / 카트: " . $caddy . "명";
@@ -556,6 +556,9 @@ class VoucherController extends BaseController
 			$order_tee_time = $tee_time;
 			$order_hole = $hole . " " . $day_time;
 			$order_fee = $fee;
+			$order_memo = $result->admin_memo;
+			$order_remark = $result->custom_req;
+
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -608,16 +611,15 @@ class VoucherController extends BaseController
 			if(!empty($result->order_memo_new)){
 				$order_memo = $result->order_memo_new;
 			}else{
-				$order_memo = $result->order_memo;
+				$order_memo = $result->admin_memo;
 			}
 
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
+			}else{
+				$order_memo = $result->custom_req;
 			}
 
-			if(!empty($result->order_option_new)){
-				$order_option = $result->order_option_new;
-			}
 		}
 
         $builder1 = $db->table('tbl_policy_info');
@@ -636,7 +638,6 @@ class VoucherController extends BaseController
             'order_memo' => $order_memo,
 			'user_name_en' => $user_name_en,
 			'order_remark' => $order_remark,
-			'order_option' => $order_option,
 			'order_hole' => $order_hole,
 			'order_tee_time' => $order_tee_time,
 			'order_fee' => $order_fee,
@@ -659,7 +660,6 @@ class VoucherController extends BaseController
             $order_user_name_en_new = updateSQ($this->request->getPost('order_user_name_en_new') ?? "");
             $order_remark_new = updateSQ($this->request->getPost('order_remark_new') ?? "");
             $order_option_new = updateSQ($this->request->getPost('order_option_new') ?? "");
-
 
 			if(!empty($order_idx)) {
 				$data = [
