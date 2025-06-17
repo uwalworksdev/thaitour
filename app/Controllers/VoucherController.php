@@ -377,8 +377,8 @@ class VoucherController extends BaseController
 				$id_kakao = $result->id_kakao;
 			}
 
-			if(!empty($result->pick_time_en)){
-				$pick_time = $result->pick_time_en;
+			if(!empty($result->meeting_date)){
+				$pick_time = date('Y-m-d H:i', strtotime($result->meeting_date));
 			}else{
 				$pick_time = $result->description;
 			}
@@ -398,6 +398,12 @@ class VoucherController extends BaseController
 			}
 		}
 
+
+		$builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [25])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
         return view("voucher/voucher_tour", [
             'result' => $result,
 			'type' => $type,
@@ -414,6 +420,7 @@ class VoucherController extends BaseController
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
 			'tour_type' => $tour_type,
+			'policy_1' 	=> $policy[0],
         ]);
     }
 
