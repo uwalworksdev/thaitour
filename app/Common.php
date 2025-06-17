@@ -1258,18 +1258,25 @@ function product_price($idx)
 
 function alimTalk_send($order_no, $alimCode) {
 
-    $connect     = db_connect();
-    $private_key = private_key();
+    $connect      = db_connect();
+    $private_key  = private_key();
 
-    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
-    $row         = $connect->query($sql)->getRowArray();
+    $sql	      = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
+    $row          = $connect->query($sql)->getRowArray();
 	
-	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+	$sql_d        = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
 	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-    $row_d       = $connect->query($sql_d)->getRowArray();
+    $row_d        = $connect->query($sql_d)->getRowArray();
 
+    $sql	      = " SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND code_no = '". $row['product_code_1'] ."' ";
+    $row          = $connect->query($sql)->getRowArray();
+	$product_cate = $row['code_name'];
+
+
+	
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
+	$product_name      = $row['product_name'];
 	$order_date        = $row['order_date'];
 	$people_cnt        = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] + "명";
     /*
@@ -1287,11 +1294,10 @@ function alimTalk_send($order_no, $alimCode) {
 
 	if($alimCode == "UA_5319") { // 예약 가능(확인)
 	
-	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
 	   $allim_replace = [
 							"#{고객명}"   => $order_user_name,
-							"#{상품명}"   => $order_user_name, 
-							"#{상품타입}" => $order_user_name,
+							"#{상품명}"   => $product_name, 
+							"#{상품타입}" => $product_cate,
 							"#{예약번호}" => $order_no,
 							"#{예약날짜}" => $order_date,
 							"#{예약자명}" => $order_user_name,
