@@ -1672,11 +1672,14 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-					] 
+					    ]
+					];
+							
 				}
 		}
 		
 		if($allim_tmpcode == "UA_5319") {
+			
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
 
