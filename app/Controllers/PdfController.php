@@ -13,13 +13,14 @@ class PdfController extends BaseController
     private $productModel;
     private $roomImg;
     private $CodeModel;
-
+    private $orderOptionModel;
 
     public function __construct() {
         $this->db           = db_connect();
         $this->productModel = model("ProductModel");
         $this->roomImg      = model("RoomImg");
         $this->CodeModel    = model("Code");
+        $this->orderOptionModel = model("OrderOptionModel");
     }
 	
     public function generateQuotation()
@@ -734,7 +735,7 @@ class PdfController extends BaseController
         ]);
 
         $order_idx = $this->request->getVar('order_idx');
-
+        $type = $this->request->getVar('type'); 
         $private_key = private_key(); // 복호화 키
 
 		$db = db_connect();
@@ -761,6 +762,107 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
+        $main_op = $this->orderOptionModel->getOption($result->order_idx, 'main')[0];
+
+		$main    = explode("|", $main_op["option_name"]);
+		// var_dump($this->orderOptionModel->getOption($result->order_idx, 'main'));
+		// die();
+        $option  = $this->orderOptionModel->getOption($result->order_idx, 'option');
+        $vehicle = $this->orderOptionModel->getOption($result->order_idx, 'vehicle');
+
+		foreach ($vehicle as $key => $item): 
+			if($item['option_name'] == "카트")   $cart  = $item['option_cnt'] ?? 0;
+			if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'] ?? 0;
+		endforeach; 
+
+		$fee = "인원 :". $main_op["option_cnt"] . "명" . " / 캐디: " . $cart . "명" . " / 카트: " . $caddy . "명";
+
+		$hole = trim(explode(":", $main[0])[1]);
+		$date = trim(explode(":", $main[1])[1]);
+		$day_time = trim(explode(":", $main[1])[0]);
+		$parts = explode(":", $main[2]);
+		$tee_time = "";
+		if(!empty($parts[1]) && !empty($parts[2])){
+			$minute = str_pad(trim($parts[1]), 2, "0", STR_PAD_LEFT);
+			$second = str_pad(trim($parts[2]), 2, "0", STR_PAD_LEFT);
+			$tee_time = $minute . " : " . $second;
+		}
+		if($type == "admin"){
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_date = $date;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)";
+			$order_memo = $result->order_memo;
+			$order_tee_time = $tee_time;
+			$order_hole = $hole . " " . $day_time;
+			$order_fee = $fee;
+			$order_memo = $result->admin_memo;
+			$order_remark = $result->custom_req;
+
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = $date;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0) . " Adult(s)";
+			}
+
+			if(!empty($result->t_times_en)){
+				$order_tee_time = $result->t_times_en;
+			}else{
+				$order_tee_time = $tee_time;
+			}
+
+			if(!empty($result->hole_en)){
+				$order_hole = $result->hole_en;
+			}else{
+				$order_hole = $hole . " " . $day_time;
+			}
+
+			if(!empty($result->fee_en)){
+				$order_fee = $result->fee_en;
+			}else{
+				$order_fee = $fee;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->admin_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}else{
+				$order_memo = $result->custom_req;
+			}
+
+		}
+
         $builder1 = $db->table('tbl_policy_info');
 		$policy = $builder1->whereIn('p_idx', [28])
 							->orderBy('p_idx', 'asc')
@@ -768,7 +870,19 @@ class PdfController extends BaseController
 
 		$html = view('pdf/voucher_golf',[
             'policy_1' => $policy[0],
-            'result'  => $result
+            'result'  => $result,
+            'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_hole' => $order_hole,
+			'order_tee_time' => $order_tee_time,
+			'order_fee' => $order_fee,
+			'option' => $option
         ]);
         
         $pdf->WriteHTML($html);

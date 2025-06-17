@@ -343,6 +343,15 @@
             padding: 9px;
             color: #7d7d7d;
         }
+
+        .golf_invoice .info_order_txt {
+            margin: 10px 0 0 !important;
+        }
+
+        #container_voice *{
+            font-family: "Pretendard" !important;
+            line-height: 1.4 !important;
+        }
     </style>
 </head>
 <body>
@@ -364,15 +373,15 @@
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td style="font-weight: 700;">Lam Lukka Country Club</td>
+                            <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                         </tr>
                         <tr>
                             <th>Address</th>
-                            <td>29 Moo 7 Lamsal, Lam Luk Ka Klong 11, Pathumthani</td>
+                            <td><?=$result->addrs?></td>
                         </tr>
                         <tr>
                             <th>Tel</th>
-                            <td>+66 (0)2 995 2300~1</td>
+                            <td><?=$result->tel_no?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -387,11 +396,11 @@
                     <tbody>
                         <tr>
                             <th>Name</th>
-                            <td>JEONG HEEYONG</td>
+                            <td><?=$user_name?></td>
                         </tr>
                         <tr>
                             <th>Phone</th>
-                            <td>KR 01045799679</td>
+                            <td><?=$user_mobile?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -406,68 +415,101 @@
                     <tbody>
                         <tr>
                             <th>Booking No</th>
-                            <td colspan="3">143-421-991 (1)</td>
+                            <td colspan="3"><?=$result->order_no?></td>
 
                         </tr>
                         <tr>
                             <th>Date</th>
-                            <td style="color : red" colspan="3">14-Feb-2020(Fri) </td>
+                            <td style="color : red" colspan="3"><p><?=$order_date?></p></td>
 
                         </tr>
                         <tr>
                             <th>Persons</th>
-                            <td colspan="3">3 Adult(s)</td>
+                            <td colspan="3"><?=$order_people?></td>
                         </tr>
                         <tr>
                             <th>T-off Time</th>
-                            <td>08:14</td>
+                            <td><?=$order_tee_time?></td>
                             <th>Hole</th>
-                            <td>18 Holes Morning</td>
+                            <td><?=$order_hole?></td>
                         </tr>
                         
                         <tr>
                             <th>Fee</th>
                             <td colspan="3">
-                                <p>Green (Yes)/Caddy (Yes)/Cart (Yes)</p>
+                                <p><?=$order_fee?></p>
                             </td>
 
                         </tr>
                         <tr>
                             <th>Agent Memo</th>
                             <td colspan="3">
-                                <p></p>
+                                <?=$order_memo?>
                             </td>
                         </tr>
                         <tr>
                             <th>Remarks</th>
                             <td colspan="3">
-                                <p></p>
+                                <?=$order_remark?>
                             </td>
                         </tr>
                         <tr>
                             <th>Option</th>
                             <td colspan="3">
-                                <p></p>
+                                <?php
+                                    if(!empty($result->order_option_new)){
+                                        echo $result->order_option_new;
+                                    }else{
+                                ?>
+                                    <?php foreach ($option as $key => $item): ?>
+                                        <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
+                                        금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                        <?= $key == count($option) - 1 ? "" : "<br>" ?>										
+                                    <?php endforeach; ?>
+                                <?php
+                                    }                                  
+                                ?>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <br>
                 <div class="info_order_txt" style="margin-bottom: 10pt;">
-                    <p style="font-weight: bold">• Booked by: Totobooking</p>
+                    <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                 </div>
                 <br>
 
                 <div class="box_notifi">
-                    <!-- <p class="tit">주요공지</p>
-                    <div style="color: #7d7d7d;">
-                        <p style="margin-bottom: 8pt;">2018년10월01일~2020년 12월31일</p>
-                    </div>
-                    <div style="background-color: #eee;" class="desc">
-                        <p style = "margin-bottom: 4px">30분전 골프장 도착하신후 확정된 티오프시간전에 티오프 준비를 마치셔야 합니다.</p>
-                        <p>늦으시는 경우 라운딩이 불가능하거나 장시간 대기할수 있으므로 꼭 시간내 엄수해주기 바랍니다.</p>
-                    </div> -->
                     <?=viewSQ($policy_1["policy_contents"])?>
+                </div>
+
+                <div class="invoice_note_">
+                    <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                    <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
+                    <p><span>-</span><span>티오프 시간이 날짜로 표시된 경우 해당날짜에 티오프 시간 확정하여 바우처 재발송해드립니다.</span></p>
+                    <p><span>-</span><span>티오프 시간 확정전까지는 확정된 예약이 아니므로 예약이 불가능할 수도 있습니다.</span></p>
+                    <p><span>-</span><span>이 바우처를 골프장 프론트에 제시한 후 해당 상품을 이용해 주세요. 단, 다른 연락처가 기재된 경우에는 그 곳과 통화하셔서 도움받으세요.</span></p>
+                    <p><span>-</span><span>우천으로 라운딩을 중단해야 할 경우, 태국 골프장은 환불이 매우 어려우므로 반드시 위 연락처 또는 여행사에 연락한 뒤 중단여부를 결정하셔야 합니다.</span></p>
+                    <p><span>-</span><span>1,2인 라운딩은 당일 골프장 예약현황에 따라 조인될 수도 있습니다. 특히 성수기 때에는 대부분 조인됩니다. 따라서 티오프 시각을 받으셨어도 조인될 때까지 기다리실 수도 있습니다.</span></p>
+                    <p><span>-</span><span>골프장 내에서 다치거나, 동물이나 곤충에 의한 피해를 골프장에서 보상해주지 않으므로 라운딩 시 주의해주세요.</span></p>
+                    <p><span>-</span><span>예약에 문제가 발생하거나 추가 예약이 필요하시면 다음 비상연락처로 연락주세요. 신속히 조치해 드리겠습니다. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)</span></p>
+
+                </div>
+            </div>
+            <div class="inquiry_qna">
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                <div class="inquiry_info">
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                </div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
                 </div>
             </div>
         </div>

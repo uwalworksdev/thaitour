@@ -517,10 +517,6 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-        $builder = $db->table('tbl_policy_info');
-		$policy = $builder->whereIn('p_idx', [23])
-							->orderBy('p_idx', 'asc')
-							->get()->getResultArray();
 		$main_op = $this->orderOptionModel->getOption($result->order_idx, 'main')[0];
 
 		$main    = explode("|", $main_op["option_name"]);
