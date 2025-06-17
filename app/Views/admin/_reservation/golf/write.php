@@ -186,7 +186,7 @@
 									<?php foreach ($main as $key => $item): ?>
                                     <td><?=str_replace("|", " | ", $item['option_name']);?></td>
                                     <th>인원/캐디/카트</th>
-                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy?>명 &emsp;|&emsp; 카트 : <?=$cart?>대</td>
+                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy ?? 0?>명 &emsp;|&emsp; 카트 : <?=$cart ?? 0?>대</td>
                                     <?php endforeach; ?>
                                 </tr>
 
