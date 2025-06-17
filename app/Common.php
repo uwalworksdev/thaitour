@@ -1645,8 +1645,18 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						],
-						(object)[
+						(object) [
 							"ordering"     => 2,
+							"name"         => "더투어랩",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						]
+						(object)[
+							"ordering"     => 3,
 							"name"         => "견적서 확인하기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
@@ -1656,7 +1666,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkAnd"      => ""
 						],
 						(object)[
-							"ordering"     => 3,
+							"ordering"     => 4,
 							"name"         => "나의 예약현황 바로가기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
@@ -1664,7 +1674,8 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						],					];
+						],					
+					];
     
 				} else {
 					
