@@ -1531,7 +1531,7 @@ function alimTalk_send_group($payment_idx, $alimCode) {
     alimTalkSend($alimCode, $allim_replace);
 }
 
-function alimTalkSend($tmpCode, $allim_replace) {
+function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 	
     $connect       = db_connect();
     $private_key   = private_key();
