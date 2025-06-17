@@ -1647,7 +1647,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"linkPc"       => "",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						] 
+						], 
 						(object) [
 							"ordering"     => 2,
 							"name"         => "더투어랩",
