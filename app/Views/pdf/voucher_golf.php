@@ -479,7 +479,7 @@ $setting = homeSetInfo();
                         </tbody>
                     </table>
                     <br>
-                    <div class="info_order_txt" style="margin-bottom: 10pt;">
+                    <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
                     <br>
