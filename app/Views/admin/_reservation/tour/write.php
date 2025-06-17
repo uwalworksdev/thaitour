@@ -1,5 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
+<!-- Timepicker Addon -->
 <?= $this->section("body") ?>
+
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -236,7 +238,14 @@
                                         <!-- <input type="text" name="start_place" style="width:45%;" value="<?= $tour_orders['start_place'] ?>">
 										<input type="text" name="metting_time" style="width:35%;" value="<?= $tour_orders['metting_time'] ?>"> -->
                                         <input type="text" name="start_place" style="width:45%;" value="<?= $start_place ?>">
-										<input type="text" name="metting_time" style="width:35%;" value="<?= $metting_time ?>">
+										<!-- <input type="text" name="meeting_date" style="width:35%;" value="<?= $meeting_date ?>"> -->
+                                         <?php
+                                            $display_date = ($meeting_date && $meeting_date !== '0000-00-00 00:00:00') 
+                                                ? date('Y-m-d H:i', strtotime($meeting_date)) 
+                                                : '';
+                                        ?>
+                                        <input type="text" id="meeting_date" name="meeting_date" placeholder=""
+                                               value="<?= $display_date ?>" class="input_txt datetimepicker" style="width:40.5%" readonly/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -939,7 +948,7 @@
         fn_comment_list();
     </script>
     <script src="/AdmMaster/_include/comment.js"></script>
-    <script>
+    <!-- <script>
         $(function () {
             $.datepicker.regional['ko'] = {
                 showButtonPanel: true,
@@ -1007,6 +1016,24 @@
                 <?php } ?>
             });
 
+             $(".datetimepicker").datetimepicker({
+                dateFormat: 'yy-mm-dd',
+                timeFormat: 'HH:mm',
+                showSecond: false,
+                controlType: 'select',
+                oneLine: true,
+                showButtonPanel: true,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "c-100:c+10",
+                showOn: "both",
+                buttonImage: "/img/ico/date_ico.png",
+                buttonImageOnly: true,
+                beforeShow: function (input) {
+                    appendClearButton(input);
+                }
+            });
+
             $('img.ui-datepicker-trigger').css({
                 'display': 'none'
             });
@@ -1014,7 +1041,88 @@
                 'cursor': 'pointer'
             });
         });
-    </script>
+    </script> -->
+    <script>
+    $(function () {
+        // Thiết lập ngôn ngữ tiếng Hàn
+        $.datepicker.regional['ko'] = {
+            closeText: '닫기',
+            prevText: '이전',
+            nextText: '다음',
+            currentText: '오늘',
+            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+            monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+            weekHeader: 'Wk',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: true,
+            changeMonth: true,
+            changeYear: true,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
+
+        function appendClearButton(input) {
+            setTimeout(function () {
+                var buttonPane = $(input)
+                    .datepicker("widget")
+                    .find(".ui-datepicker-buttonpane");
+
+                if (buttonPane.find(".ui-datepicker-clear").length === 0) {
+                    var btn = $('<button type="button" class="ui-datepicker-clear ui-state-default ui-priority-secondary ui-corner-all">Clear</button>');
+                    btn.unbind("click").bind("click", function () {
+                        $.datepicker._clearDate(input);
+                    });
+                    btn.appendTo(buttonPane);
+                }
+            }, 1);
+        }
+
+        $(".datepicker").datepicker({
+            showButtonPanel: true,
+            beforeShow: function (input) {
+                appendClearButton(input);
+            },
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            yearRange: "c-100:c+10",
+            buttonImage: "/img/ico/date_ico.png",
+            buttonImageOnly: true
+            <?php if ($str_guide != "") { ?>,
+                beforeShowDay: function (date) {
+                    var day = date.getDay();
+                    return [(<?= $str_guide ?>)];
+                }
+            <?php } ?>
+        });
+
+        $(".datetimepicker").datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'HH:mm',
+            showSecond: false,
+            controlType: 'select',
+            oneLine: true,
+            showButtonPanel: true,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "c-100:c+10",
+            showOn: "both",
+            buttonImage: "/img/ico/date_ico.png",
+            buttonImageOnly: true,
+            beforeShow: function (input) {
+                appendClearButton(input);
+            }
+        });
+
+        $('img.ui-datepicker-trigger').css({ 'display': 'none' });
+        $('input.hasDatepicker').css({ 'cursor': 'pointer' });
+    });
+</script>
+
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none;"></iframe>
 
 <?= $this->endSection() ?>

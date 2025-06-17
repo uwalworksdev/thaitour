@@ -59,6 +59,9 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
     <link rel="stylesheet" href="/lib/colorbox-master/example4/colorbox.css" />
     <script src="/lib/colorbox-master/jquery.colorbox.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+
 
     <!--notice 스크립트끝-->
     <script src="/lib/jquery/jquery.form.js"></script>

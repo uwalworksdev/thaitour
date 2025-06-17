@@ -594,8 +594,6 @@ class ReservationController extends BaseController
 
         if ($gubun == 'tour') {
             $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
-            // var_dump($this->orderTours->findByOrderIdx($order_idx));
-            // die();
             $optionsIdx  = $data['tour_orders']['options_idx'];
 
             $options_idx = explode(',', $optionsIdx);
@@ -701,7 +699,7 @@ class ReservationController extends BaseController
 
             $idx = $data['idx_tour'] ?? "";
             $start_place = $data['start_place'] ?? "";
-            $metting_time = $data['metting_time'] ?? "";
+            // $metting_time = $data['metting_time'] ?? "";
             $id_kakao = $data['id_kakao'] ?? "";
             $description = $data['description'] ?? "";
             $end_place = $data['end_place'] ?? "";
@@ -709,7 +707,7 @@ class ReservationController extends BaseController
             if (!empty($idx)) {
                 $data_tour = [
                     "start_place" => $start_place,
-                    "metting_time" => $metting_time,
+                    // "metting_time" => $metting_time,
                     "id_kakao" => $id_kakao,
                     "description" => $description,
                     "end_place" => $end_place,
