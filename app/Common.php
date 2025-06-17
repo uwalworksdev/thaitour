@@ -1632,7 +1632,6 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 		$orderNo = 'S20250617044';
 
  
-		if(!empty($button)) {
 			$buttons = [
 				(object)[
 					"ordering" => 1,
@@ -1678,7 +1677,6 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 
 			$_variables['button_1'] = json_encode(['button' => $buttons], JSON_UNESCAPED_UNICODE);
 
-		}
 
 		write_log($_variables['button_1']);
 
