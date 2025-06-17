@@ -1581,7 +1581,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 	$ret = curl_exec($oCurl);
-	$error_msg = curl_error($oCurl);
+	$error_msg = curl_error($oCurl);  
 	curl_close($oCurl);
 
 	// 리턴 JSON 문자열 확인
