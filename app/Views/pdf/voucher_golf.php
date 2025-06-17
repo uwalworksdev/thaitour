@@ -262,7 +262,7 @@ $setting = homeSetInfo();
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            padding-left: 0;
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -484,7 +484,7 @@ $setting = homeSetInfo();
                     </div>
                     <br>
 
-                    <div class="box_notifi">
+                    <div>
                         <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>
 
