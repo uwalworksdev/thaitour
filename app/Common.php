@@ -1389,7 +1389,7 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
-    alimTalkSend($alimCode, $allim_replace);
+    alimTalkSend($alimCode, $allim_replace, $order_link, $voucher_link);
 }
 
 function alimTalk_send_bank($payment_idx) {
