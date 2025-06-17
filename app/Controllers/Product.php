@@ -3536,7 +3536,7 @@ class Product extends BaseController
 
         $data['product']['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $data['product']['product_idx']) > 0;
 
-        var_dump($data['productTourInfo']);
+        // var_dump($data['productTourInfo']);
 
         return $this->renderView('tours/tour-details', $data);
     }

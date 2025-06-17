@@ -115,50 +115,52 @@ $setting = homeSetInfo();
                         <?php if($row->people_adult_cnt > 0): ?>
                         <tr>
                             <th>1성인 금액</th>
-                            <td colspan="3"><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
-                            
-                        </tr>
-                        <tr>
+                            <td><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($row->adult_price_bath)?></td>
+                            <td><?=number_format($row->adult_price_bath) ?> 바트</td>
                             
                         </tr>
                         <?php endif?>
                         <?php if($row->people_kids_cnt > 0): ?>
                         <tr>
-                            <th>1성인 금액</th>
-                            <td colspan="3"><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
-                            
-                        </tr>
-                        <tr>
+                            <th>1아동 금액</th>
+                            <td><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($row->kids_price_bath)?></td>
-                            
+                            <td><?=number_format($row->kids_price_bath)?> 바트</td>
                         </tr>
                         <?php endif?>
                          <?php if($row->people_baby_cnt > 0): ?>
                         <tr>
-                            <th>1성인 금액</th>
-                            <td colspan="3"><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
-                            
-                        </tr>
-                        <tr>
+                            <th>1유아 금액</th>
+                            <td><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($row->baby_price_bath)?></td>
-                            
+                            <td><?=number_format($row->baby_price_bath)?> 바트</td>
                         </tr>
                         <?php endif?>
+                        
+                        <?php 
+                            if(count($row->options) > 0):
+                                foreach($row->options as $index => $option):
+                                    $option_m = $option->option_price * $option->option_cnt;
+                        ?>
                         <tr>
-                            <th>추가내역</th>
-                            <td>0바트</td>
+                           
+                                <th><?=$option->option_name?></th>
+                                <td><?=$option->option_price?>바트 x <?=$option->option_cnt?></td>
+                                <th>금액</th>
+                                <td><?=$option_m?>바트</td>
+                        </tr>
+                        <?php endforeach;?>
+                        <?php endif;?>
+                        <tr>
                             <th>총금액</th>
-                            <td><?=number_format($row->real_price_bath)?>바트</td>
+                            <td colspan="3"><?=number_format($row->total_bath)?>바트</td>
                         </tr>
                        
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
+                    <p>총 견적서 금액 : <span><?=number_format($row->total_won)?>원</span> (<?=number_format($row->total_bath)?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
