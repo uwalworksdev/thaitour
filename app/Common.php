@@ -1299,7 +1299,7 @@ function alimTalk_send($order_no, $alimCode) {
 	
 	   $allim_replace = [
 							"#{고객명}"   => $order_user_name,
-							"#{상품명}"   => $product_name, 
+							"#{상 품 명}" => $product_name, 
 							"#{상품타입}" => $product_cate,
 							"#{예약번호}" => $order_no,
 							"#{예약날짜}" => $order_date,
