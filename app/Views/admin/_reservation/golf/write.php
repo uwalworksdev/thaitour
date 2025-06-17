@@ -157,9 +157,14 @@
                                 </tr>
                                 <tr>
                                     <th>생년월일</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
                                                value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
+                                    </td>
+                                    <th>생년월일</th>
+                                    <td>
+                                         <p><span>그린피 : </span><em><?=number_format($main["option_tot"])?></em> 원
+                                            (<em><?=number_format($main["option_tot_bath"])?></em>바트 X <em><?=number_format($main["option_cnt"])?></em>인)</p>
                                     </td>
                                 </tr>
                                 <tr>
