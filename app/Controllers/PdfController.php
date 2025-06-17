@@ -744,10 +744,13 @@ class PdfController extends BaseController
 		$builder->select("
 					a.*, b.*, c.*,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
 					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
 					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
 					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
 					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
 					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
