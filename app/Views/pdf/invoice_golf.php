@@ -338,49 +338,42 @@
                             </tr>
                         </table>
                     </div>
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">  
-                            <col width="*">
-                        </colgroup>
-                        
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                         <?php 
                             $order_info = order_info($row['order_gubun'], $row['order_no'], $row['order_idx']); 
                             $order_txt  = explode("|", $order_info);
                         ?>
                             <tr>
-                                <th>날짜</th>
+                                <th style="width: 150px">날짜</th>
                                 <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
-                                <th>바우처 이름</th>
+                                <th style="width: 150px">바우처 이름</th>
                                 <td><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
                             </tr>
                             <tr>
-                                <th>고객 연락처</th>
+                                <th style="width: 150px">고객 연락처</th>
                                 <td colspan="3"><?=$row['order_user_mobile']?></td>
                             </tr>
                             <tr>
-                                <th>예약상품</th>
+                                <th style="width: 150px">예약상품</th>
                                 <td colspan="3"><?=$row['product_name']?>[ <?=$order_txt[0]?> <?=$order_txt[1]?> ]</td>
                             </tr>
                             <tr>
-                                <th>총인원</th>
+                                <th style="width: 150px">총인원</th>
                                 <td colspan="3"><?=$order_txt[3]?></td>
                             </tr>
                             <tr>
-                                <th>티오프 요청시간</th>
+                                <th style="width: 150px">티오프 요청시간</th>
                                 <td><?=$order_txt[2]?></td>
-                                <th>티오프 가능시간</th>
+                                <th style="width: 150px">티오프 가능시간</th>
                                 <td><?=$order_txt[2]?></td>
                             </tr>
                             <tr>
-                                <th>불포함</th>
+                                <th style="width: 150px">불포함</th>
                                 <td colspan="3"><?=viewSQ($not_included_product)?></td>
                             </tr>
                             <tr>
-                                <th>안내사항</th>
+                                <th style="width: 150px">안내사항</th>
                                 <td colspan="3"><?=viewSQ($guide_contents)?></td>
                             </tr>
                         </tbody>
