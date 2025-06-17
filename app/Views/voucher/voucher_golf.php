@@ -234,7 +234,7 @@ $setting = homeSetInfo();
                         <p style="font-weight: 700">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
     
-                    <div class="no-break">
+                    <div>
                         <!-- <p class="tit">주요공지</p>
                         <span style="color : #7d7d7d; margin-bottom: 8px">2018년10월01일~2020년 12월31일</span>
                         <div style="background-color: #eee;" class="desc">

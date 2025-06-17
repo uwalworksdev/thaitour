@@ -489,7 +489,7 @@ $setting = homeSetInfo();
                     </div>
 
                     <div class="invoice_note_">
-                        <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="<?= FCPATH . '/images/sub/warning-icon.png' ?>" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
+                        <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px; margin-right: 10px; margin-top: 10px;" src="<?= FCPATH . '/images/sub/warning-icon.png' ?>" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
                         <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
                         <p><span>-</span><span>티오프 시간이 날짜로 표시된 경우 해당날짜에 티오프 시간 확정하여 바우처 재발송해드립니다.</span></p>
                         <p><span>-</span><span>티오프 시간 확정전까지는 확정된 예약이 아니므로 예약이 불가능할 수도 있습니다.</span></p>
