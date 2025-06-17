@@ -311,7 +311,7 @@
                                     </td>
                                     <th>담당자 담당자</th>
                                     <td>
-                                        이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $stay_item['product_manager_2'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+                                        이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
 										&ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>
                                         &ensp;이메일: <input id="email_2" name="email_2" class="input_txt"  type="text" value="<?= $email_2 ?? '' ?>"   style="width:150px"/>
                                     </td>
