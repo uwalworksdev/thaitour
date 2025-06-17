@@ -1659,17 +1659,33 @@ function alimTalkSend($tmpCode, $allim_replace) {
 
 				} else {
 					
-					// 버튼 정보 생성
+					// 버튼 배열 구성
 					$buttons = [
-						(object) [
-							"ordering"     => 2,
-							"name"         => "더투어랩",
+						(object)[
+							"ordering"     => 1,
+							"name"         => "예약확인",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
-							"linkMo"       => "https://thetourlab.com",
-							"linkPc"       => "https://thetourlab.com",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
 							"linkIos"      => "",
 							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 2,
+							"name"         => "바우처보기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $voucher_link,
+							"linkPc"       => $voucher_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 3,
+							"name"         => "배송조회",
+							"linkType"     => "DS",
+							"linkTypeName" => "배송조회"
 						]
 					];
 				}
