@@ -163,8 +163,8 @@
                                     </td>
                                     <th>생년월일</th>
                                     <td>
-                                         <p><span>그린피 : </span><em><?=number_format($main["option_tot"])?></em> 원
-                                            (<em><?=number_format($main["option_tot_bath"])?></em>바트 X <em><?=number_format($main["option_cnt"])?></em>인)</p>
+                                         <p><span>그린피 : </span><em><?=number_format($main[0]["option_tot"])?></em> 원
+                                            (<em><?=number_format($main[0]["option_tot_bath"])?></em>바트 X <em><?=number_format($main[0]["option_cnt"])?></em>인)</p>
                                     </td>
                                 </tr>
                                 <tr>
