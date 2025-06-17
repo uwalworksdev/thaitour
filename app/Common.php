@@ -1278,7 +1278,7 @@ function alimTalk_send($order_no, $alimCode) {
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
 	
-	$order_no       = $allim_replace["#{예약번호}"];
+	//$order_no       = $allim_replace["#{예약번호}"];
 	$order_link     = "https://thetourlab.com/order/" . $order_no;
 	$voucher_link   = "https://thetourlab.com/voucher/" . $order_no;
 
