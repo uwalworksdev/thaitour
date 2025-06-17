@@ -24,7 +24,11 @@ $setting = homeSetInfo();
                         <tbody>
                             <tr>
                                 <th>Name</th>
+                                <?php if(!empty($result->product_name_en)):?>
+                                <td style="font-weight: 700;"><?= $result->product_name_en ?></td>
+                                <?php else: ?>
                                 <td style="font-weight: 700;"><?= $result->product_name ?></td>
+                                <?php endif?>
                             </tr>
                             <tr>
                                 <th>Address</th>
@@ -32,7 +36,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Tel</th>
-                                <td></td>
+                                <td><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -154,7 +158,8 @@ $setting = homeSetInfo();
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
+                                        <!-- <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea> -->
+                                         <textarea name="order_memo" id="order_memo" style="width: 100%; height: 100px;"><?=$result->order_memo?></textarea>
                                     <?php
                                         }
                                     ?>
