@@ -1883,13 +1883,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link = null, $invoice_lin
 					];
 				}
 		}
-
-UA_5328 https://thetourlab.com/mypage/reservation_list?procType=2
-
-UA_5331 https://thetourlab.com/mypage/reservation_list?procType=3
-
-UA_5348 https://thetourlab.com/mypage/reservation_list?procType=5
-
+		
 		if($allim_tmpcode == "UA_5373" || $allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328" || $allim_tmpcode == "UA_5348") {
 			
 				if ($button->linkType == "AC") {
