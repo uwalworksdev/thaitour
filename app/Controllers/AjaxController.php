@@ -2417,6 +2417,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['gubun'] = "ticket";
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
+
 				$_tmp_fir_array['스파명'] = $row->product_name_cs;
 				$_tmp_fir_array['스파주소'] = $row->addrs;
 				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
