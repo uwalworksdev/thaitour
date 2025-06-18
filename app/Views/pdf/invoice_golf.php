@@ -292,7 +292,7 @@
         <section class="golf_invoice">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                     <p>요청하신 예약이 가능하여 인보이스가 발송되었습니다.</p>
