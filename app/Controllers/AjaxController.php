@@ -2304,6 +2304,8 @@ public function get_golf_option() {
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+				$_tmp_fir_array['gubun'] = 'ticket';
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
@@ -2399,6 +2401,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}else if($row->order_gubun == "spa"){
 				$code = 'A27';
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
 				
 			}else if($row->order_gubun == "hotel") {
 				$code        = "A20";
