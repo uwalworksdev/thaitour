@@ -158,8 +158,7 @@ $setting = homeSetInfo();
                                         $option_m =  $option->option_price * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p><br/>
-
+                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p>
                                     <?php endforeach;?>
                                     
                                 </td>
