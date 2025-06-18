@@ -377,9 +377,12 @@
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
-										 <input type="text" id="order_user_email" name="order_user_email"
+										 <!-- <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR> -->
+                                               <input type="text" id="email_send_invoice" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceTour('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -399,9 +402,12 @@
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
-										<input type="text" id="order_user_email" name="order_user_email"
+										<!-- <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR> -->
+                                               <input type="text" id="order_user_email_voucher" name="order_user_email"
+                                               value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherHotel('<?=$order_no?>')">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -643,32 +649,33 @@
 	</script>
 	
 	<script>
-	function invoiceHotel(order_no)
-	{
-			if (!confirm('인보이스를 전송 하시겠습니까?'))
-				return false;
+	 function invoiceTour(order_no)
+    {
+        if (!confirm('인보이스를 전송 하시겠습니까?'))
+            return false;
 
-			var message = "";
-			$.ajax({
-				url  : "/ajax/ajax_incoiceHotel_send",
-				type : "POST",
-				data : {
-					"order_no"  : order_no 
-				},
-				dataType : "json",
-				async: false,
-				cache: false,
-				success: function (data, textStatus) {
-					message = data.message;
-					alert(message);
-					location.reload();
-				},
-				error: function (request, status, error) {
-					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				}
-			});		
-		
-	}
+        var message = "";
+        var order_user_email = $('#email_send_invoice').val(); 
+        $.ajax({
+            url  : "/ajax/ajax_incoiceHotel_send",
+            type : "POST",
+            data : {
+                "order_no"  : order_no,
+                "order_user_email": order_user_email,
+            },
+            dataType : "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });		
+    }
 	
 	function voucherHotel(order_no)
 	{
@@ -676,11 +683,13 @@
 				return false;
 
 			var message = "";
+            var order_user_email = $('#order_user_email_voucher').val(); 
 			$.ajax({
 				url  : "/ajax/ajax_voucherHotel_send",
 				type : "POST",
 				data : {
-					"order_no"  : order_no 
+					"order_no"  : order_no,
+                    "order_user_email": order_user_email,
 				},
 				dataType : "json",
 				async: false,
