@@ -2639,8 +2639,8 @@ public function get_golf_option() {
 				$room_type = $row->room_type;
 			}
 
-		    if($order_status == "W") {
-				$alimCode = "UA_5373";
+		    if($order_status == "W") {  // 예약접수
+				$alimCode = "UA_5373";  
 			
 				$code        = "A14";
 				$_tmp_fir_array = [
@@ -2652,9 +2652,10 @@ public function get_golf_option() {
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
 				
-			}  // 예약접수
-		    if($order_status == "X") { 
-				$alimCode = "UA_5373";
+			}  
+			
+		    if($order_status == "X") {  // 예약확인 
+				$alimCode = "UA_5319";
 
 				if($row->order_gubun == "hotel"){
 					$code = "A21";
