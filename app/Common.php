@@ -1453,7 +1453,7 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
-    alimTalkSend($alimCode, $allim_replace, $order_link, $voucher_link);
+    alimTalkSend($alimCode, $allim_replace, $order_link, $invoice_link, $voucher_link);
 }
 
 function alimTalk_send_bank($payment_idx) {
@@ -1595,7 +1595,7 @@ function alimTalk_send_group($payment_idx, $alimCode) {
     alimTalkSend($alimCode, $allim_replace);
 }
 
-function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
+function alimTalkSend($tmpCode, $allim_replace, $order_link, $invoice_link, $voucher_link) {
 	
     $connect       = db_connect();
     $private_key   = private_key();
@@ -1691,9 +1691,6 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 			'button_1'    =>  null,
 			'emtitle_1'   =>  $templtTitle
 		);
-
-		$invoice = 'INV20250617001';
-		$orderNo = 'S20250617044';
 
         if($allim_tmpcode == "TY_1652") {
 				
