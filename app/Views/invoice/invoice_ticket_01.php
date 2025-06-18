@@ -7,8 +7,8 @@ $setting = homeSetInfo();
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
 
 <?php foreach ($result as $row): ?>
-      <?php // foreach ($row->options as $option): ?>
-      <?php // endforeach; ?>
+      <?php foreach ($row->options as $option): ?>
+      <?php  endforeach; ?>
 <?php endforeach; ?>
 
 <div id="container_voice">
@@ -56,17 +56,18 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>상품명</th>
-                            <td colspan="3"><?=$row->product_name?></td>
-                        </tr>
-                        <tr>
-                            <th>날짜</th>
-                            <td>
-                                <!-- <?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>) -->
-                                 <?= $row->order_day ?>
-                            </td>
+                            <td><?=$row->product_name?></td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_name?></td>
                         </tr>
+                        <!-- <tr>
+                            <th>날짜</th>
+                            <td>
+                                <?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>)                                 
+                            </td>
+                            <th>여행자 이름</th>
+                            <td><?=$row->order_user_name?></td>
+                        </tr> -->
                         <tr>
                             <th>고객 연락처</th>
                             <td><?=$row->order_user_mobile?></td>
