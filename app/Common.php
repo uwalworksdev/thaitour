@@ -1266,41 +1266,47 @@ function alimTalk_send($order_no, $alimCode) {
 	$order_idx    = $row['order_idx'];
 	$product_name = $row['product_name'];
 	$order_date   = $row['order_date'];
-	$people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+
+	if($row['product_code_1'] == "1303") { // 호텔 
+	   $people_cnt   = "룸 ". $row['order_room_cnt'] ."개" ;
+	} else {
+	   $people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+	}
 
     if($row['product_code_1'] == "1301") { // 투어 
        $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1302") { // 골프 
        $order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1303") { // 호텔 
        $order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
        $order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1320") { // 레스토랑 
        $order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
        $order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1325") { // 스파 
        $order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
 	$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
@@ -1370,8 +1376,34 @@ function alimTalk_send($order_no, $alimCode) {
                             "phone"       => $order_user_mobile
 						];
 	} 	
+
+    if($alimCode == "UA_5331") { // 예약확정
 	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
+
+    if($alimCode == "UA_5348") { // 예약취소
 	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
 		
 	if($alimCode == "TY_1651") { // 예약가능
 	
@@ -1453,7 +1485,7 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
-    alimTalkSend($alimCode, $allim_replace, $order_link, $voucher_link);
+    alimTalkSend($alimCode, $allim_replace, $order_link, $invoice_link, $voucher_link);
 }
 
 function alimTalk_send_bank($payment_idx) {
@@ -1595,7 +1627,7 @@ function alimTalk_send_group($payment_idx, $alimCode) {
     alimTalkSend($alimCode, $allim_replace);
 }
 
-function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
+function alimTalkSend($tmpCode, $allim_replace, $order_link, $invoice_link, $voucher_link) {
 	
     $connect       = db_connect();
     $private_key   = private_key();
@@ -1692,9 +1724,6 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 			'emtitle_1'   =>  $templtTitle
 		);
 
-		$invoice = 'INV20250617001';
-		$orderNo = 'S20250617044';
-
         if($allim_tmpcode == "TY_1652") {
 				
 				if ($button->linkType == "AC") {
@@ -1759,6 +1788,57 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"name"         => "견적서 확인하기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
+							"linkMo"       => $invoice_link,
+							"linkPc"       => $invoice_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 4,
+							"name"         => "나의 예약현황 바로가기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						]
+					];
+				}
+		}
+		
+		if($allim_tmpcode == "UA_5331") {
+			
+				if ($button->linkType == "AC") {
+					$button->name = "채널 추가";
+
+					// 버튼 정보 생성
+					$buttons = [
+						(object) [
+							"ordering"     => 1,
+							"name"         => $button->name,
+							"linkType"     => "AC",
+							"linkTypeName" => $button->name,
+							"linkMo"       => "",
+							"linkPc"       => "",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						], 
+						(object) [
+							"ordering"     => 2,
+							"name"         => "더투어랩",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 3,
+							"name"         => "예약확정서 확인하기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
 							"linkMo"       => $voucher_link,
 							"linkPc"       => $voucher_link,
 							"linkIos"      => "",
@@ -1777,9 +1857,8 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 					];
 				}
 		}
-
 		
-		if($allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328") {
+		if($allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328" || $allim_tmpcode == "UA_5348") {
 			
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
