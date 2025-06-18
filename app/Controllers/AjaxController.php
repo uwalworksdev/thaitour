@@ -2376,7 +2376,14 @@ public function get_golf_option() {
 				'여행자이메일' => $row->user_email,
 				'총인원'       => $row->order_room_cnt ."Room",
 				'총금액'	   => $order_price,
-				'총견적금액'   => $order_price
+				'총견적금액'   => $order_price,
+
+				'투어명명'     => $row->product_name_en,	
+				'투어업체'     => $row->product_name_en,
+				'투어전화번호'     => $row->product_name_en,
+				'상품이용일'     => $row->product_name_en,
+				'제품명'     => $row->product_name_en,
+
 			];
 
 
@@ -2384,7 +2391,11 @@ public function get_golf_option() {
 
 			if($row->order_gubun == "tour"){
 				$code = 'A25';
-				
+				$_tmp_fir_array['투어명명'] = $row->product_name_en;
+				$_tmp_fir_array['투어업체'] = $row->addrs;
+				$_tmp_fir_array['투어전화번호'] = $row->phone_2;
+				$_tmp_fir_array['상품이용일'] = $row->order_day;
+				$_tmp_fir_array['제품명'] = $row->상품이용일;
 			}else if($row->order_gubun == "spa"){
 				$code = 'A27';
 				
