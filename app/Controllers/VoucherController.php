@@ -285,7 +285,7 @@ class VoucherController extends BaseController
 		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
-					a.*, b.*, c.*, a.description as description
+					a.*, b.*, c.*, a.description as description,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
 					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
