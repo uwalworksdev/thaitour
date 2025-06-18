@@ -2105,13 +2105,13 @@ public function get_golf_option() {
 			   $msg = "수정 오류";	
 			}
 
-		    if($order_status == "W") $alimCode = "TY_1652";  // 예약접수
-		    if($order_status == "X") $alimCode = "TY_1652";  // 예약확인
+		    if($order_status == "W") $alimCode = "UA_5373";  // 예약접수
+		    if($order_status == "X") $alimCode = "UA_5373";  // 예약확인
 		    if($order_status == "Y") $alimCode = "TY_1654";  // 결제완료
 		    if($order_status == "Z") $alimCode = "TY_1655";  // 예약확정
 		    if($order_status == "C") $alimCode = "TY_1657";  // 예약취소
 		    if($order_status == "N") $alimCode = "TY_1653";  // 예약불가 
-		    if($order_status == "E") $alimCode = "TY_1652";  // 이용완료.			
+		    if($order_status == "E") $alimCode = "UA_5373";  // 이용완료.			
 
             $result = alimTalk_send($order_no, $alimCode);
 			
@@ -2628,7 +2628,7 @@ public function get_golf_option() {
 			}
 
 		    if($order_status == "W") {
-				$alimCode = "TY_1652";
+				$alimCode = "UA_5373";
 			
 				$code        = "A14";
 				$_tmp_fir_array = [
@@ -2793,7 +2793,7 @@ public function get_golf_option() {
 				$alimCode = "TY_1653"; 
 			}  // 예약불가 
 		    if($order_status == "E") { 
-				$alimCode = "TY_1652"; 
+				$alimCode = "UA_5373"; 
 			}  // 이용완료.			
 
             alimTalk_send($order_no, $alimCode);
