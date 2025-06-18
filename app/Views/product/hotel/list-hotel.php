@@ -71,7 +71,7 @@
                                             || empty($products["search_product_category"])) {
                                             echo "tab_active_";
                                         } ?>"
-                                            data-code="all" data-type="category">지역전체
+                                            data-code="" data-type="category">지역전체
                                         </li>
                                         <?php
                                         foreach ($codes as $code) {
@@ -654,9 +654,9 @@
                             <div class="slider-container only_mo">
                                 <div class="slider-background"></div>
                                 <div class="slider-track" id="slider-track" style="left: 25%; width: 50%;"></div>
-                                <input type="range" min="0" max="500000" value="<?= $products["price_min"] ?>"
+                                <input type="range" min="0" max="500000" value="<?= $products["price_min"] ?? 0 ?>"
                                        name="price_min" class="slider" id="slider-min">
-                                <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
+                                <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?? 0 ?>"
                                        name="price_max" class="slider" id="slider-max">
                             </div>
                             <div class="value-container">

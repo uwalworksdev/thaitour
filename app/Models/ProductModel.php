@@ -1271,7 +1271,7 @@ class ProductModel extends Model
             $builder->like('product_name', $where['keyword']);
         }
  
-        if ($where['product_code_list']) {
+        if (!empty($where['product_code_list'])) {
             $product_code_list = explode(",", $where['product_code_list']);
             $cnt_code = 1;
             $builder->groupStart();
@@ -1286,8 +1286,10 @@ class ProductModel extends Model
             $builder->groupEnd();
         }
  
-        if ($where['search_product_category']) {
+        if (!empty($where['search_product_category'])) {
+
             if (strpos($where['search_product_category'], 'all') === false) {
+
                 $search_product_category = explode(",", $where['search_product_category']);
                 $cnt_cat = 1;
                 $builder->groupStart();
@@ -1303,7 +1305,7 @@ class ProductModel extends Model
             }
         }
 
-        if ($where['search_product_mbti']) {
+        if (!empty($where['search_product_mbti'])) {
             if (strpos($where['search_product_mbti'], 'all') === false) {
                 $search_product_mbti = explode(",", $where['search_product_mbti']);
                 $cnt_mbti = 1;
@@ -1320,7 +1322,7 @@ class ProductModel extends Model
             }
         }
 
-        if ($where['search_product_hotel']) {
+        if (!empty($where['search_product_hotel'])) {
             if (strpos($where['search_product_hotel'], 'all') === false) {
                 $search_product_hotel = explode(",", $where['search_product_hotel']);
                 $cnt_type = 1;
@@ -1337,7 +1339,7 @@ class ProductModel extends Model
             }
         }
 
-        if ($where['search_product_rating']) {
+        if (!empty($where['search_product_rating'])) {
             if (strpos($where['search_product_rating'], 'all') === false) {
                 $search_product_rating = explode(",", $where['search_product_rating']);
                 $cnt_rating = 1;
@@ -1364,7 +1366,7 @@ class ProductModel extends Model
             }
         }
 
-        if ($where['search_product_promotion']) {
+        if (!empty($where['search_product_promotion'])) {
             $search_product_promotion = explode(",", $where['search_product_promotion']);
             $cnt_promotion = 1;
             $builder->groupStart();
@@ -1379,7 +1381,7 @@ class ProductModel extends Model
             $builder->groupEnd();
         }
 
-        if ($where['search_product_topic']) {
+        if (!empty($where['search_product_topic'])) {
             $search_product_topic = explode(",", $where['search_product_topic']);
             $cnt_theme = 1;
             $builder->groupStart();
@@ -1394,7 +1396,7 @@ class ProductModel extends Model
             $builder->groupEnd();
         }
 
-        if ($where['search_product_bedroom']) {
+        if (!empty($where['search_product_bedroom'])) {
             $search_product_bedroom = explode(",", $where['search_product_bedroom']);
             $cnt_bedroom = 1;
             $builder->groupStart();
@@ -1416,7 +1418,7 @@ class ProductModel extends Model
             $builder->groupEnd();
         }
 
-        if ($where['search_product_name']) {
+        if (!empty($where['search_product_name'])) {
             $builder->like('product_name', $where['search_product_name']);
         }
 
@@ -1512,6 +1514,10 @@ class ProductModel extends Model
             $items[$key]['product_price_won'] = $product_price_won;
         }
 		
+
+        // var_dump($items);
+        // die();
+
         //write_log("last- ". $this->db->getLastQuery());
 		
         $data = [
