@@ -593,18 +593,47 @@ class ReservationController extends BaseController
         if ($gubun == 'tour') {
             $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
             $optionsIdx  = $data['tour_orders']['options_idx'];
-
             $options_idx = explode(',', $optionsIdx);
 
-            $data['tour_option'] = [];
+
+            $builder = $this->db->table('tbl_order_option');
+			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+			$query = $builder->where('order_idx', $order_idx)->get();
+			$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
+
+            $data['tour_option'] = $optionResult;
             $data['total_price'] = 0;
-            foreach ($options_idx as $idx) {
-                $optionDetail = $this->optionTours->find($idx);
-                if ($optionDetail) {
-                    $data['tour_option'][] = $optionDetail;
-                    $data['total_price'] += $optionDetail['option_price'];
-                }
-            }
+
+            $totalOptionBath = 0;
+			foreach ($optionResult as $option) {
+						$totalOptionBath += $option->option_cnt * $option->option_price;
+			}
+
+            $data['total_options'] = $totalOptionBath;
+			$data['total_bath'] = $data['real_price_bath'] + $totalOptionBath;
+
+			$data['total_options_won'] = round($totalOptionBath * $this->setting['baht_thai']);
+			$data['total_won'] = round($data['total_bath'] * $this->setting['baht_thai']);
+
+
+            // var_dump($data['tour_option']);
+            // die();
+
+            // $data['tour_option'] = [];
+            // $data['total_price'] = 0;
+            // foreach ($options_idx as $idx) {
+            //     $optionDetail = $this->optionTours->find($idx);
+            //     if ($optionDetail) {
+            //         $optionDetail['option_price_won'] = $optionDetail['option_price'] * $this->setting['baht_thai'];
+            //         $data['tour_option'][] = $optionDetail;
+            //         $data['total_price'] += $optionDetail['option_price'];
+            //     }
+            // }
+
+            $row['adult_price_bath'] = round($row['people_adult_price'] / $this->setting['baht_thai']);
+            $row['kids_price_bath'] = round($row['people_kids_price'] / $this->setting['baht_thai']);
+            $row['baby_price_bath'] = round($row['people_baby_price'] / $this->setting['baht_thai']);
+            $row['real_price_bath'] = round($row['real_price_won'] / $this->setting['baht_thai']);
         }
 
         if ($gubun == 'spa' || $gubun == 'ticket') {
