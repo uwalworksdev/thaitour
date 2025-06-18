@@ -601,14 +601,15 @@ class ReservationController extends BaseController
 			$query = $builder->where('order_idx', $order_idx)->get();
 			$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
-            $data['tour_option'] = $optionResult;
             $data['total_price'] = 0;
 
             $totalOptionBath = 0;
-			foreach ($optionResult as $option) {
+			foreach ($optionResult as &$option) {
 						$totalOptionBath += $option->option_cnt * $option->option_price;
+                        $option->option_price_won =  round($option->option_price * $this->setting['baht_thai']);
 			}
 
+            $data['tour_option'] = $optionResult;
             $data['total_options'] = $totalOptionBath;
 			$data['total_bath'] = $data['real_price_bath'] + $totalOptionBath;
 

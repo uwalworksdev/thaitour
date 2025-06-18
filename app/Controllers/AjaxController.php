@@ -2260,6 +2260,7 @@ public function get_golf_option() {
 		    $private_key = private_key();
  		
 			$order_no  = $_POST["order_no"];
+			$order_user_email = $_POST["order_user_email"];
  
 			$sql       = "SELECT   *
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
@@ -2296,11 +2297,13 @@ public function get_golf_option() {
 				$_tmp_fir_array['총금액'] = $order_price;
 			}else if($row->order_gubun == "golf"){
 				$code        = "A22";
-
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "tour"){
+				$code = "A24";
 			}
-			
-			$user_mail   = $row->user_email;
+		
+			if(!empty($order_user_email)) $user_mail = $order_user_email;
+			else $user_mail   = $row->user_email;
 			
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
@@ -2321,6 +2324,7 @@ public function get_golf_option() {
 		    $private_key = private_key();
  		
 			$order_no  = $_POST["order_no"];
+			$order_user_email  = $_POST["order_user_email"];
  
 			$sql       = "SELECT   a.*, b.*, c.*
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
@@ -2334,8 +2338,7 @@ public function get_golf_option() {
 								FROM tbl_order_mst a
 								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
 								LEFT JOIN tbl_product_stay c ON b.stay_idx = c.stay_idx
-								WHERE order_no = '". $order_no ."' ";
-			//write_log("ajax_voucherHotel_send- ". $sql);					 
+								WHERE order_no = '". $order_no ."' ";			 
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
@@ -2368,7 +2371,7 @@ public function get_golf_option() {
 			}
 
 			$_tmp_fir_array = [
-				'gubun'   => "hotel",
+				'gubun'   => $row->order_gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
@@ -2392,6 +2395,14 @@ public function get_golf_option() {
 				'총금액'	      => $order_price,
 				'총견적금액'   => $order_price
 			];
+
+
+			if($row->gubun == "tour"){
+				$code = 'A25';
+				if(!empty($order_user_email)){
+					$user_mail = $order_user_email;
+				}else $user_mail = $user_mail;
+			}
 	
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
