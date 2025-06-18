@@ -331,14 +331,13 @@
         $("#loginNoAreaMember").removeClass('show_');
         $("#btnLoginSupMain").removeClass('show_');
         $("#btnLoginMain01").removeClass('show_');
-        $("#btnLogin02").removeClass('show_');
+        $("#btnLogin02").hide();
     }
 
     function handleSupLogin() {
         $("#inputMainGroup").removeClass('show_');
         $("#btnLoginMain").removeClass('show_');
         $("#btnLogin01").removeClass('show_');
-        $("#btnLogin02").removeClass('show_');
         $("#loginNoAreaMember").addClass('show_');
         $("#btnLoginSupMain").addClass('show_');
         $("#btnLoginMain01").addClass('show_');
