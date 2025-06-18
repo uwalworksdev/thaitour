@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="btn_link">
                                             <a href="/member/login_find_id">아이디/비밀번호 찾기</a>
-                                            <a href="/member/join_choice"><span>회원가입</span></a>
+                                            <!-- <a href="/member/join_choice"><span>회원가입</span></a> -->
                                         </div><!-- .btn_link -->
                                     </div>
 
