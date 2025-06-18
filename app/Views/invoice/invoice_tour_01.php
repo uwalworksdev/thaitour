@@ -62,7 +62,6 @@ $setting = homeSetInfo();
                                     $order_date = $row->order_day;
                                 }
                             ?>
-                            <?php?>
                             <td><?= $order_date ?></td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
