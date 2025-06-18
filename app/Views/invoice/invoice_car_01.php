@@ -19,7 +19,7 @@ $setting = homeSetInfo();
             </div>
             <div class="invoice_table">
                 <h2 class="tit_top">예약자정보</h2>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
                         <col width="35%">
@@ -44,7 +44,7 @@ $setting = homeSetInfo();
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
                         <col width="35%">
@@ -81,7 +81,7 @@ $setting = homeSetInfo();
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
                         <col width="35%">
