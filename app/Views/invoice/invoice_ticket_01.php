@@ -7,8 +7,8 @@ $setting = homeSetInfo();
 <link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
 
 <?php foreach ($result as $row): ?>
-      <?php foreach ($row->options as $option): ?>
-      <?php endforeach; ?>
+      <?php // foreach ($row->options as $option): ?>
+      <?php // endforeach; ?>
 <?php endforeach; ?>
 
 <div id="container_voice">
@@ -60,7 +60,10 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>날짜</th>
-                            <td><?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>)</td>
+                            <td>
+                                <!-- <?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>) -->
+                                 <?= $row->order_day ?>
+                            </td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_name?></td>
                         </tr>
@@ -70,10 +73,14 @@ $setting = homeSetInfo();
                             <th>고객 이메일</th>
                             <td><?=$row->order_user_email?></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>예약 선택상품</th>
-                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_price)?> X <?=$option->option_qty?>명</td>
-                        </tr>
+                            <td colspan="3">
+                                <?php foreach($row->options as $option):?>
+                                <?=$option->option_name?>: <?=number_format($option->option_price)?> X <?=$option->option_qty?>명
+                                <?php endforeach; ?>
+                            </td>
+                        </tr> -->
                         <tr>
                             <th>예약시간</th>
                             <td><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
