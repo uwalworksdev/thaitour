@@ -1303,8 +1303,6 @@ function alimTalk_send($order_no, $alimCode) {
        $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
-    $voucher_link  = "https://thetourlab.com/invoice/". $invoice;
-	   
 	$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
 	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
     $row_d        = $connect->query($sql_d)->getRowArray();
