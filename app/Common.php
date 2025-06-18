@@ -1748,8 +1748,8 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"name"         => "나의 예약현황 바로가기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
-							"linkMo"       => "https://thetourlab.com/{$orderNo}",
-							"linkPc"       => "https://thetourlab.com/{$orderNo}",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						]
