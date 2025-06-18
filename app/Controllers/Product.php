@@ -2959,12 +2959,7 @@ class Product extends BaseController
 		
 				autoEmail($code, $row->user_email, $_tmp_fir_array);
 
-			    $allim_replace = [
-									"#{고객명}" => $order_user_name ?? "",
-									"phone"     => $order_user_phone
-							     ];
-			    
-				alimTalkSend("TY_1652", $allim_replace);
+                alimTalk_send($row->order_no, "UA_5373");
 				
                 return $this->response->setBody("
 					<script>
@@ -3387,23 +3382,23 @@ class Product extends BaseController
         }
 
 
-        // $sql_info = "
-        //     SELECT pt.*, pti.*
-        //     FROM tbl_product_tours pt
-        //     LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
-        //     WHERE pt.product_idx = ? AND pt.status = 'Y' 
-        //     AND pti.o_sdate IS NOT NULL AND pti.o_sdate != '0000-00-00 00:00:00'
-        //     AND pti.o_edate IS NOT NULL AND pti.o_edate != '0000-00-00 00:00:00'
-        //     ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
-        // ";
-
-         $sql_info = "
+        $sql_info = "
             SELECT pt.*, pti.*
             FROM tbl_product_tours pt
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
             WHERE pt.product_idx = ? AND pt.status = 'Y' 
+            AND pti.o_sdate IS NOT NULL AND pti.o_sdate != '0000-00-00 00:00:00'
+            AND pti.o_edate IS NOT NULL AND pti.o_edate != '0000-00-00 00:00:00'
             ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
         ";
+
+        //   $sql_info = "
+        //     SELECT pt.*, pti.*
+        //     FROM tbl_product_tours pt
+        //     LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
+        //     WHERE pt.product_idx = ? AND pt.status = 'Y' 
+        //     ORDER BY pti.o_onum ASC, pti.info_idx ASC, pt.tour_onum ASC, pt.tours_idx ASC
+        // ";
 
         $query_info = $this->db->query($sql_info, [$product_idx]);
         $results = $query_info->getResultArray();

@@ -33,7 +33,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Tel</th>
-                                <td><?=$result->tel_no?></td>
+                                <td><?=$result->phone?></td>
                             </tr>
                         </tbody>
                     </table>

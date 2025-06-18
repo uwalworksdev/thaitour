@@ -580,6 +580,14 @@
         //buttonImageOnly: true
     });
 
+    $(".date_form_birth").datepicker({
+        dateFormat: "yy-mm-dd",
+        showOn: "focus",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-120:+0"
+    });
+    
     function number_format(number) {
         return number.toLocaleString('ko-KR');
     }
