@@ -175,7 +175,7 @@ class InvoiceController extends BaseController
 				$cancle_contents = $result["policy_contents"];
 
 				$builder = $db->table('tbl_policy_info');
-				$policy = $builder->whereIn('p_idx', [26])
+				$policy = $builder->whereIn('p_idx', [46])
 									->orderBy('p_idx', 'asc')
 									->get()->getResultArray();
 
