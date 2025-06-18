@@ -1266,7 +1266,12 @@ function alimTalk_send($order_no, $alimCode) {
 	$order_idx    = $row['order_idx'];
 	$product_name = $row['product_name'];
 	$order_date   = $row['order_date'];
-	$people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+
+	if($row['product_code_1'] == "1303") { // 호텔 
+	   $people_cnt   = "룸 ". $row['order_room_cnt'] ."개" ;
+	} else {
+	   $people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+	}
 
     if($row['product_code_1'] == "1301") { // 투어 
        $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
