@@ -435,7 +435,7 @@
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
-                        <col width="250px">
+                        <col width="150px">
                         <col width="*">
                     </colgroup>
                     <tbody>
@@ -445,21 +445,21 @@
                         </tr>
                     </tbody>
                 </table>
-                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <!-- <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
                         <td style="width: 20px; vertical-align: top;">
                             <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
                         </td>
                         <td style="padding-left: 5px;">
-                            <!-- <span style="color: #7d7d7d; font-size: 14px;">
+                            <span style="color: #7d7d7d; font-size: 14px;">
                                 취소 규정: 결제 후 
                                 <span style="color: #17469E;">24년 12월 18일 18시(한국시간)</span> 
                                 이전에 취소하시면 무료취소가 가능합니다.
-                            </span> -->
+                            </span>
                             <?=viewSQ($cancle_contents)?>
                         </td>
                     </tr>
-                </table>
+                </table> -->
             </div>
         </div>
     </section>

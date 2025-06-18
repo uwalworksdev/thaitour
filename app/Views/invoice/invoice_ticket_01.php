@@ -113,21 +113,21 @@ $setting = homeSetInfo();
 						?>
                         <tr>
                             <th>1인당 금액</th>
-                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
+                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>원 x <?=$option->option_qty?> 명</td>
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
+                            <td colspan = "3"><?=number_format($option->option_tot)?>원</td>
                         </tr>
                         <?php 
 							  } 
 						?>
                         
 						<tr>
-                            <th>추가내역</th>
-                            <td>0바트</td>
+                            <!-- <th>추가내역</th>
+                            <td>0바트</td> -->
                             <th>총금액</th>
-                            <td><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price / $row->baht_thai) ?>바트</td>
+                            <td colspan="3"><?= number_format($row->order_price) ?>원 (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -136,7 +136,7 @@ $setting = homeSetInfo();
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
-                        <col width="250px">
+                        <col width="150px">
                         <col width="*">
                     </colgroup>
                     <tbody>
