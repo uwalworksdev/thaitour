@@ -481,6 +481,7 @@
                         <?=nl2br($setting['desc_cont'])?>
                     </div>
                 </div>
+                
             </div>
         </section>
     </div>
