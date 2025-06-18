@@ -377,6 +377,7 @@ endforeach;
 						<?php 
 						// $order_list에서 현재 그룹에 해당하는 행만 출력
 						$_deli_type = get_deli_type();
+                        $_color_deli_type = get_color_payment_type(); 
 						foreach ($groupedOrders[$group->group_no] as $order): 
 							
 						?>
@@ -398,8 +399,8 @@ endforeach;
                                 </div>
                                 <a href="#" class="info_reservation product_tit" data-gubun="<?=$order->order_gubun?>"  data-idx="<?=$order->order_idx?>" >[<?= esc($order->code_name)?>] <?= esc($order->product_name)?> </a>
                                 <div class="info_payment flex__c">
-                                    <div class="tag">
-                                        <p><?= esc($_deli_type[$order->order_status])?></p>
+                                    <div class="tag" style="border-color:<?=$_color_deli_type[$order->order_status]?>">
+                                        <p style="color:<?=$_color_deli_type[$order->order_status]?> "><?= esc($_deli_type[$order->order_status])?></p>
                                     </div>
                                     <?php if($order->order_status == "X" || $order->order_status == "G") echo '<span>결제하시면 예약 확정이 진행돼요. </span>';?>
                                 </div>
