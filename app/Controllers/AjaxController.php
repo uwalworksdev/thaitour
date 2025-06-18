@@ -8,13 +8,14 @@ class AjaxController extends BaseController {
     private $productModel;
     private $roomImg;
     private $CodeModel;
-
+    private $orderOptionModel;
 
     public function __construct() {
         $this->db = db_connect();
         $this->productModel = model("ProductModel");
         $this->roomImg = model("RoomImg");
         $this->CodeModel = model("Code");
+        $this->orderOptionModel = model("OrderOptionModel");
     }
 
     public function uploader() {
@@ -2339,15 +2340,6 @@ public function get_golf_option() {
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
-			$code        = "A20";
-			$user_mail   = $row->user_email;
-			$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
-
-			$sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $row->room_g_idx ."' ";
-			$r_result = $db->query($sql);
-			$row_r    = $r_result->getRowArray();
-
-			$roomName_eng = $row_r["roomName_eng"];
 
 			if(!empty($row->user_name_en_new)){
 				$user_name_en = $row->user_name_en_new;
@@ -2360,39 +2352,59 @@ public function get_golf_option() {
 			}else{
 				$user_mobile = $row->user_mobile;
 			}
-
-			if(!empty($row->room_type_new)){
-				$room_type = $row->room_type_new;
-			}else{
-				$room_type = $roomName_eng;
-			}
-
+			
 			$_tmp_fir_array = [
-				'gubun'   => "hotel",
+				'gubun'   => $row->order_gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
  	            '전화번호'     => $row->user_mobile,
-				'체크인'	   => $checkin,
 				'영문호텔명'     => $row->product_name_en,	
 				'영문호텔주소'   => $row->stay_address,
 				'호텔전화번호'   => $row->tel_no,
-
 				'고객영문이름'   => $user_name_en,
 				'국가약자'   => '',
 				'휴대전화번호'   => $user_mobile,
-
 				'예약번호'    => $order_no,
 	            '이용날짜'    => substr($row->order_r_date,0,10),
-	            '호텔상품'    => $room_type,
-
 				'여행자연락처' => $row->user_mobile,
 				'여행자이메일' => $row->user_email,
 				'총인원'       => $row->order_room_cnt ."Room",
-				'총금액'	      => $order_price,
+				'총금액'	   => $order_price,
 				'총견적금액'   => $order_price
 			];
-	
+
+			if($row->order_gubun == "hotel") {
+				$code        = "A20";
+				$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
+				
+				$sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $row->room_g_idx ."' ";
+				$r_result = $db->query($sql);
+				$row_r    = $r_result->getRowArray();
+
+				$roomName_eng = $row_r["roomName_eng"];
+
+				if(!empty($row->room_type_new)){
+					$room_type = $row->room_type_new;
+				}else{
+					$room_type = $roomName_eng;
+				}
+
+				$_tmp_fir_array['체크인'] = $checkin;
+				$_tmp_fir_array['호텔상품'] = $room_type;
+
+			}else if($row->order_gubun == "golf"){
+				$code        = "A23";
+				$main_op = $this->orderOptionModel->getOption($row->order_idx, 'main')[0];
+
+				$main = explode("|", $main_op["option_name_eng"]);
+				$hole = trim(explode(":", $main[0])[1]);
+
+				$_tmp_fir_array['골프상품명'] = $hole;
+			}
+
+			$user_mail   = $row->user_email;
+			
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
 		    $msg    = "전송완료";	

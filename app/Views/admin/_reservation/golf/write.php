@@ -492,7 +492,7 @@
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										<input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherGolf('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -585,6 +585,34 @@
             }
         });		
     }
+
+    function voucherGolf(order_no)
+	{
+			if (!confirm('바우쳐를 전송 하시겠습니까?'))
+				return false;
+
+			var message = "";
+			$.ajax({
+				url  : "/ajax/ajax_voucherHotel_send",
+				type : "POST",
+				data : {
+					"order_no"  : order_no 
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});		
+		
+	}
+
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {
 			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
