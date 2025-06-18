@@ -433,15 +433,17 @@
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span><?= number_format($row->order_price) ?>원</span> (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</p>
                 </div>
-                <table class="invoice_tbl spe">
+                <table class="invoice_tbl">
                     <colgroup>
+                        <col width="150px">
+                        <col width="35%">
                         <col width="150px">
                         <col width="*">
                     </colgroup>
                     <tbody>
                         <tr>
                             <th>유의사항</th>
-                            <td><?=viewSQ($notice_contents)?></td>
+                            <td colspan="3"><?=viewSQ($notice_contents)?></td>
                         </tr>
                     </tbody>
                 </table>
