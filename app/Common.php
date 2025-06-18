@@ -1273,44 +1273,50 @@ function alimTalk_send($order_no, $alimCode) {
 	   $people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
 	}
 
+    $order_link  = "https://thetourlab.com/mypage/reservation_list";
+	
+    if($alimCode == "UA_5328") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=2";
+    if($alimCode == "UA_5331") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=3";
+    if($alimCode == "UA_5348") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=5";
+
     if($row['product_code_1'] == "1301") { // 투어 
-       $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1302") { // 골프 
-       $order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/golf/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1303") { // 호텔 
-       $order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
-       $order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1320") { // 레스토랑 
-       $order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
-       $order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1325") { // 스파 
-       $order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       //$order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
@@ -1877,7 +1883,13 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link = null, $invoice_lin
 					];
 				}
 		}
-		
+
+UA_5328 https://thetourlab.com/mypage/reservation_list?procType=2
+
+UA_5331 https://thetourlab.com/mypage/reservation_list?procType=3
+
+UA_5348 https://thetourlab.com/mypage/reservation_list?procType=5
+
 		if($allim_tmpcode == "UA_5373" || $allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328" || $allim_tmpcode == "UA_5348") {
 			
 				if ($button->linkType == "AC") {
