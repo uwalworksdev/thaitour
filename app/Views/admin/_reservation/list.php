@@ -353,31 +353,31 @@
                         <h4>전체 예약내역 통계</h4>
                         <div class="table_accounts">
                             <dl>
-                                <dt>예약접수</dt>
+                                <dt style="color: #ff7f27;">예약접수</dt>
                                 <dd style="color: #ff7f27;"><?=number_format($tot_price1)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>예약확인</dt>
+                                <dt style="color: #1eb1cf;">예약확인</dt>
                                 <dd style="color: #1eb1cf;"><?=number_format($tot_price2)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>결제완료</dt>
+                                <dt style="color: #22b14c;">결제완료</dt>
                                 <dd style="color: #22b14c;"><?=number_format($tot_price3)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>예약확정</dt>
+                                <dt style="color: #0000ff;">예약확정</dt>
                                 <dd style="color: #0000ff;"><?=number_format($tot_price4)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>예약취소</dt>
+                                <dt style="color: #ff0000;">예약취소</dt>
                                 <dd style="color: #ff0000;"><?=number_format($tot_price5)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>예약불가</dt>
+                                <dt style="color: #ff0000;">예약불가</dt>
                                 <dd style="color: #ff0000;"><?=number_format($tot_price6)?>원</dd>
                             </dl>
                             <dl>
-                                <dt>이용완료</dt>
+                                <dt style="color: #804040;">이용완료</dt>
                                 <dd style="color: #804040;"><?=number_format($tot_price7)?>원</dd>
                             </dl>
                         </div>
