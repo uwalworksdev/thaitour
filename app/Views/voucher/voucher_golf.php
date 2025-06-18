@@ -396,6 +396,11 @@ $setting = homeSetInfo();
                         .no-break {
                             page-break-inside: avoid !important;
                         }
+
+                        .golf_invoice * {
+                            font-family: "Pretendard" !important;
+                            font-size: 14px !important;
+                        }
                     }
                 </style>
             </head>
