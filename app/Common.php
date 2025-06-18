@@ -1356,7 +1356,23 @@ function alimTalk_send($order_no, $alimCode) {
                             "phone"       => $order_user_mobile
 						];
 	} 	
+
+    if($alimCode == "UA_5328") { // 결제완료
 	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
+	
+	
+		
 	if($alimCode == "TY_1651") { // 예약가능
 	
 	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
@@ -1763,7 +1779,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 		}
 
 		
-		if($allim_tmpcode == "UA_5325") {
+		if($allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328") {
 			
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
