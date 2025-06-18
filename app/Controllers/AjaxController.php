@@ -2301,6 +2301,8 @@ public function get_golf_option() {
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "tour"){
 				$code = "A24";
+			}else if($row->order_gubun == "spa"){
+				$code = "A26";
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
@@ -2378,12 +2380,14 @@ public function get_golf_option() {
 			];
 
 
+			
 
 			if($row->order_gubun == "tour"){
 				$code = 'A25';
-				if(!empty($order_user_email)){
-					$user_mail = $order_user_email;
-				}else $user_mail = $user_mail;
+				
+			}else if($row->order_gubun == "spa"){
+				$code = 'A27';
+				
 			}else if($row->order_gubun == "hotel") {
 				$code        = "A20";
 				$checkin     = $row->start_date ."(". get_korean_day($row->start_date) .") ~ ". $row->end_date ."(". get_korean_day($row->end_date) .") / ". $row->order_day_cnt ."일";
@@ -2413,7 +2417,9 @@ public function get_golf_option() {
 				$_tmp_fir_array['골프상품명'] = $hole;
 			}
 
-			$user_mail   = $row->user_email;
+			if(!empty($order_user_email)){
+					$user_mail = $order_user_email;
+				}else $user_mail = $row->user_email;
 
 			autoEmail($code, $user_mail, $_tmp_fir_array);
 	
