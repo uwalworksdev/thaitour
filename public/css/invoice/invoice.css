@@ -1090,6 +1090,10 @@ input[type="text"] {
 
         }
 
+        .golf_invoice .invoice_table .invoice_tbl.re_custom {
+            border-top: 1px solid #dbdbdb;
+        }
+
         .golf_invoice .invoice_table .invoice_tbl colgroup {
             display: none;
         }
@@ -1099,6 +1103,11 @@ input[type="text"] {
             display: flex;
             flex-direction: column;
             max-height: unset !important;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.re_custom tr {
+            flex-direction: row;
+            flex-wrap: wrap;
         }
 
         .golf_invoice .invoice_table .invoice_tbl.spe {
@@ -1120,6 +1129,17 @@ input[type="text"] {
             text-align: left;
         }
 
+
+        .golf_invoice .invoice_table .invoice_tbl.re_custom tr th {
+            width: 30%;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.re_custom tr td {
+            width: 70%;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
         .golf_invoice .invoice_table .invoice_tbl tr td {
             height: unset !important;
             border: unset;
@@ -1132,6 +1152,16 @@ input[type="text"] {
             text-align: left;
             letter-spacing: -0.02rem;
         }
+
+        .golf_invoice .invoice_table .invoice_tbl.table_row tr {
+            display: table-row;
+            border-bottom: 1px solid #dbdbdb;
+
+        }
+        .golf_invoice .invoice_table .invoice_tbl.table_row tr:first-child {
+            border-top: 1px solid #dbdbdb;
+        }
+
 
         .golf_invoice .invoice_golf_total {
             padding: 2rem 1rem;
