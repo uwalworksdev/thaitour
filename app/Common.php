@@ -1270,30 +1270,37 @@ function alimTalk_send($order_no, $alimCode) {
 
     if($row['product_code_1'] == "1301") { // 투어 
        $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1302") { // 골프 
        $order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1303") { // 호텔 
        $order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
        $order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1320") { // 레스토랑 
        $order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
        $order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1325") { // 스파 
        $order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
 	}
 	
     $voucher_link  = "https://thetourlab.com/invoice/". $invoice;
@@ -1738,8 +1745,8 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 							"name"         => "견적서 확인하기",
 							"linkType"     => "WL",
 							"linkTypeName" => "웹링크",
-							"linkMo"       => "https://thetourlab.com/invoice/{$invoice}",
-							"linkPc"       => "https://thetourlab.com/invoice/{$invoice}",
+							"linkMo"       => $voucher_link,
+							"linkPc"       => $voucher_link,
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						],
