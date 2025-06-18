@@ -1,3 +1,7 @@
+<?php
+    helper('setting_helper');
+    $setting = homeSetInfo();
+?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <!-- Timepicker Addon -->
 <?= $this->section("body") ?>
@@ -179,15 +183,15 @@
                                     <th>성인신청</th>
                                     <td>
                                         <?= $people_adult_cnt ?>명 X <?= number_format($people_adult_price / $people_adult_cnt) ?>원 = <?= number_format($people_adult_price) ?>원
-                                        /  <?= $people_adult_cnt ?>명 X <?= number_format($adult_price_bath / $people_adult_cnt) ?>바트 = <?= number_format($adult_price_bath) ?>바트
+                                         (<?= $people_adult_cnt ?>명 X <?= number_format($adult_price_bath / $people_adult_cnt) ?>바트 = <?= number_format($adult_price_bath) ?>바트)
                                     </td>
                                     <th>아동신청</th>
                                     <td>
                                         <?php if ($people_kids_price > 0) { ?>
                                             <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price / $people_kids_cnt) ?>원 = <?= number_format($people_kids_price) ?>원
-                                            /  <?= $people_kids_cnt ?>명    X <?= number_format($kids_price_bath / $people_kids_cnt) ?>바트 = <?= number_format($kids_price_bath) ?>바트
+                                            (<?= $people_kids_cnt ?>명    X <?= number_format($kids_price_bath / $people_kids_cnt) ?>바트 = <?= number_format($kids_price_bath) ?>바트)
                                         <?php } else { ?>
-                                            0원  /  0 바트
+                                            0원  (0 바트)
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -197,9 +201,9 @@
                                     <td>
                                         <?php if ($people_baby_price > 0 && $people_baby_cnt > 0) { ?>
                                             <?= $people_baby_cnt ?>명 X <?= number_format($people_baby_price / $people_baby_cnt) ?>원 = <?= number_format($people_baby_price) ?>원
-                                              /  <?= $people_baby_cnt ?>명 X <?= number_format($baby_price_bath / $people_baby_cnt) ?>바트 = <?= number_format($baby_price_bath) ?>바트
+                                              (<?= $people_baby_cnt ?>명 X <?= number_format($baby_price_bath / $people_baby_cnt) ?>바트 = <?= number_format($baby_price_bath) ?>바트)
                                         <?php } else {?>
-                                            0원  /  0 바트
+                                            0원   (0 바트)
                                         <?php } ?>
                                     </td>
                                     <th>전체 옵션</th>
@@ -207,8 +211,8 @@
                                     <?php if (!empty($tour_option)): ?>
                                         <?php 
                                         foreach ($tour_option as $option): ?>
-                                            <p> <?= $option->option_name?>: <?= $option->option_cnt ?>명 X <?= $option->option_price_won ?>원 = <?= number_format($option->option_cnt * $option->option_price_won) ?>원
-                                              /  <?= $option->option_cnt ?>명 X <?= $option->option_price ?>바트 = <?= number_format($option->option_cnt * $option->option_price) ?>바트
+                                            <p> <?= $option->option_name?>: <?= $option->option_cnt ?>명 X <?= number_format($option->option_price_won) ?>원 = <?= number_format($option->option_cnt * $option->option_price_won) ?>원
+                                              ( <?= $option->option_cnt ?>명 X <?=number_format( $option->option_price) ?>바트 = <?= number_format($option->option_cnt * $option->option_price) ?>바트)
                                             </p>
                                         <?php endforeach; ?>
                                         
@@ -315,6 +319,8 @@
                                                 }
                                             }
 
+                                            $final_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
                                         ?>   
                                         <?php
                                             if($price_secret == "Y"){
@@ -330,19 +336,19 @@
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
                                         +
                                         <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                        = <?= number_format( $final_price) ?>
                                         원
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  바트 - 0 바트(할인쿠폰) - 0 바트(마일리지사용)  = <?=number_format($order_price_bath)?> 바트
+										바트계산 : <?=number_format(convertToBath($order_price))?>  바트 - <?=number_format(convertToBath($used_coupon_money))?> 바트(할인쿠폰) - <?=number_format(convertToBath($used_mileage_money))?> 바트(마일리지사용) +  <?=number_format(convertToBath($extra_cost))?> 바트 = <?=number_format(convertToBath($final_price))?> 바트
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
 										<input type="text" id="real_price_bath" name="real_price_bath"
-                                               value="<?= number_format($real_price_bath)?>" class="input_txt price"
-                                               style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
+                                               value="<?= number_format($final_price)?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> 원
                                         <input type="text" id="real_price_won" name="real_price_won"
-                                               value="<?= number_format($real_price_won) ?>" class="input_txt price"
-                                               style="width:150px;text-align:right;" readonly/> 원
+                                               value="<?= number_format(convertToBath($final_price)) ?>" class="input_txt price"
+                                               style="width:150px;text-align:right;" readonly/> 바트
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
@@ -574,9 +580,9 @@
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
-										 <input type="text" id="order_user_email" name="order_user_email"
+										 <input type="text" id="email_send_invoice" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceTour('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -596,9 +602,9 @@
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
-										<input type="text" id="order_user_email" name="order_user_email"
+										<input type="text" id="order_user_email_voucher" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherHotel('<?=$order_no?>')">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -665,6 +671,62 @@
     </div>
 
 	<script>
+    function invoiceTour(order_no)
+    {
+        if (!confirm('인보이스를 전송 하시겠습니까?'))
+            return false;
+
+        var message = "";
+        var order_user_email = $('#email_send_invoice').val(); 
+        $.ajax({
+            url  : "/ajax/ajax_incoiceHotel_send",
+            type : "POST",
+            data : {
+                "order_no"  : order_no,
+                "order_user_email": order_user_email,
+            },
+            dataType : "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });		
+    }
+
+    function voucherHotel(order_no)
+	{
+			if (!confirm('바우쳐를 전송 하시겠습니까?'))
+				return false;
+
+			var message = "";
+            var order_user_email = $('#order_user_email_voucher').val(); 
+			$.ajax({
+				url  : "/ajax/ajax_voucherHotel_send",
+				type : "POST",
+				data : {
+					"order_no"  : order_no,
+                    "order_user_email": order_user_email,
+				},
+				dataType : "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});		
+		
+	}
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {
 			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)
