@@ -1276,11 +1276,13 @@ function alimTalk_send($order_no, $alimCode) {
     if($row['product_code_1'] == "1301") { // 투어 
        $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1302") { // 골프 
        $order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/golf/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1303") { // 호텔 
@@ -1292,21 +1294,25 @@ function alimTalk_send($order_no, $alimCode) {
 	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
        $order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1320") { // 레스토랑 
        $order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
        $order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1325") { // 스파 
        $order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
 	}
 	
 	$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
