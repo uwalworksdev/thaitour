@@ -1837,6 +1837,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $invoice_link, $vou
 						]
 					];
 				}
+		}
 		
 		if($allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328") {
 			
