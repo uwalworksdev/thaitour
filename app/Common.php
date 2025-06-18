@@ -1762,6 +1762,47 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 				}
 		}
 
+		
+		if($allim_tmpcode == "UA_5325") {
+			
+				if ($button->linkType == "AC") {
+					$button->name = "채널 추가";
+
+					// 버튼 정보 생성
+					$buttons = [
+						(object) [
+							"ordering"     => 1,
+							"name"         => $button->name,
+							"linkType"     => "AC",
+							"linkTypeName" => $button->name,
+							"linkMo"       => "",
+							"linkPc"       => "",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						], 
+						(object) [
+							"ordering"     => 2,
+							"name"         => "더투어랩",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 3,
+							"name"         => "나의 예약현황 바로가기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						]
+					];
+				}
+		}
 
 		// JSON 변환 후 변수에 할당
 		$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
