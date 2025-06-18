@@ -2704,9 +2704,10 @@ public function get_golf_option() {
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
 
-			}  // 예약확인
-		    if($order_status == "Y") { 
-				$alimCode = "UA_5319"; 
+			}
+			
+		    if($order_status == "Y") {   // 결제완료
+				$alimCode = "UA_5328"; 
 
 				$code = "A17";
 				$_tmp_fir_array = [
@@ -2720,9 +2721,10 @@ public function get_golf_option() {
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
 
-			}  // 결제완료
-		    if($order_status == "Z") { 
-				$alimCode = "UA_5328"; 
+			}  
+			 
+		    if($order_status == "Z") { // 예약확정 
+				$alimCode = "UA_5331"; 
 
 				if($row->order_gubun == "hotel"){
 					$code = "A20";
@@ -2785,8 +2787,9 @@ public function get_golf_option() {
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
-			}  // 예약확정
-		    if($order_status == "C") { 
+			}
+			
+		    if($order_status == "C") {  // 예약취소
 				$alimCode = "UA_5348"; 
 
 				$code = "A33";
@@ -2800,13 +2803,14 @@ public function get_golf_option() {
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
-			}  // 예약취소
-		    if($order_status == "N") { 
+			}  
+
+			if($order_status == "N") {  // 예약불가
 				$alimCode = "UA_5325"; 
-			}  // 예약불가 
-		    if($order_status == "E") { 
+			}   
+		    if($order_status == "E") {  // 이용완료.
 				$alimCode = "UA_5373"; 
-			}  // 이용완료.			
+			}  			
 
             alimTalk_send($order_no, $alimCode);
             //email_send($order_no, $order_status);
