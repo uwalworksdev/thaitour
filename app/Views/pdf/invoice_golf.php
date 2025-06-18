@@ -311,16 +311,16 @@
 
                             ?> 
                             <tr>
-                                <th style="width: 150px">예약번호</th>
-                                <td><?= esc($row['order_no']) ?></td>
-                                <th style="width: 150px">예약날짜</th>
-                                <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
+                                <th style="width:20%">예약번호</th>
+                                <td style = "width:30%"><?= esc($row['order_no']) ?></td>
+                                <th style="width:20%">예약날짜</th>
+                                <td style = "width:30%"><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">여행사(담당자)</th>
-                                <td><?=$row["order_user_name"]?></td>
-                                <th style="width: 150px">이메일</th>
-                                <td><?=$row["order_user_email"]?></td>
+                                <th style="width:20%">여행사(담당자)</th>
+                                <td style = "width:30%"><?=$row["order_user_name"]?></td>
+                                <th style="width:20%">이메일</th>
+                                <td style = "width:30%"><?=$row["order_user_email"]?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -339,36 +339,36 @@
                             $order_txt  = explode("|", $order_info);
                         ?>
                             <tr>
-                                <th style="width: 150px">날짜</th>
-                                <td><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
-                                <th style="width: 150px">바우처 이름</th>
-                                <td><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
+                            <th style="width: 20%">날짜</th>
+                            <td style="width:30%"><?=$row['order_day']?>(<?=get_korean_day($row['order_day'])?>)</td>
+                            <th style="width: 20%">바우처 이름</th>
+                            <td style="width:30%"><?=$row['order_user_first_name_en']?> <?=$row['order_user_last_name_en']?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">고객 연락처</th>
-                                <td colspan="3"><?=$row['order_user_mobile']?></td>
+                                <th style="width: 20%">고객 연락처</th>
+                                <td style="width:80%" colspan="3"><?=$row['order_user_mobile']?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">예약상품</th>
-                                <td colspan="3"><?=$row['product_name']?>[ <?=$order_txt[0]?> <?=$order_txt[1]?> ]</td>
+                                <th style="width: 20%">예약상품</th>
+                                <td style="width:80%" colspan="3"><?=$row['product_name']?>[ <?=$order_txt[0]?> <?=$order_txt[1]?> ]</td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">총인원</th>
-                                <td colspan="3"><?=$order_txt[3]?></td>
+                                <th style="width: 20%">총인원</th>
+                                <td style="width:80%" colspan="3"><?=$order_txt[3]?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">티오프 요청시간</th>
-                                <td><?=$order_txt[2]?></td>
-                                <th style="width: 150px">티오프 가능시간</th>
-                                <td><?=$order_txt[2]?></td>
+                                <th style="width: 20%">티오프 요청시간</th>
+                                <td style="width:30%"><?=$order_txt[2]?></td>
+                                <th style="width: 20%">티오프 가능시간</th>
+                                <td style="width:30%"><?=$order_txt[2]?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">불포함</th>
-                                <td colspan="3"><?=viewSQ($not_included_product)?></td>
+                                <th style="width: 20%">불포함</th>
+                                <td style="width:80%" colspan="3"><?=viewSQ($not_included_product)?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">안내사항</th>
-                                <td colspan="3"><?=viewSQ($guide_contents)?></td>
+                                <th style="width: 20%">안내사항</th>
+                                <td style="width:80%" colspan="3"><?=viewSQ($guide_contents)?></td>
                             </tr>
                         </tbody>
                     </table>
