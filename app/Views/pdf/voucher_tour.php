@@ -458,6 +458,28 @@
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: Totobooking</p>
                     </div>
+                    <div class="invoice_note_" style="font-family: 'Pretendard' !important; line-height: 1.6 !important; font-size: 16px !important;">
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
+                        <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+                        <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
+                        <?= viewSQ($policy["policy_contents"]) ?>
+                    </div>
+                </div>
+                <div class="inquiry_qna">
+                    <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                    <div class="inquiry_info">
+                        <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                            (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                            번호만 누르면 됩니다. 
+                            <br>
+                            이메일 : <?= $setting['qna_email']?>
+                            <br>
+                            주소 : </p>
+                        <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                    </div>
+                    <div class="note_qna">
+                        <?=nl2br($setting['desc_cont'])?>
+                    </div>
                 </div>
             </div>
         </section>
