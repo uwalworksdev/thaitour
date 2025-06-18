@@ -161,9 +161,9 @@
                                         비회원 예약확인
                                     </button>
 
-                                    <!-- <button type="button" class="sup_button" id="btnLogin02">
+                                    <button type="button" class="sup_button" id="btnLogin02">
                                         비회원 예약하기
-                                    </button> -->
+                                    </button>
                                 </div>
                             </form>
 
