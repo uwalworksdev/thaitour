@@ -584,8 +584,6 @@ class ReservationController extends BaseController
             $data['price_secret'] = $room_["secret_price"];
         }
 
-        
-
         if ($gubun == 'golf') {
             $data['main']    = $this->orderOptionModel->getOption($order_idx, 'main');
             $data['option']  = $this->orderOptionModel->getOption($order_idx, 'option');
