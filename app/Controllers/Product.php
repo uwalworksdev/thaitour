@@ -2964,7 +2964,7 @@ class Product extends BaseController
 									"phone"     => $order_user_phone
 							     ];
 			    
-				alimTalkSend("TY_1652", $allim_replace);
+				//alimTalkSend("TY_1652", $allim_replace);
 				
                 return $this->response->setBody("
 					<script>
