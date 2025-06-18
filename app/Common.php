@@ -1281,6 +1281,7 @@ function alimTalk_send($order_no, $alimCode) {
 	if($row['product_code_1'] == "1303") { // 호텔 
        $order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
        $invoice_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
+	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
 	}
 	
 	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
@@ -1370,8 +1371,20 @@ function alimTalk_send($order_no, $alimCode) {
                             "phone"       => $order_user_mobile
 						];
 	} 	
+
+    if($alimCode == "UA_5331") { // 예약확정
 	
-	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
 		
 	if($alimCode == "TY_1651") { // 예약가능
 	
@@ -1774,7 +1787,56 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link, $invoice_link, $vou
 					];
 				}
 		}
+		
+		if($allim_tmpcode == "UA_5331") {
+			
+				if ($button->linkType == "AC") {
+					$button->name = "채널 추가";
 
+					// 버튼 정보 생성
+					$buttons = [
+						(object) [
+							"ordering"     => 1,
+							"name"         => $button->name,
+							"linkType"     => "AC",
+							"linkTypeName" => $button->name,
+							"linkMo"       => "",
+							"linkPc"       => "",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						], 
+						(object) [
+							"ordering"     => 2,
+							"name"         => "더투어랩",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => "https://thetourlab.com",
+							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 3,
+							"name"         => "예약확정서 확인하기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $voucher_link,
+							"linkPc"       => $voucher_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 4,
+							"name"         => "나의 예약현황 바로가기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						]
+					];
+				}
 		
 		if($allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328") {
 			
