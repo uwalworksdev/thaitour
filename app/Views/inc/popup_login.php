@@ -340,6 +340,7 @@
         $("#loginNoAreaMember").addClass('show_');
         $("#btnLoginSupMain").addClass('show_');
         $("#btnLoginMain01").addClass('show_');
+        $("#btnLogin02").addClass('show_');
     }
 
     function openSupLogin(el) {
