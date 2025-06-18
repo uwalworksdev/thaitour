@@ -830,7 +830,7 @@ class VoucherController extends BaseController
 		}
 
         $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [25])
+		$policy = $builder1->whereIn('p_idx', [46])
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
