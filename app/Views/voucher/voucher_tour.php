@@ -349,7 +349,7 @@ $setting = homeSetInfo();
                         }
 
                         .btns_download_print, .invoice_note_, .inquiry_qna {
-                            display: none !important;
+                            
                         }
 
                         table {
