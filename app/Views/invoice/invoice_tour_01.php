@@ -55,7 +55,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?= isset($row->order_date) ? date('Y-m-d', strtotime($row->order_date)) : "" ?></td>
+                            <td><?= isset($row->order_date_new) ? date('Y-m-d', strtotime($row->order_date_new)) : "" ?></td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -150,7 +150,7 @@ $setting = homeSetInfo();
                                         $option_m =  $option->option_price * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <?=$option->option_name?> <?=$option->option_price?>바트 x <?=$option->option_cnt?>
+                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p><br/>>
                                     <?php endforeach;?>
                                     
                                 </td>
