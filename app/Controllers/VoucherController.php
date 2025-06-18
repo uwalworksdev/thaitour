@@ -737,7 +737,7 @@ class VoucherController extends BaseController
 		$builder->where('a.order_idx', $idx);
 
 		$query  = $builder->get();
-		$result = $query->getRow();
+		$result = $query->getRow();	
 
 		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
 

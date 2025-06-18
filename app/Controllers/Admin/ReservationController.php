@@ -639,6 +639,9 @@ class ReservationController extends BaseController
             $data['sup_options'] = $sup_options;
         }
 
+		if (!isset($row) || !is_array($row)) {
+			$row = []; // 최소한 빈 배열 전달
+		}
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }
 

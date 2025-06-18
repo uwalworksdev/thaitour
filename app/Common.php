@@ -1258,18 +1258,64 @@ function product_price($idx)
 
 function alimTalk_send($order_no, $alimCode) {
 
-    $connect     = db_connect();
-    $private_key = private_key();
+    $connect      = db_connect();
+    $private_key  = private_key();
 
-    $sql	     = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
-    $row         = $connect->query($sql)->getRowArray();
+    $sql	      = " SELECT * FROM tbl_order_mst WHERE order_no = '$order_no' ";
+    $row          = $connect->query($sql)->getRowArray();
+	$order_idx    = $row['order_idx'];
+	$product_name = $row['product_name'];
+	$order_date   = $row['order_date'];
+	$people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+
+    if($row['product_code_1'] == "1301") { // 투어 
+       $order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
+	}
 	
-	$sql_d       = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+	if($row['product_code_1'] == "1302") { // 골프 
+       $order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
+	}
+	
+	if($row['product_code_1'] == "1303") { // 호텔 
+       $order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
+	}
+	
+	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
+       $order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	}
+	
+	if($row['product_code_1'] == "1320") { // 레스토랑 
+       $order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	}
+	
+	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
+       $order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
+	}
+	
+	if($row['product_code_1'] == "1325") { // 스파 
+       $order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+       $voucher_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+	}
+	
+	$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
 	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-    $row_d       = $connect->query($sql_d)->getRowArray();
+    $row_d        = $connect->query($sql_d)->getRowArray();
 
+    $sql	      = " SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND code_no = '". $row['product_code_1'] ."' ";
+    $row          = $connect->query($sql)->getRowArray();
+	$product_cate = $row['code_name'];
+	
 	$order_user_name   = $row_d['order_user_name'];
 	$order_user_mobile = $row_d['order_user_mobile'];
+
+	//$order_no       = $allim_replace["#{예약번호}"];
+
     /*
 		TY_1651 예약가능
 		TY_1652 예약접수	 
@@ -1280,9 +1326,37 @@ function alimTalk_send($order_no, $alimCode) {
 		TY_1659 인보이스발송	 
 		TY_1660 바우처발송	 
 		TY_2397 계좌입금대기
-		TY_.... 이용완료
+		TY_.... 이용완료   
     */
 
+	if($alimCode == "UA_5319") { // 예약 가능(확인)   
+	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
+
+    if($alimCode == "UA_5325") { // 예약 불가능
+	
+	   $allim_replace = [
+							"#{고객명}"   => $order_user_name,
+							"#{상품명}"   => $product_name,   
+							"#{상품타입}" => $product_cate,
+							"#{예약번호}" => $order_no,
+							"#{예약날짜}" => $order_date,
+							"#{예약자명}" => $order_user_name,
+							"#{예약인원}" => $people_cnt,
+                            "phone"       => $order_user_mobile
+						];
+	} 	
+	
 	if($alimCode == "TY_1651") { // 예약가능
 	
 	   $order_user_name = $order_user_name ."[ 상품: ". $row['product_name'] ."]"; 	 
@@ -1363,7 +1437,7 @@ function alimTalk_send($order_no, $alimCode) {
 						];
 	} 	
 
-    alimTalkSend($alimCode, $allim_replace);
+    alimTalkSend($alimCode, $allim_replace, $order_link, $voucher_link);
 }
 
 function alimTalk_send_bank($payment_idx) {
@@ -1505,7 +1579,7 @@ function alimTalk_send_group($payment_idx, $alimCode) {
     alimTalkSend($alimCode, $allim_replace);
 }
 
-function alimTalkSend($tmpCode, $allim_replace) {
+function alimTalkSend($tmpCode, $allim_replace, $order_link, $voucher_link) {
 	
     $connect       = db_connect();
     $private_key   = private_key();
@@ -1555,7 +1629,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 	curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 	$ret = curl_exec($oCurl);
-	$error_msg = curl_error($oCurl);
+	$error_msg = curl_error($oCurl);  
 	curl_close($oCurl);
 
 	// 리턴 JSON 문자열 확인
@@ -1602,8 +1676,11 @@ function alimTalkSend($tmpCode, $allim_replace) {
 			'emtitle_1'   =>  $templtTitle
 		);
 
- 
-		if(!empty($button)) {
+		$invoice = 'INV20250617001';
+		$orderNo = 'S20250617044';
+
+        if($allim_tmpcode == "TY_1652") {
+				
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
 
@@ -1618,7 +1695,7 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkPc"       => "",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						],
+						], 
 						(object) [
 							"ordering"     => 2,
 							"name"         => "더투어랩",
@@ -1628,13 +1705,29 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkPc"       => "https://thetourlab.com",
 							"linkIos"      => "",
 							"linkAnd"      => ""
-						]
+					    ]
 					];
+							
+				}
+		}
+		
+		if($allim_tmpcode == "UA_5319") {
+			
+				if ($button->linkType == "AC") {
+					$button->name = "채널 추가";
 
-				} else {
-					
 					// 버튼 정보 생성
 					$buttons = [
+						(object) [
+							"ordering"     => 1,
+							"name"         => $button->name,
+							"linkType"     => "AC",
+							"linkTypeName" => $button->name,
+							"linkMo"       => "",
+							"linkPc"       => "",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						], 
 						(object) [
 							"ordering"     => 2,
 							"name"         => "더투어랩",
@@ -1642,17 +1735,38 @@ function alimTalkSend($tmpCode, $allim_replace) {
 							"linkTypeName" => "웹링크",
 							"linkMo"       => "https://thetourlab.com",
 							"linkPc"       => "https://thetourlab.com",
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 3,
+							"name"         => "견적서 확인하기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $voucher_link,
+							"linkPc"       => $voucher_link,
+							"linkIos"      => "",
+							"linkAnd"      => ""
+						],
+						(object)[
+							"ordering"     => 4,
+							"name"         => "나의 예약현황 바로가기",
+							"linkType"     => "WL",
+							"linkTypeName" => "웹링크",
+							"linkMo"       => $order_link,
+							"linkPc"       => $order_link,
 							"linkIos"      => "",
 							"linkAnd"      => ""
 						]
 					];
 				}
-
-				// JSON 변환 후 변수에 할당
-				$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
 		}
 
-		//var_dump($button->linkType);
+
+		// JSON 변환 후 변수에 할당
+		$_variables['button_1'] = json_encode(["button" => $buttons], JSON_UNESCAPED_UNICODE);
+
+		write_log($_variables['button_1']);
 
 /*    
 		-----------------------------------------------------------------
@@ -2635,7 +2749,7 @@ function email_reservation_group($group_no)
 		
         $code         = "A14";
         $user_email   =  $row['user_email'];
-		$product_name =  $row['product_name'] . $prod_add;
+		$product_name =  $row['product_name'] . $prod_add;   
 		$order_no     =  $row['order_no'] .  $prod_add;;
         $_tmp_fir_array = [
             'RECEIVE_NAME'   => $row['user_name'],

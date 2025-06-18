@@ -140,17 +140,23 @@ $setting = homeSetInfo();
                         
                         <?php 
                             if(count($row->options) > 0):
-                                foreach($row->options as $index => $option):
-                                    $option_m = $option->option_price * $option->option_cnt;
+                                $total_option = 0;
                         ?>
                         <tr>
                            
-                                <th><?=$option->option_name?></th>
-                                <td><?=$option->option_price?>바트 x <?=$option->option_cnt?></td>
+                                <th >옵션</th>
+                                <td>
+                                    <?php foreach($row->options as $index => $option):
+                                        $option_m =  $option->option_price * $option->option_cnt;
+                                        $total_option += $option_m;
+                                    ?>
+                                    <?=$option->option_name?> <?=$option->option_price?>바트 x <?=$option->option_cnt?>
+                                    <?php endforeach;?>
+                                    
+                                </td>
                                 <th>금액</th>
-                                <td><?=$option_m?>바트</td>
+                                <td><?=$total_option?>바트</td>
                         </tr>
-                        <?php endforeach;?>
                         <?php endif;?>
                         <tr>
                             <th>총금액</th>
