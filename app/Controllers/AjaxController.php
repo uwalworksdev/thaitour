@@ -2301,8 +2301,11 @@ public function get_golf_option() {
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "tour"){
 				$code = "A24";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+				$_tmp_fir_array['gubun'] = 'ticket';
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
@@ -2395,9 +2398,16 @@ public function get_golf_option() {
 				$_tmp_fir_array['투어업체'] = $row->addrs;
 				$_tmp_fir_array['투어전화번호'] = $row->phone_2;
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
-				$_tmp_fir_array['제품명'] = $row->상품이용일;
+				$_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}else if($row->order_gubun == "spa"){
 				$code = 'A27';
+				$_tmp_fir_array['gubun'] = "ticket";
+				$_tmp_fir_array['스파명'] = $row->product_name_en;
+				$_tmp_fir_array['스파주소'] = $row->addrs;
+				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				$_tmp_fir_array['상품이용일'] = $row->order_day;
+				$_tmp_fir_array['제품명'] = $row->tour_type_en;
+
 				
 			}else if($row->order_gubun == "hotel") {
 				$code        = "A20";

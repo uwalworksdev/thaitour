@@ -108,14 +108,14 @@ $setting = homeSetInfo();
     
                             </tr>
                             <tr>
-                                <th>Type</th>
+                                <th>Options</th>
                                 <td colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p><?=$tour_type?></p>
+                                        <p><?=$order_option?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
-                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
+                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$order_option?>">    
                                         <?php
                                             }
                                         ?>
@@ -190,7 +190,7 @@ $setting = homeSetInfo();
                             <tr>
                                 <th>Remarks</th>
                                 <td colspan="3">
-                                    <?=$order_remark?>
+                                    <?=$result->description?>
                                     <?php
                                         if($type == "admin"){
                                     ?>    

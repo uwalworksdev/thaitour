@@ -285,7 +285,7 @@ class VoucherController extends BaseController
 		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
-					a.*, b.*, c.*,
+					a.*, b.*, c.*, a.description as description,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
 					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
@@ -393,8 +393,18 @@ class VoucherController extends BaseController
 				$order_remark = $result->order_remark_new;
 			}
 
-			if(!empty($result->order_option_new)){
-				$order_option = $result->order_option_new;
+			// if(!empty($result->order_option_new)){
+			// 	$order_option = $result->order_option_new;
+			// }
+			$builder = $db->table('tbl_order_option');
+			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+			$query = $builder->where('order_idx', $idx)->get();
+			$optionResult = $query->getResult(); 
+
+			$order_option = '';
+			foreach($optionResult as $option){
+				if($option->option_cnt > 0)
+					$order_option .= $option->option_name . ' x ' .$option->option_cnt . '; ' ;
 			}
 		}
 
