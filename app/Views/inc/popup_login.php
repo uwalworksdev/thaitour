@@ -331,6 +331,7 @@
         $("#loginNoAreaMember").removeClass('show_');
         $("#btnLoginSupMain").removeClass('show_');
         $("#btnLoginMain01").removeClass('show_');
+        $("#btnLogin02").removeClass('show_');
     }
 
     function handleSupLogin() {
@@ -340,7 +341,6 @@
         $("#loginNoAreaMember").addClass('show_');
         $("#btnLoginSupMain").addClass('show_');
         $("#btnLoginMain01").addClass('show_');
-        $("#btnLogin02").addClass('show_');
     }
 
     function openSupLogin(el) {
