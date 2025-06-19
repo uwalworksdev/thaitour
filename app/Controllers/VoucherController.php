@@ -839,6 +839,16 @@ class VoucherController extends BaseController
 			}
 		}
 
+		$builder = $db->table('tbl_order_option');
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+				$query = $builder->where('order_idx', $result->order_idx)->get();
+				$optionResult = $query->getResult();
+
+				$option = '';
+				foreach($optionResult as $res){
+					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
+				}
+
         $builder1 = $db->table('tbl_policy_info');
 		$policy = $builder1->whereIn('p_idx', [46])
 							->orderBy('p_idx', 'asc')
@@ -860,7 +870,7 @@ class VoucherController extends BaseController
 			'pick_time' => $pick_time,
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
-			'tour_type' => $tour_type,
+			'tour_type' => $option,
         ]);
     }
 
