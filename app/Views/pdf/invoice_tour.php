@@ -496,20 +496,25 @@
                             </tr>
                         </tbody>
                     </table>
-                     <table class="invoice_tbl spe">
+
+                    <?php if(!empty($cancle_contents)):?>
+                    <table class="invoice_tbl spe">
                         <tbody>
                             <tr>
-                                <th><?=viewSQ($cancle_contents)?></th>
+                                <td><?=viewSQ($cancle_contents)?></td>
                             </tr>
                         </tbody>
                     </table>
+                    <?php endif; ?>
+                    <?php if(!empty($policy_1["policy_contents"])):?>
                      <table class="invoice_tbl spe">
                         <tbody>
                             <tr>
-                                <th><?=viewSQ($policy_1["policy_contents"])?></th>
+                                <td><?=viewSQ($policy_1["policy_contents"])?></td>
                             </tr>
                         </tbody>
                     </table>
+                    <?php endif; ?>
 
                     
                 </div>
