@@ -302,14 +302,15 @@
 			var type    = $input.data('type');      // 성인, 아동구분
 			var idx     = $input.closest(".spa_option_detail").data('idx');       // 상품 IDX
 			var op_name = $input.closest(".spa_option_detail").data('op_name'); // 상품명
+            var op_name_eng = $input.closest(".spa_option_detail").data('op_name_eng');
 			var price   = $input.data('price');     // 금액
 		    var cnt     = $input.val();             // 인원수
 			
 			if(cnt > 0) {
                 if(feeVal == "") {
-                    feeVal = type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+                    feeVal = type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt +':'+op_name_eng;
                 } else {
-                    feeVal += '|'+type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt;
+                    feeVal += '|'+type+':'+idx+':'+price+':'+op_name+':'+price+':'+cnt+':'+op_name_eng;
                 }
             }
 		});
@@ -324,6 +325,10 @@
 		}).get();
 
 		let optionName = $("input[name='option_name[]']").map(function() {
+			return $(this).val();
+		}).get();
+
+        let optionNameEng = $("input[name='option_name_eng[]']").map(function() {
 			return $(this).val();
 		}).get();
 
@@ -343,7 +348,7 @@
 		   let bath = '<?=$baht_thai_header?>';	
 		   let option_won  = optionPrice;	
 		   let option_bath = parseInt(optionPrice / bath);	
-		   feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty;
+		   feeVal += '|option:'+optionIdx+':'+optionPrice+':'+optionName+':'+optionPrice+':'+optionQty +':'+optionNameEng;
 	    }
 		
 		$("#feeVal").val(feeVal);
