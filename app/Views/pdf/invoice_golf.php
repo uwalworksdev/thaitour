@@ -374,39 +374,33 @@
                     </table>
                     <h2 class="tit_top">금액내역</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
-                            <col width="20%">
-                        </colgroup>
+                        
                         <tbody>
                             <tr>
-                                <th>에약항목</th>
-                                <th>단가(원)</th>
-                                <th>수량</th>
-                                <th>합계(원)</th>
-                                <th>합계(바트)</th>
+                                <th style="width: 20%">에약항목</th>
+                                <th style="width: 20%">단가(원)</th>
+                                <th style="width: 20%">수량</th>
+                                <th style="width: 20%">합계(원)</th>
+                                <th style="width: 20%">합계(바트)</th>
                             </tr>					
                             <tr>
-                                <th>그린피</th>
-                                <td><?=number_format($golf_info['option_price'])?></td>
-                                <td><?=$golf_info['option_cnt']?></td>
-                                <th><?=number_format($golf_info['option_tot'])?></th>
-                                <td><?=number_format($golf_info['option_tot_bath'])?></td>
+                                <th style="width: 20%">그린피</th>
+                                <td style="width: 20%"><?=number_format($golf_info['option_price'])?></td>
+                                <td style="width: 20%"><?=$golf_info['option_cnt']?></td>
+                                <th style="width: 20%"><?=number_format($golf_info['option_tot'])?></th>
+                                <td style="width: 20%"><?=number_format($golf_info['option_tot_bath'])?></td>
                             </tr>
                             <?php foreach ($golf_option as $data) { ?>
                             <tr>
-                                <th><?=$data['option_name']?></th>
-                                <td><?=number_format($data['option_price'])?></td>
-                                <td><?=$data['option_cnt']?></td>
-                                <th><?=number_format($data['option_tot'])?></th>
-                                <td><?=number_format($data['option_tot_bath'])?></td>
+                                <th style="width: 20%"><?=$data['option_name']?></th>
+                                <td style="width: 20%"><?=number_format($data['option_price'])?></td>
+                                <td style="width: 20%"><?=$data['option_cnt']?></td>
+                                <th style="width: 20%"><?=number_format($data['option_tot'])?></th>
+                                <td style="width: 20%"><?=number_format($data['option_tot_bath'])?></td>
                             </tr>
                             <?php } ?>
                             <tr>
-                                <th>총금액</th>
+                                <th style="width: 20%">총금액</th>
                                 <td colspan="4"><?=number_format($row['real_price_bath'])?>바트</td>
                             </tr>
                         </tbody>
@@ -421,8 +415,8 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th>중요 공지사항</th>
-                                <td><?=viewSQ($notice_contents)?></td>
+                                <th style=" width:250px">중요 공지사항</th>
+                                <td style="width: *"><?=viewSQ($notice_contents)?></td>
                             </tr>
                         </tbody>
                     </table>

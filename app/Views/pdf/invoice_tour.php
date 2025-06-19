@@ -320,7 +320,7 @@
         <section class="golf_invoice hotel_invoice">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                 </div>
@@ -338,13 +338,13 @@
                                 <th>예약번호</th>
                                 <td><?=$row->order_no?></td>
                                 <th>예약날짜</th>
-                                <td>2023-09-13(수)</td>
+                                <td><?= isset($row->order_r_date) ? date('Y-m-d', strtotime($row->order_r_date)) : "" ?></td>
                             </tr>
                             <tr>
                                 <th>여행사(담당자)</th>
-                                <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                                <td><?=$row->order_user_name?></td>
                                 <th>이메일</th>
-                                <td>thaitouradventure@gmail.com</td>
+                                <td><?=$row->order_user_email?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -375,15 +375,37 @@
                             </tr>
                             <tr>
                                 <th>시작시간</th>
-                                <td>08:00~16:30</td>
+                                <td><?=$row->time_line ?? ""?></td>
                                 <th>총인원</th>
-                                <td>성인 : 8명</td>
+                                <td>
+                                    <span style="margin-right: 10px">성인 : <?=$row->people_adult_cnt ?? 0?>명;</span>
+                                    <span style="margin-right: 10px">아동 : <?=$row->people_kids_cnt ?? 0?>명;</span>
+                                    <span style="margin-right: 10px">유아 : <?=$row->people_baby_cnt ?? 0?>명;</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>픽업포함여부</th>
-                                <td>불포함</td>
+                                <?php
+                                    $have_data = true;
+                                    if(empty($row->pickup_place) && empty($row->sanding_place) && empty($row->start_place)) $have_data = false;
+                                ?>
+                                <?php if(!$have_data):?>
+                                    <td>불포함</td>
+                                <?php else :?>
+                                    <td>포함</td>
+                                <?php endif;?>
                                 <th>미팅 장소</th>
-                                <td>개별이동</td>
+                                <td>
+                                    <?php if(!empty($row->pickup_place)):?>
+                                    <p>픽업장소: <?=$row->pickup_place?></p>
+                                    <?php endif;?>
+                                    <?php if(!empty($row->sanding_place)):?>
+                                        <p>샌딩장소: <?=$row->sanding_place?></p>
+                                    <?php endif;?>
+                                    <?php if(!empty($row->start_place)):?>
+                                        <p>미팅장소: <?=$row->start_place?></p>
+                                    <?php endif;?>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -396,7 +418,7 @@
                             <col width="*">
                         </colgroup>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <th>1인당 금액</th>
                                 <td colspan="3">성인400바트</td>
                                 
@@ -411,12 +433,62 @@
                                 <td>0바트</td>
                                 <th>총금액</th>
                                 <td><?=number_format($row->real_price_bath)?>바트</td>
-                            </tr>
+                            </tr> -->
+                            <?php if($row->people_adult_cnt > 0): ?>
+                        <tr>
+                            <th>성인 금액</th>
+                            <td><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
+                            <th>금액</th>
+                            <td><?=number_format($row->adult_price_bath) ?> 바트</td>
+                            
+                        </tr>
+                        <?php endif?>
+                        <?php if($row->people_kids_cnt > 0): ?>
+                        <tr>
+                            <th>아동 금액</th>
+                            <td><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
+                            <th>금액</th>
+                            <td><?=number_format($row->kids_price_bath)?> 바트</td>
+                        </tr>
+                        <?php endif?>
+                         <?php if($row->people_baby_cnt > 0): ?>
+                        <tr>
+                            <th>유아 금액</th>
+                            <td><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
+                            <th>금액</th>
+                            <td><?=number_format($row->baby_price_bath)?> 바트</td>
+                        </tr>
+                        <?php endif?>
+                        
+                        <?php 
+                            if(count($row->options) > 0):
+                                $total_option = 0;
+                        ?>
+                        <tr>
+                           
+                                <th >옵션</th>
+                                <td>
+                                    <?php foreach($row->options as $index => $option):
+                                        $option_m =  $option->option_price * $option->option_cnt;
+                                        $total_option += $option_m;
+                                    ?>
+                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p>
+                                    <?php endforeach;?>
+                                    
+                                </td>
+                                <th>금액</th>
+                                <td><?=$total_option?>바트</td>
+                        </tr>
+                        <?php endif;?>
+                        <tr>
+                            <th>총금액</th>
+                            <td colspan="3"><?=number_format($row->total_bath)?>바트</td>
+                        </tr>
                         
                         </tbody>
                     </table>
                     <div class="invoice_golf_total flex_e_c">
-                        <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
+                        <p>총 견적서 금액 : <span><?=number_format($row->total_won)?>원</span> (<?=number_format($row->total_bath)?>바트)</p>
                     </div>
                     <table class="invoice_tbl spe">
                         <colgroup>

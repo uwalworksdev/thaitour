@@ -344,7 +344,23 @@ class VoucherController extends BaseController
 			if(!empty($result->order_date_new)){
 				$order_date = $result->order_date_new;
 			}else{
-				$order_date = $result->order_day;
+				$day_map = [
+					'월' => 'Mon',
+					'화' => 'Tue',
+					'수' => 'Wed',
+					'목' => 'Thu',
+					'금' => 'Fri',
+					'토' => 'Sat',
+					'일' => 'Sun',
+				];
+
+				// Tìm và thay thế nếu có thứ trong ngoặc
+				$order_day = preg_replace_callback('/\((.*?)\)/', function ($matches) use ($day_map) {
+						$korean_day = $matches[1];
+						return isset($day_map[$korean_day]) ? '(' . $day_map[$korean_day] . ')' : '';
+					}, $result->order_day);
+
+				$order_date = $order_day;
 			}
 
 			if(!empty($result->order_people_new)){
@@ -404,8 +420,9 @@ class VoucherController extends BaseController
 			$order_option = '';
 			foreach($optionResult as $option){
 				if($option->option_cnt > 0)
-					$order_option .= $option->option_name . ' x ' .$option->option_cnt . '; ' ;
+					$order_option .= $option->option_name . ' x ' .$option->option_cnt . ' / ' ;
 			}
+			$order_option = rtrim($order_option, ' /');
 		}
 
 

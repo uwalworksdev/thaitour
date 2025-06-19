@@ -367,7 +367,11 @@ $setting = homeSetInfo();
                         }
 
                         .btns_download_print, .table_wrapper, .inquiry_qna {
-                            display: none !important;
+                            
+                        }
+
+                        .btns_download_print{
+                            display:none !important;
                         }
 
                         table {
