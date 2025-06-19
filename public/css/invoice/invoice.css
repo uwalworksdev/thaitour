@@ -588,12 +588,13 @@ input[type="text"] {
 
 .golf_invoice .logo_voice h2 {
     font-size: 26px;
-    margin-bottom: 0;
+    margin-bottom: 5px;
 }
 
 .golf_invoice .logo_voice .addr {
     font-size: 14px;
     color: #616161;
+    margin-top: 10px;
 }
 
 .golf_invoice .invoice_ttl {
