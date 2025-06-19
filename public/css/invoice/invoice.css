@@ -586,7 +586,15 @@ input[type="text"] {
     /* height: 76px; */
 }
 
-.golf_invoice .logo_voice h2 {}
+.golf_invoice .logo_voice h2 {
+    font-size: 26px;
+    margin-bottom: 0;
+}
+
+.golf_invoice .logo_voice .addr {
+    font-size: 14px;
+    color: #616161;
+}
 
 .golf_invoice .invoice_ttl {
     margin: 40px 0;
