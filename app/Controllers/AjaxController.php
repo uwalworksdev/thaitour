@@ -2389,9 +2389,6 @@ public function get_golf_option() {
 
 			];
 
-
-			
-
 			if($row->order_gubun == "tour"){
 				$code = 'A25';
 				$_tmp_fir_array['투어명명'] = $row->product_name_en;
