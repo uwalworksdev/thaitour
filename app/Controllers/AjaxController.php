@@ -2449,6 +2449,7 @@ public function get_golf_option() {
 				$hole = trim(explode(":", $main[0])[1]);
 
 				$_tmp_fir_array['골프상품명'] = $hole;
+				$_tmp_fir_array['영문호텔주소'] = $row->addrs;
 			}
 
 			if(!empty($order_user_email)){
