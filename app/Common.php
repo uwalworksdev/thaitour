@@ -2077,7 +2077,7 @@ function alimTalk_bank_send($order_no)
 	
 }
 
-function alimTalk_deposit_send($payment_idx)
+function alimTalk_deposit_sendx($payment_idx)
 {
     $connect     = db_connect();
     $private_key = private_key();
@@ -2103,7 +2103,7 @@ function alimTalk_deposit_send($payment_idx)
 	
 }
 
-function alimTalk_deposit_sendx($payment_idx)
+function alimTalk_deposit_send($payment_idx)
 {
     $connect      = db_connect();
     $private_key  = private_key();
