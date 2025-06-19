@@ -42,7 +42,7 @@ class UpdateExchangeRate extends BaseCommand
         $data = json_decode($response, true);
 
         if (isset($data['conversion_rate'])) {
-            $rate = $data['conversion_rate'];
+            $rate = $data['conversion_rate'] + 2;
             $model = new Setting();
             $model->updateSettings([
                 "baht_thai" => $rate

@@ -108,5 +108,34 @@ class DailyController extends BaseController {
 		}
 	}
 
-	
+	public function auto_cancel_orders()
+	{
+		$db = \Config\Database::connect();
+
+		// 1시간이 지난 예약 상태 "X"인 주문을 "C"로 변경하고 취소일자 세팅
+		$updateSql = "
+			UPDATE tbl_order_mst
+			SET 
+				order_status = 'C',
+				order_c_date = NOW()
+			WHERE 
+				order_status = 'X'
+				AND confirmed_datetime IS NOT NULL
+				AND confirmed_datetime <= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+		";
+
+		$db->query($updateSql);
+		$affectedRows = $db->affectedRows();
+
+		// 로그 기록 (write_log 함수 사용 또는 log_message 사용)
+		if (!function_exists('write_log')) {
+			function write_log($message, $level = 'info')
+			{
+				log_message($level, $message);
+			}
+		}
+
+		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $affectedRows, 'info');
+	}
+
 }	

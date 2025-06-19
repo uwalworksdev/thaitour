@@ -1149,10 +1149,11 @@ $routes->group("travel-tips", static function ($routes) {
 });
 
 $routes->group("daily", static function ($routes) {
-    $routes->get("service_end",    "DailyController::service_end");
-    $routes->get("service_cancel", "DailyController::service_cancel");
-    $routes->get("golf_price",     "DailyController::golf_price");
-    $routes->get("hotel_price",    "DailyController::hotel_price");
+    $routes->get("service_end",        "DailyController::service_end");
+    $routes->get("service_cancel",     "DailyController::service_cancel");
+    $routes->get("golf_price",         "DailyController::golf_price");
+    $routes->get("hotel_price",        "DailyController::hotel_price");
+    $routes->get("auto_cancel_orders", "DailyController::auto_cancel_orders");
 });
 
 $routes->get('group-move-popup', 'ReservationController::groupMoveView');

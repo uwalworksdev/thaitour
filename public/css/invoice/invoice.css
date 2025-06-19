@@ -586,6 +586,8 @@ input[type="text"] {
     /* height: 76px; */
 }
 
+.golf_invoice .logo_voice h2 {}
+
 .golf_invoice .invoice_ttl {
     margin: 40px 0;
     text-align: center;
@@ -1033,6 +1035,18 @@ input[type="text"] {
             height: 7.6rem;
         }
 
+        .golf_invoice .logo_voice h2 {
+            font-size: 3rem;
+            margin-bottom: -1.4rem;
+        }
+
+        
+        .golf_invoice .logo_voice .addr {
+            font-size: 2.2rem;
+            margin-top: -1rem;
+            color: #616161;
+        }
+
         .golf_invoice .invoice_ttl {
             margin: 4rem 0;
             text-align: center;
@@ -1092,6 +1106,7 @@ input[type="text"] {
 
         .golf_invoice .invoice_table .invoice_tbl.re_custom {
             border-top: 1px solid #dbdbdb;
+            margin-bottom: 4rem;
         }
 
         .golf_invoice .invoice_table .invoice_tbl colgroup {
