@@ -1064,7 +1064,7 @@ class PdfController extends BaseController
 			$order_option = '';
 			foreach($optionResult as $option){
 				if($option->option_cnt > 0)
-					$order_option .= $option->option_name . ' x ' .$option->option_cnt . ' / ' ;
+					$order_option .= $option->option_cnt . ' ' .$option->option_name . ' / ' ;
 			}
 			$order_option = rtrim($order_option, ' /');
 		

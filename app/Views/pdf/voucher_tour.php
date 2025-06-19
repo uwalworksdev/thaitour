@@ -359,16 +359,16 @@
                     <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th style="width: 150px">Name</th>
-                                <td colspan="3" style="font-weight: bold;"><?=$result->product_name_en?></td>
+                                <th style="width: 20%">Name</th>
+                                <td colspan="3" style="width: 80%" style="font-weight: bold;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Address</th>
-                                <td colspan="3"><?=$result->addrs?></td>
+                                <th style="width: 20%">Address</th>
+                                <td colspan="3" style="width: 80%"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Tel</th>
-                                <td colspan="3"><?=$result->company_contact?></td>
+                                <th style="width: 20%">Tel</th>
+                                <td colspan="3" style="width: 80%"><?=$result->company_contact?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -378,12 +378,12 @@
                     <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th style="width: 150px">Name</th>
-                                <td colspan="3"> <?=$user_name?></td>
+                                <th style="width: 20%">Name</th>
+                                <td style="width: 80%"> <?=$user_name?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Phone</th>
-                                <td colspan="3"> <?=$user_mobile?></td>
+                                <th style="width: 20%">Phone</th>
+                                <td style="width: 80%"> <?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -391,50 +391,41 @@
                     <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th style="width: 150px">Booking No</th>
-                                <td colspan="3"><?=$result->order_no?></td>
+                                <th style="width: 20%">Booking No</th>
+                                <td colspan="3" style="width: 80%"><?=$result->order_no?></td>
 
                             </tr>
                             <tr>
-                                <th style="width: 150px">Date</th>
-                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
+                                <th style="width: 20%">Date</th>
+                                <td colspan="3" style="width: 80%"><span style="color:red;"><?=$order_date?></span></td>
 
                             </tr>
                             <tr>
-                                <th style="width: 150px">Options</th>
-                                <td colspan="3"><?=$order_option?></td>
+                                <th style="width: 20%">Options</th>
+                                <td colspan="3" style="width: 80%"><?=$order_option?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Persons</th>
-                                <td colspan="3"><?=$order_people?></td>
-                                <!-- <th>Time</th>
-                                <td><?=$time_line?></td> -->
+                                <th style="width: 20%">Persons</th>
+                                <td colspan="3" style="width: 80%"><?=$order_people?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Pick up Place</th>
-                                <td style="width: 35%"><?=$start_place?></td>
-                                <th style="width: 150px">Pick up Time</th>
-                                <td><?=$time_line?></td>
+                                <th style="width: 20%">Pick up Place</th>
+                                <td style="width: 30%"><?=$start_place?></td>
+                                <th style="width: 20%">Pick up Time</th>
+                                <td style="width: 30%"><?=$time_line?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Kakao Id</th>
-                                <td><?=$id_kakao?></td>
+                                <th style="width: 20%">Kakao Id</th>
+                                <td colspan="3" style="width: 80%"><?=$id_kakao?></td>
                                 
                             </tr>
                             <tr>
-                                <th style="width: 150px">Remarks</th>
-                                <td colspan="3">
+                                <th style="width: 20%">Remarks</th>
+                                <td colspan="3" style="width: 80%">
                                     <?=$result->description?>
                                 </td>
 
                             </tr>
-                            <!-- <tr>
-                                <th>Exclude</th>
-                                <td colspan="3">
-                                    <p>주류, 개인경비</p>
-                                </td>
-
-                            </tr> -->
                         </tbody>
                     </table>
                     <br>
