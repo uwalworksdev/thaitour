@@ -31,13 +31,13 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어) carrr</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
