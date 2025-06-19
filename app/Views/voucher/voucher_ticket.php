@@ -97,7 +97,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Date</th>
-                                <td style="color : red" colspan="3">
+                                <td style="color : red" >
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <p><?=$order_date?></p>
                                         <?php
@@ -108,35 +108,6 @@ $setting = homeSetInfo();
                                             }
                                         ?>
                                     </div>
-                                </td>
-    
-                            </tr>
-                            <tr>
-                                <th>Options</th>
-                                <td colspan="3">
-                                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?=$result->tour_type?>
-                                        <?php
-                                            if($type == "admin"){
-                                        ?>    
-                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
-                                        <?php
-                                            }
-                                        ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Persons</th>
-                                <td>
-                                    <p><?=$order_people?></p>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
-                                    <?php
-                                        }
-                                    ?>
                                 </td>
                                 <th>Time</th>
                                 <td>
@@ -149,6 +120,36 @@ $setting = homeSetInfo();
                                         }
                                     ?>
                                 </td>
+    
+                            </tr>
+                            <tr>
+                                <th>Options</th>
+                                <td colspan="3">
+                                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                                        <?=$tour_type?>
+                                        <?php
+                                            if($type == "admin"){
+                                        ?>    
+                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Persons</th>
+                                <td colspan="3">
+                                    <p><?=$order_people?></p>
+                                    <?php
+                                        if($type == "admin"){
+                                    ?>    
+                                        <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
+                                    <?php
+                                        }
+                                    ?>
+                                </td>
+                                
                             </tr>
     
                             <tr>
@@ -305,8 +306,11 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
+                        .btns_download_print{
+                            display: none !important;
+                        }
+
                         .btns_download_print, .invoice_note_, .inquiry_qna {
-                            
                         }
 
                         table {

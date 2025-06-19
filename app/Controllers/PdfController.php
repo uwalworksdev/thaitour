@@ -369,10 +369,17 @@ class PdfController extends BaseController
         $result = $query->getRowArray();
         $cancle_contents = $result["policy_contents"];
 
+
+		$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [26])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
 		$html = view('pdf/invoice_ticket', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+			'policy_1' 	=> $policy[0],
         ]);
         
 
