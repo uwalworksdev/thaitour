@@ -2116,7 +2116,7 @@ function alimTalk_deposit_send($payment_idx)
     // 쉼표로 분리 및 공백 제거
     $order_nos = array_filter(array_map('trim', explode(',', $order_list)));
 	
-	$alimCode  = "UA_5328";
+	$alimCode  = "UA_5814";
     foreach ($order_nos as $order_no)  // 예약번호 알림톡 발송 시작
 	{
 			$sql          = "SELECT * FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
