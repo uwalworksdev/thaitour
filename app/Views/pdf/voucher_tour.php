@@ -37,7 +37,7 @@
         }
 
         .golf_invoice .logo_voice img {
-            width: 165px;
+            width: 500px;
         }
 
         .golf_invoice .invoice_ttl {
@@ -351,119 +351,101 @@
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
                 </div>
                 <div class="invoice_ttl">
                 </div>
                 <div class="invoice_table">
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="*">
-
-                        </colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td style="font-weight: bold;">Phi Phi-Khai-Pileh by Speed boat [Seastar]</td>
+                                <th style="width: 150px">Name</th>
+                                <td colspan="3" style="font-weight: bold;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
-                                <th>Address</th>
-                                <td>112/151 Udomsuk Village, Paklok, Thalang, Phuket 83110 Thailand</td>
+                                <th style="width: 150px">Address</th>
+                                <td colspan="3"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th>Tel</th>
-                                <td>+66-(66) 076-350-144</td>
+                                <th style="width: 150px">Tel</th>
+                                <td colspan="3"><?=$result->company_contact?></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td>YANG HYUNGSUK</td>
+                                <th style="width: 150px">Name</th>
+                                <td colspan="3"> <?=$user_name?></td>
                             </tr>
                             <tr>
-                                <th>Phone</th>
-                                <td>KR 01021004474</td>
+                                <th style="width: 150px">Phone</th>
+                                <td colspan="3"> <?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>Booking No</th>
-                                <td colspan="3">144-395-444 (1)</td>
+                                <th style="width: 150px">Booking No</th>
+                                <td colspan="3"><?=$result->order_no?></td>
 
                             </tr>
                             <tr>
-                                <th>Date</th>
-                                <td colspan="3"><span style="color:red;">29-Sep-2023(Fri)</span></td>
+                                <th style="width: 150px">Date</th>
+                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
 
                             </tr>
                             <tr>
-                                <th>Type</th>
-                                <td colspan="3">Phi Phi-Khal-Pileh by Speed boat [Seastar]</td>
+                                <th style="width: 150px">Options</th>
+                                <td colspan="3"><?=$order_option?></td>
                             </tr>
                             <tr>
-                                <th>Persons</th>
-                                <td>4 Adult(s)</td>
-                                <th>Time</th>
-                                <td>07:30~17:00</td>
+                                <th style="width: 150px">Persons</th>
+                                <td colspan="3"><?=$order_people?></td>
+                                <!-- <th>Time</th>
+                                <td><?=$time_line?></td> -->
                             </tr>
                             <tr>
-                                <th>Pick up Place</th>
-                                <td>Avani+ Mai Khao Phuket Suites & Villas</td>
-                                <th>Pick up Time</th>
-                                <td style="color: #252525; font-weight: bold;">7.00 - 7.15</td>
+                                <th style="width: 150px">Pick up Place</th>
+                                <td style="width: 35%"><?=$start_place?></td>
+                                <th style="width: 150px">Pick up Time</th>
+                                <td><?=$time_line?></td>
                             </tr>
                             <tr>
-                                <th>Kakao Id</th>
-                                <td>nickhwan</td>
+                                <th style="width: 150px">Kakao Id</th>
+                                <td><?=$id_kakao?></td>
                                 
                             </tr>
                             <tr>
-                                <th>Remarks</th>
+                                <th style="width: 150px">Remarks</th>
                                 <td colspan="3">
-                                    <p>이 투어는 호텔 픽업이 포함되어 있어요.</p>
-                                    <p>조인 픽업이라 앞팀이 늦어질 경우 픽업 시간 보다 조금 더 늦어 질수 있어</p>
-                                    <p>원활한 픽업을 위해 정해진 시간에 꼭 호텔 로비에서 기다려주세요!</p>
-                                    <p>빠톰, 카타카론 비치를 제외한 나머지 곳들은 추가 비용이 발생합니다. 지역별 추가요금은 홈페이지 를 참고해주세요.</p>
+                                    <?=$result->description?>
                                 </td>
 
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th>Exclude</th>
                                 <td colspan="3">
                                     <p>주류, 개인경비</p>
                                 </td>
 
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                     <br>
                     <div class="info_order_txt">
-                        <p style="font-weight: bold">• Booked by: Totobooking</p>
+                        <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
                     <div class="invoice_note_" style="font-family: 'Pretendard' !important; line-height: 1.6 !important; font-size: 16px !important;">
-                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
+                        <!-- <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
                         <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
-                        <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
-                        <?= viewSQ($policy["policy_contents"]) ?>
+                        <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p> -->
+                         <?=viewSQ($policy_1["policy_contents"])?>
                     </div>
                 </div>
                 <div class="inquiry_qna">

@@ -14,6 +14,7 @@ class PdfController extends BaseController
     private $roomImg;
     private $CodeModel;
     private $orderOptionModel;
+    private $tourProducts;
 
     public function __construct() {
         $this->db           = db_connect();
@@ -21,6 +22,7 @@ class PdfController extends BaseController
         $this->roomImg      = model("RoomImg");
         $this->CodeModel    = model("Code");
         $this->orderOptionModel = model("OrderOptionModel");
+        $this->tourProducts = model("ProductTourModel");
     }
 	
     public function generateQuotation()
@@ -247,29 +249,50 @@ class PdfController extends BaseController
 
         // 주문 객체에 옵션 정보 추가
         foreach ($orderResult as $order) {
-            $order->options = $optionResult; // options 키에 옵션 배열 추가
-        }
+					$order->options = $optionResult; // options 키에 옵션 배열 추가
+					$order->adult_price_bath = round($order->people_adult_price / $this->setting['baht_thai']);
+					$order->kids_price_bath = round($order->people_kids_price / $this->setting['baht_thai']);
+					$order->baby_price_bath = round($order->people_baby_price / $this->setting['baht_thai']);
+					$order->real_price_bath = round($order->real_price_won / $this->setting['baht_thai']);
 
-        $firstRow = $orderResult[0] ?? null;
+					$totalOptionBath = 0;
+					foreach ($optionResult as $option) {
+						$totalOptionBath += $option->option_cnt * $option->option_price;
+					}
+					$order->total_options = $totalOptionBath;
+					$order->total_bath = $order->real_price_bath + $totalOptionBath;
 
-        $product_idx = $firstRow->product_idx;
+					$order->total_options_won = round($totalOptionBath * $this->setting['baht_thai']);
+					$order->total_won = round($order->total_bath * $this->setting['baht_thai']);
+					
+				}
 
-        $builder = $db->table('tbl_product_mst');
-        $builder->select("notice_comment");
-        $query  = $builder->where('product_idx', $product_idx)->get();
-        $result = $query->getRowArray();
-        $notice_contents = $result["notice_comment"];
+				$firstRow = $orderResult[0] ?? null;
 
-        $builder = $db->table('tbl_policy_cancel');
-        $builder->select("policy_contents");
-        $query  = $builder->where('product_idx', $product_idx)->get();
-        $result = $query->getRowArray();
-        $cancle_contents = $result["policy_contents"];
+				$product_idx = $firstRow->product_idx;
+
+				$builder = $db->table('tbl_product_mst');
+				$builder->select("notice_comment");
+				$query  = $builder->where('product_idx', $product_idx)->get();
+				$result = $query->getRowArray();
+				$notice_contents = $result["notice_comment"];
+		
+				$builder = $db->table('tbl_policy_cancel');
+				$builder->select("policy_contents");
+				$query  = $builder->where('product_idx', $product_idx)->get();
+				$result = $query->getRowArray();
+				$cancle_contents = $result["policy_contents"];
+
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [26])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
 
 		$html = view('pdf/invoice_tour', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+            'policy_1' 	=> $policy[0]
         ]);
         
 
@@ -934,11 +957,142 @@ class PdfController extends BaseController
 		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
 		$builder->where('a.order_idx', $order_idx);
 
-		$query  = $builder->get();
+		// $query  = $builder->get();
+		// $result = $query->getRow();
+
+
+        $query  = $builder->get();
 		$result = $query->getRow();
 
+		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject_eng"];
+
+		
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$day_map = [
+					'월' => 'Mon',
+					'화' => 'Tue',
+					'수' => 'Wed',
+					'목' => 'Thu',
+					'금' => 'Fri',
+					'토' => 'Sat',
+					'일' => 'Sun',
+				];
+
+				// Tìm và thay thế nếu có thứ trong ngoặc
+				$order_day = preg_replace_callback('/\((.*?)\)/', function ($matches) use ($day_map) {
+						$korean_day = $matches[1];
+						return isset($day_map[$korean_day]) ? '(' . $day_map[$korean_day] . ')' : '';
+					}, $result->order_day);
+
+				$order_date = $order_day;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s) / " . ($result->people_kids_cnt ?? 0) . " Child(s) / " . ($result->people_baby_cnt ?? 0) . " Baby(s)"; 
+			}
+
+			if(!empty($result->time_line_en)){
+				$time_line = $result->time_line_en;
+			}else{
+				$time_line = $result->time_line;
+			}
+
+			if(!empty($result->tour_type_en)){
+				$tour_type = $result->tour_type_en;
+			}else{
+				$tour_type = $tour_prod_name;
+			}
+
+			if(!empty($result->start_place_en)){
+				$start_place = $result->start_place_en;
+			}else{
+				$start_place = $result->start_place;
+			}
+
+			if(!empty($result->id_kakao_en)){
+				$id_kakao = $result->id_kakao_en;
+			}else{
+				$id_kakao = $result->id_kakao;
+			}
+
+			if(!empty($result->meeting_date)){
+				$pick_time = date('Y-m-d H:i', strtotime($result->meeting_date));
+			}else{
+				$pick_time = $result->description;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			// if(!empty($result->order_option_new)){
+			// 	$order_option = $result->order_option_new;
+			// }
+			$builder = $db->table('tbl_order_option');
+			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+			$query = $builder->where('order_idx', $order_idx)->get();
+			$optionResult = $query->getResult(); 
+
+			$order_option = '';
+			foreach($optionResult as $option){
+				if($option->option_cnt > 0)
+					$order_option .= $option->option_name . ' x ' .$option->option_cnt . ' / ' ;
+			}
+			$order_option = rtrim($order_option, ' /');
+		
+
+
+		$builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [25])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
+        
+
 		$html = view('pdf/voucher_tour', [
-            'result'  => $result
+            'result'  => $result,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'start_place' => $start_place,
+			'pick_time' => $pick_time,
+			'id_kakao' => $id_kakao,
+			'time_line' => $time_line,
+			'tour_type' => $tour_type,
+			'policy_1' 	=> $policy[0],
         ]);
         
         $pdf->WriteHTML($html);
