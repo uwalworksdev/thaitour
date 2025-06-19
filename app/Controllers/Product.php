@@ -4237,11 +4237,11 @@ class Product extends BaseController
                 $adult_cnt = $this->request->getPost('adult_cnt') ?? 0;
                 $child_cnt = $this->request->getPost('child_cnt') ?? 0;
 
-                $phone1 = $this->request->getPost('phone1') ?? "";
-                $phone2 = $this->request->getPost('phone2') ?? "";
-                $phone3 = $this->request->getPost('phone3') ?? "";
-                $email_name = $this->request->getPost('email_name') ?? "";
-                $email_host = $this->request->getPost('email_host') ?? "";
+                $phone1 = $this->request->getPost('phone_1') ?? "";
+                $phone2 = $this->request->getPost('phone_2') ?? "";
+                $phone3 = $this->request->getPost('phone_3') ?? "";
+                $email_name = $this->request->getPost('email_1') ?? "";
+                $email_host = $this->request->getPost('email_2') ?? "";
                 $inital_price = $this->request->getPost('inital_price') ?? 0;
                 $order_price = $this->request->getPost('order_price') ?? 0;
 
