@@ -1276,6 +1276,7 @@ function alimTalk_send($order_no, $alimCode) {
     $order_link  = "https://thetourlab.com/mypage/reservation_list";
 	
     if($alimCode == "UA_5328") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=2";
+	if($alimCode == "UA_5814") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=2";
     if($alimCode == "UA_5331") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=3";
     if($alimCode == "UA_5348") $order_link = "https://thetourlab.com/mypage/reservation_list?procType=5";
 
@@ -1884,7 +1885,7 @@ function alimTalkSend($tmpCode, $allim_replace, $order_link = null, $invoice_lin
 				}
 		}
 		
-		if($allim_tmpcode == "UA_5373" || $allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328" || $allim_tmpcode == "UA_5348") {
+		if($allim_tmpcode == "UA_5373" || $allim_tmpcode == "UA_5325" || $allim_tmpcode == "UA_5328" || $allim_tmpcode == "UA_5814" || $allim_tmpcode == "UA_5348") {
 			
 				if ($button->linkType == "AC") {
 					$button->name = "채널 추가";
@@ -2077,7 +2078,7 @@ function alimTalk_bank_send($order_no)
 	
 }
 
-function alimTalk_deposit_send($payment_idx)
+function alimTalk_deposit_sendx($payment_idx)
 {
     $connect     = db_connect();
     $private_key = private_key();
@@ -2103,80 +2104,119 @@ function alimTalk_deposit_send($payment_idx)
 	
 }
 
-function alimTalk_deposit_sendx($payment_idx)
+function alimTalk_deposit_send($payment_idx)
 {
     $connect      = db_connect();
     $private_key  = private_key();
 
-	$sql          = "SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
-    $row          = $connect->query($sql)->getRowArray();
-	$order_idx    = $row['order_idx'];
-	$product_name = $row['product_name'];
-	$order_date   = $row['order_date'];
+	$sql0         = "SELECT * FROM tbl_payment_mst WHERE payment_idx = '". $payment_idx ."' ";
+    $row0         = $connect->query($sql0)->getRowArray();
+	$order_list   = $row0['order_no'];
+	
+    // 쉼표로 분리 및 공백 제거
+    $order_nos = array_filter(array_map('trim', explode(',', $order_list)));
+	
+	$alimCode  = "UA_5328";
+    foreach ($order_nos as $order_no)  // 예약번호 알림톡 발송 시작
+	{
+			$sql          = "SELECT * FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+			$row          = $connect->query($sql)->getRowArray();
+	
+			$order_idx    = $row['order_idx'];
+			$product_name = $row['product_name'];
+			$order_date   = $row['order_date'];
 
-	if($row['product_code_1'] == "1303") { // 호텔 
-	   $people_cnt   = "룸 ". $row['order_room_cnt'] ."개" ;
-	} else {
-	   $people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
-	}
+			if($row['product_code_1'] == "1303") { // 호텔 
+			   $people_cnt   = "룸 ". $row['order_room_cnt'] ."개" ;
+			} else {
+			   $people_cnt   = $row['people_adult_cnt'] + $row['people_kids_cnt'] + $row['people_baby_cnt'] . "명";
+			}
 
-    $order_link    = "https://thetourlab.com/mypage/reservation_list?procType=2";
+			$order_link    = "https://thetourlab.com/mypage/reservation_list?procType=2";
 
-	if($row['product_code_1'] == "1301") { // 투어 
-       //$order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1302") { // 골프 
-       //$order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/golf/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1303") { // 호텔 
-       //$order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
-       //$order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1320") { // 레스토랑 
-       //$order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1324") { // 차량 . 가이드 
-       //$order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
-	}
-	
-	if($row['product_code_1'] == "1325") { // 스파 
-       //$order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
-       $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
-	   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
-	}
-	
-	$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
-	                       ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
-    $row_d        = $connect->query($sql_d)->getRowArray();
+			if($row['product_code_1'] == "1301") { // 투어 
+			   //$order_link    = "https://thetourlab.com/mypage/tour/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/tour_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1302") { // 골프 
+			   //$order_link    = "https://thetourlab.com/mypage/golf/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/golf_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/golf/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1303") { // 호텔 
+			   //$order_link    = "https://thetourlab.com/mypage/hotel/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/hotel_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1317") { // 쇼ㆍ입장권 
+			   //$order_link    = "https://thetourlab.com/mypage/ticket/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1320") { // 레스토랑 
+			   //$order_link    = "https://thetourlab.com/mypage/restaurant/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1324") { // 차량 . 가이드 
+			   //$order_link    = "https://thetourlab.com/mypage/vehicle/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/guide_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/hotel/". $order_idx;
+			}
+			
+			if($row['product_code_1'] == "1325") { // 스파 
+			   //$order_link    = "https://thetourlab.com/mypage/spa/order_view_item?order_idx=". $order_idx ."&pg=1#!";
+			   $invoice_link  = "https://thetourlab.com/invoice/ticket_01/". $order_idx;
+			   $voucher_link  = "https://thetourlab.com/voucher/ticket/". $order_idx;
+			}
+			
+			$sql_d        = "SELECT AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name
+								   ,AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile ";
+			$row_d        = $connect->query($sql_d)->getRowArray();
 
-    $sql	      = " SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND code_no = '". $row['product_code_1'] ."' ";
-    $row          = $connect->query($sql)->getRowArray();
-	$product_cate = $row['code_name'];
+			$sql	      = " SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND code_no = '". $row['product_code_1'] ."' ";
+			$row          = $connect->query($sql)->getRowArray();
+			$product_cate = $row['code_name'];
+			
+			$order_user_name   = $row_d['order_user_name'];
+			$order_user_mobile = $row_d['order_user_mobile'];
+
+			if($alimCode == "UA_5328") { // 결제완료
+			
+			   $allim_replace = [
+									"#{고객명}"   => $order_user_name,
+									"#{상품명}"   => $product_name,   
+									"#{상품타입}" => $product_cate,
+									"#{예약번호}" => $order_no,
+									"#{예약날짜}" => $order_date,
+									"#{예약자명}" => $order_user_name,
+									"#{예약인원}" => $people_cnt,
+									"phone"       => $order_user_mobile
+								];
+			} 
 	
-	$order_user_name   = $row_d['order_user_name'];
-	$order_user_mobile = $row_d['order_user_mobile'];
-
-    alimTalkSend("UA_5328", $allim_replace, $order_link, $invoice_link, $voucher_link);
-
+			if($alimCode == "UA_5814") { // 결제완료
+			
+			   $allim_replace = [
+									"#{고객명}"   => $order_user_name,
+									"#{상품명}"   => $product_name,   
+									"#{상품타입}" => $product_cate,
+									"#{예약번호}" => $order_no,
+									"#{예약날짜}" => $order_date,
+									"#{예약자명}" => $order_user_name,
+									"phone"       => $order_user_mobile
+								];
+			} 
+	
+			alimTalkSend($alimCode, $allim_replace, $order_link, $invoice_link, $voucher_link);
+			
+    } // 예약번호 알림톡 발송 종료
 	
 }
 
