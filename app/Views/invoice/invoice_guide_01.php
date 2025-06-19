@@ -12,10 +12,10 @@ $setting = homeSetInfo();
 <div id="container_voice">
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
-             <div class="logo_voice only_web">
+            <!-- <div class="logo_voice only_web">
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-            </div>
-            <div class="logo_voice only_mo">
+            </div> -->
+            <div class="logo_voice">
                 <h2 class="tit_top">견적서</h2>
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
