@@ -40,10 +40,8 @@
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </div>
             <div class="logo_voice only_mo">
-                <div class="flex_b_c">
-                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <h2 class="tit_top">견적서</h2>
-                </div>
+                <h2 class="tit_top">견적서</h2>
+                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                     Thai - Registration No 010-5555-096-398<br>
                     Tel: 001-66-(0)2-730-5690, 070-7010-8266
@@ -65,9 +63,9 @@
 					<?php foreach ($result as $row) : ?>
                     <tbody>
                         <tr>
+                            <th>예약날짜</th>
                             <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
-                            <th>예약날짜</th>
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
@@ -92,9 +90,9 @@
                     </colgroup>
 					
 					<?php foreach ($result as $row) : ?>
+                        <th>날짜</th>
                     <tbody>
                         <tr>
-                            <th>날짜</th>
                             <td>
                                   <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
                             </td>
@@ -194,9 +192,9 @@
                 <!-- <table class="invoice_tbl spe">
                     <tbody>
                         <tr>
+                            <td>날짜 및 시간(한국시간)</td>
                             <th style="width: 150px;">
                                 취소규정</th>
-                            <td>날짜 및 시간(한국시간)</td>
                         </tr>
                         <tr>
                             <th style="width: 150px;">무료 취소</th>

@@ -12,8 +12,16 @@ $setting = homeSetInfo();
 <div id="container_voice">
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
-            <div class="logo_voice">
-                <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
+             <div class="logo_voice only_web">
+                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+            </div>
+            <div class="logo_voice only_mo">
+                <h2 class="tit_top">견적서</h2>
+                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                    Thai - Registration No 010-5555-096-398<br>
+                    Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                </p>
             </div>
             <div class="invoice_ttl">
             </div>
