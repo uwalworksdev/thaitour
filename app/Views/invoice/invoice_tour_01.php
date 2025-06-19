@@ -97,14 +97,14 @@ $setting = homeSetInfo();
                             <?php endif;?>
                             <th>미팅 장소</th>
                             <td>
-                                <?php if(!empty($row->start_place)):?>
-                                    <p>픽업장소: <?=$row->start_place?></p>
-                                <?php endif;?>
-                                 <?php if(!empty($row->pickup_place)):?>
-                                    <p>샌딩장소: <?=$row->pickup_place?></p>
+                                <?php if(!empty($row->pickup_place)):?>
+                                    <p>픽업장소: <?=$row->pickup_place?></p>
                                 <?php endif;?>
                                  <?php if(!empty($row->sanding_place)):?>
-                                    <p>종료 후 내리실 곳: <?=$row->sanding_place?></p>
+                                    <p>샌딩장소: <?=$row->sanding_place?></p>
+                                <?php endif;?>
+                                 <?php if(!empty($row->start_place)):?>
+                                    <p>미팅장소: <?=$row->start_place?></p>
                                 <?php endif;?>
                             </td>
                         </tr>
