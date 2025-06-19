@@ -352,6 +352,10 @@ $setting = homeSetInfo();
                             
                         }
 
+                        .btns_download_print{
+                            display:none !important;
+                        }
+
                         table {
                             border-collapse: collapse !important;
                         }
