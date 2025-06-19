@@ -1064,7 +1064,7 @@
         $(".date_form").val('<?=$meeting_date?>');
         $(".date_form").datepicker({
             dateFormat: "yy-mm-dd",
-            showOn: "both",
+            showOn: "focus",
             // buttonImage: "/images/ico/date_ico.png",
             // buttonImageOnly: true,
             minDate: new Date('<?=$meeting_date?>')
