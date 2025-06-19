@@ -97,14 +97,14 @@ $setting = homeSetInfo();
                             <?php endif;?>
                             <th>미팅 장소</th>
                             <td>
-                                <?php if(!empty($row->start_place)):?>
-                                    <p>픽업장소: <?=$row->start_place?></p>
-                                <?php endif;?>
-                                 <?php if(!empty($row->pickup_place)):?>
-                                    <p>샌딩장소: <?=$row->pickup_place?></p>
+                                <?php if(!empty($row->pickup_place)):?>
+                                    <p>픽업장소: <?=$row->pickup_place?></p>
                                 <?php endif;?>
                                  <?php if(!empty($row->sanding_place)):?>
-                                    <p>종료 후 내리실 곳: <?=$row->sanding_place?></p>
+                                    <p>샌딩장소: <?=$row->sanding_place?></p>
+                                <?php endif;?>
+                                 <?php if(!empty($row->start_place)):?>
+                                    <p>미팅장소: <?=$row->start_place?></p>
                                 <?php endif;?>
                             </td>
                         </tr>
@@ -121,7 +121,7 @@ $setting = homeSetInfo();
                     <tbody>
                         <?php if($row->people_adult_cnt > 0): ?>
                         <tr>
-                            <th>1성인 금액</th>
+                            <th>성인 금액</th>
                             <td><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
                             <th>금액</th>
                             <td><?=number_format($row->adult_price_bath) ?> 바트</td>
@@ -130,7 +130,7 @@ $setting = homeSetInfo();
                         <?php endif?>
                         <?php if($row->people_kids_cnt > 0): ?>
                         <tr>
-                            <th>1아동 금액</th>
+                            <th>아동 금액</th>
                             <td><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
                             <th>금액</th>
                             <td><?=number_format($row->kids_price_bath)?> 바트</td>
@@ -138,7 +138,7 @@ $setting = homeSetInfo();
                         <?php endif?>
                          <?php if($row->people_baby_cnt > 0): ?>
                         <tr>
-                            <th>1유아 금액</th>
+                            <th>유아 금액</th>
                             <td><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
                             <th>금액</th>
                             <td><?=number_format($row->baby_price_bath)?> 바트</td>
