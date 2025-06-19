@@ -4195,6 +4195,8 @@ class Product extends BaseController
         $data['product_cnt'] = $this->request->getVar('product_cnt');
         
         $data['ca_depth_idx'] = $this->request->getVar('ca_depth_idx');
+        $data['code_parent_category'] = $this->request->getVar('code_parent_category');
+
         $data['departure_area'] = $this->request->getVar('departure_area');
         $data['destination_area'] = $this->request->getVar('destination_area');
         $data['meeting_date'] = $this->request->getVar('meeting_date');
@@ -4230,6 +4232,7 @@ class Product extends BaseController
                 $cp_idx = $this->request->getPost('cp_idx') ?? 0;
                 $product_cnt = $this->request->getPost('product_cnt') ?? 0;
                 $ca_depth_idx = $this->request->getPost('ca_depth_idx') ?? 0;
+                $code_parent_category = $this->request->getPost('code_parent_category') ?? 0;
                 $departure_area = $this->request->getPost('departure_area') ?? "";
                 $destination_area = $this->request->getPost('destination_area') ?? "";
                 $meeting_date = $this->request->getPost('meeting_date') ?? "";
@@ -4317,6 +4320,7 @@ class Product extends BaseController
                     "ip" => $ipAddress,
 					"device_type" =>  get_device(),
                     "ca_depth_idx" => $ca_depth_idx,
+                    "code_parent_category" => $code_parent_category,
                     "cp_idx" => $cp_idx,
 					"group_no" => $group_no
                 ];

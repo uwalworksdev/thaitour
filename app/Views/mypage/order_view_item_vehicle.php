@@ -91,7 +91,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">여행인원</td>
-						<td col width="15%" class="subject">여행기간</td>
+						<td col width="15%" class="subject">미팅날짜</td>
 						<td col width="30%" class="subject">항공일정</td>
 					</tr>
 					<tr>
@@ -104,17 +104,15 @@ $start_date = $row['start_date'];
 
 						<td class="content">
 							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+								<?= $row["people_adult_cnt"] ?>
+							</span></span> <span>소아: <span>
+								<?= $row["people_kids_cnt"] ?>
+							</span></span> 
 						</td>
 
 						<td class="content">
 							<p>
-								<?= $row['start_date'] . "(" . dowYoil($row['start_date']) . ") ~ " . $row['end_date'] . "(" . dowYoil($row['end_date']) . ")"; ?>
+								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ") ~ " . date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")"; ?>
 								<em>
 									<?= $product_period ?>
 								</em>
@@ -166,21 +164,19 @@ $start_date = $row['start_date'];
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+								<?= $row["people_adult_cnt"] ?>
+							</span></span> <span>소아: <span>
+								<?= $row["people_kids_cnt"] ?>
+							</span></span>
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
-
+						<td class="subject">미팅날짜</td>
 
 						<td class="content">
 							<p>
-								<?= $row['start_date'] . "(" . dowYoil($row['start_date']) . ") ~ " . $row['end_date'] . "(" . dowYoil($row['end_date']) . ")"; ?>
+								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ") ~ " . date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")"; ?>
+
 								<em>
 									<?= $product_period ?>
 								</em>

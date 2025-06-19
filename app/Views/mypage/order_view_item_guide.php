@@ -951,7 +951,7 @@ $start_date = $row['start_date'];
 			</table>
 		</div>
 
-		<div class="invoice_comment">
+		<!-- <div class="invoice_comment">
 			<div class="invoice_comment-top">
 				<div class="invoice_comment-count">
 					<span>댓글</span>
@@ -975,7 +975,7 @@ $start_date = $row['start_date'];
 				// include $_SERVER['DOCUMENT_ROOT'] . "/include/comment_list.php" 
 				?>
 			</div>
-		</div>
+		</div> -->
 
 		<?php
 			// echo view("inc/popup_inc");

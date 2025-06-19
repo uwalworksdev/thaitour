@@ -675,7 +675,7 @@ $deli_types = get_deli_type();
 			</table>
 		</div>
 
-		<div class="invoice_comment">
+		<!-- <div class="invoice_comment">
 			<div class="invoice_comment-top">
 				<div class="invoice_comment-count">
 					<span>댓글</span>
@@ -699,7 +699,7 @@ $deli_types = get_deli_type();
 				// include $_SERVER['DOCUMENT_ROOT'] . "/include/comment_list.php" 
 				?>
 			</div>
-		</div>
+		</div> -->
 
 		<?php
 			// echo view("inc/popup_inc");

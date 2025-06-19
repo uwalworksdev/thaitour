@@ -69,6 +69,7 @@
                 <input type="hidden" name="cp_idx" id="cp_idx" value="<?= $cp_idx ?>">
                 <input type="hidden" name="product_cnt" id="product_cnt" value="<?= $product_cnt ?>">
                 <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="<?= $ca_depth_idx ?>">
+                <input type="hidden" name="code_parent_category" id="code_parent_category" value="<?= $code_parent_category ?>">
                 <input type="hidden" name="departure_area" id="departure_area" value="<?= $departure_area ?>">
                 <input type="hidden" name="destination_area" id="destination_area" value="<?= $destination_area ?>">
                 <input type="hidden" name="meeting_date" id="meeting_date" value="<?= $meeting_date ?>">

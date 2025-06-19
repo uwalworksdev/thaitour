@@ -1819,6 +1819,7 @@
                         <input type="hidden" name="cp_idx" id="cp_idx" value="">
                         <input type="hidden" name="product_cnt" id="product_cnt" value="">
                         <input type="hidden" name="ca_depth_idx" id="ca_depth_idx" value="">
+                        <input type="hidden" name="code_parent_category" id="code_parent_category" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
@@ -2229,6 +2230,7 @@
         let ca_first_idx = $(".cars_category_depth_1 .section_vehicle_2_2__head__tabs__item.active").data("ca_idx");
 
         $("#ca_depth_idx").val(ca_first_idx);
+        $("#code_parent_category").val(code_first);
 
         if (previous_depth == 1) {
             if (code_first == "5403") {
