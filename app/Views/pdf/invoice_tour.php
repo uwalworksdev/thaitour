@@ -309,6 +309,10 @@
             margin-top: 7px !important;
             color: #454545 !important;
         }
+
+        .tit_top {
+            color: red !important;
+        }
         
     </style>
 </head>
@@ -327,24 +331,24 @@
                 <div class="invoice_table">
                     <h2 class="tit_top">예약자정보</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="35%">
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>예약번호</th>
-                                <td><?=$row->order_no?></td>
-                                <th>예약날짜</th>
-                                <td>2023-09-13(수)</td>
+                                <th style="width:20%">예약번호</th>
+                                <td style="width:30%"><?=$row->order_no?></td>
+                                <th style="width:20%">예약날짜</th>
+                                <td style="width:30%">2023-09-13(수)</td>
                             </tr>
                             <tr>
-                                <th>여행사(담당자)</th>
-                                <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
-                                <th>이메일</th>
-                                <td>thaitouradventure@gmail.com</td>
+                                <th style="width:20%">여행사(담당자)</th>
+                                <td style="width:30%">Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                                <th style="width:20%">이메일</th>
+                                <td style="width:30%">thaitouradventure@gmail.com</td>
                             </tr>
                         </tbody>
                     </table>
@@ -352,65 +356,60 @@
                         <h2 class="tit_top">예약내역</h2>
                     </div>
                     <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup>
+                        <!--  style="width:20%" -->
                         <tbody>
                             <tr>
-                                <th>날짜</th>
-                                <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
-                                <th>여행자 이름</th>
-                                <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
+                                <th style="width:20%">날짜</th>
+                                <td style="width:30%"><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                                <th style="width:20%">여행자 이름</th>
+                                <td style="width:30%"><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                             </tr>
                             <tr>
-                                <th>고객 연락처</th>
-                                <td colspan="3"><?=$row->order_user_mobile?></td>
+                                <th style="width:20%">고객 연락처</th>
+                                <td style="width:80%" colspan="3"><?=$row->order_user_mobile?></td>
                             </tr>
                             <tr>
-                                <th>예약상품</th>
-                                <td colspan="3"><?=$row->product_name?></td>
+                                <th style="width:20%">예약상품</th>
+                                <td style="width:80%" colspan="3"><?=$row->product_name?></td>
                             </tr>
                             <tr>
-                                <th>시작시간</th>
-                                <td>08:00~16:30</td>
-                                <th>총인원</th>
-                                <td>성인 : 8명</td>
+                                <th style="width:20%">시작시간</th>
+                                <td style="width:30%">08:00~16:30</td>
+                                <th style="width:20%">총인원</th>
+                                <td style="width:30%">성인 : 8명</td>
                             </tr>
                             <tr>
-                                <th>픽업포함여부</th>
-                                <td>불포함</td>
-                                <th>미팅 장소</th>
-                                <td>개별이동</td>
+                                <th style="width:20%">픽업포함여부</th>
+                                <td style="width:30%">불포함</td>
+                                <th style="width:20%">미팅 장소</th>
+                                <td style="width:30%">개별이동</td>
                             </tr>
                         </tbody>
                     </table>
-                    <h2 class="tit_top">금액내역</h2>
+                    <h2 class="tit_top" style="color: red;">금액내역</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="35%">
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>1인당 금액</th>
-                                <td colspan="3">성인400바트</td>
+                                <th style="width:20%">1인당 금액</th>
+                                <td style="width:80%" colspan="3">성인400바트</td>
                                 
                             </tr>
                             <tr>
-                                <th>금액</th>
-                                <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
+                                <th style="width:20%">금액</th>
+                                <td style="width:80%" colspan = "3"><?=number_format($row->real_price_bath)?></td>
                                 
                             </tr>
                             <tr>
-                                <th>추가내역</th>
-                                <td>0바트</td>
-                                <th>총금액</th>
-                                <td><?=number_format($row->real_price_bath)?>바트</td>
+                                <th style="width:20%">추가내역</th>
+                                <td style="width:30%">0바트</td>
+                                <th style="width:20%">총금액</th>
+                                <td style="width:30%"><?=number_format($row->real_price_bath)?>바트</td>
                             </tr>
                         
                         </tbody>
