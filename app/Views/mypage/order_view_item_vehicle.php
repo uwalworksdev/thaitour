@@ -61,8 +61,6 @@ $start_date = $row['start_date'];
 	/* .mypage_container .content .details_table tbody tr .ttl span {
 		padding-right: 6.3846rem;
 	} */
-
-
 	
 </style>
 
@@ -92,7 +90,7 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">여행인원</td>
 						<td col width="15%" class="subject">미팅날짜</td>
-						<td col width="30%" class="subject">항공일정</td>
+						<td col width="30%" class="subject">출발지/도착지</td>
 					</tr>
 					<tr>
 
@@ -129,20 +127,7 @@ $start_date = $row['start_date'];
 						</td>
 						<td class="content">
 							<p>
-								<span>한국출발
-									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $away_arrive_date . "(" . dowYoil($away_arrive_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= $away_depart_date . "(" . dowYoil($away_depart_date) . ")" ?>
-								</span>
-								<span>한국도착
-									<?= $home_arrive_date . "(" . dowYoil($home_arrive_date) . ")" ?>
-								</span>
+								<span><?= $departure_name ?></span> / <span><?= $destination_name ?></span>
 							</p>
 						</td>
 					</tr>
@@ -201,30 +186,12 @@ $start_date = $row['start_date'];
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">일정</td>
-
+						<td class="subject">출발지/도착지</td>
 
 						<td class="content">
-							<p>
-								<span>한국출발
-									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $away_arrive_date . "(" . dowYoil($away_arrive_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= $away_depart_date . "(" . dowYoil($away_depart_date) . ")" ?>
-								</span>
-								<span>한국도착
-									<?= $home_arrive_date . "(" . dowYoil($home_arrive_date) . ")" ?>
-								</span>
-							</p>
+							<span><?= $departure_name ?></span> / <span><?= $destination_name ?></span>
 						</td>
 					</tr>
-					<tr>
-
 
 				</tbody>
 			</table>
@@ -582,17 +549,9 @@ $start_date = $row['start_date'];
 							<?= $row_d['order_addr2'] ?>
 						</td>
 
-
-
-
 				</tbody>
 			</table>
 		</div>
-
-
-
-
-
 
 		<!-- 예약자 정보 모바일 -->
 
@@ -646,7 +605,6 @@ $start_date = $row['start_date'];
 				</tbody>
 			</table>
 		</div>
-
 
 		<?php
 		$seq = 0;
@@ -945,7 +903,7 @@ $start_date = $row['start_date'];
 		}
 		?>
 
-		<div class="invoice_table">
+		<!-- <div class="invoice_table">
 			<h2>요청사항</h2>
 			<table>
 				<colgroup>
@@ -961,9 +919,9 @@ $start_date = $row['start_date'];
 					</tr>
 				</tbody>
 			</table>
-		</div>
+		</div> -->
 
-		<div class="invoice_comment">
+		<!-- <div class="invoice_comment">
 			<div class="invoice_comment-top">
 				<div class="invoice_comment-count">
 					<span>댓글</span>
@@ -987,11 +945,7 @@ $start_date = $row['start_date'];
 				// include $_SERVER['DOCUMENT_ROOT'] . "/include/comment_list.php" 
 				?>
 			</div>
-		</div>
-
-		<?php
-			// echo view("inc/popup_inc");
-		?>
+		</div> -->
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>

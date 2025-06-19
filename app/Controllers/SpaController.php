@@ -289,13 +289,23 @@ class SpaController extends BaseController
 			for($i=0;$i<count($feeVal);$i++)
             {
 				    $_val         = explode(":", $feeVal[$i]);
-                    if($_val[0] == "adults") $group = "성인";
-                    if($_val[0] == "kids")   $group = "아동";
-                    if($_val[0] == "option") $group = "옵션";
+                    if($_val[0] == "adults") {
+                        $group = "성인";
+                        $group_en = "Adults";
+                    }
+                    if($_val[0] == "kids") {
+                         $group = "아동";
+                         $group_en = "Kids";
+                    };
+                    if($_val[0] == "option") {
+                        $group = "옵션";
+                        $group_en = "Options";
+                    };
 					$option_type  = "spa";
 					$order_idx	  =  $orderIdx;
 					$product_idx  =  $productIdx;
 					$option_name  =  $group .": ". $_val[3];
+                    $option_name_eng  =  $group_en .": ". $_val[6];
 					$option_tot   =  $_val[5] * $_val[2];
 					$option_cnt   =  $_val[5];
 					$option_date  =  Time::now('Asia/Seoul', 'en_US');
@@ -307,6 +317,7 @@ class SpaController extends BaseController
 						'order_idx'    => $order_idx,
 						'product_idx'  => $product_idx,
 						'option_name'  => $option_name,
+                        'option_name_eng'  => $option_name_eng,
 						'option_tot'   => $option_tot,
 						'option_cnt'   => $option_cnt,
 						'option_date'  => $option_date,
@@ -675,7 +686,7 @@ class SpaController extends BaseController
 
         $builder = $db->table('tbl_spas_price p');
 
-        $builder->select('p.*, s.spas_subject, s.is_explain, s.spas_explain, si.info_name');
+        $builder->select('p.*, s.spas_subject, s.spas_subject_eng, s.is_explain, s.spas_explain, si.info_name');
         $builder->join('tbl_product_spas s', 'p.spas_idx = s.spas_idx', 'left');
         $builder->join('tbl_product_spas_info si', 'si.info_idx = s.info_idx', 'left');
         $builder->where("p.product_idx =", $product_idx);

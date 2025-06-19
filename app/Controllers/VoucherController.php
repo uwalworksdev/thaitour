@@ -768,6 +768,22 @@ class VoucherController extends BaseController
 
 		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
 
+
+		$builder = $db->table('tbl_order_option');
+				$builder->select("option_name, option_name_eng, option_tot, option_cnt, option_date, option_qty, option_price");
+				$query = $builder->where('order_idx', $result->order_idx)->get();
+				$optionResult = $query->getResult();
+
+				$option = '';
+				foreach($optionResult as $res){
+					$option .= $res->option_name_eng . " x " . $res->option_cnt . " <br/>";
+				}
+
+        $builder1 = $db->table('tbl_policy_info');
+		$policy = $builder1->whereIn('p_idx', [46])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -808,7 +824,7 @@ class VoucherController extends BaseController
 			if(!empty($result->order_people_new)){
 				$order_people = $result->order_people_new;
 			}else{
-				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s) / " . ($result->people_kids_cnt ?? 0) . " Child(s)"; 
 			}
 
 			if(!empty($result->time_line_en)){
@@ -820,8 +836,9 @@ class VoucherController extends BaseController
 			if(!empty($result->tour_type_en)){
 				$tour_type = $result->tour_type_en;
 			}else{
-				$tour_type = $tour_prod_name;
+				$tour_type = $option;
 			}
+
 
 			if(!empty($result->start_place_en)){
 				$start_place = $result->start_place_en;
@@ -856,20 +873,20 @@ class VoucherController extends BaseController
 			}
 		}
 
-		$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
-				$query = $builder->where('order_idx', $result->order_idx)->get();
-				$optionResult = $query->getResult();
+		// $builder = $db->table('tbl_order_option');
+		// 		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+		// 		$query = $builder->where('order_idx', $result->order_idx)->get();
+		// 		$optionResult = $query->getResult();
 
-				$option = '';
-				foreach($optionResult as $res){
-					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
-				}
+		// 		$option = '';
+		// 		foreach($optionResult as $res){
+		// 			$option .= $res->option_name . " x " . $res->option_cnt . "; ";
+		// 		}
 
-        $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [46])
-							->orderBy('p_idx', 'asc')
-							->get()->getResultArray();
+        // $builder1 = $db->table('tbl_policy_info');
+		// $policy = $builder1->whereIn('p_idx', [46])
+		// 					->orderBy('p_idx', 'asc')
+		// 					->get()->getResultArray();
 
         return view("voucher/voucher_ticket", [
             'policy_1' => $policy[0],
@@ -887,7 +904,7 @@ class VoucherController extends BaseController
 			'pick_time' => $pick_time,
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
-			'tour_type' => $option,
+			'tour_type' => $tour_type,
         ]);
     }
 

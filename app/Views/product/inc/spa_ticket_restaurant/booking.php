@@ -31,6 +31,8 @@
         <div class="body_inner">
             <form action="#" class="formOrder" id="formOrder" method="post" >
 			<input type="hidden" name="order_status" id="order_status" value="W" >
+
+            
 			<input type="hidden" name="feeVal" id="feeVal" value="<?=$_SESSION['data_cart']['feeVal']?>" >
             <input type="hidden" name="time_line" id="time_line" value="<?= $data["time_line"] ?>">
                 <div class="container-card">

@@ -108,8 +108,6 @@ $setting = homeSetInfo();
                 <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
                         <col width="*">
                     </colgroup>
                     <tbody>
@@ -120,12 +118,12 @@ $setting = homeSetInfo();
 							  { 
 						?>
                         <tr>
-                            <th>1인당 금액</th>
-                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>원 x <?=$option->option_qty?> 명</td>
+                            <th>인당 금액</th>
+                            <td ><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>원 x <?=$option->option_qty?> 명</td>
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($option->option_tot)?>원</td>
+                            <td ><?=number_format($option->option_tot)?>원</td>
                         </tr>
                         <?php 
 							  } 
@@ -135,7 +133,7 @@ $setting = homeSetInfo();
                             <!-- <th>추가내역</th>
                             <td>0바트</td> -->
                             <th>총금액</th>
-                            <td colspan="3"><?= number_format($row->order_price) ?>원 (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</td>
+                            <td ><?= number_format($row->order_price) ?>원 (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -332,8 +330,11 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
-                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                        .btns_download_print{
                             display: none !important;
+                        }
+
+                        .btns_download_print, .table_wrapper, .inquiry_qna {
                         }
 
                         table {
