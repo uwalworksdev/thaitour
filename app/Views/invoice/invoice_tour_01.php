@@ -185,7 +185,7 @@ $setting = homeSetInfo();
                 </div>
                 <table class="invoice_tbl spe">
                     <colgroup>
-                        <col width="250px">
+                        <col width="150px">
                         <col width="*">
                     </colgroup>
                     <tbody>
