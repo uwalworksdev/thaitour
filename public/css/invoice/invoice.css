@@ -1037,13 +1037,13 @@ input[type="text"] {
 
         .golf_invoice .logo_voice h2 {
             font-size: 3.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: -1rem;
         }
 
         
         .golf_invoice .logo_voice .addr {
             font-size: 2.2rem;
-            margin-top: 1rem;
+            margin-top: -1rem;
             color: #616161;
         }
 
