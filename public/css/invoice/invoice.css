@@ -1036,8 +1036,7 @@ input[type="text"] {
         }
 
         .golf_invoice .logo_voice h2 {
-            font-size: 3.4rem;
-            margin-bottom: -1rem;
+            font-size: 3.1rem;
         }
 
         
@@ -1105,7 +1104,8 @@ input[type="text"] {
         }
 
         .golf_invoice .invoice_table .invoice_tbl.re_custom {
-            /* border-top: 1px solid #dbdbdb; */
+            border-top: 1px solid #dbdbdb;
+            margin-bottom: 4rem;
         }
 
         .golf_invoice .invoice_table .invoice_tbl colgroup {
@@ -1146,13 +1146,12 @@ input[type="text"] {
 
         .golf_invoice .invoice_table .invoice_tbl.re_custom tr th {
             width: 30%;
-            /* border-bottom: 1px solid #dbdbdb; */
+            border-bottom: 1px solid #dbdbdb;
         }
 
         .golf_invoice .invoice_table .invoice_tbl.re_custom tr td {
             width: 70%;
-            /* border-bottom: 1px solid #dbdbdb; */
-            background-color: #f4f4f4;
+            border-bottom: 1px solid #dbdbdb;
         }
 
         .golf_invoice .invoice_table .invoice_tbl tr td {
