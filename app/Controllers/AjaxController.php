@@ -2368,8 +2368,8 @@ public function get_golf_option() {
  	            '이메일'      => $row->user_email,
  	            '전화번호'     => $row->user_mobile,
 				'영문호텔명'     => $row->product_name_en,	
-				'영문호텔주소'   => 'dat',
-				'호텔전화번호'   => 'dat1',
+				'영문호텔주소'   => $row->stay_address,
+				'호텔전화번호'   => $row->user_mobile,
 				'고객영문이름'   => $user_name_en,
 				'국가약자'   => '',
 				'휴대전화번호'   => $user_mobile,
@@ -2635,12 +2635,8 @@ public function get_golf_option() {
 
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
-            
-			if($order_status == "X") {
-               $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now(), confirmed_datetime = now() WHERE order_idx = '". $order_idx ."'"; 
-			} else { 
-               $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
-			}   
+
+            $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
 			$result   = $db->query($sql);
 			
 			if($result) {

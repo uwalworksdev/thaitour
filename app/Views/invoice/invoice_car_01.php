@@ -104,7 +104,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>금액</th>
-                            <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
+                            <td colspan="3"><?=number_format($row->real_price_bath)?></td>
                             
                         </tr>
                         <tr>
