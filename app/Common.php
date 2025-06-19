@@ -2185,6 +2185,20 @@ function alimTalk_deposit_sendx($payment_idx)
 			$order_user_name   = $row_d['order_user_name'];
 			$order_user_mobile = $row_d['order_user_mobile'];
 
+			if($alimCode == "UA_5328") { // 결제완료
+			
+			   $allim_replace = [
+									"#{고객명}"   => $order_user_name,
+									"#{상품명}"   => $product_name,   
+									"#{상품타입}" => $product_cate,
+									"#{예약번호}" => $order_no,
+									"#{예약날짜}" => $order_date,
+									"#{예약자명}" => $order_user_name,
+									"#{예약인원}" => $people_cnt,
+									"phone"       => $order_user_mobile
+								];
+			} 
+	
 			alimTalkSend("UA_5328", $allim_replace, $order_link, $invoice_link, $voucher_link);
 			
     } // 예약번호 알림톡 발송 종료
