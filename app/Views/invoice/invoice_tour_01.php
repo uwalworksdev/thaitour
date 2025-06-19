@@ -183,7 +183,7 @@ $setting = homeSetInfo();
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span><?=number_format($row->total_won)?>원</span> (<?=number_format($row->total_bath)?>바트)</p>
                 </div>
-                <table class="invoice_tbl spe">
+                <table class="invoice_tbl re_custom ">
                     <colgroup>
                         <col width="150px">
                         <col width="*">
@@ -191,7 +191,7 @@ $setting = homeSetInfo();
                     <tbody>
                         
                         <tr>
-                            <th>유의사항</th>
+                            <th class="text-center" style="">유의사항</th>
                             <td><?=viewSQ($notice_contents)?></td>
                         </tr>
                     </tbody>
@@ -204,7 +204,7 @@ $setting = homeSetInfo();
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
-                <div class="table_wrapper invoice_table">
+                <div class="table_wrapper invoice_table table_policy">
                     <?=viewSQ($policy_1["policy_contents"])?>
 
                     <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
@@ -381,6 +381,10 @@ $setting = homeSetInfo();
                         .btns_download_print{
                             display:none !important;
                         }
+                        
+                        .table_policy {
+                            margin-top: 20px;
+                        }
 
                         table {
                             border-collapse: collapse !important;
@@ -397,6 +401,11 @@ $setting = homeSetInfo();
                             display: flex !important;
                             justify-content: flex-end !important;
                             align-items: center !important;
+                        }
+
+                        .text-center{
+                           vertical-align: middle !important;
+                           padding: 100px 10px 0!important;
                         }
 
                         .ml-20 {
