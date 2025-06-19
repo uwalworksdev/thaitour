@@ -261,7 +261,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -330,37 +330,30 @@
                 </div>
                 <div class="invoice_table">
                     <h2 class="tit_top">예약자정보</h2>
-                    <table class="invoice_tbl">
-                        <!-- <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup> -->
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>예약번호</th>
-                                <td><?=$row->order_no?></td>
-                                <th>예약날짜</th>
-                                <td><?= isset($row->order_r_date) ? date('Y-m-d', strtotime($row->order_r_date)) : "" ?></td>
+                                <th style="width:20%">예약번호</th>
+                                <td style="width:30%"><?=$row->order_no?></td>
+                                <th style="width:20%">예약날짜</th>
+                                <td style="width:30%"><?= isset($row->order_r_date) ? date('Y-m-d', strtotime($row->order_r_date)) : "" ?></td>
                             </tr>
                             <tr>
-                                <th>여행사(담당자)</th>
-                                <td><?=$row->order_user_name?></td>
-                                <th>이메일</th>
-                                <td><?=$row->order_user_email?></td>
+                                <th style="width:20%">여행사(담당자)</th>
+                                <td style="width:30%"><?=$row->order_user_name?></td>
+                                <th style="width:20%">이메일</th>
+                                <td style="width:30%"><?=$row->order_user_email?></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">예약내역</h2>
                     </div>
-                    <table class="invoice_tbl">
-                        <!--  style="width:20%" -->
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
                                 <th style="width:20%">날짜</th>
-                                <td style="width:30%"><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                                <td style="width:30%"><?=$row->order_day?></td>
                                 <th style="width:20%">여행자 이름</th>
                                 <td style="width:30%"><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                             </tr>
@@ -373,28 +366,28 @@
                                 <td style="width:80%" colspan="3"><?=$row->product_name?></td>
                             </tr>
                             <tr>
-                                <th>시작시간</th>
-                                <td><?=$row->time_line ?? ""?></td>
-                                <th>총인원</th>
-                                <td>
+                                <th  style="width:20%">시작시간</th>
+                                <td style="width:30%"><?=$row->time_line ?? ""?></td>
+                                <th  style="width:20%">총인원</th>
+                                <td style="width:30%">
                                     <span style="margin-right: 10px">성인 : <?=$row->people_adult_cnt ?? 0?>명;</span>
                                     <span style="margin-right: 10px">아동 : <?=$row->people_kids_cnt ?? 0?>명;</span>
                                     <span style="margin-right: 10px">유아 : <?=$row->people_baby_cnt ?? 0?>명;</span>
                                 </td>
                             </tr>
                             <tr>
-                                <th>픽업포함여부</th>
+                                <th style="width:20%">픽업포함여부</th>
                                 <?php
                                     $have_data = true;
                                     if(empty($row->pickup_place) && empty($row->sanding_place) && empty($row->start_place)) $have_data = false;
                                 ?>
                                 <?php if(!$have_data):?>
-                                    <td>불포함</td>
+                                    <td style="width:30%">불포함</td>
                                 <?php else :?>
-                                    <td>포함</td>
+                                    <td style="width:30%">포함</td>
                                 <?php endif;?>
-                                <th>미팅 장소</th>
-                                <td>
+                                <th style="width:20%">미팅 장소</th>
+                                <td style="width:30%">
                                     <?php if(!empty($row->pickup_place)):?>
                                     <p>픽업장소: <?=$row->pickup_place?></p>
                                     <?php endif;?>
@@ -409,11 +402,11 @@
                         </tbody>
                     </table>
                     <h2 class="tit_top" style="color: red;">금액내역</h2>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <!-- <colgroup>
-                            <col width="150px">
+                            <col width=20%">
                             <col width="35%">
-                            <col width="150px">
+                            <col width=20%">
                             <col width="*">
                         </colgroup> -->
                         <tbody>
@@ -435,27 +428,27 @@
                             </tr> -->
                             <?php if($row->people_adult_cnt > 0): ?>
                         <tr>
-                            <th>성인 금액</th>
-                            <td><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
+                            <th style="width:20%">성인 금액</th>
+                            <td style="width:30%"><?= number_format($row->adult_price_bath / $row->people_adult_cnt)?> 바트x <?=$row->people_adult_cnt?></td>
                             <th>금액</th>
-                            <td><?=number_format($row->adult_price_bath) ?> 바트</td>
+                            <td style="width:30%"><?=number_format($row->adult_price_bath) ?> 바트</td>
                             
                         </tr>
                         <?php endif?>
                         <?php if($row->people_kids_cnt > 0): ?>
                         <tr>
-                            <th>아동 금액</th>
-                            <td><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
-                            <th>금액</th>
-                            <td><?=number_format($row->kids_price_bath)?> 바트</td>
+                            <th style="width:20%">아동 금액</th>
+                            <td style="width:30%"><?= number_format($row->kids_price_bath / $row->people_kids_cnt)?> 바트 x <?=$row->people_kids_cnt?></td>
+                            <th style="width:20%">금액</th>
+                            <td style="width:30%"><?=number_format($row->kids_price_bath)?> 바트</td>
                         </tr>
                         <?php endif?>
                          <?php if($row->people_baby_cnt > 0): ?>
                         <tr>
-                            <th>유아 금액</th>
-                            <td><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
-                            <th>금액</th>
-                            <td><?=number_format($row->baby_price_bath)?> 바트</td>
+                            <th style="width:20%">유아 금액</th>
+                            <td style="width:30%"><?= number_format($row->baby_price_bath / $row->people_baby_cnt)?> 바트 x <?=$row->people_baby_cnt?></td>
+                            <th style="width:20%">금액</th>
+                            <td style="width:30%"><?=number_format($row->baby_price_bath)?> 바트</td>
                         </tr>
                         <?php endif?>
                         
@@ -465,52 +458,81 @@
                         ?>
                         <tr>
                            
-                                <th >옵션</th>
-                                <td>
+                                <th style="width:20%">옵션</th>
+                                <td style="width:30%">
                                     <?php foreach($row->options as $index => $option):
-                                        $option_m =  $option->option_price * $option->option_cnt;
+                                        $option_m =  $option->option_tot * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p>
+                                    <p><?=$option->option_name?>: <?=round(convertToBath($option->option_tot))?>바트 x <?=$option->option_cnt?></p>
                                     <?php endforeach;?>
                                     
                                 </td>
-                                <th>금액</th>
-                                <td><?=$total_option?>바트</td>
+                                <th style="width:20%">금액</th>
+                                <td style="width:30%"><?=round(convertToBath($total_option))?>바트</td>
                         </tr>
                         <?php endif;?>
+                        <?php
+                            $total_bath = round($row->total_bath + convertToBath($total_option));
+                            $total_won = convertToWon($total_bath);
+                        ?>
                         <tr>
-                            <th>총금액</th>
-                            <td colspan="3"><?=number_format($row->total_bath)?>바트</td>
+                            <th style="width:20%">총금액</th>
+                            <td style="width:80%" colspan="3"><?=number_format($total_bath)?>바트</td>
                         </tr>
+
+                        
                         
                         </tbody>
                     </table>
                     <div class="invoice_golf_total flex_e_c">
-                        <p>총 견적서 금액 : <span><?=number_format($row->total_won)?>원</span> (<?=number_format($row->total_bath)?>바트)</p>
+                        <p>총 견적서 금액 : <span><?=number_format($total_won)?>원</span> (<?=number_format($total_bath)?>바트)</p>
                     </div>
-                    <table class="invoice_tbl spe">
-                        <colgroup>
-                            <col width="250px">
-                            <col width="*">
-                        </colgroup>
+                    <table class="invoice_tbl spe" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                             <tr>
-                                <th>중요안내</th>
-                                <td><?=viewSQ($notice_contents)?></td>
+                                <th style="width:20%">중요안내</th>
+                                <td style="width:80%"><?=viewSQ($notice_contents)?></td>
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                        <tr>
-                            <td style="width: 20px; vertical-align: top;">
-                                <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                            </td>
-                            <td style="padding-left: 5px;">
-                                <?=viewSQ($cancle_contents)?>
-                            </td>
-                        </tr>
-                    </table> -->
+
+                    <?php if(!empty($cancle_contents)):?>
+                    <table class="invoice_tbl spe">
+                        <tbody>
+                            <tr>
+                                <td><?=viewSQ($cancle_contents)?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <?php endif; ?>
+                    <?php if(!empty($policy_1["policy_contents"])):?>
+                     <table class="invoice_tbl spe">
+                        <tbody>
+                            <tr>
+                                <td><?=viewSQ($policy_1["policy_contents"])?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <?php endif; ?>
+
+                    
+                </div>
+                <div class="inquiry_qna">
+                    <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                    <div class="inquiry_info">
+                        <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                            (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                            번호만 누르면 됩니다. 
+                            <br>
+                            이메일 : <?= $setting['qna_email']?>
+                            <br>
+                            주소 : </p>
+                        <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                    </div>
+                    <div class="note_qna">
+                        <?=nl2br($setting['desc_cont'])?>
+                    </div>
                 </div>
             </div>
         </section>
