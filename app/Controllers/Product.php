@@ -4332,8 +4332,6 @@ class Product extends BaseController
                     $this->db->query($sql_alarm);
                     // END
 
-
-
                     $order_no = $this->orderModel->makeOrderNo();
                     $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 

@@ -112,7 +112,15 @@ $start_date = $row['start_date'];
 
 						<td class="content">
 							<p>
-								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ") ~ " . date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")"; ?>
+								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ")"  ?>
+								<?php
+									if($code_parent_category == "5403"){
+								?>
+									~
+									<?= date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")";?>
+								<?php
+									}
+								?>
 								<em>
 									<?= $product_period ?>
 								</em>
