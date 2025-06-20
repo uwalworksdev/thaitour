@@ -535,23 +535,23 @@ $start_date = $row['start_date'];
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 
 
@@ -588,7 +588,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 					</tr>
 
@@ -596,21 +596,21 @@ $start_date = $row['start_date'];
 						<td class="subject">생년월일</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">휴대번호</td>
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">이메일</td>
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $local_phone ?>
 						</td>
 					</tr>
 
