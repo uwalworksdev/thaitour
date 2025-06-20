@@ -331,7 +331,7 @@
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><span class="textTotalPrice lastPrice"><?= number_format($total_price_product) ?></span> 원</span>
+                                <span><span class="textTotalPrice lastPrice"><?= number_format($inital_price) ?></span> 원</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
