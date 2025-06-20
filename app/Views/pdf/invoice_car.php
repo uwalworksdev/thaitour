@@ -777,7 +777,9 @@
                         <tbody>
                             <tr>
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;"><img style="opacity: 0.7;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
+                                    <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
+                                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+                                    <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">결제방법</span></p>
                                 </td>
                             </tr>
                             <tr>
