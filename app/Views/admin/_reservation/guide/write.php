@@ -173,17 +173,17 @@
 
                                 <tr>
                                     <th>주문일</th>
-                                    <td>
+                                    <td colspan="3">
                                         <?= $order_r_date ?>
                                     </td>
-                                    <th>예약기능여부</th>
+                                    <!-- <th>예약기능여부</th>
                                     <td>
                                         <?php foreach ($sup_options as $item): ?>
                                             <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
                                                 - <?= $item['s_name'] ?>
                                             </p>
                                         <?php endforeach; ?>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
                                 <tr>
