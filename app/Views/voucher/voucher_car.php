@@ -1,6 +1,6 @@
 <?php
-helper('setting_helper');
-$setting = homeSetInfo();
+    helper('setting_helper');
+    $setting = homeSetInfo();
 ?>
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
@@ -95,7 +95,15 @@ $setting = homeSetInfo();
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p><?=$order_date?></p>
+                                        <?= date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")"  ?>
+                                        <?php
+                                            if($result->code_parent_category == "5403"){
+                                        ?>
+                                            ~
+                                            <?= date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";?>
+                                        <?php
+                                            }
+                                        ?>
                                         <?php
                                             if($type == "admin"){
                                         ?>    

@@ -15,7 +15,8 @@ class PdfController extends BaseController
     private $CodeModel;
     private $orderOptionModel;
     private $tourProducts;
-
+	private $ordersCars;
+    private $carsCategory;
     public function __construct() {
         $this->db           = db_connect();
         $this->productModel = model("ProductModel");
@@ -23,6 +24,8 @@ class PdfController extends BaseController
         $this->CodeModel    = model("Code");
         $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
+		$this->ordersCars = model("OrdersCarsModel");
+        $this->carsCategory = model("CarsCategory");
     }
 	
     public function generateQuotation()
@@ -455,10 +458,18 @@ class PdfController extends BaseController
         $result = $query->getRowArray();
         $cancle_contents = $result["policy_contents"];
 
+		$order_cars_detail = $this->ordersCars->getByOrder($order_idx);
+
+		$departure_name = $this->carsCategory->getById($firstRow->departure_area)["code_name"];
+		$destination_name = $this->carsCategory->getById($firstRow->destination_area)["code_name"];
+
 		$html = view('pdf/invoice_car', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+			'order_cars_detail' => $order_cars_detail,
+			'departure_name' => $departure_name,
+			'destination_name' => $destination_name,
         ]);
         
 

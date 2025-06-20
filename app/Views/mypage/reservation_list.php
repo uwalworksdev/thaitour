@@ -1000,7 +1000,7 @@ $(document).on('click', '.info_voucher', function () {
     
     if(gubun == "hotel")  url = "/voucher/hotel/"+idx; 
     if(gubun == "tour")   url = "/voucher/tour/"+idx; 
-    if(gubun == "spa")    url = "/voucher/ticket/"+idx; 
+    if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")    url = "/voucher/ticket/"+idx; 
     if(gubun == "golf")   url = "/voucher/golf/"+idx; 
     if(gubun == "vehicle")    url = "/voucher/car/"+idx; 
 
