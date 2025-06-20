@@ -530,7 +530,7 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_birth_date'] ?>
+							<?= $order_birth_date ?>
 						</td>
 
 						<td class="content">
@@ -577,7 +577,7 @@ $deli_types = get_deli_type();
 						<td class="subject">생년월일</td>
 
 						<td class="content">
-							<?= $row_d['order_birth_date'] ?>
+							<?= $order_birth_date ?>
 						</td>
 					</tr>
 
