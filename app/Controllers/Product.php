@@ -3273,13 +3273,35 @@ class Product extends BaseController
                                 LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
 
 			    $row = $this->db->query($sql)->getRow();
-                
+                $product_code_1 = $row->product_code_1;
+                $product_code_2 = $row->product_code_2;
+                $count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+                if($product_code_1 == '1303') {
+                    $product_type = '호텔';
+                } else if ($product_code_1 == '1302') {
+                    $product_type = '골프';
+                } else if ($product_code_1 == '1301') {
+                    $product_type = '투어';
+                } else if ($product_code_1 == '1325') {
+                    $product_type = '스파';
+                } else if ($product_code_1 == '1317') {
+                    $product_type = '쇼ㆍ입장권';
+                } else if ($product_code_1 == '1320') {
+                    $product_type = '레스토랑';
+                } else if ($product_code_2 == '132404') {
+                    $product_type = '차량';
+                } else if ($product_code_2 == '132403') {
+                    $product_type = '가이드';
+                }
 				$code = "A14";
 				$_tmp_fir_array = [
 					'RECEIVE_NAME'=> $row->user_name,
 					'PROD_NAME'   => $row->product_name,
 					'ORDER_NO'    => $row->order_no,
-					'ORDER_PRICE' => number_format($row->order_price),
+                    'PROD_TYPE'   => $product_type,
+                    'ORDER_DATE'   => substr($row->order_r_date,0,10),
+                    'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $row->user_email, $_tmp_fir_array);
