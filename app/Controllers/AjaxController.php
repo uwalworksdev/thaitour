@@ -2682,7 +2682,7 @@ public function get_golf_option() {
 			$sql_cnt = "SELECT COUNT(*) AS cnt FROM tbl_order_option WHERE order_idx = '". $order_idx ."'";
 			$row_cnt = $db->query($sql_cnt)->getRow();
 
-			$count = $row_cnt['cnt'];
+			$count = $row_cnt->cnt;
 
 			// CREATE ALARM
 			 $m_idx = $row->m_idx;
@@ -2790,7 +2790,7 @@ public function get_golf_option() {
 					'PROD_TYPE'   => $product_type,
 					'ORDER_DATE'   => substr($row->order_r_date,0,10),
 					'ORDER_NAME'   => $row->user_name,
-					'ORDER_NUM_PEOPLE'   => $count,
+					'ORDER_NUM_PEOPLE' => $count,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
