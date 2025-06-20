@@ -262,7 +262,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -321,7 +321,7 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 164px;">
             </div>
             <div class="invoice_ttl">
             </div>
@@ -756,9 +756,9 @@
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
-                        <td style="width: 20px; vertical-align: top;">
+                        <!-- <td style="width: 20px; vertical-align: top;">
                             <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                        </td>
+                        </td> -->
                         <td style="padding-left: 5px;">
                             <?=viewSQ($cancle_contents)?>
                         </td>
