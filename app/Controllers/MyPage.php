@@ -683,16 +683,32 @@ public function reservationList() {
 
         $start_date = $row['start_date'];
 
-        $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
-                        , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),  '$private_key') AS order_user_phone 
-                        , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		'$private_key') AS local_phone 
-                        , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
-                        , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
-                        , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
+        $order_user_name         = $row['order_user_name'];
+        $order_user_email        = $row['order_user_email'];
+        $order_user_first_name   = $row['order_user_first_name_en'];
+        $order_user_last_name    = $row['order_user_last_name_en'];
+        $order_user_mobile       = $row['order_user_mobile'];
+        $order_user_phone        = $row['order_user_phone'];
+        $local_phone             = $row['local_phone'];
+        $order_zip               = $row['order_zip'];
+        $order_addr1             = $row['order_addr1'];
+        $order_addr2             = $row['order_addr2'];
+        $order_birth_date        = $row['order_birth_date'];
+
+        $sql_d = "
+            SELECT  
+                AES_DECRYPT(UNHEX('$order_user_name'), '$private_key') AS order_user_name,
+                AES_DECRYPT(UNHEX('$order_user_email'), '$private_key') AS order_user_email,
+                AES_DECRYPT(UNHEX('$order_user_first_name'), '$private_key') AS order_user_first_name_en,
+                AES_DECRYPT(UNHEX('$order_user_last_name'), '$private_key') AS order_user_last_name_en,
+                AES_DECRYPT(UNHEX('$order_user_mobile'), '$private_key') AS order_user_mobile,
+                AES_DECRYPT(UNHEX('$order_user_phone'), '$private_key') AS order_user_phone,
+                AES_DECRYPT(UNHEX('$local_phone'), '$private_key') AS local_phone,
+                AES_DECRYPT(UNHEX('$order_zip'), '$private_key') AS order_zip,
+                AES_DECRYPT(UNHEX('$order_addr1'), '$private_key') AS order_addr1,
+                AES_DECRYPT(UNHEX('$order_addr2'), '$private_key') AS order_addr2,
+                '$order_birth_date' AS order_birth_date
+        ";
         $row_d = $connect->query($sql_d)->getRowArray();
 
         $data['row'] = $row;
