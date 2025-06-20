@@ -983,9 +983,8 @@ $(document).on('click', '.info_estimate', function () {
 		
 		if(gubun == "hotel")  url = "/invoice/hotel_01/"+idx; 
 		if(gubun == "tour")   url = "/invoice/tour_01/"+idx; 
-		if(gubun == "spa")    url = "/invoice/ticket_01/"+idx; 
+		if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")  url = "/invoice/ticket_01/"+idx; 
 		if(gubun == "golf")   url = "/invoice/golf_01/"+idx; 
-		if(gubun == "ticket") url = "/invoice/ticket_01/"+idx; 
 		if(gubun == "vehicle") url = "/invoice/car_01/"+idx; 
 		
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
