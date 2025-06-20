@@ -2679,10 +2679,19 @@ public function get_golf_option() {
 				$product_type = '가이드';
 			}
 
-			$sql_cnt = "SELECT COUNT(*) AS cnt FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main'";
-			$row_cnt = $db->query($sql_cnt)->getRow();
+			if($row->order_gubun == "hotel"){
+				$count = (int)$row->adult + (int)$row->kids;
+			} else if($row->order_gubun == "golf"){
+				$sql_cnt = "SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main'";
+				$row_cnt = $db->query($sql_cnt)->getRow();
+				$count = $row_cnt->option_cnt;
+			}
 
-			$count = $row_cnt->cnt;
+			else{
+				$count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+			} 
+
+
 
 			// CREATE ALARM
 			 $m_idx = $row->m_idx;
