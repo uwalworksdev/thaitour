@@ -94,16 +94,18 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<span><?= $people_adult_cnt ?></span>명  
+							<span><?= $people_adult_cnt ?></span>명 + <span><?= $people_kids_cnt ?></span>명
 						</td>
 
 						<td class="content">
 							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
 						</td>
 						<td class="content">
+							 <?php foreach ($option_order as $row): ?>
 							<p>
-								<span><?=$option['option_name']?></span> 
+								 <?=$row['option_name']?> <?=number_format($row['option_price'])?> X <?=$row['option_qty']?>명 
 							</p>
+							<?php endforeach; ?>
 						</td>
 					</tr>
 				</tbody>
