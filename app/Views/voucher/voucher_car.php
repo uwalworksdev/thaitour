@@ -21,7 +21,7 @@
             </div> -->
             <div class="only_mo">
                 <div class="logo_voice">
-                    <h2 class="tit_top">견적서</h2>
+                    <h2 class="tit_top">바우처</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                     <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                         Thai - Registration No 010-5555-096-398<br>
@@ -39,7 +39,7 @@
                         </p>
                     </div>
                     <div class="ttl_right">
-                        <h2 class="tit_top">견적서</h2>
+                        <h2 class="tit_top">바우처</h2>
                     </div>
                 </div>
             </div>
@@ -48,16 +48,13 @@
             <form action="" method="post" name="frm" id="frm">
                 <input type="hidden" name="order_idx" value="<?=$result->order_idx?>">
                 <div class="invoice_table">
-                    <table class="invoice_tbl re_custom">
+                    <!-- <table class="invoice_tbl re_custom">
                         <colgroup>
                             <col width="150px">
                             <col width="*">
                         </colgroup>
                         <tbody>
-                            <tr>
-                                <th>Name</th>
-                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
-                            </tr>
+                            
                             <tr>
                                 <th>Address</th>
                                 <td><?=$result->addrs?></td>
@@ -67,7 +64,7 @@
                                 <td><?=$result->company_contact?></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
@@ -77,6 +74,10 @@
                             <col width="*">
                         </colgroup>
                         <tbody>
+                            <tr>
+                                <th>Product Name</th>
+                                <td style="font-weight: 700;">Luxury Sedan</td>
+                            </tr>
                             <tr>
                                 <th>Name</th>
                                 <td>
