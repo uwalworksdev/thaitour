@@ -2,9 +2,362 @@
     helper('setting_helper');
     $setting = homeSetInfo();
 ?>
-<?php echo view('inc/head', ["setting" => $setting]); ?>
-<?php $this->section('content'); ?>
-<link rel="stylesheet" href="/css/invoice/invoice.css" type="text/css">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .invoice_cancle img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        .ml-20 {
+            margin-left: 20px !important;
+        }
+
+        .ml-40 {
+            margin-left: 40px !important;
+        }
+
+        p {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .golf_invoice {
+            padding: 20px 0 0 !important;
+        }
+
+        .golf_invoice .logo_voice {
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px;
+        }
+
+        .golf_invoice .invoice_ttl {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .golf_invoice .invoice_ttl p {
+            font-size: 20px;
+            color: #000;
+            text-align: center;
+            line-height: 1.4;
+            margin: 0 0 15px;
+            font-weight: bold;
+        }
+
+        .golf_invoice .invoice_ttl span {
+            font-size: 18px;
+            text-align: center;
+            display: block;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .golf_invoice .invoice_table {
+            padding: 20px 13px;
+            border:5px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .golf_invoice .invoice_table .top_flex {
+            margin: 20px 0 10px;
+        }
+
+        .golf_invoice .invoice_table .top_flex .tit_top {
+            margin: 0;
+        }
+
+        .golf_invoice .invoice_table .top_flex span {
+            font-size: 14px;
+            color: #ef4337;
+        }
+        
+        .golf_invoice .tit_top {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #252525;
+            margin-top: 20px;
+        }
+
+        .golf_invoice.voucher .invoice_table .tit_top {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #7d7d7d;
+            margin-top: 20px;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl {
+            width: 100%;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr {
+            max-height: 50px;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.spe {
+            margin-top: 20px;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl.spe tr th {
+            font-weight: bold;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr th {
+            font-weight: 400;
+            color: #333;
+            font-size: 14px !important;
+            padding: 5px 10px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            text-align: left;
+        }
+
+        .golf_invoice .invoice_table .invoice_tbl tr td {
+            height: 35px !important;
+            border: 1px solid #dddddd;
+            border-right: unset;
+            border-left: unset;
+            padding: 10px;
+            font-size: 14px !important;
+            line-height: 1.4;
+            color: #7d7d7d;
+            text-align: left;
+            letter-spacing: -0.2px;
+        }
+
+        .golf_invoice .invoice_golf_total {
+            padding: 10px;
+            background-color: #f6f6f6;
+            margin-top: 30px;
+        }
+
+        .golf_invoice .invoice_golf_total p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .golf_invoice .invoice_golf_total p span {
+            color: #17469E;
+            font-weight: 700;
+        }
+
+        .golf_invoice .cancle_txt {
+            margin: 15px 0 25px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #252525;
+        }
+
+        .golf_invoice .cancle_txt span {
+            color: #ef4337;
+        }
+
+        .golf_invoice .btn_wrap_member .invoice_member {
+            padding: 15px 30px;
+            color: #fff;
+            background: #17469E;
+            display: inline-block;
+            outline: none;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            border: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .golf_invoice .invoice_note {
+            margin: 30px 0 15px;
+        }
+
+        .golf_invoice .invoice_note_ {
+            margin: 30px 0 15px;
+        }
+
+        .golf_invoice .invoice_note_ p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #7d7d7d;
+            line-height: 1.3;
+            display: flex;
+            gap: 3px;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .invoice_note p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #252525;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .invoice_note p + p {
+            margin-top: 6px;
+        }
+
+        .golf_invoice .invoice_info {
+            padding: 15px;
+            background-color: #eee;
+        }
+
+        .golf_invoice .invoice_info h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #252525;
+            margin-bottom: 10px;
+        }
+
+        .golf_invoice .invoice_info .txt p {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #252525;
+        }
+
+        .golf_invoice .invoice_info a {
+            padding: 5px;
+            background-color: #f3fffe;
+            border: 1px solid #2ab6ad;
+            color: #2ab6ad;
+            font-size: 14px;
+            margin: 5px 0;
+            display: inline-block;
+        }
+
+        .golf_invoice .tit_note {
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #252525;
+        }
+
+        .golf_invoice .inquiry_qna {
+            padding-top: 30px;
+            border-top: 2px solid #333;
+        }
+
+        .golf_invoice .inquiry_qna .ttl_qna {
+            font-size: 18px;
+            font-weight: 700;
+            color: #252525;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .inquiry_qna .ttl_qna span {
+            color: #ef4337;
+        }
+
+        .golf_invoice .inquiry_qna .inquiry_info {
+            margin: 20px 0 10px;
+            padding-left: 0;
+        }
+
+        .golf_invoice .inquiry_qna .inquiry_info p {
+            font-size: 14px;
+            color: #252525;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .golf_invoice .invoice_table {
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        table.spe {
+            font-size: 14px !important;
+        }
+
+        .golf_invoice .invoice_golf_total {
+            text-align: right !important;
+        }
+
+        .table_custom {
+            border-collapse: collapse !important;
+            width: 100%;
+            font-size: 14px;
+            table-layout: fixed;
+        }
+
+        .table_custom tr td {
+            border: none !important;
+            padding-bottom: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 5px !important;
+        }
+
+        .table_custom tr td:first-child {
+            padding-top: 0 !important;
+        }
+
+        .hotel_invoice .row_ttl {
+            font-weight: bold !important;
+            font-size: 15px !important;
+            margin-bottom: 4px !important;
+            margin-top: 7px !important;
+            color: #454545 !important;
+        }
+
+        .golf_invoice.voucher .invoice_table .tit_top {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #7d7d7d;
+            margin-top: 20px;
+        }        
+        
+        .golf_invoice .box_notifi {
+            border: 3px solid #ff6a00;
+            padding: 30px 10px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-top: -20px;
+        }
+
+        .golf_invoice .box_notifi .tit {
+            font-size: 18px ;
+            color: #ff6a00;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .golf_invoice .box_notifi .desc {
+            background-color: #f4f4f4;
+            width: 100%;
+            text-align: center;
+            padding: 9px;
+            color: #7d7d7d;
+        }
+
+        .golf_invoice .info_order_txt {
+            margin: 10px 0 0 !important;
+        }
+
+        #container_voice *{
+            font-family: "Pretendard" !important;
+            line-height: 1.4 !important;
+        }
+    </style>
+</head>
+<body>
 <div id="container_voice">
     <section class="golf_invoice voucher">
         <div class="inner">
@@ -82,13 +435,6 @@
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <p><?=$user_name?></p>
-                                        <?php
-                                            if($type == "admin"){
-                                        ?>    
-                                            <input type="text" style="width: 300px;" name="order_user_name_new" value="<?=$result->order_user_name_new?>">    
-                                        <?php
-                                            }
-                                        ?>
                                     </div>
                                 </td>
                             </tr>
@@ -97,13 +443,6 @@
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <p><?=$user_mobile?></p>
-                                        <?php
-                                            if($type == "admin"){
-                                        ?>    
-                                            <input type="text" style="width: 300px;" name="order_user_mobile_new" id="order_user_mobile_new" value="<?=$result->order_user_mobile_new?>">    
-                                        <?php
-                                            }
-                                        ?>
                                     </div>
                                 </td>
                             </tr>
@@ -121,7 +460,6 @@
                             <tr>
                                 <th>Booking No</th>
                                 <td colspan="3"><?=$result->order_no?></td>
-    
                             </tr>
                             <tr>
                                 <th>Date</th>
@@ -136,13 +474,7 @@
                                         <?php
                                             }
                                         ?>
-                                        <?php
-                                            if($type == "admin"){
-                                        ?>    
-                                            <input type="text" style="width: 300px;" name="order_date_new" value="<?=$result->order_date_new?>">    
-                                        <?php
-                                            }
-                                        ?>
+
                                     </div>
                                 </td>
     
@@ -153,13 +485,7 @@
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <!-- Admission (08:00-16:30) -->
                                         <p></p>
-                                        <?php
-                                            if($type == "admin"){
-                                        ?>    
-                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$result->tour_type_en?>">    
-                                        <?php
-                                            }
-                                        ?>
+
                                     </div>
                                 </td>
                             </tr>
@@ -167,24 +493,12 @@
                                 <th>Persons</th>
                                 <td>
                                     <p><?=$order_people?></p>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="order_people_new" value="<?=$result->order_people_new?>">    
-                                    <?php
-                                        }
-                                    ?>
+
                                 </td>
                                 <th>Time</th>
                                 <td>
                                     <p><?=$time_line?></p>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <input type="text" name="time_line_en" value="<?=$result->time_line_en?>">    
-                                    <?php
-                                        }
-                                    ?>
+
                                 </td>
                             </tr>
     
@@ -192,13 +506,7 @@
                                 <th>Remarks</th>
                                 <td colspan="3">
                                     <?=$order_remark?>
-                                    <?php
-                                        if($type == "admin"){
-                                    ?>    
-                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
-                                    <?php
-                                        }
-                                    ?>
+
                                 </td>
     
                             </tr>
@@ -208,32 +516,10 @@
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
-                    <div class="btns_download_print">
-                        <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$result->order_idx?>">PDF다운로드</button>
-                        <button type="button" class="btn_download" id="btn_print">프린트</button>
-                        <?php
-                            if($type == "admin"){
-                        ?>    
-                            <button type="button" style="background-color: #000000; color: #fff;" class="btn_download" id="btn_save">수정하기</button>
-                        <?php
-                            }
-                        ?>
-                    </div>
+
                     <div class="invoice_note_">
                         <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
-                        <!-- <p style="color: #eb4848;"><span>-</span><span>This voucher can be shown as captured picture with mobile phone.</span></p>
-                        <p><span>-</span><span>이예약확험서(바우처)를 가이드나 기사에게 제시한 후 해당 상품을 이용해 주세요.</span></p>
-                        <p><span>-</span><span>픽업이 포함된 투어는 미리 픽업장소와 시각을 정확히 알아 두세요. 픽업장소가 호텔인 경우에는 그 호텔 로비입니다.
-                                보비에 계시면 가이드나 기사가 예약확정서상의 성험으로 찾습니다.
-                                호텔 포비가 여러 개 있 때에는 1층 로비입니다.</span></p>
-                        <p><span>-</span><span>해양 스포츠 투어는 간혹 투어 당일 파도가 실해 신상위에서 안전사고가 발생할 수 있으니 안전요원의 지시사항을 각별히 준수하여 주시고, 만학의 안전사고에 대한 대비로 한국에서 미리 여행자 보험등에 가입하시기를 해드립니다. 안전 부주의로 인한 사고 발생시 여행사와 투어업체는 그 사고에 대한 책임이 있습니다.</span></p>
-                        <p><span>-</span><span>더블베드, 트윈베드의 베드타입과 고층배정, 허니문 특전, 인접한 객실 배정, 금연룸, 흡연룸 배정 등은호텔의 객실사정에 따라 달라집니다.<br> 즉, 확정사항이 아닌 요청사항일 뿐이므로 바우처에 기재해 드려도 확정되지 않는 경우가 간혹 발생합니다.
-    
-                                체크인시 다시 한번 호텔에 요청하시고, 기재된대로 요청사항이 이행되지 않더라도 여행사의 예약 잘못이 아닙니다.</span></p>
-                        <p><span>-</span><span>단독투어가 아닌 조인투어는 앞의 여름과 사랑에 따라 10~15분 정도 픽업에 늦어질 수도 있습니다.
-                                픽업 등 문제가 발생하면 아래로 연락주세요. +66(0)80-709-0500 (KOREAN ONLY!!국제전화요금/취침시간에는 긴급건 ONLY)
-                                태국내에서 포밍폰 사용시는 지역번호나 국가번호 없이 080-709-0500만 누르시면 됩니다.</span>
-                        </p> -->
+
                         <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>
                 </div>

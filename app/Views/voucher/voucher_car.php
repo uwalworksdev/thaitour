@@ -386,6 +386,6 @@
     // PDF 버튼 클릭 시
     $(document).on('click', '#btn_pdf', function () {
         var order_idx = $(this).data("order_idx"); 
-        location.href='/pdf/voucher_ticket?order_idx='+order_idx;
+        location.href='/pdf/voucher_car?order_idx='+order_idx;
     });
 </script> 
