@@ -351,7 +351,7 @@
                     <tbody>
                         <tr>
                             <th style="width: 20%">상품명</th>
-                            <td style="width: 80%" colspan="3"><?=$row->product_name?></td>
+                            <td style="width: 80%"><?=$row->product_name?></td>
                             <th style="width: 20%">여행자 이름</th>
                             <td style="width: 80%"><?=$row->order_user_name?></td>
                         </tr>
@@ -397,11 +397,11 @@
 						?>
                         <tr>
                             <th style="width: 20%">인당 금액</th>
-                            <td style="width: 80%" colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
+                            <td style="width: 80%"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
                         </tr>
                         <tr>
                             <th style="width: 20%">금액</th>
-                            <td style="width: 80%" colspan = "3"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
+                            <td style="width: 80%"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
                         </tr>
                         <?php 
 							  } 

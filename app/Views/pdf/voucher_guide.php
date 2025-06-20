@@ -493,16 +493,7 @@
                                 </td>
     
                             </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td colspan="3">
-                                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <!-- Admission (08:00-16:30) -->
-                                        <p></p>
 
-                                    </div>
-                                </td>
-                            </tr>
                             <tr>
                                 <th>Persons</th>
                                 <td>
