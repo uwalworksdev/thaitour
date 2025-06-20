@@ -1428,7 +1428,7 @@ class PdfController extends BaseController
 			if(!empty($result->order_people_new)){
 				$order_people = $result->order_people_new;
 			}else{
-				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)"; 
 			}
 
 			if(!empty($result->time_line_en)){
