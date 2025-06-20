@@ -2723,7 +2723,7 @@ public function get_golf_option() {
 					'PROD_TYPE'   => $product_type,
 					'ORDER_DATE'   => substr($row->order_r_date,0,10),
 					'ORDER_NAME'   => $row->user_name,
-					'ORDER_NUM_PEOPLE'   => $row->option_cnt,
+					'ORDER_NUM_PEOPLE'   => $row_cnt->option_cnt,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2788,7 +2788,7 @@ public function get_golf_option() {
 					'PROD_TYPE'   => $product_type,
 					'ORDER_DATE'   => substr($row->order_r_date,0,10),
 					'ORDER_NAME'   => $row->user_name,
-					'ORDER_NUM_PEOPLE'   => $row->option_cnt,
+					'ORDER_NUM_PEOPLE'   => $row_cnt->option_cnt,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2882,7 +2882,7 @@ public function get_golf_option() {
 					'PROD_TYPE'   => $product_type,
 					'ORDER_DATE'   => substr($row->order_r_date,0,10),
 					'ORDER_NAME'   => $row->user_name,
-					'ORDER_NUM_PEOPLE'   => $row->option_cnt,
+					'ORDER_NUM_PEOPLE'   => $row_cnt->option_cnt,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2893,12 +2893,13 @@ public function get_golf_option() {
 
 				$code = "A33";
 				$_tmp_fir_array = [
-					'RECEIVE_NAME' => $row->user_name,
-					'PROD_NAME' => $row->product_name_en,
-					'ORDER_NO' => $order_no,
-					'ORDER_PRICE' => $order_price,
-					'PAYMENT_METHOD' => $row->order_method,
-					'CANCEL_DATE' => substr($row->order_c_date,0,10),
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $row_cnt->option_cnt,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2906,6 +2907,19 @@ public function get_golf_option() {
 
 			if($order_status == "N") {  // 예약불가
 				$alimCode = "UA_5325"; 
+
+				$code = "A57";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $row_cnt->option_cnt,
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
 			}   
 		    if($order_status == "E") {  // 이용완료.
 				$alimCode = "UA_5373"; 
