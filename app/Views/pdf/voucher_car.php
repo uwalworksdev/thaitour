@@ -506,8 +506,9 @@
                     </div>
 
                     <div class="invoice_note_">
-                        <p style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width : 20px;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px;  font-size: 20px; font-weight: 600;">참고사항</span></p>
-
+                        <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
+                        <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+                        <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
                         <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>
                 </div>
