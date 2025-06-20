@@ -347,7 +347,7 @@
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl" style="font-size: 20px !important;">
                     <tbody>
                         <tr>
                             <th style="width: 20%">상품명</th>
