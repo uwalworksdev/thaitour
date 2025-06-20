@@ -675,6 +675,7 @@ public function reservationList() {
 
         $tour_period = $row["tour_period"];
         $order_memo = $row['order_memo'];
+        $custom_req = $row['custom_req'];
 
         $home_depart_date = $row['home_depart_date'];
         $away_arrive_date = $row['away_arrive_date'];
@@ -715,6 +716,7 @@ public function reservationList() {
 
         $data['tour_period'] = $tour_period;
         $data['order_memo'] = $order_memo;
+        $data['custom_req'] = $custom_req;
         $data['home_depart_date'] = $home_depart_date;
         $data['away_arrive_date'] = $away_arrive_date;
         $data['away_depart_date'] = $away_depart_date;
