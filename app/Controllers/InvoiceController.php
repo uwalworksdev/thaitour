@@ -10,6 +10,8 @@ class InvoiceController extends BaseController
     private $db;
 	private $ordersCars;
     private $carsCategory;
+    private $orderGuide;
+
 
     public function __construct()
     {
@@ -17,6 +19,7 @@ class InvoiceController extends BaseController
         helper('my_helper');
         $this->ordersCars = model("OrdersCarsModel");
         $this->carsCategory = model("CarsCategory");
+        $this->orderGuide = model("OrderGuideModel");
 
     }
 	
@@ -402,10 +405,13 @@ class InvoiceController extends BaseController
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
 
+				$order_subs = $this->orderGuide->getListByOrderIdx($idx);
+
 				return view("invoice/invoice_guide_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
 					'cancle_contents' => $cancle_contents,
+					'order_subs' => $order_subs,
 				]);
 				
 	}

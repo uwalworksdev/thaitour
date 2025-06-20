@@ -127,15 +127,26 @@
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?= date("Y.m.d", strtotime($result->meeting_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->meeting_date))) . ")"  ?>
                                         <?php
-                                            if($result->code_parent_category == "5403"){
+                                            if($type != "admin"){
+                                                if(!empty($result->order_date_new)){
+                                                    echo $result->order_date_new;
+                                                }else{                                              
                                         ?>
+                                            <?= date("Y.m.d", strtotime($result->start_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->start_date))) . ")"  ?>
                                             ~
-                                            <?= date("Y.m.d", strtotime($result->return_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->return_date))) . ")";?>
+                                            <?= date("Y.m.d", strtotime($result->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->end_date))) . ")";?>
+                                        <?php
+                                                }
+                                            }else{
+                                        ?>
+                                            <?= date("Y.m.d", strtotime($result->start_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->start_date))) . ")"  ?>
+                                            ~
+                                            <?= date("Y.m.d", strtotime($result->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->end_date))) . ")";?>
                                         <?php
                                             }
                                         ?>
+                                        
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -270,7 +281,7 @@
 <script>
     $("#btn_save").click(function () {
         $.ajax({
-            url: "/voucher/car/save",
+            url: "/voucher/guide/save",
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
@@ -386,6 +397,6 @@
     // PDF 버튼 클릭 시
     $(document).on('click', '#btn_pdf', function () {
         var order_idx = $(this).data("order_idx"); 
-        location.href='/pdf/voucher_car?order_idx='+order_idx;
+        location.href='/pdf/voucher_guide?order_idx='+order_idx;
     });
 </script> 

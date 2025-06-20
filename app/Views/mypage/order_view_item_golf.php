@@ -614,7 +614,7 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $order_memo ?>
+							<?= $row['custom_req'] ? $row['custom_req'] : $row['order_memo'] ?>
 						</td>
 					</tr>
 				</tbody>

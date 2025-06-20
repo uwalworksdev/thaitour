@@ -935,8 +935,9 @@ $routes->group("voucher", static function ($routes) {
     $routes->get("ticket/(:num)", "VoucherController::ticket/$1");
     $routes->post("ticket/save", "VoucherController::ticket_save"); 
     $routes->get("car/(:num)", "VoucherController::car/$1");
-
-    
+    $routes->post("car/save", "VoucherController::car_save");
+    $routes->get("guide/(:num)", "VoucherController::guide/$1"); 
+    $routes->post("guide/save", "VoucherController::guide_save");     
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
@@ -1129,7 +1130,9 @@ $routes->group("pdf", static function ($routes) {
     $routes->get('voucher_hotel', 'PdfController::voucherHotel');
     $routes->get('voucher_golf', 'PdfController::voucherGolf');
     $routes->get('voucher_tour', 'PdfController::voucherTour');
-    $routes->get('voucher_ticket', 'PdfController::voucherTicket');    
+    $routes->get('voucher_ticket', 'PdfController::voucherTicket');
+    $routes->get('voucher_car', 'PdfController::voucherCar');
+    $routes->get('voucher_guide', 'PdfController::voucherGuide');    
 });
 
 $routes->group("travel-tips", static function ($routes) {

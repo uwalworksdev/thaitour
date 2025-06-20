@@ -63,13 +63,13 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,7 +86,11 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td>
+                                <?= date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")"  ?>
+                                ~
+                                <?= date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";?>
+                            </td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -99,17 +103,53 @@ $setting = homeSetInfo();
                             <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
-                            <th>시작시간</th>
-                            <td>08:00~16:30</td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td colspan="3">성인 : <?= $row->people_adult_cnt ?>명</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>픽업포함여부</th>
                             <td>불포함</td>
                             <th>미팅 장소</th>
                             <td>개별이동</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <h2 class="tit_top">픽업포함여부</h2>
+                <table class="invoice_tbl re_custom">
+                    <colgroup>
+                        <col width="15%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th class="subject">가이드미팅시간</th>
+                        <th class="subject">미팅 장소</th>
+                        <th class="subject">예상일정</th>
+                        <th class="subject">기타 요청</th>
+                    </tr>
+
+                    <?php foreach ($order_subs as $item): ?>
+                        <tr>
+                            <td class="content">
+                                <span>
+                                    <?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
+                                </span>
+                            </td>
+
+                            <td class="content">
+                                <?= $item["guide_meeting_place"] ?>
+                            </td>
+                            <td class="content">
+                                <?= nl2br($item["guide_schedule"]) ?>
+                            </td>
+                            <td class="content">
+                                <?= nl2br($item["request_memo"]) ?>
+                            </td>
                         </tr>
+                    <?php endforeach; ?>
+
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
@@ -121,11 +161,11 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th>1인당 금액</th>
                             <td colspan="3">성인400바트</td>
                             
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>금액</th>
                             <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
