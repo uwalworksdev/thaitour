@@ -476,6 +476,12 @@
                                             <?= date("Y.m.d", strtotime($result->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->end_date))) . ")";?>
                                         <?php
                                                 }
+                                            }else{
+                                        ?>
+                                            <?= date("Y.m.d", strtotime($result->start_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->start_date))) . ")"  ?>
+                                            ~
+                                            <?= date("Y.m.d", strtotime($result->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->end_date))) . ")";?>
+                                        <?php
                                             }
                                         ?>
 
