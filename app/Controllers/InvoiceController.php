@@ -336,8 +336,8 @@ class InvoiceController extends BaseController
 
 				$order_cars_detail = $this->ordersCars->getByOrder($idx);
 
-				$departure_name = $this->carsCategory->getById($orderResult[0]->departure_area)["code_name"];
-                $destination_name = $this->carsCategory->getById($orderResult[0]->destination_area)["code_name"];
+				$departure_name = $this->carsCategory->getById($firstRow->departure_area)["code_name"];
+                $destination_name = $this->carsCategory->getById($firstRow->destination_area)["code_name"];
 
 				return view("invoice/invoice_car_01", [
 					'result' => $orderResult,

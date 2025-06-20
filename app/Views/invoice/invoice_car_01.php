@@ -114,18 +114,18 @@ $setting = homeSetInfo();
                         </tr> -->
                     </tbody>
                 </table>
-                <h2 class="tit_top">금액내역</h2>
+                <h2 class="tit_top">픽업포함여부</h2>
                 <?php
                     if($row->code_parent_category == "5401"){
                 ?>     
                     <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 가는 편</div>
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="7%"/>
-                            <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
                             <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
@@ -161,13 +161,13 @@ $setting = homeSetInfo();
                         if(count($order_cars_detail) > 1){
                     ?>
                         <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 오는 편</div>
-                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                             <caption>
                             </caption>
                             <colgroup>
-                                <col width="7%"/>
-                                <col width="10%"/>
-                                <col width="7%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
                                 <col width="20%"/>
                                 <col width="*%"/>
                             </colgroup>
@@ -203,13 +203,13 @@ $setting = homeSetInfo();
                 <?php
                     }else if($row->code_parent_category == "5402"){
                 ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="7%"/>
-                            <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
                             <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
@@ -222,24 +222,24 @@ $setting = homeSetInfo();
                             <th style="text-align:center">기타요철</th>
                         </tr>
                             <?php
-                                foreach($order_cars_detail as $row){
+                                foreach($order_cars_detail as $row_c){
                             ?>
                             <tr>
                                 <td style="text-align:center">
-                                    <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
-                                    <?=$row["air_code"]?>
+                                    <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                    <?=$row_c["air_code"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["date_trip"]?>
+                                    <?=$row_c["date_trip"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["departure_name"]?>
+                                    <?=$row_c["departure_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["order_memo"])?>
+                                    <?=nl2br($row_c["order_memo"])?>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -248,14 +248,14 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5403"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
                             <col width="20%"/>
-                            <col width="35%"/>
                             <col width="*%"/>
                         </colgroup>
                         <tbody>
@@ -267,24 +267,24 @@ $setting = homeSetInfo();
                             <th style="text-align:center">기타요철</th>
                         </tr>
                             <?php
-                                foreach($order_cars_detail as $row){
+                                foreach($order_cars_detail as $row_c){
                             ?>
                             <tr>
-                                <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
                                 <td style="text-align:center">
-                                    <?=$row["date_trip"]?>
+                                    <?=$row_c["date_trip"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["departure_name"]?>
+                                    <?=$row_c["departure_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["schedule_content"])?>
+                                    <?=nl2br($row_c["schedule_content"])?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["order_memo"])?>
+                                    <?=nl2br($row_c["order_memo"])?>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -293,12 +293,12 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5404"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
                             <col width="15%"/>
                             <col width="15%"/>
                             <col width="15%"/>
@@ -314,27 +314,27 @@ $setting = homeSetInfo();
                             <th style="text-align:center">기타요철</th>
                         </tr>
                             <?php
-                                foreach($order_cars_detail as $row){
+                                foreach($order_cars_detail as $row_c){
                             ?>
                             <tr>
-                                <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
                                 <td style="text-align:center">
-                                    <?=$row["date_trip"]?>
+                                    <?=$row_c["date_trip"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["departure_name"]?>
+                                    <?=$row_c["departure_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["rest_name"]?>
+                                    <?=$row_c["rest_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["destination_name"]?>
+                                    <?=$row_c["destination_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["order_memo"])?>
+                                    <?=nl2br($row_c["order_memo"])?>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -343,14 +343,14 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5405"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="10%"/>
-                            <col width="7%"/>
                             <col width="15%"/>
                             <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
                         <tbody>
@@ -362,24 +362,24 @@ $setting = homeSetInfo();
                             <th style="text-align:center">기타요철</th>
                         </tr>
                             <?php
-                                foreach($order_cars_detail as $row){
+                                foreach($order_cars_detail as $row_c){
                             ?>
                             <tr>
-                                <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
                                 <td style="text-align:center">
-                                    <?=$row["date_trip"]?>
+                                    <?=$row_c["date_trip"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["departure_name"]?>
+                                    <?=$row_c["departure_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["destination_name"]?>
+                                    <?=$row_c["destination_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["order_memo"])?>
+                                    <?=nl2br($row_c["order_memo"])?>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -388,14 +388,14 @@ $setting = homeSetInfo();
                     <?php
                         }else {
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="10%"/>
-                            <col width="7%"/>
                             <col width="15%"/>
                             <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
                         <tbody>
@@ -407,24 +407,24 @@ $setting = homeSetInfo();
                             <th style="text-align:center">기타요철</th>
                         </tr>
                             <?php
-                                foreach($order_cars_detail as $row){
+                                foreach($order_cars_detail as $row_c){
                             ?>
                             <tr>
-                                <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
                                 <td style="text-align:center">
-                                    <?=$row["date_trip"]?>
+                                    <?=$row_c["date_trip"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["departure_name"]?>
+                                    <?=$row_c["departure_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=$row["destination_name"]?>
+                                    <?=$row_c["destination_name"]?>
                                 </td>
                                 <td style="text-align:center">
-                                    <?=nl2br($row["order_memo"])?>
+                                    <?=nl2br($row_c["order_memo"])?>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -638,7 +638,7 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
-                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                        .btns_download_print {
                             display: none !important;
                         }
 
