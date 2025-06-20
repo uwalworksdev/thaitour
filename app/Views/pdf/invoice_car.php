@@ -262,7 +262,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -321,7 +321,7 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 164px;">
             </div>
             <div class="invoice_ttl">
             </div>
@@ -756,9 +756,9 @@
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
-                        <td style="width: 20px; vertical-align: top;">
+                        <!-- <td style="width: 20px; vertical-align: top;">
                             <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                        </td>
+                        </td> -->
                         <td style="padding-left: 5px;">
                             <?=viewSQ($cancle_contents)?>
                         </td>
@@ -769,7 +769,7 @@
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
                     </p>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="padding-top: 30px">
                         <colgroup>
                             <col width="20%">
                             <col width="*">
