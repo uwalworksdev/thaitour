@@ -320,7 +320,7 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px;">
             </div>
             <div class="invoice_ttl">
             </div>
