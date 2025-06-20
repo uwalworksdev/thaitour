@@ -150,7 +150,7 @@
                                     </td>
                                     <th>여권정보</th>
                                     <td>
-										<select name="order_status" class="select_txt">
+										<select name="order_sex" class="select_txt">
                                             <option value="M" <?php if($order_sex == "M") echo "selected";?> >남자</option>  
                                             <option value="F" <?php if($order_sex == "F") echo "selected";?> >여자</option>
                                         </select>
