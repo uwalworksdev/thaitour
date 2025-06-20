@@ -348,7 +348,7 @@ class PdfController extends BaseController
         // 옵션 정보 가져오기
 		$builder = $db->table('tbl_order_option');
 		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
-		$query = $builder->where('order_idx', $idx)->get();
+		$query = $builder->where('order_idx', $order_idx)->get();
 		$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
 		// 주문 객체에 옵션 정보 추가
