@@ -261,7 +261,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -322,31 +322,25 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
             </div>
             <div class="invoice_ttl">
             </div>
             <div class="invoice_table">
                 <h2 class="tit_top">예약자정보</h2>
                 <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
                     <tbody>
                         <tr>
-                            <th>예약번호</th>
-                            <td><?=$row->order_no?></td>
-                            <th>예약날짜</th>
-                            <td><?=substr($row->order_date,0,10)?>(<?=dateToYoil(substr($row->order_date,0,10))?>)</td>
+                            <th style="width: 20%">예약번호</th>
+                            <td style="width: 30%"><?=$row->order_no?></td>
+                            <th style="width: 20%">예약날짜</th>
+                            <td style="width: 30%"><?=substr($row->order_date,0,10)?>(<?=dateToYoil(substr($row->order_date,0,10))?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
-                            <th>이메일</th>
-                            <td><?=$row->order_user_email?></td>
+                            <th style="width: 20%">여행사(담당자)</th>
+                            <td style="width: 30%">Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <th style="width: 20%">이메일</th>
+                            <td style="width: 30%"><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -354,55 +348,44 @@
                     <h2 class="tit_top">예약내역</h2>
                 </div>
                 <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
                     <tbody>
                         <tr>
-                            <th>상품명</th>
-                            <td colspan="3"><?=$row->product_name?></td>
+                            <th style="width: 20%">상품명</th>
+                            <td style="width: 80%" colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
-                            <th>날짜</th>
-                            <td><?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>)</td>
-                            <th>여행자 이름</th>
-                            <td><?=$row->order_user_name?></td>
+                            <th style="width: 20%">날짜</th>
+                            <td style="width: 30%"><?= $option->option_date ?>(<?=dateToYoil($option->option_date)?>)</td>
+                            <th style="width: 20%">여행자 이름</th>
+                            <td style="width: 30%"><?=$row->order_user_name?></td>
                         </tr>
                         <tr>
-                            <th>고객 연락처</th>
-                            <td><?=$row->order_user_mobile?></td>
-                            <th>고객 이메일</th>
-                            <td><?=$row->order_user_email?></td>
+                            <th style="width: 20%">고객 연락처</th>
+                            <td style="width: 30%"><?=$row->order_user_mobile?></td>
+                            <th style="width: 20%">고객 이메일</th>
+                            <td style="width: 30%"><?=$row->order_user_email?></td>
                         </tr>
                         <tr>
-                            <th>예약 선택상품</th>
-                            <td colspan="3"><?=$option->option_name?></td>
+                            <th style="width: 20%">예약 선택상품</th>
+                            <td style="width: 80%" colspan="3"><?=$option->option_name?></td>
                         </tr>
                         <tr>
-                            <th>예약시간</th>
-                            <td><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
-                            <th>총인원</th>
-                            <td>성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
+                            <th style="width: 20%">예약시간</th>
+                            <td style="width: 30%"><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
+                            <th style="width: 20%">총인원</th>
+                            <td style="width: 30%">성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
                         <tr>
-                            <th>픽업포함여부</th>
-                            <td>불포함</td>
-                            <th>미팅 장소</th>
-                            <td>개별이동</td>
+                            <th style="width: 20%">픽업포함여부</th>
+                            <td style="width: 30%">불포함</td>
+                            <th style="width: 20%">미팅 장소</th>
+                            <td style="width: 30%">개별이동</td>
                         </tr>
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
+                    
                     <tbody>
 					    <?php 
 						      $person_cnt = 0;
@@ -411,21 +394,21 @@
 							  { 
 						?>
                         <tr>
-                            <th>1인당 금액</th>
-                            <td colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
+                            <th style="width: 20%">인당 금액</th>
+                            <td style="width: 80%" colspan="3"><?=$option->option_name?>: <?=number_format($option->option_tot / $option->option_qty)?>바트</td>
                         </tr>
                         <tr>
-                            <th>금액</th>
-                            <td colspan = "3"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
+                            <th style="width: 20%">금액</th>
+                            <td style="width: 80%" colspan = "3"><?=number_format($option->option_tot)?>원 (<?=$option->option_qty?>명)</td>
                         </tr>
                         <?php 
 							  } 
 						?>
                         
 						<tr>
-                            <th>추가내역</th>
-                            <td>0바트</td>
-                            <th>총금액</th>
+                            <th style="width: 20%">추가내역</th>
+                            <td style="width: 30%">0바트</td>
+                            <th style="width: 20%">총금액</th>
                             <td><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price / $row->baht_thai) ?>바트</td>
                         </tr>
                     </tbody>
@@ -434,34 +417,49 @@
                     <p>총 견적서 금액 : <span><?= number_format($row->order_price) ?>원</span> (<?= number_format($row->order_price / $row->baht_thai) ?>바트)</p>
                 </div>
                 <table class="invoice_tbl">
-                    <colgroup>
-                        <col width="150px">
-                        <col width="35%">
-                        <col width="150px">
-                        <col width="*">
-                    </colgroup>
                     <tbody>
                         <tr>
-                            <th>유의사항</th>
+                            <th style="width: 20%">유의사항</th>
                             <td colspan="3"><?=viewSQ($notice_contents)?></td>
                         </tr>
                     </tbody>
                 </table>
-                <!-- <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                    <tr>
-                        <td style="width: 20px; vertical-align: top;">
-                            <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                        </td>
-                        <td style="padding-left: 5px;">
-                            <span style="color: #7d7d7d; font-size: 14px;">
-                                취소 규정: 결제 후 
-                                <span style="color: #17469E;">24년 12월 18일 18시(한국시간)</span> 
-                                이전에 취소하시면 무료취소가 가능합니다.
-                            </span>
-                            <?=viewSQ($cancle_contents)?>
-                        </td>
-                    </tr>
-                </table> -->
+               
+
+                <?php if(!empty($cancle_contents)):?>
+                    <table class="invoice_tbl spe">
+                        <tbody>
+                            <tr>
+                                <td><?=viewSQ($cancle_contents)?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+                <?php if(!empty($policy_1["policy_contents"])):?>
+                     <table class="invoice_tbl spe">
+                        <tbody>
+                            <tr>
+                                <td><?=viewSQ($policy_1["policy_contents"])?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <?php endif; ?>
+            </div>
+            <div class="inquiry_qna">
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                <div class="inquiry_info">
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                </div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>

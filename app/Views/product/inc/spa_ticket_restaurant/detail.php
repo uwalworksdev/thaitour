@@ -994,9 +994,12 @@
         let html = ``;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
+
+            
+            
             
             html += 
-                `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}">
+                `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}" data-op_name_eng="${item_.spas_subject_eng}">
                     <td>
                         <p style="margin-bottom: 5px; font-weight: bold;">${item_.info_name}</p>
                         ${item_.spas_subject}`;
@@ -1128,6 +1131,7 @@
         let parent_name = data.parent_name;
         
         let option_name = data.option_name;
+        let option_name_eng = data.option_name_eng;
         let option_price = data.option_price;
         let option_price_won = data.option_price_won;
         let idx = data.idx;
@@ -1155,6 +1159,7 @@
                         <div class="" style="display: none">
                             <input type="hidden" name="option_info_idx[]" value="${info_idx}">
                             <input type="hidden" name="option_name[]" value="${option_name}">
+                            <input type="hidden" name="option_name_eng[]" value="${option_name_eng}">
                             <input type="hidden" name="option_idx[]" value="${idx}">
                             <input type="hidden" name="option_tot[]" value="${option_tot}">
                             <input type="hidden" name="option_cnt[]" value="${option_cnt}">
