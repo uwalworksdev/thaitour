@@ -160,9 +160,11 @@ $deli_types = get_deli_type();
 						<td class="subject">예약정보</td>
 
 						<td class="content">
+							 <?php foreach ($option_order as $row): ?>
 							<p>
-								<span><?=$option['option_name']?></span> 
+								 <?=$row['option_name']?> <?=number_format($row['option_price'])?> X <?=$row['option_qty']?>명 
 							</p>
+							<?php endforeach; ?>
 						</td>
 					</tr>
 
@@ -616,7 +618,7 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $custom_req ?>
+							<?= $custom_req ? $custom_req : $order_memo ?>
 						</td>
 					</tr>
 				</tbody>
