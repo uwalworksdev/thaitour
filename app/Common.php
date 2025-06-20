@@ -1226,6 +1226,15 @@ function get_korean_day($date)
 		 return $dateDow;
 }	
 
+function get_eng_day($date)
+{
+    $weekdays  = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    $dowIndex  = date('w', strtotime($date));									
+    $dateDow   = $weekdays[$dowIndex];								
+    
+    return $dateDow;
+}	
+
 function product_price($idx)
 {
 	 

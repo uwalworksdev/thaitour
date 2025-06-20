@@ -2679,7 +2679,7 @@ public function get_golf_option() {
 				$product_type = '가이드';
 			}
 
-			$sql_cnt = "SELECT COUNT(*) AS cnt FROM tbl_order_option WHERE order_idx = '". $order_idx ."'";
+			$sql_cnt = "SELECT COUNT(*) AS cnt FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main'";
 			$row_cnt = $db->query($sql_cnt)->getRow();
 
 			$count = $row_cnt->cnt;
