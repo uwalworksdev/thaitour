@@ -261,7 +261,7 @@ if ($contact) {
                         <?= date("Y.m.d", strtotime($departure_date)) ?>~<?= date("Y.m.d", strtotime($arrival_date)) ?>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td class="subject">여행형태</td>
                     <td class="content">
                         <span>
@@ -274,15 +274,15 @@ if ($contact) {
                             <?= !empty($travel_type_3['code_name']) ? ' > ' . $travel_type_3['code_name'] : '' ?>
                         </span>
                     </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td class="subject">상담가능시간</td>
                     <td class="content"><?= $consultation_time ?></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td class="subject">상품명</td>
                     <td class="content"><?= $product_name ?></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td class="subject">내용</td>
                     <td class="content">

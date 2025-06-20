@@ -191,7 +191,7 @@ class Contact extends BaseController
                 }
             }else{
                 $data["reg_m_idx"] = session()->get("member")["idx"];
-                $data["status"] = "W";
+                $data["status"] = "N";
                 $data["user_ip"] = $this->request->getIPAddress();
                 $data["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
