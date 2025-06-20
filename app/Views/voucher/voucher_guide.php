@@ -127,9 +127,20 @@
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?= date("Y.m.d", strtotime($row->start_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($row->start_date))) . ")"  ?>
-                                        ~
-                                        <?= date("Y.m.d", strtotime($row->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($row->end_date))) . ")";?>
+                                        <?php
+                                            if($type != "admin"){
+                                                if(!empty($result->order_date_new)){
+                                                    echo $result->order_date_new;
+                                                }else{                                              
+                                        ?>
+                                            <?= date("Y.m.d", strtotime($result->start_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->start_date))) . ")"  ?>
+                                            ~
+                                            <?= date("Y.m.d", strtotime($result->end_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->end_date))) . ")";?>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
+                                        
                                         <?php
                                             if($type == "admin"){
                                         ?>    
