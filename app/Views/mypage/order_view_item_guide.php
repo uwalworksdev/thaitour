@@ -215,11 +215,11 @@ $start_date = $row['start_date'];
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-						<div class="defen_ttl">
+						<!-- <div class="defen_ttl">
 							<p><strong>성인 <span id="adult_amt">
 										<?= number_format(($row['people_adult_price'] + $row['oil_price']) * $row['people_adult_cnt']) ?>
 									</span></strong> 원</p>
-						</div>
+						</div> -->
 						<!-- <?php if ($row['product_code_1'] != "1320") { ?>
 							<p>/</p>
 							<div class="defen_ttl">
@@ -525,8 +525,8 @@ $start_date = $row['start_date'];
 				<tbody>
 					<tr>
 						<td class="subject">이름</td>
-						<td col width="8%" class="subject">생년월일</td>
-						<!-- <td col width="12%" class="subject">휴대번호</td> -->
+						<!-- <td col width="8%" class="subject">생년월일</td> -->
+						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">해외 전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<!-- <td col width="15%" class="subject">주소</td> -->
