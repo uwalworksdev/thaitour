@@ -103,13 +103,13 @@ $setting = homeSetInfo();
                     if($row->code_parent_category == "5401"){
                 ?>     
                     <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 가는 편</div>
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="7%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="10%"/>
+                            <col width="10%"/>
                             <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
@@ -145,13 +145,13 @@ $setting = homeSetInfo();
                         if(count($order_cars_detail) > 1){
                     ?>
                         <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 오는 편</div>
-                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                             <caption>
                             </caption>
                             <colgroup>
-                                <col width="7%"/>
                                 <col width="10%"/>
-                                <col width="7%"/>
+                                <col width="10%"/>
+                                <col width="10%"/>
                                 <col width="20%"/>
                                 <col width="*%"/>
                             </colgroup>
@@ -187,13 +187,13 @@ $setting = homeSetInfo();
                 <?php
                     }else if($row->code_parent_category == "5402"){
                 ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
-                            <col width="7%"/>
+                            <col width="15%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="10%"/>
                             <col width="20%"/>
                             <col width="*%"/>
                         </colgroup>
@@ -232,14 +232,14 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5403"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
+                            <col width="15%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
+                            <col width="10%"/>
                             <col width="20%"/>
-                            <col width="35%"/>
                             <col width="*%"/>
                         </colgroup>
                         <tbody>
@@ -277,12 +277,12 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5404"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
+                            <col width="15%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
                             <col width="15%"/>
                             <col width="15%"/>
                             <col width="15%"/>
@@ -327,12 +327,12 @@ $setting = homeSetInfo();
                     <?php
                         }else if($row->code_parent_category == "5405"){
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
+                            <col width="15%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
                             <col width="15%"/>
                             <col width="15%"/>
                             <col width="*%"/>
@@ -372,12 +372,12 @@ $setting = homeSetInfo();
                     <?php
                         }else {
                     ?>   
-                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
                         <caption>
                         </caption>
                         <colgroup>
+                            <col width="15%"/>
                             <col width="10%"/>
-                            <col width="7%"/>
                             <col width="15%"/>
                             <col width="15%"/>
                             <col width="*%"/>
