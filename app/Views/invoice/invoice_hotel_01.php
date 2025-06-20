@@ -88,8 +88,8 @@
                     <tbody>
                         <tr>
                             <th>예약날짜</th>
-                            <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
+                            <th>예약번호</th>
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
@@ -115,11 +115,11 @@
 					
 					<?php foreach ($result as $row) : ?>
                         <th>날짜</th>
+                        <td>
+                              <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+                        </td>
                     <tbody>
                         <tr>
-                            <td>
-                                  <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
-                            </td>
                             <th>바우처 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
