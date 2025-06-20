@@ -2420,7 +2420,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}
-			else if($row->order_gubun == "spa"){
+			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 
 				$builder = $db->table('tbl_order_option');
 				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
@@ -2432,13 +2432,18 @@ public function get_golf_option() {
 					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
 				}
 
+				if($row->order_gubun == "spa"){
+					$code = 'A27';
+				}else if($row->order_gubun == "ticket") {
+					$code = 'A54';
+				}else {
+					$code = 'A55';
+				}
 
-				$code = 'A27';
-				$_tmp_fir_array['gubun'] = "ticket";
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
 
-				$_tmp_fir_array['스파명'] = $row->product_name_cs;
+				$_tmp_fir_array['스파명'] = $product_name_cs;
 				$_tmp_fir_array['스파주소'] = $row->addrs;
 				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
