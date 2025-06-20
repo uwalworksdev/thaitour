@@ -14,6 +14,8 @@ class InvoiceController extends BaseController
     {
         $this->db = db_connect();
         helper('my_helper');
+        $this->ordersCars = model("OrdersCarsModel");
+
     }
 	
 	public function golf_01($idx)
