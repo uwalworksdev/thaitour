@@ -710,6 +710,7 @@ class ReservationController extends BaseController
             $order_mobile = $data['order_mobile'] ?? "";
             $passport_date = $data['passport_date'] ?? "";
             $order_sex = $data['order_sex'] ?? "";
+            $order_gender_list = $data['order_gender_list'] ?? "";
 
             for ($i = 0; $i < count($gl_idx); $i++) {
                 $data_sub = [
@@ -722,7 +723,8 @@ class ReservationController extends BaseController
                     "order_birthday" => $order_birthday[$i],
                     "order_mobile" => encryptField($order_mobile[$i], "encode"),
                     "passport_date" => $passport_date[$i],
-                    "order_sex" => $order_sex[$i]
+                    "order_sex" => $order_sex[$i],
+                    "order_gender_list" => $order_gender_list[$i]
                 ];
 
                 $this->orderSubModel->update($gl_idx[$i], $data_sub);
