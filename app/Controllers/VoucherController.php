@@ -1206,7 +1206,7 @@ class VoucherController extends BaseController
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_mobile = $result->order_user_mobile;
-			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0); 
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)"; 
 			$order_memo = $result->order_memo;
 			$order_date = $result->order_day;
 			$time_line = $result->time_line;
