@@ -144,7 +144,7 @@
                                     </td>
                                     <th>여권정보</th>
                                     <td>
-										<select name="order_status" class="select_txt">
+										<select name="order_gender_list" class="select_txt">
                                             <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>  
                                             <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
                                         </select>
