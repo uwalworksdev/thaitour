@@ -1061,6 +1061,9 @@ input[type="text"] {
         .golf_invoice .logo_voice {
             padding-bottom: 2rem;
             border-bottom: 0.6rem solid #1e73e7;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .golf_invoice .logo_voice img {
