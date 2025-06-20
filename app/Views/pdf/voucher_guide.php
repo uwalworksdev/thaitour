@@ -372,13 +372,15 @@
                     Tel: 001-66-(0)2-730-5690, 070-7010-8266
                 </p>
             </div> -->
-                <div class="logo_voice">
-                    <h2 class="tit_top">바우처</h2>
-                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px">
-                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                    </p>
+                <div class="logo_voice" style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px">
+                            <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                            Thai - Registration No 010-5555-096-398<br>
+                            Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        </p>
+                    </div>
+                    <h2 class="tit_top" style="font-size: 45px;">바우처</h2>
                 </div>
             <div class="invoice_ttl">
             </div>
