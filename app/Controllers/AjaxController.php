@@ -2305,7 +2305,24 @@ public function get_golf_option() {
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
-				$_tmp_fir_array['gubun'] = 'ticket';
+			}else if($row->order_gubun == "vehicle"){
+				$code = "A28";
+				
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+
+				$_tmp_fir_array['이용날짜'] = $str_day_v;
+
+			}else {
+				$code = "A30";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['이용날짜'] = $str_day_g;
+			
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
