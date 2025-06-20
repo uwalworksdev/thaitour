@@ -2271,8 +2271,14 @@ public function get_golf_option() {
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
 				'예약일자'    => substr($row->order_r_date,0,10),
@@ -2384,8 +2390,14 @@ public function get_golf_option() {
 				$user_mobile = $row->user_mobile;
 			}
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,

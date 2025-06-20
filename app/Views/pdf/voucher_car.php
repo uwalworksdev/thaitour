@@ -351,7 +351,7 @@
             margin: 10px 0 0 !important;
         }
 
-        #container_voice *{
+        #container_voice * {
             font-family: "Pretendard" !important;
             line-height: 1.4 !important;
         }
@@ -365,7 +365,7 @@
                 <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
             </div> -->
             <!-- <div class="logo_voice">
-                <h2 class="tit_top">견적서</h2>
+                <h2 class="tit_top">바우처</h2>
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                     Thai - Registration No 010-5555-096-398<br>
@@ -374,7 +374,7 @@
             </div> -->
             <div class="only_mo">
                 <div class="logo_voice">
-                    <h2 class="tit_top">견적서</h2>
+                    <h2 class="tit_top">바우처</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                     <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                         Thai - Registration No 010-5555-096-398<br>
@@ -392,7 +392,7 @@
                         </p>
                     </div>
                     <div class="ttl_right">
-                        <h2 class="tit_top">견적서</h2>
+                        <h2 class="tit_top">바우처</h2>
                     </div>
                 </div>
             </div>
