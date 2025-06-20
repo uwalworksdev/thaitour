@@ -142,7 +142,7 @@
 											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
                                                value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
                                     </td>
-                                    <th>여권정보</th>
+                                    <th>그린피</th>
                                     <td>
 										<select name="order_gender_list" class="select_txt">
                                             <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>  
