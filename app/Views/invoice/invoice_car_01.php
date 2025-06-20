@@ -18,10 +18,10 @@ $setting = homeSetInfo();
             <div class="logo_voice">
                 <h2 class="tit_top">견적서</h2>
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                <!-- <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                     Thai - Registration No 010-5555-096-398<br>
                     Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                </p>
+                </p> -->
             </div>
             <div class="invoice_ttl">
             </div>
@@ -62,7 +62,17 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td>
+                                <?= date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")"  ?>
+								<?php
+									if($row->code_parent_category == "5403"){
+								?>
+									~
+									<?= date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";?>
+								<?php
+									}
+								?>
+                            </td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -78,7 +88,7 @@ $setting = homeSetInfo();
                             <th>시작시간</th>
                             <td>08:00~16:30</td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td>성인 : <?= $row->people_adult_cnt ?? 0 ?>명, 소아: <?= $row->people_kids_cnt ?? 0 ?>명</td>
                         </tr>
                         <tr>
                             <th>픽업포함여부</th>
@@ -97,11 +107,10 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th>1인당 금액</th>
                             <td colspan="3">성인400바트</td>
-                            
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>금액</th>
                             <td colspan="3"><?=number_format($row->real_price_bath)?></td>

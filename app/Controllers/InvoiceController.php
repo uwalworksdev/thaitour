@@ -8,6 +8,8 @@ use Exception;
 class InvoiceController extends BaseController
 {
     private $db;
+	private $ordersCars;
+
     public function __construct()
     {
         $this->db = db_connect();
@@ -328,10 +330,13 @@ class InvoiceController extends BaseController
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
 
+				$order_cars_detail = $this->ordersCars->getByOrder($idx);
+
 				return view("invoice/invoice_car_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
 					'cancle_contents' => $cancle_contents,
+					'order_cars_detail' => $order_cars_detail,
 				]);
 				
 	}

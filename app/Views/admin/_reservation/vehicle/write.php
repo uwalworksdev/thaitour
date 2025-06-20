@@ -95,7 +95,6 @@
                 <div id="contents">
                     <div class="listWrap_noline">
 
-
                         <div class="listBottom">
                             <div style="font-size:12pt;margin-bottom:10px">■ 주문정보(차량)</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -172,16 +171,16 @@
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
                                                value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:45%"/>
 											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
                                                value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
                                     </td>
-                                    <th>영문 성(Last Name)</th>
+                                    <!-- <th>영문 성(Last Name)</th>
                                     <td>
                                         
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <th>휴대전화</th>
@@ -194,16 +193,13 @@
                                     </td>
                                     
                                 </tr>
-								<tr>
+								<!-- <tr>
                                     <th>차량선택</th>
                                     <td colspan="3">
                                        프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) 좌석 3개 (어른7) &emsp;|&emsp; 29,687원(700TH) x 3대 = 89,061원(2,100TH)<BR>
 									   프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) 좌석 3개 (어른7) &emsp;|&emsp; 29,687원(700TH) x 3대 = 89,061원(2,100TH)
                                     </td>
-                                  
-                                    
-                                    
-                                </tr>
+                                </tr> -->
                                
                                 <tr style="height:100px">
                                     <th>관리자 메모</th>
@@ -216,7 +212,6 @@
 
                             </table>
                             
-
                             <?php
                                 if($code_no_first == "5401"){
                             ?>     
