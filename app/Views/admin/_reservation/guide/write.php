@@ -165,24 +165,19 @@
                                     <td>
                                         <?= $people_adult_cnt ?>명
                                     </td>
-                                    <th>예약일</th>
-                                    <td >
-                                       
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>일정</th>
                                     <td>
                                         <?= $start_date ?> ~ <?= $end_date ?>
                                     </td>
+                                </tr>
+
+                                <tr>
                                     <th>주문일</th>
                                     <td>
                                         <?= $order_r_date ?>
                                     </td>
-                                </tr>
                                     <th>예약기능여부</th>
-                                    <td  colspan="3">
+                                    <td>
                                         <?php foreach ($sup_options as $item): ?>
                                             <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
                                                 - <?= $item['s_name'] ?>
