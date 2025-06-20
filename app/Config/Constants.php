@@ -219,9 +219,9 @@ $event['titles'][4]        = "이미지첨부";
 $event['names'][4]         = "ufile6";
 $event['inputTypes'][4]    = "files";
 
-$event['titles'][5]        = "관련상품";
-$event['names'][5]         = "product_list";
-$event['inputTypes'][5]    = "product_pickup";
+// $event['titles'][5]        = "관련상품";
+// $event['names'][5]         = "product_list";
+// $event['inputTypes'][5]    = "product_pickup";
 
 //magazines
 $magazines['titles'][0]        = "조회";
