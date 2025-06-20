@@ -56,7 +56,7 @@
                         <tbody>
                             <tr>
                                 <th>Name</th>
-                                <td style="font-weight: 700;"><?=$result->product_name_en?>carrr</td>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
                                 <th>Address</th>
@@ -127,12 +127,12 @@
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <?= date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")"  ?>
+                                        <?= date("Y.m.d", strtotime($result->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($result->meeting_date))) . ")"  ?>
                                         <?php
                                             if($result->code_parent_category == "5403"){
                                         ?>
                                             ~
-                                            <?= date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";?>
+                                            <?= date("Y.m.d", strtotime($result->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($result->return_date))) . ")";?>
                                         <?php
                                             }
                                         ?>
