@@ -2297,13 +2297,19 @@ public function get_golf_option() {
 				$_tmp_fir_array['총금액'] = $order_price;
 				$_tmp_fir_array['총금액'] = $order_price;
 			}else if($row->order_gubun == "golf"){
-				$code        = "A22";
+				$code = "A22";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "tour"){
 				$code = "A24";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "ticket"){
+				$code = "A34";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "restaurant"){
+				$code = "A35";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "vehicle"){
 				$code = "A28";
