@@ -516,38 +516,38 @@ $start_date = $row['start_date'];
 						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">호주/해외 전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
+						<!-- <td col width="15%" class="subject">주소</td> -->
 
 					</tr>
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>원
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 
 
-						<td class="content">
+						<!-- <td class="content">
 							[
 							<?= $row_d['order_zip'] ?>]
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
-						</td>
+						</td> -->
 
 				</tbody>
 			</table>
@@ -567,7 +567,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 					</tr>
 
@@ -575,25 +575,25 @@ $start_date = $row['start_date'];
 						<td class="subject">생년월일</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">휴대번호</td>
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">이메일</td>
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 					</tr>
 
-					<tr>
+					<!-- <tr>
 						<td class="subject">주소</td>
 						<td class="content">
 							[
@@ -601,7 +601,7 @@ $start_date = $row['start_date'];
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
 						</td>
-					</tr>
+					</tr> -->
 				</tbody>
 			</table>
 		</div>
