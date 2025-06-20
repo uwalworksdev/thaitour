@@ -3266,7 +3266,7 @@ class Product extends BaseController
                         // }
             if ($data['order_status'] == "W") {
 				
-                $sql = "SELECT a.order_no, a.order_price, b.product_name
+                $sql = "SELECT a.order_no, a.order_price, a.*, b.product_name
                                 , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                 FROM tbl_order_mst a
@@ -3299,7 +3299,7 @@ class Product extends BaseController
 					'PROD_NAME'   => $row->product_name,
 					'ORDER_NO'    => $row->order_no,
                     'PROD_TYPE'   => $product_type,
-                    'ORDER_DATE'   => substr($row->order_r_date,0,10),
+                    'ORDER_DATE'   => $row->order_r_date,
                     'ORDER_NAME'   => $row->user_name,
 					'ORDER_NUM_PEOPLE'   => $count,
 				];
