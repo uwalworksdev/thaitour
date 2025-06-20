@@ -2271,8 +2271,18 @@ public function get_golf_option() {
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
 				'예약일자'    => substr($row->order_r_date,0,10),
@@ -2384,8 +2394,18 @@ public function get_golf_option() {
 				$user_mobile = $row->user_mobile;
 			}
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
@@ -2420,7 +2440,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}
-			else if($row->order_gubun == "spa"){
+			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 
 				$builder = $db->table('tbl_order_option');
 				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
@@ -2432,15 +2452,29 @@ public function get_golf_option() {
 					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
 				}
 
-
-				$code = 'A27';
-				$_tmp_fir_array['gubun'] = "ticket";
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
 
-				$_tmp_fir_array['스파명'] = $row->product_name_cs;
-				$_tmp_fir_array['스파주소'] = $row->addrs;
-				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				if($row->order_gubun == "spa"){
+					$code = 'A27';
+
+					$_tmp_fir_array['스파명'] = $product_name_cs;
+					$_tmp_fir_array['스파주소'] = $row->addrs;
+					$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				}else if($row->order_gubun == "ticket") {
+					$code = 'A54';
+
+					$_tmp_fir_array['쇼&틱킷명'] = $product_name_cs;
+					$_tmp_fir_array['쇼&틱주소'] = $row->addrs;
+					$_tmp_fir_array['쇼&틱전화번호'] = $row->phone_2;
+				}else {
+					$code = 'A55';
+
+					$_tmp_fir_array['레스토랑명'] = $product_name_cs;
+					$_tmp_fir_array['레스토랑주소'] = $row->addrs;
+					$_tmp_fir_array['레스토랑전화번호'] = $row->phone_2;
+				}
+
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->option;
 
@@ -2473,6 +2507,24 @@ public function get_golf_option() {
 
 				$_tmp_fir_array['골프상품명'] = $hole;
 				$_tmp_fir_array['영문호텔주소'] = $row->addrs;
+			}
+			else if($row->order_gubun == "vehicle"){
+				$code = "A29";
+
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+				$_tmp_fir_array['상품이용일'] = $str_day_v;
+
+			}
+			else {
+				$code = "A31";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['상품이용일'] = $str_day_g;
 			}
 
 			if(!empty($order_user_email)){

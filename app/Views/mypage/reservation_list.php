@@ -986,6 +986,7 @@ $(document).on('click', '.info_estimate', function () {
 		if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")  url = "/invoice/ticket_01/"+idx; 
 		if(gubun == "golf")   url = "/invoice/golf_01/"+idx; 
 		if(gubun == "vehicle") url = "/invoice/car_01/"+idx; 
+		if(gubun == "guide") url = "/invoice/guide_01/"+idx; 
 		
 		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 
@@ -1001,8 +1002,8 @@ $(document).on('click', '.info_voucher', function () {
     if(gubun == "tour")   url = "/voucher/tour/"+idx; 
     if(gubun == "spa" || gubun == "ticket" || gubun == "restaurant")    url = "/voucher/ticket/"+idx; 
     if(gubun == "golf")   url = "/voucher/golf/"+idx; 
-    if(gubun == "vehicle")    url = "/voucher/car/"+idx; 
-
+    if(gubun == "vehicle") url = "/voucher/car/"+idx; 
+	if(gubun == "guide") url = "/voucher/guide/"+idx; 
     
     window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
 });
