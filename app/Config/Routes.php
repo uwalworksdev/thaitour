@@ -936,7 +936,7 @@ $routes->group("voucher", static function ($routes) {
     $routes->post("ticket/save", "VoucherController::ticket_save"); 
     $routes->get("car/(:num)", "VoucherController::car/$1");
     $routes->post("car/save", "VoucherController::car_save");
-    $routes->post("guide/(:num)", "VoucherController::guide/$1"); 
+    $routes->get("guide/(:num)", "VoucherController::guide/$1"); 
     $routes->post("guide/save", "VoucherController::guide_save");     
 });
 $routes->group("review", static function ($routes) {
