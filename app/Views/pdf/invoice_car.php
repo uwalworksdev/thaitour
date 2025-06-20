@@ -262,7 +262,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -321,7 +321,7 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px;">
             </div>
             <div class="invoice_ttl">
             </div>
