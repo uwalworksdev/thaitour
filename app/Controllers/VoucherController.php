@@ -1295,7 +1295,7 @@ class VoucherController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
-        return view("voucher/voucher_car", [
+        return view("voucher/voucher_guide", [
             'policy_1' => $policy[0],
             'result' => $result,
 			'type' => $type,
