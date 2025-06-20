@@ -2277,6 +2277,10 @@ public function get_golf_option() {
 				$gubun = "car";
 			}
 
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
 				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
@@ -2396,6 +2400,10 @@ public function get_golf_option() {
 				$gubun = "car";
 			}
 
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
 				'gubun'   => $gubun,
 				'order_idx'  => $row->order_idx,
@@ -2444,20 +2452,29 @@ public function get_golf_option() {
 					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
 				}
 
-				if($row->order_gubun == "spa"){
-					$code = 'A27';
-				}else if($row->order_gubun == "ticket") {
-					$code = 'A54';
-				}else {
-					$code = 'A55';
-				}
-
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
 
-				$_tmp_fir_array['스파명'] = $product_name_cs;
-				$_tmp_fir_array['스파주소'] = $row->addrs;
-				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				if($row->order_gubun == "spa"){
+					$code = 'A27';
+
+					$_tmp_fir_array['스파명'] = $product_name_cs;
+					$_tmp_fir_array['스파주소'] = $row->addrs;
+					$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				}else if($row->order_gubun == "ticket") {
+					$code = 'A54';
+
+					$_tmp_fir_array['쇼&틱킷명'] = $product_name_cs;
+					$_tmp_fir_array['쇼&틱주소'] = $row->addrs;
+					$_tmp_fir_array['쇼&틱전화번호'] = $row->phone_2;
+				}else {
+					$code = 'A55';
+
+					$_tmp_fir_array['레스토랑명'] = $product_name_cs;
+					$_tmp_fir_array['레스토랑주소'] = $row->addrs;
+					$_tmp_fir_array['레스토랑전화번호'] = $row->phone_2;
+				}
+
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->option;
 
