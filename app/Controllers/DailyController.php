@@ -125,7 +125,16 @@ class DailyController extends BaseController {
 		";
 
 		$db->query($updateSql);
-		$affectedRows = $db->affectedRows();
+		$calcelRows = $db->affectedRows();
+
+                // 현재일자 기준 취소된 예약이 29일 이상된 예약삭제
+		$deleteSql = "
+			DELETE FROM tbl_order_mst
+			WHERE order_status = 'C'
+			  AND order_c_date != '0000-00-00 00:00:00'
+			  AND order_c_date < DATE_SUB(NOW(), INTERVAL 29 DAY);		";
+		$db->query($deleteSql);
+		$deleteRows = $db->affectedRows();
 
 		// 로그 기록 (write_log 함수 사용 또는 log_message 사용)
 		if (!function_exists('write_log')) {
@@ -135,7 +144,8 @@ class DailyController extends BaseController {
 			}
 		}
 
-		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $affectedRows, 'info');
+		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $cancelRows, 'info');
+		write_log('[CRON] 예약취소 30일 경과 자동삭제 처리 건수: ' . $deleteRows, 'info');
 	}
 
 }	
