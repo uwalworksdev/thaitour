@@ -128,7 +128,7 @@
                                         <input type="text" id="order_user_name" name="order_user_name"
                                                value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>주문자이메일</th>
+                                    <th>주문자 이메일</th>
                                     <td>
                                         <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
@@ -142,7 +142,7 @@
 											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
                                                value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
                                     </td>
-                                    <th>그린피</th>
+                                    <th>여권정보</th>
                                     <td>
 										<select name="order_gender_list" class="select_txt">
                                             <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>  
@@ -160,7 +160,7 @@
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
                                                value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                     </td>
-                                    <th>생년월일</th>
+                                    <th>그린피</th>
                                     <td>
                                          <p><span>그린피 : </span><em><?=number_format($main[0]["option_tot"])?></em> 원
                                             (<em><?=number_format($main[0]["option_tot_bath"])?></em>바트 X <em><?=number_format($main[0]["option_cnt"])?></em>인)</p>
@@ -186,7 +186,7 @@
                                     endforeach; 
                                 ?> 
                                 <tr>
-                                    <th>기본 선택정보</th>
+                                    <th>홀/날짜/시간</th>
 									<?php foreach ($main as $key => $item): ?>
                                     <td><?=str_replace("|", " | ", $item['option_name']);?></td>
                                     <th>인원/캐디/카트</th>
