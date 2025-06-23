@@ -286,7 +286,7 @@
             text-align: right !important;
         }
 
-                .golf_invoice .logo_voice {
+        .golf_invoice .logo_voice {
             display: flex;
             justify-content: space-between;
             padding-bottom: 20px;
