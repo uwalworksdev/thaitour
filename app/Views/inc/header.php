@@ -264,9 +264,19 @@
 <div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
-        <div class="body_inner flex_header_top pb-24">
-            <a class="flex_header_top_item" href="/">
-                <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+        <div class="body_inner flex_header_top  pb-24">
+            
+            <a class="flex_header_top_item header_logo_wrap flex__c" href="/">
+                <?php
+                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                    $isNotMainPage = $currentUri !== '/';
+                    if (strpos($userAgent, 'iPhone') !== false && $isNotMainPage) {
+                ?>
+                    <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
+                            onclick="history.back();" style="cursor: pointer;" alt="">
+                <?php
+                    }
+                ?>
                 <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
                 <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </a>
