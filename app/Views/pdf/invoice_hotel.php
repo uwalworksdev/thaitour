@@ -332,7 +332,7 @@
         }
 
         .golf_invoice .logo_voice img {
-            width: 165px;
+            width: 165px !important ;
             /* height: 76px; */
         }
 
