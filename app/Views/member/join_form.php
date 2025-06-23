@@ -333,14 +333,14 @@ if ($mIdx != "") {
                 </div>
 
                 <div class="input-wrap">
-                    <label class="label">여권번호*</label>
+                    <label class="label">여권번호</label>
                     <div class="input-row">
                         <input type="text" name="passport_number" id="passport_number" value="" class="bs-input">
                     </div>
                 </div>
 
                 <div class="input-wrap">
-                    <label class="label">여권만기일*</label>
+                    <label class="label">여권만기일</label>
                     <div class="input-row ">
                         <div class="datepick expiry">
                             <input type="text" name="passport_expiry_date" id="passport_expiry_date" onfocus="this.blur()" class="bs-input">
@@ -349,7 +349,7 @@ if ($mIdx != "") {
                 </div>
 
                 <div class="input-wrap">
-                    <label class="label">성별(남성/여성) *</label>
+                    <label class="label">성별(남성/여성)</label>
                     <div class="input-row ">
                         <div class="datepick">
                             <select name="gender" id="gender" style="width: 100%" data-label="성별" class="select-width">
@@ -361,7 +361,7 @@ if ($mIdx != "") {
                 </div>
 
                 <div class="input-wrap">
-                    <label class="label">생년월일*</label>
+                    <label class="label">생년월일</label>
                     <div class="input-row ">
                         <div class="datepick birth"><input type="text" name="birth_day" id="birth_day" onfocus="this.blur()"
                                 class="bs-input"></div>
@@ -1114,23 +1114,23 @@ if ($mIdx != "") {
             return false;
         }
 
-        if (frm.passport_number.value == "") {
-            alert("여권번호 입력해주세요.");
-            frm.passport_number.focus();
-            return false;
-        }
+        // if (frm.passport_number.value == "") {
+        //     alert("여권번호 입력해주세요.");
+        //     frm.passport_number.focus();
+        //     return false;
+        // }
 
-        if (frm.passport_expiry_date.value == "") {
-            alert("여권만기일 선택해주세요.");
-            frm.passport_expiry_date.focus();
-            return false;
-        }
+        // if (frm.passport_expiry_date.value == "") {
+        //     alert("여권만기일 선택해주세요.");
+        //     frm.passport_expiry_date.focus();
+        //     return false;
+        // }
 
-        if (frm.birth_day.value == "") {
-            alert("생년월일을 입력해주세요.");
-            frm.birth_day.focus();
-            return false;
-        }
+        // if (frm.birth_day.value == "") {
+        //     alert("생년월일을 입력해주세요.");
+        //     frm.birth_day.focus();
+        //     return false;
+        // }
         // if (userInputCaptcha !== captchaValue) {
         //     alert("보안문자 일치지않습니다.");
         //     $("#captcha_input").focus();
