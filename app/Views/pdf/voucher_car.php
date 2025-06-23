@@ -442,22 +442,26 @@
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
                     <table class="invoice_tbl re_custom">
+                        <colgroup>
+                            <col width="150px">
+                            <col width="*">
+                        </colgroup>
                         <tbody>
                             <tr>
-                                <th style="width: 20%">Product Name</th>
-                                <td style="width: 80%; font-weight: 700;"><?=$result->product_name_en?></td>
+                                <th>Product Name</th>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
-                                <th style="width: 20%">Name</th>
-                                <td style="width: 80%;">
+                                <th>Name</th>
+                                <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <p><?=$user_name?></p>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th style="width: 20%">Phone</th>
-                                <td style="width: 80%;">
+                                <th>Phone</th>
+                                <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <p><?=$user_mobile?></p>
                                     </div>
@@ -467,20 +471,20 @@
                     </table>
                     <h2 class="tit_top">Booking details</h2>
                     <table class="invoice_tbl re_custom">
-                        <!-- <colgroup>
+                        <colgroup>
                             <col width="150px">
                             <col width="35%">
                             <col width="150px">
                             <col width="*">
-                        </colgroup> -->
+                        </colgroup>
                         <tbody>
                             <tr>
-                                <th style="width: 20%">Booking No</th>
-                                <td style="width: 80%;"><?=$result->order_no?></td>
+                                <th>Booking No</th>
+                                <td colspan="3"><?=$result->order_no?></td>
                             </tr>
                             <tr>
-                                <th style="width: 20%">Date</th>
-                                <td style="color : red; width: 80%;">
+                                <th>Date</th>
+                                <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <?= date("Y.m.d", strtotime($result->meeting_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->meeting_date))) . ")"  ?>
                                         <?php
@@ -497,8 +501,8 @@
     
                             </tr>
                             <tr>
-                                <th style="width: 20%">Type</th>
-                                <td style="width: 80%;">
+                                <th>Type</th>
+                                <td colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <!-- Admission (08:00-16:30) -->
                                         <p></p>
@@ -507,21 +511,23 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th style="width: 20%">Persons</th>
-                                <td style="width: 80%;">
+                                <th>Persons</th>
+                                <td>
                                     <p><?=$order_people?></p>
 
                                 </td>
-                                <th style="width: 20%">Time</th>
-                                <td style="width: 80%;">
+                                <th>Time</th>
+                                <td>
                                     <p><?=$time_line?></p>
+
                                 </td>
                             </tr>
     
                             <tr>
-                                <th style="width: 20%">Remarks</th>
-                                <td style="width: 80%;">
+                                <th>Remarks</th>
+                                <td colspan="3">
                                     <?=$order_remark?>
+
                                 </td>
     
                             </tr>
