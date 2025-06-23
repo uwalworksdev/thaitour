@@ -299,7 +299,7 @@ class Member extends BaseController
                 // 'birth_day'   => $birthday,
                 // 'passport_number' => $passport_number,
                 // 'passport_expiry_date' => $passport_expiry_date,
-                'mbti'        => $mbti,
+                // 'mbti'        => $mbti,
             ];
             for ($idx  = 0; $idx < count($fields); $idx++) {
                 $field = array_keys($fields)[$idx];
