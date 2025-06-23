@@ -363,7 +363,7 @@
                                 Tel: 001-66-(0)2-730-5690, 070-7010-8266
                             </p>
                         </td>
-                        <td style="text-align: right; vertical-align: top;">
+                        <td style="text-align: right; vertical-align: middle;">
                             <h2 class="tit_top" style="margin: 0;">견적서</h2>
                         </td>
                     </tr>
