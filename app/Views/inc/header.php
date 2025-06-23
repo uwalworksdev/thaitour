@@ -269,8 +269,12 @@
             <a class="flex_header_top_item header_logo_wrap flex__c" href="/">
                 <?php
                     $userAgent = $_SERVER['HTTP_USER_AGENT'];
-                    $isNotMainPage = $currentUri !== '/';
-                    if (strpos($userAgent, 'iPhone') !== false && $isNotMainPage) {
+                    $uri = service('uri');
+                    $path = $uri->getPath(); 
+                    $path = trim($path, '/');
+
+                    $mainPaths = ['', 'home', 'index', 'main'];
+                    if (strpos($userAgent, 'iPhone') !== false && !in_array($path, $mainPaths)) {
                 ?>
                     <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
                             onclick="history.back();" style="cursor: pointer;" alt="">
