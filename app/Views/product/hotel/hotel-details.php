@@ -2593,7 +2593,7 @@
 
     <div class="popup_wrap popup_view_room">
         <div class="pop_box">
-            <button type="button" class="close" onclick="closePopupRoom()"></button>
+            <div class="pop_head"><button type="button" class="close" onclick="closePopupRoom()"></button></div>
             <div class="pop_body">
                 <div class="list_room_img">
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">

@@ -1082,6 +1082,10 @@ textarea::placeholder {
 
     .popup_view_room .pop_body {
         flex-direction: column;
+        overflow-y: scroll;
+        height: 70rem;
+        padding:  2rem 0.8rem;
+
     }
 
     .popup_view_room .list_room_img {
@@ -1135,12 +1139,22 @@ textarea::placeholder {
     }
 
     .popup_wrap.popup_view_room .pop_box {
-        padding: 6rem 0.5rem 4rem;
-        padding-left: 1.5rem;
+        padding:0;
+        /* padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 0; */
         border-radius: 2rem;
-        height: 70rem;
+        height: 76rem;
         width: calc(100% - 3rem);
         max-width: 100%;
+        overflow: unset;
+    }
+
+    .popup_wrap.popup_view_room .pop_box .pop_head {
+        height: 6rem;
+        /* background-color: #000; */
+        border-top-left-radius: 2.2rem;
+        border-top-right-radius: 2.2rem;
     }
 
     .popup_wrap.popup_view_room .pop_box .close {
