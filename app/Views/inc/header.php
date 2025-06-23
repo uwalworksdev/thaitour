@@ -266,6 +266,7 @@
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
             <a class="flex_header_top_item" href="/">
+                <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
                 <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
                 <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </a>

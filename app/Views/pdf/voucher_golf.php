@@ -500,9 +500,10 @@ $setting = homeSetInfo();
                                 <th>Option</th>
                                 <td colspan="3">
                                     <?php
-                                    if (!empty($result->order_option_new)) {
-                                        echo $result->order_option_new;
-                                    } else {
+                                        if($type != "admin"){
+                                            if(!empty($result->order_option_new)){
+                                                echo $result->order_option_new;
+                                            }else{
                                     ?>
                                         <?php foreach ($option as $key => $item): ?>
                                             <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
@@ -510,7 +511,16 @@ $setting = homeSetInfo();
                                             <?= $key == count($option) - 1 ? "" : "<br>" ?>										
                                         <?php endforeach; ?>
                                     <?php
-                                    }
+                                            }
+                                        }else{
+                                    ?>
+                                        <?php foreach ($option as $key => $item): ?>
+                                            <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
+                                            Total (<?= number_format($item['option_tot'])?>Won) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                            <?= $key == count($option) - 1 ? "" : "<br>" ?>										
+                                        <?php endforeach; ?>
+                                    <?php
+                                        }
                                     ?>
                                 </td>
                             </tr>

@@ -538,6 +538,9 @@
     background: #d32f2f;
 }
 
+.header_logo_m_sub {
+    display: none;
+}
 
 @media screen and (max-width: 850px) {
     .select_res_header {
@@ -548,6 +551,11 @@
     .header_logo_m {
         width: 21rem;
         height: 4.7rem;
+    }
+
+    .header_logo_m_sub {
+        width: 10.9rem;
+        height: 1.6rem;
     }
 
     .count_like {
