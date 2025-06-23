@@ -324,6 +324,29 @@
             margin: 10px 0 0 !important;
         }
         
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
