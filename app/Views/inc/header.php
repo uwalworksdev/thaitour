@@ -926,7 +926,7 @@
 <script>
     function goBack() {
         if (document.referrer && document.referrer.indexOf(location.hostname) !== -1) {
-            history.back();
+            window.history.back();
         } else {
             window.location.href = "<?= base_url('/') ?>";
         }
