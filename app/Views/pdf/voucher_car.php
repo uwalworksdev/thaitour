@@ -449,7 +449,7 @@
                         <tbody>
                             <tr>
                                 <th>Product Name</th>
-                                <td style="font-weight: 700;">Luxury Sedan</td>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
                                 <th>Name</th>
