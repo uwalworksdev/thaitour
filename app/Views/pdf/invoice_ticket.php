@@ -7,6 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        .invoice_cancle {
+            position: relative;
+        }
         .invoice_cancle img {
             position: absolute;
             top: 50%;
@@ -27,9 +30,7 @@
             margin-bottom: 0 !important;
         }
 
-        #container_voice {
-            position: relative;
-        }
+
 
         .golf_invoice {
             padding: 20px 0 100px;
@@ -396,7 +397,19 @@
                             <td style="width: 80%;"><?=$row->order_user_name?></td>
                         </tr>
 
-                        
+                        <tr>
+                            <th style="width: 20%;">고객 연락처</th>
+                            <td style="width: 30%;"><?=$row->order_user_mobile?></td>
+                            <th style="width: 20%;">고객 이메일</th>
+                            <td style="width: 30%;"><?=$row->order_user_email?></td>
+                        </tr>
+
+                        <tr>
+                            <th style="width: 20%;">예약시간</th>
+                            <td style="width: 30%;"><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
+                            <th style="width: 20%;">총인원</th>
+                            <td style="width: 30%;">성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
+                        </tr>
 
                     </tbody>
                 </table>
