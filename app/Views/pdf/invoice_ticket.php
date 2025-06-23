@@ -27,6 +27,10 @@
             margin-bottom: 0 !important;
         }
 
+        #container_voice {
+            position: relative;
+        }
+
         .golf_invoice {
             padding: 20px 0 100px;
         }
@@ -310,7 +314,7 @@
             color: #454545 !important;
         }
         
-                .golf_invoice .logo_voice {
+        .golf_invoice .logo_voice {
             display: flex;
             justify-content: space-between;
             padding-bottom: 20px;
