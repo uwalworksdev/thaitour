@@ -278,7 +278,7 @@
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
                     <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
-                            onclick="history.back();" style="cursor: pointer;" alt="">
+                            onclick="goBack();" style="cursor: pointer;" alt="">
                 <?php
                     }
                 ?>
@@ -924,6 +924,13 @@
 </script>
 
 <script>
+    function goBack() {
+        if (document.referrer && document.referrer.indexOf(location.hostname) !== -1) {
+            history.back();
+        } else {
+            window.location.href = "<?= base_url('/') ?>";
+        }
+    }
     function stopEventPropagation(e) {
         event.stopPropagation()
     }

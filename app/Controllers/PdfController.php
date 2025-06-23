@@ -1030,7 +1030,6 @@ class PdfController extends BaseController
 					'일' => 'Sun',
 				];
 
-				// Tìm và thay thế nếu có thứ trong ngoặc
 				$order_day = preg_replace_callback('/\((.*?)\)/', function ($matches) use ($day_map) {
 						$korean_day = $matches[1];
 						return isset($day_map[$korean_day]) ? '(' . $day_map[$korean_day] . ')' : '';
