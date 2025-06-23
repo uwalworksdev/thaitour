@@ -267,7 +267,7 @@
                                         <!-- <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
                                                   style="width:90%;height:80px"><?php echo $custom_req_eng ? $custom_req_eng : $order_memo ?></textarea> -->
                                             <textarea id="custom_req_eng" name="custom_req_eng" class="input_txt"
-                                                  style="width:90%;height:80px"></textarea>
+                                                  style="width:90%;height:80px"><?= viewSQ($custom_req_eng) ?></textarea>
                                     </td>
                                 </tr>
 								<!-- <tr style="height:100px">
