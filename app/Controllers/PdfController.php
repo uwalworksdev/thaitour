@@ -1210,6 +1210,8 @@ class PdfController extends BaseController
 			$pick_time = $result->description;
 			$id_kakao = $result->id_kakao;
 			$tour_type = $tour_prod_name;
+			$order_remark = $result->custom_req;
+
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -1280,6 +1282,8 @@ class PdfController extends BaseController
 
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
+			}else {
+				$order_remark = $result->custom_req;
 			}
 
 			if(!empty($result->order_option_new)){

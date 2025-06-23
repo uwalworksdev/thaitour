@@ -191,8 +191,7 @@ $setting = homeSetInfo();
                                     <?php
                                         if($type == "admin"){
                                     ?>    
-                                        <!-- <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea> -->
-                                         <textarea name="order_memo" id="order_memo" style="width: 100%; height: 100px;"><?=$result->order_memo?></textarea>
+                                        <textarea name="order_remark_new" id="order_remark_new" style="width: 100%; height: 100px;"><?=$result->order_remark_new?></textarea>
                                     <?php
                                         }
                                     ?>
