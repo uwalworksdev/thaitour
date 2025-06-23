@@ -55,7 +55,7 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(date("Y.m.d", strtotime($row->order_date)));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>

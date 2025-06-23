@@ -28,6 +28,13 @@
             margin-bottom: 0 !important;
         }
 
+        .hotel_invoice .table_wrapper {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            color: #7d7d7d;
+            font-size : 14px
+        }
+
         .golf_invoice {
             padding: 20px 0 100px;
         }
