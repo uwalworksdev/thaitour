@@ -277,8 +277,9 @@
                     $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
-                    <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
-                            onclick="goBack();" style="cursor: pointer;" alt="">
+                <a href="javascript:history.back();">
+                    <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+                </a>
                 <?php
                     }
                 ?>
@@ -925,6 +926,8 @@
 
 <script>
     function goBack() {
+        console.log("Referrer:", document.referrer);
+        console.log("Current:", window.location.href);
         if (document.referrer && document.referrer.indexOf(location.hostname) !== -1) {
             window.history.back();
         } else {
