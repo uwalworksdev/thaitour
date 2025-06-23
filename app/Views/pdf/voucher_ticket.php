@@ -482,7 +482,7 @@
                         <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
                         <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
                         <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">참고사항</span></p>
-                        <?= viewSQ($policy["policy_contents"]) ?>
+                        <?= viewSQ($policy_1["policy_contents"]) ?>
                     </div>
                 </div>
                 <div class="inquiry_qna">
