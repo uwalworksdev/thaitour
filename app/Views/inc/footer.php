@@ -129,15 +129,15 @@
             <div class="footer_r">
                 <div>
                     <ul class="footer_icon">
-                        <li><a href=""><img class="only_web" src="/images/ico/ig_footer.png" alt=""> <img
+                        <li><a href="https://www.instagram.com/thetourlab_official/#" target="_blank"><img class="only_web" src="/images/ico/ig_footer.png" alt=""> <img
                                         class="only_mo" src="/uploads/icons/ig_footer_m.png" alt=""></a></li>
-                        <li><a href=""><img class="only_web" src="/images/ico/bl_footer.png" alt=""> <img
+                        <li><a href="https://blog.naver.com/thetourlab_official" target="_blank"><img class="only_web" src="/images/ico/bl_footer.png" alt=""> <img
                                         class="only_mo" src="/uploads/icons/bl_footer_m.png" alt=""></a></li>
-                        <li><a href=""><img class="only_web" src="/images/ico/n_footer.png" alt=""><img class="only_mo"
+                        <!-- <li><a href=""><img class="only_web" src="/images/ico/n_footer.png" alt=""><img class="only_mo"
                                                                                                         src="/uploads/icons/n_footer_m.png"
-                                                                                                        alt=""></a></li>
-                        <li><a href=""><img class="only_web" src="/images/ico/ytb_footer.png" alt=""><img
-                                        class="only_mo" src="/uploads/icons/ytb_footer_m.png" alt=""></a></li>
+                                                                                                        alt=""></a></li> -->
+                        <li><a href="https://www.facebook.com/THETOURLAB/" target="_blank"><img class="only_web" src="/images/ico/bl_fb.png" alt=""><img
+                                        class="only_mo" src="/uploads/icons/bl_fb_m.png" alt=""></a></li>
 
 
                     </ul>
