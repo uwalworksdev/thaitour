@@ -274,7 +274,8 @@
                     $path = trim($path, '/');
 
                     $mainPaths = ['', 'home', 'index', 'main'];
-                    if (strpos($userAgent, 'iPhone') !== false && !in_array($path, $mainPaths)) {
+                    $isMobile = stripos($agent, 'iPhone') !== false || stripos($agent, 'Android') !== false;
+                    if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
                     <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
                             onclick="history.back();" style="cursor: pointer;" alt="">
