@@ -353,7 +353,7 @@
     <div id="container_voice">
         <section class="golf_invoice hotel_invoice">
             <div class="inner">
-                <table style="width: 100%; border-collapse: collapse;" class="logo_voice">
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;" class="logo_voice">
                     <tr>
                         <td style="vertical-align: top;">
                             <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
@@ -364,7 +364,7 @@
                             </p>
                         </td>
                         <td style="text-align: right; vertical-align: middle;">
-                            <h2 class="tit_top" style="margin: 0;">견적서</h2>
+                            <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
                         </td>
                     </tr>
                 </table>
