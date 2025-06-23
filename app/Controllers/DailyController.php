@@ -123,11 +123,38 @@ class DailyController extends BaseController {
 				AND confirmed_datetime IS NOT NULL
 				AND confirmed_datetime <= DATE_SUB(NOW(), INTERVAL 1 HOUR)
 		";
-
 		$db->query($updateSql);
-		$affectedRows = $db->affectedRows();
+		$cancelRows = $db->affectedRows();
 
-		// 로그 기록 (write_log 함수 사용 또는 log_message 사용)
+		// 29일 이상 지난 취소 예약 대상 order_idx 목록 확보
+		$orderIdxQuery = "
+			SELECT order_idx 
+			FROM tbl_order_mst
+			WHERE order_status = 'C'
+			  AND order_c_date != '0000-00-00 00:00:00'
+			  AND order_c_date < DATE_SUB(NOW(), INTERVAL 29 DAY)
+		";
+		$orderIdxResult = $db->query($orderIdxQuery)->getResultArray();
+
+		if (!empty($orderIdxResult)) {
+			$orderIdxList = array_column($orderIdxResult, 'order_idx');
+
+			// tbl_order_list 관련 row 삭제
+			$db->table('tbl_order_list')
+				->whereIn('order_idx', $orderIdxList)
+				->delete();
+
+			// tbl_order_mst row 삭제
+			$db->table('tbl_order_mst')
+				->whereIn('order_idx', $orderIdxList)
+				->delete();
+
+			$deleteRows = count($orderIdxList);
+		} else {
+			$deleteRows = 0;
+		}
+
+		// 로그 기록
 		if (!function_exists('write_log')) {
 			function write_log($message, $level = 'info')
 			{
@@ -135,7 +162,9 @@ class DailyController extends BaseController {
 			}
 		}
 
-		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $affectedRows, 'info');
+		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $cancelRows, 'info');
+		write_log('[CRON] 예약취소 30일 경과 자동삭제 처리 건수: ' . $deleteRows, 'info');
 	}
+
 
 }	
