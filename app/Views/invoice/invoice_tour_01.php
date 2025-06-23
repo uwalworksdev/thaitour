@@ -199,13 +199,13 @@ $setting = homeSetInfo();
                         <?php endif;?>
                         <tr>
                             <th>총금액</th>
-                            <td colspan="3"><?=number_format($row->total_bath)?>바트</td>
+                            <td colspan="3"><?=number_format($row->real_price_bath)?>바트</td>
                         </tr>
                        
                     </tbody>
                 </table>
                 <div class="invoice_golf_total flex_e_c">
-                    <p>총 견적서 금액 : <span><?=number_format($row->total_won)?>원</span> (<?=number_format($row->total_bath)?>바트)</p>
+                    <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
                 </div>
                 <table class="invoice_tbl re_custom ">
                     <colgroup>
