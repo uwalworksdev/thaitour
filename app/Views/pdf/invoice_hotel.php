@@ -355,7 +355,7 @@
             <div class="inner">
                 <div class="logo_voice">
                     <div class="logo_addr">
-                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
                         <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                         Thai - Registration No 010-5555-096-398<br>
                         Tel: 001-66-(0)2-730-5690, 070-7010-8266
