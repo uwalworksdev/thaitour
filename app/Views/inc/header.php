@@ -274,7 +274,7 @@
                     $path = trim($path, '/');
 
                     $mainPaths = ['', 'home', 'index', 'main'];
-                    $isMobile = stripos($agent, 'iPhone') !== false || stripos($agent, 'Android') !== false;
+                    $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
                     <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" 
