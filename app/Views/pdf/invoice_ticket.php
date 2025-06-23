@@ -381,16 +381,16 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="top_flex flex_b_c">
+                <div class="">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
                 <table class="invoice_tbl">
                     <tbody>
                         <tr>
-                            <th style="width: 20%; font-size: 20px !important;">상품명</th>
-                            <td style="width: 80%; font-size: 20px !important;"><?=$row->product_name?></td>
-                            <th style="width: 20%; font-size: 20px !important;">여행자 이름</th>
-                            <td style="width: 80%; font-size: 20px !important;"><?=$row->order_user_name?></td>
+                            <th style="width: 20%;">상품명</th>
+                            <td style="width: 80%;"><?=$row->product_name?></td>
+                            <th style="width: 20%;">여행자 이름</th>
+                            <td style="width: 80%;"><?=$row->order_user_name?></td>
                         </tr>
                         <!-- <tr>
                             <th style="width: 20%">날짜</th>
@@ -399,20 +399,20 @@
                             <td style="width: 30%"><?=$row->order_user_name?></td>
                         </tr> -->
                         <tr>
-                            <th style="width: 20%; font-size: 20px !important;">고객 연락처</th>
-                            <td style="width: 30%; font-size: 20px !important;"><?=$row->order_user_mobile?></td>
-                            <th style="width: 20%; font-size: 20px !important;">고객 이메일</th>
-                            <td style="width: 30%; font-size: 20px !important;"><?=$row->order_user_email?></td>
+                            <th style="width: 20%;">고객 연락처</th>
+                            <td style="width: 30%;"><?=$row->order_user_mobile?></td>
+                            <th style="width: 20%;">고객 이메일</th>
+                            <td style="width: 30%;"><?=$row->order_user_email?></td>
                         </tr>
                         <!-- <tr>
                             <th style="width: 20%">예약 선택상품</th>
                             <td style="width: 80%" colspan="3"><?=$option->option_name?></td>
                         </tr> -->
                         <tr>
-                            <th style="width: 20%; font-size: 20px !important;">예약시간</th>
-                            <td style="width: 30%; font-size: 20px !important;"><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
-                            <th style="width: 20%; font-size: 20px !important;">총인원</th>
-                            <td style="width: 30%; font-size: 20px !important;">성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
+                            <th style="width: 20%;">예약시간</th>
+                            <td style="width: 30%;"><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
+                            <th style="width: 20%;">총인원</th>
+                            <td style="width: 30%;">성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
                         <!-- <tr>
                             <th style="width: 20%">픽업포함여부</th>
