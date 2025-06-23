@@ -265,27 +265,30 @@
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top  pb-24">
-            
-            <a class="flex_header_top_item header_logo_wrap flex__c" href="/">
+            <div class="header_logo_wrap flex__c">
                 <?php
                     $userAgent = $_SERVER['HTTP_USER_AGENT'];
                     $uri = service('uri');
                     $path = $uri->getPath(); 
                     $path = trim($path, '/');
-
+    
                     $mainPaths = ['', 'home', 'index', 'main'];
                     $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
-                <a href="javascript:history.back();">
-                    <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
-                </a>
+                    <a href="javascript:history.back();">
+                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+                    </a>
                 <?php
                     }
                 ?>
-                <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
-                <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
-            </a>
+                
+                <a class="flex_header_top_item" href="/">
+                    
+                    <!-- <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt=""> -->
+                    <img class="header_logo_m" src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                </a>
+            </div>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger" onclick="window.location.href='/cart/item-list/123'">
                     <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
