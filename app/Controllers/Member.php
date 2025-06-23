@@ -296,9 +296,9 @@ class Member extends BaseController
                 'user_last_name_en'=> $user_last_name_en,
                 'user_email'  => $user_email,
                 'user_mobile' => $user_mobile,
-                'birth_day'   => $birthday,
-                'passport_number' => $passport_number,
-                'passport_expiry_date' => $passport_expiry_date,
+                // 'birth_day'   => $birthday,
+                // 'passport_number' => $passport_number,
+                // 'passport_expiry_date' => $passport_expiry_date,
                 'mbti'        => $mbti,
             ];
             for ($idx  = 0; $idx < count($fields); $idx++) {
