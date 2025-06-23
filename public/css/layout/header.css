@@ -764,7 +764,7 @@
     }
 
     .flex_header_top_item {
-        max-width: 30%;
+        /* max-width: 30%; */
     }
 
     #header_mobile {
