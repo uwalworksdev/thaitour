@@ -114,14 +114,15 @@
                     </colgroup>
 					
 					<?php foreach ($result as $row) : ?>
-                        <th>날짜</th>
-                        <td>
-                              <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
-                        </td>
-                    <tbody>
+                        
+                        <tbody>
                         <tr>
                             <th>바우처 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
+                            <th>날짜</th>
+                            <td>
+                                <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+                            </td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
