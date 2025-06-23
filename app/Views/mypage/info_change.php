@@ -17,7 +17,7 @@
                 <div class="slide_tab discount flex">
                     <a class="slide_tab_btn active" href="./info_option">내 정보 수정</a>
                     <a class="slide_tab_btn" href="./user_mange">계좌정보</a>
-                    <a class="slide_tab_btn" href="./money">회원탈퇴</a>
+                    <a class="slide_tab_btn" href="./withdrawal">회원탈퇴</a>
 					<div></div>
                 </div>
 				<div class="imfor_tb">

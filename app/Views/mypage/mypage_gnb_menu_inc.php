@@ -80,7 +80,7 @@
                 <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
                 <a class="<?= $tab_9_2 ?>" href="../mypage/user_mange">계좌정보</a>
                 <?php if($gubun !== "kakao" && $gubun !== 'google') {       
-                     echo '<a class="'. $tab_9_3 .'" href="../mypage/money">회원탈퇴</a>' ;
+                     echo '<a class="'. $tab_9_3 .'" href="../mypage/withdrawal">회원탈퇴</a>' ;
                 }else{
                     echo "";
                 }
