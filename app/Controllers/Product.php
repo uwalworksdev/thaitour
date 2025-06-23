@@ -252,9 +252,10 @@ class Product extends BaseController
         return $this->renderView('product/product_search', $data);
     }
 
-    public function showTicket($code_no)
+    public function showTicket($code_no = null)
     {
         try {
+            $code_no = 1317;
             $data = $this->viewData($code_no, 233401, 233402);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -301,9 +302,10 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/completed-cart');
     }
 
-    public function indexTour($code_no)
+    public function indexTour($code_no = null)
     {
         try {
+            $code_no = 1301;
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'ASC')->orderBy("code_idx", "DESC")->findAll();
 
             // $products = $this->productModel->findProductPaging([
@@ -391,9 +393,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexHotel($code_no)
+    public function indexHotel($code_no = null)
     {
         try {
+            $code_no = 1303;
             $keyword = $this->request->getVar('keyword') ?? '';
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
@@ -750,9 +753,10 @@ class Product extends BaseController
         }
     }
 
-    public function index2($code_no, $s = "1")
+    public function index2($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1302;
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
             $perPage = 16;
 
@@ -960,9 +964,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexSpa($code_no, $s = "1")
+    public function indexSpa($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1325;
             $data = $this->viewData($code_no, 233601, 233602);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -978,6 +983,7 @@ class Product extends BaseController
     public function listHotel()
     {
         try {
+            // $code_no = $this->request->getVar('s_code_no') ?? '';
             $code_no = $this->request->getVar('s_code_no') ?? '';
             $s_code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
@@ -3954,9 +3960,10 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
-    public function restaurantIndex($code_no)
+    public function restaurantIndex($code_no = null)
     {
         try {
+            $code_no = 1320;
             $data = $this->viewData($code_no, 233801, 233802);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -4001,10 +4008,11 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/completed-cart');
     }
 
-    public function vehicleGuide($code_no)
+    public function vehicleGuide($code_no = null)
     {
         try {
 
+            $code_no = 132404;
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
