@@ -235,11 +235,11 @@ function getSubMenu($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/product-spa?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/show-ticket?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/product-restaurant?keyword=&main_product_code=$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
@@ -264,11 +264,11 @@ function getSubMenuMo($parent_code_no, $urls)
         } elseif ($parent_code_no == 1301) {
             $url = "/product-tours/tours-list/$code_no";
         } elseif ($parent_code_no == 1325) {
-            $url = "/product-spa/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/product-spa?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1317) {
-            $url = "/show-ticket/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/show-ticket?keyword=&main_product_code=$code_no";
         } elseif ($parent_code_no == 1320) {
-            $url = "/product-restaurant/$parent_code_no?keyword=&main_product_code=$code_no";
+            $url = "/product-restaurant?keyword=&main_product_code=$code_no";
         } else {
             $url = $urls[$code_no] ?? "/product-hotel/list-hotel?s_code_no=$code_no";
         }
@@ -303,44 +303,44 @@ function getHeaderTab()
 
     $tabLinks = [
         1303 => [
-            "/product-hotel/1303",
+            "/product-hotel",
             "/product-hotel/list-hotel",
             "/product-hotel/hotel-detail/",
             "/product-hotel/reservation-form",
         ],
         1302 => [
-            "/product-golf/1302/1",
+            "/product-golf",
             "/product-golf/list-golf/",
             "/product-golf/golf-detail/",
             "/product-golf/customer-form",
         ],
         1301 => [
-            "/product-tours/1301",
+            "/product-tours",
             "/product-tours/tours-list/",
             "/product-tours/item_view/",
             "/product-tours/confirm-info",
             "/product-tours/location_info/"
         ],
         1325 => [
-            "/product-spa/1325",
+            "/product-spa",
             "/product-spa/spa-details/",
             "/product-spa/product-booking",
             "/product-spa/completed-order",
         ],
         1317 => [
-            "/show-ticket/1317",
+            "/show-ticket",
             "/ticket/ticket-detail/",
             "/ticket/ticket-booking",
             "/ticket/completed-order",
         ],
         1320 => [
-            "/product-restaurant/1320",
+            "/product-restaurant",
             "/product-restaurant/restaurant-detail/",
             "/product-restaurant/restaurant-booking",
             "/product-restaurant/completed-order",
         ],
         1324 => [
-            "/vehicle-guide/132404",
+            "/vehicle-guide",
             "/tour-guide/",
             "/guide_view",
             "/guide_booking",
@@ -352,13 +352,13 @@ function getHeaderTab()
     ];
 
     $tabLinkMain = [
-        1303 => "/product-hotel/1303",
-        1302 => "/product-golf/1302/1",
-        1301 => "/product-tours/1301",
-        1325 => "/product-spa/1325",
-        1317 => "/show-ticket/1317",
-        1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/132404",
+        1303 => "/product-hotel",
+        1302 => "/product-golf",
+        1301 => "/product-tours",
+        1325 => "/product-spa",
+        1317 => "/show-ticket",
+        1320 => "/product-restaurant",
+        1324 => "/vehicle-guide",
         // 1326 => "/tour-guide/1326",
     ];
 
@@ -380,7 +380,7 @@ function getHeaderTab()
         if (array_key_exists($tab_, $tabLinkMain)) {
             $link = $tabLinkMain[$tab_];
         } else {
-            $link = "/product-hotel/1303";
+            $link = "/product-hotel";
         }
 
         $sub_html = "";
@@ -399,8 +399,8 @@ function getHeaderTab()
             $sub_html = getSubMenu(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenu(1324, [
-                '132404' => '/vehicle-guide/132404',
-                '132403' => '/tour-guide/132403',
+                '132404' => '/vehicle-guide',
+                '132403' => '/tour-guide',
             ]);
         }
 
@@ -421,43 +421,43 @@ function getHeaderTabMo()
 
     $tabLinks = [
         1303 => [
-            "/product-hotel/1303",
+            "/product-hotel",
             "/product-hotel/list-hotel",
             "/product-hotel/hotel-detail/",
             "/product-hotel/reservation-form",
         ],
         1302 => [
-            "/product-golf/1302/1",
+            "/product-golf",
             "/product-golf/list-golf/",
             "/product-golf/golf-detail/",
             "/product-golf/customer-form",
         ],
         1301 => [
-            "/product-tours/1301",
+            "/product-tours",
             "/product-tours/tours-list/",
             "/product-tours/item_view/",
             "/product-tours/confirm-info",
         ],
         1325 => [
-            "/product-spa/1325",
+            "/product-spa",
             "/product-spa/spa-details/",
             "/product-spa/product-booking",
             "/product-spa/completed-order",
         ],
         1317 => [
-            "/show-ticket/1317",
+            "/show-ticket",
             "/ticket/ticket-detail/",
             "/ticket/ticket-booking",
             "/ticket/completed-order",
         ],
         1320 => [
-            "/product-restaurant/1320",
+            "/product-restaurant",
             "/product-restaurant/restaurant-detail/",
             "/product-restaurant/restaurant-booking",
             "/product-restaurant/completed-order",
         ],
         1324 => [
-            "/vehicle-guide/132404",
+            "/vehicle-guide",
             "/tour-guide/",
             "/guide_view",
             "/guide_booking",
@@ -469,13 +469,13 @@ function getHeaderTabMo()
     ];
 
     $tabLinkMain = [
-        1303 => "/product-hotel/1303",
-        1302 => "/product-golf/1302/1",
-        1301 => "/product-tours/1301",
-        1325 => "/product-spa/1325",
-        1317 => "/show-ticket/1317",
-        1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/132404",
+        1303 => "/product-hotel",
+        1302 => "/product-golf",
+        1301 => "/product-tours",
+        1325 => "/product-spa",
+        1317 => "/show-ticket",
+        1320 => "/product-restaurant",
+        1324 => "/vehicle-guide",
         // 1326 => "/tour-guide/1326",
     ];
 
@@ -516,8 +516,8 @@ function getHeaderTabMo()
             $sub_html = getSubMenuMo(1320, []);
         } elseif ($tab_ == 1324) {
             $sub_html = getSubMenuMo(1324, [
-                '132404' => '/vehicle-guide/132404',
-                '132403' => '/tour-guide/132403',
+                '132404' => '/vehicle-guide',
+                '132403' => '/tour-guide',
             ]);
         }
 
@@ -676,13 +676,13 @@ function getHeaderTabMobile()
     $currentUrl = current_url();
 
     $tabLinks = [
-        1303 => "/product-hotel/1303",
-        1302 => "/product-golf/1302/1",
-        1301 => "/product-tours/1301",
-        1325 => "/product-spa/1325",
-        1317 => "/show-ticket/1317",
-        1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/1324"
+        1303 => "/product-hotel",
+        1302 => "/product-golf",
+        1301 => "/product-tours",
+        1325 => "/product-spa",
+        1317 => "/show-ticket",
+        1320 => "/product-restaurant",
+        1324 => "/vehicle-guide"
     ];
 
     $html = "";
