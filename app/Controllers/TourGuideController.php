@@ -50,9 +50,10 @@ class TourGuideController extends BaseController
         $this->wishModel = model("WishModel");
     }
 
-    public function index($code_no)
+    public function index($code_no = null)
     {
         try {
+            $code_no = 132403;
             $g_list_rows = 10;
             $pg = updateSQ($this->request->getVar("pg") ?? '');
             $data = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'P'], $g_list_rows, $pg, ['onum' => 'desc']);
