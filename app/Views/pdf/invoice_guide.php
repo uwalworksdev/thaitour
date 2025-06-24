@@ -538,7 +538,7 @@
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
                                     <table style="width: 100%; border: none; border-collapse: collapse;">
                                         <tr>
-                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; border: none;">
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; padding-left: 0; border: none;">
                                                 <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
                                             </td>
                                             <td style="vertical-align: middle; padding-left: 10px; font-weight: 500; border: none;">
