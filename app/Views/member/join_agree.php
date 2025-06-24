@@ -33,7 +33,9 @@ if(id) location.href='/';
             <label for="agree2">개인정보처리방침 <span class="text-red">(필수)</span></label>
           </div>
           <div class="terms_view">
-            <ul class="mytlist2 mt20"><?=viewSQ($policy1['policy_contents']);?>
+            <ul class="mytlist2 mt20 only_web"><?=viewSQ($policy1['policy_contents']);?>
+            </ul>
+            <ul class="mytlist2 mt20 only_mo"><?=viewSQ($policy1['policy_contents_m']);?>
             </ul>
           </div>
         </li>
@@ -42,7 +44,10 @@ if(id) location.href='/';
             <input type="checkbox" name="" id="agree3" class="agree">
             <label for="agree3">개인정보 제 3자 제공 및 공유안내 <span class="text-red">(필수)</span></label>
           </div>
-          <div class="terms_view"><?=viewSQ($policy2['policy_contents']);?></div>
+          <div class="terms_view">
+            <div class="only_web"><?=viewSQ($policy2['policy_contents']);?></div>
+            <div class="only_mo"><?=viewSQ($policy2['policy_contents_m']);?></div>
+          </div>
         </li>
         <li>
           <div class="bs-input-check">
