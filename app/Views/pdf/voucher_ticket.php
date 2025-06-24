@@ -99,6 +99,7 @@
 
         .golf_invoice .invoice_table .invoice_tbl {
             width: 100%;
+            table-layout: fixed;
         }
 
         .golf_invoice .invoice_table .invoice_tbl tr {
