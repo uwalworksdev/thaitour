@@ -979,6 +979,7 @@ form .form_list .ch_area [type="checkbox"]+label {
         width: 50%;
         padding: 2rem;
         border: 1px solid #dbdbdb;
+        border-bottom: 1px solid #000;
         text-align: center;
     }
 
@@ -1189,6 +1190,11 @@ form .form_list .ch_area [type="checkbox"]+label {
     .bs-input-radio input[type="radio"]+label {
         /* padding-left: calc(4.3077rem + 0.625rem); */
         padding-left: 0;
+        color: #aaa;
+    }
+
+    .bs-input-radio input[type="radio"]:checked + label {
+        color: #252525;
     }
 
     .bs-input-radio input[type="radio"]+label::after {
@@ -1219,6 +1225,8 @@ form .form_list .ch_area [type="checkbox"]+label {
     }
 
     .find_radio>div:has(input:checked) {
-        background: rgb(247,247,249);
+        /* background: rgb(247,247,249); */
+        border: 1px solid #000;
+        border-bottom: none ;
     }
 }
