@@ -863,6 +863,89 @@
         display: none;
     }
 
+    .popup_link {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        font-family: 'Noto Sans KR';
+        z-index: 99999;
+    }
+
+    .popup_link .popup_news {
+        position: absolute;
+        top: 22rem;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 58rem;
+        padding: 6rem 4rem !important;
+        width: calc(100% - 3rem);
+        background: #fff;
+        border-radius: 4.8rem;
+        z-index: 9999;
+    }
+
+    .popup_link .popup_news .top {
+        position: absolute;
+        top: 1.7692rem;
+        right: 4.7692rem;
+    } 
+
+    .popup_link .popup_news .top img {
+        width: 2.5385rem;
+        height: 2.5385rem;
+    }
+
+    .popup_link .sub_nav_menu {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 2rem;
+    }
+
+    .popup_link .sub_nav_menu .sub_item {
+        width: 47%;
+        text-align: left;
+        padding: 1.2rem 1rem;
+        border-bottom: 1px solid #eee;
+        display: block;
+        border-radius: unset;
+        margin-left: 0;
+        color: #1d1919;
+        font-weight: 500;
+        font-size: 2.3rem;
+    }
+
+    .popup_link .sub_nav_menu .sub_item p {
+        color: #1d1919;
+        font-weight: 500;
+        font-size: 2.3rem;
+    }
+
+    .popup_link .btn_link_main {
+        margin-top: 4rem;
+        width: 100%;
+    }
+
+    .popup_link .btn_link_main .all_link {
+        padding: 2rem;
+        background-color: #252525;
+        color: #ffff;
+        border-radius: 1.2rem;
+        display: block;
+        text-align: center;
+    }
+
+    .popup_link .dim {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
     .header_mobile__wrap {
         position: relative;
     }
@@ -1187,11 +1270,11 @@
         justify-content: center;
         align-items: center;
         margin-top: 2rem;
-        border: 1px solid;
+        /* border: 1px solid; */
         border-radius: 50%;
         width: 6rem;
         height: 6rem;
-        background-color: #fff;
+        background-color: #2fd5f3;
     }
 
     .quick-header-footer .nav-item img.nav-pic {

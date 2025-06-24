@@ -523,9 +523,12 @@
             <?php //echo isset($tab_12) ? 'active_' : '' 
             ?><!--" href="/community/main">태국뉴스</a></span>-->
             <?php echo getHeaderTabMobile(); ?>
-            <span class=""><a href="/mice-page" >인센티브</a></span>
-            <span class=""><a href="https://tourlab.toursafe.co.kr/main/main.php">여행자 보험</a></span>
-            <span class=""><a href="/travel-tips">커뮤니티</a></span>
+            <?php
+            $currentUrl = current_url();
+            ?>
+            <span class="link_one"><a href="/mice-page" class="<?= strpos($currentUrl, '/mice-page') !== false ? 'active_' : '' ?>">인센티브</a></span>
+            <span class="link_one"><a href="https://tourlab.toursafe.co.kr/main/main.php" >여행자 보험</a></span>
+            <span class="link_one"><a href="/travel-tips" class="<?= strpos($currentUrl, '/travel-tips') !== false ? 'active_' : '' ?>">커뮤니티</a></span>
         </div>
     </div>
     <div class="search_m_header only_web">
@@ -560,6 +563,65 @@
         <a href="#">여행후기</a>
     </div>
 </header>
+<div class="only_mo">
+    <div class="popup_link">
+        <div class="popup_news">
+            <div class="top">
+                <img src="/images/ico/close_icon_popup.png" alt="" id="closePopup">
+            </div>
+            <div class="content" id="popupContent">
+
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+</div>
+
+<script>
+    const tabSubMenus = <?= json_encode([
+        1303 => getSubMenuMobile(1303),
+        1302 => getSubMenuMobile(1302),
+        1301 => getSubMenuMobile(1301),
+        1325 => getSubMenuMobile(1325),
+        1317 => getSubMenuMobile(1317),
+        1320 => getSubMenuMobile(1320),
+        1324 => getSubMenuMobile(1324),
+    ]) ?>;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const speLinks = document.querySelectorAll('.spe_link');
+    const popup = document.querySelector('.popup_link');
+    const popupContent = document.getElementById('popupContent');
+    const closeBtn = document.getElementById('closePopup');
+
+    speLinks.forEach(span => {
+        span.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation(); 
+
+            const tabId = this.getAttribute('data-tab');
+            if (tabSubMenus[tabId]) {
+                popupContent.innerHTML = tabSubMenus[tabId];
+                popup.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        const innerA = span.querySelector('a');
+        if (innerA) {
+            innerA.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        }
+    });
+
+    closeBtn.addEventListener('click', function () {
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+    });
+});
+
+</script>
 <div class="only_mo">
     <!-- <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
@@ -641,7 +703,7 @@
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
                     <a class="back_btn" href="javascript:history.back();">
-                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/images/ico/back_ic.png') ?>" alt="">
                     </a>
                 <?php
                     }
