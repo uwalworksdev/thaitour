@@ -2496,7 +2496,7 @@ public function get_golf_option() {
 				}
 
 				$_tmp_fir_array['체크인'] = $checkin;
-				$_tmp_fir_array['호텔상품'] = $room_type;
+				$_tmp_fir_array['호텔상품명'] = $room_type;
 
 			}else if($row->order_gubun == "golf"){
 				$code        = "A23";
