@@ -400,20 +400,20 @@
                         </colgroup> -->
                         <tbody>
                             <tr>
-                                <th style="width: 150px;">Name</th>
+                                <th style="width: 50px;">Name</th>
                                 <?php if(!empty($result->product_name_en)):?>
-                                <td style="font-weight: 700; width: calc(100% - 150px);"><?= $result->product_name_en ?></td>
+                                <td style="font-weight: 700; width: calc(100% - 50px);"><?= $result->product_name_en ?></td>
                                 <?php else: ?>
-                                <td style="font-weight: 700; width: calc(100% - 150px);"><?= $result->product_name ?></td>
+                                <td style="font-weight: 700; width: calc(100% - 50px);"><?= $result->product_name ?></td>
                                 <?php endif?>
                             </tr>
                             <tr>
-                                <th style="width: 150px;">Address</th>
-                                <td style="width: calc(100% - 150px);"><?=$result->addrs?></td>
+                                <th style="width: 50px;">Address</th>
+                                <td style="width: calc(100% - 50px);"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px;">Tel</th>
-                                <td style="width: calc(100% - 150px);"><?= $result->phone_2?></td>
+                                <th style="width: 50px;">Tel</th>
+                                <td style="width: calc(100% - 50px);"><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
