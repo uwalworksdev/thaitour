@@ -2267,7 +2267,7 @@ public function get_golf_option() {
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst a
-								LEFT JOIN tbl_product_mst b where a.product_idx = b.product_idx
+								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
 								WHERE order_no = '". $order_no ."' ";
  								 
 			$row         = $db->query($sql)->getRow();
