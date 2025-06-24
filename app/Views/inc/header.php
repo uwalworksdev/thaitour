@@ -585,7 +585,22 @@
             <span class="nav-text text-grey">찜</span>
         </div>
     </div> -->
-
+    <?php
+        if(strpos(current_url(), '/product-hotel/hotel-detail') !== false 
+            || strpos(current_url(), '/product-golf/golf-detail') !== false
+            || strpos(current_url(), '/product-tours/item_view') !== false
+            || strpos(current_url(), '/product-spa/spa-details') !== false
+            || strpos(current_url(), '/vehicle-guide') !== false
+            || strpos(current_url(), '/guide_view') !== false) {
+    ?>
+        <div class="quick-header-order">
+            <img src="/assets/img/qna_logo.png" alt="">  
+            <button class="btn btn-cart">장바구니</button>
+            <button class="btn btn-order">예약하기</button>            
+        </div>
+    <?php
+        }
+    ?>
     <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
