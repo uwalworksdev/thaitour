@@ -511,15 +511,15 @@
 
                             <tr>
                                 <th>Persons</th>
-                                <td>
+                                <td colspan="3">
                                     <p><?=$order_people?></p>
 
                                 </td>
-                                <th>Time</th>
+                                <!-- <th>Time</th>
                                 <td>
                                     <p><?=$time_line?></p>
 
-                                </td>
+                                </td> -->
                             </tr>
     
                             <tr>
