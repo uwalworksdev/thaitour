@@ -395,26 +395,26 @@
                 </div>
                 <div class="invoice_table">
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Name</th>
+                                <th style="width:150px;">Name</th>
                                 <?php if(!empty($result->product_name_en)):?>
-                                <td style="font-weight: 700;"><?= $result->product_name_en ?></td>
+                                <td style="font-weight: 700; width:calc(100% - 150px);"><?= $result->product_name_en ?></td>
                                 <?php else: ?>
-                                <td style="font-weight: 700;"><?= $result->product_name ?></td>
+                                <td style="font-weight: 700; width:calc(100% - 150px);"><?= $result->product_name ?></td>
                                 <?php endif?>
                             </tr>
                             <tr>
-                                <th>Address</th>
-                                <td><?=$result->addrs?></td>
+                                <th style="width:150px;">Address</th>
+                                <td style="width:calc(100% - 150px);"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th>Tel</th>
-                                <td><?= $result->phone_2?></td>
+                                <th style="width:150px;">Tel</th>
+                                <td style="width:calc(100% - 150px);"><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -439,36 +439,36 @@
                     </table>
                     <h2 class="tit_top">Booking details</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="35%">
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Booking No</th>
-                                <td colspan="3"><?=$result->order_no?></td>
+                                <th style="width:150px;">Booking No</th>
+                                <td style="width:calc(100% - 150px);"><?=$result->order_no?></td>
                             </tr>
                             <tr>
-                                <th>Date</th>
-                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
+                                <th style="width:150px;">Date</th>
+                                <td style="width:calc(100% - 150px);"><span style="color:red;"><?=$order_date?></span></td>
                             </tr>
                             <tr>
-                                <th>Time</th>
-                                <td colspan="3"><?=$time_line?></td>
+                                <th style="width:150px;">Time</th>
+                                <td style="width:calc(100% - 150px);"><?=$time_line?></td>
                             </tr>
                             <tr>
-                                <th>Persons</th>
-                                <td colspan="3"><?=$order_people?></td>
+                                <th style="width:150px;">Persons</th>
+                                <td style="width:calc(100% - 150px);"><?=$order_people?></td>
                             </tr>
                             <tr>
-                                <th>Options</th>
-                                <td colspan="3"><?=$tour_type?></td>
+                                <th style="width:150px;">Options</th>
+                                <td style="width:calc(100% - 150px);"><?=$tour_type?></td>
                             </tr>
                             <tr>
-                                <th>Remarks</th>
-                                <td colspan="3">
+                                <th style="width:150px;">Remarks</th>
+                                <td style="width:calc(100% - 150px);">
                                      <?=$order_remark?>
                                 </td>
 
