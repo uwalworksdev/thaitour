@@ -1093,6 +1093,11 @@ textarea::placeholder {
         width: 100%;
     }
     
+
+    .popup_view_room .list_room_img .swiper {
+        height: 46rem;
+    }
+
     .popup_view_room .room_content {
         width: 100%;
         margin-top: 2rem;
@@ -1157,12 +1162,28 @@ textarea::placeholder {
         /* background-color: #000; */
         border-top-left-radius: 2.2rem;
         border-top-right-radius: 2.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 3rem;
+
+    }
+
+    .popup_wrap.popup_view_room .pop_box .pop_head .ttl {
+        font-size: 3rem;
+        
     }
 
     .popup_wrap.popup_view_room .pop_box .close {
-        width: 2.5385rem;
-        height: 2.5385rem;
+        width: 3.05385rem;
+        height: 3.05385rem;
         background-size: 2.5385rem;
+        position: relative;
+        top: unset;
+        right: unset;
+        background: url(/images/ico/close_icon_popup.png) no-repeat center;
+        background-size: 100%;
+        
 
     }
 
