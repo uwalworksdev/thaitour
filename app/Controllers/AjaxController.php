@@ -2285,7 +2285,7 @@ public function get_golf_option() {
 				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
-				'예약일자'    => substr($row->order_r_date,0,10),
+				'예약일짜'    => substr($row->order_r_date,0,10),
 				'회원이름'    => $row->user_name,
 				'이메일'      => $row->user_email,
 				'전화번호'     => $row->user_mobile,
