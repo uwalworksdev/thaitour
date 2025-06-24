@@ -265,6 +265,20 @@
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top  pb-24">
+            <div class="language_box">
+                <div class="lang_selected show_dropdown">
+                    <span>KOR</span>
+                    <img src="/images/ico/down-arrow-select.png" alt="">
+                </div>
+                <ul class="dropdown">
+                    <li class="lang_item">
+                        KOR
+                    </li>
+                    <li class="lang_item">
+                        ENG
+                    </li>
+                </ul>
+            </div>
             <div class="header_logo_wrap flex__c">
                 <?php
                     $userAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -290,8 +304,9 @@
                 </a>
             </div>
             <div class="flex_header_top flex_header_top_item">
-                <div class="burger" onclick="window.location.href='/cart/item-list/123'">
+                <div class="burger icon-menu-cart" onclick="window.location.href='/cart/item-list/123'">
                     <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
+                    <span class="cart_count"><?=getCartCount();?></span>
                 </div>
                 <div class="burger" id="search-mobile">
                     <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" alt="">
@@ -459,7 +474,7 @@
     </div>
     <div class="nav-container">
         <div class="scroll-con">
-            <span class="nav-item"><a class="<?php echo isset($tab_8) ? 'active_' : '' ?>" href="/">홈</a></span>
+            <!-- <span class="nav-item"><a class="<?php echo isset($tab_8) ? 'active_' : '' ?>" href="/">홈</a></span> -->
             <!--            <span class="nav-item"><a class="-->
             <?php //echo isset($tab_1) ? 'active_' : '' 
             ?><!--" href="/product-hotel/1324">호텔</a></span>-->
@@ -532,7 +547,7 @@
     </div>
 </header>
 <div class="only_mo">
-    <div class="quick-header-footer">
+    <!-- <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
             <span class="nav-text text-grey">전체메뉴</span>
@@ -543,7 +558,6 @@
         </div>
         <div class="nav-item">
             <div class="nav-con-cus" onclick="ChannelIO('show');">
-                <!-- <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3"> -->
                 <img src="/uploads/setting/<?= $setting['logos_consult']?>" alt="quick-header-footer_3">
             </div>
             <span class="nav-text text-grey">실시간문의</span>
@@ -555,6 +569,54 @@
         <div class="nav-item" onclick="location.href='/mypage/fav_list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>
+        </div>
+    </div> -->
+
+    <div class="quick-header-footer">
+        <div class="nav-item nav-item-js">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
+            <!-- <span class="nav-text text-grey">전체메뉴</span> -->
+        </div>
+        <div class="nav-item" onclick="location.href='/'">
+            <img class="nav-pic" src="/images/ico/home.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">홈</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/mypage/reservation_list'">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">예약확인/결제</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/member/login'">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">로그인</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/travel-tips'">
+            <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5">
+            <span class="nav-text text-grey">고객센터</span>
+        </div>
+        <div class="icon-wrap-social">
+            <div class="info_chat">
+                <a class="btn_close" href="javascript:;">close</a>
+                <div class="msg">태국여행,<br><em>무엇이든 물어보세요!!</em></div>
+            </div>
+            <div class="robot-container" onclick="ChannelIO('show');">
+                <img src="/uploads/setting/<?= $setting['logos_consult'] ?>" alt="Chat now">
+            </div>
+             <?php
+                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                    $uri = service('uri');
+                    $path = $uri->getPath(); 
+                    $path = trim($path, '/');
+    
+                    $mainPaths = ['', 'home', 'index', 'main'];
+                    $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
+                    if ($isMobile && !in_array($path, $mainPaths)) {
+                ?>
+                    <a href="javascript:history.back();">
+                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+                    </a>
+                <?php
+                    }
+                ?>
         </div>
     </div>
     <nav id="mobile_menu" style="display: none;">
@@ -940,4 +1002,14 @@
     function stopEventPropagation(e) {
         event.stopPropagation()
     }
+
+    $(".show_dropdown").click(function () {
+        $(".dropdown").toggle();
+    })
+
+    $(".lang_item").click(function () {
+        $lang = $(this).text();
+        $(".lang_selected").find("span").text($lang);
+        $(".dropdown").hide();
+    })
 </script>
