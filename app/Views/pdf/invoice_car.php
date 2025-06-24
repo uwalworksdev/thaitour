@@ -813,6 +813,8 @@
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
                     </p>
+                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+
                     <table class="invoice_tbl" style="margin-top: 30px !important;">
                         <colgroup>
                             <col width="20%">
@@ -820,10 +822,17 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p  style="display: flex; align-items: center; margin-bottom: 13px;"><img style="opacity: 0.7; width: 18px;" src="/images/sub/warning-icon.png" alt="">
-                                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
-                                    <span style="padding-left: 30px; padding-bottom: 10px; font-size: 18px; font-weight: 600;">결제방법</span></p>
+                                <td style="color : #454545; background-color : #f2f2f2 !important; padding: 0 !important;" colspan="2">
+                                    <table style="width: 100%; border: none; border-collapse: collapse; background-color: #f2f2f2;">
+                                        <tr>
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; border: none;">
+                                                <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
+                                            </td>
+                                            <td style="vertical-align: middle; padding-left: 5px; font-weight: 500; border: none;">
+                                                결제방법
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>

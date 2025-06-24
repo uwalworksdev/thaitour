@@ -15,6 +15,8 @@ class VoucherController extends BaseController
     private $orderOptionModel;
     private $tourProducts;
     private $carsCategory;
+	private $ordersCars;
+    private $orderGuide;
 
     public function __construct() {
         $this->db           = db_connect();
@@ -25,6 +27,8 @@ class VoucherController extends BaseController
         $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
         $this->carsCategory = model("CarsCategory");
+        $this->ordersCars = model("OrdersCarsModel");
+        $this->orderGuide = model("OrderGuideModel");
 
         helper('my_helper');
 
@@ -978,7 +982,7 @@ class VoucherController extends BaseController
 		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
-					a.*, b.*, c.*,
+					a.*, b.*, c.*, a.departure_area as order_departure_area, a.destination_area as order_destination_area,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
 					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
@@ -1001,8 +1005,8 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
-		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
+		$departure_name = $this->carsCategory->getById($result->order_departure_area)["code_name_en"];
+		$destination_name = $this->carsCategory->getById($result->order_destination_area)["code_name_en"];
 
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -1015,7 +1019,10 @@ class VoucherController extends BaseController
 			$start_place = $result->start_place;
 			$pick_time = $result->description;
 			$id_kakao = $result->id_kakao;
-			$tour_type = $departure_name . " / " . $destination_name;
+
+			if(!empty($departure_name) && !empty($destination_name)){
+				$tour_type = $departure_name . " / " . $destination_name;
+			}
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -1056,7 +1063,9 @@ class VoucherController extends BaseController
 			if(!empty($result->tour_type_en)){
 				$tour_type = $result->tour_type_en;
 			}else{
-				$tour_type = $departure_name . " / " . $destination_name;
+				if(!empty($departure_name) && !empty($destination_name)){
+					$tour_type = $departure_name . " / " . $destination_name;
+				}
 			}
 
 			if(!empty($result->start_place_en)){
@@ -1093,11 +1102,11 @@ class VoucherController extends BaseController
 		}
 
         $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [25])
+		$policy = $builder1->whereIn('p_idx', [47])
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
-
+		$order_cars_detail = $this->ordersCars->getByOrder($idx);
 
         return view("voucher/voucher_car", [
             'policy_1' => $policy[0],
@@ -1118,6 +1127,7 @@ class VoucherController extends BaseController
 			'tour_type' => $tour_type,
 			'departure_name' => $departure_name,
 			'destination_name' => $destination_name,
+			'order_cars_detail' => $order_cars_detail,
         ]);
     }
 
@@ -1300,9 +1310,11 @@ class VoucherController extends BaseController
 		}
 
         $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [25])
+		$policy = $builder1->whereIn('p_idx', [48])
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
+
+		$order_subs = $this->orderGuide->getListByOrderIdx($idx);
 
         return view("voucher/voucher_guide", [
             'policy_1' => $policy[0],
@@ -1321,6 +1333,7 @@ class VoucherController extends BaseController
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
 			'tour_type' => $tour_type,
+			'order_subs' => $order_subs
         ]);
     }
 

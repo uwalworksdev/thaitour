@@ -2438,9 +2438,9 @@ public function get_golf_option() {
 				$code = 'A25';
 				$_tmp_fir_array['투어명명'] = $row->product_name_en;
 				$_tmp_fir_array['투어업체'] = $row->addrs;
-				$_tmp_fir_array['투어전화번호'] = $row->phone_2;
+				$_tmp_fir_array['투어전화번호'] = $row->phone;
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
-				$_tmp_fir_array['제품명'] = $row->tour_type_en;
+				// $_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}
 			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 

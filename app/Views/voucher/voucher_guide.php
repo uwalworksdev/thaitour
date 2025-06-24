@@ -218,6 +218,44 @@
                             </tr>
                         </tbody>
                     </table>
+                    <h2 class="tit_top">Pickup included</h2>
+                    <table class="invoice_tbl re_custom">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="*">
+                            <col width="20%">
+                            <col width="20%">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th class="subject">Guide meeting time</th>
+                            <th class="subject">Meeting place</th>
+                            <th class="subject">Expected schedule</th>
+                            <th class="subject">Other requests</th>
+                        </tr>
+
+                        <?php foreach ($order_subs as $item): ?>
+                            <tr>
+                                <td class="content">
+                                    <span>
+                                        <?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
+                                    </span>
+                                </td>
+
+                                <td class="content">
+                                    <?= $item["guide_meeting_place"] ?>
+                                </td>
+                                <td class="content">
+                                    <?= nl2br($item["guide_schedule"]) ?>
+                                </td>
+                                <td class="content">
+                                    <?= nl2br($item["request_memo"]) ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                        </tbody>
+                    </table>
     
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
