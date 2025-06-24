@@ -2263,7 +2263,7 @@ public function get_golf_option() {
 			$order_no  = $_POST["order_no"];
 			$order_user_email = $_POST["order_user_email"];
  
-			$sql       = "SELECT   a.*, b.*
+			$sql       = "SELECT   a.*, b.product_name
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst a
