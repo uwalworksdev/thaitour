@@ -1170,7 +1170,7 @@ textarea::placeholder {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 3rem;
+        padding: 0 2rem 0 3rem;
 
     }
 
@@ -1188,7 +1188,7 @@ textarea::placeholder {
         right: unset;
         background: url(/images/ico/close_icon_popup.png) no-repeat center;
         background-size: 100%;
-        
+        opacity: 0.9;
 
     }
 
