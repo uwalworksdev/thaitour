@@ -166,7 +166,7 @@
                             </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td>
+                                <td colspan="3">
                                     <p><?=$order_people?></p>
                                     <?php
                                         if($type == "admin"){
@@ -176,7 +176,7 @@
                                         }
                                     ?>
                                 </td>
-                                <th>Time</th>
+                                <!-- <th>Time</th>
                                 <td>
                                     <p><?=$time_line?></p>
                                     <?php
@@ -186,7 +186,7 @@
                                     <?php
                                         }
                                     ?>
-                                </td>
+                                </td> -->
                             </tr>
     
                             <tr>
