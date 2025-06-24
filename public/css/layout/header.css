@@ -867,12 +867,12 @@
         left: 0;
         top: 0;
         font-family: 'Noto Sans KR';
-        z-index: 99;
+        z-index: 99999;
     }
 
     .popup_link .popup_news {
         position: absolute;
-        top: 50%;
+        top: 35%;
         left: 50%;
         transform: translate(-50%, -50%);
         max-width: 58rem;
@@ -880,7 +880,7 @@
         width: calc(100% - 3rem);
         background: #fff;
         border-radius: 4.8rem;
-        z-index: 99;
+        z-index: 9999;
     }
 
     .popup_link .popup_news .top {
