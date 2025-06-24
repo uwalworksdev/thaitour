@@ -16,6 +16,7 @@ class VoucherController extends BaseController
     private $tourProducts;
     private $carsCategory;
 	private $ordersCars;
+    private $orderGuide;
 
     public function __construct() {
         $this->db           = db_connect();
@@ -27,6 +28,7 @@ class VoucherController extends BaseController
         $this->tourProducts = model("ProductTourModel");
         $this->carsCategory = model("CarsCategory");
         $this->ordersCars = model("OrdersCarsModel");
+        $this->orderGuide = model("OrderGuideModel");
 
         helper('my_helper');
 
@@ -1312,6 +1314,8 @@ class VoucherController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
+		$order_subs = $this->orderGuide->getListByOrderIdx($idx);
+
         return view("voucher/voucher_guide", [
             'policy_1' => $policy[0],
             'result' => $result,
@@ -1329,6 +1333,7 @@ class VoucherController extends BaseController
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
 			'tour_type' => $tour_type,
+			'order_subs' => $order_subs
         ]);
     }
 

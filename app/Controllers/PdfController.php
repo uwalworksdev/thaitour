@@ -17,6 +17,8 @@ class PdfController extends BaseController
     private $tourProducts;
 	private $ordersCars;
     private $carsCategory;
+    private $orderGuide;
+
     public function __construct() {
         $this->db           = db_connect();
         $this->productModel = model("ProductModel");
@@ -26,6 +28,8 @@ class PdfController extends BaseController
         $this->tourProducts = model("ProductTourModel");
 		$this->ordersCars = model("OrdersCarsModel");
         $this->carsCategory = model("CarsCategory");
+        $this->orderGuide = model("OrderGuideModel");
+
     }
 	
     public function generateQuotation()
@@ -1650,6 +1654,8 @@ class PdfController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
+		$order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+
 		$html = view('pdf/voucher_guide', [
             'result'  => $result,
 			'policy_1' => $policy[0],
@@ -1666,7 +1672,8 @@ class PdfController extends BaseController
 			'pick_time' => $pick_time,
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
-			'tour_type' => $tour_type
+			'tour_type' => $tour_type,
+			'order_subs' => $order_subs
         ]);
         
         $pdf->WriteHTML($html);
