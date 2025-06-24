@@ -1478,7 +1478,7 @@ class PdfController extends BaseController
 		}
 
         $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [25])
+		$policy = $builder1->whereIn('p_idx', [47])
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
@@ -1650,7 +1650,7 @@ class PdfController extends BaseController
 		}
 
         $builder1 = $db->table('tbl_policy_info');
-		$policy = $builder1->whereIn('p_idx', [25])
+		$policy = $builder1->whereIn('p_idx', [48])
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
