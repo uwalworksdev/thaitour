@@ -420,57 +420,56 @@
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl">
-                        <colgroup>
+                    <table class="invoice_tbl" style="table-layout: fixed;">
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td><p><?=$user_name?></p></td>
+                                <th style="width: 50px;">Name</th>
+                                <td style="width: calc(100% - 50px);"><p><?=$user_name?></p></td>
                             </tr>
                             <tr>
-                                <th>Phone</th>
-                                <td><?=$user_mobile?></td>
+                                <th style="width: 50px;">Phone</th>
+                                <td style="width: calc(100% - 50px);"><?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="35%">
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Booking No</th>
-                                <td colspan="3"><?=$result->order_no?></td>
+                                <th style="width: 50px;">Booking No</th>
+                                <td style="width: calc(100% - 50px);"><?=$result->order_no?></td>
                             </tr>
                             <tr>
-                                <th>Date</th>
-                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
+                                <th style="width: 50px;">Date</th>
+                                <td style="width: calc(100% - 50px);"><span style="color:red;"><?=$order_date?></span></td>
                             </tr>
                             <tr>
-                                <th>Time</th>
-                                <td colspan="3"><?=$time_line?></td>
+                                <th style="width: 50px;">Time</th>
+                                <td style="width: calc(100% - 50px);"><?=$time_line?></td>
                             </tr>
                             <tr>
-                                <th>Persons</th>
-                                <td colspan="3"><?=$order_people?></td>
+                                <th style="width: 50px;">Persons</th>
+                                <td style="width: calc(100% - 50px);"><?=$order_people?></td>
                             </tr>
                             <tr>
-                                <th>Options</th>
-                                <td colspan="3"><?=$tour_type?></td>
+                                <th style="width: 50px;">Options</th>
+                                <td style="width: calc(100% - 50px);"><?=$tour_type?></td>
                             </tr>
                             <tr>
-                                <th>Remarks</th>
-                                <td colspan="3">
+                                <th style="width: 50px;">Remarks</th>
+                                <td style="width: calc(100% - 50px);">
                                      <?=$order_remark?>
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
