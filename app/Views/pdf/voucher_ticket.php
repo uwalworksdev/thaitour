@@ -421,18 +421,18 @@
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
                     <table class="invoice_tbl">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Name</th>
-                                <td><p><?=$user_name?></p></td>
+                                <th style="width:150px;">Name</th>
+                                <td style="width:calc(100% - 150px);"><p><?=$user_name?></p></td>
                             </tr>
                             <tr>
-                                <th>Phone</th>
-                                <td><?=$user_mobile?></td>
+                                <th style="width:150px;">Phone</th>
+                                <td style="width:calc(100% - 150px);"><?=$user_mobile?></td>
                             </tr>
                         </tbody>
                     </table>
