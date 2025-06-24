@@ -333,6 +333,14 @@
             color: #616161;
             margin-top: 10px;
         }
+
+        .hotel_invoice .table_wrapper {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            color: #7d7d7d;
+            font-size : 14px
+        }
     </style>
 </head>
 
