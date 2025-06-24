@@ -626,7 +626,7 @@
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
                     <a class="back_btn" href="javascript:history.back();">
-                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
+                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/images/ico/back_ic.png') ?>" alt="">
                     </a>
                 <?php
                     }
