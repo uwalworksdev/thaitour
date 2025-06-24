@@ -406,7 +406,7 @@
                             </tr>
                             <tr>
                                 <th style="width: 20%">Tel</th>
-                                <td colspan="3" style="width: 80%"><?=$result->company_contact?></td>
+                                <td colspan="3" style="width: 80%"><?=$result->phone?></td>
                             </tr>
                         </tbody>
                     </table>
