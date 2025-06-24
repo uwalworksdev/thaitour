@@ -822,8 +822,8 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td style="color : #454545; background-color : #757575 !important" colspan="2">
-                                    <table style="width: 100%; border: none; border-collapse: collapse; background-color: #757575;">
+                                <td style="color : #454545; background-color :rgb(228, 223, 223) !important" colspan="2">
+                                    <table style="width: 100%; border: none; border-collapse: collapse; background-color: rgb(228, 223, 223);">
                                         <tr>
                                             <td style="width: 30px; vertical-align: middle; padding-top: 10px; padding-left: 0; border: none;">
                                                 <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
