@@ -1153,11 +1153,11 @@
         justify-content: center;
         align-items: center;
         margin-top: 2rem;
-        border: 1px solid;
+        /* border: 1px solid; */
         border-radius: 50%;
         width: 6rem;
         height: 6rem;
-        background-color: #fff;
+        background-color: #2fd5f3;
     }
 
     .quick-header-footer .nav-item img.nav-pic {
