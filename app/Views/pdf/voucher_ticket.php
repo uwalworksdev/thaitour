@@ -392,37 +392,37 @@
                 </div>
                 <div class="invoice_ttl">
                 </div>
-                <div class="invoice_table" style="table-layout: fixed !important; width: 100% !important;">
-                    <table class="invoice_tbl">
-                        <colgroup>
-                            <col width="200px">
+                <div class="invoice_table">
+                    <table class="invoice_tbl" style="table-layout: fixed;">
+                        <!-- <colgroup>
+                            <col width="500px">
                             <col width="*">
-                        </colgroup>
+                        </colgroup> -->
                         <tbody>
                             <tr>
-                                <th>Name</th>
+                                <th style="width: 500px;">Name</th>
                                 <?php if(!empty($result->product_name_en)):?>
-                                <td style="font-weight: 700;"><?= $result->product_name_en ?></td>
+                                <td style="font-weight: 700; width: calc(100% - 500px);"><?= $result->product_name_en ?></td>
                                 <?php else: ?>
-                                <td style="font-weight: 700;"><?= $result->product_name ?></td>
+                                <td style="font-weight: 700; width: calc(100% - 500px);"><?= $result->product_name ?></td>
                                 <?php endif?>
                             </tr>
                             <tr>
-                                <th>Address</th>
-                                <td><?=$result->addrs?></td>
+                                <th style="width: 500px;">Address</th>
+                                <td style="width: calc(100% - 500px);"><?=$result->addrs?></td>
                             </tr>
                             <tr>
-                                <th>Tel</th>
-                                <td><?= $result->phone_2?></td>
+                                <th style="width: 500px;">Tel</th>
+                                <td style="width: calc(100% - 500px);"><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
+                    <table class="invoice_tbl">
                         <colgroup>
-                            <col width="200px">
+                            <col width="150px">
                             <col width="*">
                         </colgroup>
                         <tbody>
@@ -437,35 +437,37 @@
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
+                    <table class="invoice_tbl">
                         <colgroup>
-                            <col width="200px">
+                            <col width="150px">
+                            <col width="35%">
+                            <col width="150px">
                             <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
                                 <th>Booking No</th>
-                                <td><?=$result->order_no?></td>
+                                <td colspan="3"><?=$result->order_no?></td>
                             </tr>
                             <tr>
                                 <th>Date</th>
-                                <td><span style="color:red;"><?=$order_date?></span></td>
+                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
                             </tr>
                             <tr>
                                 <th>Time</th>
-                                <td><?=$time_line?></td>
+                                <td colspan="3"><?=$time_line?></td>
                             </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td><?=$order_people?></td>
+                                <td colspan="3"><?=$order_people?></td>
                             </tr>
                             <tr>
                                 <th>Options</th>
-                                <td><?=$tour_type?></td>
+                                <td colspan="3"><?=$tour_type?></td>
                             </tr>
                             <tr>
                                 <th>Remarks</th>
-                                <td>
+                                <td colspan="3">
                                      <?=$order_remark?>
                                 </td>
 
