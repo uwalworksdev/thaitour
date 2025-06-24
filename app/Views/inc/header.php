@@ -658,10 +658,19 @@ document.addEventListener('DOMContentLoaded', function () {
             <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2">
             <span class="nav-text text-grey flex__c">예약확인/결제</span>
         </div>
-        <div class="nav-item" onclick="location.href='/member/login'">
-            <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
-            <span class="nav-text text-grey flex__c">로그인</span>
-        </div>
+        
+        <?php if (session("member")): ?>
+            <div class="nav-item" onclick="location.href='/member/login'">
+                <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+                <span class="nav-text text-grey flex__c">로그인</span>
+            </div>
+        <?php else: ?>
+            <div class="nav-item" onclick="location.href='/mypage/alarm'">
+                <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+                <span class="nav-text text-grey flex__c">마이페이지</span>
+            </div>
+        <?php endif; ?>
+        
         <div class="nav-item" onclick="location.href='/travel-tips'">
             <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">고객센터</span>
