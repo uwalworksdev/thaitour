@@ -1480,7 +1480,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
-            height: auto;
+            height: 30rem;
             object-fit: cover;
         }
 
@@ -1519,6 +1519,10 @@
         .flex-20-mo {
             display: flex;
             gap: 2rem;
+        }
+
+        .img_box_14 {
+            padding-top: calc(300% / 658 * 100);
         }
     }
 </style>
