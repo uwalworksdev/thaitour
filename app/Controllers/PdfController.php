@@ -1392,7 +1392,9 @@ class PdfController extends BaseController
 			$start_place = $result->start_place;
 			$pick_time = $result->description;
 			$id_kakao = $result->id_kakao;
-			$tour_type = $departure_name . " / " . $destination_name;
+			if(!empty($departure_name) && !empty($destination_name)){
+				$tour_type = $departure_name . " / " . $destination_name;
+			}
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -1433,7 +1435,9 @@ class PdfController extends BaseController
 			if(!empty($result->tour_type_en)){
 				$tour_type = $result->tour_type_en;
 			}else{
-				$tour_type = $departure_name . " / " . $destination_name;
+				if(!empty($departure_name) && !empty($destination_name)){
+					$tour_type = $departure_name . " / " . $destination_name;
+				}
 			}
 
 			if(!empty($result->start_place_en)){
