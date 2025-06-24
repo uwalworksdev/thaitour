@@ -1004,6 +1004,10 @@ class VoucherController extends BaseController
 		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
 		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
 
+		var_dump($departure_name);
+		var_dump($destination_name);
+		die();
+
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
 			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
