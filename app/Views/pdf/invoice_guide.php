@@ -536,10 +536,16 @@
                         <tbody>
                             <tr>
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;">
-                                        <img style="opacity: 0.7; margin-right: 10px; margin-top: 10px !important;" src="/images/sub/warning-icon.png" alt="">
-                                        <span style="margin-left: 10px !important; font-weight: 500;">결제방법</span>
-                                    </p>
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <tr>
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px;">
+                                                <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
+                                            </td>
+                                            <td style="vertical-align: middle; padding-left: 10px; font-weight: 500;">
+                                                결제방법
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
 
                             </tr>
