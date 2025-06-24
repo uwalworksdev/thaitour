@@ -280,7 +280,7 @@
                 </ul>
             </div>
             <div class="header_logo_wrap flex__c">
-                <?php
+                <!-- <?php
                     $userAgent = $_SERVER['HTTP_USER_AGENT'];
                     $uri = service('uri');
                     $path = $uri->getPath(); 
@@ -295,7 +295,7 @@
                     </a>
                 <?php
                     }
-                ?>
+                ?> -->
                 
                 <a class="flex_header_top_item" href="/">
                     
