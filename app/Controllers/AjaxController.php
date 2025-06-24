@@ -2263,10 +2263,12 @@ public function get_golf_option() {
 			$order_no  = $_POST["order_no"];
 			$order_user_email = $_POST["order_user_email"];
  
-			$sql       = "SELECT   *
+			$sql       = "SELECT   a.*, b.*
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
-						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst a
+								LEFT JOIN tbl_product_mst b where a.product_idx = b.product_idx
+								WHERE order_no = '". $order_no ."' ";
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
