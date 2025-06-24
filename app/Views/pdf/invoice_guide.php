@@ -536,12 +536,12 @@
                         <tbody>
                             <tr>
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <table style="width: 100%; border-collapse: collapse;">
+                                    <table style="width: 100%; border: none; border-collapse: collapse;">
                                         <tr>
-                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px;">
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; border: none;">
                                                 <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
                                             </td>
-                                            <td style="vertical-align: middle; padding-left: 10px; font-weight: 500;">
+                                            <td style="vertical-align: middle; padding-left: 10px; font-weight: 500; border: none;">
                                                 결제방법
                                             </td>
                                         </tr>
