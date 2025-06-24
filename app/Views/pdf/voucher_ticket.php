@@ -396,7 +396,7 @@
                     <table class="invoice_tbl">
                         <colgroup>
                             <col width="200px">
-                            <col width="calc(100% - 200px)">
+                            <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
@@ -423,7 +423,7 @@
                     <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
                         <colgroup>
                             <col width="200px">
-                            <col width="calc(100% - 200px)">
+                            <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
@@ -440,7 +440,7 @@
                     <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
                         <colgroup>
                             <col width="200px">
-                            <col width="calc(100% - 200px)">
+                            <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
