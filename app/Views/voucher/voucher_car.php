@@ -205,6 +205,320 @@
                         </tbody>
                     </table>
     
+                    <h2 class="tit_top">Pickup included</h2>
+                    <?php
+                        if($row->code_parent_category == "5401"){
+                    ?>     
+                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ One way</div>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight number</th>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other requests</th>
+                            </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["air_code"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["hours"]?> h <?=$order_cars_detail[0]["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($order_cars_detail[0]["order_memo"])?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <?php 
+                            if(count($order_cars_detail) > 1){
+                        ?>
+                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ Coming soon</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="15%"/>
+                                    <col width="15%"/>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="*%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th style="text-align:center">Flight number</th>
+                                    <th style="text-align:center">Flight arrival date</th>
+                                    <th style="text-align:center">Flight arrival time</th>
+                                    <th style="text-align:center">Meeting place</th>
+                                    <th style="text-align:center">Other requests</th>
+                                </tr>
+                                    <tr>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["air_code"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["date_trip"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["hours"]?> h <?=$order_cars_detail[1]["minutes"]?> m
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["departure_name"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=nl2br($order_cars_detail[1]["order_memo"])?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        <?php } ?>
+                    <?php
+                        }else if($row->code_parent_category == "5402"){
+                    ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight number</th>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Meeting place</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["air_code"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5403"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">항공 도착 시간</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Moving route</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["schedule_content"])?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5404"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup hotel</th>
+                                <th style="text-align:center">Transit point</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["rest_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5405"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup hotel</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else {
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup Hotel</th>
+                                <th style="text-align:center">Destination (golf course name)</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                    <?php
+                        }
+                    ?>
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>

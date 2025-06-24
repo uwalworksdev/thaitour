@@ -15,6 +15,7 @@ class VoucherController extends BaseController
     private $orderOptionModel;
     private $tourProducts;
     private $carsCategory;
+	private $ordersCars;
 
     public function __construct() {
         $this->db           = db_connect();
@@ -25,6 +26,7 @@ class VoucherController extends BaseController
         $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
         $this->carsCategory = model("CarsCategory");
+        $this->ordersCars = model("OrdersCarsModel");
 
         helper('my_helper');
 
@@ -1102,7 +1104,7 @@ class VoucherController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
-
+		$order_cars_detail = $this->ordersCars->getByOrder($idx);
 
         return view("voucher/voucher_car", [
             'policy_1' => $policy[0],
@@ -1123,6 +1125,7 @@ class VoucherController extends BaseController
 			'tour_type' => $tour_type,
 			'departure_name' => $departure_name,
 			'destination_name' => $destination_name,
+			'order_cars_detail' => $order_cars_detail,
         ]);
     }
 

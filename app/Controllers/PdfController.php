@@ -1355,7 +1355,7 @@ class PdfController extends BaseController
 		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
-					a.*, b.*, c.*,
+					a.*, b.*, c.*, a.departure_area as order_departure_area, a.destination_area as order_destination_area,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
 					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
@@ -1478,6 +1478,8 @@ class PdfController extends BaseController
 							->orderBy('p_idx', 'asc')
 							->get()->getResultArray();
 
+		$order_cars_detail = $this->ordersCars->getByOrder($order_idx);
+
 		$html = view('pdf/voucher_car', [
             'result'  => $result,
 			'policy_1' => $policy[0],
@@ -1497,6 +1499,7 @@ class PdfController extends BaseController
 			'tour_type' => $tour_type,
 			'departure_name' => $departure_name,
 			'destination_name' => $destination_name,
+			'order_cars_detail' => $order_cars_detail,
         ]);
         
         $pdf->WriteHTML($html);
