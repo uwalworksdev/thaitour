@@ -501,11 +501,11 @@
                             </tr> -->
                             <tr>
                                 <th style="width: 20%">Persons</th>
-                                <td style="width: 80%">
+                                <td style="width: 30%">
                                     <p><?=$order_people?></p>
                                 </td>
                                 <th style="width: 20%">Time</th>
-                                <td style="width: 80%">
+                                <td style="width: 30%">
                                     <p><?=$time_line?></p>
                                 </td>
                             </tr>
