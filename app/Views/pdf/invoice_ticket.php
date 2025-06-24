@@ -390,9 +390,9 @@
                     <tbody>
                         <tr>
                             <th style="width: 20%;">상품명</th>
-                            <td style="width: 80%;"><?=$row->product_name?></td>
+                            <td style="width: 30%;"><?=$row->product_name?></td>
                             <th style="width: 20%;">여행자 이름</th>
-                            <td style="width: 80%;"><?=$row->order_user_name?></td>
+                            <td style="width: 30%;"><?=$row->order_user_name?></td>
                         </tr>
 
                         <tr>
