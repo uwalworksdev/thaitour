@@ -626,6 +626,10 @@ $setting = homeSetInfo();
                             color: #000;
                         }
 
+                        .golf_invoice {
+                            padding: 20px 0 0 !important;
+                        }
+
                         .golf_invoice .invoice_ttl {
                             margin-bottom: 0px !important;
                         }
