@@ -542,7 +542,7 @@
             <span class="nav-text text-grey flex__c">마이페이지<i class="count_like" style="color: red;">(0)</i></span>
         </div>
         <div class="nav-item">
-            <div class="nav-con-cus">
+            <div class="nav-con-cus" onclick="ChannelIO('show');">
                 <!-- <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3"> -->
                 <img src="/uploads/setting/<?= $setting['logos_consult']?>" alt="quick-header-footer_3">
             </div>
