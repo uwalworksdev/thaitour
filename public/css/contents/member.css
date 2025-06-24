@@ -1230,5 +1230,9 @@ form .form_list .ch_area [type="checkbox"]+label {
         border-bottom: none ;
     }
 
+    .member form .form_list .terms_view * {
+        font-size: unset !important;
+        font-family: inherit !important;
+    }
    
 }
