@@ -220,6 +220,12 @@ if ($product_idx && $product) {
                                                value="<?= $product_name ?? "" ?>"
                                                class="text"/>
                                     </td>
+                                    <th>상품명</th>
+                                    <td colspan="3">
+                                        <input type="text" name="product_name_en"
+                                               value="<?= $product_name_en ?? "" ?>"
+                                               class="text"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>검색키워드</th>
