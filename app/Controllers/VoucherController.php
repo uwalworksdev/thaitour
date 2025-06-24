@@ -978,7 +978,7 @@ class VoucherController extends BaseController
 		$builder = $db->table('tbl_order_mst a');
 
 		$builder->select("
-					a.*, b.*, c.*,
+					a.*, b.*, c.*, a.departure_area as order_departure_area, a.destination_area as order_destination_area
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
 					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
 					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
@@ -1001,12 +1001,8 @@ class VoucherController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
-		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
-
-		var_dump($result->departure_area);
-		var_dump($result->destination_area);
-		die();
+		$departure_name = $this->carsCategory->getById($result->order_departure_area)["code_name_en"];
+		$destination_name = $this->carsCategory->getById($result->order_destination_area)["code_name_en"];
 
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
