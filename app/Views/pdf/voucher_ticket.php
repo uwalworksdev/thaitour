@@ -392,11 +392,11 @@
                 </div>
                 <div class="invoice_ttl">
                 </div>
-                <div class="invoice_table">
+                <div class="invoice_table" style="table-layout: fixed !important; width: 100% !important;">
                     <table class="invoice_tbl">
                         <colgroup>
-                            <col width="150px">
-                            <col width="calc(100% - 150px)">
+                            <col width="200px">
+                            <col width="calc(100% - 200px)">
                         </colgroup>
                         <tbody>
                             <tr>
@@ -420,10 +420,10 @@
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
                         <colgroup>
-                            <col width="150px">
-                            <col width="calc(100% - 150px)">
+                            <col width="200px">
+                            <col width="calc(100% - 200px)">
                         </colgroup>
                         <tbody>
                             <tr>
@@ -437,37 +437,35 @@
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl">
+                    <table class="invoice_tbl" style="table-layout: fixed !important; width: 100% !important;">
                         <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
+                            <col width="200px">
+                            <col width="calc(100% - 200px)">
                         </colgroup>
                         <tbody>
                             <tr>
                                 <th>Booking No</th>
-                                <td colspan="3"><?=$result->order_no?></td>
+                                <td><?=$result->order_no?></td>
                             </tr>
                             <tr>
                                 <th>Date</th>
-                                <td colspan="3"><span style="color:red;"><?=$order_date?></span></td>
+                                <td><span style="color:red;"><?=$order_date?></span></td>
                             </tr>
                             <tr>
                                 <th>Time</th>
-                                <td colspan="3"><?=$time_line?></td>
+                                <td><?=$time_line?></td>
                             </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td colspan="3"><?=$order_people?></td>
+                                <td><?=$order_people?></td>
                             </tr>
                             <tr>
                                 <th>Options</th>
-                                <td colspan="3"><?=$tour_type?></td>
+                                <td><?=$tour_type?></td>
                             </tr>
                             <tr>
                                 <th>Remarks</th>
-                                <td colspan="3">
+                                <td>
                                      <?=$order_remark?>
                                 </td>
 
