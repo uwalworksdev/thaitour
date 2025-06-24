@@ -149,11 +149,10 @@
     
                             </tr>
                             <tr>
-                                <th>Type</th>
+                                <th>Depature/Destination</th>
                                 <td colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <!-- Admission (08:00-16:30) -->
-                                        <p></p>
+                                        <p><?=$tour_type?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    

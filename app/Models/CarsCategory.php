@@ -112,7 +112,7 @@ class CarsCategory extends Model
     public function getById($ca_idx)
     {
         return $this->db->table('tbl_cars_category a')
-            ->select('a.*, b.code_name')
+            ->select('a.*, b.code_name, b.code_name_en')
             ->join('tbl_code b', 'a.code_no = b.code_no', 'left')
             ->where('a.ca_idx', $ca_idx)
             ->get()->getRowArray();

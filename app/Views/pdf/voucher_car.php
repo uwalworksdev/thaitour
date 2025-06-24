@@ -491,14 +491,12 @@
                                 </td>
     
                             </tr>
-                            <!-- <tr>
-                                <th style="width: 20%">Type</th>
+                            <tr>
+                                <th style="width: 20%">Depature/Destination</th>
                                 <td style="width: 80%">
-                                    <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p></p>
-                                    </div>
+                                    <p><?=$tour_type?></p>
                                 </td>
-                            </tr> -->
+                            </tr>
                             <tr>
                                 <th style="width: 20%">Persons</th>
                                 <td style="width: 80%">

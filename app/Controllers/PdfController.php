@@ -1378,7 +1378,8 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
+		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
+		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
 
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
@@ -1391,7 +1392,7 @@ class PdfController extends BaseController
 			$start_place = $result->start_place;
 			$pick_time = $result->description;
 			$id_kakao = $result->id_kakao;
-			$tour_type = $tour_prod_name;
+			$tour_type = $departure_name . " / " . $destination_name;
 		}else{
 			if(!empty($result->order_user_name_new)){
 				$user_name = $result->order_user_name_new;
@@ -1432,7 +1433,7 @@ class PdfController extends BaseController
 			if(!empty($result->tour_type_en)){
 				$tour_type = $result->tour_type_en;
 			}else{
-				$tour_type = $tour_prod_name;
+				$tour_type = $departure_name . " / " . $destination_name;
 			}
 
 			if(!empty($result->start_place_en)){
@@ -1489,7 +1490,9 @@ class PdfController extends BaseController
 			'pick_time' => $pick_time,
 			'id_kakao' => $id_kakao,
 			'time_line' => $time_line,
-			'tour_type' => $tour_type
+			'tour_type' => $tour_type,
+			'departure_name' => $departure_name,
+			'destination_name' => $destination_name,
         ]);
         
         $pdf->WriteHTML($html);
