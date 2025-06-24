@@ -31,7 +31,7 @@
         }
 
         .golf_invoice {
-            padding: 20px 0 100px;
+            padding: 20px 0 0 !important;
         }
 
         .golf_invoice .logo_voice {
