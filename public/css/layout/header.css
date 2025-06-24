@@ -919,6 +919,7 @@
         align-items: center;
         justify-content: center;
         border-bottom: 0.2rem solid rgb(238, 238, 238);
+        margin-top: 1rem;
     }
 
     #header_mobile .input-form-ps {
