@@ -471,11 +471,11 @@
                         <tbody>
                             <tr>
                                 <th style="width: 20%">Booking No</th>
-                                <td style="width: 80%"><?=$result->order_no?></td>
+                                <td style="width: 80%" colspan="3"><?=$result->order_no?></td>
                             </tr>
                             <tr>
                                 <th style="width: 20%">Date</th>
-                                <td style="color : red; width: 80%">
+                                <td style="color : red; width: 80%" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
                                         <?= date("Y.m.d", strtotime($result->meeting_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->meeting_date))) . ")"  ?>
                                         <?php
@@ -512,7 +512,7 @@
     
                             <tr>
                                 <th style="width: 20%">Remarks</th>
-                                <td style="width: 80%">
+                                <td style="width: 80%" colspan="3">
                                     <?=$order_remark?>
                                 </td>
                             </tr>
