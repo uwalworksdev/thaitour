@@ -355,33 +355,62 @@
             font-family: "Pretendard" !important;
             line-height: 1.4 !important;
         }
+
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 <div id="container_voice">
     <section class="golf_invoice voucher">
         <div class="inner">
-            <!-- <div class="logo_voice">
-                <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
-            </div> -->
-            <!-- <div class="logo_voice">
-                <h2 class="tit_top">견적서</h2>
-                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                    Thai - Registration No 010-5555-096-398<br>
-                    Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                </p>
-            </div> -->
-                <div class="logo_voice" style="display: flex; align-items: center; justify-content: space-between;">
-                    <div>
-                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px">
-                            <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                            Thai - Registration No 010-5555-096-398<br>
-                            Tel: 001-66-(0)2-730-5690, 070-7010-8266
-                        </p>
-                    </div>
-                    <h2 class="tit_top" style="font-size: 45px;">바우처</h2>
-                </div>
+                <!-- <div class="logo_voice">
+                    <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
+                </div> -->
+                <!-- <div class="logo_voice">
+                    <h2 class="tit_top">견적서</h2>
+                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    </p>
+                </div> -->
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                            <p class="addr" style="margin-top: 10px;">
+                                Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                                Thai - Registration No 010-5555-096-398<br>
+                                Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                            </p>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                        </td>
+                    </tr>
+                </table>
             <div class="invoice_ttl">
             </div>
             <form action="" method="post" name="frm" id="frm">
@@ -418,7 +447,7 @@
                         <tbody>
                             <tr>
                                 <th>Product Name</th>
-                                <td style="font-weight: 700;">Chiang Mai Guide</td>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
                             </tr>
                             <tr>
                                 <th>Name</th>
