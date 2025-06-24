@@ -30,8 +30,6 @@
             margin-bottom: 0 !important;
         }
 
-
-
         .golf_invoice {
             padding: 20px 0 100px;
         }
@@ -368,7 +366,7 @@
             </div>
             <div class="invoice_ttl">
             </div>
-            <div class="invoice_table">
+            <div class="invoice_table" style="table-layout: fixed;">
                 <h2 class="tit_top">예약자정보</h2>
                 <table class="invoice_tbl">
                     <tbody>
@@ -388,7 +386,7 @@
                 </table>
       
                 <h2 class="tit_top">예약내역</h2>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl" style="table-layout: fixed;">
                     <tbody>
                         <tr>
                             <th style="width: 20%;">상품명</th>
@@ -414,7 +412,7 @@
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
-                <table class="invoice_tbl">
+                <table class="invoice_tbl" style="table-layout: fixed;">
                     
                     <tbody>
 					    <?php 
