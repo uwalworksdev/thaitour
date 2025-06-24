@@ -1378,8 +1378,8 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
-		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
+		$departure_name = $this->carsCategory->getById($result->order_departure_area)["code_name_en"];
+		$destination_name = $this->carsCategory->getById($result->order_destination_area)["code_name_en"];
 
 		if($type == "admin"){
 			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
