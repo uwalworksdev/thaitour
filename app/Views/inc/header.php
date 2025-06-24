@@ -14,11 +14,25 @@
 <header id="header" class="only_web">
     <div class="inner flex_header_top">
         <div>
-            <div class="custom-select-lang">
+            <!-- <div class="custom-select-lang">
                 <select id="language-select" style="width: 130px;">
                     <option value="kr">KR 한국어</option>
                     <option value="en">English</option>
                 </select>
+            </div> -->
+            <div class="language_box">
+                <div class="lang_selected show_dropdown">
+                    <span>KOR</span>
+                    <img src="/images/ico/down-arrow-select.png" alt="">
+                </div>
+                <ul class="dropdown">
+                    <li class="lang_item">
+                        KOR
+                    </li>
+                    <li class="lang_item">
+                        ENG
+                    </li>
+                </ul>
             </div>
         </div>
         <div>
@@ -611,7 +625,7 @@
                     $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
                     if ($isMobile && !in_array($path, $mainPaths)) {
                 ?>
-                    <a href="javascript:history.back();">
+                    <a class="back_btn" href="javascript:history.back();">
                         <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/assets/img/arrow_back.png') ?>" alt="">
                     </a>
                 <?php
