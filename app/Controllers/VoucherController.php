@@ -1004,8 +1004,8 @@ class VoucherController extends BaseController
 		$departure_name = $this->carsCategory->getById($result->departure_area)["code_name_en"];
 		$destination_name = $this->carsCategory->getById($result->destination_area)["code_name_en"];
 
-		var_dump($departure_name);
-		var_dump($destination_name);
+		var_dump($result->departure_area);
+		var_dump($result->destination_area);
 		die();
 
 		if($type == "admin"){
