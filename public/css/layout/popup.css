@@ -1098,6 +1098,11 @@ textarea::placeholder {
         height: 46rem;
     }
 
+    .popup_view_room .list_room_img .mySwiper {
+        height: 10rem;
+    }
+
+
     .popup_view_room .room_content {
         width: 100%;
         margin-top: 2rem;

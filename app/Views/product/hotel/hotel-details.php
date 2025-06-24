@@ -2594,7 +2594,7 @@
     <div class="popup_wrap popup_view_room">
         <div class="pop_box">
             <div class="pop_head">
-                <p class="ttl">룸정보</p>
+                <p class="ttl only_mo">룸정보</p>
                 <button type="button" class="close" onclick="closePopupRoom()"></button>
             </div>
             <div class="pop_body">
