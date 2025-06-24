@@ -22,10 +22,12 @@ if(id) location.href='/';
             <input type="checkbox" name="" id="agree1" class="agree">
             <label for="agree1">이용약관 동의 <span class="text-red">(필수)</span></label>
           </div>
-          <div class="terms_view"><?=viewSQ($policy['policy_contents']);?>
+          <div class="terms_view only_web"><?=viewSQ($policy['policy_contents']);?>
+          </div>
+          <div class="terms_view only_mo"><?=viewSQ($policy['policy_contents_m']);?>
           </div>
         </li>
-        <li>
+        <li> 
           <div class="bs-input-check">
             <input type="checkbox" name="" id="agree2" class="agree">
             <label for="agree2">개인정보처리방침 <span class="text-red">(필수)</span></label>
