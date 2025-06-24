@@ -527,6 +527,7 @@
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
                     </p>
+                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
                     <table class="invoice_tbl">
                         <colgroup>
                             <col width="20%">
@@ -535,7 +536,10 @@
                         <tbody>
                             <tr>
                                 <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;"><img style="opacity: 0.7;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
+                                    <p style="display: flex; align-items: center;">
+                                        <img style="opacity: 0.7; margin-right: 10px;" src="/images/sub/warning-icon.png" alt="">
+                                        <span style="margin-left: 10px !important; font-weight: 500;">결제방법</span>
+                                    </p>
                                 </td>
 
                             </tr>
