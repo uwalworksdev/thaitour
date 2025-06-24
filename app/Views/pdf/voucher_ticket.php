@@ -421,10 +421,6 @@
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
                     <table class="invoice_tbl" style="table-layout: fixed;">
-                        <!-- <colgroup>
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup> -->
                         <tbody>
                             <tr>
                                 <th style="width: 50px;">Name</th>
@@ -437,13 +433,7 @@
                         </tbody>
                     </table>
                     <h2 class="tit_top">Booking details</h2>
-                    <table class="invoice_tbl">
-                        <!-- <colgroup>
-                            <col width="150px">
-                            <col width="35%">
-                            <col width="150px">
-                            <col width="*">
-                        </colgroup> -->
+                    <table class="invoice_tbl" style="table-layout: fixed;">
                         <tbody>
                             <tr>
                                 <th style="width: 50px;">Booking No</th>
