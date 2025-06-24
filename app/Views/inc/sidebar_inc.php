@@ -487,7 +487,7 @@ $setting = homeSetInfo();
                         slide.innerHTML = `
                             <a href="${product.link}">
                                 <img class="img-sidebar" src="${product.image}" alt="${product.name}">
-                                ${product.image2 ? `<img class="img-sidebar" src="${product.image2}" alt="${product.name}">` : ''}
+                                <img class="img-sidebar" src="${product.image2 ? product.image2 : '/images/share/noimg.png'}" alt="${product.name}">
                             </a>
                         `;
                         container.appendChild(slide);
