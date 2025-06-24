@@ -620,7 +620,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 <div class="only_mo">
-    <div class="quick-header-footer">
+    <!-- <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
             <span class="nav-text text-grey">전체메뉴</span>
@@ -631,7 +631,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
         <div class="nav-item">
             <div class="nav-con-cus" onclick="ChannelIO('show');">
-                <!-- <img class="nav-pic-cus" src="/images/sub/voi-sep-new.png" alt="quick-header-footer_3"> -->
                 <img src="/uploads/setting/<?= $setting['logos_consult']?>" alt="quick-header-footer_3">
             </div>
             <span class="nav-text text-grey">실시간문의</span>
@@ -643,6 +642,54 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="nav-item" onclick="location.href='/mypage/fav_list'">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>
+        </div>
+    </div> -->
+
+    <div class="quick-header-footer">
+        <div class="nav-item nav-item-js">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
+            <!-- <span class="nav-text text-grey">전체메뉴</span> -->
+        </div>
+        <div class="nav-item" onclick="location.href='/'">
+            <img class="nav-pic" src="/images/ico/home.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">홈</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/mypage/reservation_list'">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">예약확인/결제</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/member/login'">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey flex__c">로그인</span>
+        </div>
+        <div class="nav-item" onclick="location.href='/travel-tips'">
+            <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5">
+            <span class="nav-text text-grey">고객센터</span>
+        </div>
+        <div class="icon-wrap-social">
+            <div class="info_chat">
+                <a class="btn_close" href="javascript:;">close</a>
+                <div class="msg">태국여행,<br><em>무엇이든 물어보세요!!</em></div>
+            </div>
+            <div class="robot-container" onclick="ChannelIO('show');">
+                <img src="/uploads/setting/<?= $setting['logos_consult'] ?>" alt="Chat now">
+            </div>
+             <?php
+                    $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                    $uri = service('uri');
+                    $path = $uri->getPath(); 
+                    $path = trim($path, '/');
+    
+                    $mainPaths = ['', 'home', 'index', 'main'];
+                    $isMobile = stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'Android') !== false;
+                    if ($isMobile && !in_array($path, $mainPaths)) {
+                ?>
+                    <a class="back_btn" href="javascript:history.back();">
+                        <img class="header_logo_m header_logo_m_sub" src="<?= base_url('/images/ico/back_ic.png') ?>" alt="">
+                    </a>
+                <?php
+                    }
+                ?>
         </div>
     </div>
     <nav id="mobile_menu" style="display: none;">
