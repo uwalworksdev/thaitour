@@ -1082,9 +1082,10 @@ textarea::placeholder {
 
     .popup_view_room .pop_body {
         flex-direction: column;
-        overflow-y: scroll;
-        height: 70rem;
+        /* overflow-y: scroll; */
+        height: 104rem;
         padding:  2rem 0.8rem;
+        padding-top: 0;
 
     }
 
@@ -1095,6 +1096,7 @@ textarea::placeholder {
     .popup_view_room .room_content {
         width: 100%;
         margin-top: 2rem;
+        overflow-y: scroll;
     }
     
     .popup_view_room .room_content .room_name {
@@ -1144,7 +1146,7 @@ textarea::placeholder {
         padding-right: 0.5rem;
         padding-top: 0; */
         border-radius: 2rem;
-        height: 76rem;
+        height: 110rem;
         width: calc(100% - 3rem);
         max-width: 100%;
         overflow: unset;
