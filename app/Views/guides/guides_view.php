@@ -1123,7 +1123,7 @@
     <script>
         $(".btn-cart-mo, .btn-order").on('click', function () {
             let o_idx = $(this).attr('data-o_idx');
-            let status = $(this).attr('value');
+            let status = $(this).attr('data-status');
             processBooking(o_idx, status);
         })
 
