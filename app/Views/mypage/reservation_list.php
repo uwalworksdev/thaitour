@@ -235,6 +235,7 @@ endforeach;
                         <div class="popup_filter">
                             <div class="popups">
                                 <button type="button" class="close" onclick="closePopups()"></button>
+                                <p class="head_ttl">예약현황 검색</p>
                                 <div class="filter_content">
                                     <div class="filter_wrap">
                                         <div class="box_category">
@@ -325,6 +326,9 @@ endforeach;
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="btn_search">
+                                       <button>검색</button>                                   
                                     </div>
                                 </div>
                             </div>
