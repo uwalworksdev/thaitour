@@ -911,6 +911,7 @@
             $('.item_check_term_all_').val('N');
             $(".calendar_container_tongle").hide();
             $(".calendar_container_tongle_" + current_idx).show();
+            $(".btn-cart-mo").attr("data-o_idx", current_idx);
             // $('.calendar_header:first').next().show().parent().addClass('active');
             openDateRanger($('.calendar_container_tongle_' + current_idx));
             
@@ -929,6 +930,7 @@
                 $(".calendar_container_tongle").hide();
                 // $(this).next().show().parent().addClass('active');
                 $(".calendar_container_tongle_" + id).show();
+                $(".btn-cart-mo").attr("data-o_idx", id);
 
                 setTimeout(() => {
                     $('html, body').animate({
@@ -1116,6 +1118,12 @@
         });
     </script>
     <script>
+        $(".btn-cart-mo, .btn-order").on('click', function () {
+            let o_idx = $(this).attr('data-o_idx');
+            let status = $(this).attr('value');
+            processBooking(o_idx, status);
+        })
+
         function processBooking(o_idx, status) {
             <?php if (empty(session()->get("member")["id"])) { ?>
             showOrHideLoginItem();

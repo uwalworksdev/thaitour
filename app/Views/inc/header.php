@@ -687,8 +687,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <?php
                 }else if(strpos(current_url(), '/guide_view') !== false){
             ?>  
-                <button type="button" class="btn btn-cart-mo" onclick="processBooking('<?= $option['o_idx'] ?>', 'B')">장바구니</button>
-                <button type="button" class="btn btn-order" onclick="processBooking('<?= $option['o_idx'] ?>', 'W')">예약하기</button>     
+                <button type="button" class="btn btn-cart-mo" data-o_idx="" data-status="B">장바구니</button>
+                <button type="button" class="btn btn-order" data-o_idx="" data-status="W">예약하기</button>     
             <?php
                 }
             ?>        
