@@ -570,10 +570,13 @@ class PdfController extends BaseController
         $result = $query->getRowArray();
         $cancle_contents = $result["policy_contents"];
 
+		$order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+
 		$html = view('pdf/invoice_guide', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+            'order_subs' => $order_subs
         ]);
         
         $pdf->WriteHTML($html);

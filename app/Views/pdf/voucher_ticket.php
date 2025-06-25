@@ -413,7 +413,7 @@
                             </tr>
                             <tr>
                                 <th style="width: 20%;">Tel</th>
-                                <td style="width: 80%;"><?= $result->phone?></td>
+                                <td style="width: 80%;"><?= $result->phone_2?></td>
                             </tr>
                         </tbody>
                     </table>
