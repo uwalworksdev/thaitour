@@ -651,6 +651,8 @@ document.addEventListener('DOMContentLoaded', function () {
         if(strpos(current_url(), '/product-golf/golf-detail') !== false
             || strpos(current_url(), '/product-tours/item_view') !== false
             || strpos(current_url(), '/product-spa/spa-details') !== false
+            || strpos(current_url(), '/ticket/ticket-detail') !== false
+            || strpos(current_url(), '/product-restaurant/restaurant-detail') !== false
             || strpos(current_url(), '/vehicle-guide') !== false
             || strpos(current_url(), '/guide_view') !== false) {
     ?>
@@ -673,7 +675,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <button type="button" class="btn btn-order" onclick="handleSubmit('W')">예약하기</button>
                 <?php endif; ?>      
             <?php
-                }else if(strpos(current_url(), '/product-spa/spa-details') !== false){
+                }else if(strpos(current_url(), '/product-spa/spa-details') !== false 
+                        || strpos(current_url(), '/ticket/ticket-detail') !== false
+                        || strpos(current_url(), '/product-restaurant/restaurant-detail') !== false){
             ?>  
                 <button type="button" class="btn btn-cart-mo" onclick="order_it('B');">장바구니</button>
                 <?php if ($data_['product_status'] == 'sale'): ?>
