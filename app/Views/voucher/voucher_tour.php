@@ -64,7 +64,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Tel</th>
-                                <td><?=$result->company_contact?></td>
+                                <td><?=$result->phone?></td>
                             </tr>
                         </tbody>
                     </table>
