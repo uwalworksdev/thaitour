@@ -2288,6 +2288,17 @@ input[type="checkbox"]:checked+label {
     border: 1px solid #252525;
 }
 
+.slide_tab {
+    position: relative;
+}
+
+.slide_tab .search_coupon_mypage {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-bottom: unset !important;
+}
+
 @media print {
     body {
         background: white !important;
@@ -2319,6 +2330,34 @@ input[type="checkbox"]:checked+label {
     /* 이미지 max-width 제한 해제 */
     img {
         max-width: none !important;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .slide_tab {
+        padding-bottom: 7rem;
+    }
+
+    .slide_tab .search_coupon_mypage {
+        position: absolute;
+        right: unset;
+        top: unset;
+        bottom: -2rem;
+    }
+
+    .slide_tab .search_coupon_mypage {
+        width: 50rem;
+        height: 6rem;
+    }
+
+    .slide_tab .search_coupon_mypage .keyword {
+        width: 35rem;
+        height: 6rem;
+    }
+
+    .search_coupon_mypage .btn_send_coupon {
+        height: 6rem;
+        width: 15rem;
     }
 }
 
