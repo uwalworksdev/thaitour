@@ -58,6 +58,22 @@ class TimeSaleController extends BaseController
         return $this->renderView('time_sale/list', $data);
     }
 
+    public function view() {
+        $bbs_idx = updateSQ($this->request->getPost('bbs_idx') ?? 0);
+
+        $time_sale = $this->bbsModel->View($bbs_idx);
+
+        $hit = $time_sale["hit"] ?? 0;
+        $hit = $hit + 1;
+        $this->bbsModel->InfoUpdate($bbs_idx, [
+            "hit" => $hit
+        ]);
+
+        return $this->response->setJSON([
+            "url" => $time_sale["url"]
+        ]);
+    }
+
     public function like() {
         try {
             $bbs_idx = updateSQ($this->request->getPost('bbs_idx') ?? 0);
