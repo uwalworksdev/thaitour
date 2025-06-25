@@ -732,7 +732,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <!-- <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5"> -->
              <i class="i_6"></i>
             <span class="nav-text text-grey">고객센터</span>
-            <?php echo $_SERVER['REQUEST_URI'] ?>
         </div>
         <div class="icon-wrap-social">
             <div class="info_chat">
