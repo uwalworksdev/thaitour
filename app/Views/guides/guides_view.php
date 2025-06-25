@@ -912,6 +912,8 @@
             $(".calendar_container_tongle").hide();
             $(".calendar_container_tongle_" + current_idx).show();
             $(".btn-cart-mo").attr("data-o_idx", current_idx);
+            $(".btn-order").attr("data-o_idx", current_idx);
+
             // $('.calendar_header:first').next().show().parent().addClass('active');
             openDateRanger($('.calendar_container_tongle_' + current_idx));
             
@@ -931,6 +933,7 @@
                 // $(this).next().show().parent().addClass('active');
                 $(".calendar_container_tongle_" + id).show();
                 $(".btn-cart-mo").attr("data-o_idx", id);
+                $(".btn-order").attr("data-o_idx", id);
 
                 setTimeout(() => {
                     $('html, body').animate({
