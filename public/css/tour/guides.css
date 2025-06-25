@@ -117,36 +117,28 @@
     margin-top: 90px;
 }
 
-.item_list_area .item_list_hotel {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .item_list_area .item_list_hotel li {
     padding: 20px 0 20px 15px;
     overflow: hidden;
     position: relative;
     display: flex;
-    width: calc(100% / 3);
-    flex-direction: column;
 }
 
 .item_list_area .item_list_hotel li > .thm {
-    width: 100%;
+    width: 31%;
     position: relative;
 }
 
 .item_list_area .item_list_hotel .thm img {
     width: 100%;
-    max-width: 100%;
+    max-width: 350px;
     height: 250px;
     border-radius: 1rem;
     object-fit: cover;
 }
 
 .item_list_area .item_list_hotel .cont {
-    width: 100%;
-    padding-top: 20px;
+    width: 68%;
 }
 
 .item_list_area .item_list_hotel .tit_head {
@@ -162,18 +154,18 @@
     align-items: flex-start;
     font-size: 18px;
     color: #999;
-    min-height: 30px;
+    min-height: 50px;
 }
 
 .item_list_area .item_list_hotel .exp {
-    /* background-color: #fafafa; */
-    /* padding: 20px; */
+    background-color: #fafafa;
+    padding: 20px;
     position: relative;
     display: flex;
     justify-content: space-between;
     color: #888;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-radius: .5rem;
     font-size: 16px;
     line-height: 22px;
@@ -329,24 +321,26 @@
     
     .item_list_area .item_list_hotel li {
         padding: 2rem 0 2rem 1.5rem;
-        gap: 2rem;
+        gap: 3rem;
+        display: flex;
+        flex-direction: column;
     }
     
     .item_list_area .item_list_hotel li > .thm {
-        width: 31%;
+        width: 100%;
         position: relative;
     }
     
     .item_list_area .item_list_hotel .thm img {
         width: 100%;
-        max-width: 35rem;
-        height: 25rem;
+        max-width: 100%;
+        height: 40rem;
         border-radius: 1rem;
         object-fit: cover;
     }
     
     .item_list_area .item_list_hotel .cont {
-        width: 100%;
+        width: 68%;
     }
     
     .item_list_area .item_list_hotel .tit_head {
