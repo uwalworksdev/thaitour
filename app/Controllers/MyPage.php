@@ -516,7 +516,7 @@ public function reservationList() {
                 $fsql = " update tbl_coupon set
                                     user_id	= '".$user_id."'
                                     ,status	= 'N'
-                                    where keyword = '".$coupon_num."'
+                                    where coupon_num = '".$coupon_num."'
                         ";
         
                 $message = "쿠폰이 발행되었습니다.";
