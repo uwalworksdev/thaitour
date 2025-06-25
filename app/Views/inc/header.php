@@ -665,33 +665,40 @@ document.addEventListener('DOMContentLoaded', function () {
     ?>
     <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
-            <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
+            <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1"> -->
+             <i class="i_1"></i>
             <!-- <span class="nav-text text-grey">전체메뉴</span> -->
         </div>
-        <div class="nav-item" onclick="location.href='/'">
-            <img class="nav-pic" src="/images/ico/home.png" alt="quick-header-footer_2">
+        <div class="nav-item <?php echo $main == true? 'on' : '' ?>" onclick="location.href='/'">
+            <!-- <img class="nav-pic" src="/images/ico/home.png" alt="quick-header-footer_2"> -->
+            <i class="i_2"></i>
             <span class="nav-text text-grey flex__c">홈</span>
         </div>
-        <div class="nav-item" onclick="location.href='/mypage/reservation_list'">
-            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2">
+        <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/mypage/reservation_list') !== false ? 'on' : '' ?>" onclick="location.href='/mypage/reservation_list'">
+            <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_2"> -->
+             <i class="i_3"></i>
             <span class="nav-text text-grey flex__c">예약확인/결제</span>
         </div>
         
         <?php if (session("member")): ?>
-            <div class="nav-item" onclick="location.href='/mypage/alarm'">
-                <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+            <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/mypage/alarm') !== false ? 'on' : '' ?>" onclick="location.href='/mypage/alarm'">
+                <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2"> -->
+                 <i class="i_4"></i>
                 <span class="nav-text text-grey flex__c">마이페이지</span>
             </div>
             <?php else: ?>
-                <div class="nav-item" onclick="location.href='/member/login'">
-                    <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+                <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/member/login') !== false ? 'on' : '' ?>" onclick="location.href='/member/login'">
+                    <!-- <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2"> -->
+                     <i class="i_5"></i>
                     <span class="nav-text text-grey flex__c">로그인</span>
                 </div>
         <?php endif; ?>
         
-        <div class="nav-item" onclick="location.href='/travel-tips'">
-            <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5">
+        <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/travel-tips') !== false ? 'on' : '' ?>" onclick="location.href='/travel-tips'">
+            <!-- <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5"> -->
+             <i class="i_6"></i>
             <span class="nav-text text-grey">고객센터</span>
+            <?php echo $_SERVER['REQUEST_URI'] ?>
         </div>
         <div class="icon-wrap-social">
             <div class="info_chat">
@@ -1066,12 +1073,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(document).ready(function() {
         $('.nav-item-js').on('click', function() {
-
             const $popup = $('#mobile_menu');
             if ($popup.is(':visible')) {
                 $popup.slideUp();
+                $('.nav-item-js').removeClass('on');
             } else {
                 $popup.slideDown();
+                $('.nav-item-js').addClass('on');
             }
         });
 
@@ -1079,6 +1087,7 @@ document.addEventListener('DOMContentLoaded', function () {
         $(document).on('click', function(e) {
             if (!$(e.target).closest('.nav-item-js, #mobile_menu').length) {
                 $('#mobile_menu').slideUp();
+                $('.nav-item-js').removeClass('on');
             }
         });
     });

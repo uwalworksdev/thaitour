@@ -1264,11 +1264,73 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 6.7rem;
-        margin: 2.2rem 0;
+        height: 11.1rem;
+        margin:0;
+        padding: 2.2rem 0;
         /* width: 6.4rem; */
         flex: 1;
     }
+
+    .quick-header-footer .nav-item i {
+        height: 3.7rem;
+        width: 3rem;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .quick-header-footer .nav-item .i_1 {
+        background-image: url(/images/ico/quick-header-footer_1.png);
+    }
+
+      .quick-header-footer .nav-item .i_2 {
+        background-image: url(/images/ico/home.png);
+    }
+      .quick-header-footer .nav-item .i_3 {
+        background-image: url(/images/ico/quick-header-footer_4.png);
+    }
+      .quick-header-footer .nav-item .i_4 {
+        background-image: url(/images/ico/quick-header-footer_2.png);
+    }
+      .quick-header-footer .nav-item .i_5 {
+        background-image: url(/images/ico/quick-header-footer_2.png);
+    }
+      .quick-header-footer .nav-item .i_6 {
+        background-image: url(/images/ico/customer-center.png);
+    }
+
+     .quick-header-footer .nav-item.on .i_1 {
+        background-image: url(/images/ico/quick-header-footer_1-white.png);
+    }
+
+      .quick-header-footer .nav-item.on .i_2 {
+        background-image: url(/images/ico/home-white.png);
+    }
+      .quick-header-footer .nav-item.on .i_3 {
+        background-image: url(/images/ico/quick-header-footer_4-white.png);
+    }
+      .quick-header-footer .nav-item.on .i_4 {
+        background-image: url(/images/ico/quick-header-footer_2-white.png);
+    }
+      .quick-header-footer .nav-item.on .i_5 {
+        background-image: url(/images/ico/quick-header-footer_2-white.png);
+    }
+      .quick-header-footer .nav-item.on .i_6 {
+        background-image: url(/images/ico/customer-center-white.png);
+    }
+
+
+
+
+    .quick-header-footer .nav-item.on {
+        background-color: var(--bs-point);
+    }
+
+    .quick-header-footer .nav-item.on span {
+        color: white;
+    }
+
+
 
     .quick-header-footer .icon-wrap-social .back_btn {
         display: flex;
