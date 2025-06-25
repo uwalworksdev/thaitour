@@ -1418,8 +1418,8 @@
     }
 
     .booklist_wrap .book_num_order .top {
-        padding: 7rem 3rem;
-        gap: 6rem;
+        padding: 3rem;
+        gap: 3rem 6rem;
         /* justify-content: flex-end; */
         justify-content: center;
         flex-wrap: wrap;
@@ -1972,8 +1972,9 @@
         position: absolute;
         font-size: 3rem;
         top: 3.2rem;
-        left: 2rem;
-        font-weight: 500;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 600;
     }
 
     .booklist_wrap .popup_filter .filter_content {
