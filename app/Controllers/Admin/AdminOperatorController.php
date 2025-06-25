@@ -10,6 +10,7 @@ class AdminOperatorController extends BaseController
 {
 
     protected $connect;
+    protected $couponMst;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class AdminOperatorController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
+        $this->couponMst = model("CouponMst");
     }
 
     public function coupon_setting()
@@ -231,9 +233,11 @@ class AdminOperatorController extends BaseController
         $idx = updateSQ($_GET["idx"] ?? '');
         $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
 
-        $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
-        $result_c = $this->connect->query($sql_c);
-        $result_c = $result_c->getResultArray();
+        // $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
+        // $result_c = $this->connect->query($sql_c);
+        // $result_c = $result_c->getResultArray();
+
+        $result_c = $this->couponMst->getCouponList('', '', 1, 1000000, true, true)["coupon_list"];
 
         $data = [
             'idx' => $idx,
