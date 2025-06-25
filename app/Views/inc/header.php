@@ -655,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
             || strpos(current_url(), '/guide_view') !== false) {
     ?>
         <div class="quick-header-order">
-            <a href="https://thetourlab.com/mypage/contact">
+            <a href="https://thetourlab.com/mypage/contact" style="flex: 0 0 auto;">
                 <img src="/assets/img/qna_logo.png" alt="qna_logo">
             </a>
             <?php
