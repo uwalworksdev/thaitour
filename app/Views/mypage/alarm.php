@@ -311,6 +311,12 @@ $list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->orderBy('r_date',
     .content .f_black em {
         display: inline-block;
     }
+
+    .content  .cu_not {
+        padding-bottom: 0.8rem;
+        display: inline-block;
+        padding-right: 0 !important;
+    }
     }
 
 </style>
@@ -327,8 +333,8 @@ $list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->orderBy('r_date',
             <div class="content">
                 <h1 class="ttl_table">알림</h1>
                 <div class="box_gr01 clearfix">
-                    <p class="my_p_cont f_black mb0">
-                        <span class="pr50 f_black">※나만의 알리미는 30 일간 보관합니다.</span><br class="only_mo">
+                    <p class="my_p_cont f_black">
+                        <span class="pr50 f_black cu_not">※나만의 알리미는 30 일간 보관합니다.</span><br class="only_mo">
                         읽지 않은 알림 : <span class="ltsno alarm_unread_org"><?=$count_status_0?></span>   
                         <em>|</em>
                         총 알림갯수 : <span class="ltsno"><?=$count_all?></span>
