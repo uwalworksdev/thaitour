@@ -5,7 +5,7 @@
 <style>
     @media screen and (max-width: 850px) {
        .btn-s-wrap-pc {
-            display: none;
+            display: none !important;
        }     
     }
 </style>

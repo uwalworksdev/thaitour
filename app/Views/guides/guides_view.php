@@ -40,7 +40,7 @@
 
     @media screen and (max-width: 850px) {
        .calendar_submit {
-            display: none;
+            display: none !important;
        }     
     }
 </style>

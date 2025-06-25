@@ -109,7 +109,7 @@
     }
 
     .primary-btn-calendar {
-        display: none;
+        display: none !important; 
     }
     }
 </style>

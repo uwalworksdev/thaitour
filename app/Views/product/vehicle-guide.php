@@ -1526,7 +1526,7 @@
         }
 
         .section_vehicle_2_7__btn_wrap {
-            display: none;
+            display: none !important;
         }
     }
 </style>
