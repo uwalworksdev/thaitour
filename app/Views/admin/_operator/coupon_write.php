@@ -104,7 +104,7 @@ $titleStr = "생성";
                                 <th>쿠폰인증 단어</th>
                                 <td>
                                     <input type="text" name="keyword" id="keyword"
-                                           style="width:400px;text-align:right;" value=""/>
+                                           style="width:400px;" value=""/>
                                 </td>
                             </tr>
                         </form>
