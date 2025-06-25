@@ -63,12 +63,15 @@ class MagazineController extends BaseController
             $m_idx = $this->request->getVar('m_idx');
             $data = [];
 
-            $data['magazine'] = $this->bbsModel->View($m_idx);
-            $hit = $data['magazine']["hit"] ?? 0;
+            $magazines = $this->bbsModel->View($m_idx);
+
+            $hit = $magazines["hit"] ?? 0;
             $hit = $hit + 1;
             $this->bbsModel->InfoUpdate($m_idx,[
                 "hit" => $hit
             ]);
+
+            $data['magazine'] = $this->bbsModel->View($m_idx);
 
             return $this->renderView('magazines/detail', $data);
         } catch (\Exception $e) {
