@@ -133,6 +133,12 @@ class Point extends BaseController
 
         $travel = $this->bbsModel->View($bbs_idx);
 
+        $hit = $travel["hit"] ?? 0;
+        $hit = $hit + 1;
+        $this->bbsModel->InfoUpdate($bbs_idx, [
+            "hit" => $hit
+        ]);
+
         return view('travel/travel_view', [
             'travel' => $travel
         ]);
