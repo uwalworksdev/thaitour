@@ -107,6 +107,10 @@
     .tours-detail .section2 .text-content-2 {
         width: 100%;
     }
+
+    .primary-btn-calendar {
+        display: none;
+    }
     }
 </style>
 

@@ -37,6 +37,12 @@
         width: 81px;
         height: 48px;
     }
+
+    @media screen and (max-width: 850px) {
+       .calendar_submit {
+            display: none;
+       }     
+    }
 </style>
     
     <div class="content-sub-hotel-detail tours-detail">

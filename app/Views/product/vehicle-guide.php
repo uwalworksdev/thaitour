@@ -1524,6 +1524,10 @@
         .img_box_14 {
             padding-top: calc(300% / 658 * 100);
         }
+
+        .section_vehicle_2_7__btn_wrap {
+            display: none;
+        }
     }
 </style>
 

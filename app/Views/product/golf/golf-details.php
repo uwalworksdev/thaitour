@@ -1,6 +1,15 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $setting = homeSetInfo(); ?>
 <?php $this->section('content'); ?>
+
+<style>
+    @media screen and (max-width: 850px) {
+       .btn-s-wrap-pc {
+            display: none;
+       }     
+    }
+</style>
+
 <script>
 $(document).ready(function() {
 			var dataTabValue = '<?=$hole_cnt_arr[0]?>';
@@ -682,7 +691,7 @@ $(document).ready(function() {
         </div>
         <div class="section-wrap-s">
            <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
-           <div class="btn-s-wrap">
+           <div class="btn-s-wrap btn-s-wrap-pc">
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
                 <?php endif; ?>

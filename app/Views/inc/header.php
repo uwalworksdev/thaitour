@@ -660,32 +660,35 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
             <?php
                 if(strpos(current_url(), '/product-golf/golf-detail') !== false){
-                    var_dump($product['product_status']);
             ?>  
-                <button type="button" onclick="handleSubmit('B')" class="btn btn-cart">장바구니</button>
+                <button type="button" onclick="handleSubmit('B')" class="btn btn-cart-mo">장바구니</button>
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button type="button" onclick="handleSubmit('W')" class="btn btn-order">예약하기</button>   
                 <?php endif; ?>     
             <?php
                 }else if(strpos(current_url(), '/product-tours/item_view') !== false){
             ?>    
-                <button type="button" class="btn btn-cart">장바구니</button>
-                <button type="button" class="btn btn-order">예약하기</button>     
+                <button type="button" class="btn btn-cart-mo" onclick="handleSubmit('B')">장바구니</button>
+                <?php if ($product['product_status'] == 'sale'): ?>
+                    <button type="button" class="btn btn-order" onclick="handleSubmit('W')">예약하기</button>
+                <?php endif; ?>      
             <?php
                 }else if(strpos(current_url(), '/product-spa/spa-details') !== false){
             ?>  
-                <button type="button" class="btn btn-cart">장바구니</button>
-                <button type="button" class="btn btn-order">예약하기</button>     
+                <button type="button" class="btn btn-cart-mo" onclick="order_it('B');">장바구니</button>
+                <?php if ($data_['product_status'] == 'sale'): ?>
+                    <button type="button" class="btn btn-order" onclick="order_it('W');">예약하기</button>
+                <?php endif; ?>      
             <?php
                 }else if(strpos(current_url(), '/vehicle-guide') !== false){
             ?>  
-                <button type="button" class="btn btn-cart">장바구니</button>
-                <button type="button" class="btn btn-order">예약하기</button>     
+                <button type="button" class="btn btn-cart-mo btn_add_cart" id="btn_show_cart" value="B">장바구니</button>
+                <button type="button" class="btn btn-order btn_submit" value="W">예약하기</button>     
             <?php
                 }else if(strpos(current_url(), '/guide_view') !== false){
             ?>  
-                <button type="button" class="btn btn-cart">장바구니</button>
-                <button type="button" class="btn btn-order">예약하기</button>     
+                <button type="button" class="btn btn-cart-mo" onclick="processBooking('<?= $option['o_idx'] ?>', 'B')">장바구니</button>
+                <button type="button" class="btn btn-order" onclick="processBooking('<?= $option['o_idx'] ?>', 'W')">예약하기</button>     
             <?php
                 }
             ?>        
