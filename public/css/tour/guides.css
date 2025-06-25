@@ -320,7 +320,7 @@
     }
     
     .item_list_area .item_list_hotel li {
-        padding: 2rem 0 2rem 1.5rem;
+        padding: 3rem 0 ;
         gap: 3rem;
         display: flex;
         flex-direction: column;
