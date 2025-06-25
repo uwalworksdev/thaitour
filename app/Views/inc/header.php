@@ -660,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
             <?php
                 if(strpos(current_url(), '/product-golf/golf-detail') !== false){
-                    var_dump($product);
+                    var_dump($product['product_status']);
             ?>  
                 <button type="button" onclick="handleSubmit('B')" class="btn btn-cart">장바구니</button>
                 <?php if ($product['product_status'] == 'sale'): ?>
