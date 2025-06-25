@@ -459,6 +459,85 @@ public function reservationList() {
         return view('mypage/discount');
     }
 
+    public function couponChk($keyword) {
+        $fsql = "select * from tbl_coupon where keyword = '" . $keyword . "' and user_id = '' ";
+        return $this->db->query($fsql)->getNumRows();
+    }
+
+    public function get_coupon_discount() {
+        try {
+            $keyword = updateSQ($this->request->getPost('keyword'));
+            $user_id = session()->get("member")["id"];
+            if( $this->couponChk($keyword) < 1 ){
+        
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "해당 쿠폰 정보가 없습니다."
+                ], 400);
+        
+            }else{
+                // 쿠폰 내역 조회
+                $fresult = $this->db->table('tbl_coupon')
+                         ->where('keyword', $keyword)
+                         ->where('user_id = ', '')
+                         ->get();
+                $frow    = $fresult->getResultArray();
+        
+                $coupon_num = $frow[0]['coupon_num'];
+
+                if( $frow[0]['status'] != "D" ){
+                    $message = "이미 발급되었거나 사용된 쿠폰입니다";
+        
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['user_id'] != "" ){
+                    $message = "이미 발급된 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['enddate'] <= date('Y-m-d') ){
+                    $message = "사용기한이 지난 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+        
+                $fsql = " update tbl_coupon set
+                                    user_id	= '".$user_id."'
+                                    ,status	= 'N'
+                                    where keyword = '".$coupon_num."'
+                        ";
+        
+                $message = "쿠폰이 발행되었습니다.";
+        
+                $fresult    = $this->db->query($fsql);
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => $message
+                ], 200);
+        
+            }
+
+        }catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function discount_owned()
     {
         return view('mypage/discount_owned');

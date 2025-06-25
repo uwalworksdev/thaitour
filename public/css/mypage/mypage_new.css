@@ -2269,6 +2269,25 @@ input[type="checkbox"]:checked+label {
     margin-top: 30px;
 }
 
+.search_coupon_mypage {
+    display: flex; 
+    gap: 10px;
+    justify-self: end;
+    width: fit-content;
+}
+
+.search_coupon_mypage .keyword {
+    width: 250px;
+    height: 40px;
+}
+
+.search_coupon_mypage .btn_send_coupon {
+    width: 100px;
+    height: 40px;
+    color: #252525;
+    border: 1px solid #252525;
+}
+
 @media print {
     body {
         background: white !important;

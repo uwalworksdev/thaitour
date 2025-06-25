@@ -832,6 +832,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("point", "MyPage::point");
     $routes->get("coupon", "MyPage::coupon");
     $routes->get("discount", "MyPage::discount");
+    $routes->post("get_coupon_discount", "MyPage::get_coupon_discount");
     $routes->get("discount_owned", "MyPage::discount_owned");
     $routes->get("discount_download", "MyPage::discount_download");
     $routes->get("info_option", "MyPage::info_option");
