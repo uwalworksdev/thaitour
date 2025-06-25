@@ -655,45 +655,45 @@ document.addEventListener('DOMContentLoaded', function () {
             || strpos(current_url(), '/guide_view') !== false) {
     ?>
         <div class="quick-header-order">
-            <img src="/assets/img/qna_logo.png" alt="">  
-            <button type="button" class="btn btn-cart">장바구니</button>
-            <button type="button" class="btn btn-order">예약하기</button>            
-        </div>
-    <?php
-        }else if(strpos(current_url(), '/product-tours/item_view') !== false){
-    ?>
-        <div class="quick-header-order">
-            <img src="/assets/img/qna_logo.png" alt="">  
-            <button type="button" class="btn btn-cart">장바구니</button>
-            <button type="button" class="btn btn-order">예약하기</button>            
-        </div>
-    <?php
-        }else if(strpos(current_url(), '/product-spa/spa-details') !== false){
-    ?>
-        <div class="quick-header-order">
-            <img src="/assets/img/qna_logo.png" alt="">  
-            <button type="button" class="btn btn-cart">장바구니</button>
-            <button type="button" class="btn btn-order">예약하기</button>            
-        </div>
-    <?php
-        }else if(strpos(current_url(), '/vehicle-guide') !== false) {
-    ?>
-        <div class="quick-header-order">
-            <img src="/assets/img/qna_logo.png" alt="">  
-            <button type="button" class="btn btn-cart">장바구니</button>
-            <button type="button" class="btn btn-order">예약하기</button>            
-        </div>
-    <?php
-        }else if(strpos(current_url(), '/guide_view') !== false) {
-    ?>
-        <div class="quick-header-order">
-            <img src="/assets/img/qna_logo.png" alt="">  
-            <button type="button" class="btn btn-cart">장바구니</button>
-            <button type="button" class="btn btn-order">예약하기</button>            
+            <a href="https://thetourlab.com/mypage/contact">
+                <img src="/assets/img/qna_logo.png" alt="qna_logo">
+            </a>
+            <?php
+                if(strpos(current_url(), '/product-golf/golf-detail') !== false){
+                    var_dump($product);
+            ?>  
+                <button type="button" onclick="handleSubmit('B')" class="btn btn-cart">장바구니</button>
+                <?php if ($product['product_status'] == 'sale'): ?>
+                    <button type="button" onclick="handleSubmit('W')" class="btn btn-order">예약하기</button>   
+                <?php endif; ?>     
+            <?php
+                }else if(strpos(current_url(), '/product-tours/item_view') !== false){
+            ?>    
+                <button type="button" class="btn btn-cart">장바구니</button>
+                <button type="button" class="btn btn-order">예약하기</button>     
+            <?php
+                }else if(strpos(current_url(), '/product-spa/spa-details') !== false){
+            ?>  
+                <button type="button" class="btn btn-cart">장바구니</button>
+                <button type="button" class="btn btn-order">예약하기</button>     
+            <?php
+                }else if(strpos(current_url(), '/vehicle-guide') !== false){
+            ?>  
+                <button type="button" class="btn btn-cart">장바구니</button>
+                <button type="button" class="btn btn-order">예약하기</button>     
+            <?php
+                }else if(strpos(current_url(), '/guide_view') !== false){
+            ?>  
+                <button type="button" class="btn btn-cart">장바구니</button>
+                <button type="button" class="btn btn-order">예약하기</button>     
+            <?php
+                }
+            ?>        
         </div>
     <?php
         }
     ?>
+        
     <div class="quick-header-footer">
         <div class="nav-item nav-item-js">
             <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
