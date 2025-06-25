@@ -31,6 +31,17 @@ $user_email = sqlSecretConver($review["user_email"], 'decode');
         .font_bold_ {
             font-weight: bold !important;
         }
+
+        @media screen and (max-width: 850px) {
+            .view_top {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                flex-direction: column;
+            }
+                
+            
+        }
     </style>
     <div id="container" class="sub view_container ">
         <section class="view_sect">

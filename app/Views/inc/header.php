@@ -732,7 +732,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
         <?php endif; ?>
         
-        <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/travel-tips') !== false ? 'on' : '' ?>" onclick="location.href='/travel-tips'">
+        <div class="nav-item <?php echo strpos($_SERVER['REQUEST_URI'] , '/community/main') !== false ? 'on' : '' ?>" onclick="location.href='/community/main'">
             <!-- <img class="nav-pic" src="/images/ico/customer-center.png" alt="quick-header-footer_5"> -->
              <i class="i_6"></i>
             <span class="nav-text text-grey">고객센터</span>
