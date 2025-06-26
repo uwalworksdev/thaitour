@@ -635,7 +635,7 @@
 				data : {
 					"order_no"        : $("#order_no").val(),
 					"real_price_bath" : Number($("#real_price_bath").val().replace(/\./g, '').replace(',', '.')),
-					"real_price_won"  : Number($("#real_price_won").val().replace(/\./g, '').replace(',', '.'))
+					"real_price_won"  : Number($("#real_price_won").val())
 				},
 				dataType : "json",
 				async: false,
