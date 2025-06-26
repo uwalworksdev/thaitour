@@ -821,7 +821,7 @@ if ($_paymod == "lg") {
 $(document).ready(function () {
     $(".btn_payment").on("click", function () {
         var dataValue = $(this).data("idx"); // 주문번호 가져오기
-		$("#dataValue").val(dataValue);
+		//$("#dataValue").val(dataValue);
 		
 		$.ajax({
 
