@@ -290,7 +290,7 @@ $deli_types = get_deli_type();
 								$option_price = $row['option_price'];
 							 }	
 					?>	
-			<table>
+			<table style="margin-top: -1px">
 				<colgroup>
 					<col width="15%">
 					<col width="*">
