@@ -1,13 +1,15 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
+$connect     = db_connect();
 $private_key = private_key();
 
 if ($_SESSION["member"]["mIdx"] == "") {
 	alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
 	exit();
 }
+
+$deli_types = get_deli_type();
 
 $sql = "select * from tbl_order_mst a
 	                           left join tbl_member b on a.m_idx = b.m_idx 
