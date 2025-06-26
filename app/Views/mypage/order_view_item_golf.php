@@ -529,7 +529,7 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['order_user_name'] ?>
+							<?= $order_user_name ?>
 						</td>
 					</tr>
 
@@ -544,20 +544,20 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">휴대번호</td>
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">이메일</td>
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">여권번호</td>
-						<td class="content"><?=$row_d['order_passport_number']?></td>
+						<td class="content"><?=$order_passport_number ?></td>
 					</tr>
 				</tbody>
 			</table>
