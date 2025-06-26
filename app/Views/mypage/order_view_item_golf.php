@@ -486,7 +486,7 @@ $deli_types = get_deli_type();
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['order_user_name']?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
@@ -494,20 +494,20 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['local_phone'] ?>
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 
 
 						<td class="content">
-							<?=$row_d['order_passport_number'] ?>
+							<?=$order_passport_number ?>
 						</td>
 
 				</tbody>
