@@ -2711,7 +2711,7 @@ public function get_golf_option() {
 			$order_idx     =  $_POST["order_idx"];
 			$order_status  =  $_POST["order_status"];
 
-            if($order_idx == "X") { 
+            if($order_status == "X") { 
                $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', confirmed_datetime = now() WHERE order_idx = '". $order_idx ."'";  
 			} else {  
                $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
