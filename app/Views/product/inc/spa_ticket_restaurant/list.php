@@ -103,11 +103,11 @@
         <?php
             if(!empty($main_product_code)) {
         ?>
-            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&main_product_code=${code}#redirect-list`;
+            window.location.href = `<?= $url ?>?keyword=${key}&main_product_code=${code}#redirect-list`;
         <?php
             }else{
         ?>
-            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
+            window.location.href = `<?= $url ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
         <?php
             }
         ?>

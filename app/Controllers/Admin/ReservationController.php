@@ -537,17 +537,11 @@ class ReservationController extends BaseController
         $result_cou = $this->connect->query($sql_cou);
         $row_cou    = $result_cou->getRowArray();
 
-         
-
         $fresult    = $this->orderSubModel->getOrderSub($order_idx);
-
-       
 
         $additional_request       = $row['additional_request'] ?? '';
         $_arr_additional_request  = explode("|", $additional_request);
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
-
-        
 
         if($list__additional_request == "") {
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' order by onum asc, code_idx desc";
@@ -555,11 +549,8 @@ class ReservationController extends BaseController
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
         }
 
-         
-
 		$fcodes = $this->db->query($sql)->getResultArray();
         
-
         $data['fcodes'] = $fcodes;
 
         $str_guide = '';

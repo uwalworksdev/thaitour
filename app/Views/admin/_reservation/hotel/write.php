@@ -112,8 +112,7 @@
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <?= $product_name ?><br><?= $tours_subject ?>
-                                        <input type=hidden name="product_name" value='<?= $product_name ?>'>
+                                        <input type="text" name="product_name" value='<?= $product_name ?>'>
                                     </td>
                                     <th>예약번호</th>
                                     <td>
@@ -125,32 +124,36 @@
                                     <th>주문자명</th>
                                     <td>
                                         <input type="text" id="order_user_name" name="order_user_name"
-                                               value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
+                                               value="<?= $order_user_name ?>" class="input_txt"/>
                                     </td>
                                     <th>주문자 이메일</th>
                                     <td>
                                         <input type="text" id="order_user_email" name="order_user_email"
-                                               value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
+                                               value="<?= $order_user_email ?>" class="input_txt"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
                                     <td>
-                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
-                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:45%"/>
-											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
-                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
+                                        <div class="flex__c" style="gap: 5px;">
+                                            <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
+                                                   value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:50%"/>
+                                                   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
+                                                   value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:50%"/>
+                                        </div>
                                     </td>
                                     <th>여권정보</th>
                                     <td>
-										<select name="order_gender_list" class="select_txt">
-                                            <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>
-                                            <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
-                                        </select>
-                                         <input type="text" id="order_passport_number" name="order_passport_number" placeholder="여권번호"
-                                               value="<?= $order_passport_number ?>" class="input_txt" style="width:40.5%" />
-											   <input type="text" id="order_passport_expiry_date" name="order_passport_expiry_date" placeholder="만료일(2025-08-08)"
-                                               value="<?= $order_passport_expiry_date ?>" class="input_txt datepicker" style="width:40.5%" readonly/>
+                                        <div class="flex__c" style="gap: 5px;">
+                                            <select name="order_gender_list" class="select_txt" width="10%">
+                                                <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>
+                                                <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
+                                            </select>
+                                            <input type="text" id="order_passport_number" name="order_passport_number" placeholder="여권번호"
+                                                value="<?= $order_passport_number ?>" class="input_txt" style="width:46%" />
+                                            <input type="text" id="order_passport_expiry_date" name="order_passport_expiry_date" placeholder="만료일(2025-08-08)"
+                                                value="<?= $order_passport_expiry_date ?>" class="input_txt datepicker" style="width:46%" readonly/>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -162,90 +165,127 @@
                                     <th>휴대전화</th>
                                     <td>
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                               value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
+                                               value="<?= $order_user_mobile ?>" class="input_txt"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>여행시 현지 연락처(TH)</th>
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
+                                               value="<?= $local_phone ?>" class="input_txt"/>
                                     </td>
                                     <th>예약날짜</th>
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= substr($order_date,0,10) ?>(<?=get_korean_day(substr($order_date,0,10));?>)" class="input_txt" style="width:90%"/>
+                                               value="<?= substr($order_date,0,10) ?>(<?=get_korean_day(substr($order_date,0,10));?>)" class="input_txt"/>
                                     </td>
                                 </tr>
 								
 								<tr>
                                     <th>룸타입/프로모션	</th>
                                     <td>
-                                          <?=$room?>[<?=$room_type?>]]
-
+                                        <div class="flex__c" style="gap: 10px;">
+                                            <input type="text" id="room" name="room"
+                                                   value="<?=$room?>" class="input_txt"/>
+                                            <input type="text" id="room_type" name="room_type"
+                                                   value="<?=$room_type?>" class="input_txt"/>
+                                        </div>
                                     </td>
                                     <th>식사</th>
                                     <td>
-									     <?php
-										   if($breakfast == "N") {
-                                              echo "조식미포함";  
-									       } else { 
-                                              echo "조식포함";  
-										   }
-										 ?>  
+                                        <?php
+                                            if(!empty($breakfast_order_new)) {
+                                                $breakfast_order = $breakfast_order_new;
+                                            }else {
+                                                if($breakfast == "N") {
+                                                    $breakfast_order = "조식미포함";  
+                                                } else { 
+                                                    $breakfast_order = "조식포함";  
+                                                }
+                                            }
+                                        ?>
+                                        <input type="text" id="breakfast_order_new" name="breakfast_order_new"
+                                                   value="<?=$breakfast_order?>" class="input_txt"/>
+                                          
                                     </td>
                                 </tr>
 								
 								<tr>
                                     <th>체크인/체크아웃</th>
                                     <td>
-                                          <?=$start_date?>(<?=get_korean_day($start_date);?>) ~ <?=$end_date?>(<?=get_korean_day($end_date);?>) / <?= $order_day_cnt ?>일
-										  &emsp; (객실수 : <?= $order_room_cnt ?> Room)<br>
-										  <?php
-										        /*
-												2025-04-17:12:21:31:21:41::42.41|
-												2025-04-18:12:21:31:21:41::42.41|
-												2025-04-19:12:21:31:21:41::42.41|
-												2025-04-20:12:21:31:21:41::42.41|
-												Extra 베드,6955,164	
-												*/
-												$temp  = "";
-										        $arr = explode("|", $date_price);
-												for($i=0;$i<$order_day_cnt;$i++)
-												{
-												    //echo $arr[$i] ."<br>"; 
-													$price = explode(":", $arr[$i]);
-													if($price[0] != "Extra 베드") {
-													   $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
-													}   
-												}
-												echo $temp;
-										  ?>
+                                        <div class="flex__c" style="gap: 5px;">
+                                            <input type="text" id="start_date" name="start_date" style="width: 150px;"
+                                                   value="<?=$start_date?>" class="input_txt"/>
+                                                   ~
+                                            <input type="text" id="end_date" name="end_date" style="width: 150px;"
+                                                   value="<?=$end_date?>" class="input_txt"/>
+
+                                            / <input type="text" id="order_day_cnt" name="order_day_cnt" style="width: 50px;"
+                                                    value="<?=$order_day_cnt?>" class="input_txt number-only"/> 일
+                                            &emsp; (객실수 : <input type="text" id="order_room_cnt" name="order_room_cnt" style="width: 50px;"
+                                                                    value="<?=$order_room_cnt?>" class="input_txt number-only"/> Room)
+                                        </div>
+
+                                        <?php
+                                            /*
+                                            2025-04-17:12:21:31:21:41::42.41|
+                                            2025-04-18:12:21:31:21:41::42.41|
+                                            2025-04-19:12:21:31:21:41::42.41|
+                                            2025-04-20:12:21:31:21:41::42.41|
+                                            Extra 베드,6955,164	
+                                            */
+                                            $temp  = "";
+                                            $arr = explode("|", $date_price);
+                                            for($i = 0;$i < $order_day_cnt; $i++)
+                                            {
+                                                //echo $arr[$i] ."<br>"; 
+                                                $price = explode(":", $arr[$i]);
+                                                if($price[0] != "Extra 베드") {
+                                                    $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
+                                                }   
+                                            }
+                                            echo $temp;
+                                        ?>
                                     </td>
                                     <th>객실수/총인원</th>
                                     <td>
-                                         <?=$order_room_cnt?> 룸 / 성인 <?=$adult?>명 아동 <?=$kids?>명
+                                        <div class="flex__c">
+                                            <input type="text" id="order_room_cnt" name="order_room_cnt" style="width: 50px;"
+                                                        value="<?=$order_room_cnt?>" class="input_txt number-only"/>
+                                            룸 / 성인
+                                            <input type="text" id="adult" name="adult" style="width: 50px;"
+                                                        value="<?=$adult?>" class="input_txt number-only"/>
+                                            명 아동
+                                            <input type="text" id="adult" name="adult" style="width: 50px;"
+                                                        value="<?=$adult?>" class="input_txt number-only"/>명
+                                        </div>
                                     </td>
                                 </tr>
 								
                                 <tr>
                                     <th>침대구성</th>
-                                    <td>
-                                          <?=$bed_type?>
+                                    <td colspan="3">
+                                        <input type="text" id="bed_type" name="bed_type" value="<?=$bed_type ?? ""?>" class="input_txt"/>
                                     </td>
-                                    <th>포함사항</th>
+                                    <!-- <th>포함사항</th>
                                     <td>
-                                         포함사항 내용
-                                    </td>
+                                        포함사항 내용
+                                    </td> -->
                                 </tr>
 								
                                 <tr >
                                     <th>별도 요청</th>
                                     <td >
                                         <?php
-                                        $codes = array_map(fn($code) => "<span>{$code['code_name']}</span>", $fcodes);
-                                        echo implode(', ', $codes);
+                                            $codes = array_map(fn($code) => "{$code['code_name']}", $fcodes);
+
+                                            if(!empty($special_request)) {
+                                                $code_text = $special_request;
+                                            }else {
+                                                $code_text = implode(', ', $codes);
+                                            }
                                         ?>
+                                        <input type="text" id="special_request" name="special_request" value="<?=$code_text ?? ""?>" class="input_txt"/>
                                     </td>
 									 <th>상품 담당자</th>
                                     <td>
