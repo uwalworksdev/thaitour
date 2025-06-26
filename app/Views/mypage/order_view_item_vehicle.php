@@ -11,27 +11,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 $deli_types = get_deli_type();
 
-$sql = "select * from tbl_order_mst a
-	                           left join tbl_member b on a.m_idx = b.m_idx 
-							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($sql)->getRowArray();
-
-$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
-
-$row_d = $connect->query($sql_d)->getRowArray();
-
-$row['local_phone'] = $row_d['local_phone'];
-
-$tour_period = $row["tour_period"];
-$custom_req = $row['custom_req'];
-
-$home_depart_date = $row['home_depart_date'];
-$away_arrive_date = $row['away_arrive_date'];
-$away_depart_date = $row['away_depart_date'];
-$home_arrive_date = $row['home_arrive_date'];
-
-$start_date = $row['start_date'];
-
 ?>
 <link href="/css/invoice/invoice.css" rel="stylesheet" type="text/css" />
 <link href="/css/invoice/invoice_responsive.css" rel="stylesheet" type="text/css" />
@@ -63,9 +42,22 @@ $start_date = $row['start_date'];
 	/* .mypage_container .content .details_table tbody tr .ttl span {
 		padding-right: 6.3846rem;
 	} */
-	
 </style>
 
+<?php
+    $authdate   = "";
+    if($AuthDate_1) {
+		$year   = "20" . substr($AuthDate_1, 0, 2);
+		$month  = substr($AuthDate_1, 2, 2);
+		$day    = substr($AuthDate_1, 4, 2);
+		$hour   = substr($AuthDate_1, 6, 2);
+		$minute = substr($AuthDate_1, 8, 2);
+		$second = substr($AuthDate_1, 10, 2);
+
+		// 최종 형식
+		$authdate = "$year-$month-$day $hour:$minute:$second";
+    }	
+?>
 <section class="invoice_paid">
 	<div class="inner">
 		<div class="ttl_box">
