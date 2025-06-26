@@ -334,7 +334,7 @@ $deli_types = get_deli_type();
 		</div>
 		
 		<div class="invoice_table invoice_table_new reservation only_web">
-			<h2>예약금액 결제1</h2>
+			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
 					<col width="8%">
@@ -348,10 +348,6 @@ $deli_types = get_deli_type();
 						<td col width="12%" class="subject">결제금액 </td>
 						<td col width="20%" class="subject">결제</td>
 						<td col width="20%" class="subject">결제일</td>
-					</tr>
-
-					<tr>
-						<td class="content" colspan="7"><?= $deli_types[$order_status] ?></td>
 					</tr>
 
 					<?php if ($order_status == "X") { ?>
@@ -543,10 +539,6 @@ $deli_types = get_deli_type();
 					<col width="*">
 				</colgroup>
 				<tbody>
-						<tr>
-							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content"><?= $deli_types[$order_status] ?></td>
-						</tr>
 					<?php if ($order_status == "X") { ?>
 						<tr>
 							<td class="subject">예약상태</td>
