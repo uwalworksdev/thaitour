@@ -70,15 +70,16 @@ $start_date = $row['start_date'];
 	<div class="inner">
 		<div class="ttl_box">
 			<h1>
-				<?= (html_entity_decode($row['product_name'])) ?>
+				<?= (html_entity_decode($product_name)) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_deli_type($row["order_status"]) ?>
+				<?= $deli_types[$order_status] ?>
 			</span>
 		</div>
 		<p class="ttl_date">
-			<?= $row["order_r_date"] ?>
+			<?= $order_r_date ?>
 		</p>
+		
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
 			<h2>예약 정보(차량)</h2>
@@ -98,26 +99,26 @@ $start_date = $row['start_date'];
 
 						<td col width="15%" class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 
 						<td class="content">
 							<span>성인: <span>
-								<?= $row["people_adult_cnt"] ?>
+								<?= $people_adult_cnt ?>
 							</span></span> <span>소아: <span>
-								<?= $row["people_kids_cnt"] ?>
+								<?= $people_kids_cnt ?>
 							</span></span> 
 						</td>
 
 						<td class="content">
 							<p>
-								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ")"  ?>
+								<?= date("Y.m.d", strtotime($meeting_date)) . "(" . dowYoil(date("Y.m.d", strtotime($meeting_date))) . ")"  ?>
 								<?php
 									if($code_parent_category == "5403"){
 								?>
 									~
-									<?= date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")";?>
+									<?= date("Y.m.d", strtotime($return_date)) . "(" . dowYoil(date("Y.m.d", strtotime($return_date))) . ")";?>
 								<?php
 									}
 								?>
@@ -151,7 +152,7 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td class="content">
 							<span>
-								<?= $row["order_no"] ?>
+								<?= $order_no ?>
 							</span>
 						</td>
 					</tr>
@@ -159,9 +160,9 @@ $start_date = $row['start_date'];
 						<td class="subject">여행인원</td>
 						<td class="content">
 							<span>성인: <span>
-								<?= $row["people_adult_cnt"] ?>
+								<?= $people_adult_cnt ?>
 							</span></span> <span>소아: <span>
-								<?= $row["people_kids_cnt"] ?>
+								<?= $people_kids_cnt ?>
 							</span></span>
 						</td>
 					</tr>
@@ -170,12 +171,12 @@ $start_date = $row['start_date'];
 
 						<td class="content">
 							<p>
-								<?= date("Y.m.d", strtotime($row['meeting_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['meeting_date']))) . ")"  ?>
+								<?= date("Y.m.d", strtotime($meeting_date)) . "(" . dowYoil(date("Y.m.d", strtotime($meeting_date))) . ")"  ?>
 								<?php
 									if($code_parent_category == "5403"){
 								?>
 									~
-									<?= date("Y.m.d", strtotime($row['return_date'])) . "(" . dowYoil(date("Y.m.d", strtotime($row['return_date']))) . ")";?>
+									<?= date("Y.m.d", strtotime($return_date)) . "(" . dowYoil(date("Y.m.d", strtotime($return_date))) . ")";?>
 								<?php
 									}
 								?>
@@ -225,13 +226,13 @@ $start_date = $row['start_date'];
 						<?php } ?> -->
 						<?php if ($row['used_coupon_money'] > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-										<?= number_format($row['used_coupon_money']) ?>원
+										<?= number_format($used_coupon_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
 						<?php if ($row['used_mileage_money'] > 0) { ?>
 							<p><strong style="color:red">포인트 <span id="point_amt">
-										<?= number_format($row['used_mileage_money']) ?>원
+										<?= number_format($used_mileage_money) ?>원
 									</span></strong></p>
 						<?php } ?>
 
@@ -240,7 +241,7 @@ $start_date = $row['start_date'];
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($row['order_price']) ?>
+									<?= number_format($order_price) ?>
 								</span></strong> 원</p>
 					</div>
 				</div>
