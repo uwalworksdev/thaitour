@@ -362,7 +362,7 @@ $deli_types = get_deli_type();
 						</tr>
 					<?php } ?>
 
-					<?php if ($row["order_status"] == "X") { ?>
+					<?php if ($order_status == "X") { ?>
 						<tr>
 							<td col width="8%" class="content">
 								선금
