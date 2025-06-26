@@ -10,6 +10,7 @@ class AdminOperatorController extends BaseController
 {
 
     protected $connect;
+    protected $couponMst;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class AdminOperatorController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
+        $this->couponMst = model("CouponMst");
     }
 
     public function coupon_setting()
@@ -231,9 +233,11 @@ class AdminOperatorController extends BaseController
         $idx = updateSQ($_GET["idx"] ?? '');
         $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
 
-        $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
-        $result_c = $this->connect->query($sql_c);
-        $result_c = $result_c->getResultArray();
+        // $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
+        // $result_c = $this->connect->query($sql_c);
+        // $result_c = $result_c->getResultArray();
+
+        $result_c = $this->couponMst->getCouponList('', '', 1, 1000000, true, true)["coupon_list"];
 
         $data = [
             'idx' => $idx,
@@ -247,15 +251,15 @@ class AdminOperatorController extends BaseController
     public function coupon_write_ok()
     {
         try {
-            $coupon_type = updateSQ($_POST["coupon_type"]);
+            $coupon_mst_idx = updateSQ($_POST["coupon_mst_idx"]);
             $coupon_cnt = updateSQ($_POST["coupon_cnt"]);
-
+            $keyword = updateSQ($_POST["keyword"]);
             $ok_cnt = 0;
             $er_cnt = 0;
 
             for ($i = 1; $i <= $coupon_cnt; $i++) {
 
-                $new_coupon = $this->createCoupon($coupon_type);
+                $new_coupon = $this->createCoupon($coupon_mst_idx, $keyword);
 
                 if ($new_coupon === "Error") {
                     $er_cnt++;
@@ -351,9 +355,9 @@ class AdminOperatorController extends BaseController
         
     }
 
-    private function createCoupon($coupon_type)
+    private function createCoupon($coupon_mst_idx, $keyword)
     {
-        $fsql = "select * from tbl_coupon_setting where idx='" . $coupon_type . "' ";
+        $fsql = "select * from tbl_coupon_mst where idx='" . $coupon_mst_idx . "' ";
         $fresult = $this->connect->query($fsql);
         $nTotalCount = $fresult->getNumRows();
 
@@ -387,13 +391,14 @@ class AdminOperatorController extends BaseController
         //$enddate = "2018-12-24";
 
         $fsql = " insert into tbl_coupon set
-                  coupon_num	= '" . $_couponNum . "'
-                , coupon_type	= '" . $coupon_type . "'
-                , types			= 'N'
-                , status		= 'D'
-                , last_idx	= '" . $last_idx . "'
-                , regdate	= now()
-                , enddate	= '" . $enddate . "'
+                  coupon_num	    = '" . $_couponNum . "'
+                , coupon_mst_idx	= '" . $coupon_mst_idx . "'
+                , keyword	        = '" . $keyword . "'
+                , types			    = 'N'
+                , status		    = 'D'
+                , last_idx	        = '" . $last_idx . "'
+                , regdate	        = now()
+                , enddate	        = '" . $enddate . "'
         ";
 
         $message = "쿠폰생성 : " . $fsql;

@@ -252,9 +252,10 @@ class Product extends BaseController
         return $this->renderView('product/product_search', $data);
     }
 
-    public function showTicket($code_no)
+    public function showTicket($code_no = null)
     {
         try {
+            $code_no = 1317;
             $data = $this->viewData($code_no, 233401, 233402);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -301,9 +302,10 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/completed-cart');
     }
 
-    public function indexTour($code_no)
+    public function indexTour($code_no = null)
     {
         try {
+            $code_no = 1301;
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'ASC')->orderBy("code_idx", "DESC")->findAll();
 
             // $products = $this->productModel->findProductPaging([
@@ -391,9 +393,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexHotel($code_no)
+    public function indexHotel($code_no = null)
     {
         try {
+            $code_no = 1303;
             $keyword = $this->request->getVar('keyword') ?? '';
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
@@ -750,9 +753,10 @@ class Product extends BaseController
         }
     }
 
-    public function index2($code_no, $s = "1")
+    public function index2($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1302;
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
             $perPage = 16;
 
@@ -960,9 +964,10 @@ class Product extends BaseController
         }
     }
 
-    public function indexSpa($code_no, $s = "1")
+    public function indexSpa($code_no = null, $s = "1")
     {
         try {
+            $code_no = 1325;
             $data = $this->viewData($code_no, 233601, 233602);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -978,6 +983,7 @@ class Product extends BaseController
     public function listHotel()
     {
         try {
+            // $code_no = $this->request->getVar('s_code_no') ?? '';
             $code_no = $this->request->getVar('s_code_no') ?? '';
             $s_code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
@@ -1883,7 +1889,7 @@ class Product extends BaseController
 						'message' => "장바구니에 저장되었습니다."
 					], 200);
 				} else {
-					$sql = "SELECT a.order_no, a.order_price, b.product_name_en
+					$sql = "SELECT a.order_no, a.order_price, a.*, b.product_name_en
                                 , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                 FROM tbl_order_mst a
@@ -1891,12 +1897,35 @@ class Product extends BaseController
 
                     $row = $this->db->query($sql)->getRow();
                     
+                    $product_code_1 = $row->product_code_1;
+                    $product_code_2 = $row->product_code_2;
+                    $count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+                    if($product_code_1 == '1303') {
+                        $product_type = '호텔';
+                    } else if ($product_code_1 == '1302') {
+                        $product_type = '골프';
+                    } else if ($product_code_1 == '1301') {
+                        $product_type = '투어';
+                    } else if ($product_code_1 == '1325') {
+                        $product_type = '스파';
+                    } else if ($product_code_1 == '1317') {
+                        $product_type = '쇼ㆍ입장권';
+                    } else if ($product_code_1 == '1320') {
+                        $product_type = '레스토랑';
+                    } else if ($product_code_2 == '132404') {
+                        $product_type = '차량';
+                    } else if ($product_code_2 == '132403') {
+                        $product_type = '가이드';
+                    }
                     $code = "A14";
                     $_tmp_fir_array = [
                         'RECEIVE_NAME'=> $row->user_name,
-                        'PROD_NAME'   => $row->product_name_en,
+                        'PROD_NAME'   => $row->product_name,
                         'ORDER_NO'    => $row->order_no,
-                        'ORDER_PRICE' => number_format($row->order_price),
+                        'PROD_TYPE'   => $product_type,
+                        'ORDER_DATE'   => $row->order_r_date,
+                        'ORDER_NAME'   => $row->user_name,
+                        'ORDER_NUM_PEOPLE'   => $count,
                     ];
             
                     autoEmail($code, $row->user_email, $_tmp_fir_array);
@@ -2941,7 +2970,7 @@ class Product extends BaseController
             }
 
             if ($data['order_status'] == "W") {
-                 $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                 $sql = "SELECT a.order_no, a.order_price,a.*, b.product_name
                                 , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                 FROM tbl_order_mst a
@@ -2949,12 +2978,35 @@ class Product extends BaseController
 
 			    $row = $this->db->query($sql)->getRow();
                 
+                $product_code_1 = $row->product_code_1;
+                $product_code_2 = $row->product_code_2;
+                $count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+                if($product_code_1 == '1303') {
+                    $product_type = '호텔';
+                } else if ($product_code_1 == '1302') {
+                    $product_type = '골프';
+                } else if ($product_code_1 == '1301') {
+                    $product_type = '투어';
+                } else if ($product_code_1 == '1325') {
+                    $product_type = '스파';
+                } else if ($product_code_1 == '1317') {
+                    $product_type = '쇼ㆍ입장권';
+                } else if ($product_code_1 == '1320') {
+                    $product_type = '레스토랑';
+                } else if ($product_code_2 == '132404') {
+                    $product_type = '차량';
+                } else if ($product_code_2 == '132403') {
+                    $product_type = '가이드';
+                }
 				$code = "A14";
 				$_tmp_fir_array = [
 					'RECEIVE_NAME'=> $row->user_name,
-					'PROD_NAME'   => $row->product_name_en,
+					'PROD_NAME'   => $row->product_name,
 					'ORDER_NO'    => $row->order_no,
-					'ORDER_PRICE' => number_format($row->order_price),
+                    'PROD_TYPE'   => $product_type,
+                    'ORDER_DATE'   => $row->order_r_date,
+                    'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $row->user_email, $_tmp_fir_array);
@@ -3266,20 +3318,42 @@ class Product extends BaseController
                         // }
             if ($data['order_status'] == "W") {
 				
-                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                $sql = "SELECT a.order_no, a.order_price, a.*, b.product_name
                                 , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                 FROM tbl_order_mst a
                                 LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx WHERE order_idx = '". $order_idx ."' ";
 
 			    $row = $this->db->query($sql)->getRow();
-                
+                $product_code_1 = $row->product_code_1;
+                $product_code_2 = $row->product_code_2;
+                $count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+                if($product_code_1 == '1303') {
+                    $product_type = '호텔';
+                } else if ($product_code_1 == '1302') {
+                    $product_type = '골프';
+                } else if ($product_code_1 == '1301') {
+                    $product_type = '투어';
+                } else if ($product_code_1 == '1325') {
+                    $product_type = '스파';
+                } else if ($product_code_1 == '1317') {
+                    $product_type = '쇼ㆍ입장권';
+                } else if ($product_code_1 == '1320') {
+                    $product_type = '레스토랑';
+                } else if ($product_code_2 == '132404') {
+                    $product_type = '차량';
+                } else if ($product_code_2 == '132403') {
+                    $product_type = '가이드';
+                }
 				$code = "A14";
 				$_tmp_fir_array = [
 					'RECEIVE_NAME'=> $row->user_name,
-					'PROD_NAME'   => $row->product_name_en,
+					'PROD_NAME'   => $row->product_name,
 					'ORDER_NO'    => $row->order_no,
-					'ORDER_PRICE' => number_format($row->order_price),
+                    'PROD_TYPE'   => $product_type,
+                    'ORDER_DATE'   => $row->order_r_date,
+                    'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $row->user_email, $_tmp_fir_array);
@@ -3886,9 +3960,10 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
-    public function restaurantIndex($code_no)
+    public function restaurantIndex($code_no = null)
     {
         try {
+            $code_no = 1320;
             $data = $this->viewData($code_no, 233801, 233802);
             $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
@@ -3933,10 +4008,11 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/completed-cart');
     }
 
-    public function vehicleGuide($code_no)
+    public function vehicleGuide($code_no = null)
     {
         try {
 
+            $code_no = 132404;
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
             $departure_list = $this->carsCategory->getByParentCode(0)->getResultArray();
@@ -4353,7 +4429,7 @@ class Product extends BaseController
                     }
 
                     if ($order_status == "W") {
-                        $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                        $sql = "SELECT a.order_no, a.order_price, a.*, b.product_name
                                         , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                         , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                         FROM tbl_order_mst a
@@ -4361,12 +4437,35 @@ class Product extends BaseController
 
                         $row = $this->db->query($sql)->getRow();
                         
+                        $product_code_1 = $row->product_code_1;
+                        $product_code_2 = $row->product_code_2;
+                        $count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+                        if($product_code_1 == '1303') {
+                            $product_type = '호텔';
+                        } else if ($product_code_1 == '1302') {
+                            $product_type = '골프';
+                        } else if ($product_code_1 == '1301') {
+                            $product_type = '투어';
+                        } else if ($product_code_1 == '1325') {
+                            $product_type = '스파';
+                        } else if ($product_code_1 == '1317') {
+                            $product_type = '쇼ㆍ입장권';
+                        } else if ($product_code_1 == '1320') {
+                            $product_type = '레스토랑';
+                        } else if ($product_code_2 == '132404') {
+                            $product_type = '차량';
+                        } else if ($product_code_2 == '132403') {
+                            $product_type = '가이드';
+                        }
                         $code = "A14";
                         $_tmp_fir_array = [
                             'RECEIVE_NAME'=> $row->user_name,
-                            'PROD_NAME'   => $row->product_name_en,
+                            'PROD_NAME'   => $row->product_name,
                             'ORDER_NO'    => $row->order_no,
-                            'ORDER_PRICE' => number_format($row->order_price),
+                            'PROD_TYPE'   => $product_type,
+                            'ORDER_DATE'   => $row->order_r_date,
+                            'ORDER_NAME'   => $row->user_name,
+                            'ORDER_NUM_PEOPLE'   => $count,
                         ];
                 
                         autoEmail($code, $row->user_email, $_tmp_fir_array);

@@ -832,6 +832,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("point", "MyPage::point");
     $routes->get("coupon", "MyPage::coupon");
     $routes->get("discount", "MyPage::discount");
+    $routes->post("get_coupon_discount", "MyPage::get_coupon_discount");
     $routes->get("discount_owned", "MyPage::discount_owned");
     $routes->get("discount_download", "MyPage::discount_download");
     $routes->get("info_option", "MyPage::info_option");
@@ -935,8 +936,9 @@ $routes->group("voucher", static function ($routes) {
     $routes->get("ticket/(:num)", "VoucherController::ticket/$1");
     $routes->post("ticket/save", "VoucherController::ticket_save"); 
     $routes->get("car/(:num)", "VoucherController::car/$1");
-
-    
+    $routes->post("car/save", "VoucherController::car_save");
+    $routes->get("guide/(:num)", "VoucherController::guide/$1"); 
+    $routes->post("guide/save", "VoucherController::guide_save");     
 });
 $routes->group("review", static function ($routes) {
     $routes->get("review_list", "ReviewController::list_review");
@@ -983,6 +985,7 @@ $routes->group("magazines", static function ($routes) {
 
 $routes->group("time_sale", static function ($routes) {
     $routes->get("list", "TimeSaleController::list", ['as' => "api.time_sale.list"]);
+    $routes->post("view", "TimeSaleController::view", ['as' => "api.time_sale.view"]);
     $routes->post("like", "TimeSaleController::like", ['as' => "api.time_sale.like"]);
 });
 
@@ -1009,8 +1012,10 @@ $routes->get('ticket/completed-order', 'Product::ticketCompleted');
 $routes->get('ticket/completed-cart', 'Product::ticketCarted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
-$routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
-$routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
+// $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
+$routes->get('show-ticket', 'Product::showTicket');
+// $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
+$routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->post('vehicle/confirm-info', 'Product::vehicleConfirm');
 $routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->get('driver/get-reviews', 'Product::getDriverReviews', ['as' => "api.driver.getDriverReviews"]);
@@ -1022,7 +1027,7 @@ $routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
 $routes->get('product-hotel/reservation-form', 'Product::reservationForm');
 $routes->post('product-hotel/reservation-form-insert', 'Product::reservationFormInsert');
 $routes->post('product-hotel/custhotel-payment-ok', 'Product::custHotelPaymentOk');
-$routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
+$routes->get('product-hotel', 'Product::indexHotel');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');
 $routes->get('product/completed-cart', 'Product::completedCart/$1');
@@ -1033,7 +1038,8 @@ $routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
 $routes->get('product-golf/option-price/(:any)', 'Product::optionPrice/$1');
 $routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
 $routes->get('product-golf/completed-cart', 'Product::golfCompletedCart/$1');
-$routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
+// $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
+$routes->get('product-golf', 'Product::index2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
 $routes->post('product-golf/customer-payment-ok', 'Product::customerPaymentOk');
 $routes->post("product/golf_direct_payment", "Product::golf_direct_payment");
@@ -1047,19 +1053,22 @@ $routes->get('product-tours/completed-order', 'Product::tourCompletedOrder/$1');
 $routes->get('product-tours/completed-cart', 'Product::tourCompletedCart/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/confirm-info', 'Product::confirmInfo');
-$routes->get('product-tours/(:any)', 'Product::indexTour/$1');
+// $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
+$routes->get('product-tours', 'Product::indexTour');
 $routes->get('product-spa/product-booking', 'Product::productBooking');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
 $routes->get('product-spa/completed-cart', 'Product::spaCompletedCart');
 $routes->post('product-spa/spa-payment-ok', 'SpaController::handlePayment');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
-$routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
+// $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
+$routes->get('product-spa', 'Product::indexSpa');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
 $routes->get('product-restaurant/completed-cart', 'Product::restaurantCarted');
 $routes->get('product-restaurant/restaurant-booking', 'Product::restaurantBooking');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
-$routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
+// $routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
+$routes->get('product-restaurant', 'Product::restaurantIndex');
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
@@ -1072,7 +1081,8 @@ $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.produ
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
-$routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
+// $routes->get('tour-guide/(:any)', 'TourGuideController::index/$1');
+$routes->get('tour-guide', 'TourGuideController::index');
 $routes->get('guide_view', 'TourGuideController::guideView');
 $routes->get('guide_booking', 'TourGuideController::guideBooking');
 $routes->get('guide/complete-booking', 'TourGuideController::completeBooking');
@@ -1129,7 +1139,9 @@ $routes->group("pdf", static function ($routes) {
     $routes->get('voucher_hotel', 'PdfController::voucherHotel');
     $routes->get('voucher_golf', 'PdfController::voucherGolf');
     $routes->get('voucher_tour', 'PdfController::voucherTour');
-    $routes->get('voucher_ticket', 'PdfController::voucherTicket');    
+    $routes->get('voucher_ticket', 'PdfController::voucherTicket');
+    $routes->get('voucher_car', 'PdfController::voucherCar');
+    $routes->get('voucher_guide', 'PdfController::voucherGuide');    
 });
 
 $routes->group("travel-tips", static function ($routes) {

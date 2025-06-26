@@ -218,12 +218,12 @@
   }
 
   .btn_more_hot_product {
-    margin-top: 7.5rem;
+    margin-top: 6.5rem;
   }
 
   .main_section9__row {
     flex-direction: column;
-    gap: 10rem;
+    gap: 7rem;
   }
 
   .main_section9__col {
@@ -444,7 +444,7 @@ padding-top: 0 !important; */
   }
 
   .main_section_review {
-    margin: 6rem 0;
+    margin: 0;
   }
 
   .main_section8 {
@@ -452,27 +452,27 @@ padding-top: 0 !important; */
   }
 
   .main_section9 {
-    padding: 5rem 0 3rem 0;
+    padding: 8rem 0 3rem 0;
   }
 
   .main_hot {
-    padding: 11rem 0 0 0;
+    padding: 9rem 0 0 0;
   }
 
   .main_section3__head {
-    padding: 7rem 0 0 0;
+    padding: 4rem 0 0 0;
   }
 
   .main_section2 {
-    padding-top: 5rem;
+    padding-top: 8rem;
   }
 
   .main_section5 {
-    padding: 10rem 0 0;
+    padding: 8rem 0 0;
   }
 
   .main_section4 {
-    margin-top: 9rem;
+    margin-top: 3rem;
   }
 
   .main_section5__words_list {
@@ -484,7 +484,7 @@ padding-top: 0 !important; */
     align-items: center;
     justify-content: center;
     margin-top: 3rem;
-    margin-bottom: 10rem;
+    margin-bottom: 9rem;
 }
 
 
@@ -510,14 +510,15 @@ padding-top: 0 !important; */
 
   .main_section_magazine {
     margin-top: 9rem;
+    padding-bottom: 4rem;
   }
 
   .main_section_review {
-    padding: 10.9rem 0;
+    padding: 9rem 0 6rem 0;
   }
 
   .main_section7 {
-    padding: 11rem 0 0 0;
+    padding: 9rem 0 0 0;
   }
 
   .swiper-main-tools {
@@ -715,6 +716,10 @@ padding-top: 0 !important; */
 
   .main_sale_banner.visible {
     display: none;
+  }
+
+  .review__list__item__content.text_truncate_ {
+    max-height: 3.4rem;
   }
 
 }

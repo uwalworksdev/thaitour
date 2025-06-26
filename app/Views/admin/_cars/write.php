@@ -174,9 +174,15 @@ $links = "list";
 
                                 <tr>
                                     <th>상품명</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
+                                               class="text" style="width:300px" maxlength="100"/>
+                                    </td>
+                                    <th>영문텔명</th>
+                                    <td>
+                                        <input type="text" name="product_name_en"
+                                               value="<?= $product_name_en ?? "" ?>"
                                                class="text" style="width:300px" maxlength="100"/>
                                     </td>
                                 </tr>

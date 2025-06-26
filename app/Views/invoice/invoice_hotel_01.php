@@ -39,13 +39,37 @@
             <!-- <div class="logo_voice only_web">
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </div> -->
-            <div class="logo_voice">
+            <!-- <div class="logo_voice">
                 <h2 class="tit_top">견적서</h2>
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                     Thai - Registration No 010-5555-096-398<br>
                     Tel: 001-66-(0)2-730-5690, 070-7010-8266
                 </p>
+            </div> -->
+            <div class="only_mo">
+                <div class="logo_voice">
+                    <h2 class="tit_top">견적서</h2>
+                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    </p>
+                </div>
+            </div>
+            <div class="only_web">
+                <div class="logo_voice">
+                    <div class="logo_addr">
+                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        </p>
+                    </div>
+                    <div class="ttl_right">
+                        <h2 class="tit_top">견적서</h2>
+                    </div>
+                </div>
             </div>
             <div class="invoice_ttl">
                 <p>고객님 예약이 가능하여 이메일로 견적서 발송해 드렸으며 홈페이지에 마이페이지에서도 확인이 가능합니다. <br> 견적서 내용을 꼼꼼하게 확인 후 결제 진행해 주시면 됩니다. </p>
@@ -64,8 +88,8 @@
                     <tbody>
                         <tr>
                             <th>예약날짜</th>
-                            <th>예약번호</th>
                             <td><?= esc($row->order_no) ?></td>
+                            <th>예약번호</th>
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
@@ -90,14 +114,15 @@
                     </colgroup>
 					
 					<?php foreach ($result as $row) : ?>
-                        <th>날짜</th>
-                    <tbody>
+                        
+                        <tbody>
                         <tr>
-                            <td>
-                                  <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
-                            </td>
                             <th>바우처 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
+                            <th>날짜</th>
+                            <td>
+                                <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+                            </td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>

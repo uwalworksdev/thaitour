@@ -28,6 +28,13 @@
             margin-bottom: 0 !important;
         }
 
+        .hotel_invoice .table_wrapper {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            color: #7d7d7d;
+            font-size : 14px
+        }
+
         .golf_invoice {
             padding: 20px 0 100px;
         }
@@ -262,7 +269,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -311,6 +318,29 @@
             color: #454545 !important;
         }
         
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -321,7 +351,21 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                            <p class="addr" style="margin-top: 10px;">
+                                Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                                Thai - Registration No 010-5555-096-398<br>
+                                Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                            </p>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="invoice_ttl">
             </div>
@@ -339,13 +383,13 @@
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -362,7 +406,17 @@
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td>
+                                <?= date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")"  ?>
+								<?php
+									if($row->code_parent_category == "5403"){
+								?>
+									~
+									<?= date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";?>
+								<?php
+									}
+								?>
+                            </td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -375,19 +429,333 @@
                             <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
-                            <th>시작시간</th>
-                            <td>08:00~16:30</td>
+                            <th>출발지/도착지</th>
+                            <td><?= $departure_name ?></span> / <span><?= $destination_name ?></td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td>성인 : <?= $row->people_adult_cnt ?? 0 ?>명, 소아: <?= $row->people_kids_cnt ?? 0 ?>명</td>
                         </tr>
-                        <tr>
-                            <th>픽업포함여부</th>
-                            <td>불포함</td>
-                            <th>미팅 장소</th>
-                            <td>개별이동</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
+                <h2 class="tit_top">픽업포함여부</h2>
+                <?php
+                    if($row->code_parent_category == "5401"){
+                ?>     
+                    <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 가는 편</div>
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공편 명</th>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">목적지</th>
+                            <th style="text-align:center">기타요청</th>
+                        </tr>
+                            <tr>
+                                <td style="text-align:center">
+                                    <input type="hidden" name="idx[]" value="<?= $order_cars_detail[0]["idx"] ?>">
+                                    <?=$order_cars_detail[0]["air_code"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$order_cars_detail[0]["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$order_cars_detail[0]["hours"]?> 시 <?=$order_cars_detail[0]["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$order_cars_detail[0]["destination_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($order_cars_detail[0]["order_memo"])?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                    <?php 
+                        if(count($order_cars_detail) > 1){
+                    ?>
+                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 오는 편</div>
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">항공편 명</th>
+                                <th style="text-align:center">항공 도착 날짜</th>
+                                <th style="text-align:center">항공 도착 시간</th>
+                                <th style="text-align:center">미팅 장소</th>
+                                <th style="text-align:center">기타요청</th>
+                            </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <input type="hidden" name="idx[]" value="<?= $order_cars_detail[1]["idx"] ?>">
+                                        <?=$order_cars_detail[1]["air_code"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[1]["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[1]["hours"]?> 시 <?=$order_cars_detail[1]["minutes"]?> 분
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[1]["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($order_cars_detail[1]["order_memo"])?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                    <?php } ?>
+                <?php
+                    }else if($row->code_parent_category == "5402"){
+                ?>   
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공편 명</th>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">미팅 장소</th>
+                            <th style="text-align:center">기타요철</th>
+                        </tr>
+                            <?php
+                                foreach($order_cars_detail as $row_c){
+                            ?>
+                            <tr>
+                                <td style="text-align:center">
+                                    <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                    <?=$row_c["air_code"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["departure_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["order_memo"])?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                    <?php
+                        }else if($row->code_parent_category == "5403"){
+                    ?>   
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">출발지</th>
+                            <th style="text-align:center">이동루트</th>
+                            <th style="text-align:center">기타요철</th>
+                        </tr>
+                            <?php
+                                foreach($order_cars_detail as $row_c){
+                            ?>
+                            <tr>
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                <td style="text-align:center">
+                                    <?=$row_c["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["departure_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["schedule_content"])?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["order_memo"])?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                    <?php
+                        }else if($row->code_parent_category == "5404"){
+                    ?>   
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">출발지(픽업호텔)</th>
+                            <th style="text-align:center">경유지</th>
+                            <th style="text-align:center">목적지</th>
+                            <th style="text-align:center">기타요철</th>
+                        </tr>
+                            <?php
+                                foreach($order_cars_detail as $row_c){
+                            ?>
+                            <tr>
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                <td style="text-align:center">
+                                    <?=$row_c["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["departure_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["rest_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["destination_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["order_memo"])?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                    <?php
+                        }else if($row->code_parent_category == "5405"){
+                    ?>   
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">출발지(픽업호텔)</th>
+                            <th style="text-align:center">목적지</th>
+                            <th style="text-align:center">기타요철</th>
+                        </tr>
+                            <?php
+                                foreach($order_cars_detail as $row_c){
+                            ?>
+                            <tr>
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                <td style="text-align:center">
+                                    <?=$row_c["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["departure_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["destination_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["order_memo"])?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                    <?php
+                        }else {
+                    ?>   
+                    <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="15%"/>
+                            <col width="20%"/>
+                            <col width="*%"/>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th style="text-align:center">항공 도착 날짜</th>
+                            <th style="text-align:center">항공 도착 시간</th>
+                            <th style="text-align:center">출발지(픽업호텔)</th>
+                            <th style="text-align:center">목적지(골프장명)</th>
+                            <th style="text-align:center">기타요철</th>
+                        </tr>
+                            <?php
+                                foreach($order_cars_detail as $row_c){
+                            ?>
+                            <tr>
+                                <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                <td style="text-align:center">
+                                    <?=$row_c["date_trip"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["hours"]?> 시 <?=$row_c["minutes"]?> 분
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["departure_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=$row_c["destination_name"]?>
+                                </td>
+                                <td style="text-align:center">
+                                    <?=nl2br($row_c["order_memo"])?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>      
+                <?php
+                    }
+                ?>
                 <h2 class="tit_top">금액내역</h2>
                 <table class="invoice_tbl">
                     <colgroup>
@@ -397,11 +765,10 @@
                         <col width="*">
                     </colgroup>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th>1인당 금액</th>
                             <td colspan="3">성인400바트</td>
-                            
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>금액</th>
                             <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
@@ -433,14 +800,120 @@
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
-                        <td style="width: 20px; vertical-align: top;">
+                        <!-- <td style="width: 20px; vertical-align: top;">
                             <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                        </td>
+                        </td> -->
                         <td style="padding-left: 5px;">
                             <?=viewSQ($cancle_contents)?>
                         </td>
                     </tr>
                 </table>
+                <div class="table_wrapper invoice_table" style="page-break-inside: avoid;">
+                    <p style="margin : 20px 0 !important; line-height: 1.4;">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
+                        따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
+                        견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
+                    </p>
+                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+
+                    <table class="invoice_tbl" style="margin-top: 30px !important;">
+                        <colgroup>
+                            <col width="20%">
+                            <col width="*">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <td style="color : #454545; background-color : #f2f2f2 !important; padding: 0 !important;" colspan="2">
+                                    <table style="width: 100%; border: none; border-collapse: collapse; background-color: #f2f2f2;">
+                                        <tr>
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; border: none;">
+                                                <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
+                                            </td>
+                                            <td style="vertical-align: middle; padding-left: 5px; font-weight: 500; border: none;">
+                                                결제방법
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>가상계좌</td>
+                                <td>윈윈트래블 사이트에서 고유통장번호를 받아 입금 포인트 3~4% 적립. 공인인증서 무조건 필요.</td>
+                            </tr>
+                            <tr>
+                                <td>실시간계좌이체</td>
+                                <td>공인인증서 무조건 필요.</td>
+                            </tr>
+                            <tr>
+                                <td>무통장 원화 송금</td>
+                                <td>
+                                    <p>예약자, 입금자가 다를 경우 연락주시기 바랍니다. 포인트 3~4% 적립. 공인인증서 불필요.</p>
+                                    <p>- 한국 계좌 : <b>국민은행 636101-01-301315 (주)도도부킹</b></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>바트화 송금</td>
+                                <td>
+                                    <p>태국계좌 입금의 경우 입금후 꼭~ 유선상으로 또는 게시판을 통해 알려주셔야 입금확인됩니다.</p>
+                                    <p>- 태국 계좌:<b> Kasikorn Bank 895-2-19850-6 (Totobooking)</b></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>신용카드</td>
+                                <td>공인인증서 30만원 이상시 필요.</td>
+                            </tr>
+                            <tr>
+                                <td>ARS 카드</td>
+                                <td>
+                                    <p>마이페이지 예약확인/결제 창에서 결제 상품 선택 후 결제방법 신용카드-ARS 선택.</p>
+                                    <p>이 후 결제자 정보에 결제자 휴대전화번호를 입력 후 결제하기를 클릭해주시면 SMS 인증번호가 발송 됩니다.</p>
+                                    <p> 인증번호를 메모하시고, SMS 발송번호로 전화하셔서 결제를 진행하시기 바랍니다</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>수기결제</td>
+                                <td>불가피한 경우 관리자에게 카드번호와 유효기간을 알려주시면 결제대행 해드립니다. 공인인증서 불 필요.</td>
+                            </tr>
+                            <tr>
+                                <td>휴대폰</td>
+                                <td>한도 30만원 기본 (사용자 신용도에 따라 한도가 달라집니다.) 공인인증서 불필요.</td>
+                            </tr>
+                            <tr>
+                                <td>포인트</td>
+                                <td>포인트로 금액 결제, 공인인증서 불필요.</td>
+                            </tr>
+                            <tr>
+
+                                <td style="background-color: #f2f2f2;" colspan="2">
+                                    <p>- 결제 전에는 예약이 확정된 상태가 아닙니다. 결제 후 예약 확정 절차가 진행됩니다.</p>
+                                    <p>- 결제가 글 예약 확정이 아님을 주의하세요! 간혹 여러 가지 사유로 예약이 불발될 수 있습니다.</p>
+                                    <p>- 예약자와 결제자가 동일하지 않아도 되며, 무통장 입금시 예약자와 입금자명이 다르거나, 바트화 입금 시에는 꼭 확인 요청해 주시기 바랍니다.</p>
+                                    <p>- 결제 후 마이페이지 > 예약확인/결제에서 예약 상태와 결제 정보를 통해 결제가 정상적으로 되었는지 직접 확인 할 수 있습니다.</p>
+                                    <p>- 결제 후 예약확정서를 받으셔야 예약이 최종 확정된 것입니다.</p>
+                                    <p>- 견적서는 예약 또는 실제 이용 당사자에게 결제 점구용으로 발행된 문서로 해당 견적서를 다른 목적으로
+                                    사용할 경우(호텔 또는 제3자에게 최저가 보장을 요구하기 위한 목적 등) 민/형사상의 불이익을 당할 수 있습니다.</p>
+                                    <p style="margin-top : 10px ">※ 결재와 동시에 예약확정을 원하시면 윈윈트래블 실시간 예약을 이용하세요.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="inquiry_qna">
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
+                <div class="inquiry_info">
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
+                </div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>

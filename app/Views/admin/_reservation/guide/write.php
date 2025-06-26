@@ -165,30 +165,25 @@
                                     <td>
                                         <?= $people_adult_cnt ?>명
                                     </td>
-                                    <th>예약일</th>
-                                    <td >
-                                       
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>일정</th>
                                     <td>
                                         <?= $start_date ?> ~ <?= $end_date ?>
                                     </td>
+                                </tr>
+
+                                <tr>
                                     <th>주문일</th>
-                                    <td>
+                                    <td colspan="3">
                                         <?= $order_r_date ?>
                                     </td>
-                                </tr>
-                                    <th>예약기능여부</th>
-                                    <td  colspan="3">
+                                    <!-- <th>예약기능여부</th>
+                                    <td>
                                         <?php foreach ($sup_options as $item): ?>
                                             <p class="title-sub-r text-gray" style="margin-bottom: 10px;">
                                                 - <?= $item['s_name'] ?>
                                             </p>
                                         <?php endforeach; ?>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
                                 <tr>
@@ -450,7 +445,7 @@
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										 <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceGuide('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -465,14 +460,14 @@
                                             } ?>>바우처 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/hotel/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/guide/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
 										
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										<input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherGuide('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -548,7 +543,59 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+    <script>
+        function invoiceGuide(order_no)
+        {
+            if (!confirm('인보이스를 전송 하시겠습니까?'))
+                return false;
 
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_incoiceHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+        
+        function voucherGuide(order_no)
+        {
+            if (!confirm('바우쳐를 전송 하시겠습니까?'))
+                return false;
+
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_voucherHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+    </script>
 	<script>
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {

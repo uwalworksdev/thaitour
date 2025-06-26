@@ -47,11 +47,15 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
-                <div class="slide_tab discount flex">
+                <div class="slide_tab spe discount flex">
                     <a class="slide_tab_btn active" href="../mypage/discount">사용 가능한 쿠폰</a>
                     <a class="slide_tab_btn" href="../mypage/discount_owned">지난 쿠폰</a>
                     <!-- <a class="slide_tab_btn" href="../mypage/discount_download">쿠폰 다운로드</a> -->
                     <div></div>
+                    <div class="search_coupon_mypage">
+                        <input type="text" class="keyword" id="c_keyword" placeholder="쿠폰인증 글씨를 넣어주세요">
+                        <button type="button" class="btn_send_coupon">쿠폰입력</button>
+                    </div>
                 </div>
                 <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                 <table class="details_table" style="display: table;">
@@ -142,6 +146,27 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
     <div class="bg"></div>
     <!-- </div> -->
 </div>
+<script>
+    $(".btn_send_coupon").on("click", function () {
+        var keyword = $("#c_keyword").val();
+        $.ajax({
+            url: "/mypage/get_coupon_discount",
+            type: "POST",
+            data: {
+                "keyword": keyword
+            },
+            success: function (data, textStatus) {
+                alert(data.message);
+                if(data.result == true){
+                    location.reload();
+                }
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    })
+</script>
 <script>
     $('.show_popup').on('click', function () {
         $('.agree_pop').show();

@@ -92,7 +92,7 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td col width="15%" class="subject">여행인원</td>
 						<td col width="15%" class="subject">여행기간</td>
-						<td col width="30%" class="subject">항공일정</td>
+						<!-- <td col width="30%" class="subject">항공일정</td> -->
 					</tr>
 					<tr>
 
@@ -105,10 +105,6 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<span>성인: <span>
 									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
 								</span></span>
 						</td>
 
@@ -121,7 +117,7 @@ $start_date = $row['start_date'];
 								</span>
 							</p>
 						</td>
-						<td class="content">
+						<td class="content" style="display: none;">
 							<p>
 								<span>한국출발
 									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
@@ -167,11 +163,7 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<span>성인: <span>
 									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+								</span></span> 
 						</td>
 					</tr>
 					<tr>
@@ -188,7 +180,7 @@ $start_date = $row['start_date'];
 							</p>
 						</td>
 					</tr>
-					<tr>
+					<tr style="display: none">
 						<td class="subject">일정</td>
 
 
@@ -223,12 +215,12 @@ $start_date = $row['start_date'];
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-						<div class="defen_ttl">
+						<!-- <div class="defen_ttl">
 							<p><strong>성인 <span id="adult_amt">
 										<?= number_format(($row['people_adult_price'] + $row['oil_price']) * $row['people_adult_cnt']) ?>
 									</span></strong> 원</p>
-						</div>
-						<?php if ($row['product_code_1'] != "1320") { ?>
+						</div> -->
+						<!-- <?php if ($row['product_code_1'] != "1320") { ?>
 							<p>/</p>
 							<div class="defen_ttl">
 								<p><strong>소아 <span id="kids_amt">
@@ -246,7 +238,7 @@ $start_date = $row['start_date'];
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($row['used_coupon_money']) ?>원
 									</span></strong></p>
-						<?php } ?>
+						<?php } ?> -->
 
 						<?php if ($row['used_mileage_money'] > 0) { ?>
 							<p><strong style="color:red">포인트 <span id="point_amt">
@@ -533,42 +525,42 @@ $start_date = $row['start_date'];
 				<tbody>
 					<tr>
 						<td class="subject">이름</td>
-						<td col width="8%" class="subject">생년월일</td>
+						<!-- <td col width="8%" class="subject">생년월일</td> -->
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">호주/해외 전화번호 </td>
+						<td col width="12%" class="subject">해외 전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
+						<!-- <td col width="15%" class="subject">주소</td> -->
 
 					</tr>
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
+						</td>
+
+						<!-- <td class="content">
+							<?= $order_birth_date ?>
+						</td> -->
+
+						<td class="content">
+							<?= $order_user_mobile ?>
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $local_phone ?>
 						</td>
 
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
-						</td>
-
-						<td class="content">
-							<?= ($row['local_phone']) ?>원
-						</td>
-
-						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $order_user_email ?>
 						</td>
 
 
-						<td class="content">
+						<!-- <td class="content">
 							[
 							<?= $row_d['order_zip'] ?>]
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
-						</td>
+						</td> -->
 
 
 
@@ -596,33 +588,33 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $order_user_name?>
 						</td>
 					</tr>
 
-					<tr>
+					<!-- <tr>
 						<td class="subject">생년월일</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $order_birth_date ?>
 						</td>
-					</tr>
+					</tr> -->
 
 					<tr>
 						<td class="subject">휴대번호</td>
 						<td class="content">
-							<?= $row_d['order_user_mobile'] ?>
+							<?= $order_user_mobile ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">이메일</td>
 						<td class="content">
-							<?= $row_d['order_user_email'] ?>
+							<?= $local_phone ?>
 						</td>
 					</tr>
 
-					<tr>
+					<!-- <tr>
 						<td class="subject">주소</td>
 						<td class="content">
 							[
@@ -630,7 +622,7 @@ $start_date = $row['start_date'];
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
 						</td>
-					</tr>
+					</tr> -->
 				</tbody>
 			</table>
 		</div>
@@ -944,7 +936,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $custom_req ?>
+							<?= $custom_req ? $custom_req : $order_memo ?>
 						</td>
 					</tr>
 				</tbody>

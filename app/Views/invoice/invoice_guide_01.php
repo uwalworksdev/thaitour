@@ -15,13 +15,37 @@ $setting = homeSetInfo();
             <!-- <div class="logo_voice only_web">
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
             </div> -->
-            <div class="logo_voice">
+            <!-- <div class="logo_voice">
                 <h2 class="tit_top">견적서</h2>
                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
                 <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
                     Thai - Registration No 010-5555-096-398<br>
                     Tel: 001-66-(0)2-730-5690, 070-7010-8266
                 </p>
+            </div> -->
+            <div class="only_mo">
+                <div class="logo_voice">
+                    <h2 class="tit_top">견적서</h2>
+                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    </p>
+                </div>
+            </div>
+            <div class="only_web">
+                <div class="logo_voice">
+                    <div class="logo_addr">
+                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        </p>
+                    </div>
+                    <div class="ttl_right">
+                        <h2 class="tit_top">견적서</h2>
+                    </div>
+                </div>
             </div>
             <div class="invoice_ttl">
             </div>
@@ -39,13 +63,13 @@ $setting = homeSetInfo();
                             <th>예약번호</th>
                             <td><?=$row->order_no?></td>
                             <th>예약날짜</th>
-                            <td>2023-09-13(수)</td>
+                            <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
                             <th>여행사(담당자)</th>
-                            <td>Pattaya Adventure Co.,Ltd. (파타야 어드벤처 투어)</td>
+                            <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
-                            <td>thaitouradventure@gmail.com</td>
+                            <td><?=$row->order_user_email?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -62,7 +86,11 @@ $setting = homeSetInfo();
                     <tbody>
                         <tr>
                             <th>날짜</th>
-                            <td><?=$row->order_day?>(<?=get_korean_day($row->order_day)?>)</td>
+                            <td>
+                                <?= date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")"  ?>
+                                ~
+                                <?= date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";?>
+                            </td>
                             <th>여행자 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
                         </tr>
@@ -75,17 +103,53 @@ $setting = homeSetInfo();
                             <td colspan="3"><?=$row->product_name?></td>
                         </tr>
                         <tr>
-                            <th>시작시간</th>
-                            <td>08:00~16:30</td>
                             <th>총인원</th>
-                            <td>성인 : 8명</td>
+                            <td colspan="3">성인 : <?= $row->people_adult_cnt ?>명</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>픽업포함여부</th>
                             <td>불포함</td>
                             <th>미팅 장소</th>
                             <td>개별이동</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <h2 class="tit_top">픽업포함여부</h2>
+                <table class="invoice_tbl re_custom">
+                    <colgroup>
+                        <col width="15%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th class="subject">가이드미팅시간</th>
+                        <th class="subject">미팅 장소</th>
+                        <th class="subject">예상일정</th>
+                        <th class="subject">기타 요청</th>
+                    </tr>
+
+                    <?php foreach ($order_subs as $item): ?>
+                        <tr>
+                            <td class="content">
+                                <span>
+                                    <?= $item["guide_meeting_hour"] ?>:<?= $item["guide_meeting_min"] ?>
+                                </span>
+                            </td>
+
+                            <td class="content">
+                                <?= $item["guide_meeting_place"] ?>
+                            </td>
+                            <td class="content">
+                                <?= nl2br($item["guide_schedule"]) ?>
+                            </td>
+                            <td class="content">
+                                <?= nl2br($item["request_memo"]) ?>
+                            </td>
                         </tr>
+                    <?php endforeach; ?>
+
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
@@ -97,11 +161,11 @@ $setting = homeSetInfo();
                         <col width="*">
                     </colgroup>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th>1인당 금액</th>
                             <td colspan="3">성인400바트</td>
                             
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>금액</th>
                             <td colspan = "3"><?=number_format($row->real_price_bath)?></td>
@@ -226,11 +290,18 @@ $setting = homeSetInfo();
             <div class="inquiry_qna">
                 <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
-                        주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
-                    <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                 </div>
-                <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
@@ -292,7 +363,7 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
-                        .btns_download_print, .table_wrapper, .inquiry_qna {
+                        .btns_download_print {
                             display: none !important;
                         }
 

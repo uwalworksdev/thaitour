@@ -1698,6 +1698,7 @@
     align-items: center;
     padding-bottom: 2.5rem;
     border-bottom: 0.21rem solid rgb(238, 238, 238);
+    margin-top: 1.6rem;
   }
 
   .content-sub-product-hotel .arrow_right_mo {
@@ -2229,13 +2230,29 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.5rem 1.5rem;
+    z-index: 100;
+  }
+
+  .content-sub-product-hotel  .popup__content {
+    width: 100%;
+    overflow: auto;
+    /* height: 84%; */
+    background: white;
+    color: black;
+    position: relative;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    z-index: 101;
+    height: 100vh;
   }
 
   .popup__content {

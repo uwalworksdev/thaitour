@@ -95,7 +95,6 @@
                 <div id="contents">
                     <div class="listWrap_noline">
 
-
                         <div class="listBottom">
                             <div style="font-size:12pt;margin-bottom:10px">■ 주문정보(차량)</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -172,16 +171,16 @@
                                 </tr>
                                 <tr>
                                     <th>영문 이름(First/Last)</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="First Name"
                                                value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:45%"/>
 											   <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="Last Name"
                                                value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:45%"/>
                                     </td>
-                                    <th>영문 성(Last Name)</th>
+                                    <!-- <th>영문 성(Last Name)</th>
                                     <td>
                                         
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <th>휴대전화</th>
@@ -194,16 +193,13 @@
                                     </td>
                                     
                                 </tr>
-								<tr>
+								<!-- <tr>
                                     <th>차량선택</th>
                                     <td colspan="3">
                                        프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) 좌석 3개 (어른7) &emsp;|&emsp; 29,687원(700TH) x 3대 = 89,061원(2,100TH)<BR>
 									   프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) 좌석 3개 (어른7) &emsp;|&emsp; 29,687원(700TH) x 3대 = 89,061원(2,100TH)
                                     </td>
-                                  
-                                    
-                                    
-                                </tr>
+                                </tr> -->
                                
                                 <tr style="height:100px">
                                     <th>관리자 메모</th>
@@ -216,7 +212,6 @@
 
                             </table>
                             
-
                             <?php
                                 if($code_no_first == "5401"){
                             ?>     
@@ -728,7 +723,7 @@
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										 <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceVehicle('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -743,14 +738,14 @@
                                             } ?>>바우처 발송
                                             </option>
                                         </select>
-										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/hotel/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
+										<button class="btn btn-primary" type="button" style="width: unset;" onclick="window.open('/voucher/car/<?=$order_idx?>?type=admin', 'window_name', 'width=900, height=700, location=no, status=no, scrollbars=yes');">바우처 보기</button>&emsp;
 										
 										<a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
 										&emsp;2025-02-08 00:00 &emsp;<BR>
 										<input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherVehicle('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -815,7 +810,59 @@
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+    <script>
+        function invoiceVehicle(order_no)
+        {
+            if (!confirm('인보이스를 전송 하시겠습니까?'))
+                return false;
 
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_incoiceHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+        
+        function voucherVehicle(order_no)
+        {
+            if (!confirm('바우쳐를 전송 하시겠습니까?'))
+                return false;
+
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_voucherHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+    </script>
 	<script>
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {

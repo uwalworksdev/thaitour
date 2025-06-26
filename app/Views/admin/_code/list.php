@@ -54,7 +54,7 @@
                                 <col width="120px"/>
                                 <col width="*"/>
                                 <?php
-                                    if($s_parent_code_no == "53"){
+                                    if($s_parent_code_no == "53" || $s_parent_code_no === '49' || $s_parent_code_no === '48'){
                                 ?>
                                     <col width="200px"/>
                                 <?php
@@ -73,7 +73,7 @@
                                 <th>코드번호</th>
                                 <th>코드명</th>
                                 <?php
-                                    if($s_parent_code_no == "53"){
+                                    if($s_parent_code_no == "53" || $s_parent_code_no === '49' || $s_parent_code_no === '48'){
                                 ?>
                                     <th>영문</th>
                                 <?php
@@ -105,7 +105,7 @@
                                         <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"><?= $row["code_name"] ?></a>
                                     </td>
                                     <?php
-                                        if($s_parent_code_no == "53"){
+                                        if($s_parent_code_no == "53" || $s_parent_code_no === '49' || $s_parent_code_no === '48'){
                                     ?>
                                     <td class="tal">
                                         <?= $row["code_name_en"] ?>

@@ -2263,19 +2263,31 @@ public function get_golf_option() {
 			$order_no  = $_POST["order_no"];
 			$order_user_email = $_POST["order_user_email"];
  
-			$sql       = "SELECT   *
+			$sql       = "SELECT   a.*, b.product_name
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
-						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst WHERE order_no = '". $order_no ."' ";
+						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email  FROM tbl_order_mst a
+								LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx
+								WHERE order_no = '". $order_no ."' ";
  								 
 			$row         = $db->query($sql)->getRow();
  		    $order_price = number_format($row->order_price) ."원";
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'   => $row->order_idx,
 				'예약번호'    => $order_no,
-				'예약일자'    => substr($row->order_r_date,0,10),
+				'예약일짜'    => substr($row->order_r_date,0,10),
 				'회원이름'    => $row->user_name,
 				'이메일'      => $row->user_email,
 				'전화번호'     => $row->user_mobile,
@@ -2297,7 +2309,7 @@ public function get_golf_option() {
 				$_tmp_fir_array['총금액'] = $order_price;
 				$_tmp_fir_array['총금액'] = $order_price;
 			}else if($row->order_gubun == "golf"){
-				$code        = "A22";
+				$code = "A22";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
 			}else if($row->order_gubun == "tour"){
 				$code = "A24";
@@ -2305,7 +2317,30 @@ public function get_golf_option() {
 			}else if($row->order_gubun == "spa"){
 				$code = "A26";
 				$_tmp_fir_array['이용날짜'] = $row->order_day;
-				$_tmp_fir_array['gubun'] = 'ticket';
+			}else if($row->order_gubun == "ticket"){
+				$code = "A34";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "restaurant"){
+				$code = "A35";
+				$_tmp_fir_array['이용날짜'] = $row->order_day;
+			}else if($row->order_gubun == "vehicle"){
+				$code = "A28";
+				
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+
+				$_tmp_fir_array['이용날짜'] = $str_day_v;
+
+			}else {
+				$code = "A30";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['이용날짜'] = $str_day_g;
+			
 			}
 		
 			if(!empty($order_user_email)) $user_mail = $order_user_email;
@@ -2361,8 +2396,18 @@ public function get_golf_option() {
 				$user_mobile = $row->user_mobile;
 			}
 			
+			$gubun = $row->order_gubun;
+
+			if($row->order_gubun == "vehicle") {
+				$gubun = "car";
+			}
+
+			if($row->order_gubun == "ticket" || $row->order_gubun == "restaurant" || $row->order_gubun == "spa" ) {
+				$gubun = "ticket";
+			}
+
 			$_tmp_fir_array = [
-				'gubun'   => $row->order_gubun,
+				'gubun'   => $gubun,
 				'order_idx'  => $row->order_idx,
 	            '회원이름'    => $row->user_name,
  	            '이메일'      => $row->user_email,
@@ -2393,11 +2438,11 @@ public function get_golf_option() {
 				$code = 'A25';
 				$_tmp_fir_array['투어명명'] = $row->product_name_en;
 				$_tmp_fir_array['투어업체'] = $row->addrs;
-				$_tmp_fir_array['투어전화번호'] = $row->phone_2;
+				$_tmp_fir_array['투어전화번호'] = $row->phone;
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
-				$_tmp_fir_array['제품명'] = $row->tour_type_en;
+				// $_tmp_fir_array['제품명'] = $row->tour_type_en;
 			}
-			else if($row->order_gubun == "spa"){
+			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 
 				$builder = $db->table('tbl_order_option');
 				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
@@ -2409,15 +2454,29 @@ public function get_golf_option() {
 					$option .= $res->option_name . " x " . $res->option_cnt . "; ";
 				}
 
-
-				$code = 'A27';
-				$_tmp_fir_array['gubun'] = "ticket";
 				if(!empty($row->product_name_en)) $product_name_cs = $row->product_name_en;
 				else $product_name_cs = $row->product_name;
 
-				$_tmp_fir_array['스파명'] = $row->product_name_cs;
-				$_tmp_fir_array['스파주소'] = $row->addrs;
-				$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				if($row->order_gubun == "spa"){
+					$code = 'A27';
+
+					$_tmp_fir_array['스파명'] = $product_name_cs;
+					$_tmp_fir_array['스파주소'] = $row->addrs;
+					$_tmp_fir_array['스파전화번호'] = $row->phone_2;
+				}else if($row->order_gubun == "ticket") {
+					$code = 'A54';
+
+					$_tmp_fir_array['쇼&틱킷명'] = $product_name_cs;
+					$_tmp_fir_array['쇼&틱주소'] = $row->addrs;
+					$_tmp_fir_array['쇼&틱전화번호'] = $row->phone_2;
+				}else {
+					$code = 'A55';
+
+					$_tmp_fir_array['레스토랑명'] = $product_name_cs;
+					$_tmp_fir_array['레스토랑주소'] = $row->addrs;
+					$_tmp_fir_array['레스토랑전화번호'] = $row->phone_2;
+				}
+
 				$_tmp_fir_array['상품이용일'] = $row->order_day;
 				$_tmp_fir_array['제품명'] = $row->option;
 
@@ -2439,7 +2498,7 @@ public function get_golf_option() {
 				}
 
 				$_tmp_fir_array['체크인'] = $checkin;
-				$_tmp_fir_array['호텔상품'] = $room_type;
+				$_tmp_fir_array['호텔상품명'] = $room_type;
 
 			}else if($row->order_gubun == "golf"){
 				$code        = "A23";
@@ -2450,6 +2509,24 @@ public function get_golf_option() {
 
 				$_tmp_fir_array['골프상품명'] = $hole;
 				$_tmp_fir_array['영문호텔주소'] = $row->addrs;
+			}
+			else if($row->order_gubun == "vehicle"){
+				$code = "A29";
+
+				$str_day_v = date("Y.m.d", strtotime($row->meeting_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->meeting_date))) . ")";
+
+				if($row->code_parent_category == "5403"){
+					$str_day_v .= " ~ " . date("Y.m.d", strtotime($row->return_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->return_date))) . ")";			
+				}
+				$_tmp_fir_array['상품이용일'] = $str_day_v;
+
+			}
+			else {
+				$code = "A31";
+
+				$str_day_g =  date("Y.m.d", strtotime($row->start_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->start_date))) . ")" . " ~ " .
+					date("Y.m.d", strtotime($row->end_date)) . "(" . get_korean_day(date("Y.m.d", strtotime($row->end_date))) . ")";
+				$_tmp_fir_array['상품이용일'] = $str_day_g;
 			}
 
 			if(!empty($order_user_email)){
@@ -2643,7 +2720,7 @@ public function get_golf_option() {
 		       $msg  = "예약 변경오류";	
 			}
 
-			$sql       = "SELECT   a.*, b.product_name_en
+			$sql       = "SELECT   a.*, b.product_name
 			                     , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') AS user_name
 						         , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS user_mobile  
 						         , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') AS user_email 
@@ -2655,9 +2732,42 @@ public function get_golf_option() {
 
 			$row      = $db->query($sql)->getRow();
 			$order_no = $row->order_no;
+			$product_code_1 = $row->product_code_1;
+			$product_code_2 = $row->product_code_2;
 			$user_mail   = $row->user_email;
     		$order_price = number_format($row->order_price);
 			$use_day = $row->order_day;
+
+			if($product_code_1 == '1303') {
+				$product_type = '호텔';
+			} else if ($product_code_1 == '1302') {
+				$product_type = '골프';
+			} else if ($product_code_1 == '1301') {
+				$product_type = '투어';
+			} else if ($product_code_1 == '1325') {
+				$product_type = '스파';
+			} else if ($product_code_1 == '1317') {
+				$product_type = '쇼ㆍ입장권';
+			} else if ($product_code_1 == '1320') {
+				$product_type = '레스토랑';
+			} else if ($product_code_2 == '132404') {
+				$product_type = '차량';
+			} else if ($product_code_2 == '132403') {
+				$product_type = '가이드';
+			}
+
+			if($row->order_gubun == "hotel"){
+				$count = (int)$row->adult + (int)$row->kids;
+			} else if($row->order_gubun == "golf"){
+				$sql_cnt = "SELECT * FROM tbl_order_option WHERE order_idx = '". $order_idx ."' AND option_type = 'main'";
+				$row_cnt = $db->query($sql_cnt)->getRow();
+				$count = $row_cnt->option_cnt;
+			}
+
+			else{
+				$count = (int)$row->people_adult_cnt + (int)$row->people_kids_cnt;
+			} 
+
 
 
 			// CREATE ALARM
@@ -2696,9 +2806,12 @@ public function get_golf_option() {
 				$code        = "A14";
 				$_tmp_fir_array = [
 					'RECEIVE_NAME'=> $row->user_name,
-					'PROD_NAME'   => $row->product_name_en,
+					'PROD_NAME'   => $row->product_name,
 					'ORDER_NO'    => $order_no,
-					'ORDER_PRICE' => $order_price,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2708,50 +2821,62 @@ public function get_golf_option() {
 		    if($order_status == "X") {  // 예약확인 
 				$alimCode = "UA_5319";
 
-				if($row->order_gubun == "hotel"){
-					$code = "A21";
-					$gubun = "hotel";
-					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
-						. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
-				}else if($row->order_gubun == "golf"){
-					$code = "A22";
-					$gubun = "golf";
-				}else if($row->order_gubun == "tour"){
-					$code = "A24";
-					$gubun = "tour";
-				}else if($row->order_gubun == "spa"){
-					$code = "A26";		
-					$gubun = "ticket";
-				}else if($row->order_gubun == "ticket"){
-					$code = "A34";		
-					$gubun = "ticket";
-				}else if($row->order_gubun == "restaurant"){
-					$code = "A35";	
-					$gubun = "ticket";
-				}else if($row->order_gubun == "vehicle"){
-					$code = "A28";	
-					$gubun = "car";
-					$use_day = substr($row->order_date,0,10);					
-				}else {
-					$code = "A30";
-					$gubun = "guide";
-					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
-						. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
-				}
+				// if($row->order_gubun == "hotel"){
+				// 	$code = "A21";
+				// 	$gubun = "hotel";
+				// 	$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+				// 		. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
+				// }else if($row->order_gubun == "golf"){
+				// 	$code = "A22";
+				// 	$gubun = "golf";
+				// }else if($row->order_gubun == "tour"){
+				// 	$code = "A24";
+				// 	$gubun = "tour";
+				// }else if($row->order_gubun == "spa"){
+				// 	$code = "A26";		
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "ticket"){
+				// 	$code = "A34";		
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "restaurant"){
+				// 	$code = "A35";	
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "vehicle"){
+				// 	$code = "A28";	
+				// 	$gubun = "car";
+				// 	$use_day = substr($row->order_date,0,10);					
+				// }else {
+				// 	$code = "A30";
+				// 	$gubun = "guide";
+				// 	$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+				// 		. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
+				// }
 
+				// $_tmp_fir_array = [
+				// 	'order_idx' => $order_idx,
+				// 	'gubun' => $gubun,
+				// 	'예약번호' => $order_no,
+				// 	'예약일자' => substr($row->order_r_date,0,10),
+				// 	'회원이름' => $row->user_name,
+				// 	'이메일' => $row->user_email,
+				// 	'전화번호' => $row->user_mobile,
+				// 	'이용날짜' => $use_day,
+				// 	'여행자성명' => $row->user_first_name_en . " " . $row->user_last_name_en,
+				// 	'여행자연락처' => $row->user_mobile,
+				// 	'여행자이메일' => $row->user_email,
+				// 	'여행상품' => $row->product_name_en,
+				// ];
+
+				$code        = "A56";
 				$_tmp_fir_array = [
-					'order_idx' => $order_idx,
-					'gubun' => $gubun,
-					'예약번호' => $order_no,
-					'예약일자' => substr($row->order_r_date,0,10),
-					'회원이름' => $row->user_name,
-					'이메일' => $row->user_email,
-					'전화번호' => $row->user_mobile,
-					'이용날짜' => $use_day,
-					'여행자성명' => $row->user_first_name_en . " " . $row->user_last_name_en,
-					'여행자연락처' => $row->user_mobile,
-					'여행자이메일' => $row->user_email,
-					'여행상품' => $row->product_name_en,
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'ORDER_PRICE' => $order_price,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE' => $count,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2763,12 +2888,12 @@ public function get_golf_option() {
 
 				$code = "A17";
 				$_tmp_fir_array = [
-					'RECEIVE_NAME' => $row->user_name,
-					'PROD_NAME' => $row->product_name_en,
-					'ORDER_NO' => $order_no,
-					'ORDER_PRICE' => $order_price,
-					'PAYMENT_METHOD' => $row->order_method,
-					'ORDER_DATE' => substr($row->order_r_date,0,10),
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2778,64 +2903,74 @@ public function get_golf_option() {
 		    if($order_status == "Z") { // 예약확정 
 				$alimCode = "UA_5331"; 
 
-				if($row->order_gubun == "hotel"){
-					$code = "A20";
-					$gubun = "hotel";
-					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
-						. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
-				}else if($row->order_gubun == "golf"){
-					$code = "A23";
-					$gubun = "golf";
-				}else if($row->order_gubun == "tour"){
-					$code = "A25";
-					$gubun = "tour";
-				}else if($row->order_gubun == "spa"){
-					$code = "A27";		
-					$gubun = "ticket";
-				}else if($row->order_gubun == "ticket"){
-					$code = "A54";		
-					$gubun = "ticket";
-				}else if($row->order_gubun == "restaurant"){
-					$code = "A55";	
-					$gubun = "ticket";
-				}else if($row->order_gubun == "vehicle"){
-					$code = "A29";	
-					$gubun = "car";
-					$use_day = substr($row->order_date,0,10);					
+				// if($row->order_gubun == "hotel"){
+				// 	$code = "A20";
+				// 	$gubun = "hotel";
+				// 	$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+				// 		. $row->end_date . "(" . get_korean_day($row->end_date) . ")" . " / " . $row->order_day_cnt . "일";
+				// }else if($row->order_gubun == "golf"){
+				// 	$code = "A23";
+				// 	$gubun = "golf";
+				// }else if($row->order_gubun == "tour"){
+				// 	$code = "A25";
+				// 	$gubun = "tour";
+				// }else if($row->order_gubun == "spa"){
+				// 	$code = "A27";		
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "ticket"){
+				// 	$code = "A54";		
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "restaurant"){
+				// 	$code = "A55";	
+				// 	$gubun = "ticket";
+				// }else if($row->order_gubun == "vehicle"){
+				// 	$code = "A29";	
+				// 	$gubun = "car";
+				// 	$use_day = substr($row->order_date,0,10);					
 
-				}else {
-					$code = "A31";
-					$gubun = "guide";
-					$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
-						. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
-				}
+				// }else {
+				// 	$code = "A31";
+				// 	$gubun = "guide";
+				// 	$use_day = $row->start_date . "(" . get_korean_day($row->start_date) . ")" . " ~ " 
+				// 		. $row->end_date . "(" . get_korean_day($row->end_date) . ")";
+				// }
 
+				// $_tmp_fir_array = [
+				// 	'gubun'   => $gubun,
+				// 	'order_idx'  => $order_idx,
+				// 	'회원이름'    => $row->user_name,
+				// 	'이메일'      => $row->user_email,
+				// 	'전화번호'    => $row->user_mobile,
+				// 	'영문호텔명'   => $row->product_name_en,	
+				// 	'영문호텔주소' => $row->stay_address,
+				// 	'호텔전화번호' => $row->tel_no,
+
+				// 	'고객영문이름' => $user_name_en,
+				// 	'국가약자'    => '',
+				// 	'휴대전화번호' => $user_mobile,
+
+				// 	'예약번호'    => $order_no,
+				// 	'이용날짜'    => substr($row->order_r_date,0,10),
+				// 	'호텔상품'    => $room_type,
+				// 	'골프상품명'  => '',
+				// 	'제품명'     => '',
+				// 	'영문상품명'  => $use_day,
+
+				// 	'여행자연락처' => $row->user_mobile,
+				// 	'여행자이메일' => $row->user_email,
+				// 	'총인원'      => $row->order_room_cnt ."Room",
+				// 	'총금액'	  => $order_price,
+				// 	'총견적금액'   => $order_price
+				// ];
+				$code        = "A58";
 				$_tmp_fir_array = [
-					'gubun'   => $gubun,
-					'order_idx'  => $order_idx,
-					'회원이름'    => $row->user_name,
-					'이메일'      => $row->user_email,
-					'전화번호'    => $row->user_mobile,
-					'영문호텔명'   => $row->product_name_en,	
-					'영문호텔주소' => $row->stay_address,
-					'호텔전화번호' => $row->tel_no,
-
-					'고객영문이름' => $user_name_en,
-					'국가약자'    => '',
-					'휴대전화번호' => $user_mobile,
-
-					'예약번호'    => $order_no,
-					'이용날짜'    => substr($row->order_r_date,0,10),
-					'호텔상품'    => $room_type,
-					'골프상품명'  => '',
-					'제품명'     => '',
-					'영문상품명'  => $use_day,
-
-					'여행자연락처' => $row->user_mobile,
-					'여행자이메일' => $row->user_email,
-					'총인원'      => $row->order_room_cnt ."Room",
-					'총금액'	  => $order_price,
-					'총견적금액'   => $order_price
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2846,12 +2981,13 @@ public function get_golf_option() {
 
 				$code = "A33";
 				$_tmp_fir_array = [
-					'RECEIVE_NAME' => $row->user_name,
-					'PROD_NAME' => $row->product_name_en,
-					'ORDER_NO' => $order_no,
-					'ORDER_PRICE' => $order_price,
-					'PAYMENT_METHOD' => $row->order_method,
-					'CANCEL_DATE' => substr($row->order_c_date,0,10),
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
 				];
 		
 				autoEmail($code, $user_mail, $_tmp_fir_array);
@@ -2859,6 +2995,19 @@ public function get_golf_option() {
 
 			if($order_status == "N") {  // 예약불가
 				$alimCode = "UA_5325"; 
+
+				$code = "A57";
+				$_tmp_fir_array = [
+					'RECEIVE_NAME'=> $row->user_name,
+					'PROD_NAME'   => $row->product_name,
+					'ORDER_NO'    => $order_no,
+					'PROD_TYPE'   => $product_type,
+					'ORDER_DATE'   => substr($row->order_r_date,0,10),
+					'ORDER_NAME'   => $row->user_name,
+					'ORDER_NUM_PEOPLE'   => $count,
+				];
+		
+				autoEmail($code, $user_mail, $_tmp_fir_array);
 			}   
 		    if($order_status == "E") {  // 이용완료.
 				$alimCode = "UA_5373"; 

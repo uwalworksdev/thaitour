@@ -176,7 +176,7 @@ class AdminTourGuideController extends BaseController
             $files = $this->request->getFiles();
 
             $fields = [
-                'product_name', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
+                'product_name', 'product_name_en', 'keyword', 'original_price', 'product_price', 'available_period', 'deadline_time',
                 'product_code', 'product_code_1', 'product_code_2', 'product_code_3', "mbti", "email",
                 'important_notes', 'product_notes', 'product_notes_m', 'product_info', 'phone', 'product_country',
                 'product_status', 'onum', 'product_code_list',

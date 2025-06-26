@@ -394,8 +394,8 @@
                                     <th>골프장 담당자</th>
                                     <td>
                                         이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;이메일: <input id="phone" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
-                                        &ensp;연락처: <input id="email" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+										&ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                        &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
                                     </td>
                                     <!-- <th>이용항공</th>
                                     <td>
@@ -568,10 +568,10 @@
                                     <td>
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
                                                value="<?= $product_manager ?>" style="width:100px" readonly/>
-                                        /<input id="phone" name="phone" class="input_txt" type="text"
+                                        /<input id="phone" name="phone1" class="input_txt" type="text"
                                                 value="<?= $phone ?>" readonly
                                                 style="width:200px"/>
-                                        /<input id="email" name="email" class="input_txt"
+                                        /<input id="email" name="email1" class="input_txt"
                                                 type="text" value="<?= $email ?>" readonly
                                                 style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"

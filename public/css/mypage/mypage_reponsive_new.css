@@ -1419,7 +1419,7 @@
 
     .booklist_wrap .book_num_order .top {
         padding: 3rem;
-        gap: 6rem;
+        gap: 3rem 6rem;
         /* justify-content: flex-end; */
         justify-content: center;
         flex-wrap: wrap;
@@ -1968,6 +1968,15 @@
         background-size: 3.5385rem;
     }
 
+    .booklist_wrap .popup_filter .popups .head_ttl {
+        position: absolute;
+        font-size: 3rem;
+        top: 3.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: 600;
+    }
+
     .booklist_wrap .popup_filter .filter_content {
         padding-top: 9.5rem;
         width: calc(100% - 3rem);
@@ -1978,6 +1987,23 @@
         border-top: 0.2rem solid #eee;
         padding-bottom: 4rem;
     }
+
+    .booklist_wrap .popup_filter .filter_content .btn_search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 4rem;
+    }
+
+    .booklist_wrap .popup_filter .filter_content .btn_search button {
+        font-size: 3rem;
+        font-weight: 500;
+        padding: 2rem 5rem;
+        background-color: var(--bs-point);
+        color: #fff;
+    }
+
+
 
     #ui-datepicker-div {
         z-index: 99999 !important;

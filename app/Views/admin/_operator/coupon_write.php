@@ -67,7 +67,7 @@ $titleStr = "생성";
                             <tr>
                                 <th>쿠폰타입</th>
                                 <td>
-                                    <select name="coupon_type" id="coupon_type">
+                                    <select name="coupon_mst_idx" id="coupon_mst_idx">
                                         <option value="">선택</option>
                                         <?php
 
@@ -93,10 +93,18 @@ $titleStr = "생성";
                             <tr id="direct">
                                 <th>발행매수</th>
                                 <td>
-                                    <input type="text" name="coupon_cnt" id="coupon_cnt" class="onlynum"
+                                    <input type="text" name="coupon_cnt" id="coupon_cnt" class="onlynum" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                            style="width:100px;text-align:right;" value="" maxlength="3"/>
                                     <a href="#!" onclick="send_it();" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>쿠폰인증 단어</th>
+                                <td>
+                                    <input type="text" name="keyword" id="keyword"
+                                           style="width:400px;" value=""/>
                                 </td>
                             </tr>
                         </form>

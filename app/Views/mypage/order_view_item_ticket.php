@@ -63,21 +63,23 @@ $deli_types = get_deli_type();
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
 			<h2>예약 정보(쇼.입장권)</h2>
-			<table>
+						<table>
 				<colgroup>
 					<col width="20%">
 					<col width="*">
 					<col width="15%">
 					<col width="20%">
-					<col width="30%">
+					<col width="15%">
+					<col width="15%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
 						<td class="subject">예약일자</td>
 						<td class="subject">예약인원</td>
-						<td class="subject">참관일자</td>
-						<td class="subject">예약정보</td>
+						<td class="subject">스파일자</td>
+						<td class="subject">성인</td>
+						<td class="subject">아동</td>
 					</tr>
 					<tr>
 
@@ -94,15 +96,20 @@ $deli_types = get_deli_type();
 						</td>
 
 						<td class="content">
-							<span><?= $people_adult_cnt ?></span>명  
+							<span><?= $people_adult_cnt + $people_kids_cnt + $people_baby_cnt?></span>명  
 						</td>
 
 						<td class="content">
-							<span><?= $order_day . "(" . dateToYoil($order_day) . ")"; ?></span>
+							<span><?= $order_day ?></span>
 						</td>
 						<td class="content">
 							<p>
-								<span><?=$option['option_name']?></span> 
+							<span><?= $people_adult_cnt ?>명 <?=number_format($people_adult_price)?>원</span><br>
+							</p>
+						</td>
+						<td class="content">
+							<p>
+							<span><?= $people_kids_cnt ?>명 <?=number_format($people_kids_price)?>원</span><br>  
 							</p>
 						</td>
 					</tr>
@@ -158,9 +165,11 @@ $deli_types = get_deli_type();
 						<td class="subject">예약정보</td>
 
 						<td class="content">
+							 <?php foreach ($option_order as $row): ?>
 							<p>
-								<span><?=$option['option_name']?></span> 
+								 <?=$row['option_name']?> <?=number_format($row['option_price'])?> X <?=$row['option_qty']?>명 
 							</p>
+							<?php endforeach; ?>
 						</td>
 					</tr>
 
@@ -614,7 +623,7 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $custom_req ?>
+							<?= $custom_req ? $custom_req : $order_memo ?>
 						</td>
 					</tr>
 				</tbody>

@@ -16,12 +16,16 @@ class CouponMst extends Model
         parent::__construct();
     }
 
-    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $is_date = false)
+    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $is_date = false, $is_use = false)
     {
 
         $builder = $this;
+        if($is_use) {
+            $builder->where('state !=', 'N');
+        }
+        
         $builder->where('state !=', 'C');
-
+        
         if ($s_txt && $search_category) {
             $builder->like($search_category, $s_txt);
         }

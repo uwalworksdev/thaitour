@@ -50,9 +50,10 @@ class TourGuideController extends BaseController
         $this->wishModel = model("WishModel");
     }
 
-    public function index($code_no)
+    public function index($code_no = null)
     {
         try {
+            $code_no = 132403;
             $g_list_rows = 10;
             $pg = updateSQ($this->request->getVar("pg") ?? '');
             $data = $this->productModel->findProductPaging(['product_code_2' => '132403', 'guide_type' => 'P'], $g_list_rows, $pg, ['onum' => 'desc']);
@@ -554,7 +555,7 @@ class TourGuideController extends BaseController
             $session->remove('guide_cart');
 
             if ($orderStatus === "W") {
-                $sql = "SELECT a.order_no, a.order_price, b.product_name_en
+                $sql = "SELECT a.order_no, a.order_price, b.product_name
                                 , AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS user_email
                                 FROM tbl_order_mst a
@@ -565,7 +566,7 @@ class TourGuideController extends BaseController
                 $code = "A14";
                 $_tmp_fir_array = [
                     'RECEIVE_NAME'=> $row->user_name,
-                    'PROD_NAME'   => $row->product_name_en,
+                    'PROD_NAME'   => $row->product_name,
                     'ORDER_NO'    => $row->order_no,
                     'ORDER_PRICE' => number_format($row->order_price),
                 ];

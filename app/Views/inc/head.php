@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow">
-    <meta content="<?= $setting['site_name'] ?>" name="Title">
-    <meta content="<?= $setting['site_name'] ?>" name="Description">
-    <meta content="<?= $setting['site_name'] ?>" name="Keyword">
-    <meta property="og:title" content="<?= $setting['site_name'] ?>">
-    <meta property="og:description" content="<?= $setting['site_name'] ?>">
+    <meta content="<?= $setting['og_title'] ?>" name="Title">
+    <meta content="<?= $setting['og_des'] ?>" name="Description">
+    <meta content="<?= $setting['meta_keyword'] ?>" name="Keyword">
+    <meta property="og:title" content="<?= $setting['og_title'] ?>">
+    <meta property="og:description" content="<?= $setting['og_des'] ?>">
     <meta property="og:image" content="/uploads/setting/<?= $setting['og_img'] ?>">
-    <meta property="og:url" content="https://happythaitour.com/">
-    <meta property="al:web:url" content="https://happythaitour.com/">
+    <meta property="og:url" content="<?= $setting['og_url'] ?>">
+    <meta property="al:web:url" content="<?= $setting['og_url'] ?>">
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
     <meta name="robots" content="noindex">
     <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
-    <link rel="canonical" href="https://happythaitour.com/">
+    <link rel="canonical" href="<?= $setting['og_url'] ?>">
 
     <!-- Old version -->
     <script src="/lib/jquery/jquery-2.1.4.min.js"></script>
@@ -48,7 +48,7 @@
     <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
     <script type="text/javascript" src="/js/apple.js"></script>
     
-    <title><?= $setting['site_name'] ?></title>
+    <title><?= $setting['browser_title'] ?></title>
     <script>
         var kakao_key = '<?=env("KAKAO_KEY")?>';
     </script>

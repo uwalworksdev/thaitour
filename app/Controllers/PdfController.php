@@ -15,6 +15,9 @@ class PdfController extends BaseController
     private $CodeModel;
     private $orderOptionModel;
     private $tourProducts;
+	private $ordersCars;
+    private $carsCategory;
+    private $orderGuide;
 
     public function __construct() {
         $this->db           = db_connect();
@@ -23,6 +26,10 @@ class PdfController extends BaseController
         $this->CodeModel    = model("Code");
         $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
+		$this->ordersCars = model("OrdersCarsModel");
+        $this->carsCategory = model("CarsCategory");
+        $this->orderGuide = model("OrderGuideModel");
+
     }
 	
     public function generateQuotation()
@@ -186,6 +193,11 @@ class PdfController extends BaseController
 		$result = $query->getRowArray();
 		$cancle_contents = $result["policy_contents"];
 
+		$builder = $db->table('tbl_policy_info');
+		$policy = $builder->whereIn('p_idx', [27])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
 		$html = view('pdf/invoice_golf', [
             'row'         => $row,
 			'golf_info'   => $order_info,
@@ -193,7 +205,8 @@ class PdfController extends BaseController
             'notice_contents' => $notice_contents,
             'not_included_product' => $not_included_product,
 			'guide_contents' => $guide_contents,
-			'cancle_contents' => $cancle_contents
+			'cancle_contents' => $cancle_contents,
+            'policy_1'=> $policy[0]
         ]);
 
         $pdf->WriteHTML($html);
@@ -327,53 +340,67 @@ class PdfController extends BaseController
         $builder = $db->table('tbl_order_mst');
         $builder->select("
             *,
-            AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
-            AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
-            AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
-            AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en,
-            AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
-            AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
-            AES_DECRYPT(UNHEX(order_zip), '$private_key') AS order_zip,
-            AES_DECRYPT(UNHEX(order_addr1), '$private_key') AS order_addr1,
-            AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
-            AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
+			AES_DECRYPT(UNHEX(order_user_name), '$private_key') AS order_user_name,
+			AES_DECRYPT(UNHEX(order_user_email), '$private_key') AS order_user_email,
+			AES_DECRYPT(UNHEX(order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+			AES_DECRYPT(UNHEX(order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+			AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') AS order_user_mobile,
+			AES_DECRYPT(UNHEX(local_phone), '$private_key') AS local_phone,
+			AES_DECRYPT(UNHEX(order_zip), '$private_key') AS order_zip,
+			AES_DECRYPT(UNHEX(order_addr1), '$private_key') AS order_addr1,
+			AES_DECRYPT(UNHEX(order_addr2), '$private_key') AS order_addr2,
+			AES_DECRYPT(UNHEX(manager_name), '$private_key') AS manager_name
         ");
         $query = $builder->where('order_idx', $order_idx)->get();
         //write_log("last query- " . $db->getLastQuery());
         $orderResult = $query->getResult(); // 주문 데이터 (객체 배열)
 
         // 옵션 정보 가져오기
-        $builder = $db->table('tbl_order_option');
-        $builder->select("option_name, option_tot, option_cnt, option_date, option_qty, baht_thai");
-        $query = $builder->where('order_idx', $order_idx)->get();
-        $optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
+		$builder = $db->table('tbl_order_option');
+		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+		$query = $builder->where('order_idx', $order_idx)->get();
+		$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
-        // 주문 객체에 옵션 정보 추가
-        foreach ($orderResult as $order) {
-            $order->options = $optionResult; // options 키에 옵션 배열 추가
-        }
+		// 주문 객체에 옵션 정보 추가
+		foreach ($orderResult as $order) {
+			$order->options = $optionResult; // options 키에 옵션 배열 추가
+			$order->adult_price_bath = round($order->people_adult_price / $this->setting['baht_thai']);
+			$order->kids_price_bath = round($order->people_kids_price / $this->setting['baht_thai']);
+			$order->baby_price_bath = round($order->people_baby_price / $this->setting['baht_thai']);
+			$order->real_price_bath = round($order->real_price_won / $this->setting['baht_thai']);
 
-        $firstRow = $orderResult[0] ?? null;
+			$totalOptionBath = 0;
+			foreach ($optionResult as $option) {
+				$totalOptionBath += $option->option_cnt * $option->option_price;
+			}
+			$order->total_options = $totalOptionBath;
+			$order->total_bath = $order->real_price_bath + $totalOptionBath;
 
-        $product_idx = $firstRow->product_idx;
+			$order->total_options_won = round($totalOptionBath * $this->setting['baht_thai']);
+			$order->total_won = round($order->total_bath * $this->setting['baht_thai']);
+			
+		}
 
-        $builder = $db->table('tbl_product_mst');
-        $builder->select("notice_comment");
-        $query  = $builder->where('product_idx', $product_idx)->get();
-        $result = $query->getRowArray();
-        $notice_contents = $result["notice_comment"];
+		$firstRow = $orderResult[0] ?? null;
 
-        $builder = $db->table('tbl_policy_cancel');
-        $builder->select("policy_contents");
-        $query  = $builder->where('product_idx', $product_idx)->get();
-        $result = $query->getRowArray();
-        $cancle_contents = $result["policy_contents"];
+		$product_idx = $firstRow->product_idx;
 
+		$builder = $db->table('tbl_product_mst');
+		$builder->select("notice_comment");
+		$query  = $builder->where('product_idx', $product_idx)->get();
+		$result = $query->getRowArray();
+		$notice_contents = $result["notice_comment"];
+
+		$builder = $db->table('tbl_policy_cancel');
+		$builder->select("policy_contents");
+		$query  = $builder->where('product_idx', $product_idx)->get();
+		$result = $query->getRowArray();
+		$cancle_contents = $result["policy_contents"];
 
 		$builder = $db->table('tbl_policy_info');
-				$policy = $builder->whereIn('p_idx', [26])
-									->orderBy('p_idx', 'asc')
-									->get()->getResultArray();
+		$policy = $builder->whereIn('p_idx', [26])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
 
 		$html = view('pdf/invoice_ticket', [
             'result' => $orderResult,
@@ -455,10 +482,18 @@ class PdfController extends BaseController
         $result = $query->getRowArray();
         $cancle_contents = $result["policy_contents"];
 
+		$order_cars_detail = $this->ordersCars->getByOrder($order_idx);
+
+		$departure_name = $this->carsCategory->getById($firstRow->departure_area)["code_name"];
+		$destination_name = $this->carsCategory->getById($firstRow->destination_area)["code_name"];
+
 		$html = view('pdf/invoice_car', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+			'order_cars_detail' => $order_cars_detail,
+			'departure_name' => $departure_name,
+			'destination_name' => $destination_name,
         ]);
         
 
@@ -535,10 +570,13 @@ class PdfController extends BaseController
         $result = $query->getRowArray();
         $cancle_contents = $result["policy_contents"];
 
+		$order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+
 		$html = view('pdf/invoice_guide', [
             'result' => $orderResult,
             'notice_contents' => $notice_contents,
-            'cancle_contents' => $cancle_contents
+            'cancle_contents' => $cancle_contents,
+            'order_subs' => $order_subs
         ]);
         
         $pdf->WriteHTML($html);
@@ -891,7 +929,7 @@ class PdfController extends BaseController
 			if(!empty($result->order_remark_new)){
 				$order_remark = $result->order_remark_new;
 			}else{
-				$order_memo = $result->custom_req;
+				$order_remark = $result->custom_req;
 			}
 
 		}
@@ -1005,7 +1043,6 @@ class PdfController extends BaseController
 					'일' => 'Sun',
 				];
 
-				// Tìm và thay thế nếu có thứ trong ngoặc
 				$order_day = preg_replace_callback('/\((.*?)\)/', function ($matches) use ($day_map) {
 						$korean_day = $matches[1];
 						return isset($day_map[$korean_day]) ? '(' . $day_map[$korean_day] . ')' : '';
@@ -1110,6 +1147,8 @@ class PdfController extends BaseController
 
     public function voucherTicket()
     {
+		$type = $this->request->getVar('type'); 
+
         $pdf = new Mpdf([
             'mode' => 'utf-8',
             'format' => 'A4',
@@ -1133,10 +1172,211 @@ class PdfController extends BaseController
 		$builder->select("
 					a.*, b.*, c.*,
 					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
 					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
 					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
 					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
+					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
+					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
+					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
+					AES_DECRYPT(UNHEX(a.order_addr2), '$private_key') AS order_addr2,
+					AES_DECRYPT(UNHEX(a.manager_name), '$private_key') AS manager_name
+		");
+
+		$builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
+		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
+		$builder->where('a.order_idx', $order_idx);
+
+		$query  = $builder->get();
+		$result = $query->getRow();	
+
+		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
+
+
+		$builder = $db->table('tbl_order_option');
+				$builder->select("option_name, option_name_eng, option_tot, option_cnt, option_date, option_qty, option_price");
+				$query = $builder->where('order_idx', $result->order_idx)->get();
+				$optionResult = $query->getResult();
+
+				$option = '';
+				foreach($optionResult as $res){
+					$option .= $res->option_name_eng . " x " . $res->option_cnt . " <br/>";
+				}
+
+        $builder1 = $db->table('tbl_policy_info');
+		$policy = $builder1->whereIn('p_idx', [46])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+		if($type == "admin"){
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+			$order_memo = $result->order_memo;
+			$order_date = $result->order_day;
+			$time_line = $result->time_line;
+			$start_place = $result->start_place;
+			$pick_time = $result->description;
+			$id_kakao = $result->id_kakao;
+			$tour_type = $tour_prod_name;
+			$order_remark = $result->custom_req;
+
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = $result->order_day;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s) / " . ($result->people_kids_cnt ?? 0) . " Child(s)"; 
+			}
+
+			if(!empty($result->time_line_en)){
+				$time_line = $result->time_line_en;
+			}else{
+				$time_line = $result->time_line;
+			}
+
+			if(!empty($result->tour_type_en)){
+				$tour_type = $result->tour_type_en;
+			}else{
+				$tour_type = $option;
+			}
+
+
+			if(!empty($result->start_place_en)){
+				$start_place = $result->start_place_en;
+			}else{
+				$start_place = $result->start_place;
+			}
+
+			if(!empty($result->id_kakao_en)){
+				$id_kakao = $result->id_kakao_en;
+			}else{
+				$id_kakao = $result->id_kakao;
+			}
+
+			if(!empty($result->pick_time_en)){
+				$pick_time = $result->pick_time_en;
+			}else{
+				$pick_time = $result->description;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}else {
+				$order_remark = $result->custom_req;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
+		}
+
+		// $builder = $db->table('tbl_order_option');
+		// 		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+		// 		$query = $builder->where('order_idx', $result->order_idx)->get();
+		// 		$optionResult = $query->getResult();
+
+		// 		$option = '';
+		// 		foreach($optionResult as $res){
+		// 			$option .= $res->option_name . " x " . $res->option_cnt . "; ";
+		// 		}
+
+        // $builder1 = $db->table('tbl_policy_info');
+		// $policy = $builder1->whereIn('p_idx', [46])
+		// 					->orderBy('p_idx', 'asc')
+		// 					->get()->getResultArray();
+
+		$html = view('pdf/voucher_ticket', [
+            'policy_1' => $policy[0],
+            'result' => $result,
+			'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'start_place' => $start_place,
+			'pick_time' => $pick_time,
+			'id_kakao' => $id_kakao,
+			'time_line' => $time_line,
+			'tour_type' => $tour_type,
+        ]);
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_ticket.pdf', 'I');
+        exit;
+    }
+
+	public function voucherCar()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ]
+        ]);
+
+        $order_idx = $this->request->getVar('order_idx');
+        $type = $this->request->getVar('type'); 
+
+        $private_key = private_key(); // 복호화 키
+
+		$db = db_connect();
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->select("
+					a.*, b.*, c.*, a.departure_area as order_departure_area, a.destination_area as order_destination_area,
+					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
+					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
+					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
 					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
 					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
 					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
@@ -1151,13 +1391,303 @@ class PdfController extends BaseController
 		$query  = $builder->get();
 		$result = $query->getRow();
 
-		$html = view('pdf/voucher_ticket', [
-            'result'  => $result
+		$departure_name = $this->carsCategory->getById($result->order_departure_area)["code_name_en"];
+		$destination_name = $this->carsCategory->getById($result->order_destination_area)["code_name_en"];
+
+		if($type == "admin"){
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+			$order_memo = $result->order_memo;
+			$order_date = $result->order_day;
+			$time_line = $result->time_line;
+			$start_place = $result->start_place;
+			$pick_time = $result->description;
+			$id_kakao = $result->id_kakao;
+			if(!empty($departure_name) && !empty($destination_name)){
+				$tour_type = $departure_name . " / " . $destination_name;
+			}
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = $result->order_day;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)" . ($result->people_child_cnt ?? 0) . " Child(s)"; 
+			}
+
+			if(!empty($result->time_line_en)){
+				$time_line = $result->time_line_en;
+			}else{
+				$time_line = $result->time_line;
+			}
+
+			if(!empty($result->tour_type_en)){
+				$tour_type = $result->tour_type_en;
+			}else{
+				if(!empty($departure_name) && !empty($destination_name)){
+					$tour_type = $departure_name . " / " . $destination_name;
+				}
+			}
+
+			if(!empty($result->start_place_en)){
+				$start_place = $result->start_place_en;
+			}else{
+				$start_place = $result->start_place;
+			}
+
+			if(!empty($result->id_kakao_en)){
+				$id_kakao = $result->id_kakao_en;
+			}else{
+				$id_kakao = $result->id_kakao;
+			}
+
+			if(!empty($result->pick_time_en)){
+				$pick_time = $result->pick_time_en;
+			}else{
+				$pick_time = $result->description;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
+		}
+
+        $builder1 = $db->table('tbl_policy_info');
+		$policy = $builder1->whereIn('p_idx', [47])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+		$order_cars_detail = $this->ordersCars->getByOrder($order_idx);
+
+		$html = view('pdf/voucher_car', [
+            'result'  => $result,
+			'policy_1' => $policy[0],
+			'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'start_place' => $start_place,
+			'pick_time' => $pick_time,
+			'id_kakao' => $id_kakao,
+			'time_line' => $time_line,
+			'tour_type' => $tour_type,
+			'departure_name' => $departure_name,
+			'destination_name' => $destination_name,
+			'order_cars_detail' => $order_cars_detail,
         ]);
         
         $pdf->WriteHTML($html);
 		
-        $pdf->Output('voucher_ticket.pdf', 'I');
+        $pdf->Output('voucher_car.pdf', 'I');
+        exit;
+    }
+
+	public function voucherGuide()
+    {
+        $pdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4',
+            'fontDir' => [FCPATH . 'ttfonts'], // 폰트 폴더 추가
+            'default_font' => 'nanumgothic',
+            'fontdata' => [
+                'nanumgothic' => [
+                    'R' => 'NanumGothic.ttf',
+                    'B' => 'NanumGothicBold.ttf',
+                ]
+            ]
+        ]);
+
+        $order_idx = $this->request->getVar('order_idx');
+        $type = $this->request->getVar('type'); 
+
+        $private_key = private_key(); // 복호화 키
+
+		$db = db_connect();
+		$builder = $db->table('tbl_order_mst a');
+
+		$builder->select("
+					a.*, b.*, c.*,
+					AES_DECRYPT(UNHEX(a.order_user_name), '$private_key') AS order_user_name,
+					AES_DECRYPT(UNHEX(a.order_user_name_new), '$private_key') AS order_user_name_new,
+					AES_DECRYPT(UNHEX(a.order_user_name_en_new), '$private_key') AS order_user_name_en_new,
+					AES_DECRYPT(UNHEX(a.order_user_email), '$private_key') AS order_user_email,
+					AES_DECRYPT(UNHEX(a.order_user_first_name_en), '$private_key') AS order_user_first_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_last_name_en), '$private_key') AS order_user_last_name_en,
+					AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS order_user_mobile,
+					AES_DECRYPT(UNHEX(a.order_user_mobile_new), '$private_key') AS order_user_mobile_new,
+					AES_DECRYPT(UNHEX(a.local_phone), '$private_key') AS local_phone,
+					AES_DECRYPT(UNHEX(a.order_zip), '$private_key') AS order_zip,
+					AES_DECRYPT(UNHEX(a.order_addr1), '$private_key') AS order_addr1,
+					AES_DECRYPT(UNHEX(a.order_addr2), '$private_key') AS order_addr2,
+					AES_DECRYPT(UNHEX(a.manager_name), '$private_key') AS manager_name
+		");
+
+		$builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
+		$builder->join('tbl_product_stay c', 'b.stay_idx = c.stay_idx', 'left');
+		$builder->where('a.order_idx', $order_idx);
+
+		$query  = $builder->get();
+		$result = $query->getRow();
+
+		$tour_prod_name = $this->tourProducts->find($result->tours_idx)["tours_subject"];
+
+		if($type == "admin"){
+			$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			$user_mobile = $result->order_user_mobile;
+			$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)"; 
+			$order_memo = $result->order_memo;
+			$order_date = $result->order_day;
+			$time_line = $result->time_line;
+			$start_place = $result->start_place;
+			$pick_time = $result->description;
+			$id_kakao = $result->id_kakao;
+			$tour_type = $tour_prod_name;
+		}else{
+			if(!empty($result->order_user_name_new)){
+				$user_name = $result->order_user_name_new;
+			}else{
+				$user_name = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_name_en_new)){
+				$user_name_en = $result->order_user_name_en_new;
+			}else{
+				$user_name_en = $result->order_user_first_name_en . " " . $result->order_user_last_name_en;
+			}
+
+			if(!empty($result->order_user_mobile_new)){
+				$user_mobile = $result->order_user_mobile_new;
+			}else{
+				$user_mobile = $result->order_user_mobile;
+			}
+
+			if(!empty($result->order_date_new)){
+				$order_date = $result->order_date_new;
+			}else{
+				$order_date = $result->order_day;
+			}
+
+			if(!empty($result->order_people_new)){
+				$order_people = $result->order_people_new;
+			}else{
+				$order_people = ($result->people_adult_cnt ?? 0)  . " Adult(s)"; 
+			}
+
+			if(!empty($result->time_line_en)){
+				$time_line = $result->time_line_en;
+			}else{
+				$time_line = $result->time_line;
+			}
+
+			if(!empty($result->tour_type_en)){
+				$tour_type = $result->tour_type_en;
+			}else{
+				$tour_type = $tour_prod_name;
+			}
+
+			if(!empty($result->start_place_en)){
+				$start_place = $result->start_place_en;
+			}else{
+				$start_place = $result->start_place;
+			}
+
+			if(!empty($result->id_kakao_en)){
+				$id_kakao = $result->id_kakao_en;
+			}else{
+				$id_kakao = $result->id_kakao;
+			}
+
+			if(!empty($result->pick_time_en)){
+				$pick_time = $result->pick_time_en;
+			}else{
+				$pick_time = $result->description;
+			}
+
+			if(!empty($result->order_memo_new)){
+				$order_memo = $result->order_memo_new;
+			}else{
+				$order_memo = $result->order_memo;
+			}
+
+			if(!empty($result->order_remark_new)){
+				$order_remark = $result->order_remark_new;
+			}
+
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
+		}
+
+        $builder1 = $db->table('tbl_policy_info');
+		$policy = $builder1->whereIn('p_idx', [48])
+							->orderBy('p_idx', 'asc')
+							->get()->getResultArray();
+
+		$order_subs = $this->orderGuide->getListByOrderIdx($order_idx);
+
+		$html = view('pdf/voucher_guide', [
+            'result'  => $result,
+			'policy_1' => $policy[0],
+			'type' => $type,
+            'user_name' => $user_name,
+            'user_mobile' => $user_mobile,
+            'order_date' => $order_date,
+            'order_people' => $order_people,
+            'order_memo' => $order_memo,
+			'user_name_en' => $user_name_en,
+			'order_remark' => $order_remark,
+			'order_option' => $order_option,
+			'start_place' => $start_place,
+			'pick_time' => $pick_time,
+			'id_kakao' => $id_kakao,
+			'time_line' => $time_line,
+			'tour_type' => $tour_type,
+			'order_subs' => $order_subs
+        ]);
+        
+        $pdf->WriteHTML($html);
+		
+        $pdf->Output('voucher_guide.pdf', 'I');
         exit;
     }
 }

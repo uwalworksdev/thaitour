@@ -86,7 +86,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                 <div class="slide_tab discount flex">
                     <a class="slide_tab_btn" href="./info_option">내 정보 수정</a>
                     <a class="slide_tab_btn" href="./user_mange">계좌정보</a>
-                    <a class="slide_tab_btn active" href="./money">회원탈퇴</a>
+                    <a class="slide_tab_btn active" href="./withdrawal">회원탈퇴</a>
                 </div>
                 <div class="top_content">
                     <h1 class="benefit_ttl">회원탈퇴</h1>

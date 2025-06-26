@@ -132,7 +132,7 @@
                         }
                 ?>
                     <div class="time_sale_child" id="time_sale_child_<?=$row["bbs_idx"]?>">
-                        <a href="<?=$url?>">
+                        <a href="javascript:viewCnt('<?=$row["bbs_idx"]?>');">
                             <div class="time_sale_img" 
                                     data-img="<?=$img?>"
                                     data-rfile="<?=$row["rfile1"]?>"
@@ -152,7 +152,7 @@
                                 ?>
                             </div>
                         </a>
-                        <a href="<?=$url?>"><h4 class="ttl" data-subject="<?=$row["subject"]?>"><?=$row["subject"]?></h4></a>
+                        <a href="javascript:viewCnt('<?=$row["bbs_idx"]?>');"><h4 class="ttl" data-subject="<?=$row["subject"]?>"><?=$row["subject"]?></h4></a>
                         <div class="tools">
                             <p class="date" data-date="<?=$date?>" data-day="<?=$daysInKorean[$dayOfWeek]?>"><?=$date?>(<?=$daysInKorean[$dayOfWeek]?>)</p>
                             <div class="tools_list">
@@ -297,6 +297,35 @@
 </div>
 
 <script>
+    function isValidURL(url) {
+        try {
+            new URL(url);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+    function viewCnt(bbs_idx) {
+        $.ajax({
+
+            url: "/time_sale/view",
+            type: "POST",
+            data: {
+                "bbs_idx": bbs_idx
+            },
+            success: function (data, textStatus) {
+                if(isValidURL(data.url)){
+                    window.location.href = data.url;
+                }else{
+                    alert("유효하지 않은 링크입니다.");
+                }
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
     function wish_it(bbs_idx) {
 
         if ($("#member_Id").val() == "") {

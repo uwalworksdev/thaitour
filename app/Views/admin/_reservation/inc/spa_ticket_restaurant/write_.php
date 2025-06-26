@@ -37,7 +37,7 @@
                                class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                         class="txt">리스트</span></a></li>
                         <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                         </li>
                         <li><a href="javascript:del_it()" class="btn btn-default"><span
                                         class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
@@ -383,7 +383,7 @@
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR> -->
                                                <input type="text" id="email_send_invoice" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceTour('<?=$order_no?>');">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="invoiceSpa('<?=$order_no?>');">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button>
@@ -408,7 +408,7 @@
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 메일발송</button><BR> -->
                                                <input type="text" id="order_user_email_voucher" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:35%" placeholder="고객 이메일"/>
-											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherHotel('<?=$order_no?>')">고객 메일발송</button><BR>
+											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="voucherSpa('<?=$order_no?>')">고객 메일발송</button><BR>
 											   <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:35%" placeholder="휴대전화"/>
 											   <button type="button" class="btn btn-primary" style="width: unset;" onclick="">고객 문자발송</button><BR>
@@ -475,7 +475,59 @@
     </div>
     <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
 </div>
+   <script>
+        function invoiceSpa(order_no)
+        {
+            if (!confirm('인보이스를 전송 하시겠습니까?'))
+                return false;
 
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_incoiceHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+        
+        function voucherSpa(order_no)
+        {
+            if (!confirm('바우쳐를 전송 하시겠습니까?'))
+                return false;
+
+            var message = "";
+            $.ajax({
+                url  : "/ajax/ajax_voucherHotel_send",
+                type : "POST",
+                data : {
+                    "order_no"  : order_no 
+                },
+                dataType : "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });		
+        }
+    </script>
 	<script>
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {

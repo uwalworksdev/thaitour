@@ -405,7 +405,7 @@
                     </div>
                     <div class="" style="display: none;">
                         <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
-                        <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
+                        <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice_won ?>">
                         <input type="hidden" name="order_gubun" id="order_gubun" value="guide">
                         <input type="hidden" name="start_date" id="start_date" value="<?= $start_day ?>">
                         <input type="hidden" name="end_date" id="end_date" value="<?= $end_day ?>">

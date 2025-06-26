@@ -1,6 +1,6 @@
 <?php
-helper('setting_helper');
-$setting = homeSetInfo();
+    helper('setting_helper');
+    $setting = homeSetInfo();
 ?>
 <?php echo view('inc/head', ["setting" => $setting]); ?>
 <?php $this->section('content'); ?>
@@ -8,24 +8,53 @@ $setting = homeSetInfo();
 <div id="container_voice">
     <section class="golf_invoice voucher">
         <div class="inner">
-            <div class="logo_voice">
+            <!-- <div class="logo_voice">
                 <img src="/uploads/setting/<?= $setting['logos'] ?>" alt="">
+            </div> -->
+            <!-- <div class="logo_voice">
+                <h2 class="tit_top">견적서</h2>
+                <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                    Thai - Registration No 010-5555-096-398<br>
+                    Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                </p>
+            </div> -->
+            <div class="only_mo">
+                <div class="logo_voice">
+                    <h2 class="tit_top">바우처</h2>
+                    <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    </p>
+                </div>
+            </div>
+            <div class="only_web">
+                <div class="logo_voice">
+                    <div class="logo_addr">
+                        <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
+                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
+                        Thai - Registration No 010-5555-096-398<br>
+                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        </p>
+                    </div>
+                    <div class="ttl_right">
+                        <h2 class="tit_top">바우처</h2>
+                    </div>
+                </div>
             </div>
             <div class="invoice_ttl">
             </div>
             <form action="" method="post" name="frm" id="frm">
                 <input type="hidden" name="order_idx" value="<?=$result->order_idx?>">
                 <div class="invoice_table">
-                    <table class="invoice_tbl re_custom">
+                    <!-- <table class="invoice_tbl re_custom">
                         <colgroup>
                             <col width="150px">
                             <col width="*">
                         </colgroup>
                         <tbody>
-                            <tr>
-                                <th>Name</th>
-                                <td style="font-weight: 700;"><?=$result->product_name_en?>carrr</td>
-                            </tr>
+                            
                             <tr>
                                 <th>Address</th>
                                 <td><?=$result->addrs?></td>
@@ -35,7 +64,7 @@ $setting = homeSetInfo();
                                 <td><?=$result->company_contact?></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
                     <div class="top_flex flex_b_c">
                         <h2 class="tit_top">Guest Information</h2>
                     </div>
@@ -45,6 +74,10 @@ $setting = homeSetInfo();
                             <col width="*">
                         </colgroup>
                         <tbody>
+                            <tr>
+                                <th>Product Name</th>
+                                <td style="font-weight: 700;"><?=$result->product_name_en?></td>
+                            </tr>
                             <tr>
                                 <th>Name</th>
                                 <td>
@@ -95,7 +128,15 @@ $setting = homeSetInfo();
                                 <th>Date</th>
                                 <td style="color : red" colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p><?=$order_date?></p>
+                                        <?= date("Y.m.d", strtotime($result->meeting_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->meeting_date))) . ")"  ?>
+                                        <?php
+                                            if($result->code_parent_category == "5403"){
+                                        ?>
+                                            ~
+                                            <?= date("Y.m.d", strtotime($result->return_date)) . "(" . get_eng_day(date("Y.m.d", strtotime($result->return_date))) . ")";?>
+                                        <?php
+                                            }
+                                        ?>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -108,10 +149,10 @@ $setting = homeSetInfo();
     
                             </tr>
                             <tr>
-                                <th>Type</th>
+                                <th>Depature/Destination</th>
                                 <td colspan="3">
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        Admission (08:00-16:30)
+                                        <p><?=$tour_type?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -124,7 +165,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Persons</th>
-                                <td>
+                                <td colspan="3">
                                     <p><?=$order_people?></p>
                                     <?php
                                         if($type == "admin"){
@@ -134,7 +175,7 @@ $setting = homeSetInfo();
                                         }
                                     ?>
                                 </td>
-                                <th>Time</th>
+                                <!-- <th>Time</th>
                                 <td>
                                     <p><?=$time_line?></p>
                                     <?php
@@ -144,7 +185,7 @@ $setting = homeSetInfo();
                                     <?php
                                         }
                                     ?>
-                                </td>
+                                </td> -->
                             </tr>
     
                             <tr>
@@ -164,6 +205,320 @@ $setting = homeSetInfo();
                         </tbody>
                     </table>
     
+                    <h2 class="tit_top">Pickup included</h2>
+                    <?php
+                        if($row->code_parent_category == "5401"){
+                    ?>     
+                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ One way</div>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight number</th>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other requests</th>
+                            </tr>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["air_code"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["hours"]?> h <?=$order_cars_detail[0]["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$order_cars_detail[0]["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($order_cars_detail[0]["order_memo"])?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <?php 
+                            if(count($order_cars_detail) > 1){
+                        ?>
+                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ Coming soon</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="15%"/>
+                                    <col width="15%"/>
+                                    <col width="15%"/>
+                                    <col width="20%"/>
+                                    <col width="*%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th style="text-align:center">Flight number</th>
+                                    <th style="text-align:center">Flight arrival date</th>
+                                    <th style="text-align:center">Flight arrival time</th>
+                                    <th style="text-align:center">Meeting place</th>
+                                    <th style="text-align:center">Other requests</th>
+                                </tr>
+                                    <tr>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["air_code"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["date_trip"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["hours"]?> h <?=$order_cars_detail[1]["minutes"]?> m
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$order_cars_detail[1]["departure_name"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=nl2br($order_cars_detail[1]["order_memo"])?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        <?php } ?>
+                    <?php
+                        }else if($row->code_parent_category == "5402"){
+                    ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight number</th>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Meeting place</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["air_code"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5403"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">항공 도착 시간</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Moving route</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["schedule_content"])?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5404"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup hotel</th>
+                                <th style="text-align:center">Transit point</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["rest_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else if($row->code_parent_category == "5405"){
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup hotel</th>
+                                <th style="text-align:center">Destination</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <input type="hidden" name="idx[]" value="<?= $row_c["idx"] ?>">
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                        <?php
+                            }else {
+                        ?>   
+                        <table cellpadding="0" cellspacing="0" summary="" class="invoice_tbl re_custom" style="table-layout:fixed">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="15%"/>
+                                <col width="20%"/>
+                                <col width="*%"/>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th style="text-align:center">Flight arrival date</th>
+                                <th style="text-align:center">Flight arrival time</th>
+                                <th style="text-align:center">Pickup Hotel</th>
+                                <th style="text-align:center">Destination (golf course name)</th>
+                                <th style="text-align:center">Other irregularities</th>
+                            </tr>
+                                <?php
+                                    foreach($order_cars_detail as $row_c){
+                                ?>
+                                <tr>
+                                    <td style="text-align:center">
+                                        <?=$row_c["date_trip"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["hours"]?> h <?=$row_c["minutes"]?> m
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["departure_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=$row_c["destination_name"]?>
+                                    </td>
+                                    <td style="text-align:center">
+                                        <?=nl2br($row_c["order_memo"])?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>      
+                    <?php
+                        }
+                    ?>
                     <div class="info_order_txt">
                         <p style="font-weight: bold">• Booked by: <?= $setting['site_name_en'] ?></p>
                     </div>
@@ -198,13 +553,20 @@ $setting = homeSetInfo();
                 </div>
             </form>
             <div class="inquiry_qna">
-                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A를</span> 이용해 주시기 바랍니다.</p>
+                <p class="ttl_qna">본 메일은 발신전용 메일입니다. 문의 사항은 <span>Q&A</span>를 이용해 주시기 바랍니다.</p>
                 <div class="inquiry_info">
-                    <p>태국 사업자번호 0105565060507 | 태국에서 걸 때 (0)2-730-5690 (방콕) 로밍폰, 태국 유심폰 | 이메일 : thetourlab@naver.com<br>
-                        주소 : Sukhumvit 101 Bangjak Prakhanong Bangkok 10260</p>
-                    <p>한국 사업자번호 214-19-20927 | 충청북도 청주시 상당구 용암북로6번길 51, 2층, 온잇공유오피스 201-A4호</p>
+                    <p>태국 사업자번호 <?= $setting['comnum_thai']?> | 태국에서 걸 때 <?= $setting['custom_service_phone_thai']?>
+                        (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2']?> 
+                        번호만 누르면 됩니다. 
+                        <br>
+                        이메일 : <?= $setting['qna_email']?>
+                        <br>
+                        주소 : </p>
+                    <p>한국 사업자번호 <?= $setting['comnum']?> | <?= $setting['addr1']?>, <?= $setting['addr2']?></p>
                 </div>
-                <div class="note_qna">※ 더투어랩 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 더투어랩 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</div>
+                <div class="note_qna">
+                    <?=nl2br($setting['desc_cont'])?>
+                </div>
             </div>
         </div>
     </section>
@@ -222,7 +584,7 @@ $setting = homeSetInfo();
 <script>
     $("#btn_save").click(function () {
         $.ajax({
-            url: "/voucher/ticket/save",
+            url: "/voucher/car/save",
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
@@ -284,7 +646,7 @@ $setting = homeSetInfo();
                             border: none !important;
                         }
 
-                        .btns_download_print, .invoice_note_, .inquiry_qna {
+                        .btns_download_print {
                             display: none !important;
                         }
 
@@ -338,6 +700,6 @@ $setting = homeSetInfo();
     // PDF 버튼 클릭 시
     $(document).on('click', '#btn_pdf', function () {
         var order_idx = $(this).data("order_idx"); 
-        location.href='/pdf/voucher_ticket?order_idx='+order_idx;
+        location.href='/pdf/voucher_car?order_idx='+order_idx;
     });
 </script> 

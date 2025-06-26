@@ -258,12 +258,13 @@
     -webkit-box-orient: vertical;
     line-height: 1.444;
     height: 2.888em;
-
+    height: unset;
     word-break: break-all;
 }
 
 .list_wrap .summary .date {
-    margin-top: 20px;
+    margin-top: 10px;
+    text-align: left    ;
     color: rgb(117, 117, 117);
 }
 
