@@ -237,7 +237,7 @@ $deli_types = get_deli_type();
 			</div>
 		</section-->
         <div class="invoice_table invoice_table_new reservation only_web">
-			<h2>차량및 캐디피 예약금액1</h2>
+			<h2>차량및 캐디피 예약금액</h2>
 			<table>
 				<colgroup>
 					<col width="*">
@@ -278,7 +278,7 @@ $deli_types = get_deli_type();
 		</div>
 
 		<div class="invoice_table invoice_table_new only_mo">
-			<h2>차량및 캐디피 예약금액2</h2>
+			<h2>차량및 캐디피 예약금액</h2>
 			<?php
 					    foreach ($vehicle as $row)  
 						{
