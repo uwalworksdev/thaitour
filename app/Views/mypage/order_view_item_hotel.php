@@ -626,7 +626,9 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+			<?php if($order_status == "X") { ?>
 			<button class="btn_payment" data-idx="<?=$order_no?>">결제하기</button>
+			<?php } ?>
 		</div>
 	</div>
 </section>
