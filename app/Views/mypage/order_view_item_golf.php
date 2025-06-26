@@ -817,11 +817,18 @@ if ($_paymod == "lg") {
 }
 ?>
 
+
+<form id="checkOut" action="/checkout/confirmMypage" method="post">
+<input type="hidden" name="m_idx"      id="m_idx"   value="<?= session("member.idx") ?>" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue"  id="dataValue"  value="" >
+</form>
+
 <script>
 $(document).ready(function () {
     $(".btn_payment").on("click", function () {
         var dataValue = $(this).data("idx"); // 주문번호 가져오기
-		//$("#dataValue").val(dataValue);
+		$("#dataValue").val(dataValue);
 		
 		$.ajax({
 
