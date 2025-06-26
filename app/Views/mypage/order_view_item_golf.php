@@ -277,7 +277,7 @@ $deli_types = get_deli_type();
 			</table>
 		</div>
 
-		<div class="invoice_table invoice_table_new only_mo">
+		<div class="invoice_table invoice_table_new table_detail only_mo">
 			<h2>차량및 캐디피 예약금액</h2>
 			<?php
 					    foreach ($vehicle as $row)  
@@ -290,7 +290,7 @@ $deli_types = get_deli_type();
 								$option_price = $row['option_price'];
 							 }	
 					?>	
-			<table style="margin-top: -1px">
+			<table style="margin-top: -1px; border-top: 2px solid rgb(37 37 37 / 46%) !important;">
 				<colgroup>
 					<col width="15%">
 					<col width="*">
