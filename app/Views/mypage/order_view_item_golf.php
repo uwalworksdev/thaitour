@@ -365,28 +365,6 @@ $deli_types = get_deli_type();
 						<td class="content"></td>
 					</tr>
 
-						<tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-
-							<td class="content">
-								잔금 입금 대기
-							</td>
-
-							<td class="content">
-								<?= $row['confirm_method'] ?>
-							</td>
-
-							<td class="content">
-								<?= number_format($row['order_confirm_price']) ?>원
-							</td>
-
-							<td class="content">
-							</td>
-						</tr>
-					<?php } ?>
-
 					<?php if ($order_status == "Y") { ?>
 						<tr>
 							<td col width="8%" class="content">
