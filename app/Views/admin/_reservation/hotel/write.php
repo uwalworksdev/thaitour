@@ -634,8 +634,8 @@
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : $("#real_price_bath").val(),
-					"real_price_won"  : $("#real_price_won").val()
+					"real_price_bath" : Number($("#real_price_bath").val()),
+					"real_price_won"  : Number($("#real_price_won").val())
 				},
 				dataType : "json",
 				async: false,
