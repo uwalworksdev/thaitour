@@ -344,17 +344,17 @@ $deli_types = get_deli_type();
 				<tbody>
 					<tr>
 						<td class="subject">예약상태</td>
-						<td col width="12%" class="subject">결제방법</td>
-						<td col width="12%" class="subject">쿠폰</td>
-						<td col width="12%" class="subject">포인트</td>
-						<td col width="12%" class="subject">결제금액(원)</td>
-						<td col width="20%" class="subject">결제일</td>
+						<td col width="15%" class="subject">결제방법</td>
+						<td col width="15%" class="subject">쿠폰</td>
+						<td col width="15%" class="subject">포인트</td>
+						<td col width="15%" class="subject">결제금액(원)</td>
+						<td col width="15%" class="subject">결제일</td>
 					</tr>
 
 					<tr>
 						<td col width="8%" class="content"><?= $deli_types[$order_status] ?></td>
 
-						<td class="content"><?= $row['deposit_method'] ?></td>
+						<td class="content"><?= $order_method ?></td>
 
 						<td class="content"><?= number_format($used_coupon_money) ?></td>
 
