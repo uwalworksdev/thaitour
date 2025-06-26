@@ -375,12 +375,12 @@
                             <th style="width: 20%">총인원</th>
                             <td style="width: 30%">성인 : <?= $row->people_adult_cnt ?>명 / 아동 : <?= $row->people_kids_cnt ?>명</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th style="width: 20%">픽업포함여부</th>
                             <td style="width: 30%">불포함</td>
                             <th style="width: 20%">미팅 장소</th>
                             <td style="width: 30%">개별이동</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <h2 class="tit_top">금액내역</h2>
@@ -406,10 +406,10 @@
 						?>
                         
 						<tr>
-                            <th style="width: 20%">추가내역</th>
-                            <td style="width: 30%">0바트</td>
+                            <!-- <th style="width: 20%">추가내역</th>
+                            <td style="width: 30%">0바트</td> -->
                             <th style="width: 20%">총금액</th>
-                            <td><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price / $row->baht_thai) ?>바트</td>
+                            <td style="width: 80%"><?= number_format($row->order_price) ?>원 <?= number_format($row->order_price / $row->baht_thai) ?>바트</td>
                         </tr>
                     </tbody>
                 </table>
