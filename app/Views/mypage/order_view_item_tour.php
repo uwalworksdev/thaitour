@@ -545,14 +545,14 @@ $deli_types = get_deli_type();
 				<tbody>
 					<?php if ($row["order_status"] == "W") { ?>
 						<tr>
-							<td></td>
-							<td class="content">예약 준비중</td>
+							<!-- <td></td> -->
+							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 준비중</td>
 						</tr>
 					<?php } ?>
 					<?php if ($row["order_status"] == "C") { ?>
 						<tr>
-							<td></td>
-							<td class="content">예약 취소</td>
+							<!-- <td></td> -->
+							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 취소</td>
 						</tr>
 					<?php } ?>
 					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>

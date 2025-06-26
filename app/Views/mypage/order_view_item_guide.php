@@ -73,7 +73,7 @@ $start_date = $row['start_date'];
 				<?= (html_entity_decode($row['product_name'])) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_status_name($row["order_status"]) ?>
+				<?= get_deli_type($row["order_status"]) ?>
 			</span>
 		</div>
 		<p class="ttl_date">
@@ -456,115 +456,141 @@ $start_date = $row['start_date'];
 					<col width="*">
 				</colgroup>
 				<tbody>
-					<tr>
-						<td class="subject">예약상태</td>
-						<td class="content">
-							<span>
-								<?php
-									
-									$txt1 = "";
-									if ($row["order_status"] != "W" && $row["order_status"] != "C" && $row["order_status"] != "E") {$txt1 = '잔금';}
-								?>
-								<?=$txt1?>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">결제상태</td>
-						<td class="content">
-							<span>
-								<?php
-									$txt2 = "";
-									if ($row["order_status"] == "G" || $row["order_status"] == "J") $txt2 = '선금 입금대기';
-									if ($row["order_status"] == "R"){
-										if($row['deposit_method'] == "무통장입금") $txt2="결제완료";
-										else $txt2 = $row['ResultMsg_1'];
-									}
-									if($row["order_status"] == "Y") $txt2='결제완료';
+					<?php if ($row["order_status"] == "W") { ?>
+						<tr>
+							<!-- <td></td> -->
+							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 준비중</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "C") { ?>
+						<tr>
+							<!-- <td></td> -->
+							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 취소</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
+						<tr>
+							<td class="subject">예약상태</td>
 
-								?>
-								<?=$txt2?>
-							</span> 
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">결제방법</td>
-						<td class="content">
-							<span>
-								<?php
-									$txt3 = "";
-									if ($row["order_status"] == "G" || $row["order_status"] == "J") $txt3 = $row['deposit_method'];
-									if ($row["order_status"] == "R"){
-										if($row['deposit_method'] == "무통장입금") $txt3 = $row['deposit_method'];
-										else $txt3 = '신용카드';
-									}
-									if($row["order_status"] == "Y") {
-										if($row['deposit_method'] == "무통장입금") $txt3 = '결제완료';
-										else $txt3='신용카드';
-									};
+							<td class="content">
+								선금
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제상태</td>
 
-								?>
-								<?=$txt3?>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">결제금액</td>
-						<td class="content">
-							<span>
-								<?php
-									$txt4 = "";
-									if ($row["order_status"] == "G" || $row["order_status"] == "J") $txt4 = number_format($row['deposit_price']);
-									if ($row["order_status"] == "R"){
-										if($row['deposit_method'] == "무통장입금") $txt4 = number_format($row['deposit_price']) . '원';
-										else $txt4 = number_format($row['deposit_price']) . '원' ;
-									}
-									if($row["order_status"] == "Y") {
-										if($row['deposit_method'] == "무통장입금") $txt4 = number_format($row['deposit_price']) . '원';
-										else $txt4= number_format($row['order_price']) . '원';
-									};
-								?>
-								<?=$txt4?>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">결제</td>
-						<td class="content">
-							<span>
-								<?php
-									$txt5 = "";
-									if ($row["order_status"] == "G" || $row["order_status"] == "J") {}
-									if ($row["order_status"] == "R"){
-									}
-									if($row["order_status"] == "Y") {
-									};
-								?>
-								<?=$txt5?>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">결제일</td>
-						<td class="content">
-							<span>
-								<?php
-									$txt6 = "";
-									if ($row["order_status"] == "G" || $row["order_status"] == "J") {}
-									if ($row["order_status"] == "R"){
-										if ($row['deposit_method'] == "무통장입금") $txt6 = $row['deposit_date'];
-										else $txt6 = date($row['order_confirm_date']);
-									}
-									if($row["order_status"] == "Y") {
-										$txt6 = $row['order_confirm_date'];
-									}
-								?>
-								<?=$txt6?>
-							</span>
-						</td>
-					</tr>
+							<td class="content">
+								선금 입금대기
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제방법</td>
 
+							<td class="content">
+								<?= $row['deposit_method'] ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제금액</td>
 
+							<td class="content">
+								<?= number_format($row['deposit_price']) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제일</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+
+						<tr>
+							<td class="content ">
+								<?php if ($row['deposit_method'] == "") { ?>
+									잔금
+								<?php } ?>
+							</td>
+							<td class="content link">
+								<?php if ($row['deposit_method'] == "") { ?>
+									준비중
+								<?php } ?>
+							</td>
+						</tr>
+
+					<?php } ?>
+
+					<?php if ($row["order_status"] == "R") { ?>
+						<tr>
+							<td col width="8%" class="content">
+								선금
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									결제완료
+								<?php } else { ?>
+									<?= $row['ResultMsg_1'] ?>
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_method'] ?>
+								<?php } else { ?>
+									신용카드
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php } else { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php }
+								?>
+							</td>
+
+							<td class="content link">
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_date'] ?>
+								<?php } else { ?>
+									<?= date($row['order_confirm_date']); ?>
+								<?php } ?>
+							</td>
+						</tr>
+						<tr>
+							<td col width="8%" class="content">
+								잔금
+							</td>
+
+							<td class="content">
+								잔금 입금 대기
+							</td>
+
+							<td class="content">
+								<?= $row['confirm_method'] ?>
+							</td>
+
+							<td class="content">
+								<?= number_format($row['order_confirm_price']) ?>원
+							</td>
+
+							<td class="content">
+							</td>
+						</tr>
+					<?php } ?>
+					
 				</tbody>
 			</table>
 		</div>

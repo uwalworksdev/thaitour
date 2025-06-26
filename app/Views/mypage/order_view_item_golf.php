@@ -54,7 +54,7 @@ $deli_types = get_deli_type();
 				<?= (html_entity_decode($product_name)) ?>
 			</h1>
 			<span class="stt_2">
-				<?= $deli_types[$order_status] ?>
+				<?= $deli_types[$row['order_status']] ?>
 			</span>
 		</div>
 		<p class="ttl_date">
