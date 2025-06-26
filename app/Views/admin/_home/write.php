@@ -105,11 +105,11 @@ if ($m_idx) {
                                     </td>
                                     <th>비밀번호</th>
                                     <td>
-                                        <div class="flex__c">
+                                        <div class="flex__c" style="gap: 10px;">
                                             <input type="password" name="user_pw" value="" class="bbs_inputbox_pixel"
                                                    style="width:200px;height:30px;" maxlength="50/" autocomplete="new-password">
-                                            <a href="#!" onclick="pass_change('<?= $user_id ?>');" class="btn btn-default"
-                                               style="margin-bottom:5px"><span class="glyphicon glyphicon-cog"></span><span
+                                            <a href="#!" onclick="pass_change('<?= $user_id ?>');" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-cog"></span><span
                                                         class="txt">비번수정</span></a>
                                         </div>
                                     </td>
