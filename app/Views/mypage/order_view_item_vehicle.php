@@ -461,7 +461,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $row_d['order_user_name'] ?>
+							<?= $order_user_name ?>
 						</td>
 					</tr>
 
