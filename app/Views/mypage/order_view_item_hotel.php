@@ -404,6 +404,7 @@ $deli_types = get_deli_type();
 		</div>
 		<?php } ?>
 
+		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
 		<div class="invoice_table invoice_table_new only_mo">
 			<h2>예약금액 결제</h2>
 			<table>
@@ -412,144 +413,57 @@ $deli_types = get_deli_type();
 					<col width="*">
 				</colgroup>
 				<tbody>
-					<?php if ($row["order_status"] == "W") { ?>
-						<tr>
-							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 준비중</td>
-						</tr>
-					<?php } ?>
-					<?php if ($row["order_status"] == "C") { ?>
-						<tr>
-							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 취소</td>
-						</tr>
-					<?php } ?>
-					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
 						<tr>
 							<td class="subject">예약상태</td>
 
 							<td class="content">
-								선금
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">결제상태</td>
-
-							<td class="content">
-								선금 입금대기
+								<?= $deli_types[$order_status] ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="subject">결제방법</td>
 
 							<td class="content">
-								<?= $row['deposit_method'] ?>
+								<?= $order_method ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">쿠폰</td>
+
+							<td class="content">
+								<?= number_format($used_coupon_money) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">포인트</td>
+
+							<td class="content">
+								<?= number_format($used_mileage_money) ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="subject">결제금액</td>
 
 							<td class="content">
-								<?= number_format($row['deposit_price']) ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">결제</td>
-
-							<td class="content">
-								
+								<?= number_format($order_price) ?>
 							</td>
 						</tr>
 						<tr>
 							<td class="subject">결제일</td>
 
 							<td class="content">
+							<?php if ($order_method == "신용카드") { ?>
+								<?=$authdate?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>						
 								
 							</td>
 						</tr>
-
-						<tr>
-							<td class="content ">
-								<?php if ($row['deposit_method'] == "") { ?>
-									잔금
-								<?php } ?>
-							</td>
-							<td class="content link">
-								<?php if ($row['deposit_method'] == "") { ?>
-									준비중
-								<?php } ?>
-							</td>
-						</tr>
-
-					<?php } ?>
-
-					<?php if ($row["order_status"] == "R") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								선금
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									결제완료
-								<?php } else { ?>
-									<?= $row['ResultMsg_1'] ?>
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_method'] ?>
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php } else { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php }
-								?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_date'] ?>
-								<?php } else { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } ?>
-							</td>
-						</tr>
-						<tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-
-							<td class="content">
-								잔금 입금 대기
-							</td>
-
-							<td class="content">
-								<?= $row['confirm_method'] ?>
-							</td>
-
-							<td class="content">
-								<?= number_format($row['order_confirm_price']) ?>원
-							</td>
-
-							<td class="content">
-							</td>
-						</tr>
-					<?php } ?>
-					
 				</tbody>
 			</table>
 		</div>
+        <?php } ?>
 
 		<section class="earn_pops my_pops" style="display:none;">
 			<div class="pay_pops_inner pay_count02" style="display:none;">
