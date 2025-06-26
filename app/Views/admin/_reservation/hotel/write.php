@@ -218,10 +218,10 @@
                                     <td>
                                         <div class="flex__c" style="gap: 5px;">
                                             <input type="text" id="start_date" name="start_date" style="width: 150px;"
-                                                   value="<?=$start_date?>" class="input_txt"/>
+                                                   value="<?=$start_date?>(<?=get_korean_day(substr($start_date,0,10));?>)" class="input_txt"/>
                                                    ~
                                             <input type="text" id="end_date" name="end_date" style="width: 150px;"
-                                                   value="<?=$end_date?>" class="input_txt"/>
+                                                   value="<?=$end_date?>(<?=get_korean_day(substr($end_date,0,10));?>)" class="input_txt"/>
 
                                             / <input type="text" id="order_day_cnt" name="order_day_cnt" style="width: 50px;"
                                                     value="<?=$order_day_cnt?>" class="input_txt number-only"/> 일
