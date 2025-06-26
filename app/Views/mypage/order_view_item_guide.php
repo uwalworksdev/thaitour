@@ -504,129 +504,6 @@ $deli_types = get_deli_type();
 			</table>
 		</div>
 
-
-		<!-- 여행자 웹 -->
-		<div class="invoice_table invoice_table_new only_web">
-			<h2>여행자
-				<?= $seq ?>
-			</h2>
-			<table>
-				<colgroup>
-					<col width="15%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<td class="subject">여행자
-							<?= $seq ?>
-						</td>
-						<td width="25%" class="subject">여권파일</td>
-						<!-- <td width="15%" class="subject">여권만료일</td> -->
-						<td width="15%" class="subject">생년월일</td>
-						<td class="subject">이메일</td>
-						<td class="subject">전화번호</td>
-					</tr>
-					<tr>
-						<td class="content">
-							<?= $order_name_kor ?> /
-							<?= $order_first_name ?>
-							<?= $order_last_name ?>
-						</td>
-
-						<td class="content">
-							<?
-							if ($ufile) {
-								?>
-								<a class="btn_download_passport"
-									href="javascript:handlleShowPassport(`/data/tour/<?= $ufile ?>`)">보기</a>
-								<a class="btn_download_passport btn_del_passport"
-									href="javascript:handlleDelPassport(`<?= $gl_idx ?>`)">삭제</a>
-								<?
-							}
-							?>
-							<input type="file" hidden data-gl_idx="<?= $gl_idx ?>" class="change_passport"
-								id="change_passport_<?= $gl_idx ?>">
-							<label class="btn_upload_passport" for="change_passport_<?= $gl_idx ?>">첨부파일</label>
-						</td>
-
-						<!-- <td class="content">
-							<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-						</td> -->
-
-						<td class="content">
-							<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-						</td>
-
-
-						<td class="content">
-							<?= $order_email ?>
-						</td>
-
-						<td class="content">
-							<?= $order_mobile ?>
-						</td>
-					</tr>
-
-
-				</tbody>
-			</table>
-		</div>
-
-		<!-- 여행자 모바일 -->
-		<div class="invoice_table invoice_table_new only_mo">
-			<h2>여행자
-				<?= $seq ?>
-			</h2>
-			<table>
-				<colgroup>
-					<col width="5%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<td class="subject">여행자
-							<?= $seq ?>
-						</td>
-						<td class="content">
-							<?= $order_name_kor ?> /
-							<?= $order_first_name ?>
-							<?= $order_last_name ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">여권번호</td>
-						<td class="content">
-							<?= $passport_num ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">여권만료일</td>
-						<td class="content">
-							<?= date("Y.m.d", strtotime($passport_date)) ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">생년월일</td>
-						<td class="content">
-							<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">이메일</td>
-						<td class="content">
-							<?= $order_email ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="subject">전화번호</td>
-						<td class="content">
-							<?= $order_mobile ?>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
 		<div class="invoice_table">
 			<h2>요청사항</h2>
 			<table>
@@ -677,6 +554,9 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+			<?php if($order_status == "X") { ?>
+			<button class="btn_payment" data-idx="<?=$order_no?>">결제하기</button>
+			<?php } ?>
 		</div>
 	</div>
 </section>
@@ -718,6 +598,47 @@ if ($_paymod == "lg") {
 	}
 }
 ?>
+
+<form id="checkOut" action="/checkout/confirmMypage" method="post">
+<input type="hidden" name="m_idx"      id="m_idx"   value="<?= session("member.idx") ?>" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue"  id="dataValue"  value="" >
+</form>
+
+<script>
+$(document).ready(function () {
+    $(".btn_payment").on("click", function () {
+        var dataValue = $(this).data("idx"); // 주문번호 가져오기
+		$("#dataValue").val(dataValue);
+		
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": dataValue 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+			
+		
+    });
+});
+</script>
 
 <script type="text/javascript">
 	function handlleShowPassport(img) {
