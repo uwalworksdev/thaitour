@@ -774,6 +774,8 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+		</div>
+		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">결제하기</button>
 		</div>
 	</div>
