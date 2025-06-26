@@ -365,7 +365,7 @@ $deli_types = get_deli_type();
 							</td>
 
 							<td class="content">
-								<?= number_format($row['deposit_price']) ?>
+								<?= number_format($order_price) ?>
 							</td>
 
 							<td class="content">
