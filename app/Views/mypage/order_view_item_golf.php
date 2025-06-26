@@ -351,7 +351,7 @@ $deli_types = get_deli_type();
 					</tr>
 
 					<tr>
-						<td class="content" colspan="7"><?= get_deli_type($order_status) ?></td>
+						<td class="content" colspan="7"><?= $deli_types($order_status) ?></td>
 					</tr>
 
 					<?php if ($order_status == "X") { ?>
@@ -545,7 +545,7 @@ $deli_types = get_deli_type();
 				<tbody>
 						<tr>
 							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content"><?= get_deli_type($order_status) ?></td>
+							<td colspan="2" style="display:flex; justify-content: center;" class="content"><?= $deli_types($order_status) ?></td>
 						</tr>
 					<?php if ($order_status == "X") { ?>
 						<tr>
