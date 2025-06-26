@@ -343,9 +343,8 @@ $deli_types = get_deli_type();
 				<tbody>
 					<tr>
 						<td class="subject">예약상태</td>
-						<td col width="8%" class="subject">결제상태</td>
 						<td col width="12%" class="subject">결제방법</td>
-						<td col width="12%" class="subject">결제금액 </td>
+						<td col width="12%" class="subject">결제금액(원)</td>
 						<td col width="20%" class="subject">결제</td>
 						<td col width="20%" class="subject">결제일</td>
 					</tr>
@@ -354,10 +353,6 @@ $deli_types = get_deli_type();
 						<tr>
 							<td col width="8%" class="content">
 								<?= $deli_types[$order_status] ?>
-							</td>
-
-							<td class="content">
-								입금대기
 							</td>
 
 							<td class="content">
@@ -377,11 +372,11 @@ $deli_types = get_deli_type();
 					<?php if ($order_status == "R") { ?>
 						<tr>
 							<td col width="8%" class="content">
-								선금
+								<?= $deli_types[$order_status] ?>
 							</td>
 
 							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+								<?php if ($deposit_method == "무통장입금") { ?>
 									결제완료
 								<?php } else { ?>
 									<?= $row['ResultMsg_1'] ?>
@@ -389,8 +384,8 @@ $deli_types = get_deli_type();
 							</td>
 
 							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_method'] ?>
+								<?php if ($deposit_method == "무통장입금") { ?>
+									<?= $deposit_method ?>
 								<?php } else { ?>
 									신용카드
 								<?php } ?>
