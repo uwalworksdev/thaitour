@@ -278,4 +278,34 @@ class AdminController extends BaseController
         return $this->response->setBody("OK");
     }
 
+    public function passChangeUser() {
+        $user_pw = $this->request->getPost('user_pw');
+        $user_id = $this->request->getPost('user_id');
+
+        if(!empty($user_pw) && !empty($user_id)) {
+
+            $result = $this->memberModel->where('user_id', $user_id)->set([
+                'user_pw' => password_hash($user_pw, PASSWORD_DEFAULT)
+            ])->update();
+
+            if($result) {
+                return json_encode([
+                    "result" => true,
+                    "msg" => "관리자 비번이 수정 되었습니다."
+                ]);
+            }else{
+                return json_encode([
+                    "result" => false,
+                    "msg" => "시스템 오류."
+                ]);
+            }
+
+        }else{
+            return json_encode([
+                "result" => false,
+                "msg" => "비번을 입력하세요"
+            ]);
+        }
+    }
+
 }

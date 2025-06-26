@@ -104,8 +104,15 @@ if ($m_idx) {
                                         <?php } ?>
                                     </td>
                                     <th>비밀번호</th>
-                                    <td><input type="password" name="user_pw" value="" class="bbs_inputbox_pixel"
-                                               style="width:200px;height:30px;" maxlength="50/" autocomplete="new-password"></td>
+                                    <td>
+                                        <div class="flex__c">
+                                            <input type="password" name="user_pw" value="" class="bbs_inputbox_pixel"
+                                                   style="width:200px;height:30px;" maxlength="50/" autocomplete="new-password">
+                                            <a href="#!" onclick="pass_change('<?= $user_id ?>');" class="btn btn-default"
+                                               style="margin-bottom:5px"><span class="glyphicon glyphicon-cog"></span><span
+                                                        class="txt">비번수정</span></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>이메일</th>
@@ -250,6 +257,43 @@ if ($m_idx) {
 
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none;"></iframe>
 
+    <script>
+        function pass_change(user_id) {
+            let user_pw = $("#user_pw").val();
+            if (user_pw == "") {
+                alert('비번을 입력하세요');
+                $("#user_pw").focus();
+                return false;
+            }
+
+            if (!confirm("관리자 비번을 수정하시겠습니까."))
+                return false;
+
+            var message = "";
+            $.ajax({
+
+                url: "password_change_user",
+                type: "POST",
+                data: {
+                    "user_pw": user_pw,
+                    "user_id": user_id
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function(data, textStatus) {
+                    message = data.msg;
+                    alert(message);
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " +
+                        error); // 실패 시 처리
+                }
+            });
+
+        }
+    </script>
     <script>
 
 

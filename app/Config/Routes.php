@@ -590,6 +590,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
         $routes->get("store_config_admin", "Admin\AdminController::store_config_admin");
         $routes->get("write", "Admin\AdminController::write");
+        $routes->post("password_change_user", "Admin\AdminController::passChangeUser");
         $routes->post("write_admin_ok", "Admin\AdminController::write_admin_ok");
         $routes->post("del", "Admin\AdminController::del");
         $routes->get("search_word", "Admin\AdminController::search_word");
