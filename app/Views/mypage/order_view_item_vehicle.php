@@ -419,7 +419,7 @@ $start_date = $row['start_date'];
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['order_user_name']?>
+							<?= $order_user_name?>
 						</td>
 
 						<td class="content">
