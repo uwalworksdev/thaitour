@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
+$connect     = db_connect();
 $private_key = private_key();
 
 if ($_SESSION["member"]["mIdx"] == "") {
@@ -42,11 +42,19 @@ $deli_types = get_deli_type();
 	/* .mypage_container .content .details_table tbody tr .ttl span {
 		padding-right: 6.3846rem;
 	} */
-
-
-	
 </style>
 
+<?php
+	$year   = "20" . substr($AuthDate_1, 0, 2);
+	$month  = substr($AuthDate_1, 2, 2);
+	$day    = substr($AuthDate_1, 4, 2);
+	$hour   = substr($AuthDate_1, 6, 2);
+	$minute = substr($AuthDate_1, 8, 2);
+	$second = substr($AuthDate_1, 10, 2);
+
+	// 최종 형식
+	$authdate = "$year-$month-$day $hour:$minute:$second";
+?>
 <section class="invoice_paid">
 	<div class="inner">
 		<div class="ttl_box">
@@ -362,7 +370,7 @@ $deli_types = get_deli_type();
 
 						<td class="content"><?= number_format($order_price) ?></td>
 
-						<td class="content"><?=$AuthDate_1?></td>
+						<td class="content"><?=$authdate?></td>
 					</tr>
 
 					<?php if ($order_status == "Y") { ?>
