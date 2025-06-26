@@ -334,7 +334,7 @@ $deli_types = get_deli_type();
 		</div>
 		
 		<div class="invoice_table invoice_table_new reservation only_web">
-			<h2>예약금액 결제</h2>
+			<h2>예약금액 결제1</h2>
 			<table>
 				<colgroup>
 					<col width="8%">
