@@ -350,17 +350,9 @@ $deli_types = get_deli_type();
 						<td col width="20%" class="subject">결제일</td>
 					</tr>
 
-					<?php if ($row["order_status"] == "W") { ?>
-						<tr>
-							<td class="content" colspan="7">예약 준비중</td>
-						</tr>
-					<?php } ?>
-
-					<?php if ($row["order_status"] == "C") { ?>
-						<tr>
-							<td class="content" colspan="6">예약 취소</td>
-						</tr>
-					<?php } ?>
+					<tr>
+						<td class="content" colspan="7"><?= get_deli_type($order_status) ?></td>
+					</tr>
 
 					<?php if ($order_status == "X") { ?>
 						<tr>
@@ -398,7 +390,7 @@ $deli_types = get_deli_type();
 
 					<?php } ?>
 
-					<?php if ($row["order_status"] == "R") { ?>
+					<?php if ($order_status == "R") { ?>
 						<tr>
 							<td col width="8%" class="content">
 								선금
@@ -462,7 +454,7 @@ $deli_types = get_deli_type();
 						</tr>
 					<?php } ?>
 
-					<?php if ($row["order_status"] == "Y") { ?>
+					<?php if ($order_status == "Y") { ?>
 						<tr>
 							<td col width="8%" class="content">
 								잔금
@@ -551,19 +543,11 @@ $deli_types = get_deli_type();
 					<col width="*">
 				</colgroup>
 				<tbody>
-					<?php if ($row["order_status"] == "W") { ?>
 						<tr>
 							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 준비중</td>
+							<td colspan="2" style="display:flex; justify-content: center;" class="content"><?= get_deli_type($order_status) ?></td>
 						</tr>
-					<?php } ?>
-					<?php if ($row["order_status"] == "C") { ?>
-						<tr>
-							<!-- <td></td> -->
-							<td colspan="2" style="display:flex; justify-content: center;" class="content">예약 취소</td>
-						</tr>
-					<?php } ?>
-					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
+					<?php if ($order_status == "X") { ?>
 						<tr>
 							<td class="subject">예약상태</td>
 
