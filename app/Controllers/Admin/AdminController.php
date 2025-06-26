@@ -285,7 +285,7 @@ class AdminController extends BaseController
         if(!empty($user_pw) && !empty($user_id)) {
 
             $result = $this->memberModel->where('user_id', $user_id)->set([
-                'user_pw' => password_hash($user_pw, PASSWORD_DEFAULT)
+                'user_pw' => password_hash($user_pw, PASSWORD_BCRYPT)
             ])->update();
 
             if($result) {
