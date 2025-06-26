@@ -1,5 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-number/2.1.6/jquery.number.min.js"></script>
+
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -13,6 +15,7 @@
 
         function send_it() {
             var frm = document.frm;
+            $(".price").number();
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
@@ -351,21 +354,21 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         원화계산 : <?php
-                                            $setting    = homeSetInfo();
-                                            $extra_cost = 0;
+                                            // $setting    = homeSetInfo();
+                                            // $extra_cost = 0;
                                 
-                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            // $type_extra_cost = $setting["type_extra_cost"];
                                             
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
+                                            // $total_price = 0;
+                                            // $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            // $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            // if (!empty($setting["extra_cost"])) {
+                                            //     if ($type_extra_cost == "P") {
+                                            //         $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                            //     } else {
+                                            //         $extra_cost = $setting["extra_cost"];
+                                            //     }
+                                            // }
 
                                         ?>   
                                         <?php
@@ -375,17 +378,21 @@
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $order_price) ?>원    
+                                        <input type="text" style="width: 100px;" id="order_price" name="order_price"
+                                                    value="<?= number_format( $order_price) ?>" class="input_txt price">원        
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                         <input type="text" style="width: 100px;" id="used_coupon_money" name="used_coupon_money"
+                                                    value="<?= number_format($used_coupon_money) ?>" class="input_txt price">원(할인쿠폰) 
                                         -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        <input type="text" style="width: 100px;" id="used_mileage_money" name="used_mileage_money"
+                                                    value="<?= number_format($used_mileage_money) ?>" class="input_txt price">원(마일리지사용)
                                         +
-                                        <?= number_format( $extra_cost) ?>원
+                                        <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
+                                                    value="<?= number_format($extra_cost) ?>" class="input_txt price">원
                                         = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+										바트계산 : <?=number_format($order_price_bath)?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
@@ -441,7 +448,13 @@
                                         <?php
                                             }else{
                                         ?>
-										    원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / 	$baht_thai) ?> 바트
+                                            <div class="flex__c" style="gap: 5px;">
+                                                원화계산 : 
+                                                <input type="text" style="width: 150px;"
+                                                    value="<?= number_format($order_price)?>" class="input_txt price">원  
+                                                | <input type="text" style="width: 150px;"  
+                                                    value="<?= number_format($order_price_bath) ?>" class="input_txt price"> 바트
+                                            </div>
                                         <?php
                                             }
                                         ?>
