@@ -77,9 +77,9 @@ class AdminController extends BaseController
             $data['user_level'] = "2";
         }
 
-        if (!empty($data['user_pw'])) {
-            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
-        }
+        // if (!empty($data['user_pw'])) {
+        //     $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
+        // }
 
         $data['user_name'] = encryptField($data['user_name'], "encode");
         $data['user_email'] = encryptField($data['user_email'], "encode");
