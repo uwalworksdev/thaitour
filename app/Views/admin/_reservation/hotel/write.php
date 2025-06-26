@@ -634,8 +634,8 @@
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : Number($("#real_price_bath").val().replace(/\./g, '').replace(',', '.')),
-					"real_price_won"  : Number($("#real_price_won").val())
+					"real_price_bath" : Number($("#real_price_bath").val().replace(/\./g, '')),
+					"real_price_won"  : Number($("#real_price_won").val().replace(/\./g, ''))
 				},
 				dataType : "json",
 				async: false,
@@ -726,7 +726,7 @@
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#real_price_won").val(won.toLocaleString());
+			$("#real_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>
