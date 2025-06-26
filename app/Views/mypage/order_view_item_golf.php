@@ -373,47 +373,14 @@ $deli_types = get_deli_type();
 
 						<td class="content"><?= number_format($order_price) ?></td>
 
-						<td class="content"><?=$authdate?></td>
+						<td class="content">
+							<?php if ($order_method == "신용카드") { ?>
+								<?=$authdate?>
+							<?php } else { ?>
+								<?= date($order_confirm_date); ?>
+							<?php } ?>						
+						</td>
 					</tr>
-
-					<?php if ($order_status == "Y") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-							<td class="content">
-								결제완료
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									결제완료
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_1']) ?>원 -->
-									<?= number_format($row['order_price']) ?>원
-								<?php } ?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } else { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } ?>
-							</td>
-						</tr>
-					<?php } ?>
-
 				</tbody>
 			</table>
 		</div>
