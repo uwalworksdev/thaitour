@@ -335,7 +335,7 @@ $deli_types = get_deli_type();
 		
 		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
 		<div class="invoice_table invoice_table_new reservation only_web">
-			<h2>예약금액 결제</h2>
+			<h2>예약금액 결제P</h2>
 			<table>
 				<colgroup>
 					<col width="8%">
@@ -345,73 +345,26 @@ $deli_types = get_deli_type();
 					<tr>
 						<td class="subject">예약상태</td>
 						<td col width="12%" class="subject">결제방법</td>
+						<td col width="12%" class="subject">쿠폰</td>
+						<td col width="12%" class="subject">포인트</td>
 						<td col width="12%" class="subject">결제금액(원)</td>
-						<td col width="20%" class="subject">결제</td>
 						<td col width="20%" class="subject">결제일</td>
 					</tr>
 
-					<?php if ($order_status == "X") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								<?= $deli_types[$order_status] ?>
-							</td>
+					<tr>
+						<td col width="8%" class="content"><?= $deli_types[$order_status] ?></td>
 
-							<td class="content">
-								<?= $row['deposit_method'] ?>
-							</td>
+						<td class="content"><?= $row['deposit_method'] ?></td>
 
-							<td class="content">
-								<?= number_format($order_price) ?>
-							</td>
+						<td class="content"><?= number_format($order_price) ?></td>
 
-							<td class="content">
-							</td>
-						</tr>
+						<td class="content"><?= number_format($order_price) ?></td>
 
-					<?php } ?>
+						<td class="content"><?= number_format($order_price) ?></td>
 
-					<?php if ($order_status == "R") { ?>
-						<tr>
-							<td col width="8%" class="content">
-								<?= $deli_types[$order_status] ?>
-							</td>
+						<td class="content"></td>
+					</tr>
 
-							<td class="content">
-								<?php if ($deposit_method == "무통장입금") { ?>
-									결제완료
-								<?php } else { ?>
-									<?= $row['ResultMsg_1'] ?>
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($deposit_method == "무통장입금") { ?>
-									<?= $deposit_method ?>
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php } else { ?>
-									<?= number_format($row['deposit_price']) ?>원
-								<?php }
-								?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_date'] ?>
-								<?php } else { ?>
-									<?= date($row['order_confirm_date']); ?>
-								<?php } ?>
-							</td>
-						</tr>
 						<tr>
 							<td col width="8%" class="content">
 								잔금
@@ -478,7 +431,7 @@ $deli_types = get_deli_type();
 		<?php } ?>
 
 		<div class="invoice_table invoice_table_new only_mo">
-			<h2>예약금액 결제</h2>
+			<h2>예약금액 결제M</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
