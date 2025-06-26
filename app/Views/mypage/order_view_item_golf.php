@@ -236,7 +236,7 @@ $deli_types = get_deli_type();
 				</div>
 			</div>
 		</section-->
-        <div class="invoice_table invoice_table_new reservation">
+        <div class="invoice_table invoice_table_new reservation only_web">
 			<h2>차량및 캐디피 예약금액</h2>
 			<table>
 				<colgroup>
@@ -270,6 +270,62 @@ $deli_types = get_deli_type();
 								<td class="content"><?=number_format($row['option_cnt'])?></td>
 								<td class="content"><?=number_format($row['option_tot'])?></td>
 							</tr>
+					<?php
+						}
+					?>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>차량및 캐디피 예약금액</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<?php
+					    foreach ($vehicle as $row)  
+						{
+							 if($row['option_type'] == "main") {
+								$option_name  = "그린피";
+								$option_price = $row['option_tot'] / $row['option_cnt'];
+							 } else	{
+								$option_name  = $row['option_name'];
+								$option_price = $row['option_price'];
+							 }	
+					?>	
+					<tr>
+						<td class="subject">예약구분</td>
+						<td class="content">
+							<span>
+								<?=$option_name?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">단가(원)</td>
+						<td class="content">
+							<span>
+								<?=number_format($option_price)?>
+							</span> 
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">대수(명)</td>
+						<td class="content">
+							<span>
+								<?=number_format($row['option_cnt'])?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">에약금액(원)</td>
+						<td class="content">
+							<span><?=number_format($row['option_tot'])?></span>
+						</td>
+					</tr>
 					<?php
 						}
 					?>
