@@ -622,6 +622,9 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+			<?php if($order_status == "X") { ?>
+			<button class="btn_payment" data-idx="<?=$order_no?>">결제하기</button>
+			<?php } ?>
 		</div>
 	</div>
 </section>
@@ -663,6 +666,47 @@ if ($_paymod == "lg") {
 	}
 }
 ?>
+
+<form id="checkOut" action="/checkout/confirmMypage" method="post">
+<input type="hidden" name="m_idx"      id="m_idx"   value="<?= session("member.idx") ?>" >
+<input type="hidden" name="payment_no" id="payment_no" value="" >
+<input type="hidden" name="dataValue"  id="dataValue"  value="" >
+</form>
+
+<script>
+$(document).ready(function () {
+    $(".btn_payment").on("click", function () {
+        var dataValue = $(this).data("idx"); // 주문번호 가져오기
+		$("#dataValue").val(dataValue);
+		
+		$.ajax({
+
+			url: "/ajax/ajax_payment",
+			type: "POST",
+			data: {
+
+				"dataValue": dataValue 
+
+			},
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function (data, textStatus) {
+				var message = data.message;
+				var payment_no = data.payment_no;
+				$("#dataValue").val(dataValue);
+				$("#payment_no").val(payment_no);
+                $("#checkOut").submit();
+			},
+			error: function (request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
+			
+		
+    });
+});
+</script>
 
 <script type="text/javascript">
 	function handlleShowPassport(img) {
