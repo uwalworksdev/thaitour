@@ -242,7 +242,6 @@
                                                 $price = explode(":", $arr[$i]);
                                                 if($price[0] != "Extra 베드") {
                                                     $temp .= '<div style="margin-bottom:5px; gap : 5px;" class="flex__c">';
-                                                    $temp .= '<input type="hidden" name="bed_idx[]" value="'.$price[8].'">';
                                                     $temp .= '<input type="text" name="goods_date[]" style="width: 120px;" value="'.$price[0].'"> 기본가: ';
                                                     $temp .= '<input type="text" name="goods_price1[]" style="width: 70px;" value="'.$price[1].'"> 컨택가: ';
                                                     $temp .= '<input type="text" name="goods_price2[]" style="width: 70px;" value="'.$price[2].'"> 수익가: ';
