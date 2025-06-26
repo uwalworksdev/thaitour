@@ -402,6 +402,7 @@
                             <td style="width: 30%;"><?=$row->order_user_email?></td>
                         </tr>
 
+
                         <tr>
                             <th style="width: 20%;">예약시간</th>
                             <td style="width: 30%;"><?=$row->order_day?>(<?=dateToYoil($row->order_day)?>) <?=$row->time_line?></td>
