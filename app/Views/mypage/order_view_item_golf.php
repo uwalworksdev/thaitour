@@ -356,9 +356,9 @@ $deli_types = get_deli_type();
 
 						<td class="content"><?= $row['deposit_method'] ?></td>
 
-						<td class="content"><?= number_format($order_price) ?></td>
+						<td class="content"><?= number_format($used_coupon_money) ?></td>
 
-						<td class="content"><?= number_format($order_price) ?></td>
+						<td class="content"><?= number_format($used_mileage_money) ?></td>
 
 						<td class="content"><?= number_format($order_price) ?></td>
 
