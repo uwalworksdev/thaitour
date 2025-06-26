@@ -357,7 +357,7 @@ $deli_types = get_deli_type();
 							</td>
 
 							<td class="content">
-								선금 입금대기
+								입금대기
 							</td>
 
 							<td class="content">
@@ -369,18 +369,6 @@ $deli_types = get_deli_type();
 							</td>
 
 							<td class="content">
-							</td>
-						</tr>
-						<tr>
-							<td class="content ">
-								<?php if ($row['deposit_method'] == "") { ?>
-									잔금
-								<?php } ?>
-							</td>
-							<td class="content link">
-								<?php if ($row['deposit_method'] == "") { ?>
-									준비중
-								<?php } ?>
 							</td>
 						</tr>
 
