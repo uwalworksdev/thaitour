@@ -1,5 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-number/2.1.6/jquery.number.min.js"></script>
+
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -13,6 +15,7 @@
 
         function send_it() {
             var frm = document.frm;
+            $(".price").number();
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
@@ -62,7 +65,7 @@
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
+                <!-- <input type=hidden name="order_date" value='<?= $order_date ?>'> -->
                 <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
@@ -176,7 +179,7 @@
                                     </td>
                                     <th>예약날짜</th>
                                     <td>
-                                        <input type="text" id="local_phone" name="local_phone"
+                                        <input type="text" id="order_date" name="order_date"
                                                value="<?= substr($order_date,0,10) ?>(<?=get_korean_day(substr($order_date,0,10));?>)" class="input_txt"/>
                                     </td>
                                 </tr>
@@ -215,10 +218,10 @@
                                     <td>
                                         <div class="flex__c" style="gap: 5px;">
                                             <input type="text" id="start_date" name="start_date" style="width: 150px;"
-                                                   value="<?=$start_date?>" class="input_txt"/>
+                                                   value="<?=$start_date?>(<?=get_korean_day(substr($start_date,0,10));?>)" class="input_txt"/>
                                                    ~
                                             <input type="text" id="end_date" name="end_date" style="width: 150px;"
-                                                   value="<?=$end_date?>" class="input_txt"/>
+                                                   value="<?=$end_date?>(<?=get_korean_day(substr($end_date,0,10));?>)" class="input_txt"/>
 
                                             / <input type="text" id="order_day_cnt" name="order_day_cnt" style="width: 50px;"
                                                     value="<?=$order_day_cnt?>" class="input_txt number-only"/> 일
@@ -351,21 +354,21 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         원화계산 : <?php
-                                            $setting    = homeSetInfo();
-                                            $extra_cost = 0;
+                                            // $setting    = homeSetInfo();
+                                            // $extra_cost = 0;
                                 
-                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            // $type_extra_cost = $setting["type_extra_cost"];
                                             
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
+                                            // $total_price = 0;
+                                            // $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            // $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            // if (!empty($setting["extra_cost"])) {
+                                            //     if ($type_extra_cost == "P") {
+                                            //         $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                            //     } else {
+                                            //         $extra_cost = $setting["extra_cost"];
+                                            //     }
+                                            // }
 
                                         ?>   
                                         <?php
@@ -375,17 +378,21 @@
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $order_price) ?>원    
+                                        <input type="text" style="width: 100px;" id="order_price" name="order_price"
+                                                    value="<?= number_format( $order_price) ?>" class="input_txt price">원        
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                         <input type="text" style="width: 100px;" id="used_coupon_money" name="used_coupon_money"
+                                                    value="<?= number_format($used_coupon_money) ?>" class="input_txt price">원(할인쿠폰) 
                                         -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        <input type="text" style="width: 100px;" id="used_mileage_money" name="used_mileage_money"
+                                                    value="<?= number_format($used_mileage_money) ?>" class="input_txt price">원(마일리지사용)
                                         +
-                                        <?= number_format( $extra_cost) ?>원
+                                        <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
+                                                    value="<?= number_format($extra_cost) ?>" class="input_txt price">원
                                         = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+										바트계산 : <?=number_format($order_price_bath)?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
@@ -441,7 +448,13 @@
                                         <?php
                                             }else{
                                         ?>
-										    원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price / 	$baht_thai) ?> 바트
+                                            <div class="flex__c" style="gap: 5px;">
+                                                원화계산 : 
+                                                <input type="text" style="width: 150px;"
+                                                    value="<?= number_format($order_price)?>" class="input_txt price">원  
+                                                | <input type="text" style="width: 150px;"  
+                                                    value="<?= number_format($order_price_bath) ?>" class="input_txt price"> 바트
+                                            </div>
                                         <?php
                                             }
                                         ?>
@@ -634,8 +647,8 @@
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : $("#real_price_bath").val(),
-					"real_price_won"  : $("#real_price_won").val()
+					"real_price_bath" : Number($("#real_price_bath").val().replace(/,/g, '')),
+					"real_price_won"  : Number($("#real_price_won").val().replace(/,/g, ''))
 				},
 				dataType : "json",
 				async: false,
@@ -726,7 +739,7 @@
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#real_price_won").val(won.toLocaleString());
+			$("#real_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>
