@@ -348,7 +348,7 @@ $deli_types = get_deli_type();
 						<td col width="15%" class="subject">쿠폰</td>
 						<td col width="15%" class="subject">포인트</td>
 						<td col width="15%" class="subject">결제금액(원)</td>
-						<td col width="15%" class="subject">결제일</td>
+						<td col width="15%" class="subject">결제일시</td>
 					</tr>
 
 					<tr>
@@ -362,7 +362,7 @@ $deli_types = get_deli_type();
 
 						<td class="content"><?= number_format($order_price) ?></td>
 
-						<td class="content"></td>
+						<td class="content"><?=$AuthDate_1?></td>
 					</tr>
 
 					<?php if ($order_status == "Y") { ?>
