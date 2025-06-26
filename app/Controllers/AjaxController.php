@@ -2716,7 +2716,7 @@ public function get_golf_option() {
 			} else {  
                $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
 			}
-			
+			write_log("ajax_set_status- ".  $sql);
 			$result   = $db->query($sql);
 			
 			if($result) {
