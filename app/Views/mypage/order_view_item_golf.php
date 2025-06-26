@@ -279,13 +279,7 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_table invoice_table_new only_mo">
 			<h2>차량및 캐디피 예약금액</h2>
-			<table>
-				<colgroup>
-					<col width="15%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<?php
+			<?php
 					    foreach ($vehicle as $row)  
 						{
 							 if($row['option_type'] == "main") {
@@ -296,6 +290,12 @@ $deli_types = get_deli_type();
 								$option_price = $row['option_price'];
 							 }	
 					?>	
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
 					<tr>
 						<td class="subject">예약구분</td>
 						<td class="content">
@@ -326,11 +326,11 @@ $deli_types = get_deli_type();
 							<span><?=number_format($row['option_tot'])?></span>
 						</td>
 					</tr>
-					<?php
-						}
-					?>
 				</tbody>
 			</table>
+			<?php
+						}
+					?>
 		</div>
 		
 		<div class="invoice_table invoice_table_new reservation">
