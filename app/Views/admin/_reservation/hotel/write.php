@@ -225,7 +225,7 @@
                                             &emsp; (객실수 : <input type="text" id="order_room_cnt" name="order_room_cnt" style="width: 50px;"
                                                                     value="<?=$order_room_cnt?>" class="input_txt number-only"/> Room)
                                         </div>
-
+                                        <br>
                                         <?php
                                             /*
                                             2025-04-17:12:21:31:21:41::42.41|
@@ -241,7 +241,16 @@
                                                 //echo $arr[$i] ."<br>"; 
                                                 $price = explode(":", $arr[$i]);
                                                 if($price[0] != "Extra 베드") {
-                                                    $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
+                                                    $temp .= '<div style="margin-bottom:5px; gap : 5px;" class="flex__c">';
+                                                    $temp .= '<input type="hidden" name="bed_idx[]" value="'.$price[8].'">';
+                                                    $temp .= '<input type="text" name="goods_date[]" style="width: 120px;" value="'.$price[0].'"> 기본가: ';
+                                                    $temp .= '<input type="text" name="goods_price1[]" style="width: 70px;" value="'.$price[1].'"> 컨택가: ';
+                                                    $temp .= '<input type="text" name="goods_price2[]" style="width: 70px;" value="'.$price[2].'"> 수익가: ';
+                                                    $temp .= '<input type="text" name="goods_price3[]" style="width: 70px;" value="'.$price[3].'"> Extra베드가: ';
+                                                    $temp .= '<input type="text" name="price_extra[]" style="width: 70px;" value="'.$price[5].'">';
+                                                    $temp .= '</div>';
+
+                                                    // $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
                                                 }   
                                             }
                                             echo $temp;
