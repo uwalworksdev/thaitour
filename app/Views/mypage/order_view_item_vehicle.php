@@ -71,7 +71,7 @@ $start_date = $row['start_date'];
 				<?= (html_entity_decode($row['product_name'])) ?>
 			</h1>
 			<span class="stt_2">
-				<?= get_status_name($row["order_status"]) ?>
+				<?= get_deli_type($row["order_status"]) ?>
 			</span>
 		</div>
 		<p class="ttl_date">
