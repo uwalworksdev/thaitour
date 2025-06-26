@@ -388,7 +388,7 @@ $deli_types = get_deli_type();
 
 		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
 		<div class="invoice_table invoice_table_new only_mo">
-			<h2>예약금액 결제M</h2>
+			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
