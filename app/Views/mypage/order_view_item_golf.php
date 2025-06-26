@@ -280,16 +280,16 @@ $deli_types = get_deli_type();
 		<div class="invoice_table invoice_table_new only_mo">
 			<h2>차량및 캐디피 예약금액</h2>
 			<?php
-					    foreach ($vehicle as $row)  
-						{
-							 if($row['option_type'] == "main") {
-								$option_name  = "그린피";
-								$option_price = $row['option_tot'] / $row['option_cnt'];
-							 } else	{
-								$option_name  = $row['option_name'];
-								$option_price = $row['option_price'];
-							 }	
-					?>	
+				foreach ($vehicle as $row)  
+				{
+					 if($row['option_type'] == "main") {
+						$option_name  = "그린피";
+						$option_price = $row['option_tot'] / $row['option_cnt'];
+					 } else	{
+						$option_name  = $row['option_name'];
+						$option_price = $row['option_price'];
+					 }	
+			?>	
 			<table style="margin-top: -1px; border-top: 2px solid rgb(37 37 37 / 46%) !important;">
 				<colgroup>
 					<col width="15%">
@@ -329,10 +329,11 @@ $deli_types = get_deli_type();
 				</tbody>
 			</table>
 			<?php
-						}
-					?>
+				}
+			?>
 		</div>
 		
+		<?php if ($order_status == "Y" || $order_status == "Z" || $order_status == "E") { ?>
 		<div class="invoice_table invoice_table_new reservation only_web">
 			<h2>예약금액 결제</h2>
 			<table>
@@ -469,50 +470,12 @@ $deli_types = get_deli_type();
 								<?php } ?>
 							</td>
 						</tr>
-						<!--tr>
-							<td col width="8%" class="content">
-								잔금
-							</td>
-							<td class="content">
-								잔금입금완료
-							</td>
-
-							<td class="content">
-								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= $row['deposit_method'] ?>
-								<?php } else { ?>
-									신용카드
-								<?php } ?>
-							</td>
-
-							<td class="content">
-								<?php if ($row['confirm_method'] == "무통장입금") { ?>
-									<?= number_format($row['order_confirm_price']) ?>원
-								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_2']) ?>원 -->
-									<!--<?= number_format($row['order_confirm_price']) ?>원
-								<?php } ?>
-							</td>
-
-							<td class="content link">
-							</td>
-
-							<td class="content">
-
-								<?php if ($row['confirm_method'] == "무통장입금") { ?>
-									<!-- <?= $row['order_confirm_date'] ?> -->
-									<!--<?= date($row['order_c_date']); ?>
-								<?php } else { ?>
-									<!-- <?= date("Y-m-d", strtotime("20" . $row['AuthDate_2'])); ?> -->
-									<!--<?= date($row['order_c_date']); ?>
-								<?php } ?>
-							</td>
-						</tr-->
 					<?php } ?>
 
 				</tbody>
 			</table>
 		</div>
+		<?php } ?>
 
 		<div class="invoice_table invoice_table_new only_mo">
 			<h2>예약금액 결제</h2>
