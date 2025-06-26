@@ -525,7 +525,7 @@ $deli_types = get_deli_type();
 
 
 						<td class="content">
-							<?=$row_d['order_passport_number'] ?>
+							<?=$order_passport_number ?>
 						</td>
 				</tbody>
 			</table>
@@ -573,7 +573,7 @@ $deli_types = get_deli_type();
 
 					<tr>
 						<td class="subject">여권번호</td>
-						<td class="content"><?=$row_d['order_passport_number'] ?></td>
+						<td class="content"><?=$order_passport_number ?></td>
 					</tr>
 				</tbody>
 			</table>
