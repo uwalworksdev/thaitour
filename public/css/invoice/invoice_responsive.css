@@ -330,6 +330,11 @@
         border-top: 2px solid rgb(37, 37, 37);
     }
 
+    .invoice_paid .table_detail table {
+        border-top: 2px solid rgb(37 37 37 / 46%) !important;
+        margin-top: -1px !important;
+    }
+
     .invoice_paid .invoice_table colgroup {
         display: none;
     }
