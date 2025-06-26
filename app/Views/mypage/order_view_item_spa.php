@@ -248,7 +248,7 @@ $deli_types = get_deli_type();
 				</div>
 			</div>
 		</section-->
-        <div class="invoice_table invoice_table_new reservation">
+        <div class="invoice_table invoice_table_new reservation only_web">
 			<h2>스파 에약내역</h2>
 			<table>
 				<colgroup>
@@ -287,8 +287,63 @@ $deli_types = get_deli_type();
 				</tbody>
 			</table>
 		</div>
+
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>스파 에약내역</h2>
+					<?php
+						foreach ($option_order as $row_o)  
+						{
+							 if($row_o['option_type'] == "main") {
+								$option_price = $row_o['option_tot'] / $row_o['option_cnt'];
+							 } else	{
+								$option_price = $row_o['option_price'];
+							 }	
+					?>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">옵션구분</td>
+						<td class="content">
+							<span>
+								<?=$row_o['option_name']?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">단가(원)</td>
+						<td class="content">
+							<span>
+								<?=number_format($option_price)?>
+							</span> 
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">건수</td>
+						<td class="content">
+							<span>
+								<?=number_format($row_o['option_cnt'])?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">옵션금액(원)</td>
+						<td class="content">
+							<span>
+								<?=number_format($row_o['option_tot'])?>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<?php } ?>		
+		</div>
 		
-		<div class="invoice_table invoice_table_new reservation">
+		<div class="invoice_table invoice_table_new reservation only_web">
 			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
@@ -498,7 +553,8 @@ $deli_types = get_deli_type();
 			</table>
 		</div>
 
-		<!-- <div class="invoice_table invoice_table_new only_mo">
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
@@ -642,7 +698,7 @@ $deli_types = get_deli_type();
 					
 				</tbody>
 			</table>
-		</div> -->
+		</div>
 
 		<section class="earn_pops my_pops" style="display:none;">
 			<div class="pay_pops_inner pay_count02" style="display:none;">

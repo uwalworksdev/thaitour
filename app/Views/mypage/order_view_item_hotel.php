@@ -262,7 +262,7 @@ $deli_types = get_deli_type();
 				</div>
 			</div>
 		</section-->
-        <div class="invoice_table invoice_table_new reservation">
+        <div class="invoice_table invoice_table_new reservation only_web">
 			<h2>일자별 숙박금액</h2>
 			<table>
 				<colgroup>
@@ -298,8 +298,59 @@ $deli_types = get_deli_type();
 				</tbody>
 			</table>
 		</div>
+
+
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>일자별 숙박금액</h2>
+					<?php
+						$arr = explode("|", $date_price);
+						for($i=0;$i<count($arr);$i++)
+						{
+							$arr1 = explode(":", $arr[$i]);
+							$amt1 = ($arr1[2] + $arr1[3]) * $order_room_cnt;
+							$amt2 = $arr1[5] * $order_room_cnt;
+							if(isDateFormat($arr1[0])) {
+					?>
+			<table style="margin-top: -1px; border-top: 2px solid rgb(37 37 37 / 46%) !important;">
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">일자</td>
+						<td class="content">
+							<span>
+								<?=$arr1[0]?>(<?=dateToYoil($arr1[0])?>)
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">숙박금액(원)</td>
+						<td class="content">
+							<span>
+								<?=number_format(round($amt1 * $baht_thai))?>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">Extra 베드(원)</td>
+						<td class="content">
+							<span>
+								<?=number_format(round($amt2 * $baht_thai))?>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<?php } ?>		
+					<?php
+						}
+					?>
+		</div>
 		
-		<div class="invoice_table invoice_table_new reservation">
+		<div class="invoice_table invoice_table_new reservation only_web">
 			<h2>예약금액 결제</h2>
 			<table>
 				<colgroup>
@@ -505,6 +556,153 @@ $deli_types = get_deli_type();
 						</tr-->
 					<?php } ?>
 
+				</tbody>
+			</table>
+		</div>
+
+		<div class="invoice_table invoice_table_new only_mo">
+			<h2>예약금액 결제</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<?php if ($row["order_status"] == "W") { ?>
+						<tr>
+							<td></td>
+							<td class="content">예약 준비중</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "C") { ?>
+						<tr>
+							<td></td>
+							<td class="content">예약 취소</td>
+						</tr>
+					<?php } ?>
+					<?php if ($row["order_status"] == "G" || $row["order_status"] == "J") { ?>
+						<tr>
+							<td class="subject">예약상태</td>
+
+							<td class="content">
+								선금
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제상태</td>
+
+							<td class="content">
+								선금 입금대기
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제방법</td>
+
+							<td class="content">
+								<?= $row['deposit_method'] ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제금액</td>
+
+							<td class="content">
+								<?= number_format($row['deposit_price']) ?>
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+						<tr>
+							<td class="subject">결제일</td>
+
+							<td class="content">
+								
+							</td>
+						</tr>
+
+						<tr>
+							<td class="content ">
+								<?php if ($row['deposit_method'] == "") { ?>
+									잔금
+								<?php } ?>
+							</td>
+							<td class="content link">
+								<?php if ($row['deposit_method'] == "") { ?>
+									준비중
+								<?php } ?>
+							</td>
+						</tr>
+
+					<?php } ?>
+
+					<?php if ($row["order_status"] == "R") { ?>
+						<tr>
+							<td col width="8%" class="content">
+								선금
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									결제완료
+								<?php } else { ?>
+									<?= $row['ResultMsg_1'] ?>
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_method'] ?>
+								<?php } else { ?>
+									신용카드
+								<?php } ?>
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php } else { ?>
+									<?= number_format($row['deposit_price']) ?>원
+								<?php }
+								?>
+							</td>
+
+							<td class="content link">
+							</td>
+
+							<td class="content">
+								<?php if ($row['deposit_method'] == "무통장입금") { ?>
+									<?= $row['deposit_date'] ?>
+								<?php } else { ?>
+									<?= date($row['order_confirm_date']); ?>
+								<?php } ?>
+							</td>
+						</tr>
+						<tr>
+							<td col width="8%" class="content">
+								잔금
+							</td>
+
+							<td class="content">
+								잔금 입금 대기
+							</td>
+
+							<td class="content">
+								<?= $row['confirm_method'] ?>
+							</td>
+
+							<td class="content">
+								<?= number_format($row['order_confirm_price']) ?>원
+							</td>
+
+							<td class="content">
+							</td>
+						</tr>
+					<?php } ?>
+					
 				</tbody>
 			</table>
 		</div>
