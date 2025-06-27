@@ -182,7 +182,7 @@
                                     <th>예약날짜</th>
                                     <td>
                                         <input type="text" id="order_date" name="order_date"
-                                               value="<?= substr($order_date,0,10) ?>" class="input_txt"/>
+                                               value="<?= $order_date ?>" class="input_txt"/>
                                     </td>
                                 </tr>
 								
