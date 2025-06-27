@@ -400,10 +400,15 @@
                                         </div>
                                         <?php } ?> <br>
                                         <?php
+
                                             $used_coupon_money_bath = (int) round($used_coupon_money / $bath_thai_price);
                                             $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
                                             $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
                                             $order_price_bath = (int) round($order_price / $bath_thai_price);
+
+                                            $price_won = $order_price - $used_coupon_money - $used_mileage_money;
+                                            $price = $order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath;
+                                            $last_price = $order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost;
                                         ?>
 										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_coupon_money_bath)?> TH(할인쿠폰) 
                                                 - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
@@ -411,6 +416,12 @@
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
+                                        <input type="hidden" id="last_price" name="last_price"
+                                               value="<?= number_format($last_price)?>"/>
+                                        <input type="hidden" id="price_won" name="price_won"
+                                               value="<?= number_format($price_won)?>"/>
+                                        <input type="hidden" id="price" name="price"
+                                               value="<?= number_format($price)?>"/>
                                         <input type="hidden" id="order_price_bath" name="order_price_bath"
                                                value="<?= number_format($order_price_bath)?>"/>
 										<input type="text" id="real_price_bath" name="real_price_bath"
