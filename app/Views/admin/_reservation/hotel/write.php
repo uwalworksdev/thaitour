@@ -267,8 +267,8 @@
                                             <input type="text" id="adult" name="adult" style="width: 50px;"
                                                         value="<?=$adult?>" class="input_txt number-only"/>
                                             명 아동
-                                            <input type="text" id="adult" name="adult" style="width: 50px;"
-                                                        value="<?=$adult?>" class="input_txt number-only"/>명
+                                            <input type="text" id="kids" name="kids" style="width: 50px;"
+                                                        value="<?=$kids?>" class="input_txt number-only"/>명
                                         </div>
                                     </td>
                                 </tr>
