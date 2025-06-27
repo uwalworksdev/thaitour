@@ -164,9 +164,9 @@
                                     <td>
                                          <p><span>그린피 : </span>
                                             <input type="text" id="main_option_tot" name="main_option_tot"
-                                               value="<?=number_format($main[0]["option_tot"])?>" class="input_txt number-only" style="width:100px;"/> 원
+                                               value="<?=number_format($main[0]["option_tot"])?>" class="input_txt number-only price" style="width:100px;"/> 원
                                             <input type="text" id="main_option_tot_bath" name="main_option_tot_bath"
-                                               value="<?=number_format($main[0]["option_tot_bath"])?>" class="input_txt number-only" style="width:100px;"/>
+                                               value="<?=number_format($main[0]["option_tot_bath"])?>" class="input_txt number-only price" style="width:100px;"/>
                                             바트 X <input type="text" id="main_option_cnt" name="main_option_cnt"
                                                value="<?=number_format($main[0]["option_cnt"])?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>인</p>
                                     </td>
@@ -202,7 +202,7 @@
 									<?php foreach ($main as $key => $item): ?>
                                     <td>
                                         <input type="text" id="main_option_name" name="main_option_name"
-                                               value="<?=str_replace("|", " | ", $item['option_name']);?>" class="input_txt"/>
+                                               value="<?=$item['option_name']?>" class="input_txt"/>
                                     </td>
                                     <th>인원/캐디/카트</th>
                                     <td>라운딩 인원 : 
@@ -238,8 +238,8 @@
                                                 <span>골프장 왕복 픽업 차량: 
                                                     <input type="text" name="ve_op_name[]" value="<?= !empty($item['option_name_new']) ? $item['option_name_new'] : $item['option_name'] ?>" class="input_txt" style="width:150px;"/> 
                                                     x <input type="text" name="ve_op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
-                                                금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only" style="width:100px;"/>원 / 
-                                                <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only" style="width:100px;"/>TH</span>
+                                                금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price" style="width:100px;"/>원 / 
+                                                <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price" style="width:100px;"/>TH</span>
                                             <?php endforeach; ?>
                                         </div>
                                     </td>
@@ -251,8 +251,8 @@
                                                     <input type="hidden" name="op_idx[]" value="<?= $item['opt_idx'] ?>"/> 
                                                     <input type="text" name="op_name[]" value="<?= $item['option_name'] ?>" class="input_txt" style="width:200px;"/> 
                                                     x <input type="text" name="op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
-                                                    금액 <input type="text" name="op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only" style="width:100px;"/>원 / 
-                                                    <input type="text" name="op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only" style="width:100px;"/>TH</span>
+                                                    금액 <input type="text" name="op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price" style="width:100px;"/>원 / 
+                                                    <input type="text" name="op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price" style="width:100px;"/>TH</span>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
