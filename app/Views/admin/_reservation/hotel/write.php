@@ -15,7 +15,10 @@
 
         function send_it() {
             var frm = document.frm;
-            $(".price").number();
+            $(".price").each(function () {
+                let val = $(this).val().replace(/,/g, '');
+                $(this).val(val);
+            });
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
