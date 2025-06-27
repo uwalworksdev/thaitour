@@ -746,6 +746,65 @@ class ReservationController extends BaseController
                 $data['date_price'] = $date_price;
             }
 
+            if($gubun == "golf") {
+                $main_option_tot = $data['main_option_tot'] ?? "";
+                $main_option_tot_bath = $data['main_option_tot_bath'] ?? "";
+                $main_option_cnt = $data['main_option_cnt'] ?? "";
+                $main_option_name = $data['main_option_name'] ?? "";
+
+                $caddy_option_idx = $data['caddy_option_idx'] ?? "";
+                $caddy_option_cnt = $data['caddy_option_cnt'] ?? "";
+                $cart_option_idx = $data['cart_option_idx'] ?? "";
+                $cart_option_cnt = $data['cart_option_cnt'] ?? "";
+
+                $ve_op_name = $data['ve_op_name'] ?? [];
+                $ve_op_cnt = $data['ve_op_cnt'] ?? [];
+                $ve_op_tot = $data['ve_op_tot'] ?? [];
+                $ve_op_tot_bath = $data['ve_op_tot_bath'] ?? [];
+
+                $op_idx = $data['op_idx'] ?? [];
+                $op_name = $data['op_name'] ?? [];
+                $op_cnt = $data['op_cnt'] ?? [];
+                $op_tot = $data['op_tot'] ?? [];
+                $op_tot_bath = $data['op_tot_bath'] ?? [];
+
+                $this->orderOptionModel->where('order_idx', $order_idx)
+                                        ->where('option_type', 'main')
+                                        ->set([
+                                            "option_name" => $main_option_name,
+                                            "option_tot" => $main_option_tot,
+                                            "option_tot_bath" => $main_option_tot_bath,
+                                            "option_cnt" => $main_option_cnt,
+                                        ])
+                                        ->update();
+
+                $this->orderOptionModel->update($caddy_option_idx, [
+                    "option_cnt" => $caddy_option_cnt,
+                ]);
+
+                $this->orderOptionModel->update($cart_option_idx, [
+                    "option_cnt" => $cart_option_cnt,
+                ]);
+
+                foreach($ve_op_name as $key => $item){
+                    $this->orderOptionModel->update(['option_name' => $item], [
+                        "option_name_new" => $item,
+                        "option_cnt" => $ve_op_cnt[$key],
+                        "option_tot" => $ve_op_tot[$key],
+                        "option_tot_bath" => $ve_op_tot_bath[$key]
+                    ]);
+                }
+
+                foreach($op_idx as $key => $item){
+                    $this->orderOptionModel->update($item, [
+                        "option_name" => $op_name[$key],
+                        "option_cnt" => $op_cnt[$key],
+                        "option_tot" => $op_tot[$key],
+                        "option_tot_bath" => $op_tot_bath[$key]
+                    ]);
+                }
+            }
+
             $this->orderModel->updateData($order_idx, $data);
 
             $gl_idx = $data['gl_idx'] ?? [];

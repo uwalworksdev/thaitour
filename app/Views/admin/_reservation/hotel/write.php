@@ -79,7 +79,6 @@
                 <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
 
                 <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <input type=hidden name="order_price" value='<?= $order_price ?>'>
                 <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
                 <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
                 <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
@@ -221,10 +220,10 @@
                                     <td>
                                         <div class="flex__c" style="gap: 5px;">
                                             <input type="text" id="start_date" name="start_date" style="width: 150px;"
-                                                   value="<?=$start_date?>" class="input_txt"/>
+                                                   value="<?=$start_date?>" class="input_txt datepicker"/>
                                                    ~
                                             <input type="text" id="end_date" name="end_date" style="width: 150px;"
-                                                   value="<?=$end_date?>" class="input_txt"/>
+                                                   value="<?=$end_date?>" class="input_txt datepicker"/>
 
                                             / <input type="text" id="order_day_cnt" name="order_day_cnt" style="width: 50px;"
                                                     value="<?=$order_day_cnt?>" class="input_txt number-only"/> 일
@@ -660,6 +659,45 @@
     </div>
     
 	<script>
+    $("#order_day_cnt").on('input', function () {
+        const start = $("#start_date").val();
+        const dayCnt = parseInt($(this).val(), 10);
+
+        if (start && !isNaN(dayCnt) && dayCnt > 0) {
+            const startDate = new Date(start);
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + dayCnt - 1);
+            $("#end_date").val(formatDate(endDate));
+        }
+    });
+
+    $("#start_date, #end_date").on('change', function () {
+        const start = $("#start_date").val();
+        const end = $("#end_date").val();
+
+        if (start && end) {
+            const startDate = new Date(start);
+            const endDate = new Date(end);
+
+            const diffTime = endDate - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+            if (diffDays > 0) {
+                $("#order_day_cnt").val(diffDays);
+            }
+        }
+    });
+
+    function formatDate(date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+    $(document).on('input', '.number-only', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
 	$(document).ready(function () {
 		$('#price_update').on('click', function (e) {
 			e.preventDefault(); // 앵커 링크 방지 (href="#!" 이므로 필수)

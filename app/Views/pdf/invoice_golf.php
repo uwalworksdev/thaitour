@@ -430,7 +430,19 @@
                             </tr>
                             <?php foreach ($golf_option as $data) { ?>
                             <tr>
-                                <th style="width: 20%"><?=$data['option_name']?></th>
+                                <th style="width: 20%">
+                                    <?php
+                                        if($data['option_type'] == "vehicle"){
+                                            if(!empty($data['option_name_new'])){
+                                                echo $data['option_name_new'];
+                                            }else {
+                                                echo $data['option_name'];
+                                            }
+                                        }else {
+                                            echo $data['option_name'];
+                                        }
+                                    ?>
+                                </th>
                                 <td style="width: 20%"><?=number_format($data['option_price'])?></td>
                                 <td style="width: 20%"><?=$data['option_cnt']?></td>
                                 <th style="width: 20%"><?=number_format($data['option_tot'])?></th>

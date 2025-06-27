@@ -14,6 +14,7 @@ class OrderOptionModel extends Model
 		'order_idx',	
 		'product_idx',	
 		'option_name',	
+		'option_name_new',	
 		'option_name_eng',	
 		'option_idx',	
 		'option_tot',	
