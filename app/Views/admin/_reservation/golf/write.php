@@ -236,7 +236,7 @@
                                         <div class="flex" style="flex-direction: column; gap: 5px;">
                                             <?php foreach ($vehicle as $key => $item): ?>
                                                 <span>골프장 왕복 픽업 차량: 
-                                                    <input type="text" name="ve_op_name[]" value="<?= $item['option_name_new'] ?? $item['option_name'] ?>" class="input_txt" style="width:150px;"/> 
+                                                    <input type="text" name="ve_op_name[]" value="<?= !empty($item['option_name_new']) ? $item['option_name_new'] : $item['option_name'] ?>" class="input_txt" style="width:150px;"/> 
                                                     x <input type="text" name="ve_op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
                                                 금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only" style="width:100px;"/>원 / 
                                                 <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only" style="width:100px;"/>TH</span>
