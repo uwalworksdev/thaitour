@@ -757,6 +757,7 @@ class ReservationController extends BaseController
                 $cart_option_idx = $data['cart_option_idx'] ?? "";
                 $cart_option_cnt = $data['cart_option_cnt'] ?? "";
 
+                $ve_op_idx = $data['ve_op_idx'] ?? [];
                 $ve_op_name = $data['ve_op_name'] ?? [];
                 $ve_op_cnt = $data['ve_op_cnt'] ?? [];
                 $ve_op_tot = $data['ve_op_tot'] ?? [];
@@ -786,9 +787,9 @@ class ReservationController extends BaseController
                     "option_cnt" => $cart_option_cnt,
                 ]);
 
-                foreach($ve_op_name as $key => $item){
-                    $this->orderOptionModel->update(['option_name' => $item], [
-                        "option_name_new" => $item,
+                foreach($ve_op_idx as $key => $item){
+                    $this->orderOptionModel->update($item, [
+                        "option_name_new" => $ve_op_name[$key],
                         "option_cnt" => $ve_op_cnt[$key],
                         "option_tot" => $ve_op_tot[$key],
                         "option_tot_bath" => $ve_op_tot_bath[$key]
