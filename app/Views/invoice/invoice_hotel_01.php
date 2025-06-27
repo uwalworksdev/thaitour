@@ -146,12 +146,17 @@
                             <th>성인조식포함여부</th>
                             <td>
 								 <?php
-								   if($row->breakfast == "N") {
-									  echo "조식미포함";  
-								   } else { 
-									  echo "조식포함";  
-								   }
-								 ?>  								
+                                    if(!empty($row->breakfast_order_new)) {
+                                        $breakfast_order = $row->breakfast_order_new;
+                                    }else {
+                                        if($row->breakfast == "N") {
+                                            $breakfast_order = "조식미포함";  
+                                        } else { 
+                                            $breakfast_order = "조식포함";  
+                                        }
+                                    }
+                                    echo $breakfast_order;
+                                ?>								
                             </td>
                             <th>총인원</th>
                             <td>성인 <?=$row->adult?>명 아동 <?=$row->kids?>명</td>

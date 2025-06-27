@@ -400,9 +400,9 @@
                                         </div>
                                         <?php } ?> <br>
                                         <?php
-                                            $used_coupon_money_bath = $used_coupon_money / $bath_thai_price;
-                                            $used_mileage_money_bath = $used_mileage_money / $bath_thai_price;
-                                            $extra_cost_bath = $extra_cost / $bath_thai_price;
+                                            $used_coupon_money_bath = (int) round($used_coupon_money / $bath_thai_price);
+                                            $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
+                                            $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
                                         ?>
 										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_mileage_money_bath)?> TH(할인쿠폰) 
                                                 - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
@@ -464,10 +464,8 @@
                                         ?>
                                             <div class="flex__c" style="gap: 5px;">
                                                 원화계산 : 
-                                                <input type="text" style="width: 150px;"
-                                                    value="<?= number_format($order_price)?>" class="input_txt price">원  
-                                                | <input type="text" style="width: 150px;"  
-                                                    value="<?= number_format($order_price_bath) ?>" class="input_txt price"> 바트
+                                                <?= number_format($order_price)?>원  
+                                                | <?= number_format($order_price_bath) ?> 바트
                                             </div>
                                         <?php
                                             }
