@@ -660,6 +660,9 @@ class ReservationController extends BaseController
             $data['sup_options'] = $sup_options;
         }
 
+        $data['bath_thai_price'] = $this->setting['baht_thai'];
+        $data['gubun'] = $gubun;
+
 		if (!isset($row) || !is_array($row)) {
 			$row = []; // 최소한 빈 배열 전달
 		}
@@ -671,21 +674,80 @@ class ReservationController extends BaseController
     {
         try {
             $data = $this->request->getPost();
-
+            $gubun = $data['gubun'];
             $data['order_price'] = str_replace(",", "", $data['order_price']);
             $data['order_confirm_price'] = str_replace(",", "", $data['order_confirm_price']);
             $data['deposit_price'] = str_replace(",", "", $data['deposit_price']);
 
             $order_status = $data['order_status'];
             $order_no = $data['order_no'];
-
-
             $data['order_m_date'] = (string)Time::now('Asia/Seoul', 'en_US');
 
             if ($order_status == "R") {
                 $data["order_confirm_date"] = (string)Time::now('Asia/Seoul', 'en_US');
             } else if ($order_status == "Y") {
                 $data["order_c_date"] = (string)Time::now('Asia/Seoul', 'en_US');
+            }
+
+            $baht_thai = $this->setting['baht_thai'];
+
+            if($gubun == "hotel"){
+
+                $this->orderModel->updateData($order_idx, [
+                    "date_price" => ""
+                ]);
+
+                $goods_date = $data['goods_date'] ?? [];
+                $goods_price1 = $data['goods_price1'] ?? [];
+                $goods_price2 = $data['goods_price2'] ?? [];
+                $goods_price3 = $data['goods_price3'] ?? [];
+                $goods_price4 = $data['goods_price4'] ?? [];
+                $goods_price5 = $data['goods_price5'] ?? [];
+                $bed_type = $data['bed_type'] ?? [];
+
+                $order_day_cnt = $data['order_day_cnt'];
+
+                $date_price_op = explode("|", $data['date_price_option']);
+                $date_price_op = array_filter($date_price_op, function($item) {
+                    return trim($item) !== '';
+                });
+
+                $count_date_price = count($date_price_op);
+
+                if($order_day_cnt < $count_date_price){
+                    $date_price_op = array_slice($date_price_op, 0, $order_day_cnt);
+                    $date_price = implode("|", $date_price_op);
+                }else{
+
+                    for ($i = 0; $i < count($goods_date); $i++) {
+                        $dateRows[] = [
+                            'goods_date'    => $goods_date[$i] ?? '',
+                            'goods_price1'  => $goods_price1[$i] ?? '',
+                            'goods_price2'  => $goods_price2[$i] ?? '',
+                            'goods_price3'  => $goods_price3[$i] ?? '',
+                            'goods_price4'  => $goods_price4[$i] ?? '',
+                            'goods_price5'  => $goods_price5[$i] ?? '',
+                            'bed_type'      => $bed_type[$i] ?? '',
+                        ];
+                    }
+
+                    $room_r = array_map(function ($row) use ($baht_thai) {
+                        return implode(":", [
+                            $row['goods_date'],
+                            $row['goods_price1'],
+                            $row['goods_price2'],
+                            $row['goods_price3'],
+                            $row['goods_price4'],
+                            $row['goods_price5'],
+                            $row['bed_type'],
+                            $baht_thai,
+                        ]);
+                    }, $dateRows);
+
+                    $date_price = implode("|", $room_r);
+                }
+
+                $data['date_price'] = $date_price;
             }
 
             $this->orderModel->updateData($order_idx, $data);

@@ -68,7 +68,7 @@
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $bath_thai_price ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
@@ -97,7 +97,8 @@
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
-
+                <input type=hidden name="gubun" value='<?= $gubun ?>'>
+                <input type=hidden name="date_price_option" value='<?= $date_price ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -251,7 +252,9 @@
                                                     $temp .= '<input type="text" name="goods_price1[]" style="width: 70px;" value="'.$price[1].'"> 컨택가: ';
                                                     $temp .= '<input type="text" name="goods_price2[]" style="width: 70px;" value="'.$price[2].'"> 수익가: ';
                                                     $temp .= '<input type="text" name="goods_price3[]" style="width: 70px;" value="'.$price[3].'"> Extra베드가: ';
-                                                    $temp .= '<input type="text" name="price_extra[]" style="width: 70px;" value="'.$price[5].'">';
+                                                    $temp .= '<input type="hidden" name="goods_price4[]" value="'.$price[4].'">';
+                                                    $temp .= '<input type="text" name="goods_price5[]" style="width: 70px;" value="'.$price[5].'">';
+                                                    $temp .= '<input type="hidden" name="bed_type[]" value="'.$price[6].'">';
                                                     $temp .= '</div>';
 
                                                     // $temp .= $price[0] ." 기본가:" . $price[1] ." 컨택가:" . $price[2] ." 수익가:" . $price[3] ." Extra베드가:". $price[5] ."<br>";
@@ -388,13 +391,22 @@
                                         -
                                         <input type="text" style="width: 100px;" id="used_mileage_money" name="used_mileage_money"
                                                     value="<?= number_format($used_mileage_money) ?>" class="input_txt price">원(마일리지사용)
-                                        +
-                                        <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
-                                                    value="<?= number_format($extra_cost) ?>" class="input_txt price">원
-                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
-                                        원
+                                        <div style="margin-left: 43px; margin-top: 5px;">
+                                            +
+                                            <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
+                                                        value="<?= number_format($extra_cost) ?>" class="input_txt price">원
+                                            = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                            원
+                                        </div>
                                         <?php } ?> <br>
-										바트계산 : <?=number_format($order_price_bath)?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+                                        <?php
+                                            $used_coupon_money_bath = $used_coupon_money / $bath_thai_price;
+                                            $used_mileage_money_bath = $used_mileage_money / $bath_thai_price;
+                                            $extra_cost_bath = $extra_cost / $bath_thai_price;
+                                        ?>
+										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_mileage_money_bath)?> TH(할인쿠폰) 
+                                                - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
+                                                = <?=number_format($order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost_bath)?> TH
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
