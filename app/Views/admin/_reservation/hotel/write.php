@@ -404,7 +404,7 @@
                                             $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
                                             $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
                                         ?>
-										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_mileage_money_bath)?> TH(할인쿠폰) 
+										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_coupon_money_bath)?> TH(할인쿠폰) 
                                                 - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
                                                 = <?=number_format($order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost_bath)?> TH
                                     </td>
