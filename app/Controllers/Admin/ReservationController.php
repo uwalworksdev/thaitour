@@ -693,10 +693,6 @@ class ReservationController extends BaseController
 
             if($gubun == "hotel"){
 
-                $this->orderModel->updateData($order_idx, [
-                    "date_price" => ""
-                ]);
-
                 $goods_date = $data['goods_date'] ?? [];
                 $goods_price1 = $data['goods_price1'] ?? [];
                 $goods_price2 = $data['goods_price2'] ?? [];
