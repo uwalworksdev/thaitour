@@ -1984,6 +1984,7 @@ $(document).ready(function() {
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
+                showHideCaddy();
                 getOptions();
 
             }
