@@ -398,13 +398,22 @@
                                             원
                                         </div>
                                         <?php } ?> <br>
-       
+                                        <?php
+
+                                            $used_coupon_money_bath = (int) round($used_coupon_money / $bath_thai_price);
+                                            $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
+                                            $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
+
+                                            $price_won = $order_price - $used_coupon_money - $used_mileage_money;
+                                            $price = $order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath;
+                                        ?>
 										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_coupon_money_bath)?> TH(할인쿠폰) 
                                                 - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
                                                 = <?=number_format($order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost_bath)?> TH
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
+                                        
 										<input type="text" id="real_price_bath" name="real_price_bath"
                                                value="<?= number_format($real_price_bath)?>" class="input_txt price"
                                                style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
