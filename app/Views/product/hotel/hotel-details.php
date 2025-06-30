@@ -379,7 +379,7 @@
     .content-sub-hotel-detail .wrap_btn_book {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        /* align-items: center; */
         gap: 14px;
 
     }
@@ -1709,21 +1709,12 @@
                                             <?php
                                                 }
                                             ?>
-                                            <div class="wrap_btn_book">
-                                                <div class="flex__c btn_re">
-                                                    <?php if($price_won > 0) { ?>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
-                                                    <?php } else { ?>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
-                                                    <?php } ?>
-                                                    <!-- <button type="button" class="reservationx book-button book_btn_217">장바구니</button> -->
-                                                </div>
-                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
-                                            </div>
+                                            
                                         </div>
                                         <div class="wrap_bed_type">
                                             <div class="tit ">
                                                 <span>침대타입(요청사항)</span> 
+                                                
                                                 <div class="view_promotion view_promotion2">
                                                     <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
                                                     <?php 
@@ -1737,6 +1728,7 @@
                                                     ?>
                                                     
                                                 </div>
+                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                             </div>
                                                                                                
                                             <div class="wrap_input_radio">
@@ -1801,6 +1793,18 @@
                                             </div>
                                             
                                         </div>
+                                        <div class="wrap_btn_book">
+                                                <div class="flex__c btn_re">
+                                                    <?php if($price_won > 0) { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
+                                                    <?php } else { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
+                                                    <?php } ?>
+                                                    <button type="button" class="reservationx book-button default-button">장바구니</button>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button default-button">문의하기</button>
+                                                </div>
+                                                
+                                            </div>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
