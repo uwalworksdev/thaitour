@@ -1992,6 +1992,17 @@
     border: 1px solid var(--bs-point);
 }
 
+.content-sub-hotel-detail .book-button.default-button {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.content-sub-hotel-detail .wrap_btn_book_note {
+    margin-left: auto;
+}
+
+
 /* .content-sub-hotel-detail .book-button:hover {
     background-color: var(--bs-point);
     color: #fff;
@@ -6291,7 +6302,7 @@
 }
 
 .custom-golf-detail .section-wrap-s .btn-s-wrap .btn-price-content {
-    width: 300px;
+    width: 222px;
     height: 50px;
     font-size: 18px !important;
 }
@@ -6300,5 +6311,11 @@
     background-color: #fff !important;
     color: #252525;
     border: 1px solid #dbdbdb;
+}
+
+.section-wrap-s .btn-s-wrap .default-button {
+    background-color: #fff !important;
+    color: #252525;
+    border: 1px solid #ccc;
 }
 
