@@ -381,6 +381,11 @@
         width: 100%;
         border-top: 2px solid #252525;
         overflow: hidden;
+        display: block;
+    }
+
+    .evaluate_write_section .evaluate_table tbody {
+        display: block;
     }
 
     .evaluate_write_section .evaluate_table colgroup {
