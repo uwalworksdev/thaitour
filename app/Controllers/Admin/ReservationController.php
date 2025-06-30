@@ -689,13 +689,13 @@ class ReservationController extends BaseController
                 $data["order_c_date"] = (string)Time::now('Asia/Seoul', 'en_US');
             }
 
+            $used_coupon_money = $data['used_coupon_money'] ?? 0;
+            $used_mileage_money = $data['used_mileage_money'] ?? 0;
+            $extra_cost = $data['extra_cost'] ?? 0;            
             $baht_thai = $this->setting['baht_thai'];
 
             if($gubun == "hotel"){
                 $order_room_cnt = $data['order_room_cnt'] ?? 1;
-                $used_coupon_money = $data['used_coupon_money'] ?? 0;
-                $used_mileage_money = $data['used_mileage_money'] ?? 0;
-                $extra_cost = $data['extra_cost'] ?? 0;
 
                 $goods_date = $data['goods_date'] ?? [];
                 $goods_price1 = $data['goods_price1'] ?? [];
@@ -781,15 +781,15 @@ class ReservationController extends BaseController
             }
 
             if($gubun == "golf") {
-                $main_option_tot = $data['main_option_tot'] ?? "";
-                $main_option_tot_bath = $data['main_option_tot_bath'] ?? "";
+                $main_option_tot = $data['main_option_tot'] ?? 0;
+                $main_option_tot_bath = $data['main_option_tot_bath'] ?? 0;
                 $main_option_cnt = $data['main_option_cnt'] ?? "";
                 $main_option_name = $data['main_option_name'] ?? "";
 
-                $caddy_option_idx = $data['caddy_option_idx'] ?? "";
-                $caddy_option_cnt = $data['caddy_option_cnt'] ?? "";
-                $cart_option_idx = $data['cart_option_idx'] ?? "";
-                $cart_option_cnt = $data['cart_option_cnt'] ?? "";
+                // $caddy_option_idx = $data['caddy_option_idx'] ?? "";
+                // $caddy_option_cnt = $data['caddy_option_cnt'] ?? "";
+                // $cart_option_idx = $data['cart_option_idx'] ?? "";
+                // $cart_option_cnt = $data['cart_option_cnt'] ?? "";
 
                 $ve_op_idx = $data['ve_op_idx'] ?? [];
                 $ve_op_name = $data['ve_op_name'] ?? [];
@@ -813,15 +813,20 @@ class ReservationController extends BaseController
                                         ])
                                         ->update();
 
-                $this->orderOptionModel->update($caddy_option_idx, [
-                    "option_cnt" => $caddy_option_cnt,
-                ]);
+                // $this->orderOptionModel->update($caddy_option_idx, [
+                //     "option_cnt" => $caddy_option_cnt,
+                // ]);
 
-                $this->orderOptionModel->update($cart_option_idx, [
-                    "option_cnt" => $cart_option_cnt,
-                ]);
+                // $this->orderOptionModel->update($cart_option_idx, [
+                //     "option_cnt" => $cart_option_cnt,
+                // ]);
+
+                $order_price = (int)$main_option_tot;
+                $order_price_bath = (int)$main_option_tot_bath;
 
                 foreach($ve_op_idx as $key => $item){
+                    $order_price += (int)$ve_op_tot[$key];
+                    $order_price_bath += (int)$ve_op_tot_bath[$key];
                     $this->orderOptionModel->update($item, [
                         "option_name_new" => $ve_op_name[$key],
                         "option_cnt" => $ve_op_cnt[$key],
@@ -831,6 +836,8 @@ class ReservationController extends BaseController
                 }
 
                 foreach($op_idx as $key => $item){
+                    $order_price += (int)$op_tot[$key];
+                    $order_price_bath += (int)$op_tot_bath[$key];
                     $this->orderOptionModel->update($item, [
                         "option_name" => $op_name[$key],
                         "option_cnt" => $op_cnt[$key],
@@ -838,6 +845,13 @@ class ReservationController extends BaseController
                         "option_tot_bath" => $op_tot_bath[$key]
                     ]);
                 }
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['inital_price'] = $order_price;
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+                $data['last_price'] = $last_price;
             }
 
             $this->orderModel->updateData($order_idx, $data);
