@@ -162,13 +162,13 @@
                                     </td>
                                     <th>그린피</th>
                                     <td>
-                                         <p><span>그린피 : </span>
+                                         <div class="price_wrapper"><span>그린피 : </span>
                                             <input type="text" id="main_option_tot" name="main_option_tot"
-                                               value="<?=number_format($main[0]["option_tot"])?>" class="input_txt number-only price" style="width:100px;"/> 원
+                                               value="<?=number_format($main[0]["option_tot"])?>" class="input_txt number-only price price_won" style="width:100px;"/> 원
                                             <input type="text" id="main_option_tot_bath" name="main_option_tot_bath"
-                                               value="<?=number_format($main[0]["option_tot_bath"])?>" class="input_txt number-only price" style="width:100px;"/>
+                                               value="<?=number_format($main[0]["option_tot_bath"])?>" class="input_txt number-only price price_bath" style="width:100px;"/>
                                             바트 X <input type="text" id="main_option_cnt" name="main_option_cnt"
-                                               value="<?=number_format($main[0]["option_cnt"])?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>인</p>
+                                               value="<?=number_format($main[0]["option_cnt"])?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>인</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -235,12 +235,12 @@
                                     <td>
                                         <div class="flex" style="flex-direction: column; gap: 5px;">
                                             <?php foreach ($vehicle as $key => $item): ?>
-                                                <span>골프장 왕복 픽업 차량: 
+                                                <span class="price_wrapper">골프장 왕복 픽업 차량: 
                                                     <input type="hidden" name="ve_op_idx[]" value="<?= $item['opt_idx'] ?>"/> 
                                                     <input type="text" name="ve_op_name[]" value="<?= !empty($item['option_name_new']) ? $item['option_name_new'] : $item['option_name'] ?>" class="input_txt" style="width:150px;"/> 
                                                     x <input type="text" name="ve_op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
-                                                금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price" style="width:100px;"/>원 / 
-                                                <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price" style="width:100px;"/>TH</span>
+                                                금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price price_won" style="width:100px;"/>원 / 
+                                                <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price price_bath" style="width:100px;"/>TH</span>
                                             <?php endforeach; ?>
                                         </div>
                                     </td>
@@ -248,12 +248,12 @@
                                     <td>
                                         <div class="flex" style="flex-direction: column; gap: 5px;">
                                             <?php foreach ($option as $key => $item): ?>
-                                                <div>
+                                                <div class="price_wrapper">
                                                     <input type="hidden" name="op_idx[]" value="<?= $item['opt_idx'] ?>"/> 
                                                     <input type="text" name="op_name[]" value="<?= $item['option_name'] ?>" class="input_txt" style="width:200px;"/> 
                                                     x <input type="text" name="op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
-                                                    금액 <input type="text" name="op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price" style="width:100px;"/>원 / 
-                                                    <input type="text" name="op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price" style="width:100px;"/>TH</span>
+                                                    금액 <input type="text" name="op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price price_won" style="width:100px;"/>원 / 
+                                                    <input type="text" name="op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price price_bath" style="width:100px;"/>TH</span>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
@@ -615,9 +615,42 @@
     </div>
 
 	<script>
+    $(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$(".price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+            let bath = parseFloat($(this).val().replace(/,/g, '')) || 0 ;
+
+			// 환산된 원화 계산
+			let won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$(this).closest(".price_wrapper").find(".price_won").val(won.toLocaleString('en-US'));
+		});
+
+        $(".price_won").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+            let won = parseFloat($(this).val().replace(/,/g, '')) || 0 ;
+
+			// 환산된 원화 계산
+			let bath = Math.round(won / baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$(this).closest(".price_wrapper").find(".price_bath").val(bath.toLocaleString('en-US'));
+		});
+	});
+
     $(document).on('input', '.number-only', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
+
     function invoiceGolf(order_no)
     {
         if (!confirm('인보이스를 전송 하시겠습니까?'))

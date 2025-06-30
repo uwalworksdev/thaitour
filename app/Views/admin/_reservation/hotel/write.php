@@ -739,7 +739,7 @@
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#voucher_price_won").val(won.toLocaleString());
+			$("#voucher_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>
