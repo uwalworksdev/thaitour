@@ -66,7 +66,7 @@ $(document).ready(function() {
     $(document).ready(function() {
         // 페이지 어디든 클릭 시 실행
         $(document).on('click', function(event) {
-            showHideCaddy();
+            // showHideCaddy();
             calculatePrice();			
         });
     });
