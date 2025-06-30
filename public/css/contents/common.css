@@ -972,11 +972,13 @@ figure.cover_img img {
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
+  width: 44rem;
 }
 .notice_item__left {
   display: flex;
   align-items: center;
-  flex: 1;
+  /* flex: 1; */
+  width: 100%;
 }
 .notice_item__icon {
   border-style: solid;
@@ -1004,7 +1006,8 @@ figure.cover_img img {
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
-  flex: 1;
+  /* flex: 1; */
+  width: 100%;
 }
 .notice_item__date {
   font-size: 18px;
@@ -1013,7 +1016,7 @@ figure.cover_img img {
   line-height: 1.444;
 }
 .main_section_notice__more {
-  margin: 0 93px 0 22px;
+  margin: 0 1rem 0 2rem;
 }
 .ico_plus {
   width: 14px;
