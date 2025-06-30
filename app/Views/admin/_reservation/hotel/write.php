@@ -680,7 +680,7 @@
             const endDate = new Date(end);
 
             const diffTime = endDate - startDate;
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
             if (diffDays > 0) {
                 $("#order_day_cnt").val(diffDays);
