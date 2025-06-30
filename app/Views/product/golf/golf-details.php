@@ -1556,6 +1556,8 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $('#final_option_list').html(data);
+                    console.log(data);
+                    
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     
 					var idx                 = $(".card-item").data('idx');
@@ -1600,7 +1602,8 @@ $(document).ready(function() {
                     $("#o_caddy_due").val( $(".card-item").data('o_caddy_due') );
                     $("#o_cart_cont").val( $(".card-item").data('o_cart_cont') );
                     $("#o_caddy_cont").val( $(".card-item").data('o_caddy_cont') );
-					
+                    
+
 					if (day_yn == "Y") {
                         $(".day_option_first").show();
                     } else { 

@@ -149,9 +149,6 @@
         <div class="_wrap-info-payment">
             <div class="_wrap-info">
 
-                <div class="calendar-con">
-                    <?php echo view("/product/reservation_inc.php"); ?>
-                </div>
                 <div class="sub-header-hotel-detail">
                     <div class="main nav-list">
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
@@ -161,6 +158,10 @@
                             리얼리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품 Q&A(<?=$product_qna["nTotalCount"] ?? 0?>)</p>
                     </div>
+                </div>
+
+                <div class="calendar-con">
+                    <?php echo view("/product/reservation_inc.php"); ?>
                 </div>
 
                 <div class="section2" id="section2">
