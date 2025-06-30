@@ -3998,6 +3998,11 @@
     min-width: 14rem;
   }
 
+  .content-sub-hotel-detail .default-button {
+    height: 6rem;
+
+  }
+
   .content-sub-hotel-detail .book-button:disabled {
     padding: 1.2rem 1.5rem;
   }
