@@ -666,7 +666,7 @@
         if (start && !isNaN(dayCnt) && dayCnt > 0) {
             const startDate = new Date(start);
             const endDate = new Date(startDate);
-            endDate.setDate(startDate.getDate() + dayCnt - 1);
+            endDate.setDate(startDate.getDate() + dayCnt);
             $("#end_date").val(formatDate(endDate));
         }
     });
