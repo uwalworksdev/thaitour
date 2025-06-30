@@ -692,6 +692,10 @@ class ReservationController extends BaseController
             $baht_thai = $this->setting['baht_thai'];
 
             if($gubun == "hotel"){
+                $order_room_cnt = $data['order_room_cnt'] ?? 1;
+                $used_coupon_money = $data['used_coupon_money'] ?? 0;
+                $used_mileage_money = $data['used_mileage_money'] ?? 0;
+                $extra_cost = $data['extra_cost'] ?? 0;
 
                 $goods_date = $data['goods_date'] ?? [];
                 $goods_price1 = $data['goods_price1'] ?? [];
@@ -742,6 +746,36 @@ class ReservationController extends BaseController
 
                     $date_price = implode("|", $room_r);
                 }
+
+                $price_won = 0;
+                $price_bath = 0;
+                $extra_won = 0;
+                $extra_bath = 0;
+
+                for ($i = 0; $i < count($goods_date); $i++) {
+
+                    $price2 = $goods_price2[$i] ?? 0;
+                    $price3 = $goods_price3[$i] ?? 0;
+                    $price5 = $goods_price5[$i] ?? 0;
+
+                    $price_won  += (int)(((int)$price2 + (int)$price3) * (int)($order_room_cnt) * $baht_thai);
+                    $price_bath += ((int)$price2 + (int)$price3) * (int)($order_room_cnt);
+                    $extra_won += (int)$price5 * (int)($order_room_cnt) * $baht_thai;
+                    $extra_bath += (int)$price5 * (int)($order_room_cnt);
+                }
+
+                $order_price = $price_won + $extra_won;
+                $order_price_bath = $price_bath + $extra_bath;
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+                $data['price'] = $price_bath;
+                $data['price_won'] = $price_won;
+                $data['extra_won'] = $extra_won;
+                $data['extra_bath'] = $extra_bath;
+                $data['last_price'] = $last_price;
 
                 $data['date_price'] = $date_price;
             }
