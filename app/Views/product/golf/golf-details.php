@@ -1556,7 +1556,6 @@ $(document).ready(function() {
                 },
                 success: function (data) {
                     $('#final_option_list').html(data);
-                    console.log(data);
                     
                     $("#final_option_list .card-item").eq(0).trigger("click");
                     
