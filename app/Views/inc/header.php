@@ -1153,9 +1153,17 @@ document.addEventListener('DOMContentLoaded', function () {
         $(".dropdown").toggle();
     })
 
+    // $(".lang_item").click(function () {
+    //     $lang = $(this).text();
+    //     $(".lang_selected").find("span").text($lang);
+    //     $(".dropdown").hide();
+    // })
+
     $(".lang_item").click(function () {
-        $lang = $(this).text();
-        $(".lang_selected").find("span").text($lang);
+        alert('준비중 입니다.');
         $(".dropdown").hide();
+        return false;
     })
+
+    
 </script>
