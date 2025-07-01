@@ -597,6 +597,29 @@
                                 </tbody>
                             </table>
 
+                           <br>                
+                            <div style="font-size:12pt;margin-bottom:10px">■ 관리 히스토리</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="90%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>수정일자</th>
+                                    <td>
+										<div>
+                                           <p> 홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
+                                            <p>홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
+                                            <p>홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                </tbody>
+                            </table>
                            
                         <!-- // listBottom -->
 

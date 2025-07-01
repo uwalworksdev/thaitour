@@ -37,13 +37,13 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     group by c.c_idx ";
 
 $nTotalCount = $connect->query($total_sql)->getNumRows();
-
+ 
 ?>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_1" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_3" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>

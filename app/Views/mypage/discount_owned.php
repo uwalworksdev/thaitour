@@ -34,13 +34,13 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
 					on c.coupon_mst_idx = m.idx
                 where 1=1 and c.status != 'C' and c.get_issued_yn = 'Y' and c.user_id = '{$_SESSION["member"]["id"]}' ";
 $nTotalCount = $connect->query($total_sql)->getNumRows();
-
+ 
 ?>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_3" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
@@ -49,6 +49,10 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                     <a class="slide_tab_btn active" href="../mypage/discount_owned">지난 쿠폰</a>
                     <!-- <a class="slide_tab_btn" href="../mypage/discount_download">쿠폰 다운로드</a> -->
                     <div></div>
+                    <div class="search_coupon_mypage">
+                        <input type="text" class="keyword" id="c_keyword" placeholder="쿠폰인증 글씨를 넣어주세요">
+                        <button type="button" class="btn_send_coupon">쿠폰입력</button>
+                    </div>
                 </div>
                 <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                 <table class="details_table" style="display: table;">
