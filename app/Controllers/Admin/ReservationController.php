@@ -902,7 +902,7 @@ class ReservationController extends BaseController
                 $data['order_price_bath'] = $order_price_bath;
             }
 
-            if($gubun == "tour" || $gubun == "ticket" || $gubun == "restaurant") {
+            if($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
                 $order_price = 0;
                 $order_price_bath = 0;
 
