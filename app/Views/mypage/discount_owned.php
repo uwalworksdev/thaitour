@@ -61,7 +61,7 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                     <tr>
                         <th>발행일</th>
                         <th>쿠폰명</th>
-                        <th>사용일자</th>
+                        <th>사용기간</th>
                     </tr>
                     </thead>
                     <tbody>
