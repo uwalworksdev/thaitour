@@ -231,7 +231,7 @@ class InvoiceController extends BaseController
 
 				// 옵션 정보 가져오기
 				$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 				$query = $builder->where('order_idx', $idx)->get();
 				$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -245,7 +245,7 @@ class InvoiceController extends BaseController
 
 					$totalOptionBath = 0;
 					foreach ($optionResult as $option) {
-						$totalOptionBath += $option->option_cnt * $option->option_price;
+						$totalOptionBath += $option->option_cnt * $option->option_price_bath;
 					}
 					$order->total_options = $totalOptionBath;
 					$order->total_bath = $order->real_price_bath + $totalOptionBath;

@@ -417,7 +417,7 @@ class VoucherController extends BaseController
 			// 	$order_option = $result->order_option_new;
 			// }
 			$builder = $db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 			$query = $builder->where('order_idx', $idx)->get();
 			$optionResult = $query->getResult(); 
 
@@ -774,7 +774,7 @@ class VoucherController extends BaseController
 
 
 		$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_name_eng, option_tot, option_cnt, option_date, option_qty, option_price");
+				$builder->select("option_name, option_name_eng, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 				$query = $builder->where('order_idx', $result->order_idx)->get();
 				$optionResult = $query->getResult();
 
@@ -882,7 +882,7 @@ class VoucherController extends BaseController
 		}
 
 		// $builder = $db->table('tbl_order_option');
-		// 		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+		// 		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 		// 		$query = $builder->where('order_idx', $result->order_idx)->get();
 		// 		$optionResult = $query->getResult();
 

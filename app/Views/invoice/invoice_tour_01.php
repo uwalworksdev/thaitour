@@ -186,10 +186,10 @@ $setting = homeSetInfo();
                                 <th >옵션</th>
                                 <td>
                                     <?php foreach($row->options as $index => $option):
-                                        $option_m =  $option->option_price * $option->option_cnt;
+                                        $option_m =  $option->option_price_bath * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <p><?=$option->option_name?>: <?=$option->option_price?>바트 x <?=$option->option_cnt?></p>
+                                    <p><?=$option->option_name?>: <?=$option->option_price_bath?>바트 x <?=$option->option_cnt?></p>
                                     <?php endforeach;?>
                                     
                                 </td>
@@ -215,7 +215,7 @@ $setting = homeSetInfo();
                     <tbody>
                         
                         <tr>
-                            <th class="text-center" style="">유의사항</th>
+                            <th class="text-center">유의사항</th>
                             <td><?=viewSQ($notice_contents)?></td>
                         </tr>
                     </tbody>

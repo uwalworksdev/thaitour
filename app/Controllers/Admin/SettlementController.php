@@ -861,7 +861,7 @@ class SettlementController extends BaseController
                 $optionDetail = $this->optionTours->find($idx);
                 if ($optionDetail) {
                     $data['tour_option'][] = $optionDetail;
-                    $data['total_price'] += $optionDetail['option_price'];
+                    $data['total_price'] += $optionDetail['option_price_bath'];
                 }
             }
         }

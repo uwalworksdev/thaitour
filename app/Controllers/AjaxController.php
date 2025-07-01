@@ -2445,7 +2445,7 @@ public function get_golf_option() {
 			else if($row->order_gubun == "spa" || $row->order_gubun == "ticket" || $row->order_gubun == "restaurant"){
 
 				$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
 				$query = $builder->where('order_idx', $row->order_idx)->get();
 				$optionResult = $query->getResult();
 

@@ -499,10 +499,10 @@
                                 <th style="width:20%">옵션</th>
                                 <td style="width:30%">
                                     <?php foreach($row->options as $index => $option):
-                                        $option_m =  $option->option_tot * $option->option_cnt;
+                                        $option_m =  $option->option_price * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <p><?=$option->option_name?>: <?=round(convertToBath($option->option_tot))?>바트 x <?=$option->option_cnt?></p>
+                                    <p><?=$option->option_name?>: <?=round(convertToBath($option->option_price))?>바트 x <?=$option->option_cnt?></p>
                                     <?php endforeach;?>
                                     
                                 </td>

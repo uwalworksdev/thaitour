@@ -68,8 +68,7 @@
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $bath_thai_price ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
@@ -99,12 +98,10 @@
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
                 <input type=hidden name="idx_tour" value='<?= $tour_orders['idx'] ?>'>
-
+                <input type=hidden name="gubun" value='<?= $gubun ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
-
-
                         <div class="listBottom">
                             <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(투어)</div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -120,8 +117,7 @@
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <?= $product_name ?><br><?= $tours_subject ?>
-                                        <input type=hidden name="product_name" value='<?= $product_name ?>'>
+                                        <input type="text" name="product_name" value='<?= $product_name ?>'>
                                     </td>
                                     <th>주문번호</th>
                                     <td>
@@ -182,56 +178,51 @@
                                 <tr>
                                     <th>성인신청</th>
                                     <td>
-                                        <?= $people_adult_cnt ?>명 X <?= number_format($people_adult_price / $people_adult_cnt) ?>원 = <?= number_format($people_adult_price) ?>원
-                                         (<?= $people_adult_cnt ?>명 X <?= number_format($adult_price_bath / $people_adult_cnt) ?>바트 = <?= number_format($adult_price_bath) ?>바트)
+                                        <input type="text" name="people_adult_cnt" value="<?= $people_adult_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                        X <input type="text" name="ori_people_adult_price" value="<?= number_format($people_adult_price ?? 0 / $people_adult_cnt) ?>" class="input_txt number-only price" style="width:100px;"/>원 
+                                        = <?= number_format($people_adult_price) ?>원
+                                        (<?= $people_adult_cnt ?>명 X <?= number_format($adult_price_bath ?? 0 / $people_adult_cnt) ?>바트 = <?= number_format($adult_price_bath) ?>바트)
                                     </td>
                                     <th>아동신청</th>
                                     <td>
-                                        <?php if ($people_kids_price > 0) { ?>
-                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price / $people_kids_cnt) ?>원 = <?= number_format($people_kids_price) ?>원
-                                            (<?= $people_kids_cnt ?>명    X <?= number_format($kids_price_bath / $people_kids_cnt) ?>바트 = <?= number_format($kids_price_bath) ?>바트)
-                                        <?php } else { ?>
-                                            0원  (0 바트)
-                                        <?php } ?>
+                                        <input type="text" name="people_kids_cnt" value="<?= $people_kids_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                        X <input type="text" name="ori_people_kids_price" value="<?= number_format($people_kids_price ?? 0 / $people_kids_cnt) ?>" class="input_txt number-only price" style="width:100px;"/>원 
+                                        = <?= number_format($people_kids_price) ?>원
+                                        (<?= $people_kids_cnt ?>명  X <?= number_format($kids_price_bath ?? 0 / $people_kids_cnt) ?>바트 = <?= number_format($kids_price_bath) ?>바트)
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>유아신청</th>
                                     <td>
-                                        <?php if ($people_baby_price > 0 && $people_baby_cnt > 0) { ?>
-                                            <?= $people_baby_cnt ?>명 X <?= number_format($people_baby_price / $people_baby_cnt) ?>원 = <?= number_format($people_baby_price) ?>원
-                                              (<?= $people_baby_cnt ?>명 X <?= number_format($baby_price_bath / $people_baby_cnt) ?>바트 = <?= number_format($baby_price_bath) ?>바트)
-                                        <?php } else {?>
-                                            0원   (0 바트)
-                                        <?php } ?>
+                                        <input type="text" name="people_baby_cnt" value="<?= $people_baby_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                        X <input type="text" name="ori_people_baby_price" value="<?= number_format($people_baby_price ?? 0 / $people_baby_cnt) ?>" class="input_txt number-only price" style="width:100px;"/>원 
+                                        = <?= number_format($people_baby_price) ?>원
+                                        (<?= $people_baby_cnt ?>명  X <?= number_format($baby_price_bath ?? 0 / $people_baby_cnt) ?>바트 = <?= number_format($baby_price_bath) ?>바트)            
                                     </td>
                                     <th>전체 옵션</th>
                                     <td>
                                     <?php if (!empty($tour_option)): ?>
                                         <?php 
                                         foreach ($tour_option as $option): ?>
-                                            <p> <?= $option->option_name?>: <?= $option->option_cnt ?>명 X <?= number_format($option->option_price_won) ?>원 = <?= number_format($option->option_cnt * $option->option_price_won) ?>원
-                                              ( <?= $option->option_cnt ?>명 X <?=number_format( $option->option_price) ?>바트 = <?= number_format($option->option_cnt * $option->option_price) ?>바트)
+                                            <p> 
+                                                <input type="hidden" name="op_idx[]" value="<?= $option->opt_idx ?>"/>
+                                                <input type="text" name="op_name[]" value="<?= $option->option_name?>" class="input_txt" style="width:200px;"/> : 
+                                                <input type="text" name="op_cnt[]" value="<?= $option->option_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                                X <input type="text" name="op_price[]" value="<?= number_format($option->option_price) ?>" class="input_txt number-only price" style="width:100px;"/>원 
+                                                = <?= number_format($option->option_cnt * $option->option_price) ?>원
+                                              ( <?= $option->option_cnt ?>명 X <?=number_format( $option->option_price_bath) ?>바트 = <?= number_format($option->option_cnt * $option->option_price_bath) ?>바트)
                                             </p>
                                         <?php endforeach; ?>
                                         
                                     <?php endif; ?>
                                 </tr>
 
-                               
-                               
                                 <tr>
                                     <th>예약날짜</th>
                                     <td>
-                                        <?php 
-                                            if(!empty($order_date)){
-                                        ?>
-                                            <?= str_replace("-", ".", $order_date) ?>
-                                            <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                                        <?php 
-                                            }
-                                        ?>
+                                        <input type="text" id="order_date" name="order_date"
+                                               value="<?= $order_date ?>" class="input_txt" style="width:40%"/>
                                     </td>
                                     <th>미팅(장소/시간)</th>
                                     <td>

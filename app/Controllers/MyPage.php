@@ -863,7 +863,7 @@ public function reservationList() {
                     $optionDetail = $this->optionTours->find($idx);
                     if ($optionDetail) {
                         $data['tour_option'][] = $optionDetail;
-                        $data['total_price'] += $optionDetail['option_price'];
+                        $data['total_price'] += $optionDetail['option_price_bath'];
                     }
                 }
                 $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
@@ -1037,7 +1037,7 @@ public function reservationList() {
                     $optionDetail = $this->optionTours->find($idx);
                     if ($optionDetail) {
                         $data['tour_option'][] = $optionDetail;
-                        $data['total_price'] += $optionDetail['option_price'];
+                        $data['total_price'] += $optionDetail['option_price_bath'];
                     }
                 }
 */				

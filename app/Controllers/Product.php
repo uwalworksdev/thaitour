@@ -3228,8 +3228,11 @@ class Product extends BaseController
                 $result = $this->db->query($sql);
                 $row = $result->getRowArray();
 
-                $option_tot = $row['option_price'] * $option_idx[1] * $this->setting['baht_thai'];
+                $option_tot = (int)($row['option_price'] * $option_idx[1] * $this->setting['baht_thai']);
                 $option_sum = $option_sum + $option_tot;
+                $option_price_bath = $row['option_price'];
+                $option_price = (int)($row['option_price'] * $this->setting['baht_thai']);
+
                 $sql = "INSERT INTO tbl_order_option  SET  
 															 option_type  = 'tour'
 														   , order_idx    = '" . $order_idx . "'
@@ -3239,8 +3242,10 @@ class Product extends BaseController
 														   , option_tot	  = '" . $option_tot . "'
 														   , option_cnt	  = '" . $option_idx[1] . "'
 														   , option_date  =  now()
-														   , option_price = '" . $row['option_price'] . "'	
-														   , option_qty   = '" . $option_idx[1] . "' ";
+														   , option_price = '" . $option_price . "'	
+														   , option_price_bath = '" . $option_price_bath . "'
+														   , option_qty   = '" . $option_idx[1] . "'
+                                                           , baht_thai = '" . $this->setting['baht_thai'] . "' ";
                 $result = $this->db->query($sql);
             }
 
@@ -3515,6 +3520,7 @@ class Product extends BaseController
             $builder->where('product_idx', $product_idx);
             $builder->where('info_idx', $infoIndex);
             $builder->where('use_yn', 'Y');
+            $builder->where('moption_name !=', '');
             $builder->orderBy('onum', 'asc');
             $builder->orderBy('code_idx', 'asc');
             $query = $builder->get();
