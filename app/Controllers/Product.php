@@ -3229,6 +3229,8 @@ class Product extends BaseController
                 $row = $result->getRowArray();
 
                 $option_tot = (int)($row['option_price'] * $option_idx[1] * $this->setting['baht_thai']);
+                $option_tot_bath = (int)($row['option_price'] * $option_idx[1]);
+
                 $option_sum = $option_sum + $option_tot;
                 $option_price_bath = $row['option_price'];
                 $option_price = (int)($row['option_price'] * $this->setting['baht_thai']);
@@ -3240,6 +3242,7 @@ class Product extends BaseController
 														   , option_name  = '" . $row['option_name'] . "'	
 														   , option_idx	  = '" . $option_idx[0] . "'
 														   , option_tot	  = '" . $option_tot . "'
+														   , option_tot_bath = '" . $option_tot_bath . "'
 														   , option_cnt	  = '" . $option_idx[1] . "'
 														   , option_date  =  now()
 														   , option_price = '" . $option_price . "'	
