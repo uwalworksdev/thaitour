@@ -256,7 +256,7 @@ class PdfController extends BaseController
 
         // 옵션 정보 가져오기
         $builder = $db->table('tbl_order_option');
-        $builder->select("option_name, option_tot, option_cnt, option_date, option_price_bath, option_qty, baht_thai");
+        $builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
         $query = $builder->where('order_idx', $order_idx)->get();
         $optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -357,7 +357,7 @@ class PdfController extends BaseController
 
         // 옵션 정보 가져오기
 		$builder = $db->table('tbl_order_option');
-		$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
+		$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 		$query = $builder->where('order_idx', $order_idx)->get();
 		$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -1101,7 +1101,7 @@ class PdfController extends BaseController
 			// 	$order_option = $result->order_option_new;
 			// }
 			$builder = $db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
+			$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 			$query = $builder->where('order_idx', $order_idx)->get();
 			$optionResult = $query->getResult(); 
 
@@ -1197,7 +1197,7 @@ class PdfController extends BaseController
 
 
 		$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_name_eng, option_tot, option_cnt, option_date, option_qty, option_price_bath");
+				$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 				$query = $builder->where('order_idx', $result->order_idx)->get();
 				$optionResult = $query->getResult();
 

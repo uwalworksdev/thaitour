@@ -417,7 +417,7 @@ class VoucherController extends BaseController
 			// 	$order_option = $result->order_option_new;
 			// }
 			$builder = $db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price_bath");
+			$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 			$query = $builder->where('order_idx', $idx)->get();
 			$optionResult = $query->getResult(); 
 
