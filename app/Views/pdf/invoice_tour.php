@@ -502,7 +502,7 @@
                                         $option_m =  $option->option_price_bath * $option->option_cnt;
                                         $total_option += $option_m;
                                     ?>
-                                    <p><?=$option->option_name?>: <?=round(convertToBath($option->option_price_bath))?>바트 x <?=$option->option_cnt?></p>
+                                    <p><?=$option->option_name?>: <?=round($option->option_price_bath)?>바트 x <?=$option->option_cnt?></p>
                                     <?php endforeach;?>
                                     
                                 </td>
