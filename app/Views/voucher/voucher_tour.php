@@ -147,7 +147,7 @@ $setting = homeSetInfo();
                                         <?php
                                             if($type == "admin"){
                                         ?>    
-                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$order_option?>">    
+                                            <input type="text" style="width: 300px;" name="order_option_new" value="<?=$result->order_option_new?>">    
                                         <?php
                                             }
                                         ?>

@@ -416,19 +416,20 @@ class VoucherController extends BaseController
 			// if(!empty($result->order_option_new)){
 			// 	$order_option = $result->order_option_new;
 			// }
-			$builder = $db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
-			$query = $builder->where('order_idx', $idx)->get();
-			$optionResult = $query->getResult(); 
-
-			$order_option = '';
-			foreach($optionResult as $option){
-				if($option->option_cnt > 0)
-					$order_option .= $option->option_name . ' x ' .$option->option_cnt . ' / ' ;
-			}
-			$order_option = rtrim($order_option, ' /');
+			
 		}
 
+		$builder = $db->table('tbl_order_option');
+		$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
+		$query = $builder->where('order_idx', $idx)->get();
+		$optionResult = $query->getResult(); 
+
+		$order_option = '';
+		foreach($optionResult as $option){
+			if($option->option_cnt > 0)
+				$order_option .= $option->option_name . ' x ' .$option->option_cnt . ' / ' ;
+		}
+		$order_option = rtrim($order_option, ' /');
 
 		$builder = $db->table('tbl_policy_info');
 		$policy = $builder->whereIn('p_idx', [25])

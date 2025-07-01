@@ -1097,9 +1097,6 @@ class PdfController extends BaseController
 				$order_remark = $result->order_remark_new;
 			}
 
-			// if(!empty($result->order_option_new)){
-			// 	$order_option = $result->order_option_new;
-			// }
 			$builder = $db->table('tbl_order_option');
 			$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 			$query = $builder->where('order_idx', $order_idx)->get();
@@ -1112,7 +1109,9 @@ class PdfController extends BaseController
 			}
 			$order_option = rtrim($order_option, ' /');
 		
-
+			if(!empty($result->order_option_new)){
+				$order_option = $result->order_option_new;
+			}
 
 		$builder = $db->table('tbl_policy_info');
 		$policy = $builder->whereIn('p_idx', [25])
