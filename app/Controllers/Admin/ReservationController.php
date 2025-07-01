@@ -903,7 +903,38 @@ class ReservationController extends BaseController
             }
 
             if($gubun == "tour" || $gubun == "ticket" || $gubun == "restaurant") {
-            
+                $order_price = 0;
+                $order_price_bath = 0;
+
+                $op_idx = $data['op_idx'] ?? [];
+                $op_name = $data['op_name'] ?? [];
+                $op_cnt = $data['op_cnt'] ?? [];
+                $op_price = $data['op_price'] ?? [];
+
+                foreach($op_idx as $key => $item){
+                    $option_tot = (int)$op_price[$key] * (int)$op_cnt[$key];
+                    $order_price += $option_tot;
+                    $option_tot_bath = (int)($option_tot / $baht_thai);
+                    $order_price_bath += $option_tot_bath;
+                    $option_price = $op_price[$key];
+                    $option_price_bath = (int)($option_price / $baht_thai);
+
+                    $this->orderOptionModel->update($item, [
+                        "option_name" => $op_name[$key],
+                        "option_tot" => $option_tot,
+                        "option_tot_bath" => $option_tot_bath,
+                        "option_cnt" => $op_cnt[$key],
+                        "option_price" => $option_price,
+                        "option_price_bath" => $option_price_bath,
+                        "option_qty" => $op_cnt[$key],
+                    ]);
+                }
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['last_price'] = $last_price;
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
             }
 
             $this->orderModel->updateData($order_idx, $data);
