@@ -202,20 +202,21 @@
                                     </td>
                                     <th>전체 옵션</th>
                                     <td>
-                                    <?php if (!empty($tour_option)): ?>
-                                        <?php 
-                                        foreach ($tour_option as $option): ?>
-                                            <p> 
-                                                <input type="hidden" name="op_idx[]" value="<?= $option->opt_idx ?>"/>
-                                                <input type="text" name="op_name[]" value="<?= $option->option_name?>" class="input_txt" style="width:200px;"/> : 
-                                                <input type="text" name="op_cnt[]" value="<?= $option->option_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
-                                                X <input type="text" name="op_price[]" value="<?= number_format($option->option_price) ?>" class="input_txt number-only price" style="width:100px;"/>원 
-                                                = <?= number_format($option->option_cnt * $option->option_price) ?>원
-                                              ( <?= $option->option_cnt ?>명 X <?=number_format( $option->option_price_bath) ?>바트 = <?= number_format($option->option_cnt * $option->option_price_bath) ?>바트)
-                                            </p>
-                                        <?php endforeach; ?>
-                                        
-                                    <?php endif; ?>
+                                        <div class="flex" style="flex-direction: column; gap: 5px;">
+                                            <?php if (!empty($tour_option)): ?>
+                                                <?php 
+                                                foreach ($tour_option as $option): ?>
+                                                    <p> 
+                                                        <input type="hidden" name="op_idx[]" value="<?= $option->opt_idx ?>"/>
+                                                        <input type="text" name="op_name[]" value="<?= $option->option_name?>" class="input_txt" style="width:200px;"/> : 
+                                                        <input type="text" name="op_cnt[]" value="<?= $option->option_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                                        X <input type="text" name="op_price[]" value="<?= number_format($option->option_price) ?>" class="input_txt number-only price" style="width:100px;"/>원 
+                                                        = <?= number_format($option->option_cnt * $option->option_price) ?>원
+                                                      ( <?= $option->option_cnt ?>명 X <?=number_format( $option->option_price_bath) ?>바트 = <?= number_format($option->option_cnt * $option->option_price_bath) ?>바트)
+                                                    </p>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </div>
                                 </tr>
 
                                 <tr>
