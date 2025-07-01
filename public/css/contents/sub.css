@@ -5901,7 +5901,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     margin-bottom: 32px;
     font-weight: bold;
     font-size: 16px;
-    line-height: 1.5rem;
+    line-height: 1.4;
     color: black;
 }
 
