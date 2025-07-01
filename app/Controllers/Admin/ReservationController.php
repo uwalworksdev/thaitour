@@ -588,7 +588,7 @@ class ReservationController extends BaseController
 
 
             $builder = $this->db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_qty, option_price, option_price_bath");
+			$builder->select("opt_idx, option_name, option_tot, option_tot_bath, option_cnt, option_date, option_qty, option_price, option_price_bath");
 			$query = $builder->where('order_idx', $order_idx)->get();
 			$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -852,6 +852,17 @@ class ReservationController extends BaseController
                 $data['order_price'] = $order_price;
                 $data['order_price_bath'] = $order_price_bath;
                 $data['last_price'] = $last_price;
+            }
+
+            if($gubun == "tour") {
+                $people_adult_cnt = $data['people_adult_cnt'] ?? 0;
+                $ori_people_adult_price = $data['ori_people_adult_price'] ?? 0;
+                $people_kids_cnt = $data['people_kids_cnt'] ?? 0;
+                $ori_people_kids_price = $data['ori_people_kids_price'] ?? 0;
+                $people_baby_cnt = $data['people_baby_cnt'] ?? 0;
+                $ori_people_baby_price = $data['ori_people_baby_price'] ?? 0;
+
+
             }
 
             $this->orderModel->updateData($order_idx, $data);

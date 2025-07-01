@@ -19,6 +19,10 @@
 
         function send_it() {
             var frm = document.frm;
+            $(".price").each(function () {
+                let val = $(this).val().replace(/,/g, '');
+                $(this).val(val);
+            });
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
@@ -686,6 +690,9 @@
     </div>
 
 	<script>
+    $(document).on('input', '.number-only', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
     function invoiceTour(order_no)
     {
         if (!confirm('인보이스를 전송 하시겠습니까?'))
@@ -755,8 +762,8 @@
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : $("#real_price_bath").val(),
-					"real_price_won"  : $("#real_price_won").val()
+					"real_price_bath" : Number($("#real_price_bath").val().replace(/,/g, '')),
+					"real_price_won"  : Number($("#real_price_won").val().replace(/,/g, ''))
 				},
 				dataType : "json",
 				async: false,
