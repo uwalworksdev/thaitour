@@ -138,7 +138,7 @@
     }
 
     .mypage_container .content .details_table tbody tr .date_e::before {
-        content: '사용일자: ';
+        content: '사용기간: ';
         color: #454545;
         padding-left: 2.3rem;
     }
@@ -829,7 +829,7 @@
 
 
     .mypage_container .content .slide_tab.discount .slide_tab_btn {
-        flex-basis: 33.33%;
+        flex-basis: 50%;
     }
 
     .mypage_container .content .ttl_table_discount {
