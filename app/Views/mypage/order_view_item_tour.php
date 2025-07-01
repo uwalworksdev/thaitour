@@ -215,7 +215,7 @@ $deli_types = get_deli_type();
 				<div class="total_money tar">
 					<div class="defen_ttl flex">
 						<p><strong><span id="price_tot">
-									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / 	$baht_thai)?>바트)
+									<?= number_format($order_price) ?></span></strong> 원(<?=number_format($order_price / $baht_thai)?>바트)
 								</p>
 					</div>
 				</div>
