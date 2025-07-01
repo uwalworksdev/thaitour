@@ -25,14 +25,14 @@
                     <span>KOR</span>
                     <img src="/images/ico/down-arrow-select.png" alt="">
                 </div>
-                <ul class="dropdown">
+                <!-- <ul class="dropdown">
                     <li class="lang_item">
                         KOR
                     </li>
                     <li class="lang_item">
                         ENG
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
         <div>
@@ -1159,11 +1159,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //     $(".dropdown").hide();
     // })
 
-    $(".lang_item").click(function () {
-        alert('준비중 입니다.');
-        $(".dropdown").hide();
-        return false;
-    })
+    // $(".lang_item").click(function () {
+    //     alert('준비중 입니다.');
+    //     $(".dropdown").hide();
+    //     return false;
+    // })
 
     
 </script>
