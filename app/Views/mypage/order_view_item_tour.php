@@ -259,13 +259,12 @@ $deli_types = get_deli_type();
 					<?php
 					    foreach ($tour_option as $row)  
 						{
-							 if($row['option_type'] == "main") {
+							if($row['option_type'] == "main") {
 								$option_price = $row['option_tot'] / $row['option_cnt'];
-							 } else	{
+							} else	{
 								$option_price = $row['option_price'];
-							 }	
-							 
-							 $option_price = $option_price * $baht_thai;
+							}	
+							
 					?>		
 							<tr>
 								<td class="content"><?=$row['option_name']?></td>
