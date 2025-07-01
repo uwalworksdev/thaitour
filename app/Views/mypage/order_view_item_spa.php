@@ -589,7 +589,7 @@ $deli_types = get_deli_type();
 				<tbody>
 					<tr>
 						<td class="subject">요청사항</td>
-						<td class="content">
+						<td class="content memo">
 							<?= $order_memo ?>
 						</td>
 					</tr>
