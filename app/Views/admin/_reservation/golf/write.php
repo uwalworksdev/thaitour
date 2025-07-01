@@ -209,12 +209,14 @@
                                         <?= $item['option_cnt'] ?>명 
                                         &emsp;|&emsp; 캐디피 : 
                                         <!-- <input type="hidden" id="caddy_option_idx" name="caddy_option_idx" value="<?=$op_caddy_idx?>"> -->
-                                        <input type="text" id="caddy_option_cnt" name="caddy_option_cnt"
-                                            value="<?=$caddy ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                        <!-- <input type="text" id="caddy_option_cnt" name="caddy_option_cnt"
+                                            value="<?=$caddy ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명  -->
+                                        <?=$caddy ?? 0?>명
                                         &emsp;|&emsp; 카트 : 
                                         <!-- <input type="hidden" id="cart_option_idx" name="cart_option_idx" value="<?=$op_cart_idx?>"> -->
-                                        <input type="text" id="cart_option_cnt" name="cart_option_cnt"
-                                               value="<?=$cart ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대</td>
+                                        <!-- <input type="text" id="cart_option_cnt" name="cart_option_cnt"
+                                               value="<?=$cart ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 -->
+                                        <?=$cart ?? 0?>대</td>
                                     <?php endforeach; ?>
                                 </tr>
 
