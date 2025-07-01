@@ -284,14 +284,14 @@
                     <span>KOR</span>
                     <img src="/images/ico/down-arrow-select.png" alt="">
                 </div>
-                <ul class="dropdown">
+                <!-- <ul class="dropdown">
                     <li class="lang_item">
                         KOR
                     </li>
                     <li class="lang_item">
                         ENG
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="header_logo_wrap flex__c">
                 <!-- <?php
