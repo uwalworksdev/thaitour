@@ -264,8 +264,8 @@ use Mpdf\Tag\Em;
                                             </td>
                                             <td style="text-align:center">
                                                 <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="hours[]" class="number-only" value="<?=$order_cars_detail[0]["hours"]?>" style="width:50px"> 시 
-                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$order_cars_detail[0]["minutes"]?>" style="width:50px"> 분  
+                                                    <input type="text" name="hours[]" value="<?=$order_cars_detail[0]["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" value="<?=$order_cars_detail[0]["minutes"]?>" style="width:50px"> 분  
                                                 </div>
                                             </td>
                                             <td style="text-align:center">
@@ -310,8 +310,8 @@ use Mpdf\Tag\Em;
                                                 </td>
                                                 <td style="text-align:center">
                                                     <div class="flex__c" style="gap: 5px;">
-                                                        <input type="text" name="hours[]" class="number-only" value="<?=$order_cars_detail[1]["hours"]?>" style="width:50px"> 시 
-                                                        <input type="text" name="minutes[]" class="number-only" value="<?=$order_cars_detail[1]["minutes"]?>" style="width:50px"> 분  
+                                                        <input type="text" name="hours[]" value="<?=$order_cars_detail[1]["hours"]?>" style="width:50px"> 시 
+                                                        <input type="text" name="minutes[]" value="<?=$order_cars_detail[1]["minutes"]?>" style="width:50px"> 분  
                                                     </div>
                                                 </td>
                                                 <td style="text-align:center">
@@ -358,8 +358,8 @@ use Mpdf\Tag\Em;
                                             </td>
                                             <td style="text-align:center">
                                                 <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
-                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                    <input type="text" name="hours[]" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" value="<?=$row["minutes"]?>" style="width:50px"> 분  
                                                 </div>
                                             </td>
                                             <td style="text-align:center">
@@ -403,8 +403,8 @@ use Mpdf\Tag\Em;
                                             </td>
                                             <td style="text-align:center">
                                                 <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
-                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                    <input type="text" name="hours[]" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" value="<?=$row["minutes"]?>" style="width:50px"> 분  
                                                 </div>
                                             </td>
                                             <td style="text-align:center">
@@ -453,8 +453,8 @@ use Mpdf\Tag\Em;
                                             </td>
                                             <td style="text-align:center">
                                                 <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
-                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                    <input type="text" name="hours[]" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" value="<?=$row["minutes"]?>" style="width:50px"> 분  
                                                 </div>
                                             </td>
                                             <td style="text-align:center">
@@ -504,8 +504,8 @@ use Mpdf\Tag\Em;
                                             </td>
                                             <td style="text-align:center">
                                                 <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
-                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                    <input type="text" name="hours[]" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" value="<?=$row["minutes"]?>" style="width:50px"> 분  
                                                 </div>
                                             </td>
                                             <td style="text-align:center">
