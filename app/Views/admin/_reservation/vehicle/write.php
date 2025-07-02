@@ -256,19 +256,22 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <td style="text-align:center">
                                                 <input type="hidden" name="idx[]" value="<?= $order_cars_detail[0]["idx"] ?>">
-                                                <?=$order_cars_detail[0]["air_code"]?>
+                                                <input type="text" name="air_code[]" value="<?=$order_cars_detail[0]["air_code"]?>">
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$order_cars_detail[0]["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$order_cars_detail[0]["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$order_cars_detail[0]["hours"]?> 시 <?=$order_cars_detail[0]["minutes"]?> 분
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="hours[]" class="number-only" value="<?=$order_cars_detail[0]["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$order_cars_detail[0]["minutes"]?>" style="width:50px"> 분  
+                                                </div>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$order_cars_detail[0]["destination_name"]?>
+                                                <input type="text" name="destination_name[]" value="<?=$order_cars_detail[0]["destination_name"]?>">
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($order_cars_detail[0]["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($order_cars_detail[0]["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -298,19 +301,22 @@ use Mpdf\Tag\Em;
                                             <tr>
                                                 <td style="text-align:center">
                                                     <input type="hidden" name="idx[]" value="<?= $order_cars_detail[1]["idx"] ?>">
-                                                    <?=$order_cars_detail[1]["air_code"]?>
+                                                    <input type="text" name="air_code[]" value="<?=$order_cars_detail[1]["air_code"]?>">
                                                 </td>
                                                 <td style="text-align:center">
-                                                    <?=$order_cars_detail[1]["date_trip"]?>
+                                                    <input type="text" name="date_trip[]" class="datepicker" value="<?=$order_cars_detail[1]["date_trip"]?>">  
                                                 </td>
                                                 <td style="text-align:center">
-                                                    <?=$order_cars_detail[1]["hours"]?> 시 <?=$order_cars_detail[1]["minutes"]?> 분
+                                                    <div class="flex__c" style="gap: 5px;">
+                                                        <input type="text" name="hours[]" class="number-only" value="<?=$order_cars_detail[1]["hours"]?>" style="width:50px"> 시 
+                                                        <input type="text" name="minutes[]" class="number-only" value="<?=$order_cars_detail[1]["minutes"]?>" style="width:50px"> 분  
+                                                    </div>
                                                 </td>
                                                 <td style="text-align:center">
-                                                    <?=$order_cars_detail[1]["departure_name"]?>
+                                                    <input type="text" name="departure_name[]" value="<?=$order_cars_detail[1]["departure_name"]?>">                                                 
                                                 </td>
                                                 <td style="text-align:center">
-                                                    <?=nl2br($order_cars_detail[1]["order_memo"])?>
+                                                    <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($order_cars_detail[1]["order_memo"])?></textarea>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -343,19 +349,22 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <td style="text-align:center">
                                                 <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
-                                                <?=$row["air_code"]?>
+                                                <input type="text" name="air_code[]" value="<?=$row["air_code"]?>">
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$row["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                </div>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["departure_name"]?>
+                                                <input type="text" name="departure_name[]" value="<?=$row["departure_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($row["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -388,19 +397,22 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
                                             <td style="text-align:center">
-                                                <?=$row["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$row["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                </div>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["departure_name"]?>
+                                                <input type="text" name="departure_name[]" value="<?=$row["departure_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["schedule_content"])?>
+                                                <textarea name="schedule_content[]" style="width: 100%; height: 100px;"><?=nl2br($row["schedule_content"])?></textarea>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($row["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -435,22 +447,25 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
                                             <td style="text-align:center">
-                                                <?=$row["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$row["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                </div>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["departure_name"]?>
+                                                <input type="text" name="departure_name[]" value="<?=$row["departure_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["rest_name"]?>
+                                                <input type="text" name="rest_name[]" value="<?=$row["rest_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["destination_name"]?>
+                                                <input type="text" name="destination_name[]" value="<?=$row["destination_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($row["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -483,19 +498,22 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
                                             <td style="text-align:center">
-                                                <?=$row["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$row["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="hours[]" class="number-only" value="<?=$row["hours"]?>" style="width:50px"> 시 
+                                                    <input type="text" name="minutes[]" class="number-only" value="<?=$row["minutes"]?>" style="width:50px"> 분  
+                                                </div>
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["departure_name"]?>
+                                                <input type="text" name="departure_name[]" value="<?=$row["departure_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["destination_name"]?>
+                                                <input type="text" name="destination_name[]" value="<?=$row["destination_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($row["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -528,19 +546,19 @@ use Mpdf\Tag\Em;
                                         <tr>
                                             <input type="hidden" name="idx[]" value="<?= $row["idx"] ?>">
                                             <td style="text-align:center">
-                                                <?=$row["date_trip"]?>
+                                                <input type="text" name="date_trip[]" class="datepicker" value="<?=$row["date_trip"]?>">  
                                             </td>
                                             <td style="text-align:center">
                                                 <?=$row["hours"]?> 시 <?=$row["minutes"]?> 분
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["departure_name"]?>
+                                                <input type="text" name="departure_name[]" value="<?=$row["departure_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=$row["destination_name"]?>
+                                                <input type="text" name="destination_name[]" value="<?=$row["destination_name"]?>">                                                 
                                             </td>
                                             <td style="text-align:center">
-                                                <?=nl2br($row["order_memo"])?>
+                                                <textarea name="order_memo[]" style="width: 100%; height: 100px;"><?=nl2br($row["order_memo"])?></textarea>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -568,21 +586,21 @@ use Mpdf\Tag\Em;
                                     <th>총 결제금액</th>
                                     <td>
                                         원화계산 : <?php
-                                            $setting    = homeSetInfo();
-                                            $extra_cost = 0;
+                                            // $setting    = homeSetInfo();
+                                            // $extra_cost = 0;
                                 
-                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            // $type_extra_cost = $setting["type_extra_cost"];
                                             
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
+                                            // $total_price = 0;
+                                            // $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            // $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            // if (!empty($setting["extra_cost"])) {
+                                            //     if ($type_extra_cost == "P") {
+                                            //         $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                            //     } else {
+                                            //         $extra_cost = $setting["extra_cost"];
+                                            //     }
+                                            // }
 
                                         ?>   
                                         <?php
@@ -592,17 +610,32 @@ use Mpdf\Tag\Em;
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $order_price) ?>원    
+                                        <input type="text" style="width: 100px;" id="order_price" name="order_price"
+                                                    value="<?= number_format( $order_price) ?>" class="input_txt price">원        
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                         <input type="text" style="width: 100px;" id="used_coupon_money" name="used_coupon_money"
+                                                    value="<?= number_format($used_coupon_money) ?>" class="input_txt price">원(할인쿠폰) 
                                         -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        +
-                                        <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
-                                        원
+                                        <input type="text" style="width: 100px;" id="used_mileage_money" name="used_mileage_money"
+                                                    value="<?= number_format($used_mileage_money) ?>" class="input_txt price">원(마일리지사용)
+                                        <div style="margin-left: 43px; margin-top: 5px;">
+                                            +
+                                            <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
+                                                        value="<?= number_format($extra_cost) ?>" class="input_txt price">원
+                                            = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                            원
+                                        </div>
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+										<?php
+
+                                            $used_coupon_money_bath = (int) round($used_coupon_money / $bath_thai_price);
+                                            $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
+                                            $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
+                                            
+                                        ?>
+                                            바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_coupon_money_bath)?> TH(할인쿠폰) 
+                                            - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
+                                            = <?=number_format($order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost_bath)?> TH
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
@@ -852,6 +885,9 @@ use Mpdf\Tag\Em;
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
     <script>
+        $(document).on('input', '.number-only', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
         function invoiceVehicle(order_no)
         {
             if (!confirm('인보이스를 전송 하시겠습니까?'))
@@ -918,8 +954,8 @@ use Mpdf\Tag\Em;
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : $("#real_price_bath").val(),
-					"real_price_won"  : $("#real_price_won").val()
+					"real_price_bath" : Number($("#real_price_bath").val().replace(/,/g, '')),
+					"real_price_won"  : Number($("#real_price_won").val().replace(/,/g, ''))
 				},
 				dataType : "json",
 				async: false,
@@ -954,7 +990,7 @@ use Mpdf\Tag\Em;
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#real_price_won").val(won.toLocaleString());
+			$("#real_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>
@@ -976,7 +1012,7 @@ use Mpdf\Tag\Em;
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#voucher_price_won").val(won.toLocaleString());
+			$("#voucher_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>
