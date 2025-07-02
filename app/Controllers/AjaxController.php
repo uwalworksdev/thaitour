@@ -974,22 +974,7 @@ public function get_golf_option() {
 													$msg .= '</div>';
 												}
 												
-												if($price_won > 0) {  
-													$msg .=	'<div class="wrap_btn_book">
-																<div class="flex__c btn_re">
-																	<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
-																	<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
-																</div>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-															</div>
-															</div>';
-												} else {
-													$msg .=	'<div class="wrap_btn_book">
-																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-															</div>
-															</div>';
-												}			
+													
 												//write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											    //write_log("11111111- ". $result);
@@ -1062,8 +1047,27 @@ public function get_golf_option() {
                                                 //}
 												  
 												$msg .= '</div>
-														   </div>
-														   </td>
+														   </div>';
+
+												if($price_won > 0) {  
+												$msg .=	'<div class="wrap_btn_book">
+																<div class="flex__c btn_re">
+																	<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+																	<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
+                                                    				<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																</div>
+																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+															</div>
+															</div>';
+												} else {
+													$msg .=	'<div class="wrap_btn_book">
+																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
+                                                    			<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+															</div>
+															</div>';
+												}		
+												$msg .=	'</td>
 														   </tr>';
                              			endforeach; 
 

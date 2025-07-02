@@ -1801,7 +1801,7 @@
                                                     <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
                                                     <?php } ?>
                                                     <button type="button" class="reservationx book-button default-button">장바구니</button>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button default-button">문의하기</button>
+                                                    <button type="button" id="contact_<?=$room['rooms_idx']?>" class="reservationx contact-button default-button">문의하기</button>
                                                 </div>
                                                 
                                             </div>
@@ -3121,6 +3121,20 @@
             $(".cart_info_pop").data("element", $(this));
             $(".cart_info_pop").show();
         })
+
+        $(document).on("click", ".contact-button", function() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/mypage/contact';
+        });
 
         //$(".book-button").click(function() {
         $(document).on("click", ".book-button", function() {			
