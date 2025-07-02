@@ -57,6 +57,7 @@
                                 <col width="*"/>
                                 <col width="150px"/>
                                 <col width="150px"/>
+                                <col width="150px"/>
                                 <col width="100px"/>
                                 <col width="150px"/>
                                 <col width="90px"/>
@@ -68,6 +69,7 @@
                                 <th>번호</th>
                                 <th>쿠폰번호</th>
                                 <th>쿠폰이름</th>
+                                <th>쿠폰인증 단어</th>
                                 <th>등록일</th>
                                 <th>사용기간</th>
                                 <th>할인율</th>
@@ -103,6 +105,7 @@
                                         }
                                         ?>
                                     </td>
+                                    <td class="tac"><?= $row["keyword"] ?></td>
                                     <td class="tac"><?= $row["regdate"] ?></td>
                                     <td class="tac"><?= $row["enddate"] ?></td>
                                     <td class="tac">
