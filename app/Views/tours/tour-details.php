@@ -598,7 +598,7 @@
                         <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit('W')">예약하기</button>
                     <?php endif; ?>
                     <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="handleSubmit('B')">장바구니</button>
-                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="redirect_contact()">문의하기</button>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-contact" onclick="redirect_contact()">문의하기</button>
                 </div>
             </div>
         </form>
