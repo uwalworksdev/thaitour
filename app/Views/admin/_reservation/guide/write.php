@@ -195,10 +195,10 @@
                                     <td colspan="3">
                                         <table>
                                             <colgroup>
-                                                <col width="15%">
+                                                <col width="10%">
                                                 <col width="*">
-                                                <col width="20%">
-                                                <col width="20%">
+                                                <col width="30%">
+                                                <col width="30%">
                                             </colgroup>
                                             <tbody>
                                             <tr>
@@ -219,7 +219,7 @@
                                                     </td>
 
                                                     <td class="content">
-                                                        <input type="text" name="guide_meeting_place[]" value="<?=$item["guide_meeting_place"]?>"> : 
+                                                        <input type="text" name="guide_meeting_place[]" value="<?=$item["guide_meeting_place"]?>">
                                                     </td>
                                                     <td class="content">
                                                         <textarea name="guide_schedule[]" style="width: 100%; height: 100px;"><?= nl2br($item["guide_schedule"]) ?></textarea>
