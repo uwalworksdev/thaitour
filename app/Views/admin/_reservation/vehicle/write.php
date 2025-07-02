@@ -685,7 +685,7 @@ use Mpdf\Tag\Em;
                                     </td>
                                     <th>상품금액</th>
                                     <td>
-										원화계산 : <?= number_format($inital_price) ?>원  | 6,555 바트
+										원화계산 : <?= number_format($order_price) ?>원  | <?= number_format($order_price_bath) ?> 바트
 										
                                     </td>
                                 </tr>
