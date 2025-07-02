@@ -27,6 +27,7 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     , COALESCE(s.dc_type, m.dc_type) AS dc_type
                     , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
                     , COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
+                    , m.exp_start_day, m.exp_end_day
                     from tbl_coupon c
                     left outer join tbl_coupon_setting s
                     on c.coupon_type = s.idx
@@ -89,7 +90,7 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                         ?>
                         <tr>
                             <td class="date_s">
-                                <span><?= (date("Y.m.d", strtotime($row["regdate"]))) ?></span>
+                                <span><?= $row["regdate"] ?></span>
                             </td>
                             <td class="des">
                                     <span>
@@ -103,7 +104,11 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                                     </span>
                             </td>
                             <td class="date_e">
-                                <span><?= (date("Y.m.d", strtotime($row["enddate"]))) ?></span>
+                                <span>
+                                    <?= date("Y.m.d", strtotime($row["exp_start_day"])) ?>
+                                    ~
+                                    <?= date("Y.m.d", strtotime($row["exp_end_day"])) ?>
+                                </span>
                             </td>
                         </tr>
                     <?php } ?>
