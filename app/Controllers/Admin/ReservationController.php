@@ -963,6 +963,8 @@ class ReservationController extends BaseController
                     ]);
                 }
 
+                $order_price = $data['order_price'] ?? 0;
+                $data['order_price_bath'] = (int)($order_price / $baht_thai);
             }
 
             $this->orderModel->updateData($order_idx, $data);
