@@ -967,6 +967,28 @@ class ReservationController extends BaseController
                 $data['order_price_bath'] = (int)($order_price / $baht_thai);
             }
 
+            if($gubun == "guide") {
+                $op_guide_idx = $data['op_guide_idx'] ?? [];
+                $guide_meeting_hour = $data['guide_meeting_hour'] ?? [];
+                $guide_meeting_min = $data['guide_meeting_min'] ?? [];
+                $guide_meeting_place = $data['guide_meeting_place'] ?? [];
+                $guide_schedule = $data['guide_schedule'] ?? [];
+                $request_memo = $data['request_memo'] ?? [];
+
+                foreach($op_guide_idx as $key => $item){
+                    $this->orderGuide->update($item, [
+                        "guide_meeting_hour" => $guide_meeting_hour[$key] ?? "",
+                        "guide_meeting_min" => $guide_meeting_min[$key] ?? "",
+                        "guide_meeting_place" => $guide_meeting_place[$key] ?? "",
+                        "guide_schedule" => $guide_schedule[$key] ?? "",
+                        "request_memo" => $request_memo[$key] ?? ""
+                    ]);
+                }
+
+                $order_price = $data['order_price'] ?? 0;
+                $data['order_price_bath'] = (int)($order_price / $baht_thai);
+            }
+
             $this->orderModel->updateData($order_idx, $data);
 
             $gl_idx = $data['gl_idx'] ?? [];
