@@ -152,7 +152,7 @@
                     </div>
                     <div class="flex">
                         <button type="button" class="btn-default"
-                                onclick="location='/qna/write'">상담 문의하기
+                                onclick="location='/contact/write'">상담 문의하기
                         </button>
                     </div>
                 </div>
