@@ -52,13 +52,13 @@
     .tours-detail .primary-btn-calendar.tour {
         position: absolute;
         bottom: 3%;
-        left: 28%;
+        left: 18%;
     }
 
     .tours-detail .primary-btn-calendar.btn-cart {
         position: absolute;
         bottom: 3%;
-        left: 50%;
+        left: 40%;
         border: 1px solid #dbdbdb;
         background-color: #fff;
         color: #252525;
@@ -67,7 +67,7 @@
     .tours-detail .primary-btn-calendar.btn-contact {
         position: absolute;
         bottom: 3%;
-        left: 50%;
+        left: 62%;
         border: 1px solid #dbdbdb;
         background-color: #fff;
         color: #252525;
