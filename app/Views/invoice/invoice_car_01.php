@@ -102,7 +102,7 @@ $setting = homeSetInfo();
                         </tr>
                         <tr>
                             <th>출발지/도착지</th>
-                            <td><?= $departure_name ?></span> / <span><?= $destination_name ?></td>
+                            <td><?= !empty($row->departure_name_) ? $row->departure_name_ : $departure_name ?></span> / <span><?= !empty($row->destination_name_) ? $row->destination_name_ : $destination_name ?></td>
                             <th>총인원</th>
                             <td>성인 : <?= $row->people_adult_cnt ?? 0 ?>명, 소아: <?= $row->people_kids_cnt ?? 0 ?>명</td>
                         </tr>
