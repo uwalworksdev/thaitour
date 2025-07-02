@@ -3998,6 +3998,16 @@
     min-width: 14rem;
   }
 
+  .content-sub-hotel-detail .contact-button{
+    height: 6rem;
+    width: 100% !important;
+    background-color: var(--bs-point);
+    color: white;
+    border-radius: 0.4rem;
+    padding: 1.2rem 1.5rem;
+    min-width: 14rem;
+  }
+
   .content-sub-hotel-detail .default-button {
     height: 6rem;
 

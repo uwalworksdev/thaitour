@@ -1951,6 +1951,17 @@
     margin-top: 2px;
 }
 
+.content-sub-hotel-detail .contact-button {
+    background-color: white;
+    color: black;
+    border: 1px solid #dbdbdb;
+    padding: 12px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    margin-top: 2px;
+}
+
 .content-sub-hotel-detail .book-add-cart {
     background-color: white;
     color: black;
