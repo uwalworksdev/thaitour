@@ -287,7 +287,6 @@ $setting = homeSetInfo();
                  alt="<?= $main_right_banner['subject'] ?>">
         </a> -->
         <?php if (isset($main_right_banner) && $main_right_banner): ?>
-            <?php echo $main_right_banner['subject']; ?>
             <a class="banner-side-bar" href="<?= $main_right_banner['url'] ?? '#!' ?>" style="display: inline-block;">
                 <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
                     alt="<?= $main_right_banner['subject'] ?>">
