@@ -130,7 +130,7 @@ use Mpdf\Tag\Em;
                                     <td>
                                         출발 : <input type="text" name="departure_name_" value="<?= !empty($departure_name_) ? $departure_name_ : $departure_name ?>" class="input_txt" style="width:200px;"/>
                                         &emsp;|&emsp; 
-                                        도착: <input type="text" name="departure_name_" value="<?= !empty($destination_name_) ? $destination_name_ : $destination_name ?>" class="input_txt" style="width:200px;"/>
+                                        도착: <input type="text" name="destination_name_" value="<?= !empty($destination_name_) ? $destination_name_ : $destination_name ?>" class="input_txt" style="width:200px;"/>
                                     </td>
                                     <th>인원(성인/소아)</th>
                                     <td>
