@@ -692,7 +692,7 @@ $(document).ready(function() {
         <div class="section-wrap-s">
            <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
            <div class="btn-s-wrap btn-s-wrap-pc">
-                <button class="btn-price-content default-button" type="button" onclick="">문의하기</button>
+                <button class="btn-price-content default-button" type="button"  onclick="redirect_contact()" onclick="">문의하기</button>
 
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
@@ -1163,6 +1163,19 @@ $(document).ready(function() {
         <div class="dim"></div>
     </div>
     <script>
+        function redirect_contact() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/contact/write';
+        }
         $(".btn_add_cart").on("click", function () {
             $("#vehicle_time_hour").val($("#car-time-hour").val());
             $("#vehicle_time_minute").val($("#car-time-minute").val());

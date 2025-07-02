@@ -64,6 +64,15 @@
         color: #252525;
     }
 
+    .tours-detail .primary-btn-calendar.btn-contact {
+        position: absolute;
+        bottom: 3%;
+        left: 50%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+    }
+
     @media screen and (max-width: 850px) {
     .sec2-item-card.tour_calendar {
         display: block;
@@ -589,6 +598,7 @@
                         <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit('W')">예약하기</button>
                     <?php endif; ?>
                     <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="handleSubmit('B')">장바구니</button>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="redirect_contact()">문의하기</button>
                 </div>
             </div>
         </form>
@@ -2191,6 +2201,19 @@
 </script>
 
 <script>
+    function redirect_contact() {
+        <?php
+            if (empty(session()->get("member")["id"])) {
+        ?>
+            // alert("주문하시려면 로그인해주세요!");
+            showOrHideLoginItem();
+            return false;
+        <?php
+            }
+        ?>
+
+        window.location.href = '/contact/write';
+    }
     $(".phone").on("input", function () {
         $(this).val($(this).val().replace(/[^0-9]/g, ""));
     });

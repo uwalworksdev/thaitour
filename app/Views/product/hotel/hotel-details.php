@@ -3133,7 +3133,7 @@
                 }
             ?>
 
-            window.location.href = '/mypage/contact';
+            window.location.href = '/contact/write';
         });
 
         //$(".book-button").click(function() {
