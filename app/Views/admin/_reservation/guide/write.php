@@ -212,7 +212,7 @@
                                                 <tr>
                                                     <td class="content">
                                                         <input type="hidden" name="op_guide_idx[]" value="<?=$item["idx"]?>">
-                                                        <div class="flex__c" style="gap: 5px;">
+                                                        <div class="flex_c_c" style="gap: 5px;">
                                                             <input type="text" name="guide_meeting_hour[]" value="<?=$item["guide_meeting_hour"]?>" style="width:50px"> : 
                                                             <input type="text" name="guide_meeting_min[]" value="<?=$item["guide_meeting_min"]?>" style="width:50px">  
                                                         </div>
