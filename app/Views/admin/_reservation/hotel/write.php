@@ -383,7 +383,7 @@
                                             }else{
                                         ?>
                                         <input type="text" style="width: 100px;" id="order_price" name="order_price"
-                                                    value="<?= number_format( $order_price) ?>" class="input_txt price">원        
+                                                    value="<?= number_format( $order_price) ?>" class="input_txt price" readonly>원        
                                         -
                                          <input type="text" style="width: 100px;" id="used_coupon_money" name="used_coupon_money"
                                                     value="<?= number_format($used_coupon_money) ?>" class="input_txt price">원(할인쿠폰) 
