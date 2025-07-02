@@ -124,6 +124,10 @@
                                 <p>ㆍ유효기간 :</p>
                                 <span class="exp_date">2023-04-11(화) ~ 2033-06-30(목)</span>
                             </div>
+                            <div class="des flex">
+                                <p>ㆍ상품 :</p>
+                                <span class="cate">전체</span>
+                            </div>
                         </div>
                         <div class="info_download">
                             <button class="btn_down flex_c_c" type="button">
@@ -387,11 +391,18 @@
                 let exp_start_day = formatToYYYYMMDD(data["exp_start_day"]);
                 let exp_end_day = formatToYYYYMMDD(data["exp_end_day"]);
                 let exp_day = exp_start_day + "(" + getDayOfWeekKorean(exp_start_day) + ")" + " " + exp_end_day + "(" + getDayOfWeekKorean(exp_end_day) + ")";
+
                 $(".popup_coupon .popup .txt_info .title").text(data["coupon_name"]);
                 $(".popup_coupon .popup .txt_info .target").text(data["member_grade_name"]);
                 $(".popup_coupon .popup .txt_info .location").text(data["location"]);
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
-                $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);                
+                $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);
+                $(".popup_coupon .popup .txt_info .cate").empty();
+                data["category"].forEach(element => {
+                    $(".popup_coupon .popup .txt_info .cate").append(
+                        `<p>${element}</p>`
+                    );
+                })
 
                 if(data["cnt_img"] > 0){
                     let img_slide = `<div class="swiper myslide">
