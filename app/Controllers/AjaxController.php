@@ -1066,13 +1066,14 @@ public function get_golf_option() {
 																<div class="flex__c btn_re">
 																	<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
 																	<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
+                                                    				<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
 																</div>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
 															</div>
 															';
 												} else {
 													$msg .=	'<div class="wrap_btn_book">
 																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
+                                                    			<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
 															</div>';
 												}			   
 												$msg .=		   '</td>
