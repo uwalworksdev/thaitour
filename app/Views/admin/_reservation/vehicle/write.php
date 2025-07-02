@@ -255,6 +255,7 @@ use Mpdf\Tag\Em;
                                     </tr>
                                         <tr>
                                             <td style="text-align:center">
+                                                <input type="hidden" name="departure_name[]" value="">
                                                 <input type="hidden" name="idx[]" value="<?= $order_cars_detail[0]["idx"] ?>">
                                                 <input type="text" name="air_code[]" value="<?=$order_cars_detail[0]["air_code"]?>">
                                             </td>
@@ -300,6 +301,7 @@ use Mpdf\Tag\Em;
                                         </tr>
                                             <tr>
                                                 <td style="text-align:center">
+                                                    <input type="hidden" name="destination_name[]" value="">
                                                     <input type="hidden" name="idx[]" value="<?= $order_cars_detail[1]["idx"] ?>">
                                                     <input type="text" name="air_code[]" value="<?=$order_cars_detail[1]["air_code"]?>">
                                                 </td>

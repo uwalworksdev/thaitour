@@ -937,6 +937,34 @@ class ReservationController extends BaseController
                 $data['order_price_bath'] = $order_price_bath;
             }
 
+            if($gubun == "vehicle") {
+                $op_c_idx = $data['idx'] ?? [];
+                $air_code = $data['air_code'] ?? [];
+                $date_trip = $data['date_trip'] ?? [];
+                $hours = $data['hours'] ?? [];
+                $minutes = $data['minutes'] ?? [];
+                $departure_name = $data['departure_name'] ?? [];
+                $destination_name = $data['destination_name'] ?? [];
+                $order_memo = $data['order_memo'] ?? [];
+                $schedule_content = $data['schedule_content'] ?? [];
+                $rest_name = $data['rest_name'] ?? [];
+
+                foreach($op_c_idx as $key => $item){
+                    $this->ordersCars->updateData($item, [
+                        "air_code" => $air_code[$key] ?? "",
+                        "departure_name" => $departure_name[$key] ?? "",
+                        "destination_name" => $destination_name[$key] ?? "",
+                        "rest_name" => $rest_name[$key] ?? "",
+                        "date_trip" => $date_trip[$key] ?? "",
+                        "hours" => $hours[$key] ?? "",
+                        "minutes" => $minutes[$key] ?? "",
+                        "order_memo" => $order_memo[$key] ?? "",
+                        "schedule_content" => $schedule_content[$key] ?? ""
+                    ]);
+                }
+
+            }
+
             $this->orderModel->updateData($order_idx, $data);
 
             $gl_idx = $data['gl_idx'] ?? [];
