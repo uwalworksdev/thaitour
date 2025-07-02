@@ -979,7 +979,19 @@ public function get_golf_option() {
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											    //write_log("11111111- ". $result);
 												$msg .= '<div class="wrap_bed_type">
-														<p class="tit"><span>침대타입(요청사항)</span> <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;"></p>
+															<div class="tit">
+																<span>침대타입(요청사항)</span>
+																<div class="view_promotion view_promotion2"> 
+																	<img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">';
+																
+                                                if(!empty(trim($room['r_contents3']))) {  
+													$msg .= '<div class="layer_promotion layer_promotion2">
+																<p style="white-space: pre-line">'. $room['r_contents3'] .'</p>
+															</div>';   
+												}
+												$msg .=			'</div>
+																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+															</div>
 														<div class="wrap_input_radio">';
 
 												$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
@@ -1061,7 +1073,6 @@ public function get_golf_option() {
 												} else {
 													$msg .=	'<div class="wrap_btn_book">
 																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
 															</div>';
 												}			   
 												$msg .=		   '</td>
