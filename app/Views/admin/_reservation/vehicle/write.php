@@ -1,3 +1,7 @@
+<?php
+
+use Mpdf\Tag\Em;
+?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
     <script type="text/javascript">
@@ -13,6 +17,10 @@
 
         function send_it() {
             var frm = document.frm;
+            $(".price").each(function () {
+                let val = $(this).val().replace(/,/g, '');
+                $(this).val(val);
+            });
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
@@ -61,8 +69,7 @@
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $bath_thai_price ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
@@ -91,6 +98,7 @@
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
+                <input type=hidden name="gubun" value='<?= $gubun ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -110,8 +118,7 @@
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <?= $product_name ?><br><?= $tours_subject ?>
-                                        <input type=hidden name="product_name" value='<?= $product_name ?>'>
+                                        <input type="text" name="product_name" value='<?= $product_name ?>'>
                                     </td>
                                     <th>주문번호</th>
                                     <td>
@@ -121,11 +128,15 @@
                                 <tr>
                                     <th>출발/도착 지역</th>
                                     <td>
-                                        출발 : <?= $departure_name ?> &emsp;|&emsp; 도착: <?= $destination_name ?>
+                                        출발 : <input type="text" name="departure_name_" value="<?= !empty($departure_name_) ? $departure_name_ : $departure_name ?>" class="input_txt" style="width:200px;"/>
+                                        &emsp;|&emsp; 
+                                        도착: <input type="text" name="departure_name_" value="<?= !empty($destination_name_) ? $destination_name_ : $destination_name ?>" class="input_txt" style="width:200px;"/>
                                     </td>
                                     <th>인원(성인/소아)</th>
                                     <td>
-                                        <?= $people_adult_cnt ?>명 &emsp;|&emsp; <?= $people_kids_cnt ?>명   
+                                        <input type="text" name="people_adult_cnt" value="<?= $people_adult_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명 
+                                        &emsp;|&emsp; 
+                                        <input type="text" name="people_kids_cnt" value="<?= $people_kids_cnt ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명   
                                     </td>
                                 </tr>
 
@@ -138,19 +149,27 @@
                                                 array_push($category_text_arr, $category["code_name"]);
                                             }
 
-                                            echo implode(" > ", $category_text_arr);
+                                            $category_code = implode(" > ", $category_text_arr);
+
+                                            if(!empty($category_code_name)){
+                                                $category_code = $category_code_name;
+                                            }
+
                                         ?>
+                                        <input type="text" name="category_code_name" value='<?= $category_code ?>'>
                                     </td>
                                     <th>미팅날짜</th>
                                     <td>
                                         <?php
                                             if($code_no_first == "5403"){
                                         ?>      
-                                            <?php echo date("Y-m-d", strtotime($meeting_date)) . "~" . date("Y-m-d", strtotime($return_date))?>
+                                            <input type="text" id="meeting_date" name="meeting_date" value="<?= date("Y-m-d", strtotime($meeting_date)) ?>" class="input_txt datepicker" style="width:20%" readonly/>
+                                            ~
+                                            <input type="text" id="return_date" name="return_date" value="<?= date("Y-m-d", strtotime($return_date)) ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                         <?php
                                             }else{
                                         ?>
-                                            <?php echo date("Y-m-d", strtotime($meeting_date))?>
+                                            <input type="text" id="meeting_date" name="meeting_date" value="<?= date("Y-m-d", strtotime($meeting_date)) ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                         <?php
                                             }
                                         ?>
