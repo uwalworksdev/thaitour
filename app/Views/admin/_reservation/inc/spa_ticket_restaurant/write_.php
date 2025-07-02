@@ -214,21 +214,21 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         원화계산 : <?php
-                                            $setting    = homeSetInfo();
-                                            $extra_cost = 0;
+                                            // $setting    = homeSetInfo();
+                                            // $extra_cost = 0;
                                 
-                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            // $type_extra_cost = $setting["type_extra_cost"];
                                             
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
+                                            // $total_price = 0;
+                                            // $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            // $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            // if (!empty($setting["extra_cost"])) {
+                                            //     if ($type_extra_cost == "P") {
+                                            //         $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                            //     } else {
+                                            //         $extra_cost = $setting["extra_cost"];
+                                            //     }
+                                            // }
 
                                         ?>   
                                         <?php
