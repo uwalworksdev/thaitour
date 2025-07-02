@@ -342,6 +342,7 @@
                                 <div class="calendar_submit">
                                     <button type="button" onclick="processBooking('<?= $option['o_idx'] ?>', 'W')">예약하기</button>
                                     <button type="button" class="btn-cart" onclick="processBooking('<?= $option['o_idx'] ?>', 'B')">장바구니</button>
+                                    <button type="button" class="btn-cart" onclick="redirect_contact()">문의하기</button>
                                 </div>
                             </div>
                     <?php endforeach; ?>
@@ -602,6 +603,20 @@
         <div class="dim"></div>
     </div>
     <script>
+        function redirect_contact() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/contact/write';
+        }
+        
         function wish_it(product_idx) {
 
             const isLoggedIn = <?= session()->has('member') ? 'true' : 'false' ?>;

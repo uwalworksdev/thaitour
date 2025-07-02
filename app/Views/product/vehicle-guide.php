@@ -1884,6 +1884,9 @@
                             <button class="btn_add_cart" id="btn_show_cart" type="button" value="B">
                                 장바구니담기
                             </button>
+                            <button class="btn_add_cart" type="button" onclick="redirect_contact()">
+                                문의하기
+                            </button>
                             <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
                                     상품 예약하기
                                 </button> -->
@@ -1919,6 +1922,19 @@
 </section>
 
 <script>
+    function redirect_contact() {
+        <?php
+            if (empty(session()->get("member")["id"])) {
+        ?>
+            // alert("주문하시려면 로그인해주세요!");
+            showOrHideLoginItem();
+            return false;
+        <?php
+            }
+        ?>
+
+        window.location.href = '/contact/write';
+    }
     $(document).ready(function() {
         $('.tab_title_item_').click(function() {
             $('.tab_title_item_').removeClass('active_');
