@@ -392,7 +392,7 @@
                 $(".popup_coupon .popup .txt_info .location").empty();
                 data["category"].forEach(element => {
                     $(".popup_coupon .popup .txt_info .location").append(
-                        `<span class="tag">+ ${element}</span>`
+                        `<span class="tag">${element}</span>`
                     );
                 })
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);

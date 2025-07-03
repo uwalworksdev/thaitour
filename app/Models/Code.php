@@ -109,20 +109,13 @@ class Code extends Model
 
     public function getCodeName($code_no)
     {
-        if (empty($code_no)) {
-            return "전체";
-        }
 
         $builder = $this->builder();
         $builder->select('code_name')->where('code_no', $code_no);
 
         $result = $builder->get()->getRow();
 
-        if ($result) {
-            return $result->code_name;
-        } else {
-            return "전체";
-        }
+        return $result->code_name ?? "";
     }
 
     public function getCodeByIdx($code_idx)
