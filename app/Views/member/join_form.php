@@ -633,6 +633,8 @@ if ($mIdx != "") {
         var tophone = $("#mobile_1_1").val() + "-" + $("#mobile_1_2").val() + "-" + $("#mobile_1_3").val();
         //ifm_chks.location.href="phone_chk_ajax.php?tophone="+tophone;
 
+        console.log(tophone);
+        
 
         $.ajax({
             url: "phone_chk_ajax",
@@ -644,16 +646,17 @@ if ($mIdx != "") {
             }
             , success: function (response, status, request) {
                 response = response.trim();
-
-                if (response == "Y") {
-                    console.log(response, '=============')
-                    alert("문자가 발송되었습니다.");
-                    return false;
-                } else {
-                    alert(response);
-                    $("#certi_num_1").focus();
-                    return false;
-                }
+                console.log(response);
+                
+                // if (response == "Y") {
+                //     console.log(response, '=============')
+                //     alert("문자가 발송되었습니다.");
+                //     return false;
+                // } else {
+                //     alert(response);
+                //     $("#certi_num_1").focus();
+                //     return false;
+                // }
             }
         });
     }
