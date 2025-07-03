@@ -6187,6 +6187,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
     line-height: 1.3;
 }
 
+.popup_coupon .popup .content .infomation .txt_info .list_des .des span.location .tag {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
 .popup_coupon .popup .content .infomation .txt_info .info_download .btn_down {
     gap: 10px;
     width: 230px;
