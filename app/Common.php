@@ -535,7 +535,7 @@ function send_aligo($msg, $to_phone, $title = "")
     curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
     $ret = curl_exec($oCurl);
     curl_close($oCurl);
-    var_dump($setting['sms_phone']);
+
     //echo $ret;
     $retArr = json_decode($ret); // 결과배열
     //print_r($retArr); // Response 출력 (연동작업시 확인용)
