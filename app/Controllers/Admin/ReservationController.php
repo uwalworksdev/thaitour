@@ -30,6 +30,9 @@ class ReservationController extends BaseController
     private $orderGuide;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    protected $historyOrderUpdate;
+    protected $member;
+
 
     public function __construct()
     {
@@ -45,6 +48,8 @@ class ReservationController extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
+        $this->historyOrderUpdate = model("HistoryOrderUpdate");
+        $this->member = model("Member");
 
         $this->orderGuide = new OrderGuideModel();
         $this->guideOptionModel = new GuideOptions();
@@ -663,6 +668,14 @@ class ReservationController extends BaseController
         $data['bath_thai_price'] = $this->setting['baht_thai'];
         $data['gubun'] = $gubun;
 
+        $data['history_order_list'] = $this->historyOrderUpdate->where("order_idx", $order_idx)
+                                                                ->orderBy("updated_date", "desc")
+                                                                ->findAll();
+        foreach ($data['history_order_list'] as $key => $value) {
+            $data['history_order_list'][$key]['user_name'] = $this->member->getByIdx($value['m_idx'])['user_name'];
+            $data['history_order_list'][$key]['user_id'] = $this->member->getByIdx($value['m_idx'])['user_id'];
+        }
+
 		if (!isset($row) || !is_array($row)) {
 			$row = []; // 최소한 빈 배열 전달
 		}
@@ -673,6 +686,8 @@ class ReservationController extends BaseController
     public function write_ok($order_idx = null)
     {
         try {
+            $m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
             $data = $this->request->getPost();
             $gubun = $data['gubun'];
             $data['order_price'] = str_replace(",", "", $data['order_price']);
@@ -988,6 +1003,13 @@ class ReservationController extends BaseController
                 $order_price = $data['order_price'] ?? 0;
                 $data['order_price_bath'] = (int)($order_price / $baht_thai);
             }
+
+            $this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
 
             $this->orderModel->updateData($order_idx, $data);
 

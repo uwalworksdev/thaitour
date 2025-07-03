@@ -1801,10 +1801,10 @@
                                                 <div class="flex__c btn_re">
                                                     <?php if($price_won > 0) { ?>
                                                     <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
-                                                    <?php } else { ?>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
-                                                    <?php } ?>
                                                     <button type="button" class="reservationx book-button default-button">장바구니</button>
+                                                    <?php } else { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">예약하기</button>
+                                                    <?php } ?>
                                                     <button type="button" id="contact_<?=$room['rooms_idx']?>" class="reservationx contact-button default-button">문의하기</button>
                                                 </div>
                                                 
