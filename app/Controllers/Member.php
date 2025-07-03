@@ -780,7 +780,7 @@ class Member extends BaseController
             //     return "이미 가입된 전화번호입니다.";
             // }
             if (phone_chk($tophone)) {
-                return "Y";
+                return phone_chk($tophone);
 
             } else {
                 return "오류가 발생하였습니다.";
