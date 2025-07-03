@@ -692,12 +692,13 @@ $(document).ready(function() {
         <div class="section-wrap-s">
            <h3 class="tit-left"><?= viewSQ($product['product_name']) ?></h3>
            <div class="btn-s-wrap btn-s-wrap-pc">
-                <button class="btn-price-content default-button" type="button" onclick="redirect_contact()">문의하기</button>
 
                 <?php if ($product['product_status'] == 'sale'): ?>
                     <button class="btn-price-content" type="button" onclick="handleSubmit('W')">예약하기</button>
                 <?php endif; ?>
                 <button class="btn-price-content btn-add-cart" type="button" onclick="handleSubmit('B')">장바구니</button>
+                <button class="btn-price-content default-button" type="button" onclick="redirect_contact()">문의하기</button>
+
            </div>                 
         </div>
         <div class="section2-sub">

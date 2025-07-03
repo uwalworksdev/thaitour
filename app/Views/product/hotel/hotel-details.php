@@ -385,7 +385,11 @@
     }
 
     .content-sub-hotel-detail .wrap_btn_book .btn_re {
-        gap: 5px;
+        gap: 10px;
+    }
+
+    .content-sub-hotel-detail .wrap_btn_book .btn_re button {
+        width: 33.33%;
     }
 
     .content-sub-hotel-detail .wrap_btn_book .wrap_btn_book_note {
