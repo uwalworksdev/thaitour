@@ -554,9 +554,9 @@ function phone_chk($to_phone)
 
     $code = "S07";
     $_tmp_fir_array = ['NO' => $_chk_no];
-    autoSms($code, $to_phone, $_tmp_fir_array);
+    return autoSms($code, $to_phone, $_tmp_fir_array);
 
-    return true;
+    // return true;
 }
 
 // 결제방법
