@@ -538,19 +538,9 @@ function send_aligo($msg, $to_phone, $title = "")
 
     //echo $ret;
     $retArr = json_decode($ret); // 결과배열
-    //print_r($retArr); // Response 출력 (연동작업시 확인용)
-    if (!$ret) {
-        return ['success' => false, 'error' => 'No response from Aligo API'];
-    }
-
-    $retArr = json_decode($ret, true); // thêm true để trả về mảng
-
-    if ($retArr['result_code'] !== '1') {
-        return ['success' => false, 'error' => $retArr['message'], 'response' => $retArr];
-    }
-
-    return ['success' => true, 'response' => $retArr];
-    }
+    print_r($retArr); // Response 출력 (연동작업시 확인용)
+    return true;
+}
 
 function phone_chk($to_phone)
 {
