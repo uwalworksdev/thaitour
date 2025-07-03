@@ -539,7 +539,7 @@ function send_aligo($msg, $to_phone, $title = "")
     //echo $ret;
     $retArr = json_decode($ret); // 결과배열
     //print_r($retArr); // Response 출력 (연동작업시 확인용)
-    return $retArr;
+    return  $sms;
 }
 
 function phone_chk($to_phone)
