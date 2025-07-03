@@ -126,7 +126,7 @@
                                     <td class="tac">
                                         <?php
                                         if ($row["user_id"] == "") {
-                                            if ($today >= $start && $today <= $end) {
+                                            if ($today >= $start_day && $today <= $end_day) {
                                                 echo "<button type='button' onclick='send_coupon(\"" . $row["coupon_num"] . "\");' >발급</button>";
                                             } else {
                                                 echo "기한만료";
