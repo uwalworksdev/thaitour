@@ -495,7 +495,7 @@ function send_aligo($msg, $to_phone, $title = "")
     // ※ msg_type 미지정시 글자수/그림유무가 판단되어 자동변환됩니다. 단, 개행문자/특수문자등이 2Byte로 처리되어 SMS 가 LMS로 처리될 가능성이 존재하므로 반드시 msg_type을 지정하여 사용하시기 바랍니다.
 
     /****************** 전송정보 설정끝 ***************/
-    $sms['msg'] = iconv("UTF-8", "EUC-KR//IGNORE", $_POST['msg']);
+    $sms['msg'] = stripslashes($_POST['msg']);
     $sms['receiver'] = $_POST['receiver'];
     $sms['destination'] = $_POST['destination'];
     $sms['sender'] = $_POST['sender'];
