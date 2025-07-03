@@ -779,13 +779,15 @@ class Member extends BaseController
             // if ($isExist) {
             //     return "이미 가입된 전화번호입니다.";
             // }
-            if (phone_chk($tophone)) {
-                return phone_chk($tophone);
+            // if (phone_chk($tophone)) {
+            //     return "Y";
 
-            } else {
-                return "오류가 발생하였습니다.";
+            // } else {
+            //     return "오류가 발생하였습니다.";
 
-            }
+            // }
+
+            phone_chk($tophone);
         }
     }
 
