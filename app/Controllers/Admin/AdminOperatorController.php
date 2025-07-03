@@ -192,6 +192,7 @@ class AdminOperatorController extends BaseController
         $search_name = updateSQ($_GET["search_name"] ?? '');
 
         $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, c.keyword
+                    , m.exp_start_day, m.exp_end_day
                     , COALESCE(s.coupon_name, m.coupon_name) AS coupon_name
                     , COALESCE(s.dc_type, m.dc_type) AS dc_type
                     , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
@@ -297,9 +298,11 @@ class AdminOperatorController extends BaseController
         
             }else{
                 // 쿠폰 내역 조회
-                $fresult = $this->connect->table('tbl_coupon')
-                         ->where('coupon_num', $coupon_num)
-                         ->get();
+                $fresult = $this->connect->table('tbl_coupon c')
+                                ->select('c.*, m.exp_start_day, m.exp_end_day')
+                                ->join('tbl_coupon_mst m', 'c.coupon_mst_idx = m.idx', 'left')
+                                ->where('c.coupon_num', $coupon_num)
+                                ->get();
                 $frow    = $fresult->getResultArray();
         
                 if( $frow[0]['status'] != "D" ){
@@ -319,9 +322,12 @@ class AdminOperatorController extends BaseController
                         'message' => $message
                     ], 400);
                 }
+
+                $start_day = date("Y-m-d", strtotime($frow["exp_start_day"]));
+                $end_day = date("Y-m-d", strtotime($frow["exp_end_day"]));
         
-                if( $frow[0]['enddate'] <= date('Y-m-d') ){
-                    $message = "사용기한이 지난 쿠폰입니다";
+                if( $start_day > date('Y-m-d') || $end_day < date('Y-m-d') ){
+                    $message = "사용기한 지나갔습니다.";
 
                     return $this->response->setJSON([
                         'result' => false,

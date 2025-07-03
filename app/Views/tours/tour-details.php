@@ -10,6 +10,7 @@
         gap: 20px;
         justify-content: flex-start;
         align-items: flex-end;
+        width: 65%;
     }
 
     .tours-detail .section2 .text-content-1 h3 {

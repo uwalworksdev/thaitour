@@ -1,9 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-<?
-
-?>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -57,7 +54,7 @@
                                 <col width="*"/>
                                 <col width="150px"/>
                                 <col width="150px"/>
-                                <col width="150px"/>
+                                <col width="200px"/>
                                 <col width="100px"/>
                                 <col width="150px"/>
                                 <col width="90px"/>
@@ -90,6 +87,9 @@
                             }
                             foreach ($result as $row) {
                                 $today = date('Y-m-d');
+                                $start_day = date("Y-m-d", strtotime($row["exp_start_day"]));
+                                $end_day = date("Y-m-d", strtotime($row["exp_end_day"]));
+
                                 ?>
                                 <tr>
                                     <td><input type="checkbox" name="idx[]" class="idx code_idx"
@@ -107,7 +107,11 @@
                                     </td>
                                     <td class="tac"><?= $row["keyword"] ?></td>
                                     <td class="tac"><?= $row["regdate"] ?></td>
-                                    <td class="tac"><?= $row["enddate"] ?></td>
+                                    <td class="tac">
+                                        <?= date("Y.m.d", strtotime($row["exp_start_day"])) ?>
+                                        ~
+                                        <?= date("Y.m.d", strtotime($row["exp_end_day"])) ?>
+                                    </td>
                                     <td class="tac">
                                         <?php
                                         if ($row["dc_type"] == "P") {
@@ -122,7 +126,7 @@
                                     <td class="tac">
                                         <?php
                                         if ($row["user_id"] == "") {
-                                            if ($row["enddate"] == $today || $row["enddate"] > $today) {
+                                            if ($today >= $start && $today <= $end) {
                                                 echo "<button type='button' onclick='send_coupon(\"" . $row["coupon_num"] . "\");' >발급</button>";
                                             } else {
                                                 echo "기한만료";
