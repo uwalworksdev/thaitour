@@ -323,8 +323,8 @@ class AdminOperatorController extends BaseController
                     ], 400);
                 }
 
-                $start_day = date("Y-m-d", strtotime($frow["exp_start_day"]));
-                $end_day = date("Y-m-d", strtotime($frow["exp_end_day"]));
+                $start_day = date("Y-m-d", strtotime($frow[0]["exp_start_day"]));
+                $end_day = date("Y-m-d", strtotime($frow[0]["exp_end_day"]));
         
                 if( $start_day > date('Y-m-d') || $end_day < date('Y-m-d') ){
                     $message = "사용기한 지나갔습니다.";
@@ -342,13 +342,13 @@ class AdminOperatorController extends BaseController
                                     where coupon_num = '".$coupon_num."'
                         ";
         
-                $message = "쿠폰발급(유저) : " . $fsql;
+                $message = "쿠폰발급(유저) : " . $coupon_num;
         
                 $fresult    = $this->connect->query($fsql);
 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => $fsql
+                    'message' => $message
                 ], 200);
         
             }
