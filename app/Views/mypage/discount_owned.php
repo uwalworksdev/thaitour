@@ -33,7 +33,7 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     on c.coupon_type = s.idx
                     left outer join tbl_coupon_mst m
 					on c.coupon_mst_idx = m.idx
-                where 1=1 and c.status != 'C' and c.get_issued_yn = 'Y' and c.user_id = '{$_SESSION["member"]["id"]}' ";
+                where 1=1 and c.status != 'C' and (c.get_issued_yn = 'Y' OR m.exp_end_day < curdate() OR m.exp_start_day > curdate()) and c.user_id = '{$_SESSION["member"]["id"]}' ";
 $nTotalCount = $connect->query($total_sql)->getNumRows();
  
 ?>
