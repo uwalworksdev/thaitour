@@ -482,8 +482,6 @@ function send_aligo($msg, $to_phone, $title = "")
     $sms['user_id'] = $setting['allim_userid']; // SMS 아이디
     $sms['key'] = $setting['allim_apikey']; // 인증키
 
-    var_dump($sms);
-
     $_POST['msg'] = $msg; // 메세지 내용 : euc-kr로 치환이 가능한 문자열만 사용하실 수 있습니다. (이모지 사용불가능)
     $_POST['receiver'] = $to_phone; // 수신번호  01111111111, 01111111112
     $_POST['destination'] = ''; // 수신인 %고객명% 치환  01111111111|담당자,01111111112|홍길동
@@ -541,8 +539,18 @@ function send_aligo($msg, $to_phone, $title = "")
     //echo $ret;
     $retArr = json_decode($ret); // 결과배열
     //print_r($retArr); // Response 출력 (연동작업시 확인용)
-    return true;
-}
+    if (!$ret) {
+        return ['success' => false, 'error' => 'No response from Aligo API'];
+    }
+
+    $retArr = json_decode($ret, true); // thêm true để trả về mảng
+
+    if ($retArr['result_code'] !== '1') {
+        return ['success' => false, 'error' => $retArr['message'], 'response' => $retArr];
+    }
+
+    return ['success' => true, 'response' => $retArr];
+    }
 
 function phone_chk($to_phone)
 {
