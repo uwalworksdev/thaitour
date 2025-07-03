@@ -63,13 +63,13 @@ class CouponController extends BaseController
         }
         if ($product_code_2 == 'all') {
             return "$effected_product <i>></i> 전체";
-        } else {
-            $effected_product .= ' <i>></i> ' . $this->code->getCodeName($product_code_2);
+        } elseif ($product_code_name_2 = $this->code->getCodeName($product_code_2)) {
+            $effected_product .= ' <i>></i> ' . $product_code_name_2;
         }
         if ($product_idx == 'all') {
             return "$effected_product <i>></i> 전체";
-        } else {
-            $effected_product .= ' <i>></i> ' . $this->product->getById($product_idx)["product_name"];
+        } elseif ($product_name = $this->product->getById($product_idx)["product_name"]) {
+            $effected_product .= ' <i>></i> ' . $product_name;
         }
 
         return $effected_product;

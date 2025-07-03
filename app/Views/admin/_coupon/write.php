@@ -721,6 +721,7 @@
             }
             return;
         }
+        if(strs == "") return;
         $.ajax({
             type: "GET"
             , url: "/ajax/get_code"
@@ -760,6 +761,7 @@
             $("#product_idx").val('all');
             return;
         }
+        if(event.target.value == "") return;
         $.ajax({
             url: "/ajax/get_list_product",
             type: "GET",
@@ -805,11 +807,6 @@
             tmp_code_txt += " > " + product_name;
         }
 
-        if (product_idx === "") {
-            alert("카테고리를 선택해주세요.");
-            return false;
-        }
-
         addCategory(cate_code1, cate_code2, product_idx, tmp_code_txt);
 
     });
@@ -821,11 +818,11 @@
             return false;
         }
         var tmp_product_code = $("#product_code_list").val();
-        ;
+
         tmp_product_code = tmp_product_code + "|" + cate_code1 + "," + cate_code2 + "," + product_idx + "|";
         $("#product_code_list").val(tmp_product_code);
 
-        var newList = "<li>[" + product_idx + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
+        var newList = "<li>[" + (product_idx || cate_code2 || cate_code1) + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
         $("#reg_cate").append(newList);
     }
 
