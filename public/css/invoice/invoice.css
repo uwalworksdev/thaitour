@@ -416,6 +416,7 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .invoice_paid .invoice_button button {
@@ -423,7 +424,7 @@ input[type="text"] {
     color: #252525;
     border-radius: 4px;
     border: 1px solid #dbdbdb;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     font-weight: bold;
 }
 .invoice_paid .ttl_box .stt_2 {

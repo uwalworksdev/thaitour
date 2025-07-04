@@ -469,10 +469,13 @@ endforeach;
 										
                                 </div>
                                 <div class="estimate_wrap flex box">
-                                    <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
-                                        <img src="/images/mypage/delete_ic.png" alt="">
-                                        <p>예약삭제</p>
-                                    </div>
+                                    <?php if($order->order_status == "W" || $order->order_status == "C" || $order->order_status == "N") { ?>
+                                        <div class="info_btn btn_info flex__c order_del box" data-idx="<?=$order->order_idx?>" >
+                                            <img src="/images/mypage/delete_ic.png" alt="">
+                                            <p>예약삭제</p>
+                                        </div>
+                                    <?php } ?>
+
                                     <?php if($order->order_status == "Z" || $order->order_status == "E") { ?>
                                     <div class="info_voucher btn_info flex__c box" data-idx="<?=$order->order_idx?>" data-gubun="<?=$order->order_gubun?>">
                                         <img src="/images/mypage/document_ic.png" alt="">

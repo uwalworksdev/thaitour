@@ -74,7 +74,14 @@ $deli_types = get_deli_type();
 		</p>
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약 정보(스파)</h2>
+			<div class="flex_b_c invoice_wrap_ttl">
+				<h2 style="margin: 0;">예약 정보(스파)</h2>
+
+				<div class="flex invoice_wrap_btn">
+					<button type="button" class="btn_invoice info_estimate" data-idx="<?=$order_idx?>">인보이스</button>
+					<button type="button" class="btn_invoice info_voucher" data-idx="<?=$order_idx?>">바우처</button>
+				</div>
+			</div>
 			<table>
 				<colgroup>
 					<col width="20%">
@@ -629,6 +636,9 @@ $deli_types = get_deli_type();
 
 		<div class="invoice_button">
 			<button onclick="go_list('<?= $pg ?>');">목록으로</button>
+			<?php if($order_status == "W" || $order_status == "C" || $order_status == "N") { ?>
+			<button type="button" class="order_del" data-idx="<?=$order_idx?>">예약삭제</button>
+			<?php } ?>
 			<?php if($order_status == "X") { ?>
 			<button class="btn_payment" data-idx="<?=$order_no?>">결제하기</button>
 			<?php } ?>
@@ -680,6 +690,55 @@ if ($_paymod == "lg") {
 <input type="hidden" name="dataValue"  id="dataValue"  value="" >
 </form>
 
+<script>
+	$(document).on('click', '.info_estimate', function () {
+
+		var idx   = $(this).data('idx');  
+		let url   = "/invoice/ticket_01/" + idx; 
+		
+		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
+
+	}); 
+
+	$(document).on('click', '.info_voucher', function () {
+		var idx   = $(this).data('idx');  
+		let url   = "/voucher/ticket/"+idx; 
+		
+		window.open(url, "popupWindow", "width=1000,height=700,left=100,top=100");
+	});
+	$(document).on('click', '.order_del', function () {
+
+		var idx = $(this).data('idx'); 
+
+        if (confirm("삭제하시겠습니까?\n삭제 후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+
+        if(idx){
+			$.ajax({
+
+				url: "/ajax/ajax_booking_delete",
+				type: "POST",
+				data: {
+
+					"idx": idx 
+
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					var message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
+        }		
+	});
+</script>
 <script>
 $(document).ready(function () {
     $(".btn_payment").on("click", function () {

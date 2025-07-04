@@ -1,5 +1,30 @@
 @charset "utf-8";
 
+.invoice_table .invoice_wrap_btn .btn_invoice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    gap: 5px;
+    font-size: 14px;
+    color: #2e3e92;
+    font-weight: 600;
+    width: unset;
+    height: fit-content;
+    min-width: 108px;
+}
+
+.invoice_table .invoice_wrap_ttl {
+    padding-bottom: 30px;
+}
+
+.invoice_table .invoice_wrap_btn {
+    gap: 10px;
+}
+
 .mypage_container {
     margin-top: 60px;
     margin-bottom: 120px;
