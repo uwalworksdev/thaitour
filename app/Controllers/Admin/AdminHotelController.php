@@ -599,7 +599,7 @@ class AdminHotelController extends BaseController
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files = $this->request->getFileMultiple('ufile');
+            $files = $this->request->getFileMultiple('ufile') ?? [];
 
             if ($product_idx) {
                 $data['min_date']    = strval($min_date);

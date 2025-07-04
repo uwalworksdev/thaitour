@@ -371,7 +371,7 @@ class AdminProductApi extends BaseController
 
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files = $this->request->getFileMultiple('ufile');
+            $files = $this->request->getFileMultiple('ufile') ?? [];
 
 
             if ($g_idx) {

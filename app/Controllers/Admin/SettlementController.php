@@ -920,7 +920,7 @@ class SettlementController extends BaseController
 			$order_no  = $data['order_no'];
             $baht_thai = $data['baht_thai'];
 
-			$files = $this->request->getFileMultiple('exp_file'); // <input type="file" name="exp_file[]">
+			$files = $this->request->getFileMultiple('exp_file') ?? []; // <input type="file" name="exp_file[]">
 			$model = new \App\Models\ExpenseModel(); // 모델 선언
 
 			foreach ($data['exp_id'] as $i => $val) {

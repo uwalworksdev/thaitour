@@ -209,7 +209,7 @@ class AdminTourGuideController extends BaseController
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files = $this->request->getFileMultiple('ufile');
+            $files = $this->request->getFileMultiple('ufile') ?? [];
 
             if ($product_idx) {
                 $message = '수정되었습니다.';

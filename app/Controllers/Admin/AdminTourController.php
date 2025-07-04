@@ -231,7 +231,7 @@ class AdminTourController extends BaseController
 
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files_ufile = $this->request->getFileMultiple('ufile');
+            $files_ufile = $this->request->getFileMultiple('ufile') ?? [];
 
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
