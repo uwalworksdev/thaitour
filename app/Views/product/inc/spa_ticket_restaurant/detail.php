@@ -173,7 +173,7 @@
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
-                            <div class="meeting_time">
+                            <div class="meeting_time" style="display: none">
                                 <select name="hours" id="hours">
                                     <?php
                                     for ($i = 0; $i < 24; $i++) {
@@ -1373,7 +1373,7 @@
                     },
                     success: function(data, status, request) {
 
-                        if(!tmp_info[current_info_idx]) {
+                        if(!tmp_info[current_info_idx] && data.length > 0) {
                             tmp_info[current_info_idx] = current_info_idx
                             
                             let option_html = ``;

@@ -1635,6 +1635,16 @@
     padding: 12px 50px;
 }
 
+.content-sub-hotel-detail .section1 .btn_contact_write {
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-left: 5px;
+}
+
 .content-sub-hotel-detail .section2 .title-sec2 {
     font-size: 24px;
 }

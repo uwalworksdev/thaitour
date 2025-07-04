@@ -476,6 +476,19 @@
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
 
+                            <?php
+                            $hasValidOptions = false;
+                            if (!empty($productTourInfo)) {
+                                foreach ($productTourInfo as $info) {
+                                    if (!empty($info['options'])) {
+                                        $hasValidOptions = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            ?>
+
+                            <?php if ($hasValidOptions): ?>
                             <h3 class="title-second">선택옵션</h3>
                             <form>
                                 <!-- <div class="form-group">
@@ -551,6 +564,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <?php endif; ?>
                             <div class="total_price_tour">
                                 <span class="total_price_ttl">합계</span>
                                 <p><span class="total_all_price">0</span>원</p>
