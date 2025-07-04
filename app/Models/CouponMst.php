@@ -66,11 +66,31 @@ class CouponMst extends Model
         ];
     }
 
+	public function get_effected_product($product_code_1, $product_code_2, $product_idx) {
+		if ($product_code_1 == 'all') {
+			return '전체';
+		} else {
+			$effected_product = model("Code")->getCodeName($product_code_1);
+		}
+		if ($product_code_2 == 'all') {
+			return "$effected_product <i>></i> 전체";
+		} elseif ($product_code_name_2 = model("Code")->getCodeName($product_code_2)) {
+			$effected_product .= ' <i>></i> ' . $product_code_name_2;
+		}
+		if ($product_idx == 'all') {
+			return "$effected_product <i>></i> 전체";
+		} elseif ($product_name = model("ProductModel")->getById($product_idx)["product_name"]) {
+			$effected_product .= ' <i>></i> ' . $product_name;
+		}
+
+		return $effected_product;
+	}
+
     public function getCouponListAjax($code = null, $child_code = null, $pg = 1, $g_list_rows = 10)
     {
         $code_model = model('App\Models\Code');
         $builder = $this->db->table('tbl_coupon_mst c1');
-        $builder->select('c1.*, c2.product_code_1, c2.product_code_2');
+        $builder->select('c1.*, c2.product_code_1, c2.product_code_2, c2.product_idx');
         $builder->join('tbl_coupon_product c2', 'c1.idx = c2.coupon_idx', 'left');
         
         $builder->where('state !=', 'C');
@@ -114,7 +134,7 @@ class CouponMst extends Model
             if(strpos($value["type_select"], "A") !== false) {
                 $coupon_list[$key]["category_name"] = "전체";
             }else{
-                $coupon_list[$key]["category_name"] = $code_model->getCodeName($value["product_code_2"]);
+                $coupon_list[$key]["category_name"] = $this->get_effected_product($value["product_code_1"], $value["product_code_2"], $value["product_idx"]);
             }
         }
 
