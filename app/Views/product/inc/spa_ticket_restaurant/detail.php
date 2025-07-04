@@ -1381,15 +1381,13 @@
                                     <option value="">옵션선택</option>`;
 
                             for (let i = 0; i < data.length; i++) {
-                                if (parseInt(data[i].option_price) > 0) {
                                     hasValidOption = true;
                                     option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
-                                }
                             }
 
                             option_html += `</select>`;
 
-                            if (!hasValidOption) return; 
+                            if (!hasValidOption) return;
 
                             tmp_info[current_info_idx] = current_info_idx;
 
