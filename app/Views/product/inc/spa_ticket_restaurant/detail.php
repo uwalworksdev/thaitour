@@ -168,12 +168,12 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div class="flex_b_c tours_time_sect">
-                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                    <div class="flex_b_c tours_time_sect" style="display: none">
+                        <p class="open_time" >운영시간: <?= $data_['time_line'] ?></p>
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
-                            <div class="meeting_time">
+                            <div class="meeting_time" style="display: none">
                                 <select name="hours" id="hours">
                                     <?php
                                     for ($i = 0; $i < 24; $i++) {
@@ -1372,45 +1372,48 @@
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     },
                     success: function(data, status, request) {
-
-                        if(!tmp_info[current_info_idx]) {
-                            tmp_info[current_info_idx] = current_info_idx
-                            
+                        if (!tmp_info[current_info_idx] && data.length > 0) {
                             let option_html = ``;
-                            
+                            let hasValidOption = false;
+
                             option_html += `
                                 <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
                                     <option value="">옵션선택</option>`;
+
                             for (let i = 0; i < data.length; i++) {
-                                option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                if (parseInt(data[i].option_price) > 0) {
+                                    hasValidOption = true;
+                                    option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                }
                             }
-    
+
+                            option_html += `</select>`;
+
+                            if (!hasValidOption) return; 
+
+                            tmp_info[current_info_idx] = current_info_idx;
+
                             option_html += `
-                                </select>
                                 <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
-                                    <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">";
+                                    <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">
                                         <option value="">옵션 선택</option>
                                     </select>
                                 </div>
-                                <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px">
-    
-                                </ul>
+                                <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px"></ul>
                             `;
-                            
+
                             $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
-    
+
                             for (let info_idx in arr_data_option) {
-    
                                 let dataList = arr_data_option[info_idx];
-    
                                 for (let i = 0; i < dataList.length; i++) {
                                     let data = dataList[i];
-                                                                        
                                     renderOpPrice(data, info_idx);
                                 }
                             }
                         }
                     }
+
                 });
             }
 
