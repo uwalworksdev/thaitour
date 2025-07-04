@@ -84,6 +84,7 @@
                                     <td colspan="3">
                                         <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
+                                            <option value="all">전체</option>
                                             <?php
                                             foreach ($code_list as $code) {
                                                 $status_txt = "";
@@ -101,9 +102,11 @@
                                         </select>
                                         <select id="product_code_2" name="product_code_2" class="input_select">
                                             <option value="">2차분류</option>
+                                            <option value="all">전체</option>
                                         </select>
                                         <select id="product_idx" name="product_idx" class="input_select">
                                             <option value="">3차분류</option>
+                                            <option value="all">전체</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>
@@ -246,7 +249,7 @@
                                         <textarea name="coupon_contents" id="coupon_contents" rows="10" cols="100" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
-                                                var oEditors = [];
+                                                var oEditors;
 
                                                 // 추가 글꼴 목록
                                                 //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
@@ -693,8 +696,32 @@
 
 		return true;
 	}
+
+    function reset_code() {
+        $("#product_code_2").find('option').each(function () {
+            $(this).remove();
+        });
+        $("#product_code_2").append("<option value=''>2차분류</option>").append("<option value='all'>전체</option>");
+    }
+
+    function reset_product() {
+        $("#product_idx").find('option').each(function () {
+            $(this).remove();
+        });
+        $("#product_idx").append("<option value=''>3차분류</option>").append("<option value='all'>전체</option>");
+    }
     
     function get_code(strs, depth) {
+        if(strs == 'all') {
+            if (depth <= 3) {
+                reset_code();
+                reset_product();
+                $("#product_code_2").val('all');
+                $("#product_idx").val('all');
+            }
+            return;
+        }
+        if(strs == "") return;
         $.ajax({
             type: "GET"
             , url: "/ajax/get_code"
@@ -708,15 +735,8 @@
             }
             , success: function (json) {
                 if (depth <= 3) {
-                    $("#product_code_2").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_code_2").append("<option value=''>2차분류</option>");
-
-                    $("#product_idx").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_idx").append("<option value=''>3차분류</option>");
+                    reset_code();
+                    reset_product();
                 }
 
                 var list = $.parseJSON(json);
@@ -736,6 +756,12 @@
     }
 
     $("#product_code_2").on("change", function(event) {
+        if (event.target.value == "all") {
+            reset_product();
+            $("#product_idx").val('all');
+            return;
+        }
+        if(event.target.value == "") return;
         $.ajax({
             url: "/ajax/get_list_product",
             type: "GET",
@@ -746,6 +772,7 @@
             success: function(res) {
                 let data = res.results;
                 let html = `<option value=''>선택</option>`;
+                html += `<option value='all'>전체</option>`;
                 data.forEach(element => {
                     html += `<option value='${element["product_idx"]}'>${element["product_name"]}</option>`;
                 });
@@ -780,11 +807,6 @@
             tmp_code_txt += " > " + product_name;
         }
 
-        if (product_idx === "") {
-            alert("카테고리를 선택해주세요.");
-            return false;
-        }
-
         addCategory(cate_code1, cate_code2, product_idx, tmp_code_txt);
 
     });
@@ -796,11 +818,11 @@
             return false;
         }
         var tmp_product_code = $("#product_code_list").val();
-        ;
+
         tmp_product_code = tmp_product_code + "|" + cate_code1 + "," + cate_code2 + "," + product_idx + "|";
         $("#product_code_list").val(tmp_product_code);
 
-        var newList = "<li>[" + product_idx + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
+        var newList = "<li>[" + (product_idx || cate_code2 || cate_code1) + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
         $("#reg_cate").append(newList);
     }
 

@@ -65,7 +65,7 @@ class AdminCouponController extends BaseController
             foreach($coupon_category_list as $key => $value){
                 $coupon_category_list[$key]["product_code_name_1"] = $this->code->getCodeName($value["product_code_1"]);
                 $coupon_category_list[$key]["product_code_name_2"] = $this->code->getCodeName($value["product_code_2"]);
-                $coupon_category_list[$key]["product_name"] = $this->product->getById($value["product_idx"])["product_name"];
+                $coupon_category_list[$key]["product_name"] = $value["product_idx"] == 'all' ? '전체' : $this->product->getById($value["product_idx"])["product_name"];
                 $product_code_list .= "|";
                 $product_code_list .= $value["product_code_1"] . ",";
                 $product_code_list .= $value["product_code_2"] . ",";
