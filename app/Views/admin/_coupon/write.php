@@ -122,7 +122,7 @@
                                             <?php
                                                 foreach($coupon_category_list as $cat){
                                             ?> 
-                                                <li>[<?= $cat["product_idx"] ?>] <?php echo $cat["product_code_name_1"] . " > " . $cat["product_code_name_2"] . " > " . $cat["product_name"];?> 
+                                                <li>[<?= $cat["product_idx"] ?>] <?php echo $cat["effected_product"]; ?>
                                                 <span onclick="delCategory('<?= $cat['product_code_1'] ?>', '<?= $cat['product_code_2'] ?>', '<?= $cat['product_idx'] ?>', this);">삭제</span>
                                                 </li>       
                                             <?php

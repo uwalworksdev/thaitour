@@ -63,9 +63,10 @@ class AdminCouponController extends BaseController
             $row = $this->couponMst->find($idx);
             $coupon_category_list = $this->couponProduct->where("coupon_idx", $idx)->findAll();
             foreach($coupon_category_list as $key => $value){
-                $coupon_category_list[$key]["product_code_name_1"] = $this->code->getCodeName($value["product_code_1"]);
-                $coupon_category_list[$key]["product_code_name_2"] = $this->code->getCodeName($value["product_code_2"]);
+                $coupon_category_list[$key]["product_code_name_1"] = $value["product_code_1"] == 'all' ? '전체' : $this->code->getCodeName($value["product_code_1"]);
+                $coupon_category_list[$key]["product_code_name_2"] = $value["product_code_2"] == 'all' ? '전체' : $this->code->getCodeName($value["product_code_2"]);
                 $coupon_category_list[$key]["product_name"] = $value["product_idx"] == 'all' ? '전체' : $this->product->getById($value["product_idx"])["product_name"];
+	            $coupon_category_list[$key]['effected_product'] = model("CouponMst")->get_effected_product($value["product_code_1"], $value["product_code_2"], $value["product_idx"]);
                 $product_code_list .= "|";
                 $product_code_list .= $value["product_code_1"] . ",";
                 $product_code_list .= $value["product_code_2"] . ",";
