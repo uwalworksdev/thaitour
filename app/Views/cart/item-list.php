@@ -37,6 +37,10 @@
                             </label>
                         </div>
                         <table class="table-container only_web">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -75,6 +79,7 @@
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
+                                </td>
                                 <td class="price">
                                     <div class="price-container">
                                         <div class="flex_b_c">
@@ -651,6 +656,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -721,6 +730,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -817,6 +830,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -896,6 +913,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -970,6 +991,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -1040,6 +1065,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
@@ -1114,6 +1143,10 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
