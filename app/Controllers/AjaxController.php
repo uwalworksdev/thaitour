@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use DateTime;
+use CodeIgniter\I18n\Time;
 
 class AjaxController extends BaseController {
     private $db;
@@ -9,6 +10,9 @@ class AjaxController extends BaseController {
     private $roomImg;
     private $CodeModel;
     private $orderOptionModel;
+    private $orderModel;
+    protected $historyOrderUpdate;
+
 
     public function __construct() {
         $this->db = db_connect();
@@ -16,6 +20,8 @@ class AjaxController extends BaseController {
         $this->roomImg = model("RoomImg");
         $this->CodeModel = model("Code");
         $this->orderOptionModel = model("OrderOptionModel");
+        $this->orderModel = model("OrdersModel");
+        $this->historyOrderUpdate = model("HistoryOrderUpdate");
     }
 
     public function uploader() {
@@ -2729,6 +2735,17 @@ public function get_golf_option() {
 			} else {  
                $sql      = "UPDATE tbl_order_mst SET order_status  = '". $order_status ."', order_r_date = now() WHERE order_idx = '". $order_idx ."'";  
 			}
+
+			$m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
+
+			$this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
+
 			write_log("ajax_set_status- ".  $sql);
 			$result   = $db->query($sql);
 			
@@ -4390,9 +4407,20 @@ public function get_golf_option() {
 			$order_no        = $this->request->getPost("order_no");
 			$real_price_bath = (float) str_replace(',', '', $this->request->getPost("real_price_bath"));
 			$real_price_won  = (float) str_replace(',', '', $this->request->getPost("real_price_won"));
+            $m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
+
+			$order_idx = $this->orderModel->where('order_no', $order_no)->get()->getRow()->order_idx;
 
             $db->query("UPDATE tbl_order_mst SET real_price_won = ?, real_price_bath = ? WHERE order_no = ?", [$real_price_won, $real_price_bath, $order_no]);
 			
+			$this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
+
 			if ($db->transStatus() === false) {
 				$db->transRollback();
 				return $this->response->setStatusCode(500)->setJSON([

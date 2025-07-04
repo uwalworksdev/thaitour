@@ -591,7 +591,6 @@ class ReservationController extends BaseController
             $optionsIdx  = $data['tour_orders']['options_idx'];
             $options_idx = explode(',', $optionsIdx);
 
-
             $builder = $this->db->table('tbl_order_option');
 			$builder->select("opt_idx, option_name, option_tot, option_tot_bath, option_cnt, option_date, option_qty, option_price, option_price_bath");
 			$query = $builder->where('order_idx', $order_idx)->get();
@@ -1004,14 +1003,14 @@ class ReservationController extends BaseController
                 $data['order_price_bath'] = (int)($order_price / $baht_thai);
             }
 
+            $this->orderModel->updateData($order_idx, $data);
+
             $this->historyOrderUpdate->insertData([
                 "m_idx" => $m_idx,
                 "order_idx" => $order_idx,
                 "ip_address" => $ipAddress,
                 "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
             ]);
-
-            $this->orderModel->updateData($order_idx, $data);
 
             $gl_idx = $data['gl_idx'] ?? [];
             $order_name_kor = $data['order_name_kor'] ?? "";

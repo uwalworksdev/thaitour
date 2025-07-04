@@ -42,9 +42,7 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,9 +75,24 @@
                                             <label for="group_1_item1"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- <td class="discount"></td>
+                                <td class="total"></td> -->
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -643,9 +656,9 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <!-- <th>금액</th> -->
+                                <th>상품금액</th>
+                                <!-- <th>결제예정금액</th> -->
                             </tr>
                             </thead>
                             <tbody>
@@ -672,9 +685,22 @@
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -700,9 +726,9 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <!-- <th>금액</th> -->
+                                <th>상품금액</th>
+                                <!-- <th>결제예정금액</th> -->
                             </tr>
                             </thead>
                             <tbody>
@@ -754,9 +780,22 @@
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -783,9 +822,9 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                            
+                                <th>상품금액</th>
+                
                             </tr>
                             </thead>
                             <tbody>
@@ -818,9 +857,23 @@
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($option_amt)?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($option_amt)?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -848,9 +901,7 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -881,9 +932,22 @@
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -911,9 +975,7 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -940,9 +1002,23 @@
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -969,9 +1045,7 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -1002,9 +1076,23 @@
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -1031,9 +1119,7 @@
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -1064,9 +1150,22 @@
                                             <label for="group_7_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>

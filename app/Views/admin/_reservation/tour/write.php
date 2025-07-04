@@ -642,9 +642,13 @@
                                     <th>수정일자</th>
                                     <td>
 										<div>
-                                           <p> 홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
-                                            <p>홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
-                                            <p>홍길동(lifeess) 님이 2025-06-16 00:00 수정을 하셨습니다. (아이피: 120.1.1.1)</p>
+                                            <?php
+                                                foreach ($history_order_list as $history_item) {
+                                            ?>
+                                                <p><?=$history_item['user_name']?>(<?=$history_item['user_id']?>) 님이 <?=$history_item['updated_date']?> 수정을 하셨습니다. (아이피: <?=$history_item['ip_address']?>)</p>
+                                            <?php
+                                                }
+                                            ?>
                                         </div>
                                     </td>
                                 </tr>
