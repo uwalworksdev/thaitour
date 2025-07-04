@@ -36,72 +36,74 @@
                             <label class="font-bold" for="group_golf_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_web">
-                            <colgroup>
-                                <col width="*">
-                                <col width="30%">
-                            </colgroup>
-                            <thead>
-                            <tr class="table-header">
-                                <th>
-                                    <span>상품</span>
-                                </th>
-                                <th>상품금액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-							<?php $i = 0;?>
-							<?php foreach ($golf_result as $item): ?>
-						    <?php $i++;?>
-                            <tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
-                                        <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date">예약일시:<?=$item['order_date']?></div>
-                                            <p class="product-desc text-gray">
-											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('||', $item['options']);
-													foreach ($options as $option) {
-														$option_r = explode(",", esc($option));
-														if($option_r[2] > 0) {
-														   echo $option_r[0] ." / ". $option_r[1] ." (EA) / ". number_format($option_r[2]) ." 원<br>";
-														}   
-													}
-												}
-											?>
-                                            </p>
+                        <div class="only_web">
+                            <table class="table-container">
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="30%">
+                                </colgroup>
+                                <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        <span>상품</span>
+                                    </th>
+                                    <th>상품금액</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $i = 0;?>
+                                <?php foreach ($golf_result as $item): ?>
+                                <?php $i++;?>
+                                <tr>
+                                    <td class="custom-td-product-info">
+                                        <div class="product-info">
+                                            <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                            <div class="product-details">
+                                                <div class="product-name"><?=$item['product_name']?></div>
+                                                <div class="product-date">예약일시:<?=$item['order_date']?></div>
+                                                <p class="product-desc text-gray">
+                                                <?php 
+                                                    if (!empty($item['options'])) {
+                                                        $options = explode('||', $item['options']);
+                                                        foreach ($options as $option) {
+                                                            $option_r = explode(",", esc($option));
+                                                            if($option_r[2] > 0) {
+                                                               echo $option_r[0] ." / ". $option_r[1] ." (EA) / ". number_format($option_r[2]) ." 원<br>";
+                                                            }   
+                                                        }
+                                                    }
+                                                ?>
+                                                </p>
+                                            </div>
+                                            <div class="form-group-2 cus-checkbox-td">
+                                                <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                                <label for="group_1_item1"></label>
+                                            </div>
                                         </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
-                                            <label for="group_1_item1"></label>
+                                    </td>
+                                    <td class="price">
+                                        <div class="price-container">
+                                            <div class="flex_b_c">
+                                                <span>상품</span>
+                                                <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                            </div>
+                                            <div class="flex_b_c">
+                                                <span>옵션</span>
+                                                <span><?=number_format($item['option_amt'])?> 원</span>
+                                            </div>
+                                            <div class="flex_b_c">
+                                                <span>총금액</span>
+                                                <span><?=number_format($item['order_price'])?> 원</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="price">
-                                    <div class="price-container">
-                                        <div class="flex_b_c">
-                                            <span>상품</span>
-                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
-                                        </div>
-                                        <div class="flex_b_c">
-                                            <span>옵션</span>
-                                            <span><?=number_format($item['option_amt'])?> 원</span>
-                                        </div>
-                                        <div class="flex_b_c">
-                                            <span>총금액</span>
-                                            <span><?=number_format($item['order_price'])?> 원</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <!-- <td class="discount"></td>
-                                <td class="total"></td> -->
-							</tr>
-		                    <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </td>
+                                    <!-- <td class="discount"></td>
+                                    <td class="total"></td> -->
+                                </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div class="table-container custom-mo only_mo">
 						    <?php $i = 0;?>
