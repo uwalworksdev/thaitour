@@ -76,8 +76,16 @@ $deli_types = get_deli_type();
 			<div class="flex_b_c invoice_wrap_ttl">
 				<h2 style="margin: 0;">예약 정보(호텔)</h2>
 				<div class="flex invoice_wrap_btn">
-					<button type="button" class="btn_invoice info_estimate" data-idx="<?=$order_idx?>">인보이스</button>
-					<button type="button" class="btn_invoice info_voucher" data-idx="<?=$order_idx?>">바우처</button>
+					<?php
+						if($order_status != "W") {
+					?>
+						<button type="button" class="btn_invoice info_estimate" data-idx="<?=$order_idx?>">인보이스</button>
+                    <?php } ?>
+					<?php
+						if($order_status == "Z" || $order_status == "E") {
+					?>
+						<button type="button" class="btn_invoice info_voucher" data-idx="<?=$order_idx?>">바우처</button>
+                    <?php } ?>
 				</div>
 			</div>
 			<table>
