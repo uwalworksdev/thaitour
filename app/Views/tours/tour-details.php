@@ -363,7 +363,8 @@
                         <p class="sec-date-range">(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</p>
                     </div>
                     <?php foreach ($info['tours'] as $tour): ?>
-                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
+                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
+                            data-option-count="<?= $tour['total_check_price'] ?>">
                             <div class="text-content-1">
                                 <div>
                                     <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
@@ -486,19 +487,6 @@
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
 
-                            <?php
-                            $hasValidOptions = false;
-                            if (!empty($productTourInfo)) {
-                                foreach ($productTourInfo as $info) {
-                                    if (!empty($info['options'])) {
-                                        $hasValidOptions = true;
-                                        break;
-                                    }
-                                }
-                            }
-                            ?>
-
-                            <?php if ($hasValidOptions): ?>
                             <h3 class="title-second">선택옵션</h3>
                             <form>
                                 <!-- <div class="form-group">
@@ -574,7 +562,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <?php endif; ?>
                             <div class="total_price_tour">
                                 <span class="total_price_ttl">합계</span>
                                 <p><span class="total_all_price">0</span>원</p>

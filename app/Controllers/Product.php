@@ -3530,6 +3530,19 @@ class Product extends BaseController
             $options = $query->getResultArray();
 
             $groupedData[$infoIndex]['options'] = $options;
+            $groupedData[$infoIndex]['tours']['total_check_price'] = 0;
+
+            foreach ($groupedData[$infoIndex]['options'] as $key_o => $row_o) {
+                $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
+                            AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+                $result = $this->db->query($sql);
+                $row_option_sub = $result->getResultArray();
+                $count_option_sub = count($row_option_sub);
+
+                $groupedData[$infoIndex]['tours']['total_check_price'] += $count_option_sub;
+                $groupedData[$infoIndex]['options'][$key_o]['check_price'] = $count_option_sub;
+            }
+
         }
 
         $data['productTourInfo'] = $groupedData;
@@ -4595,7 +4608,8 @@ class Product extends BaseController
             $msg .= "<option value=''>옵션 선택</option>";
 
 
-            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
+            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
+                        AND code_idx = '$code_idx' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
