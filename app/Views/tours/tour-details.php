@@ -194,6 +194,13 @@
                         }
                     ?>
                     <?php
+                        if(strpos($product["tour_group"], "S") !== false){
+                    ?>
+                        <li class="type_title type_title_3">단독투어</li>
+                    <?php
+                        }
+                    ?>
+                    <?php
                         if(!empty(trim($product["company_name"])) || !empty(trim($product["company_contact"])) || !empty(trim($product["company_url"])) || !isContentEmpty(viewSQ($product["company_notes"]))){
                     ?>
                         <li class="view_info_company"><a href="javaScript:showInfoCompany()">판매자 정보</a></li>
@@ -1036,7 +1043,7 @@
                                         <tr>
                                             <th>미팅장소</th>
                                             <td>
-                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" id="pop_start_place" value="<?=$product['contents_field_more']?>" readonly>
+                                                <input type="text" id="pop_start_place" value="<?=$product['contents_field_more']?>" readonly>
                                                 <!-- <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span> -->
                                             </td>
                                         </tr>
