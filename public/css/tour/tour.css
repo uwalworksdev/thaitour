@@ -2468,9 +2468,17 @@
     margin-bottom: 20px;
 }
 
-.tours-detail .section2 .sec2-date-sub {
+.tours-detail .section2 .sec2-date-wrap {
     margin-bottom: 30px;
 }
+
+.tours-detail .section2 .sec2-date-sub {
+}
+
+.tours-detail .section2 .sec-date-range {
+    font-weight: bold;
+}
+
 
 .tours-detail .section2 .sec2-item-card.tour_calendar {
     position: relative;

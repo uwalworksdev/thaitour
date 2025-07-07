@@ -349,9 +349,12 @@
                     <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                         data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                         data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                        <?=viewSQ($info['info']['info_name'])?>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)
+                        <?=viewSQ($info['info']['info_name'])?>
                     </h2>
-                    <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                    <div class="flex_b_c sec2-date-wrap">
+                        <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                        <p class="sec-date-range">(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</p>
+                    </div>
                     <?php foreach ($info['tours'] as $tour): ?>
                         <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
@@ -380,14 +383,14 @@
                     <?php endforeach; ?>
                 <?php endforeach;?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
-                    <div class="time_work">
+                    <!-- <div class="time_work">
                         <p>운영시간: <?= $product['product_period']?></p>
-                    </div>
+                    </div> -->
                     <div class="container-calendar tour">
                         <div class="calendar-left">
-                            <h3 class="title-left calendar_txt">
+                            <!-- <h3 class="title-left calendar_txt">
                                 이용일자 선택
-                            </h3>
+                            </h3> -->
                             <div class="calendar-container">
                                 <div class="calendar-header">
                                     <div id="prev-month" class="btn-action-calendar">
@@ -1743,7 +1746,7 @@
         updateTotalPeopleDisplay();
 
         const formattedDate = formatSelectedDate(date);
-        $('.days_choose, .calendar_txt').text(formattedDate);
+        // $('.days_choose, .calendar_txt').text(formattedDate);
         $('#order_date').val(formattedDate);
     }
 
