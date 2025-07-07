@@ -843,7 +843,11 @@
                                         <?php if (isset($field_more) && (strpos($field_more, "3") !== false)){ ?>
                                             <input type="text" name="contents_field_more" class="contents_field_more" value="<?= $contents_field_more ?>" style="width: 600px;">
                                             <input type="hidden" name="contents_field_more_hidden" class="contents_field_more_hidden" value="<?= $contents_field_more ?>" style="width: 600px;">
-                                        <?php }?>
+                                        <?php }else { ?>
+                                            <input type="text" name="contents_field_more" class="contents_field_more" value="<?= $contents_field_more ?>" style="width: 600px; display: none;">
+                                            <input type="hidden" name="contents_field_more_hidden" class="contents_field_more_hidden" value="<?= $contents_field_more ?>" style="width: 600px;">
+                                        <?php } ?>
+                                        
                                     </td>
                                 </tr>
 
