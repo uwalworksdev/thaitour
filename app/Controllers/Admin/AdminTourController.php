@@ -136,7 +136,10 @@ class AdminTourController extends BaseController
             $product_level = updateSQ($_POST["product_level" ?? '']);
             $product_option = updateSQ($_POST["product_option" ?? '']);
             $tours_cate = updateSQ($_POST["tours_cate" ?? '']);
-
+            $contents_field_more = updateSQ($_POST["contents_field_more" ?? '']);
+            $contents_field_more_hidden = updateSQ($_POST["contents_field_more_hidden" ?? '']);
+            $contents_field_more = !empty($contents_field_more) ? $contents_field_more : $contents_field_more_hidden;
+            
             $yoil_0 = updateSQ($_POST["yoil_0" ?? '']);
             $yoil_1 = updateSQ($_POST["yoil_1" ?? '']);
             $yoil_2 = updateSQ($_POST["yoil_2" ?? '']);
@@ -353,7 +356,8 @@ class AdminTourController extends BaseController
 							,description            = '" . $description . "'
 			                ,worker_id              = '" . session()->get('member')['id'] ."'
 			                ,worker_name            = '" . session()->get('member')['name'] ."'
-                            ,field_more            = '" . $field_more ."'
+                            ,field_more             = '" . $field_more ."'
+                            ,contents_field_more    = '" . $contents_field_more ."'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -550,7 +554,8 @@ class AdminTourController extends BaseController
                             
                             ,mbti                   = '" . $mbti . "'
 							,description            = '" . $description . "'
-                            ,field_more         = '" . $field_more . "'
+                            ,field_more             = '" . $field_more . "'
+                            ,contents_field_more    = '" . $contents_field_more . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";

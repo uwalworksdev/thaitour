@@ -385,14 +385,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>예약시간</th>
+                                    <!-- <th>예약시간</th>
                                     <td>
                                         <input id="time_line" name="time_line" class="input_txt" type="text"
                                                value="<?= $time_line ?>" style="width:100%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
-                                    </td>
-                                    <th>골프장 담당자</th>
-                                    <td>
+                                    </td> -->
+                                    <th>상품 담당자</th>
+                                    <td colspan="3">
                                         이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
 										&ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
                                         &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
@@ -821,6 +821,9 @@
                                         <input type="checkbox" name="tour_group[]"
                                                class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "T") !== false)) echo "checked"; ?> value="T">
                                                조인 투어 &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="tour_group[]"
+                                               class="yoil" <?php if (isset($tour_group) && (strpos($tour_group, "S") !== false)) echo "checked"; ?> value="S">
+                                               단독투어 &nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
 
@@ -834,8 +837,13 @@
                                                class="yoil" <?php if (isset($field_more) && (strpos($field_more, "2") !== false)) echo "checked"; ?> value="2">
                                                샌딩장소 &nbsp;&nbsp;&nbsp;
                                         <input type="checkbox" name="field_more[]"
-                                               class="yoil" <?php if (isset($field_more) && (strpos($field_more, "3") !== false)) echo "checked"; ?> value="3">
+                                               class="yoil ip_field_more" <?php if (isset($field_more) && (strpos($field_more, "3") !== false)) echo "checked"; ?> value="3">
                                                미팅장소 &nbsp;&nbsp;&nbsp;
+
+                                        <?php if (isset($field_more) && (strpos($field_more, "3") !== false)){ ?>
+                                            <input type="text" name="contents_field_more" class="contents_field_more" value="<?= $contents_field_more ?>" style="width: 600px;">
+                                            <input type="hidden" name="contents_field_more_hidden" class="contents_field_more_hidden" value="<?= $contents_field_more ?>" style="width: 600px;">
+                                        <?php }?>
                                     </td>
                                 </tr>
 
@@ -1790,7 +1798,14 @@
         </div>
     </div>
 
-    <script>    
+    <script>  
+        $(".ip_field_more").on("change", function () {
+            if ($(this).is(":checked")) {
+                $('.contents_field_more').show();
+            } else {
+                $('.contents_field_more').hide();
+            }
+        })  
 
         $(document).ready(function () {
             $("[id^=all_code_mbti_]").on("change", function () {
