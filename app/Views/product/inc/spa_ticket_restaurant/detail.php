@@ -1373,6 +1373,9 @@
                             let option_html = ``;
                             let hasValidOption = false;
 
+                            console.log(data.total_count_op);
+                            
+
                             if(Number(data.total_count_op) > 0) {
 
                                 option_html += `
