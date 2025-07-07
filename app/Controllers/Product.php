@@ -3505,6 +3505,30 @@ class Product extends BaseController
             $price_baht_baby = $row['tour_price_baby'];
             $price_won_baby = round($price_baht_baby * $baht_thai);
 
+            $builder = $this->db->table('tbl_tours_moption');
+            $builder->where('product_idx', $product_idx);
+            $builder->where('info_idx', $infoIndex);
+            $builder->where('use_yn', 'Y');
+            $builder->where('moption_name !=', '');
+            $builder->orderBy('onum', 'asc');
+            $builder->orderBy('code_idx', 'asc');
+            $query = $builder->get();
+            $options = $query->getResultArray();
+
+            $groupedData[$infoIndex]['options'] = $options;
+            $total_check_price = 0;
+
+            foreach ($groupedData[$infoIndex]['options'] as $key_o => $row_o) {
+                $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
+                            AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+                $result = $this->db->query($sql);
+                $row_option_sub = $result->getResultArray();
+                $count_option_sub = count($row_option_sub);
+
+                $total_check_price += $count_option_sub;
+                $groupedData[$infoIndex]['options'][$key_o]['check_price'] = $count_option_sub;
+            }
+
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx' => $row['tours_idx'],
                 'tours_subject' => $row['tours_subject'],
@@ -3517,31 +3541,8 @@ class Product extends BaseController
                 'price_won' => $price_won,
                 'price_won_kids' => $price_won_kids,
                 'price_won_baby' => $price_won_baby,
-            ];
-
-            $builder = $this->db->table('tbl_tours_moption');
-            $builder->where('product_idx', $product_idx);
-            $builder->where('info_idx', $infoIndex);
-            $builder->where('use_yn', 'Y');
-            $builder->where('moption_name !=', '');
-            $builder->orderBy('onum', 'asc');
-            $builder->orderBy('code_idx', 'asc');
-            $query = $builder->get();
-            $options = $query->getResultArray();
-
-            $groupedData[$infoIndex]['options'] = $options;
-            // $groupedData[$infoIndex]['tours']['total_check_price'] = 0;
-
-            foreach ($groupedData[$infoIndex]['options'] as $key_o => $row_o) {
-                $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
-                            AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
-                $result = $this->db->query($sql);
-                $row_option_sub = $result->getResultArray();
-                $count_option_sub = count($row_option_sub);
-
-                // $groupedData[$infoIndex]['tours']['total_check_price'] += $count_option_sub;
-                $groupedData[$infoIndex]['options'][$key_o]['check_price'] = $count_option_sub;
-            }
+                'total_check_price' => $total_check_price,
+            ]; 
 
         }
 
