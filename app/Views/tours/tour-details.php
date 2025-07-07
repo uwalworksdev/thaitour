@@ -599,7 +599,7 @@
                                 <input type="hidden" value="N" id="guidelines">
                             </div> -->
 
-                            <div class="form-below-calendar">
+                            <!-- <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
                                 <select class="select-time-c" id="select_time_line">
                                     <?php foreach ($timeSegments as $time): ?>
@@ -608,7 +608,7 @@
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>  
+                            </div>   -->
                         </div>
                     </div>
 
@@ -2012,10 +2012,12 @@
                 return false;
             }
 
-            var selectedTime = $('#select_time_line').val();
-            if (!selectedTime) {
-                selectedTime = $('#select_time_line option:first').val();
-            }
+            var selectedTime = '';
+
+            // var selectedTime = $('#select_time_line').val();
+            // if (!selectedTime) {
+            //     selectedTime = $('#select_time_line option:first').val();
+            // }
 
             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
