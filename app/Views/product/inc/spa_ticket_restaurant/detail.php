@@ -1368,13 +1368,12 @@
                     error: function(request, status, error) {
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     },
-                    success: function(data, status, request) {
+                    success: function(response, status, request) {
+                        let data = response.m_option;
+
                         if (!tmp_info[current_info_idx] && data.length > 0) {
                             let option_html = ``;
-                            let hasValidOption = false;
-
-                            console.log(data.total_count_op);
-                            
+                            let hasValidOption = false;                            
 
                             if(Number(data.total_count_op) > 0) {
 
