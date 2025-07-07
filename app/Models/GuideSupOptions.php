@@ -44,7 +44,7 @@ class GuideSupOptions extends Model
 
     public function getListByOptionId($idx)
     {
-        $sql = " select * from tbl_guide_sup_options where o_idx = '" . $idx . "'";
+        $sql = " select * from tbl_guide_sup_options where o_idx = '" . $idx . "' and s_name != '' and s_price != '0'";
         //write_log($sql);
         return $this->db->query($sql)->getResultArray();
     }
