@@ -486,8 +486,12 @@
                                     </div>
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
+                            <?php
+                                $firstInfo = reset($productTourInfo);
 
-                            <h3 class="title-second">선택옵션</h3>
+                                $firstTour = $firstInfo['tours'][0] ?? null;
+                            ?>
+                            <h3 class="title-second title-option" <?php if((int)($firstTour['total_check_price']) <= 0) { ?> style="display: none;" <?php } ?>>선택옵션</h3>
                             <form>
                                 <!-- <div class="form-group">
                                     <div class="above">
@@ -499,7 +503,8 @@
                                         <span class="currency"><?= $price_baht_option?>바트</span>
                                     </div>
                                 </div> -->
-                                <div class="form-group">
+
+                                <div class="form-group form-group-option" <?php if((int)($firstTour['total_check_price']) <= 0) { ?> style="display: none;" <?php } ?>>
                                     <?php
                                         $count_t = 0;
                                     ?>
@@ -561,6 +566,7 @@
                                     ?>
                                     </div>
                                 </div>
+
                             </form>
                             <div class="total_price_tour">
                                 <span class="total_price_ttl">합계</span>
