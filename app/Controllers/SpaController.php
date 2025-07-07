@@ -751,7 +751,6 @@ class SpaController extends BaseController
         $m_option = $this->spasMoption->where("info_idx", $info_idx)
                                         ->where("product_idx", $product_idx)
                                         ->where("moption_name != ", "")
-                                        ->where("use_yn", "Y")
                                         ->orderBy("onum", "asc")
                                         ->get()->getResultArray();
         return $this->response->setJSON($m_option);
