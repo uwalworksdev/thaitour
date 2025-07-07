@@ -754,6 +754,8 @@ class SpaController extends BaseController
                                         ->orderBy("onum", "asc")
                                         ->get()->getResultArray();
 
+        $total_count_op = 0;
+
         foreach ($m_option as $key_o => $row_o) {
             $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' 
                         AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
@@ -761,8 +763,11 @@ class SpaController extends BaseController
             $row_option_sub = $result->getResultArray();
             $count_option_sub = count($row_option_sub);
 
-            $m_option[$key_o]["count_option"] = $count_option_sub;
+            $total_count_op += $count_option_sub;
         }
+
+        $m_option['total_count_op'] = $total_count_op;
+
         return $this->response->setJSON($m_option);
         
     }  
