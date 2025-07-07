@@ -766,8 +766,6 @@ class SpaController extends BaseController
             $total_count_op += $count_option_sub;
         }
 
-        $m_option['total_count_op'] = $total_count_op;
-
         return $this->response->setJSON([
             'm_option' => $m_option,
             'total_count_op' => $total_count_op
