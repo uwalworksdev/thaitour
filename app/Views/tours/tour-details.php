@@ -382,7 +382,9 @@
                                         <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
                                     </div>
                                     <div class="text-content-3" style="justify-content: space-between;">
-                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" 
+                                            data-option-count="<?= $tour['total_check_price'] ?>"
+                                            data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
                                     </div>
                                 </div>
                             </div>
@@ -1486,6 +1488,7 @@
         button.addEventListener('click', function() {
             const tourIndex = this.getAttribute('data-tour-index');
             const infoIndex = this.getAttribute('data-info-index');            
+            const option_count = this.getAttribute('data-option-count');            
 
             sec2Items.forEach(sec2Item => {
                 sec2Item.classList.remove('active');
@@ -1515,6 +1518,14 @@
                 selectedMoption.style.display = 'block';
             }
             
+            if(Number(option_count) > 0) {
+                $(".title-option").show();
+                $(".form-group-option").show();
+            }else {
+                $(".title-option").hide();
+                $(".form-group-option").hide();
+            }
+
         });
     });
             
