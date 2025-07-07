@@ -1244,4 +1244,8 @@ textarea::placeholder {
         object-fit: cover;
     }
     
+
+    .slick-dots {
+        display: none !important;
+    }
 }
