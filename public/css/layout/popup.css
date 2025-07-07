@@ -1236,5 +1236,12 @@ textarea::placeholder {
         line-height: 1.4 !important;
         font-size: 2.2rem !important;
     }
+
+   
+    #popupRoom .slick-slide img, #popup_img .slick-slide img {
+        width: 100%;
+        height: 38rem;
+        object-fit: cover;
+    }
     
 }
