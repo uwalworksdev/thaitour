@@ -1373,7 +1373,7 @@
                             let option_html = ``;
                             let hasValidOption = false;
 
-                            if(Number(data.total_count_op) >= 0) {
+                            if(Number(data.total_count_op) > 0) {
 
                                 option_html += `
                                     <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
