@@ -753,6 +753,16 @@ class SpaController extends BaseController
                                         ->where("moption_name != ", "")
                                         ->orderBy("onum", "asc")
                                         ->get()->getResultArray();
+
+        foreach ($m_option as $key_o => $row_o) {
+            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' 
+                        AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+            $result = $this->db->query($sql);
+            $row_option_sub = $result->getResultArray();
+            $count_option_sub = count($row_option_sub);
+
+            $m_option[$key_o]["count_option"] = $count_option_sub;
+        }
         return $this->response->setJSON($m_option);
         
     }  
@@ -771,7 +781,7 @@ class SpaController extends BaseController
             $msg .= "<select name='option' id='option_" . $code_idx . "' onchange='sel_option(this.value, ". $info_idx .");'>";
             $msg .= "<option value=''>옵션 선택</option>";
 
-            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ORDER BY onum ASC";
+            $sql = "SELECT * FROM tbl_spas_option WHERE product_idx = '$product_idx' AND option_name != '' AND option_price != 0 AND code_idx = '$code_idx' ORDER BY onum ASC";
             $result = $db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {

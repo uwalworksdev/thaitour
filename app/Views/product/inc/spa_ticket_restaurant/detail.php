@@ -995,9 +995,6 @@
         let html = ``;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
-
-            
-            
             
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}" data-op_name_eng="${item_.spas_subject_eng}">
@@ -1376,29 +1373,33 @@
                             let option_html = ``;
                             let hasValidOption = false;
 
-                            option_html += `
-                                <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
-                                    <option value="">옵션선택</option>`;
+                            if(Number(data.count_option) >= 0) {
 
-                            for (let i = 0; i < data.length; i++) {
-                                    hasValidOption = true;
-                                    option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                option_html += `
+                                    <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
+                                        <option value="">옵션선택</option>`;
+
+                                for (let i = 0; i < data.length; i++) {
+                                        hasValidOption = true;
+                                        option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                }
+
+                                option_html += `</select>`;
+
+                                if (!hasValidOption) return;
+
+                                tmp_info[current_info_idx] = current_info_idx;
+
+                                option_html += `
+                                    <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
+                                        <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">
+                                            <option value="">옵션 선택</option>
+                                        </select>
+                                    </div>
+                                    <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px"></ul>
+                                `;
+
                             }
-
-                            option_html += `</select>`;
-
-                            if (!hasValidOption) return;
-
-                            tmp_info[current_info_idx] = current_info_idx;
-
-                            option_html += `
-                                <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
-                                    <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">
-                                        <option value="">옵션 선택</option>
-                                    </select>
-                                </div>
-                                <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px"></ul>
-                            `;
 
                             $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
 
