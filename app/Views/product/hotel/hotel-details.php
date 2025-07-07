@@ -876,7 +876,7 @@
                     <button type="button" onclick="scrollToEl('section3')">
                         객실선택
                     </button>
-                    <a href="/contact/write" class="btn_contact_write">문의하기</a>
+                    <a href="/mypage/consultation" class="btn_contact_write">문의하기</a>
                 </div>
             </div>
             <div class="btn-container cus-mb only_mo">
@@ -3138,7 +3138,7 @@
                 }
             ?>
 
-            window.location.href = '/contact/write';
+            window.location.href = '/mypage/consultation';
         });
 
         //$(".book-button").click(function() {

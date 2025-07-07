@@ -995,7 +995,7 @@
                         <div class="popup_place__body order-form-page">
                             <table class="info-table-order info-table-cus-padding">
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>예약시간</th>
                                         <td>
                                             <select class="select-time-c" id="pop_select_time_line" style="width: 200px;">
@@ -1006,7 +1006,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <!-- <tr>
                                         <th>미팅장소</th>
                                         <td>
@@ -1145,10 +1145,12 @@
         //     return false;
         // }
 
-        var selectedTimePop = $('#pop_select_time_line').val();
-        if (!selectedTimePop) {
-            selectedTimePop = $('#pop_select_time_line option:first').val();
-        }
+        var selectedTimePop = '';
+
+        // var selectedTimePop = $('#pop_select_time_line').val();
+        // if (!selectedTimePop) {
+        //     selectedTimePop = $('#pop_select_time_line option:first').val();
+        // }
 
         $("#time_line").val(selectedTimePop);
 
@@ -2232,7 +2234,7 @@
             }
         ?>
 
-        window.location.href = '/contact/write';
+        window.location.href = '/mypage/consultation';
     }
     $(".phone").on("input", function () {
         $(this).val($(this).val().replace(/[^0-9]/g, ""));

@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function () {
             || strpos(current_url(), '/guide_view') !== false) {
     ?>
         <div class="quick-header-order">
-            <a href="/contact/write" style="flex: 0 0 auto;">
+            <a href="/mypage/consultation" style="flex: 0 0 auto;">
                 <img src="/assets/img/qna_logo.png" alt="qna_logo">
             </a>
             <?php

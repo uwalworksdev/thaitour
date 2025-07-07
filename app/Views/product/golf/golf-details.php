@@ -1175,7 +1175,7 @@ $(document).ready(function() {
                 }
             ?>
 
-            window.location.href = '/contact/write';
+            window.location.href = '/mypage/consultation';
         }
         $(".btn_add_cart").on("click", function () {
             $("#vehicle_time_hour").val($("#car-time-hour").val());

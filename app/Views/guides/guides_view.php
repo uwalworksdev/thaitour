@@ -614,7 +614,7 @@
                 }
             ?>
 
-            window.location.href = '/contact/write';
+            window.location.href = '/mypage/consultation';
         }
         
         function wish_it(product_idx) {

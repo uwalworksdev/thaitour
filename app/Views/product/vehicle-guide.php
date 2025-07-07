@@ -1933,7 +1933,7 @@
             }
         ?>
 
-        window.location.href = '/contact/write';
+        window.location.href = '/mypage/consultation';
     }
     $(document).ready(function() {
         $('.tab_title_item_').click(function() {
