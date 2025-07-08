@@ -9,7 +9,7 @@ use CodeIgniter\I18n\Time;
 class AdminLocalGuideController extends BaseController
 {
     protected $connect;
-    protected $productModel;
+    protected $localGuide;
     protected $productStay;
     protected $hotelOptionModel;
     private   $memberModel;
@@ -23,14 +23,10 @@ class AdminLocalGuideController extends BaseController
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
-        $this->productModel     = model("ProductModel");
-        $this->productStay      = model("ProductStay");
-        $this->hotelOptionModel = model("HotelOptionModel");
+        $this->localGuide       = model("LocalGuideModel");
         $this->memberModel      = new \App\Models\Member();
         $this->CodeModel        = model("Code");
-        $this->productPlace     = model("ProductPlace");
         $this->localGuideImg    = model("LocalGuideImg");
-        $this->roomImg          = model("RoomImg");
     }
 
     public function list()
@@ -71,8 +67,7 @@ class AdminLocalGuideController extends BaseController
             $orderByArr['r_date'] = "DESC";
         }
 
-        $result   = $this->productModel->get_list($where, $g_list_rows, $pg, $orderByArr);
-
+        $result = $this->localGuide->get_list($where, $g_list_rows, $pg, $orderByArr);
 
         $data = [
             'result'          => $result['items'],
