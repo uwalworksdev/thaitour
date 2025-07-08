@@ -515,7 +515,7 @@
                                             <option value="">옵션선택</option>
                                                 <?php foreach ($info['options'] as $option): ?>
                                                     <?php
-                                                        if((int)($option["check_price"]) > 0) {     
+                                                        if((int)$option["check_price"] > 0) {     
                                                     ?>
                                                     <option value="<?=$option['code_idx']?>">
                                                         <?=$option['moption_name'] ?>
