@@ -206,6 +206,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("delete", "Admin\AdminProductPlaceController::delete", ['as' => "admin._product_place.delete"]);
     });
 
+    $routes->group("_local_guide", static function ($routes) {
+        $routes->get("list", "Admin\AdminLocalGuideController::list");
+        $routes->get("write", "Admin\AdminLocalGuideController::write");
+        $routes->post("write_ok", "Admin\AdminLocalGuideController::write_ok", ['as' => "admin._local_guide.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminLocalGuideController::write_ok/$1", ['as' => "admin._local_guide.write_ok.id"]);
+    });
+
     $routes->group("_hotel", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
