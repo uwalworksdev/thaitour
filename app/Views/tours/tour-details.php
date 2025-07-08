@@ -514,9 +514,15 @@
                                         <select name="moption" class="moption" id="moption_<?=$infoIndex?>" onchange="sel_moption(this.value);" data-info-index="<?= $infoIndex ?>" style="<?= $count_t === 0 ? 'display: block;' : 'display: none;' ?>">
                                             <option value="">옵션선택</option>
                                                 <?php foreach ($info['options'] as $option): ?>
+                                                    <?php
+                                                        if((int)($option["check_price"]) > 0) {     
+                                                    ?>
                                                     <option value="<?=$option['code_idx']?>">
                                                         <?=$option['moption_name'] ?>
                                                     </option>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 <?php endforeach; ?>
                                         </select>
                                         <?php $count_t++; ?>
