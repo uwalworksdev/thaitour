@@ -1383,7 +1383,9 @@
 
                                 for (let i = 0; i < data.length; i++) {
                                         hasValidOption = true;
-                                        option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                        if(Number(data[i].check_price) > 0){
+                                            option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                        }
                                 }
 
                                 option_html += `</select>`;

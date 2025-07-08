@@ -762,7 +762,7 @@ class SpaController extends BaseController
             $result = $this->db->query($sql);
             $row_option_sub = $result->getResultArray();
             $count_option_sub = count($row_option_sub);
-
+            $m_option[$key_o]['check_price'] = $count_option_sub;
             $total_count_op += $count_option_sub;
         }
 
