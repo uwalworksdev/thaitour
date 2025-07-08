@@ -6,8 +6,10 @@ use CodeIgniter\I18n\Time;
 use Config\Services;
 use Exception;
 
-class Product extends BaseController
+class LocalGuideController extends BaseController
 {
+    private $db;
+    
     public function __construct()
     {
         $this->db = db_connect();

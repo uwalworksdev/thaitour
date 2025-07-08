@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProductModel extends Model
+class LocalGuideModel extends Model
 {
     protected $table = 'tbl_local_guide';
 
@@ -18,7 +18,7 @@ class ProductModel extends Model
 
     protected function initialize()
     {
-        
+
     }
 
     public function insertData($data)

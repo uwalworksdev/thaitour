@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 
-class AdminHotelController extends BaseController
+class AdminLocalGuideController extends BaseController
 {
     protected $connect;
     protected $productModel;
