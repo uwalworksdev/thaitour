@@ -71,19 +71,8 @@ class AdminLocalGuideController extends BaseController
             $orderByArr['r_date'] = "DESC";
         }
 
-        $result   = $this->productModel->findProductPagingAdmin($where, $g_list_rows, $pg, $orderByArr);
+        $result   = $this->productModel->get_list($where, $g_list_rows, $pg, $orderByArr);
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no in ('1303')  and status='Y' order by code_no asc";
-        $fresult  = $this->connect->query($fsql);
-        $fresult  = $fresult->getResultArray();
-
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by code_no asc";
-        $fresult2 = $this->connect->query($fsql);
-        $fresult2 = $fresult2->getResultArray();
-
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by code_no asc";
-        $fresult3 = $this->connect->query($fsql);
-        $fresult3 = $fresult3->getResultArray();
 
         $data = [
             'result'          => $result['items'],
@@ -95,9 +84,6 @@ class AdminLocalGuideController extends BaseController
             'g_list_rows'     => $g_list_rows,
             'search_txt'      => $search_txt,
             'search_category' => $search_category,
-            'fresult'         => $fresult,
-            'fresult2'        => $fresult2,
-            'fresult3'        => $fresult3,
             'product_code_1'  => $product_code_1,
             'product_code_2'  => $product_code_2,
             'product_code_3'  => $product_code_3,

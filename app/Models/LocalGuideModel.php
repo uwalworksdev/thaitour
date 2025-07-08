@@ -56,4 +56,38 @@ class LocalGuideModel extends Model
 
 		return $this->update($id, $filteredData);
     }
+
+    public function get_list($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+
+        $builder = $this;
+	
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+		
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+
+        return $data;
+    }
 }
