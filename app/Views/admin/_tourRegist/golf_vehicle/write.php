@@ -34,7 +34,7 @@
                                     class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 					<?php if ($code_idx) { ?>
                         <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a></li>
 						<?php if ($depth == 0) { ?>
                             <li><a href="javascript:del_it('<?= $code_idx ?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span
@@ -162,7 +162,7 @@
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                             <?php } else { ?>
                                 <a href="javascript:send_it()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
 								<?php if ($depth == 0) { ?>
                                     <a href="javascript:del_it('<?= $code_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>

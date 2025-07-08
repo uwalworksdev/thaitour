@@ -252,7 +252,7 @@ $links = "list";
                             <?php } ?>
                             <?php if ($product_idx) { ?>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                 </li>
                                 <!--li>
                                     <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
@@ -2019,7 +2019,7 @@ $links = "list";
                                 <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span  class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                    <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                     <!--a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a-->
                                 <?php } ?>

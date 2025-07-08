@@ -37,7 +37,7 @@ $links = "list";
                             </li>
                             <?php if ($product_idx) { ?>
                                 <li><a href="javascript:send_it_c()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                 </li>
                                 <li>
                                     <a href="javascript:del_it_c(`<?= route_to("admin._cars.del") ?>`, `<?= $product_idx ?>`)"
@@ -669,7 +669,7 @@ $links = "list";
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
                                     <a href="javascript:send_it_c()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                     <a href="javascript:del_it_c(`<?= route_to("admin._cars.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
