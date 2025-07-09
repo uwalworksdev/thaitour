@@ -1049,10 +1049,10 @@
                                             </td>
                                         </tr>
                                     <?php endif?>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." id="pop_end_place"></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>카카오톡 아이디</th>
                                         <td>
@@ -1135,12 +1135,6 @@
             return false;
         }
 
-        if ($("#pop_end_place").val() === "") {
-            alert("종료 후 내리실 곳 입력해주세요!");
-            $("#pop_end_place").focus();
-            return false;
-        }
-
         if ($("#pop_id_kakao").val() === "") {
             alert("카카오톡 아이디 입력해주세요!");
             $("#pop_id_kakao").focus();
@@ -1165,7 +1159,7 @@
         $("#pickup_place").val($("#pop_pickup_place").val());
         $("#sanding_place").val($("#pop_sanding_place").val());
         $("#start_place").val($("#pop_start_place").val());
-        $("#end_place").val($("#pop_end_place").val());
+        $("#end_place").val('');
         $("#id_kakao").val($("#pop_id_kakao").val());
         $("#description").val($("#pop_description").val());
 

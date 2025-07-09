@@ -5,10 +5,14 @@
 
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+
 <link rel="stylesheet" href="/css/admin/popup.css" type="text/css" />
 <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="/js/admin/tours/write.js"></script>
+
 <style>
     .btn_01 {
         height: 30px !important;
@@ -36,177 +40,11 @@
         margin-left: 0;
     }
 
-    .btnAddBreakfast {
-        padding: 5px 7px;
-        color: #fff;
-        background: #4F728A;
-        border: 1px solid #2b3f4c;
-    }
-
-    .btnDeleteBreakfast {
-        padding: 5px 7px;
-        color: #fff;
-        background: #d03a3e;
-        border: 1px solid #ba1212;
-    }
-</style>
-<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript" src="/js/admin/tours/write.js"></script>
-<style>
-    .tab_title {
-        font-size: 16px;
-        color: #333333;
-        font-weight: bold;
-        height: 28px;
-        line-height: 28px;
-        background: url('/img/ico/deco_tab_title.png') left center no-repeat;
-        padding-left: 43px;
-        margin-left: 7px;
-        margin-bottom: 26px;
-    }
-
-    #input_file_ko {
-        display: inline-block;
-        width: 500px;
-    }
-
-    .popup_ {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        background-color: rgba(0, 0, 0, 0.2);
-        display: none;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .popup_.show_ {
-        display: flex;
-    }
-
-    .popup_area_ {
-        height: auto;
-        max-height: 60vh;
-        overflow: auto;
-        background-color: #FFFFFF;
-        width: 100%;
-        max-width: 800px;
-        padding: 10px 40px 30px;
-        font-size: 14px;
-    }
-
-    .popup_area_xl_ {
-        max-width: 60vw;
-    }
-
-    .popup_top_ {
-        width: 100%;
-        height: 50px;
-        background-color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 18px;
-        font-weight: bold;
-        border-bottom: 1px solid #dbdbdb;
-    }
-
-    .popup_content_ {
-        margin-top: 20px;
-    }
-
-    .popup_bottom_ {
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding-top: 20px;
-        width: 100%;
-        border-top: 1px solid #dbdbdb;
-    }
-
-    .popup_bottom_ button {
-        display: inline-block;
-        width: 100px;
-        height: 40px;
-        border: 1px solid rgb(204, 204, 204);
-    }
-
-    .table_border_ {
-        border: 2px solid #dbdbdb;
-    }
-
-    .table_border_ th,
-    .table_border_ td {
-        border: 1px solid #dbdbdb;
-        padding: 10px 20px;
-    }
-
-    .table_border_ th {
-        background-color: rgba(220, 220, 220, 0.5);
-    }
-
-    .table_border_ td.list_g_idx_ {
-        vertical-align: middle;
-        text-align: center;
-    }
-
-    .btn_select_room_list {
-        background-color: #17469E;
-        color: #FFFFFF;
-        width: 80px !important;
-        height: 35px !important;
-        margin: 10px 0 !important;
-    }
-
-    .room_list_render_ .item_ {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        gap: 20px;
-        margin-bottom: 10px;
-    }
-
-    .room_list_render_ input:not('type=checkbox') {
-        width: 25%;
-        cursor: not-allowed;
-    }
-
-    .room_list_render_ button.delete_ {
-        margin: 0 !important;
-        background-color: #EA353D;
-        color: #FFFFFF;
-        height: 30px;
-    }
-
-    .room_list_render_ button.update_ {
-        margin: 0 !important;
-        background-color: rgba(23, 70, 158, 0.75);
-        color: #FFFFFF;
-        height: 30px;
-    }
-
-    .btn_add {
-        background-color: #17469E;
-        color: #FFFFFF;
-        margin: 0 0 !important;
-        width: 80px !important;
-        height: 35px !important;
-    }
-
-    .justify-between {
-        align-items: center;
-        justify-content: space-between;
-    }
-
     .img_add #input_file_ko {
         display: none;
     }
 </style>
+
 <?php
     if (isset($idx) && isset($row)) {
         foreach ($row as $keys => $vals) {
@@ -214,7 +52,7 @@
         }
     }
 
-    $titleStr = "호텔정보 수정";
+    $titleStr = "추천여행지 수정";
     $links = "list";
 ?>
 <div id="container">
@@ -224,7 +62,6 @@
                 <h2><?= $titleStr ?></h2>
                 <div class="menus">
                     <ul>
-
                         <li><a href="/AdmMaster/_local_guide/list" class="btn btn-default"><span
                                     class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         </li>
@@ -238,7 +75,6 @@
                                         class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                             </li>
                         <?php } ?>
-
                     </ul>
                 </div>
             </div>
@@ -273,13 +109,6 @@
                                         <div class=""
                                             style="width: 100%; display: flex; justify-content: space-between; align-items: center">
                                             <p>상품 기본정보</p>
-                                            <?php if ($idx): ?>
-                                                <a class="btn btn-default"
-                                                    href="/product-hotel/hotel-detail/<?= $idx ?>"
-                                                    target="_blank">
-                                                    상품 상세보기
-                                                </a>
-                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -349,196 +178,53 @@
                                 
                                 <tr>
                                     <th>상품명</th>
+                                    <td>
+                                        <input type="text" name="product_name"
+                                                    value="<?= $product_name ?? "" ?>"
+                                                    class="text" maxlength="100" />
+                                    </td>
+                                    <th>영문명</th>
+                                    <td>
+                                        <input type="text" name="product_name_en"
+                                                    value="<?= $product_name_en ?? "" ?>"
+                                                    class="text" maxlength="100" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" id="stay_address" name="stay_address" value="<?= $stay_item['stay_address'] ?>"
+                                               class="input_txt" placeholder="" style="width:45%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
+                                            Latitude : <input type="text" name="latitude" id="latitude" value="<?= $stay_item['latitude'] ?>" class="text" style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude" value="<?= $stay_item['longitude'] ?>" class="text" style="width: 200px;"  readonly/>
+                                        
+                                    </td>
+                                   
+                                </tr>
+                                <tr>
+                                    <th>전화번호</th>
                                     <td colspan="3">
                                         <div style="display: flex; align-items: center;">
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="text" name="product_name"
-                                                    value="<?= $product_name ?? "" ?>"
-                                                    class="text" style="width:500px" maxlength="100" />
-                                                <span style="color: gray;">(제목)</span>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <input type="text" name="product_name_en"
-                                                    value="<?= $product_name_en ?? "" ?>"
-                                                    class="text" style="width:500px" maxlength="100" />
-                                                <span style="color: gray;">(영문호텔명)</span>
-                                            </div>
+                                            <input type="text" name="tel_no"
+                                                   value="<?= $stay_item['tel_no']?>"
+                                                   class="text" style="width:500px" maxlength="100"/>
+                                            <span style="color: gray;">(전화번호)</span>
                                         </div>
                                     </td>
-                                    
                                 </tr>
                                 
-                                <tr>
-                                    <th>상품 간략소개</th>
-                                    <td colspan="3">
-                                        <textarea name="product_info" id="product_info"
-                                            style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>목록 간략소개</th>
-                                    <td colspan="3">
-                                        <textarea name="product_intro" id="product_intro"
-                                            style="width:90%;height:100px;"><?= $product_intro ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                            style="margin-top:50px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="40%" />
-                                <col width="10%" />
-                                <col width="40%" />
-                            </colgroup>
-                            <tbody>
-
-                                <tr>
-                                    <th>엑스트라 베드 및<br> 유아용 침대 </th>
-                                    <td>
-                                        <textarea name="baby_beds" id="baby_beds"
-                                            style="width:90%;height:60px;"><?= $baby_beds ?? "" ?></textarea>
-                                    </td>
-                                    <th>조식</th>
-                                    <td>
-                                        <textarea name="breakfast" id="breakfast"
-                                            style="width:90%;height:60px;"><?= $breakfast ?? "" ?></textarea>
-                                        <div class="" style="margin-top: 10px">
-                                            <button type="button" class="btnAddBreakfast">추가</button>
-                                        </div>
-                                        <table style="width:90%">
-                                            <tbody id="tBodyTblBreakfast">
-                                                <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
-                                                    <?php
-                                                    $dataBreakfastArr = explode('::::', $dataBreakfast);
-                                                    ?>
-                                                    <tr>
-                                                        <th style="width: 30%">
-                                                            <input type="text" name="breakfast_item_name_[]" value="<?= $dataBreakfastArr[0] ?? "" ?>">
-                                                        </th>
-                                                        <td style="width: 60%">
-                                                            <input type="text" name="breakfast_item_value_[]" value="<?= $dataBreakfastArr[1] ?? "" ?>">
-                                                        </td>
-                                                        <td style="width: 10%">
-                                                            <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>보증금 규정</th>
-                                    <td>
-                                        <textarea name="deposit_regulations" id="deposit_regulations" style="width:90%;height:60px;"><?= $deposit_regulations ?? "" ?></textarea>
-                                    </td>
-                                    <th>반려동물</th>
-                                    <td>
-                                        <textarea name="pets" id="pets" style="width:90%;height:60px;"><?= $pets ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>연령 제한</th>
-                                    <td>
-                                        <textarea name="age_restriction" id="age_restriction" style="width:90%;height:60px;"><?= $age_restriction ?? "" ?></textarea>
-                                    </td>
-                                    <th>흡연 정책</th>
-                                    <td>
-                                        <textarea name="smoking_policy" id="smoking_policy" style="width:90%;height:60px;"><?= $smoking_policy ?? "" ?></textarea>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <th>호텔소개</th>
                                     <td colspan="3">
-                                        <textarea name="product_notes" id="product_notes" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($product_notes) ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors3 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors3,
-                                                elPlaceHolder: "product_notes",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function() {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function() {
-                                                    //예제 코드
-                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>객실 안내</th>
-                                    <td colspan="3">
-                                        <textarea name="room_guides" id="room_guides" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($room_guides) ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors5 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors5,
-                                                elPlaceHolder: "room_guides",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function() {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function() {
-                                                    //예제 코드
-                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <th>중요사항</th>
-                                    <td colspan="3">
-
-                                        <textarea name="product_important_notice" id="product_important_notice" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($product_important_notice) ?>
-                                        </textarea>
+                                        <textarea name="product_contents" id="product_contents" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($product_contents) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors1,
-                                                elPlaceHolder: "product_important_notice",
+                                                elPlaceHolder: "product_contents",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -556,6 +242,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
+
                                     </td>
                                 </tr>
 

@@ -445,7 +445,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 
                 </div>
                 <div class="btn-wrap">
-                    <a href="/qna/list" class="btn btn-lg btn_cancel">취소하기</a>
+                    <a href="/qna/list" class="btn btn-lg btn_cancel">목록보기</a>
                     <?php if ($qna_item) { ?>
                         <button type="button" class="btn btn-lg btn-point btn_submit" id="btn_submit">수정</button>
                     <?php } else { ?>

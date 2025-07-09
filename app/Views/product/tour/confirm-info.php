@@ -232,10 +232,10 @@
                                         </tr>
                                     <?php endif?>
                                     
-                                    <tr>
+                                    <!-- <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>카카오톡 아이디</th>
                                         <td>
@@ -727,13 +727,6 @@
             if ($("#start_place").val() === "") {
                 alert("미팅장소 입력해주세요!");
                 $("#start_place").focus();
-                $btn.prop("disabled", false);
-                return false;
-            }
-
-            if ($("#end_place").val() === "") {
-                alert("종료 후 내리실 곳 입력해주세요!");
-                $("#end_place").focus();
                 $btn.prop("disabled", false);
                 return false;
             }
