@@ -149,9 +149,9 @@
             <input type="hidden" name="total_pay" id="total_pay" value="">
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
             <input type="hidden" name="final_discount" id="final_discount" value="">
-            <input type="hidden" name="sanding_place" id="start_place" value="">
+            <input type="hidden" name="start_place" id="start_place" value="">
             <input type="hidden" name="pickup_place" id="pickup_place" value="">
-            <input type="hidden" name="sanding_place" id="start_place" value="">
+            <input type="hidden" name="sanding_place" id="sanding_place" value="">
             <input type="hidden" name="end_place" id="end_place" value="">
             <input type="hidden" name="id_kakao" id="id_kakao" value="">
             <input type="hidden" name="description" id="description" value="">

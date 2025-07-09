@@ -262,7 +262,7 @@
                                     <th>카카오톡 아이디</th>
                                     <td colspan="3">
                                         <!-- <input type="text" name="id_kakao" style="width:45%;" value="<?= $tour_orders['id_kakao'] ?>"> -->
-                                         <input type="text" name="id_kakao" style="width:45%;" value="<?= $id_kakao?>">
+                                         <input type="text" name="id_kakao" value="<?= $id_kakao?>">
                                     </td>
                                 </tr>
                                 
