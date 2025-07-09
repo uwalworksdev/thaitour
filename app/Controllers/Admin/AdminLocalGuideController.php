@@ -89,7 +89,7 @@ class AdminLocalGuideController extends BaseController
 
     public function write()
     {
-        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
+        $idx              = updateSQ($_GET["idx"] ?? '');
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
@@ -97,187 +97,27 @@ class AdminLocalGuideController extends BaseController
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
         $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
 
-        $conditions = [
-            "code_gubun" => 'tour',
-            "code_no"    => '1303',
-        ];
-        $fresult = $this->CodeModel->getCodesByConditions($conditions);
-
-        $fsql = " select *
-						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
-						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
-						, (select code_name from tbl_code where code_gubun = 'country' and depth='3' and tbl_code.code_no=tbl_product_stay.country_code_2) as country_name_2
-						from tbl_product_stay where 1=1";
-        $fresult3 = $this->connect->query($fsql);
-        $fresult3 = $fresult3->getResultArray();
-
-        $product_code_no = $this->productModel->createProductCode("H");
-
-        $stay_item = [];
-
-        $mcodes = $this->CodeModel->getByParentCode('56')->getResultArray();
-
-        if ($product_idx) {
-            $row = $this->productModel->find($product_idx);
-            $product_code_no = $row["product_code"];
-            $stay_idx = $row['stay_idx'];
-            $hsql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
-            $hresult = $this->connect->query($hsql);
-            $hresult = $hresult->getResultArray();
-
-            $room_list = $hresult[0]['room_list'];
-            $room_list = trim($room_list, '|');
-            $room_array = explode('|', $room_list);
-
-            if (!empty($room_array)) {
-                $room_array_str = implode(',', array_map('intval', $room_array));
-
-                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str) ORDER BY onum ASC, g_idx DESC";
-                $result = $this->connect->query($sql);
-                $rooms = $result->getResultArray();
-
-                foreach ($rooms as $room) {
-                    $dataRoom[] = [
-                        'g_idx' => $room['g_idx'],
-                        'roomName' => $room['roomName']
-                    ];
-                }
-            }
-            $rresult = $dataRoom;
-
-            $stay_item = $hresult[0];
+        if ($idx) {
+            $row = $this->localGuide->find($idx);
         }
 
-        $conditions = [
-            "parent_code_no" => '30',
-        ];
-        $fresult9 = $this->CodeModel->getCodesByConditions($conditions);
 
-        $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by rop_idx desc";
-        $roresult = $this->connect->query($fsql);
-        $roresult = $roresult->getResultArray();
+        $img_list = $this->localGuideImg->getImg($idx);
 
-        $conditions = [
-            "parent_code_no" => '38',
-        ];
-        $product_themes = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "code_gubun"      => 'tour',
-            "parent_code_no"  =>  $row['product_code_2'],
-        ];
-        $category3 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '39',
-        ];
-        $product_bedrooms = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '40',
-        ];
-        $product_types = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "parent_code_no" => '41',
-        ];
-        $product_promotions = $this->CodeModel->getCodesByConditions($conditions);
-
-        $mresult = $this->memberModel->getMembersPaging(['user_level' => 2], 1, 1000)['items'];
-
-        $conditions = [
-            "code_gubun" => 'tour',
-            "parent_code_no" => '33',
-        ];
-        $fresult6 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "code_gubun" => 'tour',
-            "parent_code_no" => '34',
-        ];
-        $fresult5 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $fresult5 = array_map(function ($item) {
-            $rs = (array)$item;
-
-            $code_no = $rs['code_no'];
-
-            $conditions = [
-                "code_gubun" => 'tour',
-                "parent_code_no" => $code_no,
-            ];
-            $rs_child = $this->CodeModel->getCodesByConditions($conditions);
-
-            $rs['child'] = $rs_child;
-
-            return $rs;
-        }, $fresult5);
-
-        $conditions = [
-            "code_gubun" => 'tour',
-            "parent_code_no" => '35',
-        ];
-        $fresult8 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "code_gubun" => 'Room facil',
-            "depth" => '2',
-        ];
-        $fresult10 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $conditions = [
-            "code_gubun" => 'hotel_cate',
-            "depth" => '2',
-        ];
-        $fresult11 = $this->CodeModel->getCodesByConditions($conditions);
-
-        $img_list = $this->localGuideImg->getImg($product_idx);
-
-        $fsql = "select * from tbl_code where depth='3'  
-                        AND parent_code_no = '" . $row['product_code_1'] . "'
-                        AND status='Y'  order by onum asc, code_idx desc";
-        $fresult_c_1 = $this->connect->query($fsql) or die ($this->connect->error);
-        $fresult_c_1 = $fresult_c_1->getResultArray();
-
-        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $row['product_code_2'] . "' and status='Y'  order by onum asc, code_idx desc";
-        $fresult_c_2 = $this->connect->query($fsql) or die ($this->connect->error);
-        $fresult_c_2 = $fresult_c_2->getResultArray();
 
         $data = [
-            'product_idx' => $product_idx,
+            'idx' => $idx,
             'product_code_1' => $row['product_code_1'],
             'product_code_2' => $row['product_code_2'],
             'product_code_3' => $row['product_code_3'],
-            'product_code_no' => $product_code_no,
-            'fresult_c_1' => $fresult_c_1,
-            'fresult_c_2' => $fresult_c_2,
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
             's_product_code_3' => $s_product_code_3,
-			'category3'     => $category3,
             'row' => $row ?? '',
-            'img_list' => $img_list,
-            'fresult' => $fresult,
-            'fresult3' => $fresult3,
-            'fresult9' => $fresult9,
-            'roresult' => $roresult,
-            'pthemes' => $product_themes,
-            'pbedrooms' => $product_bedrooms,
-            'ptypes' => $product_types,
-            'ppromotions' => $product_promotions,
-            'hresult' => $hresult,
-            'rresult' => $rresult,
-            'member_list' => $mresult,
-            'fresult6' => $fresult6,
-            'fresult5' => $fresult5,
-            'fresult8' => $fresult8,
-            'fresult10' => $fresult10,
-            'fresult11' => $fresult11,
-            'stay_item' => $stay_item,
-            'mcodes' => $mcodes,
+            'img_list' => $img_list
         ];
         return view("admin/_local_guide/write", $data);
     }

@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index,follow">
     <meta content="<?= $setting['og_title'] ?>" name="Title">
     <meta content="<?= $setting['og_des'] ?>" name="Description">
     <meta content="<?= $setting['meta_keyword'] ?>" name="Keyword">
@@ -14,7 +13,8 @@
     <meta property="og:url" content="<?= $setting['og_url'] ?>">
     <meta property="al:web:url" content="<?= $setting['og_url'] ?>">
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="index,follow">
+
     <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
     <link rel="canonical" href="<?= $setting['og_url'] ?>">
 
