@@ -391,12 +391,6 @@
                                                value="<?= $time_line ?>" style="width:100%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
                                     </td> -->
-                                    <th>상품 담당자</th>
-                                    <td colspan="3">
-                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
-                                        &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
-                                    </td>
                                     <!-- <th>이용항공</th>
                                     <td>
                                         <input type="text" id="product_air" name="product_air"
@@ -555,7 +549,7 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>운영시간</th>
+                                    <th>투어기간</th>
                                     <td colspan="">
                                         <input id="product_period" name="product_period" class="input_txt" type="text"
                                                value="<?= $product_period ?>" style="width:39%"/><br/>
@@ -789,7 +783,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <th>예약마감일 지정</th>
                                     <td colspan="3">
                                         <?php
@@ -808,9 +802,8 @@
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range"
                                                 style="width: auto;height: auto">+
                                         </button>
-                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>그룹타입</th>
@@ -858,6 +851,8 @@
                                             <colgroup>
                                                 <col width="10%"/>
                                                 <col width="*%"/>
+                                                <col width="10%"/>
+                                                <col width="*%"/>
                                             </colgroup>
                                             <tbody>
                                                 <tr>
@@ -865,22 +860,27 @@
                                                     <td>
                                                         <input id="company_name" name="company_name" class="input_txt" type="text" value="<?= viewSQ($company_name) ?>" style="width:100%">
                                                     </td>
-                                                </tr>
-                                                <tr>
                                                     <th>연락처</th>
                                                     <td>
                                                         <input id="company_contact" name="company_contact" class="input_txt" type="text" value="<?= viewSQ($company_contact) ?>" style="width:100%">
                                                     </td>
                                                 </tr>
+                                                
                                                 <tr>
                                                     <th>홈페이지</th>
                                                     <td>
                                                         <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                                     </td>
+                                                    <th>상품 담당자</th>
+                                                    <td colspan="3">
+                                                        이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
+                                                        &ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
+                                                        &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th>내용</th>
-                                                    <td>
+                                                    <td colspan="3">
                                                         <textarea name="company_notes" id="company_notes" rows="10" cols="100" class="input_txt"
                                                             style="width:100%; height:400px; display:none;"><?= viewSQ($company_notes) ?>
                                                         </textarea>

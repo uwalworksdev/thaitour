@@ -304,16 +304,10 @@
                                 </tr>
                                 <tr>
                                     <th>우선순위</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-                                    <th>담당자 담당자</th>
-                                    <td>
-                                        이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>
-                                        &ensp;이메일: <input id="email_2" name="email_2" class="input_txt"  type="text" value="<?= $email_2 ?? '' ?>"   style="width:150px"/>
                                     </td>
                                 </tr>
 
@@ -477,7 +471,7 @@
                                             </label>
                                         <?php endforeach; ?>
                                     </td> -->
-                                    <td>
+                                    <td colspan="3">
                                         <?php
                                             $_arr = explode("|", $mbti);
                                             $total = count($mcodes);
@@ -508,12 +502,7 @@
                                             <?php endfor; ?>
                                         </div>
                                     </td>
-                                    <th>운영시간</th>
-                                    <td>
-                                        <input id="time_line" name="time_line" class="input_txt" type="text"
-                                               value="<?= $time_line ?>" style="width:100%"/><br/>
-                                        <!-- <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span> -->
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <th>직접결제</th>
@@ -661,11 +650,15 @@
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top: 50px;">
                                 <colgroup>
                                     <col width="10%"/>
+                                    <col width="20%"/>
+                                    <col width="10%"/>
+                                    <col width="*%"/>
+                                    <col width="10%"/>
                                     <col width="*%"/>
                                 </colgroup>
                                 <tbody>
                                     <tr height="45">
-                                        <td colspan="2">
+                                        <td colspan="6">
                                             업체 정보
                                         </td>
                                     </tr>
@@ -674,10 +667,8 @@
                                         <td>
                                             <input id="company_name" name="company_name" class="input_txt" type="text" value="<?= viewSQ($company_name) ?>" style="width:100%">
                                         </td>
-                                    </tr>
-                                    <tr>
                                         <th>연락처</th>
-                                        <td>
+                                        <td colspan="3">
                                             <input id="company_contact" name="company_contact" class="input_txt" type="text" value="<?= viewSQ($company_contact) ?>" style="width:100%">
                                         </td>
                                     </tr>
@@ -686,10 +677,21 @@
                                         <td>
                                             <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                         </td>
+                                        <th>담당자 담당자</th>
+                                        <td>
+                                            이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
+                                            &ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>
+                                            &ensp;이메일: <input id="email_2" name="email_2" class="input_txt"  type="text" value="<?= $email_2 ?? '' ?>"   style="width:150px"/>
+                                        </td>
+                                        <th>운영시간</th>
+                                        <td>
+                                            <input id="time_line" name="time_line" class="input_txt" type="text"
+                                                value="<?= $time_line ?>" style="width:100%"/><br/>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>내용</th>
-                                        <td>
+                                        <td colspan="5">
                                             <textarea name="company_notes" id="company_notes" rows="10" cols="100" class="input_txt"
                                                 style="width:100%; height:400px; display:none;"><?= viewSQ($company_notes) ?>
                                             </textarea>
