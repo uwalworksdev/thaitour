@@ -367,19 +367,18 @@
                                         </div>
                                     </div>
                                     <?php
-                                        if($arr_count[$op_info_idx[$key]] == $filter_info_idx[$op_info_idx[$key]]){
+                                        if($arr_count[$op_info_idx[$key]] == $filter_info_idx[$op_info_idx[$key]] && isset($data['option_idx'])){
                                     ?>
                                         <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
                                             <p class="schedule_ttl">옵션</p>    
                                             <?php
-                                                if (isset($data['option_idx'])) {
-                                                    $num = count($data['option_idx']);
-                                                    for ($i = 0; $i < $num; $i++) {
-                                                        if($data['option_info_idx'][$i] != $op_info_idx[$key]){
-                                                            continue;
-                                                        }
+                                                $num = count($data['option_idx']);
+                                                for ($i = 0; $i < $num; $i++) {
+                                                    if($data['option_info_idx'][$i] != $op_info_idx[$key]){
+                                                        continue;
+                                                    }
 
-                                                        $item = $data['option_idx'][$i];
+                                                    $item = $data['option_idx'][$i];
                                             ?>
                                                 <div class="schedule_option" id="schedule_<?= $item ?>">
                                                     <div class="wrap-text">
@@ -410,7 +409,6 @@
                                                     </div>
                                                 </div>
                                             <?php
-                                                    }
                                                 }
                                             ?>
                                         </div>
