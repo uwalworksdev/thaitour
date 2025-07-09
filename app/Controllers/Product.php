@@ -3520,7 +3520,7 @@ class Product extends BaseController
 
             foreach ($groupedData[$infoIndex]['options'] as $key_o => $row_o) {
                 $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
-                            AND code_idx = '". $row_o['code_idx'] ."' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+                            AND code_idx = '". $row_o['code_idx'] ."' AND use_yn != 'N' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
                 $result = $this->db->query($sql);
                 $row_option_sub = $result->getResultArray();
                 $count_option_sub = count($row_option_sub);
@@ -4610,7 +4610,7 @@ class Product extends BaseController
 
 
             $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' 
-                        AND code_idx = '$code_idx' AND option_name != '' AND option_price != 0 ORDER BY onum ASC";
+                        AND code_idx = '$code_idx' AND option_name != '' AND option_price != 0 AND use_yn != 'N' ORDER BY onum ASC";
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
