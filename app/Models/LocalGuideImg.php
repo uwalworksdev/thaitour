@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class LocalGuideImg extends Model
 {
-    protected $table = 'tbl_product_img';
+    protected $table = 'tbl_local_guide_img';
 
     protected $primaryKey = 'i_idx';
 
