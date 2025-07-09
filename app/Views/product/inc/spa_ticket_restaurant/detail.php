@@ -619,7 +619,7 @@
                     </div>
                 </div>
                 <div class="popup_place__body">
-                    <div class="flex_b_c tours_time_sect">
+                    <!-- <div class="flex_b_c tours_time_sect">
                         <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
                         <?php
                             if(empty($data_['use_time_line'])){
@@ -651,7 +651,7 @@
                         <?php
                             }
                         ?>
-                    </div>
+                    </div> -->
                     <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
                         보장되지
                         않을 수 있습니다.</p>
@@ -724,7 +724,7 @@
                 }
             ?>
 
-            let time_line = $("#p_hours").val() + ":" + $("#p_minutes").val();
+            let time_line = '';
 
             $("#time_line").val(time_line);
             

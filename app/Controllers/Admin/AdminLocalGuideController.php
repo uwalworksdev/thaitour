@@ -101,9 +101,7 @@ class AdminLocalGuideController extends BaseController
             $row = $this->localGuide->find($idx);
         }
 
-
         $img_list = $this->localGuideImg->getImg($idx);
-
 
         $data = [
             'idx' => $idx,
@@ -122,127 +120,28 @@ class AdminLocalGuideController extends BaseController
         return view("admin/_local_guide/write", $data);
     }
 
-    public function write_ok($product_idx = null)
+    public function write_ok($idx = null)
     {
 		
-        $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
 
-            $onum = updateSQ($_POST["onum"] ?? '');
-            if (isset($_POST['select_product'])) {
-                $selected_products = $_POST['select_product'];
-                if (is_array($selected_products)) {
-                    $product_theme = implode('|', $selected_products) . '|';
-                }
-            } else {
-                $product_theme = '';
-            }
-
-            if (isset($_POST['product_bedrooms'])) {
-                $selected_product_bedrooms = $_POST['product_bedrooms'];
-                if (is_array($selected_product_bedrooms)) {
-                    $product_bedroom = implode('|', $selected_product_bedrooms) . '|';
-                }
-            } else {
-                $product_bedroom = '';
-            }
-
-            if (isset($_POST['product_type'])) {
-                $selected_product_type = $_POST['product_type'];
-                if (is_array($selected_product_type)) {
-                    $product_type = implode('|', $selected_product_type) . '|';
-                }
-            } else {
-                $product_type = '';
-            }
-
-            if (isset($_POST['product_promotions'])) {
-                $selected_promotions = $_POST['product_promotions'];
-                if (is_array($selected_promotions)) {
-                    $product__promotions = implode('|', $selected_promotions) . '|';
-                }
-            } else {
-                $product__promotions = '';
-            }
-
-            $data['product_code_list']  = updateSQ($_POST["product_code_list"] ?? '');
             $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
             $data['product_code_2']     = updateSQ($_POST["product_code_2"] ?? '');
             $data['product_code_3']     = updateSQ($_POST["product_code_3"] ?? '');
             $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
             $data['product_name_en']    = updateSQ($_POST["product_name_en"] ?? '');
-            $data['keyword']            = updateSQ($_POST["keyword"] ?? '');
-            $data['product_status']     = updateSQ($_POST["product_status"] ?? '');
 
-            $data['onum']               = updateSQ($onum ?? '');
+            $data['onum']               = updateSQ($_POST["onum"] ?? '');
 
-            $data['product_level']      = updateSQ($_POST["product_level"] ?? '');
             $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
-            $data['room_cnt']           = updateSQ($_POST["room_cnt"] ?? '');
-            $data['product_info']       = updateSQ($_POST["product_info"] ?? '');
-            $data['product_intro']      = updateSQ($_POST["product_intro"] ?? '');
-            $data['product_best']       = updateSQ($_POST["product_best"] ?? 'N');
-            $data['special_price']      = updateSQ($_POST["special_price"] ?? 'N');
-            $data['direct_payment']     = updateSQ($_POST["direct_payment"] ?? 'N');
-            $data['is_view']            = updateSQ($_POST["is_view"] ?? 'Y');
-
-            $data['product_theme']      = updateSQ($product_theme);
-            $data['product_bedrooms']   = updateSQ($product_bedroom); // code=39 호텔 침실수
-            $data['product_type']       = updateSQ($product_type); // code=40 호텔타입
-            $data['product_promotions'] = updateSQ($product__promotions);// code=41 호텔 프로모션
-
-            $data['product_important_notice']   = updateSQ($_POST["product_important_notice"] ?? '');
-            $data['product_important_notice_m'] = updateSQ($_POST["product_important_notice_m"] ?? '');
-            $data['product_notes']      = updateSQ($_POST["product_notes"] ?? '');
-            $data['product_notes_m']    = updateSQ($_POST["product_notes_m"] ?? '');
-            $data['room_guides']        = updateSQ($_POST["room_guides"] ?? '');
-            $data['important_notes']    = updateSQ($_POST["important_notes"] ?? '');
-
-
-            $data['product_video']      = updateSQ($_POST["product_video"] ?? '');
-            $data['stay_idx']           = $_POST["stay_idx"] ?? '';
-
-            $data['mbti']               = $_POST["mbti"] ?? '';
-
-            $phone                      = updateSQ($_POST["phone"] ?? '');
-            $email                      = updateSQ($_POST["email"] ?? '');
-            $product_manager            = updateSQ($_POST["product_manager"] ?? '');
-
-            $data['product_manager']    = updateSQ($product_manager);
-            $data['product_manager_id'] = updateSQ($_POST["product_manager_id"] ?? '');
-
-            $data['phone']              = updateSQ($phone);
-            $data['email']              = updateSQ($email);
-
-            $dataProductMore            = "";
-
-            $meet_out_time              = $_POST['meet_out_time'] ?? '';
-            $children_policy            = $_POST['children_policy'] ?? '';
-            $baby_beds                  = $_POST['baby_beds'] ?? '';
-            $deposit_regulations        = $_POST['deposit_regulations'] ?? '';
-            $pets                       = $_POST['pets'] ?? '';
-            $age_restriction            = $_POST['age_restriction'] ?? '';
-            $smoking_policy             = $_POST['smoking_policy'] ?? '';
-            $breakfast                  = $_POST['breakfast'] ?? '';
-
-            $breakfast_item_name_arr    = $_POST['breakfast_item_name_'];
-            $breakfast_item_value_arr   = $_POST['breakfast_item_value_'];
-
-            $dataBreakfast = "";
-            foreach ($breakfast_item_name_arr as $key => $value) {
-                $txt = $breakfast_item_name_arr[$key] . "::::" . $breakfast_item_value_arr[$key];
-                $dataBreakfast .= $txt . "||||";
-            }
-
-            $dataProductMore .= $meet_out_time . '$$$$' . $children_policy;
-            $dataProductMore .= '$$$$' . $baby_beds . '$$$$' . $deposit_regulations;
-            $dataProductMore .= '$$$$' . $pets . '$$$$' . $age_restriction;
-            $dataProductMore .= '$$$$' . $smoking_policy . '$$$$' . $breakfast;
-            $dataProductMore .= '$$$$' . $dataBreakfast;
-
-            $data['product_more'] = $dataProductMore;
-
+            $data['latitude']           = updateSQ($_POST["latitude"] ?? '');
+            $data['longitude']          = updateSQ($_POST["longitude"] ?? '');
+            $data['time_line']          = updateSQ($_POST["time_line"] ?? '');
+            $data['url']                = updateSQ($_POST["url"] ?? '');
+            $data['contact']            = updateSQ($_POST["contact"] ?? '');
+            $data['product_contents']   = updateSQ($_POST["product_contents"] ?? '');
+            
             $publicPath = ROOTPATH . '/public/data/product/';
 
             for ($i = 1; $i <= 1; $i++) {
@@ -250,7 +149,7 @@ class AdminLocalGuideController extends BaseController
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
                 if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
-                    $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                    $this->localGuide->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
@@ -260,27 +159,15 @@ class AdminLocalGuideController extends BaseController
                 }
             }
 
-            $min_date = date('Y-m-d');
-            $max_date = date('Y-m-d');
-
-            /* Update or Create product stay */
-            $stay_idx = $this->write_stay_ok();
-
-            $data['stay_idx'] = $stay_idx;
-
             $arr_i_idx = $this->request->getPost("i_idx") ?? [];
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
             $files = $this->request->getFileMultiple('ufile') ?? [];
 
-            if ($product_idx) {
-                $data['min_date']    = strval($min_date);
-                $data['max_date']    = strval($max_date);
-                $data['m_date']      = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                $data['worker_id']   = session()->get('member')['id'];
-                $data['worker_name'] = session()->get('member')['name'];
+            if ($idx) {
+                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $this->productModel->update($product_idx, $data);
+                $this->localGuide->updateData($idx, $data);
 
                 if (count($files) > 40) {
                     $message = "40개 이미지로 제한이 있습니다.";
@@ -313,7 +200,7 @@ class AdminLocalGuideController extends BaseController
                                 ]);
                             } else {
                                 $this->localGuideImg->insertData([
-                                    "product_idx" => $product_idx,
+                                    "lg_idx" => $idx,
                                     "ufile" => $ufile,
                                     "rfile" => $rfile,
                                     "onum" => $arr_onum[$key],
@@ -324,30 +211,10 @@ class AdminLocalGuideController extends BaseController
                     }
                 }
             } else {
-                $data['min_date'] = $min_date;
-                $data['max_date'] = $max_date;
 
-                $data['product_code_1'] = '1303';
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $insertId = $this->productModel->insertData($data);
-
-                $room_list = $_POST["room_list"] ?? '';
-
-                $place_list = $_POST["place_list"] ?? '';
-
-                $place_arr_ = array_unique(explode('|', $place_list));
-
-                $updateQuery = "UPDATE tbl_product_stay SET room_list = ? WHERE stay_idx = ?";
-                $this->connect->query($updateQuery, [$room_list, $stay_idx]);
-
-                $placeData = [
-                    'product_idx' => $stay_idx,
-                ];
-
-                foreach ($place_arr_ as $place_idx) {
-                    $this->productPlace->update($place_idx, $placeData);
-                }
+                $insertId = $this->localGuide->insertData($data);
 
                 if (count($files) > 40) {
                     $message = "40개 이미지로 제한이 있습니다.";
@@ -366,7 +233,7 @@ class AdminLocalGuideController extends BaseController
                             $file->move($publicPath, $ufile);
 
                             $this->localGuideImg->insertData([
-                                "product_idx" => $insertId,
+                                "lg_idx" => $insertId,
                                 "ufile" => $ufile,
                                 "rfile" => $rfile,
                                 "onum" => $arr_onum[$key],
@@ -377,18 +244,18 @@ class AdminLocalGuideController extends BaseController
                 }
             }
 
-            if ($product_idx) {
-                $message = "수정되었습니다(Hotelx).";
+            if ($idx) {
+                $message = "수정되었습니다.";
                 return "<script>
                     alert('$message');
                     parent.location.reload();
                     </script>";
             }
 
-            $message = "정상적인 등록되었습니다(Hotel).";
+            $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_hotel/list';
+                    parent.location.href='/AdmMaster/_local_guide/list';
                 </script>";
 
 

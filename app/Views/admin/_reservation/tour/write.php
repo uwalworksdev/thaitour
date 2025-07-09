@@ -255,13 +255,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>종료 후 내리실 곳</th>
+                                    <!-- <th>종료 후 내리실 곳</th>
                                     <td>
-                                        <!-- <input type="text" name="end_place" value="<?= $tour_orders['end_place'] ?>"> -->
                                         <input type="text" name="end_place" value="<?= $end_place ?>">
-                                    </td>
+                                    </td> -->
                                     <th>카카오톡 아이디</th>
-                                    <td>
+                                    <td colspan="3">
                                         <!-- <input type="text" name="id_kakao" style="width:45%;" value="<?= $tour_orders['id_kakao'] ?>"> -->
                                          <input type="text" name="id_kakao" style="width:45%;" value="<?= $id_kakao?>">
                                     </td>

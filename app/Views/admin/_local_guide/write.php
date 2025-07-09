@@ -189,36 +189,48 @@
                                                     value="<?= $product_name_en ?? "" ?>"
                                                     class="text" maxlength="100" />
                                     </td>
+                                </tr>  
+
+                                <tr>
+                                    <th>전화번호</th>
+                                    <td>
+                                        <input type="text" name="contact"
+                                               value="<?= $contact?>"
+                                               class="text" maxlength="50"/>
+                                    </td>
+                                    <th>영업시간</th>
+                                    <td>
+                                        <input type="text" name="time_line"
+                                               value="<?= $time_line?>"
+                                               class="text" maxlength="50"/>
+                                    </td>
                                 </tr>
 
                                 <tr>
-                                    <th>주소</th>
+                                    <th>홈페이지</th>
                                     <td colspan="3">
-                                        <input type="text" id="stay_address" name="stay_address" value="<?= $stay_item['stay_address'] ?>"
-                                               class="input_txt" placeholder="" style="width:45%"/>
-                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
-                                            Latitude : <input type="text" name="latitude" id="latitude" value="<?= $stay_item['latitude'] ?>" class="text" style="width: 200px;" readonly/>
-                                            Longitude : <input type="text" name="longitude" id="longitude" value="<?= $stay_item['longitude'] ?>" class="text" style="width: 200px;"  readonly/>
-                                        
-                                    </td>
-                                   
-                                </tr>
-                                <tr>
-                                    <th>전화번호</th>
-                                    <td colspan="3">
-                                        <div style="display: flex; align-items: center;">
-                                            <input type="text" name="tel_no"
-                                                   value="<?= $stay_item['tel_no']?>"
-                                                   class="text" style="width:500px" maxlength="100"/>
-                                            <span style="color: gray;">(전화번호)</span>
-                                        </div>
+                                        <input type="text" name="url" value="<?= $url?>" class="text" maxlength="50"/>
                                     </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th>호텔소개</th>
+                                    <th>주소</th>
                                     <td colspan="3">
-                                        <textarea name="product_contents" id="product_contents" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($product_contents) ?></textarea>
+                                        <input type="text" id="stay_address" name="stay_address" value="<?= $addrs ?>"
+                                               class="input_txt" placeholder="" style="width:45%"/>
+                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
+                                            Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+                                            Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;"  readonly/>
+                                        
+                                    </td>                                  
+                                </tr>
+
+                                <tr>
+                                    <th>중요사항</th>
+                                    <td colspan="3">
+
+                                        <textarea name="product_contents" id="product_contents" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_contents) ?>
+                                        </textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 
@@ -227,25 +239,22 @@
                                                 elPlaceHolder: "product_contents",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
-                                                    bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function() {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    fOnBeforeUnload: function () {
                                                         //alert("완료!");
                                                     }
                                                 }, //boolean
-                                                fOnAppLoad: function() {
+                                                fOnAppLoad: function () {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
                                                 },
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-
                                     </td>
                                 </tr>
-
                             </tbody>
                         </table>
 
@@ -385,6 +394,34 @@
         </div>
     </div>
 </div>
+
+<script>
+    function send_it() {
+
+        var frm = document.frm;
+
+        if (frm.product_name.value == "") {
+            alert("상품명을 입력해주세요.");
+            frm.product_name.focus();
+            return;
+        }
+
+        if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+            alert("이미지를 등록해주세요.");
+            return false;
+        }
+      
+        $(".img_add_group .file_input").each(function (index) { 
+            $(this).find(".onum_img").val(index + 1);        
+        });
+
+        oEditors1?.getById["product_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+
+        $("#ajax_loader").removeClass("display-none");
+        
+        frm.submit();
+    }
+</script>
 
 <script>
     function add_sub_image() {
