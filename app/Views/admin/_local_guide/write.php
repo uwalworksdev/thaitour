@@ -216,7 +216,7 @@
                                 <tr>
                                     <th>주소</th>
                                     <td colspan="3">
-                                        <input type="text" id="stay_address" name="stay_address" value="<?= $addrs ?>"
+                                        <input type="text" id="addrs" name="addrs" value="<?= $addrs ?>"
                                                class="input_txt" placeholder="" style="width:45%"/>
                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
                                             Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
@@ -281,8 +281,8 @@
                                         <div class="img_add">
                                             <?php
                                             for ($i = 1; $i <= 1; $i++) :
-                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                $img ="/data/product/" . ${"ufile" . $i};
                                             ?>
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
@@ -418,7 +418,7 @@
         oEditors1?.getById["product_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
         $("#ajax_loader").removeClass("display-none");
-        
+
         frm.submit();
     }
 </script>
@@ -589,7 +589,7 @@
                 }
 
                 $.ajax({
-                    url: "/AdmMaster/_hotel/del_image",
+                    url: "/AdmMaster/_local_guide/del_image",
                     type: "POST",
                     data: {
                         "i_idx": i_idx
@@ -647,7 +647,7 @@
 
     function getCoordinates() {
 
-        let address = $("#stay_address").val();
+        let address = $("#addrs").val();
         if (!address) {
             alert("주소를 입력해주세요");
             return false;
@@ -690,7 +690,7 @@
                     let longitude = $(this).data("lon");
                     $("#latitude").val(latitude);
                     $("#longitude").val(longitude);
-                    $("#stay_address").val($(this).text().trim());
+                    $("#addrs").val($(this).text().trim());
                     $("#popup_location").hide();
                 });
             })

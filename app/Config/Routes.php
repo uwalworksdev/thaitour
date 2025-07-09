@@ -211,6 +211,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminLocalGuideController::write");
         $routes->post("write_ok", "Admin\AdminLocalGuideController::write_ok", ['as' => "admin._local_guide.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminLocalGuideController::write_ok/$1", ['as' => "admin._local_guide.write_ok.id"]);
+        $routes->post("del", "Admin\AdminLocalGuideController::del", ['as' => "admin._local_guide.del"]);
+        $routes->post("del_image", "Admin\AdminLocalGuideController::del_image", ['as' => "admin._local_guide.del_image"]);
+        $routes->post("del_all_image", "Admin\AdminLocalGuideController::del_all_image", ['as' => "admin._local_guide.del_all_image"]);
+        $routes->post("change", "Admin\AdminLocalGuideController::change", ['as' => "admin._local_guide.change"]);
     });
 
     $routes->group("_hotel", static function ($routes) {

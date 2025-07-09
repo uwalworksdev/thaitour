@@ -1,9 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<script>
-    localStorage.removeItem('place');
-    localStorage.removeItem('room');
-</script>
+
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -32,7 +29,7 @@
             <form name="search" id="search">
                 <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
-                <input type="hidden" name="product_idx" id="product_idx" value="">
+                <input type="hidden" name="idx" id="idx" value="">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>
@@ -166,97 +163,93 @@
 
                 </div><!-- // listTop -->
                 <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <caption></caption>
-                        <colgroup>
-                            <col width="50px" />
-                            <col width="250px" />
-                            <col width="100px" />
-                            <col width="*" />
-                            <col width="100px" />
-                            <col width="100px" />
-                            <col width="100px" />
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>메인/상품분류</th>
-                                <th>썸네일이미지</th>
-                                <th>타이틀</th>
-                                <th>순위</th>
-                                <th>등록일</th>
-                                <th>관리</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if ($nTotalCount == 0) {
-                            ?>
+                    <form name="frm_l" id="frm_l">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                            <caption></caption>
+                            <colgroup>
+                                <col width="50px" />
+                                <col width="250px" />
+                                <col width="100px" />
+                                <col width="*" />
+                                <col width="100px" />
+                                <col width="100px" />
+                                <col width="100px" />
+                            </colgroup>
+                            <thead>
                                 <tr>
-                                    <td colspan=7 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <th>번호</th>
+                                    <th>메인/상품분류</th>
+                                    <th>썸네일이미지</th>
+                                    <th>타이틀</th>
+                                    <th>순위</th>
+                                    <th>등록일</th>
+                                    <th>관리</th>
                                 </tr>
-                            <?php
-                            }
-                            foreach ($result as $row) :
-                            ?>
-                                <tr style="height:30px" data-idx="<?= $row['product_idx']; ?>">
-                                    <td><?= $num-- ?></td>
-                                    <td class="tac">
-                                        <?php
-                                            $row['product_code_list'] = $row['product_code_1'] . "|" . $row['product_code_2'] . "|" . $row['product_code_3'];
-                                            $_product_code_arr = explode("|", $row['product_code_list']);
-                                        ?>
-                                        <div class="" style="padding: 0 20px">
-                                            <p class="new"><?= get_cate_name($row['product_code_list']) ?></p>
-                                        </div>
-                                        <div class="flex_c_c" style="gap: 10px;">
-                                            <a href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
-                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                            <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
-                                                class="product_view" style="color: red;">[<span>상세수정</span>]</a>
-                                        </div>
-                                    </td>
-                                    <td class="tac">
-                                        <?php
-                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
-                                            $src = "/data/product/" . $row["ufile1"];
-                                        } else {
-                                            $src = "/data/product/noimg.png";
-                                        }
-                                        ?>
-                                        <a href="<?= $src ?>" class="imgpop">
-                                            <img src="<?= $src ?>"
-                                                style="max-width:150px;max-height:100px"></a>
-                                    </td>
-                                    <td class="tal" style="font-weight:bold">
-                                        <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
-                                            <?= viewSQ($row["product_name"]) ?>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
-                                            value="<?= $row['onum'] ?>" style="width:66px;">
-                                        <input type="hidden" name="product_best[]"
-                                            id="product_best_<?= $row["product_idx"] ?>"
-                                            value="<?= $row["product_best"] ?>" style="width:66px;">
-                                        <input type="hidden" name="special_price[]"
-                                            id="special_price_<?= $row["product_idx"] ?>"
-                                            value="<?= $row["special_price"] ?>" style="width:66px;">
-                                        <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
-                                            class="input_txt" />
-                                    </td>
-                                    <td>
-                                        <?= $row["r_date"] ?>
-                                    </td>
-                                    <td>
-                                        <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
-                                                src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                        <a href="javascript:del_it('<?= $row['product_idx'] ?>');"><img
-                                                src="/images/admin/common/ico_error.png" alt="삭제" /></a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($nTotalCount == 0) {
+                                ?>
+                                    <tr>
+                                        <td colspan=7 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    </tr>
+                                <?php
+                                }
+                                foreach ($result as $row) :
+                                ?>
+                                    <tr style="height:30px" data-idx="<?= $row['idx']; ?>">
+                                        <td><?= $num-- ?></td>
+                                        <td class="tac">
+                                            <?php
+                                                $row['product_code_list'] = $row['product_code_1'] . "|" . $row['product_code_2'] . "|" . $row['product_code_3'];
+                                                $_product_code_arr = explode("|", $row['product_code_list']);
+                                            ?>
+                                            <div class="" style="padding: 0 20px">
+                                                <p class="new"><?= get_cate_name($row['product_code_list']) ?></p>
+                                            </div>
+                                            <div class="flex_c_c" style="gap: 10px;">
+                                                <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
+                                                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
+                                                <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"
+                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>
+                                            </div>
+                                        </td>
+                                        <td class="tac">
+                                            <?php
+                                            if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
+                                                $src = "/data/product/" . $row["ufile1"];
+                                            } else {
+                                                $src = "/data/product/noimg.png";
+                                            }
+                                            ?>
+                                            <a href="<?= $src ?>" class="imgpop">
+                                                <img src="<?= $src ?>"
+                                                    style="max-width:150px;max-height:100px"></a>
+                                        </td>
+                                        <td class="tal" style="font-weight:bold">
+                                            <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
+                                                <?= viewSQ($row["product_name"]) ?>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
+                                                value="<?= $row['onum'] ?>" style="width:66px; text-align:center;">                                    
+                                            <input type="hidden" name="code_idx[]" value="<?= $row["idx"] ?>"
+                                                class="input_txt" />
+                                        </td>
+                                        <td>
+                                            <?= $row["r_date"] ?>
+                                        </td>
+                                        <td>
+                                            <a href="#!" onclick="prod_update('<?= $row['idx'] ?>');"><img
+                                                    src="/images/admin/common/ico_setting2.png"></a>&nbsp;
+                                            <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
+                                                    src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </form>
                 </div><!-- // listBottom -->
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_local_guide/list') . "?product_code_1=$product_code_1&product_code_2=$product_code_2&product_code_3=$product_code_3&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
@@ -365,9 +358,9 @@
 
 <script>
     function change_it() {
-        let f = document.frm;
+        let f = document.frm_l;
 
-        let url = '<?= route_to("admin._hotel.change") ?>'
+        let url = '<?= route_to("admin._local_guide.change") ?>'
         let prod_data = $(f).serialize();
         $.ajax({
             type: "POST",
@@ -393,21 +386,23 @@
         var product_code_1 = '<?= $product_code_1 ?>';
         var product_code_2 = '<?= $product_code_2 ?>';
         var product_code_3 = '<?= $product_code_3 ?>';
-        var special_price = '<?= $special_price ?>';
-        var s_status = '<?= $s_status ?>';
         var search_category = '<?= $search_category ?>';
         var product_name = '<?= $product_name ?>';
         var g_list_rows = $("#g_list_rows").val();
         var search_name = '<?= $search_name ?>';
         var pg = '<?= $pg ?>';
-        location.href = '/AdmMaster/_hotel/list?product_code_1=' + product_code_1 + '&product_code_2=' + product_code_2 + '&product_code_3=' + product_code_3 + '&special_price=' + special_price + '&s_status=' + s_status + '&search_category=' + search_category + '&product_name=' + product_name + '&g_list_rows=' + g_list_rows + '&search_name=' + search_name + '&pg=' + pg;
+        location.href = '/AdmMaster/_local_guide/list?product_code_1=' + product_code_1 + '&product_code_2=' + product_code_2 + '&product_code_3=' + product_code_3  + '&search_category=' + search_category + '&product_name=' + product_name + '&g_list_rows=' + g_list_rows + '&search_name=' + search_name + '&pg=' + pg;
     }
 </script>
 
 <script>
+    function orderBy_set(seq) {
+        $("#orderBy").val(seq);
+        search_it();
+    }
     
     function SELECT_DELETE() {
-        if ($(".product_idx").is(":checked") == false) {
+        if ($(".idx").is(":checked") == false) {
             alert_("삭제할 내용을 선택하셔야 합니다.");
             return;
         }
@@ -417,7 +412,7 @@
 
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._hotel.del") ?>";
+        let url = "<?= route_to("admin._local_guide.del") ?>";
         $.ajax({
             url: url,
             type: "POST",
@@ -437,19 +432,19 @@
 
     }
 
-    function del_it(product_idx) {
+    function del_it(idx) {
 
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
         }
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._hotel.del") ?>";
+        let url = "<?= route_to("admin._local_guide.del") ?>";
 
         $.ajax({
             url: url,
             type: "POST",
-            data: "product_idx[]=" + product_idx,
+            data: "idx[]=" + idx,
             error: function(request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);

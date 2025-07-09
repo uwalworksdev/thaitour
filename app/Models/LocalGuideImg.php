@@ -18,9 +18,9 @@ class LocalGuideImg extends Model
     {
     }
 
-    public function getImg($product_idx)
+    public function getImg($idx)
     {
-		return $this->where('product_idx', $product_idx)
+		return $this->where('lg_idx', $idx)
                     ->where('ufile !=', '')
                     ->orderBy("onum", "asc")
                     ->orderBy("i_idx", "asc")

@@ -36,7 +36,7 @@ class AdminLocalGuideController extends BaseController
         $pg              = updateSQ($_GET["pg"] ?? '1');
         $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy         = $_GET["orderBy"] ?? "1";
+        $orderBy         = updateSQ($_GET["orderBy"]) ?? "1";
         $product_code_1  = 1303;
         $product_code_2  = updateSQ($_GET["product_code_2"] ?? '');
         $product_code_3  = updateSQ($_GET["product_code_3"] ?? '');
@@ -49,10 +49,6 @@ class AdminLocalGuideController extends BaseController
             'product_code_2'  => $product_code_2,
             'product_code_3'  => $product_code_3,
         ];
-
-        if (!empty($special_price)) {
-            $where['special_price'] = $special_price;
-        }
 
         $orderByArr = [];
 
@@ -264,6 +260,160 @@ class AdminLocalGuideController extends BaseController
                 'result' => false,
                 'message' => $e->getMessage()
             ], 400);
+        }
+    }
+
+    public function del()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                $data = [
+                    'status' => 'error',
+                    'error' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            foreach ($idx as $iValue) {
+                $db1 = $this->localGuide->delete($iValue)   ;
+                if (!$db1) {
+                    $data = [
+                        'status' => 'error',
+                        'error' => 'error!'
+                    ];
+                    return $this->response->setJSON($data, 400);
+                }
+            }
+
+            $data = [
+                'status' => 'success',
+                'message' => 'delete success!'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_image()
+    {
+        try {
+            $i_idx = $_POST['i_idx'] ?? '';
+            if (!isset($i_idx)) {
+                $data = [
+                    'result' => false,
+                    'message' => 'idx가 설정되지 않았습니다!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->localGuideImg->updateData($i_idx, [
+                'ufile' => '',
+                'rfile' => ''
+            ]);
+            if (!$result) {
+                $data = [
+                    'result' => false,
+                    'message' => '이미지 삭제 실패'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_all_image()
+    {
+        try {
+            $request = service('request');
+            $imgData = $request->getJSON();
+    
+            if (!empty($imgData->arr_img)) {
+                foreach ($imgData->arr_img as $item) {
+                    $i_idx = $item->i_idx;
+
+                    $result = $this->localGuideImg->updateData($i_idx, [
+                        'ufile' => '',
+                        'rfile' => ''
+                    ]);
+                    if (!$result) {
+                        $data = [
+                            'result' => false,
+                            'message' => '이미지 삭제 실패'
+                        ];
+                        return $this->response->setJSON($data, 400);
+                    }
+        
+                }
+            }
+
+            $data = [
+                'result' => true,
+                'message' => '사진을 삭제했습니다.'
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function change()
+    {
+        try {
+            $idx = $this->request->getPost('code_idx') ?? [];
+            $onum = $this->request->getPost('onum') ?? [];
+
+            if (!is_array($idx) || !is_array($onum) || count($idx) !== count($onum)) {
+                return $this->response->setStatusCode(400)->setJSON([
+                    'status' => 'error',
+                    'message' => '입력 데이터가 잘못되었습니다.'
+                ]);
+            }
+
+            $tot = count($idx);
+
+            for ($j = 0; $j < $tot; $j++) {
+                $data = [
+                    'onum' => $onum[$j],
+                ];
+
+                $result = $this->localGuide->updateData($idx[$j], $data);
+
+                if (!$result) {
+                    return $this->response->setStatusCode(400)->setJSON([
+                        'status' => 'error',
+                        'message' => '수정 중 오류가 발생했습니다!!'
+                    ]);
+                }
+            }
+
+            return $this->response->setStatusCode(200)->setJSON([
+                'status' => 'success',
+                'message' => '수정 했습니다.'
+            ]);
+
+        } catch (\Exception $e) {
+            return $this->response->setStatusCode(500)->setJSON([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }

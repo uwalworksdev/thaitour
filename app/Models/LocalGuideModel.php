@@ -13,7 +13,7 @@ class LocalGuideModel extends Model
     protected $allowedFields = [
         "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4", "ufile1", "rfile1",
         "product_name", "product_name_en", "onum", "product_contents", "m_date", "r_date",
-        "addrs", "latitude", "longitude", "time_line", "contact", "url", "r_date"
+        "addrs", "latitude", "longitude", "time_line", "contact", "url", "r_date", "m_date"
     ];
 
     protected function initialize()
@@ -62,6 +62,16 @@ class LocalGuideModel extends Model
 
         $builder = $this;
 	
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->groupEnd();
+            }
+        }
+
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
