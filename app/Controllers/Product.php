@@ -4639,7 +4639,7 @@ class Product extends BaseController
             $result['option_price_won'] = round($result['option_price'] * $this->setting['baht_thai']);
 
             return $this->response->setJSON($result, 200);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
