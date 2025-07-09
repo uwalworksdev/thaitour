@@ -267,10 +267,10 @@
                                     <span>일정: </span>
                                     <span><?= $order_date ?></span>
                                 </div>
-                                <div class="item-info" style="gap: 10px;">
+                                <!-- <div class="item-info" style="gap: 10px;">
                                     <span>예약시간: </span>
                                     <span><?= $time_line ?></span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-right2 spa-detail">
@@ -308,17 +308,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
-                                    <p class="schedule_ttl" style="margin-top: 0;">옵션</p>    
-                                    <?php foreach ($tour_option as $index => $option): ?>
-                                        <div class="schedule_option" id="schedule_<?= $index ?>" style="width: 100%;">
-                                            <div class="wrap-text">
-                                                <p><?= $option['option_name'] ?> x <?= $option['qty'] ?></p>
+                                <?php
+                                    if(count($tour_option) > 0){
+                                ?>
+                                    <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
+                                        <p class="schedule_ttl" style="margin-top: 0;">옵션</p>    
+                                        <?php foreach ($tour_option as $index => $option): ?>
+                                            <div class="schedule_option" id="schedule_<?= $index ?>" style="width: 100%;">
+                                                <div class="wrap-text">
+                                                    <p><?= $option['option_name'] ?> x <?= $option['qty'] ?></p>
+                                                </div>
+                                                <span><?= number_format($option_price[$index]) ?> 원</span>                            
                                             </div>
-                                            <span><?= number_format($option_price[$index]) ?> 원</span>                            
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
