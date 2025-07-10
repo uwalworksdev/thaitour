@@ -727,13 +727,16 @@
             <?= viewSQ($product['product_unable'])?>
         </div>
         <?php } ?>
-        <?php if($product['mobile_able']) {?>
-        <h2 class="title-sec2">
-            추가정보 및 참고사항
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['mobile_able'])?>
-        </div>
+
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
         <?php } ?>
         
         

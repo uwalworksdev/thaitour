@@ -967,7 +967,7 @@
   }
 
   .tours-detail p.des-type {
-    font-size: 2.8rem;
+    font-size: 2.6rem !important;
     line-height: 1.2 !important;
     margin-top: 2rem;
     margin-bottom: 5rem;
@@ -1004,6 +1004,14 @@
     line-height: 1.2;
     margin: 3rem 0 7rem 0;
   }
+
+  .tours-detail .des-type-1 span {
+    font-size: 2.6rem !important;
+  }
+
+  .content-sub-hotel-detail .container-big-text span {
+    font-size: 2.6rem !important;
+}
 
   .tours-detail .des-type {
     font-size: 2.7rem;
@@ -2553,6 +2561,10 @@
     background-repeat: no-repeat;
   }
 
+  .tours-detail .des-type span {
+    font-size: 2.6rem !important;
+  }
+
   .content-sub-hotel-detail .grid_2_2 .custom_button {
     width: 29rem;
     height: 21.6rem;
@@ -3055,6 +3067,11 @@
   .content-custom-table .content-item .description * {
     line-height: 1.4 !important;
     font-size: 2.2rem !important;
+  }
+
+   .content-custom-table .content-item .description span {
+    line-height: 1.4 !important;
+    font-size: 2.6rem !important;
   }
 
   .content-custom-table .content-item .label {
