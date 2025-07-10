@@ -776,7 +776,7 @@
             <h2 class="title-sec2">
                 투어준비물
             </h2>
-            <div class="des-type-1" style="background-color: unset">
+            <div class="des-type" style="background-color: unset">
                 <p>
                     <?= viewSQ($product['product_confirm'])?>
                 </p>
