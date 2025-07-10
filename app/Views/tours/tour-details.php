@@ -719,15 +719,6 @@
             <?php endfor; ?>
         <?php } ?> -->
 
-        <?php if($product['product_unable']) {?>
-        <div class="tit-blue-type-2">
-            <span class="tit-blue">불포함 사항</span>
-        </div>
-        <div class="des-type">
-            <?= viewSQ($product['product_unable'])?>
-        </div>
-        <?php } ?>
-
         <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
@@ -781,6 +772,14 @@
         </div>
         <div class="des-type">
             <?= viewSQ($product['product_able'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['product_unable']) {?>
+        <div class="tit-blue-type-2">
+            <span class="tit-blue">불포함 사항</span>
+        </div>
+        <div class="des-type">
+            <?= viewSQ($product['product_unable'])?>
         </div>
         <?php } ?>
         <div class="steps-type" style="display: none">
