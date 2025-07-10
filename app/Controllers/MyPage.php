@@ -155,31 +155,31 @@ public function reservationList() {
         $builder->where('m_idx', $_SESSION['member']['mIdx']);
         $builder->whereNotIn('order_status', ['B', 'D']);
 
-        if ($dateType == "1" && $checkInDate && $checkOutDate) {
-            $builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
-        } elseif ($dateType == "2" && $checkInDate && $checkOutDate) {
-            $builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
-        }
+        // if ($dateType == "1" && $checkInDate && $checkOutDate) {
+        //     $builder->where("DATE(order_day) BETWEEN '$checkInDate' AND '$checkOutDate'");
+        // } elseif ($dateType == "2" && $checkInDate && $checkOutDate) {
+        //     $builder->where("DATE(order_date) BETWEEN '$checkInDate' AND '$checkOutDate'");
+        // }
 
-        if ($productType) $builder->where('product_type', $productType);
-        if ($productName) $builder->like('product_name', $productName);
+        // if ($productType) $builder->where('product_type', $productType);
+        // if ($productName) $builder->like('product_name', $productName);
 
-        if (!empty($search_word)) {
-            switch ($searchType) {
-                case "1": $builder->like('product_name', $search_word); break;
-                case "2": $builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'"); break;
-                case "3": $builder->where('order_no', $search_word); break;
-                case "4": $builder->where('group_no', $search_word); break;
-            }
-        }
+        // if (!empty($search_word)) {
+        //     switch ($searchType) {
+        //         case "1": $builder->like('product_name', $search_word); break;
+        //         case "2": $builder->where("CONVERT(AES_DECRYPT(UNHEX(order_user_name), '$private_key') USING utf8) LIKE '%$search_word%'"); break;
+        //         case "3": $builder->where('order_no', $search_word); break;
+        //         case "4": $builder->where('group_no', $search_word); break;
+        //     }
+        // }
 
-        switch ($procType) {
-            case '1': $builder->whereIn('order_status', ['W', 'X']); break;
-            case '2': $builder->where('order_status', 'Y'); break;
-            case '3': $builder->where('order_status', 'Z'); break;
-            case '4': $builder->where('order_status', 'E'); break;
-            case '5': $builder->whereIn('order_status', ['C', 'N']); break;
-        }
+        // switch ($procType) {
+        //     case '1': $builder->whereIn('order_status', ['W', 'X']); break;
+        //     case '2': $builder->where('order_status', 'Y'); break;
+        //     case '3': $builder->where('order_status', 'Z'); break;
+        //     case '4': $builder->where('order_status', 'E'); break;
+        //     case '5': $builder->whereIn('order_status', ['C', 'N']); break;
+        // }
     };
 
     // 1. 전체 group_no 목록을 조건별로 가져옴
