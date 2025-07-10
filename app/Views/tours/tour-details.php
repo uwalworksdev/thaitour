@@ -728,18 +728,6 @@
         </div>
         <?php } ?>
 
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                투어준비물
-            </h2>
-            <div class="des-type" style="background-color: unset">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
-        <?php } ?>
-        
-        
         <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
