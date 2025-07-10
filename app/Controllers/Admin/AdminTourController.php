@@ -167,6 +167,7 @@ class AdminTourController extends BaseController
 
             $mbti = updateSQ($_POST["mbti" ?? '']);
             $description = updateSQ($_POST["description" ?? '']);
+            $note_news = updateSQ($_POST["note_news" ?? '']);
 
             $t_group = $_POST["tour_group"] ?? [];
             $company_name = updateSQ($_POST["company_name" ?? '']);
@@ -328,7 +329,8 @@ class AdminTourController extends BaseController
                             ,company_contact        = '" . $company_contact . "'
                             ,company_url            = '" . $company_url . "'
                             ,company_notes          = '" . $company_notes . "'
-                            ,minimun_reservation          = '" . $minimun_reservation . "'
+                            ,minimun_reservation    = '" . $minimun_reservation . "'
+                            ,note_news              = '" . $note_news . "'
 
                             ,yoil_0                 = '" . $yoil_0 . "'
                             ,yoil_1                 = '" . $yoil_1 . "'
@@ -521,7 +523,8 @@ class AdminTourController extends BaseController
                             ,company_contact        = '" . $company_contact . "'
                             ,company_url            = '" . $company_url . "'
                             ,company_notes          = '" . $company_notes . "'
-                            ,minimun_reservation          = '" . $minimun_reservation . "'
+                            ,minimun_reservation    = '" . $minimun_reservation . "'
+                            ,note_news              = '" . $note_news . "'
 
                             ,user_id				= '" . $_SESSION['member']['id'] . "'
                             ,user_level				= '" . $_SESSION['member']['level'] . "'
