@@ -677,7 +677,7 @@
                                         <td>
                                             <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                         </td>
-                                        <th>담당자 담당자</th>
+                                        <th>상품 담당자</th>
                                         <td>
                                             이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
                                             &ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>

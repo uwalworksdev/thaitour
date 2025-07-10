@@ -506,25 +506,6 @@
                                 </tr> -->
 
                                 <tr>
-                                    <th>주소</th>
-                                    <td colspan="3">
-                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
-                                               value="<?= $addrs ?>" class="text" style="width:70%"/>
-                                        <button type="button" class="btn btn-primary" style="width: unset;"
-                                                onclick="getCoordinates();">get location
-                                        </button>
-                                        <div style="margin-top: 10px;">
-                                            Latitude : <input type="text" name="latitude" id="latitude"
-                                                              value="<?= $latitude ?>" class="text"
-                                                              style="width: 200px;" readonly/>
-                                            Longitude : <input type="text" name="longitude" id="longitude"
-                                                               value="<?= $longitude ?>" class="text"
-                                                               style="width: 200px;" readonly/>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>간략설명</th>
                                     <td colspan="3">
                                           <textarea id="description" name="description" rows="5" cols="100" style="width: 100%;"><?=$description?></textarea>
@@ -872,10 +853,28 @@
                                                         <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                                     </td>
                                                     <th>상품 담당자</th>
-                                                    <td colspan="3">
+                                                    <td>
                                                         이름: <input type="text" id="stay_user_name" name="stay_user_name"  value="<?= $stay_item['stay_user_name'] ?>" class="input_txt" placeholder="" style="width:150px"/>
-                                                        &ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>"   style="width:150px"/>
-                                                        &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>"   style="width:150px"/>
+                                                        &ensp;연락처: <input id="phone1" name="phone" class="input_txt" type="text" value="<?= $phone ?? '' ?>" style="width:200px"/>
+                                                        &ensp;이메일: <input id="email1" name="email" class="input_txt"  type="text" value="<?= $email ?? '' ?>" style="width:200px"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>주소</th>
+                                                    <td colspan="3">
+                                                        <input type="text" autocomplete="off" name="addrs" id="addrs"
+                                                            value="<?= $addrs ?>" class="text" style="width:70%"/>
+                                                        <button type="button" class="btn btn-primary" style="width: unset;"
+                                                                onclick="getCoordinates();">get location
+                                                        </button>
+                                                        <div style="margin-top: 10px;">
+                                                            Latitude : <input type="text" name="latitude" id="latitude"
+                                                                            value="<?= $latitude ?>" class="text"
+                                                                            style="width: 200px;" readonly/>
+                                                            Longitude : <input type="text" name="longitude" id="longitude"
+                                                                            value="<?= $longitude ?>" class="text"
+                                                                            style="width: 200px;" readonly/>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>

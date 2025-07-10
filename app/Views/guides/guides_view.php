@@ -166,38 +166,40 @@
                             ?>
                             <div class="calendar_header" data-key="<?= $key ?>"
                                  data-num="<?= $option['o_idx'] ?>">
-                                <div class="desc_product">
-                                    <div class=""
-                                         data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
-                                    <div class="desc_product_sub">
-                                        <?= viewSQ($option['o_contents']) ?>
-                                    </div> 
-                                    <?php
-                                        $hasName = false;
-                                        foreach ($option['sup_options'] as $item) {
-                                            if (!empty($item['s_name'])) {
-                                                $hasName = true;
-                                                break;
-                                            }
-                                        }
-                                        if(count($option['sup_options']) > 0 && $hasName) {
-                                    ?>
-                                    <div class="desc_product_sub">
-                                        <p> 옵션포함:</p>
-                                        <ul>
-                                            <?php foreach ($option['sup_options'] as $item): ?>
-                                                <li class="" data-price="<?= $item['s_price'] ?>">
-                                                    - <?= $item['s_name'] ?> </li>
-
-                                                <?php
-                                                $price_ += $item['s_price'];
-                                                ?>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                <div class="desc_product desc_product_sub_first">
+                                    <div class="guide_op_name">
+                                        <div data-price="<?= $option['o_sale_price'] ?>"><?= $option['o_name'] ?></div>
+                                        <div class="desc_product_sub">
+                                            <?= viewSQ($option['o_contents']) ?>
+                                        </div> 
                                     </div>
-                                    <?php
-                                        }
-                                    ?>
+                                    <div class="guide_op_wrap">
+                                        <?php
+                                            $hasName = false;
+                                            foreach ($option['sup_options'] as $item) {
+                                                if (!empty($item['s_name'])) {
+                                                    $hasName = true;
+                                                    break;
+                                                }
+                                            }
+                                            if(count($option['sup_options']) > 0 && $hasName) {
+                                        ?>
+                                        <div class="desc_product_sub desc_product_sub_last">
+                                            <p class="guide_op_ttl">옵션포함</p>
+                                            <ul>
+                                                <?php foreach ($option['sup_options'] as $item): ?>
+                                                    <li class="" data-price="<?= $item['s_price'] ?>">
+                                                        <?= $item['s_name'] ?> </li>
+                                                    <?php
+                                                        $price_ += $item['s_price'];
+                                                    ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                     <!-- <div class="desc_product_sub">예약기능여부 : <span
                                                 style="color : #2a459f ">
                                                 <?php
