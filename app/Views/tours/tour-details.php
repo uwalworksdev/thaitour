@@ -773,13 +773,21 @@
             <?= viewSQ($product['notice_comment'])?>
         </div>
         <?php } ?>
+        <?php if($product['note_news']) {?>
+        <h2 class="title-sec2">
+            투어 일정
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['note_news'])?>
+        </div>
+        <?php } ?>
         <?php if($product['etc_comment']) {?>
-        <!-- <h2 class="title-sec2">
-            더투어랩 이용방법
+        <h2 class="title-sec2">
+            미팅/픽업장소 안내
         </h2>
         <div class="des-type">
             <?= viewSQ($product['etc_comment'])?>
-        </div> -->
+        </div>
         <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
