@@ -632,6 +632,14 @@
         <h2 class="title-sec3" id="product_des">
             상품설명
         </h2>
+        <?php if($product['tour_info']) {?>
+            <h2 class="title-sec2" style="margin-bottom: 10px">
+                상품정보
+            </h2>
+            <div class="des-type">
+                <?= viewSQ($product['tour_info']) ?>
+            </div>
+        <?php }?>
         <!-- <?php if($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') {?>
             <h3 class="title-sec2">
                 상품 포인트
@@ -668,14 +676,7 @@
                 <?php } ?>
             </div>
         <?php } ?>
-        <?php if($product['tour_info']) {?>
-            <h2 class="title-sec2" style="margin-bottom: 10px">
-                상품정보
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($product['tour_info']) ?>
-            </div>
-        <?php }?>
+
         <?php if (count($tour_img_list) > 0): ?>
             <h2 class="title-sec2 tit-swip-pic">
                 투어 사진

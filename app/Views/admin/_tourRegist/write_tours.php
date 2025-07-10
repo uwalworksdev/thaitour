@@ -540,7 +540,7 @@
 
                                 <tr>
                                     <th>상품담당자</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
                                                value="<?= $product_manager ?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone1" class="input_txt" type="text"
@@ -566,15 +566,17 @@
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
+                                    
+                                </tr>
+                                <tr>
                                     <th>검색키워드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
-                                               value="<?= $keyword ?>"
-                                               style="width:90%"/><br/>
+                                                value="<?= $keyword ?>"
+                                                style="width:90%"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span>
                                     </td>
                                 </tr>
-
                                 <!-- <tr>
                                     <th>기존상품가(단위: 바트)</th>
                                     <td>
@@ -1167,7 +1169,7 @@
                                     </td>
                                 </tr>
 
-                                <tr style="display: none">
+                                <tr>
                                     <th>상품정보</th>
                                     <td colspan="3">
 

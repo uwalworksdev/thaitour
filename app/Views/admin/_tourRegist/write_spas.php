@@ -374,7 +374,7 @@
 
                                 <tr>
                                     <th>상품담당자</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
                                                value="<?= $product_manager ?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
@@ -400,8 +400,11 @@
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
+                                    
+                                </tr>
+                                <tr>
                                     <th>검색키워드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
                                                value="<?= $keyword ?>"
                                                style="width:90%"/><br/>
