@@ -745,6 +745,16 @@
             <?= viewSQ($product['notice_comment'])?>
         </div>
         <?php } ?>
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type 11" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
+        <?php } ?>
         <?php if($product['note_news']) {?>
         <h2 class="title-sec2">
             투어 일정
@@ -761,6 +771,7 @@
             <?= viewSQ($product['etc_comment'])?>
         </div>
         <?php } ?>
+
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
@@ -771,16 +782,6 @@
         <div class="des-type">
             <?= viewSQ($product['product_able'])?>
         </div>
-        <?php } ?>
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                투어준비물
-            </h2>
-            <div class="des-type 11" style="background-color: unset">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
         <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
