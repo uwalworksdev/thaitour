@@ -192,9 +192,6 @@ public function reservationList() {
     $nPage = ceil($totalGroups / $perPage);
     $currentGroupNos = array_slice(array_column($allGroupNos, 'group_no'), $offset, $perPage);
 
-    var_dump($currentGroupNos);
-    die();
-
     if (empty($currentGroupNos)) {
         $groupedOrders = [];
         $groupTotals   = [];
