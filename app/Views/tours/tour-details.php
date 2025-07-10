@@ -719,6 +719,15 @@
             <?php endfor; ?>
         <?php } ?> -->
 
+        <?php if($product['mobile_able']) {?>
+        <h2 class="title-sec2">
+            추가정보 및 참고사항
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['mobile_able'])?>
+        </div>
+        <?php } ?>
+
         <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
