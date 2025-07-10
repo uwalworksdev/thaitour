@@ -719,15 +719,6 @@
             <?php endfor; ?>
         <?php } ?> -->
 
-        <?php if($product['product_unable']) {?>
-        <div class="tit-blue-type-2">
-            <span class="tit-blue">불포함 사항</span>
-        </div>
-        <div class="des-type">
-            <?= viewSQ($product['product_unable'])?>
-        </div>
-        <?php } ?>
-
         <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
@@ -745,6 +736,16 @@
             <?= viewSQ($product['notice_comment'])?>
         </div>
         <?php } ?>
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type 11" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
+        <?php } ?>
         <?php if($product['note_news']) {?>
         <h2 class="title-sec2">
             투어 일정
@@ -761,6 +762,7 @@
             <?= viewSQ($product['etc_comment'])?>
         </div>
         <?php } ?>
+
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
@@ -772,15 +774,13 @@
             <?= viewSQ($product['product_able'])?>
         </div>
         <?php } ?>
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                투어준비물
-            </h2>
-            <div class="des-type 11" style="background-color: unset">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
+        <?php if($product['product_unable']) {?>
+        <div class="tit-blue-type-2">
+            <span class="tit-blue">불포함 사항</span>
+        </div>
+        <div class="des-type">
+            <?= viewSQ($product['product_unable'])?>
+        </div>
         <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
