@@ -888,22 +888,6 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <th>업체 정보</th>
-                                    <td colspan="3">
-                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                            <colgroup>
-                                                <col width="10%"/>
-                                                <col width="*%"/>
-                                                <col width="10%"/>
-                                                <col width="*%"/>
-                                            </colgroup>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>    
-                                    </td>
-                                </tr>
                                 <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
