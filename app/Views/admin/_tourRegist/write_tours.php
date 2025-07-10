@@ -310,7 +310,7 @@
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                             <?php
-                                            foreach ($fresult3 as $frow):
+                                            foreach ($category3 as $frow):
                                                 $status_txt = "";
                                                 if ($frow["status"] == "Y") {
                                                     $status_txt = "";

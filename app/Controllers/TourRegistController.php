@@ -1730,6 +1730,11 @@ class TourRegistController extends BaseController
 
         $img_list = $this->productImg->getImg($product_idx);
 
+        $sql       = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
+		//write_log("xxx- ". $sql);
+        $query     = $db->query($sql);
+        $category3 = $query->getResultArray();
+
         $new_data = [
             'product_idx'     => $product_idx,
             'codes'           => $fresult_c,
@@ -1737,7 +1742,8 @@ class TourRegistController extends BaseController
             'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'          => $mcodes,
-            'img_list'        => $img_list
+            'img_list'        => $img_list,
+            'category3'       => $category3
         ];
 
         $data = array_merge($data, $new_data);
@@ -1848,8 +1854,13 @@ class TourRegistController extends BaseController
         ];
         $product_themes = $this->codeModel->getCodesByConditions($conditions);
 
+        $sql       = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
+        $query     = $db->query($sql);
+        $category3 = $query->getResultArray();
+
         $data['pthemes'] = $product_themes;
         $data['product'] = $product;
+        $data['category3'] = $category3;
 
         $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);
