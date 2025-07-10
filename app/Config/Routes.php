@@ -8,7 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 
 /* Set view for not found page */
 $routes->set404Override(function () {
-    echo view('errors/404');
+    // echo view('errors/404');
+    return redirect()->to('/');
 });
 
 $routes->get('pdf', 'PdfTestController::generatePdf');
