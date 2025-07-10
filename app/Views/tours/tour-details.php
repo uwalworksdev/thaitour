@@ -718,43 +718,13 @@
                 </ul>
             <?php endfor; ?>
         <?php } ?> -->
-        <h2 class="title-sec2">
-            포함/불포함 사항
-        </h2>
-        <?php if($product['product_able'] && $product['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
-        <div class="tit-blue-type-2">
-            <span class="tit-blue">포함사항</span>
-        </div>
-        <div class="des-type">
-            <?= viewSQ($product['product_able'])?>
-        </div>
-        <?php } ?>
+
         <?php if($product['product_unable']) {?>
         <div class="tit-blue-type-2">
             <span class="tit-blue">불포함 사항</span>
         </div>
         <div class="des-type">
             <?= viewSQ($product['product_unable'])?>
-        </div>
-        <?php } ?>
-
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                투어준비물
-            </h2>
-            <div class="des-type-1" style="background-color: unset">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
-        <?php } ?>
-        
-        <?php if($product['special_benefit']) {?>
-        <h2 class="title-sec2">
-            어린이정책
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['special_benefit'])?>
         </div>
         <?php } ?>
         <?php if($product['mobile_able']) {?>
@@ -765,6 +735,17 @@
             <?= viewSQ($product['mobile_able'])?>
         </div>
         <?php } ?>
+        
+        
+        <?php if($product['special_benefit']) {?>
+        <h2 class="title-sec2">
+            어린이정책
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['special_benefit'])?>
+        </div>
+        <?php } ?>
+       
         <?php if($product['notice_comment']) {?>
         <h2 class="title-sec2">
             유의사항
@@ -788,6 +769,27 @@
         <div class="des-type">
             <?= viewSQ($product['etc_comment'])?>
         </div>
+        <?php } ?>
+        <h2 class="title-sec2">
+            포함/불포함 사항
+        </h2>
+        <?php if($product['product_able'] && $product['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
+        <div class="tit-blue-type-2">
+            <span class="tit-blue">포함사항</span>
+        </div>
+        <div class="des-type">
+            <?= viewSQ($product['product_able'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type-1" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
         <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
