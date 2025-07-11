@@ -76,13 +76,15 @@ class AdminLocalProductController extends BaseController
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
-        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
-        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
-        $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
+        $city_code        = updateSQ($_GET["city_code"] ?? '');
+        $category_code    = updateSQ($_GET["category_code"] ?? '');
 
         if ($idx) {
             $row = $this->localProduct->find($idx);
         }
+
+        $category_code_list = $this->codeModel->getListByParentCode("6004");
+        $city_code_list = $this->codeModel->getListByParentCode("6003");
 
         $data = [
             'idx' => $idx,
@@ -92,9 +94,10 @@ class AdminLocalProductController extends BaseController
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
-            's_product_code_1' => $s_product_code_1,
-            's_product_code_2' => $s_product_code_2,
-            's_product_code_3' => $s_product_code_3,
+            'city_code' => $city_code,
+            'category_code' => $category_code,
+            'category_code_list' => $category_code_list,
+            'city_code_list' => $city_code_list,
             'row' => $row ?? '',
         ];
         return view("admin/_local_product/write", $data);
