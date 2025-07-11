@@ -147,7 +147,6 @@
                                 <col width="*" />
                                 <col width="100px" />
                                 <col width="100px" />
-                                <col width="100px" />
                             </colgroup>
                             <thead>
                                 <tr>
@@ -156,7 +155,6 @@
                                     <th>추천여행 카테고리</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
-                                    <th>순위</th>
                                     <th>등록일</th>
                                     <th>관리</th>
                                 </tr>
@@ -196,17 +194,11 @@
                                                 <img src="<?= $src ?>"
                                                     style="max-width:150px;max-height:100px"></a>
                                         </td>
-                                        <td class="tal" style="font-weight:bold">
+                                        <td class="tac">
                                             <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                             <a href="write?city_code=<?= $city_code ?>&category_code=<?= $category_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
-                                                <?= viewSQ($row["product_name"]) ?>
-                                        </td>
-                                        <td>
-                                            <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
-                                                value="<?= $row['onum'] ?>" style="width:66px; text-align:center;">                                    
-                                            <input type="hidden" name="code_idx[]" value="<?= $row["idx"] ?>"
-                                                class="input_txt" />
+                                                <?= viewSQ($row["title"]) ?>
                                         </td>
                                         <td>
                                             <?= $row["r_date"] ?>

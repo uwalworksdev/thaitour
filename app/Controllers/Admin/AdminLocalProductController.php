@@ -64,8 +64,6 @@ class AdminLocalProductController extends BaseController
             'category_code'         => $category_code,
             'city_code_list'        => $city_code_list,
             'category_code_list'    => $category_code_list,
-
-
         ];
         return view("admin/_local_product/list", $data);
     }
