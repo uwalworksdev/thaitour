@@ -708,7 +708,7 @@
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span> -->
                                         <div style="display: flex; flex-wrap: wrap; gap: 10px ">
                                         <?php
-                                            $_product_keywords_arr = isset($keyword) ? explode("|", $keyword) : [];
+                                            $_product_keywords_arr = isset($product_keywords) ? explode("|", $product_keywords) : [];
                                             $_product_keywords_arr = array_filter($_product_keywords_arr);
                                         ?>
                                             <?php foreach ($pkeywords as $item) { ?>
