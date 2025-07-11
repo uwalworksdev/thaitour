@@ -240,9 +240,9 @@
 
         var frm = document.frm;
 
-        if (frm.product_name.value == "") {
+        if (frm.title.value == "") {
             alert("상품명을 입력해주세요.");
-            frm.product_name.focus();
+            frm.title.focus();
             return;
         }
 
