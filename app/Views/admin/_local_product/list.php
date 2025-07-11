@@ -142,6 +142,7 @@
                             <colgroup>
                                 <col width="50px" />
                                 <col width="250px" />
+                                <col width="250px" />
                                 <col width="100px" />
                                 <col width="*" />
                                 <col width="100px" />
@@ -151,7 +152,8 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>메인/상품분류</th>
+                                    <th>추천여행 카테고리</th>    
+                                    <th>추천 여행지</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
                                     <th>순위</th>
@@ -173,14 +175,13 @@
                                     <tr style="height:30px" data-idx="<?= $row['idx']; ?>">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <div class="" style="padding: 0 20px">
-                                                <p class="new"></p>
+                                            <div class="flex_c_c" style="gap: 10px;">  
+                                                <?= viewSQ(textToFilter: $row["city_name"]) ?>
                                             </div>
-                                            <div class="flex_c_c" style="gap: 10px;">
-                                                <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
-                                                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                                <a href="write?city_code=<?= $city_code ?>&category_code=<?= $category_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"
-                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>
+                                        </td>
+                                        <td class="tac">
+                                            <div class="flex_c_c" style="gap: 10px;">  
+                                                <?= viewSQ(textToFilter: $row["category_name"]) ?>
                                             </div>
                                         </td>
                                         <td class="tac">
@@ -196,6 +197,8 @@
                                                     style="max-width:150px;max-height:100px"></a>
                                         </td>
                                         <td class="tal" style="font-weight:bold">
+                                            <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
+                                                    class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                             <a href="write?city_code=<?= $city_code ?>&category_code=<?= $category_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
                                                 <?= viewSQ($row["product_name"]) ?>
                                         </td>
