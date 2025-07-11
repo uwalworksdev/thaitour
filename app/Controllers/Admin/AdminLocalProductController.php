@@ -88,9 +88,6 @@ class AdminLocalProductController extends BaseController
 
         $data = [
             'idx' => $idx,
-            'product_code_1' => $row['product_code_1'],
-            'product_code_2' => $row['product_code_2'],
-            'product_code_3' => $row['product_code_3'],
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
