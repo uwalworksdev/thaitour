@@ -215,14 +215,14 @@
                                             <option value="">1차분류<?=$product_code_1?></option>
                                             <?php
                                             foreach ($fresult as $frow):
-                                                $status_txt = "";
-                                                if ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "";
-                                                } elseif ($frow["code_no"] == $product_code_1) {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["code_no"] == $product_code_1) {
-                                                    $status_txt = "[마감]";
-                                                }
+                                                    if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_1']) {
@@ -240,13 +240,13 @@
                                                 if(substr($frow["code_no"],0,4) == $row['product_code_1']) 
 												{
 													$status_txt = "";
-													if ($frow["code_no"] == $product_code_2) {
-														$status_txt = "";
-													} elseif ($frow["code_no"] == $product_code_2) {
-														$status_txt = "[삭제]";
-													} elseif ($frow["code_no"] == $product_code_2) {
-														$status_txt = "[마감]";
-													}
+					                                if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 											?>		
                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_2']) echo "selected";?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                                             <?php } ?>
@@ -257,16 +257,16 @@
                                             <?php
                                             foreach ($category3 as $frow):
                                                 $status_txt = "";
-                                                if ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "";
-                                                } elseif ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "[마감]";
-                                                }
+                                                    if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_3']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
