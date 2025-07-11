@@ -204,15 +204,12 @@
                                         <td class="tac">
                                             <?php
                                                 $city_code_list = $row['city_code'] . "|" . $row['town_code'];
-                                                $_city_code_arr = explode("|", $city_code_list);
                                                 
                                                 $category_code_list = $row['category_code'] . "|" . $row['subcategory_code'];
-                                                $_category_code_arr = explode("|", $category_code_list);
                                                 
-                                                var_dump($_city_code_arr);
                                             ?>
                                             <div class="" style="padding: 0 20px">
-                                                <p class="new"><?= get_cate_name($_city_code_arr) ?></p>
+                                                <p class="new"><?= get_cate_name($city_code_list) ?></p>
                                             </div>
                                             <div class="flex_c_c" style="gap: 10px;">
                                                 <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
@@ -222,7 +219,7 @@
                                             </div>
                                         </td>
                                         <td class="tac">
-                                            <p class="new"><?= get_cate_name($_category_code_arr) ?></p>
+                                            <p class="new"><?= get_cate_name($category_code_list) ?></p>
                                         </td>
                                         <td class="tac">
                                             <?php
