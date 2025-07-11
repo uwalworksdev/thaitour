@@ -90,6 +90,15 @@ class AdminTourController extends BaseController
                 $product_theme = '';
             }
 
+            if (isset($_POST['keyword_product'])) {
+                $arr_keyword_product = $_POST['keyword_product'];
+                if (is_array($arr_keyword_product)) {
+                    $product_keywords = implode('|', $arr_keyword_product) . '|';
+                }
+            } else {
+                $product_keywords = '';
+            }
+
             $special_price = updateSQ($_POST["special_price" ?? '']);
             $onum = updateSQ($_POST["onum" ?? '']);
             $product_contents = updateSQ($_POST["product_contents" ?? '']);
@@ -289,6 +298,7 @@ class AdminTourController extends BaseController
                             ,etc_comment            = '" . $etc_comment . "'
                             ,etc_comment_m          = '" . $etc_comment_m . "'
 							,product_theme          = '" . $product_theme . "'
+							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
@@ -495,6 +505,7 @@ class AdminTourController extends BaseController
                             ,mobile_able			= '" . $mobile_able . "'
                             ,mobile_unable			= '" . $mobile_unable . "'
 							,product_theme          = '" . $product_theme . "'
+							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'

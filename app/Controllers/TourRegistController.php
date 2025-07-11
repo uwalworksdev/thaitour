@@ -1855,11 +1855,18 @@ class TourRegistController extends BaseController
         ];
         $product_themes = $this->codeModel->getCodesByConditions($conditions);
 
+        $conditions_key = [
+            "parent_code_no" => '58',
+        ];
+        $product_keywords = $this->codeModel->getCodesByConditions($conditions_key);
+
         $sql       = "SELECT * FROM tbl_code WHERE parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
 
         $data['pthemes'] = $product_themes;
+        $data['pkeywords'] = $product_keywords;
+
         $data['product'] = $product;
         $data['category3'] = $category3;
 

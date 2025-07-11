@@ -468,13 +468,13 @@
             type: "GET",
             url: "/AdmMaster/api/get_code",
             dataType: "html" //전송받을 데이터의 타입
-                ,
+            ,
             timeout: 30000 //제한시간 지정
-                ,
+            ,
             cache: false //true, false
-                ,
+            ,
             data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-                ,
+,
             error: function(request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);

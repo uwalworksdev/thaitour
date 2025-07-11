@@ -594,15 +594,7 @@
                                     </td>
                                     
                                 </tr>
-                                <tr>
-                                    <th>검색키워드</th>
-                                    <td colspan="3">
-                                        <input id="keyword" name="keyword" class="input_txt" type="text"
-                                                value="<?= $keyword ?>"
-                                                style="width:90%"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span>
-                                    </td>
-                                </tr>
+
                                 <!-- <tr>
                                     <th>기존상품가(단위: 바트)</th>
                                     <td>
@@ -707,7 +699,31 @@
                                     </td> -->
 
                                 </tr>
-
+                                <tr>
+                                    <th>검색키워드</th>
+                                    <td colspan="3">
+                                        <!-- <input id="keyword" name="keyword" class="input_txt" type="text"
+                                                value="<?= $keyword ?>"
+                                                style="width:90%"/><br/>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)유럽,해외연수,하노니여행</span> -->
+                                        <div style="display: flex; flex-wrap: wrap; gap: 10px ">
+                                        <?php
+                                            $_product_keywords_arr = isset($product_keywords) ? explode("|", $product_keywords) : [];
+                                            $_product_keywords_arr = array_filter($_product_keywords_arr);
+                                        ?>
+                                            <?php foreach ($pkeywords as $item) { ?>
+                                                <div class="checkbox-item">
+                                                    <label>
+                                                        <input type="checkbox" name="keyword_product[]"
+                                                               value="<?= $item['code_no'] ?>"
+                                                            <?= in_array($item['code_no'], $_product_keywords_arr) ? 'checked' : '' ?>>
+                                                        <?= $item['code_name'] ?>
+                                                    </label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>
                                         MBTI
