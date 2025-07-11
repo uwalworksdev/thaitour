@@ -931,16 +931,16 @@
         $(this).toggleClass("active");
         if($(this).data("code") == "all"){
             if($(this).hasClass("active")){
-                $(this).siblings().addClass("active");
-            }else{
                 $(this).siblings().removeClass("active");
+            }else{
+                $(this).siblings().addClass("active");
             }
         }else{
             let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
             if(len == $(this).closest(".list_area").children("p").length - 1){
-                $(this).siblings("[data-code='all']").addClass("active");
-            }else{
                 $(this).siblings("[data-code='all']").removeClass("active");
+            }else{
+                $(this).siblings("[data-code='all']").addClass("active");
             }
         }
 
@@ -1303,7 +1303,7 @@
 
             $(".popup_content." + type_category).find(".list_keyword p.active").each(function() {
                 let code_no = $(this).data("code");
-                if(code_no == "all"){
+                if(code_no == "all" && search_keyword.length == 0){
                     search_keyword = [];
                     return false;
                 }else{
