@@ -69,12 +69,7 @@
                                     <?php endforeach; ?>
 
                                 </select>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <td class="label">카테고리</td>
-                            <td>
                                 <select id="category_code" name="category_code" class="input_select">
                                     <option value="">선택</option>
                                     <?php
