@@ -376,7 +376,7 @@
                 let tours = [];
 
                 $(".tab_box_js.tab_active_").each(function () {
-                    let keyword = $(this).data("keyword_name");
+                    let keyword = $(this).data("keyword");
                     if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
                         keywords.push(keyword);
                     }
