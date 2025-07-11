@@ -65,7 +65,7 @@
                                                         echo "tab_active_";
                                                     }
                                                 ?>"
-                                                data-keyword="<?= $code["code_name"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
+                                                data-keyword="<?= $code["code_no"] ?>" data-keyword_name="<?= $code["code_name"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -376,7 +376,7 @@
                 let tours = [];
 
                 $(".tab_box_js.tab_active_").each(function () {
-                    let keyword = $(this).data("keyword");
+                    let keyword = $(this).data("keyword_name");
                     if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
                         keywords.push(keyword);
                     }
