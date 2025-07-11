@@ -3798,15 +3798,15 @@ class Product extends BaseController
                 $productByKeyword['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
-            if (!empty($search_word)) {
-                $products['items'] = array_filter($products['items'], function ($product) use ($search_word) {
-                    $search_word = strtolower($search_word);
-                    $product_name = strtolower($product['product_name'] ?? "");
-                    $product_keywords = strtolower($product['keyword'] ?? "");
+            // if (!empty($search_word)) {
+            //     $products['items'] = array_filter($products['items'], function ($product) use ($search_word) {
+            //         $search_word = strtolower($search_word);
+            //         $product_name = strtolower($product['product_name'] ?? "");
+            //         $product_keywords = strtolower($product['keyword'] ?? "");
 
-                    return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
-                });
-            }
+            //         return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
+            //     });
+            // }
 
             $products['nTotalCount'] = count($products['items']);
 
