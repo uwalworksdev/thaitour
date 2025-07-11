@@ -240,11 +240,11 @@
                                                 if(substr($frow["code_no"],0,4) == $row['product_code_1']) 
 												{
 													$status_txt = "";
-													if ($frow["code_no"] == $product_code_3) {
+													if ($frow["code_no"] == $product_code_2) {
 														$status_txt = "";
-													} elseif ($frow["code_no"] == $product_code_3) {
+													} elseif ($frow["code_no"] == $product_code_2) {
 														$status_txt = "[삭제]";
-													} elseif ($frow["code_no"] == $product_code_3) {
+													} elseif ($frow["code_no"] == $product_code_2) {
 														$status_txt = "[마감]";
 													}
 											?>		
