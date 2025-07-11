@@ -13,10 +13,11 @@ class LocalProductModel extends Model
     protected $allowedFields = [
         "city_code", "category_code", "title", "desc", "ufile1", "rfile1", "r_date"
     ];
-
-    protected function initialize()
+    protected $codeModel;
+    public function __construct()
     {
-
+        parent::__construct();
+        $this->codeModel = new Code();
     }
 
     public function insertData($data)
@@ -85,6 +86,11 @@ class LocalProductModel extends Model
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 		
+        foreach ($items as $key => $value) {
+            $items[$key]['city_name'] = $this->codeModel->getCodeName($value['city_code']);
+            $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
+        }
+
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,

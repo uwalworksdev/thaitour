@@ -106,21 +106,10 @@ class AdminLocalProductController extends BaseController
         try {
             $files = $this->request->getFiles();
 
-            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
-            $data['product_code_2']     = updateSQ($_POST["product_code_2"] ?? '');
-            $data['product_code_3']     = updateSQ($_POST["product_code_3"] ?? '');
-            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
-            $data['product_name_en']    = updateSQ($_POST["product_name_en"] ?? '');
-
-            $data['onum']               = updateSQ($_POST["onum"] ?? '');
-
-            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
-            $data['latitude']           = updateSQ($_POST["latitude"] ?? '');
-            $data['longitude']          = updateSQ($_POST["longitude"] ?? '');
-            $data['time_line']          = updateSQ($_POST["time_line"] ?? '');
-            $data['url']                = updateSQ($_POST["url"] ?? '');
-            $data['contact']            = updateSQ($_POST["contact"] ?? '');
-            $data['product_contents']   = updateSQ($_POST["product_contents"] ?? '');
+            $data['city_code']      = updateSQ($_POST["city_code"] ?? '');
+            $data['category_code']  = updateSQ($_POST["category_code"] ?? '');
+            $data['title']          = updateSQ($_POST["title"] ?? '');
+            $data['desc']           = updateSQ($_POST["desc"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/product/';
 
@@ -140,15 +129,10 @@ class AdminLocalProductController extends BaseController
             }
 
             if ($idx) {
-                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-
                 $this->localProduct->updateData($idx, $data);
-
             } else {
-
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-
-                $insertId = $this->localProduct->insertData($data);
+                $this->localProduct->insertData($data);
             }
 
             if ($idx) {
