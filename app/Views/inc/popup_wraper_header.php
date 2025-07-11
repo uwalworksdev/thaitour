@@ -1313,9 +1313,9 @@
                 }
             });
 
-            if(search_keyword.length == $(".popup_content." + type_category).find(".list_keyword p").length - 1){
-                search_keyword = [];
-            }
+            // if(search_keyword.length == $(".popup_content." + type_category).find(".list_keyword p").length - 1){
+            //     search_keyword = [];
+            // }
 
             $(".popup_content." + type_category).find(".list_product_tour p.active").each(function() {
                 let code_no = $(this).data("code");
