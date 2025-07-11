@@ -214,6 +214,8 @@ function get_cate_name($code)
 			} else {
 			   $out_txt .= " &gt; ". $frow['code_name'];
 			}   
+
+            echo $frow['code_name'];
 		}	
     }
 
