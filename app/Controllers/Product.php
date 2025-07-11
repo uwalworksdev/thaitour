@@ -3725,6 +3725,7 @@ class Product extends BaseController
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
             $product_theme = $this->codeModel->getByParentAndDepth(57, 2)->getResultArray();
+            $product_keyword_list = $this->codeModel->getByParentAndDepth(58, 2)->getResultArray();
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
@@ -3741,6 +3742,7 @@ class Product extends BaseController
                 'price_max' => $price_max,
                 'price_type' => $price_type,
                 'search_product_tour' => $search_product_tour,
+                'search_keyword' => $search_keyword
             ], 10, $pg, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
@@ -3823,6 +3825,7 @@ class Product extends BaseController
                 'productByKeyword' => $productByKeyword,
                 'search_word' => $search_word,
                 'product_theme' => $product_theme,
+                'product_keyword_list' => $product_keyword_list,
                 'search_product_tour' => $search_product_tour,
             ];
 

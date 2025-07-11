@@ -58,10 +58,14 @@
                                             <?php endif; ?>"
                                             data-keyword="all" data-type="keyword">전체키워드
                                         </li>
-                                        <?php foreach ($keyWordAll as $key => $item): ?>
+                                        <?php foreach ($product_keyword_list as $code): ?>
                                             <li class="tab_box_element_ tab_box_js p--20 border
-                                                <?= ($search_keyword == $item) ? 'tab_active_' : '' ?>"
-                                                data-keyword="<?= $item ?>" data-type="keyword">#<?= $item ?>
+                                                <?php 
+                                                    if (strpos($products["search_keyword"], $code["code_no"]) !== false) {
+                                                        echo "tab_active_";
+                                                    }
+                                                ?>"
+                                                data-keyword="<?= $code["code_no"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>

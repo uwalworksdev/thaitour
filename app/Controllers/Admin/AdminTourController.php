@@ -279,7 +279,7 @@ class AdminTourController extends BaseController
                             ,original_price			= '" . $original_price . "'
                             ,min_price				= '" . $min_price . "'
                             ,max_price				= '" . $max_price . "'
-                            ,keyword				= '" . $keyword . "'
+                            ,keyword				= '" . $product_keywords . "'
                             ,product_price			= '" . $product_price . "'
                             ,product_best			= '" . $product_best . "'
                             ,special_price			= '" . $special_price . "'
@@ -298,7 +298,6 @@ class AdminTourController extends BaseController
                             ,etc_comment            = '" . $etc_comment . "'
                             ,etc_comment_m          = '" . $etc_comment_m . "'
 							,product_theme          = '" . $product_theme . "'
-							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
@@ -489,7 +488,7 @@ class AdminTourController extends BaseController
                             ,product_manager		= '" . $product_manager . "'
                             ,product_manager_id		= '" . $product_manager_id . "'		
                             ,original_price			= '" . $original_price . "'
-                            ,keyword				= '" . $keyword . "'
+                            ,keyword				= '" . $product_keywords . "'
                             ,product_price			= '" . $product_price . "'
                             ,product_best			= '" . $product_best . "'
                             ,special_price			= '" . $special_price . "'
@@ -505,7 +504,6 @@ class AdminTourController extends BaseController
                             ,mobile_able			= '" . $mobile_able . "'
                             ,mobile_unable			= '" . $mobile_unable . "'
 							,product_theme          = '" . $product_theme . "'
-							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
