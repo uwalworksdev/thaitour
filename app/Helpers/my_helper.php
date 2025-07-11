@@ -203,7 +203,6 @@ function get_cate_name($code)
 {
 	$code_arr = explode("|", $code);
 
-    var_dump($code_arr);
 	$out_txt = "";
 	for($i=0;$i<count($code_arr);$i++)
 	{	

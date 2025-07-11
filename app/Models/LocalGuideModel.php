@@ -96,6 +96,8 @@ class LocalGuideModel extends Model
             $local_product = $this->localProduct->find($value['lp_idx']);
             $items[$key]['city_code'] = $local_product['city_code'];
             $items[$key]['category_code'] = $local_product['category_code'];
+
+            $items[$key]['local_product_title'] = $local_product['title'];
         }
 
 

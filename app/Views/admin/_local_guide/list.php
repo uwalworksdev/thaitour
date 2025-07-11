@@ -43,9 +43,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="label">카테고리</td>
+                            <td class="label">추천 여행지</td>
                             <td>
-                                <select id="product_code_1" name="product_code_1" class="input_select"
+                                <select id="city_code" name="city_code" class="input_select"
                                     onchange="javascript:get_code(this.value, 3)">
                                     <option value="">1차분류</option>
                                     <?php
@@ -60,18 +60,27 @@
                                         }
 
                                     ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $city_code) {
                                                                                     echo "selected";
                                                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
                                     <?php endforeach; ?>
 
                                 </select>
-                                <select id="product_code_2" name="product_code_2" class="input_select"
-                                    onchange="javascript:get_code(this.value, 4)">
-                                    <option value="">2차분류</option>
+                                <select id="town_code" name="town_code" class="input_select">
+                                    <option value="">2차분류</option> 
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="label">추천여행 카테고리</td>
+                            <td>
+                                <select id="category_code" name="category_code" class="input_select"
+                                    onchange="javascript:get_code(this.value, 3)">
+                                    <option value="">1차분류</option>
                                     <?php
-                                    foreach ($fresult2 as $frow):
+                                    foreach ($fresult as $frow):
                                         $status_txt = "";
                                         if ($frow["status"] == "Y") {
                                             $status_txt = "";
@@ -82,31 +91,15 @@
                                         }
 
                                     ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) {
                                                                                     echo "selected";
                                                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
                                     <?php endforeach; ?>
+
                                 </select>
-                                <select id="product_code_3" name="product_code_3" class="input_select">
-                                    <option value="">3차분류</option>
-                                    <?php
-                                    foreach ($fresult3 as $frow):
-                                        $status_txt = "";
-                                        if ($frow["status"] == "Y") {
-                                            $status_txt = "";
-                                        } elseif ($frow["status"] == "N") {
-                                            $status_txt = "[삭제]";
-                                        } elseif ($frow["status"] == "C") {
-                                            $status_txt = "[마감]";
-                                        }
-
-                                    ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
-                                                                                    echo "selected";
-                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-
-                                    <?php endforeach; ?>
+                                <select id="subcategory_code" name="subcategory_code" class="input_select">
+                                    <option value="">2차분류</option> 
                                 </select>
                             </td>
                         </tr>
@@ -168,6 +161,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px" />
+                                <col width="250px" />
                                 <col width="200px" />
                                 <col width="200px" />
                                 <col width="100px" />
@@ -179,6 +173,7 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
+                                    <th>핫 플레이스</th>
                                     <th>추천 여행지</th>
                                     <th>추천여행 카테고리</th>
                                     <th>썸네일이미지</th>
@@ -201,6 +196,7 @@
                                 ?>
                                     <tr style="height:30px" data-idx="<?= $row['idx']; ?>">
                                         <td><?= $num-- ?></td>
+                                        <td class="tac"><?= $row["local_product_title"] ?></td>
                                         <td class="tac">
                                             <?php
                                                 $city_code_list = $row['city_code'] . "|" . $row['town_code'];
