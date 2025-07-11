@@ -366,7 +366,6 @@
                 idx: idx
             },
             success: function(response) {
-                console.log(response);
                 
                 let town_code_list = response.town_code_list;
                 let subcategory_code_list = response.subcategory_code_list;
@@ -383,7 +382,7 @@
                     html_cat += `<option value="${subcategory_code_list[i].code_no}">${subcategory_code_list[i].code_name}</option>`
                 }
 
-                $("#category_code").html(html_cat);
+                $("#subcategory_code").html(html_cat);
             },
             error: function(xhr, status, error) {
                 console.error("error:", error);
