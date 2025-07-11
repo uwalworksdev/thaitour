@@ -203,6 +203,7 @@
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <?php
+                                            var_dump($row['city_code'] . "|" . $row['town_code']);
                                                 $city_code_list = $row['city_code'] . "|" . $row['town_code'];
                                                 $_city_code_arr = explode("|", $city_code_list);
 
