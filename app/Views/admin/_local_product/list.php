@@ -204,7 +204,7 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="#!" onclick="prod_update('<?= $row['idx'] ?>');"><img
+                                            <a href="write?city_code=<?= $city_code ?>&category_code=<?= $category_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
                                             <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
