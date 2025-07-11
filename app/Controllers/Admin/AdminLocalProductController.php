@@ -19,7 +19,7 @@ class AdminLocalProductController extends BaseController
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
-        $this->localProduct     = model("LocalGuideModel");
+        $this->localProduct     = model("LocalProductModel");
         $this->memberModel      = new \App\Models\Member();
         $this->codeModel        = model("Code");
         $this->localGuideImg    = model("LocalGuideImg");
