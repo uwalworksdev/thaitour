@@ -372,6 +372,7 @@
 
             function update_search_keyword() {
                 let keywords = [];
+                let keywords_name = [];
                 let codes = [];
                 let tours = [];
 
@@ -379,6 +380,11 @@
                     let keyword = $(this).data("keyword");
                     if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
                         keywords.push(keyword);
+                    }
+
+                    let keyword_name = $(this).data("keyword_name");
+                    if (keyword_name && keyword_name !== "all" && !codes.includes(keyword_name)) {
+                        keywords_name.push(keyword_name);
                     }
 
                     let code = $(this).data("code");
@@ -407,7 +413,7 @@
                 $("#search_keyword").val(keywords.join(","));
                 $("#search_product_tour").val(codes.join(","));
 
-                update_tags(keywords, tours);
+                update_tags(keywords_name, tours);
             }
 
         $('.tab_box_js').click(function () {
