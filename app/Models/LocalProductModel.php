@@ -60,6 +60,13 @@ class LocalProductModel extends Model
     {
 
         $builder = $this;
+
+        if ($where['city_code'] != "") {
+            $builder->where('city_code', $where['city_code']);
+        }
+        if ($where['category_code'] != "") {
+            $builder->where('category_code', $where['category_code']);
+        }
 	
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
