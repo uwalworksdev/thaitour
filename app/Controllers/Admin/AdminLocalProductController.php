@@ -12,7 +12,6 @@ class AdminLocalProductController extends BaseController
     protected $localProduct;
     private $memberModel;
     private $codeModel;
-    protected $localGuideImg;
 
     public function __construct()
     {
@@ -22,7 +21,6 @@ class AdminLocalProductController extends BaseController
         $this->localProduct     = model("LocalProductModel");
         $this->memberModel      = new \App\Models\Member();
         $this->codeModel        = model("Code");
-        $this->localGuideImg    = model("LocalGuideImg");
     }
 
     public function list()
@@ -147,89 +145,16 @@ class AdminLocalProductController extends BaseController
                 }
             }
 
-            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
-            $arr_onum = $this->request->getPost("onum_img") ?? [];
-
-            $files = $this->request->getFileMultiple('ufile') ?? [];
-
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->localProduct->updateData($idx, $data);
 
-                if (count($files) > 40) {
-                    $message = "40개 이미지로 제한이 있습니다.";
-                    return "<script>
-                        alert('$message');
-                        parent.location.reload();
-                        </script>";
-                }
-   
-                if (isset($files) && count($files) > 0) {
-                    foreach ($files as $key => $file) {
-                        $i_idx = $arr_i_idx[$key] ?? null;
-
-                        if (!empty($i_idx)) {
-                            $this->localGuideImg->updateData($i_idx, [
-                                "onum" => $arr_onum[$key],
-                            ]);
-                        }
-
-                        if ($file->isValid() && !$file->hasMoved()) {
-                            $rfile = $file->getClientName();
-                            $ufile = $file->getRandomName();
-                            $file->move($publicPath, $ufile);
-                
-                            if (!empty($i_idx)) {
-                                $this->localGuideImg->updateData($i_idx, [
-                                    "ufile" => $ufile,
-                                    "rfile" => $rfile,
-                                    "m_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
-                                ]);
-                            } else {
-                                $this->localGuideImg->insertData([
-                                    "lg_idx" => $idx,
-                                    "ufile" => $ufile,
-                                    "rfile" => $rfile,
-                                    "onum" => $arr_onum[$key],
-                                    "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
-                                ]);
-                            }
-                        }
-                    }
-                }
             } else {
 
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $insertId = $this->localProduct->insertData($data);
-
-                if (count($files) > 40) {
-                    $message = "40개 이미지로 제한이 있습니다.";
-                    return "<script>
-                        alert('$message');
-                        parent.location.reload();
-                        </script>";
-                }
-
-                if (isset($files)) {
-                    foreach ($files as $key => $file) {
-
-                        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                            $rfile = $file->getClientName();
-                            $ufile = $file->getRandomName();
-                            $file->move($publicPath, $ufile);
-
-                            $this->localGuideImg->insertData([
-                                "lg_idx" => $insertId,
-                                "ufile" => $ufile,
-                                "rfile" => $rfile,
-                                "onum" => $arr_onum[$key],
-                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s')
-                            ]);
-                        }
-                    }
-                }
             }
 
             if ($idx) {
