@@ -91,7 +91,6 @@ class LocalGuideModel extends Model
         }
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
-		
         		
         foreach ($items as $key => $value) {
             $local_product = $this->localProduct->find($value['lp_idx']);
