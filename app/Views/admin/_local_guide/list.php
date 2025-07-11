@@ -1,6 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-
+<?php
+    helper("my_helper");
+?>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
