@@ -1730,7 +1730,7 @@ class TourRegistController extends BaseController
 
         $img_list = $this->productImg->getImg($product_idx);
 
-        $sql       = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
+        $sql       = "SELECT * FROM tbl_code WHERE parent_code_no = '". $product['product_code_2'] ."' ORDER BY code_no ASC";
 		//write_log("xxx- ". $sql);
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
