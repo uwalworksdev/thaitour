@@ -16,9 +16,14 @@ class LocalGuideModel extends Model
         "addrs", "latitude", "longitude", "time_line", "contact", "url", "r_date", "m_date"
     ];
 
-    protected function initialize()
-    {
+    protected $codeModel;
+    protected $localProduct;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->codeModel = new Code();
+        $this->localProduct = new LocalProductModel();
     }
 
     public function insertData($data)
@@ -87,6 +92,14 @@ class LocalGuideModel extends Model
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 		
+        		
+        foreach ($items as $key => $value) {
+            $local_product = $this->localProduct->find($value['lp_idx']);
+            $items[$key]['city_code'] = $local_product['city_code'];
+            $items[$key]['category_code'] = $local_product['category_code'];
+        }
+
+
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,

@@ -168,7 +168,8 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px" />
-                                <col width="250px" />
+                                <col width="200px" />
+                                <col width="200px" />
                                 <col width="100px" />
                                 <col width="*" />
                                 <col width="100px" />
@@ -178,7 +179,8 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>메인/상품분류</th>
+                                    <th>추천 여행지</th>
+                                    <th>추천여행 카테고리</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
                                     <th>순위</th>
@@ -201,11 +203,17 @@
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <?php
-                                                $row['product_code_list'] = $row['product_code_1'] . "|" . $row['product_code_2'] . "|" . $row['product_code_3'];
-                                                $_product_code_arr = explode("|", $row['product_code_list']);
+                                                $city_code_list = $row['city_code'] . "|" . $row['town_code'];
+                                                $_city_code_arr = explode("|", $city_code_list);
+
+                                                $category_code_list = $row['category_code'] . "|" . $row['subcategory_code'];
+                                                $_category_code_arr = explode("|", $category_code_list);
                                             ?>
                                             <div class="" style="padding: 0 20px">
-                                                <p class="new"><?= get_cate_name($row['product_code_list']) ?></p>
+                                                <p class="new"><?= get_cate_name($_city_code_arr) ?></p>
+                                            </div>
+                                            <div class="" style="padding: 0 20px">
+                                                <p class="new"><?= get_cate_name($_category_code_arr) ?></p>
                                             </div>
                                             <div class="flex_c_c" style="gap: 10px;">
                                                 <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
