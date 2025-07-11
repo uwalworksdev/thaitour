@@ -366,6 +366,8 @@
                 idx: idx
             },
             success: function(response) {
+                console.log(response);
+                
                 let town_code_list = response.town_code_list;
                 let subcategory_code_list = response.subcategory_code_list;
 

@@ -263,7 +263,7 @@ class AdminLocalGuideController extends BaseController
     }
 
     public function get_category() {
-        $idx = updateSQ($this->request->getPost("idx") ?? '');
+        $idx = updateSQ($this->request->getGet("idx") ?? '');
 
         if(!empty($idx)) {
             $local_product = $this->localProduct->find($idx);
