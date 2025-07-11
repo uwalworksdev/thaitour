@@ -202,6 +202,8 @@ function get_cate_text($code)
 function get_cate_name($code)
 {
 	$code_arr = explode("|", $code);
+
+    var_dump($code_arr);
 	$out_txt = "";
 	for($i=0;$i<count($code_arr);$i++)
 	{	
@@ -215,7 +217,6 @@ function get_cate_name($code)
 			   $out_txt .= " &gt; ". $frow['code_name'];
 			}   
 
-            echo $frow['code_name'];
 		}	
     }
 
