@@ -65,7 +65,7 @@
                                                         echo "tab_active_";
                                                     }
                                                 ?>"
-                                                data-keyword="<?= $code["code_no"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
+                                                data-keyword="<?= $code["code_name"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
