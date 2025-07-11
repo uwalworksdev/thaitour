@@ -362,10 +362,9 @@
         $.ajax({
             url: "/AdmMaster/_local_guide/get_category",
             type: "GET",
-            data: JSON.stringify({
+            data: {
                 idx: idx
-            }),
-            contentType: "application/json",
+            },
             success: function(response) {
                 let town_code_list = response.town_code_list;
                 let subcategory_code_list = response.subcategory_code_list;
