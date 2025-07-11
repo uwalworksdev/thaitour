@@ -221,6 +221,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_image", "Admin\AdminLocalGuideController::del_image", ['as' => "admin._local_guide.del_image"]);
         $routes->post("del_all_image", "Admin\AdminLocalGuideController::del_all_image", ['as' => "admin._local_guide.del_all_image"]);
         $routes->post("change", "Admin\AdminLocalGuideController::change", ['as' => "admin._local_guide.change"]);
+        $routes->get("get_category", "Admin\AdminLocalGuideController::get_category", ['as' => "admin._local_guide.get_category"]);
     });
 
     $routes->group("_hotel", static function ($routes) {

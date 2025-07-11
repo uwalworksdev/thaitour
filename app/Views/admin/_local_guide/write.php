@@ -115,63 +115,25 @@
                                 <tr>
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select"
-                                            onchange="get_code(this.value, 3)">
-                                            <option value="">1차분류</option>
-                                            <?php
-                                            foreach ($fresult as $frow) {
-                                                $status_txt = "";
-                                                if ($frow["status"] == "Y") {
-                                                    $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
-                                                    $status_txt = "[마감]";
-                                                }
-                                            ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) echo "selected"; ?>><?= $frow["code_name"] ?><?= $status_txt ?></option>
-                                            <?php } ?>
+                                        <select id="lp_idx" name="lp_idx" class="input_select" onchange="get_info(this.value)">
+                                            <option value="">선택</option>
+                                                <?php
+                                                    foreach ($product_list as $frow){
+                                                ?>
+                                                    <option value="<?= $frow["idx"] ?>" <?php if ($frow["idx"] == $lp_idx) echo "selected"; ?>><?= $frow["title"] ?></option>
+                                                <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select"
-                                            onchange="get_code(this.value, 4)">
-                                            <option value="">2차분류</option>
-                                            <?php
-                                            foreach ($fresult_c_1 as $frow):
-                                                $status_txt = "";
-                                                if ($frow["status"] == "Y") {
-                                                    $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
-                                                    $status_txt = "[마감]";
-                                                }
-
-                                            ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
-                                                                                            echo "selected";
-                                                                                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-
-                                            <?php endforeach; ?>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <select id="town_code" name="town_code" class="input_select">
+                                            <option value="">선택</option>
                                         </select>
-                                        <select id="product_code_3" name="product_code_3" class="input_select">
-                                            <option value="">3차분류</option>
-                                            <?php
-                                            foreach ($fresult_c_2 as $frow):
-                                                $status_txt = "";
-                                                if ($frow["status"] == "Y") {
-                                                    $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
-                                                    $status_txt = "[마감]";
-                                                }
-
-                                            ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
-                                                                                            echo "selected";
-                                                                                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-
-                                            <?php endforeach; ?>
+                                        <select id="subcategory_code" name="subcategory_code" class="input_select">
+                                            <option value="">선택</option>                                           
                                         </select>
                                     </td>
                                 </tr>
@@ -394,6 +356,40 @@
         </div>
     </div>
 </div>
+
+<script>
+    function get_info(idx){
+        $.ajax({
+            url: "/AdmMaster/_local_guide/get_category",
+            type: "GET",
+            data: JSON.stringify({
+                idx: idx
+            }),
+            contentType: "application/json",
+            success: function(response) {
+                let town_code_list = response.town_code_list;
+                let subcategory_code_list = response.subcategory_code_list;
+
+                let html_town = '<option value="">선택</option>';
+                for (let i = 0; i < town_code_list.length; i++) {
+                    html_town += `<option value="${town_code_list[i].code_no}">${town_code_list[i].code_name}</option>`
+                }
+
+                $("#town_code").html(html_town);
+
+                let html_cat = '<option value="">선택</option>';
+                for (let i = 0; i < subcategory_code_list.length; i++) {
+                    html_cat += `<option value="${subcategory_code_list[i].code_no}">${subcategory_code_list[i].code_name}</option>`
+                }
+
+                $("#category_code").html(html_cat);
+            },
+            error: function(xhr, status, error) {
+                console.error("error:", error);
+            }
+        });
+    }
+</script>
 
 <script>
     function send_it() {

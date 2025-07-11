@@ -13,6 +13,7 @@ class AdminLocalGuideController extends BaseController
     private $memberModel;
     private $codeModel;
     protected $localGuideImg;
+    protected $localProduct;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class AdminLocalGuideController extends BaseController
         $this->memberModel      = new \App\Models\Member();
         $this->codeModel        = model("Code");
         $this->localGuideImg    = model("LocalGuideImg");
+        $this->localProduct     = model("LocalProductModel");
     }
 
     public function list()
@@ -94,6 +96,8 @@ class AdminLocalGuideController extends BaseController
 
         $img_list = $this->localGuideImg->getImg($idx);
 
+        $product_list = $this->localProduct->findAll();
+
         $data = [
             'idx' => $idx,
             'product_code_1' => $row['product_code_1'],
@@ -105,6 +109,7 @@ class AdminLocalGuideController extends BaseController
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
             's_product_code_3' => $s_product_code_3,
+            'product_list' => $product_list,
             'row' => $row ?? '',
             'img_list' => $img_list
         ];
@@ -113,13 +118,12 @@ class AdminLocalGuideController extends BaseController
 
     public function write_ok($idx = null)
     {
-		
         try {
             $files = $this->request->getFiles();
 
-            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
-            $data['product_code_2']     = updateSQ($_POST["product_code_2"] ?? '');
-            $data['product_code_3']     = updateSQ($_POST["product_code_3"] ?? '');
+            $data['lp_idx']             = updateSQ($_POST["lp_idx"] ?? '');
+            $data['town_code']          = updateSQ($_POST["town_code"] ?? '');
+            $data['subcategory_code']   = updateSQ($_POST["subcategory_code"] ?? '');
             $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
             $data['product_name_en']    = updateSQ($_POST["product_name_en"] ?? '');
 
@@ -255,6 +259,25 @@ class AdminLocalGuideController extends BaseController
                 'result' => false,
                 'message' => $e->getMessage()
             ], 400);
+        }
+    }
+
+    public function get_category() {
+        $idx = updateSQ($this->request->getPost("idx") ?? '');
+
+        if(!empty($idx)) {
+            $local_product = $this->localProduct->find($idx);
+    
+            $city_code = $local_product['city_code'];
+            $category_code = $local_product['category_code'];
+    
+            $town_code_list = $this->codeModel->getListByParentCode($city_code);
+            $subcategory_code_list = $this->codeModel->getListByParentCode($category_code);
+    
+            return $this->response->setJSON([
+                'town_code_list' => $town_code_list,
+                'subcategory_code_list' => $subcategory_code_list
+            ]);
         }
     }
 
