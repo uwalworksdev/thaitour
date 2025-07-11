@@ -6,7 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-/* Set view for not found page */
 $routes->set404Override('App\Controllers\ErrorController::show404');
 
 $routes->get('pdf', 'PdfTestController::generatePdf');
@@ -202,6 +201,15 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("detail", "Admin\AdminProductPlaceController::detail", ['as' => "admin._product_place.detail"]);
         $routes->post("write_ok", "Admin\AdminProductPlaceController::write", ['as' => "admin._product_place.write_ok"]);
         $routes->post("delete", "Admin\AdminProductPlaceController::delete", ['as' => "admin._product_place.delete"]);
+    });
+
+    $routes->group("_local_product", static function ($routes) {
+        $routes->get("list", "Admin\AdminLocalProductController::list");
+        $routes->get("write", "Admin\AdminLocalProductController::write");
+        $routes->post("write_ok", "Admin\AdminLocalProductController::write_ok", ['as' => "admin._local_product.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminLocalProductController::write_ok/$1", ['as' => "admin._local_product.write_ok.id"]);
+        $routes->post("del", "Admin\AdminLocalProductController::del", ['as' => "admin._local_product.del"]);
+        $routes->post("del_image", "Admin\AdminLocalProductController::del_image", ['as' => "admin._local_product.del_image"]);
     });
 
     $routes->group("_local_guide", static function ($routes) {

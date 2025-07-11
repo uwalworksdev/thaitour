@@ -6,10 +6,10 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use CodeIgniter\I18n\Time;
 
-class AdminLocalGuideController extends BaseController
+class AdminLocalProductController extends BaseController
 {
     protected $connect;
-    protected $localGuide;
+    protected $localProduct;
     private $memberModel;
     private $codeModel;
     protected $localGuideImg;
@@ -19,7 +19,7 @@ class AdminLocalGuideController extends BaseController
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
-        $this->localGuide       = model("LocalGuideModel");
+        $this->localProduct     = model("LocalGuideModel");
         $this->memberModel      = new \App\Models\Member();
         $this->codeModel        = model("Code");
         $this->localGuideImg    = model("LocalGuideImg");
@@ -58,7 +58,7 @@ class AdminLocalGuideController extends BaseController
             $orderByArr['r_date'] = "DESC";
         }
 
-        $result = $this->localGuide->get_list($where, $g_list_rows, $pg, $orderByArr);
+        $result = $this->localProduct->get_list($where, $g_list_rows, $pg, $orderByArr);
 
         $data = [
             'result'          => $result['items'],
@@ -75,7 +75,7 @@ class AdminLocalGuideController extends BaseController
             'product_code_3'  => $product_code_3,
 
         ];
-        return view("admin/_local_guide/list", $data);
+        return view("admin/_local_product/list", $data);
     }
 
     public function write()
@@ -89,10 +89,8 @@ class AdminLocalGuideController extends BaseController
         $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
 
         if ($idx) {
-            $row = $this->localGuide->find($idx);
+            $row = $this->localProduct->find($idx);
         }
-
-        $img_list = $this->localGuideImg->getImg($idx);
 
         $data = [
             'idx' => $idx,
@@ -106,9 +104,8 @@ class AdminLocalGuideController extends BaseController
             's_product_code_2' => $s_product_code_2,
             's_product_code_3' => $s_product_code_3,
             'row' => $row ?? '',
-            'img_list' => $img_list
         ];
-        return view("admin/_local_guide/write", $data);
+        return view("admin/_local_product/write", $data);
     }
 
     public function write_ok($idx = null)
@@ -140,7 +137,7 @@ class AdminLocalGuideController extends BaseController
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
                 if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
-                    $this->localGuide->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                    $this->localProduct->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
@@ -158,7 +155,7 @@ class AdminLocalGuideController extends BaseController
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $this->localGuide->updateData($idx, $data);
+                $this->localProduct->updateData($idx, $data);
 
                 if (count($files) > 40) {
                     $message = "40개 이미지로 제한이 있습니다.";
@@ -205,7 +202,7 @@ class AdminLocalGuideController extends BaseController
 
                 $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
-                $insertId = $this->localGuide->insertData($data);
+                $insertId = $this->localProduct->insertData($data);
 
                 if (count($files) > 40) {
                     $message = "40개 이미지로 제한이 있습니다.";
@@ -246,7 +243,7 @@ class AdminLocalGuideController extends BaseController
             $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_local_guide/list';
+                    parent.location.href='/AdmMaster/_local_product/list';
                 </script>";
 
 
@@ -271,7 +268,7 @@ class AdminLocalGuideController extends BaseController
             }
 
             foreach ($idx as $iValue) {
-                $db1 = $this->localGuide->delete($iValue)   ;
+                $db1 = $this->localProduct->delete($iValue)   ;
                 if (!$db1) {
                     $data = [
                         'status' => 'error',
@@ -294,121 +291,4 @@ class AdminLocalGuideController extends BaseController
         }
     }
 
-    public function del_image()
-    {
-        try {
-            $i_idx = $_POST['i_idx'] ?? '';
-            if (!isset($i_idx)) {
-                $data = [
-                    'result' => false,
-                    'message' => 'idx가 설정되지 않았습니다!'
-                ];
-                return $this->response->setJSON($data, 400);
-            }
-
-            $result = $this->localGuideImg->updateData($i_idx, [
-                'ufile' => '',
-                'rfile' => ''
-            ]);
-            if (!$result) {
-                $data = [
-                    'result' => false,
-                    'message' => '이미지 삭제 실패'
-                ];
-                return $this->response->setJSON($data, 400);
-            }
-
-            $data = [
-                'result' => true,
-                'message' => '사진을 삭제했습니다.'
-            ];
-            return $this->response->setJSON($data);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
-    public function del_all_image()
-    {
-        try {
-            $request = service('request');
-            $imgData = $request->getJSON();
-    
-            if (!empty($imgData->arr_img)) {
-                foreach ($imgData->arr_img as $item) {
-                    $i_idx = $item->i_idx;
-
-                    $result = $this->localGuideImg->updateData($i_idx, [
-                        'ufile' => '',
-                        'rfile' => ''
-                    ]);
-                    if (!$result) {
-                        $data = [
-                            'result' => false,
-                            'message' => '이미지 삭제 실패'
-                        ];
-                        return $this->response->setJSON($data, 400);
-                    }
-        
-                }
-            }
-
-            $data = [
-                'result' => true,
-                'message' => '사진을 삭제했습니다.'
-            ];
-            return $this->response->setJSON($data);
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
-    public function change()
-    {
-        try {
-            $idx = $this->request->getPost('code_idx') ?? [];
-            $onum = $this->request->getPost('onum') ?? [];
-
-            if (!is_array($idx) || !is_array($onum) || count($idx) !== count($onum)) {
-                return $this->response->setStatusCode(400)->setJSON([
-                    'status' => 'error',
-                    'message' => '입력 데이터가 잘못되었습니다.'
-                ]);
-            }
-
-            $tot = count($idx);
-
-            for ($j = 0; $j < $tot; $j++) {
-                $data = [
-                    'onum' => $onum[$j],
-                ];
-
-                $result = $this->localGuide->updateData($idx[$j], $data);
-
-                if (!$result) {
-                    return $this->response->setStatusCode(400)->setJSON([
-                        'status' => 'error',
-                        'message' => '수정 중 오류가 발생했습니다!!'
-                    ]);
-                }
-            }
-
-            return $this->response->setStatusCode(200)->setJSON([
-                'status' => 'success',
-                'message' => '수정 했습니다.'
-            ]);
-
-        } catch (\Exception $e) {
-            return $this->response->setStatusCode(500)->setJSON([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ]);
-        }
-    }
 }

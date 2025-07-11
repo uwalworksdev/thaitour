@@ -108,8 +108,14 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminCouponController::list', 'AdminCouponController::write']
                 ],
                 [
-                    'name' => '추천여행지',
+                    'name' => '핫 플레이스',
                     'code' => 'B12',
+                    'url' => ['/AdmMaster/_local_product/list'],
+                    'alias' => ['AdminLocalProductController::list', 'AdminLocalProductController::write']
+                ],
+                [
+                    'name' => '추천여행지',
+                    'code' => 'B13',
                     'url' => ['/AdmMaster/_local_guide/list'],
                     'alias' => ['AdminLocalGuideController::list', 'AdminLocalGuideController::write']
                 ],
