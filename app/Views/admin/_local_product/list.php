@@ -176,12 +176,12 @@
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <div class="flex_c_c" style="gap: 10px;">  
-                                                <?= viewSQ(textToFilter: $row["city_name"]) ?>
+                                                <?= viewSQ( $row["city_name"]) ?>
                                             </div>
                                         </td>
                                         <td class="tac">
                                             <div class="flex_c_c" style="gap: 10px;">  
-                                                <?= viewSQ(textToFilter: $row["category_name"]) ?>
+                                                <?= viewSQ( $row["category_name"]) ?>
                                             </div>
                                         </td>
                                         <td class="tac">
