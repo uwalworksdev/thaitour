@@ -1,8 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<?php
-    helper("my_helper");
-?>
+
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -205,12 +203,13 @@
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
                                             <?php
-                                            var_dump($row['city_code'] . "|" . $row['town_code']);
                                                 $city_code_list = $row['city_code'] . "|" . $row['town_code'];
                                                 $_city_code_arr = explode("|", $city_code_list);
-
+                                                
                                                 $category_code_list = $row['category_code'] . "|" . $row['subcategory_code'];
                                                 $_category_code_arr = explode("|", $category_code_list);
+                                                
+                                                var_dump($_city_code_arr);
                                             ?>
                                             <div class="" style="padding: 0 20px">
                                                 <p class="new"><?= get_cate_name($_city_code_arr) ?></p>
