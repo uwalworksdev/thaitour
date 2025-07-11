@@ -1735,6 +1735,8 @@ class TourRegistController extends BaseController
         $query     = $db->query($sql);
         $category3 = $query->getResultArray();
 
+        $data['category3'] = $category3;
+
         $new_data = [
             'product_idx'     => $product_idx,
             'codes'           => $fresult_c,
@@ -1742,8 +1744,7 @@ class TourRegistController extends BaseController
             'fresult9'        => $fresult9,
 		    'dirfect_payment' => $product['dirfect_payment'],	
             'mcodes'          => $mcodes,
-            'img_list'        => $img_list,
-            'category3'       => $category3
+            'img_list'        => $img_list
         ];
 
         $data = array_merge($data, $new_data);
