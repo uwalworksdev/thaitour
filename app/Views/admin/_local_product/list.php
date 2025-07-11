@@ -51,7 +51,7 @@
                                 <select id="city_code" name="city_code" class="input_select">
                                     <option value="">선택</option>
                                     <?php
-                                    foreach ($fresult as $frow):
+                                    foreach ($city_code_list as $frow):
                                         $status_txt = "";
                                         if ($frow["status"] == "Y") {
                                             $status_txt = "";
@@ -73,7 +73,7 @@
                                 <select id="category_code" name="category_code" class="input_select">
                                     <option value="">선택</option>
                                     <?php
-                                    foreach ($fresult as $frow):
+                                    foreach ($category_code_list as $frow):
                                         $status_txt = "";
                                         if ($frow["status"] == "Y") {
                                             $status_txt = "";

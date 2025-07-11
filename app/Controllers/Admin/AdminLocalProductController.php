@@ -30,47 +30,41 @@ class AdminLocalProductController extends BaseController
         $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $orderBy         = updateSQ($_GET["orderBy"]) ?? "1";
-        $product_code_1  = 1303;
-        $product_code_2  = updateSQ($_GET["product_code_2"] ?? '');
-        $product_code_3  = updateSQ($_GET["product_code_3"] ?? '');
+        $city_code       = updateSQ($_GET["city_code"] ?? '');
+        $category_code   = updateSQ($_GET["category_code"] ?? '');
 
         $where = [
             'search_txt'      => $search_txt,
             'search_category' => $search_category,
             'orderBy'         => $orderBy,
-            'product_code_1'  => $product_code_1,
-            'product_code_2'  => $product_code_2,
-            'product_code_3'  => $product_code_3,
+            'city_code'       => $city_code,
+            'category_code'   => $category_code,
         ];
 
-        $orderByArr = [];
-
-        if ($orderBy == 1) {
-			$orderByArr = [
-				'onum'   => 'ASC',
-				'r_date' => 'DESC'
-			];			
-        } elseif ($orderBy == 2) {
-            $orderByArr['r_date'] = "DESC";
-        } else {
-            $orderByArr['r_date'] = "DESC";
-        }
+        $orderByArr = [
+            'r_date' => 'DESC'
+        ];		
 
         $result = $this->localProduct->get_list($where, $g_list_rows, $pg, $orderByArr);
 
+        $category_code_list = $this->codeModel->getListByParentCode("6004");
+        $city_code_list = $this->codeModel->getListByParentCode("6003");
+
         $data = [
-            'result'          => $result['items'],
-            'orderBy'         => $orderBy,
-            'num'             => $result['num'],
-            'nTotalCount'     => $result['nTotalCount'],
-            'nPage'           => $result['nPage'],
-            'pg'              => $pg,
-            'g_list_rows'     => $g_list_rows,
-            'search_txt'      => $search_txt,
-            'search_category' => $search_category,
-            'product_code_1'  => $product_code_1,
-            'product_code_2'  => $product_code_2,
-            'product_code_3'  => $product_code_3,
+            'result'                => $result['items'],
+            'orderBy'               => $orderBy,
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+            'city_code'             => $city_code,
+            'category_code'         => $category_code,
+            'city_code_list'        => $city_code_list,
+            'category_code_list'    => $category_code_list,
+
 
         ];
         return view("admin/_local_product/list", $data);
