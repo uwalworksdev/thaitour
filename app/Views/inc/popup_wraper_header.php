@@ -359,7 +359,8 @@
 
     $code_first_tour = $codes_tour[0] ?? [];
 
-    $keyWordAll = $productModel->getKeyWordAll(1301);
+    // $keyWordAll = $productModel->getKeyWordAll(1301);
+    $keyWordAll = $codeModel->getByParentAndDepth(58, 2)->getResultArray();
     $product_theme = $codeModel->getByParentAndDepth(57, 2)->getResultArray();
 ?>
 
@@ -758,9 +759,9 @@
                                 <div class="list_area list_keyword">
                                     <p data-code="all">전체키워드</p>
                                     <?php
-                                        foreach($keyWordAll as $key => $item){
+                                        foreach($keyWordAll as $code){
                                     ?>
-                                        <p data-code="<?=$item?>">#<?=$item?></p>
+                                        <p data-code="<?=$code["code_no"]?>">#<?=$code["code_name"]?></p>
                                     <?php } ?>
                                 </div>
                             </td>
