@@ -113,7 +113,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>카테고리선택</th>
+                                    <th>핫 플레이스</th>
                                     <td colspan="3">
                                         <select id="lp_idx" name="lp_idx" class="input_select" onchange="get_info(this.value)">
                                             <option value="">선택</option>
@@ -127,7 +127,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th></th>
+                                    <th>카테고리선택</th>
                                     <td>
                                         <select id="town_code" name="town_code" class="input_select">
                                             <option value="">선택</option>
