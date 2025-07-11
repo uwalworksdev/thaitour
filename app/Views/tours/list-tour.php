@@ -289,6 +289,7 @@
         });
 
         const codeMapping = <?= json_encode(array_column($product_theme, 'code_name', 'code_no')) ?>;
+        const keywordMapping = <?= json_encode(array_column($product_keyword_list, 'code_name', 'code_no')) ?>;
 
 
         $(document).ready(function () {
@@ -323,7 +324,7 @@
 
                 keywords.forEach(function (keyword) {
                     if (keyword && keyword !== "undefined") {
-                        let tabText = (keyword === "all") ? "전체키워드" : keyword;
+                        let tabText = (keyword === "all") ? "전체키워드" : (keywordMapping[keyword] || keyword);
                         $('.list-tag').append(
                             '<div class="tag-item">' +
                             '<span data-type="keyword">' + tabText + '</span>' +
