@@ -936,12 +936,14 @@
                 $(this).siblings().addClass("active");
             }
         }else{
-            let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
-            if(len == $(this).closest(".list_area").children("p").length - 1){
-                $(this).siblings("[data-code='all']").removeClass("active");
-            }else{
-                $(this).siblings("[data-code='all']").addClass("active");
-            }
+            $(this).siblings("[data-code='all']").removeClass("active");
+
+            // let len = $(this).closest(".list_area").children("p.active").not('[data-code="all"]').length;
+            // if(len == $(this).closest(".list_area").children("p").length - 1){
+            //     $(this).siblings("[data-code='all']").removeClass("active");
+            // }else{
+            //     $(this).siblings("[data-code='all']").addClass("active");
+            // }
         }
 
     });
