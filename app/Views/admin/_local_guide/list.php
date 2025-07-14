@@ -46,7 +46,7 @@
                             <td class="label">추천 여행지</td>
                             <td>
                                 <select id="city_code" name="city_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 3, 'city')">
+                                    onchange="javascript:get_code(this.value, 4, 'city')">
                                     <option value="">1차분류</option>
                                     <?php
                                     foreach ($city_code_list as $frow):
@@ -77,7 +77,7 @@
                             <td class="label">추천여행 카테고리</td>
                             <td>
                                 <select id="category_code" name="category_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 3, 'category')">
+                                    onchange="javascript:get_code(this.value, 4, 'category')">
                                     <option value="">1차분류</option>
                                     <?php
                                     foreach ($category_code_list as $frow):
@@ -483,7 +483,7 @@
                 let list = $.parseJSON(json);
                 let listLen = list.length;
                 let contentStr = "";
-                let html = '';
+                let html = "<option value=''>2차분류</option>";
                 for (let i = 0; i < listLen; i++) {
                     contentStr = "";
                     if (list[i].code_status == "C") {
