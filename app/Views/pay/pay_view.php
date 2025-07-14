@@ -29,12 +29,43 @@
     <p>예약자명: <?= esc($reservation_name) ?></p>
     <p>이메일: <?= esc($email) ?></p>
     <p>주문번호: <?= esc($order_number) ?></p>
-    <p>선금 결제금액: <?= number_format($amount) ?>원</p>
+    <p>결제금액: <?= number_format($amount) ?>원</p>
   </div>
 
   <form action="/pay/complete" method="post">
-    <button type="submit">결제하기</button>
+	<button type="button" id="btnPay">결제하기</button>
   </form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(function() {
+    $('#btnPay').on('click', function() {
+      if (!confirm('결제를 진행하시겠습니까?')) {
+        return;
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/pay/ready',
+        data: {
+          idx: '<?= esc($payment_idx) ?>'
+        },
+        dataType: 'json',
+        success: function(res) {
+          if (res.result === 'OK') {
+            // 결제창 URL로 이동
+            window.location.href = res.next_redirect_pc_url;
+          } else {
+            alert(res.message || '결제 준비 실패');
+          }
+        },
+        error: function(xhr) {
+          alert('서버 오류가 발생했습니다.');
+        }
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
