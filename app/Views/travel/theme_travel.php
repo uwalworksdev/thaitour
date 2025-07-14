@@ -21,7 +21,7 @@
                 <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
                 <span class="font-bold"><?=$code_active_name?></span>
                 <div class="depth_3_tools_ active_" id="depth_3_tools_">
-                    <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
+                    <ul class="depth_3_tool_list_" id="depth_3_tool_list_" style="display: none;">
                         <?php
                             foreach($city_code_list as $city_code){
                         ?>
