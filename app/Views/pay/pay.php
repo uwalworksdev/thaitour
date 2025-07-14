@@ -2,15 +2,113 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>카드결제 - 인증</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; }
-    .step { margin: 20px auto; display: flex; justify-content: center; }
-    .step div { padding: 10px 20px; border-radius: 20px; background-color: #c3bebe; margin: 0 5px; }
-    .active { background-color: #2d3e9b; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .form-box { margin-top: 40px; }
-    input { padding: 10px; width: 250px; margin-bottom: 20px; }
-    button { padding: 10px 30px; background-color: #2d3e9b; color: white; border: none; border-radius: 5px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .step {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 600px;
+    }
+
+    .step div {
+      flex: 1 1 auto;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      background-color: #c3bebe;
+      color: #333;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .active {
+      background-color: #2d3e9b;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+      padding: 0 10px;
+      color: #444;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      color: #666;
+    }
+
+    .form-box {
+      margin-top: 30px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-box input {
+      padding: 12px;
+      width: 100%;
+      max-width: 300px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-box button {
+      padding: 12px 30px;
+      background-color: #2d3e9b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-box button:hover {
+      background-color: #1c2a7b;
+    }
+
+    @media (max-width: 480px) {
+      .step {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
