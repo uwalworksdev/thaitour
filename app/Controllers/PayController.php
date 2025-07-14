@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Pay extends BaseController
+class PayController extends BaseController
 {
     public function pay()
     {
