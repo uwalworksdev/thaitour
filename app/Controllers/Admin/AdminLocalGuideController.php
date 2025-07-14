@@ -78,8 +78,8 @@ class AdminLocalGuideController extends BaseController
             'search_txt'            => $search_txt,
             'search_category'       => $search_category,
             'city_code'             => $city_code,
-            'category_code'         => $category_code,
             'town_code'             => $town_code,
+            'category_code'         => $category_code,
             'subcategory_code'      => $subcategory_code,
             'category_code_list'    => $category_code_list,
             'city_code_list'        => $city_code_list,
@@ -94,9 +94,8 @@ class AdminLocalGuideController extends BaseController
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
-        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
-        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
-        $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
+        $city_code        = updateSQ($_GET["city_code"] ?? '');
+        $category_code    = updateSQ($_GET["category_code"] ?? '');
 
         if ($idx) {
             $row = $this->localGuide->find($idx);
@@ -114,9 +113,8 @@ class AdminLocalGuideController extends BaseController
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
-            's_product_code_1' => $s_product_code_1,
-            's_product_code_2' => $s_product_code_2,
-            's_product_code_3' => $s_product_code_3,
+            'city_code' => $city_code,
+            'category_code' => $category_code,
             'product_list' => $product_list,
             'row' => $row ?? '',
             'img_list' => $img_list

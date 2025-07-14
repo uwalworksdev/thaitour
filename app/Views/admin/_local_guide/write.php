@@ -90,8 +90,10 @@
                     enctype="multipart/form-data"
                     target="hiddenFrame22"> <!--  -->
                     <!-- 상품 고유 번호 -->
-
+                    <input type="hidden" id="city_code" value="<?= $city_code ?>">
+                    <input type="hidden" id="category_code" value="<?= $category_code ?>">
                     <input type="hidden" id="check_img_ufile1" value="<?= $ufile1 ?>">
+
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                             style="table-layout:fixed;">

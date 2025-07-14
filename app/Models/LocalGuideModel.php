@@ -65,7 +65,25 @@ class LocalGuideModel extends Model
     public function get_list($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
 
-        $builder = $this;
+        $builder = $this->db->table('tbl_local_guide AS g');
+        $builder->select('g.*');
+        $builder->join('tbl_local_product AS p', 'g.lp_idx = p.idx', 'left');
+
+        if(!empty($where['city_code'])){
+            $builder->where('city_code =', $where['city_code']);
+    
+            if(!empty($where['town_code'])){
+                $builder->where('town_code =', $where['town_code']);
+            }
+        }
+
+        if(!empty($where['category_code'])){
+            $builder->where('category_code =', $where['category_code']);
+    
+            if(!empty($where['subcategory_code'])){
+                $builder->where('subcategory_code =', $where['subcategory_code']);
+            }
+        }
 	
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
