@@ -41,7 +41,7 @@
         </div>
         <h2>더투어랩 테마여행</h2>
         <div class="list_tab_head">
-            <div class="tab <?= empty($category_code) ? "on" : ""?>"><a href="#!">전체</a></div>
+            <div class="tab <?= empty($category_code) ? "on" : ""?>"><a href="/travel-tips/theme_travel">전체</a></div>
             <?php
             foreach ($category_code_list as $code) {
             ?>
