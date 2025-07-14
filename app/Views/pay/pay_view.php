@@ -2,15 +2,113 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>카드결제 - 결제하기</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; }
-    .step { margin: 20px auto; display: flex; justify-content: center; }
-    .step div { padding: 10px 20px; border-radius: 20px; background-color: #c3bebe; margin: 0 5px; }
-    .active { background-color: #2d3e9b; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-    .info-box { margin-top: 40px; text-align: left; display: inline-block; }
-    .info-box p { margin: 5px 0; }
-    button { padding: 10px 30px; background-color: #2d3e9b; color: white; border: none; border-radius: 5px; margin-top: 30px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    /* 단계 스텝 바 */
+    .step {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 600px;
+    }
+
+    .step div {
+      flex: 1 1 auto;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      background-color: #e0e0e0;
+      color: #666;
+      font-weight: 500;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+      min-width: 100px;
+    }
+
+    .step .active {
+      background-color: #2d3e9b;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+      padding: 0 10px;
+      color: #444;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      color: #666;
+    }
+
+    .info-box {
+      margin-top: 40px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .info-box p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+
+    button {
+      padding: 12px 30px;
+      background-color: #2d3e9b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #1a256a;
+    }
+
+    @media (max-width: 480px) {
+      .step {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 1rem;
+      }
+
+      p, .info-box p {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -33,8 +131,9 @@
   </div>
 
   <form method="post">
-	<button type="button" onClick="nicepayStart();">결제하기</button>
+    <button type="button" onClick="nicepayStart();">결제하기</button>
   </form>
+
 
 </body>
 </html>
