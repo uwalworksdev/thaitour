@@ -380,7 +380,8 @@
 
                                        
                                         ?>&emsp;
-
+                                        <button>결제발송</button>
+										
 										<?php if($order_status == "W") { ?>
                                         <a href="#!" class="btn btn-default" id="price_update" >
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
