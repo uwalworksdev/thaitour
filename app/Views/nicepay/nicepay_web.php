@@ -32,7 +32,7 @@ $returnURL	 = "https://". $_SERVER['HTTP_HOST'] ."/payment/nicepay_result"; // ê
 <!DOCTYPE html>
 <html>
 <head>
-<title>NICEPAY PAY REQUEST(EUC-KR)</title>
+<title>NICEPAY PAY REQUEST(EUC-KR)..</title>
 <meta charset="utf-8">
 <!--style>
 	html,body {height: 100%;}
