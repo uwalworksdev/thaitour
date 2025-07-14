@@ -1196,6 +1196,4 @@ $routes->group('pay', static function ($routes) {
     $routes->get('view', 'PayController::pay_view');     // /pay/view?idx=123
 });
 
-
-
 ?>

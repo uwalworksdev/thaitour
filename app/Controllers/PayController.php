@@ -31,11 +31,13 @@ class PayController extends BaseController
 
         // DB에서 phone_last4 가져오기
         $builder = $this->db->table('tbl_payment_mst');
-        $builder->select('phone_last4');
-        $builder->where('idx', $payment_idx);
-        $result = $builder->get()->getRow();
-
-        if ($result && $result->phone_last4 === $input_phone_last4) {
+        $builder->select('payment_user_mobile');
+        $builder->where('payment_idx', $payment_idx);
+        $result           = $builder->get()->getRow();
+        $user_mobile      = $result->payment_user_mobile;
+		$user_mobile      = encryptField($payment_user_email, "decode");
+		$user_mobile_last = substr($user_mobile, -4);
+        if ($result && $user_mobile_last === $input_phone_last4) {
             // 일치 → view 페이지로
             return redirect()->to("/pay/view?idx={$payment_idx}");
         } else {
@@ -50,7 +52,7 @@ class PayController extends BaseController
 
         // 실제 데이터 조회 예제
         $builder = $this->db->table('tbl_payment_mst');
-        $builder->where('idx', $payment_idx);
+        $builder->where('payment_idx', $payment_idx);
         $row = $builder->get()->getRow();
 
         if (!$row) {
