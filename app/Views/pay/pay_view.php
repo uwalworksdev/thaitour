@@ -33,7 +33,7 @@
   </div>
 
   <form action="/pay/complete" method="post">
-	<button type="button" id="btnPay" onClick="nicepayStart();">결제하기</button>
+	<button type="button" onClick="nicepayStart();">결제하기</button>
   </form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
