@@ -19,24 +19,22 @@
       color: #333;
     }
 
-    .step {
-      margin: 20px auto;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 600px;
-    }
+	.step div {
+	  padding: 10px 20px;
+	  border-radius: 20px;
+	  background-color: #e0e0e0;     /* 비활성 단계 색상 */
+	  color: #666;
+	  margin: 5px;
+	  font-weight: 500;
+	  transition: background-color 0.3s, color 0.3s;
+	}
 
-    .step div {
-      flex: 1 1 auto;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 20px;
-      background-color: #c3bebe;
-      color: #333;
-      min-width: 100px;
-      text-align: center;
-    }
+	.step .active {
+	  background-color: #2d3e9b;     /* 활성 단계 색상 */
+	  color: #fff;
+	  font-weight: 700;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	}
 
     .active {
       background-color: #2d3e9b;
