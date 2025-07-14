@@ -3,25 +3,69 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use CodeIgniter\Database\BaseBuilder;
 
 class PayController extends BaseController
 {
+    protected $db;
+
+    public function __construct()
+    {
+        $this->db = \Config\Database::connect();
+    }
+
     public function pay()
     {
-        return view('pay/pay');
+        $payment_idx = $this->request->getGet('idx');
+        return view('pay/pay', ['idx' => $payment_idx]);
+    }
+
+    public function pay_check()
+    {
+        $payment_idx = $this->request->getPost('idx');
+        $input_phone_last4 = $this->request->getPost('phone_last4');
+
+        if (!$payment_idx || !$input_phone_last4) {
+            return $this->response->setBody("<script>alert('잘못된 요청입니다.');location.href='/pay?idx={$payment_idx}';</script>");
+        }
+
+        // DB에서 phone_last4 가져오기
+        $builder = $this->db->table('tbl_payment_mst');
+        $builder->select('phone_last4');
+        $builder->where('idx', $payment_idx);
+        $result = $builder->get()->getRow();
+
+        if ($result && $result->phone_last4 === $input_phone_last4) {
+            // 일치 → view 페이지로
+            return redirect()->to("/pay/view?idx={$payment_idx}");
+        } else {
+            // 불일치 → alert
+            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}';</script>");
+        }
     }
 
     public function pay_view()
     {
-        // 실제라면 DB에서 주문정보를 가져오거나 세션에 저장된 인증 정보를 사용
+        $payment_idx = $this->request->getGet("idx");
+
+        // 실제 데이터 조회 예제
+        $builder = $this->db->table('tbl_payment_mst');
+        $builder->where('idx', $payment_idx);
+        $row = $builder->get()->getRow();
+
+        if (!$row) {
+            return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
+        }
+
         $data = [
-            'reservation_name' => '관리자test',
-            'email'            => 'lifeess@naver.com',
-            'order_number'     => 'S2507148149',
-            'amount'           => 2000,
-            'product_title'    => '⭐ 반짝 이벤트 ⭐ [한국인가이드] 시티 야경투어 + 시드니워킹투어★'
+            'reservation_name' => $row->reservation_name,
+            'email'            => $row->email,
+            'order_number'     => $row->order_number,
+            'amount'           => $row->amount,
+            'product_title'    => $row->product_title,
         ];
 
         return view('pay/pay_view', $data);
     }
 }
+

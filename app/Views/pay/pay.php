@@ -26,7 +26,8 @@
   <p>주문 시 입력한 휴대폰번호 뒷자리 4자리를 입력해 인증해주세요.</p>
 
   <div class="form-box">
-    <form action="/pay/pay_view" method="get">
+    <form action="/pay/check" method="get">
+      <input type="hidden" name="idx" value="<?= esc($idx) ?>" />
       <input type="text" name="phone_last4" placeholder="휴대폰 뒷자리 4자리" maxlength="4" required />
       <br>
       <button type="submit">확인</button>
