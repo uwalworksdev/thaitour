@@ -35,16 +35,14 @@ class PayController extends BaseController
         $builder->where('payment_idx', $payment_idx);
         $result           = $builder->get()->getRow();
         $user_mobile      = $result->payment_user_mobile;
-		write_log("user_mobile-1 ". $user_mobile);
 		$user_mobile      = encryptField($user_mobile, "decode");
-		write_log("user_mobile-2 ". $user_mobile);
 		$user_mobile_last = substr($user_mobile, -4);
         if ($result && $user_mobile_last === $input_phone_last4) {
             // 일치 → view 페이지로
             return redirect()->to("/pay/view?idx={$payment_idx}");
         } else {
             // 불일치 → alert
-            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}&tel={$user_mobile_last}';</script>");
+            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}';</script>");
         }
     }
 
