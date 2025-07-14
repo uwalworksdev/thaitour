@@ -46,7 +46,7 @@
                             <td class="label">추천 여행지</td>
                             <td>
                                 <select id="city_code" name="city_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 3)">
+                                    onchange="javascript:get_code(this.value, 3, 'city')">
                                     <option value="">1차분류</option>
                                     <?php
                                     foreach ($city_code_list as $frow):
@@ -77,7 +77,7 @@
                             <td class="label">추천여행 카테고리</td>
                             <td>
                                 <select id="category_code" name="category_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 3)">
+                                    onchange="javascript:get_code(this.value, 3, 'category')">
                                     <option value="">1차분류</option>
                                     <?php
                                     foreach ($category_code_list as $frow):
@@ -463,7 +463,7 @@
 
     }
 
-    function get_code(strs, depth) {
+    function get_code(strs, depth, type) {
         $.ajax({
             type: "GET",
             url: "/AdmMaster/api/get_code",
@@ -474,42 +474,32 @@
             cache: false //true, false
             ,
             data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-,
+            ,
             error: function(request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
             success: function(json) {
-                //alert(json);
-                if (depth <= 3) {
-                    $("#product_code_2").find('option').each(function() {
-                        $(this).remove();
-                    });
-                    $("#product_code_2").append("<option value=''>2차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#product_code_3").find('option').each(function() {
-                        $(this).remove();
-                    });
-                    $("#product_code_3").append("<option value=''>3차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#product_code_4").find('option').each(function() {
-                        $(this).remove();
-                    });
-                    $("#product_code_4").append("<option value=''>4차분류</option>");
-                }
-                var list = $.parseJSON(json);
-                var listLen = list.length;
-                var contentStr = "";
-                for (var i = 0; i < listLen; i++) {
+                let list = $.parseJSON(json);
+                let listLen = list.length;
+                let contentStr = "";
+                let html = '';
+                for (let i = 0; i < listLen; i++) {
                     contentStr = "";
                     if (list[i].code_status == "C") {
                         contentStr = "[마감]";
                     } else if (list[i].code_status == "N") {
                         contentStr = "[사용안함]";
                     }
-                    $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+
+                    html += "<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>";
+
+                }
+
+                if(type == "city") {
+                    $("#town_code").html(html);
+                }else {
+                    $("#subcategory_code").html(html);
                 }
             }
         });
