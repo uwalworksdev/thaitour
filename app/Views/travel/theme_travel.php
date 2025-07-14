@@ -80,7 +80,7 @@
                             <?php
                                 foreach($subcategory_code_list as $code){     
                             ?>
-                                <option value="<?=$code["code_no"]?>" <?= $town_code == $code["code_no"] ? "selected" : ""?>><?=$code["code_name"]?></option>
+                                <option value="<?=$code["code_no"]?>" <?= $subcategory_code == $code["code_no"] ? "selected" : ""?>><?=$code["code_name"]?></option>
                             <?php
                                 }
                             ?>
