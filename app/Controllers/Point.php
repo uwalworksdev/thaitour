@@ -61,7 +61,7 @@ class Point extends BaseController
     public function locguideThemeList() {
 
         $category_code = updateSQ($_GET["category_code"] ?? '');
-        $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
+        $category_list = $this->codeModel->getListByParentCode("6004") ?? [];
 
         $where = [
             'category_code' => $category_code,
@@ -70,7 +70,7 @@ class Point extends BaseController
         $local_product_list = $this->localProduct->get_list($where);
 
         return view('travel/locguide_theme_list', [
-            'category_code_list' => $category_code_list,
+            'category_list' => $category_list,
             'local_product_list' => $local_product_list,
         ]);
     }
