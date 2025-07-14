@@ -39,8 +39,16 @@ class AdminLocalGuideController extends BaseController
         $town_code          = updateSQ($_GET["town_code"] ?? '');
         $subcategory_code   = updateSQ($_GET["subcategory_code"] ?? '');
 
-        $category_code_list = $this->codeModel->getListByParentCode("6004");
-        $city_code_list = $this->codeModel->getListByParentCode("6003");
+        $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
+        $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
+
+        if(!empty($city_code)) {
+            $town_code_list = $this->codeModel->getListByParentCode($city_code) ?? [];
+        }
+
+        if(!empty($category_code)) {
+            $subcategory_code_list = $this->codeModel->getListByParentCode($category_code) ?? [];
+        }
 
         $where = [
             'search_txt'        => $search_txt,
@@ -83,7 +91,8 @@ class AdminLocalGuideController extends BaseController
             'subcategory_code'      => $subcategory_code,
             'category_code_list'    => $category_code_list,
             'city_code_list'        => $city_code_list,
-
+            'town_code_list'        => $town_code_list,
+            'subcategory_code_list' => $subcategory_code_list,
         ];
         return view("admin/_local_guide/list", $data);
     }

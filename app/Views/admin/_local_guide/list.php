@@ -69,6 +69,21 @@
                                 </select>
                                 <select id="town_code" name="town_code" class="input_select">
                                     <option value="">2차분류</option> 
+                                    <?php
+                                        foreach ($town_code_list as $frow):
+                                            $status_txt = "";
+                                            if ($frow["status"] == "Y") {
+                                                $status_txt = "";
+                                            } elseif ($frow["status"] == "N") {
+                                                $status_txt = "[삭제]";
+                                            } elseif ($frow["status"] == "C") {
+                                                $status_txt = "[마감]";
+                                            }
+                                    ?>
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) {
+                                                                                    echo "selected";
+                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
                         </tr>
@@ -100,6 +115,21 @@
                                 </select>
                                 <select id="subcategory_code" name="subcategory_code" class="input_select">
                                     <option value="">2차분류</option> 
+                                    <?php
+                                        foreach ($subcategory_code as $frow):
+                                            $status_txt = "";
+                                            if ($frow["status"] == "Y") {
+                                                $status_txt = "";
+                                            } elseif ($frow["status"] == "N") {
+                                                $status_txt = "[삭제]";
+                                            } elseif ($frow["status"] == "C") {
+                                                $status_txt = "[마감]";
+                                            }
+                                    ?>
+                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) {
+                                                                                    echo "selected";
+                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
                         </tr>
