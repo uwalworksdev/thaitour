@@ -380,7 +380,7 @@
 
                                        
                                         ?>&emsp;
-                                        <button>결제발송</button>
+                                        <button class="btn btn-default">결제발송</button>
 										
 										<?php if($order_status == "W") { ?>
                                         <a href="#!" class="btn btn-default" id="price_update" >
