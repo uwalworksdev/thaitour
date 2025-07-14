@@ -42,7 +42,7 @@ class PayController extends BaseController
             return redirect()->to("/pay/view?idx={$payment_idx}");
         } else {
             // 불일치 → alert
-            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}';</script>");
+            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}&tel={$user_mobile_last}';</script>");
         }
     }
 
