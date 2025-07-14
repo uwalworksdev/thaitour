@@ -49,7 +49,7 @@
                                     onchange="javascript:get_code(this.value, 3)">
                                     <option value="">1차분류</option>
                                     <?php
-                                    foreach ($fresult as $frow):
+                                    foreach ($city_code_list as $frow):
                                         $status_txt = "";
                                         if ($frow["status"] == "Y") {
                                             $status_txt = "";
@@ -80,7 +80,7 @@
                                     onchange="javascript:get_code(this.value, 3)">
                                     <option value="">1차분류</option>
                                     <?php
-                                    foreach ($fresult as $frow):
+                                    foreach ($category_code_list as $frow):
                                         $status_txt = "";
                                         if ($frow["status"] == "Y") {
                                             $status_txt = "";

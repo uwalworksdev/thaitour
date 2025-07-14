@@ -29,22 +29,27 @@ class AdminLocalGuideController extends BaseController
 
     public function list()
     {
-        $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
-        $pg              = updateSQ($_GET["pg"] ?? '1');
-        $search_txt      = updateSQ($_GET["search_txt"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy         = updateSQ($_GET["orderBy"]) ?? "1";
-        $product_code_1  = 1303;
-        $product_code_2  = updateSQ($_GET["product_code_2"] ?? '');
-        $product_code_3  = updateSQ($_GET["product_code_3"] ?? '');
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $search_category    = updateSQ($_GET["search_category"] ?? '');
+        $orderBy            = updateSQ($_GET["orderBy"]) ?? "1";
+        $city_code          = updateSQ($_GET["city_code"] ?? '');
+        $category_code      = updateSQ($_GET["category_code"] ?? '');
+        $town_code          = updateSQ($_GET["town_code"] ?? '');
+        $subcategory_code   = updateSQ($_GET["subcategory_code"] ?? '');
+
+        $category_code_list = $this->codeModel->getListByParentCode("6004");
+        $city_code_list = $this->codeModel->getListByParentCode("6003");
 
         $where = [
-            'search_txt'      => $search_txt,
-            'search_category' => $search_category,
-            'orderBy'         => $orderBy,
-            'product_code_1'  => $product_code_1,
-            'product_code_2'  => $product_code_2,
-            'product_code_3'  => $product_code_3,
+            'search_txt'        => $search_txt,
+            'search_category'   => $search_category,
+            'orderBy'           => $orderBy,
+            'city_code'         => $city_code,
+            'category_code'     => $category_code,
+            'town_code'         => $town_code,
+            'subcategory_code'  => $subcategory_code,
         ];
 
         $orderByArr = [];
@@ -63,18 +68,21 @@ class AdminLocalGuideController extends BaseController
         $result = $this->localGuide->get_list($where, $g_list_rows, $pg, $orderByArr);
 
         $data = [
-            'result'          => $result['items'],
-            'orderBy'         => $orderBy,
-            'num'             => $result['num'],
-            'nTotalCount'     => $result['nTotalCount'],
-            'nPage'           => $result['nPage'],
-            'pg'              => $pg,
-            'g_list_rows'     => $g_list_rows,
-            'search_txt'      => $search_txt,
-            'search_category' => $search_category,
-            'product_code_1'  => $product_code_1,
-            'product_code_2'  => $product_code_2,
-            'product_code_3'  => $product_code_3,
+            'result'                => $result['items'],
+            'orderBy'               => $orderBy,
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+            'city_code'             => $city_code,
+            'category_code'         => $category_code,
+            'town_code'             => $town_code,
+            'subcategory_code'      => $subcategory_code,
+            'category_code_list'    => $category_code_list,
+            'city_code_list'        => $city_code_list,
 
         ];
         return view("admin/_local_guide/list", $data);
