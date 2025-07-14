@@ -8,6 +8,9 @@ class Point extends BaseController
     private $bannerModel;
     private $bbsModel;
     private $codeModel;
+    private $localGuide;
+    private $localGuideImg;
+    private $localProduct;
 
     public function __construct()
     {
@@ -18,6 +21,9 @@ class Point extends BaseController
         $this->bannerModel = model("Banner_model");
         $this->bbsModel = model("Bbs");
         $this->codeModel = model("Code");
+        $this->localGuide       = model("LocalGuideModel");
+        $this->localGuideImg    = model("LocalGuideImg");
+        $this->localProduct     = model("LocalProductModel");
     }
 
     public function index() {
@@ -29,12 +35,15 @@ class Point extends BaseController
         $infographics_list = $this->bbsModel->ListByCode("infographics")->limit(5)->get()->getResultArray();
         $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
+        $local_product_list = $this->localProduct->get_list();
+        
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
             'infographics_list' => $infographics_list,
             'bannerTop' => $this->bannerModel->getBanners("5902", "top")[0],
             'bannerMiddle' => $this->bannerModel->getBanners("5902", "middle"),
             'magazines' => $magazines,
+            'local_product_list' => $local_product_list,
         ]);
     }
 
