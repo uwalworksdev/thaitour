@@ -1191,8 +1191,9 @@ $routes->get('group-move-popup', 'ReservationController::groupMoveView');
 $routes->get('test/ajax_temp', 'Test::ajax_temp');
 
 $routes->group('pay', static function ($routes) {
-    $routes->get('pay', 'Pay::pay');
-    $routes->get('pay_view', 'Pay::pay_view');
+    $routes->get('/', 'Pay::pay');       // /pay
+    $routes->get('view', 'Pay::pay_view'); // /pay/view
 });
+
 
 ?>
