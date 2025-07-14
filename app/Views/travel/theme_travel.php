@@ -23,10 +23,10 @@
                 <div class="depth_3_tools_" id="depth_3_tools_">
                     <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
                         <?php
-                            foreach($city_code_list as $city_code){
+                            foreach($city_code_list as $code){
                         ?>
-                            <li class="depth_3_item_ " data-code="<?=$city_code["code_no"]?>">
-                                <a href="/travel-tips/theme_travel?city_code=<?=$city_code["code_no"]?>" class=""><?=$city_code["code_name"]?></a>
+                            <li class="depth_3_item_ " data-code="<?=$code["code_no"]?>">
+                                <a href="/travel-tips/theme_travel?city_code=<?=$code["code_no"]?>" class=""><?=$code["code_name"]?></a>
                             </li>
                         <?php
                             }
@@ -41,42 +41,56 @@
         </div>
         <h2>더투어랩 테마여행</h2>
         <div class="list_tab_head">
-            <div class="tab on"><a href="#!">전체</a></div>
-            <div class="tab"><a href="#!">관광명소</a></div>
+            <div class="tab <?= empty($category_code) ? "on" : ""?>"><a href="#!">전체</a></div>
+            <?php
+            foreach ($category_code_list as $code) {
+            ?>
+                <div class="tab <?= $category_code == $code["code_no"] ? "on" : ""?>"><a href="/travel-tips/theme_travel?city_code=<?=$city_code?>&category_code=<?=$code["code_no"]?>"><?=$code["code_name"]?></a></div>
+            <?php
+            }
+            ?>
+            <!-- <div class="tab"><a href="#!">관광명소</a></div>
             <div class="tab"><a href="#!">할거리</a></div>
             <div class="tab"><a href="#!">음식</a></div>
             <div class="tab"><a href="#!">쇼핑</a></div>
-            <div class="tab"><a href="#!">나이트라이프</a></div>
+            <div class="tab"><a href="#!">나이트라이프</a></div> -->
         </div>
 
         <form action="" name="frmSearch" method="get">
+            <input type="hidden" name="city_code" value="<?=$city_code?>">
+            <input type="hidden" name="category_code" value="<?=$category_code?>">
+
             <div class="head_list_product">
                 <div class="wrap_select">
-                    <select class="" name="search_mode" id="search_mode">
-                        <option value="subject" <?php if ($search_mode == "subject") {
-                                                    echo "selected";
-                                                } ?>>제목</option>
-                        <option value="contents" <?php if ($search_mode == "contents") {
-                                                        echo "selected";
-                                                    } ?>>내용</option>
-                        <option value="writer" <?php if ($search_mode == "writer") {
-                                                    echo "selected";
-                                                } ?>>작성자</option>
+                    <select name="town_code" id="town_code">
+                        <option value="" <?= empty($town_code) ? "selected" : ""?>>상세지역</option>
+                        <?php
+                            foreach($town_code_list as $code){     
+                        ?>
+                            <option value="<?=$code["code_no"]?>" <?= $town_code == $code["code_no"] ? "selected" : ""?>><?=$code["code_name"]?></option>
+                        <?php
+                            }
+                        ?>
                     </select>
-                    <select class="" name="search_mode" id="search_mode">
-                        <option value="subject" <?php if ($search_mode == "subject") {
-                                                    echo "selected";
-                                                } ?>>상세지역</option>
-                        <option value="contents" <?php if ($search_mode == "contents") {
-                                                        echo "selected";
-                                                    } ?>>상세지역 2</option>
-                        <option value="writer" <?php if ($search_mode == "writer") {
-                                                    echo "selected";
-                                                } ?>>상세지역 3</option>
-                    </select>
+                    <?php
+                        if(!empty($category_code)){
+                    ?>
+                        <select name="subcategory_code" id="subcategory_code">
+                            <option value="subject" <?= empty($subcategory_code) ? "selected" : ""?>>하위 카테고리</option>
+                            <?php
+                                foreach($subcategory_code_list as $code){     
+                            ?>
+                                <option value="<?=$code["code_no"]?>" <?= $town_code == $code["code_no"] ? "selected" : ""?>><?=$code["code_name"]?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                    <?php
+                        }
+                    ?>
                 </div>
                 <div class="input_search_box">
-                    <input type="text" name="search_word" id="search_word" value="<?= $search_word ?>">
+                    <input type="text" name="search_txt" id="search_txt" value="<?= $search_txt ?>">
                     <img src="/img/sub/search-ic-01.png" style="cursor: pointer;" onclick="goSearch()" alt="search-ic">
                 </div>
             </div>
@@ -90,7 +104,41 @@
         </script>
 
         <div class="list_product">
-            <a href="/travel-tips/view_detail" class="item_box">
+            <?php
+                foreach($local_guide_list["items"] as $local_guide){
+                    if ($local_guide["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_guide["ufile1"])) {
+                        $img = "/data/product/" . $local_guide["ufile1"];
+                    } else {
+                        $img = "/data/product/noimg.png";
+                    }
+            ?>
+                <a href="/travel-tips/view_detail" class="item_box">
+                    <div class="img">
+                        <img src="<?=$img?>" alt="<?=$local_guide["rfile1"]?>">
+                        <div class="text">
+                            <span><?=$local_guide["category_code_name"]?> </span>
+                            <img src="/img/sub/arr-right-01.png" alt="">
+                            <span> <?=$local_guide["subcategory_code_name"]?></span>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <span><?=$local_guide["city_code_name"]?> </span>
+                            <img src="/img/sub/arr-right-01.png" alt="">
+                            <span> <?=$local_guide["town_code_name"]?></span>
+                        </div>
+                        <p class="name"><?=$local_guide["product_name"]?></p>
+                        <div class="vote">
+                            <p class="star">
+                                <img src="/img/sub/star-ic-13.png" alt="">
+                                4.0
+                            </p>
+                            <span>이용자 리뷰 <i>(0)</i></span>
+                        </div>
+                    </div>
+                </a>
+            <?php } ?>
+            <!-- <a href="/travel-tips/view_detail" class="item_box">
                 <div class="img">
                     <img src="/img/sub/theme-travel-1.png" alt="">
                     <div class="text">
@@ -389,32 +437,11 @@
                         <span>이용자 리뷰 <i>(0)</i></span>
                     </div>
                 </div>
-            </a>
-
+            </a> -->
         </div>
-        <div class="custom pagination">
-            <a class="page-link" href="javascript:;" title="Go to first page">
-                <img src="/images/community/pagination_prev.png" alt="pagination_prev">
-            </a>
-            <a class="page-link" style="margin-right: 20px;" href="javascript:;" title="Go to previous page">
-                <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-            </a>
-            <a class="page-link active" href="javascript:;" title="Go to page 1">
-                <strong>1</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 2">
-                <strong>2</strong>
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to page 3">
-                <strong>3</strong>
-            </a>
-            <a class="page-link" style="margin-left: 20px;" href="javascript:;" title="Go to next page">
-                <img src="/images/community/pagination_next_s.png" alt="pagination_next">
-            </a>
-            <a class="page-link" href="javascript:;" title="Go to last page">
-                <img src="/images/community/pagination_next.png" alt="pagination_next">
-            </a>
-        </div>
+        <?php 
+            echo ipagelistingSub($local_guide_list["pg"], $local_guide_list["nPage"], $local_guide_list["g_list_rows"], current_url() . "?city_code=". $city_code ."&category_code=". $category_code ."&town_code=". $town_code ."&subcategory_code=". $subcategory_code ."&search_txt=". $search_txt ."&pg=")
+        ?>
     </div>
     <script>
         $(document).ready(function () {

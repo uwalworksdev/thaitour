@@ -113,7 +113,11 @@ class LocalGuideModel extends Model
         foreach ($items as $key => $value) {
             $local_product = $this->localProduct->find($value['lp_idx']);
             $items[$key]['city_code'] = $local_product['city_code'];
+            $items[$key]['city_code_name'] = $this->codeModel->getCodeName($local_product['city_code']);
             $items[$key]['category_code'] = $local_product['category_code'];
+            $items[$key]['category_code_name'] = $this->codeModel->getCodeName($local_product['category_code']);
+            $items[$key]['town_code_name'] = $this->codeModel->getCodeName($local_product['town_code']);
+            $items[$key]['subcategory_code_name'] = $this->codeModel->getCodeName($local_product['subcategory_code']);
 
             $items[$key]['local_product_title'] = $local_product['title'];
         }
