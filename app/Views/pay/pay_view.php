@@ -6,7 +6,7 @@
   <style>
     body { font-family: Arial, sans-serif; text-align: center; }
     .step { margin: 20px auto; display: flex; justify-content: center; }
-    .step div { padding: 10px 20px; border-radius: 20px; background-color: #f2f2f2; margin: 0 5px; }
+    /*.step div { padding: 10px 20px; border-radius: 20px; background-color: #f2f2f2; margin: 0 5px; }*/
     .active { background-color: #2d3e9b; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
     .info-box { margin-top: 40px; text-align: left; display: inline-block; }
     .info-box p { margin: 5px 0; }
