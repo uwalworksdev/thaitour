@@ -11,7 +11,7 @@
                         foreach ($category_list as $category) {
                     ?>
                         <li>
-                            <a href="/travel-tips/locguide_theme_list?category_code=<?=$category['code_no']?>">
+                            <a class="<?= ($category['code_no'] == $category_code) ? 'on' : '' ?>" href="/travel-tips/locguide_theme_list?category_code=<?=$category['code_no']?>">
                                 <?= $category['code_name'] ?>
                             </a>
                         </li>

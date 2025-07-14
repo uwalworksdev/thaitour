@@ -72,6 +72,7 @@ class Point extends BaseController
         return view('travel/locguide_theme_list', [
             'category_list' => $category_list,
             'local_product_list' => $local_product_list,
+            'category_code' => $category_code,
         ]);
     }
 
