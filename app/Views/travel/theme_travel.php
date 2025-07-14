@@ -22,7 +22,15 @@
                 <span class="font-bold">더투어랩 테마여행</span>
                 <div class="depth_3_tools_ active_" id="depth_3_tools_">
                     <ul class="depth_3_tool_list_" id="depth_3_tool_list_">
-                        <li class="depth_3_item_ " data-code="13030101"><a href="/product-hotel/list-hotel?s_code_no=130301&amp;search_product_category=13030101" class="">스쿰빗(아속-프롬퐁)</a></li>
+                        <?php
+                            foreach($city_code_list as $city_code){
+                        ?>
+                            <li class="depth_3_item_ " data-code="<?=$city_code["code_no"]?>">
+                                <a href="/travel-tips/theme_travel?city_code=<?=$city_code["code_no"]?>" class=""><?=$city_code["code_name"]?></a>
+                            </li>
+                        <?php
+                            }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -408,7 +416,59 @@
             </a>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.icon_open_depth_').on('click', function (e) {
+                e.stopPropagation();
+                let depth = $(this).data("depth");
+                $('#' + depth).toggleClass('active_');
+            });
 
+            let name = $('.depth_1_item_.active_').text();
+            $('#depth_1_tool_title_').text(name);
+
+            $('.depth_1_item_').on('click', function () {
+                let code = $(this).data("code");
+                let href = $(this).data("href");
+                let name = $(this).text();
+
+                $('#depth_1_tool_title_').text(name);
+                $('#path_1').text(name);
+
+                $('.depth_1_item_').removeClass('active_');
+                $(this).addClass('active_');
+                $('#depth_1_tools_').removeClass('active_');
+
+                window.location.href = href;
+            });
+
+            $(document).on('click', function (event) {
+                const targets = ['#depth_1_tools_', '#depth_2_tools_', '#depth_3_tools_'];
+                const triggers = ['.icon_open_depth_01', '.icon_open_depth_02', '.icon_open_depth_03'];
+
+                targets.forEach((id, idx) => {
+                    const $target = $(id);
+                    const $trigger = $(triggers[idx]);
+
+                    if (!$(event.target).closest(id).length && !$(event.target).closest(triggers[idx]).length) {
+                        $target.removeClass('active_');
+                    }
+                });
+            });
+
+            $(document).on('click', '.depth_2_item_', function (e) {
+                e.stopPropagation();
+                let code = $(this).data("code");
+                let name = $(this).text();
+
+                $('#path_2').text(name);
+
+                $('.depth_2_item_').removeClass('active_');
+                $(this).addClass('active_');
+                
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.list_tab_head .tab').click(function() {
