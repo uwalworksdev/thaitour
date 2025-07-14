@@ -189,7 +189,7 @@ $signKey 	=  $setting['inicis_signkey'];   			// 웹 결제 signkey
 		<form name="" id="SendPayForm_id" method="post" class="mt-5" style="display:none;">
 				<input type="hidden" name="version" value="1.0">
 		<tr>
-			<th>결제 수단</th>
+			<th>결제 수단(P)</th>
 			<td>
 				<input type="text" name="gopaymethod" id="gopaymethod" value="Card:Directbank:vbank">
             </td> 
