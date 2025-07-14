@@ -62,7 +62,7 @@
 
             <div class="head_list_product">
                 <div class="wrap_select">
-                    <select name="town_code" id="town_code">
+                    <select name="town_code" id="town_code" onchange="goSearch()">
                         <option value="" <?= empty($town_code) ? "selected" : ""?>>상세지역</option>
                         <?php
                             foreach($town_code_list as $code){     
@@ -75,7 +75,7 @@
                     <?php
                         if(!empty($category_code)){
                     ?>
-                        <select name="subcategory_code" id="subcategory_code">
+                        <select name="subcategory_code" id="subcategory_code" onchange="goSearch()">
                             <option value="subject" <?= empty($subcategory_code) ? "selected" : ""?>>하위 카테고리</option>
                             <?php
                                 foreach($subcategory_code_list as $code){     
