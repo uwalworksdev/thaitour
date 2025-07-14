@@ -380,7 +380,10 @@
 
                                        
                                         ?>&emsp;
+										
+										<?php if($order_status == "X") { ?>
                                         <button type="button" class="btn btn-primary" style="width: unset;" onclick="send_payment('S20250714013','UA_5373');">결제발송</button>
+										<?php } ?>
 										
 										<?php if($order_status == "W") { ?>
                                         <a href="#!" class="btn btn-default" id="price_update" >
