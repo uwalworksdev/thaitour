@@ -73,6 +73,7 @@ class Point extends BaseController
         $town_code_list = $this->codeModel->getListByParentCode($code_no_active) ?? [];
 
         if(!empty($city_code)) {
+            $code_no_active = $city_code;
             $town_code_list = $this->codeModel->getListByParentCode($city_code) ?? [];
             $code_active_name = $this->codeModel->getCodeName($city_code);
         }
@@ -83,7 +84,7 @@ class Point extends BaseController
 
         $where = [
             'search_txt'        => $search_txt,
-            'city_code'         => $city_code,
+            'city_code'         => $code_no_active,
             'category_code'     => $category_code,
             'town_code'         => $town_code,
             'subcategory_code'  => $subcategory_code,
