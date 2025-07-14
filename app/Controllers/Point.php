@@ -67,8 +67,11 @@ class Point extends BaseController
         $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
         $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
 
+        $code_active_name = $city_code_list[0]['code_name'];
+
         if(!empty($city_code)) {
             $town_code_list = $this->codeModel->getListByParentCode($city_code) ?? [];
+            $code_active_name = $this->codeModel->getCodeName($city_code);
         }
 
         if(!empty($category_code)) {
@@ -91,6 +94,7 @@ class Point extends BaseController
             'town_code_list' => $town_code_list,
             'subcategory_code_list' => $subcategory_code_list,
             'local_guide_list' => $local_guide_list,
+            'code_active_name' => $code_active_name,
         ];
 
         $merged = array_merge($data, $where);
