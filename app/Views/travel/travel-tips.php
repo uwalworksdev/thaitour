@@ -85,7 +85,7 @@
                     <div class="swiper tra_sec_02_swiper">
                         <div class="swiper-wrapper">
                             <?php
-                                foreach($local_product_list as $local_product) :
+                                foreach($local_product_list["items"] as $local_product) :
 
                                     if ($local_product["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_product["ufile1"])) {
                                         $img = "/data/product/" . $local_product["ufile1"];

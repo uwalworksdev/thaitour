@@ -35,7 +35,7 @@ class Point extends BaseController
         $infographics_list = $this->bbsModel->ListByCode("infographics")->limit(5)->get()->getResultArray();
         $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
-        $local_product_list = $this->localProduct->get_list()["items"];
+        $local_product_list = $this->localProduct->get_list();
         
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
@@ -59,7 +59,20 @@ class Point extends BaseController
         return view('travel/theme_travel');
     }
     public function locguideThemeList() {
-        return view('travel/locguide_theme_list');
+
+        $category_code = updateSQ($_GET["category_code"] ?? '');
+        $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
+
+        $where = [
+            'category_code' => $category_code,
+        ];
+
+        $local_product_list = $this->localProduct->get_list($where);
+
+        return view('travel/locguide_theme_list', [
+            'category_code_list' => $category_code_list,
+            'local_product_list' => $local_product_list,
+        ]);
     }
 
     public function HotPlace() {
