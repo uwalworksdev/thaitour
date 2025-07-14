@@ -63,8 +63,8 @@ class PayController extends BaseController
         }
 
         $data = [
-            'reservation_name' => $row->payment_user_name,
-            'email'            => $row->payment_user_email,
+            'reservation_name' => $payment_user_name,
+            'email'            => $payment_user_email,
             'order_number'     => $row->payment_no,
             'amount'           => $row->payment_price,
             'product_title'    => $row->product_name,
