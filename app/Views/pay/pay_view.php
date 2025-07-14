@@ -179,11 +179,11 @@ function checkPlatform(ua) {
 	<table>
 		<tr>
 			<th>결제 수단</th>
-			<td><input type="text" name="PayMethod" id="PayMethod" value=""></td>
+			<td><input type="text" name="PayMethod" id="PayMethod" value="CARD"></td>
 		</tr>
 		<tr>
 			<th>결제 상품명</th>
-			<td><input type="text" name="GoodsName" value="<?=$product_name?>"></td>
+			<td><input type="text" name="GoodsName" value="<?=esc($product_title)?>"></td>
 		</tr>
 		<tr>
 			<th>결제 상품금액</th>
