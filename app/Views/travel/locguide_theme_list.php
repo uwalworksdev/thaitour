@@ -6,7 +6,7 @@
         <div class="loctheme_all">
             <div class="loctheme_top"><span class="loctheme_tit">추천여행지</span>
                 <ul class="tab_loctheme tabtour_inb">
-                    <li class="on"><a href="/user/localguide/locguide_themFe_list.php?city_id=1">전체</a></li>
+                    <li class="<?= empty($category_code) ? 'on' : '' ?>"><a href="/user/localguide/locguide_themFe_list.php?city_id=1">전체</a></li>
                     <?php
                         foreach ($category_list as $category) {
                     ?>
