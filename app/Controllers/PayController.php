@@ -36,6 +36,7 @@ class PayController extends BaseController
         $result           = $builder->get()->getRow();
         $user_mobile      = $result->payment_user_mobile;
 		$user_mobile      = encryptField($payment_user_email, "decode");
+		write_log("user_mobile- ". $user_mobile);
 		$user_mobile_last = substr($user_mobile, -4);
         if ($result && $user_mobile_last === $input_phone_last4) {
             // 일치 → view 페이지로
