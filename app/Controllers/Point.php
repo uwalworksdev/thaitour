@@ -35,7 +35,7 @@ class Point extends BaseController
         $infographics_list = $this->bbsModel->ListByCode("infographics")->limit(5)->get()->getResultArray();
         $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
-        $local_product_list = $this->localProduct->get_list();
+        $local_product_list = $this->localProduct->get_list()["items"];
         
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
