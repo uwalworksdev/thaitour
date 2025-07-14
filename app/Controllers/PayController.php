@@ -55,8 +55,9 @@ class PayController extends BaseController
         $builder->where('payment_idx', $payment_idx);
         $row = $builder->get()->getRow();
 
-        $payment_user_name  = encryptField($row->payment_user_name, "decode");
-        $payment_user_email = encryptField($row->payment_user_email, "decode");
+        $payment_user_name   = encryptField($row->payment_user_name, "decode");
+        $payment_user_mobile = encryptField($row->payment_user_mobile, "decode");
+        $payment_user_email  = encryptField($row->payment_user_email, "decode");
 		
         if (!$row) {
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
@@ -65,6 +66,7 @@ class PayController extends BaseController
         $data = [
             'payment_idx'      => $row->payment_idx,
             'reservation_name' => $payment_user_name,
+            'mobile'           => $payment_user_mobile,
             'email'            => $payment_user_email,
             'order_number'     => $row->payment_no,
             'amount'           => $row->payment_price,

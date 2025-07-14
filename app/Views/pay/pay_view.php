@@ -84,12 +84,12 @@ $setting     = homeSetInfo();
 
 $merchantKey = $setting['nicepay_key'] ; //"EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // 상점키
 $MID         = $setting['nicepay_mid'];  //"nicepay00m"; // 상점아이디
-$goodsName   = "나이스페이"; // 결제상품명
-//$price       = "1004"; // 결제상품금액
-$buyerName   = "나이스"; // 구매자명 
-$buyerTel	 = "01000000000"; // 구매자연락처
-$buyerEmail  = "happy@day.co.kr"; // 구매자메일주소        
-$moid        =  time(); // 상품주문번호                     
+$goodsName   = esc($product_title); // 결제상품명
+$price       = $amount; // 결제상품금액
+$buyerName   = esc($reservation_name); // 구매자명 
+$buyerTel	 = esc($mobile); // 구매자연락처
+$buyerEmail  = esc($email); // 구매자메일주소        
+$moid        = esc($order_number); // 상품주문번호                     
 $returnURL	 = "https://". $_SERVER['HTTP_HOST'] ."/payment/nicepay_result"; // 결과페이지(절대경로) - 모바일 결제창 전용
 
 /*
@@ -98,8 +98,8 @@ $returnURL	 = "https://". $_SERVER['HTTP_HOST'] ."/payment/nicepay_result"; // �
 * SHA-256 해쉬암호화는 거래 위변조를 막기위한 방법입니다. 
 *******************************************************
 */ 
-//$ediDate    = date("YmdHis");
-//$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+$ediDate    = date("YmdHis");
+$hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
 ?>
 <!DOCTYPE html>
 <html>
