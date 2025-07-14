@@ -72,5 +72,41 @@ class PayController extends BaseController
 
         return view('pay/pay_view', $data);
     }
+	
+	public function pay_ready()
+	{
+		$request = \Config\Services::request();
+		$payment_idx = $request->getPost('idx');
+
+		// DB에서 주문정보 조회 (예시)
+		$builder = $this->db->table('tbl_payment_mst');
+		$builder->where('idx', $payment_idx);
+		$result = $builder->get()->getRow();
+
+		if (!$result) {
+			return $this->response->setJSON(['result' => 'FAIL', 'message' => '결제 정보를 찾을 수 없습니다.']);
+		}
+
+		// 나이스페이 ready 요청 예제
+		$mchtId     = 'YOUR_MERCHANT_ID';
+		$clientKey  = 'YOUR_CLIENT_KEY';
+		$orderId    = $result->order_number;
+		$amount     = $result->amount;
+		$goodsName  = $result->product_title;
+		$buyerName  = $result->reservation_name;
+		$buyerEmail = $result->email;
+
+		// ✅ 나이스페이 API 요청 준비
+		// → 실제로는 curl 등으로 나이스페이 서버에 결제 요청(ready)을 보내야 함
+		// → 여기서는 예제용으로 'next_redirect_pc_url'을 가짜로 만듭니다
+
+		$paymentUrl = "https://testpay.nicepay.co.kr/v3/redirect/$orderId";
+
+		return $this->response->setJSON([
+			'result' => 'OK',
+			'next_redirect_pc_url' => $paymentUrl
+		]);
+	}
+	
 }
 
