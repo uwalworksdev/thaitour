@@ -84,7 +84,7 @@
                 <div class="relative">
                     <div class="swiper tra_sec_02_swiper">
                         <div class="swiper-wrapper">
-                            <?php
+                            <!-- <?php
                                 foreach($local_product_list as $local_product) :
 
                                     if ($local_product["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_product["ufile1"])) {
@@ -104,8 +104,8 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php endforeach;?>
-                            <!-- <div class="swiper-slide">
+                            <?php endforeach;?> -->
+                            <div class="swiper-slide">
                                 <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-1.png" alt="">
@@ -148,7 +148,7 @@
                                         <p>전통시장부터 야시장까지~</p>
                                     </div>
                                 </a>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="swiper-pagination tra_sec_02_swiper_pagination"></div>
