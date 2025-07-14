@@ -36,7 +36,7 @@ class PayController extends BaseController
         $result           = $builder->get()->getRow();
         $user_mobile      = $result->payment_user_mobile;
 		write_log("user_mobile-1 ". $user_mobile);
-		$user_mobile      = encryptField($payment_user_email, "decode");
+		$user_mobile      = encryptField($user_mobile, "decode");
 		write_log("user_mobile-2 ". $user_mobile);
 		$user_mobile_last = substr($user_mobile, -4);
         if ($result && $user_mobile_last === $input_phone_last4) {
