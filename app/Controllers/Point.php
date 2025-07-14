@@ -56,7 +56,46 @@ class Point extends BaseController
     }
 
     public function ThemeTravel() {
-        return view('travel/theme_travel');
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $city_code          = updateSQ($_GET["city_code"] ?? '');
+        $category_code      = updateSQ($_GET["category_code"] ?? '');
+        $town_code          = updateSQ($_GET["town_code"] ?? '');
+        $subcategory_code   = updateSQ($_GET["subcategory_code"] ?? '');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+
+        $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
+        $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
+
+        if(!empty($city_code)) {
+            $town_code_list = $this->codeModel->getListByParentCode($city_code) ?? [];
+        }
+
+        if(!empty($category_code)) {
+            $subcategory_code_list = $this->codeModel->getListByParentCode($category_code) ?? [];
+        }
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'city_code'         => $city_code,
+            'category_code'     => $category_code,
+            'town_code'         => $town_code,
+            'subcategory_code'  => $subcategory_code,
+        ];
+
+        $local_guide_list = $this->localGuide->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'category_code_list' => $category_code_list,
+            'city_code_list' => $city_code_list,
+            'town_code_list' => $town_code_list,
+            'subcategory_code_list' => $subcategory_code_list,
+            'local_guide_list' => $local_guide_list,
+        ];
+
+        $merged = array_merge($data, $where);
+
+        return view('travel/theme_travel', $merged);
     }
     public function locguideThemeList() {
 
