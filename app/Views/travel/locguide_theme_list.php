@@ -11,8 +11,8 @@
                         foreach ($category_list as $category) {
                     ?>
                         <li>
-                            <a href="/travel-tips/locguide_theme_list?category_code=<?=$category['category_code']?>">
-                                <?= $category['name'] ?>
+                            <a href="/travel-tips/locguide_theme_list?category_code=<?=$category['code_no']?>">
+                                <?= $category['code_name'] ?>
                             </a>
                         </li>
                     <?php
