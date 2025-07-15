@@ -30,6 +30,10 @@
     .img_add .file_input + .file_input {
         margin-left: 0;
     }
+
+    #se2_iframe {
+        height: 400px !important;
+    }
 </style>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
