@@ -980,7 +980,82 @@ class Product extends BaseController
         }
     }
 
-    public function listHotel()
+public function listHotel()
+{
+    try {
+        $code_no = $this->request->getGet('s_code_no') ?? '';
+        $pg = (int)($this->request->getGet('pg') ?? 1);
+        $perPage = 10;
+
+        // 필터 파라미터 정리
+        $where = [
+            'product_code_1' => 1303,
+            'product_code_2' => $code_no,
+            'product_code_3' => $this->request->getGet('search_product_category') ?? '',
+            'keyword' => $this->request->getGet('keyword') ?? '',
+        ];
+
+        // 코드 리스트 한 번만 조회
+        $allCodes = $this->codeModel->getAllCodesIndexed(); // code_no => code_name
+
+        // 메인 상품+룸+이미지 가져오기
+        $result = $this->productModel->getHotelProductList($where, $perPage, $pg, ['p.onum' => 'DESC']);
+
+        // Stay 정보 한방에
+        $stayIdxes = array_column($result['items'], 'stay_idx');
+        $stayList = $this->productModel->getStayInfoByIdxes($stayIdxes);
+
+        // Post 처리
+        foreach ($result['items'] as &$item) {
+            // 룸 정보 파싱
+            $item['rooms'] = [];
+            if (!empty($item['room_info'])) {
+                foreach (explode('|', $item['room_info']) as $roomData) {
+                    [$name, $idx] = explode('::', $roomData);
+                    $item['rooms'][] = ['name' => $name, 'idx' => $idx];
+                }
+            }
+
+            // 이미지 파싱
+            $item['images'] = [];
+            if (!empty($item['images'])) {
+                $item['images'] = explode('|', $item['images']);
+            }
+
+            // 스테이 정보 붙이기
+            $item['stay'] = $stayList[$item['stay_idx']] ?? [];
+
+            // 프로모션 코드 매핑
+            $item['promotions'] = array_map(
+                fn($c) => $allCodes[$c] ?? $c,
+                explode('|', $item['product_promotions'] ?? '')
+            );
+        }
+
+        // 뷰 데이터
+        $data = [
+            'products' => $result['items'],
+            'pagination' => [
+                'total' => $result['total'],
+                'page' => $result['page'],
+                'perPage' => $result['perPage'],
+            ],
+            'allCodes' => $allCodes,
+            'code_no' => $code_no,
+        ];
+
+        return view('product/hotel/list-hotel', $data);
+
+    } catch (\Throwable $e) {
+        log_message('error', $e->getMessage());
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => 'Server error'
+        ]);
+    }
+}
+
+    public function listHotelx()
     {
         try {
             // $code_no = $this->request->getVar('s_code_no') ?? '';
