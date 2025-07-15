@@ -1740,6 +1740,9 @@
         $dayDiv.addClass('active');
         selectedDate = date;
 
+        console.log(dayData?.goods_price1_won);
+        
+
         const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
 
         quantityContainer.find(".quantity-container.adult .quantity").text("0");
