@@ -205,10 +205,10 @@
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 ㅜㅜ....</p>
                 </div>
             </a> -->
+            <?php 
+                echo ipagelistingSub($local_guide_list["pg"], $local_guide_list["nPage"], $local_guide_list["g_list_rows"], current_url() . "?city_code=". $city_code ."&category_code=". $category_code ."&town_code=". $town_code ."&subcategory_code=". $subcategory_code ."&search_txt=". $search_txt ."&pg=")
+            ?>
         </div>
-        <?php 
-            echo ipagelistingSub($local_guide_list["pg"], $local_guide_list["nPage"], $local_guide_list["g_list_rows"], current_url() . "?city_code=". $city_code ."&category_code=". $category_code ."&town_code=". $town_code ."&subcategory_code=". $subcategory_code ."&search_txt=". $search_txt ."&pg=")
-        ?>
     </div>
 
     <script>
