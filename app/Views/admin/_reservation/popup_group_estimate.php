@@ -1,182 +1,184 @@
 <link href="<?= base_url('css/mypage/mypage_new.css') ?>" rel="stylesheet" />
 <link href="<?= base_url('css/mypage/mypage_reponsive_new.css') ?>" rel="stylesheet" />
+<?php
+helper('setting_helper');
+$setting = homeSetInfo();
+?>
+<div class="estimate_popup_content custom_popup_content">
+    <div class="btn_close_popup">
+        <img src="/img/btn/btn_close_black_20x20.png" alt="">
+    </div>
+    <h1>더투어랩 여행견적서 </h1>
+    <div class="sec1">
+        <div class="left">
+            <p class="ttl">The Tour Lab Co.,Ltd </p>
+            <span>Sukhumvit 13 Klongtoei Nuea </span>
+            <span>Watthana Bangkok 10110 </span>
+            <span>서비스/여행업 No. 0105565060507 </span>
+            <p class="day">견적일 : <?= date('Y') ?>년 <?= date('m') ?>월 <?= date('d') ?>일 </p>
+            <p class="name">고객명 : <?= session()->get("member")["name"] ?> 님 귀하 </p>
+            <img src="/img/sub/sign-001.jpg" class="img_stem">
+        </div>
+        <div class="right">
+            <table>
+                <colgroup>
+                    <col width="110px">
+                    <col width="110px">
+                    <col width="110px">
+                </colgroup>
+                <tbody>
+                    <?php
+                    $tot_cnt = 0;
+                    $tot_won = 0;
+                    ?>
+                    <?php foreach ($sum as $i): ?>
+                        <?php
+                        $tot_cnt = $tot_cnt + $i['cnt'];
+                        $tot_won = $tot_won + $i['total_won'];
+                        ?>
+                        <tr>
+                            <th><?= esc($i['code_name']) ?></th>
+                            <td><?= esc($i['cnt']) ?>건 </td>
+                            <td><?= number_format(esc($i['total_won'])) ?>원 </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <th class="total">합계 </th>
+                        <td class="total"><?= $tot_cnt ?>건 </td>
+                        <td class="total"><?= number_format($tot_won) ?>원 </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="sec2">
+        <table>
+            <colgroup>
+                <col width="70px">
+                <col width="*">
+                <col width="110px">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>품목</th>
+                    <th>상세</th>
+                    <th>금액</th>
+                </tr>
+                <?php foreach ($items as $i): ?>
+                    <?php
+                    $order_info  = "";
 
-      <div class="estimate_popup_content custom_popup_content">
-         <div class="btn_close_popup">
-              <img src="/img/btn/btn_close_black_20x20.png" alt="">
-          </div>
-          <h1>더투어랩 여행견적서 </h1>
-          <div class="sec1">
-              <div class="left">
-                  <p class="ttl">The Tour Lab Co.,Ltd </p>
-                  <span>Sukhumvit 13 Klongtoei Nuea </span>
-                  <span>Watthana Bangkok 10110 </span>
-                  <span>서비스/여행업 No. 0105565060507 </span>
-                  <p class="day">견적일 : <?=date('Y')?>년 <?=date('m')?>월 <?=date('d')?>일 </p>
-                  <p class="name">고객명 : <?=session()->get("member")["name"]?> 님 귀하 </p>
-                  <img src="/img/sub/sign-001.jpg" class="img_stem">
-              </div>
-              <div class="right">
-                  <table>
-                      <colgroup>
-                          <col width="110px">
-                          <col width="110px">
-                          <col width="110px">
-                      </colgroup>
-                      <tbody>
-					      <?php
-						    $tot_cnt = 0;
-						    $tot_won = 0;
-						  ?>	
-					      <?php foreach ($sum as $i): ?>
-					      <?php
-						    $tot_cnt = $tot_cnt + $i['cnt'];
-						    $tot_won = $tot_won + $i['total_won'];
-						  ?>	
-                          <tr>
-                              <th><?= esc($i['code_name']) ?></th>
-                              <td><?= esc($i['cnt']) ?>건 </td>
-                              <td><?= number_format(esc($i['total_won'])) ?>원 </td>
-                          </tr>
-						  <?php endforeach; ?>
-                          <tr>
-                              <th class="total">합계 </th>
-                              <td class="total"><?=$tot_cnt?>건 </td>
-                              <td class="total"><?=number_format($tot_won)?>원 </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <div class="sec2">
-              <table>
-                  <colgroup>
-                      <col width="70px">
-                      <col width="*">
-                      <col width="110px">
-                  </colgroup>
-                  <tbody>
-                      <tr>
-                          <th>품목</th>
-                          <th>상세</th>
-                          <th>금액</th>
-                      </tr>
-					  <?php foreach ($items as $i): ?>
-					  <?php
-							$order_info  = "";
-							
-							if($i['order_gubun'] == "hotel" || $i['order_gubun'] == "golf" || $i['order_gubun'] == "spa" || $i['order_gubun'] == "restaurant") {
-							   $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
-							}   
-					  ?>
-                      <tr>
-                          <td><?= esc($i['code_name']) ?></td>
-                          <td>
-                              <p class="time"><?= esc($i['order_date'])?>(<?= esc(dateToYoil($i['order_date']))?>) | <?= esc($i['product_name']) ?> </p>
-                              <p><?=$order_info?> </p>
-                          </td>
-                          <td>
-                              <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
-                              <p>(<?= number_format(esc($i['real_price_bath'])) ?>바트) </p>
-                          </td>
-                      </tr>
-					  <?php endforeach; ?>
-              </table>
-			  
-          </div>
-  
-          <div class="list_desc">
-              <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다. </p>
-              <p>- 견적서상 내용은 확정 예약시 상품의 예약가능여부/환을 등에 따라 금액 및 내용에 변동이 있을 수 있습니다. </p>
-              <p>- 한국 : 국민은행 636101-01-301315 (주) 토토부킹 </p>
-              <p>- 태국: Kasikorn Bank 895-2-19850-6 (Totobooking) </p>
-          </div>
-          <div class="send_mail">
-              <input type="text" value="<?=session()->get("member")["email"]?>">
-              <button type="button" id="mailsend" value="<?= esc($group_no)?>">메일보내기 </button>
-          </div>
-          <div class="btns_download">
-              <button id="btn_print">프린트</button>
-              <button id="btn_pdf" value="<?= esc($i['group_no']) ?>"> PDF다운로드</button>
-          </div>
-      </div>
-		<script>
-		$(document).ready(function() {
-			$('#mailsend').on('click', function() {
-				const groupNo = $(this).val(); // 버튼의 value 속성 가져오기
-				alert("선택한 그룹 번호:"+ groupNo);
+                    if ($i['order_gubun'] == "hotel" || $i['order_gubun'] == "golf" || $i['order_gubun'] == "spa" || $i['order_gubun'] == "restaurant") {
+                        $order_info = order_info($i['order_gubun'], $i['order_no'], $i['order_idx']);
+                    }
+                    ?>
+                    <tr>
+                        <td><?= esc($i['code_name']) ?></td>
+                        <td>
+                            <p class="time"><?= esc($i['order_date']) ?>(<?= esc(dateToYoil($i['order_date'])) ?>) | <?= esc($i['product_name']) ?> </p>
+                            <p><?= $order_info ?> </p>
+                        </td>
+                        <td>
+                            <p><?= number_format(esc($i['real_price_won'])) ?>원 </p>
+                            <p>(<?= number_format(esc($i['real_price_bath'])) ?>바트) </p>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+        </table>
 
-				var message = "";
-				$.ajax({
-					url  : "/ajax/ajax_estimate_mailsend",
-					type : "POST",
-					data : {
-						"group_no"  : groupNo 
-					},
-					dataType : "json",
-					async: false,
-					cache: false,
-					success: function (data, textStatus) {
-						message = data.message;
-						alert(message);
-						location.reload();
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});
-			});
-		});
-		</script>
-		<script>
-		function estimate_mailsend(group_no)
-		{
-				if (!confirm('인보이스를 전송 하시겠습니까?'))
-					return false;
+    </div>
 
-				var message = "";
-				$.ajax({
-					url  : "/ajax/ajax_incoiceHotel_send",
-					type : "POST",
-					data : {
-						"order_no"  : order_no 
-					},
-					dataType : "json",
-					async: false,
-					cache: false,
-					success: function (data, textStatus) {
-						message = data.message;
-						alert(message);
-						location.reload();
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});		
-			
-		}
-		</script>
-	
-		<script>
-			// 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
-			// $(document).on('click', '#btn_print', function () {
-			// 	window.print();
-			// });
+    <div class="list_desc">
+        <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다. </p>
+        <p>- 견적서상 내용은 확정 예약시 상품의 예약가능여부/환을 등에 따라 금액 및 내용에 변동이 있을 수 있습니다. </p>
+        <p>한국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_seoul'] ?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
+        <p>태국에서 걸 때 <span class="text-w"> <?= $setting['custom_service_phone_thai'] ?></span> (방콕) 로밍폰, 태국 유심폰 <br> 모두 <?= $setting['custom_service_phone_thai2'] ?> 번호만 누르면 됩니다.
+    </div>
+    <div class="send_mail">
+        <input type="text" value="<?= session()->get("member")["email"] ?>">
+        <button type="button" id="mailsend" value="<?= esc($group_no) ?>">메일보내기 </button>
+    </div>
+    <div class="btns_download">
+        <button id="btn_print">프린트</button>
+        <button id="btn_pdf" value="<?= esc($i['group_no']) ?>"> PDF다운로드</button>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#mailsend').on('click', function() {
+            const groupNo = $(this).val(); // 버튼의 value 속성 가져오기
+            alert("선택한 그룹 번호:" + groupNo);
 
-            $(document).on('click', '#btn_print', function () {
-                const content = document.querySelector('.estimate_popup_content').innerHTML;
+            var message = "";
+            $.ajax({
+                url: "/ajax/ajax_estimate_mailsend",
+                type: "POST",
+                data: {
+                    "group_no": groupNo
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function(data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        });
+    });
+</script>
+<script>
+    function estimate_mailsend(group_no) {
+        if (!confirm('인보이스를 전송 하시겠습니까?'))
+            return false;
 
-                let iframe = document.createElement('iframe');
-                iframe.name = "printFrame";
-                iframe.style.position = 'absolute';
-                iframe.style.top = '-9999px';
-                document.body.appendChild(iframe);
+        var message = "";
+        $.ajax({
+            url: "/ajax/ajax_incoiceHotel_send",
+            type: "POST",
+            data: {
+                "order_no": order_no
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(data, textStatus) {
+                message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function(request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
 
-                let frameDoc = iframe.contentWindow || iframe.contentDocument;
-                if (frameDoc.document) frameDoc = frameDoc.document;
+    }
+</script>
 
-                frameDoc.open();
-                frameDoc.write(`
+<script>
+    // 프린트 버튼 클릭 시 브라우저 인쇄 기능 실행
+    // $(document).on('click', '#btn_print', function () {
+    // 	window.print();
+    // });
+
+    $(document).on('click', '#btn_print', function() {
+        const content = document.querySelector('.estimate_popup_content').innerHTML;
+
+        let iframe = document.createElement('iframe');
+        iframe.name = "printFrame";
+        iframe.style.position = 'absolute';
+        iframe.style.top = '-9999px';
+        document.body.appendChild(iframe);
+
+        let frameDoc = iframe.contentWindow || iframe.contentDocument;
+        if (frameDoc.document) frameDoc = frameDoc.document;
+
+        frameDoc.open();
+        frameDoc.write(`
                     <html>
                     <head>
                         <title>여행 견적서</title>
@@ -369,19 +371,19 @@
                     </body>
                     </html>
                 `);
-                frameDoc.close();
+        frameDoc.close();
 
-                setTimeout(function () {
-                    iframe.contentWindow.focus();
-                    iframe.contentWindow.print();
-                    document.body.removeChild(iframe); 
-                }, 500);
-            });
+        setTimeout(function() {
+            iframe.contentWindow.focus();
+            iframe.contentWindow.print();
+            document.body.removeChild(iframe);
+        }, 500);
+    });
 
-			
-			// PDF 버튼 클릭 시
-			$(document).on('click', '#btn_pdf', function () {
-				var group_no = $(this).val(); 
-				location.href='/pdf/quotation?group_no='+group_no;
-			});
-		</script>
+
+    // PDF 버튼 클릭 시
+    $(document).on('click', '#btn_pdf', function() {
+        var group_no = $(this).val();
+        location.href = '/pdf/quotation?group_no=' + group_no;
+    });
+</script>

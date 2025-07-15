@@ -614,7 +614,7 @@
                                 <tr>
                                     <th>수정일자</th>
                                     <td>
-										<div>
+										<div class="flex">
                                             <?php
                                                 foreach ($history_order_list as $history_item) {
                                             ?>
