@@ -980,124 +980,7 @@ class Product extends BaseController
         }
     }
 
-public function listHotel()
-{
-    try {
-        $code_no = $this->request->getVar('s_code_no') ?? '';
-        $pg = $this->request->getVar('pg') ?? 1;
-
-        $filters = [
-            'checkin' => $this->request->getVar('checkin') ?? '',
-            'checkout' => $this->request->getVar('checkout') ?? '',
-            'search_product_name' => $this->request->getVar('search_product_name') ?? '',
-            'search_product_category' => $this->request->getVar('search_product_category') ?? '',
-            'search_product_hotel' => $this->request->getVar('search_product_hotel') ?? '',
-            'search_product_rating' => $this->request->getVar('search_product_rating') ?? '',
-            'search_product_promotion' => $this->request->getVar('search_product_promotion') ?? '',
-            'search_product_topic' => $this->request->getVar('search_product_topic') ?? '',
-            'search_product_bedroom' => $this->request->getVar('search_product_bedroom') ?? '',
-            'price_min' => $this->request->getVar('price_min') ?? 0,
-            'price_max' => $this->request->getVar('price_max') ?? 0,
-            'price_type' => $this->request->getVar('price_type') ?? '',
-            'keyword' => $this->request->getVar('keyword') ?? '',
-            'day_start' => $this->request->getVar('day_start') ?? '',
-            'day_end' => $this->request->getVar('day_end') ?? '',
-            'product_status' => 'sale',
-            'product_code_1' => 1303,
-            'product_code_2' => $code_no,
-            'product_code_3' => $this->request->getVar('search_product_category') ?? '',
-        ];
-
-        $perPage = 10;
-
-        // ✅ 1. 메인 상품 목록
-        $products = $this->productModel->findProductHotelPaging(
-            $filters,
-            $perPage,
-            $pg,
-            ['onum' => 'DESC']
-        );
-
-        $items = $products['items'];
-        if (empty($items)) {
-            // 아무 결과 없으면 바로 View
-            return $this->renderView('product/hotel/list-hotel', ['products' => $products]);
-        }
-
-        // ✅ 2. 필요한 IDX 수집
-        $productIdxes = array_column($items, 'product_idx');
-        $stayIdxes = array_unique(array_column($items, 'stay_idx'));
-
-        // ✅ 3. 일괄 조회
-        $roomsMap = $this->productModel->getRoomsByProductIdxes($productIdxes);
-        $imagesMap = $this->productModel->getImagesByProductIdxes($productIdxes);
-        $stayMap = $this->productModel->getStayInfoByIdxes($stayIdxes);
-        $reviewMap = $this->reviewModel->getReviewsByProductIdxes($productIdxes);
-
-        // ✅ 4. 프로모션 코드 수집
-        $allPromoCodes = [];
-        foreach ($items as $item) {
-            $allPromoCodes = array_merge($allPromoCodes, explode('|', $item['product_promotions']));
-        }
-        $allPromoCodes = array_unique(array_filter($allPromoCodes));
-        $promoMap = $this->productModel->getPromotionsByCodes($allPromoCodes);
-
-        // ✅ 5. 코드명 캐싱
-        $allCodes = $this->codeModel->getAllCodesIndexed();
-
-        // ✅ 6. 상품 매핑
-        foreach ($items as &$item) {
-            $item['roomsByType'] = $roomsMap[$item['product_idx']] ?? [];
-            $item['images'] = $imagesMap[$item['product_idx']] ?? [];
-            $item['stay_city'] = $stayMap[$item['stay_idx']]['stay_city'] ?? '';
-            $item['total_review'] = $reviewMap[$item['product_idx']]['total_review'] ?? 0;
-            $item['review_average'] = $reviewMap[$item['product_idx']]['avg'] ?? 0;
-
-            // 프로모션 상세 정보
-            $_arr_promotions = explode('|', $item['product_promotions']);
-            $item['promotions'] = [];
-            foreach ($_arr_promotions as $code) {
-                if (isset($promoMap[$code])) {
-                    $item['promotions'][] = $promoMap[$code];
-                }
-            }
-
-            // 코드명
-            $item['code_sub_name'] = $allCodes[$item['product_code_3']] ?? '';
-        }
-
-        $products['items'] = $items;
-
-        // ✅ 7. 뷰 데이터
-        $data = [
-            'products' => $products,
-            'search_product_category' => $filters['search_product_category'],
-            'search_area' => $this->codeModel->getCodeName($filters['search_product_category']) ?? '전체',
-            'baht_thai' => $this->setting['baht_thai'],
-            'banners' => $this->bannerModel->getBanners($code_no),
-            'codeBanners' => $this->bannerModel->getCodeBanners($code_no),
-            'codes' => $this->codeModel->where('parent_code_no', $code_no)->orderBy('code_no', 'ASC')->get()->getResultArray(),
-            'types_hotel' => $this->codeModel->getByParentAndDepth(40, 2)->getResultArray(),
-            'ratings' => $this->codeModel->getByParentAndDepth(30, 2)->getResultArray(),
-            'promotions' => $this->codeModel->getByParentAndDepth(41, 2)->getResultArray(),
-            'topics' => $this->codeModel->getByParentAndDepth(38, 2)->getResultArray(),
-            'bedrooms' => $this->codeModel->getByParentAndDepth(39, 2)->getResultArray(),
-            'code_no' => $code_no,
-            'code_name' => $this->productModel->getCodeName($code_no)['code_name'],
-            'perPage' => $perPage,
-            'tab_active' => '1',
-        ];
-
-        return $this->renderView('product/hotel/list-hotel', $data);
-    } catch (Exception $e) {
-        return $this->response->setJSON([
-            'result' => false,
-            'message' => $e->getMessage()
-        ]);
-    }
-}
-
-    public function listHotelx()
+    public function listHotel()
     {
         try {
             // $code_no = $this->request->getVar('s_code_no') ?? '';
@@ -1205,7 +1088,7 @@ public function listHotel()
 
                 $products['items'][$key]['codeTree'] = $codeTree;
 
-                //$productReview = $this->reviewModel->getProductReview($product['product_idx']);
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
                 $hotel = $this->productModel->find($product['product_idx']);
 
                 $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0  ORDER BY o_room DESC, o_sdate DESC';
@@ -1263,8 +1146,8 @@ public function listHotel()
                     $products['items'][$key]['promotions'] = $fresult5;
                 }
 
-                //$products['items'][$key]['total_review'] = $productReview['total_review'];
-                //$products['items'][$key]['review_average'] = $productReview['avg'];
+                $products['items'][$key]['total_review'] = $productReview['total_review'];
+                $products['items'][$key]['review_average'] = $productReview['avg'];
 
                 $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);

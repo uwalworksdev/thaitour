@@ -211,33 +211,4 @@ class ReviewModel extends Model
             'avg' => $avg
         ];
     }
-	
-/**
- * 여러 product_idx에 대한 리뷰 개수/평균 평점 가져오기
- * @param array $productIdxes
- * @return array
- */
-public function getReviewsByProductIdxes(array $productIdxes): array
-{
-    if (empty($productIdxes)) {
-        return [];
-    }
-
-    $result = [];
-    $query = $this->db->table('tbl_review')
-        ->select('product_idx, COUNT(*) AS total_review, ROUND(AVG(rating), 1) AS avg_rating')
-        ->whereIn('product_idx', $productIdxes)
-        ->groupBy('product_idx')
-        ->get();
-
-    foreach ($query->getResultArray() as $row) {
-        $result[$row['product_idx']] = [
-            'total_review' => (int) $row['total_review'],
-            'avg' => (float) $row['avg_rating']
-        ];
-    }
-
-    return $result;
-}
-	
 }
