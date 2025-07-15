@@ -145,6 +145,8 @@ class Point extends BaseController
             'city_code'         => $code_no_active,
         ];
 
+        $local_prod = $this->localProduct->find($lp_idx);
+
         $local_guide_list = $this->localGuide->get_list($where, $g_list_rows, $pg);
 
         $data = [
@@ -152,6 +154,7 @@ class Point extends BaseController
             'local_guide_list' => $local_guide_list,
             'code_active_name' => $code_active_name,
             'lp_idx' => $lp_idx,
+            'local_prod' => $local_prod,
         ];
 
         $merged = array_merge($data, $where);

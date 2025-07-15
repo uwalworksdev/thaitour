@@ -41,11 +41,18 @@
         <div class="sec_banner">
             <div class="inner">
                 <div class="wrap_banner">
-                    <img class="only_web" src="/img/sub/hot-place-banner.png" alt="">
-                    <img class="only_mo" src="/img/sub/hot-place-banner-m.jpg" alt="">
+                    <?php
+                        if ($local_prod["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_prod["ufile1"])) {
+                            $img_prd = "/data/product/" . $local_prod["ufile1"];
+                        } else {
+                            $img_prd = "/data/product/noimg.png";
+                        }
+                    ?>
+                    <img class="only_web" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
+                    <img class="only_mo" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
                     <div class="text_banner">
-                        <span>태국 로컬시장 완벽 탐구!</span>
-                        <p>전통시장부터 야시장까지~</p>
+                        <span><?=$local_prod["title"]?></span>
+                        <p><?=$local_prod["desc"]?></p>
                     </div>
                 </div>
             </div>
@@ -205,10 +212,10 @@
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 ㅜㅜ....</p>
                 </div>
             </a> -->
-            <?php 
-                echo ipagelistingSub($local_guide_list["pg"], $local_guide_list["nPage"], $local_guide_list["g_list_rows"], current_url() . "?city_code=". $city_code ."&category_code=". $category_code ."&town_code=". $town_code ."&subcategory_code=". $subcategory_code ."&search_txt=". $search_txt ."&pg=")
-            ?>
         </div>
+        <?php 
+            echo ipagelistingSub($local_guide_list["pg"], $local_guide_list["nPage"], $local_guide_list["g_list_rows"], current_url() . "?city_code=". $city_code ."&category_code=". $category_code ."&town_code=". $town_code ."&subcategory_code=". $subcategory_code ."&search_txt=". $search_txt ."&pg=")
+        ?>
     </div>
 
     <script>
