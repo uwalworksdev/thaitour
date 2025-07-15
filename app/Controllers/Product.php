@@ -1008,20 +1008,20 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-			
+/* 2025-07-16 			
 			$codes = $this->codeModel
 						  ->where('parent_code_no', $code_no)
 						  ->orderBy('code_no', 'ASC')
 						  ->get()
 						  ->getResultArray();
 
-            //$types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
-            //$ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
-            //$promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
-            //$topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
-            //$bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
-
-            //$parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+            $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
+            $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
+            $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
+            $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
+            $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
+*/
+            $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
             foreach ($codes as $code) {
