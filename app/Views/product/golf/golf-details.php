@@ -1831,15 +1831,16 @@ $('.tag-list .tag-js').on('click', function () {
   // 3. AJAX 데이터 준비
   var goods_name  = $(this).data('tab') + '홀';
   var product_idx = $('input[name="product_idx"]').val();
-  var goods_date  = $(".final_date").text();
-  alert(goods_date); 
+//  var goods_date  = $(".final_date").text();
+//  alert(goods_date); 
   // 4. AJAX 호출
   $.ajax({
     url: "/ajax/get_golf_option",
     type: "POST",
     data: {
       product_idx: product_idx,
-      goods_name: goods_name
+      goods_name: goods_name,
+      goods_date: "2025-07-16"
     },
     dataType: "json",
     success: function (res) {
