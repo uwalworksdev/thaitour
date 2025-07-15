@@ -251,7 +251,7 @@
                                         <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
-                                            var oEditors;
+                                            var oEditors = [];
 
                                             // 추가 글꼴 목록
                                             //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
