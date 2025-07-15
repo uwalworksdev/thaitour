@@ -22,54 +22,56 @@ class PayController extends BaseController
 
     public function pay_check()
     {
-        $payment_idx = $this->request->getPost('idx');
+        $order_idx = $this->request->getPost('idx');
         $input_phone_last4 = $this->request->getPost('phone_last4');
 
-        if (!$payment_idx || !$input_phone_last4) {
-            return $this->response->setBody("<script>alert('잘못된 요청입니다.');location.href='/pay?idx={$payment_idx}';</script>");
+        if (!$order_idx || !$input_phone_last4) {
+            return $this->response->setBody("<script>alert('잘못된 요청입니다.');location.href='/pay?idx={$order_idx}';</script>");
         }
 
         // DB에서 phone_last4 가져오기
-        $builder = $this->db->table('tbl_payment_mst');
-        $builder->select('payment_user_mobile');
-        $builder->where('payment_idx', $payment_idx);
+        $builder = $this->db->table('tbl_order_mst');
+        $builder->select('order_user_mobile');
+        $builder->where('order_idx', $payment_idx);
         $result           = $builder->get()->getRow();
-        $user_mobile      = $result->payment_user_mobile;
+        $user_mobile      = $result->order_user_mobile;
 		$user_mobile      = encryptField($user_mobile, "decode");
 		$user_mobile_last = substr($user_mobile, -4);
         if ($result && $user_mobile_last === $input_phone_last4) {
             // 일치 → view 페이지로
-            return redirect()->to("/pay/view?idx={$payment_idx}");
+            return redirect()->to("/pay/view?idx={$order_idx}");
         } else {
             // 불일치 → alert
-            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$payment_idx}';</script>");
+            return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$order_idx}';</script>");
         }
     }
 
     public function pay_view()
     {
-        $payment_idx = $this->request->getGet("idx");
+        $order_idx = $this->request->getGet("idx");
 
         // 실제 데이터 조회 예제
-        $builder = $this->db->table('tbl_payment_mst');
-        $builder->where('payment_idx', $payment_idx);
+        $builder = $this->db->table('tbl_order_mst');
+        $builder->where('order_idx', $order_idx);
         $row = $builder->get()->getRow();
 
-        $payment_user_name   = encryptField($row->payment_user_name, "decode");
-        $payment_user_mobile = encryptField($row->payment_user_mobile, "decode");
-        $payment_user_email  = encryptField($row->payment_user_email, "decode");
+        $order_user_name   = encryptField($row->order_user_name, "decode");
+        $order_user_mobile = encryptField($row->order_user_mobile, "decode");
+        $order_user_email  = encryptField($row->order_user_email, "decode");
 		
         if (!$row) {
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
         }
 
+		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
+
         $data = [
-            'payment_idx'      => $row->payment_idx,
-            'reservation_name' => $payment_user_name,
-            'mobile'           => $payment_user_mobile,
-            'email'            => $payment_user_email,
-            'order_number'     => $row->payment_no,
-            'amount'           => $row->payment_price,
+            'order_idx'        => $row->order_idx,
+            'reservation_name' => $order_user_name,
+            'mobile'           => $order_user_mobile,
+            'email'            => $order_user_email,
+            'order_number'     => $payment_no,
+            'amount'           => $row->real_price_won,
             'product_title'    => $row->product_name,
         ];
 
