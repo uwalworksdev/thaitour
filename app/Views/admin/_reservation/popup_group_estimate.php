@@ -91,8 +91,8 @@ $setting = homeSetInfo();
     <div class="list_desc">
         <p>- 상기 견적은 고객님께서 직접 선택하신 상품으로 발행된 견적서입니다. </p>
         <p>- 견적서상 내용은 확정 예약시 상품의 예약가능여부/환을 등에 따라 금액 및 내용에 변동이 있을 수 있습니다. </p>
-        <p>한국에서 걸 때 <span> <?= $setting['custom_service_phone_seoul'] ?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
-        <p>태국에서 걸 때 <span> <?= $setting['custom_service_phone_thai'] ?></span> (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2'] ?> 번호만 누르면 됩니다.
+        <p>- 한국에서 걸 때 <span> <?= $setting['custom_service_phone_seoul'] ?></span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
+        <p>- 태국에서 걸 때 <span> <?= $setting['custom_service_phone_thai'] ?></span> (방콕) 로밍폰, 태국 유심폰 모두 <?= $setting['custom_service_phone_thai2'] ?> 번호만 누르면 됩니다.
     </div>
     <div class="send_mail">
         <input type="text" value="<?= session()->get("member")["email"] ?>">
