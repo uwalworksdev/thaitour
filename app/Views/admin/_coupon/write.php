@@ -246,7 +246,7 @@
                                 <tr>
                                     <th>상태설정</th>
                                     <td>
-                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" cols="100" class="input_txt"
+                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
                                                 var oEditors;
