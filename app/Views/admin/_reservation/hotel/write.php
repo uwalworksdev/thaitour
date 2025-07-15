@@ -700,7 +700,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del_history",
+                url: "/AdmMaster/_reservation/del_history",
                 type: "POST",
                 data: "h_idx[]=" + h_idx,
                 error: function (request, status, error) {
