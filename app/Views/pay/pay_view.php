@@ -121,7 +121,7 @@
     <h3>결제정보</h3>
     <p>예약자명: <?= esc($reservation_name) ?></p>
     <p>이메일: <?= esc($email) ?></p>
-    <p>주문번호: <?= esc($order_number) ?></p>
+    <p>예약번호: <?= esc($order_number) ?></p>
     <p>결제금액: <?= number_format($amount) ?>원</p>
   </div>
 
