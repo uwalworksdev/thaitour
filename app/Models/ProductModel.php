@@ -1271,6 +1271,7 @@ class ProductModel extends Model
             $builder->like('product_name', $where['keyword']);
         }
  
+ /*
         if (!empty($where['product_code_list'])) {
             $product_code_list = explode(",", $where['product_code_list']);
             $cnt_code = 1;
@@ -1473,7 +1474,7 @@ class ProductModel extends Model
 //        if ($where['product_status'] != "") {
 //            $builder->where("product_status", $where['product_status']);
 //        }
-
+*/
         $currentUrl = current_url();
         $link = '/AdmMaster/';
         if (strpos($currentUrl, $link) === false) {
