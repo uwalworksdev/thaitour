@@ -700,7 +700,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "delete",
+                url: "del_history",
                 type: "POST",
                 data: "h_idx[]=" + h_idx,
                 error: function (request, status, error) {
