@@ -59,7 +59,7 @@
                                         <div class="product-info">
                                             <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                             <div class="product-details">
-                                                <div class="product-name"><?=$item['product_name']?></div>
+                                                <div class="product-name"><a href="/product-golf/golf-detail/<?=$item['product_idx']?>"><?=$item['product_name']?></a></div>
                                                 <div class="product-date">예약일시:<?=$item['order_date']?></div>
                                                 <p class="product-desc text-gray">
                                                 <?php 
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-golf/golf-detail/<?=$item['product_idx']?>"><?=$item['product_name']?></a>  
                                         </h3>
                                         <div class="time-date-p">
                                             에약일시: <?=$item['order_date']?>
@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-tours/item_view/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             에약일시: <?=$item['order_date']?>
@@ -242,8 +242,8 @@
                                         </div>
                                     </div>
                                     <div class="text-right-p">
-                                        <h3 class="title-p">
-                                            <?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
+                                        <h3 class="title-p">       
+                                            <a href="/product-tours/item_view/<?=$item['product_idx']?>"><?=$item['product_name']?></a><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?><br>
@@ -326,7 +326,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -392,7 +392,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -457,7 +457,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -517,7 +517,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/vehicle-guide"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -582,7 +582,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/guide_view?g_idx=<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
