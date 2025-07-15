@@ -83,6 +83,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
+        $routes->post("del_history", "Admin\ReservationController::del_history");
     });
 
     $routes->group("_settlement", static function ($routes) {
@@ -750,6 +751,7 @@ $routes->group("api", static function ($routes) {
     $routes->group("products", static function ($routes) {
         $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
         $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
+        $routes->post("localGuidePhoto", "Api\ProductApi::localGuidePhoto");
         $routes->post("sel_coupon", "Product::sel_coupon", ['as' => "api.product.sel_coupon"]);
         $routes->get("get_search_products", "Product::get_search_products", ['as' => "api.product.get_search_products"]);
         $routes->get("get_hotel_rooms", "Product::get_hotel_rooms", ['as' => "api.product.get_hotel_rooms"]);

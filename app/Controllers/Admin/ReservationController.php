@@ -1100,22 +1100,36 @@ class ReservationController extends BaseController
         }
     }
 
-public function delete()
-{
-    $orderIdxs = $this->request->getPost('order_idx');
-    if (!$orderIdxs) {
-        return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+    public function delete()
+    {
+        $orderIdxs = $this->request->getPost('order_idx');
+        if (!$orderIdxs) {
+            return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+        }
+
+        // 삭제 로직 수행 예시
+        foreach ($orderIdxs as $orderIdx) {
+            // 모델을 이용해 삭제
+            $this->orderModel->delete($orderIdx);
+        }
+
+        return $this->response->setJSON(['result' => true]);
     }
 
-    // 삭제 로직 수행 예시
-    foreach ($orderIdxs as $orderIdx) {
-        // 모델을 이용해 삭제
-        $this->orderModel->delete($orderIdx);
+    public function del_history() {
+        $arr_h_idx = $this->request->getPost('h_idx');
+        if (!$arr_h_idx) {
+            return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+        }
+
+        // 삭제 로직 수행 예시
+        foreach ($arr_h_idx as $h_idx) {
+            // 모델을 이용해 삭제
+            $this->historyOrderUpdate->delete($h_idx);
+        }
+
+        return $this->response->setJSON(['result' => true]);
     }
-
-    return $this->response->setJSON(['result' => true]);
-}
-
 
     function get_code()
     {

@@ -17,6 +17,8 @@ class ProductApi extends BaseController
     private $roomImg;
     private $toursPrice;
     private $spasPrice;
+    private $localGuideImg;
+    private $localGuide;
 
 
     public function __construct()
@@ -31,6 +33,8 @@ class ProductApi extends BaseController
         $this->roomsModel = new \App\Models\Rooms();
         $this->toursPrice = model("ToursPrice");
         $this->spasPrice = model("SpasPrice");
+        $this->localGuideImg = model("LocalGuideImg");
+        $this->localGuide = model("LocalGuideModel");
 
         helper('my_helper');
         helper('alert_helper');
@@ -89,6 +93,48 @@ class ProductApi extends BaseController
 
             if ($idx) {
                 $sql    = " select * from tbl_product_img where product_idx = '" . $idx . "' order by i_idx asc ";
+                $result = $this->connect->query($sql);
+                $result = $result->getResultArray();
+                foreach ($result as $row) {
+					    if($row['ufile']) {
+                           $html .= "<li><img src='/data/product/" . $row['ufile'] . "' alt='' /></li>";
+						}   
+                }
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status'  => 'success',
+                    'message' => 'success',
+                    'data'    => $html
+                ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
+    public function localGuidePhoto()
+    {
+        try {
+            $idx = updateSQ($_POST['idx']);
+
+            $html = '';
+
+            $ufile1 = $this->localGuide->find($idx)["ufile1"];
+
+            if(!empty($ufile1)) {
+                $html .= "<li><img src='/data/product/" . $ufile1 . "' alt='' /></li>";
+            }
+
+            if ($idx) {
+                $sql    = " select * from tbl_local_guide_img where lg_idx = '" . $idx . "' order by i_idx asc ";
                 $result = $this->connect->query($sql);
                 $result = $result->getResultArray();
                 foreach ($result as $row) {

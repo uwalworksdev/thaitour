@@ -163,7 +163,25 @@ class Point extends BaseController
     }
 
     public function viewDetail() {
-        return view('travel/view_detail');
+        $lg_idx = updateSQ($this->request->getGet('lg_idx') ?? '');
+
+        $local_detail = $this->localGuide->find($lg_idx);
+
+        $local_prd = $this->localProduct->find($local_detail['lp_idx']);
+
+        $city_name = $this->codeModel->getCodeName($local_prd['city_code']);
+        $town_name = $this->codeModel->getCodeName($local_detail['town_code']);
+
+        $img_list  = $this->localGuideImg->getImg($lg_idx);
+
+        $data = [
+            "city_name" => $city_name,
+            "town_name" => $town_name,
+            "local_detail" => $local_detail,
+            "img_list" => $img_list
+        ];
+
+        return view('travel/view_detail', $data);
     }
     public function TravelInfo() {
         $category = $this->request->getGet('category');

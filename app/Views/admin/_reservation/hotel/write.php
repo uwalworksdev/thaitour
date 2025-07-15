@@ -614,11 +614,21 @@
                                 <tr>
                                     <th>수정일자</th>
                                     <td>
-										<div>
+										<div class="flex" style="flex-direction: column;">
                                             <?php
                                                 foreach ($history_order_list as $history_item) {
                                             ?>
-                                                <p><?=$history_item['user_name']?>(<?=$history_item['user_id']?>) 님이 <?=$history_item['updated_date']?> 수정을 하셨습니다. (아이피: <?=$history_item['ip_address']?>)</p>
+                                                <div class="flex" style="gap: 10px;">
+                                                    <p><?=$history_item['user_name']?>(<?=$history_item['user_id']?>) 님이 <?=$history_item['updated_date']?> 수정을 하셨습니다. (아이피: <?=$history_item['ip_address']?>)</p>
+                                                    <?php
+                                                        if(session()->get("member")["id"] == "admin"){
+                                                    ?>
+                                                        <a href="javascript:del_history('<?= $history_item['h_idx'] ?>');"><img
+                                                            src="/images/admin/common/ico_error.png" alt="에러"/></a>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </div>
                                             <?php
                                                 }
                                             ?>
@@ -646,6 +656,7 @@
                                     <?php } else { ?>
                                         <a href="javascript:send_it()" class="btn btn-default">
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+
                                         <a href="javascript:del_it()" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                     <?php } ?>
@@ -681,6 +692,34 @@
     </div>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function del_history(h_idx) {
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+                return;
+            }
+            $("#ajax_loader").removeClass("display-none");
+            $.ajax({
+                url: "/AdmMaster/_reservation/del_history",
+                type: "POST",
+                data: "h_idx[]=" + h_idx,
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    if (response.result == true) {
+                        alert("정상적으로 삭제되었습니다.");
+                        location.reload();
+                        return;
+                    } else {
+                        alert(response);
+                        return;
+                    }
+                }
+            });
+        }
+    </script>
 	<script>
 	function send_payment(order_idx) {
 	  if (!order_idx) {
