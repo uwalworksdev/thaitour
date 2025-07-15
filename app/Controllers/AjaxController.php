@@ -99,14 +99,15 @@ public function get_golf_option() {
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 		
         $product_idx  = $this->request->getPost('product_idx');
-        $goods_date   = $this->request->getPost('goods_date');
+        $goods_date   = "2025-07-16";
         $goods_name   = $this->request->getPost('goods_name');
 
 		$sql = "SELECT a.*, b.* FROM tbl_golf_option a 
 		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
 								 WHERE a.product_idx = '". $product_idx ."' 
 								 AND b.goods_date = '". $goods_date ."' 
-								 AND b.goods_name = '". $goods_name ."' "; 
+								 AND b.goods_name = '". $goods_name ."'
+								 AND a.group_idx != '0' "; 
 		write_log("get_golf_option- ". $sql);						 
 		$rows = $db->query($sql)->getResultArray();
 		foreach ($rows as $row) {
