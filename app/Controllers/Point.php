@@ -124,7 +124,42 @@ class Point extends BaseController
     }
 
     public function HotPlace() {
-        return view('travel/hot-place');
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $city_code          = updateSQ($_GET["city_code"] ?? '');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $lp_idx             = updateSQ($_GET["lp_idx"] ?? '');
+
+        $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
+
+        $code_active_name = $city_code_list[0]['code_name'];
+        $code_no_active = $city_code_list[0]['code_no'];
+
+        if(!empty($city_code)) {
+            $code_no_active = $city_code;
+            $code_active_name = $this->codeModel->getCodeName($city_code);
+        }
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'city_code'         => $code_no_active,
+        ];
+
+        $local_prod = $this->localProduct->find($lp_idx);
+
+        $local_guide_list = $this->localGuide->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'city_code_list' => $city_code_list,
+            'local_guide_list' => $local_guide_list,
+            'code_active_name' => $code_active_name,
+            'lp_idx' => $lp_idx,
+            'local_prod' => $local_prod,
+        ];
+
+        $merged = array_merge($data, $where);
+
+        return view('travel/hot-place', $merged);
     }
 
     public function viewDetail() {

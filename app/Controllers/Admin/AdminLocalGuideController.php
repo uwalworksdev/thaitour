@@ -103,11 +103,15 @@ class AdminLocalGuideController extends BaseController
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
-        $city_code        = updateSQ($_GET["city_code"] ?? '');
-        $category_code    = updateSQ($_GET["category_code"] ?? '');
 
         if ($idx) {
             $row = $this->localGuide->find($idx);
+
+            $row_prod = $this->localProduct->find($row['lp_idx']);
+
+            $town_code_list = $this->codeModel->getListByParentCode($row_prod['city_code']);
+            $subcategory_code_list = $this->codeModel->getListByParentCode($row_prod['category_code']);
+
         }
 
         $img_list = $this->localGuideImg->getImg($idx);
@@ -116,14 +120,11 @@ class AdminLocalGuideController extends BaseController
 
         $data = [
             'idx' => $idx,
-            'product_code_1' => $row['product_code_1'],
-            'product_code_2' => $row['product_code_2'],
-            'product_code_3' => $row['product_code_3'],
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
-            'city_code' => $city_code,
-            'category_code' => $category_code,
+            'town_code_list' => $town_code_list,
+            'subcategory_code_list' => $subcategory_code_list,
             'product_list' => $product_list,
             'row' => $row ?? '',
             'img_list' => $img_list

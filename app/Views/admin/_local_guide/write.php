@@ -133,9 +133,23 @@
                                     <td>
                                         <select id="town_code" name="town_code" class="input_select">
                                             <option value="">선택</option>
+                                            <?php
+                                                foreach($town_code_list as $frow){
+                                            ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
+                                            <?php
+                                                }
+                                            ?>
                                         </select>
                                         <select id="subcategory_code" name="subcategory_code" class="input_select">
-                                            <option value="">선택</option>                                           
+                                            <option value="">선택</option>       
+                                            <?php
+                                                foreach($subcategory_code_list as $frow){
+                                            ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $subcategory_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
+                                            <?php
+                                                }
+                                            ?>                                    
                                         </select>
                                     </td>
                                 </tr>

@@ -55,7 +55,7 @@
                         }
                 ?>
                     <li class="theme_list_li">
-                        <a href="/travel-tips/hot-place">
+                        <a href="/travel-tips/hot-place?lp_idx=<?=$local_product["idx"]?>&city_code=<?=$local_product["city_code"]?>">
                             <div class="loctheme_banner">
                                 <img src="<?= $img ?>" alt="<?= $local_product["rfile1"] ?>">
                                 <span class="loctheme_boxinfo">

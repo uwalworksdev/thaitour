@@ -240,7 +240,7 @@
                                             <div class="flex_c_c" style="gap: 10px;">
                                                 <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                                <a href="write?city_code=<?= $city_code ?>&town_code=<?= $town_code ?>&category_code=<?= $category_code ?>&subcategory_code=<?= $subcategory_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"
+                                                <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"
                                                     class="product_view" style="color: red;">[<span>상세수정</span>]</a>
                                             </div>
                                         </td>
@@ -260,7 +260,7 @@
                                                     style="max-width:150px;max-height:100px"></a>
                                         </td>
                                         <td class="tal" style="font-weight:bold">
-                                            <a href="write?city_code=<?= $city_code ?>&town_code=<?= $town_code ?>&category_code=<?= $category_code ?>&subcategory_code=<?= $subcategory_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
+                                            <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
                                                 <?= viewSQ($row["product_name"]) ?>
                                         </td>
                                         <td>
