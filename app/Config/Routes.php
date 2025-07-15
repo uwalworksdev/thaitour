@@ -742,6 +742,8 @@ $routes->group("ajax", static function ($routes) {
 	$routes->post("ajax_order_del", "AjaxController::ajax_order_del");
 	$routes->post("ajax_order_cancel", "AjaxController::ajax_order_cancel");
 	$routes->post("ajax_order_delete", "AjaxController::ajax_order_delete");
+	$routes->post("send_payment_sms", "AjaxController::send_payment_sms");
+	
 });
 
 $routes->group("api", static function ($routes) {

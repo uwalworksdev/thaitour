@@ -105,19 +105,19 @@
       }
     }
 	
-.info-box p {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-}
+	.info-box p {
+	  display: flex;
+	  justify-content: space-between;
+	  margin: 5px 0;
+	}
 
-.info-box .label {
-  font-weight: bold;
-}
+	.info-box .label {
+	  font-weight: bold;
+	}
 
-.info-box .value {
-  text-align: right;
-}
+	.info-box .value {
+	  text-align: right;
+	}
   </style>
 
 </head>

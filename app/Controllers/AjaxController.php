@@ -4868,5 +4868,61 @@ class AjaxController extends BaseController {
 					'message' => '예약삭제 실패했습니다. (존재하지 않거나 이미 삭제됨)'
 				]);
 		}
-	}		
+	}
+	
+	public function send_payment_sms()
+	{
+		$order_idx = $this->request->getPost('order_idx');
+
+		if (!$order_idx) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '주문 번호가 없습니다.'
+			]);
+		}
+
+		// ✅ 주문 정보 가져오기
+		$db      = \Config\Database::connect();
+		$builder = $db->table('tbl_order_mst');
+		$builder->where('order_idx', $order_idx);
+		$order   = $builder->get()->getRow();
+
+		if (!$order) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '주문 정보를 찾을 수 없습니다.'
+			]);
+		}
+
+		$builder = $db->table('tbl_payment_mst');
+		$builder->where('order_no', $order->order_no);
+		$row     = $builder->get()->getRow();
+
+        $user_name   = encryptField($row->payment_user_name, "decode");
+        $user_mobile = encryptField($row->payment_user_mobile, "decode");
+        $user_email  = encryptField($row->payment_user_email, "decode");
+
+		if (!$user_mobile) {
+			return $this->response->setJSON([
+				'result'  => 'FAIL',
+				'message' => '수신자 번호가 없습니다.'
+			]);
+		}
+
+		// ✅ 문자 발송
+		$code = "S17";
+		$_tmp_fir_array = [
+			'PROD_NAME'   => $row->product_name,
+			'PAYMENT_NO'  => $row->payment_no,
+			'PAYMENT_IDX' => $order_idx
+		];
+
+		autoSms($code, $user_mobile, $_tmp_fir_array);
+
+		return $this->response->setJSON([
+			'result' => 'OK',
+			'message' => '문자 발송 완료'
+		]);
+	}
+	
 }	
