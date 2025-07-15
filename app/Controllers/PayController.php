@@ -46,7 +46,7 @@ class PayController extends BaseController
         }
 		
         if ($result->order_status == "Y") {  
-            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');location.href='/payment/nicepay_result';</script>");
         }
 
 
