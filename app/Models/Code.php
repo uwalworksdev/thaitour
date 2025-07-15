@@ -232,15 +232,4 @@ class Code extends Model
 
         return $descendants;
     }
-	
-	
-public function getAllCodesIndexed()
-{
-    $codes = $this->db->table('tbl_code')->get()->getResultArray();
-    $result = [];
-    foreach ($codes as $code) {
-        $result[$code['code_no']] = $code['code_name'];
-    }
-    return $result;
-}	
 }
