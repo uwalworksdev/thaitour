@@ -1921,4 +1921,24 @@ class ProductModel extends Model
         $order_no = str_pad($maxOrderNo, 3, "0", STR_PAD_LEFT);
         return $type . date('Ymd') . $order_no;
     }
+	
+public function getRoomsByProductIdxes(array $productIdxes): array
+{
+    if (empty($productIdxes)) return [];
+
+    $result = [];
+    $query = $this->db->table('tbl_hotel_rooms')
+        ->whereIn('goods_code', $productIdxes)
+        ->where('room_name !=', '')
+        ->where('is_view_promotion', 'Y')
+        ->orderBy('rooms_idx', 'ASC')
+        ->get();
+
+    foreach ($query->getResultArray() as $row) {
+        $result[$row['goods_code']][] = $row;
+    }
+
+    return $result;
+}
+	
 }
