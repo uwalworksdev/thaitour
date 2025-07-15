@@ -1740,6 +1740,9 @@
         $dayDiv.addClass('active');
         selectedDate = date;
 
+        console.log(dayData?.goods_price1_won);
+        
+
         const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
 
         quantityContainer.find(".quantity-container.adult .quantity").text("0");
@@ -1751,13 +1754,17 @@
             .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
 
         quantityContainer.find(".quantity-container.child .price").text("0원")
+            .text(number_format(Number(dayData?.goods_price2_won ?? 0)) + "원")
             .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
-        quantityContainer.find(".quantity-container.child .currency").text("0 바트")
+        quantityContainer.find(".quantity-container.child .currency")
+            .text(number_format(Number(dayData?.goods_price2 ?? 0)) + " 바트")
             .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
 
         quantityContainer.find(".quantity-container.baby .price").text("0원")
+            .text(number_format(Number(dayData?.goods_price3_won ?? 0)) + "원")
             .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
-        quantityContainer.find(".quantity-container.baby .currency").text("0 바트")
+        quantityContainer.find(".quantity-container.baby .currency")
+            .text(number_format(Number(dayData?.goods_price3 ?? 0)) + "원")
             .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
 
         adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
