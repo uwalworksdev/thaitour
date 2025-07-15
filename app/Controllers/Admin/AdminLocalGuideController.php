@@ -103,10 +103,6 @@ class AdminLocalGuideController extends BaseController
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
-        $city_code        = updateSQ($_GET["city_code"] ?? '');
-        $category_code    = updateSQ($_GET["category_code"] ?? '');
-        $town_code        = updateSQ($_GET["town_code"] ?? '');
-        $subcategory_code    = updateSQ($_GET["subcategory_code"] ?? '');
 
         if ($idx) {
             $row = $this->localGuide->find($idx);
@@ -127,8 +123,6 @@ class AdminLocalGuideController extends BaseController
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
-            'city_code' => $city_code,
-            'category_code' => $category_code,
             'town_code_list' => $town_code_list,
             'subcategory_code_list' => $subcategory_code_list,
             'product_list' => $product_list,
