@@ -4881,6 +4881,8 @@ class AjaxController extends BaseController {
 			]);
 		}
 
+        $payment_no = payment_save($order_idx);
+
 		// ✅ 주문 정보 가져오기
 		$db      = \Config\Database::connect();
 		$builder = $db->table('tbl_order_mst');
