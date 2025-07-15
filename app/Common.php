@@ -3077,6 +3077,36 @@ function email_send($order_no, $order_status)
 function payment_save($order_idx)
 {
 	    write_log("xxxxxxxxxxxxxx");
+        $group_no      = date('YmdHis');
+/*		
+		$sql_p = " SELECT * from tbl_order_mst WHERE order_idx = '" . $order_idx. "'";
+		$row_p = $db->query($sql_p)->getRowArray();
+
+	    $product_name               = $row_p['product_name'];
+
+	    $payment_user_name          = $row_p['order_user_name'];
+	    $order_user_name            = encryptField($payment_user_name, "decode");
+
+	    $companion_gender           = $row_p['companion_gender'];
+	    $payment_user_first_name_en = $row_p['order_user_first_name_en'];
+	    $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
+	   
+	    $payment_user_email         = $row_p['order_user_email'];
+	    $order_user_email           = encryptField($payment_user_email, "decode");
+
+	    $payment_user_mobile        = $row_p['order_user_mobile'];
+	    $order_user_mobile          = encryptField($payment_user_mobile, "decode");
+
+	    $payment_user_gender        = $row_p['companion_gender'];
+	    $phone_thai                 = $row_p['phone_thai'];
+	    $local_phone                = $row_p['local_phone'];
+	    $payment_memo               = $row_p['order_memo'];
+		   
+		$payment_price = $payment_price + $row_p['real_price_won'];
+		
+		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
+		$db->query($sql_u);		
+*/
 }
 
 ?>
