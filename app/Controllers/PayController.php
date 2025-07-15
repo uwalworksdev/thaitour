@@ -61,6 +61,10 @@ class PayController extends BaseController
         $builder->where('order_idx', $order_idx);
         $order   = $builder->get()->getRow();
 
+        if ($order->order_status == "Y") {  
+            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+        }
+
         $payment_no = $order->payment_no;
 		
         // 실제 데이터 조회 예제
@@ -74,10 +78,6 @@ class PayController extends BaseController
 		
         if (!$row) {
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
-        }
-
-        if ($row->order_status == "Y") {  
-            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
         }
 
         $data = [
