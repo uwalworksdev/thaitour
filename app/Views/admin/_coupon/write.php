@@ -232,7 +232,7 @@
 
                                 <tr>
                                     <th>쿠폰설명</th>
-                                    <td>
+                                    <td colspan="3">
                                         <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
                                             style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
                                     </td>
@@ -240,7 +240,7 @@
 
                                 <tr>
                                     <th>상태설정</th>
-                                    <td>
+                                    <td colspan="3">
                                         <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
