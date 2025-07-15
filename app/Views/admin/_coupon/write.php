@@ -78,7 +78,9 @@
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <colgroup>
                                 <col width="10%"/>
-                                <col width="90%"/>
+                                <col width="*%"/>
+                                <col width="10%"/>
+                                <col width="*%"/>
                             </colgroup>
                             <tbody>
                                 <tr>
@@ -136,7 +138,7 @@
 
                                 <tr>
                                     <th>쿠폰명</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="coupon_name" name="coupon_name"
                                                 value="<?= isset($coupon_name) ? $coupon_name : '' ?>"
                                                 class="input_txt" style="width:30%"/>
@@ -153,9 +155,7 @@
                                         <input type="checkbox" name="type_select[]" id="chk_all" value="A" <?php echo (strpos($type_select, "A") !== false) ? "checked" : ""; ?>>
                                         <label for="chk_all">전체</label>
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>대상</th>
                                     <td>
                                         <select name="member_grade" id="member_grade">
@@ -184,9 +184,7 @@
                                             </option>
                                         </select>
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>할인율 설정</th>
                                     <td>
                                         <input type="text" id="coupon_pe" name="coupon_pe"
@@ -202,9 +200,7 @@
                                                 value="<?= isset($coupon_price) ? $coupon_price : '' ?>"
                                                 style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
-                                </tr>
 
-                                <tr>
                                     <th>최대사용금액</th>
                                     <td>
                                         <input type="text" id="max_coupon_price" name="max_coupon_price"
@@ -221,17 +217,6 @@
 											<input type="text" name="exp_end_day" id="exp_end_day" value="<?=isset($exp_end_day) ? date("Y-m-d", strtotime($exp_end_day)) : ''?>" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <th>쿠폰설명</th>
-                                    <td>
-                                <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
-                                            style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>상태설정</th>
                                     <td>
                                         <select name="state" id="state">
@@ -246,8 +231,16 @@
                                 </tr>
 
                                 <tr>
+                                    <th>쿠폰설명</th>
+                                    <td colspan="3">
+                                        <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
+                                            style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>상태설정</th>
-                                    <td>
+                                    <td colspan="3">
                                         <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
