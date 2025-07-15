@@ -168,12 +168,12 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div class="flex_b_c tours_time_sect" style="display: none">
-                        <p class="open_time" >운영시간: <?= $data_['time_line'] ?></p>
+                    <div class="flex_b_c tours_time_sect">
+                        <p class="open_time" style="display: none">운영시간: <?= $data_['time_line'] ?></p>
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
-                            <div class="meeting_time" style="display: none">
+                            <div class="meeting_time">
                                 <select name="hours" id="hours">
                                     <?php
                                     for ($i = 0; $i < 24; $i++) {

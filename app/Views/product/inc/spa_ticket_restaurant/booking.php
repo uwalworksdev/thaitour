@@ -292,7 +292,7 @@
                             <?php
                                 if(empty($data_['use_time_line'])){
                             ?>
-                                <div class="meeting_time" style="display: none">
+                                <div class="meeting_time">
                                     <select name="hours" id="hours">
                                         <?php
                                         for ($i = 0; $i < 24; $i++) {
