@@ -62,7 +62,7 @@ class PayController extends BaseController
         $order   = $builder->get()->getRow();
 
         if ($order->order_status == "Y") {  
-            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+            return $this->renderView('payment_result', $data);
         }
 
         $payment_no = $order->payment_no;
