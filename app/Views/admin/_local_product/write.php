@@ -100,7 +100,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>카테고리선택</th>
+                                    <th>추천 여행지</th>
                                     <td colspan="3">
                                         <select id="city_code" name="city_code" class="input_select"
                                             onchange="get_code(this.value, 3)">
@@ -122,7 +122,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>카테고리선택</th>
+                                    <th>추천여행 카테고리</th>
                                     <td colspan="3">
                                         <select id="category_code" name="category_code" class="input_select"
                                             onchange="get_code(this.value, 3)">
