@@ -1821,43 +1821,43 @@ $(document).ready(function() {
 
         });
 		
-$('.tag-list .tag-js').on('click', function () {
-  // Active 클래스 이동
-  $('.tag-list .tag-js').removeClass('active');
-  $(this).addClass('active');
+		$('.tag-list .tag-js').on('click', function () {
+		  // Active 클래스 이동
+		  $('.tag-list .tag-js').removeClass('active');
+		  $(this).addClass('active');
 
-  // 선택된 홀 표기
-  $(".final_hole").text($(this).data('tab'));
+		  // 선택된 홀 표기
+		  $(".final_hole").text($(this).data('tab'));
 
-  // 파라미터 준비
-  var goods_name = $(this).data('tab') + '홀';
-  var goods_date_raw = $("#final_date").text();
-  var goods_date = convertDateFormat(goods_date_raw);
+		  // 파라미터 준비
+		  var goods_name = $(this).data('tab') + '홀';
+		  var goods_date_raw = $("#final_date").text();
+		  var goods_date = convertDateFormat(goods_date_raw);
 
-  // AJAX 호출
-  $.ajax({
-    url: "/ajax/get_golf_option",
-    type: "POST",
-    data: {
-      product_idx : $('input[name="product_idx"]').val(),
-      goods_name  : goods_name,
-      goods_date  : goods_date
-    },
-    dataType: "json",
-    success: function (res) {
-      // 서버에서 받은 데이터로 화면 갱신
-      updateOptionFields(res);
+		  // AJAX 호출
+		  $.ajax({
+			url: "/ajax/get_golf_option",
+			type: "POST",
+			data: {
+			  product_idx : $('input[name="product_idx"]').val(),
+			  goods_name  : goods_name,
+			  goods_date  : goods_date
+			},
+			dataType: "json",
+			success: function (res) {
+			  // 서버에서 받은 데이터로 화면 갱신
+			  updateOptionFields(res);
 
-      // ✅ AJAX 완료 후 호출
-      getOptions();
-      calculatePrice();
-    },
-    error: function (xhr, status, error) {
-      console.error("AJAX 오류:", status, error);
-      alert('옵션 정보를 불러오는 데 실패했습니다.');
-    }
-  });
-});
+			  // ✅ AJAX 완료 후 호출
+			  getOptions();
+			  calculatePrice();
+			},
+			error: function (xhr, status, error) {
+			  console.error("AJAX 오류:", status, error);
+			  alert('옵션 정보를 불러오는 데 실패했습니다.');
+			}
+		  });
+		});
 
 
 // ✅ 날짜 포맷 변환 함수

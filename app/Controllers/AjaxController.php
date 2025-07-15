@@ -93,64 +93,68 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
-    public function get_golf_option() {
-        $db           = \Config\Database::connect();
-		$setting      = homeSetInfo();
-        $baht_thai    = (float)($setting['baht_thai'] ?? 0);
-		
-        $product_idx  = $this->request->getPost('product_idx');
-        $goods_date   = $this->request->getPost('goods_date');
-        $goods_name   = $this->request->getPost('goods_name');
+public function get_golf_option()
+{
+    $db = \Config\Database::connect();
+    $setting = homeSetInfo();
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-		$sql = "SELECT a.*, b.* FROM tbl_golf_option a 
-		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
-								 WHERE a.product_idx = '". $product_idx ."' 
-								 AND b.goods_date = '". $goods_date ."' 
-								 AND a.goods_name = '". $goods_name ."'
-								 AND a.group_idx != '0' "; 
-		$rows = $db->query($sql)->getResultArray();
-		foreach ($rows as $row) {
-				 
-                 $option_idx        = $row['idx'];	
-                 $vehicle_price1_ba = $row['vehicle_price1'];	
-	             $vehicle_price2_ba = $row['vehicle_price2'];	
-	             $vehicle_price3_ba = $row['vehicle_price3'];	
-	             $cart_price_ba     = $row['cart_price'];
-	             $caddie_fee_ba     = $row['caddie_fee']; 
+    $product_idx = $this->request->getPost('product_idx');
+    $goods_date = $this->request->getPost('goods_date');
+    $goods_name = $this->request->getPost('goods_name');
 
-	             $o_cart_due	    = $row['o_cart_due']; 	
-	             $o_caddy_due	    = $row['o_caddy_due']; 	
-	             $o_cart_cont	    = $row['o_cart_cont']; 	
-	             $o_caddy_cont	    = $row['o_caddy_cont']; 			 
-                 
-				 $vehicle_price1    = (int) round($row['vehicle_price1'] * $baht_thai);	
-	             $vehicle_price2    = (int) round($row['vehicle_price2'] * $baht_thai); 	
-	             $vehicle_price3    = (int) round($row['vehicle_price3'] * $baht_thai); 	
-	             $cart_price        = (int) round($row['cart_price']     * $baht_thai);
-	             $caddie_fee        = (int) round($row['caddie_fee']     * $baht_thai);   
-		}
+    // ✅ Query Builder 사용 → Injection 방지
+    $builder = $db->table('tbl_golf_option a');
+    $builder->select('a.*, b.*');
+    $builder->join('tbl_golf_price b', 'a.group_idx = b.group_idx', 'left');
+    $builder->where('a.product_idx', $product_idx);
+    $builder->where('b.goods_date', $goods_date);
+    $builder->where('a.goods_name', $goods_name);
+    $builder->where('a.group_idx !=', 0);
+    $builder->limit(1);
 
-        $output = [
-					"option_idx"         => $option_idx,
-					"vehicle_price1"     => $vehicle_price1,
-					"vehicle_price2"     => $vehicle_price2,
-					"vehicle_price3"     => $vehicle_price3,
-					"cart_price"         => $cart_price,
-					"caddie_fee"         => $caddie_fee, 
-					"o_cart_due"	     => $o_cart_due, 	
-					"o_caddy_due"	     => $o_caddy_due, 	
-					"o_cart_cont"	     => $o_cart_cont, 	
-					"o_caddy_cont"	     => $o_caddy_cont, 			 
-			
-					"vehicle_price1_ba"  => $vehicle_price1_ba,
-					"vehicle_price2_ba"  => $vehicle_price2_ba,
-					"vehicle_price3_ba"  => $vehicle_price3_ba,
-					"cart_price_ba"      => $cart_price_ba,
-					"caddie_fee_ba"      => $caddie_fee_ba 
-        ];
-        
-        return $this->response->setJSON($output);		
-	}
+    $rows = $builder->get()->getResultArray();
+
+    // ✅ 결과 없음 처리
+    if (empty($rows)) {
+        return $this->response->setJSON([
+            'result' => 'FAIL',
+            'message' => '옵션 데이터가 없습니다.'
+        ]);
+    }
+
+    $row = $rows[0];
+
+    // ✅ 변환
+    $convertPrice = function ($value) use ($baht_thai) {
+        return (int) round($value * $baht_thai);
+    };
+
+    $output = [
+        'option_idx'        => $row['idx'],
+
+        'vehicle_price1_ba' => $row['vehicle_price1'],
+        'vehicle_price2_ba' => $row['vehicle_price2'],
+        'vehicle_price3_ba' => $row['vehicle_price3'],
+        'cart_price_ba'     => $row['cart_price'],
+        'caddie_fee_ba'     => $row['caddie_fee'],
+
+        'vehicle_price1'    => $convertPrice($row['vehicle_price1']),
+        'vehicle_price2'    => $convertPrice($row['vehicle_price2']),
+        'vehicle_price3'    => $convertPrice($row['vehicle_price3']),
+        'cart_price'        => $convertPrice($row['cart_price']),
+        'caddie_fee'        => $convertPrice($row['caddie_fee']),
+
+        'o_cart_due'        => $row['o_cart_due'],
+        'o_caddy_due'       => $row['o_caddy_due'],
+        'o_cart_cont'       => $row['o_cart_cont'],
+        'o_caddy_cont'      => $row['o_caddy_cont'],
+
+        'result'            => 'OK'
+    ];
+
+    return $this->response->setJSON($output);
+}
 	
 	public function hotel_price_add()
     {
