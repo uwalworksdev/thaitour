@@ -165,7 +165,7 @@
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <div class="title-container">
-                    <h2>옐로우 레인<span style="margin-left: 15px;">Yellow Lane</span></h2>
+                    <h2><?=$local_detail["product_name"]?><span style="margin-left: 15px;"><?=$local_detail["product_name_en"]?></span></h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
@@ -178,7 +178,7 @@
                 <div class="location-container">
                     <div class="location_conts">
                         <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                        <span class="text-gray"> 2, 92 Phahon Yothin 5, Khwaeng Samsen Nai 10400, Thailand </span>
+                        <span class="text-gray"> <?=$local_detail["addrs"]?> </span>
                     </div>
                 </div>
         </div>
@@ -189,24 +189,38 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1" style="">
-                <img src="/img/sub/v_d_1.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
+                <img class="imageDetailMain_" 
+                    src="/data/product/<?= $local_detail['ufile1'] ?>" 
+                    alt="<?= $local_detail['product_name'] ?>" 
+                    onerror="this.src='/images/share/noimg.png'"
+                    onclick="img_pops('<?= $local_detail['idx'] ?>')">
                 <!-- <img src="/img/sub/v_d_1.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="img_pops('1916')"> -->
             </div>
             <div class="grid_2_2">
-                <img class="grid_2_2_size only_web" src="/img/sub/v_d_2.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
-                <img class="grid_2_2_size only_web" src="/img/sub/v_d_3.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
-                <img class="grid_2_2_size" src="/img/sub/v_d_4.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="">
-                <!-- <img class="grid_2_2_size" src="/data/product/1729830604_d9ee4a11bfcc8fc02d1c.jpeg" alt="3.jpeg"
-                             style="">
-                        <img class="grid_2_2_size" src="" alt=""
-                             style="visibility: hidden"> -->
-                <div class="grid_2_2_sub" style="position: relative; cursor: pointer;" onclick="">
-                    <img class="custom_button" src="/img/sub/v_d_5.png" alt="" onerror="this.src='/images/share/noimg.png'">
+                <?php 
+                    $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                    $loop_limit = $is_mobile ? 1 : 3;
+                    for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                ?>
+                    <img onclick="img_pops('<?= $local_detail['idx'] ?>')"
+                            class="grid_2_2_size imageDetailSup_"
+                            src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                            alt="<?= $local_detail['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                <?php } ?>
+                <div class="grid_2_2_sub"
+                    onclick="img_pops('<?= $local_detail['idx'] ?>')"
+                    style="position: relative; cursor: pointer;">
+                    <img class="custom_button imageDetailSup_"
+                        src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                        alt="<?= $local_detail['product_name'] ?>"
+                        onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
-                        <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                        <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
+                        <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                            alt="image_detail_icon">
+                        <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                            alt="image_detail_icon_m">
                         <span>사진 모두 보기</span>
-                        <span>(20장)</span>
+                        <span>(<?= $i3 ?>장)</span>
                     </div>
                 </div>
             </div>
@@ -234,33 +248,32 @@
             <tbody class="text-gray">
                 <tr>
                     <td>지역</td>
-                    <td>방콕>아눗싸와리-짜뚜짝
+                    <td><?=$city_name?>><?=$town_name?>
                     </td>
                 </tr>
                 <tr>
                     <td>전화번호</td>
-                    <td>+66 65 123 8378</td>
+                    <td><?=viewSQ($local_detail["contact"])?></td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td>2, 92 Phahon Yothin 5, Khwaeng Samsen Nai, Khet Phaya Thai, Krung Thep Maha Nakhon 10400, Thailand</td>
+                    <td><?=viewSQ($local_detail["addrs"])?></td>
                 </tr>
                 <tr>
                     <td>홈페이지</td>
-                    <td>https://www.facebook.com/yellowlaneari</td>
+                    <td><?=viewSQ($local_detail["url"])?></td>
                 </tr>
                 <tr>
                     <td>찾아가는 법</td>
-                    <td>BTS Sanam Pao 역에서 도보로 12분 거리에 있는 아리 지역 유명 카페에요. 찾아가기 힘든 골목 안쪽 끝에 있는데도, 서양 관광객들도 찾아오는 카페 입니다.</td>
+                    <td><?=viewSQ($local_detail["routes"])?></td>
                 </tr>
                 <tr>
                     <td>영업시간</td>
-                    <td>09:00 ~ 17:00</td>
+                    <td><?=viewSQ($local_detail["time_line"])?></td>
                 </tr>
                 <tr>
                     <td>정보</td>
-                    <td>로스팅이 강하지 않아서 산미가 살아있는 커피를 좋아하시면 추천할 만한 커피숍입니다. 음식 가격은 상당히 있는 편입니다.
-                        골목길 안쪽 끝에 위치해 있어서 아주 조용하고 공기 좋고 마치 숲속에 있는 느낌을 선사해 주는 카페에요.</td>
+                    <td><?=viewSQ($local_detail["product_contents"])?></td>
                 </tr>
             </tbody>
         </table>
@@ -294,8 +307,8 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
         <script>
-            var lat = '13.7963838' || 13.7563;
-            var lng = '100.1081091' || 100.5018;
+            var lat = '<?=$local_detail["latitude"]?>' || <?=$local_detail["latitude"]?>;
+            var lng = '<?=$local_detail["longitude"]?>' || <?=$local_detail["longitude"]?>;
             var map = L.map('map').setView([lat, lng], 17);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'The Tour Lab'
@@ -304,7 +317,7 @@
         </script>
         <div class="location-container">
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-            <span class="text-gray"> 2, 92 Phahon Yothin 5, Khwaeng Samsen Nai, Khet Phaya Thai, Kr</span>
+            <span class="text-gray"> <?=viewSQ($local_detail["addrs"])?></span>
         </div>
 
         <!-- DEBUG-VIEW START 1 APPPATH/Views/product/inc/review_product.php -->
@@ -379,26 +392,7 @@
                 <strong id="pop_roomName"></strong>
                 <div>
                     <ul class="multiple-items">
-                        <li><img src="/data/product/1743415220_6ed423edbbaad1fde496.jpg" alt="8c19c83b157f010fe2bbdc31218ae7f6ff23f59b_facilitie"></li>
-                        <li><img src="/data/product/1743415220_34f7289f0ffaad86acb3.jpg" alt="1d28e7b716068e89333bc5ac1a6fc2500f372c0f_facilities-03.jpg"></li>
-                        <li><img src="/data/product/1743415220_ee3f5d479b4d5a1bf19b.jpg" alt="2f5c81446bd0951476dcf338cbd02a2a81bd2adf_facilities-20.jpg"></li>
-                        <li><img src="/data/product/1743415220_95bbcd64f940afb732f1.jpg" alt="3e0c6bd25cabe06cc76b3b57a07413d441c65ea2_facilities-01.jpg"></li>
-                        <li><img src="/data/product/1743415220_18cc6feacbcdb05353b0.jpg" alt="5be8c8fc7e01a477c6959db9a9849ca2aab04156_terrace-1.jpg"></li>
-                        <li><img src="/data/product/1743415220_f6e75b75745d142ac29e.jpg" alt="7d1a5de4-1413-4231-b9b1-66158bb449bc__DSC2160.jpg"></li>
-                        <li><img src="/data/product/1743415220_ab7d693a7a12a629aa5c.jpg" alt="8c19c83b157f010fe2bbdc31218ae7f6ff23f59b_facilities-19.jpg"></li>
-                        <li><img src="/data/product/1743415220_afba781b6c670016f00f.jpg" alt="9b81c9cc61b55dd451ed0ece6e68b32602045ec1_facilities-23.jpg"></li>
-                        <li><img src="/data/product/1743415220_324d45975764e793feb6.jpg" alt="10e0a06d456a14f7fe16b27558c30ef2e85b4c69_2e576d7c-eef7-4bbf-8e23-2587d642bcfe__dsc1769-hdr.jpg"></li>
-                        <li><img src="/data/product/1743415220_4485cc16a8c8a35c253b.jpg" alt="17bcde5411681ac9a88a7709c039b65fecaa06dd_facilities-18.jpg"></li>
-                        <li><img src="/data/product/1743415220_b296fc68ba29ba8c1e14.jpg" alt="19ffd07a51b88f8d87e8b005733f7f0f0e5a50d5_restaurant-1.jpg"></li>
-                        <li><img src="/data/product/1743415220_72dd4d4c935992409609.jpg" alt="27d5b0addcd470a83d42c052c88ddad55b9a360e_facilities-06.jpg"></li>
-                        <li><img src="/data/product/1743415220_0a8e67f472d43c97afd5.jpg" alt="51d695dcf959a2e7f6322b937dca6a9b8f5b5c77_4f2debb0-3bc9-4ac1-8657-538a63746335_nikanti_15.jpg"></li>
-                        <li><img src="/data/product/1743415220_d6968b59f6ea5e7875a1.jpg" alt="62b51ef6e2b91152846d05cd8dddf0e716dea974_meeting-01.jpg"></li>
-                        <li><img src="/data/product/1743415220_6dd9edb81e0e2696d9df.jpg" alt="64e6514f7e0231a16032e934ab179c08b91fd6d9_facilities-04.jpg"></li>
-                        <li><img src="/data/product/1743415220_b7d1a12194234ed57a1b.jpg" alt="75b36a14-9332-4d84-8199-63ad5cd76200__DSC2172.jpg"></li>
-                        <li><img src="/data/product/1743415220_b7aa3ddb03bf171b61aa.jpg" alt="85c913c3-7f1a-4962-94c7-118abbb5ec04__DSC2155.jpg"></li>
-                        <li><img src="/data/product/1743415220_264be24085c2117a29e7.jpg" alt="378db89767ed7666a2b5496ea23fdfcee7fdbd54_6bddcab2-8a4d-4658-bd15-3afe887afe37_locker1.jpg"></li>
-                        <li><img src="/data/product/1743415220_100327f4e62ffdf5c57a.jpg" alt="989ab6639601a7889d3a77f828eee6ce73760994_restaurant-3.jpg"></li>
-                        <li><img src="/data/product/1743415220_fdd40c427517407d3080.jpg" alt="1582c8a953a4bf96f48f041057ed7d8cf167eb05_facilities-16.jpg"></li>
+                        
                     </ul>
                 </div>
                 <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"></a>
@@ -1296,17 +1290,34 @@
                     var dim = $('#dim');
                     var popup = $('#popup_img');
 
-                    popup.show();
-                    dim.fadeIn();
+                    $.ajax({
+                        url: "/api/products/localGuidePhoto",
+                        type: "POST",
+                        data: 'idx=' + idx,
+                        error: function(request, status, error) {
+                            //통신 에러 발생시 처리
+                            alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                        },
+                        success: function(response, status, request) {
 
-                    $('.multiple-items').slick({
-                        slidesToShow: 1,
-                        initialSlide: 0,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        dots: true,
-                        focusOnSelect: true
+                            $(".multiple-items").html(response.data);
+
+                            popup.show();
+                            dim.fadeIn();
+
+                            $('.multiple-items').slick({
+                                slidesToShow: 1,
+                                initialSlide: 0,
+                                slidesToScroll: 1,
+                                autoplay: true,
+                                autoplaySpeed: 2000,
+                                dots: true,
+                                focusOnSelect: true
+                            });
+
+                            return false;
+
+                        }
                     });
                 }
             </script>

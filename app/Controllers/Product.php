@@ -1473,7 +1473,7 @@ class Product extends BaseController
             $f_sql = "SELECT * FROM tbl_code WHERE parent_code_no='53' AND status = 'Y' ORDER BY onum ASC, code_idx DESC";
             $fcodes = $this->db->query($f_sql)->getResultArray();
 
-                $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
+            $hotel['liked'] = $this->wishModel->getWishCntFromProduct($session->get("member")["idx"], $hotel['product_idx']) > 0;
 
             $data = [
                 'hotel'            => $hotel,
