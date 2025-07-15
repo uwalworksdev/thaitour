@@ -83,6 +83,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
+        $routes->post("del_history", "Admin\ReservationController::del_history");
     });
 
     $routes->group("_settlement", static function ($routes) {
