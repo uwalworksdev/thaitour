@@ -86,7 +86,7 @@
                         </p>
                     </div>
                     <p class="name"><?=viewSQ($local_guide["product_name"])?></p>
-                    <p class="desc"><?=viewSQ($local_guide["product_contents"])?></p>
+                    <!-- <p class="desc"><?=viewSQ($local_guide["product_contents"])?></p> -->
                     <p class="comt"><i class="acc">꽇송이</i> 사람이 너무 많아서 공황 오는줄 꽇송이 사람이 너무 많아서 공황 오는줄</p>
                 </div>
             </a>
