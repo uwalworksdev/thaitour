@@ -1189,4 +1189,12 @@ $routes->group("daily", static function ($routes) {
 
 $routes->get('group-move-popup', 'ReservationController::groupMoveView');
 $routes->get('test/ajax_temp', 'Test::ajax_temp');
+$routes->post('pay/ready', 'PayController::pay_ready');
+
+$routes->group('pay', static function ($routes) {
+    $routes->get('/', 'PayController::pay');             // /pay?idx=123
+    $routes->post('check', 'PayController::pay_check');  // /pay/check
+    $routes->get('view', 'PayController::pay_view');     // /pay/view?idx=123
+});
+
 ?>
