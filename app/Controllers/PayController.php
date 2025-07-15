@@ -50,7 +50,12 @@ class PayController extends BaseController
     {
         $order_idx = $this->request->getGet("idx");
 
-        $payment_no = payment_save($order_idx);
+        // 예약 테이블
+        $builder = $this->db->table('tbl_order_mst');
+        $builder->where('order_idx', $order_idx);
+        $order   = $builder->get()->getRow();
+
+        $payment_no = $order->payment_no;
 		
         // 실제 데이터 조회 예제
         $builder = $this->db->table('tbl_payment_mst');

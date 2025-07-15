@@ -894,6 +894,39 @@ use Mpdf\Tag\Em;
         </div>
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	function send_payment(order_idx) {
+	  if (!order_idx) {
+		alert('유효하지 않은 주문 번호입니다.');
+		return;
+	  }
+
+	  if (!confirm('문자를 발송하시겠습니까?')) {
+		return;
+	  }
+
+	  $.ajax({
+		url: '/ajax/send_payment_sms',
+		type: 'POST',
+		dataType: 'json',
+		data: { order_idx: order_idx },
+		success: function(res) {
+		  if (res.result === 'OK') {
+			alert('문자가 성공적으로 발송되었습니다.');
+		  } else {
+			alert('발송 실패: ' + (res.message || '알 수 없는 오류'));
+		  }
+		},
+		error: function(xhr, status, error) {
+		  console.error('AJAX 오류', error);
+		  alert('서버 통신 오류가 발생했습니다.');
+		}
+	  });
+	}
+	</script>
+	
     <script>
         $(document).on('input', '.number-only', function () {
             this.value = this.value.replace(/[^0-9]/g, '');
