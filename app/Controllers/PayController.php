@@ -65,8 +65,6 @@ class PayController extends BaseController
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
         }
 
-		$payment_no            = "P_". date('YmdHis') . rand(100, 999); 				// 가맹점 결제번호
-
         $data = [
             'order_idx'        => $row->order_idx,
             'reservation_name' => $order_user_name,
