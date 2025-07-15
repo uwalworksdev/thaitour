@@ -94,7 +94,7 @@ class CouponMst extends Model
         $builder->join('tbl_coupon_product c2', 'c1.idx = c2.coupon_idx', 'left');
         
         $builder->where('state !=', 'C');
-
+        $builder->where('state !=', 'N');
         if(!empty($code)){
             $builder->where('c2.product_code_1 =', $code);
         }
