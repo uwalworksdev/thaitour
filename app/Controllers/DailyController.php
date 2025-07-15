@@ -162,8 +162,8 @@ class DailyController extends BaseController {
 			}
 		}
 
-		write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $cancelRows, 'info');
-		write_log('[CRON] 예약취소 30일 경과 자동삭제 처리 건수: ' . $deleteRows, 'info');
+		//write_log('[CRON] 예약확인 1시간 경과 자동취소 처리 건수: ' . $cancelRows, 'info');
+		//write_log('[CRON] 예약취소 30일 경과 자동삭제 처리 건수: ' . $deleteRows, 'info');
 	}
 
 
