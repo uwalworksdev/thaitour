@@ -1826,7 +1826,7 @@ $(document).ready(function() {
             $(this).addClass('active');
  			
 			var goods_name = $(this).data('tab') + '홀';
- 			
+ 			alert(goods_name);
 			$.ajax({
 				url: "/ajax/get_golf_option",
 				type: "POST",
