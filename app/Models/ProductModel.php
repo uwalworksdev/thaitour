@@ -1233,7 +1233,112 @@ class ProductModel extends Model
         return array_merge($arr_, $where);
     }
 
-    public function findProductHotelPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+public function findProductHotelPaging($where = [], $perPage = 10, $page = 1, $orderBy = ['p.onum' => 'DESC'])
+{
+    helper(['setting']);
+    $setting = homeSetInfo();
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
+    $offset = ($page - 1) * $perPage;
+
+    /** ----------------------------------------------------------------
+     * 1️⃣ 기본 SELECT
+     * ---------------------------------------------------------------- */
+    $builder = $this->db->table('tbl_product_mst AS p')
+        ->select('p.*');
+
+    /** ----------------------------------------------------------------
+     * 2️⃣ 필요한 JOIN
+     *    - o_sdate/o_edate가 필요한 경우만 JOIN
+     * ---------------------------------------------------------------- */
+    if (!empty($where['day_start']) || !empty($where['day_end']) || !empty($where['checkin']) || !empty($where['checkout'])) {
+        $builder->select('MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date')
+                ->select('MAX(STR_TO_DATE(h.o_edate, "%Y-%m-%d")) AS latest_date')
+                ->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
+    }
+
+    /** ----------------------------------------------------------------
+     * 3️⃣ WHERE 조건들
+     * ---------------------------------------------------------------- */
+    if (!empty($where['product_code_1'])) {
+        $builder->where('product_code_1', $where['product_code_1']);
+    }
+    if (!empty($where['product_code_2'])) {
+        $builder->where('product_code_2', $where['product_code_2']);
+    }
+    if (!empty($where['product_status'])) {
+        $builder->where('product_status', $where['product_status']);
+    } else {
+        $builder->where('product_status !=', 'stop');
+        $builder->where('product_status !=', 'D');
+    }
+
+    if (!empty($where['keyword'])) {
+        $builder->like('product_name', $where['keyword']);
+    }
+
+    if (!empty($where['day_start'])) {
+        $builder->where('h.o_sdate <=', $where['day_start']);
+    }
+    if (!empty($where['day_end'])) {
+        $builder->where('h.o_edate >=', $where['day_end']);
+    }
+
+    /** ----------------------------------------------------------------
+     * 4️⃣ 가격 범위
+     * ---------------------------------------------------------------- */
+    if (!empty($where['price_max'])) {
+        $priceMin = (float)$where['price_min'];
+        $priceMax = (float)$where['price_max'];
+        if (empty($where['price_type']) || $where['price_type'] == "W") {
+            $priceMin = $priceMin / $baht_thai;
+            $priceMax = $priceMax / $baht_thai;
+        }
+        $builder->where('product_price >=', $priceMin);
+        $builder->where('product_price <=', $priceMax);
+    }
+
+    /** ----------------------------------------------------------------
+     * 5️⃣ 복잡한 LIKE 조건 → 예제 단순화
+     * ---------------------------------------------------------------- */
+    if (!empty($where['search_product_category'])) {
+        $categories = explode(',', $where['search_product_category']);
+        $builder->groupStart();
+        foreach ($categories as $category) {
+            $builder->orLike('product_code_3', trim($category));
+        }
+        $builder->groupEnd();
+    }
+
+    /** ----------------------------------------------------------------
+     * 6️⃣ COUNT → OFFSET → LIMIT
+     * ---------------------------------------------------------------- */
+    $countBuilder = clone $builder;
+    $totalCount = $countBuilder->countAllResults(false);
+
+    foreach ($orderBy as $col => $dir) {
+        $builder->orderBy($col, $dir);
+    }
+
+    $items = $builder->limit($perPage, $offset)->get()->getResultArray();
+
+    /** ----------------------------------------------------------------
+     * 7️⃣ 가격 환산 (바트 → 원)
+     * ---------------------------------------------------------------- */
+    foreach ($items as &$item) {
+        $item['product_price_won'] = round($item['product_price'] * $baht_thai);
+    }
+
+    return [
+        'items'       => $items,
+        'total'       => $totalCount,
+        'perPage'     => $perPage,
+        'page'        => (int)$page,
+        'totalPages'  => ceil($totalCount / $perPage),
+    ];
+}
+
+    public function findProductHotelPagingx($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
         $setting = homeSetInfo();
