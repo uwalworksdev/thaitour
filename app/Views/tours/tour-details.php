@@ -1742,6 +1742,8 @@
 
         const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
 
+        
+
         adultQuantity = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
         childQuantity = Number(quantityContainer.find(".quantity-container.child .quantity").text());
         babyQuantity = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
@@ -1753,6 +1755,9 @@
         let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
         let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
         let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
+
+        console.log(adultTotalPrice + "  " + childTotalPrice + " " + babyTotalPrice);
+
 
         // quantityContainer.find(".quantity-container.adult .quantity").text("0");
         quantityContainer.find(".quantity-container.adult .price")
