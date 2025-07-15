@@ -3749,6 +3749,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .meeting_time {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .meeting_time__date {
