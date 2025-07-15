@@ -1060,12 +1060,9 @@ class Product extends BaseController
 
             foreach ($products['items'] as $key => $product) {
 
-foreach ($arr_code_list as $h_code) {
-    if (strpos($product['product_code_list'], $h_code) !== false) {
-        $hotel_code = $h_code;
-        break;
-    }
-}
+                $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
+                $roomsByType   = $this->db->query($sql);
+                $roomsByType   = $roomsByType->getResultArray();
 
                 $products['items'][$key]['roomsByType'] = $roomsByType;
 
