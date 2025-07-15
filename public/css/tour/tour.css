@@ -5003,7 +5003,7 @@
     object-fit: cover;
 }
 
-.tra_sec_02_swiper ._img_box ::after {
+.tra_sec_02_swiper ._img_box::after {
     content: '';
     position: absolute;
     top: 0;
