@@ -106,7 +106,7 @@ public function get_golf_option() {
 		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
 								 WHERE a.product_idx = '". $product_idx ."' 
 								 AND b.goods_date = '". $goods_date ."' 
-								 AND b.goods_name = '". $goods_name ."'
+								 AND a.goods_name = '". $goods_name ."'
 								 AND a.group_idx != '0' "; 
 		write_log("get_golf_option- ". $sql);						 
 		$rows = $db->query($sql)->getResultArray();
