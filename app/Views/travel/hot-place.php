@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
-<link rel="stylesheet" href="/css/magazines/magazines.css">
+<link rel="stylesheet" href="/css/contents/travel_tip.css">
 
 <div class="container hot_place">
     <div class="inner">
