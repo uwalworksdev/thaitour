@@ -1826,14 +1826,16 @@ $(document).ready(function() {
             $(this).addClass('active');
  			
 			var goods_name = $(this).data('tab') + '홀';
- 			
+			var goods_date_raw = $("#final_date").text(); // "2025.07.16"
+			var goods_date = goods_date_raw.replace(/\./g, '-'); // "2025-07-16"
+
 			$.ajax({
 				url: "/ajax/get_golf_option",
 				type: "POST",
 				data: {
 					product_idx : $('input[name="product_idx"]').val(),
 					goods_name  : goods_name,
-					goods_date  : $("#final_date").text()
+					goods_date  : goods_date
 				},
 				dataType: "json",
 				success: function (res) {
