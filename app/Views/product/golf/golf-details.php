@@ -1833,7 +1833,7 @@ $(document).ready(function() {
 				data: {
 					product_idx : $('input[name="product_idx"]').val(),
 					goods_name  : goods_name,
-					goods_date  : $("#final_date").txt()
+					goods_date  : $("#final_date").text()
 				},
 				dataType: "json",
 				success: function (res) {
