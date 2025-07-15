@@ -110,7 +110,7 @@ class AdminLocalGuideController extends BaseController
             $row_prod = $this->localProduct->find($row['lp_idx']);
 
             $town_code_list = $this->codeModel->getListByParentCode($row_prod['city_code']);
-            $subcategory_code_list = $this->codeModel->getListByParentCode($row_prod['city_code']);
+            $subcategory_code_list = $this->codeModel->getListByParentCode($row_prod['category_code']);
 
         }
 
