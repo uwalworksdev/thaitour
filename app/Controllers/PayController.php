@@ -73,7 +73,7 @@ class PayController extends BaseController
 				'status'           => '결제완료'
 			];
             
-			$data['ResultMsg'] = "";
+			$data['ResultMsg'] = "결제완료";
 			return view('payment_result', $data);
 		}
 
