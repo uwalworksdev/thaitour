@@ -1239,44 +1239,44 @@ public function findProductHotelPaging($where = [], $perPage = 10, $page = 1, $o
     $setting = homeSetInfo();
     $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-    $offset = ($page - 1) * $perPage;
-
-    /** ----------------------------------------------------------------
-     * 1️⃣ 기본 SELECT
-     * ---------------------------------------------------------------- */
+    /** 
+     * 1️⃣ Builder 초기화
+     */
     $builder = $this->db->table('tbl_product_mst AS p')
-        ->select('p.*');
+                        ->select('p.*');
 
-    /** ----------------------------------------------------------------
-     * 2️⃣ 필요한 JOIN
-     *    - o_sdate/o_edate가 필요한 경우만 JOIN
-     * ---------------------------------------------------------------- */
-    if (!empty($where['day_start']) || !empty($where['day_end']) || !empty($where['checkin']) || !empty($where['checkout'])) {
+    /** 
+     * 2️⃣ JOIN → 날짜필터가 있으면만 조인
+     */
+    $needsHotelJoin = !empty($where['day_start']) || !empty($where['day_end']) || (!empty($where['checkin']) && !empty($where['checkout']));
+    if ($needsHotelJoin) {
         $builder->select('MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date')
                 ->select('MAX(STR_TO_DATE(h.o_edate, "%Y-%m-%d")) AS latest_date')
                 ->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
     }
 
-    /** ----------------------------------------------------------------
-     * 3️⃣ WHERE 조건들
-     * ---------------------------------------------------------------- */
-    if (!empty($where['product_code_1'])) {
-        $builder->where('product_code_1', $where['product_code_1']);
-    }
-    if (!empty($where['product_code_2'])) {
-        $builder->where('product_code_2', $where['product_code_2']);
-    }
+    /** 
+     * 3️⃣ 기본 상태 필터
+     */
     if (!empty($where['product_status'])) {
-        $builder->where('product_status', $where['product_status']);
+        $builder->where('p.product_status', $where['product_status']);
     } else {
-        $builder->where('product_status !=', 'stop');
-        $builder->where('product_status !=', 'D');
+        $builder->where('p.product_status !=', 'stop')
+                ->where('p.product_status !=', 'D');
     }
 
-    if (!empty($where['keyword'])) {
-        $builder->like('product_name', $where['keyword']);
+    /** 
+     * 4️⃣ 코드 필터
+     */
+    foreach (['product_code_1', 'product_code_2', 'product_code_3'] as $codeKey) {
+        if (!empty($where[$codeKey])) {
+            $builder->where("p.$codeKey", $where[$codeKey]);
+        }
     }
 
+    /** 
+     * 5️⃣ 날짜필터
+     */
     if (!empty($where['day_start'])) {
         $builder->where('h.o_sdate <=', $where['day_start']);
     }
@@ -1284,9 +1284,16 @@ public function findProductHotelPaging($where = [], $perPage = 10, $page = 1, $o
         $builder->where('h.o_edate >=', $where['day_end']);
     }
 
-    /** ----------------------------------------------------------------
-     * 4️⃣ 가격 범위
-     * ---------------------------------------------------------------- */
+    if (!empty($where['checkin']) && !empty($where['checkout'])) {
+        $builder->groupStart();
+        $builder->where('STR_TO_DATE(h.o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])))
+                ->orWhere('STR_TO_DATE(h.o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+        $builder->groupEnd();
+    }
+
+    /** 
+     * 6️⃣ 가격 필터 (환율 적용)
+     */
     if (!empty($where['price_max'])) {
         $priceMin = (float)$where['price_min'];
         $priceMax = (float)$where['price_max'];
@@ -1294,49 +1301,100 @@ public function findProductHotelPaging($where = [], $perPage = 10, $page = 1, $o
             $priceMin = $priceMin / $baht_thai;
             $priceMax = $priceMax / $baht_thai;
         }
-        $builder->where('product_price >=', $priceMin);
-        $builder->where('product_price <=', $priceMax);
+        $builder->where('p.product_price >=', $priceMin)
+                ->where('p.product_price <=', $priceMax);
     }
 
-    /** ----------------------------------------------------------------
-     * 5️⃣ 복잡한 LIKE 조건 → 예제 단순화
-     * ---------------------------------------------------------------- */
-    if (!empty($where['search_product_category'])) {
-        $categories = explode(',', $where['search_product_category']);
-        $builder->groupStart();
-        foreach ($categories as $category) {
-            $builder->orLike('product_code_3', trim($category));
+    /** 
+     * 7️⃣ 키워드 검색
+     */
+    if (!empty($where['keyword'])) {
+        $builder->like('p.product_name', $where['keyword']);
+    }
+
+    if (!empty($where['search_product_name'])) {
+        $builder->like('p.product_name', $where['search_product_name']);
+    }
+
+    /** 
+     * 8️⃣ LIKE IN 배열 필터 (공통 처리)
+     */
+    $likeInFilters = [
+        'search_product_category' => 'p.product_code_3',
+        'search_product_hotel' => 'p.product_type',
+        'search_product_rating' => 'p.product_level',
+        'search_product_promotion' => 'p.product_promotions',
+        'search_product_topic' => 'p.product_theme',
+        'search_product_bedroom' => 'p.product_bedrooms',
+        'search_product_mbti' => 'p.mbti'
+    ];
+
+    foreach ($likeInFilters as $inputKey => $column) {
+        if (!empty($where[$inputKey])) {
+            $values = explode(',', $where[$inputKey]);
+            $builder->groupStart();
+            foreach ($values as $value) {
+                $builder->orLike($column, trim($value));
+            }
+            $builder->groupEnd();
         }
-        $builder->groupEnd();
     }
 
-    /** ----------------------------------------------------------------
-     * 6️⃣ COUNT → OFFSET → LIMIT
-     * ---------------------------------------------------------------- */
-    $countBuilder = clone $builder;
-    $totalCount = $countBuilder->countAllResults(false);
+    /** 
+     * 9️⃣ 상태 예외
+     */
+    if (!empty($where['is_view'])) {
+        $builder->where('p.is_view', $where['is_view']);
+    }
 
+    /** 
+     * 10️⃣ GROUP BY
+     */
+    $builder->groupBy('p.product_idx');
+
+    /** 
+     * 11️⃣ 카운트 쿼리
+     */
+    $countBuilder = clone $builder;
+    $totalCount = $countBuilder->countAllResults();
+
+    /** 
+     * 12️⃣ 페이징 계산
+     */
+    $totalPages = ceil($totalCount / $perPage);
+    $offset = ($page - 1) * $perPage;
+
+    /** 
+     * 13️⃣ 정렬
+     */
     foreach ($orderBy as $col => $dir) {
         $builder->orderBy($col, $dir);
     }
 
+    /** 
+     * 14️⃣ 결과 가져오기
+     */
     $items = $builder->limit($perPage, $offset)->get()->getResultArray();
 
-    /** ----------------------------------------------------------------
-     * 7️⃣ 가격 환산 (바트 → 원)
-     * ---------------------------------------------------------------- */
+    /** 
+     * 15️⃣ 환율 적용
+     */
     foreach ($items as &$item) {
         $item['product_price_won'] = round($item['product_price'] * $baht_thai);
     }
 
+    /** 
+     * 16️⃣ 반환
+     */
     return [
         'items'       => $items,
         'total'       => $totalCount,
         'perPage'     => $perPage,
         'page'        => (int)$page,
-        'totalPages'  => ceil($totalCount / $perPage),
+        'totalPages'  => $totalPages,
     ];
 }
+
 
     public function findProductHotelPagingx($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
