@@ -358,7 +358,7 @@
                                                style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> 원
                                         <input type="text" id="real_price_won" name="real_price_won"
                                                value="<?= number_format(convertToBath($final_price)) ?>" class="input_txt price"
-                                               style="width:150px;text-align:right;" readonly/> 바트
+                                               style="width:150px;text-align:right;" /> 바트
                                         <?php
                                         if ($ResultCode_2 == "3001" && $AuthCode_2 && $CancelDate_2 == "") {
                                             echo "결제완료 ";
