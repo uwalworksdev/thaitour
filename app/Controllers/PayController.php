@@ -50,16 +50,16 @@ class PayController extends BaseController
     {
         $order_idx = $this->request->getGet("idx");
 
-        payment_save($order_idx);
+        $payment_no = payment_save($order_idx);
 		
         // 실제 데이터 조회 예제
-        $builder = $this->db->table('tbl_order_mst');
-        $builder->where('order_idx', $order_idx);
+        $builder = $this->db->table('tbl_payment_mst');
+        $builder->where('payment_no', $payment_no);
         $row = $builder->get()->getRow();
 
-        $order_user_name   = encryptField($row->order_user_name, "decode");
-        $order_user_mobile = encryptField($row->order_user_mobile, "decode");
-        $order_user_email  = encryptField($row->order_user_email, "decode");
+        $order_user_name   = encryptField($row->payment_no_user_name, "decode");
+        $order_user_mobile = encryptField($row->payment_no_user_mobile, "decode");
+        $order_user_email  = encryptField($row->payment_no_user_email, "decode");
 		
         if (!$row) {
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
