@@ -3076,9 +3076,11 @@ function email_send($order_no, $order_status)
 
 function payment_save($order_idx)
 {
+        $db          = \Config\Database::connect();
+
 	    write_log("xxxxxxxxxxxxxx");
         $group_no      = date('YmdHis');
-/*		
+ 		
 		$sql_p = " SELECT * from tbl_order_mst WHERE order_idx = '" . $order_idx. "'";
 		$row_p = $db->query($sql_p)->getRowArray();
 
@@ -3105,8 +3107,39 @@ function payment_save($order_idx)
 		$payment_price = $payment_price + $row_p['real_price_won'];
 		
 		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
-		$db->query($sql_u);		
-*/
+		$db->query($sql_u);	
+		
+        $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+		//write_log($sql);
+        $row = $db->query($sql)->getRowArray();
+
+        if($row['cnt'] == 0) {
+			    $device_type = get_device();
+				$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
+				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+													   ,payment_no                 = '". $payment_no ."'
+													   ,order_no                   = '". $order_no ."'
+													   ,product_name               = '". $product_name ."'
+													   ,payment_date               = '". $payment_date ."'
+													   ,payment_tot                = '". $payment_price ."'
+													   ,payment_price              = '". $payment_price ."'
+													   ,payment_user_name          = '". $payment_user_name ."'
+													   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
+													   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
+													   ,payment_user_email         = '". $payment_user_email ."'
+													   ,payment_user_mobile        = '". $payment_user_mobile ."'
+													   ,payment_user_phone         = '". $payment_user_phone ."'
+													   ,local_phone                = '". $local_phone ."'	
+													   ,payment_user_gender        = '". $payment_user_gender ."'
+													   ,phone_thai                 = '". $phone_thai ."'
+													   ,payment_memo               = '". $payment_memo ."' 
+                                                       ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
+													   ,device_type                = '". $device_type ."' 
+													   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
+				//write_log("confirm()- ". $sql);
+				$result = $db->query($sql);
+		}		
+ 
 }
 
 ?>
