@@ -233,7 +233,7 @@
                                 <tr>
                                     <th>쿠폰설명</th>
                                     <td>
-                                <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
+                                        <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
                                             style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
                                     </td>
                                 </tr>
