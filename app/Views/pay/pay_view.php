@@ -117,13 +117,26 @@
 
   <h1><?= esc($product_title) ?></h1>
 
-  <div class="info-box">
-    <h3>결제정보</h3>
-    <p>예약자명: <?= esc($reservation_name) ?></p>
-    <p>이메일: <?= esc($email) ?></p>
-    <p>예약번호: <?= esc($order_number) ?></p>
-    <p>결제금액: <?= number_format($amount) ?>원</p>
-  </div>
+<div class="info-box">
+  <h3>결제정보</h3>
+  <p>
+    <span class="label">예약자명</span>
+    <span class="value"><?= esc($reservation_name) ?></span>
+  </p>
+  <p>
+    <span class="label">이메일</span>
+    <span class="value"><?= esc($email) ?></span>
+  </p>
+  <p>
+    <span class="label">예약번호</span>
+    <span class="value"><?= esc($order_number) ?></span>
+  </p>
+  <p>
+    <span class="label">결제금액</span>
+    <span class="value"><?= number_format($amount) ?>원</span>
+  </p>
+</div>
+
 
   <form method="post">
     <button type="button" onClick="nicepayStart();">결제하기</button>
