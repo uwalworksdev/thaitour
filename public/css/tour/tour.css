@@ -4994,12 +4994,24 @@
     width: 100%;
     height: 100%;
     position: relative;
+    border-radius: 16px;
 }
 
 .tra_sec_02_swiper ._img_box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.tra_sec_02_swiper ._img_box ::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
 }
 
 .tra_sec_02_swiper ._text_box {
