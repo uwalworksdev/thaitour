@@ -290,7 +290,7 @@ $setting = homeSetInfo();
             <?php
                 foreach($main_right_banner as $right_banner){    
             ?>
-                <a class="banner-side-bar" href="<?= $right_banner['url'] ?? '#!' ?>" style="display: inline-block;">
+                <a class="banner-side-bar" target="_blank" href="<?= $right_banner['url'] ?? '#!' ?>" style="display: inline-block;">
                     <img class="only_m" src="<?= '/data/bbs/' . $right_banner['ufile5'] ?>"
                         alt="<?= $right_banner['subject'] ?>">
                     <img class="only_w" src="<?= '/data/bbs/' . $right_banner['ufile6'] ?>"
@@ -300,14 +300,14 @@ $setting = homeSetInfo();
                 }
             ?>
         <?php else: ?>
-            <a class="banner-side-bar" href="<?= $main_right_banner_sub['url'] ?? '#!' ?>">
+            <a class="banner-side-bar" target="_blank" href="<?= $main_right_banner_sub['url'] ?? '#!' ?>">
                 <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner_sub['ufile5'] ?>"
                     alt="<?= $main_right_banner_sub['subject'] ?>">
                 <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner_sub['ufile6'] ?>"
                     alt="<?= $main_right_banner_sub['subject'] ?>">
             </a>
         <?php endif; ?>
-        <a href="<?= $sup_right_banner['url'] ?? '#!' ?>">
+        <a target="_blank" href="<?= $sup_right_banner['url'] ?? '#!' ?>">
             <img src="<?= '/data/bbs/' . $sup_right_banner['ufile5'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
                 class="map_img_n only_m">
             <img src="<?= '/data/bbs/' . $sup_right_banner['ufile6'] ?>" alt="<?= $sup_right_banner['subject'] ?>"
