@@ -107,6 +107,7 @@ public function get_golf_option() {
 								 WHERE product_idx = '". $product_idx ."' 
 								 AND goods_date = '". $goods_date ."' 
 								 AND goods_name = '". $goods_name ."' "; 
+		write_log("get_golf_option- ". $sql);						 
 		$rows = $db->query($sql)->getResultArray();
 		foreach ($rows as $row) {
 				 
