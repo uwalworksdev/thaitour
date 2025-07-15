@@ -13,7 +13,7 @@ class LocalGuideModel extends Model
     protected $allowedFields = [
         "lp_idx", "town_code", "subcategory_code", "ufile1", "rfile1",
         "product_name", "product_name_en", "onum", "product_contents", "m_date", "r_date",
-        "addrs", "latitude", "longitude", "time_line", "contact", "url", "r_date", "m_date"
+        "addrs", "latitude", "longitude", "time_line", "routes", "contact", "url", "r_date", "m_date"
     ];
 
     protected $codeModel;

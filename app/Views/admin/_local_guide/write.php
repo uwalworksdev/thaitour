@@ -186,8 +186,12 @@
 
                                 <tr>
                                     <th>홈페이지</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="url" value="<?= $url?>" class="text" maxlength="50"/>
+                                    </td>
+                                    <th>찾아가는 법</th>
+                                    <td>
+                                        <input type="text" name="routes" value="<?= $routes?>" class="text"/>
                                     </td>
                                 </tr>
                                 
