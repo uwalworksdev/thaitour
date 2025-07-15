@@ -1,6 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+<link rel="stylesheet" href="/css/magazines/magazines.css">
+
 <div class="container hot_place">
     <div class="inner">
         <div class="sub-hotel-navigation-container">
