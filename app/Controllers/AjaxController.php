@@ -102,7 +102,7 @@ public function get_golf_option() {
         $goods_date   = $this->request->getPost('goods_date');
         $goods_name   = $this->request->getPost('goods_name');
 
-		$sql = "SELECT a.*. b.* FROM tbl_golf_option a 
+		$sql = "SELECT a.*, b.* FROM tbl_golf_option a 
 		                         LEFT JOIN tbl_golf_price b ON a.group_idx = b.group_idx 
 								 WHERE product_idx = '". $product_idx ."' 
 								 AND goods_date = '". $goods_date ."' 
