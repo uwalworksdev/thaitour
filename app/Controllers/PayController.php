@@ -44,6 +44,12 @@ class PayController extends BaseController
             // 불일치 → alert
             return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$order_idx}';</script>");
         }
+		
+        if ($result->order_status == "Y") {  
+            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+        }
+
+
     }
 
     public function pay_view()
