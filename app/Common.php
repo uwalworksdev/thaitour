@@ -3076,7 +3076,8 @@ function email_send($order_no, $order_status)
 
 function payment_save($order_idx)
 {
-        $db          = \Config\Database::connect();
+        $db        = \Config\Database::connect();
+        $setting   = homeSetInfo();
 
 	    write_log("xxxxxxxxxxxxxx");
         $group_no      = date('YmdHis');
@@ -3116,6 +3117,8 @@ function payment_save($order_idx)
         if($row['cnt'] == 0) {
 			    $device_type = get_device();
 				$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
+                $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+				
 				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
 													   ,payment_no                 = '". $payment_no ."'
 													   ,order_no                   = '". $order_no ."'
@@ -3135,7 +3138,7 @@ function payment_save($order_idx)
 													   ,payment_memo               = '". $payment_memo ."' 
                                                        ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
 													   ,device_type                = '". $device_type ."' 
-													   ,baht_thai                  = '". $this->setting['baht_thai'] ."'" ;
+													   ,baht_thai                  = '". $baht_thai ."'" ;
 				//write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
 		}		
