@@ -5328,6 +5328,11 @@
     margin: 45px 0 95px;
 }
 
+.hot_place .sec_banner .img_prd {
+    width: 100%;
+    height: 235px;
+}
+
 .hot_place .sec_banner .text_banner {
     position: absolute;
     top: 50%;

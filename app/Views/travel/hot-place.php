@@ -48,8 +48,8 @@
                             $img_prd = "/data/product/noimg.png";
                         }
                     ?>
-                    <img class="only_web" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
-                    <img class="only_mo" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
+                    <img class="only_web img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
+                    <img class="only_mo img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
                     <div class="text_banner">
                         <span><?=$local_prod["title"]?></span>
                         <p><?=$local_prod["desc"]?></p>
