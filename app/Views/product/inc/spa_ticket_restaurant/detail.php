@@ -724,8 +724,6 @@
                 }
             ?>
 
-            let time_line = '';
-
             $("#time_line").val(time_line);
             
             $("#order_memo").val($("#extra-requests").val());

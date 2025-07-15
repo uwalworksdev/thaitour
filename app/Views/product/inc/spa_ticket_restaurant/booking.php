@@ -34,7 +34,7 @@
 
             
 			<input type="hidden" name="feeVal" id="feeVal" value="<?=$_SESSION['data_cart']['feeVal']?>" >
-            <input type="hidden" name="time_line" id="time_line" value="<?= $data["time_line"] ?>">
+            <input type="hidden" name="time_line" id="time_line" value="">
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left2">
@@ -349,10 +349,10 @@
                                 <?php
                                     if(empty($prod["use_time_line"])){
                                 ?>
-                                    <div class="item-info" style="gap: 10px;">
+                                    <!-- <div class="item-info" style="gap: 10px;">
                                         <span>예약시간: </span>
                                         <span><?= $data["time_line"] ?></span>
-                                    </div>
+                                    </div> -->
                                 <?php
                                     }
                                 ?>
