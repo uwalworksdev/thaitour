@@ -70,6 +70,10 @@ class PayController extends BaseController
             return $this->response->setBody("<script>alert('결제 정보를 찾을 수 없습니다.');history.back();</script>");
         }
 
+        if ($row->order_status == "Y") {
+            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+        }
+
         $data = [
             'order_idx'        => $row->order_idx,
             'reservation_name' => $order_user_name,
