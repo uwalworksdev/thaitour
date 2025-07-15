@@ -3085,6 +3085,7 @@ function payment_save($order_idx)
 		$sql_p = " SELECT * from tbl_order_mst WHERE order_idx = '" . $order_idx. "'";
 		$row_p = $db->query($sql_p)->getRowArray();
 
+        $order_no                   = $row_p['order_no'];
 	    $product_name               = $row_p['product_name'];
 
 	    $payment_user_name          = $row_p['order_user_name'];
@@ -3107,8 +3108,10 @@ function payment_save($order_idx)
 		   
 		$payment_price = $payment_price + $row_p['real_price_won'];
 		
-		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $array[$i]. "'";
+		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $order_no . "'";
 		$db->query($sql_u);	
+
+		$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
 		
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
 		//write_log($sql);
@@ -3116,7 +3119,6 @@ function payment_save($order_idx)
 
         if($row['cnt'] == 0) {
 			    $device_type = get_device();
-				$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
                 $baht_thai   = (float)($setting['baht_thai'] ?? 0);
 				
 				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
@@ -3141,7 +3143,9 @@ function payment_save($order_idx)
 													   ,baht_thai                  = '". $baht_thai ."'" ;
 				//write_log("confirm()- ". $sql);
 				$result = $db->query($sql);
-		}		
+		}
+		
+		return $payment_no;
  
 }
 
