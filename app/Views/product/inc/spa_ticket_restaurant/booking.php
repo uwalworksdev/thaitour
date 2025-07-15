@@ -289,6 +289,10 @@
                         </div>
 
                         <div class="card-left2 card_left_bottom_">
+                            
+                            <h3 class="title-main-c">
+                                별도 요청
+                            </h3>
                             <?php
                                 if(empty($data_['use_time_line'])){
                             ?>
@@ -319,9 +323,6 @@
                             <?php
                                 }
                             ?>
-                            <h3 class="title-main-c">
-                                별도 요청
-                            </h3>
                             <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
                                 보장되지
                                 않을 수 있습니다.</p>
