@@ -149,6 +149,7 @@ class AdminLocalGuideController extends BaseController
             $data['latitude']           = updateSQ($_POST["latitude"] ?? '');
             $data['longitude']          = updateSQ($_POST["longitude"] ?? '');
             $data['time_line']          = updateSQ($_POST["time_line"] ?? '');
+            $data['routes']             = updateSQ($_POST["routes"] ?? '');
             $data['url']                = updateSQ($_POST["url"] ?? '');
             $data['contact']            = updateSQ($_POST["contact"] ?? '');
             $data['product_contents']   = updateSQ($_POST["product_contents"] ?? '');
