@@ -99,7 +99,7 @@ public function get_golf_option() {
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
 		
         $product_idx  = $this->request->getPost('product_idx');
-        $goods_date   = "2025-07-16";
+        $goods_date   = $this->request->getPost('goods_date');
         $goods_name   = $this->request->getPost('goods_name');
 
 		$sql = "SELECT a.*, b.* FROM tbl_golf_option a 

@@ -705,7 +705,7 @@ $(document).ready(function() {
             <div class="left-main">
                 <p>
                     <span class="l-label">일정</span>
-                    <span class="l-label2 final_date"></span>
+                    <span class="l-label2 final_date" id="final_date"></span>
                 </p>
                 <p>
                     <span class="l-label">홀수</span>
@@ -1832,7 +1832,8 @@ $(document).ready(function() {
 				type: "POST",
 				data: {
 					product_idx : $('input[name="product_idx"]').val(),
-					goods_name  : goods_name
+					goods_name  : goods_name,
+					goods_date  : $("#final_date").txt()
 				},
 				dataType: "json",
 				success: function (res) {
