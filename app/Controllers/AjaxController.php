@@ -93,68 +93,68 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
-public function get_golf_option()
-{
-    $db = \Config\Database::connect();
-    $setting = homeSetInfo();
-    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+	public function get_golf_option()
+	{
+		$db = \Config\Database::connect();
+		$setting = homeSetInfo();
+		$baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-    $product_idx = $this->request->getPost('product_idx');
-    $goods_date = $this->request->getPost('goods_date');
-    $goods_name = $this->request->getPost('goods_name');
+		$product_idx = $this->request->getPost('product_idx');
+		$goods_date = $this->request->getPost('goods_date');
+		$goods_name = $this->request->getPost('goods_name');
 
-    // ✅ Query Builder 사용 → Injection 방지
-    $builder = $db->table('tbl_golf_option a');
-    $builder->select('a.*, b.*');
-    $builder->join('tbl_golf_price b', 'a.group_idx = b.group_idx', 'left');
-    $builder->where('a.product_idx', $product_idx);
-    $builder->where('b.goods_date', $goods_date);
-    $builder->where('a.goods_name', $goods_name);
-    $builder->where('a.group_idx !=', 0);
-    $builder->limit(1);
+		// ✅ Query Builder 사용 → Injection 방지
+		$builder = $db->table('tbl_golf_option a');
+		$builder->select('a.*, b.*');
+		$builder->join('tbl_golf_price b', 'a.group_idx = b.group_idx', 'left');
+		$builder->where('a.product_idx', $product_idx);
+		$builder->where('b.goods_date', $goods_date);
+		$builder->where('a.goods_name', $goods_name);
+		$builder->where('a.group_idx !=', 0);
+		$builder->limit(1);
 
-    $rows = $builder->get()->getResultArray();
+		$rows = $builder->get()->getResultArray();
 
-    // ✅ 결과 없음 처리
-    if (empty($rows)) {
-        return $this->response->setJSON([
-            'result' => 'FAIL',
-            'message' => '옵션 데이터가 없습니다.'
-        ]);
-    }
+		// ✅ 결과 없음 처리
+		if (empty($rows)) {
+			return $this->response->setJSON([
+				'result' => 'FAIL',
+				'message' => '옵션 데이터가 없습니다.'
+			]);
+		}
 
-    $row = $rows[0];
+		$row = $rows[0];
 
-    // ✅ 변환
-    $convertPrice = function ($value) use ($baht_thai) {
-        return (int) round($value * $baht_thai);
-    };
+		// ✅ 변환
+		$convertPrice = function ($value) use ($baht_thai) {
+			return (int) round($value * $baht_thai);
+		};
 
-    $output = [
-        'option_idx'        => $row['idx'],
+		$output = [
+			'option_idx'        => $row['idx'],
 
-        'vehicle_price1_ba' => $row['vehicle_price1'],
-        'vehicle_price2_ba' => $row['vehicle_price2'],
-        'vehicle_price3_ba' => $row['vehicle_price3'],
-        'cart_price_ba'     => $row['cart_price'],
-        'caddie_fee_ba'     => $row['caddie_fee'],
+			'vehicle_price1_ba' => $row['vehicle_price1'],
+			'vehicle_price2_ba' => $row['vehicle_price2'],
+			'vehicle_price3_ba' => $row['vehicle_price3'],
+			'cart_price_ba'     => $row['cart_price'],
+			'caddie_fee_ba'     => $row['caddie_fee'],
 
-        'vehicle_price1'    => $convertPrice($row['vehicle_price1']),
-        'vehicle_price2'    => $convertPrice($row['vehicle_price2']),
-        'vehicle_price3'    => $convertPrice($row['vehicle_price3']),
-        'cart_price'        => $convertPrice($row['cart_price']),
-        'caddie_fee'        => $convertPrice($row['caddie_fee']),
+			'vehicle_price1'    => $convertPrice($row['vehicle_price1']),
+			'vehicle_price2'    => $convertPrice($row['vehicle_price2']),
+			'vehicle_price3'    => $convertPrice($row['vehicle_price3']),
+			'cart_price'        => $convertPrice($row['cart_price']),
+			'caddie_fee'        => $convertPrice($row['caddie_fee']),
 
-        'o_cart_due'        => $row['o_cart_due'],
-        'o_caddy_due'       => $row['o_caddy_due'],
-        'o_cart_cont'       => $row['o_cart_cont'],
-        'o_caddy_cont'      => $row['o_caddy_cont'],
+			'o_cart_due'        => $row['o_cart_due'],
+			'o_caddy_due'       => $row['o_caddy_due'],
+			'o_cart_cont'       => $row['o_cart_cont'],
+			'o_caddy_cont'      => $row['o_caddy_cont'],
 
-        'result'            => 'OK'
-    ];
+			'result'            => 'OK'
+		];
 
-    return $this->response->setJSON($output);
-}
+		return $this->response->setJSON($output);
+	}
 	
 	public function hotel_price_add()
     {
