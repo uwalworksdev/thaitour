@@ -182,6 +182,16 @@
                     </div>
                 </div>
         </div>
+        <?php
+
+            if(!empty($local_detail['ufile1'])) {
+                $i3 = 1;
+            }else{
+                $i3 = 0;
+            }
+            $i3 += count($img_list);
+        ?>
+
         <div class="rating-container">
             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
             <span><strong>4.7</strong></span>
