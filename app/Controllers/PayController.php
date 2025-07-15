@@ -73,7 +73,7 @@ class PayController extends BaseController
 				'status'           => '결제완료'
 			];
             
-			$data['ResultMsg'] = "결제완료";
+			$data['ResultMsg'] = "결제가 완료된 예약입니다";
 			return view('payment_result', $data);
 		}
 
