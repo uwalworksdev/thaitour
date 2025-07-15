@@ -1940,5 +1940,23 @@ public function getRoomsByProductIdxes(array $productIdxes): array
 
     return $result;
 }
-	
+
+	public function getImagesByProductIdxes(array $productIdxes): array
+{
+    if (empty($productIdxes)) return [];
+
+    $result = [];
+    $query = $this->db->table('tbl_product_img')
+        ->whereIn('product_idx', $productIdxes)
+        ->where('ufile !=', '')
+        ->orderBy('onum ASC, i_idx ASC')
+        ->get();
+
+    foreach ($query->getResultArray() as $img) {
+        $result[$img['product_idx']][] = $img;
+    }
+
+    return $result;
+}
+
 }
