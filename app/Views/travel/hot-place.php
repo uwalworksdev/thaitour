@@ -59,11 +59,13 @@
                 </div>
             </div>
         </div>
-        <div class="input_search_box">
-            <input type="text">
-            <img class="only_web" src="/img/sub/search-ic-01.png" alt="search-ic">
-            <img class="only_mo" src="/img/sub/search-ic-35.jpg" alt="search-ic">
-        </div>
+        <form name="frmSearch" method="get">
+            <div class="input_search_box">
+                <input type="text" name="search_txt" id="search_txt" value="<?= $search_txt ?>">
+                <img class="only_web" onclick="goSearch();" src="/img/sub/search-ic-01.png" alt="search-ic">
+                <img class="only_mo" onclick="goSearch();" src="/img/sub/search-ic-35.jpg" alt="search-ic">
+            </div>
+        </form>
         <div class="list_place">
             <?php
                 foreach($local_guide_list["items"] as $local_guide){
@@ -221,6 +223,11 @@
     </div>
 
     <script>
+        function goSearch() {
+            let frm = document.frmSearch;
+            frm.submit();
+        }
+
         $(document).ready(function () {
             $('.icon_open_depth_').on('click', function (e) {
                 e.stopPropagation();
