@@ -104,7 +104,22 @@
         font-size: 0.9rem;
       }
     }
+	
+.info-box p {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.info-box .label {
+  font-weight: bold;
+}
+
+.info-box .value {
+  text-align: right;
+}
   </style>
+
 </head>
 <body>
 
