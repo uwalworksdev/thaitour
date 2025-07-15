@@ -1015,13 +1015,13 @@ class Product extends BaseController
 						  ->get()
 						  ->getResultArray();
 
-            $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
-            $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
-            $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
-            $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
-            $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
+            //$types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
+            //$ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
+            //$promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
+            //$topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
+            //$bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
 
-            $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+            //$parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
             foreach ($codes as $code) {
