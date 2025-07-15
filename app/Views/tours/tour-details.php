@@ -1744,47 +1744,47 @@
 
         
 
-        adultQuantity_s = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
-        childQuantity_s = Number(quantityContainer.find(".quantity-container.child .quantity").text());
-        babyQuantity_s = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
+        adultQuantity = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
+        childQuantity = Number(quantityContainer.find(".quantity-container.child .quantity").text());
+        babyQuantity = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
 
-        adultTotalPrice_s = Number(dayData?.goods_price1_won ?? 0) * adultQuantity_s;
-        childTotalPrice_s = Number(dayData?.goods_price2_won ?? 0) * childQuantity_s;
-        babyTotalPrice_s = Number(dayData?.goods_price3_won ?? 0) * babyQuantity_s;
+        adultTotalPrice = Number(dayData?.goods_price1_won ?? 0) * adultQuantity;
+        childTotalPrice = Number(dayData?.goods_price2_won ?? 0) * childQuantity;
+        babyTotalPrice = Number(dayData?.goods_price3_won ?? 0) * babyQuantity;
 
-        let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity_s;
-        let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity_s;
-        let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity_s;
+        let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
+        let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
+        let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
 
 
         // quantityContainer.find(".quantity-container.adult .quantity").text("0");
         quantityContainer.find(".quantity-container.adult .price")
-            .text(number_format(adultTotalPrice_s) + "원")
-            .attr("data-price", adultTotalPrice_s);
+            .text(number_format(adultTotalPrice) + "원")
+            .attr("data-price", Number(dayData?.goods_price1_won ?? 0));
         quantityContainer.find(".quantity-container.adult .currency")
             .text(number_format(adultTotalPriceBath) + " 바트")
-            .attr("data-price-baht", adultTotalPriceBath);
+            .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
 
         quantityContainer.find(".quantity-container.child .price").text("0원")
-            .text(number_format(childTotalPrice_s) + "원")
-            .attr("data-price", childTotalPrice_s);
+            .text(number_format(childTotalPrice) + "원")
+            .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
         quantityContainer.find(".quantity-container.child .currency")
             .text(number_format(childTotalPriceBath) + " 바트")
-            .attr("data-price-baht", childTotalPriceBath);
+            .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
 
         quantityContainer.find(".quantity-container.baby .price").text("0원")
-            .text(number_format(babyTotalPrice_s) + "원")
-            .attr("data-price", babyTotalPrice_s);
+            .text(number_format(babyTotalPrice) + "원")
+            .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
         quantityContainer.find(".quantity-container.baby .currency")
             .text(number_format(babyTotalPriceBath) + "원")
-            .attr("data-price-baht", babyTotalPriceBath);
+            .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
 
-        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
-        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+        // adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        // adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
 
         setupQuantityUI(quantityContainer, dayData);
 
-        const total_price = adultTotalPrice_s + childTotalPrice_s + babyTotalPrice_s + totalCostWon;
+        const total_price = adultTotalPrice + childTotalPrice + babyTotalPrice + totalCostWon;
         $(".total_all_price").text(total_price.toLocaleString('ko-KR'));
 
         updateTotalPeopleDisplay();
