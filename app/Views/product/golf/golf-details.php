@@ -1829,9 +1829,10 @@ $('.tag-list .tag-js').on('click', function () {
   $(".final_hole").text($(this).data('tab'));
 
   // 3. AJAX 데이터 준비
-  var goods_name = $(this).data('tab') + '홀';
+  var goods_name  = $(this).data('tab') + '홀';
   var product_idx = $('input[name="product_idx"]').val();
-
+  var goods_date  = $(".final_date").text();
+  alert(goods_date); 
   // 4. AJAX 호출
   $.ajax({
     url: "/ajax/get_golf_option",
@@ -1986,7 +1987,6 @@ $('.tag-list .tag-js').on('click', function () {
             if (date) {
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
-				alert(date);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
                 showHideCaddy();
