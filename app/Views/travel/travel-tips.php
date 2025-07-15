@@ -94,7 +94,7 @@
                                     }
                             ?>
                                 <div class="swiper-slide">
-                                    <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail?lp_idx=<?=$local_product["idx"]?>&city_code=<?=$local_product["city_code"]?>">
+                                    <a class="tra_sec_02_swiper_item" href="/travel-tips/hot-place?lp_idx=<?=$local_product["idx"]?>&city_code=<?=$local_product["city_code"]?>">
                                         <div class="_img_box">
                                             <img src="<?=$img?>" alt="<?=$local_product["rfile1"]?>">
                                         </div>
