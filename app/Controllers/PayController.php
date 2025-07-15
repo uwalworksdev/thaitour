@@ -61,9 +61,21 @@ class PayController extends BaseController
         $builder->where('order_idx', $order_idx);
         $order   = $builder->get()->getRow();
 
-        if ($order->order_status == "Y") {  
-            return $this->renderView('payment_result', $data);
-        }
+if ($order->order_status == "Y") {
+    $data = [
+        'order_idx'        => $order->order_idx,
+        'reservation_name' => '-', // 이미 결제완료라면 이름 불러올 필요 없으면
+        'mobile'           => '-',
+        'email'            => '-',
+        'order_number'     => $order->payment_no,
+        'amount'           => $order->order_amount,
+        'product_title'    => $order->product_title,
+        'status'           => '결제완료'
+    ];
+
+    return view('payment_result', $data);
+}
+
 
         $payment_no = $order->payment_no;
 		
