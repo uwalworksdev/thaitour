@@ -10,6 +10,8 @@
             const $btn = $(document.activeElement); 
             if ($btn.prop("disabled")) return;
             $btn.prop("disabled", true); 
+            let time_line = $("#hours").val() + ":" + $("#minutes").val();
+            $("#time_line").val(time_line);
 
     		if(status == "W") {
 					if ($("#order_user_name").val() === "") {
