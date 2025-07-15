@@ -1764,8 +1764,8 @@
             .text(number_format(Number(dayData?.goods_price3 ?? 0)) + "원")
             .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
 
-        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
-        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+        // adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        // adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
 
         setupQuantityUI(quantityContainer, dayData);
 
