@@ -289,9 +289,40 @@
                         </div>
 
                         <div class="card-left2 card_left_bottom_">
+                            
                             <h3 class="title-main-c">
                                 별도 요청
                             </h3>
+                            <?php
+                                if(empty($data_['use_time_line'])){
+                            ?>
+                                <div class="meeting_time">
+                                    <select name="hours" id="hours">
+                                        <?php
+                                        for ($i = 0; $i < 24; $i++) {
+                                            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                        ?>
+                                            <option value="<?= $hour ?>"><?= $hour ?></option>
+                                            <?php
+                                        }
+                                            ?>
+                                    </select>
+                                    <label for="hours">시</label>
+                                    <select name="minutes" id="minutes">
+                                        <?php
+                                        for ($i = 0; $i < 60; $i += 1) {
+                                            $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                        ?>
+                                            <option value="<?= $minute ?>"><?= $minute ?></option>
+                                            <?php
+                                        }
+                                            ?>
+                                    </select>
+                                    <label for="minutes">분</label>
+                                </div>
+                            <?php
+                                }
+                            ?>
                             <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
                                 보장되지
                                 않을 수 있습니다.</p>
