@@ -93,7 +93,7 @@ class AjaxController extends BaseController {
         return $this->response->setJSON($output);
     }
 
-public function get_golf_option() {
+    public function get_golf_option() {
         $db           = \Config\Database::connect();
 		$setting      = homeSetInfo();
         $baht_thai    = (float)($setting['baht_thai'] ?? 0);
@@ -108,7 +108,6 @@ public function get_golf_option() {
 								 AND b.goods_date = '". $goods_date ."' 
 								 AND a.goods_name = '". $goods_name ."'
 								 AND a.group_idx != '0' "; 
-		write_log("get_golf_option- ". $sql);						 
 		$rows = $db->query($sql)->getResultArray();
 		foreach ($rows as $row) {
 				 
