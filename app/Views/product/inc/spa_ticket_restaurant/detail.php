@@ -168,8 +168,8 @@
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div class="flex_b_c tours_time_sect">
-                        <p class="open_time" style="display: none">운영시간: <?= $data_['time_line'] ?></p>
+                    <div class="flex_b_c tours_time_sect" style="display: none;">
+                        <!-- <p class="open_time" style="display: none">운영시간: <?= $data_['time_line'] ?></p> -->
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
@@ -619,8 +619,8 @@
                     </div>
                 </div>
                 <div class="popup_place__body">
-                    <!-- <div class="flex_b_c tours_time_sect">
-                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                    <div class="flex_b_c tours_time_sect">
+                        <!-- <p class="open_time">운영시간: <?= $data_['time_line'] ?></p> -->
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
@@ -651,7 +651,7 @@
                         <?php
                             }
                         ?>
-                    </div> -->
+                    </div>
                     <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
                         보장되지
                         않을 수 있습니다.</p>
