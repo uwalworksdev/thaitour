@@ -1826,7 +1826,6 @@ $(document).ready(function() {
             $(this).addClass('active');
  			
 			var goods_name = $(this).data('tab') + '홀';
- 			alert(goods_name);
 			$.ajax({
 				url: "/ajax/get_golf_option",
 				type: "POST",
@@ -1836,7 +1835,7 @@ $(document).ready(function() {
 				},
 				dataType: "json",
 				success: function (res) {
-					 	
+					alert('xxxxxxxx'); 	
 					alert(res.vehicle_price1_ba);
 					alert(res.vehicle_price1);
 					alert(res.vehicle_price2_ba);
