@@ -31,7 +31,7 @@
         margin-left: 0;
     }
 
-    #se2_iframe {
+    iframe {
         height: 400px !important;
     }
 </style>
