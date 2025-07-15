@@ -48,11 +48,11 @@
                             $img_prd = "/data/product/noimg.png";
                         }
                     ?>
-                    <img class="only_web" src="/img/sub/hot-place-banner.png" alt="">
-                    <img class="only_mo" src="/img/sub/hot-place-banner-m.jpg" alt="">
+                    <img class="only_web img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
+                    <img class="only_mo img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
                     <div class="text_banner">
-                        <span>태국 로컬시장 완벽 탐구!</span>
-                        <p>전통시장부터 야시장까지~</p>
+                        <span><?=$local_prod["title"]?></span>
+                        <p><?=$local_prod["desc"]?></p>
                     </div>
                 </div>
             </div>
