@@ -1,7 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+ <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <?php
 
     $titleStr = "생성";
