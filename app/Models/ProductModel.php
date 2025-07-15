@@ -1962,5 +1962,27 @@ class ProductModel extends Model
 		];
 	}
 
+/**
+ * 여러 stay_idx를 한 번에 조회해서 인덱스 배열로 반환
+ * 예: [ stay_idx => row ]
+ */
+public function getStayInfoByIdxes(array $stayIdxes): array
+{
+    if (empty($stayIdxes)) {
+        return [];
+    }
+
+    $result = [];
+    $query = $this->db->table('tbl_product_stay')
+                      ->whereIn('stay_idx', $stayIdxes)
+                      ->get();
+
+    foreach ($query->getResultArray() as $row) {
+        $result[$row['stay_idx']] = $row;
+    }
+
+    return $result;
+}
+
 	
 }
