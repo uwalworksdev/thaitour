@@ -3073,4 +3073,10 @@ function email_send($order_no, $order_status)
 
 }
 */
+
+function payment_save($order_idx)
+{
+	    write_log("xxxxxxxxxxxxxx");
+}
+
 ?>
