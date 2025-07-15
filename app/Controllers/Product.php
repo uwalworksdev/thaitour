@@ -1205,7 +1205,7 @@ public function listHotel()
 
                 $products['items'][$key]['codeTree'] = $codeTree;
 
-                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+                //$productReview = $this->reviewModel->getProductReview($product['product_idx']);
                 $hotel = $this->productModel->find($product['product_idx']);
 
                 $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0  ORDER BY o_room DESC, o_sdate DESC';
@@ -1263,8 +1263,8 @@ public function listHotel()
                     $products['items'][$key]['promotions'] = $fresult5;
                 }
 
-                $products['items'][$key]['total_review'] = $productReview['total_review'];
-                $products['items'][$key]['review_average'] = $productReview['avg'];
+                //$products['items'][$key]['total_review'] = $productReview['total_review'];
+                //$products['items'][$key]['review_average'] = $productReview['avg'];
 
                 $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
                 $fresult9 = $this->db->query($fsql9);
