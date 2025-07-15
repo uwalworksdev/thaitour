@@ -74,7 +74,7 @@
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>투어타입</span>
-
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
                                 <div class="tab_box_area_">
                                     <ul class="tab_box_show_">
