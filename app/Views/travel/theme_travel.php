@@ -116,18 +116,18 @@
                     <div class="img">
                         <img src="<?=$img?>" alt="<?=$local_guide["rfile1"]?>">
                         <div class="text">
-                            <span><?=$local_guide["category_code_name"]?> </span>
+                            <span><?=viewSQ($local_guide["category_code_name"])?> </span>
                             <img src="/img/sub/arr-right-01.png" alt="">
-                            <span> <?=$local_guide["subcategory_code_name"]?></span>
+                            <span> <?=viewSQ($local_guide["subcategory_code_name"])?></span>
                         </div>
                     </div>
                     <div class="info">
                         <div class="title">
-                            <span><?=$local_guide["city_code_name"]?> </span>
+                            <span><?=viewSQ($local_guide["city_code_name"])?> </span>
                             <img src="/img/sub/arr-right-01.png" alt="">
-                            <span> <?=$local_guide["town_code_name"]?></span>
+                            <span> <?=viewSQ($local_guide["town_code_name"])?></span>
                         </div>
-                        <p class="name"><?=$local_guide["product_name"]?></p>
+                        <p class="name"><?=viewSQ($local_guide["product_name"])?></p>
                         <div class="vote">
                             <p class="star">
                                 <img src="/img/sub/star-ic-13.png" alt="">
