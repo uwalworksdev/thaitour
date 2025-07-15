@@ -614,7 +614,7 @@
                                 <tr>
                                     <th>수정일자</th>
                                     <td>
-										<div class="flex" style="gap: 10px;">
+										<div class="flex" style="gap: 10px; flex-direction: column;">
                                             <?php
                                                 foreach ($history_order_list as $history_item) {
                                             ?>
