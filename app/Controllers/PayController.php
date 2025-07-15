@@ -31,7 +31,7 @@ class PayController extends BaseController
 
         // DB에서 phone_last4 가져오기
         $builder = $this->db->table('tbl_order_mst');
-        $builder->select('order_user_mobile');
+        $builder->select('order_user_mobile, order_status');
         $builder->where('order_idx', $order_idx);
         $result           = $builder->get()->getRow();
         $user_mobile      = $result->order_user_mobile;
