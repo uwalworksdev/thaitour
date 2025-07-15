@@ -31,7 +31,7 @@ class PayController extends BaseController
 
         // DB에서 phone_last4 가져오기
         $builder = $this->db->table('tbl_order_mst');
-        $builder->select('order_user_mobile');
+        $builder->select('order_user_mobile, order_status');
         $builder->where('order_idx', $order_idx);
         $result           = $builder->get()->getRow();
         $user_mobile      = $result->order_user_mobile;
@@ -44,6 +44,12 @@ class PayController extends BaseController
             // 불일치 → alert
             return $this->response->setBody("<script>alert('전화번호를 확인하세요');location.href='/pay?idx={$order_idx}';</script>");
         }
+		
+        if ($result->order_status == "Y") {  
+            return $this->response->setBody("<script>alert('결제가 완료된 예약입니다.');history.back();</script>");
+        }
+
+
     }
 
     public function pay_view()
