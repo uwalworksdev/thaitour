@@ -16,7 +16,28 @@ class PayController extends BaseController
 
     public function pay()
     {
-        $payment_idx = $this->request->getGet('idx');
+        $order_idx = $this->request->getGet('idx');
+		
+        $builder = $this->db->table('tbl_order_mst');
+        $builder->where('order_idx', $order_idx);
+        $order   = $builder->get()->getRow();
+
+		if ($order->order_status == "Y") {
+			$data = [
+				'order_idx'        => $order->order_idx,
+				'reservation_name' => '-', // 이미 결제완료라면 이름 불러올 필요 없으면
+				'mobile'           => '-',
+				'email'            => '-',
+				'order_number'     => $order->payment_no,
+				'amount'           => $order->order_amount,
+				'product_title'    => $order->product_title,
+				'status'           => '결제완료'
+			];
+            
+			$data['ResultMsg'] = "결제가 완료된 예약입니다";
+			return view('payment_result', $data);
+		}
+
         return view('pay/pay', ['idx' => $payment_idx]);
     }
 
