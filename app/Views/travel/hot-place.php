@@ -75,7 +75,7 @@
                         $img = "/data/product/noimg.png";
                     }
             ?>
-            <a href="/travel-tips/view_detail" class="item">
+            <a href="/travel-tips/view_detail?lg_idx=<?=$local_guide["idx"]?>" class="item">
                 <div class="img">
                     <img src="<?=$img?>" alt="<?=$local_guide["rfile1"]?>">
                 </div>
