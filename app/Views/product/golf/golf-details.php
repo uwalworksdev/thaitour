@@ -1820,76 +1820,85 @@ $(document).ready(function() {
             });
 
         });
-$('.tag-list .tag-js').on('click', function () {
-  // 1. active 이동
-  $('.tag-list .tag-js').removeClass('active');
-  $(this).addClass('active');
+        $('.tag-list .tag-js').on('click', function () {
+            $('.tag-list .tag-js').removeClass('active');
+            $(".final_hole").text($(this).data('tab'));
+            $(this).addClass('active');
+ 			
+			var goods_name = $(this).data('tab') + '홀';
+ 			
+			$.ajax({
+				url: "/ajax/get_golf_option",
+				type: "POST",
+				data: {
+					product_idx : $('input[name="product_idx"]').val(),
+					goods_name  : goods_name
+				},
+				dataType: "json",
+				success: function (res) {
+					/*	
+					alert(res.vehicle_price1_ba);
+					alert(res.vehicle_price1);
+					alert(res.vehicle_price2_ba);
+					alert(res.vehicle_price2);
+					alert(res.vehicle_price3_ba);
+					alert(res.vehicle_price3);
+					alert(res.cart_price_ba);
+					alert(res.cart_price);
+					alert(res.caddie_fee_ba); 
+					alert(res.caddie_fee); 
+					*/
 
-  // 2. 선택된 홀 표기
-  $(".final_hole").text($(this).data('tab'));
+					// 요소 선택
+					$("#option_idx").val(res.option_idx);
+					$("#o_cart_due").val(res.o_cart_due); 	
+					$("#o_caddy_due").val(res.o_caddy_due);	
+					$("#o_cart_cont").val(res.o_cart_cont); 	
+					$("#o_caddy_cont").val(res.o_caddy_cont); 			 
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_1');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.vehicle_price1);
+					$selectElement.attr('data-price_baht', res.vehicle_price1_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_2');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.vehicle_price2);
+					$selectElement.attr('data-price_baht', res.vehicle_price2_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_3');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.vehicle_price3);
+					$selectElement.attr('data-price_baht', res.vehicle_price3_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_4');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.cart_price);
+					$selectElement.attr('data-price_baht', res.cart_price_ba);					
+					
+					// 요소 선택
+					var $selectElement = $('#vehicle_5');
+					// 동적으로 data 속성 변경
+					$selectElement.attr('data-price', res.caddie_fee);
+					$selectElement.attr('data-price_baht', res.caddie_fee_ba);	                                        
+                    
 
-  // 3. AJAX 데이터 준비
-  var goods_name  = $(this).data('tab') + '홀';
-  var product_idx = $('input[name="product_idx"]').val();
-//  var goods_date  = $(".final_date").text();
-//  alert(goods_date); 
-  // 4. AJAX 호출
-  $.ajax({
-    url: "/ajax/get_golf_option",
-    type: "POST",
-    data: {
-      product_idx: product_idx,
-      goods_name: goods_name,
-      goods_date: "2025-07-16"
-    },
-    dataType: "json",
-    success: function (res) {
-      console.log('AJAX 성공:', res);
-
-      // 값 세팅
-      $("#option_idx").val(res.option_idx);
-      $("#o_cart_due").val(res.o_cart_due);
-      $("#o_caddy_due").val(res.o_caddy_due);
-      $("#o_cart_cont").val(res.o_cart_cont);
-      $("#o_caddy_cont").val(res.o_caddy_cont);
-
-      // 차량 가격 정보
-      $('#vehicle_1').attr({
-        'data-price': res.vehicle_price1,
-        'data-price_baht': res.vehicle_price1_ba
-      });
-
-      $('#vehicle_2').attr({
-        'data-price': res.vehicle_price2,
-        'data-price_baht': res.vehicle_price2_ba
-      });
-
-      $('#vehicle_3').attr({
-        'data-price': res.vehicle_price3,
-        'data-price_baht': res.vehicle_price3_ba
-      });
-
-      $('#vehicle_4').attr({
-        'data-price': res.cart_price,
-        'data-price_baht': res.cart_price_ba
-      });
-
-      $('#vehicle_5').attr({
-        'data-price': res.caddie_fee,
-        'data-price_baht': res.caddie_fee_ba
-      });
-
-      // ✅ AJAX 완료 후 처리
-      getOptions();
-      calculatePrice();
-    },
-    error: function(xhr, status, error) {
-      console.error('AJAX 실패:', status, error);
-      alert('옵션 정보를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
-    }
-  });
-});
-
+				}
+			})
+			/* 	
+			$("#vehicle_1").val(""); // 기본값으로 리셋
+			$("#vehicle_2").val(""); // 기본값으로 리셋
+			$("#vehicle_3").val(""); // 기본값으로 리셋
+			$("#vehicle_4").val(""); // 기본값으로 리셋
+			$("#vehicle_5").val(""); // 기본값으로 리셋
+            */
+            getOptions();
+            calculatePrice();
+        });
 
         $('.tag-list .tag-js2').on('click', function () {
             $('.tag-list .tag-js2').removeClass('active');
