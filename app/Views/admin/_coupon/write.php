@@ -236,10 +236,10 @@
                                     <td>
                                         <select name="state" id="state">
                                             <option value="Y" <?php if (isset($state) && $state == "Y") echo "selected"; ?> >
-                                                사용
+                                                노출
                                             </option>
                                             <option value="N" <?php if (isset($state) && $state == "N") echo "selected"; ?> >
-                                                중지
+                                                비노출
                                             </option>
                                         </select>
                                     </td>
