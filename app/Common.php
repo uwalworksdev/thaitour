@@ -3080,7 +3080,8 @@ function payment_save($order_idx)
         $setting   = homeSetInfo();
 
 	    write_log("xxxxxxxxxxxxxx");
-        $group_no      = date('YmdHis');
+        $group_no    = date('YmdHis');
+		$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
  		
 		$sql_p = " SELECT * from tbl_order_mst WHERE order_idx = '" . $order_idx. "'";
 		$row_p = $db->query($sql_p)->getRowArray();
@@ -3108,10 +3109,8 @@ function payment_save($order_idx)
 		   
 		$payment_price = $payment_price + $row_p['real_price_won'];
 		
-		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."' WHERE order_no = '" . $order_no . "'";
+		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."', payment_no = '". $payment_no ."' WHERE order_no = '" . $order_no . "'";
 		$db->query($sql_u);	
-
-		$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
 		
         $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
 		//write_log($sql);
