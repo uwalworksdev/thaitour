@@ -1959,4 +1959,20 @@ public function getRoomsByProductIdxes(array $productIdxes): array
     return $result;
 }
 
+public function getStayInfoByIdxes(array $stayIdxes): array
+{
+    if (empty($stayIdxes)) return [];
+
+    $result = [];
+    $query = $this->db->table('tbl_product_stay')
+        ->whereIn('stay_idx', $stayIdxes)
+        ->get();
+
+    foreach ($query->getResultArray() as $row) {
+        $result[$row['stay_idx']] = $row;
+    }
+
+    return $result;
+}
+
 }
