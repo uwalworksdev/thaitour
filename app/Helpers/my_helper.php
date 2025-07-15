@@ -1629,6 +1629,13 @@ function getBannerByCategory($category_idx)
     return db_connect()->query($b_sql)->getRowArray();
 }
 
+function getListBannerByCategory($category_idx)
+{
+    $b_sql = "SELECT * FROM tbl_bbs_list WHERE category = '" . $category_idx . "' and status = 'Y' ORDER BY onum ASC, bbs_idx DESC";
+    //write_log($b_sql);
+    return db_connect()->query($b_sql)->getResultArray();
+}
+
 function lastWeekDay()
 {
 		// 오늘 기준

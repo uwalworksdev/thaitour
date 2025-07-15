@@ -275,7 +275,7 @@ $setting = homeSetInfo();
 
         <?php
 
-        $main_right_banner = getBannerByCategory(131);
+        $main_right_banner = getListBannerByCategory(131);
         $main_right_banner_sub = getBannerByCategory(129);
         $sup_right_banner = getBannerByCategory(130);
 
@@ -286,13 +286,19 @@ $setting = homeSetInfo();
             <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
                  alt="<?= $main_right_banner['subject'] ?>">
         </a> -->
-        <?php if (isset($main_right_banner) && $main_right_banner): ?>
-            <a class="banner-side-bar" href="<?= $main_right_banner['url'] ?? '#!' ?>" style="display: inline-block;">
-                <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner['ufile5'] ?>"
-                    alt="<?= $main_right_banner['subject'] ?>">
-                <img class="only_w" src="<?= '/data/bbs/' . $main_right_banner['ufile6'] ?>"
-                    alt="<?= $main_right_banner['subject'] ?>">
-            </a>
+        <?php if (isset($main_right_banner) && is_array($main_right_banner)): ?>
+            <?php
+                foreach($main_right_banner as $right_banner){    
+            ?>
+                <a class="banner-side-bar" href="<?= $right_banner['url'] ?? '#!' ?>" style="display: inline-block;">
+                    <img class="only_m" src="<?= '/data/bbs/' . $right_banner['ufile5'] ?>"
+                        alt="<?= $right_banner['subject'] ?>">
+                    <img class="only_w" src="<?= '/data/bbs/' . $right_banner['ufile6'] ?>"
+                        alt="<?= $right_banner['subject'] ?>">
+                </a>
+            <?php
+                }
+            ?>
         <?php else: ?>
             <a class="banner-side-bar" href="<?= $main_right_banner_sub['url'] ?? '#!' ?>">
                 <img class="only_m" src="<?= '/data/bbs/' . $main_right_banner_sub['ufile5'] ?>"
