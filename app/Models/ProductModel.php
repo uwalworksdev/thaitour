@@ -1233,328 +1233,204 @@ class ProductModel extends Model
         return array_merge($arr_, $where);
     }
 
-    public function findProductHotelPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
-    {
-        helper(['setting']);
-        $setting = homeSetInfo();
-        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+public function findProductHotelPaging($where = [], $perPage = 10, $page = 1, $orderBy = [])
+{
+    helper(['setting']);
+    $setting = homeSetInfo();
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-        $builder = $this->db->table('tbl_product_mst AS p');
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
-        $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
-/*
-        $builder->where('h.o_sdate IS NOT NULL');
-        $builder->where('h.o_edate IS NOT NULL');
-        $builder->where('h.o_sdate <>', '');
-        $builder->where('h.o_edate <>', '');
-        $builder->where('h.option_type', 'M');
-*/		
-        if ($where['day_start'] && $where['day_start'] != "") {
-            $builder->where('h.o_sdate <=', $where['day_start']); 
-        }
+    /** ----------------------------------------------------------------
+     *  1️⃣ JOIN 조건이 필요할 때만 JOIN
+     * ---------------------------------------------------------------- */
+    $needsHotelJoin = !empty($where['day_start']) || !empty($where['day_end']) || (!empty($where['checkin']) && !empty($where['checkout']));
 
-        if ($where['day_end'] && $where['day_end'] != "") {
-            $builder->where('h.o_edate >=', $where['day_end']);
-        }
+    $builder = $this->db->table('tbl_product_mst AS p')
+                        ->select('p.*');
 
-        if ($where['product_code_1'] != "") {
-            $builder->where('product_code_1', $where['product_code_1']);
-        }
-        if ($where['product_code_2'] != "") {
-            $builder->where('product_code_2', $where['product_code_2']);
-        }
-        if ($where['product_code_3'] != "") {
-            $builder->where('product_code_3', $where['product_code_3']);
-        }
-
-        if ($where['keyword'] && $where['keyword'] != "") {
-            $builder->like('product_name', $where['keyword']);
-        }
- 
-        if (!empty($where['product_code_list'])) {
-            $product_code_list = explode(",", $where['product_code_list']);
-            $cnt_code = 1;
-            $builder->groupStart();
-            foreach ($product_code_list as $code) {
-                if ($cnt_code > 1) {
-                    $builder->orLike('product_code_list', $code);
-                } else {
-                    $builder->like('product_code_list', $code);
-                }
-                $cnt_code++;
-            }
-            $builder->groupEnd();
-        }
- 
-        if (!empty($where['search_product_category'])) {
-
-            if (strpos($where['search_product_category'], 'all') === false) {
-
-                $search_product_category = explode(",", $where['search_product_category']);
-                $cnt_cat = 1;
-                $builder->groupStart();
-                foreach ($search_product_category as $category) {
-                    if ($cnt_cat > 1) {
-                        $builder->orLike('product_code_3', $category);
-                    } else {
-                        $builder->like('product_code_3', $category);
-                    }
-                    $cnt_cat++;
-                }
-                $builder->groupEnd();
-            }
-        }
-
-        if (!empty($where['search_product_mbti'])) {
-            if (strpos($where['search_product_mbti'], 'all') === false) {
-                $search_product_mbti = explode(",", $where['search_product_mbti']);
-                $cnt_mbti = 1;
-                $builder->groupStart();
-                foreach ($search_product_mbti as $category) {
-                    if ($cnt_mbti > 1) {
-                        $builder->orLike('mbti', $category);
-                    } else {
-                        $builder->like('mbti', $category);
-                    }
-                    $cnt_mbti++;
-                }
-                $builder->groupEnd();
-            }
-        }
-
-        if (!empty($where['search_product_hotel'])) {
-            if (strpos($where['search_product_hotel'], 'all') === false) {
-                $search_product_hotel = explode(",", $where['search_product_hotel']);
-                $cnt_type = 1;
-                $builder->groupStart();
-                foreach ($search_product_hotel as $type) {
-                    if ($cnt_type > 1) {
-                        $builder->orLike('product_type', $type);
-                    } else {
-                        $builder->like('product_type', $type);
-                    }
-                    $cnt_type++;
-                }
-                $builder->groupEnd();
-            }
-        }
-
-        if (!empty($where['search_product_rating'])) {
-            if (strpos($where['search_product_rating'], 'all') === false) {
-                $search_product_rating = explode(",", $where['search_product_rating']);
-                $cnt_rating = 1;
-                $builder->groupStart();
-                foreach ($search_product_rating as $rating) {
-                    if ($cnt_rating > 1) {
-                        $builder->orWhere('product_level', $rating);
-                    } else {
-                        $builder->where('product_level', $rating);
-                    }
-                    $cnt_rating++;
-                }
-                $builder->groupEnd();
-            }
-        }
-
-        if (!empty($where['price_max'])) {
-            if (empty($where['price_type']) || $where['price_type'] == "W") {
-                $builder->where("(product_price * $baht_thai) > ", (float)$where['price_min']);
-                $builder->where("(product_price * $baht_thai) < ", (float)$where['price_max']);
-            } else {
-                $builder->where("product_price > ", (float)$where['price_min']);
-                $builder->where("product_price < ", (float)$where['price_max']);
-            }
-        }
-
-        if (!empty($where['search_product_promotion'])) {
-            $search_product_promotion = explode(",", $where['search_product_promotion']);
-            $cnt_promotion = 1;
-            $builder->groupStart();
-            foreach ($search_product_promotion as $promotion) {
-                if ($cnt_promotion > 1) {
-                    $builder->orLike('product_promotions', $promotion);
-                } else {
-                    $builder->like('product_promotions', $promotion);
-                }
-                $cnt_promotion++;
-            }
-            $builder->groupEnd();
-        }
-
-        if (!empty($where['search_product_topic'])) {
-            $search_product_topic = explode(",", $where['search_product_topic']);
-            $cnt_theme = 1;
-            $builder->groupStart();
-            foreach ($search_product_topic as $theme) {
-                if ($cnt_theme > 1) {
-                    $builder->orLike('product_theme', $theme);
-                } else {
-                    $builder->like('product_theme', $theme);
-                }
-                $cnt_theme++;
-            }
-            $builder->groupEnd();
-        }
-
-        if (!empty($where['search_product_bedroom'])) {
-            $search_product_bedroom = explode(",", $where['search_product_bedroom']);
-            $cnt_bedroom = 1;
-            $builder->groupStart();
-            foreach ($search_product_bedroom as $bedroom) {
-                if ($cnt_bedroom > 1) {
-                    $builder->orLike('product_bedrooms', $bedroom);
-                } else {
-                    $builder->like('product_bedrooms', $bedroom);
-                }
-                $cnt_bedroom++;
-            }
-            $builder->groupEnd();
-        }
-
-        if (!empty($where['checkin']) && !empty($where['checkout'])) {
-            $builder->groupStart();
-            $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
-            $builder->orWhere('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
-            $builder->groupEnd();
-        }
-
-        if (!empty($where['search_product_name'])) {
-            $builder->like('product_name', $where['search_product_name']);
-        }
-
-        if ($where['search_txt'] != "") {
-            if ($where['search_category'] != "") {
-                $builder->like($where['search_category'], $where['search_txt']);
-            } else {
-                $builder->groupStart();
-                $builder->like('product_name', $where['search_txt']);
-                $builder->orLike('keyword', $where['search_txt']);
-                $builder->groupEnd();
-            }
-        }
-
-        if (!empty($where['arr_search_txt'])) {
-            $builder->groupStart();
-            // $str_search_txt = trim($where['arr_search_txt']);
-            // $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-
-            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
-            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
-
-            foreach ($arr_search_txt as $index => $txt) {
-
-                if ($index > 0) {
-                    $builder->orGroupStart();
-                }
-
-                $escapedTxt = $this->db->escapeLikeString($txt);
-                $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
-
-                // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
-                // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
-
-                if ($index > 0) {
-                    $builder->groupEnd();
-                }
-            }
-            $builder->groupEnd();
-        }
-
-        if ($where['is_view'] != "") {
-            $builder->where("is_view", $where['is_view']);
-        }
-
-        if ($where['special_price'] != "") {
-            $builder->where("special_price", $where['special_price']);
-        }
-
-//        if ($where['product_status'] != "") {
-//            $builder->where("product_status", $where['product_status']);
-//        }
-
-        $currentUrl = current_url();
-        $link = '/AdmMaster/';
-        if (strpos($currentUrl, $link) === false) {
-            $builder->where('product_status != ', 'stop');
-        }
-
-        $builder->where("product_status !=", "D");
-        $builder->groupBy('product_idx');
-        $nTotalCount = $builder->countAllResults(false);
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
-
-        if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
-        }
-
-        foreach ($orderBy as $key => $value) {
-            $builder->orderBy($key, $value);
-        }
-
-//        $sql = $builder->getCompiledSelect();
-//        var_dump($sql);
-//        die();
-
-        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
-
-        $total_price_max = 500000;
-
-        if ($where['price_type'] == "B") {
-            $total_price_max = (int)$total_price_max / $baht_thai;
-        }
-
-        foreach ($items as $key => $value) {
-            $product_price = (float)$value['product_price'];
-
-            $product_price_won = $product_price * $baht_thai;
-            $items[$key]['product_price_won'] = $product_price_won;
-        }
-		
-
-        // var_dump($items);
-        // die();
-
-        //write_log("last- ". $this->db->getLastQuery());
-		
-        $data = [
-            'items' => $items,
-            'nTotalCount' => $nTotalCount,
-            'nPage' => $nPage,
-            'pg' => (int)$pg,
-            'search_txt' => $where['search_txt'],
-            'search_category' => $where['search_category'],
-            'checkin' => $where['checkin'],
-            'checkout' => $where['checkout'],
-
-            'keyword' => $where['keyword'],
-            'day_start' => $where['day_start'],
-            'day_end' => $where['day_end'],
-
-            'search_product_name' => $where['search_product_name'],
-            'search_product_category' => $where['search_product_category'],
-            'search_product_hotel' => $where['search_product_hotel'],
-            'search_product_rating' => $where['search_product_rating'],
-            'search_product_promotion' => $where['search_product_promotion'],
-            'search_product_topic' => $where['search_product_topic'],
-            'search_product_bedroom' => $where['search_product_bedroom'],
-            'search_product_mbti' => $where['search_product_mbti'],
-            'price_type' => $where['price_type'],
-            'price_min' => $where['price_min'],
-            'price_max' => $where['price_max'],
-            'total_price_max' => $total_price_max,
-            'is_view' => $where['is_view'],
-            'product_code_1' => $where['product_code_1'],
-            'product_code_2' => $where['product_code_2'],
-            'product_code_3' => $where['product_code_3'],
-            'g_list_rows' => $g_list_rows,
-            'num' => $nTotalCount - $nFrom
-        ];
-        return $data;
+    if ($needsHotelJoin) {
+        $builder->select('MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date')
+                ->select('MAX(STR_TO_DATE(h.o_edate, "%Y-%m-%d")) AS latest_date')
+                ->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
     }
+
+    /** ----------------------------------------------------------------
+     *  2️⃣ 기본 상태
+     * ---------------------------------------------------------------- */
+    if (!empty($where['product_status'])) {
+        $builder->where('p.product_status', $where['product_status']);
+    } else {
+        $builder->where('p.product_status !=', 'stop')
+                ->where('p.product_status !=', 'D');
+    }
+
+    /** ----------------------------------------------------------------
+     *  3️⃣ 코드 필터
+     * ---------------------------------------------------------------- */
+    foreach (['product_code_1','product_code_2','product_code_3'] as $codeKey) {
+        if (!empty($where[$codeKey])) {
+            $builder->where('p.' . $codeKey, $where[$codeKey]);
+        }
+    }
+
+    /** ----------------------------------------------------------------
+     *  4️⃣ 날짜 필터
+     * ---------------------------------------------------------------- */
+    if (!empty($where['day_start'])) {
+        $builder->where('h.o_sdate <=', $where['day_start']);
+    }
+    if (!empty($where['day_end'])) {
+        $builder->where('h.o_edate >=', $where['day_end']);
+    }
+
+    if (!empty($where['checkin']) && !empty($where['checkout'])) {
+        $builder->groupStart();
+        $builder->where('STR_TO_DATE(h.o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])))
+                ->orWhere('STR_TO_DATE(h.o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+        $builder->groupEnd();
+    }
+
+    /** ----------------------------------------------------------------
+     *  5️⃣ 가격 필터 (환율 적용은 PHP에서)
+     * ---------------------------------------------------------------- */
+    if (!empty($where['price_max'])) {
+        $priceMin = (float)$where['price_min'];
+        $priceMax = (float)$where['price_max'];
+        if (empty($where['price_type']) || $where['price_type'] == "W") {
+            $priceMin = $priceMin / $baht_thai;
+            $priceMax = $priceMax / $baht_thai;
+        }
+        $builder->where('p.product_price >=', $priceMin)
+                ->where('p.product_price <=', $priceMax);
+    }
+
+    /** ----------------------------------------------------------------
+     *  6️⃣ 키워드 검색
+     * ---------------------------------------------------------------- */
+    if (!empty($where['keyword'])) {
+        $builder->like('p.product_name', $where['keyword']);
+    }
+    if (!empty($where['search_product_name'])) {
+        $builder->like('p.product_name', $where['search_product_name']);
+    }
+
+    /** ----------------------------------------------------------------
+     *  7️⃣ OR-LIKE IN 조건들 → 반복 제거
+     * ---------------------------------------------------------------- */
+    $likeGroups = [
+        'search_product_category' => 'p.product_code_3',
+        'search_product_hotel'    => 'p.product_type',
+        'search_product_rating'   => 'p.product_level',
+        'search_product_promotion'=> 'p.product_promotions',
+        'search_product_topic'    => 'p.product_theme',
+        'search_product_bedroom'  => 'p.product_bedrooms',
+        'search_product_mbti'     => 'p.mbti',
+    ];
+
+    foreach ($likeGroups as $param => $column) {
+        if (!empty($where[$param])) {
+            $this->addOrLikeGroup($builder, $column, explode(',', $where[$param]));
+        }
+    }
+
+    /** ----------------------------------------------------------------
+     *  8️⃣ product_code_list (LIKE IN)
+     * ---------------------------------------------------------------- */
+    if (!empty($where['product_code_list'])) {
+        $this->addOrLikeGroup($builder, 'p.product_code_list', explode(',', $where['product_code_list']));
+    }
+
+    /** ----------------------------------------------------------------
+     *  9️⃣ 기타 검색어
+     * ---------------------------------------------------------------- */
+    if (!empty($where['search_txt'])) {
+        if (!empty($where['search_category'])) {
+            $builder->like('p.' . $where['search_category'], $where['search_txt']);
+        } else {
+            $builder->groupStart();
+            $builder->like('p.product_name', $where['search_txt'])
+                    ->orLike('p.keyword', $where['search_txt']);
+            $builder->groupEnd();
+        }
+    }
+
+    if (!empty($where['arr_search_txt'])) {
+        $str = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+        $arr = preg_split('/\s+/', $str);
+
+        $builder->groupStart();
+        foreach ($arr as $word) {
+            $builder->groupStart();
+            $builder->orLike('p.product_name', $word)
+                    ->orLike('p.product_name_en', $word)
+                    ->orLike('p.keyword', $word);
+            $builder->groupEnd();
+        }
+        $builder->groupEnd();
+    }
+
+    /** ----------------------------------------------------------------
+     * 10️⃣ 추가 상태 필터
+     * ---------------------------------------------------------------- */
+    if (!empty($where['is_view'])) {
+        $builder->where('p.is_view', $where['is_view']);
+    }
+    if (!empty($where['special_price'])) {
+        $builder->where('p.special_price', $where['special_price']);
+    }
+
+    /** ----------------------------------------------------------------
+     * 11️⃣ 관리자 예외
+     * ---------------------------------------------------------------- */
+    if (strpos(current_url(), '/AdmMaster/') === false) {
+        $builder->where('p.product_status !=', 'stop');
+    }
+    $builder->where('p.product_status !=', 'D');
+
+    /** ----------------------------------------------------------------
+     * 12️⃣ GROUP BY
+     * ---------------------------------------------------------------- */
+    $builder->groupBy('p.product_idx');
+
+    /** ----------------------------------------------------------------
+     * 13️⃣ COUNT → clone 빌더
+     * ---------------------------------------------------------------- */
+    $countBuilder = clone $builder;
+    $totalCount = $countBuilder->countAllResults();
+
+    /** ----------------------------------------------------------------
+     * 14️⃣ 페이징
+     * ---------------------------------------------------------------- */
+    $totalPages = ceil($totalCount / $perPage);
+    $offset = ($page - 1) * $perPage;
+
+    if (empty($orderBy)) {
+        $orderBy = ['p.product_idx' => 'DESC'];
+    }
+    foreach ($orderBy as $col => $dir) {
+        $builder->orderBy($col, $dir);
+    }
+
+    $items = $builder->limit($perPage, $offset)->get()->getResultArray();
+
+    /** ----------------------------------------------------------------
+     * 15️⃣ 환율 환산
+     * ---------------------------------------------------------------- */
+    foreach ($items as &$item) {
+        $item['product_price_won'] = round($item['product_price'] * $baht_thai);
+    }
+
+    /** ----------------------------------------------------------------
+     * 16️⃣ 반환
+     * ---------------------------------------------------------------- */
+    return [
+        'items'       => $items,
+        'total'       => $totalCount,
+        'perPage'     => $perPage,
+        'page'        => (int)$page,
+        'totalPages'  => $totalPages,
+    ];
+}
+
 
     public function findProductCarPrice($ca_idx)
     {
