@@ -1986,6 +1986,7 @@ $('.tag-list .tag-js').on('click', function () {
             if (date) {
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
+				alert(date);
                 $("#order_date").val(date);
                 $("#final_option_list").empty();
                 showHideCaddy();
