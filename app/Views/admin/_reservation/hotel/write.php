@@ -614,11 +614,13 @@
                                 <tr>
                                     <th>수정일자</th>
                                     <td>
-										<div class="flex">
+										<div class="flex" style="gap: 10px;">
                                             <?php
                                                 foreach ($history_order_list as $history_item) {
                                             ?>
                                                 <p><?=$history_item['user_name']?>(<?=$history_item['user_id']?>) 님이 <?=$history_item['updated_date']?> 수정을 하셨습니다. (아이피: <?=$history_item['ip_address']?>)</p>
+                                                 <a href="javascript:del_history('<?= $history_item['h_idx'] ?>');"><img
+                                                        src="/images/admin/common/ico_error.png" alt="에러"/></a>
                                             <?php
                                                 }
                                             ?>
