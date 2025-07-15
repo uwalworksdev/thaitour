@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
 <?php
 
     $titleStr = "생성";
@@ -248,31 +248,31 @@
                                     <td>
                                         <textarea name="coupon_contents" id="coupon_contents" rows="10" class="input_txt"
                                             style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
-                                            <script type="text/javascript">
-                                                var oEditors;
+                                        <script type="text/javascript">
+                                            var oEditors;
 
-                                                // 추가 글꼴 목록
-                                                //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
 
-                                                nhn.husky.EZCreator.createInIFrame({
-                                                    oAppRef: oEditors,
-                                                    elPlaceHolder: "coupon_contents",
-                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                    htParams: {
-                                                        bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                        //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                        fOnBeforeUnload: function () {
-                                                            //alert("완료!");
-                                                        }
-                                                    }, //boolean
-                                                    fOnAppLoad: function () {
-                                                        //예제 코드
-                                                        //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                    },
-                                                    fCreator: "createSEditor2"
-                                                });
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors,
+                                                elPlaceHolder: "coupon_contents",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
                                         </script>
                                     </td>
                                 </tr>
