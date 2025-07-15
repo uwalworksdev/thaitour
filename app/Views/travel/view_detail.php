@@ -963,7 +963,6 @@
                     var order_date = $("#order_date").val();
                     var temp = order_date.split("-");
 
-
                     /* closed btn*/
                     closedBtn.click(function() {
                         popup.hide();
