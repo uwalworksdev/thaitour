@@ -112,6 +112,8 @@ class AdminLocalGuideController extends BaseController
             $town_code_list = $this->codeModel->getListByParentCode($row_prod['city_code']);
             $subcategory_code_list = $this->codeModel->getListByParentCode($row_prod['category_code']);
 
+            $city_code_name = $this->codeModel->getCodeName($row_prod['city_code']);
+
         }
 
         $img_list = $this->localGuideImg->getImg($idx);
@@ -127,7 +129,8 @@ class AdminLocalGuideController extends BaseController
             'subcategory_code_list' => $subcategory_code_list,
             'product_list' => $product_list,
             'row' => $row ?? '',
-            'img_list' => $img_list
+            'img_list' => $img_list,
+            'city_code_name' => $city_code_name ?? "",
         ];
         return view("admin/_local_guide/write", $data);
     }
