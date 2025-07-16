@@ -980,178 +980,6 @@ class Product extends BaseController
         }
     }
 
-public function listHotelx()
-{
-    try {
-        $code_no = $this->request->getVar('s_code_no') ?? '';
-        $pg = $this->request->getVar('pg') ?? 1;
-        $checkin = $this->request->getVar('checkin') ?? "";
-        $checkout = $this->request->getVar('checkout') ?? "";
-        $search_product_name = $this->request->getVar('search_product_name') ?? "";
-        $search_product_category = $this->request->getVar('search_product_category') ?? "";
-        $search_product_hotel = $this->request->getVar('search_product_hotel') ?? "";
-        $search_product_rating = $this->request->getVar('search_product_rating') ?? "";
-        $search_product_promotion = $this->request->getVar('search_product_promotion') ?? "";
-        $search_product_topic = $this->request->getVar('search_product_topic') ?? "";
-        $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
-        $price_min = $this->request->getVar('price_min') ?? 0;
-        $price_max = $this->request->getVar('price_max') ?? 0;
-        $price_type = $this->request->getVar('price_type') ?? "";
-        $keyword = $this->request->getVar('keyword') ?? "";
-        $day_start = $this->request->getVar('day_start') ?? "";
-        $day_end = $this->request->getVar('day_end') ?? "";
-        $perPage = 5;
-
-        $banners = $this->bannerModel->getBanners($code_no);
-        $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-
-        $codes = $this->codeModel
-            ->where('parent_code_no', $code_no)
-            ->orderBy('code_no', 'ASC')
-            ->get()
-            ->getResultArray();
-
-        $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
-        $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
-        $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
-        $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
-        $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
-
-        $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"] ?? '';
-
-        $arr_code_list = array_column($codes, 'code_no');
-        $product_code_list = implode(",", $arr_code_list);
-
-        /** 1. 호텔 상품 조회 **/
-        $products = $this->productModel->findProductHotelPaging([
-            'product_code_1' => 1303,
-            'checkin' => $checkin,
-            'checkout' => $checkout,
-            'keyword' => $keyword,
-            'day_start' => $day_start,
-            'day_end' => $day_end,
-            's_code_no' => $code_no,
-            'search_product_name' => $search_product_name,
-            'product_code_2' => $code_no,
-            'product_code_3' => $search_product_category,
-            'search_product_category' => $search_product_category,
-            'search_product_hotel' => $search_product_hotel,
-            'search_product_rating' => $search_product_rating,
-            'search_product_promotion' => $search_product_promotion,
-            'search_product_topic' => $search_product_topic,
-            'search_product_bedroom' => $search_product_bedroom,
-            'price_min' => $price_min,
-            'price_max' => $price_max,
-            'price_type' => $price_type,
-            'product_status' => 'sale'
-        ], 10, $pg, ['onum' => 'DESC']);
-
-        if (empty($products['items'])) {
-            $products['items'] = [];
-        }
-
-        /** 2. 상품IDX 모아서 N+1 제거 **/
-        $productIdxes = array_column($products['items'], 'product_idx');
-        $stayIdxes = array_column($products['items'], 'stay_idx');
-        $categoryCodes = array_unique(array_filter(array_column($products['items'], 'product_code_3')));
-
-        /** 3. roomsByProduct - 모든 방 한번에 조회 **/
-        $roomsByProduct = [];
-        if ($productIdxes) {
-            $sql = "SELECT * FROM tbl_hotel_rooms 
-                    WHERE goods_code IN (" . implode(',', $productIdxes) . ") 
-                    AND room_name != '' AND is_view_promotion = 'Y' 
-                    ORDER BY rooms_idx ASC";
-            foreach ($this->db->query($sql)->getResultArray() as $row) {
-                $roomsByProduct[$row['goods_code']][] = $row;
-            }
-        }
-
-        /** 4. stayByIdx - 모든 stay 한번에 조회 **/
-        $stayByIdx = [];
-        if ($stayIdxes) {
-            $sql = "SELECT * FROM tbl_product_stay 
-                    WHERE stay_idx IN (" . implode(',', $stayIdxes) . ")";
-            foreach ($this->db->query($sql)->getResultArray() as $row) {
-                $stayByIdx[$row['stay_idx']] = $row;
-            }
-        }
-
-        /** 5. imgByProduct - 이미지 한번에 조회 **/
-        $imgByProduct = [];
-        if ($productIdxes) {
-            $sql = "SELECT * FROM tbl_product_img 
-                    WHERE product_idx IN (" . implode(',', $productIdxes) . ") 
-                    AND ufile != '' 
-                    ORDER BY onum ASC, i_idx ASC";
-            foreach ($this->db->query($sql)->getResultArray() as $row) {
-                $imgByProduct[$row['product_idx']][] = $row;
-            }
-        }
-
-        /** 6. 코드명 한번에 조회 **/
-        $codeNames = [];
-        if ($categoryCodes) {
-            $sql = "SELECT code_no, code_name FROM tbl_code 
-                    WHERE code_no IN (" . implode(',', $categoryCodes) . ")";
-            foreach ($this->db->query($sql)->getResultArray() as $row) {
-                $codeNames[$row['code_no']] = $row['code_name'];
-            }
-        }
-
-        /** 7. 메인 루프 - 이미 조회한 데이터를 맵에서 붙이기 **/
-        foreach ($products['items'] as $key => $product) {
-            $pid = $product['product_idx'];
-            $products['items'][$key]['roomsByType'] = $roomsByProduct[$pid] ?? [];
-            $products['items'][$key]['stay_city'] = $stayByIdx[$product['stay_idx']]['stay_city'] ?? '';
-            $products['items'][$key]['code_sub_name'] = $codeNames[$product['product_code_3']] ?? '';
-
-            // 이미지
-            $imgs = $imgByProduct[$pid] ?? [];
-            if (isset($imgs[0])) $products['items'][$key]['ufile2'] = $imgs[0]['ufile'];
-            if (isset($imgs[1])) $products['items'][$key]['ufile3'] = $imgs[1]['ufile'];
-
-            /** 개별 호출 필요한 경우만 유지 (리뷰 등) **/
-            $productReview = $this->reviewModel->getProductReview($pid);
-            $products['items'][$key]['total_review'] = $productReview['total_review'] ?? 0;
-            $products['items'][$key]['review_average'] = $productReview['avg'] ?? 0;
-        }
-
-        /** 8. 지역명 조회 **/
-        if ($search_product_category == "") {
-            $search_area = "전체";
-        } else {
-            $search_area = $codeNames[$search_product_category] ?? "전체";
-        }
-
-        /** 9. View 전달 **/
-        return $this->renderView('product/hotel/list-hotel', [
-            'search_product_category' => $search_product_category,
-            'search_area' => $search_area,
-            'baht_thai' => $this->setting['baht_thai'],
-            'banners' => $banners,
-            'codeBanners' => $codeBanners,
-            'codes' => $codes,
-            'types_hotel' => $types_hotel,
-            'ratings' => $ratings,
-            'promotions' => $promotions,
-            'topics' => $topics,
-            'bedrooms' => $bedrooms,
-            'products' => $products,
-            'code_no' => $code_no,
-            'code_name' => $parent_code_name,
-            'perPage' => $perPage,
-            'tab_active' => '1'
-        ]);
-
-    } catch (Exception $e) {
-        return $this->response->setJSON([
-            'result' => false,
-            'message' => $e->getMessage()
-        ]);
-    }
-}
-
     public function listHotel()
     {
         try {
@@ -1180,7 +1008,7 @@ public function listHotelx()
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-/* 2025-07-16 */			
+			
 			$codes = $this->codeModel
 						  ->where('parent_code_no', $code_no)
 						  ->orderBy('code_no', 'ASC')
@@ -1202,33 +1030,33 @@ public function listHotelx()
 
             $product_code_list = implode(",", $arr_code_list);
 
-            // $products = $this->productModel->findProductHotelPaging([
-            //     'product_code_1' => 1303,
-            //     /*'product_code_list' => $product_code_list,*/
-            //     'checkin' => $checkin,
-            //     'checkout' => $checkout,
-            //     /* Update search */
-            //     'keyword' => $keyword,
-            //     'day_start' => $day_start,
-            //     'day_end' => $day_end,
-            //     's_code_no' => $code_no,
-            //     /* End search */
-            //     'search_product_name' => $search_product_name,
-            //     'product_code_2' => $code_no,
-            //     'product_code_3' => $search_product_category,
-			// 	'search_product_category' => $search_product_category,
-            //     'search_product_hotel' => $search_product_hotel,
-            //     'search_product_rating' => $search_product_rating,
-            //     'search_product_promotion' => $search_product_promotion,
-            //     'search_product_topic' => $search_product_topic,
-            //     'search_product_bedroom' => $search_product_bedroom,
-            //     'price_min' => $price_min,
-            //     'price_max' => $price_max,
-            //     'price_type' => $price_type,
-            //     'product_status' => 'sale'
-            // ], 10, $pg, ['onum' => 'DESC']);
+            $products = $this->productModel->findProductHotelPaging([
+                'product_code_1' => 1303,
+                /*'product_code_list' => $product_code_list,*/
+                'checkin' => $checkin,
+                'checkout' => $checkout,
+                /* Update search */
+                'keyword' => $keyword,
+                'day_start' => $day_start,
+                'day_end' => $day_end,
+                's_code_no' => $code_no,
+                /* End search */
+                'search_product_name' => $search_product_name,
+                'product_code_2' => $code_no,
+                'product_code_3' => $search_product_category,
+				'search_product_category' => $search_product_category,
+                'search_product_hotel' => $search_product_hotel,
+                'search_product_rating' => $search_product_rating,
+                'search_product_promotion' => $search_product_promotion,
+                'search_product_topic' => $search_product_topic,
+                'search_product_bedroom' => $search_product_bedroom,
+                'price_min' => $price_min,
+                'price_max' => $price_max,
+                'price_type' => $price_type,
+                'product_status' => 'sale'
+            ], 10, $pg, ['onum' => 'DESC']);
  
- 		    // //write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
+ 		    //write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
 
             // foreach ($products['items'] as $key => $product) {
 
@@ -1347,14 +1175,14 @@ public function listHotelx()
 
             // }
 
-	        // if($search_product_category == "") {
-	        //    $search_area  = "전체";
-            // } else {
-            //     $sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
-            //     $result      = $this->db->query($sql);
-            //     $row         = $result->getRowArray();
-			// 	$search_area = $row['code_name'];
-            // }   
+	        if($search_product_category == "") {
+	           $search_area  = "전체";
+            } else {
+                $sql         = "select * from tbl_code where code_no='" . $search_product_category ."' ";
+                $result      = $this->db->query($sql);
+                $row         = $result->getRowArray();
+				$search_area = $row['code_name'];
+            }   
 
 			$data = [
 				'search_product_category' => $search_product_category,
