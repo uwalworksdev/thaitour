@@ -14,8 +14,8 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
 <?php endif; ?>
 
 <?php if ($inputType == "radio"): ?>
-    현재창 <input type="radio" name="<?= $name ?>" <?= $info[$name] == "Y" ? "checked" : "" ?>>
-    새창 <input type="radio" name="<?= $name ?>" <?= ($info[$name] == "N" || empty($info[$name])) ? "checked" : "" ?>>
+    현재창 <input type="radio" name="<?= $name ?>" value="Y" <?= $info[$name] == "Y" ? "checked" : "" ?>>
+    새창 <input type="radio" name="<?= $name ?>" value="N" <?= ($info[$name] == "N" || empty($info[$name])) ? "checked" : "" ?>>
 <?php endif; ?>
 
 <?php if ($inputType == "summernote"): ?>
