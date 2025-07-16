@@ -1240,7 +1240,7 @@ class ProductModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table('tbl_product_mst AS p');
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
+        $builder->select('p.*, MIN(h.o_sdate) AS oldest_date, MAX(h.o_edate) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
 /*
         $builder->where('h.o_sdate IS NOT NULL');
@@ -1413,8 +1413,8 @@ class ProductModel extends Model
 
         if (!empty($where['checkin']) && !empty($where['checkout'])) {
             $builder->groupStart();
-            $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
-            $builder->orWhere('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+            $builder->where('o_sdate >=', date('Y-m-d', strtotime($where['checkin'])));
+            $builder->orWhere('o_edate <=', date('Y-m-d', strtotime($where['checkout'])));
             $builder->groupEnd();
         }
 
