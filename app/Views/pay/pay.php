@@ -1,134 +1,74 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+<?php
+    $setting = homeSetInfo();
+?>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>카드결제 - 인증</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
-      background-color: #f9f9f9;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="<?= $setting['og_title'] ?>" name="Title">
+  <meta content="<?= $setting['og_des'] ?>" name="Description">
+  <meta content="<?= $setting['meta_keyword'] ?>" name="Keyword">
+  <meta property="og:title" content="<?= $setting['og_title'] ?>">
+  <meta property="og:description" content="<?= $setting['og_des'] ?>">
+  <meta property="og:image" content="/uploads/setting/<?= $setting['og_img'] ?>">
+  <meta property="og:url" content="<?= $setting['og_url'] ?>">
+  <meta property="al:web:url" content="<?= $setting['og_url'] ?>">
+  <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
+  <meta name="robots" content="index,follow">
 
-    h2 {
-      margin-bottom: 10px;
-      color: #333;
-    }
+  <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="<?= $setting['og_url'] ?>">
 
-	.step div {
-	  padding: 10px 20px;
-	  border-radius: 20px;
-	  background-color: #e0e0e0;     /* 비활성 단계 색상 */
-	  color: #666;
-	  margin: 5px;
-	  font-weight: 500;
-	  transition: background-color 0.3s, color 0.3s;
-	}
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/pay.css">
 
-	.step .active {
-	  background-color: #2d3e9b;     /* 활성 단계 색상 */
-	  color: #fff;
-	  font-weight: 700;
-	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-	}
+  <script type="text/javascript"
+    src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+  <script type="text/javascript" src="/js/apple.js"></script>
 
-    .active {
-      background-color: #2d3e9b;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    h1 {
-      font-size: 1.2rem;
-      margin: 20px 0 10px;
-      padding: 0 10px;
-      color: #444;
-    }
-
-    p {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      padding: 0 10px;
-      color: #666;
-    }
-
-    .form-box {
-      margin-top: 30px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .form-box input {
-      padding: 12px;
-      width: 100%;
-      max-width: 300px;
-      box-sizing: border-box;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .form-box button {
-      padding: 12px 30px;
-      background-color: #2d3e9b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .form-box button:hover {
-      background-color: #1c2a7b;
-    }
-
-    @media (max-width: 480px) {
-      .step {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      h1 {
-        font-size: 1rem;
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  <title><?= $setting['browser_title'] ?></title>
 </head>
+
 <body>
+  <div class="pay_container">
+    <div class="inner_620">
+      <h2 class="top_ttl">카드결제</h2>
+      <div class="join_step">
+        <ul>
+          <li class="step01 on" data-step="step01">
+            <div class="step_ele">
+              <span class="step_ele_num">01</span> <span class="step_ele_txt">결제 로그인 인증</span>
+            </div>
+          </li>
+          <li class="step02" data-step="step02">
+            <div class="step_ele">
+              <span class="step_ele_num">02</span> <span class="step_ele_txt">카드결제</span>
+            </div>
+          </li>
+          <li class="step03" data-step="step03">
+            <div class="step_ele">
+              <span class="step_ele_num">03</span> <span class="step_ele_txt">결제완료</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="sub_sec_ttl tac ">
+        <h1 class="ttl_big">인증 후 결제 진행이 가능합니다.</h1>
+        <p>주문 시 입력한 휴대폰번호 뒷자리 4자리를 입력해 인증해주세요.</p>
+      </div>
 
-  <h2>카드결제</h2>
-  <div class="step">
-    <div class="active">01 결제 로그인 인증</div>
-    <div>02 카드결제</div>
-    <div>03 결제완료</div>
-  </div>
-
-  <h1>인증 후 결제 진행이 가능합니다.</h1>
-  <p>주문 시 입력한 휴대폰번호 뒷자리 4자리를 입력해 인증해주세요.</p>
-
-  <div class="form-box">
-    <form action="/pay/check" method="post">
-      <input type="hidden" name="idx" value="<?= esc($idx) ?>" />
-      <input type="text" name="phone_last4" placeholder="휴대폰 뒷자리 4자리" maxlength="4" required />
-      <br>
-      <button type="submit">확인</button>
-    </form>
+      <div class="form-box">
+        <form action="/pay/check" method="post">
+          <input type="hidden" name="idx" value="<?= esc($idx) ?>" />
+          <input type="text" name="phone_last4" placeholder="휴대폰 뒷자리 4자리" maxlength="4" required />
+          <br>
+          <button type="submit">확인</button>
+        </form>
+      </div>
+    </div>
   </div>
 
 </body>
+
 </html>
