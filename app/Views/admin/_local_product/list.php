@@ -197,7 +197,7 @@
                                         <td class="tac">
                                              <a href="write?city_code=<?= $city_code ?>&category_code=<?= $category_code ?>&search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
                                                 <?= viewSQ($row["title"]) ?>
-                                            <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
+                                            <a href="/travel-tips/hot-place?lp_idx=<?= $row["idx"] ?>&city_code=<?= $row["city_code"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                         </td>
                                         <td>

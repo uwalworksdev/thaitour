@@ -111,7 +111,7 @@ class AdminLocalProductController extends BaseController
             
             $publicPath = ROOTPATH . '/public/data/product/';
 
-            for ($i = 1; $i <= 1; $i++) {
+            for ($i = 1; $i <= 2; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
