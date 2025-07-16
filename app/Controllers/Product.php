@@ -1058,122 +1058,122 @@ class Product extends BaseController
  
  		    //write_log("listHotel- ". $this->db->getLastQuery()); // 실행 후 확인);
 
-            // foreach ($products['items'] as $key => $product) {
+            foreach ($products['items'] as $key => $product) {
 
-            //     $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
-            //     $roomsByType   = $this->db->query($sql);
-            //     $roomsByType   = $roomsByType->getResultArray();
+                $sql           = "select * from tbl_hotel_rooms where goods_code ='". $product['product_idx'] ."' and room_name != '' and is_view_promotion = 'Y' order by rooms_idx asc limit 2";
+                $roomsByType   = $this->db->query($sql);
+                $roomsByType   = $roomsByType->getResultArray();
 
-            //     $products['items'][$key]['roomsByType'] = $roomsByType;
+                $products['items'][$key]['roomsByType'] = $roomsByType;
 
-            //     if (empty($search_product_category) || strpos($search_product_category, 'all') !== false) {
-            //         foreach ($arr_code_list as $h_code) {
+                if (empty($search_product_category) || strpos($search_product_category, 'all') !== false) {
+                    foreach ($arr_code_list as $h_code) {
 
-            //             if (strpos($product['product_code_list'], $h_code) !== false) {
-            //                 $hotel_code = $h_code;
-            //                 break;
-            //             }
-            //         }
-            //     } else {
-            //         $hotel_codes = explode(",", $search_product_category);
-            //         foreach ($hotel_codes as $h_code) {
-            //             if (strpos($product['product_code_list'], $h_code) !== false) {
-            //                 $hotel_code = $h_code;
-            //                 break;
-            //             }
-            //         }
-            //     }
+                        if (strpos($product['product_code_list'], $h_code) !== false) {
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+                } else {
+                    $hotel_codes = explode(",", $search_product_category);
+                    foreach ($hotel_codes as $h_code) {
+                        if (strpos($product['product_code_list'], $h_code) !== false) {
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+                }
 
-            //     $codeTree = $this->codeModel->getCodeTree($hotel_code);
+                $codeTree = $this->codeModel->getCodeTree($hotel_code);
 
-            //     $products['items'][$key]['codeTree'] = $codeTree;
+                $products['items'][$key]['codeTree'] = $codeTree;
 
-            //     $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-            //     $hotel = $this->productModel->find($product['product_idx']);
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+                $hotel = $this->productModel->find($product['product_idx']);
 
-            //     $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0  ORDER BY o_room DESC, o_sdate DESC';
-            //     $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
-            //     $_arr_utilities = [];
-            //     if (count($hotel_options) > 0) {
-            //         $hotel_option = $hotel_options[0];
-            //         $room_idx = $hotel_option['o_room'];
+                $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0  ORDER BY o_room DESC, o_sdate DESC';
+                $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
+                $_arr_utilities = [];
+                if (count($hotel_options) > 0) {
+                    $hotel_option = $hotel_options[0];
+                    $room_idx = $hotel_option['o_room'];
 
-            //         $hsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
-            //         $stay_hotel = $this->db->query($hsql)->getRowArray();
+                    $hsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
+                    $stay_hotel = $this->db->query($hsql)->getRowArray();
 
-            //         $rsql = "SELECT * FROM tbl_room WHERE g_idx = '$room_idx'";
-            //         $room = $this->db->query($rsql)->getRowArray();
+                    $rsql = "SELECT * FROM tbl_room WHERE g_idx = '$room_idx'";
+                    $room = $this->db->query($rsql)->getRowArray();
 
-            //         $products['items'][$key]['room_name'] = $room["roomName"];
+                    $products['items'][$key]['room_name'] = $room["roomName"];
 
-            //         $roomCat = explode("|", $room["category"]);
-            //         $arr_room_category = [];
+                    $roomCat = explode("|", $room["category"]);
+                    $arr_room_category = [];
 
-            //         foreach ($roomCat as $cat) {
-            //             $code_name = $this->codeModel->getCodeName($cat);
-            //             array_push($arr_room_category, $code_name);
-            //         }
+                    foreach ($roomCat as $cat) {
+                        $code_name = $this->codeModel->getCodeName($cat);
+                        array_push($arr_room_category, $code_name);
+                    }
 
-            //         $room_category = implode(", ", $arr_room_category);
+                    $room_category = implode(", ", $arr_room_category);
 
-            //         $products['items'][$key]['room_category'] = $room_category;
+                    $products['items'][$key]['room_category'] = $room_category;
 
-            //         if ($stay_hotel) {
-            //             $code_utilities = $stay_hotel['code_utilities'];
-            //             $_arr_utilities = explode("|", $code_utilities);
-            //         }
-            //     }
+                    if ($stay_hotel) {
+                        $code_utilities = $stay_hotel['code_utilities'];
+                        $_arr_utilities = explode("|", $code_utilities);
+                    }
+                }
 
-            //     $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+                $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
 
-            //     if (!empty($list__utilities)) {
-            //         $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum ASC, code_idx DESC";
+                if (!empty($list__utilities)) {
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum ASC, code_idx DESC";
 
-            //         $fresult4 = $this->db->query($fsql);
-            //         $fresult4 = $fresult4->getResultArray();
-            //         $products['items'][$key]['utilities'] = $fresult4;
-            //     }
+                    $fresult4 = $this->db->query($fsql);
+                    $fresult4 = $fresult4->getResultArray();
+                    $products['items'][$key]['utilities'] = $fresult4;
+                }
 
-            //     $_arr_promotions = explode('|', $product['product_promotions']);
+                $_arr_promotions = explode('|', $product['product_promotions']);
 
-            //     $list__promotions = rtrim(implode(',', $_arr_promotions), ',');
+                $list__promotions = rtrim(implode(',', $_arr_promotions), ',');
 
-            //     if (!empty($list__promotions)) {
-            //         $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum ASC, code_idx DESC";
+                if (!empty($list__promotions)) {
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum ASC, code_idx DESC";
 
-            //         $fresult5 = $this->db->query($fsql);
-            //         $fresult5 = $fresult5->getResultArray();
-            //         $products['items'][$key]['promotions'] = $fresult5;
-            //     }
+                    $fresult5 = $this->db->query($fsql);
+                    $fresult5 = $fresult5->getResultArray();
+                    $products['items'][$key]['promotions'] = $fresult5;
+                }
 
-            //     $products['items'][$key]['total_review'] = $productReview['total_review'];
-            //     $products['items'][$key]['review_average'] = $productReview['avg'];
+                $products['items'][$key]['total_review'] = $productReview['total_review'];
+                $products['items'][$key]['review_average'] = $productReview['avg'];
 
-            //     $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
-            //     $fresult9 = $this->db->query($fsql9);
-            //     $fresult9 = $fresult9->getRowArray();
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum asc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
 
-            //     $products['items'][$key]['level_name'] = $fresult9['code_name'];
+                $products['items'][$key]['level_name'] = $fresult9['code_name'];
 				
-	        //     $img_cnt = 0;
-			// 	$sql     = " select * from tbl_product_img where product_idx = '" . $product['product_idx'] . "' and ufile != '' order by onum asc, i_idx asc limit 0,2";
-			// 	$result  = $this->db->query($sql);
-			// 	$result  = $result->getResultArray();
-			// 	foreach ($result as $row_img) {
-			// 	       $img_cnt++;
-			// 		   if($img_cnt == 1) $products['items'][$key]['ufile2'] = $row_img['ufile'];
-			// 		   if($img_cnt == 2) $products['items'][$key]['ufile3'] = $row_img['ufile'];
-			// 	}
+	            $img_cnt = 0;
+				$sql     = " select * from tbl_product_img where product_idx = '" . $product['product_idx'] . "' and ufile != '' order by onum asc, i_idx asc limit 0,2";
+				$result  = $this->db->query($sql);
+				$result  = $result->getResultArray();
+				foreach ($result as $row_img) {
+				       $img_cnt++;
+					   if($img_cnt == 1) $products['items'][$key]['ufile2'] = $row_img['ufile'];
+					   if($img_cnt == 2) $products['items'][$key]['ufile3'] = $row_img['ufile'];
+				}
                 
-            //     $stay_idx = $product['stay_idx'];
-            //     $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" .$stay_idx. "'";
-            //     $product_stay = $this->db->query($sql);
-            //     $product_stay = $product_stay->getRowArray();
-            //     $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
+                $stay_idx = $product['stay_idx'];
+                $sql = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" .$stay_idx. "'";
+                $product_stay = $this->db->query($sql);
+                $product_stay = $product_stay->getRowArray();
+                $products['items'][$key]['stay_city'] = $product_stay['stay_city'];
 
-            //     $products['items'][$key]['code_sub_name'] = $this->codeModel->getCodeName($product['product_code_3']);
+                $products['items'][$key]['code_sub_name'] = $this->codeModel->getCodeName($product['product_code_3']);
 
-            // }
+            }
 
 	        if($search_product_category == "") {
 	           $search_area  = "전체";
