@@ -1481,7 +1481,7 @@ class ProductModel extends Model
         }
 
         $builder->where("product_status !=", "D");
-        $builder->groupBy('goods_code');
+        $builder->groupBy('product_idx');
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
