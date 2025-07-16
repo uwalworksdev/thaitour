@@ -345,6 +345,7 @@
                                         <input type="text" id="notes_invoice" name="notes_invoice" value="<?= $row['notes_invoice'] ?>" class="input_txt" style="width:30%"/>
 
                                         <input type="checkbox" name="chk_notes_invoice" id="chk_notes_invoice" value="Y">
+                                        <label for="chk_notes_invoice">적용</label>
                                     </td>
                                 </tr>
                                 </tbody>
