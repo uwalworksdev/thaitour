@@ -44,14 +44,14 @@
             <div class="inner">
                 <div class="wrap_banner">
                     <?php
-                        if ($local_prod["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_prod["ufile1"])) {
-                            $img_prd = "/data/product/" . $local_prod["ufile1"];
+                        if ($local_prod["ufile2"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_prod["ufile2"])) {
+                            $img_prd = "/data/product/" . $local_prod["ufile2"];
                         } else {
                             $img_prd = "/data/product/noimg.png";
                         }
                     ?>
-                    <img class="only_web img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
-                    <img class="only_mo img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile1"]?>">
+                    <img class="only_web img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile2"]?>">
+                    <img class="only_mo img_prd" src="<?=$img_prd?>" alt="<?=$local_prod["rfile2"]?>">
                     <div class="text_banner">
                         <span><?=$local_prod["title"]?></span>
                         <p><?=$local_prod["desc"]?></p>
@@ -69,15 +69,15 @@
         <div class="list_place">
             <?php
                 foreach($local_guide_list["items"] as $local_guide){
-                    if ($local_guide["ufile2"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_guide["ufile2"])) {
-                        $img = "/data/product/" . $local_guide["ufile2"];
+                    if ($local_guide["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_guide["ufile1"])) {
+                        $img = "/data/product/" . $local_guide["ufile1"];
                     } else {
                         $img = "/data/product/noimg.png";
                     }
             ?>
             <a href="/travel-tips/view_detail?lg_idx=<?=$local_guide["idx"]?>" class="item">
                 <div class="img">
-                    <img src="<?=$img?>" alt="<?=$local_guide["rfile2"]?>">
+                    <img src="<?=$img?>" alt="<?=$local_guide["rfile1"]?>">
                 </div>
                 <div class="text">
                     <div class="title">
