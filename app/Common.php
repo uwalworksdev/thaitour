@@ -214,7 +214,7 @@ function getPolicy($p_idx)
 function get_deli_type()
 {
     $_deli_type['W'] = "예약접수";
-    $_deli_type['X'] = "예약확인";
+    $_deli_type['X'] = "예약가능";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
@@ -229,7 +229,7 @@ function get_deli_type()
 function get_payment_type()
 {
     $_deli_type['W'] = "예약접수";
-    $_deli_type['X'] = "예약확인";
+    $_deli_type['X'] = "예약가능";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";

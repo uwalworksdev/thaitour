@@ -177,7 +177,7 @@ class ReservationController extends BaseController
 		$fsql = "SELECT 
 					CASE 
 						WHEN a.payment_status IS NULL OR a.payment_status = '' OR a.payment_status = 'W' THEN '예약접수'
-						WHEN a.payment_status = 'X' THEN '예약확인'
+						WHEN a.payment_status = 'X' THEN '예약가능'
 						WHEN a.payment_status = 'Y' THEN '결제완료'
 						WHEN a.payment_status IN ('Z','G','R','J') THEN '예약확정'
 						WHEN a.payment_status = 'C' THEN '예약취소'
@@ -197,7 +197,7 @@ class ReservationController extends BaseController
 					GROUP BY 
 						status_group
 					ORDER BY 
-						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+						FIELD(status_group, '예약접수', '예약가능', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();
@@ -370,7 +370,7 @@ class ReservationController extends BaseController
 		$fsql = "SELECT 
 					CASE 
 						WHEN a.order_status IS NULL OR a.order_status = '' OR a.order_status = 'W' THEN '예약접수'
-						WHEN a.order_status = 'X' THEN '예약확인'
+						WHEN a.order_status = 'X' THEN '예약가능'
 						WHEN a.order_status = 'Y' THEN '결제완료'
 						WHEN a.order_status IN ('Z','G','R','J') THEN '예약확정'
 						WHEN a.order_status = 'C' THEN '예약취소'
@@ -386,7 +386,7 @@ class ReservationController extends BaseController
 					GROUP BY 
 						status_group
 					ORDER BY 
-						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+						FIELD(status_group, '예약접수', '예약가능', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();

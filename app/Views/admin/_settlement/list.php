@@ -109,7 +109,7 @@
 						   $order_sum = $tot_price1 =  $tot_price2 =  $tot_price3 =  $tot_price4 =  $tot_price5 =  $tot_price6 =  $tot_price7 = 0;
 						   foreach ($fresult5 as $row5) {
 									if($row5['status_group'] == "예약접수") $tot_price1 = $row5['total_amount'];	
-									if($row5['status_group'] == "예약확인") $tot_price2 = $row5['total_amount'];	
+									if($row5['status_group'] == "예약가능") $tot_price2 = $row5['total_amount'];	
 									if($row5['status_group'] == "결제완료") $tot_price3 = $row5['total_amount'];	
 									if($row5['status_group'] == "예약확정") $tot_price4 = $row5['total_amount'];	
 									if($row5['status_group'] == "예약취소") $tot_price5 = $row5['total_amount'];	
@@ -131,7 +131,7 @@
 									<em><?=number_format($tot_price1)?></em>
 								</li>
 								<li class="cont_02">
-									<p><i></i>예약확인</p>
+									<p><i></i>예약가능</p>
 									<em><?=number_format($tot_price2)?></em>
 								</li>
 								<li class="cont_03">
