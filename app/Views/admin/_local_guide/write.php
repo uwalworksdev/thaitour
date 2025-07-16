@@ -52,7 +52,7 @@
         }
     }
 
-    $titleStr = "추천여행지 수정";
+    $titleStr = "추천여행지(상품)";
     $links = "list";
 ?>
 <div id="container">
@@ -129,8 +129,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>카테고리선택</th>
+                                    <th>테마여행 카테고리</th>
                                     <td>
+                                        <span id="city_code_name"></span>
                                         <select id="town_code" name="town_code" class="input_select">
                                             <option value="">선택</option>
                                             <?php
@@ -141,6 +142,9 @@
                                                 }
                                             ?>
                                         </select>
+                                    </td>
+                                    <th>카테고리</th>
+                                    <td>
                                         <select id="subcategory_code" name="subcategory_code" class="input_select">
                                             <option value="">선택</option>       
                                             <?php
@@ -387,6 +391,8 @@
             },
             success: function(response) {
                 
+                $("#city_code_name").text(response.city_code_name);
+
                 let town_code_list = response.town_code_list;
                 let subcategory_code_list = response.subcategory_code_list;
 

@@ -287,13 +287,15 @@ class AdminLocalGuideController extends BaseController
     
             $city_code = $local_product['city_code'];
             $category_code = $local_product['category_code'];
+            $city_code_name = $this->codeModel->getCodeName($city_code);
     
             $town_code_list = $this->codeModel->getListByParentCode($city_code);
             $subcategory_code_list = $this->codeModel->getListByParentCode($category_code);
     
             return $this->response->setJSON([
                 'town_code_list' => $town_code_list,
-                'subcategory_code_list' => $subcategory_code_list
+                'subcategory_code_list' => $subcategory_code_list,
+                'city_code_name' => $city_code_name
             ]);
         }
     }

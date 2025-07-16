@@ -7,7 +7,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>호텔 상품관리</h2>
+                <h2>추천여행지(상품)</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
@@ -205,7 +205,7 @@
                                     <th>번호</th>
                                     <th>핫 플레이스</th>
                                     <th>추천 여행지</th>
-                                    <th>추천여행 카테고리</th>
+                                    <th>테마여행</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
                                     <th>순위</th>

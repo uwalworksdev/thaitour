@@ -69,15 +69,15 @@
         <div class="list_place">
             <?php
                 foreach($local_guide_list["items"] as $local_guide){
-                    if ($local_guide["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_guide["ufile1"])) {
-                        $img = "/data/product/" . $local_guide["ufile1"];
+                    if ($local_guide["ufile2"] != "" && is_file(ROOTPATH . "/public/data/product/" . $local_guide["ufile2"])) {
+                        $img = "/data/product/" . $local_guide["ufile2"];
                     } else {
                         $img = "/data/product/noimg.png";
                     }
             ?>
             <a href="/travel-tips/view_detail?lg_idx=<?=$local_guide["idx"]?>" class="item">
                 <div class="img">
-                    <img src="<?=$img?>" alt="<?=$local_guide["rfile1"]?>">
+                    <img src="<?=$img?>" alt="<?=$local_guide["rfile2"]?>">
                 </div>
                 <div class="text">
                     <div class="title">

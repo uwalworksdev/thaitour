@@ -39,7 +39,7 @@
         }
     }
 
-    $titleStr = "추천여행지 수정";
+    $titleStr = "추천여행지(정보)";
     $links = "list";
 ?>
 <div id="container">
@@ -122,7 +122,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>추천여행 카테고리</th>
+                                    <th>테마여행</th>
                                     <td colspan="3">
                                         <select id="category_code" name="category_code" class="input_select"
                                             onchange="get_code(this.value, 3)">

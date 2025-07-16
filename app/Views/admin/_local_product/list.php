@@ -7,7 +7,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>호텔 상품관리</h2>
+                <h2>추천여행지(정보)</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
