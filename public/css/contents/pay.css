@@ -170,7 +170,7 @@ p {
     background-color: var(--bs-point) !important;
     border-color: var(--bs-point) !important;
     color: #fff !important;
-    margin-top: 100px;
+    margin: 100px auto 0;
 }
 
 @media screen and (max-width: 850px) {
@@ -255,7 +255,7 @@ p {
         cursor: pointer;
         width: 100%;
         max-width: 30rem;
-        margin-top: 10rem;
+        margin: 10rem auto 0;
     }
 }
 
