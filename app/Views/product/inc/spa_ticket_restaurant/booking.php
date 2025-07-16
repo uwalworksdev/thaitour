@@ -323,7 +323,7 @@
                             <?php
                                 }
                             ?>
-                            <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가
+                            <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 에 따라 제공 여부가
                                 보장되지
                                 않을 수 있습니다.</p>
                             <div class="form-group cus-form-group">
