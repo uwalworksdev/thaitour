@@ -980,7 +980,83 @@ class Product extends BaseController
         }
     }
 
-    public function listHotel()
+public function listHotel()
+{
+    try {
+        $code_no = $this->request->getVar('s_code_no') ?? '';
+        $pg = $this->request->getVar('pg') ?? 1;
+        $search_product_category = $this->request->getVar('search_product_category') ?? "";
+        $keyword = $this->request->getVar('keyword') ?? "";
+        $perPage = 10;
+
+        // 필터 정보
+        $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
+        $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
+        $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
+        $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
+        $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
+
+        $codes = $this->codeModel
+            ->where('parent_code_no', $code_no)
+            ->orderBy('code_no', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+
+        $arr_code_list = array_column($codes, 'code_no');
+        $product_code_list = implode(",", $arr_code_list);
+
+        // 상품 리스트만 페이징
+        $products = $this->productModel->findProductHotelPaging([
+            'product_code_1' => 1303,
+            's_code_no' => $code_no,
+            'product_code_2' => $code_no,
+            'product_code_3' => $search_product_category,
+            'search_product_category' => $search_product_category,
+            'keyword' => $keyword,
+            'product_status' => 'sale'
+        ], $perPage, $pg, ['onum' => 'DESC']);
+
+        // 여기서 상세 정보는 가져오지 않음
+
+        // 카테고리 이름 처리
+        if ($search_product_category == "") {
+            $search_area = "전체";
+        } else {
+            $row = $this->db
+                ->query("SELECT code_name FROM tbl_code WHERE code_no = ?", [$search_product_category])
+                ->getRowArray();
+            $search_area = $row['code_name'] ?? "전체";
+        }
+
+        $data = [
+            'search_product_category' => $search_product_category,
+            'search_area' => $search_area,
+            'baht_thai' => $this->setting['baht_thai'],
+            'codes' => $codes,
+            'types_hotel' => $types_hotel,
+            'ratings' => $ratings,
+            'promotions' => $promotions,
+            'topics' => $topics,
+            'bedrooms' => $bedrooms,
+            'products' => $products,
+            'code_no' => $code_no,
+            'code_name' => $parent_code_name,
+            'perPage' => $perPage,
+            'tab_active' => '1'
+        ];
+
+        return $this->renderView('product/hotel/list-hotel', $data);
+    } catch (Exception $e) {
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => $e->getMessage()
+        ]);
+    }
+}
+
+    public function listHotelx()
     {
         try {
             // $code_no = $this->request->getVar('s_code_no') ?? '';
