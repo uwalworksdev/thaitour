@@ -86,7 +86,7 @@
                 <?php
                     if($row->chk_notes_invoice == "Y"){
                 ?>
-                    <span style="color: red"><?=viewSQ($row->notes_invoice)?></span>
+                    <span style="color: red; line-height: 1.4;"><?=viewSQ($row->notes_invoice)?></span>
                 <?php
                     }
                 ?>

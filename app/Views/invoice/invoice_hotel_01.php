@@ -108,7 +108,7 @@
                 <?php
                     if($row->chk_notes_invoice == "Y"){
                 ?>
-                    <span style="color: red"><?=$row->notes_invoice?></span>
+                    <span style="color: red; line-height: 1.4;"><?=$row->notes_invoice?></span>
                 <?php
                     }
                 ?>
