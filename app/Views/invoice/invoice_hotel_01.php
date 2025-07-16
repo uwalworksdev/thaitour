@@ -105,6 +105,13 @@
                     <h2 class="tit_top">예약내역</h2>
                     <!-- <span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span> -->
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red"><?=$row->notes_invoice?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">

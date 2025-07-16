@@ -386,6 +386,13 @@
                 </table>
       
                 <h2 class="tit_top">예약내역</h2>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red"><?=$row->notes_invoice?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl" style="table-layout: fixed;">
                     <tbody>
                         <tr>

@@ -396,6 +396,13 @@
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red"><?=$row->notes_invoice?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl">
                     <colgroup>
                         <col width="150px">

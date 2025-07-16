@@ -370,6 +370,13 @@
                             </tr>
                         </table>
                     </div>
+                    <?php
+                        if($row->chk_notes_invoice == "Y"){
+                    ?>
+                        <span style="color: red"><?=$row->notes_invoice?></span>
+                    <?php
+                        }
+                    ?>
                     <table class="invoice_tbl" style="table-layout: fixed; width: 100%; border-collapse: collapse;">
                         <tbody>
                         <?php 

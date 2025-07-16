@@ -410,6 +410,13 @@
                             </tr>
                         </table>
                     </div>
+                    <?php
+                        if($row->chk_notes_invoice == "Y"){
+                    ?>
+                        <span style="color: red"><?=$row->notes_invoice?></span>
+                    <?php
+                        }
+                    ?>
                     <table class="invoice_tbl">
                         <colgroup>
                             <col width="150px">
