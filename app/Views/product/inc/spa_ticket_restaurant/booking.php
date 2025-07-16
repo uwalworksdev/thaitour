@@ -294,7 +294,7 @@
                                 별도 요청
                             </h3>
                             <?php
-                                if(empty($data_['use_time_line'])){
+                                if(empty($prod['use_time_line'])){
                             ?>
                                 <div class="meeting_time">
                                     <select name="hours" id="hours">
