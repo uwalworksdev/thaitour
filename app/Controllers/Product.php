@@ -980,7 +980,7 @@ class Product extends BaseController
         }
     }
 
-public function listHotel()
+public function listHotelx()
 {
     try {
         $code_no = $this->request->getVar('s_code_no') ?? '';
@@ -1152,7 +1152,7 @@ public function listHotel()
     }
 }
 
-    public function listHotelx()
+    public function listHotel()
     {
         try {
             // $code_no = $this->request->getVar('s_code_no') ?? '';
