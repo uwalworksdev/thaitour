@@ -21,7 +21,7 @@
   <link rel="canonical" href="<?= $setting['og_url'] ?>">
 
   <link rel="stylesheet" type="text/css" href="/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/css/pay.css">
+  <link rel="stylesheet" type="text/css" href="/css/contents/pay.css">
 
   <script type="text/javascript"
     src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
