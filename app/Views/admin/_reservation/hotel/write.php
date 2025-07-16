@@ -339,6 +339,14 @@
                                                   style="width:90%;height:80px"><?= $admin_memo ?></textarea>
                                     </td>
                                 </tr>
+                                <tr style="height:100px">
+                                    <th>변경사항</th>
+                                    <td colspan="3">
+                                        <input type="text" id="notes_invoice" name="notes_invoice" value="<?= $row['notes_invoice'] ?>" class="input_txt" style="width:30%"/>
+
+                                        <input type="checkbox" name="chk_notes_invoice" id="chk_notes_invoice" value="Y">
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 							
