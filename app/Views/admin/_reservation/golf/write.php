@@ -291,6 +291,14 @@
                                         <textarea id="admin_memo" name="admin_memo" class="input_txt"  style="width:90%;height:80px"><?= $admin_memo ?></textarea>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>변경사항</th>
+                                    <td colspan="3">
+                                        <input type="text" id="notes_invoice" name="notes_invoice" value="<?= $notes_invoice ?>" class="input_txt" style="width:30%"/>
+                                        <input type="checkbox" name="chk_notes_invoice" id="chk_notes_invoice" value="Y" <?= $chk_notes_invoice == "Y" ? "checked" : "" ?>>
+                                        <label for="chk_notes_invoice">적용</label>
+                                    </td>
+                                </tr>
                                 </tbody>
 
                             </table>
