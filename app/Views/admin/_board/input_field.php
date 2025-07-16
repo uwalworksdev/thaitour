@@ -13,6 +13,11 @@ $width     = BBS_WRITE_CONFIG[$code]['widths'][$key];
     <input type="checkbox" name="<?= $name ?>" <?= $info[$name] == "Y" ? "checked" : "" ?> style="width: <?= $width ?> ">
 <?php endif; ?>
 
+<?php if ($inputType == "radio"): ?>
+    현재창 <input type="radio" name="<?= $name ?>" <?= $info[$name] == "Y" ? "checked" : "" ?>>
+    새창 <input type="radio" name="<?= $name ?>" <?= ($info[$name] == "N" || empty($info[$name])) ? "checked" : "" ?>>
+<?php endif; ?>
+
 <?php if ($inputType == "summernote"): ?>
     <textarea name="<?= $name ?>" id="<?= $name ?>_" rows="10" cols="100" class="input_txt"
         style="width:100%; height:412px; display:none;"><?= $info[$name] ?></textarea>
