@@ -11,7 +11,7 @@ class LocalProductModel extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "city_code", "category_code", "title", "desc", "ufile1", "rfile1", "r_date"
+        "city_code", "category_code", "title", "desc", "ufile1", "rfile1", "ufile2", "rfile2", "r_date"
     ];
     protected $codeModel;
     public function __construct()
