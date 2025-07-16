@@ -145,6 +145,7 @@
                                     </td>
                                     <th>카테고리</th>
                                     <td>
+                                        <span id="category_code_name"><?= $category_code_name ? "(" . $category_code_name . ")"  : ''?></span>
                                         <select id="subcategory_code" name="subcategory_code" class="input_select">
                                             <option value="">선택</option>       
                                             <?php
@@ -392,6 +393,7 @@
             success: function(response) {
                 
                 $("#city_code_name").text("(" + response.city_code_name + ")");
+                $("#category_code_name").text("(" + response.category_code_name + ")");
 
                 let town_code_list = response.town_code_list;
                 let subcategory_code_list = response.subcategory_code_list;

@@ -113,7 +113,7 @@ class AdminLocalGuideController extends BaseController
             $subcategory_code_list = $this->codeModel->getListByParentCode($row_prod['category_code']);
 
             $city_code_name = $this->codeModel->getCodeName($row_prod['city_code']);
-
+            $category_code_name = $this->codeModel->getCodeName($row_prod['category_code']);
         }
 
         $img_list = $this->localGuideImg->getImg($idx);
@@ -131,6 +131,7 @@ class AdminLocalGuideController extends BaseController
             'row' => $row ?? '',
             'img_list' => $img_list,
             'city_code_name' => $city_code_name ?? "",
+            'category_code_name' => $category_code_name ?? ""
         ];
         return view("admin/_local_guide/write", $data);
     }
@@ -291,6 +292,7 @@ class AdminLocalGuideController extends BaseController
             $city_code = $local_product['city_code'];
             $category_code = $local_product['category_code'];
             $city_code_name = $this->codeModel->getCodeName($city_code);
+            $category_code_name = $this->codeModel->getCodeName($category_code);
     
             $town_code_list = $this->codeModel->getListByParentCode($city_code);
             $subcategory_code_list = $this->codeModel->getListByParentCode($category_code);
@@ -298,7 +300,8 @@ class AdminLocalGuideController extends BaseController
             return $this->response->setJSON([
                 'town_code_list' => $town_code_list,
                 'subcategory_code_list' => $subcategory_code_list,
-                'city_code_name' => $city_code_name
+                'city_code_name' => $city_code_name,
+                'category_code_name' => $category_code_name,
             ]);
         }
     }
