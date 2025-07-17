@@ -1577,9 +1577,9 @@
                                     주의사항
                                 </a>
                                 <div class="caution_popup">
-                                    <div class="caution_top" onclick="close_popup_caution()">
+                                    <!-- <div class="caution_top" onclick="close_popup_caution()">
                                         <img src="/images/ico/close-btn-grey.png" alt="">
-                                    </div>
+                                    </div> -->
                                     <div class="caution_content">
                                         <h4>주의사항</h4>
                                         <div class="desc">
@@ -1591,7 +1591,7 @@
                         </div>
                         <script>
                             function show_popup_caution() {
-                                $(".caution_popup").show();
+                                $(".caution_popup").toggle();
                             }
 
                             function close_popup_caution() {
