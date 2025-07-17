@@ -1742,11 +1742,21 @@
 
         const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
 
-        
+        // adultQuantity = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
+        // childQuantity = Number(quantityContainer.find(".quantity-container.child .quantity").text());
+        // babyQuantity = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
 
-        adultQuantity = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
-        childQuantity = Number(quantityContainer.find(".quantity-container.child .quantity").text());
-        babyQuantity = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
+        // adultTotalPrice = Number(dayData?.goods_price1_won ?? 0) * adultQuantity;
+        // childTotalPrice = Number(dayData?.goods_price2_won ?? 0) * childQuantity;
+        // babyTotalPrice = Number(dayData?.goods_price3_won ?? 0) * babyQuantity;
+
+        // let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
+        // let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
+        // let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
+
+        adultQuantity = 1;
+        childQuantity = 0;
+        babyQuantity = 0;
 
         adultTotalPrice = Number(dayData?.goods_price1_won ?? 0) * adultQuantity;
         childTotalPrice = Number(dayData?.goods_price2_won ?? 0) * childQuantity;
@@ -1755,7 +1765,6 @@
         let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
         let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
         let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
-
 
         // quantityContainer.find(".quantity-container.adult .quantity").text("0");
         quantityContainer.find(".quantity-container.adult .price")
