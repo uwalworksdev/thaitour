@@ -1575,6 +1575,7 @@
                                 <a href="javascript:show_popup_caution()">
                                     <img src="/images/ico/ico_warning.svg" alt="">
                                     주의사항
+                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide">
                                 </a>
                                 <div class="caution_popup">
                                     <!-- <div class="caution_top" onclick="close_popup_caution()">
