@@ -68,7 +68,7 @@
 <script>
     function searchSpa() {
         
-        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
         let code = '';
         code = '<?= $main_product_code ?? '' ?>';
         // <?php
@@ -82,7 +82,7 @@
     }
 
     function searchSpaCode(code) {
-        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
         goUrl(keyword, code);
     }
 
