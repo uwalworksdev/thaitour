@@ -6,6 +6,9 @@
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <style>
+    .white-icon {
+        filter: brightness(0) invert(1);
+    }
     .popup_wrap.place_pop.cart_info_pop .pop_box {
         max-width: 1000px;
     }
@@ -1575,7 +1578,7 @@
                                 <a href="javascript:show_popup_caution()">
                                     <img src="/images/ico/ico_warning.svg" alt="">
                                     주의사항
-                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide">
+                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide white-icon">
                                 </a>
                                 <div class="caution_popup">
                                     <!-- <div class="caution_top" onclick="close_popup_caution()">
