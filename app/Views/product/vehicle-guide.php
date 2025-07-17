@@ -1578,7 +1578,7 @@
                                 <a href="javascript:show_popup_caution()">
                                     <img src="/images/ico/ico_warning.svg" alt="">
                                     주의사항
-                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide white-icon">
+                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide-vehicle white-icon">
                                 </a>
                                 <div class="caution_popup">
                                     <!-- <div class="caution_top" onclick="close_popup_caution()">
@@ -1596,6 +1596,11 @@
                         <script>
                             function show_popup_caution() {
                                 $(".caution_popup").toggle();
+                                if($(".caution_popup").css('display') !== 'none') {
+                                    $(".arrow-slide-vehicle").css('transform', 'rotate(180deg)');
+                                }else{
+                                    $(".arrow-slide-vehicle").css('transform', 'rotate(0)');
+                                }
                             }
 
                             function close_popup_caution() {
