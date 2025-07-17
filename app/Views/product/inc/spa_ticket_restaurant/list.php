@@ -66,20 +66,7 @@
     }
 </style>
 <script>
-    function searchSpa() {
-        
-        let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
-        let code = '';
-        code = '<?= $main_product_code ?? '' ?>';
-        // <?php
-        //     if(!empty($main_product_code)) {
-        // ?>
-        // <?php
-        //     }
-        // ?>
 
-        goUrl(keyword, code);
-    }
 
     function searchSpaCode(code) {
         let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
