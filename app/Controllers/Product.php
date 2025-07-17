@@ -4860,49 +4860,71 @@ class Product extends BaseController
         $product_code_2 = $this->request->getVar('product_code_2') ?? "";
         $main_product_code = $this->request->getVar('main_product_code');
 
-        if(isset($main_product_code)) {
-            $products = $this->productModel->findProductPaging([
-                'product_code_1' => $code_no,
-            ], 10, 1, ['onum' => 'DESC'])['items'];
+        $products = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+        ], 10, 1, ['onum' => 'DESC'])['items'];
 
-            $productResults = $this->productModel->findProductPaging([
-                'product_code_1' => $code_no,
-                'product_code_2' => $main_product_code,
+        $productResults = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+            'product_code_2' => $main_product_code,
+            'search_category' => "product_name",
+            'search_txt' => $search_product_name
+        ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
+
+        $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+        foreach ($codes as $key => $code) {
+            $sProducts = $this->productModel->findProductPaging([
+                'product_code_2' => $code['code_no'],
                 'search_category' => "product_name",
                 'search_txt' => $search_product_name
-            ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
-
-            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
-
-            foreach ($codes as $key => $code) {
-                $sProducts = $this->productModel->findProductPaging([
-                    'product_code_2' => $code['code_no'],
-                    'search_category' => "product_name",
-                    'search_txt' => $search_product_name
-                ], 1000, 1)['nTotalCount'];
-                $codes[$key]['count'] = $sProducts;
-
-            }
-
-        }else {
-            $products = $this->mainDispModel->goods_find_by_parent($topic_code_1, 10)['items'];
-
-            if(empty($product_code_2)) {
-                $productResults = $this->mainDispModel->goods_find_by_parent($topic_code_2, 1000, 1, "product_name", $search_product_name)['items'];
-            }else{
-                $productResults = $this->mainDispModel->goods_find($product_code_2, 1000, 1, "product_name", $search_product_name)['items'];
-            }
-
-            $codes = $this->codeModel->getByParentCode($topic_code_2)->getResultArray();
-
-            foreach ($codes as $key => $code) {
-    
-                $sProducts = $this->mainDispModel->goods_find($code['code_no'], 1000, 1, "product_name", $search_product_name)['nTotalCount'];
-    
-                $codes[$key]['count'] = $sProducts;
-            }
+            ], 1000, 1)['nTotalCount'];
+            $codes[$key]['count'] = $sProducts;
 
         }
+
+        // if(isset($main_product_code)) {
+        //     $products = $this->productModel->findProductPaging([
+        //         'product_code_1' => $code_no,
+        //     ], 10, 1, ['onum' => 'DESC'])['items'];
+
+        //     $productResults = $this->productModel->findProductPaging([
+        //         'product_code_1' => $code_no,
+        //         'product_code_2' => $main_product_code,
+        //         'search_category' => "product_name",
+        //         'search_txt' => $search_product_name
+        //     ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
+
+        //     $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+        //     foreach ($codes as $key => $code) {
+        //         $sProducts = $this->productModel->findProductPaging([
+        //             'product_code_2' => $code['code_no'],
+        //             'search_category' => "product_name",
+        //             'search_txt' => $search_product_name
+        //         ], 1000, 1)['nTotalCount'];
+        //         $codes[$key]['count'] = $sProducts;
+
+        //     }
+
+        // }else {
+        //     $products = $this->mainDispModel->goods_find_by_parent($topic_code_1, 10)['items'];
+
+        //     if(empty($product_code_2)) {
+        //         $productResults = $this->mainDispModel->goods_find_by_parent($topic_code_2, 1000, 1, "product_name", $search_product_name)['items'];
+        //     }else{
+        //         $productResults = $this->mainDispModel->goods_find($product_code_2, 1000, 1, "product_name", $search_product_name)['items'];
+        //     }
+
+        //     $codes = $this->codeModel->getByParentCode($topic_code_2)->getResultArray();
+
+        //     foreach ($codes as $key => $code) {
+    
+        //         $sProducts = $this->mainDispModel->goods_find($code['code_no'], 1000, 1, "product_name", $search_product_name)['nTotalCount'];
+    
+        //         $codes[$key]['count'] = $sProducts;
+        //     }
+        // }
 
         $baht_thai = $this->setting['baht_thai'];
 
