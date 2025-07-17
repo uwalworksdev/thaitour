@@ -1766,7 +1766,7 @@
         let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
         let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
 
-        // quantityContainer.find(".quantity-container.adult .quantity").text("0");
+        quantityContainer.find(".quantity-container.adult .quantity").text("1");
         quantityContainer.find(".quantity-container.adult .price")
             .text(number_format(adultTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price1_won ?? 0));
@@ -1774,6 +1774,7 @@
             .text(number_format(adultTotalPriceBath) + " 바트")
             .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
 
+        quantityContainer.find(".quantity-container.child .quantity").text("0");
         quantityContainer.find(".quantity-container.child .price").text("0원")
             .text(number_format(childTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
@@ -1781,6 +1782,7 @@
             .text(number_format(childTotalPriceBath) + " 바트")
             .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
 
+        quantityContainer.find(".quantity-container.baby .quantity").text("0");
         quantityContainer.find(".quantity-container.baby .price").text("0원")
             .text(number_format(babyTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
