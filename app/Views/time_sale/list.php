@@ -318,6 +318,7 @@
                     window.location.href = data.url;
                 }else{
                     alert("유효하지 않은 링크입니다.");
+                    return false;
                 }
             },
             error: function (request, status, error) {
