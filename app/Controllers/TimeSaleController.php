@@ -71,8 +71,14 @@ class TimeSaleController extends BaseController
 
         $time_sale = $this->bbsModel->View($bbs_idx);
 
+        if($time_sale["product_status"] != 'D'){
+            $url = $time_sale["url"];
+        }else{
+            $url = "#";
+        }
+
         return $this->response->setJSON([
-            "url" => $time_sale["url"]
+            "url" => $url
         ]);
     }
 
