@@ -502,7 +502,7 @@ $list_alarm = $db->table('tbl_alarm')->where('m_idx', $m_idx)->orderBy('r_date',
             url: '/api/alarm/del-readen',
             success: function(response) {
                 if(response.success ==  true){
-                    alert("삭제되었습니다!");
+                    // alert("삭제되었습니다!");
                     location.reload();
                 }
             },
