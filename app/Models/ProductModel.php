@@ -1525,13 +1525,12 @@ class ProductModel extends Model
             $builder->orderBy($key, $value);
         }
 
-//        $sql = $builder->getCompiledSelect();
-//        var_dump($sql);
-//        die();
+    //    $sql = $builder->getCompiledSelect();
+    //    var_dump($sql);
+    //    die();
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
-        write_log($this->db->getLastQuery());
         $total_price_max = 500000;
 
         if ($where['price_type'] == "B") {
