@@ -66,6 +66,11 @@ class DailyController extends BaseController {
 		$db = \Config\Database::connect();
 		$today = date('Y-m-d');
 
+		$sql   = "UPDATE tbl_room_price 
+                  SET upd_yn = 'Y' 
+                  WHERE goods_date < CURDATE() ";
+		$db->query($sql);	
+		
 		// 판매 중인 호텔 상품 목록
 		$productQuery = "
 			SELECT product_idx 
