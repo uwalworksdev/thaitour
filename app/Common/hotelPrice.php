@@ -200,18 +200,20 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		//if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
 		//   write_log("detailPrice - " . $db->getLastQuery());
         //}
-		
-        $room_r = "";
-        foreach ($priceRows as $row) :
-			     $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'] .":". $baht_thai;
-			     if($room_r == "") {
-			        $room_r .= $val;
-				 } else {
-			        $room_r .= "|". $val; 
-				 }	
-			     
-		endforeach;
-		
+		if (empty($priceRows)) {
+            // 데이터가 없는 경우 처리
+            $room_r = "";
+        } else {
+			$room_r = "";
+			foreach ($priceRows as $row) :
+					 $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'] .":". $baht_thai;
+					 if($room_r == "") {
+						$room_r .= $val;
+					 } else {
+						$room_r .= "|". $val; 
+					 }	
+		    endforeach;
+		}
 		// 만약 결과가 없을 경우 빈 배열 반환
 		return $room_r;
 }
