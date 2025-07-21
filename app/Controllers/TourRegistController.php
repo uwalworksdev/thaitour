@@ -1506,7 +1506,152 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/list_golf_price", $data);
     }
 
-    public function list_room_price()
+public function list_room_price()
+{
+    $db = \Config\Database::connect();
+    $today = date('Y-m-d');
+
+    // 1. 과거 날짜 가격 업데이트 처리
+    $db->table('tbl_room_price')
+        ->where('goods_date <', $today)
+        ->update(['upd_yn' => 'Y']);
+
+    // 2. 파라미터 처리
+    $g_list_rows = $this->request->getGet('g_list_rows') ?? 30;
+    $pg = $this->request->getGet('pg') ?? 1;
+    $product_idx = $this->request->getGet('product_idx');
+    $g_idx = $this->request->getGet('g_idx');
+    $roomIdx = $this->request->getGet('roomIdx');
+    $s_date = $this->request->getGet('s_date');
+    $e_date = $this->request->getGet('e_date');
+
+    // 3. 상품명 조회
+    $product = $this->productModel->getById($product_idx);
+    $product_name = viewSQ($product["product_name"]);
+
+    // 4. 날짜 범위 구하기
+    $builder = $db->table('tbl_room_price');
+    $builder->selectMin('goods_date', 's_date')
+            ->selectMax('goods_date', 'e_date')
+            ->where('product_idx', $product_idx);
+
+    if ($g_idx) {
+        $builder->where('g_idx', $g_idx)
+                ->where('rooms_idx', $roomIdx);
+    }
+
+    if ($s_date && $e_date) {
+        $builder->where('goods_date >=', $s_date)
+                ->where('goods_date <=', $e_date);
+    } else {
+        $builder->where('goods_date >=', $today);
+    }
+
+    $rangeRow = $builder->get()->getRowArray();
+    $o_sdate = $s_date ?? $rangeRow['s_date'];
+    $o_edate = $e_date ?? $rangeRow['e_date'];
+
+    // 5. 본 데이터 조회
+    $builder = $db->table('tbl_room_price a');
+    $builder->select('a.*, b.bed_idx, b.bed_type, b.bed_seq')
+            ->join('tbl_room_beds b', 'a.bed_idx = b.bed_idx', 'left')
+            ->where('a.product_idx', $product_idx)
+            ->where('a.bed_idx !=', 0);
+
+    if ($g_idx) {
+        $builder->where('a.g_idx', $g_idx)
+                ->where('a.rooms_idx', $roomIdx);
+    }
+
+    if ($s_date && $e_date) {
+        $builder->where('a.goods_date >=', $s_date)
+                ->where('a.goods_date <=', $e_date);
+    } else {
+        $builder->where('a.goods_date >=', $today);
+    }
+
+    $nTotalCount = $builder->countAllResults(false); // 유지된 쿼리 재사용
+    $nPage = ceil($nTotalCount / $g_list_rows);
+    $nFrom = ($pg - 1) * $g_list_rows;
+
+    $roresult = $builder
+        ->orderBy('a.goods_date ASC, b.bed_seq ASC')
+        ->limit($g_list_rows, $nFrom)
+        ->get()
+        ->getResultArray();
+
+    // 6. goods_date별 개수 미리 구해두기
+    $cnts = [];
+    $dateCountBuilder = $db->table('tbl_room_price a');
+    $dateCountBuilder->select('a.goods_date, COUNT(*) AS cnt')
+                     ->join('tbl_room_beds b', 'a.bed_idx = b.bed_idx', 'left')
+                     ->where('a.product_idx', $product_idx)
+                     ->where('a.bed_idx !=', 0)
+                     ->groupBy('a.goods_date');
+
+    if ($g_idx) {
+        $dateCountBuilder->where('a.g_idx', $g_idx)
+                         ->where('a.rooms_idx', $roomIdx);
+    }
+
+    if ($s_date && $e_date) {
+        $dateCountBuilder->where('a.goods_date >=', $s_date)
+                         ->where('a.goods_date <=', $e_date);
+    } else {
+        $dateCountBuilder->where('a.goods_date >=', $today);
+    }
+
+    foreach ($dateCountBuilder->get()->getResultArray() as $row) {
+        $cnts[$row['goods_date']] = $row['cnt'];
+    }
+
+    foreach ($roresult as &$row) {
+        $row['cnt_bed_date'] = $cnts[$row['goods_date']] ?? 0;
+    }
+
+    // 7. 룸타입명
+    $room_type = '';
+    if ($g_idx) {
+        $room = $db->table('tbl_room')->where('g_idx', $g_idx)->get()->getRowArray();
+        $room_type = $room['roomName'] ?? '';
+    }
+
+    // 8. 룸명칭
+    $room_name = '';
+    if ($roomIdx) {
+        $room = $db->table('tbl_hotel_rooms')->where('rooms_idx', $roomIdx)->get()->getRowArray();
+        $room_name = $room['room_name'] ?? '';
+    }
+
+    // 9. 베드타입 목록
+    $bed_types = $db->table('tbl_room_beds')
+        ->where('rooms_idx', $roomIdx)
+        ->orderBy('bed_seq', 'ASC')
+        ->get()
+        ->getResultArray();
+
+    // 10. View에 넘길 데이터 구성
+    $data = [
+        'room_type'    => $room_type,
+        'bed_types'    => $bed_types,
+        'room_name'    => $room_name,
+        'nPage'        => $nPage,
+        'pg'           => $pg,
+        'g_list_rows'  => $g_list_rows,
+        'nTotalCount'  => $nTotalCount,
+        'roresult'     => $roresult,
+        'product_idx'  => $product_idx,
+        'g_idx'        => $g_idx,
+        'roomIdx'      => $roomIdx,
+        'product_name' => $product_name,
+        's_date'       => $o_sdate,
+        'e_date'       => $o_edate,
+    ];
+
+    return view("admin/_tourRegist/list_room_price", $data);
+}
+
+    public function list_room_pricex()
     {
         $db    = \Config\Database::connect(); 
         $today = date('Y-m-d');
