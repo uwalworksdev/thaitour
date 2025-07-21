@@ -1513,8 +1513,11 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-                            $orderBy = ['product_idx' => 'DESC'];
-
+            if (!empty($where['arr_search_txt'])) {
+                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
