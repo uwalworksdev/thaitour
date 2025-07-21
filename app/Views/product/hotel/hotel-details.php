@@ -1005,6 +1005,7 @@
                     cache: false,
                     success: function (data, textStatus) {
                         message = data.message;
+						alert('1');
                         $("#room_main").html(message);
                         $("input[type=radio]").prop("disabled", false);
                         $("#searchOk").val('Y');
