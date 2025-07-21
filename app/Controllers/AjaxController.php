@@ -822,7 +822,6 @@ class AjaxController extends BaseController {
 									</div>									
 										'; 
 
-                            write_log($msg);
                             $arr_type_room = explode("|", $row['category']);
                             $arr_text_type = [];
                             foreach($fresult11 as $category){
@@ -1098,6 +1097,7 @@ class AjaxController extends BaseController {
 									</div>
 								</div>
 							</div>'; 
+			write_log($msg);				
 			endforeach; 
 
 			return $this->response
