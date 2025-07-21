@@ -726,6 +726,10 @@ class AjaxController extends BaseController {
 	
     public function hotel_room_search()
 	{
+		
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);		
             $db             = \Config\Database::connect();
             include_once APPPATH . 'Common/hotelPrice.php';
 
