@@ -1506,7 +1506,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/list_golf_price", $data);
     }
 
-public function list_room_price()
+public function list_room_pricex()
 {
     $db = \Config\Database::connect();
     $today = date('Y-m-d');
@@ -1651,7 +1651,7 @@ public function list_room_price()
     return view("admin/_tourRegist/list_room_price", $data);
 }
 
-    public function list_room_pricex()
+    public function list_room_price()
     {
         $db    = \Config\Database::connect(); 
         $today = date('Y-m-d');
