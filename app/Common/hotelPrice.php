@@ -226,57 +226,61 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 
 function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx)  
 {
-    // DB 연결 확인 후 연결
-    if (!$db) {
-        $db = \Config\Database::connect();
+	
+	if($bed_idx == "")
+		$room_r = "";
+    } else {
+		// DB 연결 확인 후 연결
+		if (!$db) {
+			$db = \Config\Database::connect();
+		}
+
+		$setting   = homeSetInfo();
+		$baht_thai = (float)($setting['baht_thai'] ?? 0);
+
+		// 종료 날짜 계산 (시작일 + ($days - 1)일)
+		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
+
+		// Query Builder 생성
+		$builder = $db->table('tbl_room_price')
+			->select('
+				bed_idx, 
+				goods_date, 
+				goods_price1,
+				goods_price2,
+				goods_price3,
+				goods_price4,
+				goods_price5')
+			->where('product_idx', $product_idx)
+			->where('g_idx', $g_idx)
+			->where('rooms_idx', $rooms_idx)
+			->where('bed_idx', $bed_idx)
+			->where('goods_date >=', $o_sdate)
+			->where('goods_date <=', $o_edate)
+			->orderBy('goods_date', 'ASC'); // 일자별 정렬
+
+		$query    = $builder->get();
+		$dateRows = $query->getResultArray(); // 여러 개의 행을 가져옴
+
+		// 실행된 SQL 로그 출력 (디버깅)
+		//if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
+		//    write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
+		//}
+
+		// 결과값 조합
+		$room_r = array_map(function ($row) use ($baht_thai) {
+			return implode(":", [
+				$row['goods_date'],
+				$row['goods_price1'],
+				$row['goods_price2'],
+				$row['goods_price3'],
+				$row['goods_price4'],
+				$row['goods_price5'],
+				$row['bed_type'],
+				$baht_thai,
+			]);
+		}, $dateRows);
     }
-
-    $setting   = homeSetInfo();
-    $baht_thai = (float)($setting['baht_thai'] ?? 0);
-
-    // 종료 날짜 계산 (시작일 + ($days - 1)일)
-    $o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
-
-    // Query Builder 생성
-    $builder = $db->table('tbl_room_price')
-        ->select('
-            bed_idx, 
-            goods_date, 
-            goods_price1,
-            goods_price2,
-            goods_price3,
-            goods_price4,
-            goods_price5')
-        ->where('product_idx', $product_idx)
-        ->where('g_idx', $g_idx)
-        ->where('rooms_idx', $rooms_idx)
-        ->where('bed_idx', $bed_idx)
-        ->where('goods_date >=', $o_sdate)
-        ->where('goods_date <=', $o_edate)
-        ->orderBy('goods_date', 'ASC'); // 일자별 정렬
-
-    $query    = $builder->get();
-    $dateRows = $query->getResultArray(); // 여러 개의 행을 가져옴
-
-    // 실행된 SQL 로그 출력 (디버깅)
-    //if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
-    //    write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
-    //}
-
-    // 결과값 조합
-    $room_r = array_map(function ($row) use ($baht_thai) {
-        return implode(":", [
-            $row['goods_date'],
-            $row['goods_price1'],
-            $row['goods_price2'],
-            $row['goods_price3'],
-            $row['goods_price4'],
-            $row['goods_price5'],
-            $row['bed_type'],
-            $baht_thai,
-        ]);
-    }, $dateRows);
-
     // 로그 기록
     //write_log("room_r - " . implode("|", $room_r));
 
