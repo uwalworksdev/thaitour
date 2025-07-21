@@ -754,7 +754,6 @@ class AjaxController extends BaseController {
             $roomsByType    = $roomsByType->getResultArray();
 
 			$sql            = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
-            write_log("hotel_room_search-2 ". $sql);							 
             $fresult10      = $db->query($sql);
 			$fresult10      = $fresult10->getResultArray();
 
@@ -768,6 +767,7 @@ class AjaxController extends BaseController {
 			     $hotel_room = $row['roomName'];
 
 				 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
+                 write_log("hotel_room_search-4 ". $sql_img);							 
 				 $query_img  = $db->query($sql_img);
 				 $result     = $query_img->getResult();
 
@@ -822,7 +822,7 @@ class AjaxController extends BaseController {
 									</div>									
 										'; 
 
-                    
+                            write_log($msg);
                             $arr_type_room = explode("|", $row['category']);
                             $arr_text_type = [];
                             foreach($fresult11 as $category){
