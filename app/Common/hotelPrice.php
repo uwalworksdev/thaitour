@@ -224,8 +224,13 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 }
 
 
-function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx)  
+function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sdate, int $days, int $bed_idx)
 {
+    // bed_idx가 없으면 빈 결과 반환
+    if ($bed_idx == "") {
+        return "";
+    }
+
     // DB 연결 확인 후 연결
     if (!$db) {
         $db = \Config\Database::connect();
@@ -246,24 +251,25 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
             goods_price2,
             goods_price3,
             goods_price4,
-            goods_price5')
+            goods_price5
+        ')
         ->where('product_idx', $product_idx)
         ->where('g_idx', $g_idx)
         ->where('rooms_idx', $rooms_idx)
         ->where('bed_idx', $bed_idx)
         ->where('goods_date >=', $o_sdate)
         ->where('goods_date <=', $o_edate)
-        ->orderBy('goods_date', 'ASC'); // 일자별 정렬
+        ->orderBy('goods_date', 'ASC');
 
     $query    = $builder->get();
-    $dateRows = $query->getResultArray(); // 여러 개의 행을 가져옴
+    $dateRows = $query->getResultArray();
 
-    // 실행된 SQL 로그 출력 (디버깅)
-    //if ($product_idx == 2207 && $g_idx == 377 && $rooms_idx == 826) {
-    //    write_log("detailBedPrice SQL - " . $builder->getCompiledSelect());
-    //}
+    // 결과가 없으면 빈 문자열 반환
+    if (empty($dateRows)) {
+        return "";
+    }
 
-    // 결과값 조합
+    // 결과값 조합 (bed_type은 포함 안 됨 → 필요하면 JOIN해야 함)
     $room_r = array_map(function ($row) use ($baht_thai) {
         return implode(":", [
             $row['goods_date'],
@@ -272,17 +278,14 @@ function detailBedPrice($db, int $product_idx, int $g_idx, int $rooms_idx, $o_sd
             $row['goods_price3'],
             $row['goods_price4'],
             $row['goods_price5'],
-            $row['bed_type'],
-            $baht_thai,
+            $baht_thai
         ]);
     }, $dateRows);
-
-    // 로그 기록
-    //write_log("room_r - " . implode("|", $room_r));
 
     // 결과 반환
     return implode("|", $room_r);
 }
+
 
 
 
