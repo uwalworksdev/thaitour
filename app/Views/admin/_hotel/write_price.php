@@ -258,7 +258,7 @@ $links = "list";
 							</tr>
 
 							<tr>
-								<th>룸타입 등록.</th>
+								<th>룸타입 등록</th>
 								<td colspan="3">
 								<div class="room_list">
 									<?php foreach ($rresult as $row) : ?>
