@@ -979,7 +979,7 @@
                 let room_qty = $("#room_qty").val();
 
                 if (!date_check_in && !date_check_out) {
-                    alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+                    alert("1체크인 날짜와 체크아웃 날짜를 선택해주세요!");
                     return false;
                 }				
                 
@@ -3107,7 +3107,7 @@
             let date_check_out = $("#input_day_end_").val();
 
             if (!date_check_in && !date_check_out) {
-                alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+                alert("2체크인 날짜와 체크아웃 날짜를 선택해주세요!");
                 return false;
             }
 
@@ -3161,7 +3161,7 @@
             let date_check_out = $("#input_day_end_").val();
 
             if (!date_check_in && !date_check_out) {
-                alert("체크인 날짜와 체크아웃 날짜를 선택해주세요!");
+                alert("3체크인 날짜와 체크아웃 날짜를 선택해주세요!");
                 return false;
             }
 
