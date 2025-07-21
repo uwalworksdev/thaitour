@@ -1514,7 +1514,7 @@ class TourRegistController extends BaseController
 		$sql   = "UPDATE tbl_room_price 
                   SET upd_yn = 'Y' 
                   WHERE goods_date < CURDATE() ";
-		$db->query($sql);		 
+		//$db->query($sql);		 
         
 		//$g_list_rows = 20;
         $g_list_rows     = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
