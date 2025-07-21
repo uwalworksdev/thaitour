@@ -119,6 +119,12 @@ class AdminMenus extends BaseConfig
                     'url' => ['/AdmMaster/_local_guide/list'],
                     'alias' => ['AdminLocalGuideController::list', 'AdminLocalGuideController::write']
                 ],
+                [
+                    'name' => '테마별 인기호텔',
+                    'code' => 'B14',
+                    'url' => ['/AdmMaster/_hotel_theme/list'],
+                    'alias' => ['AdminHotelThemeController::list', 'AdminHotelThemeController::write_month', 'AdminHotelThemeController::write_area']
+                ],
             ]
         ],
         [
