@@ -1513,7 +1513,7 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            if (!empty($where['arr_search_txt'])) {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
                 $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
             } else {
                 $orderBy = ['product_idx' => 'DESC'];
@@ -1531,6 +1531,7 @@ class ProductModel extends Model
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
+        write_log($this->db->getLastQuery());
         $total_price_max = 500000;
 
         if ($where['price_type'] == "B") {
