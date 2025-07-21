@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class HotelThemeModel extends Model
+{
+    protected $table = 'tbl_hotel_theme';
+
+    protected $primaryKey = 'idx';
+
+    protected $allowedFields = [
+        "title", "subtitle", "category_code", "type", "recommend_text", "ufile1", "rfile1", "onum", "r_date", "m_date"
+    ];
+    protected $codeModel;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->codeModel = new Code();
+    }
+
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter($data, function ($key) use ($allowedFields, $data) {
+            return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
+        },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+        }
+
+        return $this->insert($filteredData);
+    }
+
+    public function updateData($id, $data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($filteredData as $key => $value) {	
+            $filteredData[$key] = updateSQ($value);
+        }
+
+		return $this->update($id, $filteredData);
+    }
+
+    public function get_list($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+
+        $builder = $this;
+
+        if ($where['city_code'] != "") {
+            $builder->where('city_code', $where['city_code']);
+        }
+        if ($where['category_code'] != "") {
+            $builder->where('category_code', $where['category_code']);
+        }
+	
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('title', $where['search_txt']);
+                $builder->groupEnd();
+            }
+        }
+
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+		
+        foreach ($items as $key => $value) {
+            $items[$key]['city_name'] = $this->codeModel->getCodeName($value['city_code']);
+            $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
+        }
+
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+
+        return $data;
+    }
+}
