@@ -1240,7 +1240,32 @@ class ProductModel extends Model
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
         $builder = $this->db->table('tbl_product_mst AS p');
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "p.*, 
+            MIN(STR_TO_DATE(h.o_sdate, '%Y-%m-%d')) AS oldest_date, 
+            MAX(STR_TO_DATE(o_edate, '%Y-%m-%d')) AS latest_date";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+
+        $builder->select($select);
+        // $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_rooms AS h', 'p.product_idx = h.goods_code', 'left');
 /*
         $builder->where('h.o_sdate IS NOT NULL');
@@ -1488,7 +1513,8 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
+                            $orderBy = ['product_idx' => 'DESC'];
+
         }
 
         foreach ($orderBy as $key => $value) {
