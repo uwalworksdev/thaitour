@@ -1249,8 +1249,8 @@ class ProductModel extends Model
             foreach ($arr_search_txt as $txt) {
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                // $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                // $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
             }
 
             $relevanceExpr = implode(' + ', $relevanceParts);
@@ -1474,8 +1474,8 @@ class ProductModel extends Model
 
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
-                $builder->orLike('keyword', $escapedTxt);
+                // $builder->orLike('product_name_en', $escapedTxt);
+                // $builder->orLike('keyword', $escapedTxt);
 
                 // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
                 // $builder->orWhere("keyword REGEXP '\\\b" . $escapedTxt . "\\\b'");
@@ -1513,8 +1513,11 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-                            $orderBy = ['product_idx' => 'DESC'];
-
+            if (!empty($where['arr_search_txt'])) {
+                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
