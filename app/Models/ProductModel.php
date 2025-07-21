@@ -1525,9 +1525,9 @@ class ProductModel extends Model
             $builder->orderBy($key, $value);
         }
 
-       $sql = $builder->getCompiledSelect();
-       var_dump($sql);
-       die();
+    //    $sql = $builder->getCompiledSelect();
+    //    var_dump($sql);
+    //    die();
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 

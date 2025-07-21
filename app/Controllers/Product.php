@@ -123,7 +123,7 @@ class Product extends BaseController
 
         $tab = $this->request->getVar("tab") ?: $search_cate ?: "hotel";
 
-        $sort = $this->request->getVar("sort") ?: "recommended";
+        $sort = $this->request->getVar("sort") ?? "";
 
         if(!empty(trim($search_name))){
             $this->db->table('tbl_search_keyword')->insert([

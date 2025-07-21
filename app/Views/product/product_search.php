@@ -75,7 +75,6 @@
                         default:
                             $href = "#!";
                     }
-                        var_dump($item1_1['relevance_score']);
                     ?>
                     <a href="<?=$href?>" class="product-card-item-container">
                         <div class="product-card-item-left">
