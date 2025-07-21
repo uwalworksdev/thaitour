@@ -744,7 +744,6 @@ class AjaxController extends BaseController {
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
 																	 goods_code = '". $product_idx ."' ORDER BY g_idx ASC ";
-            write_log("hotel_room_search-1 ". $sql);							 
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
@@ -755,6 +754,7 @@ class AjaxController extends BaseController {
             $roomsByType    = $roomsByType->getResultArray();
 
 			$sql            = "SELECT * FROM tbl_code WHERE code_gubun = 'Room facil' AND depth = '2' "; 
+            write_log("hotel_room_search-2 ". $sql);							 
             $fresult10      = $db->query($sql);
 			$fresult10      = $fresult10->getResultArray();
 
@@ -762,6 +762,7 @@ class AjaxController extends BaseController {
 			foreach ($roomTypes as $type): 
 
                  $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
+                 write_log("hotel_room_search-3 ". $sql);							 
                  $result = $db->query($sql);
                  $row    = $result->getRowArray();
 			     $hotel_room = $row['roomName'];
