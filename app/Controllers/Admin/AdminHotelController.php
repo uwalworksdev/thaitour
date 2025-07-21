@@ -320,7 +320,7 @@ class AdminHotelController extends BaseController
             $product_code_no = $row["product_code"];
             $stay_idx        = $row['stay_idx'];
             $hsql            = "SELECT * FROM tbl_product_stay WHERE stay_idx = '" . $stay_idx . "'";
-			write_log("write_price- ". $hsql);
+			//write_log("write_price- ". $hsql);
             $hresult         = $this->connect->query($hsql);
             $hresult         = $hresult->getResultArray();
 

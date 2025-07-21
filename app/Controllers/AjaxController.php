@@ -726,6 +726,7 @@ class AjaxController extends BaseController {
 	
     public function hotel_room_search()
 	{
+		
             $db             = \Config\Database::connect();
             include_once APPPATH . 'Common/hotelPrice.php';
 
@@ -743,7 +744,6 @@ class AjaxController extends BaseController {
 			                                                   WHERE ('$date_check_in'  BETWEEN o_sdate AND o_edate) AND 
 			                                                         ('$date_check_out' BETWEEN o_sdate AND o_edate) AND  
 																	 goods_code = '". $product_idx ."' ORDER BY g_idx ASC ";
-            //write_log("hotel_room_search-1 ". $sql);							 
             $roomTypes      = $db->query($sql);
             $roomTypes      = $roomTypes->getResultArray();
 			
@@ -761,11 +761,13 @@ class AjaxController extends BaseController {
 			foreach ($roomTypes as $type): 
 
                  $sql    = "SELECT * FROM tbl_room WHERE g_idx = '". $type['g_idx'] ."' ";
+                 write_log("hotel_room_search-3 ". $sql);							 
                  $result = $db->query($sql);
                  $row    = $result->getRowArray();
 			     $hotel_room = $row['roomName'];
 
 				 $sql_img    = "SELECT * FROM tbl_room_img WHERE room_idx = '". $type['g_idx'] ."' LIMIT 3";
+                 write_log("hotel_room_search-4 ". $sql_img);							 
 				 $query_img  = $db->query($sql_img);
 				 $result     = $query_img->getResult();
 
@@ -820,7 +822,6 @@ class AjaxController extends BaseController {
 									</div>									
 										'; 
 
-                    
                             $arr_type_room = explode("|", $row['category']);
                             $arr_text_type = [];
                             foreach($fresult11 as $category){
@@ -1096,6 +1097,7 @@ class AjaxController extends BaseController {
 									</div>
 								</div>
 							</div>'; 
+			write_log($msg);				
 			endforeach; 
 
 			return $this->response
@@ -3275,7 +3277,7 @@ class AjaxController extends BaseController {
 																,goods_price4 = '". $goods_price4 ."'
 																,use_yn	= ''	
 																,reg_date = now() ";	
-						write_log("객실가격정보-1 : " . $sql_c);
+						//write_log("객실가격정보-1 : " . $sql_c);
 						$db->query($sql_c);
 					}
 			}
