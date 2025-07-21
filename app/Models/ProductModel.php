@@ -798,7 +798,31 @@ class ProductModel extends Model
     {
         helper(['setting']);
         $setting = homeSetInfo();
-        $builder = $this->builder();
+        $builder = $this->db->table('tbl_product_mst AS p');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "p.*";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+        $builder->select($select);
+
+        // $builder = $this->builder();
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
@@ -1034,7 +1058,17 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy = ['relevance_score' => 'DESC', 'product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['product_idx' => 'DESC'];
+            }
+            // $orderBy = ['product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
@@ -1519,6 +1553,11 @@ class ProductModel extends Model
                 $orderBy = ['product_idx' => 'DESC'];
             }
             // $orderBy = ['product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
@@ -1720,7 +1759,31 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table($this->table . " as pm");
-        $builder->select('pm.*');
+        $relevanceExpr = '';
+        if (!empty($where['arr_search_txt'])) {
+            $str_search_txt = preg_replace('/[^a-zA-Z0-9가-힣\s]+/u', ' ', trim($where['arr_search_txt']));
+            $arr_search_txt = preg_split('/\s+/', $str_search_txt);
+            
+            $relevanceParts = [];
+            foreach ($arr_search_txt as $txt) {
+                $escapedTxt = $this->db->escapeLikeString($txt);
+                $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+            }
+
+            $relevanceExpr = implode(' + ', $relevanceParts);
+        }
+
+        $select = "pm.*";
+
+        if ($relevanceExpr !== '') {
+            $select .= ", ({$relevanceExpr}) AS relevance_score";
+        }
+
+        $builder->select($select);
+
+        // $builder->select('pm.*');
         if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
@@ -1809,7 +1872,17 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['pm.product_idx' => 'DESC'];
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy = ['relevance_score' => 'DESC', 'pm.product_idx' => 'DESC'];
+            } else {
+                $orderBy = ['pm.product_idx' => 'DESC'];
+            }
+            // $orderBy = ['pm.product_idx' => 'DESC'];
+        }else {
+            if (!empty($where['arr_search_txt']) && $relevanceExpr != '') {
+                $orderBy['relevance_score'] = 'DESC';
+                $orderBy = ['pm.product_idx' => 'DESC'];
+            }
         }
 
         foreach ($orderBy as $key => $value) {
