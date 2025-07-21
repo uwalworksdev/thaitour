@@ -820,6 +820,8 @@ class ProductModel extends Model
         if ($relevanceExpr !== '') {
             $select .= ", ({$relevanceExpr}) AS relevance_score";
         }
+        $builder->select($select);
+
         // $builder = $this->builder();
         $baht_thai = (float)($setting['baht_thai'] ?? 0);
         if ($where['product_code_1'] != "") {
