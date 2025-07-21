@@ -990,106 +990,109 @@ class AjaxController extends BaseController {
 												write_log("1- ". $room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											    write_log("11111111- ". $result);
-												$msg .= '<div class="wrap_bed_type">
-															<div class="tit">
-																<span>침대타입(요청사항)</span>
-																<div class="view_promotion view_promotion2"> 
-																	<img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">';
-																
-                                                if(!empty(trim($room['r_contents3']))) {  
-													$msg .= '<div class="layer_promotion layer_promotion2">
-																<p style="white-space: pre-line">'. $room['r_contents3'] .'</p>
-															</div>';   
-												}
-												$msg .=			'</div>
-																<p class="wrap_btn_book_note">세금서비스비용 포함</p>
-															</div>
-														<div class="wrap_input_radio">';
+												if($result) {
+														
+														$msg .= '<div class="wrap_bed_type">
+																	<div class="tit">
+																		<span>침대타입(요청사항)</span>
+																		<div class="view_promotion view_promotion2"> 
+																			<img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">';
+																		
+														if(!empty(trim($room['r_contents3']))) {  
+															$msg .= '<div class="layer_promotion layer_promotion2">
+																		<p style="white-space: pre-line">'. $room['r_contents3'] .'</p>
+																	</div>';   
+														}
+														$msg .=			'</div>
+																		<p class="wrap_btn_book_note">세금서비스비용 포함</p>
+																	</div>
+																<div class="wrap_input_radio">';
 
-												$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
-												
-												for($i=0;$i<count($arr);$i++)
-		                                        {	 
-													 $_room     =  explode(":", $arr[$i]);
-													 $baht_thai =  $_room[6];
-													 $real_won  =  (int)(($_room[3] + $_room[4]) * (int)($room_qty) * $baht_thai);
-													 //$extra_won =  $_room[5];
-													 $real_bath =  ($_room[3] + $_room[4]) * (int)($room_qty);
-													 $bed_idx   =  $_room[1];
-													 write_log("2- ". $room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
-													 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
-                                                     write_log("222222- ". $result_d);
-												     $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
-															  <input type="radio" name="bed_type_" 
-																  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																  data-room="'. $hotel_room .'" 
-																  data-price="'. $result_d .'"  
-																  data-adult="'. $room['adult'] .'" 
-																  data-kids="'. $room['kids'] .'"  
-																  data-roomtype="'. $room['room_name'] .'" 
-																  data-breakfast="'. $room['breakfast'] .'" 
-																  data-won="'. $real_won .'" 
-																  data-bath="'. $real_bath .'" 
-																  data-type="'. $_room[0] .'" 
-																  data-bed_idx="'. $_room[1] .'" 
-																  data-g_idx="'. $room['g_idx'] .'" 
-																  value="'. $room['rooms_idx'] .'" 
-																  class="sel_'. $room['rooms_idx'] .'">
-															  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $bed_idx .'">'.$_room[0] .':';
-													 
-													 if($room['secret_price'] == "Y"){
-																$msg .=		'<span>비밀특가</span>';
-													 }else{
-														$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
-													 }
-													 $msg .= '</div>';
-													 
-													 if($_room[5] > 0) {
-														  $extra_won  = (int)($_room[5] * (int)($room_qty) * $baht_thai);
-														  $extra_bath = $_room[5] * (int)($room_qty);	  
-												    	  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
-													      $msg .= '<input type="checkbox" 
-														            name="extra_" 
-																	id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
-																	data-id="'.$room['g_idx'].$room['rooms_idx'].$bed_idx .'"
-																	data-g_idx="'.$room['g_idx'].'"
-																    data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
-													      $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
-													      $msg .= '</div>';
-													 }
-													 
-													 
-											    } 
-												  
-												//if($extra_won > 0) {
-												//	  $msg .= '<div class="wrap_check">';
-												//	  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
-												//				data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
-												//	  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
-												//	  $msg .= '</div>';
-                                                //}
-												  
-												$msg .= '</div>
-														   </div>';
+														$arr  = explode("|", $result); // 침대타입(요청사항)킹베드 더블:3:3:6:9:12:42.41|
+														
+														for($i=0;$i<count($arr);$i++)
+														{	 
+															 $_room     =  explode(":", $arr[$i]);
+															 $baht_thai =  $_room[6];
+															 $real_won  =  (int)(($_room[3] + $_room[4]) * (int)($room_qty) * $baht_thai);
+															 //$extra_won =  $_room[5];
+															 $real_bath =  ($_room[3] + $_room[4]) * (int)($room_qty);
+															 $bed_idx   =  $_room[1];
+															 write_log("2- ". $room['goods_code'].":".$room['g_idx'].":".$room['rooms_idx'].":".$date_check_in.":".$days.":".$bed_idx);
+															 $result_d  = detailBedPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days, $bed_idx);
+															 write_log("222222- ". $result_d);
+															 $msg .= '<div class="wrap_input" style="margin-bottom: 10px;">
+																	  <input type="radio" name="bed_type_" 
+																		  id="bed_type_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																		  data-id="'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																		  data-room="'. $hotel_room .'" 
+																		  data-price="'. $result_d .'"  
+																		  data-adult="'. $room['adult'] .'" 
+																		  data-kids="'. $room['kids'] .'"  
+																		  data-roomtype="'. $room['room_name'] .'" 
+																		  data-breakfast="'. $room['breakfast'] .'" 
+																		  data-won="'. $real_won .'" 
+																		  data-bath="'. $real_bath .'" 
+																		  data-type="'. $_room[0] .'" 
+																		  data-bed_idx="'. $_room[1] .'" 
+																		  data-g_idx="'. $room['g_idx'] .'" 
+																		  value="'. $room['rooms_idx'] .'" 
+																		  class="sel_'. $room['rooms_idx'] .'">
+																	  <label for="bed_type_'. $room['g_idx'] . $room['rooms_idx'] . $bed_idx .'">'.$_room[0] .':';
+															 
+															 if($room['secret_price'] == "Y"){
+																		$msg .=		'<span>비밀특가</span>';
+															 }else{
+																$msg .=	' <span style="color :coral">'. number_format($real_won) .'원 ('.  number_format($real_bath) .'바트)</span></label>';
+															 }
+															 $msg .= '</div>';
+															 
+															 if($_room[5] > 0) {
+																  $extra_won  = (int)($_room[5] * (int)($room_qty) * $baht_thai);
+																  $extra_bath = $_room[5] * (int)($room_qty);	  
+																  $msg .= '<div class="wrap_check extra" id="chk_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'"  style="display:none; padding-left: 20px; margin-bottom: 20px; margin-top: 10px;">';
+																  $msg .= '<input type="checkbox" 
+																			name="extra_" 
+																			id="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" 
+																			data-id="'.$room['g_idx'].$room['rooms_idx'].$bed_idx .'"
+																			data-g_idx="'.$room['g_idx'].'"
+																			data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+																  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$bed_idx .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+																  $msg .= '</div>';
+															 }
+															 
+															 
+														} 
+														  
+														//if($extra_won > 0) {
+														//	  $msg .= '<div class="wrap_check">';
+														//	  $msg .= '<input type="checkbox" name="extra_" id="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" 
+														//				data-name="Extra베드" data-won="'. $extra_won .'" data-bath="'. $extra_bath .'" value="'. $room['rooms_idx'] .'" >';
+														//	  $msg .= '<label for="extra_'. $room['g_idx'].$room['rooms_idx'].$i .'" >Extra 베드: <span style="color :coral">'. number_format($extra_won) .'원 ('.  number_format($extra_bath) .'바트)</span></label>';
+														//	  $msg .= '</div>';
+														//}
+														  
+														$msg .= '</div>
+																   </div>';
 
-												if($price_won > 0) {  
-													$msg .=	'<div class="wrap_btn_book">
-																<div class="flex__c btn_re">
-																	<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
-																	<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
-                                                    				<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
-																</div>
-															</div>
-															';
-												} else {
-													$msg .=	'<div class="wrap_btn_book">
-																<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
-                                                    			<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
-															</div>';
-												}			   
-												$msg .=		   '</td>
-														   </tr>';
+														if($price_won > 0) {  
+															$msg .=	'<div class="wrap_btn_book">
+																		<div class="flex__c btn_re">
+																			<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="Y" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button book_btn_217" >예약하기</button>
+																			<button type="button" data-idx="'. $room['rooms_idx'] .'" class="reservationx book-add-cart">장바구니</button>
+																			<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																		</div>
+																	</div>
+																	';
+														} else {
+															$msg .=	'<div class="wrap_btn_book">
+																		<button type="button" id="reserv_'. $room['rooms_idx'] .'" data-yes="N" data-idx="'. $room['rooms_idx'] .'" class="reservation book-button disabled" >문의하기</button>
+																		<button type="button" id="contact_'. $room['rooms_idx'] .'" class="reservationx contact-button default-button">문의하기</button>
+																	</div>';
+														}			   
+														$msg .=		   '</td>
+																   </tr>';
+												}				   
                              			endforeach; 
 
 										$msg .= '</tbody>
