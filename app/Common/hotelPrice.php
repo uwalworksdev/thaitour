@@ -147,73 +147,78 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 		if (!$db) {
 			$db = \Config\Database::connect();
 		}
+        
+		if($g_idx == "791") {
+		    $room_r = "";	
+		} else {
+			
+			$setting   = homeSetInfo();
+			$baht_thai = (float)($setting['baht_thai'] ?? 0);
 
-        $setting   = homeSetInfo();
-        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+			// 종료 날짜 계산 (시작일 + ($days - 1)일)
+			$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
+	/*		
+			// Query Builder 생성
+			$builder = $db->table('tbl_room_price p')
+				->select('p.goods_date, p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
+						  b.bed_idx, b.bed_type, b.bed_seq')
+				->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
+				->where('p.product_idx',   $product_idx)
+				->where('p.g_idx',         $g_idx)
+				->where('p.rooms_idx',     $rooms_idx)
+				->where('p.goods_date >=', $o_sdate)
+				->where('p.goods_date <=', $o_edate)
+				->orderBy('p.goods_date', 'ASC')
+				->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
+			$query     = $builder->get();
+			$dateRows  = $query->getResultArray(); // 여러 개의 행을 가져옴
+			// 실행된 쿼리 확인 (디버깅 용도)
+			write_log("datePrice - " . $db->getLastQuery());
+	*/
+			$builder = $db->table('tbl_room_price p')
+				->select('
+					p.bed_idx, 
+					SUM(p.goods_price1) as price1,
+					SUM(p.goods_price2) as price2,
+					SUM(p.goods_price3) as price3,
+					SUM(p.goods_price4) as price4,
+					SUM(p.goods_price5) as price5,
+					b.bed_type, 
+					b.bed_seq')
+				->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
+				->where('p.product_idx', $product_idx)
+				->where('p.g_idx', $g_idx)
+				->where('p.rooms_idx', $rooms_idx)
+				->where('p.goods_date >=', $o_sdate)
+				->where('p.goods_date <=', $o_edate)
+				->groupBy('p.bed_idx, b.bed_type, b.bed_seq')  // Grouping by bed_idx
+				->orderBy('p.goods_date', 'ASC')
+				->orderBy('b.bed_seq', 'ASC');  // 침대순 정렬
 
-		// 종료 날짜 계산 (시작일 + ($days - 1)일)
-		$o_edate = date('Y-m-d', strtotime($o_sdate . " + " . ($days - 1) . " days"));
-/*		
-		// Query Builder 생성
-		$builder = $db->table('tbl_room_price p')
-			->select('p.goods_date, p.goods_price1, p.goods_price2, p.goods_price3, p.goods_price4, p.goods_price5, 
-					  b.bed_idx, b.bed_type, b.bed_seq')
-			->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
-			->where('p.product_idx',   $product_idx)
-			->where('p.g_idx',         $g_idx)
-			->where('p.rooms_idx',     $rooms_idx)
-			->where('p.goods_date >=', $o_sdate)
-			->where('p.goods_date <=', $o_edate)
-			->orderBy('p.goods_date', 'ASC')
-			->orderBy('b.bed_seq', 'ASC'); // 침대순 정렬
-		$query     = $builder->get();
-		$dateRows  = $query->getResultArray(); // 여러 개의 행을 가져옴
-		// 실행된 쿼리 확인 (디버깅 용도)
-		write_log("datePrice - " . $db->getLastQuery());
-*/
-		$builder = $db->table('tbl_room_price p')
-			->select('
-				p.bed_idx, 
-				SUM(p.goods_price1) as price1,
-				SUM(p.goods_price2) as price2,
-				SUM(p.goods_price3) as price3,
-				SUM(p.goods_price4) as price4,
-				SUM(p.goods_price5) as price5,
-				b.bed_type, 
-				b.bed_seq')
-			->join('tbl_room_beds b', 'p.rooms_idx = b.rooms_idx AND p.bed_idx = b.bed_idx', 'left')
-			->where('p.product_idx', $product_idx)
-			->where('p.g_idx', $g_idx)
-			->where('p.rooms_idx', $rooms_idx)
-			->where('p.goods_date >=', $o_sdate)
-			->where('p.goods_date <=', $o_edate)
-			->groupBy('p.bed_idx, b.bed_type, b.bed_seq')  // Grouping by bed_idx
-			->orderBy('p.goods_date', 'ASC')
-			->orderBy('b.bed_seq', 'ASC');  // 침대순 정렬
+			// 쿼리 실행
+			$query     = $builder->get();
+			$priceRows = $query->getResultArray(); // 여러 개의 행을 가져옴
 
-		// 쿼리 실행
-		$query     = $builder->get();
-		$priceRows = $query->getResultArray(); // 여러 개의 행을 가져옴
-
-		// 실행된 쿼리 확인 (디버깅 용도)
-		
-		//if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
-		//   write_log("detailPrice - " . $db->getLastQuery());
-        //}
-		if (empty($priceRows)) {
-            // 데이터가 없는 경우 처리
-            $room_r = "";
-        } else {
-			$room_r = "";
-			foreach ($priceRows as $row) :
-					 $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'] .":". $baht_thai;
-					 if($room_r == "") {
-						$room_r .= $val;
-					 } else {
-						$room_r .= "|". $val; 
-					 }	
-		    endforeach;
-		}
+			// 실행된 쿼리 확인 (디버깅 용도)
+			
+			//if($product_idx  == "2207" && $g_idx == "377" && $rooms_idx == "826") {
+			//   write_log("detailPrice - " . $db->getLastQuery());
+			//}
+			if (empty($priceRows)) {
+				// 데이터가 없는 경우 처리
+				$room_r = "";
+			} else {
+				$room_r = "";
+				foreach ($priceRows as $row) :
+						 $val = $row['bed_type'] .":". $row['bed_idx'] .":". $row['price1'] .":". $row['price2'] .":". $row['price3'] .":". $row['price5'] .":". $baht_thai;
+						 if($room_r == "") {
+							$room_r .= $val;
+						 } else {
+							$room_r .= "|". $val; 
+						 }	
+				endforeach;
+			}
+		}	
 		// 만약 결과가 없을 경우 빈 배열 반환
 		return $room_r;
 }
