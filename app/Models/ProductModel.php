@@ -1249,7 +1249,7 @@ class ProductModel extends Model
             foreach ($arr_search_txt as $txt) {
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $relevanceParts[] = "(CASE WHEN product_name LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
-                $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
+                // $relevanceParts[] = "(CASE WHEN product_name_en LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
                 // $relevanceParts[] = "(CASE WHEN keyword LIKE '%{$escapedTxt}%' THEN 1 ELSE 0 END)";
             }
 
@@ -1474,7 +1474,7 @@ class ProductModel extends Model
 
                 $escapedTxt = $this->db->escapeLikeString($txt);
                 $builder->like('product_name', $escapedTxt);
-                $builder->orLike('product_name_en', $escapedTxt);
+                // $builder->orLike('product_name_en', $escapedTxt);
                 // $builder->orLike('keyword', $escapedTxt);
 
                 // $builder->where("product_name REGEXP '\\\b" . $escapedTxt . "\\\b'");
