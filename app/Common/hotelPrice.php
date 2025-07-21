@@ -148,7 +148,7 @@ function detailPrice($db, int $product_idx, int $g_idx, int $rooms_idx, string $
 			$db = \Config\Database::connect();
 		}
         
-		if($g_idx == "791") {
+		if($g_idx == "791" || $g_idx == "792") {
 		    $room_r = "";	
 		} else {
 			
