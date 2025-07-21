@@ -987,7 +987,7 @@ class AjaxController extends BaseController {
 												}
 												
 		
-												//write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
+												write_log($room['goods_code']."-".$room['g_idx']."-".$room['rooms_idx']."-".$date_check_in."-".$days);		
 												$result    = detailPrice($db, $room['goods_code'], $room['g_idx'], $room['rooms_idx'], $date_check_in, $days);
 											    write_log("11111111- ". $result);
 												$msg .= '<div class="wrap_bed_type">
