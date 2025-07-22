@@ -221,10 +221,10 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
-                                            <div style="width: 100%; display: flex; align-items: center">
+                                            <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
-                                                <button type="button" class="btn btn-primary">추가</button>
-                                                <button type="button" class="btn btn-danger">삭제</button>
+                                                <button type="button" class="btn btn-primary" style="margin: unset">추가</button>
+                                                <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                                             </div>
                                         </td>
                                     </tr>
