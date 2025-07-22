@@ -197,7 +197,7 @@
                                 <tr>
                                     <th>영역</th>
                                     <td colspan="3">
-                                        <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
+                                        <select id="category_code" name="category_code" class="input_select">
                                             <option value="">선택</option>
                                                 <?php
                                                     foreach ($category_list as $frow){
