@@ -137,7 +137,7 @@
                                     <tr style="height:30px" data-idx="<?= $row['idx']; ?>">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <?= $row["title"] ?>
+                                            <a href="<?= $url_admin ?>"><?= $row["title"] ?></a>
                                             <div class="flex_c_c" style="gap: 10px;">
                                                 <a href="/travel-tips/theme_view?idx=<?= $row["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
@@ -178,7 +178,7 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="#!" onclick="prod_update('<?= $row['idx'] ?>');"><img
+                                            <a href="<?= $url_admin ?>"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
                                             <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
