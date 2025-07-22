@@ -76,6 +76,30 @@ class AdminHotelThemeController extends BaseController
         return view("admin/_hotel_theme/list", $data);
     }
 
+    public function write_month()
+    {
+        $idx              = updateSQ($_GET["idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
+
+        if ($idx) {
+            $row = $this->hotelTheme->find($idx);
+
+            $product_list = $this->hotelThemeSub->where("theme_idx", $idx)->findAll();
+        }
+
+        $data = [
+            'idx' => $idx,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'row' => $row ?? '',
+            'product_list' => $product_list,
+        ];
+        return view("admin/_hotel_theme/write_month", $data);
+    }
+
     public function write_area()
     {
         $idx              = updateSQ($_GET["idx"] ?? '');
