@@ -3,6 +3,8 @@
     helper("my_helper");
 ?>
 
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 

@@ -1,8 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
-
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
