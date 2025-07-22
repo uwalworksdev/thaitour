@@ -225,13 +225,13 @@
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
                                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
-                                                <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
+                                                <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="product_area">
                                         <td colspan="2">
-                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail product_area"
+                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                                 style="table-layout:fixed;">
     
                                                 <colgroup>
@@ -242,7 +242,7 @@
                                                     <tr>
                                                         <th style="text-align: center;">
                                                             <div class="flex_c_c" style="margin-top: 5px;">
-                                                                <button type="button" class="btn btn-danger">삭제</button>
+                                                                <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
                                                             </div>
                                                         </th>
                                                         <td colspan="3">
@@ -464,6 +464,14 @@
 </div>
 
 <script>
+    function del_product(button){
+        $(this).closest(".product_area").remove();
+    }
+
+    function del_area(button) {
+        $(this).closest(".sub_area").remove();
+    }
+
     function fn_pick_update() {
         let code =  $("#item_pop").attr("data-code");
         let f = document.select_pick_frm;
@@ -540,7 +548,7 @@
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
-                                <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
+                                <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
                             </div>
                         </td>
                     </tr>
