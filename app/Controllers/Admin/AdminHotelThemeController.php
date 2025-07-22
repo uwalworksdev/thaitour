@@ -151,7 +151,7 @@ class AdminHotelThemeController extends BaseController
             $star = $this->request->getPost("star") ?? [];
             $recommend_text = $this->request->getPost("recommend_text") ?? [];
             $step = $this->request->getPost("step") ?? [];
-
+            $arr_product_idx = $this->request->getPost("product_idx") ?? [];
 
             $ufile_1 = $files['ufile_1'] ?? [];
             $ufile_2 = $files['ufile_2'] ?? [];
@@ -183,6 +183,7 @@ class AdminHotelThemeController extends BaseController
                         foreach ($theme_name[$key] as $i => $name) {
                             $data_product = [
                                 "ha_idx" => $ha_idx,
+                                "product_idx" => $arr_product_idx[$key][$i],
                                 "theme_name" => $name,
                                 "recommend" => $recommend_text[$key][$i],
                                 "star" => $star[$key][$i],
