@@ -505,7 +505,7 @@
             </table>
         `;
 
-        $(".area_list").html(html);
+        $(".area_list").append(html);
     }
 </script>
 
