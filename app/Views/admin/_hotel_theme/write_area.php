@@ -465,11 +465,11 @@
 
 <script>
     function del_product(button){
-        $(this).closest(".product_area").remove();
+        $(button).closest(".product_area").remove();
     }
 
     function del_area(button) {
-        $(this).closest(".sub_area").remove();
+        $(button).closest(".sub_area").remove();
     }
 
     function fn_pick_update() {
