@@ -224,7 +224,7 @@
                                             <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
-                                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset; margin-left: 30px;">추가</button>
+                                                <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
                                                 <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                                             </div>
                                         </td>
@@ -394,14 +394,14 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div>
 
-<div class="pick_item_pop02" id="item_pop" style="display:none;">
+<div class="pick_item_pop02" data-code="" id="item_pop" style="display:none;">
     <div>
         <h2>메인노출상품 등록</h2>
         <div class="search_box">
 
             <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
                 <select id="product_code_2" name="product_code_2" class="input_select">
-                    <option value="">2차분류</option>
+                    <option value="">분류</option>
                     <?php
                     foreach ($category_list as $frow) {
                         $status_txt = "";
@@ -414,9 +414,7 @@
                         }
 
                         ?>
-                        <option value="<?= $frow["code_no"] ?>" <?php if ($row["product_code_2"] == $frow["code_no"]) {
-                            echo "selected";
-                        } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                        <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                     <?php } ?>
                 </select>
                 <select id="search_category" name="search_category" class="input_select"
@@ -426,7 +424,7 @@
                 </select>
                 <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value=""
                         class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
-                <a href="javascript:search_it()" class="btn btn-default"><span
+                <a href="javascript:search_product()" class="btn btn-default"><span
                             class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
             </form>
         </div>
@@ -466,7 +464,16 @@
 </div>
 
 <script>
-    function showPopup() {
+    function press_it() {
+        if (event.keyCode == 13) {
+            search_product();
+        }
+    }
+
+    function showPopup(button) {
+        let code = $(button).closest("td").find(".s_category_code").val();
+        $("#item_pop").attr("data-code", code);
+        $("#product_code_2").val(code);
         $('.pick_item_pop02').show();
     }
 
@@ -511,7 +518,7 @@
                             <input type="hidden" name="s_category_code[]" class="s_category_code" value="${code}">
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
-                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset; margin-left: 30px;">추가</button>
+                                <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
                                 <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                             </div>
                         </td>
@@ -522,6 +529,35 @@
 
         $(".area_list").append(html);
     }
+
+    function search_product() {
+        let product_code_1 = '1303';
+        let product_code_2 = $("#product_code_2").val();
+        let search_category = $("#search_category").val();
+        let search_txt = $("#search_txt").val();
+
+        $.ajax({
+            url: "./item_allfind",
+            type: "GET",
+            data: {
+                "product_code_1": product_code_1,
+                "product_code_2": product_code_2,
+                "search_category": search_category,
+                "search_txt": search_txt,
+            },
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                $("#id_contents").empty();
+                $("#id_contents").append(response);
+                $('.pick_item_pop02').show();
+            }
+        });
+    }
+
 </script>
 
 <script>
