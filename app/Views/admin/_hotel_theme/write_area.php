@@ -226,7 +226,7 @@ $links = "list";
                                             <td colspan="2">
                                                 <input type="hidden" name="s_category_code[<?= $count ?>]" class="s_category_code" value="<?= $frow["category_code"] ?>">
                                                 <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
-                                                    제목
+                                                    <?= $frow["category_name"] ?>
                                                     <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
                                                     <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
                                                 </div>

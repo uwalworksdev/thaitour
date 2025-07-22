@@ -91,6 +91,7 @@ class AdminHotelThemeController extends BaseController
             $area_list = $this->hotelArea->where("theme_idx", $idx)->findAll();
 
             foreach ($area_list as $key => $item) {
+                $area_list[$key]['code_name'] = $this->codeModel->getCodeName($item['category_code']);
                 $area_list[$key]['product_list'] = $this->hotelThemeSub->where("ha_idx", $item['ha_idx'])->findAll();
             }
         }
