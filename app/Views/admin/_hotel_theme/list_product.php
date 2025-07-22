@@ -12,7 +12,7 @@
                 </colgroup>
                 <tbody>
                     <tr>
-                        <input type="hidden" name="product_idx[]" value="<?=$product['product_idx']?>">
+                        <input type="hidden" name="product_idx[][]" value="<?=$product['product_idx']?>">
                         <th style="text-align: center;">
                             <div class="flex_c_c" style="margin-top: 5px;">
                                 <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
@@ -32,7 +32,7 @@
                                     <tr>
                                         <th>상품명</th>
                                         <td colspan="3">
-                                            <input type="text" name="theme_name[]"
+                                            <input type="text" name="theme_name[][]"
                                                         value="<?=$product['product_name']?>"
                                                         class="text" maxlength="100" />
                                         </td>
@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>등급</th>
                                         <td colspan="3">
-                                            <select name="star[]" class="input_select">
+                                            <select name="star[][]" class="input_select">
                                                 <option value="5" <?php if($product['review_average'] == 5) echo "selected";?>>
                                                     <font color="#17469E">★★★★★</font>
                                                 </option>
@@ -62,7 +62,7 @@
                                     <tr>
                                         <th>내용</th>
                                         <td colspan="3">
-                                            <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:100px;"><?= viewSQ($product['product_info']) ?></textarea><textarea name="product_info" id="product_info" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_info) ?></textarea>
+                                            <textarea name="recommend_text[][]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:100px;"><?= viewSQ($product['product_info']) ?></textarea><textarea name="product_info" id="product_info" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_info) ?></textarea>
                                         </td>
                                     </tr>
 
@@ -77,7 +77,7 @@
                                                 ?>
                                                     <div class="file_input_wrap">
                                                         <div class="file_input <?= empty($product['ufile' . $i]) ? "" : "applied" ?>">
-                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            <input type="file" name='ufile_<?= $i ?>[][]' id="ufile<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
                                                             <label for="ufile<?= $i ?>" <?= !empty($product['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
                                                             <button type="button" class="remove_btn"
@@ -108,7 +108,7 @@
                                                 ?>
                                                     <div class="file_input_wrap">
                                                         <div class="file_input <?= empty($product["img_list"][$i - 2]["ufile"]) ? "" : "applied" ?>">
-                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                            <input type="file" name='ufile_<?= $i ?>[][]' id="ufile<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
                                                             <label for="ufile<?= $i ?>" <?= !empty($product["img_list"][$i - 2]["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
                                                             <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
