@@ -224,7 +224,7 @@
                                             <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
-                                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset">추가</button>
+                                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset; margin-left: 30px;">추가</button>
                                                 <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                                             </div>
                                         </td>
@@ -511,7 +511,7 @@
                             <input type="hidden" name="s_category_code[]" class="s_category_code" value="${code}">
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
-                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset">추가</button>
+                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset; margin-left: 30px;">추가</button>
                                 <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                             </div>
                         </td>
