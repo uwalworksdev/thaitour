@@ -112,20 +112,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>영역</th>
-                                    <td colspan="3">
-                                        <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
-                                            <option value="">선택</option>
-                                                <?php
-                                                    foreach ($category_list as $frow){
-                                                ?>
-                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
-                                                <?php } ?>
-                                        </select>
-                                        
-                                    </td>
-                                </tr>
                                 
                                 <tr>
                                     <th>제목</th>
@@ -204,6 +190,20 @@
                                             ?>
                                         </div>
 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>영역</th>
+                                    <td colspan="3">
+                                        <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
+                                            <option value="">선택</option>
+                                                <?php
+                                                    foreach ($category_list as $frow){
+                                                ?>
+                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
+                                                <?php } ?>
+                                        </select>
+                                        <button type="button" class="btn btn-primary" onclick="add_area();">추가</button>
                                     </td>
                                 </tr>
                             </tbody>
