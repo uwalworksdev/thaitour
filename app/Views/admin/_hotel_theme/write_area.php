@@ -541,35 +541,6 @@ $links = "list";
 		}
     }
 
-    function del_product(button, ha_idx) {
-        if(ha_idx){
-			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
-				return false;
-			}
-
-			$.ajax({
-				url: "/AdmMaster/_hotel_theme/del_area",
-				type: "POST",
-				data: {
-					"ha_idx": ha_idx,
-				},
-				dataType: "json",
-				async: false,
-				cache: false,
-				success: function (data, textStatus) {
-					alert(data.message);
-					location.reload();
-				},
-				error: function (request, status, error) {
-					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
-				}
-			});
-		}else{
-			$(button).closest(".sub_area").remove();
-		}
-
-    }
-
     function fn_pick_update() {
         let code = $("#item_pop").attr("data-code");
         let index = $("#item_pop").attr("data-code");
