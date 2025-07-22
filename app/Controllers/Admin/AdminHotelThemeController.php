@@ -69,7 +69,7 @@ class AdminHotelThemeController extends BaseController
             'category_code'         => $category_code,
             'category_code_list'    => $category_code_list,
         ];
-        return view("admin/_local_guide/list", $data);
+        return view("admin/_hotel_theme/list", $data);
     }
 
     public function write()
