@@ -475,12 +475,19 @@
             return false;
         }
 
+        let isDuplicate = false;
+
         $('.sub_area').each(function(index, element) {
             if($(element).find(".s_category_code").val() == code){
-                alert("이전에 찾은 영역이 있습니다.");
+                isDuplicate = true;
                 return false;
             }
         });
+
+        if (isDuplicate) {
+            alert("이전에 찾은 영역이 있습니다.");
+            return false;
+        }
         
         let html = `
             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
