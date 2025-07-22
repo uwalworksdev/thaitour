@@ -13,7 +13,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript" src="/js/admin/tours/write.js"></script>
+<!-- <script type="text/javascript" src="/js/admin/tours/write.js"></script> -->
 
 <style>
     .btn_01 {
