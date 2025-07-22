@@ -224,7 +224,7 @@
                                             <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
-                                                <button type="button" class="btn btn-primary" style="margin: unset">추가</button>
+                                                <button type="button" class="btn btn-primary" onclick="showPopup();" style="margin: unset">추가</button>
                                                 <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
                                             </div>
                                         </td>
@@ -466,6 +466,14 @@
 </div>
 
 <script>
+    function showPopup() {
+        $('.pick_item_pop02').show();
+    }
+
+    $('.pick_item_pop02 .sel_box .close').on('click', function () {
+        $('.pick_item_pop02').hide()
+    });
+
     function add_area() {
         let code = $("#category_code").val();
         let code_name = $("#category_code").find('option:selected').text();
