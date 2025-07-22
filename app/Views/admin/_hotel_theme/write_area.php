@@ -506,6 +506,7 @@
         $("#item_pop").attr("data-code", code);
         $("#item_pop").find("#area_index").val(index);
         $("#product_code_2").val(code);
+        $("#id_contents").empty();
         $('.pick_item_pop02').show();
     }
 
