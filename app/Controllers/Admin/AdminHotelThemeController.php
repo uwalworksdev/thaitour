@@ -132,30 +132,30 @@ class AdminHotelThemeController extends BaseController
             $data['subtitle']           = updateSQ($_POST["subtitle"] ?? '');
             $data['recommend_text']     = updateSQ($_POST["recommend_text"] ?? '');
             
-            $publicPath = ROOTPATH . '/public/data/product/';
+            // $publicPath = ROOTPATH . '/public/data/product/';
 
-            for ($i = 1; $i <= 1; $i++) {
-                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+            // for ($i = 1; $i <= 1; $i++) {
+            //     $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+            //     ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
-                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                    $data["rfile$i"] = $file->getClientName();
-                    $data["ufile$i"] = $file->getRandomName();
-                    $file->move($publicPath, $data["ufile$i"]);
-                }
-            }
+            //     if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+            //         $data["rfile$i"] = $file->getClientName();
+            //         $data["ufile$i"] = $file->getRandomName();
+            //         $file->move($publicPath, $data["ufile$i"]);
+            //     }
+            // }
 
-            $s_category_code = $this->request->getPost("s_category_code") ?? [];
-            $theme_name = $this->request->getPost("theme_name") ?? [];
-            $star = $this->request->getPost("star") ?? [];
-            $recommend_text = $this->request->getPost("recommend_text") ?? [];
-            $step = $this->request->getPost("step") ?? [];
+            // $s_category_code = $this->request->getPost("s_category_code") ?? [];
+            // $theme_name = $this->request->getPost("theme_name") ?? [];
+            // $star = $this->request->getPost("star") ?? [];
+            // $recommend_text = $this->request->getPost("recommend_text") ?? [];
+            // $step = $this->request->getPost("step") ?? [];
 
-            $ufile_1 = $this->request->getFileMultiple('ufile_1') ?? [];
-            $ufile_2 = $this->request->getFileMultiple('ufile_2') ?? [];
-            $ufile_3 = $this->request->getFileMultiple('ufile_3') ?? [];
-            $ufile_4 = $this->request->getFileMultiple('ufile_4') ?? [];
+            // $ufile_1 = $this->request->getFileMultiple('ufile_1') ?? [];
+            // $ufile_2 = $this->request->getFileMultiple('ufile_2') ?? [];
+            // $ufile_3 = $this->request->getFileMultiple('ufile_3') ?? [];
+            // $ufile_4 = $this->request->getFileMultiple('ufile_4') ?? [];
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
@@ -169,40 +169,40 @@ class AdminHotelThemeController extends BaseController
 
                 $insertId = $this->hotelTheme->insertData($data);
 
-                if($data['type'] == "area"){
-                    foreach ($s_category_code as $key => $area_code) {
-                        $data_area = [
-                            "theme_idx" => $insertId,
-                            "category_code" => $area_code,
-                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                        ];
+                // if($data['type'] == "area"){
+                //     foreach ($s_category_code as $key => $area_code) {
+                //         $data_area = [
+                //             "theme_idx" => $insertId,
+                //             "category_code" => $area_code,
+                //             "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                //         ];
     
-                        $ha_idx = $this->hotelArea->insertData($data_area);
+                //         $ha_idx = $this->hotelArea->insertData($data_area);
     
-                        foreach ($theme_name[$key] as $i => $name) {
-                            $data_product = [
-                                "ha_idx" => $ha_idx,
-                                "theme_name" => $name,
-                                "recommend" => $recommend_text[$key][$i],
-                                "star" => $star[$key][$i],
-                                "step" => $step[$key][$i],
-                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                            ];
+                //         foreach ($theme_name[$key] as $i => $name) {
+                //             $data_product = [
+                //                 "ha_idx" => $ha_idx,
+                //                 "theme_name" => $name,
+                //                 "recommend" => $recommend_text[$key][$i],
+                //                 "star" => $star[$key][$i],
+                //                 "step" => $step[$key][$i],
+                //                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                //             ];
     
-                            for ($n = 1; $n <= 4; $n++) {
-                                $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
+                //             for ($n = 1; $n <= 4; $n++) {
+                //                 $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
     
-                                if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
-                                    $data_product["rfile{$n}"] = $ufile->getClientName();
-                                    $data_product["ufile{$n}"] = $ufile->getRandomName();
-                                    $ufile->move($publicPath, $data_product["ufile{$n}"]);
-                                }
-                            }
+                //                 if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                //                     $data_product["rfile{$n}"] = $ufile->getClientName();
+                //                     $data_product["ufile{$n}"] = $ufile->getRandomName();
+                //                     $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                //                 }
+                //             }
     
-                            $this->hotelThemeSub->insertData($data_product);
-                        }
-                    }
-                }
+                //             $this->hotelThemeSub->insertData($data_product);
+                //         }
+                //     }
+                // }
             }
 
             if ($idx) {
