@@ -284,9 +284,8 @@
                                                                     </td>
                                                                 </tr>  
                                                                 <tr>
-                                                                    <th></th>
+                                                                    <th>내용</th>
                                                                     <td colspan="3">
-
                                                                         <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:100px;"><?= viewSQ($recommend_text) ?>
                                                                         </textarea>
                                                                     </td>
