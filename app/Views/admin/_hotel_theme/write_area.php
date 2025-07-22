@@ -393,7 +393,74 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div>
 
+<div class="pick_item_pop02" data-code="" id="item_pop" style="display:none;">
+    <div>
+        <h2>메인노출상품 등록</h2>
+        <div class="search_box">
 
+            <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
+                <select id="product_code_2" name="product_code_2" class="input_select">
+                    <option value="">분류</option>
+                    <?php
+                    foreach ($category_list as $frow) {
+                        $status_txt = "";
+                        if ($frow["status"] == "Y") {
+                            $status_txt = "";
+                        } elseif ($frow["status"] == "N") {
+                            $status_txt = "[삭제]";
+                        } elseif ($frow["status"] == "C") {
+                            $status_txt = "[마감]";
+                        }
+
+                        ?>
+                        <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                    <?php } ?>
+                </select>
+                <select id="search_category" name="search_category" class="input_select"
+                        style="width:112px">
+                    <option value="product_name">상품명</option>
+                    <option value="product_code">상품코드</option>
+                </select>
+                <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value=""
+                        class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
+                <a href="javascript:search_product()" class="btn btn-default"><span
+                            class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+            </form>
+        </div>
+        <div class="table_box">
+            <form method="post" name="select_pick_frm" id="select_pick_frm">
+                <input type="hidden" id="area_index" name="area_index">
+                <table>
+                    <caption>상품찾기</caption>
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col>
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>선택</th>
+                        <th>상품명</th>
+                        <th>코드</th>
+                    </tr>
+                    </thead>
+                    <tbody id="id_contents">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="sel_box">
+            <button type="button" class="close">닫기</button>
+            <!-- <button type="button" class="select_all">전체선택</button> -->
+            <button type="button" onclick="fn_pick_update();" class="search">등록</button>
+        </div>
+    </div>
+</div>
 
 <script>
     function del_product(button){
