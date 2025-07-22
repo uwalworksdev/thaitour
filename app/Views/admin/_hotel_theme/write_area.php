@@ -520,7 +520,7 @@
         }
 
         let isDuplicate = false;
-        let count = $('.sub_area').length > 0 ? $('.sub_area').length - 1 : 0;
+        let count = $('.sub_area').length - 1;
         count = count + 1;
         $('.sub_area').each(function(index, element) {
             if($(element).find(".s_category_code").val() == code){
