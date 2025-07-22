@@ -137,7 +137,7 @@ class AdminHotelThemeController extends BaseController
             $data['type']               = updateSQ($_POST["type"] ?? '');
             $data['title']              = updateSQ($_POST["title"] ?? '');
             $data['subtitle']           = updateSQ($_POST["subtitle"] ?? '');
-            $data['recommend_text']     = updateSQ($_POST["recommend_text"] ?? '');
+            $data['recommend_text']     = updateSQ($_POST["m_recommend_text"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/product/';
 
@@ -160,7 +160,7 @@ class AdminHotelThemeController extends BaseController
             $s_idx = $this->request->getPost("s_idx") ?? [];
             $theme_name = $this->request->getPost("theme_name") ?? [];
             $star = $this->request->getPost("star") ?? [];
-            $recommend_text = $this->request->getPost("m_recommend_text") ?? [];
+            $recommend_text = $this->request->getPost("recommend_text") ?? [];
             $step = $this->request->getPost("step") ?? [];
             $arr_product_idx = $this->request->getPost("product_idx") ?? [];
 
