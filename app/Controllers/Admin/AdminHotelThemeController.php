@@ -187,6 +187,7 @@ class AdminHotelThemeController extends BaseController
             $theme_name = $this->request->getPost("theme_name") ?? [];
             $star = $this->request->getPost("star") ?? [];
             $recommend_text = $this->request->getPost("recommend_text") ?? [];
+            $details = $this->request->getPost("details") ?? [];
             $step = $this->request->getPost("step") ?? [];
             $arr_product_idx = $this->request->getPost("product_idx") ?? [];
 
@@ -199,6 +200,12 @@ class AdminHotelThemeController extends BaseController
             $s_checkImg_2 = $this->request->getPost("s_checkImg_2") ?? [];
             $s_checkImg_3 = $this->request->getPost("s_checkImg_3") ?? [];
             $s_checkImg_4 = $this->request->getPost("s_checkImg_4") ?? [];
+
+            $o_ufile_1 = $this->request->getFileMultiple('o_ufile_1') ?? [];
+            $o_ufile_2 = $this->request->getFileMultiple('o_ufile_2') ?? [];
+
+            $o_checkImg_1 = $this->request->getPost("o_checkImg_1") ?? [];
+            $o_checkImg_2 = $this->request->getPost("o_checkImg_2") ?? [];
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
@@ -268,6 +275,41 @@ class AdminHotelThemeController extends BaseController
     
                         }
                     }
+                }else {
+                    foreach ($s_idx as $i => $value) {
+                        $data_product = [
+                            "theme_idx" => $idx,
+                            "theme_name" => $theme_name[$i],
+                            "recommend" => $recommend_text[$i],
+                            "details" => $details[$i],
+                        ];
+
+                        if(!empty($value)){
+                            $data_product["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->hotelThemeSub->updateData($value, $data_product);
+                        }else{
+                            $data_product["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->hotelThemeSub->insertData($data_product);
+                        }
+    
+                        for ($n = 1; $n <= 4; $n++) {
+                            $ufile = isset(${"o_ufile_{$n}"}[$i]) ? ${"o_ufile_{$n}"}[$i] : null;
+    
+                            if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                                $data_product["rfile{$n}"] = $ufile->getClientName();
+                                $data_product["ufile{$n}"] = $ufile->getRandomName();
+                                $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                            }
+    
+                            ${"checkImg_" . $n} = isset(${"o_checkImg_1{$n}"}[$i]) ? ${"o_checkImg_1{$n}"}[$i] : null;
+                            if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
+                                $data_product["rfile{$n}"] = '';
+                                $data_product["ufile{$n}"] = '';
+                            }
+                        }
+    
+                        $this->hotelThemeSub->insertData($data_product);
+                    }
                 }
                 
             } else {
@@ -326,6 +368,35 @@ class AdminHotelThemeController extends BaseController
     
                             $this->hotelThemeSub->insertData($data_product);
                         }
+                    }
+                }else {
+                    foreach ($theme_name as $i => $name) {
+                        $data_product = [
+                            "theme_idx" => $insertId,
+                            "theme_name" => $name,
+                            "recommend" => $recommend_text[$i],
+                            "details" => $details[$i],
+                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                        ];
+    
+    
+                        for ($n = 1; $n <= 4; $n++) {
+                            $ufile = isset(${"o_ufile_{$n}"}[$i]) ? ${"o_ufile_{$n}"}[$i] : null;
+    
+                            if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                                $data_product["rfile{$n}"] = $ufile->getClientName();
+                                $data_product["ufile{$n}"] = $ufile->getRandomName();
+                                $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                            }
+    
+                            ${"checkImg_" . $n} = isset(${"o_checkImg_1{$n}"}[$i]) ? ${"o_checkImg_1{$n}"}[$i] : null;
+                            if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
+                                $data_product["rfile{$n}"] = '';
+                                $data_product["ufile{$n}"] = '';
+                            }
+                        }
+    
+                        $this->hotelThemeSub->insertData($data_product);
                     }
                 }
             }
