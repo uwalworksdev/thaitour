@@ -365,6 +365,64 @@ class AdminHotelThemeController extends BaseController
         }
     }
 
+    public function del_area()
+    {
+        try {
+            $ha_idx = $_POST['ha_idx'] ?? '';
+            if (!isset($ha_idx)) {
+                $data = [
+                    'status' => 'error',
+                    'msg' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->hotelArea->delete($ha_idx)   ;
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+
+            return $this->response->setJSON(['message' => $msg]);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_product()
+    {
+        try {
+            $s_idx = $_POST['s_idx'] ?? '';
+            if (!isset($s_idx)) {
+                $data = [
+                    'status' => 'error',
+                    'msg' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            $result = $this->hotelThemeSub->delete($s_idx)   ;
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+
+            return $this->response->setJSON(['message' => $msg]);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function change()
     {
         try {

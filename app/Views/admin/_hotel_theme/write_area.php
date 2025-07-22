@@ -253,7 +253,7 @@ $links = "list";
 
                                                                 <th style="text-align: center;">
                                                                     <div class="flex_c_c" style="margin-top: 5px;">
-                                                                        <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
+                                                                        <button type="button" onclick="del_product(this, '<?= $prow['s_idx'] ?>');" class="btn btn-danger">삭제</button>
                                                                     </div>
                                                                 </th>
                                                                 <td colspan="3">
@@ -485,12 +485,89 @@ $links = "list";
 </div>
 
 <script>
-    function del_product(button) {
-        $(button).closest(".product_area").remove();
+    function del_product(button, s_idx) {
+        if(ha_idx){
+			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+				return false;
+			}
+
+			$.ajax({
+				url: "/AdmMaster/_hotel_theme/del_product",
+				type: "POST",
+				data: {
+					"s_idx": s_idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest(".product_area").remove();
+		}
     }
 
     function del_area(button, ha_idx) {
-        $(button).closest(".sub_area").remove();
+        if(ha_idx){
+			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+				return false;
+			}
+
+			$.ajax({
+				url: "/AdmMaster/_hotel_theme/del_area",
+				type: "POST",
+				data: {
+					"ha_idx": ha_idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest(".sub_area").remove();
+		}
+    }
+
+    function del_product(button, ha_idx) {
+        if(ha_idx){
+			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
+				return false;
+			}
+
+			$.ajax({
+				url: "/AdmMaster/_hotel_theme/del_area",
+				type: "POST",
+				data: {
+					"ha_idx": ha_idx,
+				},
+				dataType: "json",
+				async: false,
+				cache: false,
+				success: function (data, textStatus) {
+					alert(data.message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+				}
+			});
+		}else{
+			$(button).closest(".sub_area").remove();
+		}
+
     }
 
     function fn_pick_update() {

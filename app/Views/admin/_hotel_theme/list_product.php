@@ -18,7 +18,7 @@
 
                         <th style="text-align: center;">
                             <div class="flex_c_c" style="margin-top: 5px;">
-                                <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
+                                <button type="button" onclick="del_product(this, '');" class="btn btn-danger">삭제</button>
                             </div>
                         </th>
                         <td colspan="3">
