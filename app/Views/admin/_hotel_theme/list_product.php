@@ -12,6 +12,7 @@
                 </colgroup>
                 <tbody>
                     <tr>
+                        <input type="hidden" name="s_idx[<?= $count ?>][]" value="">
                         <input type="hidden" name="product_idx[<?=$index?>][]" value="<?=$product['product_idx']?>">
                         <input type="hidden" name="step[<?=$index?>][]" class="step_index" value="">
 
@@ -82,7 +83,7 @@
                                                             <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile_<?=$index?>_<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
                                                             <label for="ufile_<?=$index?>_<?= $i ?>" <?= !empty($product['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                            <input type="hidden" name="checkImg_<?= $i ?>[<?=$index?>][]" class="checkImg">
+                                                            <input type="hidden" name="s_checkImg_<?= $i ?>[<?=$index?>][]" class="checkImg">
                                                             
                                                             <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>
@@ -115,7 +116,7 @@
                                                             <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile_<?=$index?>_<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
                                                             <label for="ufile_<?=$index?>_<?= $i ?>" <?= !empty($product["img_list"][$i - 2]["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                            <input type="hidden" name="checkImg_<?= $i ?>[<?=$index?>][]" class="checkImg">
+                                                            <input type="hidden" name="s_checkImg_<?= $i ?>[<?=$index?>][]" class="checkImg">
                                                         
                                                             <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>

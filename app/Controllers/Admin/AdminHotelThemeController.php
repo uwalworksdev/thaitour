@@ -87,6 +87,12 @@ class AdminHotelThemeController extends BaseController
 
         if ($idx) {
             $row = $this->hotelTheme->find($idx);
+
+            $area_list = $this->hotelArea->where("theme_idx", $idx)->findAll();
+
+            foreach ($area_list as $key => $item) {
+                $area_list[$key]['product_list'] = $this->hotelThemeSub->where("ha_idx", $item['ha_idx'])->findAll();
+            }
         }
 
         $data = [
@@ -96,6 +102,7 @@ class AdminHotelThemeController extends BaseController
             'search_category' => $search_category,
             'row' => $row ?? '',
             'category_list' => $category_list,
+            'area_list' => $area_list,
         ];
         return view("admin/_hotel_theme/write_area", $data);
     }
@@ -138,6 +145,9 @@ class AdminHotelThemeController extends BaseController
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                    $this->hotelTheme->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                }
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
@@ -147,6 +157,7 @@ class AdminHotelThemeController extends BaseController
             }
 
             $s_category_code = $this->request->getPost("s_category_code") ?? [];
+            $s_idx = $this->request->getPost("s_idx") ?? [];
             $theme_name = $this->request->getPost("theme_name") ?? [];
             $star = $this->request->getPost("star") ?? [];
             $recommend_text = $this->request->getPost("recommend_text") ?? [];
@@ -158,11 +169,68 @@ class AdminHotelThemeController extends BaseController
             $ufile_3 = $files['ufile_3'] ?? [];
             $ufile_4 = $files['ufile_4'] ?? [];
 
+            $s_checkImg_1 = $this->request->getPost("s_checkImg_1") ?? [];
+            $s_checkImg_2 = $this->request->getPost("s_checkImg_2") ?? [];
+            $s_checkImg_3 = $this->request->getPost("s_checkImg_3") ?? [];
+            $s_checkImg_4 = $this->request->getPost("s_checkImg_4") ?? [];
+
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->hotelTheme->updateData($idx, $data);
    
+                if($data['type'] == "area"){
+                    foreach ($s_category_code as $key => $area_code) {
+    
+                        foreach ($s_idx[$key] as $i => $value) {
+                            $data_product = [
+                                "product_idx" => $arr_product_idx[$key][$i],
+                                "theme_name" => $theme_name[$key][$i],
+                                "recommend" => $recommend_text[$key][$i],
+                                "star" => $star[$key][$i],
+                                "step" => $step[$key][$i],
+                            ];
+
+                            $product = $this->productModel->find($arr_product_idx[$key][$i]);
+                            $img_list = $this->productImg->getImg($arr_product_idx[$key][$i]);
+
+                            for ($n = 1; $n <= 4; $n++) {
+                                $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
+    
+                                if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                                    $data_product["rfile{$n}"] = $ufile->getClientName();
+                                    $data_product["ufile{$n}"] = $ufile->getRandomName();
+                                    $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                                }else{
+                                    if(empty($value)){
+                                        if($n == 1) {
+                                            $data_product["rfile{$n}"] = $product['rfile1'];
+                                            $data_product["ufile{$n}"] = $product['ufile1'];
+                                        }else{
+                                            $data_product["rfile{$n}"] = $img_list[$n-2]['rfile'];
+                                            $data_product["ufile{$n}"] = $img_list[$n-2]['ufile'];
+                                        }
+                                    }
+                                }
+
+                                ${"checkImg_" . $n} = isset(${"s_checkImg_{$n}"}[$key][$i]) ? ${"s_checkImg_{$n}"}[$key][$i] : null;
+                                if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
+                                    $data_product["rfile{$n}"] = '';
+                                    $data_product["ufile{$n}"] = '';
+                                }
+                            }
+
+                            if(!empty($value)){
+                                $data_product["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                $this->hotelThemeSub->updateData($value, $data_product);
+                            }else{
+                                $data_product["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                                $this->hotelThemeSub->insertData($data_product);
+                            }
+    
+                        }
+                    }
+                }
                 
             } else {
 
@@ -209,6 +277,12 @@ class AdminHotelThemeController extends BaseController
                                         $data_product["rfile{$n}"] = $img_list[$n-2]['rfile'];
                                         $data_product["ufile{$n}"] = $img_list[$n-2]['ufile'];
                                     }
+                                }
+
+                                ${"checkImg_" . $n} = isset(${"s_checkImg_{$n}"}[$key][$i]) ? ${"s_checkImg_{$n}"}[$key][$i] : null;
+                                if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
+                                    $data_product["rfile{$n}"] = '';
+                                    $data_product["ufile{$n}"] = '';
                                 }
                             }
     

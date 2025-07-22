@@ -1,9 +1,9 @@
 <?php
-    $formAction = $idx ? "/AdmMaster/_hotel_theme/write_ok/$idx" : "/AdmMaster/_hotel_theme/write_ok";
-    helper("my_helper");
+$formAction = $idx ? "/AdmMaster/_hotel_theme/write_ok/$idx" : "/AdmMaster/_hotel_theme/write_ok";
+helper("my_helper");
 ?>
 
-<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css" />
 
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
@@ -48,14 +48,14 @@
 </style>
 
 <?php
-    if (isset($idx) && isset($row)) {
-        foreach ($row as $keys => $vals) {
-            ${$keys} = $vals;
-        }
+if (isset($idx) && isset($row)) {
+    foreach ($row as $keys => $vals) {
+        ${$keys} = $vals;
     }
+}
 
-    $titleStr = "테마별 인기호텔";
-    $links = "list";
+$titleStr = "테마별 인기호텔";
+$links = "list";
 ?>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
@@ -114,27 +114,27 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>제목</th>
                                     <td>
                                         <input type="text" name="title"
-                                                    value="<?= $title ?? "" ?>"
-                                                    class="text" maxlength="100" />
+                                            value="<?= $title ?? "" ?>"
+                                            class="text" maxlength="100" />
                                     </td>
                                     <th>부제</th>
                                     <td>
                                         <input type="text" name="subtitle"
-                                                    value="<?= $subtitle ?? "" ?>"
-                                                    class="text" maxlength="100" />
+                                            value="<?= $subtitle ?? "" ?>"
+                                            class="text" maxlength="100" />
                                     </td>
-                                </tr>  
+                                </tr>
 
                                 <tr>
                                     <th>내용</th>
                                     <td colspan="3">
 
-                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?></textarea>
+                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 
@@ -143,14 +143,14 @@
                                                 elPlaceHolder: "recommend_text",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    fOnBeforeUnload: function () {
+                                                    bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true, // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true, // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    fOnBeforeUnload: function() {
                                                         //alert("완료!");
                                                     }
                                                 }, //boolean
-                                                fOnAppLoad: function () {
+                                                fOnAppLoad: function() {
                                                     //예제 코드
                                                     //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
                                                 },
@@ -168,7 +168,7 @@
                                             <?php
                                             for ($i = 1; $i <= 1; $i++) :
                                                 // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                $img ="/data/product/" . ${"ufile" . $i};
+                                                $img = "/data/product/" . ${"ufile" . $i};
                                             ?>
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
@@ -198,11 +198,11 @@
                                     <td colspan="3">
                                         <select id="category_code" name="category_code" class="input_select">
                                             <option value="">선택</option>
-                                                <?php
-                                                    foreach ($category_list as $frow){
-                                                ?>
-                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
-                                                <?php } ?>
+                                            <?php
+                                            foreach ($category_list as $frow) {
+                                            ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
+                                            <?php } ?>
                                         </select>
                                         <button type="button" class="btn btn-primary" onclick="add_area();">추가</button>
                                     </td>
@@ -210,161 +210,182 @@
                             </tbody>
                         </table>
                         <div class="area_list">
-                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
-                                style="table-layout:fixed;">
-    
-                                <colgroup>
-                                    <col width="10%" />
-                                    <col width="*" />
-                                </colgroup>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2">
-                                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
-                                            <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
-                                                제목
-                                                <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
-                                                <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="product_area">
-                                        <td colspan="2">
-                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                                style="table-layout:fixed;">
-    
-                                                <colgroup>
-                                                    <col width="10%" />
-                                                    <col width="*" />
-                                                </colgroup>
-                                                <tbody>
-                                                    <tr>
-                                                        <th style="text-align: center;">
-                                                            <div class="flex_c_c" style="margin-top: 5px;">
-                                                                <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
-                                                            </div>
-                                                        </th>
-                                                        <td colspan="3">
-                                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                                                style="table-layout:fixed;">
-    
-                                                                <colgroup>
-                                                                    <col width="10%" />
-                                                                    <col width="40%" />
-                                                                    <col width="10%" />
-                                                                    <col width="40%" />
-                                                                </colgroup>
-                                                                <tbody>                                                                
-                                                                    <tr>
-                                                                        <th>상품명</th>
-                                                                        <td colspan="3">
-                                                                            <input type="text" name="theme_name[]"
-                                                                                        value=""
+                            <?php
+                            $count = 0;
+                            foreach ($area_list as $frow) {
+                            ?>
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
+                                    style="table-layout:fixed;">
+
+                                    <colgroup>
+                                        <col width="10%" />
+                                        <col width="*" />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input type="hidden" name="s_category_code[<?= $count ?>]" class="s_category_code" value="<?= $frow["category_code"] ?>">
+                                                <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
+                                                    제목
+                                                    <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
+                                                    <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        foreach ($frow["product_list"] as $prow) {
+                                        ?>
+                                            <tr class="product_area">
+                                                <td colspan="2">
+                                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                        style="table-layout:fixed;">
+
+                                                        <colgroup>
+                                                            <col width="10%" />
+                                                            <col width="*" />
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <input type="hidden" name="s_idx[<?= $count ?>][]" value="<?= $prow['s_idx'] ?>">
+                                                                <input type="hidden" name="product_idx[<?= $count ?>][]" value="<?= $prow['product_idx'] ?>">
+                                                                <input type="hidden" name="step[<?= $count ?>][]" class="step_index" value="<?= $prow['step'] ?>">
+
+                                                                <th style="text-align: center;">
+                                                                    <div class="flex_c_c" style="margin-top: 5px;">
+                                                                        <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>
+                                                                    </div>
+                                                                </th>
+                                                                <td colspan="3">
+                                                                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                                        style="table-layout:fixed;">
+
+                                                                        <colgroup>
+                                                                            <col width="10%" />
+                                                                            <col width="40%" />
+                                                                            <col width="10%" />
+                                                                            <col width="40%" />
+                                                                        </colgroup>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <th>상품명</th>
+                                                                                <td colspan="3">
+                                                                                    <input type="text" name="theme_name[<?= $count ?>][]"
+                                                                                        value="<?= $prow["theme_name"] ?>"
                                                                                         class="text" maxlength="100" />
-                                                                        </td>
-                                                                    </tr>  
-                                                                    <tr>
-                                                                        <th>등급</th>
-                                                                        <td colspan="3">
-                                                                            <select name="star[]" class="input_select">
-                                                                                <option value="5">
-                                                                                    <font color="#17469E">★★★★★</font>
-                                                                                </option>
-                                                                                <option value="4">
-                                                                                    <font color="#17469E">★★★★</font>
-                                                                                </option>
-                                                                                <option value="3">
-                                                                                    <font color="#17469E">★★★</font>
-                                                                                </option>
-                                                                                <option value="2">
-                                                                                    <font color="#17469E">★★</font>
-                                                                                </option>
-                                                                                <option value="1">
-                                                                                    <font color="#17469E">★</font>
-                                                                                </option>
-                                                                            </select>
-                                                                        </td>
-                                                                    </tr>  
-                                                                    <tr>
-                                                                        <th>내용</th>
-                                                                        <td colspan="3">
-                                                                            <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:100px;"><?= viewSQ($recommend_text) ?></textarea>
-                                                                        </td>
-                                                                    </tr>
-    
-                                                                    <tr>
-                                                                        <th>대표이미지(600X440)</th>
-                                                                        <td colspan="3">
-    
-                                                                            <div class="img_add">
-                                                                                <?php
-                                                                                    for ($i = 1; $i <= 1; $i++) :
-                                                                                ?>
-                                                                                    <div class="file_input_wrap">
-                                                                                        <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                                                                onchange="productImagePreview(this, '<?= $i ?>')">
-                                                                                            <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                                                            <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                                                            <button type="button" class="remove_btn"
-                                                                                                onclick="productImagePreviewRemove(this)"></button>
-    
-                                                                                            <?php if (${"ufile" . $i}) { ?>
-                                                                                                <a class="img_txt imgpop" href="<?= $img ?>"
-                                                                                                    id="text_ufile<?= $i ?>">미리보기</a>
-                                                                                            <?php } ?>
-    
-                                                                                        </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>등급</th>
+                                                                                <td colspan="3">
+                                                                                    <select name="star[<?= $count ?>][]" class="input_select">
+                                                                                        <option value="5" <?php if ($prow['star'] == 5) echo "selected"; ?>>
+                                                                                            <font color="#17469E">★★★★★</font>
+                                                                                        </option>
+                                                                                        <option value="4" <?php if ($prow['star'] == 4) echo "selected"; ?>>
+                                                                                            <font color="#17469E">★★★★</font>
+                                                                                        </option>
+                                                                                        <option value="3" <?php if ($prow['star'] == 3) echo "selected"; ?>>
+                                                                                            <font color="#17469E">★★★</font>
+                                                                                        </option>
+                                                                                        <option value="2" <?php if ($prow['star'] == 2) echo "selected"; ?>>
+                                                                                            <font color="#17469E">★★</font>
+                                                                                        </option>
+                                                                                        <option value="1" <?php if ($prow['star'] == 1) echo "selected"; ?>>
+                                                                                            <font color="#17469E">★</font>
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>내용</th>
+                                                                                <td colspan="3">
+                                                                                    <textarea name="recommend_text[<?= $count ?>][]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"><?= viewSQ($prow['recommend']) ?></textarea>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <th>대표이미지(600X440)</th>
+                                                                                <td colspan="3">
+
+                                                                                    <div class="img_add">
+                                                                                        <?php
+                                                                                        for ($i = 1; $i <= 1; $i++) :
+                                                                                            $img = "/data/product/" . $prow['ufile' . $i];
+                                                                                        ?>
+                                                                                            <div class="file_input_wrap">
+                                                                                                <div class="file_input <?= empty($prow['ufile' . $i]) ? "" : "applied" ?>">
+                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $index ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
+                                                                                                        onchange="productImagePreview(this, '<?= $i ?>')">
+                                                                                                    <label for="ufile_<?= $index ?>_<?= $i ?>" <?= !empty($prow['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $index ?>][]" class="checkImg">
+
+                                                                                                    <button type="button" class="remove_btn"
+                                                                                                        onclick="productImagePreviewRemove(this)"></button>
+
+                                                                                                    <?php if ($prow['ufile' . $i]) { ?>
+                                                                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                                                            id="text_ufile_<?= $index ?>_<?= $i ?>">미리보기</a>
+                                                                                                    <?php } ?>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <?php
+                                                                                        endfor;
+                                                                                        ?>
                                                                                     </div>
-                                                                                <?php
-                                                                                endfor;
-                                                                                ?>
-                                                                            </div>
-    
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>대표이미지(600X440)</th>
-                                                                        <td colspan="3">
-    
-                                                                            <div class="img_add img_add_group">
-                                                                                <?php
-                                                                                for ($i = 2; $i <= 4; $i++) :
-                                                                                    $img ="/data/product/" . ${"ufile" . $i};
-                                                                                ?>
-                                                                                    <div class="file_input_wrap">
-                                                                                        <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
-                                                                                            <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
-                                                                                                onchange="productImagePreview(this, '<?= $i ?>')">
-                                                                                            <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                                                            <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                                                            <button type="button" class="remove_btn"
-                                                                                                onclick="productImagePreviewRemove(this)"></button>
-    
-                                                                                            <?php if (${"ufile" . $i}) { ?>
-                                                                                                <a class="img_txt imgpop" href="<?= $img ?>"
-                                                                                                    id="text_ufile<?= $i ?>">미리보기</a>
-                                                                                            <?php } ?>
-    
-                                                                                        </div>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>대표이미지(600X440)</th>
+                                                                                <td colspan="3">
+
+                                                                                    <div class="img_add img_add_group">
+                                                                                        <?php
+                                                                                        for ($i = 2; $i <= 4; $i++) :
+                                                                                            $img = "/data/product/" . $prow['ufile' . $i];
+                                                                                        ?>
+                                                                                            <div class="file_input_wrap">
+                                                                                                <div class="file_input <?= empty($prow['ufile' . $i]) ? "" : "applied" ?>">
+                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $index ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
+                                                                                                        onchange="productImagePreview(this, '<?= $i ?>')">
+                                                                                                    <label for="ufile_<?= $index ?>_<?= $i ?>" <?= !empty($prow['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $index ?>][]" class="checkImg">
+
+                                                                                                    <button type="button" class="remove_btn"
+                                                                                                        onclick="productImagePreviewRemove(this)"></button>
+
+                                                                                                    <?php if ($prow['ufile' . $i]) { ?>
+                                                                                                        <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                                                            id="text_ufile_<?= $index ?>_<?= $i ?>">미리보기</a>
+                                                                                                    <?php } ?>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        <?php
+                                                                                        endfor;
+                                                                                        ?>
                                                                                     </div>
-                                                                                <?php
-                                                                                    endfor;
-                                                                                ?>
-                                                                            </div>
-    
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>  
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>  
-                                </tbody>
-                            </table> -->
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <?php
+                                $count++;
+                            }
+                            ?>
                         </div>
                     </div>
                 </form>
@@ -412,19 +433,19 @@
                             $status_txt = "[마감]";
                         }
 
-                        ?>
+                    ?>
                         <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                     <?php } ?>
                 </select>
                 <select id="search_category" name="search_category" class="input_select"
-                        style="width:112px">
+                    style="width:112px">
                     <option value="product_name">상품명</option>
                     <option value="product_code">상품코드</option>
                 </select>
                 <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value=""
-                        class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
+                    class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
                 <a href="javascript:search_product()" class="btn btn-default"><span
-                            class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                        class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
             </form>
         </div>
         <div class="table_box">
@@ -438,18 +459,18 @@
                         <col style="width: 20%;">
                     </colgroup>
                     <thead>
-                    <tr>
-                        <th>선택</th>
-                        <th>상품명</th>
-                        <th>코드</th>
-                    </tr>
+                        <tr>
+                            <th>선택</th>
+                            <th>상품명</th>
+                            <th>코드</th>
+                        </tr>
                     </thead>
                     <tbody id="id_contents">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </form>
@@ -463,7 +484,7 @@
 </div>
 
 <script>
-    function del_product(button){
+    function del_product(button) {
         $(button).closest(".product_area").remove();
     }
 
@@ -472,8 +493,8 @@
     }
 
     function fn_pick_update() {
-        let code =  $("#item_pop").attr("data-code");
-        let index =  $("#item_pop").attr("data-code");
+        let code = $("#item_pop").attr("data-code");
+        let index = $("#item_pop").attr("data-code");
         let f = document.select_pick_frm;
         let pick_data = $(f).serialize();
         let save_result = "";
@@ -483,11 +504,11 @@
             url: "./get_products",
             cache: false,
             async: false,
-            success: function (data, textStatus) {
-                $('.s_category_code[value="'+ code +'"]').closest("table tbody").append(data);
+            success: function(data, textStatus) {
+                $('.s_category_code[value="' + code + '"]').closest("table tbody").append(data);
                 $(".pick_item_pop02").hide();
             },
-            error: function (request, status, error) {
+            error: function(request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
         });
@@ -509,7 +530,7 @@
         $('.pick_item_pop02').show();
     }
 
-    $('.pick_item_pop02 .sel_box .close').on('click', function () {
+    $('.pick_item_pop02 .sel_box .close').on('click', function() {
         $('.pick_item_pop02').hide()
     });
 
@@ -517,7 +538,7 @@
         let code = $("#category_code").val();
         let code_name = $("#category_code").find('option:selected').text();
 
-        if(code == ""){
+        if (code == "") {
             alert("영역을 선택해줘.");
             return false;
         }
@@ -526,7 +547,7 @@
         let count = $('.sub_area').length - 1;
         count = count + 1;
         $('.sub_area').each(function(index, element) {
-            if($(element).find(".s_category_code").val() == code){
+            if ($(element).find(".s_category_code").val() == code) {
                 isDuplicate = true;
                 return false;
             }
@@ -536,7 +557,7 @@
             alert("이전에 찾은 영역이 있습니다.");
             return false;
         }
-        
+
         let html = `
             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
                 style="table-layout:fixed;">
@@ -578,19 +599,18 @@
                 "search_category": search_category,
                 "search_txt": search_txt,
             },
-            error: function (request, status, error) {
+            error: function(request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            }
-            , success: function (response, status, request) {
+            },
+            success: function(response, status, request) {
                 $("#id_contents").empty();
                 $("#id_contents").append(response);
                 $('.pick_item_pop02').show();
             }
         });
     }
-
 </script>
 
 <script>
@@ -617,20 +637,20 @@
         }
 
         $(".sub_area").each(function() {
-			$(this).find(".product_area").each(function() {
-				let step = $(this).index();
-                
-				$(this).find(".step_index").val(step);
-			});
-		});
+            $(this).find(".product_area").each(function() {
+                let step = $(this).index();
 
-        if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
+                $(this).find(".step_index").val(step);
+            });
+        });
+
+        if ($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0) {
             alert("이미지를 등록해주세요.");
             return false;
         }
-      
-        $(".img_add_group .file_input").each(function (index) { 
-            $(this).find(".onum_img").val(index + 1);        
+
+        $(".img_add_group .file_input").each(function(index) {
+            $(this).find(".onum_img").val(index + 1);
         });
 
         oEditors1?.getById["recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
@@ -642,7 +662,6 @@
 </script>
 
 <script>
-    
     function delete_all_image() {
         if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;
@@ -704,65 +723,12 @@
 
     function productImagePreviewRemove(element) {
         let parent = $(element).closest('.file_input_wrap');
-        if (parent.find('input[name="ufile[]"]').length > 0) {
-            let inputFile = parent.find('input[type="file"][multiple]')[0] ||
-                parent.prevAll().find('input[type="file"][multiple]')[0];
-            let labelImg = parent.find('label');
-            let i_idx = parent.find('input[name="i_idx[]"]').val();
-
-            let dt = new DataTransfer();
-            let fileArray = Array.from(inputFile.files);
-            let imageUrl = labelImg.css('background-image').replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-
-            fileArray.forEach((file) => {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    if (e.target.result !== imageUrl) {
-                        dt.items.add(file);
-                    }
-                };
-                reader.readAsDataURL(file);
-            });
-
-            setTimeout(() => {
-                inputFile.files = dt.files;
-                if (parent.find('input[type="file"][multiple]')[0]) {
-                    parent.css("display", "none");
-                } else {
-                    parent.remove();
-                }
-            }, 100);
-
-            if (i_idx) {
-                if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
-                    return false;
-                }
-
-                $.ajax({
-                    url: "/AdmMaster/_hotel_theme/del_image",
-                    type: "POST",
-                    data: {
-                        "i_idx": i_idx
-                    },
-                    success: function(data) {
-                        alert(data.message);
-                        if (data.result) {
-                            parent.css("display", "none");
-                        }
-                    },
-                    error: function(request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
-                    }
-                });
-            }
-        } else {
-            parent.find('input[type="file"]').val("");
-            parent.find('label').css("background-image", "");
-            parent.find('.file_input').removeClass('applied');
-            parent.find('.checkImg').val('N');
-            parent.find('.imgpop').attr("href", "");
-            parent.find('.imgpop').remove();
-        }
+        parent.find('input[type="file"]').val("");
+        parent.find('label').css("background-image", "");
+        parent.find('.file_input').removeClass('applied');
+        parent.find('.checkImg').val('N');
+        parent.find('.imgpop').attr("href", "");
+        parent.find('.imgpop').remove();
     }
 
     function sizeAndExtCheck(input) {
