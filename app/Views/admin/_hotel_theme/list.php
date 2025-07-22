@@ -14,9 +14,12 @@
 
                     <ul class="last">
                         <li><a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a></li>
-                        <li><a href="write" class="btn btn-primary"><span
+                        <li><a href="write_month" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-pencil"></span> <span
-                                    class="txt">상품 등록</span></a></li>
+                                    class="txt">이달의 호텔 등록</span></a></li>
+                        <li><a href="write_area" class="btn btn-primary"><span
+                                    class="glyphicon glyphicon-pencil"></span> <span
+                                    class="txt">영역 등록</span></a></li>
                     </ul>
 
                 </div>
@@ -27,9 +30,7 @@
 
         <div id="contents">
             <form name="search" id="search">
-                <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
-                <input type="hidden" name="idx" id="idx" value="">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>
@@ -43,106 +44,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="label">추천 여행지</td>
-                            <td>
-                                <select id="city_code" name="city_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 4, 'city')">
-                                    <option value="">1차분류</option>
-                                    <?php
-                                    foreach ($city_code_list as $frow):
-                                        $status_txt = "";
-                                        if ($frow["status"] == "Y") {
-                                            $status_txt = "";
-                                        } elseif ($frow["status"] == "N") {
-                                            $status_txt = "[삭제]";
-                                        } elseif ($frow["status"] == "C") {
-                                            $status_txt = "[마감]";
-                                        }
-
-                                    ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $city_code) {
-                                                                                    echo "selected";
-                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-
-                                    <?php endforeach; ?>
-
-                                </select>
-                                <select id="town_code" name="town_code" class="input_select">
-                                    <option value="">2차분류</option> 
-                                    <?php
-                                        foreach ($town_code_list as $frow):
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-                                    ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) {
-                                                                                    echo "selected";
-                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="label">추천여행 카테고리</td>
-                            <td>
-                                <select id="category_code" name="category_code" class="input_select"
-                                    onchange="javascript:get_code(this.value, 4, 'category')">
-                                    <option value="">1차분류</option>
-                                    <?php
-                                    foreach ($category_code_list as $frow):
-                                        $status_txt = "";
-                                        if ($frow["status"] == "Y") {
-                                            $status_txt = "";
-                                        } elseif ($frow["status"] == "N") {
-                                            $status_txt = "[삭제]";
-                                        } elseif ($frow["status"] == "C") {
-                                            $status_txt = "[마감]";
-                                        }
-
-                                    ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) {
-                                                                                    echo "selected";
-                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-
-                                    <?php endforeach; ?>
-
-                                </select>
-                                <select id="subcategory_code" name="subcategory_code" class="input_select">
-                                    <option value="">2차분류</option> 
-                                    <?php
-                                        foreach ($subcategory_code as $frow):
-                                            $status_txt = "";
-                                            if ($frow["status"] == "Y") {
-                                                $status_txt = "";
-                                            } elseif ($frow["status"] == "N") {
-                                                $status_txt = "[삭제]";
-                                            } elseif ($frow["status"] == "C") {
-                                                $status_txt = "[마감]";
-                                            }
-                                    ?>
-                                        <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) {
-                                                                                    echo "selected";
-                                                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
                             <td class="label">검색어</td>
                             <td class="inbox">
                                 <div class="r_box">
                                     <select id="" name="search_category" class="input_select" style="width:180px">
-                                        <option value="product_name" <?php if ($search_category == "product_name") {
+                                        <option value="title" <?php if ($search_category == "title") {
                                                                             echo "selected";
                                                                         } ?>>
-                                            상품명
+                                            제목
+                                        </option>
+                                        <option value="subtitle" <?php if ($search_category == "subtitle") {
+                                                                            echo "selected";
+                                                                        } ?>>
+                                            부제
                                         </option>
                                     </select>
                                     <input type="text" id="search_txt" name="search_txt"
@@ -159,7 +73,6 @@
                 </table>
             </form>
 
-
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
                 <div class="listTop flex_b_c">
@@ -168,12 +81,6 @@
                     </div>
                     <form name="frm" id="frm">
                         <div class="right_btn">
-                            <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
-                                    src="/images/admin/common/filter.png" alt="">순위순
-                            </button>
-                            <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
-                                    src="/images/admin/common/filter.png" alt="">최신순
-                            </button>
 
                             <select id="g_list_rows" name="g_list_rows" class="input_select" style="width: 80px" onchange="submitForm();">
                                 <option value="30" <?= ($g_list_rows == 30)  ? 'selected' : '' ?>>30개</option>
@@ -191,11 +98,10 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px" />
-                                <col width="250px" />
-                                <col width="200px" />
-                                <col width="200px" />
-                                <col width="100px" />
                                 <col width="*" />
+                                <col width="400px" />
+                                <col width="100px" />
+                                <col width="150px" />
                                 <col width="100px" />
                                 <col width="100px" />
                                 <col width="100px" />
@@ -203,11 +109,10 @@
                             <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>핫 플레이스</th>
-                                    <th>추천 여행지</th>
-                                    <th>테마여행</th>
+                                    <th>제목</th>
+                                    <th>부제</th>
                                     <th>썸네일이미지</th>
-                                    <th>타이틀</th>
+                                    <th>유형</th>
                                     <th>순위</th>
                                     <th>등록일</th>
                                     <th>관리</th>
@@ -218,35 +123,32 @@
                                 if ($nTotalCount == 0) {
                                 ?>
                                     <tr>
-                                        <td colspan=9 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=6 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                 <?php
                                 }
                                 foreach ($result as $row) :
+                                    if($row["type"] == "month"){
+                                        $url_admin = "write_month?idx=" . $row["idx"] . "&search_category=" . $search_category . "&search_txt=" . $search_txt . "&pg=" . $pg;
+                                    }else{
+                                        $url_admin = "write_area?idx=" . $row["idx"] . "&search_category=" . $search_category . "&search_txt=" . $search_txt . "&pg=" . $pg;
+                                    }
                                 ?>
                                     <tr style="height:30px" data-idx="<?= $row['idx']; ?>">
                                         <td><?= $num-- ?></td>
-                                        <td class="tac"><?= $row["local_product_title"] ?></td>
                                         <td class="tac">
-                                            <?php
-                                                $city_code_list = $row['city_code'] . "|" . $row['town_code'];
-                                                
-                                                $category_code_list = $row['category_code'] . "|" . $row['subcategory_code'];
-                                                
-                                            ?>
-                                            <div class="" style="padding: 0 20px">
-                                                <p class="new"><?= get_cate_name($city_code_list) ?></p>
-                                            </div>
+                                            <?= $row["title"] ?>
                                             <div class="flex_c_c" style="gap: 10px;">
-                                                <a href="/product-hotel/hotel-detail/<?= $row["idx"] ?>"
+                                                <a href="/travel-tips/theme_view?idx=<?= $row["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                                <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>"
+                                                <a href="<?= $url_admin ?>"
                                                     class="product_view" style="color: red;">[<span>상세수정</span>]</a>
                                             </div>
                                         </td>
                                         <td class="tac">
-                                            <p class="new"><?= get_cate_name($category_code_list) ?></p>
+                                            <?= $row["subtitle"] ?> 
                                         </td>
+                                        
                                         <td class="tac">
                                             <?php
                                             if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
@@ -259,9 +161,20 @@
                                                 <img src="<?= $src ?>"
                                                     style="max-width:150px;max-height:100px"></a>
                                         </td>
-                                        <td class="tal" style="font-weight:bold">
-                                            <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&idx=<?= $row["idx"] ?>">
-                                                <?= viewSQ($row["product_name"]) ?>
+                                        <td>
+                                            <?php
+                                                if($type == "month"){
+                                                    echo "이달의 호텔";
+                                                }else{
+                                                    echo $row["category_name"];
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
+                                                value="<?= $row['onum'] ?>" style="width:66px; text-align:center;">                                    
+                                            <input type="hidden" name="code_idx[]" value="<?= $row["idx"] ?>"
+                                                class="input_txt" />
                                         </td>
                                         <td>
                                             <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
@@ -297,9 +210,12 @@
                             <ul class="last">
                                 <li><a href="javascript:change_it()"
                                         class="btn btn-success btn_change">순위변경</a></li>
-                                <li><a href="write" class="btn btn-primary"><span
+                                <li><a href="write_month" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
-                                            class="txt">상품 등록</span></a></li>
+                                            class="txt">이달의 호텔 등록</span></a></li>
+                                <li><a href="write_area" class="btn btn-primary"><span
+                                            class="glyphicon glyphicon-pencil"></span> <span
+                                            class="txt">영역 등록</span></a></li>
                             </ul>
 
                         </div>

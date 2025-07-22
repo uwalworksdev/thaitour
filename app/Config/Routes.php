@@ -226,12 +226,13 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_hotel_theme", static function ($routes) {
-        $routes->get("list", "Admin\AdminLocalProductController::list");
-        $routes->get("write", "Admin\AdminLocalProductController::write");
-        $routes->post("write_ok", "Admin\AdminLocalProductController::write_ok", ['as' => "admin._local_product.write_ok"]);
-        $routes->post("write_ok/(:segment)", "Admin\AdminLocalProductController::write_ok/$1", ['as' => "admin._local_product.write_ok.id"]);
-        $routes->post("del", "Admin\AdminLocalProductController::del", ['as' => "admin._local_product.del"]);
-        $routes->post("del_image", "Admin\AdminLocalProductController::del_image", ['as' => "admin._local_product.del_image"]);
+        $routes->get("list", "Admin\AdminHotelThemeController::list");
+        $routes->get("write_month", "Admin\AdminHotelThemeController::write_month");
+        $routes->get("write_area", "Admin\AdminHotelThemeController::write_area");
+        $routes->post("write_ok", "Admin\AdminHotelThemeController::write_ok", ['as' => "admin._local_product.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminHotelThemeController::write_ok/$1", ['as' => "admin._local_product.write_ok.id"]);
+        $routes->post("del", "Admin\AdminHotelThemeController::del", ['as' => "admin._local_product.del"]);
+        $routes->post("del_image", "Admin\AdminHotelThemeController::del_image", ['as' => "admin._local_product.del_image"]);
     });
 
     $routes->group("_hotel", static function ($routes) {

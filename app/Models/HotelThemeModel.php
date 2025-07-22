@@ -61,9 +61,6 @@ class HotelThemeModel extends Model
 
         $builder = $this;
 
-        if ($where['city_code'] != "") {
-            $builder->where('city_code', $where['city_code']);
-        }
         if ($where['category_code'] != "") {
             $builder->where('category_code', $where['category_code']);
         }
@@ -74,6 +71,7 @@ class HotelThemeModel extends Model
             } else {
                 $builder->groupStart();
                 $builder->like('title', $where['search_txt']);
+                $builder->orLike('subtitle', $where['search_txt']);
                 $builder->groupEnd();
             }
         }
@@ -94,7 +92,6 @@ class HotelThemeModel extends Model
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 		
         foreach ($items as $key => $value) {
-            $items[$key]['city_name'] = $this->codeModel->getCodeName($value['city_code']);
             $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
         }
 
