@@ -82,6 +82,7 @@ class HotelThemeModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
+            $orderBy = ['onum' => 'DESC'];
             $orderBy = ['idx' => 'DESC'];
         }
 
