@@ -221,17 +221,16 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
-                                            <div class=""
-                                                style="width: 100%; display: flex; align-items: center">
+                                            <div style="width: 100%; display: flex; align-items: center">
                                                 제목
                                                 <button type="button" class="btn btn-primary">추가</button>
                                                 <button type="button" class="btn btn-danger">삭제</button>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td colspan="2">
-                                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                                 style="table-layout:fixed;">
     
                                                 <colgroup>
@@ -361,9 +360,9 @@
                                                         </td>
                                                     </tr>  
                                                 </tbody>
-                                            </table> -->
+                                            </table>
                                         </td>
-                                    </tr>  
+                                    </tr>   -->
                                 </tbody>
                             </table>
                         </div>
