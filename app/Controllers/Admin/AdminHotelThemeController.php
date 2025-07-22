@@ -406,7 +406,7 @@ class AdminHotelThemeController extends BaseController
                 return $this->response->setJSON($data, 400);
             }
 
-            $result = $this->hotelThemeSub->delete($s_idx)   ;
+            $result = $this->hotelThemeSub->delete($s_idx);
             if ($result) {
                 $msg = "일차전체 삭제 완료";
             } else {
