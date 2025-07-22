@@ -79,15 +79,15 @@
                                                 ?>
                                                     <div class="file_input_wrap">
                                                         <div class="file_input <?= empty($product['ufile' . $i]) ? "" : "applied" ?>">
-                                                            <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile<?= $i ?>"
+                                                            <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile_<?=$index?>_<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
-                                                            <label for="ufile<?= $i ?>" <?= !empty($product['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                            <label for="ufile_<?=$index?>_<?= $i ?>" <?= !empty($product['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
                                                             <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>
 
                                                             <?php if ($product['ufile' . $i]) { ?>
                                                                 <a class="img_txt imgpop" href="<?= $img ?>"
-                                                                    id="text_ufile<?= $i ?>">미리보기</a>
+                                                                    id="text_ufile_<?=$index?>_<?= $i ?>">미리보기</a>
                                                             <?php } ?>
 
                                                         </div>
@@ -110,16 +110,15 @@
                                                 ?>
                                                     <div class="file_input_wrap">
                                                         <div class="file_input <?= empty($product["img_list"][$i - 2]["ufile"]) ? "" : "applied" ?>">
-                                                            <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile<?= $i ?>"
+                                                            <input type="file" name='ufile_<?= $i ?>[<?=$index?>][]' id="ufile_<?=$index?>_<?= $i ?>"
                                                                 onchange="productImagePreview(this, '<?= $i ?>')">
-                                                            <label for="ufile<?= $i ?>" <?= !empty($product["img_list"][$i - 2]["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                            <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                            <label for="ufile_<?=$index?>_<?= $i ?>" <?= !empty($product["img_list"][$i - 2]["ufile"]) ? "style='background-image:url($img)'" : "" ?>></label>
                                                             <button type="button" class="remove_btn"
                                                                 onclick="productImagePreviewRemove(this)"></button>
 
                                                             <?php if ($product["img_list"][$i - 2]["ufile"]) { ?>
                                                                 <a class="img_txt imgpop" href="<?= $img ?>"
-                                                                    id="text_ufile<?= $i ?>">미리보기</a>
+                                                                    id="text_ufile_<?=$index?>_<?= $i ?>">미리보기</a>
                                                             <?php } ?>
 
                                                         </div>
