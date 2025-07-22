@@ -169,38 +169,40 @@ class AdminHotelThemeController extends BaseController
 
                 $insertId = $this->hotelTheme->insertData($data);
 
-                foreach ($s_category_code as $key => $area_code) {
-                    $data_area = [
-                        "theme_idx" => $insertId,
-                        "category_code" => $area_code,
-                        "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                    ];
-
-                    $ha_idx = $this->hotelArea->insertData($data_area);
-
-                    foreach ($theme_name[$key] as $i => $name) {
-                        $data_product = [
-                            "ha_idx" => $ha_idx,
-                            "theme_name" => $name,
-                            "recommend" => $recommend_text[$key][$i],
-                            "star" => $star[$key][$i],
-                            "step" => $step[$key][$i],
-                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                        ];
-
-                        for ($n = 1; $n <= 4; $n++) {
-                            $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
-
-                            if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
-                                $data_product["rfile{$n}"] = $ufile->getClientName();
-                                $data_product["ufile{$n}"] = $ufile->getRandomName();
-                                $ufile->move($publicPath, $data_product["ufile{$n}"]);
-                            }
-                        }
-
-                        $this->hotelThemeSub->insertData($data_product);
-                    }
-                }
+                // if($data['type'] == "area"){
+                //     foreach ($s_category_code as $key => $area_code) {
+                //         $data_area = [
+                //             "theme_idx" => $insertId,
+                //             "category_code" => $area_code,
+                //             "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                //         ];
+    
+                //         $ha_idx = $this->hotelArea->insertData($data_area);
+    
+                //         foreach ($theme_name[$key] as $i => $name) {
+                //             $data_product = [
+                //                 "ha_idx" => $ha_idx,
+                //                 "theme_name" => $name,
+                //                 "recommend" => $recommend_text[$key][$i],
+                //                 "star" => $star[$key][$i],
+                //                 "step" => $step[$key][$i],
+                //                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                //             ];
+    
+                //             for ($n = 1; $n <= 4; $n++) {
+                //                 $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
+    
+                //                 if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                //                     $data_product["rfile{$n}"] = $ufile->getClientName();
+                //                     $data_product["ufile{$n}"] = $ufile->getRandomName();
+                //                     $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                //                 }
+                //             }
+    
+                //             $this->hotelThemeSub->insertData($data_product);
+                //         }
+                //     }
+                // }
             }
 
             if ($idx) {
