@@ -400,7 +400,6 @@
         <div class="search_box">
 
             <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
-                <input type="hidden" id="area_index" name="area_index">
                 <select id="product_code_2" name="product_code_2" class="input_select">
                     <option value="">분류</option>
                     <?php
@@ -431,7 +430,7 @@
         </div>
         <div class="table_box">
             <form method="post" name="select_pick_frm" id="select_pick_frm">
-                <input type="hidden" name="isrt_code" id="isrt_code" value="<?= $replace_code ?>">
+                <input type="hidden" id="area_index" name="area_index">
                 <table>
                     <caption>상품찾기</caption>
                     <colgroup>
