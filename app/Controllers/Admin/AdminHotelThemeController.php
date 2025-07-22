@@ -100,7 +100,7 @@ class AdminHotelThemeController extends BaseController
 
     public function get_products() {
         $idxList = $this->request->getVar('idx');
-        $index = $this->request->getVar('index');
+        $index = $this->request->getVar('area_index');
 
         if (!$idxList || !is_array($idxList)) {
             return $this->response->setJSON(['error' => 'idx가 존재하지 않습니다']);
