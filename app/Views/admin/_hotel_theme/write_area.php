@@ -211,7 +211,7 @@
                             </tbody>
                         </table>
                         <div class="area_list">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
                                 style="table-layout:fixed;">
     
                                 <colgroup>
@@ -221,6 +221,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
+                                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
                                                 <button type="button" class="btn btn-primary" style="margin: unset">추가</button>
@@ -228,7 +229,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- <tr>
+                                    <tr>
                                         <td colspan="2">
                                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                                 style="table-layout:fixed;">
@@ -362,7 +363,7 @@
                                                 </tbody>
                                             </table>
                                         </td>
-                                    </tr>   -->
+                                    </tr>  
                                 </tbody>
                             </table>
                         </div>
@@ -463,6 +464,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    function add_area() {
+        let code = $("#category_code").val();
+        let code_name = $("#category_code").find('option:selected').text();
+
+        if(code == ""){
+            alert("영역을 선택해줘.");
+            return false;
+        }
+
+        $('.sub_area').each(function(index, element) {
+            if($(element).find(".s_category_code").val() == code){
+                alert("이전에 찾은 영역이 있습니다.");
+                return false;
+            }
+        });
+        
+        let html = `
+            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
+                style="table-layout:fixed;">
+
+                <colgroup>
+                    <col width="10%" />
+                    <col width="*" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="${code}">
+                            <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
+                                ${code_name}
+                                <button type="button" class="btn btn-primary" style="margin: unset">추가</button>
+                                <button type="button" class="btn btn-danger" style="margin: unset">삭제</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+
+        $(".area_list").html(html);
+    }
+</script>
 
 <script>
     $(".imgpop_p").each(function() {
