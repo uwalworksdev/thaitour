@@ -400,6 +400,7 @@
         <div class="search_box">
 
             <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
+                <input type="hidden" id="area_index" name="area_index">
                 <select id="product_code_2" name="product_code_2" class="input_select">
                     <option value="">분류</option>
                     <?php
@@ -474,6 +475,7 @@
 
     function fn_pick_update() {
         let code =  $("#item_pop").attr("data-code");
+        let index =  $("#item_pop").attr("data-code");
         let f = document.select_pick_frm;
         let pick_data = $(f).serialize();
         let save_result = "";
@@ -501,7 +503,9 @@
 
     function showPopup(button) {
         let code = $(button).closest("td").find(".s_category_code").val();
+        let index = $(button).closest(".sub_area").index();
         $("#item_pop").attr("data-code", code);
+        $("#item_pop").find(".area_index").val(index);
         $("#product_code_2").val(code);
         $('.pick_item_pop02').show();
     }
