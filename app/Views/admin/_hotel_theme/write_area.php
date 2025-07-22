@@ -230,14 +230,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th style="text-align: center;">
-                                            제목
-                                            <div class="flex_c_c" style="gap: 5px; margin-top: 5px;">
-                                                <button type="button" class="btn btn-primary">추가</button>
-                                                <button type="button" class="btn btn-danger">삭제</button>
-                                            </div>
-                                        </th>
-                                        <td colspan="3">
+                                        <td colspan="2">
                                             <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                                 style="table-layout:fixed;">
     
