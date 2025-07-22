@@ -231,7 +231,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail product_area"
                                                 style="table-layout:fixed;">
     
                                                 <colgroup>
@@ -464,6 +464,28 @@
 </div>
 
 <script>
+    function fn_pick_update() {
+        let code =  $("#item_pop").attr("data-code");
+        let f = document.select_pick_frm;
+        let pick_data = $(f).serialize();
+        let save_result = "";
+        $.ajax({
+            type: "POST",
+            data: pick_data,
+            url: "./get_products",
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (data, textStatus) {
+                $('.s_category_code[value="'+ code +'"]').closest("table").find(".product_area").append(data);
+                $(".pick_item_pop02").hide();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
     function press_it() {
         if (event.keyCode == 13) {
             search_product();

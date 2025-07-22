@@ -10,8 +10,12 @@ class AdminHotelThemeController extends BaseController
 {
     protected $connect;
     protected $hotelTheme;
-    private $codeModel;
+    protected $codeModel;
     protected $subHotelTheme;
+    protected $productModel;
+    protected $reviewModel;
+    protected $productImg;
+
 
     public function __construct()
     {
@@ -21,6 +25,10 @@ class AdminHotelThemeController extends BaseController
         $this->hotelTheme       = model("HotelThemeModel");
         $this->codeModel        = model("Code");
         $this->subHotelTheme    = model("SubThemeModel");
+        $this->productModel     = model("ProductModel");
+        $this->reviewModel      = model("ReviewModel");
+        $this->productImg       = model("ProductImg");
+
     }
 
     public function list()
@@ -88,6 +96,27 @@ class AdminHotelThemeController extends BaseController
             'category_list' => $category_list,
         ];
         return view("admin/_hotel_theme/write_area", $data);
+    }
+
+    public function get_products() {
+        $idxList = $this->request->getVar('idx');
+
+        if (!$idxList || !is_array($idxList)) {
+            return $this->response->setJSON(['error' => 'idx가 존재하지 않습니다']);
+        }
+
+        $products = $this->productModel->whereIn('product_idx', $idxList)->findAll();
+
+        foreach ($products as $key => $item) {
+            $itemReview = $this->reviewModel->getProductReview($item['product_idx']);
+            $products[$key]['total_review']    = $itemReview['total_review'];
+            $products[$key]['review_average']  = (int)$itemReview['avg'];
+            $products[$key]['img_list']        = $this->productImg->getImg($item['product_idx']);
+        }
+
+        return view('admin/_hotel_theme/list_product', [
+            "products" => $products
+        ]);
     }
 
     public function write_ok($idx = null)

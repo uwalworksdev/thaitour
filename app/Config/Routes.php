@@ -229,6 +229,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelThemeController::list");
         $routes->get("write_month", "Admin\AdminHotelThemeController::write_month");
         $routes->get("write_area", "Admin\AdminHotelThemeController::write_area");
+        $routes->post("get_products", "Admin\AdminHotelThemeController::get_products");
         $routes->post("write_ok", "Admin\AdminHotelThemeController::write_ok", ['as' => "admin._local_product.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminHotelThemeController::write_ok/$1", ['as' => "admin._local_product.write_ok.id"]);
         $routes->post("del", "Admin\AdminHotelThemeController::del", ['as' => "admin._local_product.del"]);
