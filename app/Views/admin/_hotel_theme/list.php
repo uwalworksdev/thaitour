@@ -161,7 +161,7 @@
                                         </td>
                                         <td>
                                             <?php
-                                                if($type == "month"){
+                                                if($row["type"] == "month"){
                                                     echo "이달의 호텔";
                                                 }else{
                                                     echo $row["category_name"];
