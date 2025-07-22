@@ -637,7 +637,7 @@
 
         $("#ajax_loader").removeClass("display-none");
 
-        // frm.submit();
+        frm.submit();
     }
 </script>
 
