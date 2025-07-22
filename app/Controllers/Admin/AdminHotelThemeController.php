@@ -201,8 +201,8 @@ class AdminHotelThemeController extends BaseController
             $s_checkImg_3 = $this->request->getPost("s_checkImg_3") ?? [];
             $s_checkImg_4 = $this->request->getPost("s_checkImg_4") ?? [];
 
-            $o_ufile_1 = $this->request->getFileMultiple('o_ufile_1') ?? [];
-            $o_ufile_2 = $this->request->getFileMultiple('o_ufile_2') ?? [];
+            $o_ufile_1 = $files['o_ufile_1'] ?? [];
+            $o_ufile_2 = $files['o_ufile_2'] ?? [];
 
             $o_checkImg_1 = $this->request->getPost("o_checkImg_1") ?? [];
             $o_checkImg_2 = $this->request->getPost("o_checkImg_2") ?? [];
