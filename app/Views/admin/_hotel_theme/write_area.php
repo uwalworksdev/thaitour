@@ -476,6 +476,8 @@
             cache: false,
             async: false,
             success: function (data, textStatus) {
+                console.log( $('.s_category_code[data-code="'+ code +'"]').closest("table").find(".product_area tbody"));
+                
                 $('.s_category_code[data-code="'+ code +'"]').closest("table").find(".product_area tbody").append(data);
                 $(".pick_item_pop02").hide();
             },
