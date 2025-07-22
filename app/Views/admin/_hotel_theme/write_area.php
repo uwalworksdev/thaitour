@@ -210,6 +210,158 @@
                                 </tr>
                             </tbody>
                         </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="table-layout:fixed;">
+
+                            <colgroup>
+                                <col width="10%" />
+                                <col width="*" />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        제목
+                                        <button type="button" class="btn btn-success">추가</button>
+                                        <button type="button" class="btn btn-danger">삭제</button>
+                                    </th>
+                                    <td colspan="3">
+                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                            style="table-layout:fixed;">
+
+                                            <colgroup>
+                                                <col width="10%" />
+                                                <col width="*" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <th>
+                                                        제목
+                                                        <button type="button" class="btn btn-danger">삭제</button>
+                                                    </th>
+                                                    <td colspan="3">
+                                                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                                            style="table-layout:fixed;">
+
+                                                            <colgroup>
+                                                                <col width="10%" />
+                                                                <col width="40%" />
+                                                                <col width="10%" />
+                                                                <col width="40%" />
+                                                            </colgroup>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <div class=""
+                                                                            style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                                                            <p>상품 기본정보</p>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <th>제목</th>
+                                                                    <td>
+                                                                        <input type="text" name="title"
+                                                                                    value="<?= $title ?? "" ?>"
+                                                                                    class="text" maxlength="100" />
+                                                                    </td>
+                                                                    <th>부제</th>
+                                                                    <td>
+                                                                        <input type="text" name="subtitle"
+                                                                                    value="<?= $subtitle ?? "" ?>"
+                                                                                    class="text" maxlength="100" />
+                                                                    </td>
+                                                                </tr>  
+
+                                                                <tr>
+                                                                    <th>내용</th>
+                                                                    <td colspan="3">
+
+                                                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
+                                                                        </textarea>
+                                                                        <script type="text/javascript">
+                                                                            var oEditors1 = [];
+
+                                                                            nhn.husky.EZCreator.createInIFrame({
+                                                                                oAppRef: oEditors1,
+                                                                                elPlaceHolder: "recommend_text",
+                                                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                                                htParams: {
+                                                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                                                    fOnBeforeUnload: function () {
+                                                                                        //alert("완료!");
+                                                                                    }
+                                                                                }, //boolean
+                                                                                fOnAppLoad: function () {
+                                                                                    //예제 코드
+                                                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                                                },
+                                                                                fCreator: "createSEditor2"
+                                                                            });
+                                                                        </script>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th>대표이미지(600X440)</th>
+                                                                    <td colspan="3">
+
+                                                                        <div class="img_add">
+                                                                            <?php
+                                                                            for ($i = 1; $i <= 1; $i++) :
+                                                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                                                $img ="/data/product/" . ${"ufile" . $i};
+                                                                            ?>
+                                                                                <div class="file_input_wrap">
+                                                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                                                        <button type="button" class="remove_btn"
+                                                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                                                        <?php if (${"ufile" . $i}) { ?>
+                                                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                                                        <?php } ?>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            <?php
+                                                                            endfor;
+                                                                            ?>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>영역</th>
+                                                                    <td colspan="3">
+                                                                        <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
+                                                                            <option value="">선택</option>
+                                                                                <?php
+                                                                                    foreach ($category_list as $frow){
+                                                                                ?>
+                                                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
+                                                                                <?php } ?>
+                                                                        </select>
+                                                                        <button type="button" class="btn btn-primary" onclick="add_area();">추가</button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>  
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>  
+                            </tbody>
+                        </table>
                     </div>
                 </form>
 
