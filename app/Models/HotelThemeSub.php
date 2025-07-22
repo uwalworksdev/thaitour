@@ -12,7 +12,7 @@ class HotelThemeSub extends Model
 
     protected $allowedFields = [
         "theme_idx", "ha_idx", "theme_name", "recommend", "details", "ufile1", "rfile1", "ufile2", "rfile2",
-        "ufile3", "rfile3", "ufile4", "rfile4", "step", "r_date", "m_date"
+        "ufile3", "rfile3", "ufile4", "rfile4", "step", "star", "r_date", "m_date"
     ];
 
     protected $codeModel;

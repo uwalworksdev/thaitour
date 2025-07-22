@@ -11,7 +11,7 @@ class HotelAreaTheme extends Model
     protected $primaryKey = 'ha_idx';
 
     protected $allowedFields = [
-        "theme_idx", "category", "r_date"
+        "theme_idx", "category_code", "r_date"
     ];
     protected $codeModel;
     public function __construct()

@@ -134,8 +134,7 @@
                                     <th>내용</th>
                                     <td colspan="3">
 
-                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
-                                        </textarea>
+                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 

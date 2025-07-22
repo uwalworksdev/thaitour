@@ -127,23 +127,10 @@ class AdminHotelThemeController extends BaseController
     {
         try {
             $files = $this->request->getFiles();
-
-            $data['lp_idx']             = updateSQ($_POST["lp_idx"] ?? '');
-            $data['town_code']          = updateSQ($_POST["town_code"] ?? '');
-            $data['subcategory_code']   = updateSQ($_POST["subcategory_code"] ?? '');
-            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
-            $data['product_name_en']    = updateSQ($_POST["product_name_en"] ?? '');
-
-            $data['onum']               = updateSQ($_POST["onum"] ?? '');
-
-            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
-            $data['latitude']           = updateSQ($_POST["latitude"] ?? '');
-            $data['longitude']          = updateSQ($_POST["longitude"] ?? '');
-            $data['time_line']          = updateSQ($_POST["time_line"] ?? '');
-            $data['routes']             = updateSQ($_POST["routes"] ?? '');
-            $data['url']                = updateSQ($_POST["url"] ?? '');
-            $data['contact']            = updateSQ($_POST["contact"] ?? '');
-            $data['product_contents']   = updateSQ($_POST["product_contents"] ?? '');
+            $data['type']               = updateSQ($_POST["type"] ?? '');
+            $data['title']              = updateSQ($_POST["title"] ?? '');
+            $data['subtitle']           = updateSQ($_POST["subtitle"] ?? '');
+            $data['recommend_text']     = updateSQ($_POST["recommend_text"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/product/';
 
@@ -159,23 +146,21 @@ class AdminHotelThemeController extends BaseController
                 }
             }
 
-            $arr_i_idx = $this->request->getPost("i_idx") ?? [];
-            $arr_onum = $this->request->getPost("onum_img") ?? [];
+            $s_category_code = $this->request->getPost("s_category_code") ?? [];
+            $theme_name = $this->request->getPost("theme_name") ?? [];
+            $star = $this->request->getPost("star") ?? [];
+            $recommend_text = $this->request->getPost("recommend_text") ?? [];
+            $step = $this->request->getPost("step") ?? [];
 
-            $files = $this->request->getFileMultiple('ufile') ?? [];
+            $ufile_1 = $this->request->getFileMultiple('ufile_1') ?? [];
+            $ufile_2 = $this->request->getFileMultiple('ufile_2') ?? [];
+            $ufile_3 = $this->request->getFileMultiple('ufile_3') ?? [];
+            $ufile_4 = $this->request->getFileMultiple('ufile_4') ?? [];
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
 
                 $this->hotelTheme->updateData($idx, $data);
-
-                if (count($files) > 40) {
-                    $message = "40개 이미지로 제한이 있습니다.";
-                    return "<script>
-                        alert('$message');
-                        parent.location.reload();
-                        </script>";
-                }
    
                 
             } else {
@@ -184,14 +169,38 @@ class AdminHotelThemeController extends BaseController
 
                 $insertId = $this->hotelTheme->insertData($data);
 
-                if (count($files) > 40) {
-                    $message = "40개 이미지로 제한이 있습니다.";
-                    return "<script>
-                        alert('$message');
-                        parent.location.reload();
-                        </script>";
-                }
+                foreach ($s_category_code as $key => $area_code) {
+                    $data_area = [
+                        "theme_idx" => $insertId,
+                        "category_code" => $area_code,
+                        "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                    ];
 
+                    $ha_idx = $this->hotelArea->insertData($data_area);
+
+                    foreach ($theme_name[$key] as $i => $name) {
+                        $data_product = [
+                            "ha_idx" => $ha_idx,
+                            "theme_name" => $name,
+                            "recommend" => $recommend_text[$key][$i],
+                            "star" => $star[$key][$i],
+                            "step" => $step[$key][$i],
+                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                        ];
+
+                        for ($n = 1; $n <= 4; $n++) {
+                            $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
+
+                            if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                                $data_product["rfile{$n}"] = $ufile->getClientName();
+                                $data_product["ufile{$n}"] = $ufile->getRandomName();
+                                $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                            }
+                        }
+
+                        $this->hotelThemeSub->insertData($data_product);
+                    }
+                }
             }
 
             if ($idx) {
