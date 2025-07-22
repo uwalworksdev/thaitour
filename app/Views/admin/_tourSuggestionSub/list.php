@@ -690,7 +690,7 @@
         let search_txt = $("#search_txt").val();
 
         $.ajax({
-            url: "./item_allfind",
+            url: "/AdmMaster/_tourSuggestion/item_allfind",
             type: "GET",
             data: {
                 "code": code || parent_code_1 || parent_code,
