@@ -261,7 +261,20 @@
                                                                                     class="text" maxlength="100" />
                                                                     </td>
                                                                 </tr>  
-
+                                                                <tr>
+                                                                    <th>등급</th>
+                                                                    <td colspan="3">
+                                                                        <select name="star[]" class="input_select">
+                                                                            <option value="">
+                                                                                <font color="#17469E">★★★★★</font>
+                                                                                <font color="#17469E">★★★★</font>
+                                                                                <font color="#17469E">★★★</font>
+                                                                                <font color="#17469E">★★</font>
+                                                                                <font color="#17469E">★</font>
+                                                                            </option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>  
                                                                 <tr>
                                                                     <th></th>
                                                                     <td colspan="3">
