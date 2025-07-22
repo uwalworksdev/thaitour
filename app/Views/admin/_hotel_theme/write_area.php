@@ -211,7 +211,7 @@
                             </tbody>
                         </table>
                         <div class="area_list">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail sub_area"
                                 style="table-layout:fixed;">
     
                                 <colgroup>
@@ -365,7 +365,7 @@
                                         </td>
                                     </tr>  
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                     </div>
                 </form>
