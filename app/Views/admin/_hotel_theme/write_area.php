@@ -642,29 +642,7 @@
 </script>
 
 <script>
-    function add_sub_image() {
-
-        let i = Date.now();
-
-        let html = `
-            <div class="file_input_wrap">
-                <div class="file_input">
-                    <input type="hidden" name="i_idx[]" value="">
-                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
-                    <input type="file" name='ufile[]' id="ufile${i}" multiple
-                            onchange="productImagePreview(this, '${i}')">
-                    <label for="ufile${i}"></label>
-                    <input type="hidden" name="checkImg_${i}" class="checkImg">
-                    <button type="button" class="remove_btn"
-                            onclick="productImagePreviewRemove(this)"></button>
-                </div>
-            </div>
-        `;
-
-        $(".img_add_group").append(html);
-
-    }
-
+    
     function delete_all_image() {
         if (!confirm("이미지를 삭제하시겠습니까?\n한번 삭제한 자료는 복구할 수 없습니다.")) {
             return false;
@@ -715,58 +693,12 @@
 
             let imageReader = new FileReader();
             imageReader.onload = function() {
-                $('label[for="ufile' + onum + '"]').css("background-image", "url(" + imageReader.result + ")");
+                $(inputFile).closest('.file_input').find('label').css("background-image", "url(" + imageReader.result + ")");
             };
             imageReader.readAsDataURL(files[0]);
 
-            if (files.length > 1) {
-                files.slice(1).forEach((file, index) => {
-                    let newReader = new FileReader();
-                    let i = Date.now();
-
-                    newReader.onload = function() {
-                        let imagePreview = `
-                            <div class="file_input_wrap">
-                                <div class="file_input applied">
-                                    <input type="hidden" name="i_idx[]" value="">
-                                    <input type="hidden" class="onum_img" name="onum_img[]" value="">
-                                    <input type="file" id="ufile${i}_${index}" 
-                                        onchange="productImagePreview(this, '${i}_${index}')" disabled>
-                                    <label for="ufile${i}_${index}" style='background-image:url(${newReader.result})'></label>
-                                    <input type="hidden" name="checkImg_${i}_${index}" class="checkImg">
-                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                </div>
-                            </div>`;
-
-                        lastElement.after(imagePreview);
-                        lastElement = lastElement.next();
-                    };
-
-                    newReader.readAsDataURL(file);
-                });
-            }
         } else {
             alert('40개 이미지로 제한이 있습니다.');
-        }
-    }
-
-    function productImagePreview2(inputFile, onum) {
-        if (!sizeAndExtCheck(inputFile)) {
-            $(inputFile).val("");
-            return false;
-        }
-
-        let imageTag = $('label[for="room_ufile' + onum + '"]');
-
-        if (inputFile.files.length > 0) {
-            let imageReader = new FileReader();
-
-            imageReader.onload = function() {
-                imageTag.css("background-image", "url(" + imageReader.result + ")");
-                $(inputFile).closest('.file_input').addClass('applied');
-                $(inputFile).closest('.file_input').find('.checkImg').val('Y');
-            }
-            return imageReader.readAsDataURL(inputFile.files[0]);
         }
     }
 
