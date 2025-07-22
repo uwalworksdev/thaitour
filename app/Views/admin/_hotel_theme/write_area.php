@@ -224,11 +224,12 @@ $links = "list";
                                     <tbody>
                                         <tr>
                                             <td colspan="2">
+                                                <input type="hidden" name="ha_idx[<?= $count ?>]" class="ha_idx" value="<?= $frow["ha_idx"] ?>">
                                                 <input type="hidden" name="s_category_code[<?= $count ?>]" class="s_category_code" value="<?= $frow["category_code"] ?>">
                                                 <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                     <?= $frow["category_name"] ?>
                                                     <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
-                                                    <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
+                                                    <button type="button" class="btn btn-danger" onclick="del_area(this, '<?=$frow['ha_idx']?>');" style="margin: unset">삭제</button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -488,7 +489,7 @@ $links = "list";
         $(button).closest(".product_area").remove();
     }
 
-    function del_area(button) {
+    function del_area(button, ha_idx) {
         $(button).closest(".sub_area").remove();
     }
 
@@ -569,11 +570,12 @@ $links = "list";
                 <tbody>
                     <tr>
                         <td colspan="2">
+                            <input type="hidden" name="ha_idx[${count}]" class="ha_idx" value="">
                             <input type="hidden" name="s_category_code[${count}]" class="s_category_code" value="${code}">
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
-                                <button type="button" class="btn btn-danger" onclick="del_area(this);" style="margin: unset">삭제</button>
+                                <button type="button" class="btn btn-danger" onclick="del_area(this, '');" style="margin: unset">삭제</button>
                             </div>
                         </td>
                     </tr>

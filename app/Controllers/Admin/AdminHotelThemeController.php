@@ -157,6 +157,7 @@ class AdminHotelThemeController extends BaseController
                 }
             }
 
+            $arr_ha_idx = $this->request->getPost("ha_idx") ?? [];
             $s_category_code = $this->request->getPost("s_category_code") ?? [];
             $s_idx = $this->request->getPost("s_idx") ?? [];
             $theme_name = $this->request->getPost("theme_name") ?? [];
@@ -181,7 +182,16 @@ class AdminHotelThemeController extends BaseController
                 $this->hotelTheme->updateData($idx, $data);
    
                 if($data['type'] == "area"){
-                    foreach ($s_category_code as $key => $area_code) {
+                    foreach ($arr_ha_idx as $key => $ha_idx) {
+                        if(empty($ha_idx)){
+                             $data_area = [
+                                "theme_idx" => $idx,
+                                "category_code" => $s_category_code[$key],
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                            ];
+        
+                            $s_ha_idx = $this->hotelArea->insertData($data_area);
+                        }
     
                         foreach ($s_idx[$key] as $i => $value) {
                             $data_product = [
@@ -191,6 +201,9 @@ class AdminHotelThemeController extends BaseController
                                 "star" => $star[$key][$i],
                                 "step" => $step[$key][$i],
                             ];
+                            if(!empty($s_ha_idx)){
+                                $data_product["ha_idx"] = $s_ha_idx;
+                            }
 
                             $product = $this->productModel->find($arr_product_idx[$key][$i]);
                             $img_list = $this->productImg->getImg($arr_product_idx[$key][$i]);
