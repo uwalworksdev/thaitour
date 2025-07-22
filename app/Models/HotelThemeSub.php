@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SubThemeModel extends Model
+class HotelThemeSub extends Model
 {
-    protected $table = 'tbl_sub_hotel_theme';
+    protected $table = 'tbl_hotel_sub_theme';
 
     protected $primaryKey = 's_idx';
 
     protected $allowedFields = [
-        "theme_idx", "theme_name", "recommend", "details", "ufile1", "rfile1", "ufile2", "rfile2",
+        "theme_idx", "ha_idx", "theme_name", "recommend", "details", "ufile1", "rfile1", "ufile2", "rfile2",
         "ufile3", "rfile3", "ufile4", "rfile4", "step", "r_date", "m_date"
     ];
 

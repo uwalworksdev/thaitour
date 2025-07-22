@@ -617,6 +617,13 @@
             return;
         }
 
+        $(".sub_area").each(function() {
+			$(this).find(".product_area").each(function() {
+				let step = $(this).index() + 1;
+				$(this).find(".step_index").val(step);
+			});
+		});
+
         if($("#check_img_ufile1").length > 0 && !$("#check_img_ufile1").val() && $("#ufile1").get(0).files.length === 0){
             alert("이미지를 등록해주세요.");
             return false;
@@ -630,7 +637,7 @@
 
         $("#ajax_loader").removeClass("display-none");
 
-        frm.submit();
+        // frm.submit();
     }
 </script>
 
@@ -851,64 +858,6 @@
         return true;
     }
 </script>
-<script>
-    function closePopupLocation() {
-        $("#popup_location").hide();
-    }
 
-    function getCoordinates() {
-
-        let address = $("#addrs").val();
-        if (!address) {
-            alert("주소를 입력해주세요");
-            return false;
-        }
-        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
-                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
-            }
-        };
-
-        fetch(apiUrl, options)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Data:', data);
-                let html = '';
-                if (data.results.length > 0) {
-                    data.results.forEach(element => {
-                        let address = element.formatted_address;
-                        let lat = element.geometry.location.lat;
-                        let lon = element.geometry.location.lng;
-                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
-                    });
-                } else {
-                    html = `<li>No data</li>`;
-                }
-
-                $("#popup_location #list_location").html(html);
-                $("#popup_location").show();
-                $("#popup_location #list_location li").click(function() {
-                    let latitude = $(this).data("lat");
-                    let longitude = $(this).data("lon");
-                    $("#latitude").val(latitude);
-                    $("#longitude").val(longitude);
-                    $("#addrs").val($(this).text().trim());
-                    $("#popup_location").hide();
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-</script>
 <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>

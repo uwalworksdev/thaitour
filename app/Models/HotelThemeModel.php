@@ -11,7 +11,7 @@ class HotelThemeModel extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "subtitle", "category_code", "type", "recommend_text", "ufile1", "rfile1", "onum", "r_date", "m_date"
+        "title", "subtitle", "type", "recommend_text", "ufile1", "rfile1", "onum", "r_date", "m_date"
     ];
     protected $codeModel;
     public function __construct()
@@ -60,10 +60,6 @@ class HotelThemeModel extends Model
     {
 
         $builder = $this;
-
-        if ($where['category_code'] != "") {
-            $builder->where('category_code', $where['category_code']);
-        }
 	
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
@@ -91,9 +87,9 @@ class HotelThemeModel extends Model
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 		
-        foreach ($items as $key => $value) {
-            $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
-        }
+        // foreach ($items as $key => $value) {
+        //     $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
+        // }
 
         $data = [
             'items' => $items,

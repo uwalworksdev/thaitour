@@ -13,6 +13,8 @@
                 <tbody>
                     <tr>
                         <input type="hidden" name="product_idx[<?=$index?>][]" value="<?=$product['product_idx']?>">
+                        <input type="hidden" name="step[<?=$index?>][]" class="step_index" value="">
+
                         <th style="text-align: center;">
                             <div class="flex_c_c" style="margin-top: 5px;">
                                 <button type="button" onclick="del_product(this);" class="btn btn-danger">삭제</button>

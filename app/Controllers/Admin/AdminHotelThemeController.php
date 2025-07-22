@@ -11,10 +11,11 @@ class AdminHotelThemeController extends BaseController
     protected $connect;
     protected $hotelTheme;
     protected $codeModel;
-    protected $subHotelTheme;
+    protected $hotelThemeSub;
     protected $productModel;
     protected $reviewModel;
     protected $productImg;
+    protected $hotelArea;
 
 
     public function __construct()
@@ -24,7 +25,8 @@ class AdminHotelThemeController extends BaseController
         helper('alert_helper');
         $this->hotelTheme       = model("HotelThemeModel");
         $this->codeModel        = model("Code");
-        $this->subHotelTheme    = model("SubThemeModel");
+        $this->hotelThemeSub    = model("HotelThemeSub");
+        $this->hotelArea        = model("HotelAreaTheme");
         $this->productModel     = model("ProductModel");
         $this->reviewModel      = model("ReviewModel");
         $this->productImg       = model("ProductImg");
