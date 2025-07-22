@@ -238,7 +238,6 @@
                                             <tbody>
                                                 <tr>
                                                     <th style="text-align: center;">
-                                                        제목
                                                         <div class="flex_c_c" style="margin-top: 5px;">
                                                             <button type="button" class="btn btn-danger">삭제</button>
                                                         </div>
@@ -267,7 +266,7 @@
                                                                     <th></th>
                                                                     <td colspan="3">
 
-                                                                        <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px;"><?= viewSQ($recommend_text) ?>
+                                                                        <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:100px;"><?= viewSQ($recommend_text) ?>
                                                                         </textarea>
                                                                     </td>
                                                                 </tr>
@@ -308,7 +307,7 @@
                                                                     <th>대표이미지(600X440)</th>
                                                                     <td colspan="3">
 
-                                                                        <div class="img_add">
+                                                                        <div class="img_add img_add_group">
                                                                             <?php
                                                                             for ($i = 2; $i <= 4; $i++) :
                                                                                 $img ="/data/product/" . ${"ufile" . $i};
