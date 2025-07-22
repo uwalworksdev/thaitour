@@ -457,7 +457,7 @@
         </div>
         <div class="sel_box">
             <button type="button" class="close">닫기</button>
-            <button type="button" class="select_all">전체선택</button>
+            <!-- <button type="button" class="select_all">전체선택</button> -->
             <button type="button" onclick="fn_pick_update();" class="search">등록</button>
         </div>
     </div>
