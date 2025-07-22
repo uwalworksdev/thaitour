@@ -21,7 +21,7 @@
                             </div>
                         </th>
                         <td colspan="3">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail product_area"
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                 style="table-layout:fixed;">
 
                                 <colgroup>
