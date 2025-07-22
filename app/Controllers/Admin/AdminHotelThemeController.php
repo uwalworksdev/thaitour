@@ -152,10 +152,11 @@ class AdminHotelThemeController extends BaseController
             $recommend_text = $this->request->getPost("recommend_text") ?? [];
             $step = $this->request->getPost("step") ?? [];
 
-            $ufile_1 = $this->request->getFileMultiple('ufile_1') ?? [];
-            $ufile_2 = $this->request->getFileMultiple('ufile_2') ?? [];
-            $ufile_3 = $this->request->getFileMultiple('ufile_3') ?? [];
-            $ufile_4 = $this->request->getFileMultiple('ufile_4') ?? [];
+
+            $ufile_1 = $files['ufile_1'] ?? [];
+            $ufile_2 = $files['ufile_2'] ?? [];
+            $ufile_3 = $files['ufile_3'] ?? [];
+            $ufile_4 = $files['ufile_4'] ?? [];
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
