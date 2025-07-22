@@ -369,19 +369,19 @@ $links = "list";
 
                                         <div class="img_add">
                                             <?php
-                                                $img = "/data/product/" . $product_list[0]["ufile2"];
+                                                $img = "/data/product/" . $product_list[1]["ufile2"];
                                             ?>
                                             <div class="file_input_wrap">
-                                                <div class="file_input <?= empty($product_list[0]["ufile2"]) ? "" : "applied" ?>">
+                                                <div class="file_input <?= empty($product_list[1]["ufile2"]) ? "" : "applied" ?>">
                                                     <input type="file" name='o_ufile_2[]' id="o_ufile_2_2"
                                                         onchange="productImagePreview(this, '2')">
-                                                    <label for="o_ufile_2_2" <?= !empty($product_list[0]["ufile2"]) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                    <label for="o_ufile_2_2" <?= !empty($product_list[1]["ufile2"]) ? "style='background-image:url($img)'" : "" ?>></label>
                                                     <input type="hidden" name="o_checkImg_2[]" class="checkImg">
 
                                                     <button type="button" class="remove_btn"
                                                         onclick="productImagePreviewRemove(this)"></button>
 
-                                                    <?php if ($product_list[0]["ufile2"]) { ?>
+                                                    <?php if ($product_list[1]["ufile2"]) { ?>
                                                         <a class="img_txt imgpop" href="<?= $img ?>"
                                                             id="o_text_ufile_2_2">미리보기</a>
                                                     <?php } ?>
