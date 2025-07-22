@@ -264,10 +264,10 @@
                                                                 </tr>  
 
                                                                 <tr>
-                                                                    <th>내용</th>
+                                                                    <th></th>
                                                                     <td colspan="3">
 
-                                                                        <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
+                                                                        <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px;"><?= viewSQ($recommend_text) ?>
                                                                         </textarea>
                                                                     </td>
                                                                 </tr>
@@ -279,7 +279,38 @@
                                                                         <div class="img_add">
                                                                             <?php
                                                                             for ($i = 1; $i <= 1; $i++) :
-                                                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                                                $img ="/data/product/" . ${"ufile" . $i};
+                                                                            ?>
+                                                                                <div class="file_input_wrap">
+                                                                                    <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
+                                                                                        <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
+                                                                                            onchange="productImagePreview(this, '<?= $i ?>')">
+                                                                                        <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
+                                                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                                                        <button type="button" class="remove_btn"
+                                                                                            onclick="productImagePreviewRemove(this)"></button>
+
+                                                                                        <?php if (${"ufile" . $i}) { ?>
+                                                                                            <a class="img_txt imgpop" href="<?= $img ?>"
+                                                                                                id="text_ufile<?= $i ?>">미리보기</a>
+                                                                                        <?php } ?>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            <?php
+                                                                            endfor;
+                                                                            ?>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>대표이미지(600X440)</th>
+                                                                    <td colspan="3">
+
+                                                                        <div class="img_add">
+                                                                            <?php
+                                                                            for ($i = 2; $i <= 4; $i++) :
                                                                                 $img ="/data/product/" . ${"ufile" . $i};
                                                                             ?>
                                                                                 <div class="file_input_wrap">
