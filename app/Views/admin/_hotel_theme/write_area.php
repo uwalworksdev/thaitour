@@ -520,7 +520,8 @@
         }
 
         let isDuplicate = false;
-
+        let count = $('.sub_area').length > 0 ? $('.sub_area').length - 1 : 0;
+        count = count + 1;
         $('.sub_area').each(function(index, element) {
             if($(element).find(".s_category_code").val() == code){
                 isDuplicate = true;
@@ -544,7 +545,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="${code}">
+                            <input type="hidden" name="s_category_code[${count}]" class="s_category_code" value="${code}">
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
