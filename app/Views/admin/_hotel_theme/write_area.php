@@ -265,11 +265,19 @@
                                                                     <th>등급</th>
                                                                     <td colspan="3">
                                                                         <select name="star[]" class="input_select">
-                                                                            <option value="">
+                                                                            <option value="5">
                                                                                 <font color="#17469E">★★★★★</font>
+                                                                            </option>
+                                                                            <option value="4">
                                                                                 <font color="#17469E">★★★★</font>
+                                                                            </option>
+                                                                            <option value="3">
                                                                                 <font color="#17469E">★★★</font>
+                                                                            </option>
+                                                                            <option value="2">
                                                                                 <font color="#17469E">★★</font>
+                                                                            </option>
+                                                                            <option value="1">
                                                                                 <font color="#17469E">★</font>
                                                                             </option>
                                                                         </select>
