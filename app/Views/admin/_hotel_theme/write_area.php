@@ -220,10 +220,12 @@
                             </colgroup>
                             <tbody>
                                 <tr>
-                                    <th>
+                                    <th style="text-align: center;">
                                         제목
-                                        <button type="button" class="btn btn-success">추가</button>
-                                        <button type="button" class="btn btn-danger">삭제</button>
+                                        <div class="flex_c_c">
+                                            <button type="button" class="btn btn-success">추가</button>
+                                            <button type="button" class="btn btn-danger">삭제</button>
+                                        </div>
                                     </th>
                                     <td colspan="3">
                                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -235,9 +237,11 @@
                                             </colgroup>
                                             <tbody>
                                                 <tr>
-                                                    <th>
+                                                    <th style="text-align: center;">
                                                         제목
-                                                        <button type="button" class="btn btn-danger">삭제</button>
+                                                        <div class="flex_c_c">
+                                                            <button type="button" class="btn btn-danger">삭제</button>
+                                                        </div>
                                                     </th>
                                                     <td colspan="3">
                                                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -249,27 +253,12 @@
                                                                 <col width="10%" />
                                                                 <col width="40%" />
                                                             </colgroup>
-                                                            <tbody>
+                                                            <tbody>                                                                
                                                                 <tr>
-                                                                    <td colspan="4">
-                                                                        <div class=""
-                                                                            style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                                                                            <p>상품 기본정보</p>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                
-                                                                <tr>
-                                                                    <th>제목</th>
-                                                                    <td>
-                                                                        <input type="text" name="title"
-                                                                                    value="<?= $title ?? "" ?>"
-                                                                                    class="text" maxlength="100" />
-                                                                    </td>
-                                                                    <th>부제</th>
-                                                                    <td>
-                                                                        <input type="text" name="subtitle"
-                                                                                    value="<?= $subtitle ?? "" ?>"
+                                                                    <th>상품명</th>
+                                                                    <td colspan="3">
+                                                                        <input type="text" name="theme_name[]"
+                                                                                    value=""
                                                                                     class="text" maxlength="100" />
                                                                     </td>
                                                                 </tr>  
@@ -278,30 +267,8 @@
                                                                     <th>내용</th>
                                                                     <td colspan="3">
 
-                                                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
+                                                                        <textarea name="recommend_text[]" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
                                                                         </textarea>
-                                                                        <script type="text/javascript">
-                                                                            var oEditors1 = [];
-
-                                                                            nhn.husky.EZCreator.createInIFrame({
-                                                                                oAppRef: oEditors1,
-                                                                                elPlaceHolder: "recommend_text",
-                                                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                                                htParams: {
-                                                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                                                    fOnBeforeUnload: function () {
-                                                                                        //alert("완료!");
-                                                                                    }
-                                                                                }, //boolean
-                                                                                fOnAppLoad: function () {
-                                                                                    //예제 코드
-                                                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                                                },
-                                                                                fCreator: "createSEditor2"
-                                                                            });
-                                                                        </script>
                                                                     </td>
                                                                 </tr>
 
