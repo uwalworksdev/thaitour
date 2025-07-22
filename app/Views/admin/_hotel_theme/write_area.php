@@ -620,6 +620,8 @@
         $(".sub_area").each(function() {
 			$(this).find(".product_area").each(function() {
 				let step = $(this).index() + 1;
+                console.log(step);
+                
 				$(this).find(".step_index").val(step);
 			});
 		});
