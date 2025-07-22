@@ -169,40 +169,40 @@ class AdminHotelThemeController extends BaseController
 
                 $insertId = $this->hotelTheme->insertData($data);
 
-                // if($data['type'] == "area"){
-                //     foreach ($s_category_code as $key => $area_code) {
-                //         $data_area = [
-                //             "theme_idx" => $insertId,
-                //             "category_code" => $area_code,
-                //             "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                //         ];
+                if($data['type'] == "area"){
+                    foreach ($s_category_code as $key => $area_code) {
+                        $data_area = [
+                            "theme_idx" => $insertId,
+                            "category_code" => $area_code,
+                            "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                        ];
     
-                //         $ha_idx = $this->hotelArea->insertData($data_area);
+                        $ha_idx = $this->hotelArea->insertData($data_area);
     
-                //         foreach ($theme_name[$key] as $i => $name) {
-                //             $data_product = [
-                //                 "ha_idx" => $ha_idx,
-                //                 "theme_name" => $name,
-                //                 "recommend" => $recommend_text[$key][$i],
-                //                 "star" => $star[$key][$i],
-                //                 "step" => $step[$key][$i],
-                //                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
-                //             ];
+                        foreach ($theme_name[$key] as $i => $name) {
+                            $data_product = [
+                                "ha_idx" => $ha_idx,
+                                "theme_name" => $name,
+                                "recommend" => $recommend_text[$key][$i],
+                                "star" => $star[$key][$i],
+                                "step" => $step[$key][$i],
+                                "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+                            ];
     
-                //             for ($n = 1; $n <= 4; $n++) {
-                //                 $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
+                            for ($n = 1; $n <= 4; $n++) {
+                                $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
     
-                //                 if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
-                //                     $data_product["rfile{$n}"] = $ufile->getClientName();
-                //                     $data_product["ufile{$n}"] = $ufile->getRandomName();
-                //                     $ufile->move($publicPath, $data_product["ufile{$n}"]);
-                //                 }
-                //             }
+                                if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
+                                    $data_product["rfile{$n}"] = $ufile->getClientName();
+                                    $data_product["ufile{$n}"] = $ufile->getRandomName();
+                                    $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                                }
+                            }
     
-                //             $this->hotelThemeSub->insertData($data_product);
-                //         }
-                //     }
-                // }
+                            $this->hotelThemeSub->insertData($data_product);
+                        }
+                    }
+                }
             }
 
             if ($idx) {
@@ -216,7 +216,7 @@ class AdminHotelThemeController extends BaseController
             $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_local_guide/list';
+                    parent.location.href='/AdmMaster/_hotel_theme/list';
                 </script>";
 
 
