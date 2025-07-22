@@ -595,43 +595,6 @@
 </script>
 
 <script>
-    function get_info(idx){
-        $.ajax({
-            url: "/AdmMaster/_hotel_theme/get_category",
-            type: "GET",
-            data: {
-                idx: idx
-            },
-            success: function(response) {
-                
-                $("#city_code_name").text("(" + response.city_code_name + ")");
-                $("#category_code_name").text("(" + response.category_code_name + ")");
-
-                let town_code_list = response.town_code_list;
-                let subcategory_code_list = response.subcategory_code_list;
-
-                let html_town = '<option value="">선택</option>';
-                for (let i = 0; i < town_code_list.length; i++) {
-                    html_town += `<option value="${town_code_list[i].code_no}">${town_code_list[i].code_name}</option>`
-                }
-
-                $("#town_code").html(html_town);
-
-                let html_cat = '<option value="">선택</option>';
-                for (let i = 0; i < subcategory_code_list.length; i++) {
-                    html_cat += `<option value="${subcategory_code_list[i].code_no}">${subcategory_code_list[i].code_name}</option>`
-                }
-
-                $("#subcategory_code").html(html_cat);
-            },
-            error: function(xhr, status, error) {
-                console.error("error:", error);
-            }
-        });
-    }
-</script>
-
-<script>
     function send_it() {
 
         var frm = document.frm;
