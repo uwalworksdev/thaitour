@@ -222,7 +222,7 @@
                                 <tr>
                                     <th style="text-align: center;">
                                         제목
-                                        <div class="flex_c_c" style="gap: 5px; margin-top: 10px;">
+                                        <div class="flex_c_c" style="gap: 5px; margin-top: 5px;">
                                             <button type="button" class="btn btn-primary">추가</button>
                                             <button type="button" class="btn btn-danger">삭제</button>
                                         </div>
@@ -239,7 +239,7 @@
                                                 <tr>
                                                     <th style="text-align: center;">
                                                         제목
-                                                        <div class="flex_c_c" style="margin-top: 10px;">
+                                                        <div class="flex_c_c" style="margin-top: 5px;">
                                                             <button type="button" class="btn btn-danger">삭제</button>
                                                         </div>
                                                     </th>
