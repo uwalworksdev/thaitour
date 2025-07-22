@@ -123,7 +123,7 @@
                                 if ($nTotalCount == 0) {
                                 ?>
                                     <tr>
-                                        <td colspan=6 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=8 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                 <?php
                                 }
@@ -198,7 +198,7 @@
                     </form>
                 </div><!-- // listBottom -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_local_guide/list') . "?city_code=$city_code&category_code=$category_code&town_code=$town_code&subcategory_code=$subcategory_code&search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_local_guide/list') . "?search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
 
                 <div id="headerContainer">
 

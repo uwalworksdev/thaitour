@@ -30,15 +30,11 @@ class AdminHotelThemeController extends BaseController
         $search_txt         = updateSQ($_GET["search_txt"] ?? '');
         $search_category    = updateSQ($_GET["search_category"] ?? '');
         $orderBy            = updateSQ($_GET["orderBy"]) ?? "1";
-        $category_code      = updateSQ($_GET["category_code"] ?? '');
-
-        $category_code_list = $this->codeModel->getListByParentCode("1303") ?? [];
 
         $where = [
             'search_txt'        => $search_txt,
             'search_category'   => $search_category,
             'orderBy'           => $orderBy,
-            'category_code'     => $category_code,
         ];
 
         $orderByArr = [];
@@ -66,18 +62,18 @@ class AdminHotelThemeController extends BaseController
             'g_list_rows'           => $g_list_rows,
             'search_txt'            => $search_txt,
             'search_category'       => $search_category,
-            'category_code'         => $category_code,
-            'category_code_list'    => $category_code_list,
         ];
         return view("admin/_hotel_theme/list", $data);
     }
 
-    public function write()
+    public function write_area()
     {
         $idx              = updateSQ($_GET["idx"] ?? '');
         $pg               = updateSQ($_GET["pg"] ?? '');
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
+
+        $category_code_list = $this->codeModel->getListByParentCode("1303") ?? [];
 
         if ($idx) {
             $row = $this->hotelTheme->find($idx);
@@ -89,10 +85,9 @@ class AdminHotelThemeController extends BaseController
             'search_name' => $search_name,
             'search_category' => $search_category,
             'row' => $row ?? '',
-            'city_code_name' => $city_code_name ?? "",
-            'category_code_name' => $category_code_name ?? ""
+            'category_code_list' => $category_code_list,
         ];
-        return view("admin/_local_guide/write", $data);
+        return view("admin/_hotel_theme/write_area", $data);
     }
 
     public function write_ok($idx = null)

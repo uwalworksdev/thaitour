@@ -1,5 +1,5 @@
 <?php
-    $formAction = $idx ? "/AdmMaster/_local_guide/write_ok/$idx" : "/AdmMaster/_local_guide/write_ok";
+    $formAction = $idx ? "/AdmMaster/_hotel_theme/write_ok/$idx" : "/AdmMaster/_hotel_theme/write_ok";
     helper("my_helper");
 ?>
 
@@ -62,7 +62,7 @@
                 <h2><?= $titleStr ?></h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_local_guide/list" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_hotel_theme/list" class="btn btn-default"><span
                                     class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         </li>
 
@@ -90,15 +90,13 @@
                     enctype="multipart/form-data"
                     target="hiddenFrame22"> <!--  -->
                     <!-- 상품 고유 번호 -->
-                    <input type="hidden" id="city_code" value="<?= $city_code ?>">
-                    <input type="hidden" id="category_code" value="<?= $category_code ?>">
+                    <input type="hidden" id="type" value="area">
                     <input type="hidden" id="check_img_ufile1" value="<?= $ufile1 ?>">
 
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                             style="table-layout:fixed;">
-                            <caption>
-                            </caption>
+
                             <colgroup>
                                 <col width="10%" />
                                 <col width="40%" />
@@ -115,115 +113,47 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>핫 플레이스</th>
+                                    <th>영역</th>
                                     <td colspan="3">
-                                        <select id="lp_idx" name="lp_idx" class="input_select" onchange="get_info(this.value)">
+                                        <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
                                             <option value="">선택</option>
                                                 <?php
-                                                    foreach ($product_list as $frow){
+                                                    foreach ($category_code_list as $frow){
                                                 ?>
-                                                    <option value="<?= $frow["idx"] ?>" <?php if ($frow["idx"] == $lp_idx) echo "selected"; ?>><?= $frow["title"] ?></option>
+                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["title"] ?></option>
                                                 <?php } ?>
                                         </select>
                                         
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>테마여행 카테고리</th>
-                                    <td>
-                                        <span id="city_code_name"><?= $city_code_name ? "(" . $city_code_name . ")"  : ''?></span>
-                                        <select id="town_code" name="town_code" class="input_select">
-                                            <option value="">선택</option>
-                                            <?php
-                                                foreach($town_code_list as $frow){
-                                            ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $town_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
-                                            <?php
-                                                }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <th>카테고리</th>
-                                    <td>
-                                        <span id="category_code_name"><?= $category_code_name ? "(" . $category_code_name . ")"  : ''?></span>
-                                        <select id="subcategory_code" name="subcategory_code" class="input_select">
-                                            <option value="">선택</option>       
-                                            <?php
-                                                foreach($subcategory_code_list as $frow){
-                                            ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $subcategory_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
-                                            <?php
-                                                }
-                                            ?>                                    
-                                        </select>
-                                    </td>
-                                </tr>
                                 
                                 <tr>
-                                    <th>상품명</th>
+                                    <th>제목</th>
                                     <td>
-                                        <input type="text" name="product_name"
-                                                    value="<?= $product_name ?? "" ?>"
+                                        <input type="text" name="title"
+                                                    value="<?= $title ?? "" ?>"
                                                     class="text" maxlength="100" />
                                     </td>
-                                    <th>영문명</th>
+                                    <th>부제</th>
                                     <td>
-                                        <input type="text" name="product_name_en"
-                                                    value="<?= $product_name_en ?? "" ?>"
+                                        <input type="text" name="subtitle"
+                                                    value="<?= $subtitle ?? "" ?>"
                                                     class="text" maxlength="100" />
                                     </td>
                                 </tr>  
 
                                 <tr>
-                                    <th>전화번호</th>
-                                    <td>
-                                        <input type="text" name="contact"
-                                               value="<?= $contact?>"
-                                               class="text" maxlength="50"/>
-                                    </td>
-                                    <th>영업시간</th>
-                                    <td>
-                                        <input type="text" name="time_line"
-                                               value="<?= $time_line?>"
-                                               class="text" maxlength="50"/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>홈페이지</th>
-                                    <td>
-                                        <input type="text" name="url" value="<?= $url?>" class="text" maxlength="50"/>
-                                    </td>
-                                    <th>찾아가는 법</th>
-                                    <td>
-                                        <input type="text" name="routes" value="<?= $routes?>" class="text"/>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <th>주소</th>
-                                    <td colspan="3">
-                                        <input type="text" id="addrs" name="addrs" value="<?= $addrs ?>"
-                                               class="input_txt" placeholder="" style="width:45%"/>
-                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>&ensp;
-                                            Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
-                                            Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;"  readonly/>
-                                        
-                                    </td>                                  
-                                </tr>
-
-                                <tr>
-                                    <th>중요사항</th>
+                                    <th>내용</th>
                                     <td colspan="3">
 
-                                        <textarea name="product_contents" id="product_contents" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($product_contents) ?>
+                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100"  class="input_txt"  style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?>
                                         </textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors1,
-                                                elPlaceHolder: "product_contents",
+                                                elPlaceHolder: "recommend_text",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -242,19 +172,6 @@
                                         </script>
                                     </td>
                                 </tr>
-                            </tbody>
-                        </table>
-
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                            style="margin-top:50px;">
-                            <caption>
-                            </caption>
-                            <colgroup>
-                                <col width="10%" />
-                                <col width="90%" />
-                            </colgroup>
-                            <tbody>
-
                                 <tr height="45">
                                     <td colspan="2">
                                         이미지 등록
@@ -294,39 +211,6 @@
 
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <th>
-                                        서브이미지(1000X600)
-                                        <button type="button" class="btn_01" onclick="add_sub_image();">추가</button>
-                                        <button type="button" class="btn_02" style="margin-top: 10px;" onclick="delete_all_image();">전체 삭제</button>
-                                    </th>
-                                    <td colspan="3">
-                                        <div class="img_add img_add_group">
-                                            <?php
-                                                $i = 2;
-                                                foreach ($img_list as $img) :
-                                                    $s_img = "/data/product/" . $img["ufile"];
-                                            ?>
-                                                <div class="file_input_wrap">
-                                                    <div class="file_input <?= empty($img["ufile"]) ? "" : "applied" ?>">
-                                                        <input type="hidden" name="i_idx[]" value="<?= $img["i_idx"] ?>">
-                                                        <input type="hidden" class="onum_img" name="onum_img[]" value="<?= $img["onum"] ?>">
-                                                        <input type="file" name='ufile[]' id="ufile<?= $i ?>" multiple onchange="productImagePreview(this, '<?= $i ?>')">
-                                                        <label for="ufile<?= $i ?>" <?= !empty($img["ufile"]) ? "style='background-image:url($s_img)'" : "" ?>></label>
-                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
-                                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                        <a class="img_txt imgpop" href="<?= $s_img ?>" style="display: <?= !empty($img["ufile"]) ? "block" : "none" ?>;"
-                                                            id="text_ufile<?= $i ?>">미리보기</a>
-                                                    </div>
-                                                </div>
-                                            <?php
-                                                $i++;
-                                                endforeach;
-                                            ?>
-                                        </div>
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -336,7 +220,7 @@
                     <ul>
                         <li class="left"></li>
                         <li class="right_sub">
-                            <a href="/AdmMaster/_local_guide/list" class="btn btn-default"><span
+                            <a href="/AdmMaster/_hotel_theme/list" class="btn btn-default"><span
                                     class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             <?php if ($idx == "") { ?>
                                 <a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
@@ -385,7 +269,7 @@
 <script>
     function get_info(idx){
         $.ajax({
-            url: "/AdmMaster/_local_guide/get_category",
+            url: "/AdmMaster/_hotel_theme/get_category",
             type: "GET",
             data: {
                 idx: idx
@@ -439,7 +323,7 @@
             $(this).find(".onum_img").val(index + 1);        
         });
 
-        oEditors1?.getById["product_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+        oEditors1?.getById["recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
         $("#ajax_loader").removeClass("display-none");
 
@@ -489,7 +373,7 @@
 
         if (arr_img.length > 0) {
             $.ajax({
-                url: "/AdmMaster/_local_guide/del_all_image",
+                url: "/AdmMaster/_hotel_theme/del_all_image",
                 type: "POST",
                 data: JSON.stringify({
                     arr_img: arr_img
@@ -613,7 +497,7 @@
                 }
 
                 $.ajax({
-                    url: "/AdmMaster/_local_guide/del_image",
+                    url: "/AdmMaster/_hotel_theme/del_image",
                     type: "POST",
                     data: {
                         "i_idx": i_idx
