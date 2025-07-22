@@ -284,14 +284,6 @@ class AdminHotelThemeController extends BaseController
                             "details" => $details[$i],
                         ];
 
-                        if(!empty($value)){
-                            $data_product["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                            $this->hotelThemeSub->updateData($value, $data_product);
-                        }else{
-                            $data_product["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
-                            $this->hotelThemeSub->insertData($data_product);
-                        }
-    
                         for ($n = 1; $n <= 2; $n++) {
                             $ufile = isset(${"o_ufile_{$n}"}[$i]) ? ${"o_ufile_{$n}"}[$i] : null;
     
@@ -307,8 +299,15 @@ class AdminHotelThemeController extends BaseController
                                 $data_product["ufile{$n}"] = '';
                             }
                         }
-    
-                        $this->hotelThemeSub->insertData($data_product);
+
+                        if(!empty($value)){
+                            $data_product["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->hotelThemeSub->updateData($value, $data_product);
+                        }else{
+                            $data_product["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                            $this->hotelThemeSub->insertData($data_product);
+                        }
+        
                     }
                 }
                 
