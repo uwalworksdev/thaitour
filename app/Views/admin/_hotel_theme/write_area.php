@@ -473,7 +473,6 @@
             type: "POST",
             data: pick_data,
             url: "./get_products",
-            dataType: "json",
             cache: false,
             async: false,
             success: function (data, textStatus) {
