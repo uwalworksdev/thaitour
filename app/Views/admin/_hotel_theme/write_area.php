@@ -477,7 +477,7 @@
             async: false,
             success: function (data, textStatus) {
                 console.log($('.s_category_code').length);
-                $('.s_category_code[value="'+ code +'"]').closest("table").find(".product_area").append(data);
+                $('.s_category_code[value="'+ code +'"]').closest("table").find(".product_area tbody").append(data);
                 $(".pick_item_pop02").hide();
             },
             error: function (request, status, error) {
