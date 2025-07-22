@@ -134,13 +134,13 @@ $links = "list";
                                     <th>내용</th>
                                     <td colspan="3">
 
-                                        <textarea name="recommend_text" id="recommend_text" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?></textarea>
+                                        <textarea name="m_recommend_text" id="m_recommend_text" rows="10" cols="100" class="input_txt" style="width:100%; height:400px; display:none;"><?= viewSQ($recommend_text) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors1 = [];
 
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors1,
-                                                elPlaceHolder: "recommend_text",
+                                                elPlaceHolder: "m_recommend_text",
                                                 sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true, // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -175,7 +175,7 @@ $links = "list";
                                                         <input type="file" name='ufile<?= $i ?>' id="ufile<?= $i ?>"
                                                             onchange="productImagePreview(this, '<?= $i ?>')">
                                                         <label for="ufile<?= $i ?>" <?= !empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                        <input type="hidden" name="checkImg_<?= $i ?>" class="checkImg">
+                                                        <input type="hidden" name="m_checkImg_<?= $i ?>" class="checkImg">
                                                         <button type="button" class="remove_btn"
                                                             onclick="productImagePreviewRemove(this)"></button>
 
@@ -653,7 +653,7 @@ $links = "list";
             $(this).find(".onum_img").val(index + 1);
         });
 
-        oEditors1?.getById["recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
+        oEditors1?.getById["m_recommend_text"]?.exec("UPDATE_CONTENTS_FIELD", []);
 
         $("#ajax_loader").removeClass("display-none");
 

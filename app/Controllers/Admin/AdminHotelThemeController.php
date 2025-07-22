@@ -144,7 +144,7 @@ class AdminHotelThemeController extends BaseController
             for ($i = 1; $i <= 1; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+                ${"checkImg_" . $i} = $this->request->getPost("m_checkImg_" . $i);
                 if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $this->hotelTheme->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
@@ -160,7 +160,7 @@ class AdminHotelThemeController extends BaseController
             $s_idx = $this->request->getPost("s_idx") ?? [];
             $theme_name = $this->request->getPost("theme_name") ?? [];
             $star = $this->request->getPost("star") ?? [];
-            $recommend_text = $this->request->getPost("recommend_text") ?? [];
+            $recommend_text = $this->request->getPost("m_recommend_text") ?? [];
             $step = $this->request->getPost("step") ?? [];
             $arr_product_idx = $this->request->getPost("product_idx") ?? [];
 
