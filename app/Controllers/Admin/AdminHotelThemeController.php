@@ -205,19 +205,19 @@ class AdminHotelThemeController extends BaseController
                 }
             }
 
-            if ($idx) {
-                $message = "수정되었습니다.";
-                return "<script>
-                    alert('$message');
-                    parent.location.reload();
-                    </script>";
-            }
+            // if ($idx) {
+            //     $message = "수정되었습니다.";
+            //     return "<script>
+            //         alert('$message');
+            //         parent.location.reload();
+            //         </script>";
+            // }
 
-            $message = "정상적인 등록되었습니다.";
-            return "<script>
-                alert('$message');
-                    parent.location.href='/AdmMaster/_hotel_theme/list';
-                </script>";
+            // $message = "정상적인 등록되었습니다.";
+            // return "<script>
+            //     alert('$message');
+            //         parent.location.href='/AdmMaster/_hotel_theme/list';
+            //     </script>";
 
 
         } catch (\Exception $e) {
