@@ -221,7 +221,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="2">
-                                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="">
+                                            <input type="hidden" name="s_category_code[]" data-code="" class="s_category_code" value="">
                                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                                 제목
                                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
@@ -476,7 +476,7 @@
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                console.log($('.s_category_code[value="'+ code +'"]'));
+                console.log($('.s_category_code[data-code="'+ code +'"]'));
                 $('.s_category_code[value="'+ code +'"]').closest("table").find(".product_area tbody").append(data);
                 $(".pick_item_pop02").hide();
             },
@@ -537,7 +537,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            <input type="hidden" name="s_category_code[]" class="s_category_code" value="${code}">
+                            <input type="hidden" name="s_category_code[]" data-code="${code}" class="s_category_code" value="${code}">
                             <div style="width: 100%; display: flex; align-items: center; gap: 5px;">
                                 ${code_name}
                                 <button type="button" class="btn btn-primary" onclick="showPopup(this);" style="margin: unset; margin-left: 30px;">추가</button>
