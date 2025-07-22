@@ -92,7 +92,7 @@
                     enctype="multipart/form-data"
                     target="hiddenFrame22"> <!--  -->
                     <!-- 상품 고유 번호 -->
-                    <input type="hidden" id="type" value="area">
+                    <input type="hidden" id="type" name="area" value="area">
                     <input type="hidden" id="check_img_ufile1" value="<?= $ufile1 ?>">
 
                     <div class="listBottom">
