@@ -292,7 +292,7 @@ class AdminHotelThemeController extends BaseController
                             $this->hotelThemeSub->insertData($data_product);
                         }
     
-                        for ($n = 1; $n <= 4; $n++) {
+                        for ($n = 1; $n <= 2; $n++) {
                             $ufile = isset(${"o_ufile_{$n}"}[$i]) ? ${"o_ufile_{$n}"}[$i] : null;
     
                             if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
@@ -301,7 +301,7 @@ class AdminHotelThemeController extends BaseController
                                 $ufile->move($publicPath, $data_product["ufile{$n}"]);
                             }
     
-                            ${"checkImg_" . $n} = isset(${"o_checkImg_1{$n}"}[$i]) ? ${"o_checkImg_1{$n}"}[$i] : null;
+                            ${"checkImg_" . $n} = isset(${"o_checkImg_{$n}"}[$i]) ? ${"o_checkImg_{$n}"}[$i] : null;
                             if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
                                 $data_product["rfile{$n}"] = '';
                                 $data_product["ufile{$n}"] = '';
@@ -380,7 +380,7 @@ class AdminHotelThemeController extends BaseController
                         ];
     
     
-                        for ($n = 1; $n <= 4; $n++) {
+                        for ($n = 1; $n <= 2; $n++) {
                             $ufile = isset(${"o_ufile_{$n}"}[$i]) ? ${"o_ufile_{$n}"}[$i] : null;
     
                             if (isset($ufile) && $ufile->isValid() && !$ufile->hasMoved()) {
@@ -389,7 +389,7 @@ class AdminHotelThemeController extends BaseController
                                 $ufile->move($publicPath, $data_product["ufile{$n}"]);
                             }
     
-                            ${"checkImg_" . $n} = isset(${"o_checkImg_1{$n}"}[$i]) ? ${"o_checkImg_1{$n}"}[$i] : null;
+                            ${"checkImg_" . $n} = isset(${"o_checkImg_{$n}"}[$i]) ? ${"o_checkImg_{$n}"}[$i] : null;
                             if (isset(${"checkImg_" . $n}) && ${"checkImg_" . $n} == "N") {
                                 $data_product["rfile{$n}"] = '';
                                 $data_product["ufile{$n}"] = '';
