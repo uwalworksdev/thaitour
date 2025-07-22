@@ -222,7 +222,7 @@
                                     <tr>
                                         <td colspan="2">
                                             <div class=""
-                                                style="width: 100%; display: flex; justify-content: space-between; align-items: center">
+                                                style="width: 100%; display: flex; align-items: center">
                                                 제목
                                                 <button type="button" class="btn btn-primary">추가</button>
                                                 <button type="button" class="btn btn-danger">삭제</button>
