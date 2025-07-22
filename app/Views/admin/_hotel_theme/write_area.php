@@ -504,7 +504,7 @@
         let code = $(button).closest("td").find(".s_category_code").val();
         let index = $(button).closest(".sub_area").index();
         $("#item_pop").attr("data-code", code);
-        $("#item_pop").find(".area_index").val(index);
+        $("#item_pop").find("#area_index").val(index);
         $("#product_code_2").val(code);
         $('.pick_item_pop02').show();
     }
