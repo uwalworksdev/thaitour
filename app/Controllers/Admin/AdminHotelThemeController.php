@@ -190,7 +190,10 @@ class AdminHotelThemeController extends BaseController
                                 "step" => $step[$key][$i],
                                 "r_date" => Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
                             ];
-    
+
+                            $product = $this->productModel->find($arr_product_idx[$key][$i]);
+                            $img_list = $this->productImg->getImg($arr_product_idx[$key][$i]);
+
                             for ($n = 1; $n <= 4; $n++) {
                                 $ufile = isset(${"ufile_{$n}"}[$key][$i]) ? ${"ufile_{$n}"}[$key][$i] : null;
     
@@ -198,6 +201,14 @@ class AdminHotelThemeController extends BaseController
                                     $data_product["rfile{$n}"] = $ufile->getClientName();
                                     $data_product["ufile{$n}"] = $ufile->getRandomName();
                                     $ufile->move($publicPath, $data_product["ufile{$n}"]);
+                                }else{
+                                    if($n == 1) {
+                                        $data_product["rfile{$n}"] = $product['rfile1'];
+                                        $data_product["ufile{$n}"] = $product['ufile1'];
+                                    }else{
+                                        $data_product["rfile{$n}"] = $img_list[$n-2]['rfile'];
+                                        $data_product["ufile{$n}"] = $img_list[$n-2]['ufile'];
+                                    }
                                 }
                             }
     
