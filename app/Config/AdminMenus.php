@@ -121,9 +121,9 @@ class AdminMenus extends BaseConfig
                 ],
                 [
                     'name' => '테마별 인기호텔',
-                    'code' => 'B14',
+                    'code' => 'B15',
                     'url' => ['/AdmMaster/_hotel_theme/list'],
-                    'alias' => ['AdminHotelThemeController::list']
+                    'alias' => ['AdminHotelThemeController::list', 'AdminHotelThemeController::write_month', 'AdminHotelThemeController::write_area']
                 ],
             ]
         ],
