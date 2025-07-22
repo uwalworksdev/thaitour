@@ -14,10 +14,14 @@ class HotelThemeModel extends Model
         "title", "subtitle", "type", "recommend_text", "ufile1", "rfile1", "onum", "r_date", "m_date"
     ];
     protected $codeModel;
+    protected $hotelArea;
+
     public function __construct()
     {
         parent::__construct();
         $this->codeModel = new Code();
+        $this->hotelArea = new HotelAreaTheme();
+
     }
 
     public function insertData($data)
@@ -87,9 +91,14 @@ class HotelThemeModel extends Model
 
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 		
-        // foreach ($items as $key => $value) {
-        //     $items[$key]['category_name'] = $this->codeModel->getCodeName($value['category_code']);
-        // }
+        foreach ($items as $key => $value) {
+            $result = $this->hotelArea->where("theme_idx", $value['idx'])->findAll();
+
+            foreach ($result as $row) {
+                $arr_code_name[] = $this->codeModel->getCodeName($row['category_code']);
+            }
+            $items[$key]['category_name'] = implode(',', $arr_code_name);
+        }
 
         $data = [
             'items' => $items,

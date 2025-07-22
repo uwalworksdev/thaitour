@@ -141,8 +141,6 @@
                                             <div class="flex_c_c" style="gap: 10px;">
                                                 <a href="/travel-tips/theme_view?idx=<?= $row["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                                <a href="<?= $url_admin ?>"
-                                                    class="product_view" style="color: red;">[<span>상세수정</span>]</a>
                                             </div>
                                         </td>
                                         <td class="tac">
@@ -177,12 +175,6 @@
                                                 class="input_txt" />
                                         </td>
                                         <td>
-                                            <input type="text" name="onum[]" id="onum_<?= $row["idx"] ?>"
-                                                value="<?= $row['onum'] ?>" style="width:66px; text-align:center;">                                    
-                                            <input type="hidden" name="code_idx[]" value="<?= $row["idx"] ?>"
-                                                class="input_txt" />
-                                        </td>
-                                        <td>
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
@@ -198,7 +190,7 @@
                     </form>
                 </div><!-- // listBottom -->
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_local_guide/list') . "?search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel_theme/list') . "?search_category=$search_category&g_list_rows=$g_list_rows&search_name=$search_name&pg=") ?>
 
                 <div id="headerContainer">
 
@@ -308,7 +300,7 @@
     function change_it() {
         let f = document.frm_l;
 
-        let url = '<?= route_to("admin._local_guide.change") ?>'
+        let url = '<?= route_to("admin._hotel_theme.change") ?>'
         let prod_data = $(f).serialize();
         $.ajax({
             type: "POST",
@@ -331,15 +323,12 @@
 <script>
     function submitForm() {
         //document.getElementById("frm").submit();
-        var product_code_1 = '<?= $product_code_1 ?>';
-        var product_code_2 = '<?= $product_code_2 ?>';
-        var product_code_3 = '<?= $product_code_3 ?>';
         var search_category = '<?= $search_category ?>';
         var product_name = '<?= $product_name ?>';
         var g_list_rows = $("#g_list_rows").val();
         var search_name = '<?= $search_name ?>';
         var pg = '<?= $pg ?>';
-        location.href = '/AdmMaster/_local_guide/list?product_code_1=' + product_code_1 + '&product_code_2=' + product_code_2 + '&product_code_3=' + product_code_3  + '&search_category=' + search_category + '&product_name=' + product_name + '&g_list_rows=' + g_list_rows + '&search_name=' + search_name + '&pg=' + pg;
+        location.href = '/AdmMaster/_hotel_theme/list?search_category=' + search_category + '&product_name=' + product_name + '&g_list_rows=' + g_list_rows + '&search_name=' + search_name + '&pg=' + pg;
     }
 </script>
 
@@ -360,7 +349,7 @@
 
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._local_guide.del") ?>";
+        let url = "<?= route_to("admin._hotel_theme.del") ?>";
         $.ajax({
             url: url,
             type: "POST",
@@ -387,7 +376,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._local_guide.del") ?>";
+        let url = "<?= route_to("admin._hotel_theme.del") ?>";
 
         $.ajax({
             url: url,

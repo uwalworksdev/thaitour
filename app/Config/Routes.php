@@ -233,6 +233,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminHotelThemeController::write_ok", ['as' => "admin._hotel_theme.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminHotelThemeController::write_ok/$1", ['as' => "admin._hotel_theme.write_ok.id"]);
         $routes->post("del", "Admin\AdminHotelThemeController::del", ['as' => "admin._hotel_theme.del"]);
+        $routes->post("change", "Admin\AdminHotelThemeController::change", ['as' => "admin._hotel_theme.change"]);
         $routes->post("del_image", "Admin\AdminHotelThemeController::del_image", ['as' => "admin._hotel_theme.del_image"]);
     });
 
