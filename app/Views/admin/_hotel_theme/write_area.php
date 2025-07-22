@@ -118,9 +118,9 @@
                                         <select id="category_code" name="category_code" class="input_select" onchange="get_info(this.value)">
                                             <option value="">선택</option>
                                                 <?php
-                                                    foreach ($category_code_list as $frow){
+                                                    foreach ($category_list as $frow){
                                                 ?>
-                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["title"] ?></option>
+                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $category_code) echo "selected"; ?>><?= $frow["code_name"] ?></option>
                                                 <?php } ?>
                                         </select>
                                         
@@ -170,11 +170,6 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-                                    </td>
-                                </tr>
-                                <tr height="45">
-                                    <td colspan="2">
-                                        이미지 등록
                                     </td>
                                 </tr>
 

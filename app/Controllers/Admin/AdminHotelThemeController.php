@@ -73,7 +73,7 @@ class AdminHotelThemeController extends BaseController
         $search_name      = updateSQ($_GET["search_name"] ?? '');
         $search_category  = updateSQ($_GET["search_category"] ?? '');
 
-        $category_code_list = $this->codeModel->getListByParentCode("1303") ?? [];
+        $category_list = $this->codeModel->getListByParentCode("1303") ?? [];
 
         if ($idx) {
             $row = $this->hotelTheme->find($idx);
@@ -85,7 +85,7 @@ class AdminHotelThemeController extends BaseController
             'search_name' => $search_name,
             'search_category' => $search_category,
             'row' => $row ?? '',
-            'category_code_list' => $category_code_list,
+            'category_list' => $category_list,
         ];
         return view("admin/_hotel_theme/write_area", $data);
     }
