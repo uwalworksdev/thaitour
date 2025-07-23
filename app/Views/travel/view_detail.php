@@ -208,20 +208,36 @@
             </div>
             <div class="grid_2_2">
                 <?php 
-                    $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                    $loop_limit = $is_mobile ? 1 : 3;
-                    for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                    // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                    // $loop_limit = $is_mobile ? 1 : 3;
+                    for ($j = 2; $j < 5; $j++) {
                 ?>
                     <img onclick="img_pops('<?= $local_detail['idx'] ?>')"
-                            class="grid_2_2_size imageDetailSup_"
+                            class="grid_2_2_size imageDetailSup_ responsive-img"
                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                             alt="<?= $local_detail['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
-                <div class="grid_2_2_sub"
+                <div class="grid_2_2_sub only_web"
                     onclick="img_pops('<?= $local_detail['idx'] ?>')"
                     style="position: relative; cursor: pointer;">
                     <img class="custom_button imageDetailSup_"
                         src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                        alt="<?= $local_detail['product_name'] ?>"
+                        onerror="this.src='/images/share/noimg.png'">
+                    <div class="button-show-detail-image">
+                        <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                            alt="image_detail_icon">
+                        <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                            alt="image_detail_icon_m">
+                        <span>사진 모두 보기</span>
+                        <span>(<?= $i3 ?>장)</span>
+                    </div>
+                </div>
+                <div class="grid_2_2_sub only_mo"
+                    onclick="img_pops('<?= $local_detail['idx'] ?>')"
+                    style="position: relative; cursor: pointer;">
+                    <img class="custom_button imageDetailSup_"
+                        src="/data/product/<?= $img_list[1]['ufile'] ?>"
                         alt="<?= $local_detail['product_name'] ?>"
                         onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
