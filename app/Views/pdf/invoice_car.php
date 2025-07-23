@@ -794,12 +794,10 @@
                     <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
                 </div>
                 <table class="invoice_tbl spe" style="width: 100%; border-collapse: collapse;">
-                    <tbody>
                         <tr>
-                            <th style="width: 10%;">유의사항</th>
-                            <td style="width: 90%;"><?=viewSQ($notice_contents)?></td>
+                            <th style="width: 150px;">유의사항</th>
+                            <td style="width: 100%;"><?=viewSQ($notice_contents)?></td>
                         </tr>
-                    </tbody>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
