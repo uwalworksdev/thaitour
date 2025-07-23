@@ -795,7 +795,7 @@
                 </div>
                 <table style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <td style="width: 1920px"><?=viewSQ($notice_contents)?></td>
+                            <td style=""><?=viewSQ($notice_contents)?></td>
                         </tr>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
