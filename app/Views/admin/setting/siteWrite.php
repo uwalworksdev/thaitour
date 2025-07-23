@@ -431,8 +431,10 @@
 
                                     <th>태국주소</th>
                                     <td>
-                                        <input type="text" id="addr_thai" name="addr_thai"
-                                               value="<?= $row['addr_thai'] ?>" class="input_txt placeHolder" rel=""/>
+                                        <textarea name="addr_thai" style="width:100%; height: 100px;" id="addr_thai" class="bs-input"><?= $row['addr_thai'] ?></textarea>
+
+                                        <!-- <input type="text" id="addr_thai" name="addr_thai"
+                                               value="<?= $row['addr_thai'] ?>" class="input_txt placeHolder" rel=""/> -->
                                     </td>
                                 </tr>
                                 <tr>
