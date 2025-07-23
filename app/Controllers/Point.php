@@ -11,6 +11,9 @@ class Point extends BaseController
     private $localGuide;
     private $localGuideImg;
     private $localProduct;
+    private $hotelArea;
+    private $hotelThemeSub;
+    private $hotelTheme;
 
     public function __construct()
     {
@@ -24,6 +27,9 @@ class Point extends BaseController
         $this->localGuide       = model("LocalGuideModel");
         $this->localGuideImg    = model("LocalGuideImg");
         $this->localProduct     = model("LocalProductModel");
+        $this->hotelThemeSub    = model("HotelThemeSub");
+        $this->hotelArea        = model("HotelAreaTheme");
+        $this->hotelTheme       = model("HotelThemeModel");
     }
 
     public function index() {
@@ -36,6 +42,8 @@ class Point extends BaseController
         $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
         $local_product_list = $this->localProduct->get_list();
+
+        $hotel_theme_list = $this->hotelTheme->get_list([], 2, 1, ['idx' => 'DESC'])['items'];
         
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
@@ -44,6 +52,7 @@ class Point extends BaseController
             'bannerMiddle' => $this->bannerModel->getBanners("5902", "middle"),
             'magazines' => $magazines,
             'local_product_list' => $local_product_list,
+            'hotel_theme_list' => $hotel_theme_list,
         ]);
     }
 

@@ -486,7 +486,7 @@ $links = "list";
 
 <script>
     function del_product(button, s_idx) {
-        if(ha_idx){
+        if(s_idx){
 			if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
 				return false;
 			}
