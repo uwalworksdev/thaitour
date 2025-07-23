@@ -793,7 +793,7 @@
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
                 </div>
-                <table class="invoice_tbl spe" style="width: 100%; border-collapse: collapse; font-size: 20px;">
+                <table style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <th style="width: 150px;">유의사항</th>
                             <td style="width: 1920px"><?=viewSQ($notice_contents)?></td>
