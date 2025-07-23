@@ -359,7 +359,7 @@
                             <td style="vertical-align: top;">
                                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
                                 <p class="addr" style="margin-top: 10px;">
-                                    <?= $setting['addr_thai']?><br>
+                                    <?= viewSQ(nl2br($setting['addr_thai']))?><br>
                                     Thai - Registration No <?= $setting['comnum_thai']?><br>
                                     Tel: <?= $setting['custom_service_phone_thai2']?>
                                 </p>

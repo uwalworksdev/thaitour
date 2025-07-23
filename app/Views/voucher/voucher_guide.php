@@ -23,7 +23,7 @@
                 <div class="logo_voice">
                     <h2 class="tit_top">바우처</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <p class="addr"><?= $setting['addr_thai']?><br>
+                    <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
                         Thai - Registration No <?= $setting['comnum_thai']?><br>
                         Tel: <?= $setting['custom_service_phone_thai2']?>
                     </p>
@@ -33,7 +33,7 @@
                 <div class="logo_voice">
                     <div class="logo_addr">
                         <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr"><?= $setting['addr_thai']?><br>
+                        <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
                         Thai - Registration No <?= $setting['comnum_thai']?><br>
                         Tel: <?= $setting['custom_service_phone_thai2']?>
                         </p>
