@@ -525,9 +525,6 @@
     }
 
     @media screen and (max-width: 850px) {
-        .responsive-img:nth-of-type(n+2) {
-            display: none;
-        }
         .text_truncate_ {
             margin-top: 2rem;
         }

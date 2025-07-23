@@ -5415,5 +5415,8 @@
     height: auto;
 }
 
+  .responsive-img:nth-of-type(n+2) {
+      display: none;
+  }
 
 }

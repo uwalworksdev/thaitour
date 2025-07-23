@@ -281,18 +281,28 @@
                     </div>
                     <div class="grid_2_2">
                         <?php 
-                             $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                            $loop_limit = $is_mobile ? 1 : 3;
-                            for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                            // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                            // $loop_limit = $is_mobile ? 1 : 3;
+                            for ($j = 2; $j < 5; $j++) {
                         ?>
-                            <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
+                            <img class="grid_2_2_size responsive-img" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
                                 onerror="this.src='/images/share/noimg.png'"
                                 onclick="img_pops('<?= $product['product_idx'] ?>')">
                         <?php } ?>
                         <!-- <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>" style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
                         <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>" style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>"> -->
-                        <div class="grid_2_2_sub" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                        <div class="grid_2_2_sub only_web" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
                             <img class="custom_button" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>" 
+                                onerror="this.src='/images/share/noimg.png'">
+                            <div class="button-show-detail-image">
+                                <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
+                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
+                                <span>사진 모두 보기</span>
+                                <span>(<?= $i3 ?>장)</span>
+                            </div>
+                        </div>
+                        <div class="grid_2_2_sub only_mo" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                            <img class="custom_button" src="/data/product/<?= $img_list[1]['ufile'] ?>" alt="<?= $img_list[1]['rfile'] ?>" 
                                 onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
