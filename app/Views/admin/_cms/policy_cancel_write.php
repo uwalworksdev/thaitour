@@ -51,10 +51,6 @@
                             <input type="hidden" name="product_code_3" id="product_code_3" value="<?= $product_code_3 ?>">
                         <?php } ?>
 
-                        <?php
-
-                        ?>
-
                         <div class="listBottom">
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -106,6 +102,9 @@
                                             <?php } ?>
                                         </div>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <input type="text" name="subtitle" value="<?= $subtitle ?>">
                                 </tr>
                                 <tr>
                                     <th>약관내용</th>
