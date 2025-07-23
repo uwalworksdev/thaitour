@@ -337,6 +337,10 @@ class InvoiceController extends BaseController
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
 
+				$policy = $builder->whereIn('p_idx', [29])
+					->orderBy('p_idx', 'asc')
+					->get()->getResultArray();
+
 				$order_cars_detail = $this->ordersCars->getByOrder($idx);
 
 				$departure_name = $this->carsCategory->getById($firstRow->departure_area)["code_name"];
@@ -349,6 +353,7 @@ class InvoiceController extends BaseController
 					'order_cars_detail' => $order_cars_detail,
 					'departure_name' => $departure_name,
 					'destination_name' => $destination_name,
+					'policy_1' 	=> $policy[0]
 				]);
 				
 	}
@@ -407,11 +412,17 @@ class InvoiceController extends BaseController
 
 				$order_subs = $this->orderGuide->getListByOrderIdx($idx);
 
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [49])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
 				return view("invoice/invoice_guide_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
 					'cancle_contents' => $cancle_contents,
 					'order_subs' => $order_subs,
+					'policy_1' 	=> $policy[0]
 				]);
 				
 	}
