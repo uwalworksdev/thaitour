@@ -795,8 +795,8 @@
                 </div>
                 <table style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <th style="width: 150px;">유의사항</th>
-                            <td style="width: 100%"><?=viewSQ($notice_contents)?></td>
+                            <th style="width: 150px; background-color: #f4f4f4;">유의사항</th>
+                            <td style="width: 150%"><?=viewSQ($notice_contents)?></td>
                         </tr>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
