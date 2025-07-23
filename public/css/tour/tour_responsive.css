@@ -1289,10 +1289,10 @@
 
   .content-sub-hotel-detail .card-item-sec3 .card-title-sec3-container {
     font-size: 3.2rem;
-    margin: 2.4rem 0;
+    margin: 0 0 2.4rem;
     gap: 0.8rem;
     align-items: center;
-    padding: 1.7rem 0;
+    padding: 0 0 1.7rem;
   }
 
   .content-sub-hotel-detail .card-item-sec3 {
