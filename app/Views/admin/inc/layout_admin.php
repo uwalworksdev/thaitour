@@ -86,7 +86,7 @@
         // });
 
         $(".imgpop").each(function () {
-            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+            if ($(this).attr("href") && $(this).attr("href").match(/\.(jpg|jpeg|png|gif|bmp|webp|svg|tiff|ico|avif|jfif)$/i)) {
                 $(this).colorbox({
                     rel: 'imgpop',
                     maxWidth: '90%',
