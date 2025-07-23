@@ -36,6 +36,14 @@ function checkOrderComplete($product_idx = null) {
     return false;
 }
 
+function getPolicyContents($product_code = null) {
+
+    $policy_cancle = Model("PolicyCancel");
+	$policy_cancle->where("product_code", $product_code)->get()->getRowArray();
+
+	return $policy_cancle;
+}
+
 function getOS(string $user_agent): string
 {
     $os_array = [

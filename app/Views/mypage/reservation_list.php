@@ -484,22 +484,8 @@ endforeach;
                             <div style="width: 100%;">
                                 <div class="note flex__c">
                                     <img src="/images/mypage/not-allowed.png" alt="">
-                                    <?php
-                                        if($order->order_gubun == "hotel"){
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>성수기 체크인 15일전 / 비수기 체크인 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }else if($order->order_gubun == "golf"){
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>이용일 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }else {
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>이용일 2일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }
-                                    ?>
-                                
+
+                                    <p>취소 규정 : 결제후 <span><?=viewSQ(getPolicyContents($order->product_code_1))?></span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
                                 </div>
                                 <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
