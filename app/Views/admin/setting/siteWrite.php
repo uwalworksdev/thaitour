@@ -425,8 +425,14 @@
                                 </tr>
                                 <tr>
                                     <th>설명하다</th>
-                                    <td colspan="3">
+                                    <td>
                                         <textarea name="desc_cont" style="width:100%; height: 100px;" id="desc_cont" class="bs-input"><?= $row['desc_cont'] ?></textarea>
+                                    </td>
+
+                                    <th>태국주소</th>
+                                    <td>
+                                        <input type="text" id="addr_thai" name="addr_thai"
+                                               value="<?= $row['addr_thai'] ?>" class="input_txt placeHolder" rel=""/>
                                     </td>
                                 </tr>
                                 <tr>
