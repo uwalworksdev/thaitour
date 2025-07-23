@@ -279,18 +279,24 @@
 								
                                 <tr>
                                     <th>침대구성</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="bed_type" name="bed_type" value="<?=$bed_type ?? ""?>" class="input_txt"/>
                                     </td>
                                     <!-- <th>포함사항</th>
                                     <td>
                                         포함사항 내용
                                     </td> -->
+                                    <th>상품 담당자</th>
+                                    <td>
+                                        <input type="text" id="manager_name" name="manager_name" placeholder="이름"  value="<?= $row['manager_name'] ?>" class="input_txt" style="width:30%"/>
+                                        <input type="text" id="manager_phone" name="manager_phone" placeholder="휴대폰"  value="<?= $row['manager_phone'] ?>" class="input_txt"  style="width:25%"/>
+                                        <input type="text" id="manager_email" name="manager_email" placeholder="이메일"  value="<?= $row['manager_email'] ?>" class="input_txt" style="width:30%"/>
+                                    </td> 
                                 </tr>
 								
                                 <tr >
                                     <th>별도 요청</th>
-                                    <td >
+                                    <td colspan="3">
                                         <?php
                                             $codes = array_map(fn($code) => "{$code['code_name']}", $fcodes);
 
@@ -302,12 +308,7 @@
                                         ?>
                                         <input type="text" id="special_request" name="special_request" value="<?=$code_text ?? ""?>" class="input_txt"/>
                                     </td>
-									 <th>상품 담당자</th>
-                                    <td>
-                                        <input type="text" id="manager_name" name="manager_name" placeholder="이름"  value="<?= $row['manager_name'] ?>" class="input_txt" style="width:30%"/>
-                                        <input type="text" id="manager_phone" name="manager_phone" placeholder="휴대폰"  value="<?= $row['manager_phone'] ?>" class="input_txt"  style="width:25%"/>
-                                        <input type="text" id="manager_email" name="manager_email" placeholder="이메일"  value="<?= $row['manager_email'] ?>" class="input_txt" style="width:30%"/>
-                                    </td> 
+
                                 </tr>
                                 <tr style="height:100px">
                                     <th>별도 요청(입력)</th>
