@@ -356,7 +356,7 @@
             line-height: 1.4 !important;
         }
 
-                .golf_invoice .logo_voice {
+        .golf_invoice .logo_voice {
             display: flex;
             justify-content: space-between;
             padding-bottom: 20px;
@@ -464,10 +464,10 @@
                                 <td><?=$order_room_cnt?></td>
                             </tr>
                             <tr>
-                                <th style="width: 150px">Total Persons</th>
-                                <td><?=$order_people?> </td>
-                                <th style="width: 150px">Child Age</th>
-                                <td><?=$child_age?></td>
+                                <th style="width: 150px">Total Adult</th>
+                                <td><?=$order_adult?> </td>
+                                <th style="width: 150px">Total Child</th>
+                                <td><?=$order_child?></td>
                             </tr>
                             <tr>
                                 <th style="width: 150px">Breakfast</th>

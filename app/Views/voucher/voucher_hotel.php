@@ -197,10 +197,10 @@ $setting = homeSetInfo();
                                 </td>
                             </tr>
                             <tr>
-                                <th>Total Persons</th>
+                                <th>Total Adult</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p><?=$order_people?></p>    
+                                        <p><?=$order_adult?></p>    
                                         <?php
                                             if($type == "admin"){
                                         ?>    
@@ -210,10 +210,10 @@ $setting = homeSetInfo();
                                         ?>
                                     </div>
                                 </td>
-                                <th>Child Age</th>
+                                <th>Total Child</th>
                                 <td>
                                     <div style="display: flex; align-items: center; justify-content: space-between;">
-                                        <p><?=$child_age?></p>
+                                        <p><?=$order_child?></p>
                                         <?php
                                             if($type == "admin"){
                                         ?>    

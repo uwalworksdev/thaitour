@@ -109,7 +109,8 @@ class VoucherController extends BaseController
 			$room_type = $roomName_eng;
 			$bed_type = $bed_type_en;
 			$order_room_cnt = $result->order_room_cnt;
-			$order_people = ($result->adult + $result->kids)  . "Adult(s)";
+			$order_adult = $result->adult . "Adult(s)";
+			$order_child = $result->child . "Child(s)";
 			$order_memo = $result->admin_memo;
 
 			$breakfast = $result->breakfast == "N" ? "Include (No) Adult Breakfast" : "Include (Yes) Adult Breakfast";
@@ -161,9 +162,9 @@ class VoucherController extends BaseController
 			}
 
 			if(!empty($result->order_people_new)){
-				$order_people = $result->order_people_new;
+				$order_adult = $result->order_people_new;
 			}else{
-				$order_people = ($result->adult + $result->kids) . "Adult(s)";
+				$order_adult = $result->adult . "Adult(s)";
 			}
 
 			if(!empty($result->order_memo_new)){
@@ -173,7 +174,9 @@ class VoucherController extends BaseController
 			}
 
 			if(!empty($result->child_age_new)){
-				$child_age = $result->child_age_new;
+				$order_child = $result->child_age_new;
+			}else{
+				$order_child = $result->child . "Adult(s)";
 			}
 
 			if(!empty($result->breakfast_new)){
@@ -205,10 +208,10 @@ class VoucherController extends BaseController
             'room_type' => $room_type,
             'bed_type' => $bed_type,
             'order_room_cnt' => $order_room_cnt,
-            'order_people' => $order_people,
+            'order_adult' => $order_adult,
+			'order_child' => $order_child,
             'order_memo' => $order_memo,
 			'user_name_en' => $user_name_en,
-			'child_age' => $child_age,
 			'breakfast' => $breakfast,
 			'guest_request' => $guest_request,
 			'order_remark' => $order_remark,
