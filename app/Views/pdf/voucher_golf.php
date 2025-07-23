@@ -391,9 +391,9 @@ $setting = homeSetInfo();
                             <td style="vertical-align: top;">
                                 <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
                                 <p class="addr" style="margin-top: 10px;">
-                                    Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                                    Thai - Registration No 010-5555-096-398<br>
-                                    Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                                    <?= $setting['addr_thai']?><br>
+                                    Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                    Tel: <?= $setting['custom_service_phone_thai2']?>
                                 </p>
                             </td>
                             <td style="text-align: right; vertical-align: middle;">
