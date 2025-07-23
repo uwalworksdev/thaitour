@@ -796,7 +796,7 @@
                 <table class="invoice_tbl spe" style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <th style="width: 150px;">유의사항</th>
-                            <td style="width: 100%; min-width: 1920px"><?=viewSQ($notice_contents)?></td>
+                            <td style="width: 1920px"><?=viewSQ($notice_contents)?></td>
                         </tr>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
