@@ -525,6 +525,9 @@
     }
 
     @media screen and (max-width: 850px) {
+        .responsive-img:nth-of-type(n+2) {
+            display: none;
+        }
         .text_truncate_ {
             margin-top: 2rem;
         }
@@ -833,12 +836,12 @@
                 </div>
                 <div class="grid_2_2">
                     <?php 
-                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                        $loop_limit = $is_mobile ? 1 : 3;
-                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                        // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        // $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 5; $j++) {
                     ?>
                         <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                            class="grid_2_2_size imageDetailSup_"
+                            class="grid_2_2_size imageDetailSup_ responsive-img"
                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
