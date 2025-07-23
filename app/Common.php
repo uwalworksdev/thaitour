@@ -39,9 +39,9 @@ function checkOrderComplete($product_idx = null) {
 function getPolicyContents($product_code = null) {
 
     $policy_cancle = Model("PolicyCancel");
-	$policy_cancle->where("product_code", $product_code)->get()->getRowArray();
+	$result = $policy_cancle->where("product_code", $product_code)->get()->getRowArray();
 
-	return $policy_cancle;
+	return $result;
 }
 
 function getOS(string $user_agent): string
