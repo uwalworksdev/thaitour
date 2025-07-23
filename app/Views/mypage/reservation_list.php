@@ -485,7 +485,7 @@ endforeach;
                                 <div class="note flex__c">
                                     <img src="/images/mypage/not-allowed.png" alt="">
 
-                                    <p>취소 규정 : 결제후 <span><?=viewSQ(getPolicyContents($order->product_code_1))?></span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
+                                    <p>취소 규정 : 결제후 <span><?=viewSQ(getPolicyContents($order->product_code_1))["subtitle"] ?? ""?></span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
                                 </div>
                                 <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
