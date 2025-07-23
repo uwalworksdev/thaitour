@@ -796,8 +796,8 @@
                 <table class="invoice_tbl re_custom">
                         <tbody>
                             <tr>
-                                <th style="width: 10%;">유의사항</th>
-                                <td style="width: 90%;" colspan="3"><?=viewSQ($notice_contents)?></td>
+                                <th style="width: 20%;">유의사항</th>
+                                <td style="width: 80%;"><?=viewSQ($notice_contents)?></td>
                             </tr>
                         </tbody>
                 </table>
