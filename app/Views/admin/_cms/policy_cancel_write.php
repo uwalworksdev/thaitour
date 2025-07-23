@@ -104,7 +104,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <input type="text" name="subtitle" value="<?= $subtitle ?>">
+                                    <th>실속</th>
+                                    <td>
+                                        <input type="text" name="subtitle" value="<?= $subtitle ?>">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>약관내용</th>
