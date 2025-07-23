@@ -866,7 +866,7 @@
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                         style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
-                            src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                            src="/data/product/<?= $img_list[1]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>"
                             onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">
