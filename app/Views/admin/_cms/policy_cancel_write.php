@@ -104,7 +104,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>실속</th>
+                                    <th>취소 기간 안내</th>
                                     <td>
                                         <input type="text" name="subtitle" value="<?= $subtitle ?>">
                                     </td>
