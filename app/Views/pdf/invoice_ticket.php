@@ -377,7 +377,7 @@
                             <td style="width: 30%"><?=substr($row->order_date,0,10)?>(<?=dateToYoil(substr($row->order_date,0,10))?>)</td>
                         </tr>
                         <tr>
-                            <th style="width: 20%">여행사(담당자)</th>
+                            <th style="width: 20%">예약자</th>
                             <td style="width: 30%"><?=$row->order_user_name?></td>
                             <th style="width: 20%">이메일</th>
                             <td style="width: 30%"><?=$row->order_user_email?></td>

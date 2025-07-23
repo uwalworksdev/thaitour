@@ -72,7 +72,7 @@
                             <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td><?=$row["order_user_name"]?></td>
                             <th>이메일</th>
                             <td><?=$row["order_user_email"]?></td>
