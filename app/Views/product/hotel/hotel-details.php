@@ -845,7 +845,24 @@
                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
-                    <div class="grid_2_2_sub"
+                    <div class="grid_2_2_sub only_web"
+                        onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                        style="position: relative; cursor: pointer;">
+                        <img class="custom_button imageDetailSup_"
+                            src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                            alt="<?= $hotel['product_name'] ?>"
+                            onerror="this.src='/images/share/noimg.png'">
+                        <div class="button-show-detail-image">
+                            <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                alt="image_detail_icon">
+                            <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                alt="image_detail_icon_m">
+                            <span>사진 모두 보기</span>
+                            <span>(<?= $i3 ?>장)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid_2_2_sub only_mo"
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                         style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
