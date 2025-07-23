@@ -385,7 +385,7 @@ endforeach;
 						foreach ($groupedOrders[$group->group_no] as $order): 
 							
 						?>
-                        <div class="product_detail">
+                        <div class="product_detail" style="flex-wrap: wrap;">
                             <div class="info_product">
                                 <div class="bs-input-check">
                                     <?php 
@@ -430,26 +430,7 @@ endforeach;
                                 <div class="info_name">
                                     <p>여행자 이름: <?= esc($order->order_user_name);?>[<?= esc($order->order_user_first_name_en);?> <?= esc($order->order_user_last_name_en);?>]</p>
                                 </div>
-                                <div class="note flex__c">
-                                    <img src="/images/mypage/not-allowed.png" alt="">
-                                    <?php
-                                        if($order->order_gubun == "hotel"){
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>성수기 체크인 15일전 / 비수기 체크인 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }else if($order->order_gubun == "golf"){
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>이용일 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }else {
-                                    ?>
-                                        <p>취소 규정 : 결제후 <span>이용일 2일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
-                                    <?php
-                                        }
-                                    ?>
                                 
-                                </div>
-                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                             <div class="info_price flex">
 							    
@@ -499,6 +480,28 @@ endforeach;
                                     <?php } ?>
                                    
                                 </div>
+                            </div>
+                            <div style="width: 100%;">
+                                <div class="note flex__c">
+                                    <img src="/images/mypage/not-allowed.png" alt="">
+                                    <?php
+                                        if($order->order_gubun == "hotel"){
+                                    ?>
+                                        <p>취소 규정 : 결제후 <span>성수기 체크인 15일전 / 비수기 체크인 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
+                                    <?php
+                                        }else if($order->order_gubun == "golf"){
+                                    ?>
+                                        <p>취소 규정 : 결제후 <span>이용일 8일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
+                                    <?php
+                                        }else {
+                                    ?>
+                                        <p>취소 규정 : 결제후 <span>이용일 2일전(한국시간)</span> 이전에 취소하시면 무료 취소가 가능합니다.</p>
+                                    <?php
+                                        }
+                                    ?>
+                                
+                                </div>
+                                <div class="info_link" data-product-idx="<?= $order->product_code_1 ?>">본 예약건 취소규정 자세히 보기</div>
                             </div>
                         </div>
 						<?php 
