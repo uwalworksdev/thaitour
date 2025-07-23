@@ -801,7 +801,7 @@
                         <tbody>
                             <tr>
                                 <th style="width:150px">유의사항</th>
-                                <td colspan="3"><?=viewSQ($notice_contents)?></td>
+                                <td><?=viewSQ($notice_contents)?></td>
                             </tr>
                         </tbody>
                 </table>
