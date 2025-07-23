@@ -1754,7 +1754,8 @@ input[type="checkbox"]:checked+label {
 .booklist_wrap .booking_product .product_detail {
     padding: 15px 10px;
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    /* gap: 30px; */
 }
 
 .booklist_wrap .booking_product .product_detail .info_product {
