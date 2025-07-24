@@ -71,7 +71,36 @@
                         <div class="theme_nbox">
                             <a href="/product-hotel/hotel-detail/<?=$prow['product_idx']?>" target="_blank">
                                 <p class="theme_no"><span>TOP<b><?=$prow['step']?></b></span></p>
-                                <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
+                                <?php if ($step % 2 != 0): ?>
+                                    <div class="box_top box_topleft">
+                                        <div class="imgbox radius_right"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                        <div class="txtbox">
+                                            <div class="rating">
+                                                <span style="width:100%;"></span>
+                                            </div>
+                                            <h3 style="display: flex;align-items: center;"><?=$prow['theme_name']?></h3>
+                                            <p class="txt"><?=viewSQ($prow['recommend'])?></p>
+                                            <div class="btnbox">
+                                                <span class="detailbtn">상품 상세보기</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="box_top">
+                                        <div class="txtbox">
+                                            <div class="rating">
+                                                <span style="width:100%;"></span>
+                                            </div>
+                                            <h3 style="display: flex;align-items: center;"><?=$prow['theme_name']?></h3>
+                                            <p class="txt"><?=viewSQ($prow['recommend'])?></p>
+                                            <div class="btnbox">
+                                                <span class="detailbtn">상품 상세보기</span>
+                                            </div>
+                                        </div>
+                                        <div class="imgbox radius_left"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                    </div>
+                                <?php endif; ?>
+                                <!-- <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
                                     <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "radius_left" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
                                     <div class="txtbox">
                                         <div class="rating">
@@ -83,7 +112,7 @@
                                             <span class="detailbtn">상품 상세보기</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="imgbox_bot">
                                     <span><img src="<?=$img_2?>" alt="<?=$prow['rfile2']?>"></span>
                                     <span><img src="<?=$img_3?>" alt="<?=$prow['rfile3']?>"></span>
