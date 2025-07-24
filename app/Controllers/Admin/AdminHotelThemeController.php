@@ -166,6 +166,7 @@ class AdminHotelThemeController extends BaseController
             $data['title']              = updateSQ($_POST["title"] ?? '');
             $data['subtitle']           = updateSQ($_POST["subtitle"] ?? '');
             $data['recommend_text']     = updateSQ($_POST["m_recommend_text"] ?? '');
+            $data['url']                = updateSQ($_POST["url"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/product/';
 

@@ -93,6 +93,8 @@ class Point extends BaseController
         if($theme["type"] == "area"){
             return view('travel/theme_view_area', $data);
         }else{
+            $product_list = $this->hotelThemeSub->where("theme_idx", $theme["idx"])->findAll();
+            $data["product_list"] = $product_list;
             return view('travel/theme_view_month', $data);
         }
 

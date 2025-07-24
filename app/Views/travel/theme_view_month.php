@@ -21,7 +21,7 @@
                 </div>
                 <div class="theme_content theme_cont" style="display: block;">
                     <div class="theme_intro_text">
-                        <?=viewSQ($theme["comment"])?>
+                        <?=viewSQ($theme["recommend_text"])?>
                     </div>
                     <div class="week_wrap">
                         <a href="/user/product/product_info.php?product_id=1076747007" target="_blank">

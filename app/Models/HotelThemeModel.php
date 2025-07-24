@@ -11,7 +11,7 @@ class HotelThemeModel extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "subtitle", "type", "recommend_text", "ufile1", "rfile1", "onum", "r_date", "m_date"
+        "title", "subtitle", "type", "recommend_text", "url", "ufile1", "rfile1", "onum", "r_date", "m_date"
     ];
     protected $codeModel;
     protected $hotelArea;

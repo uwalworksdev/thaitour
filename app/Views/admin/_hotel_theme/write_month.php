@@ -131,6 +131,15 @@ $links = "list";
                                 </tr>
 
                                 <tr>
+                                    <th>URL</th>
+                                    <td colspan="3">
+                                        <input type="text" name="url"
+                                            value="<?= $url ?? "" ?>"
+                                            class="text" maxlength="100" />
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>내용</th>
                                     <td colspan="3">
 

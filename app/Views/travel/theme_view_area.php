@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <p class="stfcomment">
-                    <?=viewSQ($theme["comment"])?>
+                    <?=viewSQ($theme["recommend_text"])?>
                 </p>
                 <?php
                     $count = 0;
