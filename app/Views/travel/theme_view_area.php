@@ -72,7 +72,7 @@
                             <a href="/product-hotel/hotel-detail/<?=$prow['product_idx']?>" target="_blank">
                                 <p class="theme_no"><span>TOP<b><?=$prow['step']?></b></span></p>
                                 <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
-                                    <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                    <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "radius_left" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
                                     <div class="txtbox">
                                         <div class="rating">
                                             <span style="width:100%;"></span>
