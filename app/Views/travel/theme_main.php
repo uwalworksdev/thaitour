@@ -17,7 +17,7 @@
                 ?>
                     <li class="" style="display: flex; opacity: 1;">
                         <div class="theme_banner">
-                            <a href="/travel-tips/theme_view" class="">
+                            <a href="/travel-tips/theme_view?theme_idx=<?= $theme["idx"] ?>" class="">
                                 <img src="<?= $img ?>" alt="<?= $theme["title"] ?>">
                                 <span class="theme_boxinfo">
                                     <span class="desc">

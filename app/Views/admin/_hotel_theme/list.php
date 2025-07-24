@@ -139,7 +139,7 @@
                                         <td class="tac">
                                             <a href="<?= $url_admin ?>"><?= $row["title"] ?></a>
                                             <div class="flex_c_c" style="gap: 10px;">
-                                                <a href="/travel-tips/theme_view?idx=<?= $row["idx"] ?>"
+                                                <a href="/travel-tips/theme_view?theme_idx=<?= $theme["idx"] ?>"
                                                     class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                             </div>
                                         </td>

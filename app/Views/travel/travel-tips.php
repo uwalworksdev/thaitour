@@ -237,7 +237,7 @@
                                     $img = "/data/product/noimg.png";
                                 }
                         ?>
-                            <a href="/travel-tips/theme_view?idx=<?=$theme["idx"]?>" class="item">
+                            <a href="/travel-tips/theme_view??theme_idx=<?= $theme["idx"] ?>" class="item">
                                 <img class="only_web" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
                                 <img class="only_mo" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
                                 <div class="bx_text">
