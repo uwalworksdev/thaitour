@@ -6542,7 +6542,7 @@
 .theme_intro_text {
     font-size: 18px;
     line-height: 146%;
-    width: 82%;
+    /* width: 82%; */
     padding: 60px 9%;
     text-align: center;
 }
