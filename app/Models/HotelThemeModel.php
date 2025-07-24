@@ -64,6 +64,10 @@ class HotelThemeModel extends Model
     {
 
         $builder = $this;
+
+        if(!empty($where['type'])) {
+            $builder->where("type", $where['type']);
+        }
 	
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {

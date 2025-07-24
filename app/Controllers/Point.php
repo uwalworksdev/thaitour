@@ -82,9 +82,12 @@ class Point extends BaseController
                                                                     ->findAll();
         }
 
+        $hotel_theme_list = $this->hotelTheme->get_list(["type" => "area"], 50, 1, ['idx' => 'DESC'])['items'];
+
         return view('travel/theme_view_area', [
             "theme" => $theme,
-            "area_list" => $area_list
+            "area_list" => $area_list,
+            "hotel_theme_list" => $hotel_theme_list
         ]);
     }
 

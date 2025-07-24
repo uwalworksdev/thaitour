@@ -136,97 +136,27 @@
                     <div class="hotplace">
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/hotels/3000000/2560000/2559000/2558980/c5a60a9a_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>방콕ㆍ파타야</span>
-                                            <strong>수영장이 좋은 호텔편</strong>
-                                            <p>더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/72000000/71070000/71066500/71066493/ae370536_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>이달의 호텔</span>
-                                            <strong>크로스 파타야 프라탐낙</strong>
-                                            <p>2025 더투어랩 월간 추천 호텔</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/16000000/15860000/15859800/15859750/82ce648b_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>방콕</span>
-                                            <strong>장기 투숙객에게 선호도 높은 호텔</strong>
-                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/8000000/7340000/7331800/7331761/cf18fcd6_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>이달의 호텔</span>
-                                            <strong>그랜드 머큐어 푸켓 빠통</strong>
-                                            <p>2025 더투어랩 월간 추천 호텔</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://banner.monkeytravel.com/2025-02-28/pc/56aa80864359b78ed41cf2c7ce92e9d1.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>방콕</span>
-                                            <strong>반려동물 동반 가능한 호텔</strong>
-                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/77000000/76600000/76598800/76598783/90603838_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>이달의 호텔</span>
-                                            <strong>애스콧 통로 방콕</strong>
-                                            <p>2025 더투어랩 월간 추천 호텔</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/6000000/5480000/5475300/5475290/4ac60e27_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>파타야ㆍ푸켓</span>
-                                            <strong>씨 뷰가 매력적인 호텔</strong>
-                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/6000000/5480000/5475300/5475290/4ac60e27_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>파타야ㆍ푸켓</span>
-                                            <strong>씨 뷰가 매력적인 호텔</strong>
-                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="loc_banner swiper-slide">
-                                    <a class="">
-                                        <img src="https://i.travelapi.com/lodging/6000000/5480000/5475300/5475290/4ac60e27_z.jpg" alt="">
-                                        <div class="card" onclick="location.href='#'">
-                                            <span>파타야ㆍ푸켓</span>
-                                            <strong>씨 뷰가 매력적인 호텔</strong>
-                                            <p>2025년 더투어랩 테마별 인기 호텔 TOP 5!</p>
-                                        </div>
-                                    </a>
-                                </div>
+                                <?php
+                                    foreach($hotel_theme_list as $row) {
+                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
+                                            $img = "/data/product/" . $row["ufile1"];
+                                        } else {
+                                            $img = "/data/product/noimg.png";
+                                        }         
+                                ?>
+                                    <div class="loc_banner swiper-slide">
+                                        <a class="">
+                                            <img src="<?=$img?>" alt="<?=$row["rfile1"]?>">
+                                            <div class="card" onclick="location.href='#'">
+                                                <span>방콕ㆍ파타야</span>
+                                                <strong>수영장이 좋은 호텔편</strong>
+                                                <p>더투어랩 테마별 인기 호텔 TOP 5!</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
