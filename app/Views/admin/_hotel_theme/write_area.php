@@ -316,10 +316,10 @@ $links = "list";
                                                                                         ?>
                                                                                             <div class="file_input_wrap">
                                                                                                 <div class="file_input <?= empty($prow['ufile' . $i]) ? "" : "applied" ?>">
-                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $index ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
+                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $count ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
                                                                                                         onchange="productImagePreview(this, '<?= $i ?>')">
                                                                                                     <label for="ufile_<?= $index ?>_<?= $i ?>" <?= !empty($prow['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $index ?>][]" class="checkImg">
+                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $count ?>][]" class="checkImg">
 
                                                                                                     <button type="button" class="remove_btn"
                                                                                                         onclick="productImagePreviewRemove(this)"></button>
@@ -349,10 +349,10 @@ $links = "list";
                                                                                         ?>
                                                                                             <div class="file_input_wrap">
                                                                                                 <div class="file_input <?= empty($prow['ufile' . $i]) ? "" : "applied" ?>">
-                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $index ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
+                                                                                                    <input type="file" name='ufile_<?= $i ?>[<?= $count ?>][]' id="ufile_<?= $index ?>_<?= $i ?>"
                                                                                                         onchange="productImagePreview(this, '<?= $i ?>')">
                                                                                                     <label for="ufile_<?= $index ?>_<?= $i ?>" <?= !empty($prow['ufile' . $i]) ? "style='background-image:url($img)'" : "" ?>></label>
-                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $index ?>][]" class="checkImg">
+                                                                                                    <input type="hidden" name="s_checkImg_<?= $i ?>[<?= $count ?>][]" class="checkImg">
 
                                                                                                     <button type="button" class="remove_btn"
                                                                                                         onclick="productImagePreviewRemove(this)"></button>
