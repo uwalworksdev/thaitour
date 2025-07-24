@@ -235,8 +235,10 @@ class AdminHotelThemeController extends BaseController
                                 "star" => $star[$key][$i],
                                 "step" => $step[$key][$i],
                             ];
-                            if(!empty($s_ha_idx)){
+                            if(empty($ha_idx)){
                                 $data_product["ha_idx"] = $s_ha_idx;
+                            }else{
+                                $data_product["ha_idx"] = $ha_idx;
                             }
 
                             $product = $this->productModel->find($arr_product_idx[$key][$i]);
