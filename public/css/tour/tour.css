@@ -5738,6 +5738,7 @@
     /* justify-content: center; */
     gap: 20px;
     margin-top: 0;
+    padding-bottom: 20px;
 }
 
 .monkey_theme li {
