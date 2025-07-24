@@ -107,9 +107,9 @@
                         </div>
                     </a>
                 </div>
-                <p class="mt40">
+                <!-- <p class="mt40">
                     몽키트래블 태국 <a href="http://pf.kakao.com/_Vtezu" target="_blank"><b class="kakao_ch">카카오 채널</b></a>을 추가하시면 매월 이달의 추천 호텔과 최저가 경매 이벤트 및 각종 혜택 알림을 받으실 수 있어요.
-                </p>
+                </p> -->
     
                 <div class="hoteltheme_main" style="border-top:1px solid #f7f7f7;padding-top:35px">
                     <div class="head">
