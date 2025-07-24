@@ -229,14 +229,33 @@
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_banner">
-                        <a href="/travel-tips/theme_view" class="item">
-                            <img class="only_web" src="/images/sub/tra-sec-04-1.png" alt="">
-                            <img class="only_mo" src="/images/sub/tra-sec-04-1-m.png" alt="">
-                            <div class="bx_text">
-                                <span class="loca">방콕ㆍ파타야</span>
-                                <p class="title">골프 여행객에게 인기 좋은 호텔</p>
-                            </div>
-                        </a>
+                        <?php
+                            foreach($hotel_theme_list as $theme){
+                                if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
+                                    $img = "/data/product/" . $theme["ufile1"];
+                                } else {
+                                    $img = "/data/product/noimg.png";
+                                }
+                        ?>
+                            <a href="/travel-tips/theme_view?idx=<?=$theme["idx"]?>" class="item">
+                                <img class="only_web" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
+                                <img class="only_mo" src="<?=$img?>" alt="<?=$theme["rfile1"]?>">
+                                <div class="bx_text">
+                                    <span class="loca">
+                                        <?php
+                                            if($theme["type"] == "month"){
+                                                echo "이달의 호텔";
+                                            }else{
+                                                echo str_replace(',', 'ㆍ', $theme["category_name"]);;
+                                            }
+                                        ?>
+                                    </span>
+                                    <p class="title"><?=$theme["title"]?></p>
+                                </div>
+                            </a>
+                        <?php
+                            }
+                        ?>
                         <a href="/travel-tips/theme_view" class="item">
                             <img class="only_web" src="/images/sub/tra-sec-04-2.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-2-m.png" alt="">
