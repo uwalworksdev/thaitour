@@ -252,8 +252,8 @@ $links = "list";
                                                                 <input type="hidden" name="step[<?= $count ?>][]" class="step_index" value="<?= $prow['step'] ?>">
 
                                                                 <th style="text-align: center;">
-                                                                    <div class="flex_c_c" style="margin-top: 5px;">
-                                                                        <span style="font-weight: bold;">TOP <?= $prow['step'] ?></span>
+                                                                    <div class="flex_c_c" style="margin-top: 5px; flex-direction: column;">
+                                                                        <p style="font-size: 20px;">TOP <?= $prow['step'] ?></p>
                                                                         <button type="button" onclick="del_product(this, '<?= $prow['s_idx'] ?>');" class="btn btn-danger">삭제</button>
                                                                     </div>
                                                                 </th>
