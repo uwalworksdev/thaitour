@@ -147,10 +147,10 @@
                                     <div class="loc_banner swiper-slide">
                                         <a class="">
                                             <img src="<?=$img?>" alt="<?=$row["rfile1"]?>">
-                                            <div class="card" onclick="location.href='#'">
-                                                <span>방콕ㆍ파타야</span>
-                                                <strong>수영장이 좋은 호텔편</strong>
-                                                <p>더투어랩 테마별 인기 호텔 TOP 5!</p>
+                                            <div class="card" onclick="location.href='/travel-tips/theme_view?theme_idx=<?= $row['idx'] ?>'">
+                                                <span><?=str_replace(',', 'ㆍ', $row["category_name"])?></span>
+                                                <strong><?=$row["title"]?></strong>
+                                                <p><?=$row["subtitle"]?></p>
                                             </div>
                                         </a>
                                     </div>

@@ -25,7 +25,7 @@
                                             if($theme["type"] == "month"){
                                                 echo "이달의 호텔";
                                             }else{
-                                                echo str_replace(',', 'ㆍ', $theme["category_name"]);;
+                                                echo str_replace(',', 'ㆍ', $theme["category_name"]);
                                             }
                                         ?>
                                     </span>
