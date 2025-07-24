@@ -33,9 +33,9 @@
                         </ul>
                     </div>
                 </div>
-                <p class="stfcomment">
+                <div class="stfcomment" style="text-align: center;">
                     <?=viewSQ($theme["recommend_text"])?>
-                </p>
+                </div>
                 <?php
                     $count = 0;
                     foreach($area_list as $frow){
