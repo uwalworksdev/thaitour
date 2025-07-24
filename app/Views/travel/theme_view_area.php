@@ -150,10 +150,10 @@
                                             <div class="card" onclick="location.href='/travel-tips/theme_view?theme_idx=<?= $row['idx'] ?>'">
                                                 <span>
                                                     <?php
-                                                        if($theme["type"] == "month"){
+                                                        if($row["type"] == "month"){
                                                             echo "이달의 호텔";
                                                         }else{
-                                                            echo str_replace(',', 'ㆍ', $theme["category_name"]);
+                                                            echo str_replace(',', 'ㆍ', $row["category_name"]);
                                                         }
                                                     ?>
                                                 </span>
