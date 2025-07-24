@@ -76,7 +76,7 @@
                             </div>
                         </a>
                     </div>
-                    <a href="/user/event/ev_auction.php?event_auction_id=96" target="_blank">
+                    <!-- <a href="/user/event/ev_auction.php?event_auction_id=96" target="_blank">
                         <div class="theme_bottom_box">
                             <div class="theme_bottom_imgbox">
                                 <img src="https://i.travelapi.com/lodging/1000000/20000/10300/10244/534350d7_z.jpg" alt="몽키트래블 최저가 경매 107탄">
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </a> -->
                 </div>
                 <!-- <p class="mt40">
                     몽키트래블 태국 <a href="http://pf.kakao.com/_Vtezu" target="_blank"><b class="kakao_ch">카카오 채널</b></a>을 추가하시면 매월 이달의 추천 호텔과 최저가 경매 이벤트 및 각종 혜택 알림을 받으실 수 있어요.
