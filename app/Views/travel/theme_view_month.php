@@ -38,7 +38,7 @@
                                     <div class="point_badge">객실</div><?= $product_list[0]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
-                                    <?=viewSQ($product_list[0]["recommend"])?>
+                                    <?=viewSQ(nl2br($product_list[0]["recommend"]))?>
                                 </div>
                                 <div class="sub_txtbox">
                                     <?php
@@ -46,7 +46,7 @@
                                     ?>
                                     <div class="desc">
                                         <p class="ttl">객실 별 사이즈</p>
-                                        <?=viewSQ($product_list[0]["details"])?>
+                                        <?=viewSQ(nl2br($product_list[0]["details"]))?>
                                     </div>
                                     <?php
                                         }
@@ -72,7 +72,7 @@
                                     <div class="point_badge">위치</div><?= $product_list[1]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
-                                   <?=viewSQ($product_list[1]["recommend"])?>
+                                   <?=viewSQ(nl2br($product_list[1]["recommend"]))?>
                                 </div>
                             </div>
                             <div class="wi_box">
@@ -87,11 +87,11 @@
                                     <div class="point_badge">시설</div><?= $product_list[2]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
-                                    <?=viewSQ($product_list[2]["recommend"])?>
+                                    <?=viewSQ(nl2br($product_list[2]["recommend"]))?>
                                 </div>
                                 <div class="sub_txtbox">
                                     <div class="desc">
-                                        <?=viewSQ($product_list[2]["details"])?>
+                                        <?=viewSQ(nl2br($product_list[2]["details"]))?>
                                     </div>
                                     <?php
                                         if(!empty($product_list[2]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile2"])) {
