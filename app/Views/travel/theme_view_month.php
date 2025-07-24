@@ -25,53 +25,87 @@
                     </div>
                     <div class="week_wrap">
                         <a href="/user/product/product_info.php?product_id=1076747007" target="_blank">
+                            
                             <div class="wi_box">
-                                <div class="room_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/77df88cc_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                <?php
+                                    if(!empty($product_list[0]["ufile1"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[0]["ufile1"])) {
+                                ?>
+                                    <div class="room_img"><img src="/public/data/product/<?=$product_list[0]["ufile1"]?>" alt="<?=$product_list[0]["rfile1"]?>"></div>
+                                <?php
+                                    }
+                                ?>
                                 <div class="wi_title">
-                                    <div class="point_badge">객실</div>꼭 필요한 것만 세련되게 <span class="left_space">실속파에게 제격</span>
+                                    <div class="point_badge"><?= $product_list[0]["theme_name"] ?></span>
                                 </div>
                                 <div class="wi_con">
-                                    총 238개의 객실은 군더더기 없는 레이아웃과 포근한 컬러톤으로 설계돼, 가볍게 머물거나 장기 투숙하기에 모두 적합합니다. <br>
-                                    천장까지 닿는 통유리창 너머로 도심과 공원을 내다보며 여유로운 시간을 보낼 수 있고, 일부 객실에는 전자레인지·간이 키친·세탁기 등 장기 숙박자를 위한 편의 시설이 갖춰져 있어요.
-                                    심플하지만 호텔다운 세련미는 유지되어, 실용성과 편안함을 모두 갖춘 공간이에요.
+                                    <?=viewSQ($product_list[0]["recommend"])?>
                                 </div>
                                 <div class="sub_txtbox">
+                                    <?php
+                                        if(!empty($product_list[0]["details"])) {  
+                                    ?>
                                     <dl class="">
                                         <dt>객실 별 사이즈</dt>
-                                        <dd>디럭스 : 28㎡</dd>
-                                        <dd>이그제큐티브 : 28㎡</dd>
-                                        <dd>스튜디오 이그제큐티브 : 50㎡</dd>
-                                        <dd>스튜디오 프리미어 : 55㎡</dd>
+                                        <?=viewSQ($product_list[0]["details"])?>
                                     </dl>
-                                    <div class="sub_txtbox_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/fdeb134a_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                        if(!empty($product_list[0]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[0]["ufile2"])) {
+                                    ?>
+                                        <div class="sub_txtbox_img"><img src="/public/data/product/<?=$product_list[0]["ufile2"]?>" alt="<?=$product_list[0]["rfile2"]?>"></div>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                             <div class="wi_box">
-                                <div class="room_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/ccdfd715_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                <?php
+                                    if(!empty($product_list[1]["ufile1"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[1]["ufile1"])) {
+                                ?>
+                                    <div class="room_img"><img src="/public/data/product/<?=$product_list[1]["ufile1"]?>" alt="<?=$product_list[1]["rfile1"]?>"></div>
+                                <?php
+                                    }
+                                ?>
                                 <div class="wi_title">
-                                    <div class="point_badge">위치</div>시내 이동도 쉬운 <span class="left_space">조용한 거점</span>
+                                    <div class="point_badge"><?= $product_list[1]["theme_name"] ?></span>
                                 </div>
                                 <div class="wi_con">
-                                    MRT 퀸 시리킷 국립컨벤션센터역 1번 출구 바로 앞에 위치해 있어, MRT(지하철) 라인을 따라 여행하기에 최적의 위치 입니다. 아속, 실롬 지역과 차이나타운 등 주요 명소도 MRT 한 번이면 충분해요. <br>
-                                    주변에는 벤자키티 공원, FYI 센터, 메드파크 병원 등 다양한 인프라가 밀집해 있어 비즈니스와 일상 모두를 편리하게 누릴 수 있는 환경입니다. </div>
+                                   <?=viewSQ($product_list[1]["recommend"])?>
+                                </div>
                             </div>
                             <div class="wi_box">
-                                <div class="room_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/03c0a2f4_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                <?php
+                                    if(!empty($product_list[2]["ufile1"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile1"])) {
+                                ?>
+                                    <div class="room_img"><img src="/public/data/product/<?=$product_list[2]["ufile1"]?>" alt="<?=$product_list[2]["rfile1"]?>"></div>
+                                <?php
+                                    }
+                                ?>
                                 <div class="wi_title">
-                                    <div class="point_badge">시설</div>작지만 알차게 갖춘 <span class="left_space">실속형 구성</span>
+                                    <div class="point_badge"><?= $product_list[2]["theme_name"] ?></span>
                                 </div>
                                 <div class="wi_con">
-                                    모데나 바이 프레이저 방콕은 실용적인 고객을 위한 최적의 시설을 갖추고 있어요.<br>
-                                    조식 레스토랑 'Bistro@M restaurant'는 깔끔하고 정갈한 메뉴로 아침을 시작할 수 있으며, 1층 카페 공간은 조용한 미팅이나 노트북 작업 장소로 적당합니다. 피트니스 센터는 유산소와 웨이트 기구가 골고루 마련되어 있고, 사우나 및 스팀룸도 함께 운영돼요.
-                                    <br>그 외에도 셀프 세탁실, 일부 객실 내 세탁기, 회의실, 무료 주차 공간 등도 준비돼 있어 출장객과 장기 숙박자 모두에게 유용한 환경입니다.
+                                    <?=viewSQ($product_list[2]["recommend"])?>
                                 </div>
                                 <div class="sub_txtbox">
+                                    <?php
+                                        if(!empty($product_list[2]["details"])) {  
+                                    ?>
                                     <dl class="">
-                                        <dd>레스토랑 (Bistro@M restaurant) 조식 06:30 ~ 10:30 / 점심 11:30 ~ 15:00</dd>
-                                        <dd>커피 &amp; 사이다 바 (Coffee &amp; Cider Bar) 07:00 ~ 20:00</dd>
-                                        <dd>피트니스 센터 24시간 오픈</dd>
+                                        <?=viewSQ($product_list[2]["details"])?>
                                     </dl>
-                                    <div class="sub_txtbox_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/w11984h7500x0y0-23871b47_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php
+                                        if(!empty($product_list[2]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile2"])) {
+                                    ?>
+                                        <div class="sub_txtbox_img"><img src="/public/data/product/<?=$product_list[2]["ufile2"]?>" alt="<?=$product_list[2]["rfile2"]?>"></div>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </a>
