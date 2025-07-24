@@ -6235,8 +6235,6 @@
 .hoteltheme_main .hotplace .swiper-pagination {
     display: flex;
     justify-content: center;
-    margin: 20px auto 0;
-    width: 1000px;
 }
 
 .hoteltheme_main .hotplace .swiper-pagination-bullet-active {
