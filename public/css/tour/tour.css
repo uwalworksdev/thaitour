@@ -5873,6 +5873,7 @@
     position: relative;
     top: 184px;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .theme_top ul {
@@ -5887,7 +5888,7 @@
 }
 
 .theme_tab ul {
-    width: 1000px;
+    width: 100%;
     display: flex;
 }
 
@@ -5924,6 +5925,14 @@
     color: #333;
     font-size: 24px;
     border: 0;
+}
+
+.theme_tab01 ul li.on span {
+    background: #fff;
+    box-shadow: rgb(0 0 0 / 8%) -1px -7px 12px 0;
+    position: relative;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .theme_tab ul li.on {
