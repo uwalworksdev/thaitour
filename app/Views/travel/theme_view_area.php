@@ -70,8 +70,8 @@
                         <div class="theme_nbox">
                             <a href="/product-hotel/hotel-detail/<?=$prow['product_idx']?>" target="_blank">
                                 <p class="theme_no"><span>TOP<b><?=$prow['step']?></b></span></p>
-                                <div class="box_top box_topleft">
-                                    <div class="imgbox radius_right"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                <div class="box_top <?= ($count % 2 == 0) ? "box_topleft" : "" ?>">
+                                    <div class="imgbox <?= ($count % 2 == 0) ? "radius_right" : "" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
                                     <div class="txtbox">
                                         <div class="rating">
                                             <span style="width:100%;"></span>
