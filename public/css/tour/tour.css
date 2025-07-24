@@ -6548,8 +6548,8 @@
 }
 
 .theme-product-review .week_wrap {
-    width: 96%;
-    padding: 0 2%;
+    width: 100%;
+    padding: 0;
 }
 
 .theme-product-review .week_wrap a {
