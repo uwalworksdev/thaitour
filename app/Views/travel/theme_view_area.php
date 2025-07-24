@@ -148,7 +148,15 @@
                                         <a class="">
                                             <img src="<?=$img?>" alt="<?=$row["rfile1"]?>">
                                             <div class="card" onclick="location.href='/travel-tips/theme_view?theme_idx=<?= $row['idx'] ?>'">
-                                                <span><?=str_replace(',', 'ㆍ', $row["category_name"])?></span>
+                                                <span>
+                                                    <?php
+                                                        if($theme["type"] == "month"){
+                                                            echo "이달의 호텔";
+                                                        }else{
+                                                            echo str_replace(',', 'ㆍ', $theme["category_name"]);
+                                                        }
+                                                    ?>
+                                                </span>
                                                 <strong><?=$row["title"]?></strong>
                                                 <p><?=$row["subtitle"]?></p>
                                             </div>
