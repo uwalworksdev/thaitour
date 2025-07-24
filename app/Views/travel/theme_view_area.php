@@ -43,6 +43,7 @@
                 <div class="theme_content theme_cont" style="display: <?= ($count == 0) ? "block" : "none" ?>;">
                     <?php
                         foreach ($frow["product_list"] as $prow) {
+                            $step = (int)$prow['step'];
                             if ($prow["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $prow["ufile1"])) {
                                 $img_1 = "/data/product/" . $prow['ufile1'];
                             } else {
@@ -70,8 +71,8 @@
                         <div class="theme_nbox">
                             <a href="/product-hotel/hotel-detail/<?=$prow['product_idx']?>" target="_blank">
                                 <p class="theme_no"><span>TOP<b><?=$prow['step']?></b></span></p>
-                                <div class="box_top <?= ($count % 2 == 0) ? "box_topleft" : "" ?>">
-                                    <div class="imgbox <?= ($count % 2 == 0) ? "radius_right" : "" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
+                                    <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
                                     <div class="txtbox">
                                         <div class="rating">
                                             <span style="width:100%;"></span>
@@ -95,6 +96,7 @@
                     ?>
                 </div>
                 <?php
+                    $count++;
                     }
                 ?>
                 <div class="hoteltheme_main" style="border-top:1px solid #f7f7f7;padding-top:35px">
