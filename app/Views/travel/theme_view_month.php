@@ -52,7 +52,7 @@
                                         }
                                     ?>
                                     <?php
-                                        if(!empty($product_list[0]["ufile2"]) && is_file(ROOTPATH . "/data/product/" . $product_list[0]["ufile2"])) {
+                                        if(!empty($product_list[0]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[0]["ufile2"])) {
                                     ?>
                                         <div class="sub_txtbox_img"><img src="/data/product/<?=$product_list[0]["ufile2"]?>" alt="<?=$product_list[0]["rfile2"]?>"></div>
                                     <?php
@@ -62,7 +62,7 @@
                             </div>
                             <div class="wi_box">
                                 <?php
-                                    if(!empty($product_list[1]["ufile1"]) && is_file(ROOTPATH . "/data/product/" . $product_list[1]["ufile1"])) {
+                                    if(!empty($product_list[1]["ufile1"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[1]["ufile1"])) {
                                 ?>
                                     <div class="room_img"><img src="/data/product/<?=$product_list[1]["ufile1"]?>" alt="<?=$product_list[1]["rfile1"]?>"></div>
                                 <?php
@@ -79,7 +79,7 @@
                                 <?php
                                     if(!empty($product_list[2]["ufile1"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile1"])) {
                                 ?>
-                                    <div class="room_img"><img src="/public/data/product/<?=$product_list[2]["ufile1"]?>" alt="<?=$product_list[2]["rfile1"]?>"></div>
+                                    <div class="room_img"><img src="/data/product/<?=$product_list[2]["ufile1"]?>" alt="<?=$product_list[2]["rfile1"]?>"></div>
                                 <?php
                                     }
                                 ?>
@@ -96,7 +96,7 @@
                                     <?php
                                         if(!empty($product_list[2]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile2"])) {
                                     ?>
-                                        <div class="sub_txtbox_img"><img src="/public/data/product/<?=$product_list[2]["ufile2"]?>" alt="<?=$product_list[2]["rfile2"]?>"></div>
+                                        <div class="sub_txtbox_img"><img src="/data/product/<?=$product_list[2]["ufile2"]?>" alt="<?=$product_list[2]["rfile2"]?>"></div>
                                     <?php
                                         }
                                     ?>
