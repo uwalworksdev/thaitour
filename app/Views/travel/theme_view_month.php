@@ -35,7 +35,7 @@
                                     }
                                 ?>
                                 <div class="wi_title">
-                                    <div class="point_badge"><?= $product_list[0]["theme_name"] ?></span>
+                                    <div class="point_badge">객실</div><?= $product_list[0]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
                                     <?=viewSQ($product_list[0]["recommend"])?>
@@ -44,10 +44,10 @@
                                     <?php
                                         if(!empty($product_list[0]["details"])) {  
                                     ?>
-                                    <dl class="">
-                                        <dt>객실 별 사이즈</dt>
+                                    <div class="desc">
+                                        <p class="ttl">객실 별 사이즈</p>
                                         <?=viewSQ($product_list[0]["details"])?>
-                                    </dl>
+                                    </div>
                                     <?php
                                         }
                                     ?>
@@ -69,7 +69,7 @@
                                     }
                                 ?>
                                 <div class="wi_title">
-                                    <div class="point_badge"><?= $product_list[1]["theme_name"] ?></span>
+                                    <div class="point_badge">위치</div><?= $product_list[1]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
                                    <?=viewSQ($product_list[1]["recommend"])?>
@@ -84,20 +84,22 @@
                                     }
                                 ?>
                                 <div class="wi_title">
-                                    <div class="point_badge">시설</div>작지만 알차게 갖춘 <span class="left_space">실속형 구성</span>
+                                    <div class="point_badge">시설</div><?= $product_list[2]["theme_name"] ?>
                                 </div>
                                 <div class="wi_con">
-                                    모데나 바이 프레이저 방콕은 실용적인 고객을 위한 최적의 시설을 갖추고 있어요.<br>
-                                    조식 레스토랑 'Bistro@M restaurant'는 깔끔하고 정갈한 메뉴로 아침을 시작할 수 있으며, 1층 카페 공간은 조용한 미팅이나 노트북 작업 장소로 적당합니다. 피트니스 센터는 유산소와 웨이트 기구가 골고루 마련되어 있고, 사우나 및 스팀룸도 함께 운영돼요.
-                                    <br>그 외에도 셀프 세탁실, 일부 객실 내 세탁기, 회의실, 무료 주차 공간 등도 준비돼 있어 출장객과 장기 숙박자 모두에게 유용한 환경입니다.
+                                    <?=viewSQ($product_list[2]["recommend"])?>
                                 </div>
                                 <div class="sub_txtbox">
-                                    <dl class="">
-                                        <dd>레스토랑 (Bistro@M restaurant) 조식 06:30 ~ 10:30 / 점심 11:30 ~ 15:00</dd>
-                                        <dd>커피 & 사이다 바 (Coffee & Cider Bar) 07:00 ~ 20:00</dd>
-                                        <dd>피트니스 센터 24시간 오픈</dd>
-                                    </dl>
-                                    <div class="sub_txtbox_img"><img src="https://i.travelapi.com/lodging/16000000/15950000/15947300/15947276/w11984h7500x0y0-23871b47_z.jpg" alt="모데나 바이 프레이저 방콕"></div>
+                                    <div class="desc">
+                                        <?=viewSQ($product_list[2]["details"])?>
+                                    </div>
+                                    <?php
+                                        if(!empty($product_list[2]["ufile2"]) && is_file(ROOTPATH . "/public/data/product/" . $product_list[2]["ufile2"])) {
+                                    ?>
+                                        <div class="sub_txtbox_img"><img src="/public/data/product/<?=$product_list[2]["ufile2"]?>" alt="<?=$product_list[2]["rfile2"]?>"></div>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </a>
