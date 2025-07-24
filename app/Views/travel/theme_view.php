@@ -14,8 +14,8 @@
                     </div>
                     <div class="theme_tab01 theme_tab">
                         <ul>
-                            <li class="thememenu"><span>파타야</span></li>
-                            <li class="thememenu on"><span>푸켓</span></li>
+                            <li class="thememenu on"><span>파타야</span></li>
+                            <li class="thememenu"><span>푸켓</span></li>
                         </ul>
                     </div>
                 </div>
