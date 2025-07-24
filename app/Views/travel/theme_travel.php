@@ -76,7 +76,7 @@
                         if(!empty($category_code)){
                     ?>
                         <select name="subcategory_code" id="subcategory_code" onchange="goSearch()">
-                            <option value="subject" <?= empty($subcategory_code) ? "selected" : ""?>>하위 카테고리</option>
+                            <option value="" <?= empty($subcategory_code) ? "selected" : ""?>>하위 카테고리</option>
                             <?php
                                 foreach($subcategory_code_list as $code){     
                             ?>
@@ -494,12 +494,12 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('.list_tab_head .tab').click(function() {
-                $('.list_tab_head .tab').removeClass('on');
-                $(this).addClass('on');
-            });
-        });
+        // $(document).ready(function() {
+        //     $('.list_tab_head .tab').click(function() {
+        //         $('.list_tab_head .tab').removeClass('on');
+        //         $(this).addClass('on');
+        //     });
+        // });
     </script>
 
     <?php $this->endSection(); ?>
