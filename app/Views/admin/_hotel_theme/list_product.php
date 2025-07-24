@@ -12,7 +12,7 @@
                 </colgroup>
                 <tbody>
                     <tr>
-                        <input type="hidden" name="s_idx[<?= $count ?>][]" value="">
+                        <input type="hidden" name="s_idx[<?= $index ?>][]" value="">
                         <input type="hidden" name="product_idx[<?=$index?>][]" value="<?=$product['product_idx']?>">
                         <input type="hidden" name="step[<?=$index?>][]" class="step_index" value="">
 
