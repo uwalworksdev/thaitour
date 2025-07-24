@@ -6,7 +6,7 @@
 <div id="container" class="sub view_container">
     <section class="theme_sect monkey_theme">
         <div class="inner">
-            <ul id="container" class="loctheme_list" style="min-height: 1680px;">
+            <ul id="container" class="loctheme_list">
                 <?php
                     foreach($hotel_theme_list["items"] as $theme) {
                         if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
