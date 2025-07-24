@@ -5911,6 +5911,10 @@
     color: #aaa;
 }
 
+.theme_tab01 ul  {
+    flex-flow: unset;
+}
+
 .theme_tab01 ul li span {
     background: #ddd;
     display: inline-block;
