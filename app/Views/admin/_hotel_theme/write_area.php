@@ -253,6 +253,7 @@ $links = "list";
 
                                                                 <th style="text-align: center;">
                                                                     <div class="flex_c_c" style="margin-top: 5px;">
+                                                                        <span style="font-weight: bold;">TOP <?= $prow['step'] ?></span>
                                                                         <button type="button" onclick="del_product(this, '<?= $prow['s_idx'] ?>');" class="btn btn-danger">삭제</button>
                                                                     </div>
                                                                 </th>
