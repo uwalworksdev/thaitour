@@ -6204,6 +6204,24 @@
     padding-right: 15px;
 }
 
+.hoteltheme_main .swiper-button-next, .hoteltheme_main .swiper-button-prev {
+    top: 45%;
+}
+
+.hoteltheme_main .swiper-button-next {
+    right: 10px;
+    background: transparent url("/images/btn/btn_arrow.png") no-repeat -50px top;
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.hoteltheme_main .swiper-button-prev {
+    left: 10px;
+    background: transparent url("/images/btn/btn_arrow.png") no-repeat 0 top;
+    width: 50px !important;
+    height: 50px !important;
+}
+
 .cr_comment_list {
     width: 99%;
     padding: 30px 5px;
