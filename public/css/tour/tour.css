@@ -6208,6 +6208,14 @@
     top: 45%;
 }
 
+.hoteltheme_main .swiper-button-prev:after, .hoteltheme_main .swiper-rtl .swiper-button-next:after {
+    content: '';
+}
+
+.hoteltheme_main .swiper-button-next:after, .hoteltheme_main .swiper-rtl .swiper-button-prev:after {
+    content: '';
+}
+
 .hoteltheme_main .swiper-button-next {
     content: '';
     right: 10px;
