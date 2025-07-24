@@ -5,12 +5,18 @@
     <section class="theme_sect monkey_theme">
         <div class="inner">
             <div class="theme-section">
-                <div class="theme_top theme_head01" 
+                <div class="theme_top theme_head01"
                     style="background: url('https://i.travelapi.com/lodging/1000000/30000/26700/26661/be9e7ff2_z.jpg') 
                                 no-repeat;background-size: cover;background-position-y: center;">
                     <div class="theme_headline">
                         <h3 class="f_white">2025년 더투어랩 테마별 인기 호텔 TOP 5!</h3>
                         <h1 class="f_white">도심 속 쉼표, 조용한 호텔</h1>
+                    </div>
+                    <div class="theme_tab01 theme_tab">
+                        <ul>
+                            <li class="thememenu"><span>파타야</span></li>
+                            <li class="thememenu on"><span>푸켓</span></li>
+                        </ul>
                     </div>
                 </div>
                 <p class="stfcomment">
@@ -160,7 +166,7 @@
                                         </div>
                                     </a>
                                 </div>
-                        
+
                                 <div class="loc_banner swiper-slide">
                                     <a class="">
                                         <img src="https://i.travelapi.com/lodging/72000000/71070000/71066500/71066493/ae370536_z.jpg" alt="">
@@ -248,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="cr_comment_list position">
                 <h4 class="f_orange f_16">태국 내 로컬 호텔 체인</h4>
@@ -261,19 +267,19 @@
                     <input type="hidden" name="mfcode" value="MjU3fDExOTA=">
                     <input type="hidden" name="page" value="">
                     <div id="comment_wrap" class="mb30">
-                    <input type="hidden" name="prefix" value="">
-                    <div class="comment_input mt15">
-                    <textarea name="board_comment/contentText" class="focusing fl" id="cbody" placeholder="내용을 입력해 주세요" rows="5"></textarea>
-                    <input class="custom_btn2 b_orange_2 b_p3032 fl" onclick="commentsave();" type="button" value="입력">
+                        <input type="hidden" name="prefix" value="">
+                        <div class="comment_input mt15">
+                            <textarea name="board_comment/contentText" class="focusing fl" id="cbody" placeholder="내용을 입력해 주세요" rows="5"></textarea>
+                            <input class="custom_btn2 b_orange_2 b_p3032 fl" onclick="commentsave();" type="button" value="입력">
+                        </div>
                     </div>
-                    </div>	
                 </form>
                 <table class="tbl_st18">
                     <colgroup>
-                        <col style="width:10%">	
-                        <col style="width:24px">	
-                        <col>	
-                        <col style="width:24px">	
+                        <col style="width:10%">
+                        <col style="width:24px">
+                        <col>
+                        <col style="width:24px">
                         <col style="width:10%">
                     </colgroup>
                     <thead></thead>
@@ -281,7 +287,7 @@
                     </tbody>
                 </table>
                 <!-- start : common/element/user/pagination.tpl -->
-                <div class="paginate"></div>	<!-- end : common/element/user/pagination.tpl -->
+                <div class="paginate"></div> <!-- end : common/element/user/pagination.tpl -->
             </div>
         </div>
     </section>
