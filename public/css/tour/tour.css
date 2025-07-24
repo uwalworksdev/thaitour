@@ -6232,6 +6232,17 @@
     height: 50px !important;
 }
 
+.hoteltheme_main .hotplace .swiper-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto 0;
+    width: 1000px;
+}
+
+.hoteltheme_main .hotplace .swiper-pagination-bullet-active {
+    background: #f05002;
+}
+
 .cr_comment_list {
     width: 99%;
     padding: 30px 5px;
