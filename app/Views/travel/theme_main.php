@@ -29,8 +29,8 @@
                                             }
                                         ?>
                                     </span>
-                                    <span class="subtitle"><?= $theme["title"] ?></span>
-                                    <span class="title"><?= $theme["subtitle"] ?></span>
+                                    <span class="subtitle"><?= $theme["subtitle"] ?></span>
+                                    <span class="title"><?= $theme["title"] ?></span>
                                 </span>
                             </a>
                         </div>

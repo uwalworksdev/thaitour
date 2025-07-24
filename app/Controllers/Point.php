@@ -69,7 +69,23 @@ class Point extends BaseController
     }
 
     public function ThemeView() {
-        return view('travel/theme_view');
+        $theme_idx = updateSQ($_GET["theme_idx"]);
+        $theme = $this->hotelTheme->find($theme_idx);
+
+        $area_list = $this->hotelArea->where("theme_idx", $theme["idx"])->findAll();
+
+        foreach ($area_list as $key => $item) {
+            $area_list[$key]['category_name'] = $this->codeModel->getCodeName($item['category_code']);
+            $area_list[$key]['product_list'] = $this->hotelThemeSub->where("ha_idx", $item['ha_idx'])
+                                                                    ->orderBy("step", "ASC")
+                                                                    ->orderBy("s_idx", "ASC")
+                                                                    ->findAll();
+        }
+
+        return view('travel/theme_view_area', [
+            "theme" => $theme,
+            "area_list" => $area_list
+        ]);
     }
 
     public function ThemeTravel() {
