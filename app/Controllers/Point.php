@@ -84,11 +84,18 @@ class Point extends BaseController
 
         $hotel_theme_list = $this->hotelTheme->get_list([], 50, 1, ['idx' => 'DESC'])['items'];
 
-        return view('travel/theme_view_area', [
+        $data = [
             "theme" => $theme,
             "area_list" => $area_list,
             "hotel_theme_list" => $hotel_theme_list
-        ]);
+        ];
+
+        if($theme["type"] == "area"){
+            return view('travel/theme_view_area', $data);
+        }else{
+            return view('travel/theme_view_month', $data);
+        }
+
     }
 
     public function ThemeTravel() {
