@@ -57,7 +57,15 @@ class Point extends BaseController
     }
 
     public function ThemeMain() {
-        return view('travel/theme_main');
+
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 12; 
+        $pg = updateSQ($_GET["pg"] ?? '1');
+
+        $hotel_theme_list = $this->hotelTheme->get_list([], $g_list_rows, $pg, ['idx' => 'DESC']);
+
+        return view('travel/theme_main', [
+            "hotel_theme_list" => $hotel_theme_list
+        ]);
     }
 
     public function ThemeView() {
