@@ -333,15 +333,16 @@ $links = "list";
                                     <th>내용</th>
                                     <td colspan="3">
                                         <textarea name="recommend_text[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"><?= viewSQ( $product_list[1]["recommend"]) ?></textarea>
+                                        <input type="hidden" name="details[]" value="">
                                     </td>
                                 </tr>
-
-                                <tr>
+                                
+                                <!-- <tr>
                                     <th>객실 별 사이즈</th>
                                     <td colspan="3">
                                         <textarea name="details[]" rows="10" cols="100" class="input_txt" style="width:100%; height:100px;"><?= viewSQ($product_list[1]["details"]) ?></textarea>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>대표이미지(600X440)</th>
