@@ -416,7 +416,7 @@ $links = "list";
                                 <td colspan="4">
                                     <input type="hidden" name="s_idx[]" class="s_idx" value="<?= $product_list[2]["s_idx"] ?>">
                                     <div style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                                        <p>위치</p>
+                                        <p>시설</p>
                                     </div>
                                 </td>
                                 <tr>
