@@ -6,42 +6,42 @@
         <div class="inner">
             <div class="theme-section">
                 <?php
-                    if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
-                        $img = "/data/product/" . $theme["ufile1"];
-                    } else {
-                        $img = "/data/product/noimg.png";
-                    }
+                if ($theme["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $theme["ufile1"])) {
+                    $img = "/data/product/" . $theme["ufile1"];
+                } else {
+                    $img = "/data/product/noimg.png";
+                }
                 ?>
                 <div class="theme_top theme_head01"
-                    style="background: url('<?=base_url($img)?>') 
+                    style="background: url('<?= base_url($img) ?>') 
                                 no-repeat;background-size: cover;background-position-y: center;">
                     <div class="theme_headline">
-                        <h3 class="f_white"><?=$theme["subtitle"]?></h3>
-                        <h1 class="f_white"><?=$theme["title"]?></h1>
+                        <h3 class="f_white"><?= $theme["subtitle"] ?></h3>
+                        <h1 class="f_white"><?= $theme["title"] ?></h1>
                     </div>
                     <div class="theme_tab01 theme_tab">
                         <ul>
                             <?php
-                                $i = 0;
-                                foreach($area_list as $frow){
+                            $i = 0;
+                            foreach ($area_list as $frow) {
                             ?>
                                 <li class="thememenu <?= ($i == 0) ? "on" : ""  ?>"><span><?= $frow["category_name"] ?></span></li>
                             <?php
-                                    $i++;
-                                }
+                                $i++;
+                            }
                             ?>
                         </ul>
                     </div>
                 </div>
                 <div class="stfcomment" style="text-align: center;">
-                    <?=viewSQ($theme["recommend_text"])?>
+                    <?= viewSQ($theme["recommend_text"]) ?>
                 </div>
                 <?php
-                    $count = 0;
-                    foreach($area_list as $frow){
+                $count = 0;
+                foreach ($area_list as $frow) {
                 ?>
-                <div class="theme_content theme_cont" style="display: <?= ($count == 0) ? "block" : "none" ?>;">
-                    <?php
+                    <div class="theme_content theme_cont" style="display: <?= ($count == 0) ? "block" : "none" ?>;">
+                        <?php
                         foreach ($frow["product_list"] as $prow) {
                             $step = (int)$prow['step'];
                             if ($prow["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $prow["ufile1"])) {
@@ -67,66 +67,66 @@
                             } else {
                                 $img_4 = "/data/product/noimg.png";
                             }
-                    ?>
-                        <div class="theme_nbox">
-                            <a href="/product-hotel/hotel-detail/<?=$prow['product_idx']?>" target="_blank">
-                                <p class="theme_no"><span>TOP<b><?=$prow['step']?></b></span></p>
-                                <?php if ($step % 2 != 0): ?>
-                                    <div class="box_top box_topleft">
-                                        <div class="imgbox radius_right"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
-                                        <div class="txtbox">
-                                            <div class="rating">
-                                                <span style="width:100%;"></span>
-                                            </div>
-                                            <h3 style="display: flex;align-items: center;"><?=$prow['theme_name']?></h3>
-                                            <p class="txt"><?=viewSQ($prow['recommend'])?></p>
-                                            <div class="btnbox">
-                                                <span class="detailbtn">상품 상세보기</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php else: ?>
-                                    <div class="box_top">
-                                        <div class="txtbox">
-                                            <div class="rating">
-                                                <span style="width:100%;"></span>
-                                            </div>
-                                            <h3 style="display: flex;align-items: center;"><?=$prow['theme_name']?></h3>
-                                            <p class="txt"><?=viewSQ($prow['recommend'])?></p>
-                                            <div class="btnbox">
-                                                <span class="detailbtn">상품 상세보기</span>
+                        ?>
+                            <div class="theme_nbox">
+                                <a href="/product-hotel/hotel-detail/<?= $prow['product_idx'] ?>" target="_blank">
+                                    <p class="theme_no"><span>TOP<b><?= $prow['step'] ?></b></span></p>
+                                    <?php if ($step % 2 != 0): ?>
+                                        <div class="box_top box_topleft">
+                                            <div class="imgbox radius_right"><img src="<?= $img_1 ?>" alt="<?= $prow['rfile4'] ?>" style="top: 0"></div>
+                                            <div class="txtbox">
+                                                <div class="rating">
+                                                    <span style="width:100%;"></span>
+                                                </div>
+                                                <h3 style="display: flex;align-items: center;"><?= $prow['theme_name'] ?></h3>
+                                                <p class="txt"><?= viewSQ($prow['recommend']) ?></p>
+                                                <div class="btnbox">
+                                                    <span class="detailbtn">상품 상세보기</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="imgbox radius_left"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
-                                    </div>
-                                <?php endif; ?>
-                                <!-- <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
-                                    <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "radius_left" ?>"><img src="<?=$img_1?>" alt="<?=$prow['rfile4']?>" style="top: 0"></div>
+                                    <?php else: ?>
+                                        <div class="box_top">
+                                            <div class="txtbox">
+                                                <div class="rating">
+                                                    <span style="width:100%;"></span>
+                                                </div>
+                                                <h3 style="display: flex;align-items: center;"><?= $prow['theme_name'] ?></h3>
+                                                <p class="txt"><?= viewSQ($prow['recommend']) ?></p>
+                                                <div class="btnbox">
+                                                    <span class="detailbtn">상품 상세보기</span>
+                                                </div>
+                                            </div>
+                                            <div class="imgbox radius_left"><img src="<?= $img_1 ?>" alt="<?= $prow['rfile4'] ?>" style="top: 0"></div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- <div class="box_top <?= ($step % 2 != 0) ? "box_topleft" : "" ?>">
+                                    <div class="imgbox <?= ($step % 2 != 0) ? "radius_right" : "radius_left" ?>"><img src="<?= $img_1 ?>" alt="<?= $prow['rfile4'] ?>" style="top: 0"></div>
                                     <div class="txtbox">
                                         <div class="rating">
                                             <span style="width:100%;"></span>
                                         </div>
-                                        <h3 style="display: flex;align-items: center;"><?=$prow['theme_name']?></h3>
-                                        <p class="txt"><?=viewSQ($prow['recommend'])?></p>
+                                        <h3 style="display: flex;align-items: center;"><?= $prow['theme_name'] ?></h3>
+                                        <p class="txt"><?= viewSQ($prow['recommend']) ?></p>
                                         <div class="btnbox">
                                             <span class="detailbtn">상품 상세보기</span>
                                         </div>
                                     </div>
                                 </div> -->
-                                <div class="imgbox_bot">
-                                    <span><img src="<?=$img_2?>" alt="<?=$prow['rfile2']?>"></span>
-                                    <span><img src="<?=$img_3?>" alt="<?=$prow['rfile3']?>"></span>
-                                    <span><img src="<?=$img_4?>" alt="<?=$prow['rfile4']?>"></span>
-                                </div>
-                            </a>
-                        </div>
-                    <?php
+                                    <div class="imgbox_bot">
+                                        <span><img src="<?= $img_2 ?>" alt="<?= $prow['rfile2'] ?>"></span>
+                                        <span><img src="<?= $img_3 ?>" alt="<?= $prow['rfile3'] ?>"></span>
+                                        <span><img src="<?= $img_4 ?>" alt="<?= $prow['rfile4'] ?>"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php
                         }
-                    ?>
-                </div>
+                        ?>
+                    </div>
                 <?php
                     $count++;
-                    }
+                }
                 ?>
                 <div class="hoteltheme_main" style="border-top:1px solid #f7f7f7;padding-top:35px">
                     <div class="head">
@@ -137,33 +137,33 @@
                         <div class="swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <?php
-                                    foreach($hotel_theme_list as $row) {
-                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
-                                            $img = "/data/product/" . $row["ufile1"];
-                                        } else {
-                                            $img = "/data/product/noimg.png";
-                                        }         
+                                foreach ($hotel_theme_list as $row) {
+                                    if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
+                                        $img = "/data/product/" . $row["ufile1"];
+                                    } else {
+                                        $img = "/data/product/noimg.png";
+                                    }
                                 ?>
                                     <div class="loc_banner swiper-slide">
                                         <a class="">
-                                            <img src="<?=$img?>" alt="<?=$row["rfile1"]?>">
+                                            <img src="<?= $img ?>" alt="<?= $row["rfile1"] ?>">
                                             <div class="card" onclick="location.href='/travel-tips/theme_view?theme_idx=<?= $row['idx'] ?>'">
                                                 <span>
                                                     <?php
-                                                        if($row["type"] == "month"){
-                                                            echo "이달의 호텔";
-                                                        }else{
-                                                            echo str_replace(',', 'ㆍ', $row["category_name"]);
-                                                        }
+                                                    if ($row["type"] == "month") {
+                                                        echo "이달의 호텔";
+                                                    } else {
+                                                        echo str_replace(',', 'ㆍ', $row["category_name"]);
+                                                    }
                                                     ?>
                                                 </span>
-                                                <strong><?=$row["title"]?></strong>
-                                                <p><?=$row["subtitle"]?></p>
+                                                <strong><?= $row["title"] ?></strong>
+                                                <p><?= $row["subtitle"] ?></p>
                                             </div>
                                         </a>
                                     </div>
                                 <?php
-                                    }
+                                }
                                 ?>
                             </div>
                             <div class="swiper-button-next"></div>
@@ -174,38 +174,34 @@
                 </div>
 
             </div>
-            <div class="cr_comment_list position">
-                <h4 class="f_orange f_16">태국 내 로컬 호텔 체인</h4>
-                <form name="frmCmt" id="frmCmt" action="/user/event/write_comment_ok.php" method="post">
-                    <input type="hidden" name="board_comment/board_id" id="board_id" value="250529">
-                    <input type="hidden" name="board_comment/listOrder" id="listOrder">
-                    <input type="hidden" name="board_comment/id" id="comment_id">
-                    <input type="hidden" name="code" id="code" value="notice">
-                    <input type="hidden" name="mode" id="mode" value="add">
-                    <input type="hidden" name="mfcode" value="MjU3fDExOTA=">
-                    <input type="hidden" name="page" value="">
-                    <div id="comment_wrap" class="mb30">
-                        <input type="hidden" name="prefix" value="">
-                        <div class="comment_input mt15">
-                            <textarea name="board_comment/contentText" class="focusing fl" id="cbody" placeholder="내용을 입력해 주세요" rows="5"></textarea>
-                            <input class="custom_btn2 b_orange_2 b_p3032 fl" onclick="commentsave();" type="button" value="입력">
+            <div class="view_relate">
+                <div class="comment_box">
+                    <div class="comment_box-top">
+                        <div class="comment_box-count">
+                            <span>댓글</span>
+                            <span id="comment_count">(0)</span>
                         </div>
+                        <?php
+                        if (isset(session()->get("member")['idx'])) {
+                        ?>
+                            <form name="com_form" id="com_form" method="post" onsubmit="return false">
+                                <input type="hidden" name="r_code" id="r_code" value="theme">
+                                <input type="hidden" name="r_idx" id="r_idx" value="<?= $theme['idx'] ?>">
+                                <div class="comment_box-input flex">
+                                    <textarea style="resize:none" name="comment" class="bs-input" id="contents"
+                                        placeholder="댓글을 입력해주세요."></textarea>
+                                    <button type="button" onclick="fn_comment(<?= session('member.idx') ?>);"
+                                        class="btn btn-point btn-lg comment_btn">등록</button>
+                                </div>
+                            </form>
+                        <?php
+                        }
+                        ?>
                     </div>
-                </form>
-                <table class="tbl_st18">
-                    <colgroup>
-                        <col style="width:10%">
-                        <col style="width:24px">
-                        <col>
-                        <col style="width:24px">
-                        <col style="width:10%">
-                    </colgroup>
-                    <thead></thead>
-                    <tbody>
-                    </tbody>
-                </table>
-                <!-- start : common/element/user/pagination.tpl -->
-                <div class="paginate"></div> <!-- end : common/element/user/pagination.tpl -->
+                    <div class="comment_box-details comment" id="comment_list">
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -251,5 +247,12 @@
         });
     });
 </script>
+
+<script>
+    const r_code = "theme";
+    const r_idx = '<?= $theme['idx'] ?>';
+</script>
+
+<script src="/js/comment.js"></script>
 
 <?php $this->endSection(); ?>

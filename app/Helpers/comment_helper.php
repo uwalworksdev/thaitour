@@ -73,7 +73,6 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         ) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
-            var_dump("dat");
         }
         $html .= '</div>';
         $html .= '</div>';
