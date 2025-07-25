@@ -186,35 +186,35 @@
             </div>
         </div>
         <div class="view_relate">
-                <div class="comment_box">
-                    <div class="comment_box-top">
-                        <div class="comment_box-count">
-                            <span>댓글</span>
-                            <span id="comment_count">(0)</span>
-                        </div>
-                        <?php
-                            if(isset(session()->get("member")['idx'])){
-                        ?>
-                            <form name="com_form" id="com_form" method="post" onsubmit="return false">
-                                <input type="hidden" name="r_code" id="r_code" value="<?= $infographic['code'] ?>">
-                                <input type="hidden" name="r_idx" id="r_idx" value="<?= $infographic['bbs_idx'] ?>">
-                                <input type="hidden" name="tbc_idx" id="tbc_idx" value="">
-                                <div class="comment_box-input flex">
-                                    <textarea style="resize:none" name="comment" class="bs-input" id="contents"
-                                        placeholder="댓글을 입력해주세요."></textarea>
-                                    <button type="button" onclick="fn_comment(<?=session('member.idx')?>);"
-                                        class="btn btn-point btn-lg comment_btn">등록</button>
-                                </div>
-                            </form>
-                        <?php
-                            }
-                        ?>
+            <div class="comment_box">
+                <div class="comment_box-top">
+                    <div class="comment_box-count">
+                        <span>댓글</span>
+                        <span id="comment_count">(0)</span>
                     </div>
-                    <div class="comment_box-details comment" id="comment_list">
+                    <?php
+                        if(isset(session()->get("member")['idx'])){
+                    ?>
+                        <form name="com_form" id="com_form" method="post" onsubmit="return false">
+                            <input type="hidden" name="r_code" id="r_code" value="<?= $infographic['code'] ?>">
+                            <input type="hidden" name="r_idx" id="r_idx" value="<?= $infographic['bbs_idx'] ?>">
+                            <input type="hidden" name="tbc_idx" id="tbc_idx" value="">
+                            <div class="comment_box-input flex">
+                                <textarea style="resize:none" name="comment" class="bs-input" id="contents"
+                                    placeholder="댓글을 입력해주세요."></textarea>
+                                <button type="button" onclick="fn_comment(<?=session('member.idx')?>);"
+                                    class="btn btn-point btn-lg comment_btn">등록</button>
+                            </div>
+                        </form>
+                    <?php
+                        }
+                    ?>
+                </div>
+                <div class="comment_box-details comment" id="comment_list">
 
-                    </div>
                 </div>
             </div>
+        </div>
     </div>
     <!--common/element/user/event/event_comment.tpl end -->
 </div>
