@@ -196,9 +196,8 @@
                         if(isset(session()->get("member")['idx'])){
                     ?>
                         <form name="com_form" id="com_form" method="post" onsubmit="return false">
-                            <input type="hidden" name="r_code" id="r_code" value="">
-                            <input type="hidden" name="r_idx" id="r_idx" value="">
-                            <input type="hidden" name="tbc_idx" id="tbc_idx" value="">
+                            <input type="hidden" name="r_code" id="r_code" value="theme">
+                            <input type="hidden" name="r_idx" id="r_idx" value="<?= $theme['idx'] ?>">
                             <div class="comment_box-input flex">
                                 <textarea style="resize:none" name="comment" class="bs-input" id="contents"
                                     placeholder="댓글을 입력해주세요."></textarea>
