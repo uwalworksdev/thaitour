@@ -67,9 +67,9 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         $html .= '</div>';
         $html .= '<div class="comment_user-operation">';
         if (
-            (!empty($member['idx']) && session('member.idx') == $comment['r_m_idx']) ||
-            (!empty($member['id']) && session('member.id') == "admin") ||
-            (!empty($member['level']) && session('member.level') <= 2)
+            (!empty(session('member.idx')) && session('member.idx') == $comment['r_m_idx']) ||
+            (!empty(session('member.id')) && session('member.id') == "admin") ||
+            (!empty(session('member.level')) && session('member.level') <= 2)
         ) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
@@ -125,9 +125,9 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
         $html .= '<span class="date">' . $comment['r_reg_date'] . '</span>';
 
         if (
-            (!empty($member['idx']) && session('member.idx') == $comment['r_m_idx']) ||
-            (!empty($member['id']) && session('member.id') == "admin") ||
-            (isset($member['level']) && session('member.level') <= 2)
+            (!empty(session('member.idx')) && session('member.idx') == $comment['r_m_idx']) ||
+            (!empty(session('member.id')) && session('member.id') == "admin") ||
+            (!empty(session('member.level')) && session('member.level') <= 2)
         )  {
             $html .= '<div class="setting">';
             $html .= '<button type="button" class="btn_delete" onclick="handleCmtDelete(this, ' . $comment['r_cmt_idx'] . ', '. $r_idx .')">삭제</button>';
