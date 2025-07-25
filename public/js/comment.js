@@ -13,7 +13,7 @@ function fn_comment(m_idx) {
             cache: false,
             success: function (ret) {
                 if (ret.trim() == "OK") {
-                    // fn_comment_list();
+                    fn_comment_list();
                     if(r_code == "qna" && m_idx == 1){
                         $("#qna_status").val("Y");
                     }
@@ -45,7 +45,7 @@ function fn_comment_list() {
 
 }
 
-// fn_comment_list();
+fn_comment_list();
 
 $('input[name="comment"]').keydown(function (event) {
     if (event.keyCode === 13) {
