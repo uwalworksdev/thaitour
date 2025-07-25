@@ -218,46 +218,6 @@
     <!--common/element/user/event/event_comment.tpl end -->
 </div>
 
-<!-- Initialize Swiper -->
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        loopFillGroupWithBlank: true,
-        spaceBetween: 20,
-        loop: true,
-        // autoplay: {
-        //     delay: 3000,
-        //     disableOnInteraction: false,
-        // },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: false,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-
-        breakpoints: {
-            850: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-            }
-        },
-    });
-    $(function() {
-        $('.theme_content').eq(0).show();
-        $('.theme_top li').on('click', function(e) {
-            e.preventDefault();
-            var idx = $(this).index();
-            $('.theme_content').hide();
-            $('.theme_content').eq(idx).show();
-            $('.theme_top li').removeClass('on');
-            $(this).addClass('on');
-        });
-    });
-</script>
 
 <script src="/js/comment.js"></script>
 
