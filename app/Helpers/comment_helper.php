@@ -69,7 +69,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
-            var_dump(session()->get("member")["idx"]);
+            var_dump(session('member.idx'));
         }
         $html .= '</div>';
         $html .= '</div>';
