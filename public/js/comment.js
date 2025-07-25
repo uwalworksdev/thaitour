@@ -45,7 +45,7 @@ function fn_comment_list() {
 
 }
 
-fn_comment_list();
+// fn_comment_list();
 
 $('input[name="comment"]').keydown(function (event) {
     if (event.keyCode === 13) {
