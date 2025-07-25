@@ -124,7 +124,11 @@ function displayCommentsTimeSale($list, $r_code, $r_idx, $parentCommentId = 0, $
         $html .= '<span class="user">' . $user_name . '</span>';
         $html .= '<span class="date">' . $comment['r_reg_date'] . '</span>';
 
-        if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
+        if (
+            (!empty($member['idx']) && session('member.idx') == $comment['r_m_idx']) ||
+            (!empty($member['id']) && session('member.id') == "admin") ||
+            (isset($member['level']) && session('member.level') <= 2)
+        )  {
             $html .= '<div class="setting">';
             $html .= '<button type="button" class="btn_delete" onclick="handleCmtDelete(this, ' . $comment['r_cmt_idx'] . ', '. $r_idx .')">삭제</button>';
             $html .= '<button type="button" class="btn_edit" onclick="handleCmtEdit(this, ' . $comment['r_cmt_idx'] . ')">수정</button>';
