@@ -66,7 +66,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         }
         $html .= '</div>';
         $html .= '<div class="comment_user-operation">';
-        if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
+        if (session('member.id') == "admin" || session('member.level') <= 2) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
         }
