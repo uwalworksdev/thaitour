@@ -257,7 +257,14 @@
             $(this).addClass('on');
         });
     });
+    
 </script>
 
+<script>
+    const r_code = "theme";
+    const r_idx = '<?= $theme['idx'] ?>';
+</script>
+
+<script src="/js/comment.js"></script>
 
 <?php $this->endSection(); ?>
