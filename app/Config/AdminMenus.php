@@ -128,6 +128,18 @@ class AdminMenus extends BaseConfig
             ]
         ],
         [
+            'name' => 'Landing Page',
+            'code' => 'L',
+            'submenus' => [
+                [
+                    'name' => '방콕 필수 코스 5가지',
+                    'code' => 'L1',
+                    'url' => ['/AdmMaster/_promotion/list_area'],
+                    'alias' => ['AdminHotelThemeController::list', 'AdminHotelThemeController::write_month', 'AdminHotelThemeController::write_area']
+                ],
+            ]
+        ],
+        [
             'name' => '추천상품/배너 관리',
             'code' => 'C',
             'submenus' => [
