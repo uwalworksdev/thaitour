@@ -122,9 +122,7 @@
                                     </td>
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" name="title"
-                                            value="<?= $title ?? "" ?>"
-                                            class="text" maxlength="100" />
+                                        <input type="color" id="color" name="color" value="#ff0000">
                                     </td>
                                 </tr>
 
