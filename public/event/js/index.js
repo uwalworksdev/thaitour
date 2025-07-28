@@ -1,11 +1,11 @@
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const cards = document.querySelectorAll('.card-animation');
 
     cards.forEach((card, index) => {
-        const startDirection = index % 2 === 0 ? -200 : 200;
-        const endDirection = index % 2 === 0 ? -100 : 100;
+        const startDirection = index % 2 === 0 ? -100 : 100;
+        const endDirection = 0;
 
         card.style.setProperty('--start-x', `${startDirection}px`);
         card.style.setProperty('--end-x', `${endDirection}px`);
@@ -34,12 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
         checkScroll(); // 페이지 로드시 초기 체크
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function () {
     // 시간대별 탭 전환
     const tabButtons = document.querySelectorAll('.bg-gray-50 .bg-white button');
     const tabContent = document.querySelector('.bg-gray-50 .p-6');
     tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             // 모든 버튼 스타일 초기화
             tabButtons.forEach(btn => {
                 btn.classList.remove('bg-primary', 'text-white');
@@ -192,7 +193,7 @@ const hotelData = {
     ],
     "tour-4": [ // 스파&마사지
         { title: "렛츠 릴렉스 그랑데 센터 포인트 호텔 플런칫", href: "https://thetourlab.com/product-spa/spa-details/2450", imgSrc: "/event/images/렛츠 릴렉스 그랑데 센터 포인트 호텔 플런칫.webp" },
-        { title: "오아시스 스파 방콕 31", href: "https://thetourlab.com/product-spa/spa-details/2451", imgSrc: "/event/images/오아시스 스파.jpeg"},
+        { title: "오아시스 스파 방콕 31", href: "https://thetourlab.com/product-spa/spa-details/2451", imgSrc: "/event/images/오아시스 스파.jpeg" },
         { title: "디바나 센츄라 스파", href: "https://thetourlab.com/product-spa/spa-details/2452", imgSrc: "/event/images/디바나 센츄라 스파.webp" },
         { title: "헬스랜드 스파 & 마사지 아속", href: "https://thetourlab.com/product-spa/spa-details/2453", imgSrc: "/event/images/헬스랜드 스파 & 마사지 아속.png" },
     ],
