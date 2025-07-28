@@ -65,9 +65,9 @@ class AdminPromotionController extends BaseController
             'pg' => $pg,
             'search_name' => $search_name,
             'search_category' => $search_category,
-            'row' => $row ?? '',
+            'row' => $row ?? [],
         ];
-        return view("admin/_promotion/write_month", $data);
+        return view("admin/_promotion/write_area", $data);
     }
 
     public function write_area_ok($idx = null)
