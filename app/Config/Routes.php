@@ -239,10 +239,10 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_promotion", static function ($routes) {
-        $routes->get("list_area", "Admin\AdminPromotionController::list");
+        $routes->get("list_area", "Admin\AdminPromotionController::list_area");
         $routes->get("write_area", "Admin\AdminPromotionController::write_area");
-        $routes->post("write_ok", "Admin\AdminPromotionController::write_ok", ['as' => "admin._promotion.write_ok"]);
-        $routes->post("write_ok/(:segment)", "Admin\AdminPromotionController::write_ok/$1", ['as' => "admin._promotion.write_ok.id"]);
+        $routes->post("write_area_ok", "Admin\AdminPromotionController::write_area_ok", ['as' => "admin._promotion.write_area_ok"]);
+        $routes->post("write_area_ok/(:segment)", "Admin\AdminPromotionController::write_area_ok/$1", ['as' => "admin._promotion.write_area_ok.id"]);
         $routes->post("del", "Admin\AdminPromotionController::del", ['as' => "admin._promotion.del"]);
         $routes->post("change", "Admin\AdminPromotionController::change", ['as' => "admin._promotion.change"]);
     });
