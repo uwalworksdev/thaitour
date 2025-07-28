@@ -53,7 +53,7 @@
                                         <option value="desc" <?php if ($search_category == "desc") {
                                                                             echo "selected";
                                                                         } ?>>
-                                            부제
+                                            내용
                                         </option>
                                     </select>
                                     <input type="text" id="search_txt" name="search_txt"
