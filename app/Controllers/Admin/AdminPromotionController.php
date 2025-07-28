@@ -22,7 +22,7 @@ class AdminPromotionController extends BaseController
 
     }
 
-    public function list()
+    public function list_area()
     {
         $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
         $pg                 = updateSQ($_GET["pg"] ?? '1');
