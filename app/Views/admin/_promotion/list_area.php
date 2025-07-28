@@ -88,12 +88,14 @@
                                 <col width="100px" />
                                 <col width="100px" />
                                 <col width="100px" />
+                                <col width="100px" />
                             </colgroup>
                             <thead>
                                 <tr>
                                     <th>번호</th>
                                     <th>제목</th>
                                     <th>썸네일이미지</th>
+                                    <th>순위</th>
                                     <th>등록일</th>
                                     <th>관리</th>
                                 </tr>
