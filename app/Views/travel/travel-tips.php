@@ -4,7 +4,7 @@
 <?php
     date_default_timezone_set('Asia/Seoul');
 ?>
-<div class="container travel-tips">
+<div class="container Community">
     <div class="sec_banner">
         <div class="inner">
             <div class="wrap_banner">
@@ -27,7 +27,7 @@
             <div class="only_web content_sec">
                 <div class="list_item">
                     <?php foreach($bannerMiddle as $i => $banner): 
-                        $url = !empty($banner['url']) ? $banner['url'] : "/travel-tips/theme_travel";
+                        $url = !empty($banner['url']) ? $banner['url'] : "/Community/theme_travel";
                     ?>
                         <a 
                             href="<?=$url?>" 
@@ -60,7 +60,7 @@
                 <div class="swiper swipper_sec_01">
                     <div class="swiper-wrapper list_item">
                         <?php foreach($bannerMiddle as $i => $banner): 
-                            $url = !empty($banner['url']) ? $banner['url'] : "/travel-tips/theme_travel";
+                            $url = !empty($banner['url']) ? $banner['url'] : "/Community/theme_travel";
                         ?>
                             <div class="swiper-slide">
                                 <a href="<?=$url?>" class="item item_1" style="background-image: url('/data/cate_banner/<?=$banner['ufile2']?>');">
@@ -78,14 +78,14 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">추천 여행지</h3>
-                <a href="/travel-tips/locguide_theme_list" class="more_link">더보기 +</a>
+                <a href="/Community/locguide_theme_list" class="more_link">더보기 +</a>
             </div>
             <div class="content_sec">
                 <div class="relative">
                     <div class="swiper tra_sec_02_swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
+                                <a class="tra_sec_02_swiper_item" href="/Community/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-1.png" alt="">
                                     </div>
@@ -96,7 +96,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
+                                <a class="tra_sec_02_swiper_item" href="/Community/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-2.png" alt="">
                                     </div>
@@ -107,7 +107,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
+                                <a class="tra_sec_02_swiper_item" href="/Community/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-3.png" alt="">
                                     </div>
@@ -118,7 +118,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a class="tra_sec_02_swiper_item" href="/travel-tips/view_detail">
+                                <a class="tra_sec_02_swiper_item" href="/Community/view_detail">
                                     <div class="_img_box">
                                         <img src="/images/sub/tra-sec-02-2.png" alt="">
                                     </div>
@@ -144,7 +144,7 @@
             <div class="sec_03">
                 <div class="header_sec">
                     <h3 class="title_sec">여행정보</h3>
-                    <a href="/travel-tips/travel-info" class="more_link">더보기 +</a>
+                    <a href="/Community/travel-info" class="more_link">더보기 +</a>
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_info">
@@ -159,7 +159,7 @@
                                     $img_tour = "/data/bbs/" . $tour["ufile1"];
                                 }
                         ?>
-                            <a href="/travel-tips/travel-info/view?code=<?=$tour["code"]?>&bbs_idx=<?=$tour["bbs_idx"]?>" class="item">
+                            <a href="/Community/travel-info/view?code=<?=$tour["code"]?>&bbs_idx=<?=$tour["bbs_idx"]?>" class="item">
                                 <img src="<?=$img_tour?>" alt="<?=$tour["rfile1"]?>">
                                 <div class="bx_text">
                                     <span class="head_text"><?=$tour["code_name"]?></span>
@@ -205,11 +205,11 @@
             <div class="sec_04">
                 <div class="header_sec">
                     <h3 class="title_sec">테마별 인기호텔</h3>
-                    <a href="/travel-tips/theme_main" class="more_link">더보기 +</a>
+                    <a href="/Community/theme_main" class="more_link">더보기 +</a>
                 </div>
                 <div class="content_sec">
                     <div class="list_travel_banner">
-                        <a href="/travel-tips/theme_view" class="item">
+                        <a href="/Community/theme_view" class="item">
                             <img class="only_web" src="/images/sub/tra-sec-04-1.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-1-m.png" alt="">
                             <div class="bx_text">
@@ -217,7 +217,7 @@
                                 <p class="title">골프 여행객에게 인기 좋은 호텔</p>
                             </div>
                         </a>
-                        <a href="/travel-tips/theme_view" class="item">
+                        <a href="/Community/theme_view" class="item">
                             <img class="only_web" src="/images/sub/tra-sec-04-2.png" alt="">
                             <img class="only_mo" src="/images/sub/tra-sec-04-2-m.png" alt="">
                             <div class="bx_text">
@@ -234,7 +234,7 @@
         <div class="inner">
             <div class="header_sec">
                 <h3 class="title_sec">인포그래픽</h3>
-                <a href="/travel-tips/infographic" class="more_link">더보기 +</a>
+                <a href="/Community/infographic" class="more_link">더보기 +</a>
             </div>
             <div class="only_web content_sec">
                 <div class="list_travel_banner">
@@ -244,7 +244,7 @@
                                 $img_infographic = "/data/bbs/" . $infographic["ufile1"];
                             }
                     ?>
-                        <a href="/travel-tips/infographic/view?code=<?=$infographic["code"]?>&bbs_idx=<?=$infographic["bbs_idx"]?>" class="item">
+                        <a href="/Community/infographic/view?code=<?=$infographic["code"]?>&bbs_idx=<?=$infographic["bbs_idx"]?>" class="item">
                             <img src="<?=$img_infographic?>" alt="<?=$infographic["rfile1"]?>">
                         </a>
                     <?php
