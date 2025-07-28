@@ -119,8 +119,8 @@
                                        
                                         <td class="tac">
                                             <?php
-                                            if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
-                                                $src = "/data/product/" . $row["ufile1"];
+                                            if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/promotion/" . $row["ufile1"])) {
+                                                $src = "/data/promotion/" . $row["ufile1"];
                                             } else {
                                                 $src = "/data/product/noimg.png";
                                             }
