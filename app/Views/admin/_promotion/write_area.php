@@ -115,15 +115,9 @@
 
                                 <tr>
                                     <th>제목</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="title"
                                             value="<?= $title ?? "" ?>"
-                                            class="text" maxlength="100" />
-                                    </td>
-                                    <th>부제</th>
-                                    <td>
-                                        <input type="text" name="subtitle"
-                                            value="<?= $subtitle ?? "" ?>"
                                             class="text" maxlength="100" />
                                     </td>
                                 </tr>
@@ -142,7 +136,7 @@
                                         <div class="img_add">
                                             <?php
                                             for ($i = 1; $i <= 1; $i++) :
-                                                $img = "/data/product/" . ${"ufile" . $i};
+                                                $img = "/data/promotion/" . ${"ufile" . $i};
                                             ?>
                                                 <div class="file_input_wrap">
                                                     <div class="file_input <?= empty(${"ufile" . $i}) ? "" : "applied" ?>">
