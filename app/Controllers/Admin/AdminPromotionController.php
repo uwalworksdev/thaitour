@@ -74,8 +74,9 @@ class AdminPromotionController extends BaseController
     {
         try {
             $files = $this->request->getFiles();
-            $data['title']              = updateSQ($_POST["title"] ?? '');
-            $data['desc']               = updateSQ($_POST["desc"] ?? '');
+            $data['title']  = updateSQ($_POST["title"] ?? '');
+            $data['desc']   = updateSQ($_POST["desc"] ?? '');
+            $data['color']  = updateSQ($_POST["color"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 
@@ -93,8 +94,6 @@ class AdminPromotionController extends BaseController
                     $file->move($publicPath, $data["ufile$i"]);
                 }
             }
-
-
 
             if ($idx) {
                 $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');

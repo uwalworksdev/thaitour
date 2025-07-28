@@ -122,7 +122,7 @@
                                     </td>
                                     <th>제목</th>
                                     <td>
-                                        <input type="color" id="color" name="color" value="#ff0000">
+                                        <input type="color" id="color" name="color" value="<?= $color ?? "" ?>">
                                     </td>
                                 </tr>
 
