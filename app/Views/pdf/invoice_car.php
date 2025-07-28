@@ -28,6 +28,13 @@
             margin-bottom: 0 !important;
         }
 
+        .hotel_invoice .table_wrapper {
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            color: #7d7d7d;
+            font-size : 14px
+        }
+
         .golf_invoice {
             padding: 20px 0 100px;
         }
@@ -262,7 +269,7 @@
 
         .golf_invoice .inquiry_qna .inquiry_info {
             margin: 20px 0 10px;
-            padding-left: 50px;
+            /* padding-left: 50px; */
         }
 
         .golf_invoice .inquiry_qna .inquiry_info p {
@@ -311,6 +318,29 @@
             color: #454545 !important;
         }
         
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -321,7 +351,21 @@
     <section class="golf_invoice hotel_invoice">
         <div class="inner">
             <div class="logo_voice">
-                <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                            <p class="addr" style="margin-top: 10px;">
+                                <?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                                Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                Tel: <?= $setting['custom_service_phone_thai2']?>
+                            </p>
+                        </td>
+                        <td style="text-align: right; vertical-align: middle;">
+                            <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="invoice_ttl">
             </div>
@@ -342,7 +386,7 @@
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
                             <td><?=$row->order_user_email?></td>
@@ -352,6 +396,13 @@
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red; line-height: 1.4;"><?=$row->notes_invoice?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl">
                     <colgroup>
                         <col width="150px">
@@ -386,7 +437,7 @@
                         </tr>
                         <tr>
                             <th>출발지/도착지</th>
-                            <td><?= $departure_name ?></span> / <span><?= $destination_name ?></td>
+                            <td><?= !empty($row->departure_name_) ? $row->departure_name_ : $departure_name ?></span> / <span><?= !empty($row->destination_name_) ? $row->destination_name_ : $destination_name ?></td>
                             <th>총인원</th>
                             <td>성인 : <?= $row->people_adult_cnt ?? 0 ?>명, 소아: <?= $row->people_kids_cnt ?? 0 ?>명</td>
                         </tr>
@@ -742,42 +793,53 @@
                 <div class="invoice_golf_total flex_e_c">
                     <p>총 견적서 금액 : <span><?=number_format($row->real_price_won)?>원</span> (<?=number_format($row->real_price_bath)?>바트)</p>
                 </div>
-                <table class="invoice_tbl spe">
+                <table class="invoice_tbl re_custom">
                     <colgroup>
-                        <col width="250px">
+                        <col width="150px">
                         <col width="*">
                     </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>유의사항</th>
-                            <td><?=viewSQ($notice_contents)?></td>
-                        </tr>
-                    </tbody>
+                        <tbody>
+                            <tr>
+                                <th style="width:150px">유의사항</th>
+                                <td><?=viewSQ($notice_contents)?></td>
+                            </tr>
+                        </tbody>
                 </table>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                     <tr>
-                        <td style="width: 20px; vertical-align: top;">
+                        <!-- <td style="width: 20px; vertical-align: top;">
                             <img style="width: 18px; opacity: 0.7;" src="<?= FCPATH . '/images/sub/forbidden-sign-icon.png' ?>" alt="">
-                        </td>
+                        </td> -->
                         <td style="padding-left: 5px;">
                             <?=viewSQ($cancle_contents)?>
                         </td>
                     </tr>
                 </table>
-                <div class="table_wrapper invoice_table">
-                    <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
+                <div class="table_wrapper invoice_table" style="page-break-inside: avoid;">
+                    <!-- <p style="margin : 20px 0 !important; line-height: 1.4;">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.
                     </p>
-                    <table class="invoice_tbl">
+                    <span style="box-sizing: border-box; color: inherit; font-size: 12px;">&nbsp;</span>
+
+                    <table class="invoice_tbl" style="margin-top: 30px !important;">
                         <colgroup>
                             <col width="20%">
                             <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td style="color : #454545; background-color : #f2f2f2" colspan="2">
-                                    <p style="display: flex; align-items: center;"><img style="opacity: 0.7;" src="/images/sub/warning-icon.png" alt=""><span style="margin-left: 10px; font-weight: 500;">결제방법</span></p>
+                                <td style="color : #454545; background-color : #f2f2f2 !important; padding: 0 !important;" colspan="2">
+                                    <table style="width: 100%; border: none; border-collapse: collapse; background-color: #f2f2f2;">
+                                        <tr>
+                                            <td style="width: 30px; vertical-align: middle; padding-top: 10px; border: none;">
+                                                <img src="/images/sub/warning-icon.png" alt="" style="opacity: 0.7; width: 20px;">
+                                            </td>
+                                            <td style="vertical-align: middle; padding-left: 5px; font-weight: 500; border: none;">
+                                                결제방법
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>
@@ -841,7 +903,8 @@
                             </tr>
                         </tbody>
 
-                    </table>
+                    </table> -->
+                    <?=viewSQ($policy_1["policy_contents"])?>
                 </div>
             </div>
             <div class="inquiry_qna">

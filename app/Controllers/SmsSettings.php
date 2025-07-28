@@ -16,7 +16,7 @@ class SmsSettings extends BaseController
     {
         $model = new SmsModel();
 
-        $g_list_rows = 15;
+        $g_list_rows = 100;
         $pg = $this->request->getGet('pg') ?? 1;
         $nFrom = ($pg - 1) * $g_list_rows;
         $total_count = $model->countAll();

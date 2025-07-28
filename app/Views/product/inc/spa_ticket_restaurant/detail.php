@@ -118,20 +118,36 @@
                 </div>
                 <div class="grid_2_2">
                     <?php
-                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                        $loop_limit = $is_mobile ? 1 : 3;
-                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                        // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        // $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 5; $j++) {
                         
                     ?>
                         <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
-                             class="grid_2_2_size imageDetailSup_"
+                             class="grid_2_2_size imageDetailSup_ responsive-img"
                              src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                              alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
-                    <div class="grid_2_2_sub" onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                    <div class="grid_2_2_sub only_web" onclick="img_pops('<?= $data_['product_idx'] ?>')"
                          style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
                              src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                             alt="<?= $data_['product_name'] ?>"
+                             onerror="this.src='/images/share/noimg.png'">
+                        <div class="button-show-detail-image">
+                            <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                 alt="image_detail_icon">
+                            <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                 alt="image_detail_icon_m">
+                            <span>사진 모두 보기</span>
+                            <span>(<?= $i3 ?>장)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid_2_2_sub only_mo" onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                         style="position: relative; cursor: pointer;">
+                        <img class="custom_button imageDetailSup_"
+                             src="/data/product/<?= $img_list[1]['ufile'] ?>"
                              alt="<?= $data_['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">
@@ -149,9 +165,6 @@
         <div class="_wrap-info-payment">
             <div class="_wrap-info">
 
-                <div class="calendar-con">
-                    <?php echo view("/product/reservation_inc.php"); ?>
-                </div>
                 <div class="sub-header-hotel-detail">
                     <div class="main nav-list">
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
@@ -163,12 +176,16 @@
                     </div>
                 </div>
 
+                <div class="calendar-con">
+                    <?php echo view("/product/reservation_inc.php"); ?>
+                </div>
+
                 <div class="section2" id="section2">
                     <h2 class="title-sec2" style="margin-bottom: 20px;">
                         상품선택
                     </h2>
-                    <div class="flex_b_c tours_time_sect">
-                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                    <div class="flex_b_c tours_time_sect" style="display: none;">
+                        <!-- <p class="open_time" style="display: none">운영시간: <?= $data_['time_line'] ?></p> -->
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
@@ -619,7 +636,7 @@
                 </div>
                 <div class="popup_place__body">
                     <div class="flex_b_c tours_time_sect">
-                        <p class="open_time">운영시간: <?= $data_['time_line'] ?></p>
+                        <!-- <p class="open_time">운영시간: <?= $data_['time_line'] ?></p> -->
                         <?php
                             if(empty($data_['use_time_line'])){
                         ?>
@@ -722,8 +739,6 @@
             <?php
                 }
             ?>
-
-            let time_line = $("#p_hours").val() + ":" + $("#p_minutes").val();
 
             $("#time_line").val(time_line);
             
@@ -994,9 +1009,6 @@
         let html = ``;
         for (let i = 0; i < data.length; i++) {
             let item_ = data[i];
-
-            
-            
             
             html += 
                 `<tr class="spa_option_detail" data-idx="${item_.idx}" data-count="${item_.count_options}" data-info_idx="${item_.info_idx}" data-op_name="${item_.spas_subject}" data-op_name_eng="${item_.spas_subject_eng}">
@@ -1370,46 +1382,55 @@
                     error: function(request, status, error) {
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     },
-                    success: function(data, status, request) {
+                    success: function(response, status, request) {
+                        let data = response.m_option;
 
-                        if(!tmp_info[current_info_idx]) {
-                            tmp_info[current_info_idx] = current_info_idx
-                            
+                        if (!tmp_info[current_info_idx] && data.length > 0) {
                             let option_html = ``;
-                            
-                            option_html += `
-                                <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
-                                    <option value="">옵션선택</option>`;
-                            for (let i = 0; i < data.length; i++) {
-                                option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                            let hasValidOption = false;                            
+
+                            if(Number(response.total_count_op) > 0) {
+
+                                option_html += `
+                                    <select name="moption" class="moption" id="moption_${current_info_idx}" onchange="sel_moption(this.value, ${current_info_idx});" data-info_idx="${current_info_idx}" style="margin-top: 20px">
+                                        <option value="">옵션선택</option>`;
+
+                                for (let i = 0; i < data.length; i++) {
+                                        hasValidOption = true;
+                                        if(Number(data[i].check_price) > 0){
+                                            option_html += `<option value="${data[i].code_idx}">${data[i].moption_name}</option>`;
+                                        }
+                                }
+
+                                option_html += `</select>`;
+
+                                if (!hasValidOption) return;
+
+                                tmp_info[current_info_idx] = current_info_idx;
+
+                                option_html += `
+                                    <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
+                                        <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">
+                                            <option value="">옵션 선택</option>
+                                        </select>
+                                    </div>
+                                    <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px"></ul>
+                                `;
+
                             }
-    
-                            option_html += `
-                                </select>
-                                <div class="opt_select disabled sel_option" id="sel_option_${current_info_idx}">
-                                    <select name="option" id="option" onchange="sel_option(this.value, ${current_info_idx});">";
-                                        <option value="">옵션 선택</option>
-                                    </select>
-                                </div>
-                                <ul class="select_peo option_list_" id="option_list_${current_info_idx}" style="margin-top: 20px">
-    
-                                </ul>
-                            `;
-                            
+
                             $("#list_people_option").find('li[data-info_idx="' + current_info_idx + '"]').last().append(option_html);
-    
+
                             for (let info_idx in arr_data_option) {
-    
                                 let dataList = arr_data_option[info_idx];
-    
                                 for (let i = 0; i < dataList.length; i++) {
                                     let data = dataList[i];
-                                                                        
                                     renderOpPrice(data, info_idx);
                                 }
                             }
                         }
                     }
+
                 });
             }
 

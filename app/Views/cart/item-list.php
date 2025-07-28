@@ -36,54 +36,74 @@
                             <label class="font-bold" for="group_golf_mo">골프 :<span class="text-red"> <?=$golf_cnt?></span>
                             </label>
                         </div>
-                        <table class="table-container only_web">
-                            <thead>
-                            <tr class="table-header">
-                                <th>
-                                    <span>상품</span>
-                                </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-							<?php $i = 0;?>
-							<?php foreach ($golf_result as $item): ?>
-						    <?php $i++;?>
-                            <tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
-                                        <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date">예약일시:<?=$item['order_date']?></div>
-                                            <p class="product-desc text-gray">
-											<?php 
-												if (!empty($item['options'])) {
-													$options = explode('||', $item['options']);
-													foreach ($options as $option) {
-														$option_r = explode(",", esc($option));
-														if($option_r[2] > 0) {
-														   echo $option_r[0] ." / ". $option_r[1] ." (EA) / ". number_format($option_r[2]) ." 원<br>";
-														}   
-													}
-												}
-											?>
-                                            </p>
+                        <div class="only_web">
+                            <table class="table-container">
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="30%">
+                                </colgroup>
+                                <thead>
+                                <tr class="table-header">
+                                    <th>
+                                        <span>상품</span>
+                                    </th>
+                                    <th>상품금액</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $i = 0;?>
+                                <?php foreach ($golf_result as $item): ?>
+                                <?php $i++;?>
+                                <tr>
+                                    <td class="custom-td-product-info">
+                                        <div class="product-info">
+                                            <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
+                                            <div class="product-details">
+                                                <div class="product-name"><a href="/product-golf/golf-detail/<?=$item['product_idx']?>"><?=$item['product_name']?></a></div>
+                                                <div class="product-date">예약일시:<?=$item['order_date']?></div>
+                                                <p class="product-desc text-gray">
+                                                <?php 
+                                                    if (!empty($item['options'])) {
+                                                        $options = explode('||', $item['options']);
+                                                        foreach ($options as $option) {
+                                                            $option_r = explode(",", esc($option));
+                                                            if($option_r[2] > 0) {
+                                                               echo $option_r[0] ." / ". $option_r[1] ." (EA) / ". number_format($option_r[2]) ." 원<br>";
+                                                            }   
+                                                        }
+                                                    }
+                                                ?>
+                                                </p>
+                                            </div>
+                                            <div class="form-group-2 cus-checkbox-td">
+                                                <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
+                                                <label for="group_1_item1"></label>
+                                            </div>
                                         </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item<?=$i?>" class="chkGolf checkbox" data-idx="<?=$item['order_idx']?>" data-value="<?=$item['order_no']?>">
-                                            <label for="group_1_item1"></label>
+                                    </td>
+                                    <td class="price">
+                                        <div class="price-container">
+                                            <div class="flex_b_c">
+                                                <span>상품</span>
+                                                <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                            </div>
+                                            <div class="flex_b_c">
+                                                <span>옵션</span>
+                                                <span><?=number_format($item['option_amt'])?> 원</span>
+                                            </div>
+                                            <div class="flex_b_c">
+                                                <span>총금액</span>
+                                                <span><?=number_format($item['order_price'])?> 원</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
-							</tr>
-		                    <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                    </td>
+                                    <!-- <td class="discount"></td>
+                                    <td class="total"></td> -->
+                                </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <div class="table-container custom-mo only_mo">
 						    <?php $i = 0;?>
@@ -100,7 +120,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-golf/golf-detail/<?=$item['product_idx']?>"><?=$item['product_name']?></a>  
                                         </h3>
                                         <div class="time-date-p">
                                             에약일시: <?=$item['order_date']?>
@@ -164,7 +184,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-tours/item_view/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             에약일시: <?=$item['order_date']?>
@@ -222,8 +242,8 @@
                                         </div>
                                     </div>
                                     <div class="text-right-p">
-                                        <h3 class="title-p">
-                                            <?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
+                                        <h3 class="title-p">       
+                                            <a href="/product-tours/item_view/<?=$item['product_idx']?>"><?=$item['product_name']?></a><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?><br>
@@ -306,7 +326,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -372,7 +392,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -437,7 +457,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -497,7 +517,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/vehicle-guide"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -562,7 +582,7 @@
                                     </div>
                                     <div class="text-right-p">
                                         <h3 class="title-p">
-                                            <?=$item['product_name']?>
+                                            <a href="/guide_view?g_idx=<?=$item['product_idx']?>"><?=$item['product_name']?></a>
                                         </h3>
                                         <div class="time-date-p">
                                             예약일시: <?=$item['order_date']?>
@@ -638,14 +658,18 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <!-- <th>금액</th> -->
+                                <th>상품금액</th>
+                                <!-- <th>결제예정금액</th> -->
                             </tr>
                             </thead>
                             <tbody>
@@ -657,7 +681,7 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name"><a href="/product-tours/item_view/<?=$item['product_idx']?>"><?=$item['product_name']?></a></div>
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -672,9 +696,22 @@
                                             <label for="group_2_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -695,14 +732,18 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <!-- <th>금액</th> -->
+                                <th>상품금액</th>
+                                <!-- <th>결제예정금액</th> -->
                             </tr>
                             </thead>
                             <tbody>
@@ -714,7 +755,10 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?><br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?></div>
+                                            <div class="product-name">
+                                                <a href="/product-hotel/hotel-detail/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
+                                                <br>[<?=$item['room']?> <?=$item['bed_type']?>] 객실수: <?=$item['order_room_cnt']?>
+                                            </div>
                                             <div class="product-date">
 													예약일시: <?=$item['order_date']?>
 													<?php
@@ -754,9 +798,22 @@
                                             <label for="group_4_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -778,14 +835,18 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                            
+                                <th>상품금액</th>
+                
                             </tr>
                             </thead>
                             <tbody>
@@ -797,7 +858,9 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name">
+                                                <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
+                                            </div>
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -818,9 +881,23 @@
                                             <label for="group_3_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($option_amt)?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($option_amt)?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -843,14 +920,16 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -862,7 +941,9 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name">
+                                                <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
+                                            </div>
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -881,9 +962,22 @@
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -906,14 +1000,16 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -925,7 +1021,9 @@
                                     <div class="product-info">
                                         <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name">
+                                                <a href="/product-spa/spa-details/<?=$item['product_idx']?>"><?=$item['product_name']?></a>
+                                            </div>
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -940,9 +1038,23 @@
                                             <label for="group_5_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -964,14 +1076,16 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -983,7 +1097,9 @@
                                     <div class="product-info">
                                         <img src="/data/cars/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name">
+                                                <a href="/vehicle-guide"><?=$item['product_name']?></a>
+                                            </div>
                                             <div class="product-date">에약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -1002,9 +1118,23 @@
                                             <label for="group_6_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                    
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>
@@ -1026,14 +1156,16 @@
                             </label>
                         </div>
                         <table class="table-container">
+                            <colgroup>
+                                <col width="*">
+                                <col width="30%">
+                            </colgroup>
                             <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
                                 </th>
-                                <th>금액</th>
-                                <th>옵션금액</th>
-                                <th>결제예정금액</th>
+                                <th>상품금액</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -1045,7 +1177,9 @@
                                     <div class="product-info">
                                         <img src="/uploads/guides/<?=$item['ufile1']?>" alt="cart_test_img_01">
                                         <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
+                                            <div class="product-name">
+                                                <a href="/guide_view?g_idx=<?=$item['product_idx']?>"><?=$item['product_name']?></a>
+                                            </div>
                                             <div class="product-date">예약일시: <?=$item['order_date']?></div>
                                             <p class="product-desc text-gray">
 											<?php 
@@ -1064,9 +1198,22 @@
                                             <label for="group_7_item<?=$i?>"></label>
                                         </div>
                                     </div>
-                                <td class="price"><?=number_format($item['order_price']-$item['option_amt'])?> 원</td>
-                                <td class="discount"><?=number_format($item['option_amt'])?> 원</td>
-                                <td class="total"><?=number_format($item['order_price'])?> 원</td>
+                                <td class="price">
+                                    <div class="price-container">
+                                        <div class="flex_b_c">
+                                            <span>상품</span>
+                                            <span><?=number_format($item['order_price']-$item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>옵션</span>
+                                            <span><?=number_format($item['option_amt'])?> 원</span>
+                                        </div>
+                                        <div class="flex_b_c">
+                                            <span>총금액</span>
+                                            <span><?=number_format($item['order_price'])?> 원</span>
+                                        </div>   
+                                    </div>
+                                </td>
 							</tr>
 		                    <?php endforeach; ?>
                             </tbody>

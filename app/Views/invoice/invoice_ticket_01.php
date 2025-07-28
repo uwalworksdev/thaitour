@@ -21,9 +21,9 @@ $setting = homeSetInfo();
                 <div class="logo_voice">
                     <h2 class="tit_top">견적서</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                     </p>
                 </div>
             </div>
@@ -31,9 +31,9 @@ $setting = homeSetInfo();
                 <div class="logo_voice">
                     <div class="logo_addr">
                         <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                         </p>
                     </div>
                     <div class="ttl_right">
@@ -60,7 +60,7 @@ $setting = homeSetInfo();
                             <td><?=substr($row->order_date,0,10)?>(<?=dateToYoil(substr($row->order_date,0,10))?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
                             <td><?=$row->order_user_email?></td>
@@ -70,6 +70,13 @@ $setting = homeSetInfo();
                 <div class="top_flex flex_b_c">
                     <h2 class="tit_top">예약내역</h2>
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red; line-height: 1.4;"><?=viewSQ($row->notes_invoice)?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
@@ -178,7 +185,7 @@ $setting = homeSetInfo();
                     <button type="button" class="btn_download" id="btn_pdf" data-order_idx="<?=$row->order_idx?>">PDF다운로드</button>
                     <button type="button" class="btn_download" id="btn_print">프린트</button>
                 </div>
-                <div class="table_wrapper invoice_table">
+                <div class="table_wrapper invoice_table" style="margin-top: 20px">
                     <!-- <p style="margin : 20px 0; line-height: 1.4;" class="">견적서는 발송 시점의 예약 가능 여부만 확인하여 보내드리는 것이며, 예약을 잡아두지는 않습니다.<br>
                         따라서 결제가 늦어질 경우 예약이 불가능할 수 있으며, 결제 후 예약이 불발될 경우 전액 환불이 가능합니다.<br>
                         견적서를 받으신 후에는 다른 사람이 먼저 예약하기 전에 서둘러 결제해 주시는 것이 윈윈트래블 이용립입니다.

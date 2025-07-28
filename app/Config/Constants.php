@@ -188,6 +188,11 @@ $banner["names"][6] = "status";
 $banner["inputTypes"][6] = "select";
 $banner["widths"][6] = "150px";
 
+$banner["titles"][7] = "현재창";
+$banner["names"][7] = "blank";
+$banner["inputTypes"][7] = "radio";
+// $banner["widths"][7] = "150px";
+
 $banner["titles"][4] = "PC 이미지(1200)";
 $banner["names"][4] = "ufile6";
 $banner["inputTypes"][4] = "files";
@@ -219,9 +224,9 @@ $event['titles'][4]        = "이미지첨부";
 $event['names'][4]         = "ufile6";
 $event['inputTypes'][4]    = "files";
 
-$event['titles'][5]        = "관련상품";
-$event['names'][5]         = "product_list";
-$event['inputTypes'][5]    = "product_pickup";
+// $event['titles'][5]        = "관련상품";
+// $event['names'][5]         = "product_list";
+// $event['inputTypes'][5]    = "product_pickup";
 
 //magazines
 $magazines['titles'][0]        = "조회";

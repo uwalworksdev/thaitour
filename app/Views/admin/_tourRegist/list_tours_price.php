@@ -65,7 +65,7 @@
 						
                         <?php if ($product_idx) { ?>
                             <li><a href="javascript:all_update()" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                             </li>
                         <?php } else { ?>
                             <!-- <li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -647,7 +647,7 @@
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>											
 								<?php if ($product_idx) { ?>
                                     <a href="javascript:all_update()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
 									<li>
 									</li>
 								<?php } else { ?>

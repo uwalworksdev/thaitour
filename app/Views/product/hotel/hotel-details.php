@@ -379,13 +379,17 @@
     .content-sub-hotel-detail .wrap_btn_book {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        /* align-items: center; */
         gap: 14px;
 
     }
 
     .content-sub-hotel-detail .wrap_btn_book .btn_re {
-        gap: 5px;
+        gap: 10px;
+    }
+
+    .content-sub-hotel-detail .wrap_btn_book .btn_re button {
+        width: 33.33%;
     }
 
     .content-sub-hotel-detail .wrap_btn_book .wrap_btn_book_note {
@@ -829,20 +833,37 @@
                 </div>
                 <div class="grid_2_2">
                     <?php 
-                        $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                        $loop_limit = $is_mobile ? 1 : 3;
-                        for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                        // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                        // $loop_limit = $is_mobile ? 1 : 3;
+                        for ($j = 2; $j < 5; $j++) {
                     ?>
                         <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                            class="grid_2_2_size imageDetailSup_"
+                            class="grid_2_2_size imageDetailSup_ responsive-img"
                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
-                    <div class="grid_2_2_sub"
+                    <div class="grid_2_2_sub only_web"
                         onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                         style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
                             src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                            alt="<?= $hotel['product_name'] ?>"
+                            onerror="this.src='/images/share/noimg.png'">
+                        <div class="button-show-detail-image">
+                            <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                alt="image_detail_icon">
+                            <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                alt="image_detail_icon_m">
+                            <span>사진 모두 보기</span>
+                            <span>(<?= $i3 ?>장)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid_2_2_sub only_mo"
+                        onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                        style="position: relative; cursor: pointer;">
+                        <img class="custom_button imageDetailSup_"
+                            src="/data/product/<?= $img_list[1]['ufile'] ?>"
                             alt="<?= $hotel['product_name'] ?>"
                             onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">
@@ -872,6 +893,7 @@
                     <button type="button" onclick="scrollToEl('section3')">
                         객실선택
                     </button>
+                    <a href="/mypage/consultation" class="btn_contact_write">문의하기</a>
                 </div>
             </div>
             <div class="btn-container cus-mb only_mo">
@@ -1709,21 +1731,12 @@
                                             <?php
                                                 }
                                             ?>
-                                            <div class="wrap_btn_book">
-                                                <div class="flex__c btn_re">
-                                                    <?php if($price_won > 0) { ?>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
-                                                    <?php } else { ?>
-                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">문의하기</button>
-                                                    <?php } ?>
-                                                    <!-- <button type="button" class="reservationx book-button book_btn_217">장바구니</button> -->
-                                                </div>
-                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
-                                            </div>
+                                            
                                         </div>
                                         <div class="wrap_bed_type">
                                             <div class="tit ">
                                                 <span>침대타입(요청사항)</span> 
+                                                
                                                 <div class="view_promotion view_promotion2">
                                                     <img src="/images/sub/question-icon.png" alt="" style="width : 14px ; opacity: 0.6;">
                                                     <?php 
@@ -1737,6 +1750,7 @@
                                                     ?>
                                                     
                                                 </div>
+                                                <p class="wrap_btn_book_note">세금서비스비용 포함</p>
                                             </div>
                                                                                                
                                             <div class="wrap_input_radio">
@@ -1801,6 +1815,18 @@
                                             </div>
                                             
                                         </div>
+                                        <div class="wrap_btn_book">
+                                                <div class="flex__c btn_re">
+                                                    <?php if($price_won > 0) { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="Y" class="reservation book-button book_btn_217">예약하기</button>
+                                                    <button type="button" class="reservationx book-button default-button">장바구니</button>
+                                                    <?php } else { ?>
+                                                    <button type="button" id="reserv_<?=$room['rooms_idx']?>" data-yes="N" class="reservationx book-button disabled">예약하기</button>
+                                                    <?php } ?>
+                                                    <button type="button" id="contact_<?=$room['rooms_idx']?>" class="reservationx contact-button default-button">문의하기</button>
+                                                </div>
+                                                
+                                            </div>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -2593,7 +2619,10 @@
 
     <div class="popup_wrap popup_view_room">
         <div class="pop_box">
-            <button type="button" class="close" onclick="closePopupRoom()"></button>
+            <div class="pop_head">
+                <p class="ttl only_mo">룸정보</p>
+                <button type="button" class="close" onclick="closePopupRoom()"></button>
+            </div>
             <div class="pop_body">
                 <div class="list_room_img">
                     <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
@@ -3114,6 +3143,20 @@
             $(".cart_info_pop").data("element", $(this));
             $(".cart_info_pop").show();
         })
+
+        $(document).on("click", ".contact-button", function() {
+            <?php
+                if (empty(session()->get("member")["id"])) {
+            ?>
+                // alert("주문하시려면 로그인해주세요!");
+                showOrHideLoginItem();
+                return false;
+            <?php
+                }
+            ?>
+
+            window.location.href = '/mypage/consultation';
+        });
 
         //$(".book-button").click(function() {
         $(document).on("click", ".book-button", function() {			

@@ -47,9 +47,10 @@
             <div class="menu_level_2 flex" style="display:none">
                 <a class="<?= $tab_4_1 ?>" href="../mypage/point">포인트 사용 내역</a>
                 <a class="<?= $tab_4_2 ?>" href="../mypage/coupon">쿠폰 사용 내역</a>
+                <a class="<?= $tab_4_3 ?>" href="../mypage/discount">쿠폰함</a>
             </div>
         </li>
-        <li class="<?= $tab_5 ?>">
+        <!-- <li class="<?= $tab_5 ?>">
             <div class="menu_level_1 has_submenu flex_b_c">
                 <a class="show">쿠폰함</a>
                 <img class="btn_togle up" src="/images/ico/gnb_menu_list_w.svg" alt="">
@@ -57,9 +58,9 @@
             <div class="menu_level_2 flex" style="display:none">
                 <a class="<?= $tab_5_1 ?>" href="../mypage/discount">사용 가능한 쿠폰</a>
                 <a class="<?= $tab_5_2 ?>" href="../mypage/discount_owned">지난 쿠폰</a>
-                <!-- <a class="<?= $tab_5_3 ?>" href="../mypage/discount_download">쿠폰 다운받기</a> -->
+                <a class="<?= $tab_5_3 ?>" href="../mypage/discount_download">쿠폰 다운받기</a>
             </div>
-        </li>
+        </li> -->
         <!-- <li class="<?= $tab_6 ?>">
             <div class="menu_level_1 flex_b_c"><a href="../mypage/contact">문의하기</a></div>
         </li>
@@ -80,7 +81,7 @@
                 <a class="<?= $tab_9_1 ?>" href="../mypage/info_option">내 정보수정</a>
                 <a class="<?= $tab_9_2 ?>" href="../mypage/user_mange">계좌정보</a>
                 <?php if($gubun !== "kakao" && $gubun !== 'google') {       
-                     echo '<a class="'. $tab_9_3 .'" href="../mypage/money">회원탈퇴</a>' ;
+                     echo '<a class="'. $tab_9_3 .'" href="../mypage/withdrawal">회원탈퇴</a>' ;
                 }else{
                     echo "";
                 }

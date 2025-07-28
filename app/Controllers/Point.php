@@ -8,6 +8,12 @@ class Point extends BaseController
     private $bannerModel;
     private $bbsModel;
     private $codeModel;
+    private $localGuide;
+    private $localGuideImg;
+    private $localProduct;
+    private $hotelArea;
+    private $hotelThemeSub;
+    private $hotelTheme;
 
     public function __construct()
     {
@@ -18,6 +24,12 @@ class Point extends BaseController
         $this->bannerModel = model("Banner_model");
         $this->bbsModel = model("Bbs");
         $this->codeModel = model("Code");
+        $this->localGuide       = model("LocalGuideModel");
+        $this->localGuideImg    = model("LocalGuideImg");
+        $this->localProduct     = model("LocalProductModel");
+        $this->hotelThemeSub    = model("HotelThemeSub");
+        $this->hotelArea        = model("HotelAreaTheme");
+        $this->hotelTheme       = model("HotelThemeModel");
     }
 
     public function index() {
@@ -29,36 +41,192 @@ class Point extends BaseController
         $infographics_list = $this->bbsModel->ListByCode("infographics")->limit(5)->get()->getResultArray();
         $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
+        $local_product_list = $this->localProduct->get_list();
+
+        $hotel_theme_list = $this->hotelTheme->get_list([], 2, 1, ['idx' => 'DESC'])['items'];
+        
         return view('travel/travel-tips',[
             'tour_list' => $tour_list,
             'infographics_list' => $infographics_list,
             'bannerTop' => $this->bannerModel->getBanners("5902", "top")[0],
             'bannerMiddle' => $this->bannerModel->getBanners("5902", "middle"),
             'magazines' => $magazines,
+            'local_product_list' => $local_product_list,
+            'hotel_theme_list' => $hotel_theme_list,
         ]);
     }
 
     public function ThemeMain() {
-        return view('travel/theme_main');
+
+        $g_list_rows = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 12; 
+        $pg = updateSQ($_GET["pg"] ?? '1');
+
+        $hotel_theme_list = $this->hotelTheme->get_list([], $g_list_rows, $pg, ['idx' => 'DESC']);
+
+        return view('travel/theme_main', [
+            "hotel_theme_list" => $hotel_theme_list
+        ]);
     }
 
     public function ThemeView() {
-        return view('travel/theme_view');
+        $theme_idx = updateSQ($_GET["theme_idx"]);
+        $theme = $this->hotelTheme->find($theme_idx);
+
+        $area_list = $this->hotelArea->where("theme_idx", $theme["idx"])->findAll();
+
+        foreach ($area_list as $key => $item) {
+            $area_list[$key]['category_name'] = $this->codeModel->getCodeName($item['category_code']);
+            $area_list[$key]['product_list'] = $this->hotelThemeSub->where("ha_idx", $item['ha_idx'])
+                                                                    ->orderBy("step", "ASC")
+                                                                    ->orderBy("s_idx", "ASC")
+                                                                    ->findAll();
+        }
+
+        $hotel_theme_list = $this->hotelTheme->get_list([], 50, 1, ['idx' => 'DESC'])['items'];
+
+        $data = [
+            "theme" => $theme,
+            "area_list" => $area_list,
+            "hotel_theme_list" => $hotel_theme_list
+        ];
+
+        if($theme["type"] == "area"){
+            return view('travel/theme_view_area', $data);
+        }else{
+            $product_list = $this->hotelThemeSub->where("theme_idx", $theme["idx"])->findAll();
+            $data["product_list"] = $product_list;
+            return view('travel/theme_view_month', $data);
+        }
+
     }
 
     public function ThemeTravel() {
-        return view('travel/theme_travel');
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $city_code          = updateSQ($_GET["city_code"] ?? '');
+        $category_code      = updateSQ($_GET["category_code"] ?? '');
+        $town_code          = updateSQ($_GET["town_code"] ?? '');
+        $subcategory_code   = updateSQ($_GET["subcategory_code"] ?? '');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+
+        $category_code_list = $this->codeModel->getListByParentCode("6004") ?? [];
+        $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
+
+        $code_active_name = $city_code_list[0]['code_name'];
+        $code_no_active = $city_code_list[0]['code_no'];
+
+        $town_code_list = $this->codeModel->getListByParentCode($code_no_active) ?? [];
+
+        if(!empty($city_code)) {
+            $code_no_active = $city_code;
+            $town_code_list = $this->codeModel->getListByParentCode($city_code) ?? [];
+            $code_active_name = $this->codeModel->getCodeName($city_code);
+        }
+
+        if(!empty($category_code)) {
+            $subcategory_code_list = $this->codeModel->getListByParentCode($category_code) ?? [];
+        }
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'city_code'         => $code_no_active,
+            'category_code'     => $category_code,
+            'town_code'         => $town_code,
+            'subcategory_code'  => $subcategory_code,
+        ];
+
+        $local_guide_list = $this->localGuide->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'category_code_list' => $category_code_list,
+            'city_code_list' => $city_code_list,
+            'town_code_list' => $town_code_list,
+            'subcategory_code_list' => $subcategory_code_list,
+            'local_guide_list' => $local_guide_list,
+            'code_active_name' => $code_active_name,
+        ];
+
+        $merged = array_merge($data, $where);
+
+        return view('travel/theme_travel', $merged);
     }
     public function locguideThemeList() {
-        return view('travel/locguide_theme_list');
+
+        $category_code = updateSQ($_GET["category_code"] ?? '');
+        $category_list = $this->codeModel->getListByParentCode("6004") ?? [];
+
+        $where = [
+            'category_code' => $category_code,
+        ];
+
+        $local_product_list = $this->localProduct->get_list($where);
+
+        return view('travel/locguide_theme_list', [
+            'category_list' => $category_list,
+            'local_product_list' => $local_product_list,
+            'category_code' => $category_code,
+        ]);
     }
 
     public function HotPlace() {
-        return view('travel/hot-place');
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $city_code          = updateSQ($_GET["city_code"] ?? '');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $lp_idx             = updateSQ($_GET["lp_idx"] ?? '');
+
+        $city_code_list = $this->codeModel->getListByParentCode("6003") ?? [];
+
+        $code_active_name = $city_code_list[0]['code_name'];
+        $code_no_active = $city_code_list[0]['code_no'];
+
+        if(!empty($city_code)) {
+            $code_no_active = $city_code;
+            $code_active_name = $this->codeModel->getCodeName($city_code);
+        }
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'city_code'         => $code_no_active,
+        ];
+
+        $local_prod = $this->localProduct->find($lp_idx);
+
+        $local_guide_list = $this->localGuide->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'city_code_list' => $city_code_list,
+            'local_guide_list' => $local_guide_list,
+            'code_active_name' => $code_active_name,
+            'lp_idx' => $lp_idx,
+            'local_prod' => $local_prod,
+        ];
+
+        $merged = array_merge($data, $where);
+
+        return view('travel/hot-place', $merged);
     }
 
     public function viewDetail() {
-        return view('travel/view_detail');
+        $lg_idx = updateSQ($this->request->getGet('lg_idx') ?? '');
+
+        $local_detail = $this->localGuide->find($lg_idx);
+
+        $local_prd = $this->localProduct->find($local_detail['lp_idx']);
+
+        $city_name = $this->codeModel->getCodeName($local_prd['city_code']);
+        $town_name = $this->codeModel->getCodeName($local_detail['town_code']);
+
+        $img_list  = $this->localGuideImg->getImg($lg_idx);
+
+        $data = [
+            "city_name" => $city_name,
+            "town_name" => $town_name,
+            "local_detail" => $local_detail,
+            "img_list" => $img_list
+        ];
+
+        return view('travel/view_detail', $data);
     }
     public function TravelInfo() {
         $category = $this->request->getGet('category');
@@ -130,6 +298,14 @@ class Point extends BaseController
 
     public function TravelView() {
         $bbs_idx = $_GET['bbs_idx'];
+
+        $travel_before = $this->bbsModel->View($bbs_idx);
+
+        $hit = $travel_before["hit"] ?? 0;
+        $hit = $hit + 1;
+        $this->bbsModel->InfoUpdate($bbs_idx, [
+            "hit" => $hit
+        ]);
 
         $travel = $this->bbsModel->View($bbs_idx);
 

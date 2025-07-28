@@ -68,21 +68,21 @@
 <script>
     function searchSpa() {
         
-        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
         let code = '';
-        <?php
-            if(!empty($main_product_code)) {
-        ?>
-            code = '<?= $main_product_code ?>';
-        <?php
-            }
-        ?>
+        code = '<?= $main_product_code ?? '' ?>';
+        // <?php
+        //     if(!empty($main_product_code)) {
+        // ?>
+        // <?php
+        //     }
+        // ?>
 
         goUrl(keyword, code);
     }
 
     function searchSpaCode(code) {
-        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        let keyword = $('#search_product_name').val() ?? '<?= esc($search_product_name ?? '') ?>';
         goUrl(keyword, code);
     }
 
@@ -100,17 +100,8 @@
         }
 
         ?>
-        <?php
-            if(!empty($main_product_code)) {
-        ?>
-            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&main_product_code=${code}#redirect-list`;
-        <?php
-            }else{
-        ?>
-            window.location.href = `<?= $url . $code_no ?>?keyword=${key}&product_code_2=${code}#redirect-list`;
-        <?php
-            }
-        ?>
+
+        window.location.href = `<?= $url ?>?keyword=${key}&main_product_code=${code}#redirect-list`;
     }
 </script>
 <section>
@@ -215,11 +206,11 @@
             <div class="ticket-tool">
                 <div class="ticket-tool-l">
                     <?php
-                        if(!empty($main_product_code)){
-                            echo $title_page;
-                        }else {
-                            echo $title_page_main;
-                        }
+                        echo $title_page;
+                        // if(!empty($main_product_code)){
+                        // }else {
+                        //     echo $title_page_main;
+                        // }
                     ?>
                 </div>
                 <div class="ticket-tool-r">
@@ -238,19 +229,13 @@
             </style>
             <div class="tiket-tool-b">
                 <div class="btn-gr-ticket" id="btn-gr-ticket">
-                    <?php
-                        if(empty($main_product_code)){
-                    ?>
-                        
-                    <?php
-                        }
-                    ?>
+
                     <button onclick="searchSpaCode('')"
-                            class="<?= !$product_code_2 && !$main_product_code ? 'on' : '' ?>">전체
+                            class="<?= !$main_product_code ? 'on' : '' ?>">전체
                     </button>
                     <?php foreach ($codes as $code) { ?>
                         <button style="text-wrap: nowrap;"
-                                class="<?= empty($main_product_code) ? ($product_code_2 === $code['code_no'] ? 'on' : '') : ($main_product_code === $code['code_no'] ? 'on' : '') ?>"
+                                class="<?= $main_product_code === $code['code_no'] ? 'on' : '' ?>"
                                 onclick="searchSpaCode('<?= $code['code_no'] ?>');"><?= $code['code_name'] ?>
                             (<?= $code['count'] ?>)
                         </button>
@@ -263,7 +248,7 @@
 
             <style>
                 .list-ticket-grid {
-                    height: 940px;
+                    height: 880px;
                     overflow: hidden;
                     margin-bottom: 50px;
                 }

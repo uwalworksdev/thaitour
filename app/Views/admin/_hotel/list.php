@@ -335,7 +335,7 @@
                                             <a href="write_price?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>"
                                                class=""
                                                style="color: #fff;background: #4F728A;border: 1px solid #2b3f4c;font-size: 12px; padding: 5px 10px; width: 50px; line-height: initial;">
-                                                <span class="txt">수정</span>
+                                                <span class="txt">요금</span>
                                             </a>
                                         </div>
                                     </td>

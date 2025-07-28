@@ -118,7 +118,7 @@ $searchTxt = $SearchText->List()->findAll();
                     <?php foreach ($bannerMain as $item): ?>
                         <div class="swiper-slide img_box img_box_1 only_web">
                             <img class="only_web" src="/data/bbs/<?= $item['ufile6'] ?>"
-                                alt="<?= $item['rfile5'] ?>" style="cursor: pointer;" onclick="window.open('<?= !empty($item['url']) ? $item['url'] : '#' ?>', '_blank');" onerror="this.src='/images/main/image.svg'">
+                                alt="<?= $item['rfile5'] ?>" style="cursor: pointer;" onclick="window.open('<?= !empty($item['url']) ? $item['url'] : '#' ?>', '<?= $item['blank'] === 'Y' ? '_self' : '_blank' ?>');" onerror="this.src='/images/main/image.svg'">
                             <!--                        <div class="img_box_ttl_main">-->
                             <!--                            --><?php //= viewSQ($item['subject']) 
                                                                 ?>
@@ -134,7 +134,8 @@ $searchTxt = $SearchText->List()->findAll();
                 <div class="swiper-wrapper">
                     <?php foreach ($bannerMain as $item): ?>
                         <div class="swiper-slide img_box img_box_1 ">
-                            <img class="" src="/data/bbs/<?= $item['ufile5'] ?>"
+                            <img class="" src="/data/bbs/<?= $item['ufile5'] ?>" style="cursor: pointer;"
+                                onclick="window.open('<?= !empty($item['url']) ? $item['url'] : '#' ?>', '<?= $item['blank'] === 'Y' ? '_self' : '_blank' ?>');"
                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                             <!--                        <div class="img_box_ttl_main">-->
                             <!--                            --><?php //= viewSQ($item['subject']) 
@@ -579,7 +580,7 @@ $searchTxt = $SearchText->List()->findAll();
                 </div>
             </div>
             <div class="flex">
-                <a href="/product-hotel/1303"
+                <a href="/product-hotel"
                     class="btn_more_hot_product btn_more_hot_product_1  flex justify-center items-center">
                     더보기 +
                 </a>
@@ -815,7 +816,7 @@ $searchTxt = $SearchText->List()->findAll();
                 </div>
             </div>
             <div class="flex">
-                <a href="/product-golf/1302/1"
+                <a href="/product-golf"
                     class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">
                     더보기 +
                 </a>
@@ -852,7 +853,7 @@ $searchTxt = $SearchText->List()->findAll();
                 <div class="main_section9__col">
                     <div class="main_section9__head">
                         <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함</div>
-                        <a href="/product-hotel/1303" class="btn_more">더보기 +</a>
+                        <a href="/product-hotel" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
                         <img class="only_web" src="<?= $banner_1 ?>" alt="">
@@ -921,7 +922,7 @@ $searchTxt = $SearchText->List()->findAll();
                 <div class="main_section9__col">
                     <div class="main_section9__head">
                         <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함</div>
-                        <a href="/product-golf/1302/1" class="btn_more">더보기 +</a>
+                        <a href="/product-golf" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
                         <img class="only_web" src="<?= $banner_2 ?>" alt="">

@@ -100,7 +100,7 @@
                                 </td>
                             </tr>
 
-                            <?php if ($parent_code_no === '53') : ?>
+                            <?php if ($parent_code_no === '53' || $parent_code_no === '49' || $parent_code_no === '48') : ?>
                                 <tr>
                                     <th>영문</th>
                                     <td>

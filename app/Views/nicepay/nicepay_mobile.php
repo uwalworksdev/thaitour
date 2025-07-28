@@ -70,7 +70,7 @@ function getTomorrow(){
           <table>
             <colgroup><col width="30%"/><col width="*"/></colgroup>
               <tr>
-                <th><span>결제 수단</span></th>
+                <th><span>결제 수단(M)</span></th>
                 <td><input type="text" name="PayMethod" id="PayMethod" value="">
                   <!--select name="PayMethod">
                     <option value="CARD">신용카드</option>

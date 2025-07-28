@@ -23,9 +23,9 @@
                 <div class="logo_voice">
                     <h2 class="tit_top">견적서</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                     </p>
                 </div>
             </div>
@@ -33,9 +33,9 @@
                 <div class="logo_voice">
                     <div class="logo_addr">
                         <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                         </p>
                     </div>
                     <div class="ttl_right">
@@ -72,7 +72,7 @@
                             <td><?= esc(substr($row['order_date'],0,10)) ?>(<?=$weekday?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td><?=$row["order_user_name"]?></td>
                             <th>이메일</th>
                             <td><?=$row["order_user_email"]?></td>
@@ -83,6 +83,13 @@
                     <h2 class="tit_top">예약내역</h2>
                     <span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span>
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red; line-height: 1.4;"><?=viewSQ($row->notes_invoice)?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
@@ -156,7 +163,19 @@
                         </tr>
 						<?php foreach ($golf_option as $data) { ?>
                         <tr>
-                            <th><?=$data['option_name']?></th>
+                            <th>
+                                <?php
+                                    if($data['option_type'] == "vehicle"){
+                                        if(!empty($data['option_name_new'])){
+                                            echo $data['option_name_new'];
+                                        }else {
+                                            echo $data['option_name'];
+                                        }
+                                    }else {
+                                        echo $data['option_name'];
+                                    }
+                                ?>
+                            </th>
                             <td><?=number_format($data['option_price'])?></td>
                             <td><?=$data['option_cnt']?></td>
                             <th><?=number_format($data['option_tot'])?></th>

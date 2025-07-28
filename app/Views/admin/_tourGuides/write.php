@@ -45,7 +45,7 @@ if ($product_idx && $product) {
                             </li>
                             <?php if ($product_idx) { ?>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                 </li>
                                 <li>
                                     <a href="javascript:del_it(`<?= $product_idx ?>`)"
@@ -215,9 +215,15 @@ if ($product_idx && $product) {
 
                                 <tr>
                                     <th>상품명</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
+                                               class="text"/>
+                                    </td>
+                                    <th>영문텔명</th>
+                                    <td>
+                                        <input type="text" name="product_name_en"
+                                               value="<?= $product_name_en ?? "" ?>"
                                                class="text"/>
                                     </td>
                                 </tr>
@@ -685,7 +691,7 @@ if ($product_idx && $product) {
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                     <a href="javascript:del_it(`<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>

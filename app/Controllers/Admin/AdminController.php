@@ -77,9 +77,9 @@ class AdminController extends BaseController
             $data['user_level'] = "2";
         }
 
-        if (!empty($data['user_pw'])) {
-            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
-        }
+        // if (!empty($data['user_pw'])) {
+        //     $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
+        // }
 
         $data['user_name'] = encryptField($data['user_name'], "encode");
         $data['user_email'] = encryptField($data['user_email'], "encode");
@@ -276,6 +276,36 @@ class AdminController extends BaseController
         $m_idx = $this->request->getPost('m_idx');
         $this->memberModel->delete($m_idx);
         return $this->response->setBody("OK");
+    }
+
+    public function passChangeUser() {
+        $user_pw = $this->request->getPost('user_pw');
+        $user_id = $this->request->getPost('user_id');
+
+        if(!empty($user_pw) && !empty($user_id)) {
+
+            $result = $this->memberModel->where('user_id', $user_id)->set([
+                'user_pw' => password_hash($user_pw, PASSWORD_BCRYPT)
+            ])->update();
+
+            if($result) {
+                return json_encode([
+                    "result" => true,
+                    "msg" => "관리자 비번이 수정 되었습니다."
+                ]);
+            }else{
+                return json_encode([
+                    "result" => false,
+                    "msg" => "시스템 오류."
+                ]);
+            }
+
+        }else{
+            return json_encode([
+                "result" => false,
+                "msg" => "비번을 입력하세요"
+            ]);
+        }
     }
 
 }

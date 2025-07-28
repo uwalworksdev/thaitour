@@ -958,8 +958,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
   .bs-select,
   .bs-input {
-    height: 3.1578rem;
-    font-size: 1.0526rem;
+    /* height: 3.1578rem; */
+    height: 9rem;
+    font-size:2.6rem;
     border-radius: 0.2631rem;
   }
 
@@ -1133,7 +1134,7 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .input-wrap>label {
-    font-size: 1.1578rem;
+    font-size: 2.78rem;
     margin-bottom: 1.3157rem;
   }
 
@@ -1141,6 +1142,15 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-bottom: 1.263rem;
   }
 
+  .input-row {
+    font-size: 2.6rem;
+  }
+
+  .input-row select , .input-row input{
+    font-size: 2.6rem;
+    height: 9rem;
+  
+  }
   .file_wrap {
     flex-wrap: wrap;
   }
@@ -1163,7 +1173,7 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .email_row .bs-input {
-    width: calc(50% - 0.7368rem);
+    width: calc(50% - 1.7368rem);
   }
 
   .email_row .bs-select {

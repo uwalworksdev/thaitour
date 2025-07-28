@@ -21,11 +21,11 @@ $setting = homeSetInfo();
             </div> -->
             <div class="only_mo">
                 <div class="logo_voice">
-                    <h2 class="tit_top">견적서</h2>
+                    <h2 class="tit_top">바우처</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                     </p>
                 </div>
             </div>
@@ -33,13 +33,13 @@ $setting = homeSetInfo();
                 <div class="logo_voice">
                     <div class="logo_addr">
                         <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                         </p>
                     </div>
                     <div class="ttl_right">
-                        <h2 class="tit_top">견적서</h2>
+                        <h2 class="tit_top">바우처</h2>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ $setting = homeSetInfo();
                             </tr>
                             <tr>
                                 <th>Tel</th>
-                                <td><?=$result->company_contact?></td>
+                                <td><?=$result->phone?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -147,7 +147,7 @@ $setting = homeSetInfo();
                                         <?php
                                             if($type == "admin"){
                                         ?>    
-                                            <input type="text" style="width: 300px;" name="tour_type_en" value="<?=$order_option?>">    
+                                            <input type="text" style="width: 300px;" name="order_option_new" value="<?=$result->order_option_new?>">    
                                         <?php
                                             }
                                         ?>

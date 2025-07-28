@@ -134,7 +134,7 @@ try {
 <div class="main_sale_banner flex__c">
     <?php foreach ($banner_ as $row) { ?>
         <div class="time_sale_banner flex__c">
-           <a href="<?=$row['url']?>"><img src="/data/bbs/<?=$row['ufile5']?>" alt="main_sale_img"></a>
+           <a target="<?= $row['blank'] === 'Y' ? '_self' : '_blank' ?>" href="<?=$row['url']?>"><img src="/data/bbs/<?=$row['ufile5']?>" alt="main_sale_img"></a>
         </div>
 	<?php } ?>	
 </div>

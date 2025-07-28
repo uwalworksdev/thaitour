@@ -27,20 +27,21 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     , COALESCE(s.dc_type, m.dc_type) AS dc_type
                     , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
                     , COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
+                    , m.exp_start_day, m.exp_end_day
                     from tbl_coupon c
                     left outer join tbl_coupon_setting s
                     on c.coupon_type = s.idx
                     left outer join tbl_coupon_mst m
 					on c.coupon_mst_idx = m.idx
-                where 1=1 and c.status != 'C' and c.get_issued_yn = 'Y' and c.user_id = '{$_SESSION["member"]["id"]}' ";
+                where 1=1 and c.status != 'C' and (c.get_issued_yn = 'Y' OR m.exp_end_day < curdate() OR m.exp_start_day > curdate()) and c.user_id = '{$_SESSION["member"]["id"]}' ";
 $nTotalCount = $connect->query($total_sql)->getNumRows();
-
+ 
 ?>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_3" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
@@ -49,6 +50,10 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                     <a class="slide_tab_btn active" href="../mypage/discount_owned">지난 쿠폰</a>
                     <!-- <a class="slide_tab_btn" href="../mypage/discount_download">쿠폰 다운로드</a> -->
                     <div></div>
+                    <div class="search_coupon_mypage">
+                        <input type="text" class="keyword" id="c_keyword" placeholder="쿠폰인증 글씨를 넣어주세요">
+                        <button type="button" class="btn_send_coupon">쿠폰입력</button>
+                    </div>
                 </div>
                 <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                 <table class="details_table" style="display: table;">
@@ -61,7 +66,7 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                     <tr>
                         <th>발행일</th>
                         <th>쿠폰명</th>
-                        <th>사용일자</th>
+                        <th>사용기간</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -85,7 +90,7 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                         ?>
                         <tr>
                             <td class="date_s">
-                                <span><?= (date("Y.m.d", strtotime($row["regdate"]))) ?></span>
+                                <span><?= $row["regdate"] ?></span>
                             </td>
                             <td class="des">
                                     <span>
@@ -99,7 +104,11 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                                     </span>
                             </td>
                             <td class="date_e">
-                                <span><?= (date("Y.m.d", strtotime($row["enddate"]))) ?></span>
+                                <span>
+                                    <?= date("Y.m.d", strtotime($row["exp_start_day"])) ?>
+                                    ~
+                                    <?= date("Y.m.d", strtotime($row["exp_end_day"])) ?>
+                                </span>
                             </td>
                         </tr>
                     <?php } ?>

@@ -226,16 +226,16 @@
                                         <tr>
                                             <th>미팅장소</th>
                                             <td>
-                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
-                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" name="start_place" id="start_place" value="<?=$product['contents_field_more']?>" readonly>
+                                                <!-- <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span> -->
                                             </td>
                                         </tr>
                                     <?php endif?>
                                     
-                                    <tr>
+                                    <!-- <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>카카오톡 아이디</th>
                                         <td>
@@ -267,10 +267,10 @@
                                     <span>일정: </span>
                                     <span><?= $order_date ?></span>
                                 </div>
-                                <div class="item-info" style="gap: 10px;">
+                                <!-- <div class="item-info" style="gap: 10px;">
                                     <span>예약시간: </span>
                                     <span><?= $time_line ?></span>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-right2 spa-detail">
@@ -308,17 +308,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
-                                    <p class="schedule_ttl" style="margin-top: 0;">옵션</p>    
-                                    <?php foreach ($tour_option as $index => $option): ?>
-                                        <div class="schedule_option" id="schedule_<?= $index ?>" style="width: 100%;">
-                                            <div class="wrap-text">
-                                                <p><?= $option['option_name'] ?> x <?= $option['qty'] ?></p>
+                                <?php
+                                    if(count($tour_option) > 0){
+                                ?>
+                                    <div class="schedule last" id="option_list_<?=$op_info_idx[$key]?>">
+                                        <p class="schedule_ttl" style="margin-top: 0;">옵션</p>    
+                                        <?php foreach ($tour_option as $index => $option): ?>
+                                            <div class="schedule_option" id="schedule_<?= $index ?>" style="width: 100%;">
+                                                <div class="wrap-text">
+                                                    <p><?= $option['option_name'] ?> x <?= $option['qty'] ?></p>
+                                                </div>
+                                                <span><?= number_format($option_price[$index]) ?> 원</span>                            
                                             </div>
-                                            <span><?= number_format($option_price[$index]) ?> 원</span>                            
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php
+                                    }
+                                ?>
                             </div>
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
@@ -331,7 +337,7 @@
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><span class="textTotalPrice lastPrice"><?= number_format($total_price_product) ?></span> 원</span>
+                                <span><span class="textTotalPrice lastPrice"><?= number_format($inital_price) ?></span> 원</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -727,13 +733,6 @@
             if ($("#start_place").val() === "") {
                 alert("미팅장소 입력해주세요!");
                 $("#start_place").focus();
-                $btn.prop("disabled", false);
-                return false;
-            }
-
-            if ($("#end_place").val() === "") {
-                alert("종료 후 내리실 곳 입력해주세요!");
-                $("#end_place").focus();
                 $btn.prop("disabled", false);
                 return false;
             }

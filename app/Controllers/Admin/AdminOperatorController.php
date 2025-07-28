@@ -10,6 +10,7 @@ class AdminOperatorController extends BaseController
 {
 
     protected $connect;
+    protected $couponMst;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class AdminOperatorController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
+        $this->couponMst = model("CouponMst");
     }
 
     public function coupon_setting()
@@ -189,11 +191,13 @@ class AdminOperatorController extends BaseController
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
 
-        $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types,
-                    COALESCE(s.coupon_name, m.coupon_name) AS coupon_name
+        $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, c.keyword
+                    , m.exp_start_day, m.exp_end_day
+                    , COALESCE(s.coupon_name, m.coupon_name) AS coupon_name
                     , COALESCE(s.dc_type, m.dc_type) AS dc_type
                     , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
                     , COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
+                    
 					from tbl_coupon c
 					left outer join tbl_coupon_setting s
 					  on c.coupon_type = s.idx
@@ -231,9 +235,11 @@ class AdminOperatorController extends BaseController
         $idx = updateSQ($_GET["idx"] ?? '');
         $ca_idx = updateSQ($_GET["ca_idx"] ?? '');
 
-        $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
-        $result_c = $this->connect->query($sql_c);
-        $result_c = $result_c->getResultArray();
+        // $sql_c = " select *	from tbl_coupon_setting where state = 'Y' order by idx desc ";
+        // $result_c = $this->connect->query($sql_c);
+        // $result_c = $result_c->getResultArray();
+
+        $result_c = $this->couponMst->getCouponList('', '', 1, 1000000, true, true)["coupon_list"];
 
         $data = [
             'idx' => $idx,
@@ -247,15 +253,15 @@ class AdminOperatorController extends BaseController
     public function coupon_write_ok()
     {
         try {
-            $coupon_type = updateSQ($_POST["coupon_type"]);
+            $coupon_mst_idx = updateSQ($_POST["coupon_mst_idx"]);
             $coupon_cnt = updateSQ($_POST["coupon_cnt"]);
-
+            $keyword = updateSQ($_POST["keyword"]);
             $ok_cnt = 0;
             $er_cnt = 0;
 
             for ($i = 1; $i <= $coupon_cnt; $i++) {
 
-                $new_coupon = $this->createCoupon($coupon_type);
+                $new_coupon = $this->createCoupon($coupon_mst_idx, $keyword);
 
                 if ($new_coupon === "Error") {
                     $er_cnt++;
@@ -292,9 +298,11 @@ class AdminOperatorController extends BaseController
         
             }else{
                 // 쿠폰 내역 조회
-                $fresult = $this->connect->table('tbl_coupon')
-                         ->where('coupon_num', $coupon_num)
-                         ->get();
+                $fresult = $this->connect->table('tbl_coupon c')
+                                ->select('c.*, m.exp_start_day, m.exp_end_day')
+                                ->join('tbl_coupon_mst m', 'c.coupon_mst_idx = m.idx', 'left')
+                                ->where('c.coupon_num', $coupon_num)
+                                ->get();
                 $frow    = $fresult->getResultArray();
         
                 if( $frow[0]['status'] != "D" ){
@@ -314,9 +322,12 @@ class AdminOperatorController extends BaseController
                         'message' => $message
                     ], 400);
                 }
+
+                $start_day = date("Y-m-d", strtotime($frow[0]["exp_start_day"]));
+                $end_day = date("Y-m-d", strtotime($frow[0]["exp_end_day"]));
         
-                if( $frow[0]['enddate'] <= date('Y-m-d') ){
-                    $message = "사용기한이 지난 쿠폰입니다";
+                if( $start_day > date('Y-m-d') || $end_day < date('Y-m-d') ){
+                    $message = "사용기한 지나갔습니다.";
 
                     return $this->response->setJSON([
                         'result' => false,
@@ -331,13 +342,13 @@ class AdminOperatorController extends BaseController
                                     where coupon_num = '".$coupon_num."'
                         ";
         
-                $message = "쿠폰발급(유저) : " . $fsql;
+                $message = "쿠폰발급(유저) : " . $coupon_num;
         
                 $fresult    = $this->connect->query($fsql);
 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => $fsql
+                    'message' => $message
                 ], 200);
         
             }
@@ -351,9 +362,9 @@ class AdminOperatorController extends BaseController
         
     }
 
-    private function createCoupon($coupon_type)
+    private function createCoupon($coupon_mst_idx, $keyword)
     {
-        $fsql = "select * from tbl_coupon_setting where idx='" . $coupon_type . "' ";
+        $fsql = "select * from tbl_coupon_mst where idx='" . $coupon_mst_idx . "' ";
         $fresult = $this->connect->query($fsql);
         $nTotalCount = $fresult->getNumRows();
 
@@ -387,13 +398,14 @@ class AdminOperatorController extends BaseController
         //$enddate = "2018-12-24";
 
         $fsql = " insert into tbl_coupon set
-                  coupon_num	= '" . $_couponNum . "'
-                , coupon_type	= '" . $coupon_type . "'
-                , types			= 'N'
-                , status		= 'D'
-                , last_idx	= '" . $last_idx . "'
-                , regdate	= now()
-                , enddate	= '" . $enddate . "'
+                  coupon_num	    = '" . $_couponNum . "'
+                , coupon_mst_idx	= '" . $coupon_mst_idx . "'
+                , keyword	        = '" . $keyword . "'
+                , types			    = 'N'
+                , status		    = 'D'
+                , last_idx	        = '" . $last_idx . "'
+                , regdate	        = now()
+                , enddate	        = '" . $enddate . "'
         ";
 
         $message = "쿠폰생성 : " . $fsql;

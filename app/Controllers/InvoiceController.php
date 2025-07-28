@@ -231,7 +231,7 @@ class InvoiceController extends BaseController
 
 				// 옵션 정보 가져오기
 				$builder = $db->table('tbl_order_option');
-				$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+				$builder->select("option_name, option_tot, option_tot_bath, option_cnt, option_date, option_price, option_price_bath, option_qty, baht_thai");
 				$query = $builder->where('order_idx', $idx)->get();
 				$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
@@ -245,7 +245,7 @@ class InvoiceController extends BaseController
 
 					$totalOptionBath = 0;
 					foreach ($optionResult as $option) {
-						$totalOptionBath += $option->option_cnt * $option->option_price;
+						$totalOptionBath += $option->option_cnt * $option->option_price_bath;
 					}
 					$order->total_options = $totalOptionBath;
 					$order->total_bath = $order->real_price_bath + $totalOptionBath;
@@ -336,6 +336,11 @@ class InvoiceController extends BaseController
 				$query  = $builder->where('product_idx', $product_idx)->get();
 				$result = $query->getRowArray();
 				$cancle_contents = $result["policy_contents"];
+				
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [29])
+					->orderBy('p_idx', 'asc')
+					->get()->getResultArray();
 
 				$order_cars_detail = $this->ordersCars->getByOrder($idx);
 
@@ -349,6 +354,7 @@ class InvoiceController extends BaseController
 					'order_cars_detail' => $order_cars_detail,
 					'departure_name' => $departure_name,
 					'destination_name' => $destination_name,
+					'policy_1' 	=> $policy[0]
 				]);
 				
 	}
@@ -407,11 +413,17 @@ class InvoiceController extends BaseController
 
 				$order_subs = $this->orderGuide->getListByOrderIdx($idx);
 
+				$builder = $db->table('tbl_policy_info');
+				$policy = $builder->whereIn('p_idx', [49])
+									->orderBy('p_idx', 'asc')
+									->get()->getResultArray();
+
 				return view("invoice/invoice_guide_01", [
 					'result' => $orderResult,
 					'notice_contents' => $notice_contents,
 					'cancle_contents' => $cancle_contents,
 					'order_subs' => $order_subs,
+					'policy_1' 	=> $policy[0]
 				]);
 				
 	}

@@ -90,6 +90,15 @@ class AdminTourController extends BaseController
                 $product_theme = '';
             }
 
+            if (isset($_POST['keyword_product'])) {
+                $arr_keyword_product = $_POST['keyword_product'];
+                if (is_array($arr_keyword_product)) {
+                    $product_keywords = implode('|', $arr_keyword_product) . '|';
+                }
+            } else {
+                $product_keywords = '';
+            }
+
             $special_price = updateSQ($_POST["special_price" ?? '']);
             $onum = updateSQ($_POST["onum" ?? '']);
             $product_contents = updateSQ($_POST["product_contents" ?? '']);
@@ -136,7 +145,10 @@ class AdminTourController extends BaseController
             $product_level = updateSQ($_POST["product_level" ?? '']);
             $product_option = updateSQ($_POST["product_option" ?? '']);
             $tours_cate = updateSQ($_POST["tours_cate" ?? '']);
-
+            $contents_field_more = updateSQ($_POST["contents_field_more" ?? '']);
+            $contents_field_more_hidden = updateSQ($_POST["contents_field_more_hidden" ?? '']);
+            $contents_field_more = !empty($contents_field_more) ? $contents_field_more : $contents_field_more_hidden;
+            
             $yoil_0 = updateSQ($_POST["yoil_0" ?? '']);
             $yoil_1 = updateSQ($_POST["yoil_1" ?? '']);
             $yoil_2 = updateSQ($_POST["yoil_2" ?? '']);
@@ -164,12 +176,14 @@ class AdminTourController extends BaseController
 
             $mbti = updateSQ($_POST["mbti" ?? '']);
             $description = updateSQ($_POST["description" ?? '']);
+            $note_news = updateSQ($_POST["note_news" ?? '']);
 
             $t_group = $_POST["tour_group"] ?? [];
             $company_name = updateSQ($_POST["company_name" ?? '']);
             $company_contact = updateSQ($_POST["company_contact" ?? '']);
             $company_url = updateSQ($_POST["company_url" ?? '']);
             $company_notes = updateSQ($_POST["company_notes" ?? '']);
+            $minimun_reservation = updateSQ($_POST["minimun_reservation" ?? '']);
             $field_more_arr = $_POST["field_more"] ?? [];
 
             $field_more = "";
@@ -231,7 +245,7 @@ class AdminTourController extends BaseController
 
             $arr_onum = $this->request->getPost("onum_img") ?? [];
 
-            $files_ufile = $this->request->getFileMultiple('ufile');
+            $files_ufile = $this->request->getFileMultiple('ufile') ?? [];
 
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
@@ -284,6 +298,7 @@ class AdminTourController extends BaseController
                             ,etc_comment            = '" . $etc_comment . "'
                             ,etc_comment_m          = '" . $etc_comment_m . "'
 							,product_theme          = '" . $product_theme . "'
+							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
@@ -324,6 +339,8 @@ class AdminTourController extends BaseController
                             ,company_contact        = '" . $company_contact . "'
                             ,company_url            = '" . $company_url . "'
                             ,company_notes          = '" . $company_notes . "'
+                            ,minimun_reservation    = '" . $minimun_reservation . "'
+                            ,note_news              = '" . $note_news . "'
 
                             ,yoil_0                 = '" . $yoil_0 . "'
                             ,yoil_1                 = '" . $yoil_1 . "'
@@ -353,7 +370,8 @@ class AdminTourController extends BaseController
 							,description            = '" . $description . "'
 			                ,worker_id              = '" . session()->get('member')['id'] ."'
 			                ,worker_name            = '" . session()->get('member')['name'] ."'
-                            ,field_more            = '" . $field_more ."'
+                            ,field_more             = '" . $field_more ."'
+                            ,contents_field_more    = '" . $contents_field_more ."'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -487,6 +505,7 @@ class AdminTourController extends BaseController
                             ,mobile_able			= '" . $mobile_able . "'
                             ,mobile_unable			= '" . $mobile_unable . "'
 							,product_theme          = '" . $product_theme . "'
+							,product_keywords       = '" . $product_keywords . "'
                 
                             ,stay_list				= '" . $stay_list . "'
                             ,country_list			= '" . $country_list . "'
@@ -515,6 +534,8 @@ class AdminTourController extends BaseController
                             ,company_contact        = '" . $company_contact . "'
                             ,company_url            = '" . $company_url . "'
                             ,company_notes          = '" . $company_notes . "'
+                            ,minimun_reservation    = '" . $minimun_reservation . "'
+                            ,note_news              = '" . $note_news . "'
 
                             ,user_id				= '" . $_SESSION['member']['id'] . "'
                             ,user_level				= '" . $_SESSION['member']['level'] . "'
@@ -550,7 +571,8 @@ class AdminTourController extends BaseController
                             
                             ,mbti                   = '" . $mbti . "'
 							,description            = '" . $description . "'
-                            ,field_more         = '" . $field_more . "'
+                            ,field_more             = '" . $field_more . "'
+                            ,contents_field_more    = '" . $contents_field_more . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";

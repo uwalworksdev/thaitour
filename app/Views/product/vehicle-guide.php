@@ -6,6 +6,9 @@
 <link rel="stylesheet" type="text/css" href="/css/contents/reservation.css"/>
 
 <style>
+    .white-icon {
+        filter: brightness(0) invert(1);
+    }
     .popup_wrap.place_pop.cart_info_pop .pop_box {
         max-width: 1000px;
     }
@@ -1480,7 +1483,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
-            height: auto;
+            height: 30rem;
             object-fit: cover;
         }
 
@@ -1519,6 +1522,14 @@
         .flex-20-mo {
             display: flex;
             gap: 2rem;
+        }
+
+        .img_box_14 {
+            padding-top: calc(300% / 658 * 100);
+        }
+
+        .section_vehicle_2_7__btn_wrap {
+            display: none !important;
         }
     }
 </style>
@@ -1567,11 +1578,12 @@
                                 <a href="javascript:show_popup_caution()">
                                     <img src="/images/ico/ico_warning.svg" alt="">
                                     주의사항
+                                    <img src="/uploads/icons/arrow_up_icon.png" alt="" class="arrow-slide-vehicle white-icon">
                                 </a>
                                 <div class="caution_popup">
-                                    <div class="caution_top" onclick="close_popup_caution()">
+                                    <!-- <div class="caution_top" onclick="close_popup_caution()">
                                         <img src="/images/ico/close-btn-grey.png" alt="">
-                                    </div>
+                                    </div> -->
                                     <div class="caution_content">
                                         <h4>주의사항</h4>
                                         <div class="desc">
@@ -1583,7 +1595,12 @@
                         </div>
                         <script>
                             function show_popup_caution() {
-                                $(".caution_popup").show();
+                                $(".caution_popup").toggle();
+                                if($(".caution_popup").css('display') !== 'none') {
+                                    $(".arrow-slide-vehicle").css('transform', 'rotate(180deg)');
+                                }else{
+                                    $(".arrow-slide-vehicle").css('transform', 'rotate(0)');
+                                }
                             }
 
                             function close_popup_caution() {
@@ -1876,6 +1893,9 @@
                             <button class="btn_add_cart" id="btn_show_cart" type="button" value="B">
                                 장바구니담기
                             </button>
+                            <button class="btn_add_cart" type="button" onclick="redirect_contact()">
+                                문의하기
+                            </button>
                             <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
                                     상품 예약하기
                                 </button> -->
@@ -1911,6 +1931,19 @@
 </section>
 
 <script>
+    function redirect_contact() {
+        <?php
+            if (empty(session()->get("member")["id"])) {
+        ?>
+            // alert("주문하시려면 로그인해주세요!");
+            showOrHideLoginItem();
+            return false;
+        <?php
+            }
+        ?>
+
+        window.location.href = '/mypage/consultation';
+    }
     $(document).ready(function() {
         $('.tab_title_item_').click(function() {
             $('.tab_title_item_').removeClass('active_');

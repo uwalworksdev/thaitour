@@ -354,6 +354,30 @@ $setting = homeSetInfo();
             font-family: "Pretendard" !important;
             line-height: 1.4 !important;
         }
+
+        .golf_invoice .logo_voice {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 6px solid #1e73e7;
+        }
+
+        .golf_invoice .logo_voice img {
+            width: 165px !important ;
+            /* height: 76px; */
+        }
+
+        .golf_invoice .logo_voice h2 {
+            font-size: 45px;
+            margin-bottom: 5px;
+            margin-top: 18%;
+        }
+
+        .golf_invoice .logo_voice .addr {
+            font-size: 14px;
+            color: #616161;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -362,7 +386,21 @@ $setting = homeSetInfo();
         <section class="golf_invoice voucher">
             <div class="inner">
                 <div class="logo_voice">
-                    <img src="<?= FCPATH . 'uploads/setting/' . $setting['logos'] ?>" alt="" style="width: 165px">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr>
+                            <td style="vertical-align: top;">
+                                <img src="/uploads/setting/<?= $setting['logos']?>" alt="" style="width: 165px;">
+                                <p class="addr" style="margin-top: 10px;">
+                                    <?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                                    Thai - Registration No <?= $setting['comnum_thai']?><br>
+                                    Tel: <?= $setting['custom_service_phone_thai2']?>
+                                </p>
+                            </td>
+                            <td style="text-align: right; vertical-align: middle;">
+                                <h2 class="tit_top" style="margin: 0; font-size: 30px;">견적서</h2>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="invoice_ttl">
                 </div>
@@ -462,9 +500,10 @@ $setting = homeSetInfo();
                                 <th>Option</th>
                                 <td colspan="3">
                                     <?php
-                                    if (!empty($result->order_option_new)) {
-                                        echo $result->order_option_new;
-                                    } else {
+                                        if($type != "admin"){
+                                            if(!empty($result->order_option_new)){
+                                                echo $result->order_option_new;
+                                            }else{
                                     ?>
                                         <?php foreach ($option as $key => $item): ?>
                                             <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
@@ -472,7 +511,16 @@ $setting = homeSetInfo();
                                             <?= $key == count($option) - 1 ? "" : "<br>" ?>										
                                         <?php endforeach; ?>
                                     <?php
-                                    }
+                                            }
+                                        }else{
+                                    ?>
+                                        <?php foreach ($option as $key => $item): ?>
+                                            <?= $item['op_name_en'] ?> x <?= $item['option_cnt'] ?>EA = 
+                                            Total (<?= number_format($item['option_tot'])?>Won) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
+                                            <?= $key == count($option) - 1 ? "" : "<br>" ?>										
+                                        <?php endforeach; ?>
+                                    <?php
+                                        }
                                     ?>
                                 </td>
                             </tr>

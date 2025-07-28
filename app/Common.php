@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use CodeIgniter\Model;
 
@@ -34,6 +34,14 @@ function checkOrderComplete($product_idx = null) {
     }
 
     return false;
+}
+
+function getPolicyContents($product_code = null) {
+
+    $policy_cancle = Model("PolicyCancel");
+	$result = $policy_cancle->where("product_code", $product_code)->get()->getRowArray();
+
+	return $result;
 }
 
 function getOS(string $user_agent): string
@@ -214,7 +222,7 @@ function getPolicy($p_idx)
 function get_deli_type()
 {
     $_deli_type['W'] = "예약접수";
-    $_deli_type['X'] = "예약확인";
+    $_deli_type['X'] = "예약가능";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
@@ -229,7 +237,7 @@ function get_deli_type()
 function get_payment_type()
 {
     $_deli_type['W'] = "예약접수";
-    $_deli_type['X'] = "예약확인";
+    $_deli_type['X'] = "예약가능";
     $_deli_type['Y'] = "결제완료";
     $_deli_type['Z'] = "예약확정";
     $_deli_type['G'] = "결제대기";
@@ -488,7 +496,7 @@ function send_aligo($msg, $to_phone, $title = "")
     $_POST['sender'] = $setting['sms_phone']; // 발신번호
     $_POST['rdate'] = ''; // 예약일자 - 20161004 : 2016-10-04일기준
     $_POST['rtime'] = ''; // 예약시간 - 1930 : 오후 7시30분
-    $_POST['testmode_yn'] = 'Y'; // Y 인경우 실제문자 전송X , 자동취소(환불) 처리
+    // $_POST['testmode_yn'] = 'Y'; // Y 인경우 실제문자 전송X , 자동취소(환불) 처리
     $_POST['subject'] = $setting['site_name'] . '입니다.'; //  LMS, MMS 제목 (미입력시 본문중 44Byte 또는 엔터 구분자 첫라인)
     //$_POST['image']        = '../data/brand/20210314140356.png'; // MMS 이미지 파일 위치 (저장된 경로)
     $_POST['msg_type'] = 'LMS'; //  SMS, LMS, MMS등 메세지 타입을 지정
@@ -3073,4 +3081,79 @@ function email_send($order_no, $order_status)
 
 }
 */
+
+function payment_save($order_idx)
+{
+        $db        = \Config\Database::connect();
+        $setting   = homeSetInfo();
+
+	    write_log("xxxxxxxxxxxxxx");
+        $group_no    = date('YmdHis');
+		$payment_no  = "P_". date('YmdHis') . rand(100, 999); // 가맹점 결제번호
+ 		
+		$sql_p = " SELECT * from tbl_order_mst WHERE order_idx = '" . $order_idx. "'";
+		$row_p = $db->query($sql_p)->getRowArray();
+
+        $order_no                   = $row_p['order_no'];
+	    $product_name               = $row_p['product_name'];
+
+	    $payment_user_name          = $row_p['order_user_name'];
+	    $order_user_name            = encryptField($payment_user_name, "decode");
+
+	    $companion_gender           = $row_p['companion_gender'];
+	    $payment_user_first_name_en = $row_p['order_user_first_name_en'];
+	    $payment_user_last_name_en  = $row_p['order_user_last_name_en'];
+	   
+	    $payment_user_email         = $row_p['order_user_email'];
+	    $order_user_email           = encryptField($payment_user_email, "decode");
+
+	    $payment_user_mobile        = $row_p['order_user_mobile'];
+	    $order_user_mobile          = encryptField($payment_user_mobile, "decode");
+
+	    $payment_user_gender        = $row_p['companion_gender'];
+	    $phone_thai                 = $row_p['phone_thai'];
+	    $local_phone                = $row_p['local_phone'];
+	    $payment_memo               = $row_p['order_memo'];
+		   
+		$payment_price = $payment_price + $row_p['real_price_won'];
+		
+		$sql_u = " UPDATE tbl_order_mst SET group_no = '". $group_no ."', payment_no = '". $payment_no ."' WHERE order_no = '" . $order_no . "'";
+		$db->query($sql_u);	
+		
+        $sql = " SELECT COUNT(payment_idx) AS cnt from tbl_payment_mst WHERE payment_no = '" . $payment_no . "'";
+		//write_log($sql);
+        $row = $db->query($sql)->getRowArray();
+
+        if($row['cnt'] == 0) {
+			    $device_type = get_device();
+                $baht_thai   = (float)($setting['baht_thai'] ?? 0);
+				
+				$sql = "INSERT INTO tbl_payment_mst SET m_idx                      = '". $m_idx ."'
+													   ,payment_no                 = '". $payment_no ."'
+													   ,order_no                   = '". $order_no ."'
+													   ,product_name               = '". $product_name ."'
+													   ,payment_date               = '". $payment_date ."'
+													   ,payment_tot                = '". $payment_price ."'
+													   ,payment_price              = '". $payment_price ."'
+													   ,payment_user_name          = '". $payment_user_name ."'
+													   ,payment_user_first_name_en = '". $payment_user_first_name_en ."'	
+													   ,payment_user_last_name_en  = '". $payment_user_last_name_en ."'	
+													   ,payment_user_email         = '". $payment_user_email ."'
+													   ,payment_user_mobile        = '". $payment_user_mobile ."'
+													   ,payment_user_phone         = '". $payment_user_phone ."'
+													   ,local_phone                = '". $local_phone ."'	
+													   ,payment_user_gender        = '". $payment_user_gender ."'
+													   ,phone_thai                 = '". $phone_thai ."'
+													   ,payment_memo               = '". $payment_memo ."' 
+                                                       ,ip                         = '". $_SERVER['REMOTE_ADDR'] ."' 		
+													   ,device_type                = '". $device_type ."' 
+													   ,baht_thai                  = '". $baht_thai ."'" ;
+				//write_log("confirm()- ". $sql);
+				$result = $db->query($sql);
+		}
+		
+		return $payment_no;
+ 
+}
+
 ?>

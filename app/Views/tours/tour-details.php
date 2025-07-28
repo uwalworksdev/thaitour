@@ -10,6 +10,7 @@
         gap: 20px;
         justify-content: flex-start;
         align-items: flex-end;
+        width: 65%;
     }
 
     .tours-detail .section2 .text-content-1 h3 {
@@ -52,13 +53,22 @@
     .tours-detail .primary-btn-calendar.tour {
         position: absolute;
         bottom: 3%;
-        left: 28%;
+        left: 18%;
     }
 
     .tours-detail .primary-btn-calendar.btn-cart {
         position: absolute;
         bottom: 3%;
-        left: 50%;
+        left: 40%;
+        border: 1px solid #dbdbdb;
+        background-color: #fff;
+        color: #252525;
+    }
+
+    .tours-detail .primary-btn-calendar.btn-contact {
+        position: absolute;
+        bottom: 3%;
+        left: 62%;
         border: 1px solid #dbdbdb;
         background-color: #fff;
         color: #252525;
@@ -107,6 +117,10 @@
     .tours-detail .section2 .text-content-2 {
         width: 100%;
     }
+
+    .primary-btn-calendar {
+        display: none !important; 
+    }
     }
 </style>
 
@@ -135,9 +149,9 @@
             <input type="hidden" name="total_pay" id="total_pay" value="">
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
             <input type="hidden" name="final_discount" id="final_discount" value="">
-            <input type="hidden" name="sanding_place" id="start_place" value="">
+            <input type="hidden" name="start_place" id="start_place" value="">
             <input type="hidden" name="pickup_place" id="pickup_place" value="">
-            <input type="hidden" name="sanding_place" id="start_place" value="">
+            <input type="hidden" name="sanding_place" id="sanding_place" value="">
             <input type="hidden" name="end_place" id="end_place" value="">
             <input type="hidden" name="id_kakao" id="id_kakao" value="">
             <input type="hidden" name="description" id="description" value="">
@@ -176,6 +190,13 @@
                         if(strpos($product["tour_group"], "T") !== false){
                     ?>
                         <li class="type_title type_title_2">조인 투어</li>
+                    <?php
+                        }
+                    ?>
+                    <?php
+                        if(strpos($product["tour_group"], "S") !== false){
+                    ?>
+                        <li class="type_title type_title_3">단독투어</li>
                     <?php
                         }
                     ?>
@@ -260,18 +281,28 @@
                     </div>
                     <div class="grid_2_2">
                         <?php 
-                             $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                            $loop_limit = $is_mobile ? 1 : 3;
-                            for ($j = 2; $j < 2 + $loop_limit; $j++) {
+                            // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                            // $loop_limit = $is_mobile ? 1 : 3;
+                            for ($j = 2; $j < 5; $j++) {
                         ?>
-                            <img class="grid_2_2_size" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
+                            <img class="grid_2_2_size responsive-img" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>"
                                 onerror="this.src='/images/share/noimg.png'"
                                 onclick="img_pops('<?= $product['product_idx'] ?>')">
                         <?php } ?>
                         <!-- <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>" style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
                         <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>" style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>"> -->
-                        <div class="grid_2_2_sub" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                        <div class="grid_2_2_sub only_web" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
                             <img class="custom_button" src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>" alt="<?= $img_list[$j - 2]['rfile'] ?>" 
+                                onerror="this.src='/images/share/noimg.png'">
+                            <div class="button-show-detail-image">
+                                <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
+                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
+                                <span>사진 모두 보기</span>
+                                <span>(<?= $i3 ?>장)</span>
+                            </div>
+                        </div>
+                        <div class="grid_2_2_sub only_mo" style="position: relative; cursor: pointer;" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                            <img class="custom_button" src="/data/product/<?= $img_list[1]['ufile'] ?>" alt="<?= $img_list[1]['rfile'] ?>" 
                                 onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
@@ -335,11 +366,15 @@
                     <h2 class="sec2-date-main" id="tour-date-<?= $info['info']['info_idx'] ?>" 
                         data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
                         data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
-                        <?=viewSQ($info['info']['info_name'])?>(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)
+                        <?=viewSQ($info['info']['info_name'])?>
                     </h2>
-                    <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                    <div class="flex_b_c sec2-date-wrap">
+                        <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                        <p class="sec-date-range">(<?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>)</p>
+                    </div>
                     <?php foreach ($info['tours'] as $tour): ?>
-                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>">
+                        <div class="sec2-item-card" data-info-index="<?=$info['info']['info_idx']?>" data-tour-index="<?= $tour['tours_idx'] ?>"
+                            data-option-count="<?= $tour['total_check_price'] ?>">
                             <div class="text-content-1">
                                 <div>
                                     <h3><?= $tour['tours_subject'] ?> - <?= $tour['tours_subject_eng'] ?></h3>
@@ -357,7 +392,9 @@
                                         <p><span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span></p>
                                     </div>
                                     <div class="text-content-3" style="justify-content: space-between;">
-                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
+                                        <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-info-index="<?=$info['info']['info_idx']?>" 
+                                            data-option-count="<?= $tour['total_check_price'] ?>"
+                                            data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
                                     </div>
                                 </div>
                             </div>
@@ -366,14 +403,14 @@
                     <?php endforeach; ?>
                 <?php endforeach;?>
                 <div class="sec2-item-card tour_calendar" id="tour_calendar">
-                    <div class="time_work">
+                    <!-- <div class="time_work">
                         <p>운영시간: <?= $product['product_period']?></p>
-                    </div>
+                    </div> -->
                     <div class="container-calendar tour">
                         <div class="calendar-left">
-                            <h3 class="title-left calendar_txt">
+                            <!-- <h3 class="title-left calendar_txt">
                                 이용일자 선택
-                            </h3>
+                            </h3> -->
                             <div class="calendar-container">
                                 <div class="calendar-header">
                                     <div id="prev-month" class="btn-action-calendar">
@@ -398,13 +435,14 @@
                                 </div>
                             </div>
                             <div class="des-below text-gray spe">
-                                <p>
+                                <?= viewSQ($product['minimun_reservation'])?>
+                                <!-- <p>
                                     ※ 본 상품은 1인 이상 예약 가능합니다.
                                 </p>
                                 <p>
                                     ※ 최소 4인 이상 모객시 출발 가능한 상품입니다. 출발 하루전까지 최소 인원 미달시
                                 </p>
-                                <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p>
+                                <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p> -->
                             </div>
         
                         </div>
@@ -461,8 +499,12 @@
                                     </div>
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
+                            <?php
+                                $firstInfo = reset($productTourInfo);
 
-                            <h3 class="title-second">선택옵션</h3>
+                                $firstTour = $firstInfo['tours'][0] ?? null;
+                            ?>
+                            <h3 class="title-second title-option" <?php if((int)($firstTour['total_check_price']) <= 0) { ?> style="display: none;" <?php } ?>>선택옵션</h3>
                             <form>
                                 <!-- <div class="form-group">
                                     <div class="above">
@@ -474,7 +516,8 @@
                                         <span class="currency"><?= $price_baht_option?>바트</span>
                                     </div>
                                 </div> -->
-                                <div class="form-group">
+
+                                <div class="form-group form-group-option" <?php if((int)($firstTour['total_check_price']) <= 0) { ?> style="display: none;" <?php } ?>>
                                     <?php
                                         $count_t = 0;
                                     ?>
@@ -482,9 +525,15 @@
                                         <select name="moption" class="moption" id="moption_<?=$infoIndex?>" onchange="sel_moption(this.value);" data-info-index="<?= $infoIndex ?>" style="<?= $count_t === 0 ? 'display: block;' : 'display: none;' ?>">
                                             <option value="">옵션선택</option>
                                                 <?php foreach ($info['options'] as $option): ?>
+                                                    <?php
+                                                        if((int)$option["check_price"] > 0) {     
+                                                    ?>
                                                     <option value="<?=$option['code_idx']?>">
                                                         <?=$option['moption_name'] ?>
                                                     </option>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 <?php endforeach; ?>
                                         </select>
                                         <?php $count_t++; ?>
@@ -536,6 +585,7 @@
                                     ?>
                                     </div>
                                 </div>
+
                             </form>
                             <div class="total_price_tour">
                                 <span class="total_price_ttl">합계</span>
@@ -568,7 +618,7 @@
                                 <input type="hidden" value="N" id="guidelines">
                             </div> -->
 
-                            <div class="form-below-calendar">
+                            <!-- <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
                                 <select class="select-time-c" id="select_time_line">
                                     <?php foreach ($timeSegments as $time): ?>
@@ -577,7 +627,7 @@
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>  
+                            </div>   -->
                         </div>
                     </div>
 
@@ -585,12 +635,21 @@
                         <button style="margin-left: 10px;" type="button" class="primary-btn-calendar tour" onclick="handleSubmit('W')">예약하기</button>
                     <?php endif; ?>
                     <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-cart" onclick="handleSubmit('B')">장바구니</button>
+                    <button style="margin-left: 10px;" type="button" class="primary-btn-calendar btn-contact" onclick="redirect_contact()">문의하기</button>
                 </div>
             </div>
         </form>
         <h2 class="title-sec3" id="product_des">
             상품설명
         </h2>
+        <?php if($product['tour_info']) {?>
+            <h2 class="title-sec2" style="margin-bottom: 10px">
+                상품정보
+            </h2>
+            <div class="des-type">
+                <?= viewSQ($product['tour_info']) ?>
+            </div>
+        <?php }?>
         <!-- <?php if($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') {?>
             <h3 class="title-sec2">
                 상품 포인트
@@ -627,14 +686,7 @@
                 <?php } ?>
             </div>
         <?php } ?>
-        <?php if($product['tour_info']) {?>
-            <h2 class="title-sec2" style="margin-bottom: 10px">
-                상품정보
-            </h2>
-            <div class="des-type">
-                <?= viewSQ($product['tour_info']) ?>
-            </div>
-        <?php }?>
+
         <?php if (count($tour_img_list) > 0): ?>
             <h2 class="title-sec2 tit-swip-pic">
                 투어 사진
@@ -676,6 +728,60 @@
                 </ul>
             <?php endfor; ?>
         <?php } ?> -->
+
+        <?php if($product['mobile_able']) {?>
+        <h2 class="title-sec2">
+            추가정보 및 참고사항
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['mobile_able'])?>
+        </div>
+        <?php } ?>
+
+        <?php if($product['special_benefit']) {?>
+        <h2 class="title-sec2">
+            어린이정책
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['special_benefit'])?>
+        </div>
+        <?php } ?>
+       
+        <?php if($product['notice_comment']) {?>
+        <h2 class="title-sec2">
+            유의사항
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['notice_comment'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                투어준비물
+            </h2>
+            <div class="des-type 11" style="background-color: unset">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
+        <?php } ?>
+        <?php if($product['note_news']) {?>
+        <h2 class="title-sec2">
+            투어 일정
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['note_news'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['etc_comment']) {?>
+        <h2 class="title-sec2">
+            미팅/픽업장소 안내
+        </h2>
+        <div class="des-type">
+            <?= viewSQ($product['etc_comment'])?>
+        </div>
+        <?php } ?>
+
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
@@ -694,50 +800,6 @@
         <div class="des-type">
             <?= viewSQ($product['product_unable'])?>
         </div>
-        <?php } ?>
-
-        <?php if($product['product_confirm']) { ?>
-            <h2 class="title-sec2">
-                투어준비물
-            </h2>
-            <div class="des-type-1" style="background-color: unset">
-                <p>
-                    <?= viewSQ($product['product_confirm'])?>
-                </p>
-            </div>
-        <?php } ?>
-        
-        <?php if($product['special_benefit']) {?>
-        <h2 class="title-sec2">
-            어린이정책
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['special_benefit'])?>
-        </div>
-        <?php } ?>
-        <?php if($product['mobile_able']) {?>
-        <h2 class="title-sec2">
-            추가정보 및 참고사항
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['mobile_able'])?>
-        </div>
-        <?php } ?>
-        <?php if($product['notice_comment']) {?>
-        <h2 class="title-sec2">
-            유의사항
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['notice_comment'])?>
-        </div>
-        <?php } ?>
-        <?php if($product['etc_comment']) {?>
-        <!-- <h2 class="title-sec2">
-            더투어랩 이용방법
-        </h2>
-        <div class="des-type">
-            <?= viewSQ($product['etc_comment'])?>
-        </div> -->
         <?php } ?>
         <div class="steps-type" style="display: none">
             <div class="step-type">
@@ -963,7 +1025,7 @@
                         <div class="popup_place__body order-form-page">
                             <table class="info-table-order info-table-cus-padding">
                                 <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>예약시간</th>
                                         <td>
                                             <select class="select-time-c" id="pop_select_time_line" style="width: 200px;">
@@ -974,7 +1036,7 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <!-- <tr>
                                         <th>미팅장소</th>
                                         <td>
@@ -1004,15 +1066,15 @@
                                         <tr>
                                             <th>미팅장소</th>
                                             <td>
-                                                <input type="text" placeholder="미팅장소을 영어로 적어주세요(주소불가)" id="pop_start_place">
-                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                                <input type="text" id="pop_start_place" value="<?=$product['contents_field_more']?>" readonly>
+                                                <!-- <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span> -->
                                             </td>
                                         </tr>
                                     <?php endif?>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." id="pop_end_place"></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>카카오톡 아이디</th>
                                         <td>
@@ -1095,12 +1157,6 @@
             return false;
         }
 
-        if ($("#pop_end_place").val() === "") {
-            alert("종료 후 내리실 곳 입력해주세요!");
-            $("#pop_end_place").focus();
-            return false;
-        }
-
         if ($("#pop_id_kakao").val() === "") {
             alert("카카오톡 아이디 입력해주세요!");
             $("#pop_id_kakao").focus();
@@ -1113,17 +1169,19 @@
         //     return false;
         // }
 
-        var selectedTimePop = $('#pop_select_time_line').val();
-        if (!selectedTimePop) {
-            selectedTimePop = $('#pop_select_time_line option:first').val();
-        }
+        var selectedTimePop = '';
+
+        // var selectedTimePop = $('#pop_select_time_line').val();
+        // if (!selectedTimePop) {
+        //     selectedTimePop = $('#pop_select_time_line option:first').val();
+        // }
 
         $("#time_line").val(selectedTimePop);
 
         $("#pickup_place").val($("#pop_pickup_place").val());
         $("#sanding_place").val($("#pop_sanding_place").val());
         $("#start_place").val($("#pop_start_place").val());
-        $("#end_place").val($("#pop_end_place").val());
+        $("#end_place").val('');
         $("#id_kakao").val($("#pop_id_kakao").val());
         $("#description").val($("#pop_description").val());
 
@@ -1452,6 +1510,7 @@
         button.addEventListener('click', function() {
             const tourIndex = this.getAttribute('data-tour-index');
             const infoIndex = this.getAttribute('data-info-index');            
+            const option_count = this.getAttribute('data-option-count');            
 
             sec2Items.forEach(sec2Item => {
                 sec2Item.classList.remove('active');
@@ -1481,6 +1540,14 @@
                 selectedMoption.style.display = 'block';
             }
             
+            if(Number(option_count) > 0) {
+                $(".title-option").show();
+                $(".form-group-option").show();
+            }else {
+                $(".title-option").hide();
+                $(".form-group-option").hide();
+            }
+
         });
     });
             
@@ -1685,26 +1752,56 @@
 
         const quantityContainer = $(".quantity-container-fa[data-tour-index=" + t_tours_idx + "]");
 
-        quantityContainer.find(".quantity-container.adult .quantity").text("0");
+        // adultQuantity = Number(quantityContainer.find(".quantity-container.adult .quantity").text());
+        // childQuantity = Number(quantityContainer.find(".quantity-container.child .quantity").text());
+        // babyQuantity = Number(quantityContainer.find(".quantity-container.baby .quantity").text());
+
+        // adultTotalPrice = Number(dayData?.goods_price1_won ?? 0) * adultQuantity;
+        // childTotalPrice = Number(dayData?.goods_price2_won ?? 0) * childQuantity;
+        // babyTotalPrice = Number(dayData?.goods_price3_won ?? 0) * babyQuantity;
+
+        // let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
+        // let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
+        // let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
+
+        adultQuantity = 1;
+        childQuantity = 0;
+        babyQuantity = 0;
+
+        adultTotalPrice = Number(dayData?.goods_price1_won ?? 0) * adultQuantity;
+        childTotalPrice = Number(dayData?.goods_price2_won ?? 0) * childQuantity;
+        babyTotalPrice = Number(dayData?.goods_price3_won ?? 0) * babyQuantity;
+
+        let adultTotalPriceBath = Number(dayData?.goods_price1 ?? 0) * adultQuantity;
+        let childTotalPriceBath = Number(dayData?.goods_price2 ?? 0) * childQuantity;
+        let babyTotalPriceBath = Number(dayData?.goods_price3 ?? 0) * babyQuantity;
+
+        quantityContainer.find(".quantity-container.adult .quantity").text("1");
         quantityContainer.find(".quantity-container.adult .price")
-            .text(number_format(Number(dayData?.goods_price1_won ?? 0)) + "원")
+            .text(number_format(adultTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price1_won ?? 0));
         quantityContainer.find(".quantity-container.adult .currency")
-            .text(number_format(Number(dayData?.goods_price1 ?? 0)) + " 바트")
+            .text(number_format(adultTotalPriceBath) + " 바트")
             .attr("data-price-baht", Number(dayData?.goods_price1 ?? 0));
 
+        quantityContainer.find(".quantity-container.child .quantity").text("0");
         quantityContainer.find(".quantity-container.child .price").text("0원")
+            .text(number_format(childTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price2_won ?? 0));
-        quantityContainer.find(".quantity-container.child .currency").text("0 바트")
+        quantityContainer.find(".quantity-container.child .currency")
+            .text(number_format(childTotalPriceBath) + " 바트")
             .attr("data-price-baht", Number(dayData?.goods_price2 ?? 0));
 
+        quantityContainer.find(".quantity-container.baby .quantity").text("0");
         quantityContainer.find(".quantity-container.baby .price").text("0원")
+            .text(number_format(babyTotalPrice) + "원")
             .attr("data-price", Number(dayData?.goods_price3_won ?? 0));
-        quantityContainer.find(".quantity-container.baby .currency").text("0 바트")
+        quantityContainer.find(".quantity-container.baby .currency")
+            .text(number_format(babyTotalPriceBath) + "원")
             .attr("data-price-baht", Number(dayData?.goods_price3 ?? 0));
 
-        adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
-        adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
+        // adultQuantity = 1; childQuantity = 0; babyQuantity = 0;
+        // adultTotalPrice = 0; childTotalPrice = 0; babyTotalPrice = 0;
 
         setupQuantityUI(quantityContainer, dayData);
 
@@ -1714,7 +1811,7 @@
         updateTotalPeopleDisplay();
 
         const formattedDate = formatSelectedDate(date);
-        $('.days_choose, .calendar_txt').text(formattedDate);
+        // $('.days_choose, .calendar_txt').text(formattedDate);
         $('#order_date').val(formattedDate);
     }
 
@@ -1980,10 +2077,12 @@
                 return false;
             }
 
-            var selectedTime = $('#select_time_line').val();
-            if (!selectedTime) {
-                selectedTime = $('#select_time_line option:first').val();
-            }
+            var selectedTime = '';
+
+            // var selectedTime = $('#select_time_line').val();
+            // if (!selectedTime) {
+            //     selectedTime = $('#select_time_line option:first').val();
+            // }
 
             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
@@ -2187,6 +2286,19 @@
 </script>
 
 <script>
+    function redirect_contact() {
+        <?php
+            if (empty(session()->get("member")["id"])) {
+        ?>
+            // alert("주문하시려면 로그인해주세요!");
+            showOrHideLoginItem();
+            return false;
+        <?php
+            }
+        ?>
+
+        window.location.href = '/mypage/consultation';
+    }
     $(".phone").on("input", function () {
         $(this).val($(this).val().replace(/[^0-9]/g, ""));
     });

@@ -58,10 +58,14 @@
                                             <?php endif; ?>"
                                             data-keyword="all" data-type="keyword">전체키워드
                                         </li>
-                                        <?php foreach ($keyWordAll as $key => $item): ?>
+                                        <?php foreach ($product_keyword_list as $code): ?>
                                             <li class="tab_box_element_ tab_box_js p--20 border
-                                                <?= ($search_keyword == $item) ? 'tab_active_' : '' ?>"
-                                                data-keyword="<?= $item ?>" data-type="keyword">#<?= $item ?>
+                                                <?php 
+                                                    if (strpos($products["search_keyword"], $code["code_no"]) !== false) {
+                                                        echo "tab_active_";
+                                                    }
+                                                ?>"
+                                                data-keyword="<?= $code["code_no"] ?>" data-keyword_name="<?= $code["code_name"] ?>" data-type="keyword">#<?= $code["code_name"] ?>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -70,7 +74,7 @@
                             <div class="category-left-item">
                                 <div class="subtitle">
                                     <span>투어타입</span>
-
+                                    <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
                                 <div class="tab_box_area_">
                                     <ul class="tab_box_show_">
@@ -277,14 +281,17 @@
 
             if (tab_box_area.css('display') !== 'none') {
                 $(this).css('transform', 'rotate(180deg)');
+                $(this).closest(".category-left-item").find(".subtitle").css("padding-bottom", "0");
                 tab_box_area.css("display", "none");
             } else {
                 $(this).css('transform', 'rotate(0)');
+                $(this).closest(".category-left-item").find(".subtitle").css("padding-bottom", "20px");
                 tab_box_area.css("display", "block");
             }
         });
 
         const codeMapping = <?= json_encode(array_column($product_theme, 'code_name', 'code_no')) ?>;
+        const keywordMapping = <?= json_encode(array_column($product_keyword_list, 'code_name', 'code_no')) ?>;
 
 
         $(document).ready(function () {
@@ -319,7 +326,7 @@
 
                 keywords.forEach(function (keyword) {
                     if (keyword && keyword !== "undefined") {
-                        let tabText = (keyword === "all") ? "전체키워드" : keyword;
+                        let tabText = (keyword === "all") ? "전체키워드" : (keywordMapping[keyword] || keyword);
                         $('.list-tag').append(
                             '<div class="tag-item">' +
                             '<span data-type="keyword">' + tabText + '</span>' +
@@ -368,6 +375,7 @@
 
             function update_search_keyword() {
                 let keywords = [];
+                let keywords_name = [];
                 let codes = [];
                 let tours = [];
 
@@ -375,6 +383,11 @@
                     let keyword = $(this).data("keyword");
                     if (keyword && keyword !== "all" && !keywords.includes(keyword)) {
                         keywords.push(keyword);
+                    }
+
+                    let keyword_name = $(this).data("keyword_name");
+                    if (keyword_name && keyword_name !== "all" && !codes.includes(keyword_name)) {
+                        keywords_name.push(keyword_name);
                     }
 
                     let code = $(this).data("code");
@@ -403,7 +416,7 @@
                 $("#search_keyword").val(keywords.join(","));
                 $("#search_product_tour").val(codes.join(","));
 
-                update_tags(keywords, tours);
+                update_tags(keywords_name, tours);
             }
 
         $('.tab_box_js').click(function () {

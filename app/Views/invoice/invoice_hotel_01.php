@@ -51,9 +51,9 @@
                 <div class="logo_voice">
                     <h2 class="tit_top">견적서</h2>
                     <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                    <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                    <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                     </p>
                 </div>
             </div>
@@ -61,9 +61,9 @@
                 <div class="logo_voice">
                     <div class="logo_addr">
                         <img src="/uploads/setting/<?= $setting['logos']?>" alt="">
-                        <p class="addr">Sukhumvit 101 Bangchak Prakhanong Bangkok 10260<br>
-                        Thai - Registration No 010-5555-096-398<br>
-                        Tel: 001-66-(0)2-730-5690, 070-7010-8266
+                        <p class="addr"><?= viewSQ(nl2br($setting['addr_thai']))?><br>
+                        Thai - Registration No <?= $setting['comnum_thai']?><br>
+                        Tel: <?= $setting['custom_service_phone_thai2']?>
                         </p>
                     </div>
                     <div class="ttl_right">
@@ -73,7 +73,7 @@
             </div>
             <div class="invoice_ttl">
                 <p>고객님 예약이 가능하여 이메일로 견적서 발송해 드렸으며 홈페이지에 마이페이지에서도 확인이 가능합니다. <br> 견적서 내용을 꼼꼼하게 확인 후 결제 진행해 주시면 됩니다. </p>
-                <p>요청하신 조건으로는 예약이 불가능하고, 예약 가능한 다른 조건으로 견적서가 발송되었습니다. <br> 반드시 예약 내용(객실타입, 시간 등)을 확인하여 이 조건으로 예약 원하신다면 결제 진행해 주시고, 다른 상품으로 이용원하실 경우 다시 예약을 넣어주시기 바랍니다.</p>
+                <p>요청하신 조건으로는 예약이 불가능하고, 예약 가능한 다른 조건으로 견적서가 발송되었습니다. <br> 반드시 예약 내용(객실타입, 시간 등)을 확인하여 이 조건으로 예약 원하신다면 결제 진행해 주시고, 다른 상품으로 이용을 원하실 경우 다시 예약을 넣어주시기 바랍니다.</p>
             </div>
             <div class="invoice_table">
                 <h2 class="tit_top">예약자정보<?=$idx?></h2>
@@ -93,7 +93,7 @@
                             <td><?= esc(substr($row->order_date,0,10)) ?>(<?=get_korean_day(substr($row->order_date,0,10));?>)</td>
                         </tr>
                         <tr>
-                            <th>여행사(담당자)</th>
+                            <th>예약자</th>
                             <td><?=$row->order_user_name?></td>
                             <th>이메일</th>
                             <td><?=$row->order_user_email?></td>
@@ -105,6 +105,13 @@
                     <h2 class="tit_top">예약내역</h2>
                     <!-- <span>요청하신 티오프 시간 예약이 불가능하여 가능한 시간으로 변경되었습니다.</span> -->
                 </div>
+                <?php
+                    if($row->chk_notes_invoice == "Y"){
+                ?>
+                    <span style="color: red; line-height: 1.4;"><?=$row->notes_invoice?></span>
+                <?php
+                    }
+                ?>
                 <table class="invoice_tbl re_custom">
                     <colgroup>
                         <col width="150px">
@@ -114,14 +121,15 @@
                     </colgroup>
 					
 					<?php foreach ($result as $row) : ?>
-                        <th>날짜</th>
-                        <td>
-                              <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
-                        </td>
-                    <tbody>
+                        
+                        <tbody>
                         <tr>
                             <th>바우처 이름</th>
                             <td><?=$row->order_user_first_name_en?> <?=$row->order_user_last_name_en?></td>
+                            <th>날짜</th>
+                            <td>
+                                <?=$row->start_date?>(<?=get_korean_day($row->start_date)?>) ~ <?=$row->end_date?>(<?=get_korean_day($row->end_date)?>) / <?= $row->order_day_cnt ?>일
+                            </td>
                         </tr>
                         <tr>
                             <th>고객 연락처</th>
@@ -145,12 +153,17 @@
                             <th>성인조식포함여부</th>
                             <td>
 								 <?php
-								   if($row->breakfast == "N") {
-									  echo "조식미포함";  
-								   } else { 
-									  echo "조식포함";  
-								   }
-								 ?>  								
+                                    if(!empty($row->breakfast_order_new)) {
+                                        $breakfast_order = $row->breakfast_order_new;
+                                    }else {
+                                        if($row->breakfast == "N") {
+                                            $breakfast_order = "조식미포함";  
+                                        } else { 
+                                            $breakfast_order = "조식포함";  
+                                        }
+                                    }
+                                    echo $breakfast_order;
+                                ?>								
                             </td>
                             <th>총인원</th>
                             <td>성인 <?=$row->adult?>명 아동 <?=$row->kids?>명</td>

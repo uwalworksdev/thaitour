@@ -83,7 +83,7 @@
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
                                 </li>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                                 </li>
                                 <!--li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
@@ -215,14 +215,14 @@
                                             <option value="">1차분류<?=$product_code_1?></option>
                                             <?php
                                             foreach ($fresult as $frow):
-                                                $status_txt = "";
-                                                if ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "";
-                                                } elseif ($frow["code_no"] == $product_code_1) {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["code_no"] == $product_code_1) {
-                                                    $status_txt = "[마감]";
-                                                }
+                                                    if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 
                                                 ?>
                                                 <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_1']) {
@@ -240,13 +240,13 @@
                                                 if(substr($frow["code_no"],0,4) == $row['product_code_1']) 
 												{
 													$status_txt = "";
-													if ($frow["code_no"] == $product_code_3) {
-														$status_txt = "";
-													} elseif ($frow["code_no"] == $product_code_3) {
-														$status_txt = "[삭제]";
-													} elseif ($frow["code_no"] == $product_code_3) {
-														$status_txt = "[마감]";
-													}
+					                                if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 											?>		
                                                    <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_2']) echo "selected";?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                                             <?php } ?>
@@ -255,18 +255,18 @@
                                         <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                             <?php
-                                            foreach ($fresult3 as $frow):
+                                            foreach ($category3 as $frow):
                                                 $status_txt = "";
-                                                if ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "";
-                                                } elseif ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["code_no"] == $product_code_3) {
-                                                    $status_txt = "[마감]";
-                                                }
+                                                    if ($frow["status"] == "Y") {
+                                                        $status_txt = "";
+                                                    } elseif ($frow["status"] == "N") {
+                                                        $status_txt = "[삭제]";
+                                                    } elseif ($frow["status"] == "C") {
+                                                        $status_txt = "[마감]";
+                                                    }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_3) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_code_3']) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
@@ -304,16 +304,10 @@
                                 </tr>
                                 <tr>
                                     <th>우선순위</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-                                    <th>담당자 담당자</th>
-                                    <td>
-                                        이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
-										&ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>
-                                        &ensp;이메일: <input id="email_2" name="email_2" class="input_txt"  type="text" value="<?= $email_2 ?? '' ?>"   style="width:150px"/>
                                     </td>
                                 </tr>
 
@@ -380,7 +374,7 @@
 
                                 <tr>
                                     <th>상품담당자</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="product_manager" name="product_manager" class="input_txt" type="text"
                                                value="<?= $product_manager ?>" style="width:100px" readonly/>
                                         /<input id="phone" name="phone" class="input_txt" type="text"
@@ -406,8 +400,11 @@
                                         </select>
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
+                                    
+                                </tr>
+                                <tr>
                                     <th>검색키워드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="keyword" name="keyword" class="input_txt" type="text"
                                                value="<?= $keyword ?>"
                                                style="width:90%"/><br/>
@@ -477,7 +474,7 @@
                                             </label>
                                         <?php endforeach; ?>
                                     </td> -->
-                                    <td>
+                                    <td colspan="3">
                                         <?php
                                             $_arr = explode("|", $mbti);
                                             $total = count($mcodes);
@@ -508,12 +505,7 @@
                                             <?php endfor; ?>
                                         </div>
                                     </td>
-                                    <th>운영시간</th>
-                                    <td>
-                                        <input id="time_line" name="time_line" class="input_txt" type="text"
-                                               value="<?= $time_line ?>" style="width:100%"/><br/>
-                                        <!-- <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span> -->
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <th>직접결제</th>
@@ -661,11 +653,15 @@
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top: 50px;">
                                 <colgroup>
                                     <col width="10%"/>
+                                    <col width="20%"/>
+                                    <col width="10%"/>
+                                    <col width="*%"/>
+                                    <col width="10%"/>
                                     <col width="*%"/>
                                 </colgroup>
                                 <tbody>
                                     <tr height="45">
-                                        <td colspan="2">
+                                        <td colspan="6">
                                             업체 정보
                                         </td>
                                     </tr>
@@ -674,10 +670,8 @@
                                         <td>
                                             <input id="company_name" name="company_name" class="input_txt" type="text" value="<?= viewSQ($company_name) ?>" style="width:100%">
                                         </td>
-                                    </tr>
-                                    <tr>
                                         <th>연락처</th>
-                                        <td>
+                                        <td colspan="3">
                                             <input id="company_contact" name="company_contact" class="input_txt" type="text" value="<?= viewSQ($company_contact) ?>" style="width:100%">
                                         </td>
                                     </tr>
@@ -686,10 +680,21 @@
                                         <td>
                                             <input id="company_url" name="company_url" class="input_txt" type="text" value="<?= viewSQ($company_url) ?>" style="width:100%">
                                         </td>
+                                        <th>상품 담당자</th>
+                                        <td>
+                                            이름: <input type="text" id="product_manager_2" name="product_manager_2"  value="<?= $product_manager_2 ?>" class="input_txt" placeholder="" style="width:150px"/>
+                                            &ensp;연락처: <input id="phone_2" name="phone_2" class="input_txt" type="text" value="<?= $phone_2 ?? '' ?>"   style="width:150px"/>
+                                            &ensp;이메일: <input id="email_2" name="email_2" class="input_txt"  type="text" value="<?= $email_2 ?? '' ?>"   style="width:150px"/>
+                                        </td>
+                                        <th>운영시간</th>
+                                        <td>
+                                            <input id="time_line" name="time_line" class="input_txt" type="text"
+                                                value="<?= $time_line ?>" style="width:100%"/><br/>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>내용</th>
-                                        <td>
+                                        <td colspan="5">
                                             <textarea name="company_notes" id="company_notes" rows="10" cols="100" class="input_txt"
                                                 style="width:100%; height:400px; display:none;"><?= viewSQ($company_notes) ?>
                                             </textarea>
@@ -1521,7 +1526,7 @@
                                         class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                         <?php } else { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">저장</span></a>
                             <!--a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                         class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a-->
                         <?php } ?>

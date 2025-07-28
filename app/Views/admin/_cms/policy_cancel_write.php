@@ -51,10 +51,6 @@
                             <input type="hidden" name="product_code_3" id="product_code_3" value="<?= $product_code_3 ?>">
                         <?php } ?>
 
-                        <?php
-
-                        ?>
-
                         <div class="listBottom">
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -105,6 +101,12 @@
                                                 </select>
                                             <?php } ?>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>취소 기간 안내</th>
+                                    <td>
+                                        <input type="text" name="subtitle" value="<?= $subtitle ?>">
                                     </td>
                                 </tr>
                                 <tr>

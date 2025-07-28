@@ -262,7 +262,7 @@
         font-family: "Noto Sans KR";
         font-size: 2rem;
         color: #ffffff;
-        background-color: #cccccc;
+        background-color: #84858c;
         padding: 0.3846rem 0.5769rem;
         border-radius: 3px;
         /* margin-left: 0.7692rem; */
@@ -328,6 +328,11 @@
     .invoice_paid .invoice_table table {
         width: 100%;
         border-top: 2px solid rgb(37, 37, 37);
+    }
+
+    .invoice_paid .table_detail table {
+        border-top: 2px solid rgb(37 37 37 / 46%) !important;
+        margin-top: -1px !important;
     }
 
     .invoice_paid .invoice_table colgroup {

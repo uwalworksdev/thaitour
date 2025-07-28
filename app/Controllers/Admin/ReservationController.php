@@ -30,6 +30,9 @@ class ReservationController extends BaseController
     private $orderGuide;
     protected $guideOptionModel;
     protected $guideSupOptionModel;
+    protected $historyOrderUpdate;
+    protected $member;
+
 
     public function __construct()
     {
@@ -45,6 +48,8 @@ class ReservationController extends BaseController
         $this->carsCategory = model("CarsCategory");
         $this->carsPrice = model("CarsPrice");
         $this->ordersCars = model("OrdersCarsModel");
+        $this->historyOrderUpdate = model("HistoryOrderUpdate");
+        $this->member = model("Member");
 
         $this->orderGuide = new OrderGuideModel();
         $this->guideOptionModel = new GuideOptions();
@@ -172,7 +177,7 @@ class ReservationController extends BaseController
 		$fsql = "SELECT 
 					CASE 
 						WHEN a.payment_status IS NULL OR a.payment_status = '' OR a.payment_status = 'W' THEN '예약접수'
-						WHEN a.payment_status = 'X' THEN '예약확인'
+						WHEN a.payment_status = 'X' THEN '예약가능'
 						WHEN a.payment_status = 'Y' THEN '결제완료'
 						WHEN a.payment_status IN ('Z','G','R','J') THEN '예약확정'
 						WHEN a.payment_status = 'C' THEN '예약취소'
@@ -192,7 +197,7 @@ class ReservationController extends BaseController
 					GROUP BY 
 						status_group
 					ORDER BY 
-						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+						FIELD(status_group, '예약접수', '예약가능', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();
@@ -365,7 +370,7 @@ class ReservationController extends BaseController
 		$fsql = "SELECT 
 					CASE 
 						WHEN a.order_status IS NULL OR a.order_status = '' OR a.order_status = 'W' THEN '예약접수'
-						WHEN a.order_status = 'X' THEN '예약확인'
+						WHEN a.order_status = 'X' THEN '예약가능'
 						WHEN a.order_status = 'Y' THEN '결제완료'
 						WHEN a.order_status IN ('Z','G','R','J') THEN '예약확정'
 						WHEN a.order_status = 'C' THEN '예약취소'
@@ -381,7 +386,7 @@ class ReservationController extends BaseController
 					GROUP BY 
 						status_group
 					ORDER BY 
-						FIELD(status_group, '예약접수', '예약확인', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
+						FIELD(status_group, '예약접수', '예약가능', '결제완료', '예약확정', '예약취소', '예약불가', '이용완료')";
 
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();
@@ -537,17 +542,11 @@ class ReservationController extends BaseController
         $result_cou = $this->connect->query($sql_cou);
         $row_cou    = $result_cou->getRowArray();
 
-         
-
         $fresult    = $this->orderSubModel->getOrderSub($order_idx);
-
-       
 
         $additional_request       = $row['additional_request'] ?? '';
         $_arr_additional_request  = explode("|", $additional_request);
         $list__additional_request = rtrim(implode(',', $_arr_additional_request), ',');
-
-        
 
         if($list__additional_request == "") {
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' order by onum asc, code_idx desc";
@@ -555,11 +554,8 @@ class ReservationController extends BaseController
            $sql = "select * from tbl_code WHERE parent_code_no='53' AND status = 'Y' and code_no IN ($list__additional_request) order by onum asc, code_idx desc";
         }
 
-         
-
 		$fcodes = $this->db->query($sql)->getResultArray();
         
-
         $data['fcodes'] = $fcodes;
 
         $str_guide = '';
@@ -595,26 +591,25 @@ class ReservationController extends BaseController
             $optionsIdx  = $data['tour_orders']['options_idx'];
             $options_idx = explode(',', $optionsIdx);
 
-
             $builder = $this->db->table('tbl_order_option');
-			$builder->select("option_name, option_tot, option_cnt, option_date, option_qty, option_price");
+			$builder->select("opt_idx, option_name, option_tot, option_tot_bath, option_cnt, option_date, option_qty, option_price, option_price_bath");
 			$query = $builder->where('order_idx', $order_idx)->get();
 			$optionResult = $query->getResult(); // 옵션 데이터 (객체 배열)
 
             $data['total_price'] = 0;
 
-            $totalOptionBath = 0;
-			foreach ($optionResult as &$option) {
-						$totalOptionBath += $option->option_cnt * $option->option_price;
-                        $option->option_price_won =  round($option->option_price * $this->setting['baht_thai']);
-			}
+            // $totalOptionBath = 0;
+			// foreach ($optionResult as &$option) {
+            //     $totalOptionBath += $option->option_cnt * $option->option_price;
+            //     $option->option_price_won =  round($option->option_price * $this->setting['baht_thai']);
+			// }
 
             $data['tour_option'] = $optionResult;
-            $data['total_options'] = $totalOptionBath;
-			$data['total_bath'] = $data['real_price_bath'] + $totalOptionBath;
+            // $data['total_options'] = $totalOptionBath;
+			// $data['total_bath'] = $data['real_price_bath'] + $totalOptionBath;
 
-			$data['total_options_won'] = round($totalOptionBath * $this->setting['baht_thai']);
-			$data['total_won'] = round($data['total_bath'] * $this->setting['baht_thai']);
+			// $data['total_options_won'] = round($totalOptionBath * $this->setting['baht_thai']);
+			// $data['total_won'] = round($data['total_bath'] * $this->setting['baht_thai']);
 
 
             // var_dump($data['tour_option']);
@@ -669,6 +664,17 @@ class ReservationController extends BaseController
             $data['sup_options'] = $sup_options;
         }
 
+        $data['bath_thai_price'] = $this->setting['baht_thai'];
+        $data['gubun'] = $gubun;
+
+        $data['history_order_list'] = $this->historyOrderUpdate->where("order_idx", $order_idx)
+                                                                ->orderBy("updated_date", "desc")
+                                                                ->findAll();
+        foreach ($data['history_order_list'] as $key => $value) {
+            $data['history_order_list'][$key]['user_name'] = $this->member->getByIdx($value['m_idx'])['user_name'];
+            $data['history_order_list'][$key]['user_id'] = $this->member->getByIdx($value['m_idx'])['user_id'];
+        }
+
 		if (!isset($row) || !is_array($row)) {
 			$row = []; // 최소한 빈 배열 전달
 		}
@@ -679,16 +685,16 @@ class ReservationController extends BaseController
     public function write_ok($order_idx = null)
     {
         try {
+            $m_idx = session()->get("member")["idx"] ?? 0;
+            $ipAddress = $this->request->getIPAddress();
             $data = $this->request->getPost();
-
+            $gubun = $data['gubun'];
             $data['order_price'] = str_replace(",", "", $data['order_price']);
             $data['order_confirm_price'] = str_replace(",", "", $data['order_confirm_price']);
             $data['deposit_price'] = str_replace(",", "", $data['deposit_price']);
 
             $order_status = $data['order_status'];
             $order_no = $data['order_no'];
-
-
             $data['order_m_date'] = (string)Time::now('Asia/Seoul', 'en_US');
 
             if ($order_status == "R") {
@@ -697,7 +703,314 @@ class ReservationController extends BaseController
                 $data["order_c_date"] = (string)Time::now('Asia/Seoul', 'en_US');
             }
 
+            $used_coupon_money = $data['used_coupon_money'] ?? 0;
+            $used_mileage_money = $data['used_mileage_money'] ?? 0;
+            $extra_cost = $data['extra_cost'] ?? 0;            
+            $baht_thai = $this->setting['baht_thai'];
+
+            if($gubun == "hotel"){
+                $order_room_cnt = $data['order_room_cnt'] ?? 1;
+
+                $goods_date = $data['goods_date'] ?? [];
+                $goods_price1 = $data['goods_price1'] ?? [];
+                $goods_price2 = $data['goods_price2'] ?? [];
+                $goods_price3 = $data['goods_price3'] ?? [];
+                $goods_price4 = $data['goods_price4'] ?? [];
+                $goods_price5 = $data['goods_price5'] ?? [];
+                $bed_type = $data['bed_type'] ?? [];
+
+                $order_day_cnt = $data['order_day_cnt'];
+
+                $date_price_op = explode("|", $data['date_price_option']);
+                $date_price_op = array_filter($date_price_op, function($item) {
+                    return trim($item) !== '';
+                });
+
+                $count_date_price = count($date_price_op);
+
+                if($order_day_cnt < $count_date_price){
+                    $date_price_op = array_slice($date_price_op, 0, $order_day_cnt);
+                    $date_price = implode("|", $date_price_op);
+                }else{
+
+                    for ($i = 0; $i < count($goods_date); $i++) {
+                        $dateRows[] = [
+                            'goods_date'    => $goods_date[$i] ?? '',
+                            'goods_price1'  => $goods_price1[$i] ?? '',
+                            'goods_price2'  => $goods_price2[$i] ?? '',
+                            'goods_price3'  => $goods_price3[$i] ?? '',
+                            'goods_price4'  => $goods_price4[$i] ?? '',
+                            'goods_price5'  => $goods_price5[$i] ?? '',
+                            'bed_type'      => $bed_type[$i] ?? '',
+                        ];
+                    }
+
+                    $room_r = array_map(function ($row) use ($baht_thai) {
+                        return implode(":", [
+                            $row['goods_date'],
+                            $row['goods_price1'],
+                            $row['goods_price2'],
+                            $row['goods_price3'],
+                            $row['goods_price4'],
+                            $row['goods_price5'],
+                            $row['bed_type'],
+                            $baht_thai,
+                        ]);
+                    }, $dateRows);
+
+                    $date_price = implode("|", $room_r);
+                }
+
+                $price_won = 0;
+                $price_bath = 0;
+                $extra_won = 0;
+                $extra_bath = 0;
+
+                for ($i = 0; $i < count($goods_date); $i++) {
+
+                    $price2 = $goods_price2[$i] ?? 0;
+                    $price3 = $goods_price3[$i] ?? 0;
+                    $price5 = $goods_price5[$i] ?? 0;
+
+                    $price_won  += (int)(((int)$price2 + (int)$price3) * (int)($order_room_cnt) * $baht_thai);
+                    $price_bath += ((int)$price2 + (int)$price3) * (int)($order_room_cnt);
+                    $extra_won += (int)$price5 * (int)($order_room_cnt) * $baht_thai;
+                    $extra_bath += (int)$price5 * (int)($order_room_cnt);
+                }
+
+                $order_price = $price_won + $extra_won;
+                $order_price_bath = $price_bath + $extra_bath;
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+                $data['price'] = $price_bath;
+                $data['price_won'] = $price_won;
+                $data['extra_won'] = $extra_won;
+                $data['extra_bath'] = $extra_bath;
+                $data['last_price'] = $last_price;
+
+                $data['date_price'] = $date_price;
+            }
+
+            if($gubun == "golf") {
+                $main_option_tot = $data['main_option_tot'] ?? 0;
+                $main_option_tot_bath = $data['main_option_tot_bath'] ?? 0;
+                $main_option_cnt = $data['main_option_cnt'] ?? "";
+                $main_option_name = $data['main_option_name'] ?? "";
+
+                // $caddy_option_idx = $data['caddy_option_idx'] ?? "";
+                // $caddy_option_cnt = $data['caddy_option_cnt'] ?? "";
+                // $cart_option_idx = $data['cart_option_idx'] ?? "";
+                // $cart_option_cnt = $data['cart_option_cnt'] ?? "";
+
+                $ve_op_idx = $data['ve_op_idx'] ?? [];
+                $ve_op_name = $data['ve_op_name'] ?? [];
+                $ve_op_cnt = $data['ve_op_cnt'] ?? [];
+                $ve_op_tot = $data['ve_op_tot'] ?? [];
+                $ve_op_tot_bath = $data['ve_op_tot_bath'] ?? [];
+
+                $op_idx = $data['op_idx'] ?? [];
+                $op_name = $data['op_name'] ?? [];
+                $op_cnt = $data['op_cnt'] ?? [];
+                $op_tot = $data['op_tot'] ?? [];
+                $op_tot_bath = $data['op_tot_bath'] ?? [];
+
+                $this->orderOptionModel->where('order_idx', $order_idx)
+                                        ->where('option_type', 'main')
+                                        ->set([
+                                            "option_name" => $main_option_name,
+                                            "option_tot" => $main_option_tot,
+                                            "option_tot_bath" => $main_option_tot_bath,
+                                            "option_cnt" => $main_option_cnt,
+                                        ])
+                                        ->update();
+
+                // $this->orderOptionModel->update($caddy_option_idx, [
+                //     "option_cnt" => $caddy_option_cnt,
+                // ]);
+
+                // $this->orderOptionModel->update($cart_option_idx, [
+                //     "option_cnt" => $cart_option_cnt,
+                // ]);
+
+                $order_price = (int)$main_option_tot;
+                $order_price_bath = (int)$main_option_tot_bath;
+
+                foreach($ve_op_idx as $key => $item){
+                    $order_price += (int)$ve_op_tot[$key];
+                    $order_price_bath += (int)$ve_op_tot_bath[$key];
+                    $this->orderOptionModel->update($item, [
+                        "option_name_new" => $ve_op_name[$key],
+                        "option_cnt" => $ve_op_cnt[$key],
+                        "option_tot" => $ve_op_tot[$key],
+                        "option_tot_bath" => $ve_op_tot_bath[$key]
+                    ]);
+                }
+
+                foreach($op_idx as $key => $item){
+                    $order_price += (int)$op_tot[$key];
+                    $order_price_bath += (int)$op_tot_bath[$key];
+                    $this->orderOptionModel->update($item, [
+                        "option_name" => $op_name[$key],
+                        "option_cnt" => $op_cnt[$key],
+                        "option_tot" => $op_tot[$key],
+                        "option_tot_bath" => $op_tot_bath[$key]
+                    ]);
+                }
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['inital_price'] = $order_price;
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+                $data['last_price'] = $last_price;
+            }
+
+            if($gubun == "tour") {
+                $order_price = 0;
+                $order_price_bath = 0;
+
+                $people_adult_cnt = $data['people_adult_cnt'] ?? 0;
+                $ori_people_adult_price = $data['ori_people_adult_price'] ?? 0;
+                $people_kids_cnt = $data['people_kids_cnt'] ?? 0;
+                $ori_people_kids_price = $data['ori_people_kids_price'] ?? 0;
+                $people_baby_cnt = $data['people_baby_cnt'] ?? 0;
+                $ori_people_baby_price = $data['ori_people_baby_price'] ?? 0;
+
+                $data['people_adult_price'] = (int)$people_adult_cnt * (int)$ori_people_adult_price;
+                $data['people_kids_price'] = (int)$people_kids_cnt * (int)$ori_people_kids_price;
+                $data['people_baby_price'] = (int)$people_baby_cnt * (int)$ori_people_baby_price;
+
+                $order_price = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
+
+                $op_idx = $data['op_idx'] ?? [];
+                $op_name = $data['op_name'] ?? [];
+                $op_cnt = $data['op_cnt'] ?? [];
+                $op_price = $data['op_price'] ?? [];
+
+                foreach($op_idx as $key => $item){
+                    $option_tot = (int)$op_price[$key] * (int)$op_cnt[$key];
+                    $order_price += $option_tot;
+                    $option_tot_bath = (int)($option_tot / $baht_thai);
+                    $order_price_bath += $option_tot_bath;
+                    $option_price = $op_price[$key];
+                    $option_price_bath = (int)($option_price / $baht_thai);
+
+                    $this->orderOptionModel->update($item, [
+                        "option_name" => $op_name[$key],
+                        "option_tot" => $option_tot,
+                        "option_tot_bath" => $option_tot_bath,
+                        "option_cnt" => $op_cnt[$key],
+                        "option_price" => $option_price,
+                        "option_price_bath" => $option_price_bath,
+                        "option_qty" => $op_cnt[$key],
+                    ]);
+                }
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['last_price'] = $last_price;
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+            }
+
+            if($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
+                $order_price = 0;
+                $order_price_bath = 0;
+
+                $op_idx = $data['op_idx'] ?? [];
+                $op_name = $data['op_name'] ?? [];
+                $op_cnt = $data['op_cnt'] ?? [];
+                $op_price = $data['op_price'] ?? [];
+
+                foreach($op_idx as $key => $item){
+                    $option_tot = (int)$op_price[$key] * (int)$op_cnt[$key];
+                    $order_price += $option_tot;
+                    $option_tot_bath = (int)($option_tot / $baht_thai);
+                    $order_price_bath += $option_tot_bath;
+                    $option_price = $op_price[$key];
+                    $option_price_bath = (int)($option_price / $baht_thai);
+
+                    $this->orderOptionModel->update($item, [
+                        "option_name" => $op_name[$key],
+                        "option_tot" => $option_tot,
+                        "option_tot_bath" => $option_tot_bath,
+                        "option_cnt" => $op_cnt[$key],
+                        "option_price" => $option_price,
+                        "option_price_bath" => $option_price_bath,
+                        "option_qty" => $op_cnt[$key],
+                    ]);
+                }
+
+                $last_price = $order_price - $used_coupon_money - $used_mileage_money + $extra_cost;
+
+                $data['last_price'] = $last_price;
+                $data['order_price'] = $order_price;
+                $data['order_price_bath'] = $order_price_bath;
+            }
+
+            if($gubun == "vehicle") {
+                $op_c_idx = $data['idx'] ?? [];
+                $air_code = $data['air_code'] ?? [];
+                $date_trip = $data['date_trip'] ?? [];
+                $hours = $data['hours'] ?? [];
+                $minutes = $data['minutes'] ?? [];
+                $departure_name = $data['departure_name'] ?? [];
+                $destination_name = $data['destination_name'] ?? [];
+                $order_memo = $data['order_memo'] ?? [];
+                $schedule_content = $data['schedule_content'] ?? [];
+                $rest_name = $data['rest_name'] ?? [];
+
+                foreach($op_c_idx as $key => $item){
+                    $this->ordersCars->updateData($item, [
+                        "air_code" => $air_code[$key] ?? "",
+                        "departure_name" => $departure_name[$key] ?? "",
+                        "destination_name" => $destination_name[$key] ?? "",
+                        "rest_name" => $rest_name[$key] ?? "",
+                        "date_trip" => $date_trip[$key] ?? "",
+                        "hours" => $hours[$key] ?? "",
+                        "minutes" => $minutes[$key] ?? "",
+                        "order_memo" => $order_memo[$key] ?? "",
+                        "schedule_content" => $schedule_content[$key] ?? ""
+                    ]);
+                }
+
+                $order_price = $data['order_price'] ?? 0;
+                $data['order_price_bath'] = (int)($order_price / $baht_thai);
+            }
+
+            if($gubun == "guide") {
+                $op_guide_idx = $data['op_guide_idx'] ?? [];
+                $guide_meeting_hour = $data['guide_meeting_hour'] ?? [];
+                $guide_meeting_min = $data['guide_meeting_min'] ?? [];
+                $guide_meeting_place = $data['guide_meeting_place'] ?? [];
+                $guide_schedule = $data['guide_schedule'] ?? [];
+                $request_memo = $data['request_memo'] ?? [];
+
+                foreach($op_guide_idx as $key => $item){
+                    $this->orderGuide->update($item, [
+                        "guide_meeting_hour" => $guide_meeting_hour[$key] ?? "",
+                        "guide_meeting_min" => $guide_meeting_min[$key] ?? "",
+                        "guide_meeting_place" => $guide_meeting_place[$key] ?? "",
+                        "guide_schedule" => $guide_schedule[$key] ?? "",
+                        "request_memo" => $request_memo[$key] ?? ""
+                    ]);
+                }
+
+                $order_price = $data['order_price'] ?? 0;
+                $data['order_price_bath'] = (int)($order_price / $baht_thai);
+            }
+
             $this->orderModel->updateData($order_idx, $data);
+
+            $this->historyOrderUpdate->insertData([
+                "m_idx" => $m_idx,
+                "order_idx" => $order_idx,
+                "ip_address" => $ipAddress,
+                "updated_date" =>  Time::now('Asia/Seoul')->format('Y-m-d H:i:s'),
+            ]);
 
             $gl_idx = $data['gl_idx'] ?? [];
             $order_name_kor = $data['order_name_kor'] ?? "";
@@ -787,22 +1100,36 @@ class ReservationController extends BaseController
         }
     }
 
-public function delete()
-{
-    $orderIdxs = $this->request->getPost('order_idx');
-    if (!$orderIdxs) {
-        return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+    public function delete()
+    {
+        $orderIdxs = $this->request->getPost('order_idx');
+        if (!$orderIdxs) {
+            return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+        }
+
+        // 삭제 로직 수행 예시
+        foreach ($orderIdxs as $orderIdx) {
+            // 모델을 이용해 삭제
+            $this->orderModel->delete($orderIdx);
+        }
+
+        return $this->response->setJSON(['result' => true]);
     }
 
-    // 삭제 로직 수행 예시
-    foreach ($orderIdxs as $orderIdx) {
-        // 모델을 이용해 삭제
-        $this->orderModel->delete($orderIdx);
+    public function del_history() {
+        $arr_h_idx = $this->request->getPost('h_idx');
+        if (!$arr_h_idx) {
+            return $this->response->setJSON(['result' => false, 'message' => '잘못된 요청입니다.']);
+        }
+
+        // 삭제 로직 수행 예시
+        foreach ($arr_h_idx as $h_idx) {
+            // 모델을 이용해 삭제
+            $this->historyOrderUpdate->delete($h_idx);
+        }
+
+        return $this->response->setJSON(['result' => true]);
     }
-
-    return $this->response->setJSON(['result' => true]);
-}
-
 
     function get_code()
     {

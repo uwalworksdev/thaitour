@@ -13,6 +13,10 @@
 
         function send_it() {
             var frm = document.frm;
+            $(".price").each(function () {
+                let val = $(this).val().replace(/,/g, '');
+                $(this).val(val);
+            });
             document.getElementById('action_type').value = 'save';
             document.frm.submit();
             frm.submit();
@@ -62,8 +66,7 @@
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
-                <input type=hidden name="order_date" value='<?= $order_date ?>'>
-                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $baht_thai ?>'>
+                <input type=hidden name="baht_thai" id="baht_thai" value='<?= $bath_thai_price ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
 
@@ -74,7 +77,6 @@
                 <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
 
                 <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <input type=hidden name="order_price" value='<?= $order_price ?>'>
                 <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
                 <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
                 <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
@@ -92,12 +94,10 @@
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
-
+                <input type=hidden name="gubun" value='<?= $gubun ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
-
-
                         <div class="listBottom">
                             <div style="font-size:12pt;margin-bottom:10px">■ 예약정보(골프)</div>   
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -113,8 +113,8 @@
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <?= $product_name ?><br><?= $tours_subject ?>
-                                        <input type=hidden name="product_name" value='<?= $product_name ?>'>
+                                        <input type="text" name="product_name" value='<?= $product_name ?>'>
+
                                     </td>
                                     <th>예약번호</th>
                                     <td>
@@ -128,7 +128,7 @@
                                         <input type="text" id="order_user_name" name="order_user_name"
                                                value="<?= $order_user_name ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>주문자이메일</th>
+                                    <th>주문자 이메일</th>
                                     <td>
                                         <input type="text" id="order_user_email" name="order_user_email"
                                                value="<?= $order_user_email ?>" class="input_txt" style="width:90%"/>
@@ -144,7 +144,7 @@
                                     </td>
                                     <th>여권정보</th>
                                     <td>
-										<select name="order_status" class="select_txt">
+										<select name="order_gender_list" class="select_txt">
                                             <option value="M" <?php if($order_gender_list == "M") echo "selected";?> >남자</option>  
                                             <option value="F" <?php if($order_gender_list == "F") echo "selected";?> >여자</option>
                                         </select>
@@ -160,10 +160,15 @@
                                         <input type="text" id="order_birth_date" name="order_birth_date" placeholder="First Name"
                                                value="<?= $order_birth_date ?>" class="input_txt datepicker" style="width:20%" readonly/>
                                     </td>
-                                    <th>생년월일</th>
+                                    <th>그린피</th>
                                     <td>
-                                         <p><span>그린피 : </span><em><?=number_format($main[0]["option_tot"])?></em> 원
-                                            (<em><?=number_format($main[0]["option_tot_bath"])?></em>바트 X <em><?=number_format($main[0]["option_cnt"])?></em>인)</p>
+                                         <div class="price_wrapper"><span>그린피 : </span>
+                                            <input type="text" id="main_option_tot" name="main_option_tot"
+                                               value="<?=number_format($main[0]["option_tot"])?>" class="input_txt number-only price price_won" style="width:100px;"/> 원
+                                            <input type="text" id="main_option_tot_bath" name="main_option_tot_bath"
+                                               value="<?=number_format($main[0]["option_tot_bath"])?>" class="input_txt number-only price price_bath" style="width:100px;"/>
+                                            바트 X <input type="text" id="main_option_cnt" name="main_option_cnt"
+                                               value="<?=number_format($main[0]["option_cnt"])?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>인</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -181,60 +186,96 @@
                                 </tr>
                                 <?php 
 								    foreach ($vehicle as $key => $item): 
-									     if($item['option_name'] == "카트")   $cart  = $item['option_cnt'];
-									     if($item['option_name'] == "캐디피") $caddy = $item['option_cnt'];
+                                        if($item['option_name'] == "카트") {
+                                            $cart  = $item['option_cnt'];
+                                            $op_cart_idx  = $item['opt_idx'];
+                                        }
+
+									    if($item['option_name'] == "캐디피") {
+                                            $caddy = $item['option_cnt'];  
+                                            $op_caddy_idx  = $item['opt_idx'];
+                                        } 
                                     endforeach; 
                                 ?> 
                                 <tr>
-                                    <th>기본 선택정보</th>
+                                    <th>홀/날짜/시간</th>
 									<?php foreach ($main as $key => $item): ?>
-                                    <td><?=str_replace("|", " | ", $item['option_name']);?></td>
+                                    <td>
+                                        <input type="text" id="main_option_name" name="main_option_name"
+                                               value="<?=$item['option_name']?>" class="input_txt"/>
+                                    </td>
                                     <th>인원/캐디/카트</th>
-                                    <td>라운딩 인원 : <?= $item['option_cnt'] ?>명 &emsp;|&emsp; 캐디 : <?=$caddy ?? 0?>명 &emsp;|&emsp; 카트 : <?=$cart ?? 0?>대</td>
+                                    <td>라운딩 인원 : 
+                                        <?= $item['option_cnt'] ?>명 
+                                        &emsp;|&emsp; 캐디피 : 
+                                        <!-- <input type="hidden" id="caddy_option_idx" name="caddy_option_idx" value="<?=$op_caddy_idx?>"> -->
+                                        <!-- <input type="text" id="caddy_option_cnt" name="caddy_option_cnt"
+                                            value="<?=$caddy ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>명  -->
+                                        <?=$caddy ?? 0?>명
+                                        &emsp;|&emsp; 카트 : 
+                                        <!-- <input type="hidden" id="cart_option_idx" name="cart_option_idx" value="<?=$op_cart_idx?>"> -->
+                                        <!-- <input type="text" id="cart_option_cnt" name="cart_option_cnt"
+                                               value="<?=$cart ?? 0?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 -->
+                                        <?=$cart ?? 0?>대</td>
                                     <?php endforeach; ?>
                                 </tr>
 
                                 <tr>
                                     <th>예약일시</th>
-                                    <td><?= $order_date ?></td>
+                                    <td>
+                                        <input type="text" id="order_date" name="order_date"
+                                               value="<?= $order_date ?>" class="input_txt" style="width:40%"/>
+                                    </td>
                                     <th>차량 미팅 시간</th>
                                     <td>
-                                        <?= $vehicle_time ?>
+                                        <input type="text" id="vehicle_time" name="vehicle_time"
+                                               value="<?= $vehicle_time ?>" class="input_txt" style="width:40%"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>골프장 왕복 픽업 차량</th>
                                     <td>
-                                        <?php foreach ($vehicle as $key => $item): ?>
-                                            <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
-											금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
-                                            <?= $key == count($vehicle) - 1 ? "" : "<br>" ?>
-                                        <?php endforeach; ?>
+                                        <div class="flex" style="flex-direction: column; gap: 5px;">
+                                            <?php foreach ($vehicle as $key => $item): ?>
+                                                <span class="price_wrapper">골프장 왕복 픽업 차량: 
+                                                    <input type="hidden" name="ve_op_idx[]" value="<?= $item['opt_idx'] ?>"/> 
+                                                    <input type="text" name="ve_op_name[]" value="<?= !empty($item['option_name_new']) ? $item['option_name_new'] : $item['option_name'] ?>" class="input_txt" style="width:150px;"/> 
+                                                    x <input type="text" name="ve_op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
+                                                금액 <input type="text" name="ve_op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price price_won" style="width:100px;"/>원 / 
+                                                <input type="text" name="ve_op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price price_bath" style="width:100px;"/>TH</span>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </td>
                                     <th>선택옵션</th>
                                     <td>
-									    <?php foreach ($option as $key => $item): ?>
-                                            <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대 = 
-											금액 (<?= number_format($item['option_tot'])?>원) / (<?= number_format($item['option_tot'] / $item['baht_thai'])?>TH)</span>
-                                            <?= $key == count($option) - 1 ? "" : "<br>" ?>										
-										<?php endforeach; ?>
+                                        <div class="flex" style="flex-direction: column; gap: 5px;">
+                                            <?php foreach ($option as $key => $item): ?>
+                                                <div class="price_wrapper">
+                                                    <input type="hidden" name="op_idx[]" value="<?= $item['opt_idx'] ?>"/> 
+                                                    <input type="text" name="op_name[]" value="<?= $item['option_name'] ?>" class="input_txt" style="width:200px;"/> 
+                                                    x <input type="text" name="op_cnt[]" value="<?= $item['option_cnt'] ?>" class="input_txt number-only" style="width:50px;" maxlength="3"/>대 = 
+                                                    금액 <input type="text" name="op_tot[]" value="<?= number_format($item['option_tot'])?>" class="input_txt number-only price price_won" style="width:100px;"/>원 / 
+                                                    <input type="text" name="op_tot_bath[]" value="<?= number_format($item['option_tot'] / $item['baht_thai'])?>" class="input_txt number-only price price_bath" style="width:100px;"/>TH</span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>여행시 현지 연락처</th>
                                     <td><input type="text" id="local_phone" name="local_phone" value="<?= $local_phone ?>" class="input_txt" style="width:40%"/></td>
                                     <th>출발지(필요호텔)</th>
-                                    <td><?= $departure_point ?></td>
+                                    <td><input type="text" id="departure_point" name="departure_point" value="<?= $departure_point ?>" class="input_txt" style="width:40%"/></td>
                                 </tr>
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>
                                         <th>부여된마일리지</th>
                                         <td>
-                                            <?= $order_mileage ?>P
+                                            <input type="text" id="order_mileage" name="order_mileage" value="<?= $order_mileage ?>" class="input_txt" style="width:40%"/>P
                                         </td>
                                         <th>결제일시</th>
                                         <td>
-                                            <?= $paydate ?>
+                                            <input type="text" id="paydate" name="paydate" value="<?= $paydate ?>" class="input_txt" style="width:40%"/>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -248,6 +289,14 @@
                                     <th>관리자 메모</th>
                                     <td colspan="3">
                                         <textarea id="admin_memo" name="admin_memo" class="input_txt"  style="width:90%;height:80px"><?= $admin_memo ?></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>변경사항</th>
+                                    <td colspan="3">
+                                        <input type="text" id="notes_invoice" name="notes_invoice" value="<?= $notes_invoice ?>" class="input_txt" style="width:30%"/>
+                                        <input type="checkbox" name="chk_notes_invoice" id="chk_notes_invoice" value="Y" <?= $chk_notes_invoice == "Y" ? "checked" : "" ?>>
+                                        <label for="chk_notes_invoice">적용</label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -271,21 +320,21 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         원화계산 : <?php
-                                            $setting    = homeSetInfo();
-                                            $extra_cost = 0;
+                                            // $setting    = homeSetInfo();
+                                            // $extra_cost = 0;
                                 
-                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            // $type_extra_cost = $setting["type_extra_cost"];
                                             
-                                            $total_price = 0;
-                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
-                                            if (!empty($setting["extra_cost"])) {
-                                                if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
-                                                } else {
-                                                    $extra_cost = $setting["extra_cost"];
-                                                }
-                                            }
+                                            // $total_price = 0;
+                                            // $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+                                            // $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
+                                            // if (!empty($setting["extra_cost"])) {
+                                            //     if ($type_extra_cost == "P") {
+                                            //         $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
+                                            //     } else {
+                                            //         $extra_cost = $setting["extra_cost"];
+                                            //     }
+                                            // }
 
                                         ?>   
                                         <?php
@@ -295,20 +344,36 @@
                                         <?php
                                             }else{
                                         ?>
-                                        <?= number_format( $order_price) ?>원    
+                                        <input type="text" style="width: 100px;" id="order_price" name="order_price"
+                                                    value="<?= number_format( $order_price) ?>" class="input_txt price" readonly>원        
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                         <input type="text" style="width: 100px;" id="used_coupon_money" name="used_coupon_money"
+                                                    value="<?= number_format($used_coupon_money) ?>" class="input_txt price">원(할인쿠폰) 
                                         -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        +
-                                        <?= number_format( $extra_cost) ?>원
-                                        = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
-                                        원
+                                        <input type="text" style="width: 100px;" id="used_mileage_money" name="used_mileage_money"
+                                                    value="<?= number_format($used_mileage_money) ?>" class="input_txt price">원(마일리지사용)
+                                        <div style="margin-left: 43px; margin-top: 5px;">
+                                            +
+                                            <input type="text" style="width: 100px;" id="extra_cost" name="extra_cost"
+                                                        value="<?= number_format($extra_cost) ?>" class="input_txt price">원
+                                            = <?= number_format( $order_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
+                                            원
+                                        </div>
                                         <?php } ?> <br>
-										바트계산 : <?=$order_price_bath?>  TH - 0 TH(할인쿠폰) - 0 TH(마일리지사용)  = <?=number_format($order_price)?> 원
+                                        <?php
+
+                                            $used_coupon_money_bath = (int) round($used_coupon_money / $bath_thai_price);
+                                            $used_mileage_money_bath = (int) round($used_mileage_money / $bath_thai_price);
+                                            $extra_cost_bath = (int) round($extra_cost / $bath_thai_price);
+                                            
+                                        ?>
+										바트계산 : <?=number_format($order_price_bath)?>  TH - <?=number_format($used_coupon_money_bath)?> TH(할인쿠폰) 
+                                                - <?=number_format($used_mileage_money_bath)?> TH(마일리지사용) + <?=$extra_cost_bath?> TH 
+                                                = <?=number_format($order_price_bath - $used_coupon_money_bath - $used_mileage_money_bath + $extra_cost_bath)?> TH
                                     </td>
                                     <th>실 결제금액</th>
                                     <td>
+                                       
 										<input type="text" id="real_price_bath" name="real_price_bath"
                                                value="<?= number_format($real_price_bath)?>" class="input_txt price"
                                                style="width:150px;text-align:right;" <?php if($order_status != "W") echo "readonly";?> /> TH
@@ -323,7 +388,11 @@
 
                                        
                                         ?>&emsp;
-
+										
+										<?php if($order_status == "X") { ?>
+                                        <button type="button" class="btn btn-primary" style="width: unset;" onclick="send_payment('<?=$order_idx?>');">결제발송</button>
+										<?php } ?>
+										
 										<?php if($order_status == "W") { ?>
                                         <a href="#!" class="btn btn-default" id="price_update" >
 										<span class="glyphicon glyphicon-cog"></span><span class="txt">금액수정</span></a>
@@ -389,7 +458,7 @@
                                         <th>예약 문자발송(알림톡)</th>
                                         <td colspan="3">
                                          <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','UA_5373');">예약접수</button>
-										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','UA_5319');">예약확인</button>
+										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','UA_5319');">예약가능</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','UA_5325');">예약불가능</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','TY_2397');">결제대기</button>
 										 <button type="button" class="btn btn-primary" style="width: unset;" onclick="allimtalk('<?=$order_no?>','UA_5328');">결제완료</button>
@@ -505,8 +574,43 @@
                                 </tbody>
                             </table>
 							
-							
-							
+                            <br>                
+                            <div style="font-size:12pt;margin-bottom:10px">■ 관리 히스토리</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="90%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>수정일자</th>
+                                    <td>
+										<div class="flex" style="flex-direction: column;">
+                                            <?php
+                                                foreach ($history_order_list as $history_item) {
+                                            ?>
+                                                <div class="flex" style="gap: 10px;">
+                                                    <p><?=$history_item['user_name']?>(<?=$history_item['user_id']?>) 님이 <?=$history_item['updated_date']?> 수정을 하셨습니다. (아이피: <?=$history_item['ip_address']?>)</p>
+                                                    <?php
+                                                        if(session()->get("member")["id"] == "admin"){
+                                                    ?>
+                                                        <a href="javascript:del_history('<?= $history_item['h_idx'] ?>');"><img
+                                                            src="/images/admin/common/ico_error.png" alt="에러"/></a>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </div>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                </tbody>
+                            </table>
                         </div>
                         <!-- // listBottom -->
 
@@ -559,7 +663,102 @@
         <div class="pop_dim" onclick="PopCloseBtn('.img_pop')"></div>
     </div>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function del_history(h_idx) {
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+                return;
+            }
+            $("#ajax_loader").removeClass("display-none");
+            $.ajax({
+                url: "/AdmMaster/_reservation/del_history",
+                type: "POST",
+                data: "h_idx[]=" + h_idx,
+                error: function (request, status, error) {
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    if (response.result == true) {
+                        alert("정상적으로 삭제되었습니다.");
+                        location.reload();
+                        return;
+                    } else {
+                        alert(response);
+                        return;
+                    }
+                }
+            });
+        }
+    </script>
 	<script>
+	function send_payment(order_idx) {
+	  if (!order_idx) {
+		alert('유효하지 않은 주문 번호입니다.');
+		return;
+	  }
+
+	  if (!confirm('문자를 발송하시겠습니까?')) {
+		return;
+	  }
+
+	  $.ajax({
+		url: '/ajax/send_payment_sms',
+		type: 'POST',
+		dataType: 'json',
+		data: { order_idx: order_idx },
+		success: function(res) {
+		  if (res.result === 'OK') {
+			alert('문자가 성공적으로 발송되었습니다.');
+		  } else {
+			alert('발송 실패: ' + (res.message || '알 수 없는 오류'));
+		  }
+		},
+		error: function(xhr, status, error) {
+		  console.error('AJAX 오류', error);
+		  alert('서버 통신 오류가 발생했습니다.');
+		}
+	  });
+	}
+	</script>
+	
+	<script>
+    $(document).ready(function () {
+		// 환율 값 가져오기
+		var baht_thai = parseFloat($("#baht_thai").val());
+
+		// .exp_amt 클래스의 input 값이 변경될 때
+		$(".price_bath").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+            let bath = parseFloat($(this).val().replace(/,/g, '')) || 0 ;
+
+			// 환산된 원화 계산
+			let won = Math.round(bath * baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$(this).closest(".price_wrapper").find(".price_won").val(won.toLocaleString('en-US'));
+		});
+
+        $(".price_won").on('input', function () {
+			
+			// 현재 입력된 baht 필드의 ID에서 인덱스 추출
+			// 입력된 값 가져오기
+            let won = parseFloat($(this).val().replace(/,/g, '')) || 0 ;
+
+			// 환산된 원화 계산
+			let bath = Math.round(won / baht_thai);
+
+			// 해당 인덱스의 원화 input에 값 넣기
+			$(this).closest(".price_wrapper").find(".price_bath").val(bath.toLocaleString('en-US'));
+		});
+	});
+
+    $(document).on('input', '.number-only', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
     function invoiceGolf(order_no)
     {
         if (!confirm('인보이스를 전송 하시겠습니까?'))
@@ -626,8 +825,8 @@
 				type : "POST",
 				data : {
 					"order_no"        : $("#order_no").val(),
-					"real_price_bath" : $("#real_price_bath").val(),
-					"real_price_won"  : $("#real_price_won").val()
+					"real_price_bath" : Number($("#real_price_bath").val().replace(/,/g, '')),
+					"real_price_won"  : Number($("#real_price_won").val().replace(/,/g, ''))
 				},
 				dataType : "json",
 				async: false,
@@ -717,7 +916,7 @@
 			var won = Math.round(bath * baht_thai);
 
 			// 해당 인덱스의 원화 input에 값 넣기
-			$("#real_price_won").val(won.toLocaleString());
+			$("#real_price_won").val(won.toLocaleString('en-US'));
 		});
 	});
 	</script>

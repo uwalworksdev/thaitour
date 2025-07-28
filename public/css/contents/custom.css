@@ -1071,7 +1071,7 @@ small {
 
 /* datepicker Style */
 .ui-datepicker {
-    width: 270px;
+    width: 290px;
     padding: 0;
     display: none;
     border: 0;
@@ -1208,13 +1208,13 @@ small {
 .ui-datepicker .ui-state-default {
     display: block;
     border: 0;
-    border-radius: 15px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
     padding: 0;
     margin: 4px auto;
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
     background: #fff;
     font-weight: normal;

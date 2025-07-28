@@ -456,7 +456,7 @@ div.gnb_update ul li ul {
 
 div.gnb_update .depth2.on {
     height: auto;
-    max-height: 600px;
+    max-height: 800px;
 }
 
 div.gnb_update .depth2 {
