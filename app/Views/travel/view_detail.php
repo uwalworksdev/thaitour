@@ -379,9 +379,35 @@ $r_code = "travel_view";
                     <img src="/img/sub/star_ic_r.png" alt="">
                 </div>
             </div>
-
+            
             <div class="comment_box">
+            <?php
+                foreach($getComments as $item):
+            ?>
+
                 <div class="item">
+                    <div class="info">
+                        <p class="name"><?php echo $item["r_name"]?></p>
+                        <p class="time">
+                            <span class="day"> <?php echo $item["r_reg_date"]?></span>
+                            <!-- <span class="hour">18:30</span> -->
+                        </p>
+                        <div class="eval">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <span>5.0</span>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <p><?php echo $item["r_content"]?></p>
+                    </div>
+                </div>
+
+                <?php endforeach;?>
+                <!-- <div class="item">
                     <div class="info">
                         <p class="name">woras******</p>
                         <p class="time">
@@ -400,27 +426,7 @@ $r_code = "travel_view";
                     <div class="content">
                         <p>이 장소는 훌륭해요</p>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="info">
-                        <p class="name">woras******</p>
-                        <p class="time">
-                            <span class="day">2025.08.09</span>
-                            <span class="hour">18:30</span>
-                        </p>
-                        <div class="eval">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                            <span>5.0</span>
-                        </div>
-                    </div>
-                    <div class="content">
-                        <p>이 장소는 훌륭해요</p>
-                    </div>
-                </div>
+                </div> -->
             </div>
 
             <div id="dim"></div>
