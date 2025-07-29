@@ -776,6 +776,7 @@ body {
 
     .title_map img {
         width: 41.6rem;
+        margin: 0 auto;
     }
 
     .promotion_map {
@@ -881,16 +882,20 @@ body {
         width: 3.6rem;
     }
 
-    .promotion_map #icon05 .hover {
-        width: 4.4rem;
+    .promotion_map #icon06 .hover {
+        width: 3.5rem;
     }
 
-    .promotion_map #icon05 .img_loca {
-        width: 6rem;
+    .promotion_map #icon06 .img_loca {
+        width: 3.5rem;
     }
 
     .promotion_map .location .icon:hover+.location_pop {
         display: block;
+    }
+
+    .promotion_map #pop01 {
+        left: 60%;
     }
 
     .promotion_map .location_pop {
@@ -902,7 +907,7 @@ body {
         display: none;
     }
 
-    .promotion_map #pop3 {
+    .promotion_map #pop03 {
         position: absolute;
         bottom: 7rem;
         left: 230%;
@@ -920,7 +925,7 @@ body {
         border: 0.4rem solid #00c2aa;
     }
 
-    .promotion_map #pop3 .location_desc:after {
+    .promotion_map #pop03 .location_desc:after {
         left: 28%;
     }
 
@@ -959,12 +964,12 @@ body {
         right: -5.3rem;
     }
 
-    .promotion_map #pop05 .location_desc .ic_pop {
+    /* .promotion_map #pop05 .location_desc .ic_pop {
         position: absolute;
         top: -7.3rem;
         left: unset;
         right: -5.3rem;
-    }
+    } */
 
     .promotion_map .location_pop .location_desc .ic_pop img {
         width: 26.1rem;
