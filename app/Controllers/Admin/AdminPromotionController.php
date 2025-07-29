@@ -198,6 +198,7 @@ class AdminPromotionController extends BaseController
             $data['category_code_2'] = updateSQ($_POST["category_code_2"] ?? '');
             $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
             $data['subtitle'] = updateSQ($_POST["subtitle"] ?? '');
+            $type = updateSQ($_POST["type"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 
@@ -239,7 +240,7 @@ class AdminPromotionController extends BaseController
             $message = "정상적인 등록되었습니다.";
             return "<script>
                 alert('$message');
-                    parent.location.href='/AdmMaster/_promotion/list_area';
+                    parent.location.href='/AdmMaster/_promotion/list_product?type=$type';
                 </script>";
 
 

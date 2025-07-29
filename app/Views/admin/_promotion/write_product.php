@@ -99,6 +99,7 @@
                     target="hiddenFrame22"> <!--  -->
                     <!-- 상품 고유 번호 -->
                     <input type="hidden" id="check_img_ufile1" value="<?= $ufile1 ?>">
+                    <input type="hidden" id="type" name="type" value="<?= $type ?>">
 
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
