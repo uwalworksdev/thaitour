@@ -118,7 +118,7 @@
                                 <?php
                                 }
                                 foreach ($result as $row) :
-                                    $row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
+                                    $row['product_code_list'] = $row['category_code_1'] ."|". $row['category_code_2']; 
                                     $_product_code_arr = explode("|", $row['product_code_list']);
                                 ?>
                                     <tr style="height:30px">
