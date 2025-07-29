@@ -159,6 +159,22 @@
                                 </td>
                             </tr>
                             <?php endif; ?>
+                            <?php if ($parent_code_no === '62') : ?>
+                            <tr>
+                                <th>이미지 icon</th>
+                                <td>
+                                    <input type="file" id="ufile2" name="ufile2" class="input_txt" style="width:20%"/>
+
+                                    <?php if ($ufile2 && $rfile2) { ?>
+                                        <img src="/data/code/<?= $ufile2 ?>">
+                                        <input type="checkbox" name="del_2" value="Y">
+                                        <a href="/data/code/<?= $ufile2 ?>"
+                                           class="imgpop cboxElement"><?= $rfile2 ?></a>
+                                    <?php } ?>
+
+                                </td>
+                            </tr>
+                            <?php endif; ?>
                             <?php
                             if ($parent_code_no == 14) {
                                 ?>
