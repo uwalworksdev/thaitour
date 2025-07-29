@@ -14,7 +14,7 @@
 
                     <ul class="last">
                         <li><a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a></li>
-                        <li><a href="write_area" class="btn btn-primary"><span
+                        <li><a href="./write_product?type=<?=$type?>" class="btn btn-primary"><span
                                     class="glyphicon glyphicon-pencil"></span> <span
                                     class="txt">영역 등록</span></a></li>
                     </ul>
@@ -139,7 +139,7 @@
                                             <?= $row["r_date"] ?>
                                         </td>
                                         <td>
-                                            <a href="./write_area?idx=<?= $row["idx"] ?>"><img
+                                            <a href="./write_product?type=<?=$type?>&idx=<?= $row["idx"] ?>"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
                                             <a href="javascript:del_it('<?= $row['idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제" /></a>
@@ -163,7 +163,7 @@
                             <ul class="last">
                                 <li><a href="javascript:change_it()"
                                         class="btn btn-success btn_change">순위변경</a></li>
-                                <li><a href="write_area" class="btn btn-primary"><span
+                                <li><a href="./write_product?type=<?=$type?>" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">영역 등록</span></a></li>
                             </ul>
