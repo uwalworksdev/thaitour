@@ -158,7 +158,7 @@
             text-align: center;
             z-index: 1;
             position: relative;
-            padding: 33px 0px;
+            padding: 3.2rem 0rem;
         }
 
         .promotion_banner_content .po_head::after {
