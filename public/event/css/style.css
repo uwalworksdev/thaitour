@@ -916,7 +916,7 @@ body {
     }
 
     .promotion_map #pop06 {
-        left: 208%;
+        left: 288%;
     }
 
     .promotion_map .location_pop .location_desc {
@@ -965,6 +965,13 @@ body {
     }
 
     .promotion_map #pop03 .location_desc .ic_pop {
+        position: absolute;
+        top: -7.3rem;
+        left: unset;
+        right: -5.3rem;
+    }
+
+    .promotion_map #pop06 .location_desc .ic_pop {
         position: absolute;
         top: -7.3rem;
         left: unset;
