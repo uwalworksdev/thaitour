@@ -811,6 +811,13 @@ body {
         position: absolute;
     }
 
+    .promotion_map #location05 .detail_map {
+        top: 19rem;
+        left: 51%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+
     .promotion_map .img_loca.hover {
         display: none;
     }
@@ -855,6 +862,14 @@ body {
         width: 4.8rem;
     }
 
+    .promotion_map #icon05 .img_loca {
+        width: 3.6rem;
+    }
+
+    .promotion_map #icon05 .hover {
+        width: 4.4rem;
+    }
+
     .promotion_map .location .icon:hover+.location_pop {
         display: block;
     }
@@ -880,7 +895,7 @@ body {
     .promotion_map .location_pop .location_desc:after {
         content: '';
         position: absolute;
-        bottom: -1.3rem;
+        bottom: -1.2rem;
         left: 50%;
         transform: translateX(-50%) rotate(45deg);
         width: 2rem;
@@ -899,6 +914,13 @@ body {
     }
 
     .promotion_map #pop02 .location_desc .ic_pop {
+        position: absolute;
+        top: -7.3rem;
+        left: unset;
+        right: -5.3rem;
+    }
+
+    .promotion_map #pop03 .location_desc .ic_pop {
         position: absolute;
         top: -7.3rem;
         left: unset;

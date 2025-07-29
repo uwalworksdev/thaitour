@@ -225,6 +225,28 @@
                         </div>
                     </div>
                 </div>
+                <div class="location" id="location05">
+                    <div class="detail_map">
+                        <div class="icon" id="icon05">
+                            <img src="/event/images/promotion_ic07.png" alt="" class="img_loca">
+                            <img src="/event/images/promotion_ic07_hover.png" alt="" class="img_loca hover">
+                        </div>
+                        <div class="location_pop" id="pop05">
+                            <div class="location_desc">
+                                <div class="ic_pop">
+                                    <img src="/event/images/pop_img02.png" alt="">
+                                </div>
+                                <div class="contents">
+                                    <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
+                                        전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
+                                        길거리 음식을 모두 맛볼 수 있는 찬스! <br>
+                                        <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
