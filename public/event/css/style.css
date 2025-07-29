@@ -368,6 +368,15 @@ body {
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.promotion_banner_content .po_round img {
+    margin-bottom: 70px;
 }
 
 .promotion_banner_content .po_head {
@@ -451,7 +460,7 @@ body {
 .promotion_box_item .box_info .info_name {
     font-size: 20px;
     font-weight: 700;
-    margin-bottom: 15px ;
+    margin-bottom: 15px;
 }
 
 .promotion_box_item .info_hash_tag span {
@@ -487,6 +496,7 @@ body {
     background-color: #fff;
     padding-bottom: 90px;
 }
+
 
 
 @media screen and (max-width: 1000px) {
