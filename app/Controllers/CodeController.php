@@ -80,10 +80,14 @@ class CodeController extends BaseController
             $init_oil_price = $row['init_oil_price'];
             $ufile1 = $row['ufile1'];
             $rfile1 = $row['rfile1'];
+            $ufile2 = $row['ufile2'];
+            $rfile2 = $row['rfile2'];
             $status = $row['status'];
             $onum = $row['onum'];
             $is_best = $row['is_best'];
             $distance = $row['distance'];
+            $type = $row['type'];
+            $code = $row['code'];
             $type = $row['type'];
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
@@ -117,6 +121,8 @@ class CodeController extends BaseController
             "init_oil_price" => $init_oil_price ?? "",
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
+            "ufile2" => $ufile2 ?? "",
+            "rfile2" => $rfile2 ?? "",
             "status" => $status ?? "",
             "onum" => $onum,
             "depth" => $depth,
