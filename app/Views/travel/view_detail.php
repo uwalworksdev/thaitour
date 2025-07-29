@@ -1,7 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
-<?php $r_code = "travel_view"; ?>
 
 <style>
     .section6 .qa_ques {
@@ -161,7 +160,9 @@
         }
     }
 </style>
-
+<?php
+$r_code = "travel_view";
+?>
 <div class="content-sub-hotel-detail custom-golf-detail view_detail">
     <div class="body_inner">
         <div>
@@ -177,17 +178,13 @@
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
                 </div>
-                <?php
-                echo "<pre>";
-                print_r($_SESSION);
-                echo "</pre>";
-                ?>;
                 <div class="location-container">
                     <div class="location_conts">
                         <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                         <span class="text-gray"> <?= $local_detail["addrs"] ?> </span>
                     </div>
                 </div>
+            </form>
         </div>
         <?php
 
@@ -358,13 +355,14 @@
         <div class="section6" id="golf_qna_wrap">
             <h2 class="title-sec6" id="qna"><span>이용자 리뷰</span>(1)</h2>
             <div class="qa-section">
-                <from action="" name="com_form" id="frm" class="frm">
-                    <input type="hidden" name="r_idx" value="<?= $idx ?>">
+                <from action="" name="com_form" id="com_form" class="com_form">
+                    <input type="hidden" name="r_idx" value="<?= $idx?>">
                     <input type="hidden" name="code" id="code" value="travel_view">
                     <input type="hidden" name="r_code" id="r_code" value="travel_view">
                     <div class="comment_box-input flex">
                         <textarea style="resize:none" class="bs-input" name="comment" id="comment"
-                            placeholder="댓글을 입력해주세요."></textarea>
+                            placeholder="댓글을 입력해주세요.">
+                        </textarea>
                         <button type="button" onclick="fn_comment(<?= session('member.idx') ?>)"
                             class="btn btn-point btn-lg comment_btn">등록
                         </button>
@@ -1795,6 +1793,41 @@
         </div>
     </div>
 </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function del_it() {
+
+            if (confirm("삭제 하시겠습니까? \n삭제후에는 복구가 불가능합니다.?")) {
+                $.ajax({
+                    url: "./review_delete",
+                    type: "POST",
+                    data: {idx: '<?= $idx ?>'},
+                    success: (res) => {
+                        if (res == "OK") {
+                            alert("정상적으로 삭제되었습니다.");
+                            window.location.href = "/review/review_list";
+                        } else {
+                            alert("오류가 발생하였습니다!!");
+                        }
+                    }
+                })
+            }
+        }
+
+        $(function () {
+            $('input[name="comment"]').keydown(function () {
+                if (event.keyCode === 13) {
+                    event.target.value += "\n";
+                }
+            });
+        });
+
+        const r_code = "travel_view";
+        const r_idx = "<?= $idx ?>";
+    </script>
 <script src="/js/comment.js"></script>
 
 <?php $this->endSection(); ?>
