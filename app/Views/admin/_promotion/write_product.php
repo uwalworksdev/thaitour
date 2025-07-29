@@ -1,5 +1,5 @@
 <?php
-    $formAction = $idx ? "/AdmMaster/_promotion/write_area_ok/$idx" : "/AdmMaster/_promotion/write_area_ok";
+    $formAction = $idx ? "/AdmMaster/_promotion/write_product_ok/$idx" : "/AdmMaster/_promotion/write_product_ok";
     helper("my_helper");
 ?>
 
@@ -54,7 +54,7 @@
     }
 
     $titleStr = "테마별 인기호텔";
-    $links = "list_area";
+    $links = "list_product";
 ?>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
@@ -63,7 +63,7 @@
                 <h2><?= $titleStr ?></h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_promotion/list_area" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_promotion/list_product" class="btn btn-default"><span
                                     class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                         </li>
 
