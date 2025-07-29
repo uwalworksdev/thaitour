@@ -147,6 +147,8 @@ class CodeController extends BaseController
         $distance = $this->request->getPost('distance');
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
+        $file2 = $this->request->getFile('ufile2');
+        $color = $this->request->getPost('color');
 
         $f_idx = $this->request->getPost("f_idx") ?? [];
         $code_flight = $this->request->getPost("code_flight") ?? [];
@@ -161,6 +163,7 @@ class CodeController extends BaseController
             $data = [
                 'code_name' => $code_name,
                 'code_name_en' => $code_name_en,
+                'color' => $color,
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
@@ -212,6 +215,7 @@ class CodeController extends BaseController
                 'parent_code_no' => $parent_code_no,
                 'depth' => $depth,
                 'status' => $status,
+                'color' => $color,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'is_best' => $is_best,
@@ -245,6 +249,16 @@ class CodeController extends BaseController
             $this->CodeModel->update($code_idx, [
                 'ufile1' => $newName,
                 'rfile1' => $file->getClientName()
+            ]);
+        }
+
+        if (isset($file2) && $file2->isValid() && !$file2->hasMoved()) {
+            $newName2 = $file2->getRandomName();
+            $file2->move($upload, $newName2);
+
+            $this->CodeModel->update($code_idx, [
+                'ufile2' => $newName2,
+                'rfile2' => $file2->getClientName()
             ]);
         }
 
