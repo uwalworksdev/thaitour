@@ -355,19 +355,18 @@ $r_code = "travel_view";
         <div class="section6" id="golf_qna_wrap">
             <h2 class="title-sec6" id="qna"><span>이용자 리뷰</span>(1)</h2>
             <div class="qa-section">
-                <from action="" name="com_form" id="com_form" class="com_form">
+                <form action="" name="com_form" id="com_form" class="com_form">
                     <input type="hidden" name="r_idx" value="<?= $idx?>">
                     <input type="hidden" name="code" id="code" value="travel_view">
                     <input type="hidden" name="r_code" id="r_code" value="travel_view">
                     <div class="comment_box-input flex">
                         <textarea style="resize:none" class="bs-input" name="comment" id="comment"
-                            placeholder="댓글을 입력해주세요.">
-                        </textarea>
+                            placeholder="댓글을 입력해주세요."></textarea>
                         <button type="button" onclick="fn_comment(<?= session('member.idx') ?>)"
                             class="btn btn-point btn-lg comment_btn">등록
                         </button>
                     </div>
-                </from>
+                </form>
             </div>
 
             <div class="qa_ques">
