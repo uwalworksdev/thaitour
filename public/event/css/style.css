@@ -770,13 +770,21 @@ body {
         height: 61.8rem;
     }
 
+    .title_map {
+        margin: 11.5rem auto 6.5rem;
+    }
+
+    .title_map img {
+        width: 41.6rem;
+    }
+
     .promotion_map {
         position: relative;
         background: url('/event/images/promotion_map.png') no-repeat center;
         background-size: 65.9rem 49.3rem;
         width: 65.9rem;
         height: 49.3rem;
-        margin: 11.5rem auto;
+        margin: 0 auto 7.5rem;
     }
 
     .promotion_map .location {
@@ -814,6 +822,13 @@ body {
     .promotion_map #location05 .detail_map {
         top: 19rem;
         left: 51%;
+        transform: translateX(-50%);
+        position: absolute;
+    }
+
+    .promotion_map #location06 .detail_map {
+        top: 26rem;
+        left: 22%;
         transform: translateX(-50%);
         position: absolute;
     }
@@ -870,6 +885,10 @@ body {
         width: 4.4rem;
     }
 
+    .promotion_map #icon05 .img_loca {
+        width: 6rem;
+    }
+
     .promotion_map .location .icon:hover+.location_pop {
         display: block;
     }
@@ -883,6 +902,15 @@ body {
         display: none;
     }
 
+    .promotion_map #pop3 {
+        position: absolute;
+        bottom: 7rem;
+        left: 230%;
+        transform: translateX(-50%);
+        min-width: 40rem;
+        display: none;
+    }
+
     .promotion_map .location_pop .location_desc {
         position: relative;
         padding: 4rem 3.5rem;
@@ -890,6 +918,10 @@ body {
         filter: drop-shadow(0px 12px 9px rgba(0, 0, 0, 0.21));
         background-color: #ffffff;
         border: 0.4rem solid #00c2aa;
+    }
+
+    .promotion_map #pop3 .location_desc:after {
+        left: 28%;
     }
 
     .promotion_map .location_pop .location_desc:after {
@@ -921,6 +953,13 @@ body {
     }
 
     .promotion_map #pop03 .location_desc .ic_pop {
+        position: absolute;
+        top: -7.3rem;
+        left: unset;
+        right: -5.3rem;
+    }
+
+    .promotion_map #pop05 .location_desc .ic_pop {
         position: absolute;
         top: -7.3rem;
         left: unset;
