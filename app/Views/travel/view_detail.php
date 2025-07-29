@@ -1,6 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 
+<?php $r_code = "travel_view"; ?>
+
 <style>
     .section6 .qa_ques {
         display: flex;
@@ -165,7 +167,7 @@
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
                 <div class="title-container">
-                    <h2><?=$local_detail["product_name"]?><span style="margin-left: 15px;"><?=$local_detail["product_name_en"]?></span></h2>
+                    <h2><?= $local_detail["product_name"] ?><span style="margin-left: 15px;"><?= $local_detail["product_name_en"] ?></span></h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
@@ -175,21 +177,26 @@
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
                 </div>
+                <?php
+                echo "<pre>";
+                print_r($_SESSION);
+                echo "</pre>";
+                ?>;
                 <div class="location-container">
                     <div class="location_conts">
                         <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                        <span class="text-gray"> <?=$local_detail["addrs"]?> </span>
+                        <span class="text-gray"> <?= $local_detail["addrs"] ?> </span>
                     </div>
                 </div>
         </div>
         <?php
 
-            if(!empty($local_detail['ufile1'])) {
-                $i3 = 1;
-            }else{
-                $i3 = 0;
-            }
-            $i3 += count($img_list);
+        if (!empty($local_detail['ufile1'])) {
+            $i3 = 1;
+        } else {
+            $i3 = 0;
+        }
+        $i3 += count($img_list);
         ?>
 
         <div class="rating-container">
@@ -199,23 +206,23 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1" style="">
-                <img class="imageDetailMain_" 
-                    src="/data/product/<?= $local_detail['ufile1'] ?>" 
-                    alt="<?= $local_detail['product_name'] ?>" 
+                <img class="imageDetailMain_"
+                    src="/data/product/<?= $local_detail['ufile1'] ?>"
+                    alt="<?= $local_detail['product_name'] ?>"
                     onerror="this.src='/images/share/noimg.png'"
                     onclick="img_pops('<?= $local_detail['idx'] ?>')">
                 <!-- <img src="/img/sub/v_d_1.png" alt="" onerror="this.src='/images/share/noimg.png'" onclick="img_pops('1916')"> -->
             </div>
             <div class="grid_2_2">
-                <?php 
-                    // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
-                    // $loop_limit = $is_mobile ? 1 : 3;
-                    for ($j = 2; $j < 5; $j++) {
+                <?php
+                // $is_mobile = preg_match('/(android|iphone|ipad|ipod|mobile)/i', $_SERVER['HTTP_USER_AGENT']);
+                // $loop_limit = $is_mobile ? 1 : 3;
+                for ($j = 2; $j < 5; $j++) {
                 ?>
                     <img onclick="img_pops('<?= $local_detail['idx'] ?>')"
-                            class="grid_2_2_size imageDetailSup_ responsive-img"
-                            src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
-                            alt="<?= $local_detail['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                        class="grid_2_2_size imageDetailSup_ responsive-img"
+                        src="/data/product/<?= $img_list[$j - 2]['ufile'] ?>"
+                        alt="<?= $local_detail['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
                 <div class="grid_2_2_sub only_web"
                     onclick="img_pops('<?= $local_detail['idx'] ?>')"
@@ -274,32 +281,32 @@
             <tbody class="text-gray">
                 <tr>
                     <td>지역</td>
-                    <td><?=$city_name?>><?=$town_name?>
+                    <td><?= $city_name ?>><?= $town_name ?>
                     </td>
                 </tr>
                 <tr>
                     <td>전화번호</td>
-                    <td><?=viewSQ($local_detail["contact"])?></td>
+                    <td><?= viewSQ($local_detail["contact"]) ?></td>
                 </tr>
                 <tr>
                     <td>주소</td>
-                    <td><?=viewSQ($local_detail["addrs"])?></td>
+                    <td><?= viewSQ($local_detail["addrs"]) ?></td>
                 </tr>
                 <tr>
                     <td>홈페이지</td>
-                    <td><?=viewSQ($local_detail["url"])?></td>
+                    <td><?= viewSQ($local_detail["url"]) ?></td>
                 </tr>
                 <tr>
                     <td>찾아가는 법</td>
-                    <td><?=viewSQ($local_detail["routes"])?></td>
+                    <td><?= viewSQ($local_detail["routes"]) ?></td>
                 </tr>
                 <tr>
                     <td>영업시간</td>
-                    <td><?=viewSQ($local_detail["time_line"])?></td>
+                    <td><?= viewSQ($local_detail["time_line"]) ?></td>
                 </tr>
                 <tr>
                     <td>정보</td>
-                    <td><?=viewSQ($local_detail["product_contents"])?></td>
+                    <td><?= viewSQ($local_detail["product_contents"]) ?></td>
                 </tr>
             </tbody>
         </table>
@@ -333,8 +340,8 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
         <script>
-            var lat = '<?=$local_detail["latitude"]?>' || <?=$local_detail["latitude"]?>;
-            var lng = '<?=$local_detail["longitude"]?>' || <?=$local_detail["longitude"]?>;
+            var lat = '<?= $local_detail["latitude"] ?>' || <?= $local_detail["latitude"] ?>;
+            var lng = '<?= $local_detail["longitude"] ?>' || <?= $local_detail["longitude"] ?>;
             var map = L.map('map').setView([lat, lng], 17);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: 'The Tour Lab'
@@ -343,7 +350,7 @@
         </script>
         <div class="location-container">
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-            <span class="text-gray"> <?=viewSQ($local_detail["addrs"])?></span>
+            <span class="text-gray"> <?= viewSQ($local_detail["addrs"]) ?></span>
         </div>
 
         <!-- DEBUG-VIEW START 1 APPPATH/Views/product/inc/review_product.php -->
@@ -351,12 +358,18 @@
         <div class="section6" id="golf_qna_wrap">
             <h2 class="title-sec6" id="qna"><span>이용자 리뷰</span>(1)</h2>
             <div class="qa-section">
-                <div class="custom-area-text">
-                    <label class="custom-label" for="qa-comment">
-                        <textarea name="qa-comment" id="qa-comment" class="custom-main-input-style textarea autoExpand" placeholder="내용을 입력해 주세요"></textarea>
-                    </label>
-                    <div type="submit" class="qa-submit-btn">등록</div>
-                </div>
+                <from action="" name="com_form" id="frm" class="frm">
+                    <input type="hidden" name="r_idx" value="<?= $idx ?>">
+                    <input type="hidden" name="code" id="code" value="travel_view">
+                    <input type="hidden" name="r_code" id="r_code" value="travel_view">
+                    <div class="comment_box-input flex">
+                        <textarea style="resize:none" class="bs-input" name="comment" id="comment"
+                            placeholder="댓글을 입력해주세요."></textarea>
+                        <button type="button" onclick="fn_comment(<?= session('member.idx') ?>)"
+                            class="btn btn-point btn-lg comment_btn">등록
+                        </button>
+                    </div>
+                </from>
             </div>
 
             <div class="qa_ques">
@@ -418,7 +431,7 @@
                 <strong id="pop_roomName"></strong>
                 <div>
                     <ul class="multiple-items">
-                        
+
                     </ul>
                 </div>
                 <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"></a>
@@ -527,11 +540,16 @@
 
                 $(".qa-submit-btn").on("click", function() {
                     let title = $("#qa-comment").val();
-
-                    // alert("로그인해주세요");
-                    // return;      
-                    showOrHideLoginItem();
-                    return false;
+                    <?php
+                    if (empty(session()->get("member")["id"])) {
+                    ?>
+                        // alert("로그인해주세요");
+                        // return;      
+                        showOrHideLoginItem();
+                        return false;
+                    <?php
+                    }
+                    ?>
 
                     if (!title) {
                         alert("상품에 대해 궁금한 점을 입력해 주세요!");
@@ -1774,365 +1792,9 @@
                 });
             </script>
             <!-- DEBUG-VIEW ENDED 4 APPPATH/Views/inc/sidebar_inc.php -->
-            <!-- DEBUG-VIEW START 5 APPPATH/Views/inc/popup_login.php -->
-            <style>
-
-            </style>
-
-            <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-            <script type="text/javascript" src="/js/kakao.js"></script>
-
-            <div class="popup_" id="popupLogin_">
-                <div class="popup_area_">
-                    <div class="popup_top_">
-                        <p>
-                            로그인 또는 회원가입
-                        </p>
-                        <p>
-                            <button type="button" class="btn_close_" onclick="showOrHideLoginItem();">
-                                <img src="/images/ico/close_icon_popup.png" alt="" style="width: 20px; height: 20px">
-                            </button>
-                        </p>
-                    </div>
-                    <div class="popup_content_">
-                        <main class="sub login member pt100">
-                            <div class="inner_620">
-
-                                <div class="flex_c_c logo_box">
-                                    <picture>
-                                        <source media="(max-width: 768px)" srcset="/images/sub/logo_w.png">
-                                        <img src="/images/sub/logo_w.png" alt="더투어랩 로고">
-                                    </picture>
-                                </div>
-                                <!--                    <div class="login_tab">-->
-                                <!--                        <button type="button" class="on">회원 로그인</button>-->
-                                <!--                        <button type="button">비회원 예약확인</button>-->
-                                <!--                    </div>-->
-
-                                <section class="login_cont">
-
-                                    <!-- 회원 -->
-                                    <div class="login_box on">
-                                        <form action="/member/login_check" method="post" name="loginForm2" id="loginFrm2" class="login_form01">
-                                            <input type="hidden" name="mode" id="mode" value="true">
-                                            <input type="hidden" name="sType" id="sType" value="login">
-                                            <input type="hidden" name="sns_key" id="sns_key" value="">
-                                            <input type="hidden" name="user_name" id="user_name" value="">
-                                            <input type="hidden" name="userEmail" id="userEmail" value="">
-                                            <input type="hidden" name="gubun" id="gubun" value="">
-                                            <input type="hidden" name="returnUrl" id="returnUrl" value="">
-
-                                            <div class="input-group show_" id="inputMainGroup">
-                                                <div class="input-row">
-                                                    <input type="text" name="user_id" class="bs-input" onkeyup="press_it2()" placeholder="아이디를 입력하세요." value="">
-                                                </div>
-                                                <div class="input-row">
-                                                    <input type="password" name="user_pw" class="bs-input" onkeyup="press_it2(event)" placeholder="비밀번호를 입력하세요.">
-                                                </div>
-                                                <div class="input-row save_id flex_b_c">
-                                                    <div class="bs-input-check">
-                                                    </div>
-                                                    <div class="btn_link">
-                                                        <a href="/member/login_find_id">아이디/비밀번호 찾기</a>
-                                                        <a href="/member/join_choice"><span>회원가입</span></a>
-                                                    </div><!-- .btn_link -->
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="btn-wrap">
-                                                <button type="button" id="btnLoginMain" class="show_ btn btn-lg btn-point" onclick="login_it2();">
-                                                    로그인
-                                                </button>
-
-                                                <button type="button" id="btnLoginSupMain" class="btn btn-lg btn-point" onclick="openLogin();">
-                                                    로그인
-                                                </button>
-
-                                            </div>
-
-                                            <div class="item_login_" style="margin-top: 20px; margin-bottom: 20px" id="loginNoAreaMember">
-                                                <!--                                <div class="box_login">-->
-                                                <!--                                    <h4>비회원 예약 조회 및 로그인</h4>-->
-                                                <!--                                    <form name="frmLogin_nomember" method="post" action="#">-->
-                                                <!--                                        <div class="input_group_">-->
-                                                <!--                                            <label class="label_inp_">이메일 주소</label>-->
-                                                <!--                                            <div class="layout_input_">-->
-                                                <!--                                                <input type="text" name="member/email" data-validate="required,email"-->
-                                                <!--                                                       title="예약시 입력한 이메일 주소" placeholder="예약시 입력한 이메일 주소를 입력해 주세요">-->
-                                                <!--                                            </div>-->
-                                                <!--                                            <label class="label_inp_">예약번호</label>-->
-                                                <!--                                            <div class="layout_input_">-->
-                                                <!--                                                <input type="text" name="grpno" id="grpno" maxlength="50"-->
-                                                <!--                                                       data-validate="required,minlength[4]" title="9자리 숫자"-->
-                                                <!--                                                       placeholder="9자리 숫자로 된 예약번호를 입력해 주세요">-->
-                                                <!--                                            </div>-->
-                                                <!--                                        </div>-->
-                                                <!--                                        <p>※ 비회원 로그인 후 추가 예약이 가능해요.</p>-->
-                                                <!--                                        <div class="btn_login">-->
-                                                <!--                                            <button type="button" class="btnNoLogin" onclick="login_nomember_login();">-->
-                                                <!--                                                로그인-->
-                                                <!--                                            </button>-->
-                                                <!--                                        </div>-->
-                                                <!--                                    </form>-->
-                                                <!--                                </div>-->
-                                                <!---->
-                                                <!--                                <div class="nomember_wrap">-->
-                                                <!--                                    <p>비회원은 포인트 적립, 크레이지 세일 예약, 이벤트 참여, 쿠폰 사용이 불가능해요.</p>-->
-                                                <!--                                    <a href="#" onclick="submitNoMember();" class="btn_nomember">비회원으로 예약하기</a>-->
-                                                <!--                                </div>-->
-                                                <div class="input-group">
-
-                                                    <div class="input-row">
-                                                        <input type="text" name="order_no" id="order_no" class="bs-input" placeholder="예약번호를 입력하세요.">
-                                                    </div>
-                                                    <div class="input-row">
-                                                        <input type="text" name="order_user_name" id="order_user_name" class="bs-input" placeholder="이름을 입력하세요.">
-                                                    </div>
-                                                    <div class="input-row">
-                                                        <div class="tel_row">
-                                                            <select name="order_user_mobile1" id="order_user_mobile1" class="bs-select">
-                                                                <option value="010">010</option>
-                                                                <option value="011">011</option>
-                                                                <option value="016">016</option>
-                                                                <option value="017">017</option>
-                                                                <option value="018">018</option>
-                                                                <option value="019">019</option>
-                                                            </select>
-                                                            <span>-</span>
-                                                            <input type="tel" name="order_user_mobile2" id="order_user_mobile2" class="bs-input">
-                                                            <span>-</span>
-                                                            <input type="tel" name="order_user_mobile3" id="order_user_mobile3" class="bs-input">
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <form id="check_pass_form" name="check_pass_form" method="post">
-                                                    <input type="hidden" value="" name="check_pass" id="check_pass_input">
-                                                </form>
-                                            </div>
-                                        </form>
-
-                                        <div class="btn-wrap">
-                                            <button type="button" class="show_ sup_button" onclick="openSupLogin(this);" id="btnLogin01">
-                                                비회원 예약확인
-                                            </button>
-
-                                            <button type="button" class="btn btn-lg btn-point" id="btnLoginMain01" onclick="go_result2();">
-                                                비회원 예약확인
-                                            </button>
-
-                                            <button type="button" class="sup_button" id="btnLogin02">
-                                                비회원 예약하기
-                                            </button>
-                                        </div>
-
-
-                                        <div class="sns_login_ttl">
-                                            <span>SNS 로그인</span>
-                                        </div>
-
-                                        <script>
-                                            // jQuery click event
-                                            $("#btnLogin02").click(function() {
-
-                                                $.ajax({
-                                                    url: "/ajax/memberSession",
-                                                    type: "POST",
-                                                    data: {},
-                                                    dataType: "json",
-                                                    success: function(res) {
-                                                        var message = res.message;
-                                                        //alert(message);
-                                                        location.reload();
-                                                    },
-                                                    error: function(xhr, status, error) {
-                                                        console.error(xhr.responseText); // 서버 응답 내용 확인
-                                                        alert('Error: ' + error);
-                                                    }
-                                                });
-                                            });
-                                        </script>
-                                        <script>
-                                            //네이버 로그인
-                                            function fnNaverLogin2() {
-                                                location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=ikuc9S8jLfOESEsjf5vR&redirect_uri=https%3A%2F%2Fthetourlab.com%2Fnaver%2Fcallback&state=5c5e2f132b7061c9a18fb768a9a095fclog';
-                                            }
-                                        </script>
-
-                                        <div class="another_login">
-                                            <button type="button" class="another_btn naver" onclick="fnNaverLogin2();">
-                                                네이버로그인
-                                            </button>
-                                            <button type="button" class="another_btn kakao" onclick="loginWithKakao()">
-                                                카카오로그인
-                                            </button>
-                                            <button type="button" id="customBtn" class="another_btn google" onclick="location.href='https://accounts.google.com/o/oauth2/v2/auth?client_id=498534825564-2p5e84a5m3m8pq23rnkfmq2te5nch500.apps.googleusercontent.com&amp;redirect_uri=https%3A%2F%2Fthetourlab.comhttps%3A%2F%2Fthetourlab.com%2Fmember%2Fgoogle_login&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;response_type=code&amp;state=OK'">
-                                                구글로그인
-                                            </button>
-                                        </div>
-
-                                    </div>
-                                    <!-- // 회원 // -->
-                                </section>
-                            </div>
-                        </main>
-                    </div>
-                </div>
-            </div>
- 
-            <script>
-                function showOrHideLoginItem() {
-                    $("#popupLogin_").toggleClass('show_');
-                    let current_url = window.location.href;
-                    $('#returnUrl').val(current_url)
-                }
-
-                function openLogin() {
-                    handleLogin();
-                }
-
-                function handleLogin() {
-                    $("#inputMainGroup").addClass('show_');
-                    $("#btnLoginMain").addClass('show_');
-                    $("#btnLogin01").addClass('show_');
-                    $("#loginNoAreaMember").removeClass('show_');
-                    $("#btnLoginSupMain").removeClass('show_');
-                    $("#btnLoginMain01").removeClass('show_');
-                }
-
-                function handleSupLogin() {
-                    $("#inputMainGroup").removeClass('show_');
-                    $("#btnLoginMain").removeClass('show_');
-                    $("#btnLogin01").removeClass('show_');
-                    $("#loginNoAreaMember").addClass('show_');
-                    $("#btnLoginSupMain").addClass('show_');
-                    $("#btnLoginMain01").addClass('show_');
-                }
-
-                function openSupLogin(el) {
-                    let loginNoAreaMember = $("#loginNoAreaMember");
-                    if (loginNoAreaMember.hasClass('show_')) {
-                        handleLogin();
-                    } else {
-                        handleSupLogin();
-                    }
-                }
-
-                function submitNoMember() {
-
-                }
-
-                function login_nomember_login() {
-
-                }
-
-                function login_it2() {
-                    if (loginForm2.user_id.value == false) {
-                        loginForm2.user_id.focus();
-                        alert("아이디을 바르게 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    if (loginForm2.user_pw.value == "") {
-                        loginForm2.user_pw.focus();
-                        alert("패스워드를 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    $("#loginFrm2").submit();
-                }
-
-                function press_it2() {
-                    if (event.keyCode == 13) {
-                        login_it2();
-                    }
-                }
-
-                function go_result2() {
-                    if ($("#order_no").val() == "") {
-                        $("#order_no").focus();
-                        alert("예약번호를 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    if ($("#order_user_name").val() == "") {
-                        $("#order_user_name").focus();
-                        alert("이름을 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    if ($("#order_user_mobile2").val() == "") {
-                        $("#order_user_mobile2").focus();
-                        alert("전화번호를 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    if ($("#order_user_mobile3").val() == "") {
-                        $("#order_user_mobile3").focus();
-                        alert("전화번호를 입력하셔야 합니다.");
-                        return;
-                    }
-
-                    var order_no = $("#order_no").val();
-                    var url = "";
-
-                    // Điều kiện để kiểm tra tiền tố và chọn file PHP phù hợp
-                    if (order_no.startsWith("S")) {
-                        url = "/ajax/ajax.order_inq.php";
-                    } else if (order_no.startsWith("R")) {
-                        url = "/ajax/id_checking.php";
-                    } else {
-                        alert("예약번호가 일치하지 않습니다.");
-                        return;
-                    }
-
-                    var message = "";
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: {
-                            "order_no": $("#order_no").val(),
-                            "order_user_name": $("#order_user_name").val(),
-                            "order_user_mobile1": $("#order_user_mobile1").val(),
-                            "order_user_mobile2": $("#order_user_mobile2").val(),
-                            "order_user_mobile3": $("#order_user_mobile3").val(),
-                            "pass_check": "Y",
-                        },
-                        dataType: "json",
-                        async: false,
-                        cache: false,
-                        success: function(data, textStatus) {
-                            message = data.message;
-                            if (message == "0") {
-                                alert('예약정보를 확인하세요');
-                                $("#order_no").focus();
-
-                            } else {
-                                if (order_no.startsWith("S")) {
-                                    $("#resulrForm").submit();
-                                } else if (order_no.startsWith("R")) {
-                                    $("#check_pass_form").attr('action', '/mypage/custom_travel_view?idx=' + data.idx)
-                                    $("#check_pass_input").val('Y')
-                                    $("#check_pass_form").submit()
-                                } else {
-                                    alert("예약번호가 일치하지 않습니다.");
-                                }
-
-                            }
-                        },
-                        error: function(request, status, error) {
-                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                        }
-                    });
-
-                }
-            </script>
-            <!-- DEBUG-VIEW ENDED 5 APPPATH/Views/inc/popup_login.php -->
         </div>
+    </div>
+</div>
+<script src="/js/comment.js"></script>
 
-
-
-        <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
