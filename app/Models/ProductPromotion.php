@@ -59,6 +59,14 @@ class ProductPromotion extends Model
     {
 
         $builder = $this;
+
+        if(!empty($where['category_code_1'])){
+            $builder->where('category_code_1 =', $where['category_code_1']);
+        }
+
+        if(!empty($where['category_code_2'])){
+            $builder->where('category_code_2 =', $where['category_code_2']);
+        }
 	
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {

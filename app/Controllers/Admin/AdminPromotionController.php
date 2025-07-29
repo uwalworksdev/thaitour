@@ -140,7 +140,16 @@ class AdminPromotionController extends BaseController
         $search_category    = updateSQ($_GET["search_category"] ?? '');
         $type               = updateSQ($_GET["type"] ?? '');
 
+        if($type == "hotel") {
+            $category_code_1 = "6201";
+        }else if($type == "golf") {
+            $category_code_1 = "6202";
+        }else {
+            $category_code_1 = "6203";
+        }
+
         $where = [
+            'category_code_1'   => $category_code_1,
             'search_txt'        => $search_txt,
             'search_category'   => $search_category,
         ];
