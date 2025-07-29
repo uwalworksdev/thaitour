@@ -66,7 +66,7 @@ class ProductPromotion extends Model
             } else {
                 $builder->groupStart();
                 $builder->like('title', $where['search_txt']);
-                $builder->orLike('desc', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
                 $builder->groupEnd();
             }
         }
