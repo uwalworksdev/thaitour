@@ -1,11 +1,12 @@
 function fn_comment(m_idx) {
-    
+     
     if (m_idx) {
         if ($("#comment").val() == "") {
             alert("댓글을 입력해주세요.");
             return;
         }
         var queryString = $("form[name=com_form]").serialize();
+        
         $.ajax({
             type: "POST",
             url: "/comment/comment",
