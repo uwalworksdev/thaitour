@@ -118,11 +118,16 @@
                                 <?php
                                 }
                                 foreach ($result as $row) :
+                                    $row['product_code_list'] = $row['product_code_1'] ."|". $row['product_code_2'] ."|". $row['product_code_3']; 
+                                    $_product_code_arr = explode("|", $row['product_code_list']);
                                 ?>
                                     <tr style="height:30px">
                                         <td><?= $num-- ?></td>
                                         <td class="tac">
-                                            <a href="./write_product?type=<?=$type?>&idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
+                                            <div class="flex_c_c" style="flex-direction: column;">
+                                                <?= get_cate_name($row['product_code_list'])?>
+                                                <a href="./write_product?type=<?=$type?>&idx=<?= $row["idx"] ?>"><?= $row["title"] ?></a> 
+                                            </div>
                                         </td>
                                        
                                         <td class="tac">
