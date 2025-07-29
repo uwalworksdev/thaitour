@@ -122,7 +122,7 @@
 
                                 <tr>
                                     <th>상품분류</th>
-                                    <td>
+                                    <td colspan="3">
                                         <select id="category_code_1" name="category_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 2)">
                                             <option value="">1차분류</option>
@@ -170,14 +170,10 @@
 
                                 <tr>
                                     <th>제목</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="title"
                                             value="<?= $title ?? "" ?>"
                                             class="text" maxlength="100" />
-                                    </td>
-                                    <th>제목</th>
-                                    <td>
-                                        <input type="color" id="color" name="color" value="<?= $color ?? "" ?>">
                                     </td>
                                 </tr>
 
