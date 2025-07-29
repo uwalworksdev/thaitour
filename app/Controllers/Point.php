@@ -14,6 +14,7 @@ class Point extends BaseController
     private $hotelArea;
     private $hotelThemeSub;
     private $hotelTheme;
+    private $comment;
 
     public function __construct()
     {
@@ -30,6 +31,7 @@ class Point extends BaseController
         $this->hotelThemeSub    = model("HotelThemeSub");
         $this->hotelArea        = model("HotelAreaTheme");
         $this->hotelTheme       = model("HotelThemeModel");
+        $this->comment          = model("CommentModel");
     }
 
     public function index() {
@@ -219,12 +221,15 @@ class Point extends BaseController
 
         $img_list  = $this->localGuideImg->getImg($lg_idx);
 
+        $getComments = $this->comment->getComments("travel_view", $lg_idx, private_key());
+
         $data = [
             "city_name" => $city_name,
             "town_name" => $town_name,
             "local_detail" => $local_detail,
             "img_list" => $img_list,
-            "idx" => $lg_idx
+            "idx" => $lg_idx,
+            "getComments" => $getComments
         ];
 
         return view('travel/view_detail', $data);
