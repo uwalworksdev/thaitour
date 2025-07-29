@@ -137,21 +137,46 @@
         </div>
         <div class="only_mo">
             <div class="promotion_map">
-                <div class="location">
-                    <div class="icon" id="icon01">
-                        <img src="/event/images/promotion_ic05.png" alt="" class="img_loca">
-                        <img src="/event/images/promotion_ic05_hover.png" alt="" class="img_loca hover">
-                    </div>
-                    <div class="location_pop">
-                        <div class="location_desc">
-                            <div class="ic_pop">
-                                <img src="/event/images/pop_img01.png" alt="">
+                <div class="location" id="location01">
+                    <div class="detail_map">
+                        <div class="icon" id="icon01">
+                            <img src="/event/images/promotion_ic05.png" alt="" class="img_loca">
+                            <img src="/event/images/promotion_ic05_hover.png" alt="" class="img_loca hover">
+                        </div>
+                        <div class="location_pop" id="pop01">
+                            <div class="location_desc">
+                                <div class="ic_pop">
+                                    <img src="/event/images/pop_img01.png" alt="">
+                                </div>
+                                <div class="contents">
+                                    <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
+                                        전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
+                                        길거리 음식을 모두 맛볼 수 있는 찬스! <br>
+                                        <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="contents">
-                                <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
-                                    전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
-                                    길거리 음식을 모두 맛볼 수 있는 찬스! <br>
-                                    <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="location" id="location02">
+                    <div class="detail_map">
+                        <div class="icon" id="icon02">
+                            <img src="/event/images/promotion_ic06.png" alt="" class="img_loca">
+                            <img src="/event/images/promotion_ic06_hover.png" alt="" class="img_loca hover">
+                        </div>
+                        <div class="location_pop" id="pop02">
+                            <div class="location_desc">
+                                <div class="ic_pop">
+                                    <img src="/event/images/pop_img04.png" alt="">
+                                </div>
+                                <div class="contents">
+                                    <p>짜뚜짝 시장 등 다양한 테마의 야시장이 도시 <br>
+                                        전역에 있어 먹거리, 쇼핑, 투어가 가능하며 <br>
+                                        길거리 음식을 모두 맛볼 수 있는 찬스! <br>
+                                        <span>대표 명소 : 짜뚜짝, 짯페어, 수언룸 야시장</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,7 +232,7 @@
                         <div class="box_info">
                             <div class="info_name">카펠라 방콕</div>
                             <div class="info_hash_tag">
-                                <p><span>#에메랄드바다 #워터풀빌라 #올인크루시브 #모히또가서몰디브한잔 <br>
+                                <p><span>#에메랄드바다 #워터풀빌라 #올인크루시브 #모히또가서몰디브한잔 <br class="only_web">
                                         #휴양끝판왕</span></p>
                             </div>
                             <div class="special">
@@ -222,7 +247,7 @@
                         <div class="box_info">
                             <div class="info_name">신돈 켐핀스키 호텔 방콕</div>
                             <div class="info_hash_tag">
-                                <p><span>#액티비티의천국 #알로하 #쇼핑천국 #와이키키비치 <br> #승무원들이뽑은최고의휴양지 </span></p>
+                                <p><span>#액티비티의천국 #알로하 #쇼핑천국 #와이키키비치 <br class="only_web"> #승무원들이뽑은최고의휴양지 </span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -264,7 +289,7 @@
                         <div class="box_info">
                             <div class="info_name">샤마 레이크뷰 아속 방콕</div>
                             <div class="info_hash_tag">
-                                <p><span>#올인클루시브 #액티비티천국 #멕시코여행 #카리브해 <br> #호캉스끝판왕</span></p>
+                                <p><span>#올인클루시브 #액티비티천국 #멕시코여행 #카리브해 <br class="only_web"> #호캉스끝판왕</span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -278,7 +303,7 @@
                         <div class="box_info">
                             <div class="info_name">차트리움 레지던스 사톤</div>
                             <div class="info_hash_tag">
-                                <p><span>#프라이빗휴양지 #로맨틱허니문 #풀빌라맛집 #아름다운섬 <br> #태국여행</span></p>
+                                <p><span>#프라이빗휴양지 #로맨틱허니문 #풀빌라맛집 #아름다운섬 <br class="only_web"> #태국여행</span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -298,7 +323,7 @@
                         <div class="box_info">
                             <div class="info_name">행사상품07. 발리</div>
                             <div class="info_hash_tag">
-                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br class="only_web"> #풀패키지 #1일1마사지 </span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -326,7 +351,7 @@
                         <div class="box_info">
                             <div class="info_name">행사상품09. 호주</div>
                             <div class="info_hash_tag">
-                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br class="only_web"> #소도시여행</span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -340,7 +365,7 @@
                         <div class="box_info">
                             <div class="info_name">행사상품07. 발리</div>
                             <div class="info_hash_tag">
-                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br class="only_web"> #풀패키지 #1일1마사지 </span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
@@ -368,7 +393,7 @@
                         <div class="box_info">
                             <div class="info_name">행사상품09. 호주</div>
                             <div class="info_hash_tag">
-                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br class="only_web"> #소도시여행</span></p>
                             </div>
                             <div class="special">
                                 <img class="only_web" src="/event/images/special_label.png" alt="">
