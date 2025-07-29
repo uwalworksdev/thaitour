@@ -134,6 +134,21 @@
                                 </tr>
 
                                 <tr>
+                                    <th>Keyword</th>
+                                    <td>
+                                        <input type="text" name="keyword"
+                                            value="<?= $keyword ?? "" ?>"
+                                            class="text" maxlength="255" />
+                                    </td>
+                                    <th>부제</th>
+                                    <td>
+                                        <input type="text" name="subtitle"
+                                            value="<?= $subtitle ?? "" ?>"
+                                            class="text" maxlength="255" />
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>내용</th>
                                     <td colspan="3">
                                         <textarea name="desc" id="desc" rows="10" cols="100" class="input_txt" style="width:100%; height:200px;"><?= viewSQ($desc) ?></textarea>

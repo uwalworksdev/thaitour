@@ -192,6 +192,8 @@ class AdminPromotionController extends BaseController
             $data['category_code_1'] = updateSQ($_POST["category_code_1"] ?? '');
             $data['category_code_2'] = updateSQ($_POST["category_code_2"] ?? '');
             $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
+            $data['subtitle'] = updateSQ($_POST["subtitle"] ?? '');
+            $data['color'] = updateSQ($_POST["color"] ?? '');
             
             $publicPath = ROOTPATH . '/public/data/promotion/';
 
