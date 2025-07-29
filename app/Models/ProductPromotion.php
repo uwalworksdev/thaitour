@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AreaPromotion extends Model
+class ProductPromotion extends Model
 {
     protected $table = 'tbl_product_promotion';
 
