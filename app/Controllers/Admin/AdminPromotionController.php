@@ -10,6 +10,7 @@ class AdminPromotionController extends BaseController
 {
     protected $connect;
     protected $areaPromotion;
+    protected $productPromotion;
     protected $codeModel;
 
     public function __construct()
@@ -18,6 +19,7 @@ class AdminPromotionController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->areaPromotion    = model("AreaPromotion");
+        $this->productPromotion = model("ProductPromotion");
         $this->codeModel        = model("Code");
 
     }
@@ -122,6 +124,151 @@ class AdminPromotionController extends BaseController
                 </script>";
 
 
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function list_product()
+    {
+        $g_list_rows        = !empty($_GET["g_list_rows"]) ? intval($_GET["g_list_rows"]) : 30; 
+        $pg                 = updateSQ($_GET["pg"] ?? '1');
+        $search_txt         = updateSQ($_GET["search_txt"] ?? '');
+        $search_category    = updateSQ($_GET["search_category"] ?? '');
+
+        $where = [
+            'search_txt'        => $search_txt,
+            'search_category'   => $search_category,
+        ];
+
+        $result = $this->productPromotion->get_list($where, $g_list_rows, $pg);
+
+        $data = [
+            'result'                => $result['items'],
+            'num'                   => $result['num'],
+            'nTotalCount'           => $result['nTotalCount'],
+            'nPage'                 => $result['nPage'],
+            'pg'                    => $pg,
+            'g_list_rows'           => $g_list_rows,
+            'search_txt'            => $search_txt,
+            'search_category'       => $search_category,
+        ];
+        return view("admin/_promotion/list_product", $data);
+    }
+
+    public function write_product()
+    {
+        $idx              = updateSQ($_GET["idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
+
+        if ($idx) {
+            $row = $this->productPromotion->find($idx);
+        }
+
+        $data = [
+            'idx' => $idx,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'row' => $row ?? [],
+        ];
+        return view("admin/_promotion/write_product", $data);
+    }
+
+    public function write_product_ok($idx = null)
+    {
+        try {
+            $files = $this->request->getFiles();
+            $data['title']  = updateSQ($_POST["title"] ?? '');
+            $data['category_code_1'] = updateSQ($_POST["category_code_1"] ?? '');
+            $data['category_code_2'] = updateSQ($_POST["category_code_2"] ?? '');
+            $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
+            
+            $publicPath = ROOTPATH . '/public/data/promotion/';
+
+            for ($i = 1; $i <= 1; $i++) {
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
+                ${"checkImg_" . $i} = $this->request->getPost("m_checkImg_" . $i);
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                    $this->areaPromotion->updateData($idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                }
+
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["rfile$i"] = $file->getClientName();
+                    $data["ufile$i"] = $file->getRandomName();
+                    $file->move($publicPath, $data["ufile$i"]);
+                }
+            }
+
+            if ($idx) {
+                $data['m_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $this->productPromotion->updateData($idx, $data);
+
+            } else {
+
+                $data['r_date'] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $insertId = $this->productPromotion->insertData($data);
+            }
+
+            if ($idx) {
+                $message = "수정되었습니다.";
+                return "<script>
+                    alert('$message');
+                    parent.location.reload();
+                    </script>";
+            }
+
+            $message = "정상적인 등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_promotion/list_area';
+                </script>";
+
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_product()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                $data = [
+                    'status' => 'error',
+                    'error' => 'idx is not set!'
+                ];
+                return $this->response->setJSON($data, 400);
+            }
+
+            foreach ($idx as $iValue) {
+                $db1 = $this->productPromotion->delete($iValue);
+                if (!$db1) {
+                    $data = [
+                        'status' => 'error',
+                        'error' => 'error!'
+                    ];
+                    return $this->response->setJSON($data, 400);
+                }
+            }
+
+            $data = [
+                'status' => 'success',
+                'message' => 'delete success!'
+            ];
+            return $this->response->setJSON($data);
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

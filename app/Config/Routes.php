@@ -245,6 +245,12 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_area_ok/(:segment)", "Admin\AdminPromotionController::write_area_ok/$1", ['as' => "admin._promotion.write_area_ok.id"]);
         $routes->post("del", "Admin\AdminPromotionController::del", ['as' => "admin._promotion.del"]);
         $routes->post("change", "Admin\AdminPromotionController::change", ['as' => "admin._promotion.change"]);
+        $routes->get("list_product", "Admin\AdminPromotionController::list_product");
+        $routes->get("write_product", "Admin\AdminPromotionController::write_product");
+        $routes->post("write_product_ok", "Admin\AdminPromotionController::write_product_ok", ['as' => "admin._promotion.write_product_ok"]);
+        $routes->post("write_product_ok/(:segment)", "Admin\AdminPromotionController::write_product_ok/$1", ['as' => "admin._promotion.write_product_ok.id"]);
+        $routes->post("del_product", "Admin\AdminPromotionController::del_product", ['as' => "admin._promotion.del_product"]);
+        $routes->post("change_product", "Admin\AdminPromotionController::change_product", ['as' => "admin._promotion.change_product"]);
     });
 
     $routes->group("_hotel", static function ($routes) {
