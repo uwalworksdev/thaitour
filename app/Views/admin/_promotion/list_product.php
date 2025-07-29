@@ -36,6 +36,7 @@
         <div id="contents">
             <form name="search" id="search">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
+                <input type="hidden" name="type" id="type" value="<?= $type ?>">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>

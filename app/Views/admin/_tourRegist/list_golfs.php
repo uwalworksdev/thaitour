@@ -28,7 +28,7 @@
             <form name="search" id="search">
                 <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
-                <input type="type" id="type" name="type" value="<?php echo $type; ?>">
+                <input type="hidden" name="product_idx" id="product_idx" value="">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>
