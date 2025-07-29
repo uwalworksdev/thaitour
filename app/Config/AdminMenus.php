@@ -144,15 +144,15 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
                 ],
                 [
-                    'name' => '골프',
+                    'name' => '투어',
                     'code' => 'L3 ',
-                    'url' => ['/AdmMaster/_promotion/list_product?type=golf'],
+                    'url' => ['/AdmMaster/_promotion/list_product?type=tour'],
                     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
                 ],
                 [
-                    'name' => '투어',
+                    'name' => '골프',
                     'code' => 'L4',
-                    'url' => ['/AdmMaster/_promotion/list_product?type=tour'],
+                    'url' => ['/AdmMaster/_promotion/list_product?type=golf'],
                     'alias' => ['AdminPromotionController::list_product', 'AdminPromotionController::write_product']
                 ],
             ]

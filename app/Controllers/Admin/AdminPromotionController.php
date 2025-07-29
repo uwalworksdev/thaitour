@@ -142,7 +142,7 @@ class AdminPromotionController extends BaseController
 
         if($type == "hotel") {
             $category_code_1 = "6201";
-        }else if($type == "golf") {
+        }else if($type == "tour") {
             $category_code_1 = "6202";
         }else {
             $category_code_1 = "6203";
