@@ -11,7 +11,7 @@ class ProductPromotion extends Model
     protected $primaryKey = 'idx';
 
     protected $allowedFields = [
-        "title", "category_code_1", "category_code_2", "keyword", "ufile1", "rfile1", "onum", "r_date", "m_date"
+        "title", "subtitle", "category_code_1", "category_code_2", "keyword", "ufile1", "rfile1", "onum", "r_date", "m_date"
     ];
 
     public function __construct()
