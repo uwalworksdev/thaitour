@@ -2,229 +2,801 @@
 
 <?php $this->section('content'); ?>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="https://ai-public.creatie.ai/gen_page/tailwind-custom.css" rel="stylesheet" />
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 <link href="/event/css/style.css" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
 <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
 <script src="/event/js/tailwind.config.js"></script>
 <style>
-  .icon-menu-item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .select2-container .select2-selection--single .select2-selection__rendered span{
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-  .pb_10 {
-    padding-bottom: 10rem !important;
-  }
-
-  @media screen and (max-width: 850px) {
-      #header_mobile {
-          overflow: hidden;
-      }
-
-      #footer {
-        padding-bottom: 20rem;
-        overflow: hidden;
+    .icon-menu-item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 
-    html {
-        font-size: 1.38888889vw !important;
+    .select2-container .select2-selection--single .select2-selection__rendered span {
+        display: flex;
+        align-items: center;
+        gap: 3px;
     }
 
-    .title-section-best {
-        width: 100%;
-        height: 23rem;
-        background-image: url(/event/images/방콕필수코스5가지.png);
-        background-repeat: no-repeat;
-        background-size: 56rem auto;
-        background-position: center top;
-        margin-bottom: 2rem;
+    .pb_10 {
+        padding-bottom: 10rem !important;
     }
 
-    .title-section {
-        width: 100%;
-        height: 28.5rem;
-        background-image: url(/event/images/250418_방콕호텔.png);
-        background-repeat: no-repeat;
-        background-size: 59rem auto;
-        background-position: center top;
-        margin-bottom: 2rem;
+    @media screen and (max-width: 850px) {
+        #header_mobile {
+            overflow: hidden;
+        }
+
+        #footer {
+            padding-bottom: 20rem;
+            overflow: hidden;
+        }
+
+        html {
+            font-size: 1.38888889vw !important;
+        }
+
+        .title-section-best {
+            width: 100%;
+            height: 23rem;
+            background-image: url(/event/images/location_pro_mo.png);
+            background-repeat: no-repeat;
+            background-size: 43.7rem auto;
+            background-position: center top;
+            margin-bottom: 2rem;
+        }
+
+        .title-section {
+            width: 100%;
+            height: 28.5rem;
+            background-image: url(/event/images/250418_방콕호텔.png);
+            background-repeat: no-repeat;
+            background-size: 59rem auto;
+            background-position: center top;
+            margin-bottom: 2rem;
+        }
+
+        .hotel-list a {
+            width: 60rem;
+            min-width: 60rem;
+            max-width: 60rem;
+        }
+
+        .hotel-list a .p-4 h3 {
+            font-size: 2.125rem;
+            line-height: 2.75rem;
+        }
+
+        .good-price-hotel,
+        .infinitypool-hotel,
+        .shopping-hotel,
+        .pet-hotel {
+            margin-top: 5rem;
+        }
+
+        .title-section-tour {
+            width: 100%;
+            height: 32.5rem;
+            background-image: url(/event/images/250418_방콕투어.png);
+            background-repeat: no-repeat;
+            background-size: 65rem auto;
+            background-position: center top;
+            margin-bottom: 2rem;
+            margin-top: 5rem;
+        }
+
+        .tour-7 {
+            background-position: center -140rem;
+            height: 22rem;
+        }
+
+        .title-section-golf {
+            width: 100%;
+            height: 32.5rem;
+            background-image: url(/event/images/250418_방콕골프.png);
+            background-repeat: no-repeat;
+            background-size: 65rem auto;
+            background-position: center top;
+            margin-bottom: 2rem;
+        }
+
+        .title-section-golf.sub-1 {
+            background-position: center 1.7rem;
+        }
+
+        .title-section-golf.sub-2 {
+            background-position: center -30rem;
+            height: 22rem;
+        }
+
+        .title-section-golf.sub-3 {
+            background-position: center -52rem;
+            height: 22rem;
+        }
+
+        /* new */
+        .promotion_banner_img {
+            width: 100%;
+            height: 485px;
+        }
+
+        .promotion_banner_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .promotion_banner_content {
+            max-width: 66rem;
+            width: calc(100% - 2rem);
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 0 0;
+            position: relative;
+            margin-top: -27.5rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .promotion_banner_content .po_round {
+            width: 30.7rem;
+            height: 27rem;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .promotion_banner_content .po_head {
+            font-size: 5.2rem;
+            font-weight: 800;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            padding: 33px 0px;
+        }
+
+        .promotion_banner_content .po_head::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 1.6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30rem;
+            height: 0.8rem;
+            background-color: #dae3fc;
+        }
+
+        .promotion_banner_content .po_head.green::after {
+            background-color: #dbf3dc;
+        }
+
+        .promotion_banner_content .po_head_sub {
+            font-size: 3rem;
+            color: #777;
+            text-align: center;
+            position: relative;
+        }
+
+        .promotion_banner_content .promotion_box {
+            margin-top: 6.5rem;
+        }
+
+        .promotion_banner_content .promotion_box .ttl {
+            font-size: 3.8rem;
+            text-align: center;
+            padding-bottom: 1.5rem;
+
+        }
+
+        .promotion_banner_content .promotion_box .ttl_sub {
+            font-size: 3rem;
+            text-align: center;
+            padding-bottom: 3rem;
+            color: #777;
+
+        }
+
+        .promotion_box_contain {
+            display: flex;
+            flex-direction: column;
+            /* flex-wrap: wrap; */
+            gap: 2rem;
+        }
+
+        .promotion_box_item {
+            width: 100%;
+        }
+
+        .promotion_box_item .box_img {
+            width: 66.1rem;
+            height: 44.1rem;
+            border-radius: 0.8rem;
+            overflow: hidden;
+        }
+
+        .promotion_box_item .box_img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .promotion_box_item .box_info {
+            padding: 3.5rem 0;
+        }
+
+        .promotion_box_item .box_info .info_name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .promotion_box_item .info_hash_tag span {
+            font-size: 2.6rem;
+            color: #777;
+            line-height: 1.5;
+            white-space: nowrap;
+        }
+
+
+        .promotion_box_item .info_hash_tag {
+            margin-bottom: 3.4rem;
+        }
+
+
+        .promotion_box_item .special {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .promotion_box_item .special p {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .promotion_box_item .special img {
+            margin-top: 0.2rem;
+            width: 7.9rem;
+            height: 3.8rem;
+        }
+
+        .sec_banner {
+            background-color: #fff;
+            padding-bottom: 9rem;
+        }
+
+        .promotion_banner_content .po_round img {
+            margin-bottom: 10rem;
+            width: 8rem;
+        }
+
     }
 
-    .hotel-list a {
-      width: 60rem;
-      min-width: 60rem;
-      max-width: 60rem;
-    }
-
-    .hotel-list a .p-4 h3 {
-      font-size: 2.125rem;
-      line-height: 2.75rem;
-    }
-
-    .good-price-hotel, .infinitypool-hotel, .shopping-hotel, .pet-hotel {
-      margin-top: 5rem;
-    }
-
-    .title-section-tour {
-        width: 100%;
-        height: 32.5rem;
-        background-image: url(/event/images/250418_방콕투어.png);
-        background-repeat: no-repeat;
-        background-size: 65rem auto;
-        background-position: center top;
-        margin-bottom: 2rem;
-        margin-top: 5rem;
-    }
-
-    .tour-7 {
-        background-position: center -140rem;
-        height: 22rem;
-    }
-
-    .title-section-golf {
-      width: 100%;
-      height: 32.5rem;
-      background-image: url(/event/images/250418_방콕골프.png);
-      background-repeat: no-repeat;
-      background-size: 65rem auto;
-      background-position: center top;
-      margin-bottom: 2rem;
-    }
-
-    .title-section-golf.sub-1 {
-        background-position: center 1.7rem;
-    }
-
-    .title-section-golf.sub-2 {
-        background-position: center -30rem;
-        height: 22rem;
-    }
-
-    .title-section-golf.sub-3 {
-        background-position: center -52rem;
-        height: 22rem;
-    }
-
-  }
-
-  @media screen and (max-width: 700px) {
-    .box_img {
-      margin: 0 16rem;
-    }
-  }
+    /* @media screen and (max-width: 700px) {
+        .box_img {
+            margin: 0 16rem;
+        }
+    } */
 </style>
+
 <body class="font-[&#39;Noto_Sans_KR&#39;] bg-gray-50 scroll-smooth">
 
-<!-- 배너 섹션 -->
-<section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
-    <div class="absolute inset-0 w-full h-full">
-        <div class="slider-container w-full h-full relative">
+    <!-- 배너 섹션 -->
+    <section class="w-full min-h-[66rem]  md:min-h-screen relative overflow-hidden ">
+        <div class="absolute inset-0 w-full h-full">
+            <div class="slider-container w-full h-full relative">
 
-        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-            <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-transparent"></div>
+                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <img src="/event/images/i2.jpg" alt="방콕 왕궁" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-transparent"></div>
+                </div>
+                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <img src="/event/images/i4.jpg" alt="왓아룬 사원" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-transparent"></div>
+                </div>
+                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <img src="/event/images/i3.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-transparent"></div>
+                </div>
+                <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-transparent"></div>
+                </div>
+            </div>
         </div>
-        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-            <img src="/event/images/i4.jpg" alt="왓아룬 사원" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-transparent"></div>
+        <div class="absolute inset-0 flex items-center justify-center z-10 ">
+            <div class="bg-black/50 w-full h-full flex items-center justify-center p-4">
+                <img src="/event/images/main_pro.png" alt="24시간 꽉찬 여행 방콕" class="w-full h-auto max-h-[70vh] object-contain main_title only_web">
+                <img src="/event/images/main_pro_mo.png" alt="24시간 꽉찬 여행 방콕" class="w-full h-auto max-h-[70vh] object-contain main_title only_mo">
+            </div>
         </div>
-        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-            <img src="/event/images/i3.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-transparent"></div>
-        </div>
-        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-            <img src="/event/images/i1.jpg" alt="랏차다 기차 야시장" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-transparent"></div>
-        </div>
-        </div>
-    </div>
-    <div class="absolute inset-0 flex items-center justify-center z-10 ">
-        <div class="bg-black/50 w-full h-full flex items-center justify-center p-4">
-        <img src="/event/images/24시간꽉찬여행%2B방콕.png" alt="24시간 꽉찬 여행 방콕" class="w-full h-auto max-h-[70vh] object-contain main_title">
-        </div>
-    </div>
-    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+        <!-- <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
         <button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="0"></button>
         <button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="1"></button>
         <button class="w-3 h-3 rounded-full bg-white/50 slider-dot" data-index="2"></button>
+    </div> -->
+    </section>
+
+    <!-- 구글폰트 Pretendard 사용 -->
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+
+    <div class="max-w-8xl mx-auto px-4 py-8 bg-[#ffffff] section-best overflow-hidden">
+
+        <!-- 제목 필요시 활성화 -->
+        <!-- <h1 class="text-4xl font-bold text-center mb-16 text-gray-800">방콕 한눈에 살펴보기</h1> -->
+
+        <!-- 전체 배경 지도 (중앙) -->
+        <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
+            <img src="/event/images/map_pro_ttl.png" class="object-scale-down w-full h-44">
+            <!-- 중앙 지도 -->
+            <div class="hidden lg:block">
+                <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
+                    <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
+                </div>
+
+                <!-- 사원 -->
+                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
+                </div>
+
+                <!-- 강 -->
+                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
+                </div>
+
+                <!-- 야시장 -->
+                <div class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
+                </div>
+
+                <!-- 카오산 -->
+                <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
+                </div>
+
+                <!-- 쇼핑몰 -->
+                <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
+                </div>
+
+                <!-- 무에타이 -->
+                <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
+                    <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
+                </div>
+            </div>
+            <!-- <div class="lg:hidden">
+                <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
+            </div> -->
+        </div>
     </div>
-</section>
 
-<!-- 구글폰트 Pretendard 사용 -->
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
-
-<div class="max-w-8xl mx-auto px-4 py-8 bg-[#fcf1e0] section-best overflow-hidden" >
-
-    <!-- 제목 필요시 활성화 -->
-    <!-- <h1 class="text-4xl font-bold text-center mb-16 text-gray-800">방콕 한눈에 살펴보기</h1> -->
-
-    <!-- 전체 배경 지도 (중앙) -->
-    <div class="relative h-auto md:h-[935px] flex flex-col md:block items-center">
-        <img src="/event/images/방콕명소요약가이드.png" class="object-scale-down w-full h-44">
-        <!-- 중앙 지도 -->
-         <div class="hidden lg:block">
-           <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:translate-y-[-140px] w-[647px]">
-               <img src="/event/images/방콕명소요약가이드%2B1.png" alt="방콕 지도" class="w-full h-auto">
-           </div>
-   
-           <!-- 사원 -->
-           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] md:absolute location-card">
-               <img src="/event/images/방콕명소요약가이드%2B2.png" class=" w-[439px] h-auto max-w-none">
-           </div>
-   
-           <!-- 강 -->
-           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-140px] lg:translate-y-[36px] md:absolute location-card">
-               <img src="/event/images/방콕명소요약가이드%2B3.png" class=" w-[417px] h-auto max-w-none">
-           </div>
-   
-           <!-- 야시장 -->
-           <div class="absolute  md:absolute lg:left-1/2 lg:transform lg:translate-x-[-500px] lg:translate-y-[16px] location-card">
-               <img src="/event/images/방콕명소요약가이드%2B4.png" class="w-[800px]  h-auto max-w-none">
-           </div>
-   
-           <!-- 카오산 -->
-           <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-522px] lg:translate-y-[16px] md:absolute location-card">
-               <img src="/event/images/방콕명소요약가이드%2B5.png" class=" w-[1000px] h-auto max-w-none">
-           </div>
-   
-           <!-- 쇼핑몰 -->
-           <div class="absolute lg:left-1/2 lg:transform lg:translate-x-[-103px] lg:translate-y-[375px] md:absolute location-card">
-               <img src="/event/images/방콕명소요약가이드%2B6.png" class=" w-[362px] h-auto max-w-none">
-           </div>
-   
-           <!-- 무에타이 -->
-           <div class="absolute lg:right-1/2 lg:transform lg:translate-x-[-105px] g:translate-y-[10px] md:absolute location-card">
-               <img src="/event/images/방콕명소요약가이드%2B7.png" class=" w-[440px] h-auto max-w-none">
-           </div>
-         </div>
-         <div class="lg:hidden">
-            <img src="/event/images/map_mo_img.png" alt="방콕 지도" class="w-full h-auto">
-         </div>
+    <div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
+        <div class="title-section-best sub-1"></div>
+        <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[6rem] md:mx-[0]" style="gap: 45px;">
+            <img src="/event/images/img_location_pro01.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지1" />
+            <img src="/event/images/img_location_pro01_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+            <img src="/event/images/img_location_pro02.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지2" />
+            <img src="/event/images/img_location_pro02_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+            <img src="/event/images/img_location_pro03.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지3" />
+            <img src="/event/images/img_location_pro03_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+            <img src="/event/images/img_location_pro04.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지4" />
+            <img src="/event/images/img_location_pro04_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+            <img src="/event/images/img_location_pro05.png" class="card-animation w-[70rem] lg:w-[900px] only_web" alt="이미지5" />
+            <img src="/event/images/img_location_pro05_mo.png" class="card-animation w-[70rem] lg:w-[900px] only_mo" alt="이미지1" />
+        </div>
     </div>
-</div>
 
-<div class="bg-gradient max-w-8xl mx-auto px-4 py-12 best5 overflow-hidden">
-    <div class="title-section-best sub-1"></div>
-    <div class="box_img flex flex-col items-center justify-center space-y-5 relative mx-[10rem] md:mx-[0]">
-        <img src="/event/images/방콕필수코스5가지%2B1.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지1" />
-        <img src="/event/images/방콕필수코스5가지%2B2.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지2" />
-        <img src="/event/images/방콕필수코스5가지%2B3.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지3" />
-        <img src="/event/images/방콕필수코스5가지%2B4.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지4" />
-        <img src="/event/images/방콕필수코스5가지%2B5.png" class="card-animation w-[70rem] lg:w-[700px]" alt="이미지5" />
+    <div class="sec_banner">
+        <div class="promotion_banner_img">
+            <img class="only_web" src="/event/images/promotion_banner-1.png" alt="">
+            <img class="only_mo" src="/event/images/promotion_banner-1_mo.png" alt="">
+        </div>
+        <div class="promotion_banner_content">
+            <div class="po_round">
+                <img src="/event/images/po_banner-head1.png" alt="">
+            </div>
+            <h3 class="po_head">호텔 & 리조트</h3>
+            <p class="po_head_sub">여행의 시작은 내게 맞는 호텔 선택</p>
+            <div class="promotion_box">
+                <h5 class="ttl">럭셔리 호텔</h5>
+                <p class="ttl_sub">호화로운 인생숙소!</p>
+                <div class="promotion_box_contain">
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it1.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">카펠라 방콕</div>
+                            <div class="info_hash_tag">
+                                <p><span>#에메랄드바다 #워터풀빌라 #올인크루시브 #모히또가서몰디브한잔 <br>
+                                        #휴양끝판왕</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>조기예약할인, 리조트별상이(별도문의)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it2.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">신돈 켐핀스키 호텔 방콕</div>
+                            <div class="info_hash_tag">
+                                <p><span>#액티비티의천국 #알로하 #쇼핑천국 #와이키키비치 <br> #승무원들이뽑은최고의휴양지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>조기예약할인, 터틀스노클링서비스, 스냅촬영포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it3.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">포 시즌 호텔 방콕 앳 차오프라야 리버</div>
+                            <div class="info_hash_tag">
+                                <p><span>#럭셔리풀빌라 #야시장 #호핑투어 #맛집투어 #마사지 <br> #가성비허니문 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>플로팅조식, 풀빌라4박업그레이드(리조트별상이)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it4.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">에스콧 엠바시 사톤</div>
+                            <div class="info_hash_tag">
+                                <p><span>#반자유패키지 #유럽스냅 #야경 #관광과쇼핑집결지 #로맨틱허니문</span> </p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>스냅앨범제공, 스위스VIP패스제공, 파리스냅촬영</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it5.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">샤마 레이크뷰 아속 방콕</div>
+                            <div class="info_hash_tag">
+                                <p><span>#올인클루시브 #액티비티천국 #멕시코여행 #카리브해 <br> #호캉스끝판왕</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>조기예약할인, 터틀스노클링서비스, 스냅촬영포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it6.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">차트리움 레지던스 사톤</div>
+                            <div class="info_hash_tag">
+                                <p><span>#프라이빗휴양지 #로맨틱허니문 #풀빌라맛집 #아름다운섬 <br> #태국여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="promotion_box">
+                <h5 class="ttl">레지던스형 호텔</h5>
+                <p class="ttl_sub">내집처럼 편안한 숙소!</p>
+                <div class="promotion_box_contain">
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="sec_banner">
+        <div class="promotion_banner_img">
+            <img class="only_web" src="/event/images/promotion_banner-2.png" alt="">
+            <img class="only_mo" src="/event/images/promotion_banner-2_mo.png" alt="">
+        </div>
+        <div class="promotion_banner_content">
+            <div class="po_round">
+                <img src="/event/images/po_banner-head2.png" alt="">
+            </div>
+            <h3 class="po_head">투어</h3>
+            <p class="po_head_sub">방콕 투어 여행 가이드북</p>
+            <div class="promotion_box">
+                <h5 class="ttl">반일 투어</h5>
+                <p class="ttl_sub">알차고 짧고 굵게 여행</p>
+                <div class="promotion_box_contain">
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sec_banner">
+        <div class="promotion_banner_img">
+            <img class="only_web" src="/event/images/promotion_banner-3.png" alt="">
+            <img class="only_mo" src="/event/images/promotion_banner-3_mo.png" alt="">
+        </div>
+        <div class="promotion_banner_content">
+            <div class="po_round">
+                <img src="/event/images/po_banner-head3.png" alt="">
+            </div>
+            <h3 class="po_head green">골프</h3>
+            <p class="po_head_sub">더투랩이 엄선한 골프 투어</p>
+            <div class="promotion_box">
+                <h5 class="ttl">반일 투어</h5>
+                <p class="ttl_sub">알차고 짧고 굵게 여행</p>
+                <div class="promotion_box_contain">
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it7.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품07. 발리</div>
+                            <div class="info_hash_tag">
+                                <p><span>#신들의섬 #풀빌라천국 #노옵션 #단독행사 #다양한선택일정 <br> #풀패키지 #1일1마사지 </span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>단독행사(현지인가이드), 플로팅조식(리조트별상이), TT비치클럽중식제공</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it8.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품08. 괌</div>
+                            <div class="info_hash_tag">
+                                <p><span>#태교여행 #짧은비행 #호캉스 #별빛투어 #렌터카일주 #쇼핑</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>렌트카24시간포함, 시내투어포함</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promotion_box_item">
+                        <div class="box_img"><img src="/event/images/po_box_it9.png" alt=""></div>
+                        <div class="box_info">
+                            <div class="info_name">행사상품09. 호주</div>
+                            <div class="info_hash_tag">
+                                <p><span>#대자연 #샌드보딩 #노옵션노팁 #디너크루즈 #다양한야생동물 <br> #소도시여행</span></p>
+                            </div>
+                            <div class="special">
+                                <img class="only_web" src="/event/images/special_label.png" alt="">
+                                <img class="only_mo" src="/event/images/special_label_mo.png" alt="">
+                                <p>특전 샴페인 or 와인 서비스, 야경투어 서비스</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
     <div class="max-w-8xl mx-auto">
         <div class="flex justify-center">
             <div class="flex space-x-8">
@@ -235,8 +807,8 @@
             </div>
         </div>
     </div>
-</nav>
-<main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden pb_10">
+</nav> -->
+    <!-- <main class="max-w-8xl mx-auto px-4 py-8 overflow-hidden pb_10">
     <div id="hotel-section" class="mb-16">
         <div class="title-section luxury-hotel" title="럭셔리 호텔"></div>
         <div class="flex flex-wrap justify-center gap-6 hotel-list" data-id="luxury-hotel"></div>
@@ -277,8 +849,8 @@
         <div class="title-section-golf sub-3"></div>
         <div class="flex flex-wrap justify-center gap-6 hotel-list" data-id="sub-3"></div>
     </div>
-</main>
-<!-- <footer class="bg-gray-900 text-white py-12">
+</main> -->
+    <!-- <footer class="bg-gray-900 text-white py-12">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
@@ -329,6 +901,5 @@
     </div>
   </div>
 </footer> -->
-<script src="/event/js/index.js"></script>
-<?php $this->endSection(); ?>
-
+    <script src="/event/js/index.js"></script>
+    <?php $this->endSection(); ?>

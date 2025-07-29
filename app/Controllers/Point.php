@@ -223,7 +223,8 @@ class Point extends BaseController
             "city_name" => $city_name,
             "town_name" => $town_name,
             "local_detail" => $local_detail,
-            "img_list" => $img_list
+            "img_list" => $img_list,
+            "idx" => $lg_idx
         ];
 
         return view('travel/view_detail', $data);
