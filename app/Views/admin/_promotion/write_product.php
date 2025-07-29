@@ -193,13 +193,6 @@
                                 </tr>
 
                                 <tr>
-                                    <th>내용</th>
-                                    <td colspan="3">
-                                        <textarea name="desc" id="desc" rows="10" cols="100" class="input_txt" style="width:100%; height:200px;"><?= viewSQ($desc) ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>대표이미지(600X440)</th>
                                     <td colspan="3">
 
