@@ -87,7 +87,8 @@ class CodeController extends BaseController
             $is_best = $row['is_best'];
             $distance = $row['distance'];
             $type = $row['type'];
-            $code = $row['code'];
+            $color = $row['color'];
+            $code_memo = $row['code_memo'];
             $type = $row['type'];
             $titleStr = "수정";
             $flight_arr = $this->FlightModel->getAllData($code_idx);
@@ -124,6 +125,8 @@ class CodeController extends BaseController
             "ufile2" => $ufile2 ?? "",
             "rfile2" => $rfile2 ?? "",
             "status" => $status ?? "",
+            "color" => $color ?? "",
+            "code_memo" => $code_memo ?? "",
             "onum" => $onum,
             "depth" => $depth,
             "code_gubun" => $code_gubun ?? "",
