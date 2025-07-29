@@ -251,6 +251,14 @@ class CodeController extends BaseController
             //write_log("코드등록: " . json_encode($data));
         }
 
+        
+        $del_1 = $this->request->getPost("del_1");
+        $del_2 = $this->request->getPost("del_2");
+
+        if (isset($del_1) && ${$del_1} == "N") {
+            $this->CodeModel->update($code_idx, ['ufile1' => '', 'rfile1' => '']);
+        }
+
         if (isset($file) && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
             $file->move($upload, $newName);
@@ -259,6 +267,10 @@ class CodeController extends BaseController
                 'ufile1' => $newName,
                 'rfile1' => $file->getClientName()
             ]);
+        }
+
+        if (isset($del_2) && ${$del_2} == "N") {
+            $this->CodeModel->update($code_idx, ['ufile2' => '', 'rfile2' => '']);
         }
 
         if (isset($file2) && $file2->isValid() && !$file2->hasMoved()) {
